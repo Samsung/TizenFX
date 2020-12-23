@@ -48,11 +48,11 @@ namespace Tizen.NUI
         private EventHandler<FocusedViewActivatedEventArgs> _focusedViewEnterKeyEventHandler2;
         private FocusedViewEnterKeyEventCallback2 _focusedViewEnterKeyEventCallback2;
 
-        internal FocusManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.FocusManager.FocusManager_SWIGUpcast(cPtr), cMemoryOwn)
+        internal FocusManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.FocusManager.Upcast(cPtr), cMemoryOwn)
         {
         }
 
-        internal FocusManager() : this(Interop.FocusManager.new_FocusManager(), true)
+        internal FocusManager() : this(Interop.FocusManager.NewFocusManager(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -293,10 +293,10 @@ namespace Tizen.NUI
         {
             if (view == null)
             {
-                throw new ArgumentNullException("the target view should not be null");
+                throw new ArgumentNullException(nameof(view), "the target view should not be null");
             }
 
-            bool ret = Interop.FocusManager.FocusManager_SetCurrentFocusActor(swigCPtr, View.getCPtr(view));
+            bool ret = Interop.FocusManager.SetCurrentFocusActor(SwigCPtr, View.getCPtr(view));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -309,7 +309,7 @@ namespace Tizen.NUI
         public View GetCurrentFocusView()
         {
             //to fix memory leak issue, match the handle count with native side.
-            IntPtr cPtr = Interop.FocusManager.FocusManager_GetCurrentFocusActor(swigCPtr);
+            IntPtr cPtr = Interop.FocusManager.GetCurrentFocusActor(SwigCPtr);
             View ret = this.GetInstanceSafely<View>(cPtr);
             return ret;
         }
@@ -322,7 +322,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool MoveFocus(View.FocusDirection direction)
         {
-            bool ret = Interop.FocusManager.FocusManager_MoveFocus(swigCPtr, (int)direction);
+            bool ret = Interop.FocusManager.MoveFocus(SwigCPtr, (int)direction);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -334,7 +334,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void ClearFocus()
         {
-            Interop.FocusManager.FocusManager_ClearFocus(swigCPtr);
+            Interop.FocusManager.ClearFocus(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -344,7 +344,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void MoveFocusBackward()
         {
-            Interop.FocusManager.FocusManager_MoveFocusBackward(swigCPtr);
+            Interop.FocusManager.MoveFocusBackward(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -357,7 +357,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetAsFocusGroup(View view, bool isFocusGroup)
         {
-            Interop.FocusManager.FocusManager_SetAsFocusGroup(swigCPtr, View.getCPtr(view), isFocusGroup);
+            Interop.FocusManager.SetAsFocusGroup(SwigCPtr, View.getCPtr(view), isFocusGroup);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -369,7 +369,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool IsFocusGroup(View view)
         {
-            bool ret = Interop.FocusManager.FocusManager_IsFocusGroup(swigCPtr, View.getCPtr(view));
+            bool ret = Interop.FocusManager.IsFocusGroup(SwigCPtr, View.getCPtr(view));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -383,7 +383,7 @@ namespace Tizen.NUI
         public View GetFocusGroup(View view)
         {
             //to fix memory leak issue, match the handle count with native side.
-            IntPtr cPtr = Interop.FocusManager.FocusManager_GetFocusGroup(swigCPtr, View.getCPtr(view));
+            IntPtr cPtr = Interop.FocusManager.GetFocusGroup(SwigCPtr, View.getCPtr(view));
             View ret = this.GetInstanceSafely<View>(cPtr);
             return ret;
         }
@@ -395,79 +395,79 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetCustomAlgorithm(ICustomFocusAlgorithm arg0)
         {
-            if(arg0 != null)
+            if (arg0 != null)
             {
                 _customAlgorithmInterfaceWrapper = new CustomAlgorithmInterfaceWrapper();
                 _customAlgorithmInterfaceWrapper.SetFocusAlgorithm(arg0);
 
-                Interop.NDalic.SetCustomAlgorithm(swigCPtr, CustomAlgorithmInterface.getCPtr(_customAlgorithmInterfaceWrapper));
+                Interop.NDalic.SetCustomAlgorithm(SwigCPtr, CustomAlgorithmInterface.getCPtr(_customAlgorithmInterfaceWrapper));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             else
             {
-                Interop.NDalic.SetCustomAlgorithm(swigCPtr, new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero));
+                Interop.NDalic.SetCustomAlgorithm(SwigCPtr, new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         internal static FocusManager Get()
         {
-            FocusManager ret = new FocusManager(Interop.FocusManager.FocusManager_Get(), true);
+            FocusManager ret = new FocusManager(Interop.FocusManager.Get(), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void SetFocusGroupLoop(bool enabled)
         {
-            Interop.FocusManager.FocusManager_SetFocusGroupLoop(swigCPtr, enabled);
+            Interop.FocusManager.SetFocusGroupLoop(SwigCPtr, enabled);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal bool GetFocusGroupLoop()
         {
-            bool ret = Interop.FocusManager.FocusManager_GetFocusGroupLoop(swigCPtr);
+            bool ret = Interop.FocusManager.GetFocusGroupLoop(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void SetFocusIndicatorView(View indicator)
         {
-            Interop.FocusManager.FocusManager_SetFocusIndicatorActor(swigCPtr, View.getCPtr(indicator));
+            Interop.FocusManager.SetFocusIndicatorActor(SwigCPtr, View.getCPtr(indicator));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal View GetFocusIndicatorView()
         {
             //to fix memory leak issue, match the handle count with native side.
-            IntPtr cPtr = Interop.FocusManager.FocusManager_GetFocusIndicatorActor(swigCPtr);
+            IntPtr cPtr = Interop.FocusManager.GetFocusIndicatorActor(SwigCPtr);
             View ret = this.GetInstanceSafely<View>(cPtr);
             return ret;
         }
 
         internal PreFocusChangeSignal PreFocusChangeSignal()
         {
-            PreFocusChangeSignal ret = new PreFocusChangeSignal(Interop.FocusManager.FocusManager_PreFocusChangeSignal(swigCPtr), false);
+            PreFocusChangeSignal ret = new PreFocusChangeSignal(Interop.FocusManager.PreFocusChangeSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal FocusChangedSignal FocusChangedSignal()
         {
-            FocusChangedSignal ret = new FocusChangedSignal(Interop.FocusManager.FocusManager_FocusChangedSignal(swigCPtr), false);
+            FocusChangedSignal ret = new FocusChangedSignal(Interop.FocusManager.FocusChangedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal FocusGroupChangedSignal FocusGroupChangedSignal()
         {
-            FocusGroupChangedSignal ret = new FocusGroupChangedSignal(Interop.FocusManager.FocusManager_FocusGroupChangedSignal(swigCPtr), false);
+            FocusGroupChangedSignal ret = new FocusGroupChangedSignal(Interop.FocusManager.FocusGroupChangedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal ViewSignal FocusedViewEnterKeySignal()
         {
-            ViewSignal ret = new ViewSignal(Interop.FocusManager.FocusManager_FocusedActorEnterKeySignal(swigCPtr), false);
+            ViewSignal ret = new ViewSignal(Interop.FocusManager.FocusedActorEnterKeySignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -492,7 +492,7 @@ namespace Tizen.NUI
                 view = _preFocusChangeEventHandler(this, e);
             }
 
-            if (view)
+            if (view != null)
             {
                 return view.GetPtrfromView();
             }
@@ -739,6 +739,7 @@ namespace Tizen.NUI
             "private void OnFocusedViewActivated(object source, FocusManager.FocusedViewActivatedEventArgs arg)" +
             "{...}")]
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
         public class FocusedViewEnterKeyEventArgs : EventArgs
         {
             private View _view;
@@ -775,7 +776,7 @@ namespace Tizen.NUI
 
             public override View GetNextFocusableView(View current, View proposed, View.FocusDirection direction)
             {
-                if(_customFocusAlgorithm == null)
+                if (_customFocusAlgorithm == null)
                 {
                     Tizen.Log.Error("NUI", $"[ERROR] User defined ICustomFocusAlgorithm interface class becomes unreachable. Null will be proposed for next focusing!");
                     return null;

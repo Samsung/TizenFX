@@ -101,9 +101,9 @@ namespace Tizen.NUI.Xaml
                 attributes.FirstOrDefault(cad => TypeConverterAttribute.TypeConvertersType.Contains(cad.AttributeType.FullName));
             if (converterAttribute == null)
                 return null;
-            if (converterAttribute.ConstructorArguments[0].ArgumentType == typeof (string))
+            if (converterAttribute.ConstructorArguments[0].ArgumentType == typeof(string))
                 return (string)converterAttribute.ConstructorArguments[0].Value;
-            if (converterAttribute.ConstructorArguments[0].ArgumentType == typeof (Type))
+            if (converterAttribute.ConstructorArguments[0].ArgumentType == typeof(Type))
                 return ((Type)converterAttribute.ConstructorArguments[0].Value).AssemblyQualifiedName;
             return null;
         }
@@ -163,7 +163,7 @@ namespace Tizen.NUI.Xaml
                 var ignoreCase = (serviceProvider?.GetService(typeof(IConverterOptions)) as IConverterOptions)?.IgnoreCase ?? false;
 
                 //If the type is nullable, as the value is not null, it's safe to assume we want the built-in conversion
-                if (toType.GetTypeInfo().IsGenericType && toType.GetGenericTypeDefinition() == typeof (Nullable<>))
+                if (toType.GetTypeInfo().IsGenericType && toType.GetGenericTypeDefinition() == typeof(Nullable<>))
                     toType = Nullable.GetUnderlyingType(toType);
 
                 //Obvious Built-in conversions
@@ -186,35 +186,38 @@ namespace Tizen.NUI.Xaml
                     return UInt32.Parse(str, CultureInfo.InvariantCulture);
                 if (toType == typeof(UInt64))
                     return UInt64.Parse(str, CultureInfo.InvariantCulture);
-                if (toType == typeof (Single))
+                if (toType == typeof(Single))
                     return Single.Parse(str, CultureInfo.InvariantCulture);
-                if (toType == typeof (Double))
+                if (toType == typeof(Double))
                     return Double.Parse(str, CultureInfo.InvariantCulture);
-                if (toType == typeof (Boolean))
+                if (toType == typeof(Boolean))
                     return Boolean.Parse(str);
-                if (toType == typeof (TimeSpan))
+                if (toType == typeof(TimeSpan))
                     return TimeSpan.Parse(str, CultureInfo.InvariantCulture);
-                if (toType == typeof (DateTime))
+                if (toType == typeof(DateTime))
                     return DateTime.Parse(str, CultureInfo.InvariantCulture);
-                if (toType == typeof(Char)) {
+                if (toType == typeof(Char))
+                {
                     char c = '\0';
-                    Char.TryParse(str, out c);
+                    _ = Char.TryParse(str, out c);
                     return c;
                 }
-                if (toType == typeof (String) && str.StartsWith("{}", StringComparison.Ordinal))
+                if (toType == typeof(String) && str.StartsWith("{}", StringComparison.Ordinal))
                     return str.Substring(2);
-                if (toType == typeof (String))
+                if (toType == typeof(String))
                     return value;
                 if (toType == typeof(Decimal))
                     return Decimal.Parse(str, CultureInfo.InvariantCulture);
             }
 
             //if the value is not assignable and there's an implicit conversion, convert
-            if (value != null && !toType.IsAssignableFrom(value.GetType())) {
-                var opImplicit =   value.GetType().GetImplicitConversionOperator(fromType: value.GetType(), toType: toType)
+            if (value != null && !toType.IsAssignableFrom(value.GetType()))
+            {
+                var opImplicit = value.GetType().GetImplicitConversionOperator(fromType: value.GetType(), toType: toType)
                                 ?? toType.GetImplicitConversionOperator(fromType: value.GetType(), toType: toType);
 
-                if (opImplicit != null) {
+                if (opImplicit != null)
+                {
                     value = opImplicit.Invoke(null, new[] { value });
                     return value;
                 }

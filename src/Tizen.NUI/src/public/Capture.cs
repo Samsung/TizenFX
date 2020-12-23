@@ -1,6 +1,3 @@
-using System.Diagnostics;
-using System;
-using System.Drawing;
 /*
  * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
@@ -18,12 +15,15 @@ using System.Drawing;
  *
  */
 
+using System.Diagnostics;
+using System;
+using System.Drawing;
+
 namespace Tizen.NUI
 {
     using global::System;
     using global::System.ComponentModel;
     using global::System.Runtime.InteropServices;
-    using global::System.ComponentModel;
     using Tizen.NUI.BaseComponents;
 
     /// <summary>
@@ -105,11 +105,15 @@ namespace Tizen.NUI
         /// If path is empty string, the captured result is not be saved as a file.</param>
         /// <param name="color">background color of captured scene.</param>
         /// <exception cref="InvalidOperationException">This exception can be due to the invalid size values, of when width or height is lower than zero.</exception>
-        /// <exception cref="ArgumentNullException">This exception is due to the path is null.</exception>
+        /// <exception cref="ArgumentNullException">This exception is thrown when size or path or position or color is null.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Start(Container source, Position position, Size size, string path, Color color )
+        public void Start(Container source, Position position, Size size, string path, Color color)
         {
-            if (size.Width <= 0 || size.Height <=0)
+            if (null == size)
+            {
+                throw new ArgumentNullException(nameof(size));
+            }
+            else if (size.Width <= 0 || size.Height <= 0)
             {
                 throw new InvalidOperationException("size should larger than zero");
             }
@@ -117,10 +121,18 @@ namespace Tizen.NUI
             {
                 throw new ArgumentNullException("path should not be null");
             }
+            else if (null == position)
+            {
+                throw new ArgumentNullException(nameof(position));
+            }
+            else if (null == color)
+            {
+                throw new ArgumentNullException(nameof(color));
+            }
 
             if (source is View || source is Layer)
             {
-                Interop.Capture.Start4(swigCPtr, source.SwigCPtr, new Vector2(position.X, position.Y).SwigCPtr, new Vector2(size.Width, size.Height).SwigCPtr, path, new Vector4(color.R, color.G, color.B, color.A).SwigCPtr);
+                Interop.Capture.Start4(SwigCPtr, source.SwigCPtr, new Vector2(position.X, position.Y).SwigCPtr, new Vector2(size.Width, size.Height).SwigCPtr, path, new Vector4(color.R, color.G, color.B, color.A).SwigCPtr);
 
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -137,11 +149,15 @@ namespace Tizen.NUI
         /// <param name="color">background color of captured scene.</param>
         /// <param name="quality">The value to control image quality for jpeg file format in the range [1, 100].</param>
         /// <exception cref="InvalidOperationException">This exception can be due to the invalid size values, of when width or height is lower than zero.</exception>
-        /// <exception cref="ArgumentNullException">This exception is due to the path is null.</exception>
+        /// <exception cref="ArgumentNullException">This exception is thrown when size or path or color is null.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Start(Container source, Size size, string path, Color color, uint quality )
+        public void Start(Container source, Size size, string path, Color color, uint quality)
         {
-            if (size.Width <= 0 || size.Height <=0)
+            if (null == size)
+            {
+                throw new ArgumentNullException(nameof(size));
+            }
+            else if (size.Width <= 0 || size.Height <= 0)
             {
                 throw new InvalidOperationException("size should larger than zero");
             }
@@ -153,10 +169,14 @@ namespace Tizen.NUI
             {
                 throw new InvalidOperationException("quality should between 0 to 100");
             }
+            else if (null == color)
+            {
+                throw new ArgumentNullException(nameof(color));
+            }
 
             if (source is View || source is Layer)
             {
-                Interop.Capture.Start3(swigCPtr, source.SwigCPtr, new Vector2(size.Width, size.Height).SwigCPtr, path, new Vector4(color.R, color.G, color.B, color.A).SwigCPtr, quality);
+                Interop.Capture.Start3(SwigCPtr, source.SwigCPtr, new Vector2(size.Width, size.Height).SwigCPtr, path, new Vector4(color.R, color.G, color.B, color.A).SwigCPtr, quality);
 
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -172,11 +192,15 @@ namespace Tizen.NUI
         /// If path is empty string, the captured result is not be saved as a file.</param>
         /// <param name="color">background color of captured scene.</param>
         /// <exception cref="InvalidOperationException">This exception can be due to the invalid size values, of when width or height is lower than zero.</exception>
-        /// <exception cref="ArgumentNullException">This exception is due to the path is null.</exception>
+        /// <exception cref="ArgumentNullException">This exception is thrown when size or path or color is null.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Start(Container source, Size size, string path, Color color)
         {
-            if (size.Width <= 0 || size.Height <=0)
+            if (null == size)
+            {
+                throw new ArgumentNullException(nameof(size));
+            }
+            else if (size.Width <= 0 || size.Height <= 0)
             {
                 throw new InvalidOperationException("size should larger than zero");
             }
@@ -184,10 +208,14 @@ namespace Tizen.NUI
             {
                 throw new ArgumentNullException("path should not be null");
             }
+            else if (null == color)
+            {
+                throw new ArgumentNullException(nameof(color));
+            }
 
             if (source is View || source is Layer)
             {
-                Interop.Capture.Start1(swigCPtr, source.SwigCPtr, new Vector2(size.Width, size.Height).SwigCPtr, path, new Vector4(color.R, color.G, color.B, color.A).SwigCPtr);
+                Interop.Capture.Start1(SwigCPtr, source.SwigCPtr, new Vector2(size.Width, size.Height).SwigCPtr, path, new Vector4(color.R, color.G, color.B, color.A).SwigCPtr);
 
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -205,11 +233,15 @@ namespace Tizen.NUI
         /// <param name="path">image file path to be saved as a file.
         /// If path is empty string, the captured result is not be saved as a file.</param>
         /// <exception cref="InvalidOperationException">This exception can be due to the invalid size values, of when width or height is lower than zero.</exception>
-        /// <exception cref="ArgumentNullException">This exception is due to the path is null.</exception>
+        /// <exception cref="ArgumentNullException">This exception is thrown when size or path is null.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Start(Container source, Size size, string path)
         {
-            if (size.Width <= 0 || size.Height <=0)
+            if (null == size)
+            {
+                throw new ArgumentNullException(nameof(size));
+            }
+            else if (size.Width <= 0 || size.Height <= 0)
             {
                 throw new InvalidOperationException("size should larger than zero");
             }
@@ -217,10 +249,10 @@ namespace Tizen.NUI
             {
                 throw new ArgumentNullException("path should not be null");
             }
-            
+
             if (source is View || source is Layer)
             {
-                Interop.Capture.Start2(swigCPtr, source.SwigCPtr, new Vector2(size.Width, size.Height).SwigCPtr, path);
+                Interop.Capture.Start2(SwigCPtr, source.SwigCPtr, new Vector2(size.Width, size.Height).SwigCPtr, path);
 
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -238,8 +270,8 @@ namespace Tizen.NUI
             {
                 throw new InvalidOperationException("quality should between zero to 100");
             }
-            
-            Interop.Capture.SetImageQuality(swigCPtr, quality);
+
+            Interop.Capture.SetImageQuality(SwigCPtr, quality);
         }
 
         private void onFinished(IntPtr data, int state)
@@ -273,7 +305,7 @@ namespace Tizen.NUI
             {
                 if (finishedEventHandler == null && disposed == false)
                 {
-                    finishedSignal = new CaptureSignal(Interop.Capture.Get(swigCPtr), false);
+                    finishedSignal = new CaptureSignal(Interop.Capture.Get(SwigCPtr), false);
                     finishedCallback = onFinished;
                     finishedSignal.Connect(finishedCallback);
                 }
@@ -299,22 +331,8 @@ namespace Tizen.NUI
         public NativeImageSource GetNativeImageSource()
         {
             Tizen.Log.Debug("NUI", $"GetNativeImageSource()");
-            return new NativeImageSource(Interop.Capture.GetNativeImageSourcePtr(swigCPtr), true);
+            return new NativeImageSource(Interop.Capture.GetNativeImageSourcePtr(SwigCPtr), true);
         }
-
-        /// <summary>
-        /// Generate captured image's Url
-        /// </summary>
-        /// <returns>The Url string representing this captured image source</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string GenerateUrl()
-        {
-            string url = "";
-            url = Interop.Capture.GenerageUrl(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return url;
-        }
-
     }
 
     /// <summary>
@@ -341,7 +359,7 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(HandleRef swigCPtr)
         {
-            if (swigCMemOwn)
+            if (SwigCMemOwn)
             {
                 Interop.Capture.DeleteSignal(swigCPtr);
             }
@@ -349,14 +367,14 @@ namespace Tizen.NUI
 
         public bool Empty()
         {
-            bool ret = Interop.Capture.SignalEmpty(swigCPtr);
+            bool ret = Interop.Capture.SignalEmpty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.Capture.SignalGetConnectionCount(swigCPtr);
+            uint ret = Interop.Capture.SignalGetConnectionCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -365,7 +383,7 @@ namespace Tizen.NUI
         {
             IntPtr ip = Marshal.GetFunctionPointerForDelegate<Delegate>(func);
             {
-                Interop.Capture.SignalConnect(swigCPtr, new HandleRef(this, ip));
+                Interop.Capture.SignalConnect(SwigCPtr, new HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -374,14 +392,14 @@ namespace Tizen.NUI
         {
             IntPtr ip = Marshal.GetFunctionPointerForDelegate<Delegate>(func);
             {
-                Interop.Capture.SignalDisconnect(swigCPtr, new HandleRef(this, ip));
+                Interop.Capture.SignalDisconnect(SwigCPtr, new HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public void Emit(Capture src, bool success)
         {
-            Interop.Capture.SignalEmit(swigCPtr, src.SwigCPtr, (success ? 0 : 1));
+            Interop.Capture.SignalEmit(SwigCPtr, src.SwigCPtr, (success ? 0 : 1));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
     }

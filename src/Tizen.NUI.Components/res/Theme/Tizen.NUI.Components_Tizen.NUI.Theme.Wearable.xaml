@@ -1,179 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<n:Theme
-  xmlns:n="clr-namespace:Tizen.NUI;assembly=Tizen.NUI"
-  xmlns:b="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+<Theme
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
   xmlns:c="clr-namespace:Tizen.NUI.Components;assembly=Tizen.NUI.Components"
-  xmlns:nx="clr-namespace:Tizen.NUI.Xaml;assembly=Tizen.NUI"
   xmlns:cx="clr-namespace:Tizen.NUI.Components.Extension;assembly=Tizen.NUI.Components"
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-  Id="Tizen.NUI.Theme.Wearable" >
+  Id="Tizen.NUI.Theme.Wearable">
 
   <!--Button-->
-  <c:ButtonStyle x:Key="Button" Size="210, 72" CornerRadius="36">
+  <c:ButtonStyle x:Key="Tizen.NUI.Components.Button" Size="210, 72" CornerRadius="36">
     <c:ButtonStyle.BackgroundColor>
-      <b:Selector x:TypeArguments="n:Color" Normal="0, 0.1647, 0.3019, 0.85" Pressed="0, 0.2475, 0.5019, 0.85" Disabled="0.2392, 0.2392, 0.2392, 0.85"/>
+      <Selector x:TypeArguments="Color" Normal="0, 0.1647, 0.3019, 0.85" Pressed="0, 0.2475, 0.5019, 0.85" Disabled="0.2392, 0.2392, 0.2392, 0.85"/>
     </c:ButtonStyle.BackgroundColor>
     <c:ButtonStyle.Opacity>
-      <b:Selector x:TypeArguments="x:Single?" Other="1.0" Disabled="0.3"/>
+      <Selector x:TypeArguments="x:Single?" Other="1.0" Disabled="0.3"/>
     </c:ButtonStyle.Opacity>
     <c:ButtonStyle.Text>  <!--Button Text-->
-      <b:TextLabelStyle FontFamily="SamsungOne 700" PixelSize="28" Padding="20, 20, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <b:TextLabelStyle.TextColor>
-          <b:Selector x:TypeArguments="n:Color" Normal="0.2196, 0.6131, 0.9882, 1" Disabled="1, 1, 1, 0.35"/>
-        </b:TextLabelStyle.TextColor>
-      </b:TextLabelStyle>
+      <TextLabelStyle FontFamily="SamsungOne 700" PixelSize="28" Padding="20, 20, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextLabelStyle.TextColor>
+          <Selector x:TypeArguments="Color" Normal="0.2196, 0.6131, 0.9882, 1" Disabled="1, 1, 1, 0.35"/>
+        </TextLabelStyle.TextColor>
+      </TextLabelStyle>
     </c:ButtonStyle.Text>
   </c:ButtonStyle>
 
   <!--CheckBox-->
-  <cx:LottieButtonStyle x:Key="CheckBox" LottieUrl="nx:NUIResourcePath nui_wearable_checkbox_icon.json">
+  <cx:LottieButtonStyle x:Key="Tizen.NUI.Components.CheckBox" LottieUrl="NUIResourcePath nui_wearable_checkbox_icon.json">
     <cx:LottieButtonStyle.PlayRange>
-      <b:Selector x:TypeArguments="b:LottieFrameInfo" Selected="19, 36" Normal="0, 18"/>
+      <Selector x:TypeArguments="LottieFrameInfo" Selected="19, 36" Normal="0, 18"/>
     </cx:LottieButtonStyle.PlayRange>
     <cx:LottieButtonStyle.Opacity>
-      <b:Selector x:TypeArguments="x:Single?" Other="1" Pressed="0.6" Disabled="0.3"/>
+      <Selector x:TypeArguments="x:Single?" Other="1" Pressed="0.6" Disabled="0.3"/>
     </cx:LottieButtonStyle.Opacity>
   </cx:LottieButtonStyle>
-
-  <!--DropDown-->
-  <c:DropDownStyle x:Key="DropDown" SpaceBetweenButtonTextAndIcon="10" ListPadding="5">
-    <c:DropDownStyle.Button> <!--DropDown Button-->
-      <c:ButtonStyle ParentOrigin="TopLeft" PivotPoint="TopLeft" BackgroundImageBorder="6, 6, 6, 6" IconRelativeOrientation="Right" IconPadding="6">
-        <c:ButtonStyle.BackgroundImage>
-          <b:Selector x:TypeArguments="x:String" Pressed="{nx:NUIResourcePath nui_component_default_checkbox_bg_p.png}" Other="{nx:NUIResourcePath nui_component_default_checkbox_bg_n.png}"/>
-        </c:ButtonStyle.BackgroundImage>
-        <c:ButtonStyle.Text>
-          <b:TextLabelStyle Text="Select an item" PointSize="12" TextColor="Black"/>
-        </c:ButtonStyle.Text>
-        <c:ButtonStyle.Icon>
-          <b:ImageViewStyle Size="28, 28" ResourceUrl="{nx:NUIResourcePath nui_component_default_dropdown_button_icon.png}"/>
-        </c:ButtonStyle.Icon>
-      </c:ButtonStyle>
-    </c:DropDownStyle.Button>
-    <c:DropDownStyle.ListBackgroundImage> <!--DropDown ListBackgroundImage-->
-      <b:ImageViewStyle ResourceUrl="{nx:NUIResourcePath nui_component_default_dropdown_list_bg.png}" Border="6, 6, 6, 6" Size="280, 360"/>
-    </c:DropDownStyle.ListBackgroundImage>
-  </c:DropDownStyle>
-
-  <!--DropDownDataItem-->
-  <c:DropDownItemStyle x:Key="DropDownDataItem" Size="360, 50">
-    <c:DropDownItemStyle.BackgroundColor>
-      <b:Selector x:TypeArguments="n:Color" Pressed="0.05, 0.63, 0.9, 1" Selected="0.8, 0.8, 0.8, 1" Normal="1, 1, 1, 1"/>
-    </c:DropDownItemStyle.BackgroundColor>
-    <c:DropDownItemStyle.Text>
-      <b:TextLabelStyle PointSize="12" Position="28, 0" Text="List item"/>
-    </c:DropDownItemStyle.Text>
-  </c:DropDownItemStyle>
-
-  <!--Popup-->
-  <c:PopupStyle x:Key="Popup" Size="500, 280" BackgroundColor="0.9, 0.9, 0.9, 1">
-    <c:PopupStyle.ImageShadow>
-      <n:ImageShadow Url="{nx:NUIResourcePath nui_component_default_popup_shadow.png}" Border="24, 24, 24, 24" Extents="48, 48"/>
-    </c:PopupStyle.ImageShadow>
-    <c:PopupStyle.Title>
-      <b:TextLabelStyle PointSize="16" TextColor="Black" PositionUsesPivotPoint="true" ParentOrigin="TopLeft" PivotPoint="TopLeft" HorizontalAlignment="Begin" VerticalAlignment="Bottom" Padding="20" Text="Title" />
-    </c:PopupStyle.Title>
-    <c:PopupStyle.Buttons>
-      <c:ButtonStyle Size="0, 80" PositionUsesPivotPoint="true" ParentOrigin="BottomLeft" PivotPoint="BottomLeft">
-        <c:ButtonStyle.BackgroundColor>
-          <b:Selector x:TypeArguments="n:Color" Normal="1, 1, 1, 1" Pressed="1, 1, 1, 0.5"/>
-        </c:ButtonStyle.BackgroundColor>
-        <c:ButtonStyle.Overlay>
-          <b:ImageViewStyle PositionUsesPivotPoint="true" ParentOrigin="Center" PivotPoint="Center" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent">
-            <b:ImageViewStyle.BackgroundColor>
-              <b:Selector x:TypeArguments="n:Color" Normal="1, 1, 1, 1" Pressed="0, 0, 0, 0.1" Selected="1, 1, 1, 1"/>
-            </b:ImageViewStyle.BackgroundColor>
-          </b:ImageViewStyle>
-        </c:ButtonStyle.Overlay>
-        <c:ButtonStyle.Text>
-          <b:TextLabelStyle PositionUsesPivotPoint="true" ParentOrigin="Center" PivotPoint="Center" HorizontalAlignment="Center" VerticalAlignment="Center" TextColor="0.05, 0.63, 0.9, 1" />
-        </c:ButtonStyle.Text>
-      </c:ButtonStyle>
-    </c:PopupStyle.Buttons>
-  </c:PopupStyle>
-
-  <!--Progress-->
-  <c:ProgressStyle x:Key="Progress" Size="200, 5">
-    <c:ProgressStyle.Track>
-      <b:ImageViewStyle BackgroundColor="0, 0, 0, 0.1" />
-    </c:ProgressStyle.Track>
-    <c:ProgressStyle.Buffer>
-      <b:ImageViewStyle BackgroundColor="0.05, 0.63, 0.9, 0.3" />
-    </c:ProgressStyle.Buffer>
-    <c:ProgressStyle.Progress>
-      <b:ImageViewStyle BackgroundColor="0.05, 0.63, 0.9, 1" />
-    </c:ProgressStyle.Progress>
-  </c:ProgressStyle>
 
   <!--RadioButton-->
-  <cx:LottieButtonStyle x:Key="RadioButton" LottieUrl="nx:NUIResourcePath nui_wearable_radiobutton_icon.json">
+  <cx:LottieButtonStyle x:Key="Tizen.NUI.Components.RadioButton" LottieUrl="NUIResourcePath nui_wearable_radiobutton_icon.json">
     <cx:LottieButtonStyle.PlayRange>
-      <b:Selector x:TypeArguments="b:LottieFrameInfo" Selected="0, 12" Normal="13, 25"/>
+      <Selector x:TypeArguments="LottieFrameInfo" Selected="0, 12" Normal="13, 25"/>
     </cx:LottieButtonStyle.PlayRange>
     <cx:LottieButtonStyle.Opacity>
-      <b:Selector x:TypeArguments="x:Single?" Other="1" Pressed="0.6" Disabled="0.3"/>
+      <Selector x:TypeArguments="x:Single?" Other="1" Pressed="0.6" Disabled="0.3"/>
     </cx:LottieButtonStyle.Opacity>
   </cx:LottieButtonStyle>
-
-  <!--Slider-->
-  <c:SliderStyle x:Key="Slider" Size="200, 50" TrackThickness="5">
-    <c:SliderStyle.Track>
-      <b:ImageViewStyle BackgroundColor="0, 0, 0, 0.1" />
-    </c:SliderStyle.Track>
-    <c:SliderStyle.Progress>
-      <b:ImageViewStyle BackgroundColor="0.5, 0.63, 0.9, 1" />
-    </c:SliderStyle.Progress>
-    <c:SliderStyle.Thumb>
-      <b:ImageViewStyle Size="50, 50" ResourceUrl="{nx:NUIResourcePath nui_component_default_slider_thumb_n.png}">
-        <b:ImageViewStyle.BackgroundImage>
-          <b:Selector x:TypeArguments="x:String" Normal="" Pressed="{nx:NUIResourcePath nui_component_default_slider_thumb_bg_p.png}" />
-        </b:ImageViewStyle.BackgroundImage>
-      </b:ImageViewStyle>
-    </c:SliderStyle.Thumb>
-  </c:SliderStyle>
 
   <!--Switch-->
-  <cx:LottieButtonStyle x:Key="Switch" LottieUrl="nx:NUIResourcePath nui_wearable_switch_icon.json">
-    <cx:LottieButtonStyle.PlayRange>
-      <b:Selector x:TypeArguments="b:LottieFrameInfo" Selected="0, 18" Normal="19, 36"/>
-    </cx:LottieButtonStyle.PlayRange>
-    <cx:LottieButtonStyle.Opacity>
-      <b:Selector x:TypeArguments="x:Single?" Other="1" Pressed="0.6" Disabled="0.3"/>
-    </cx:LottieButtonStyle.Opacity>
-  </cx:LottieButtonStyle>
-
-  <!--Tab-->
-  <c:TabStyle x:Key="Tab" Size="480, 80" BackgroundColor="Yellow">
-    <c:TabStyle.UnderLine>
-      <b:ViewStyle Size="0, 6" PositionUsesPivotPoint="true" ParentOrigin="BottomLeft" PivotPoint="BottomLeft" BackgroundColor="0.05, 0.63, 0.9, 1.0" />
-    </c:TabStyle.UnderLine>
-    <c:TabStyle.Text>
-      <b:TextLabelStyle PointSize="16">
-        <b:TextLabelStyle.TextColor>
-          <b:Selector x:TypeArguments="n:Color" Normal="Black" Selected="0.05, 0.63, 0.9, 1" />
-        </b:TextLabelStyle.TextColor>
-      </b:TextLabelStyle>
-    </c:TabStyle.Text>
-  </c:TabStyle>
-
-  <!--Toast-->
-  <c:ToastStyle x:Key="Toast" WidthResizePolicy="FitToChildren" HeightResizePolicy="FitToChildren" BackgroundColor="0, 0, 0, 0.8">
-    <c:ToastStyle.Text>
-      <b:TextLabelStyle PositionUsesPivotPoint="true" ParentOrigin="Center" PivotPoint="Center" WidthResizePolicy="UseNaturalSize" HeightResizePolicy="UseNaturalSize" HorizontalAlignment="Center" VerticalAlignment="Center" TextColor="White" Padding="12, 12, 8, 8" />
-    </c:ToastStyle.Text>
-  </c:ToastStyle>
+  <cx:LottieSwitchStyle x:Key="Tizen.NUI.Components.Switch" LottieUrl="NUIResourcePath nui_wearable_switch_icon.json">
+    <cx:LottieSwitchStyle.PlayRange>
+      <Selector x:TypeArguments="LottieFrameInfo" Selected="0, 18" Normal="19, 36"/>
+    </cx:LottieSwitchStyle.PlayRange>
+    <cx:LottieSwitchStyle.Opacity>
+      <Selector x:TypeArguments="x:Single?" Other="1" Pressed="0.6" Disabled="0.3"/>
+    </cx:LottieSwitchStyle.Opacity>
+  </cx:LottieSwitchStyle>
 
   <!--Loading-->
-  <c:LoadingStyle x:Key="Loading" LoadingSize="360, 360" />
-  
-  <!--Pagination-->
-  <c:PaginationStyle x:Key="Pagination">
-    <c:PaginationStyle.IndicatorImageUrl>
-      <b:Selector x:TypeArguments="x:String" Normal="{nx:NUIResourcePath nui_component_default_pagination_normal_dot.png}" Selected="{nx:NUIResourcePath nui_component_default_pagination_focus_dot.png}" />
-    </c:PaginationStyle.IndicatorImageUrl>
-  </c:PaginationStyle>
+  <c:LoadingStyle x:Key="Tizen.NUI.Components.Loading" LoadingSize="360, 360" />
 
-  <!--Scrollbar-->
-  <c:ScrollbarStyle x:Key="Scrollbar" TrackThickness="6" ThumbThickness="6" TrackColor="1, 1, 1, 0.15" ThumbColor="0.6, 0.6, 0.6, 1.0" TrackPadding="4" />
-
-</n:Theme>
+</Theme>

@@ -27,8 +27,9 @@ namespace Tizen.NUI.Components.Extension
     /// </remark>
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    internal class SlidingSwitchExtension : SwitchExtension
+    internal class SlidingSwitchExtension : SwitchExtension, IDisposable
     {
+        private bool disposed = false;
         private Animation slidingAnimation;
 
         public SlidingSwitchExtension() : base()
@@ -49,12 +50,23 @@ namespace Tizen.NUI.Components.Extension
 
             if (slidingAnimation.State == Animation.States.Playing)
             {
+                slidingAnimation.EndAction = Animation.EndActions.StopFinal;
                 slidingAnimation.Stop();
             }
 
-            slidingAnimation.Clear();
-            slidingAnimation.AnimateTo(thumb, "PositionX", track.Size.Width - thumb.Size.Width - thumb.Position.X);
-            slidingAnimation.Play();
+            float destinationPosX = switchButton.IsSelected ? track.Size.Width - thumb.Size.Width : 0;
+
+            if (switchButton.IsOnWindow)
+            {
+                slidingAnimation.Clear();
+                slidingAnimation.AnimateTo(thumb, "PositionX", destinationPosX);
+                slidingAnimation.EndAction = Animation.EndActions.StopFinal;
+                slidingAnimation.Play();
+            }
+            else
+            {
+                thumb.PositionX = destinationPosX;
+            }
         }
 
         public override void OnDispose(Button button)
@@ -68,6 +80,29 @@ namespace Tizen.NUI.Components.Extension
                 slidingAnimation.Dispose();
                 slidingAnimation = null;
             }
+        }
+
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                slidingAnimation?.Dispose();
+            }
+            disposed = true;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Dispose()
+        {
+            Dispose(true);
+            global::System.GC.SuppressFinalize(this);
         }
     }
 }

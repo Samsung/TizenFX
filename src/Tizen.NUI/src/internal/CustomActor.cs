@@ -20,52 +20,52 @@ namespace Tizen.NUI
     internal class CustomActor : Animatable
     {
 
-        internal CustomActor(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.CustomActorImpl.CustomActor_SWIGUpcast(cPtr), cMemoryOwn)
+        internal CustomActor(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.CustomActorImpl.CustomActorUpcast(cPtr), cMemoryOwn)
         {
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(CustomActor obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.CustomActorImpl.delete_CustomActor(swigCPtr);
+            Interop.CustomActorImpl.DeleteCustomActor(swigCPtr);
         }
 
-        public CustomActor() : this(Interop.CustomActorImpl.new_CustomActor__SWIG_0(), true)
+        public CustomActor() : this(Interop.CustomActorImpl.NewCustomActor(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public static CustomActor DownCast(BaseHandle handle)
         {
-            CustomActor ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as CustomActor;
+            CustomActor ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as CustomActor;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public CustomActorImpl GetImplementation()
         {
-            CustomActorImpl ret = new CustomActorImpl(Interop.CustomActorImpl.CustomActor_GetImplementation(swigCPtr), false);
+            CustomActorImpl ret = new CustomActorImpl(Interop.CustomActorImpl.CustomActorGetImplementation(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public CustomActor(CustomActorImpl implementation) : this(Interop.CustomActorImpl.new_CustomActor__SWIG_1(CustomActorImpl.getCPtr(implementation)), true)
+        public CustomActor(CustomActorImpl implementation) : this(Interop.CustomActorImpl.NewCustomActor(CustomActorImpl.getCPtr(implementation)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public CustomActor(CustomActor copy) : this(Interop.CustomActorImpl.new_CustomActor__SWIG_2(CustomActor.getCPtr(copy)), true)
+        public CustomActor(CustomActor copy) : this(Interop.CustomActorImpl.NewCustomActorConst(CustomActor.getCPtr(copy)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public CustomActor Assign(CustomActor rhs)
         {
-            CustomActor ret = new CustomActor(Interop.CustomActorImpl.CustomActor_Assign(swigCPtr, CustomActor.getCPtr(rhs)), false);
+            CustomActor ret = new CustomActor(Interop.CustomActorImpl.CustomActorAssign(SwigCPtr, CustomActor.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

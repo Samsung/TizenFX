@@ -50,7 +50,7 @@ namespace Tizen.NUI.Binding
                     return Activator.CreateInstance(type, args);
                 }
             }
-            
+
             return Activator.CreateInstance(type);
         }
     }

@@ -16,6 +16,7 @@
  */
 
 using System;
+using System.ComponentModel;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
@@ -23,8 +24,9 @@ namespace Tizen.NUI
     /// <summary>
     /// KeyValue class.
     /// </summary>
-    public class KeyValue
+    public class KeyValue : IDisposable
     {
+        private bool disposed = false;
         /// <summary>
         /// Int key.
         /// </summary>
@@ -69,6 +71,7 @@ namespace Tizen.NUI
         /// <summary>
         /// OriginalKey property.
         /// </summary>
+        /// <exception cref="ArgumentNullException"> Thrown when value is null. </exception>
         public object OriginalKey
         {
             get
@@ -77,6 +80,11 @@ namespace Tizen.NUI
             }
             set
             {
+                if (null == value)
+                {
+                    throw new ArgumentNullException(nameof(value));
+                }
+
                 _originalKey = value;
                 if (value is int || value is Int32)
                 {
@@ -118,6 +126,15 @@ namespace Tizen.NUI
         /// </summary>
         public int IntergerValue
         {
+            get
+            {
+                if (TrueValue.Get(out int retrivedValue))
+                {
+                    return retrivedValue;
+                }
+                NUILog.Error($"[ERROR] Fail to get IntergerValue from PropertyValue! Return ErrorValue(-1)!");
+                return -1;
+            }
             set
             {
                 TrueValue = new PropertyValue(value);
@@ -129,6 +146,15 @@ namespace Tizen.NUI
         /// </summary>
         public bool BooleanValue
         {
+            get
+            {
+                if (TrueValue.Get(out bool retrivedValue))
+                {
+                    return retrivedValue;
+                }
+                NUILog.Error($"[ERROR] Fail to get BooleanValue from PropertyValue! Return false!");
+                return false;
+            }
             set
             {
                 TrueValue = new PropertyValue(value);
@@ -140,6 +166,15 @@ namespace Tizen.NUI
         /// </summary>
         public float SingleValue
         {
+            get
+            {
+                if (TrueValue.Get(out float retrivedValue))
+                {
+                    return retrivedValue;
+                }
+                NUILog.Error($"[ERROR] Fail to get SingleValue from PropertyValue! Return ErrorValue(-1)!");
+                return -1;
+            }
             set
             {
                 TrueValue = new PropertyValue(value);
@@ -151,6 +186,15 @@ namespace Tizen.NUI
         /// </summary>
         public string StringValue
         {
+            get
+            {
+                if (TrueValue.Get(out string retrivedValue))
+                {
+                    return retrivedValue;
+                }
+                NUILog.Error($"[ERROR] Fail to get SingleValue from PropertyValue! Return ErrorString(error to get StringValue)!");
+                return "error to get StringValue";
+            }
             set
             {
                 TrueValue = new PropertyValue(value);
@@ -162,6 +206,16 @@ namespace Tizen.NUI
         /// </summary>
         public Vector2 Vector2Value
         {
+            get
+            {
+                Vector2 retrivedValue = new Vector2(0, 0);
+                if (TrueValue.Get(retrivedValue))
+                {
+                    return retrivedValue;
+                }
+                NUILog.Error($"[ERROR] Fail to get Vector2Value from PropertyValue!");
+                return retrivedValue;
+            }
             set
             {
                 TrueValue = new PropertyValue(value);
@@ -173,6 +227,16 @@ namespace Tizen.NUI
         /// </summary>
         public Vector3 Vector3Value
         {
+            get
+            {
+                Vector3 retrivedValue = new Vector3(0, 0, 0);
+                if (TrueValue.Get(retrivedValue))
+                {
+                    return retrivedValue;
+                }
+                NUILog.Error($"[ERROR] Fail to get Vector3Value from PropertyValue!");
+                return retrivedValue;
+            }
             set
             {
                 TrueValue = new PropertyValue(value);
@@ -184,6 +248,16 @@ namespace Tizen.NUI
         /// </summary>
         public Vector4 Vector4Value
         {
+            get
+            {
+                Vector4 retrivedValue = new Vector4(0, 0, 0, 0);
+                if (TrueValue.Get(retrivedValue))
+                {
+                    return retrivedValue;
+                }
+                NUILog.Error($"[ERROR] Fail to get Vector4Value from PropertyValue!");
+                return retrivedValue;
+            }
             set
             {
                 TrueValue = new PropertyValue(value);
@@ -195,6 +269,16 @@ namespace Tizen.NUI
         /// </summary>
         public Position PositionValue
         {
+            get
+            {
+                Position retrivedValue = new Position(0, 0, 0);
+                if (TrueValue.Get(retrivedValue))
+                {
+                    return retrivedValue;
+                }
+                NUILog.Error($"[ERROR] Fail to get PositionValue from PropertyValue!");
+                return retrivedValue;
+            }
             set
             {
                 TrueValue = new PropertyValue(value);
@@ -206,6 +290,16 @@ namespace Tizen.NUI
         /// </summary>
         public Position2D Position2DValue
         {
+            get
+            {
+                Position2D retrivedValue = new Position2D(0, 0);
+                if (TrueValue.Get(retrivedValue))
+                {
+                    return retrivedValue;
+                }
+                NUILog.Error($"[ERROR] Fail to get Position2DValue from PropertyValue!");
+                return retrivedValue;
+            }
             set
             {
                 TrueValue = new PropertyValue(value);
@@ -217,6 +311,16 @@ namespace Tizen.NUI
         /// </summary>
         public Size SizeValue
         {
+            get
+            {
+                Size retrivedValue = new Size(0, 0, 0);
+                if (TrueValue.Get(retrivedValue))
+                {
+                    return retrivedValue;
+                }
+                NUILog.Error($"[ERROR] Fail to get SizeValue from PropertyValue!");
+                return retrivedValue;
+            }
             set
             {
                 TrueValue = new PropertyValue(value);
@@ -228,6 +332,16 @@ namespace Tizen.NUI
         /// </summary>
         public Size2D Size2DValue
         {
+            get
+            {
+                Size2D retrivedValue = new Size2D(0, 0);
+                if (TrueValue.Get(retrivedValue))
+                {
+                    return retrivedValue;
+                }
+                NUILog.Error($"[ERROR] Fail to get Size2DValue from PropertyValue!");
+                return retrivedValue;
+            }
             set
             {
                 TrueValue = new PropertyValue(value);
@@ -239,6 +353,16 @@ namespace Tizen.NUI
         /// </summary>
         public Color ColorValue
         {
+            get
+            {
+                Color retrivedValue = new Color(0, 0, 0, 0);
+                if (TrueValue.Get(retrivedValue))
+                {
+                    return retrivedValue;
+                }
+                NUILog.Error($"[ERROR] Fail to get ColorValue from PropertyValue!");
+                return retrivedValue;
+            }
             set
             {
                 TrueValue = new PropertyValue(value);
@@ -250,6 +374,16 @@ namespace Tizen.NUI
         /// </summary>
         public Rectangle RectangleValue
         {
+            get
+            {
+                Rectangle retrivedValue = new Rectangle(0, 0, 0, 0);
+                if (TrueValue.Get(retrivedValue))
+                {
+                    return retrivedValue;
+                }
+                NUILog.Error($"[ERROR] Fail to get RectangleValue from PropertyValue!");
+                return retrivedValue;
+            }
             set
             {
                 TrueValue = new PropertyValue(value);
@@ -261,6 +395,16 @@ namespace Tizen.NUI
         /// </summary>
         public Rotation RotationValue
         {
+            get
+            {
+                Rotation retrivedValue = new Rotation();
+                if (TrueValue.Get(retrivedValue))
+                {
+                    return retrivedValue;
+                }
+                NUILog.Error($"[ERROR] Fail to get RotationValue from PropertyValue!");
+                return retrivedValue;
+            }
             set
             {
                 TrueValue = new PropertyValue(value);
@@ -272,6 +416,16 @@ namespace Tizen.NUI
         /// </summary>
         public RelativeVector2 RelativeVector2Value
         {
+            get
+            {
+                RelativeVector2 retrivedValue = new RelativeVector2(0, 0);
+                if (TrueValue.Get(retrivedValue))
+                {
+                    return retrivedValue;
+                }
+                NUILog.Error($"[ERROR] Fail to get RelativeVector2Value from PropertyValue!");
+                return retrivedValue;
+            }
             set
             {
                 TrueValue = new PropertyValue(value);
@@ -283,6 +437,16 @@ namespace Tizen.NUI
         /// </summary>
         public RelativeVector3 RelativeVector3Value
         {
+            get
+            {
+                RelativeVector3 retrivedValue = new RelativeVector3(0, 0, 0);
+                if (TrueValue.Get(retrivedValue))
+                {
+                    return retrivedValue;
+                }
+                NUILog.Error($"[ERROR] Fail to get RelativeVector3Value from PropertyValue!");
+                return retrivedValue;
+            }
             set
             {
                 TrueValue = new PropertyValue(value);
@@ -294,6 +458,16 @@ namespace Tizen.NUI
         /// </summary>
         public RelativeVector4 RelativeVector4Value
         {
+            get
+            {
+                RelativeVector4 retrivedValue = new RelativeVector4(0, 0, 0, 0);
+                if (TrueValue.Get(retrivedValue))
+                {
+                    return retrivedValue;
+                }
+                NUILog.Error($"[ERROR] Fail to get RelativeVector4Value from PropertyValue!");
+                return retrivedValue;
+            }
             set
             {
                 TrueValue = new PropertyValue(value);
@@ -305,6 +479,16 @@ namespace Tizen.NUI
         /// </summary>
         public Extents ExtentsValue
         {
+            get
+            {
+                Extents retrivedValue = new Extents(0, 0, 0, 0);
+                if (TrueValue.Get(retrivedValue))
+                {
+                    return retrivedValue;
+                }
+                NUILog.Error($"[ERROR] Fail to get ExtentsValue from PropertyValue!");
+                return retrivedValue;
+            }
             set
             {
                 TrueValue = new PropertyValue(value);
@@ -316,6 +500,16 @@ namespace Tizen.NUI
         /// </summary>
         public PropertyArray PropertyArrayValue
         {
+            get
+            {
+                PropertyArray retrivedValue = new PropertyArray();
+                if (TrueValue.Get(retrivedValue))
+                {
+                    return retrivedValue;
+                }
+                NUILog.Error($"[ERROR] Fail to get PropertyArrayValue from PropertyValue!");
+                return retrivedValue;
+            }
             set
             {
                 TrueValue = new PropertyValue(value);
@@ -327,6 +521,16 @@ namespace Tizen.NUI
         /// </summary>
         public PropertyMap PropertyMapValue
         {
+            get
+            {
+                PropertyMap retrivedValue = new PropertyMap();
+                if (TrueValue.Get(retrivedValue))
+                {
+                    return retrivedValue;
+                }
+                NUILog.Error($"[ERROR] Fail to get PropertyMapValue from PropertyValue!");
+                return retrivedValue;
+            }
             set
             {
                 TrueValue = new PropertyValue(value);
@@ -345,6 +549,29 @@ namespace Tizen.NUI
             {
                 KeyString = Key;
             }
+        }
+
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                TrueValue?.Dispose();
+            }
+            disposed = true;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Dispose()
+        {
+            Dispose(true);
+            global::System.GC.SuppressFinalize(this);
         }
     }
 }

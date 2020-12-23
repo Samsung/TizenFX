@@ -15,9 +15,9 @@
  *
  */
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Reflection;
 using System.Xml;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
@@ -25,12 +25,25 @@ using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI
 {
-    /// <summary></summary>
+    /// <summary>
+    /// <para>
+    /// Basically, the Theme is a dictionary of <seealso cref="ViewStyle"/>s that can decorate NUI <seealso cref="View"/>s.
+    /// Each ViewStyle item is identified by a string key that can be matched the <seealso cref="View.StyleName"/>.
+    /// </para>
+    /// <para>
+    /// The main purpose of providing Theme is to separate style details from the structure.
+    /// Managing style separately makes it easier to customize the look of application by user context.
+    /// Also since a Theme can be created from xaml file, it can be treated as a resource.
+    /// This enables sharing styles with other applications.
+    /// </para>
+    /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Theme : BindableObject
     {
         private readonly Dictionary<string, ViewStyle> map;
+        private IEnumerable<KeyValuePair<string, string>> changedResources = null;
         private string baseTheme;
+        ResourceDictionary resources;
 
         /// <summary>Create an empty theme.</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -49,43 +62,45 @@ namespace Tizen.NUI
         {
             if (string.IsNullOrEmpty(xamlFile))
             {
-                throw new ArgumentNullException("The xaml file path cannot be null or empty string", nameof(xamlFile));
+                throw new ArgumentNullException(nameof(xamlFile), "The xaml file path cannot be null or empty string");
             }
 
             try
             {
-                using(var reader = XmlReader.Create(xamlFile))
+                using (var reader = XmlReader.Create(xamlFile))
                 {
                     XamlLoader.Load(this, reader);
                 }
             }
-            catch (global::System.IO.IOException e)
+            catch (System.IO.IOException)
             {
-                Tizen.Log.Info("NUI", $"Could not load \"{xamlFile}\".\n");
-                throw e;
+                Tizen.Log.Error("NUI", $"Could not load \"{xamlFile}\".\n");
+                throw;
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                Tizen.Log.Info("NUI", $"Could not parse \"{xamlFile}\".\n");
-                Tizen.Log.Info("NUI", "Make sure the all used assemblies (e.g. Tizen.NUI.Components) are included in the application project.\n");
-                Tizen.Log.Info("NUI", "Make sure the type and namespace are correct.\n");
-                throw e;
+                Tizen.Log.Error("NUI", $"Could not parse \"{xamlFile}\".\n");
+                Tizen.Log.Error("NUI", "Make sure the all used assemblies (e.g. Tizen.NUI.Components) are included in the application project.\n");
+                Tizen.Log.Error("NUI", "Make sure the type and namespace are correct.\n");
+                throw;
             }
         }
 
-        /// <summary></summary>
+        /// <summary>
+        /// The string key to identify the Theme.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string Id { get; set; }
 
         /// <summary>
-        /// For XAML.
+        /// For Xaml use only.
         /// The bulit-in theme id that will be used as base of this.
+        /// View styles with same key are merged.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string BasedOn
+        internal string BasedOn
         {
             get => baseTheme;
-            internal set
+            set
             {
                 baseTheme = value;
 
@@ -108,20 +123,57 @@ namespace Tizen.NUI
             }
         }
 
-        /// <summary>Gets the number of steyls contained in the theme.</summary>
+        /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public int Count => map.Count;
+        public bool IsResourcesCreated => resources != null;
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal ResourceDictionary Resources
+        {
+            get
+            {
+                if (resources != null)
+                    return resources;
+                resources = new ResourceDictionary();
+                ((IResourceDictionary)resources).ValuesChanged += OnThemeResourcesChanged;
+                return resources;
+            }
+            set
+            {
+                if (resources == value)
+                    return;
+
+                if (resources != null)
+                {
+                    ((IResourceDictionary)resources).ValuesChanged -= OnThemeResourcesChanged;
+                }
+                resources = value;
+                if (resources != null)
+                {
+                    // This callback will be removed when Resource.Source is assigned.
+                    ((IResourceDictionary)resources).ValuesChanged += OnThemeResourcesChanged;
+                }
+            }
+        }
 
         /// <summary>
+        /// For Xaml use only.
         /// Note that it is not a normal indexer.
         /// Setter will merge the new value with existing item.
         /// </summary>
-        public ViewStyle this[string styleName]
+        internal ViewStyle this[string styleName]
         {
             get => map[styleName];
             set
             {
-                if (map.TryGetValue(styleName, out ViewStyle style))
+                if (value == null)
+                {
+                    map.Remove(styleName);
+                    return;
+                }
+
+                if (map.TryGetValue(styleName, out ViewStyle style) && style != null && style.GetType() == value.GetType())
                 {
                     style.Merge(value);
                 }
@@ -132,7 +184,11 @@ namespace Tizen.NUI
             }
         }
 
-        /// <inheritdoc/>
+        internal int Count => map.Count;
+
+        /// <summary>
+        /// Get an enumerator of the theme.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public IEnumerator<KeyValuePair<string, ViewStyle>> GetEnumerator() => map.GetEnumerator();
 
@@ -165,13 +221,36 @@ namespace Tizen.NUI
         public ViewStyle GetStyle(string styleName) => map.ContainsKey(styleName) ? map[styleName] : null;
 
         /// <summary>
+        /// Gets a style of given view type.
+        /// </summary>
+        /// <param name="viewType">The type of View.</param>
+        /// <returns>Founded style instance.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when the given viewType is null.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ViewStyle GetStyle(Type viewType)
+        {
+            var currentType = viewType ?? throw new ArgumentNullException(nameof(viewType));
+            ViewStyle resultStyle = null;
+
+            do
+            {
+                if (currentType.Equals(typeof(View))) break;
+                resultStyle = GetStyle(currentType.FullName);
+                currentType = currentType.BaseType;
+            }
+            while (resultStyle == null && currentType != null);
+
+            return resultStyle;
+        }
+
+        /// <summary>
         /// Adds the specified style name and value to the theme.
         /// This replace existing value if the theme already has a style with given name.
         /// </summary>
         /// <param name="styleName">The style name to add.</param>
         /// <param name="value">The style instance to add.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void AddStyle(string styleName, ViewStyle value) => map[styleName] = value;
+        public void AddStyle(string styleName, ViewStyle value) => map[styleName] = value?.Clone();
 
 
         /// <inheritdoc/>
@@ -181,11 +260,12 @@ namespace Tizen.NUI
             var result = new Theme()
             {
                 Id = this.Id,
+                Resources = Resources
             };
 
             foreach (var item in this)
             {
-                result[item.Key] = item.Value?.Clone();
+                result.AddStyle(item.Key, item.Value);
             }
             return result;
         }
@@ -198,7 +278,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Merge(string xamlFile)
         {
-            Merge(new Theme(xamlFile));
+            MergeWithoutClone(new Theme(xamlFile));
         }
 
         /// <summary>Merge other Theme into this.</summary>
@@ -208,7 +288,9 @@ namespace Tizen.NUI
         {
             if (theme == null)
                 throw new ArgumentNullException(nameof(theme));
-            
+
+            if (Id == null) Id = theme.Id;
+
             foreach (var item in theme)
             {
                 if (item.Value == null)
@@ -217,11 +299,81 @@ namespace Tizen.NUI
                 }
                 else if (map.ContainsKey(item.Key) && !item.Value.SolidNull)
                 {
-                    map[item.Key].Merge(theme.GetStyle(item.Key));
+                    map[item.Key].Merge(item.Value);
                 }
                 else
                 {
-                    map[item.Key] = theme.GetStyle(item.Key).Clone();
+                    map[item.Key] = item.Value.Clone();
+                }
+            }
+        }
+
+        internal void MergeWithoutClone(Theme theme)
+        {
+            if (theme == null)
+                throw new ArgumentNullException(nameof(theme));
+
+            if (Id == null) Id = theme.Id;
+
+            foreach (var item in theme)
+            {
+                if (item.Value == null)
+                {
+                    map[item.Key] = null;
+                }
+                else if (map.ContainsKey(item.Key) && !item.Value.SolidNull)
+                {
+                    map[item.Key].Merge(item.Value);
+                }
+                else
+                {
+                    map[item.Key] = item.Value;
+                }
+            }
+
+            if (theme.resources != null)
+            {
+                foreach (var res in theme.resources)
+                {
+                    Resources[res.Key] = res.Value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Internal use only.
+        /// </summary>
+        internal void AddStyleWithoutClone(string styleName, ViewStyle value) => map[styleName] = value;
+
+        internal void SetChangedResources(IEnumerable<KeyValuePair<string, string>> changedResources)
+        {
+            this.changedResources = changedResources;
+        }
+
+        internal void OnThemeResourcesChanged(object sender, ResourcesChangedEventArgs e) => OnThemeResourcesChanged();
+
+        internal void OnThemeResourcesChanged()
+        {
+            if (changedResources != null)
+            {
+                // To avoid loop in infinite, remove OnThemeResourcesChanged callback.
+                ((IResourceDictionary)resources).ValuesChanged -= OnThemeResourcesChanged;
+                foreach (var changedResource in changedResources)
+                {
+                    if (resources.TryGetValue(changedResource.Key, out object resourceValue))
+                    {
+                        string changedValue = changedResource.Value;
+
+                        // check NUIResourcePath
+                        string[] changedValues = changedValue.Split('/');
+                        if (changedValues[0] == "NUIResourcePath")
+                        {
+                            changedValue = changedValues[1];
+                        }
+
+                        Type toType = resourceValue.GetType();
+                        resources[changedResource.Key] = changedValue.ConvertTo(toType, () => toType.GetTypeInfo(), null);
+                    }
                 }
             }
         }

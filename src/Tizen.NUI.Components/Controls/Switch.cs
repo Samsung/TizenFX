@@ -277,6 +277,7 @@ namespace Tizen.NUI.Components
         /// <param name="touch">The touch event.</param>
         /// <returns>True if the event should be consumed.</returns>
         /// <since_tizen> 8 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10. Please use OnClicked instead.")]
         public override bool OnTouch(Touch touch)
         {
             return base.OnTouch(touch);
@@ -339,7 +340,10 @@ namespace Tizen.NUI.Components
         /// SelectEventArgs is a class to record item selected arguments which will sent to user.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// It will be removed in API10
         [Obsolete("Deprecated in API8; Will be removed in API10. Please use SelectedChangedEventArgs instead.")]
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
         public class SelectEventArgs : EventArgs
         {
             /// <summary> Select state of Switch </summary>

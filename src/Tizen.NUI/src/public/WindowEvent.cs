@@ -40,7 +40,7 @@ namespace Tizen.NUI
         private EventCallbackDelegateType0 _stageContextRegainedEventCallbackDelegate;
         private EventHandler _stageSceneCreatedEventHandler;
         private EventCallbackDelegateType0 _stageSceneCreatedEventCallbackDelegate;
-        private WindowResizedEventCallbackType _windowResizedEventCallback;
+        private WindowResizeEventCallbackType _windowResizeEventCallback;
         private WindowFocusChangedEventCallbackType _windowFocusChangedEventCallback2;
         private TransitionEffectEventCallbackType transitionEffectEventCallback;
         private WindowTransitionEffectSignal transitionEffectSignal;
@@ -54,7 +54,7 @@ namespace Tizen.NUI
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool WheelEventCallbackType(IntPtr view, IntPtr wheelEvent);
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void WindowResizedEventCallbackType(IntPtr windowSize);
+        private delegate void WindowResizeEventCallbackType(IntPtr window, IntPtr windowSize);
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WindowFocusChangedEventCallbackType2(IntPtr window, bool focusGained);
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -148,7 +148,7 @@ namespace Tizen.NUI
                 }
 
                 DetentEventHandler -= value;
-                if(DetentEventHandler ==  null && StageWheelEventSignal().Empty() == false)
+                if (DetentEventHandler == null && StageWheelEventSignal().Empty() == false)
                 {
                     StageWheelEventSignal().Disconnect(DetentEventCallback);
                 }
@@ -188,21 +188,21 @@ namespace Tizen.NUI
         {
             add
             {
-                if (_windowResizedEventHandler == null)
+                if (_windowResizeEventHandler == null)
                 {
-                    _windowResizedEventCallback = OnResized;
-                    ResizedSignal().Connect(_windowResizedEventCallback);
+                    _windowResizeEventCallback = OnResized;
+                    ResizeSignal().Connect(_windowResizeEventCallback);
                 }
 
-                _windowResizedEventHandler += value;
+                _windowResizeEventHandler += value;
             }
             remove
             {
-                _windowResizedEventHandler -= value;
+                _windowResizeEventHandler -= value;
 
-                if (_windowResizedEventHandler == null && ResizedSignal().Empty() == false && _windowResizedEventCallback != null)
+                if (_windowResizeEventHandler == null && ResizeSignal().Empty() == false && _windowResizeEventCallback != null)
                 {
-                    ResizedSignal().Disconnect(_windowResizedEventCallback);
+                    ResizeSignal().Disconnect(_windowResizeEventCallback);
                 }
             }
         }
@@ -245,7 +245,7 @@ namespace Tizen.NUI
         /// EffectStart
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<TransitionEffectArgs> TransitionEffect
+        public event EventHandler<TransitionEffectEventArgs> TransitionEffect
         {
             add
             {
@@ -303,9 +303,9 @@ namespace Tizen.NUI
         private event EventHandler<WheelEventArgs> _stageWheelHandler;
         private event EventHandler<KeyEventArgs> _stageKeyHandler;
         private event EventHandler _stageEventProcessingFinishedEventHandler;
-        private event EventHandler<ResizedEventArgs> _windowResizedEventHandler;
+        private event EventHandler<ResizedEventArgs> _windowResizeEventHandler;
         private event EventHandler<FocusChangedEventArgs> _windowFocusChangedEventHandler2;
-        private event EventHandler<TransitionEffectArgs> transitionEffectHandler;
+        private event EventHandler<TransitionEffectEventArgs> transitionEffectHandler;
         private event EventHandler keyboardRepeatSettingsChangedHandler;
 
         internal void SendViewAdded(View view)
@@ -400,42 +400,42 @@ namespace Tizen.NUI
 
         internal WindowFocusSignalType WindowFocusChangedSignal()
         {
-            WindowFocusSignalType ret = new WindowFocusSignalType(Interop.Window.FocusChangedSignal(swigCPtr), false);
+            WindowFocusSignalType ret = new WindowFocusSignalType(Interop.Window.FocusChangedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal WindowFocusSignalType FocusChangedSignal()
         {
-            WindowFocusSignalType ret = new WindowFocusSignalType(Interop.Window.FocusChangedSignal(swigCPtr), false);
+            WindowFocusSignalType ret = new WindowFocusSignalType(Interop.Window.FocusChangedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal KeyEventSignal KeyEventSignal()
         {
-            KeyEventSignal ret = new KeyEventSignal(Interop.Window.KeyEventSignal(swigCPtr), false);
+            KeyEventSignal ret = new KeyEventSignal(Interop.Window.KeyEventSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal VoidSignal EventProcessingFinishedSignal()
         {
-            VoidSignal ret = new VoidSignal(Interop.StageSignal.Stage_EventProcessingFinishedSignal(stageCPtr), false);
+            VoidSignal ret = new VoidSignal(Interop.StageSignal.EventProcessingFinishedSignal(stageCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal TouchSignal TouchSignal()
         {
-            TouchSignal ret = new TouchSignal(Interop.Window.TouchSignal(swigCPtr), false);
+            TouchSignal ret = new TouchSignal(Interop.Window.TouchSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal TouchDataSignal TouchDataSignal()
         {
-            TouchDataSignal ret = new TouchDataSignal(Interop.ActorSignal.Actor_TouchSignal(Layer.getCPtr(GetRootLayer())), false);
+            TouchDataSignal ret = new TouchDataSignal(Interop.ActorSignal.ActorTouchSignal(Layer.getCPtr(GetRootLayer())), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -443,35 +443,35 @@ namespace Tizen.NUI
 
         internal VoidSignal ContextLostSignal()
         {
-            VoidSignal ret = new VoidSignal(Interop.StageSignal.Stage_ContextLostSignal(stageCPtr), false);
+            VoidSignal ret = new VoidSignal(Interop.StageSignal.ContextLostSignal(stageCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal VoidSignal ContextRegainedSignal()
         {
-            VoidSignal ret = new VoidSignal(Interop.StageSignal.Stage_ContextRegainedSignal(stageCPtr), false);
+            VoidSignal ret = new VoidSignal(Interop.StageSignal.ContextRegainedSignal(stageCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal VoidSignal SceneCreatedSignal()
         {
-            VoidSignal ret = new VoidSignal(Interop.StageSignal.Stage_SceneCreatedSignal(stageCPtr), false);
+            VoidSignal ret = new VoidSignal(Interop.StageSignal.SceneCreatedSignal(stageCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        internal ResizedSignal ResizedSignal()
+        internal ResizeSignal ResizeSignal()
         {
-            ResizedSignal ret = new ResizedSignal(Interop.Window.Window_ResizedSignal(swigCPtr), false);
+            ResizeSignal ret = new ResizeSignal(Interop.Window.ResizeSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal System.IntPtr GetNativeWindowHandler()
         {
-            System.IntPtr ret = Interop.Window.GetNativeWindowHandler(HandleRef.ToIntPtr(this.swigCPtr));
+            System.IntPtr ret = Interop.Window.GetNativeWindowHandler(HandleRef.ToIntPtr(this.SwigCPtr));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -497,7 +497,7 @@ namespace Tizen.NUI
                 WheelEventSignal().Disconnect(_wheelEventCallback);
             }
 
-            if(DetentEventCallback != null)
+            if (DetentEventCallback != null)
             {
                 StageWheelEventSignal().Disconnect(DetentEventCallback);
             }
@@ -527,9 +527,9 @@ namespace Tizen.NUI
                 SceneCreatedSignal().Disconnect(_stageSceneCreatedEventCallbackDelegate);
             }
 
-            if (_windowResizedEventCallback != null)
+            if (_windowResizeEventCallback != null)
             {
-                ResizedSignal().Disconnect(_windowResizedEventCallback);
+                ResizeSignal().Disconnect(_windowResizeEventCallback);
             }
 
             if (_windowFocusChangedEventCallback2 != null)
@@ -550,14 +550,14 @@ namespace Tizen.NUI
 
         private StageWheelSignal StageWheelEventSignal()
         {
-            StageWheelSignal ret = new StageWheelSignal(Interop.StageSignal.Stage_WheelEventSignal(stageCPtr), false);
+            StageWheelSignal ret = new StageWheelSignal(Interop.StageSignal.WheelEventSignal(stageCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private WheelSignal WheelEventSignal()
         {
-            WheelSignal ret = new WheelSignal(Interop.ActorSignal.Actor_WheelEventSignal(Layer.getCPtr(this.GetRootLayer())), false);
+            WheelSignal ret = new WheelSignal(Interop.ActorSignal.ActorWheelEventSignal(Layer.getCPtr(this.GetRootLayer())), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -565,13 +565,11 @@ namespace Tizen.NUI
 
         private WindowTransitionEffectSignal TransitionEffectEventSignal()
         {
-            //Tizen.Log.Fatal("NUITEST", "TransitionEffectEventSignal()!");
             if (transitionEffectSignal == null)
             {
                 transitionEffectSignal = new WindowTransitionEffectSignal(this);
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                //Tizen.Log.Fatal("NUITEST", $"transitionEffectSignal is null, new here!");
             }
             return transitionEffectSignal;
         }
@@ -693,8 +691,14 @@ namespace Tizen.NUI
             }
         }
 
-        private void OnResized(IntPtr windowSize)
+        private void OnResized(IntPtr window, IntPtr windowSize)
         {
+            if (window == IntPtr.Zero)
+            {
+                NUILog.Error("OnResized() Window is null! Do nothing!");
+                return;
+            }
+
             ResizedEventArgs e = new ResizedEventArgs();
             // var val = new Uint16Pair(windowSize, false);
             // e.WindowSize = new Size2D(val.GetWidth(), val.GetHeight());
@@ -705,9 +709,9 @@ namespace Tizen.NUI
             // will be fixed later.
             e.WindowSize = this.WindowSize;
 
-            if (_windowResizedEventHandler != null)
+            if (_windowResizeEventHandler != null)
             {
-                _windowResizedEventHandler(this, e);
+                _windowResizeEventHandler(this, e);
             }
         }
 
@@ -731,24 +735,19 @@ namespace Tizen.NUI
 
         private void OnTransitionEffect(IntPtr window, int state, int type)
         {
-            //Tizen.Log.Fatal("NUITEST", $"OnTransitionEffect() called");
             if (window == global::System.IntPtr.Zero)
             {
-                //Tizen.Log.Error("NUI", $"OnTransitionEffect() IntPtr window is null!");
                 return;
             }
 
-            TransitionEffectArgs e = new TransitionEffectArgs();
+            TransitionEffectEventArgs e = new TransitionEffectEventArgs();
 
             e.State = (EffectStates)state;
-            //Tizen.Log.Error("NUITEST", $"e.State={e.State}");
 
             e.Type = (EffectTypes)type;
-            //Tizen.Log.Error("NUITEST", $"e.Type={e.Type}");
 
             if (transitionEffectHandler != null)
             {
-                //Tizen.Log.Fatal("NUITEST", $"Execute transitionEffectHandler(this, e)!!!");
                 transitionEffectHandler(this, e);
             }
             return;
@@ -890,6 +889,7 @@ namespace Tizen.NUI
             "NUIApplication.GetDefaultWindow().FocusChanged = OnFocusChanged; " +
             "private void OnFocusChanged(object source, Window.FocusChangedEventArgs args) {...}")]
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
         public class WindowFocusChangedEventArgs : EventArgs
         {
             /// <summary>
@@ -943,7 +943,7 @@ namespace Tizen.NUI
         /// TransitionEffectArgs
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public class TransitionEffectArgs : EventArgs
+        public class TransitionEffectEventArgs : EventArgs
         {
             private EffectStates state;
             private EffectTypes type;
@@ -1003,7 +1003,7 @@ namespace Tizen.NUI
         /// VisibilityChangedArgs
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public class VisibilityChangedArgs : EventArgs
+        public class VisibilityChangedEventArgs : EventArgs
         {
             private bool visibility;
             /// <summary>
@@ -1013,7 +1013,8 @@ namespace Tizen.NUI
             public bool Visibility
             {
                 get => visibility;
-                set {
+                set
+                {
                     visibility = value;
                 }
             }
@@ -1027,7 +1028,7 @@ namespace Tizen.NUI
                 return;
             }
 
-            VisibilityChangedArgs e = new VisibilityChangedArgs();
+            VisibilityChangedEventArgs e = new VisibilityChangedEventArgs();
             e.Visibility = visibility;
             if (VisibilityChangedEventHandler != null)
             {
@@ -1038,14 +1039,14 @@ namespace Tizen.NUI
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void VisibilityChangedEventCallbackType(IntPtr window, bool visibility);
         private VisibilityChangedEventCallbackType VisibilityChangedEventCallback;
-        private event EventHandler<VisibilityChangedArgs> VisibilityChangedEventHandler;
+        private event EventHandler<VisibilityChangedEventArgs> VisibilityChangedEventHandler;
         private WindowVisibilityChangedEvent VisibilityChangedEventSignal;
 
         /// <summary>
         /// EffectStart
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<VisibilityChangedArgs> VisibilityChanged
+        public event EventHandler<VisibilityChangedEventArgs> VisibilityChanged
         {
             add
             {
@@ -1062,9 +1063,9 @@ namespace Tizen.NUI
                 VisibilityChangedEventHandler -= value;
                 if (VisibilityChangedEventHandler == null)
                 {
-                    if(VisibilityChangedEventSignal != null)
+                    if (VisibilityChangedEventSignal != null)
                     {
-                        if(VisibilityChangedEventSignal.Empty() == false)
+                        if (VisibilityChangedEventSignal.Empty() == false)
                         {
                             VisibilityChangedEventSignal.Disconnect(VisibilityChangedEventCallback);
                         }
@@ -1079,7 +1080,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void VisibiltyChangedSignalEmit(bool visibility)
         {
-            if(VisibilityChangedEventSignal == null)
+            if (VisibilityChangedEventSignal == null)
             {
                 VisibilityChangedEventSignal = new WindowVisibilityChangedEvent(this);
             }

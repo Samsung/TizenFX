@@ -14,6 +14,8 @@
  * limitations under the License.
  *
  */
+
+using global::System.Threading;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
@@ -28,19 +30,19 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.ActorSignal.delete_ActorSignal(swigCPtr);
+            Interop.ActorSignal.DeleteActorSignal(swigCPtr);
         }
 
         public bool Empty()
         {
-            bool ret = Interop.ActorSignal.ActorSignal_Empty(swigCPtr);
+            bool ret = Interop.ActorSignal.Empty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.ActorSignal.ActorSignal_GetConnectionCount(swigCPtr);
+            uint ret = Interop.ActorSignal.GetConnectionCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -49,27 +51,42 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.ActorSignal.ActorSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.ActorSignal.Connect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public void Disconnect(System.Delegate func)
         {
-            System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
+            try
             {
-                Interop.ActorSignal.ActorSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
+                {
+                    Interop.ActorSignal.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+            }
+            catch (global::System.Exception ex)
+            {
+                Tizen.Log.Fatal("NUI", $"[ERROR] excpetion! {ex}: {ex.Message}");
+                Tizen.Log.Fatal("NUI", $"[ERROR] current threadID : {Thread.CurrentThread.ManagedThreadId}");
+                Tizen.Log.Fatal("NUI", $"[ERROR] back trace!");
+                global::System.Diagnostics.StackTrace st = new global::System.Diagnostics.StackTrace(true);
+                for (int i = 0; i < st.FrameCount; i++)
+                {
+                    global::System.Diagnostics.StackFrame sf = st.GetFrame(i);
+                    Tizen.Log.Fatal("NUI", " Method " + sf.GetMethod());
+                }
             }
         }
 
         public void Emit(View arg)
         {
-            Interop.ActorSignal.ActorSignal_Emit(swigCPtr, View.getCPtr(arg));
+            Interop.ActorSignal.Emit(SwigCPtr, View.getCPtr(arg));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public ViewSignal() : this(Interop.ActorSignal.new_ActorSignal(), true)
+        public ViewSignal() : this(Interop.ActorSignal.NewActorSignal(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

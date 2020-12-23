@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+using System;
 using System.ComponentModel;
 using Tizen.NUI.Binding;
 
@@ -27,7 +28,7 @@ namespace Tizen.NUI.BaseComponents
     {
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FocusNavigationSupportProperty = BindableProperty.Create("FocusNavigationSupport", typeof(bool), typeof(CustomView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty FocusNavigationSupportProperty = BindableProperty.Create(nameof(FocusNavigationSupport), typeof(bool), typeof(CustomView), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var customView = (CustomView)bindable;
             if (newValue != null)
@@ -43,7 +44,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FocusGroupProperty = BindableProperty.Create("FocusGroup", typeof(bool), typeof(CustomView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty FocusGroupProperty = BindableProperty.Create(nameof(FocusGroup), typeof(bool), typeof(CustomView), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var customView = (CustomView)bindable;
             if (newValue != null)
@@ -62,8 +63,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="typeName">typename</param>
         /// <param name="behaviour">CustomView Behaviour</param>
-        /// <since_tizen> 3 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <param name="viewStyle">CustomView ViewStyle</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public CustomView(string typeName, CustomViewBehaviour behaviour, ViewStyle viewStyle) : base(typeName, new ViewWrapperImpl(behaviour), viewStyle)
         {
@@ -154,6 +154,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="depth">The depth in the hierarchy for the view.</param>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API level 8 and will be removed in API level 10. Please use OnSceneConnection instead!")]
         public virtual void OnStageConnection(int depth)
         {
         }
@@ -164,7 +165,30 @@ namespace Tizen.NUI.BaseComponents
         /// When the parent of a set of views is disconnected to the stage, then all of the children will receive this callback, starting with the leaf views.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API level 8 and will be removed in API level 10. Please use OnSceneDisconnection instead!")]
         public virtual void OnStageDisconnection()
+        {
+        }
+
+        /// <summary>
+        /// Called after the view has been connected to the scene.<br />
+        /// When a view is connected, it will be directly or indirectly parented to the root view.<br />
+        /// The root view is provided automatically by Tizen.NUI.Window, and is always considered to be connected.<br />
+        /// When the parent of a set of views is connected to the scene, then all of the children will receive this callback.<br />
+        /// </summary>
+        /// <param name="depth">The depth in the hierarchy for the view.</param>
+        /// <since_tizen> 8 </since_tizen>
+        public virtual void OnSceneConnection(int depth)
+        {
+        }
+
+        /// <summary>
+        /// Called after the view has been disconnected from the scene.<br />
+        /// If a view is disconnected, it either has no parent, or is parented to a disconnected view.<br />
+        /// When the parent of a set of views is disconnected to the scene, then all of the children will receive this callback, starting with the leaf views.<br />
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public virtual void OnSceneDisconnection()
         {
         }
 
@@ -405,11 +429,11 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="currentFocusedView">The current focused view.</param>
         /// <param name="direction">The direction to move the focus towards.</param>
         /// <param name="loopEnabled">Whether the focus movement should be looped within the control.</param>
-        /// <returns>The next keyboard focusable view in this control or an empty handle if no view can be focused.</returns>
+        /// <returns>The next keyboard focusable view in this control or null if no view can be focused.</returns>
         /// <since_tizen> 3 </since_tizen>
         public virtual View GetNextFocusableView(View currentFocusedView, View.FocusDirection direction, bool loopEnabled)
         {
-            return new View();
+            return null;
         }
 
         /// <summary>
@@ -725,8 +749,10 @@ namespace Tizen.NUI.BaseComponents
         private void Initialize()
         {
             // Registering CustomView virtual functions to viewWrapperImpl delegates.
-            viewWrapperImpl.OnSceneConnection = new ViewWrapperImpl.OnSceneConnectionDelegate(OnStageConnection);
-            viewWrapperImpl.OnSceneDisconnection = new ViewWrapperImpl.OnSceneDisconnectionDelegate(OnStageDisconnection);
+            viewWrapperImpl.OnSceneConnection = new ViewWrapperImpl.OnSceneConnectionDelegate(OnSceneConnection);
+            viewWrapperImpl.OnSceneDisconnection = new ViewWrapperImpl.OnSceneDisconnectionDelegate(OnSceneDisconnection);
+            viewWrapperImpl.OnStageConnection = new ViewWrapperImpl.OnSceneConnectionDelegate(OnStageConnection);
+            viewWrapperImpl.OnStageDisconnection = new ViewWrapperImpl.OnSceneDisconnectionDelegate(OnStageDisconnection);
             viewWrapperImpl.OnChildAdd = new ViewWrapperImpl.OnChildAddDelegate(OnChildAdd);
             viewWrapperImpl.OnChildRemove = new ViewWrapperImpl.OnChildRemoveDelegate(OnChildRemove);
             viewWrapperImpl.OnPropertySet = new ViewWrapperImpl.OnPropertySetDelegate(OnPropertySet);

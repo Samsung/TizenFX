@@ -29,19 +29,19 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.Layout.delete_ViewLayoutDirectionChangedSignal(swigCPtr);
+            Interop.Layout.DeleteViewLayoutDirectionChangedSignal(swigCPtr);
         }
 
         public bool Empty()
         {
-            bool ret = Interop.Layout.ViewLayoutDirectionChangedSignal_Empty(swigCPtr);
+            bool ret = Interop.Layout.ViewLayoutDirectionChangedSignalEmpty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.Layout.ViewLayoutDirectionChangedSignal_GetConnectionCount(swigCPtr);
+            uint ret = Interop.Layout.ViewLayoutDirectionChangedSignalGetConnectionCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -50,7 +50,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
             {
-                Interop.Layout.ViewLayoutDirectionChangedSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.Layout.ViewLayoutDirectionChangedSignalConnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -59,18 +59,18 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
             {
-                Interop.Layout.ViewLayoutDirectionChangedSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.Layout.ViewLayoutDirectionChangedSignalDisconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public void Emit(View arg)
         {
-            Interop.Layout.ViewLayoutDirectionChangedSignal_Emit(swigCPtr, View.getCPtr(arg));
+            Interop.Layout.ViewLayoutDirectionChangedSignalEmit(SwigCPtr, View.getCPtr(arg));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public ViewLayoutDirectionChangedSignal() : this(Interop.Layout.new_ViewLayoutDirectionChangedSignal(), true)
+        public ViewLayoutDirectionChangedSignal() : this(Interop.Layout.NewViewLayoutDirectionChangedSignal(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

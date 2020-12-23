@@ -26,12 +26,7 @@ namespace Tizen.NUI.Components
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public sealed class StyleManager
-    {   
-        /// <summary>
-        /// (Theme name, Theme instance)
-        /// </summary>
-        private Dictionary<string, Theme> themeMap;
-
+    {
         /// <summary>
         /// StyleManager construct.
         /// </summary>
@@ -60,7 +55,7 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return ThemeManager.CurrentTheme.Id;
+                return ThemeManager.CurrentTheme?.Id ?? ThemeManager.DefaultTheme.Id;
             }
             set
             {
@@ -68,9 +63,12 @@ namespace Tizen.NUI.Components
 
                 var key = value.ToUpperInvariant();
 
-                if (key == Theme.ToUpperInvariant()) return;
+                // Please note that it does not check "key == Theme" here,
+                // because of the font size issue of the Tizen.NUI.StyleManager.
+                // (There are applications to use NUI.Components.StyleManager.ThemeChangedEvent to fix Tizen.NUI.StyleManager font size issue.)
+                // Please do not check equality until we fix that issue.
 
-                if (!ThemeMap.ContainsKey(key))
+                if (!ThemeMap.ContainsKey(key) || ThemeMap[key] == null)
                 {
                     ThemeMap[key] = new Theme()
                     {
@@ -82,20 +80,10 @@ namespace Tizen.NUI.Components
             }
         }
 
-        private Dictionary<string, Theme> ThemeMap
-        {
-            get
-            {
-                if (themeMap == null)
-                {
-                    themeMap = new Dictionary<string, Theme>()
-                    {
-                        ["DEFAULT"] = ThemeManager.DefaultTheme
-                    };
-                }
-                return themeMap;
-            }
-        }
+        /// <summary>
+        /// (Theme name, Theme instance)
+        /// </summary>
+        private Dictionary<string, Theme> ThemeMap { get; } = new Dictionary<string, Theme> { ["DEFAULT"] = ThemeManager.DefaultTheme };
 
         /// <summary>
         /// Register style in StyleManager.
@@ -116,17 +104,22 @@ namespace Tizen.NUI.Components
             {
                 var key = "DEFAULT";
 
+                if (bDefault && theme != null)
+                {
+                    ThemeMap[key].AddStyleWithoutClone(style, styleBase.GetViewStyle());
+                }
+
                 if (theme != null)
                 {
                     key = theme.ToUpperInvariant();
+                }
 
-                    if (!ThemeMap.ContainsKey(key))
+                if (!ThemeMap.ContainsKey(key) || ThemeMap[key] == null)
+                {
+                    ThemeMap[key] = new Theme()
                     {
-                        ThemeMap[key] = new Theme()
-                        {
-                            Id = theme
-                        };
-                    }
+                        Id = theme ?? key
+                    };
                 }
 
                 if (ThemeMap[key].HasStyle(style))
@@ -134,7 +127,7 @@ namespace Tizen.NUI.Components
                     throw new InvalidOperationException($"{style} already be used");
                 }
 
-                ThemeMap[key][style] = styleBase.GetViewStyle();
+                ThemeMap[key].AddStyleWithoutClone(style, styleBase.GetViewStyle());
             }
         }
 
@@ -151,7 +144,7 @@ namespace Tizen.NUI.Components
                 return null;
             }
 
-            return (ThemeManager.CurrentTheme.GetStyle(style) ?? ThemeManager.DefaultTheme.GetStyle(style))?.Clone();
+            return ThemeManager.GetStyle(style);
         }
 
         /// <summary>
@@ -176,7 +169,10 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            ThemeMap[key][component.Name] = (Activator.CreateInstance(style) as StyleBase).GetViewStyle();
+            if (Activator.CreateInstance(style) as StyleBase != null)
+            {
+                ThemeMap[key].AddStyleWithoutClone(component.FullName, (Activator.CreateInstance(style) as StyleBase).GetViewStyle());
+            }
         }
 
         /// <summary>
@@ -187,7 +183,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ViewStyle GetComponentStyle(Type component)
         {
-            return ThemeManager.GetStyle(component.Name);
+            return ThemeManager.GetStyle(component.FullName);
         }
 
         private void OnThemeChanged(object target, ThemeChangedEventArgs args)
@@ -205,7 +201,7 @@ namespace Tizen.NUI.Components
             /// CurrentTheme
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public string CurrentTheme;
+            public string CurrentTheme { get; set; }
         }
     }
 }

@@ -29,12 +29,12 @@ namespace Tizen.NUI
         /// Create a property condition instance.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        public PropertyCondition() : this(Interop.PropertyCondition.new_PropertyCondition__SWIG_0(), true)
+        public PropertyCondition() : this(Interop.PropertyCondition.NewPropertyCondition(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal PropertyCondition(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.PropertyCondition.PropertyCondition_SWIGUpcast(cPtr), cMemoryOwn)
+        internal PropertyCondition(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.PropertyCondition.Upcast(cPtr), cMemoryOwn)
         {
         }
 
@@ -45,7 +45,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public uint GetArgumentCount()
         {
-            uint ret = Interop.PropertyCondition.PropertyCondition_GetArgumentCount(swigCPtr);
+            uint ret = Interop.PropertyCondition.GetArgumentCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -58,7 +58,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public float GetArgument(uint index)
         {
-            float ret = Interop.PropertyCondition.PropertyCondition_GetArgument(swigCPtr, index);
+            float ret = Interop.PropertyCondition.GetArgument(SwigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -126,7 +126,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public static PropertyCondition Step(float stepAmount, float initialValue)
         {
-            PropertyCondition ret = new PropertyCondition(Interop.PropertyCondition.StepCondition__SWIG_0(stepAmount, initialValue), true);
+            PropertyCondition ret = new PropertyCondition(Interop.PropertyCondition.StepCondition(stepAmount, initialValue), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -139,21 +139,21 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public static PropertyCondition Step(float stepAmount)
         {
-            PropertyCondition ret = new PropertyCondition(Interop.PropertyCondition.StepCondition__SWIG_1(stepAmount), true);
+            PropertyCondition ret = new PropertyCondition(Interop.PropertyCondition.StepCondition(stepAmount), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PropertyCondition obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.PropertyCondition.delete_PropertyCondition(swigCPtr);
+            Interop.PropertyCondition.DeletePropertyCondition(swigCPtr);
         }
     }
 }

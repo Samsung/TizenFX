@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,11 +41,11 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty LoadingSizeProperty = BindableProperty.Create(nameof(LoadingSize), typeof(Size), typeof(LoadingStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            ((LoadingStyle)bindable).loadingSize = newValue == null ? null : new Size((Size)newValue);
+            ((LoadingStyle)bindable).Size = (Size)newValue;
         },
         defaultValueCreator: (bindable) =>
         {
-            return ((LoadingStyle)bindable).loadingSize;
+            return ((LoadingStyle)bindable).Size;
         });
 
         /// <summary>The Images bindable property.</summary>
@@ -60,7 +60,6 @@ namespace Tizen.NUI.Components
         });
 
         private Selector<int?> frameRate;
-        private Size loadingSize;
         private string[] images;
 
         static LoadingStyle() { }

@@ -25,7 +25,7 @@ namespace Tizen.NUI.Components
     /// This only contains non-graphical functionalities of basic scrollbar.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public abstract class ScrollbarBase : VisualView
+    public abstract class ScrollbarBase : Control
     {
         private bool mScrollEnabled = true;
 
@@ -34,7 +34,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Create an empty ScrollbarBase.
         /// </summary>
-        public ScrollbarBase() : base(CustomViewBehaviour.ViewBehaviourDefault)
+        protected ScrollbarBase()
         {
         }
 
@@ -42,7 +42,7 @@ namespace Tizen.NUI.Components
         /// Create an empty Scrollbar with a ViewStyle instance to set style properties.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ScrollbarBase(ViewStyle style) : base(CustomViewBehaviour.ViewBehaviourDefault, style)
+        protected ScrollbarBase(ControlStyle style) : base(style)
         {
         }
 
@@ -57,6 +57,14 @@ namespace Tizen.NUI.Components
 
 
         #region Methods
+
+        /// <summary>
+        /// Removes a view from its parent ScrollableBase. If a view has no parent, this method does nothing.
+        /// </summary>
+        public new void Unparent()
+        {
+            (GetParent() as ScrollableBase)?.BaseRemove(this);
+        }
 
         /// <summary>
         /// Update content length and position at once.

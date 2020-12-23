@@ -14,27 +14,31 @@
     <dependencies>
       <group targetFramework="Tizen4.0">
         <dependency id="Tizen.NET.API4" version="4.0.1.14164" />
-        <dependency id="Microsoft.NETCore.Platforms" version="2.0.0" />
+        <dependency id="Microsoft.NETCore.Platforms" version="3.1.0" />
       </group>
       <group targetFramework="Tizen5.0">
         <dependency id="Tizen.NET.API5" version="5.0.0.14638" />
-        <dependency id="Microsoft.NETCore.Platforms" version="2.0.0" />
+        <dependency id="Microsoft.NETCore.Platforms" version="3.1.0" />
       </group>
       <group targetFramework="Tizen6.0">
         <dependency id="Tizen.NET.API6" version="6.0.0.14995" />
-        <dependency id="Microsoft.NETCore.Platforms" version="2.0.0" />
+        <dependency id="Microsoft.NETCore.Platforms" version="3.1.0" />
       </group>
       <group targetFramework="Tizen7.0">
-        <dependency id="Tizen.NET.API7" version="7.0.0.15037" />
-        <dependency id="Microsoft.NETCore.Platforms" version="2.0.0" />
+        <dependency id="Tizen.NET.API7" version="7.0.0.15162" />
+        <dependency id="Microsoft.NETCore.Platforms" version="3.1.0" />
       </group>
       <group targetFramework="Tizen8.0">
-        <dependency id="Tizen.NET.API8" version="$fxversion$" />
-        <dependency id="Microsoft.NETCore.Platforms" version="2.0.0" />
+        <dependency id="Tizen.NET.API8" version="8.0.0.15631" />
+        <dependency id="Microsoft.NETCore.Platforms" version="3.1.0" />
+      </group>
+      <group targetFramework="Tizen9.0">
+        <dependency id="Tizen.NET.API9" version="$fxversion$" />
+        <dependency id="Microsoft.NETCore.Platforms" version="3.1.0" />
       </group>
       <group targetFramework=".NETStandard2.0">
-        <dependency id="Tizen.NET.API8" version="$fxversion$" />
-        <dependency id="Microsoft.NETCore.Platforms" version="2.0.0" />
+        <dependency id="Tizen.NET.API9" version="$fxversion$" />
+        <dependency id="Microsoft.NETCore.Platforms" version="3.1.0" />
       </group>
     </dependencies>
   </metadata>

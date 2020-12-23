@@ -28,19 +28,19 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.FocusChangedSignal.delete_FocusChangedSignal(swigCPtr);
+            Interop.FocusChangedSignal.DeleteFocusChangedSignal(swigCPtr);
         }
 
         public bool Empty()
         {
-            bool ret = Interop.FocusChangedSignal.FocusChangedSignal_Empty(swigCPtr);
+            bool ret = Interop.FocusChangedSignal.Empty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.FocusChangedSignal.FocusChangedSignal_GetConnectionCount(swigCPtr);
+            uint ret = Interop.FocusChangedSignal.GetConnectionCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -49,7 +49,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.FocusChangedSignal.FocusChangedSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.FocusChangedSignal.Connect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -58,18 +58,18 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.FocusChangedSignal.FocusChangedSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.FocusChangedSignal.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public void Emit(View arg1, View arg2)
         {
-            Interop.FocusChangedSignal.FocusChangedSignal_Emit(swigCPtr, View.getCPtr(arg1), View.getCPtr(arg2));
+            Interop.FocusChangedSignal.Emit(SwigCPtr, View.getCPtr(arg1), View.getCPtr(arg2));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public FocusChangedSignal() : this(Interop.FocusChangedSignal.new_FocusChangedSignal(), true)
+        public FocusChangedSignal() : this(Interop.FocusChangedSignal.NewFocusChangedSignal(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

@@ -22,7 +22,7 @@ namespace Tizen.NUI.Xaml
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public string ProvideValue(IServiceProvider serviceProvider) => StyleManager.FrameworkResourcePath + FilePath;
+        public string ProvideValue(IServiceProvider serviceProvider) => FrameworkInformation.ResourcePath + FilePath;
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]

@@ -11,7 +11,7 @@ namespace Tizen.NUI.Binding
         internal TriggerAction(Type associatedType)
         {
             if (associatedType == null)
-                throw new ArgumentNullException("associatedType");
+                throw new ArgumentNullException(nameof(associatedType));
             AssociatedType = associatedType;
         }
 

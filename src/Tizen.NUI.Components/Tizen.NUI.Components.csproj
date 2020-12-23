@@ -2,16 +2,18 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <NoWarn>$(NoWarn);CS0618</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Tizen.Log\Tizen.Log.csproj" />
     <ProjectReference Include="..\Tizen.NUI\Tizen.NUI.csproj" />
+    <ProjectReference Include="..\Tizen.System.Feedback\Tizen.System.Feedback.csproj" />
     <ProjectReference Include="..\Tizen.System.Information\Tizen.System.Information.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="res\**">
+    <None Update="res\*.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

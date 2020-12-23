@@ -28,19 +28,19 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.Animation.delete_AnimationSignal(swigCPtr);
+            Interop.Animation.DeleteAnimationSignal(swigCPtr);
         }
 
         public bool Empty()
         {
-            bool ret = Interop.Animation.AnimationSignal_Empty(swigCPtr);
+            bool ret = Interop.Animation.AnimationSignalEmpty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.Animation.AnimationSignal_GetConnectionCount(swigCPtr);
+            uint ret = Interop.Animation.AnimationSignalGetConnectionCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -49,19 +49,19 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.Animation.AnimationSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.Animation.AnimationSignalConnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public void Connect(System.IntPtr callback)
         {
-            Interop.Animation.AnimationSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, callback));
+            Interop.Animation.AnimationSignalConnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, callback));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
         public void Disconnect(System.IntPtr callback)
         {
-            Interop.Animation.AnimationSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, callback));
+            Interop.Animation.AnimationSignalDisconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, callback));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -69,18 +69,18 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.Animation.AnimationSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.Animation.AnimationSignalDisconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public void Emit(Animation arg)
         {
-            Interop.Animation.AnimationSignal_Emit(swigCPtr, Animation.getCPtr(arg));
+            Interop.Animation.AnimationSignalEmit(SwigCPtr, Animation.getCPtr(arg));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public AnimationSignal() : this(Interop.Animation.new_AnimationSignal(), true)
+        public AnimationSignal() : this(Interop.Animation.NewAnimationSignal(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

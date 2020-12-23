@@ -25,7 +25,7 @@ namespace Tizen.NUI
     /// The Shadow composed of image for View
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class ImageShadow : ShadowBase, ISelectorItem
+    public class ImageShadow : ShadowBase, ICloneable
     {
         private static readonly Rectangle noBorder = new Rectangle();
 
@@ -49,19 +49,45 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Constructor
+        /// Hidden API (Inhouse API).
+        /// Constructor.
+        /// Using Uri class to provide safe sevice and secure API.
         /// </summary>
+        /// <param name="uri">uri.</param>
+        /// <param name="border">border.</param>
+        /// <param name="offset">offset.</param>
+        /// <param name="extents">extents.</param>
+        /// <exception cref="ArgumentNullException">Thrown when uri is null.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageShadow(ImageShadow other) : this(other.Url, other.Border, other.Offset, other.Extents)
+        public ImageShadow(Uri uri, Rectangle border, Vector2 offset, Vector2 extents) : base(offset, extents)
         {
+            if (uri == null)
+            {
+                throw new ArgumentNullException(nameof(uri));
+            }
+            Url = uri.AbsoluteUri;
+            Border = border == null ? null : new Rectangle(border);
         }
 
         /// <summary>
         /// Constructor
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageShadow(ImageShadow other) : this(other?.Url, other.Border, other.Offset, other.Extents)
+        {
+        }
+
+        /// <summary>
+        /// Create a Shadow from a propertyMap.
+        /// </summary>
         internal ImageShadow(PropertyMap propertyMap) : base(propertyMap)
         {
+            Border = noBorder;
+            propertyMap.Find(ImageVisualProperty.Border)?.Get(Border);
+
+            string url = null;
+            propertyMap.Find(ImageVisualProperty.URL)?.Get(out url);
+            Url = url;
         }
 
         /// <summary>
@@ -153,25 +179,6 @@ namespace Tizen.NUI
             map[ImageVisualProperty.URL] = PropertyValue.CreateWithGuard(Url);
 
             return map;
-        }
-
-        /// <inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override bool SetPropertyMap(PropertyMap propertyMap)
-        {
-            if (!base.SetPropertyMap(propertyMap))
-            {
-                return false;
-            }
-
-            Border = noBorder;
-            propertyMap.Find(ImageVisualProperty.Border)?.Get(Border);
-
-            string url = null;
-            propertyMap.Find(ImageVisualProperty.URL)?.Get(out url);
-            Url = url;
-
-            return true;
         }
     }
 }

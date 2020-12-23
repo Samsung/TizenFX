@@ -220,6 +220,7 @@ namespace Tizen.NUI.Components
             Vector2 amounts = GetRectOfVisibleChildScrollAmount(parent, child);
             float dx = amounts[0];
             float dy = amounts[1];
+            amounts.Dispose();
             if (dx != 0 || dy != 0)
             {
                 if (dx != 0 && CanScrollHorizontally())
@@ -759,7 +760,6 @@ namespace Tizen.NUI.Components
          */
         private Vector2 GetRectOfVisibleChildScrollAmount(FlexibleView parent, FlexibleViewViewHolder child)
         {
-            Vector2 ret = new Vector2(0, 0);
             int parentLeft = PaddingLeft;
             int parentTop = PaddingTop;
             int parentRight = (int)Width - PaddingRight;
@@ -769,19 +769,15 @@ namespace Tizen.NUI.Components
             int childRight = (int)child.Right;
             int childBottom = (int)child.Bottom;
 
-            Extents offset = new Extents((ushort)Math.Min(0, childLeft - parentLeft),
-                                         (ushort)Math.Max(0, childRight - parentRight),
-                                         (ushort)Math.Min(0, childTop - parentTop),
-                                         (ushort)Math.Max(0, childBottom - parentBottom));
+            var offsetStart = Math.Min(0, childLeft - parentLeft);
+            var offsetEnd = Math.Max(0, childRight - parentRight);
+            var offsetTop = Math.Min(0, childTop - parentTop);
+            var offsetBottom = Math.Max(0, childBottom - parentBottom);
 
-            int dx = offset.Start != 0 ? offset.Start : Math.Min(childLeft - parentLeft, offset.End);
+            int dx = offsetStart != 0 ? offsetStart : Math.Min(childLeft - parentLeft, offsetEnd);
+            int dy = offsetTop != 0 ? offsetTop : Math.Min(childTop - parentTop, offsetBottom);
 
-            int dy = offset.Top != 0 ? offset.Top : Math.Min(childTop - parentTop, offset.Bottom);
-
-            ret.X = -dx;
-            ret.Y = -dy;
-
-            return ret;
+            return new Vector2(-dx, -dy);
         }
 
         private void OnScrollAnimationFinished(object sender, EventArgs e)

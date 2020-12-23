@@ -27,10 +27,10 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.NDalic.delete_SignalConnectorType(swigCPtr);
+            Interop.NDalic.DeleteSignalConnectorType(swigCPtr);
         }
 
-        public SignalConnectorType(TypeRegistration typeRegistration, string name, SWIGTYPE_p_f_p_Dali__BaseObject_p_Dali__ConnectionTrackerInterface_r_q_const__std__string_p_Dali__FunctorDelegate__bool func) : this(Interop.NDalic.new_SignalConnectorType(TypeRegistration.getCPtr(typeRegistration), name, SWIGTYPE_p_f_p_Dali__BaseObject_p_Dali__ConnectionTrackerInterface_r_q_const__std__string_p_Dali__FunctorDelegate__bool.getCPtr(func)), true)
+        public SignalConnectorType(TypeRegistration typeRegistration, string name, SWIGTYPE_p_f_p_Dali__BaseObject_p_Dali__ConnectionTrackerInterface_r_q_const__std__string_p_Dali__FunctorDelegate__bool func) : this(Interop.NDalic.NewSignalConnectorType(TypeRegistration.getCPtr(typeRegistration), name, SWIGTYPE_p_f_p_Dali__BaseObject_p_Dali__ConnectionTrackerInterface_r_q_const__std__string_p_Dali__FunctorDelegate__bool.getCPtr(func)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

@@ -30,19 +30,19 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.ScrollStateChangedSignal.delete_ScrollStateChangedSignal(swigCPtr);
+            Interop.ScrollStateChangedSignal.DeleteScrollStateChangedSignal(swigCPtr);
         }
 
         public bool Empty()
         {
-            bool ret = Interop.ScrollStateChangedSignal.ScrollStateChangedSignal_Empty(swigCPtr);
+            bool ret = Interop.ScrollStateChangedSignal.Empty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.ScrollStateChangedSignal.ScrollStateChangedSignal_GetConnectionCount(swigCPtr);
+            uint ret = Interop.ScrollStateChangedSignal.GetConnectionCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -51,7 +51,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.ScrollStateChangedSignal.ScrollStateChangedSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.ScrollStateChangedSignal.Connect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -60,18 +60,18 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.ScrollStateChangedSignal.ScrollStateChangedSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.ScrollStateChangedSignal.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public void Emit(View arg)
         {
-            Interop.ScrollStateChangedSignal.ScrollStateChangedSignal_Emit(swigCPtr, View.getCPtr(arg));
+            Interop.ScrollStateChangedSignal.Emit(SwigCPtr, View.getCPtr(arg));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public ScrollStateChangedSignal() : this(Interop.ScrollStateChangedSignal.new_ScrollStateChangedSignal(), true)
+        public ScrollStateChangedSignal() : this(Interop.ScrollStateChangedSignal.NewScrollStateChangedSignal(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

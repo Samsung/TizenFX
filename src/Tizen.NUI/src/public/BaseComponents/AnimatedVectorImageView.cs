@@ -20,9 +20,9 @@ using System.ComponentModel;
 
 namespace Tizen.NUI.BaseComponents
 {
-    #if (NUI_DEBUG_ON)
+#if (NUI_DEBUG_ON)
     using tlog = Tizen.Log;
-    #endif
+#endif
 
     /// <summary>
     /// AnimatedVectorImageView is a class for displaying a vector resource.
@@ -170,7 +170,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 tlog.Fatal(tag, $"[VAV START[ [{GetId()}] CurrentFrame SET");
 
-                if (mResourceURL == null || mResourceURL == String.Empty)
+                if (string.IsNullOrEmpty(mResourceURL))
                 {
                     throw new InvalidOperationException("Resource Url not yet Set");
                 }
@@ -232,8 +232,21 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public AnimationStates AnimationState
         {
-            private set;
-            get;
+            private set
+            {
+                CurrentAnimationState = value;
+            }
+            get
+            {
+                if (CurrentAnimationState == AnimationStates.Playing)
+                {
+                    if (PlayState == PlayStateType.Stopped)
+                    {
+                        CurrentAnimationState = AnimationStates.Stopped;
+                    }
+                }
+                return CurrentAnimationState;
+            }
         }
         #endregion Property
 
@@ -325,7 +338,7 @@ namespace Tizen.NUI.BaseComponents
         {
             tlog.Fatal(tag, $"[VAV START[ [{GetId()}] AnimationState={AnimationState}, PlayState={PlayState}");
 
-            if (mResourceURL == null || mResourceURL == String.Empty)
+            if (string.IsNullOrEmpty(mResourceURL))
             {
                 throw new InvalidOperationException("Resource Url not yet Set");
             }
@@ -368,7 +381,7 @@ namespace Tizen.NUI.BaseComponents
         {
             tlog.Fatal(tag, $"[VAV START[ [{GetId()}] AnimationState={AnimationState}, PlayState={PlayState}");
 
-            if (mResourceURL == null || mResourceURL == String.Empty)
+            if (string.IsNullOrEmpty(mResourceURL))
             {
                 throw new InvalidOperationException("Resource Url not yet Set");
             }
@@ -393,7 +406,7 @@ namespace Tizen.NUI.BaseComponents
         {
             tlog.Fatal(tag, $"[VAV START[ [{GetId()}] endAction:({endAction}), PlayState={PlayState}");
 
-            if (mResourceURL == null || mResourceURL == String.Empty)
+            if (string.IsNullOrEmpty(mResourceURL))
             {
                 throw new InvalidOperationException("Resource Url not yet Set");
             }
@@ -547,6 +560,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         private string tag = "NUITEST";
+        private AnimationStates CurrentAnimationState = AnimationStates.Stopped;
         #endregion Private
     }
 }

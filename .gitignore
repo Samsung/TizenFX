@@ -209,7 +209,7 @@ CompilationErrors-*.txt
 
 # exceptional allowed binaries
 !tools/bin/
-!packaging/*.nupkg
+!packaging/depends/*.nupkg
 
 # external libraries
 externals/libs/

@@ -23,18 +23,18 @@ namespace Tizen.NUI
     internal class WidgetImpl : BaseObject
     {
 
-        internal WidgetImpl() : this( Interop.WidgetImpl.WidgetImpl_New(), true )
+        internal WidgetImpl() : this(Interop.WidgetImpl.New(), true)
         {
             SwigDirectorConnect();
         }
 
-        internal WidgetImpl(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.WidgetImpl.WidgetImpl_SWIGUpcast(cPtr), cMemoryOwn)
+        internal WidgetImpl(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.WidgetImpl.Upcast(cPtr), cMemoryOwn)
         {
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(WidgetImpl obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
@@ -240,7 +240,7 @@ namespace Tizen.NUI
             WIdgetInstanceOnDestroyArgs args = new WIdgetInstanceOnDestroyArgs();
             args.ContentInfo = contentInfo;
             args.TerminateType = type;
-            _widgetInstanceOnDestroyEventHandler?.Invoke(this,args);
+            _widgetInstanceOnDestroyEventHandler?.Invoke(this, args);
         }
 
         public virtual void OnPause()
@@ -278,13 +278,13 @@ namespace Tizen.NUI
 
         public void SetContentInfo(string contentInfo)
         {
-            Interop.WidgetImpl.WidgetImpl_SetContentInfo(swigCPtr, contentInfo);
+            Interop.WidgetImpl.SetContentInfo(SwigCPtr, contentInfo);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void SetImpl(SWIGTYPE_p_Dali__Widget__Impl impl)
         {
-            Interop.WidgetImpl.WidgetImpl_SetImpl(swigCPtr, SWIGTYPE_p_Dali__Widget__Impl.getCPtr(impl));
+            Interop.WidgetImpl.SetImpl(SwigCPtr, SWIGTYPE_p_Dali__Widget__Impl.getCPtr(impl));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -298,7 +298,7 @@ namespace Tizen.NUI
             swigDelegate5 = new SwigDelegateWidgetImpl_5(SwigDirectorOnUpdate);
             swigDelegate6 = new SwigDelegateWidgetImpl_6(SwigDirectorSignalConnected);
             swigDelegate7 = new SwigDelegateWidgetImpl_7(SwigDirectorSignalDisconnected);
-            Interop.WidgetImpl.WidgetImpl_director_connect(swigCPtr, swigDelegate0, swigDelegate1, swigDelegate2, swigDelegate3, swigDelegate4, swigDelegate5, swigDelegate6, swigDelegate7);
+            Interop.WidgetImpl.DirectorConnect(SwigCPtr, swigDelegate0, swigDelegate1, swigDelegate2, swigDelegate3, swigDelegate4, swigDelegate5, swigDelegate6, swigDelegate7);
         }
 
         private bool SwigDerivedClassHasMethod(string methodName, global::System.Type[] methodTypes)
@@ -350,12 +350,12 @@ namespace Tizen.NUI
 
         private void SwigDirectorSignalConnected(global::System.IntPtr slotObserver, global::System.IntPtr callback)
         {
-            SignalConnected((slotObserver == global::System.IntPtr.Zero) ? null : new SlotObserver(slotObserver, false), (callback == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_Dali__CallbackBase(callback, false));
+            SignalConnected((slotObserver == global::System.IntPtr.Zero) ? null : new SlotObserver(slotObserver, false), (callback == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_Dali__CallbackBase(callback));
         }
 
         private void SwigDirectorSignalDisconnected(global::System.IntPtr slotObserver, global::System.IntPtr callback)
         {
-            SignalDisconnected((slotObserver == global::System.IntPtr.Zero) ? null : new SlotObserver(slotObserver, false), (callback == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_Dali__CallbackBase(callback, false));
+            SignalDisconnected((slotObserver == global::System.IntPtr.Zero) ? null : new SlotObserver(slotObserver, false), (callback == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_Dali__CallbackBase(callback));
         }
 
         public delegate void SwigDelegateWidgetImpl_0(string contentInfo, global::System.IntPtr window);
@@ -375,14 +375,5 @@ namespace Tizen.NUI
         private SwigDelegateWidgetImpl_5 swigDelegate5;
         private SwigDelegateWidgetImpl_6 swigDelegate6;
         private SwigDelegateWidgetImpl_7 swigDelegate7;
-
-        private static global::System.Type[] swigMethodTypes0 = new global::System.Type[] { typeof(string), typeof(Window) };
-        private static global::System.Type[] swigMethodTypes1 = new global::System.Type[] { typeof(string), typeof(Widget.TerminationType) };
-        private static global::System.Type[] swigMethodTypes2 = new global::System.Type[] { };
-        private static global::System.Type[] swigMethodTypes3 = new global::System.Type[] { };
-        private static global::System.Type[] swigMethodTypes4 = new global::System.Type[] { typeof(Window) };
-        private static global::System.Type[] swigMethodTypes5 = new global::System.Type[] { typeof(string), typeof(int) };
-        private static global::System.Type[] swigMethodTypes6 = new global::System.Type[] { typeof(SlotObserver), typeof(SWIGTYPE_p_Dali__CallbackBase) };
-        private static global::System.Type[] swigMethodTypes7 = new global::System.Type[] { typeof(SlotObserver), typeof(SWIGTYPE_p_Dali__CallbackBase) };
     }
 }

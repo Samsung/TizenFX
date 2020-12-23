@@ -157,7 +157,7 @@ namespace Tizen.NUI.Components
             if (btGroup.itemGroup != null && newValue != null)
             {
                 foreach (Button btn in btGroup.itemGroup)
-                {   
+                {
                     btn.BackgroundImage = (string)newValue;
                 }
                 btGroup.itemBackgroundImageUrl = (string)newValue;
@@ -177,7 +177,7 @@ namespace Tizen.NUI.Components
             if (btGroup.itemGroup != null && newValue != null)
             {
                 foreach (Button btn in btGroup.itemGroup)
-                {                 
+                {
                     btn.BackgroundImageBorder = (Rectangle)newValue;
                 }
                 btGroup.itemBackgroundBorder = (Rectangle)newValue;

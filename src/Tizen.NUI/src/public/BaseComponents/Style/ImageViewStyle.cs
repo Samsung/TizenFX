@@ -130,15 +130,6 @@ namespace Tizen.NUI.BaseComponents
         {
         }
 
-        /// <summary>
-        /// Create an instance and set properties from the given ImageView.
-        /// </summary>
-        /// <param name="imageView">The ImageView instance that includes property data.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageViewStyle(ImageView imageView) : base(imageView)
-        {
-        }
-
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? PreMultipliedAlpha

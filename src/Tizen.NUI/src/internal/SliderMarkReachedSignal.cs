@@ -27,20 +27,20 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.Slider.delete_SliderMarkReachedSignal(swigCPtr);
+            Interop.Slider.DeleteSliderMarkReachedSignal(swigCPtr);
         }
 
 
         public bool Empty()
         {
-            bool ret = Interop.Slider.SliderMarkReachedSignal_Empty(swigCPtr);
+            bool ret = Interop.Slider.SliderMarkReachedSignalEmpty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.Slider.SliderMarkReachedSignal_GetConnectionCount(swigCPtr);
+            uint ret = Interop.Slider.SliderMarkReachedSignalGetConnectionCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -49,7 +49,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.Slider.SliderMarkReachedSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.Slider.SliderMarkReachedSignalConnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -58,19 +58,19 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.Slider.SliderMarkReachedSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.Slider.SliderMarkReachedSignalDisconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public bool Emit(Tizen.NUI.UIComponents.Slider arg1, int arg2)
         {
-            bool ret = Interop.Slider.SliderMarkReachedSignal_Emit(swigCPtr, Tizen.NUI.UIComponents.Slider.getCPtr(arg1), arg2);
+            bool ret = Interop.Slider.SliderMarkReachedSignalEmit(SwigCPtr, Tizen.NUI.UIComponents.Slider.getCPtr(arg1), arg2);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public SliderMarkReachedSignal() : this(Interop.Slider.new_SliderMarkReachedSignal(), true)
+        public SliderMarkReachedSignal() : this(Interop.Slider.NewSliderMarkReachedSignal(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

@@ -33,7 +33,7 @@ namespace Tizen.NUI
         /// </summary>
         /// This will be made public in the next tizen release after an ACR is done. Till then, it needs to be hidden as an inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public RotationGestureDetector() : this(Interop.RotationGesture.RotationGestureDetector_New(), true)
+        public RotationGestureDetector() : this(Interop.RotationGesture.RotationGestureDetectorNew(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -45,12 +45,12 @@ namespace Tizen.NUI
         /// <param name="handle">A reference to the copied handle</param>
         /// This will be made public in the next tizen release after an ACR is done. Till then, it needs to be hidden as an inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public RotationGestureDetector(RotationGestureDetector handle) : this(Interop.RotationGesture.new_RotationGestureDetector__SWIG_1(RotationGestureDetector.getCPtr(handle)), true)
+        public RotationGestureDetector(RotationGestureDetector handle) : this(Interop.RotationGesture.NewRotationGestureDetector(RotationGestureDetector.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal RotationGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.RotationGesture.RotationGestureDetector_SWIGUpcast(cPtr), cMemoryOwn)
+        internal RotationGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.RotationGesture.RotationGestureDetectorUpcast(cPtr), cMemoryOwn)
         {
         }
 
@@ -98,26 +98,26 @@ namespace Tizen.NUI
 
         internal new static RotationGestureDetector DownCast(BaseHandle handle)
         {
-            RotationGestureDetector ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as RotationGestureDetector;
+            RotationGestureDetector ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as RotationGestureDetector;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(RotationGestureDetector obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         internal RotationGestureDetector Assign(RotationGestureDetector rhs)
         {
-            RotationGestureDetector ret = new RotationGestureDetector(Interop.RotationGesture.RotationGestureDetector_Assign(swigCPtr, RotationGestureDetector.getCPtr(rhs)), false);
+            RotationGestureDetector ret = new RotationGestureDetector(Interop.RotationGesture.RotationGestureDetectorAssign(SwigCPtr, RotationGestureDetector.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal RotationGestureDetectedSignal DetectedSignal()
         {
-            RotationGestureDetectedSignal ret = new RotationGestureDetectedSignal(Interop.RotationGesture.RotationGestureDetector_DetectedSignal(swigCPtr), false);
+            RotationGestureDetectedSignal ret = new RotationGestureDetectedSignal(Interop.RotationGesture.RotationGestureDetectorDetectedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -131,7 +131,7 @@ namespace Tizen.NUI
                 DetectedSignal().Disconnect(_detectedCallback);
             }
 
-            Interop.RotationGesture.delete_RotationGestureDetector(swigCPtr);
+            Interop.RotationGesture.DeleteRotationGestureDetector(swigCPtr);
         }
 
         private void OnRotationGestureDetected(IntPtr actor, IntPtr rotationGesture)

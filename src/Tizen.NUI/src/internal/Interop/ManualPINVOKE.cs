@@ -20,30 +20,30 @@ namespace Tizen.NUI
     class NDalicManualPINVOKE
     {
         [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_HIDDENINPUT_PROPERTY_MODE_get")]
-        public static extern int HIDDENINPUT_PROPERTY_MODE_get();
+        public static extern int HiddeninputPropertyModeGet();
 
         [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_HIDDENINPUT_PROPERTY_SUBSTITUTE_CHARACTER_get")]
-        public static extern int HIDDENINPUT_PROPERTY_SUBSTITUTE_CHARACTER_get();
+        public static extern int HiddeninputPropertySubstituteCharacterGet();
 
         [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_HIDDENINPUT_PROPERTY_SUBSTITUTE_COUNT_get")]
-        public static extern int HIDDENINPUT_PROPERTY_SUBSTITUTE_COUNT_get();
+        public static extern int HiddeninputPropertySubstituteCountGet();
 
         [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_HIDDENINPUT_PROPERTY_SHOW_LAST_CHARACTER_DURATION_get")]
-        public static extern int HIDDENINPUT_PROPERTY_SHOW_LAST_CHARACTER_DURATION_get();
-                
+        public static extern int HiddeninputPropertyShowLastCharacterDurationGet();
+
         [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LINE_MUST_BREAK_get")]
-        public static extern int LINE_MUST_BREAK_get();
+        public static extern int LineMustBreakGet();
 
         [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LINE_ALLOW_BREAK_get")]
-        public static extern int LINE_ALLOW_BREAK_get();
+        public static extern int LineAllowBreakGet();
 
         [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LINE_NO_BREAK_get")]
-        public static extern int LINE_NO_BREAK_get();
+        public static extern int LineNoBreakGet();
 
         [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WORD_BREAK_get")]
-        public static extern int WORD_BREAK_get();
+        public static extern int WordBreakGet();
 
         [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WORD_NO_BREAK_get")]
-        public static extern int WORD_NO_BREAK_get();
+        public static extern int WordNoBreakGet();
     }
 }

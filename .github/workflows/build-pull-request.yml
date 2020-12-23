@@ -4,6 +4,7 @@ on:
   pull_request:
     branches:
     - master
+    - DevelNUI
     - API*
 
 jobs:
@@ -16,7 +17,7 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.x
+        dotnet-version: 3.1.402
 
     - name: Get Changed Files
       uses: lots0logs/gh-action-get-changed-files@2.1.4

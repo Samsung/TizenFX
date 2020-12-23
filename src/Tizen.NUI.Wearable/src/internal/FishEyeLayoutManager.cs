@@ -75,6 +75,11 @@ namespace Tizen.NUI.Wearable
         public override void Layout(float scrollPosition)
         {
             RecycleItem centerItem = Container.Children[FocusedIndex] as RecycleItem;
+            if (centerItem == null)
+            {
+                return;
+            }
+
             float centerItemPosition = LayoutOrientation == Orientation.Horizontal ? centerItem.Position.X : centerItem.Position.Y;
 
             Vector2 stepRange = new Vector2(-scrollPosition - StepSize + 1.0f, -scrollPosition + StepSize - 1.0f);
@@ -106,6 +111,10 @@ namespace Tizen.NUI.Wearable
             for (int i = FocusedIndex - 1; i > -1; i--)
             {
                 RecycleItem target = Container.Children[i] as RecycleItem;
+                if (target == null)
+                {
+                    continue;
+                }
 
                 float prevItemPosition = LayoutOrientation == Orientation.Horizontal ? prevItem.Position.X : prevItem.Position.Y;
                 float prevItemSize = (LayoutOrientation == Orientation.Horizontal ? prevItem.Size.Width : prevItem.Size.Height);
@@ -140,6 +149,10 @@ namespace Tizen.NUI.Wearable
             for (int i = FocusedIndex + 1; i < Container.Children.Count; i++)
             {
                 RecycleItem target = Container.Children[i] as RecycleItem;
+                if (target == null)
+                {
+                    continue;
+                }
 
                 float prevItemPosition = LayoutOrientation == Orientation.Horizontal ? prevItem.Position.X : prevItem.Position.Y;
                 float prevItemSize = (LayoutOrientation == Orientation.Horizontal ? prevItem.Size.Width : prevItem.Size.Height);
@@ -194,30 +207,34 @@ namespace Tizen.NUI.Wearable
             if (!isBack && FocusedIndex < 6)
             {
                 RecycleItem target = Container.Children[Container.Children.Count - 1] as RecycleItem;
+                if (target != null)
+                {
+                    int previousSiblingOrder = target.SiblingOrder;
+                    target.SiblingOrder = 0;
+                    target.DataIndex = target.DataIndex - Container.Children.Count;
+                    target.Position = new Position(0, Math.Abs(scrollPosition) - 360);
+                    target.Scale = new Vector3(0, 0, 0);
 
-                int previousSiblingOrder = target.SiblingOrder;
-                target.SiblingOrder = 0;
-                target.DataIndex = target.DataIndex - Container.Children.Count;
-                target.Position = new Position(0, Math.Abs(scrollPosition) - 360);
-                target.Scale = new Vector3(0, 0, 0);
+                    result.Add(target);
 
-                result.Add(target);
-
-                FocusedIndex++;
+                    FocusedIndex++;
+                }
             }
             else if (isBack && FocusedIndex > 8)
             {
                 RecycleItem target = Container.Children[0] as RecycleItem;
+                if (target != null)
+                {
+                    int previousSiblingOrder = target.SiblingOrder;
+                    target.SiblingOrder = Container.Children.Count - 1;
+                    target.DataIndex = target.DataIndex + Container.Children.Count;
+                    target.Position = new Position(0, Math.Abs(scrollPosition) + 360);
+                    target.Scale = new Vector3(0, 0, 0);
 
-                int previousSiblingOrder = target.SiblingOrder;
-                target.SiblingOrder = Container.Children.Count - 1;
-                target.DataIndex = target.DataIndex + Container.Children.Count;
-                target.Position = new Position(0, Math.Abs(scrollPosition) + 360);
-                target.Scale = new Vector3(0, 0, 0);
+                    result.Add(target);
 
-                result.Add(target);
-
-                FocusedIndex--;
+                    FocusedIndex--;
+                }
             }
 
             PrevScrollPosition = scrollPosition;

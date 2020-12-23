@@ -216,7 +216,6 @@ namespace Tizen.NUI.Binding.Internals
         }
 
         internal static Dictionary<string, Type> Effects { get; } = new Dictionary<string, Type>();
-        internal static Dictionary<string, StyleSheets.StylePropertyAttribute> StyleProperties { get; } = new Dictionary<string, StyleSheets.StylePropertyAttribute>();
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]

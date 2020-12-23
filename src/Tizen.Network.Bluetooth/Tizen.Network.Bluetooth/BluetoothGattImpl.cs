@@ -29,7 +29,8 @@ namespace Tizen.Network.Bluetooth
         internal event EventHandler<NotificationSentEventArg> _notificationSent;
         int _requestId = 0;
         Dictionary<int, TaskCompletionSource<bool>> _sendIndicationTaskSource = new Dictionary<int, TaskCompletionSource<bool>>();
-        Interop.Bluetooth.BtGattServerNotificationSentCallback _sendIndicationCallback;
+        private Interop.Bluetooth.BtGattServerNotificationSentCallback _sendIndicationCallback;
+        private Interop.Bluetooth.BtGattForeachCallback _serviceForeachCallback;
 
         internal BluetoothGattServerImpl()
         {
@@ -88,7 +89,7 @@ namespace Tizen.Network.Bluetooth
         internal IEnumerable<BluetoothGattService> GetServices(BluetoothGattServer server)
         {
             List<BluetoothGattService> attribututeList = new List<BluetoothGattService>();
-            Interop.Bluetooth.BtGattForeachCallback cb = (total, index, attributeHandle, userData) =>
+            _serviceForeachCallback = (total, index, attributeHandle, userData) =>
             {
                 BluetoothGattAttributeHandle handle = new BluetoothGattAttributeHandle(attributeHandle, false);
                 BluetoothGattService service = BluetoothGattServiceImpl.CreateBluetoothGattService(handle, ""); ;
@@ -100,7 +101,7 @@ namespace Tizen.Network.Bluetooth
                 return true;
             };
 
-            int err = Interop.Bluetooth.BtGattServerForeachServices(_handle, cb, IntPtr.Zero);
+            int err = Interop.Bluetooth.BtGattServerForeachServices(_handle, _serviceForeachCallback, IntPtr.Zero);
             GattUtil.Error(err, "Failed to get all services");
 
             return attribututeList;
@@ -163,9 +164,10 @@ namespace Tizen.Network.Bluetooth
         private BluetoothGattClientHandle _handle;
         int _requestId = 0;
         Dictionary<int, TaskCompletionSource<bool>> _readValueTaskSource = new Dictionary<int, TaskCompletionSource<bool>>();
-        Interop.Bluetooth.BtGattClientRequestCompletedCallback _readValueCallback;
+        private Interop.Bluetooth.BtGattClientRequestCompletedCallback _readValueCallback;
         Dictionary<int, TaskCompletionSource<bool>> _writeValueTaskSource = new Dictionary<int, TaskCompletionSource<bool>>();
-        Interop.Bluetooth.BtGattClientRequestCompletedCallback _writeValueCallback;
+        private Interop.Bluetooth.BtGattClientRequestCompletedCallback _writeValueCallback;
+        private Interop.Bluetooth.BtGattForeachCallback _serviceForeachCallback;
 
         internal BluetoothGattClientImpl(string remoteAddress)
         {
@@ -222,7 +224,7 @@ namespace Tizen.Network.Bluetooth
         internal IEnumerable<BluetoothGattService> GetServices(BluetoothGattClient client)
         {
             List<BluetoothGattService> attribututeList = new List<BluetoothGattService>();
-            Interop.Bluetooth.BtGattForeachCallback cb = (total, index, attributeHandle, userData) =>
+            _serviceForeachCallback = (total, index, attributeHandle, userData) =>
             {
                 BluetoothGattAttributeHandle handle = new BluetoothGattAttributeHandle(attributeHandle, false);
                 BluetoothGattService service = BluetoothGattServiceImpl.CreateBluetoothGattService(handle, "");
@@ -234,7 +236,7 @@ namespace Tizen.Network.Bluetooth
                 return true;
             };
 
-            int err = Interop.Bluetooth.BtGattClientForeachServices(_handle, cb, IntPtr.Zero);
+            int err = Interop.Bluetooth.BtGattClientForeachServices(_handle, _serviceForeachCallback, IntPtr.Zero);
             GattUtil.Error(err, "Failed to get all services");
 
             return attribututeList;
@@ -326,6 +328,9 @@ namespace Tizen.Network.Bluetooth
 
     internal class BluetoothGattServiceImpl : BluetoothGattAttributeImpl
     {
+        private Interop.Bluetooth.BtGattForeachCallback _characteristicForeachCallback;
+        private Interop.Bluetooth.BtGattForeachCallback _includedServiceForeachCallback;
+
         internal BluetoothGattServiceImpl(string uuid, BluetoothGattServiceType type)
         {
             int err = Interop.Bluetooth.BtGattServiceCreate(uuid, (int)type, out _handle);
@@ -366,14 +371,17 @@ namespace Tizen.Network.Bluetooth
             }
 
             BluetoothGattCharacteristic Characteristic = BluetoothGattCharacteristicImpl.CreateBluetoothGattGattCharacteristic(attributeHandle, uuid);
-            Characteristic.SetParent(service);
+            if (Characteristic != null)
+            {
+                Characteristic.SetParent(service);
+            }
             return Characteristic;
         }
 
         internal IEnumerable<BluetoothGattCharacteristic> GetCharacteristics(BluetoothGattService service)
         {
             List<BluetoothGattCharacteristic> attribututeList = new List<BluetoothGattCharacteristic>();
-            Interop.Bluetooth.BtGattForeachCallback cb = (total, index, attributeHandle, userData) =>
+            _characteristicForeachCallback = (total, index, attributeHandle, userData) =>
             {
                 BluetoothGattAttributeHandle handle = new BluetoothGattAttributeHandle(attributeHandle, false);
                 BluetoothGattCharacteristic Characteristic = BluetoothGattCharacteristicImpl.CreateBluetoothGattGattCharacteristic(handle, "");
@@ -385,7 +393,7 @@ namespace Tizen.Network.Bluetooth
                 return true;
             };
 
-            int err = Interop.Bluetooth.BtGattServiceForeachCharacteristics(service.GetHandle(), cb, IntPtr.Zero);
+            int err = Interop.Bluetooth.BtGattServiceForeachCharacteristics(service.GetHandle(), _characteristicForeachCallback, IntPtr.Zero);
             GattUtil.Error(err, "Failed to get all Characteristic");
 
             return attribututeList;
@@ -415,7 +423,7 @@ namespace Tizen.Network.Bluetooth
         internal IEnumerable<BluetoothGattService> GetIncludeServices(BluetoothGattService parentService)
         {
             List<BluetoothGattService> attribututeList = new List<BluetoothGattService>();
-            Interop.Bluetooth.BtGattForeachCallback cb = (total, index, attributeHandle, userData) =>
+            _includedServiceForeachCallback = (total, index, attributeHandle, userData) =>
             {
                 BluetoothGattAttributeHandle handle = new BluetoothGattAttributeHandle(attributeHandle, false);
                 BluetoothGattService service = BluetoothGattServiceImpl.CreateBluetoothGattService(handle, "");
@@ -427,7 +435,7 @@ namespace Tizen.Network.Bluetooth
                 return true;
             };
 
-            int err = Interop.Bluetooth.BtGattServiceForeachIncludedServices(parentService.GetHandle(), cb, IntPtr.Zero);
+            int err = Interop.Bluetooth.BtGattServiceForeachIncludedServices(parentService.GetHandle(), _includedServiceForeachCallback, IntPtr.Zero);
             GattUtil.Error(err, "Failed to get all services");
 
             return attribututeList;
@@ -436,6 +444,8 @@ namespace Tizen.Network.Bluetooth
 
     internal class BluetoothGattCharacteristicImpl : BluetoothGattAttributeImpl
     {
+        private Interop.Bluetooth.BtGattForeachCallback _descriptorForeachCallback;
+
         internal BluetoothGattCharacteristicImpl(string uuid, BluetoothGattPermission permission, BluetoothGattProperty property, byte[] value)
         {
             int err = Interop.Bluetooth.BtGattCharacteristicCreate(uuid, (int)permission, (int)property, value, value.Length, out _handle);
@@ -525,14 +535,17 @@ namespace Tizen.Network.Bluetooth
                 return null;
             }
             BluetoothGattDescriptor descriptor = BluetoothGattDescriptorImpl.CreateBluetoothGattDescriptor(handle, uuid);
-            descriptor.SetParent(characteristic);
+            if (descriptor != null)
+            {
+                descriptor.SetParent(characteristic);
+            }
             return descriptor;
         }
 
         internal IEnumerable<BluetoothGattDescriptor> GetDescriptors(BluetoothGattCharacteristic characteristic)
         {
             List<BluetoothGattDescriptor> attribututeList = new List<BluetoothGattDescriptor>();
-            Interop.Bluetooth.BtGattForeachCallback cb = (total, index, attributeHandle, userData) =>
+            _descriptorForeachCallback = (total, index, attributeHandle, userData) =>
             {
                 BluetoothGattAttributeHandle handle = new BluetoothGattAttributeHandle(attributeHandle, false);
                 BluetoothGattDescriptor descriptor = BluetoothGattDescriptorImpl.CreateBluetoothGattDescriptor(handle, "");
@@ -544,7 +557,7 @@ namespace Tizen.Network.Bluetooth
                 return true;
             };
 
-            int err = Interop.Bluetooth.BtGattCharacteristicForeachDescriptors(characteristic.GetHandle(), cb, IntPtr.Zero);
+            int err = Interop.Bluetooth.BtGattCharacteristicForeachDescriptors(characteristic.GetHandle(), _descriptorForeachCallback, IntPtr.Zero);
             GattUtil.Error(err, "Failed to get all descriptor");
 
             return attribututeList;

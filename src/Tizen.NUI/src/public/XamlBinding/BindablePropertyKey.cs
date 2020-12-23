@@ -12,7 +12,7 @@ namespace Tizen.NUI.Binding
         internal BindablePropertyKey(BindableProperty property)
         {
             if (property == null)
-                throw new ArgumentNullException("property");
+                throw new ArgumentNullException(nameof(property));
 
             BindableProperty = property;
         }

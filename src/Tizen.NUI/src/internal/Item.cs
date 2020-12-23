@@ -15,6 +15,7 @@
  *
  */
 
+using System;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 
@@ -31,33 +32,33 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Item obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         /// This will be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.Item.delete_Item(swigCPtr);
+            Interop.Item.DeleteItem(swigCPtr);
         }
 
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Item() : this(Interop.Item.new_Item__SWIG_0(), true)
+        public Item() : this(Interop.Item.NewItem(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Item(uint t, View u) : this(Interop.Item.new_Item__SWIG_1(t, View.getCPtr(u)), true)
+        public Item(uint t, View u) : this(Interop.Item.NewItem(t, View.getCPtr(u)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Item(Item p) : this(Interop.Item.new_Item__SWIG_2(Item.getCPtr(p)), true)
+        public Item(Item p) : this(Interop.Item.NewItem(Item.getCPtr(p)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -68,13 +69,13 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Item.Item_first_set(swigCPtr, value);
+                Interop.Item.FirstSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                uint ret = Interop.Item.Item_first_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                uint ret = Interop.Item.FirstGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -85,14 +86,14 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Item.Item_second_set(swigCPtr, View.getCPtr(value));
+                Interop.Item.SecondSet(SwigCPtr, View.getCPtr(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                global::System.IntPtr cPtr = Interop.Item.Item_second_get(swigCPtr);
+                global::System.IntPtr cPtr = Interop.Item.SecondGet(SwigCPtr);
                 View ret = (cPtr == global::System.IntPtr.Zero) ? null : new View(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }

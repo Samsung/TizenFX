@@ -16,7 +16,7 @@ namespace Tizen.NUI.Binding
         internal TriggerBase(Type targetType)
         {
             if (targetType == null)
-                throw new ArgumentNullException("targetType");
+                throw new ArgumentNullException(nameof(targetType));
             TargetType = targetType;
 
             EnterActions = new SealedList<TriggerAction>();
@@ -72,7 +72,7 @@ namespace Tizen.NUI.Binding
             IsSealed = true;
 
             if (bindable == null)
-                throw new ArgumentNullException("bindable");
+                throw new ArgumentNullException(nameof(bindable));
             if (!TargetType.IsInstanceOfType(bindable))
                 throw new InvalidOperationException("bindable not an instance of AssociatedType");
             OnAttachedTo(bindable);
@@ -81,7 +81,7 @@ namespace Tizen.NUI.Binding
         void IAttachedObject.DetachFrom(BindableObject bindable)
         {
             if (bindable == null)
-                throw new ArgumentNullException("bindable");
+                throw new ArgumentNullException(nameof(bindable));
             OnDetachingFrom(bindable);
         }
 

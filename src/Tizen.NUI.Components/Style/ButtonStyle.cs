@@ -101,7 +101,7 @@ namespace Tizen.NUI.Components
         private bool? isSelectable;
         private bool? isSelected;
         private bool? isEnabled;
-        private Button.IconOrientation? iconRelativeOrientation = Button.IconOrientation.Left;
+        private Button.IconOrientation? iconRelativeOrientation;
         private Extents iconPadding;
         private Extents textPadding;
 
@@ -198,7 +198,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Extents TextPadding
         {
-            get  => ((Extents)GetValue(TextPaddingProperty)) ?? (textPadding = new Extents());
+            get => ((Extents)GetValue(TextPaddingProperty)) ?? (textPadding = new Extents());
             set => SetValue(TextPaddingProperty, value);
         }
 
@@ -234,22 +234,17 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Dispose ButtonStyle and all children on it.
         /// </summary>
-        /// <param name="type">Dispose type.</param>
+        /// <param name="disposing">true in order to free managed objects</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void Dispose(DisposeTypes type)
+        protected override void Dispose(bool disposing)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
+            if (disposing)
             {
                 iconPadding?.Dispose();
                 textPadding?.Dispose();
             }
 
-            base.Dispose(type);
+            base.Dispose(disposing);
         }
     }
 }

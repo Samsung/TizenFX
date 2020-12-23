@@ -22,50 +22,50 @@ namespace Tizen.NUI
     internal class KeyInputFocusManager : BaseHandle
     {
 
-        internal KeyInputFocusManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.KeyInputFocusManager.KeyInputFocusManager_SWIGUpcast(cPtr), cMemoryOwn)
+        internal KeyInputFocusManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.KeyInputFocusManager.Upcast(cPtr), cMemoryOwn)
         {
         }
 
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.KeyInputFocusManager.delete_KeyInputFocusManager(swigCPtr);
+            Interop.KeyInputFocusManager.DeleteKeyInputFocusManager(swigCPtr);
         }
 
-        private KeyInputFocusManager() : this(Interop.KeyInputFocusManager.new_KeyInputFocusManager(), true)
+        private KeyInputFocusManager() : this(Interop.KeyInputFocusManager.NewKeyInputFocusManager(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public static KeyInputFocusManager Get()
         {
-            KeyInputFocusManager ret = new KeyInputFocusManager(Interop.KeyInputFocusManager.KeyInputFocusManager_Get(), true);
+            KeyInputFocusManager ret = new KeyInputFocusManager(Interop.KeyInputFocusManager.Get(), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetFocus(View control)
         {
-            Interop.KeyInputFocusManager.KeyInputFocusManager_SetFocus(swigCPtr, View.getCPtr(control));
+            Interop.KeyInputFocusManager.SetFocus(SwigCPtr, View.getCPtr(control));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public View GetCurrentFocusControl()
         {
-            View ret = new View(Interop.KeyInputFocusManager.KeyInputFocusManager_GetCurrentFocusControl(swigCPtr), true);
+            View ret = new View(Interop.KeyInputFocusManager.GetCurrentFocusControl(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void RemoveFocus(View control)
         {
-            Interop.KeyInputFocusManager.KeyInputFocusManager_RemoveFocus(swigCPtr, View.getCPtr(control));
+            Interop.KeyInputFocusManager.RemoveFocus(SwigCPtr, View.getCPtr(control));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__Control_Dali__Toolkit__ControlF_t KeyInputFocusChangedSignal()
         {
-            SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__Control_Dali__Toolkit__ControlF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__Control_Dali__Toolkit__ControlF_t(Interop.KeyInputFocusManager.KeyInputFocusManager_KeyInputFocusChangedSignal(swigCPtr), false);
+            SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__Control_Dali__Toolkit__ControlF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__Control_Dali__Toolkit__ControlF_t(Interop.KeyInputFocusManager.KeyInputFocusChangedSignal(SwigCPtr));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

@@ -18,6 +18,7 @@ using System;
 using Tizen.NUI.BaseComponents;
 using System.ComponentModel;
 using Tizen.NUI.Binding;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.NUI.Components
 {
@@ -73,7 +74,7 @@ namespace Tizen.NUI.Components
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static Toast FromText(string text, uint duration) 
+        public static Toast FromText(string text, uint duration)
         {
             Toast toast = new Toast();
             toast.Message = text;
@@ -144,6 +145,8 @@ namespace Tizen.NUI.Components
         /// Gets or sets the text array of toast.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// It will be removed in API10
+        [SuppressMessage("Microsoft.Performance", "CA1819: Properties should not return arrays")]
         [Obsolete("Deprecated in API8; Will be removed in API10")]
         public string[] TextArray
         {
@@ -237,8 +240,8 @@ namespace Tizen.NUI.Components
         {
             window = win;
             window.Add(this);
-            this.Position.X = (window.Size.Width - this.Size.Width) / 2;
-            this.Position.Y = (window.Size.Height - this.Size.Height) / 2;
+            this.PositionX = (window.Size.Width - this.Size.Width) / 2;
+            this.PositionY = (window.Size.Height - this.Size.Height) / 2;
             timer.Start();
         }
 
@@ -318,6 +321,9 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void ApplyStyle(ViewStyle viewStyle)
         {
+            WidthResizePolicy = ResizePolicyType.FitToChildren;
+            HeightResizePolicy = ResizePolicyType.FitToChildren;
+
             base.ApplyStyle(viewStyle);
 
             ToastStyle toastStyle = viewStyle as ToastStyle;
@@ -335,6 +341,7 @@ namespace Tizen.NUI.Components
                         HeightResizePolicy = ResizePolicyType.UseNaturalSize,
                         HorizontalAlignment = HorizontalAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center,
+                        TextColor = Color.White,
                     };
                     this.Add(textLabel);
                 }
@@ -397,6 +404,7 @@ namespace Tizen.NUI.Components
                     HeightResizePolicy = ResizePolicyType.UseNaturalSize,
                     HorizontalAlignment = HorizontalAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Center,
+                    TextColor = Color.White,
                 };
                 this.Add(textLabel);
             }

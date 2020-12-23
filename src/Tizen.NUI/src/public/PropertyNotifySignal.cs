@@ -24,7 +24,7 @@ namespace Tizen.NUI
     /// Signal connection class for PropertyNotification
     ///</summary>
     /// <since_tizen> 4 </since_tizen>
-    [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+    [Obsolete("Deprecated in API6, Will be removed in API9, " +
         "Please use PropertyNotification.Notified event instead!")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class PropertyNotifySignal : Disposable
@@ -34,10 +34,10 @@ namespace Tizen.NUI
         /// The constructor.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+        [Obsolete("Deprecated in API6, Will be removed in API9, " +
             "Please use PropertyNotification.Notified event instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public PropertyNotifySignal() : this(Interop.PropertyNotifySignal.new_PropertyNotifySignal(), true)
+        public PropertyNotifySignal() : this(Interop.PropertyNotifySignal.NewPropertyNotifySignal(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -51,12 +51,12 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>True if there are any slots connected to the signal.</returns>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+        [Obsolete("Deprecated in API6, Will be removed in API9, " +
             "Please use PropertyNotification.Notified event instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Empty()
         {
-            bool ret = Interop.PropertyNotifySignal.PropertyNotifySignal_Empty(swigCPtr);
+            bool ret = Interop.PropertyNotifySignal.Empty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -66,12 +66,12 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>The number of slots connected to this signal</returns>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+        [Obsolete("Deprecated in API6, Will be removed in API9, " +
             "Please use PropertyNotification.Notified event instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetConnectionCount()
         {
-            uint ret = Interop.PropertyNotifySignal.PropertyNotifySignal_GetConnectionCount(swigCPtr);
+            uint ret = Interop.PropertyNotifySignal.GetConnectionCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -81,14 +81,14 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="func">The function to connect</param>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+        [Obsolete("Deprecated in API6, Will be removed in API9, " +
             "Please use PropertyNotification.Notified event instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Connect(System.Delegate func)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.PropertyNotifySignal.PropertyNotifySignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.PropertyNotifySignal.Connect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -98,14 +98,14 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="func">The function to disconnect.</param>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+        [Obsolete("Deprecated in API6, Will be removed in API9, " +
             "Please use PropertyNotification.Notified event instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Disconnect(System.Delegate func)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.PropertyNotifySignal.PropertyNotifySignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.PropertyNotifySignal.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -115,12 +115,12 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="arg">The first value to pass to callbacks.</param>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+        [Obsolete("Deprecated in API6, Will be removed in API9, " +
             "Please use PropertyNotification.Notified event instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Emit(PropertyNotification arg)
         {
-            Interop.PropertyNotifySignal.PropertyNotifySignal_Emit(swigCPtr, PropertyNotification.getCPtr(arg));
+            Interop.PropertyNotifySignal.Emit(SwigCPtr, PropertyNotification.getCPtr(arg));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -129,7 +129,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.PropertyNotifySignal.delete_PropertyNotifySignal(swigCPtr);
+            Interop.PropertyNotifySignal.DeletePropertyNotifySignal(swigCPtr);
         }
     }
 }

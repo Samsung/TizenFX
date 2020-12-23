@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,19 +47,16 @@ namespace Tizen.NUI.Components
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public new static readonly BindableProperty SizeProperty = BindableProperty.Create(nameof(Size), typeof(Size), typeof(Loading), new Size(0,0), propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var instance = (Loading)bindable;
-            if (newValue != null)
-            {
-                Size size = (Size)newValue;
-                ((View)bindable).Size = size;
-                if (null != instance.imageVisual)
-                {
-                    instance.imageVisual.Size = new Size2D((int)size.Width, (int)size.Height);
-                }
-            }
-        },
+        public new static readonly BindableProperty SizeProperty = BindableProperty.Create(nameof(Size), typeof(Size), typeof(Loading), new Size(0, 0), propertyChanged: (bindable, oldValue, newValue) =>
+         {
+             var instance = (Loading)bindable;
+             if (newValue != null)
+             {
+                 Size size = (Size)newValue;
+                 ((View)bindable).Size = size;
+                 instance.loadingStyle.LoadingSize = size;
+             }
+         },
         defaultValueCreator: (bindable) =>
         {
             var instance = (View)bindable;
@@ -67,23 +64,23 @@ namespace Tizen.NUI.Components
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FrameRateProperty = BindableProperty.Create(nameof(FrameRate), typeof(int), typeof(Loading), (int)(1000/16.6f), propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var instance = (Loading)bindable;
-            if (newValue != null)
-            {
-                int frameRate = (int)newValue;
-                if (0 != frameRate) //It will crash if 0
+        public static readonly BindableProperty FrameRateProperty = BindableProperty.Create(nameof(FrameRate), typeof(int), typeof(Loading), (int)(1000 / 16.6f), propertyChanged: (bindable, oldValue, newValue) =>
+          {
+              var instance = (Loading)bindable;
+              if (newValue != null)
+              {
+                  int frameRate = (int)newValue;
+                  if (0 != frameRate) //It will crash if 0
                 {
-                    instance.loadingStyle.FrameRate.All = frameRate;
-                    instance.imageVisual.FrameDelay = 1000.0f / frameRate;
-                }
-            }
-        },
+                      instance.loadingStyle.FrameRate = frameRate;
+                      instance.imageVisual.FrameDelay = 1000.0f / frameRate;
+                  }
+              }
+          },
         defaultValueCreator: (bindable) =>
         {
             var instance = (Loading)bindable;
-            return instance.loadingStyle.FrameRate?.All ?? (int)(1000/16.6f);
+            return instance.loadingStyle.FrameRate?.All ?? (int)(1000 / 16.6f);
         });
 
         private AnimatedImageVisual imageVisual = null;
@@ -91,9 +88,9 @@ namespace Tizen.NUI.Components
 
         internal new class Property
         {
-            internal static readonly int ACTION_PLAY = Interop.ImageView.ImageView_IMAGE_VISUAL_ACTION_PLAY_get();
-            internal static readonly int ACTION_PAUSE = Interop.ImageView.ImageView_IMAGE_VISUAL_ACTION_PAUSE_get();
-            internal static readonly int ACTION_STOP = Interop.ImageView.ImageView_IMAGE_VISUAL_ACTION_STOP_get();
+            internal static readonly int ActionPlay = Interop.ImageView.ImageVisualActionPlayGet();
+            internal static readonly int ActionPause = Interop.ImageView.ImageVisualActionPauseGet();
+            internal static readonly int ActionStop = Interop.ImageView.ImageVisualActionStopGet();
         }
 
         static Loading() { }
@@ -237,7 +234,9 @@ namespace Tizen.NUI.Components
                 LoopCount = -1,
                 Position = new Vector2(0, 0),
                 Origin = Visual.AlignType.Center,
-                AnchorPoint = Visual.AlignType.Center
+                AnchorPoint = Visual.AlignType.Center,
+                SizePolicy = VisualTransformPolicyType.Relative,
+                Size = new Size2D(1, 1)
             };
 
             UpdateVisual();
@@ -257,10 +256,6 @@ namespace Tizen.NUI.Components
             {
                 imageVisual.FrameDelay = 1000.0f / (float)loadingStyle.FrameRate.All.Value;
             }
-            if (null != loadingStyle.LoadingSize)
-            {
-                this.Size = new Size2D((int)loadingStyle.LoadingSize.Width, (int)loadingStyle.LoadingSize.Height);
-            }
         }
 
         /// <summary>
@@ -270,7 +265,9 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Play()
         {
-            this.DoAction(imageVisual.VisualIndex, Property.ACTION_PLAY, new PropertyValue(0));
+            PropertyValue attributes = new PropertyValue(0);
+            this.DoAction(imageVisual.VisualIndex, Property.ActionPlay, attributes);
+            attributes.Dispose();
         }
 
         /// <summary>
@@ -280,7 +277,9 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Pause()
         {
-            this.DoAction(imageVisual.VisualIndex, Property.ACTION_PAUSE, new PropertyValue(0));
+            PropertyValue attributes = new PropertyValue(0);
+            this.DoAction(imageVisual.VisualIndex, Property.ActionPause, attributes);
+            attributes.Dispose();
         }
 
         /// <summary>
@@ -290,7 +289,9 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Stop()
         {
-            this.DoAction(imageVisual.VisualIndex, Property.ACTION_STOP, new PropertyValue(0));
+            PropertyValue attributes = new PropertyValue(0);
+            this.DoAction(imageVisual.VisualIndex, Property.ActionStop, attributes);
+            attributes.Dispose();
         }
     }
 }

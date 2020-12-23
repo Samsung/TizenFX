@@ -15,7 +15,7 @@ namespace Tizen.NUI.Binding
 {
     internal class TizenPlatformServices : IPlatformServices
     {
-        static MD5 checksum = MD5.Create();
+        static SHA256 checksum = SHA256.Create();
 
         static SynchronizationContext s_context;
 
@@ -59,8 +59,8 @@ namespace Tizen.NUI.Binding
         public async Task<Stream> GetStreamAsync(Uri uri, CancellationToken cancellationToken)
         {
             using (var client = new HttpClient())
-            using (HttpResponseMessage response = await client.GetAsync(uri, cancellationToken))
-                return await response.Content.ReadAsStreamAsync();
+            using (HttpResponseMessage response = await client.GetAsync(uri, cancellationToken).ConfigureAwait(false))
+                return await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
         }
 
         public Assembly[] GetAssemblies()

@@ -98,7 +98,7 @@ namespace Tizen.NUI.Samples
 
             player.Display = new Tizen.Multimedia.Display(win);
 
-            await player.PrepareAsync();
+            await player.PrepareAsync().ConfigureAwait(false);
             tlog.Fatal(tag, $"await player.PrepareAsync();");
 
             player.Start();

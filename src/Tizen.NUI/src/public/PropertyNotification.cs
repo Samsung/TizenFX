@@ -36,7 +36,7 @@ namespace Tizen.NUI
         /// Create a instance of PropertyNotification.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        public PropertyNotification() : this(Interop.PropertyNotification.new_PropertyNotification__SWIG_0(), true)
+        public PropertyNotification() : this(Interop.PropertyNotification.NewPropertyNotification(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -45,12 +45,12 @@ namespace Tizen.NUI
         /// Create a instance of PropertyNotification.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        public PropertyNotification(PropertyNotification handle) : this(Interop.PropertyNotification.new_PropertyNotification__SWIG_1(PropertyNotification.getCPtr(handle)), true)
+        public PropertyNotification(PropertyNotification handle) : this(Interop.PropertyNotification.NewPropertyNotification(PropertyNotification.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal PropertyNotification(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.PropertyNotification.PropertyNotification_SWIGUpcast(cPtr), cMemoryOwn)
+        internal PropertyNotification(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.PropertyNotification.Upcast(cPtr), cMemoryOwn)
         {
         }
 
@@ -128,7 +128,7 @@ namespace Tizen.NUI
         /// <param name="cPtr">An object of IntPtr type.</param>
         /// <returns>An object of the PropertyNotification type.</returns>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+        [Obsolete("Deprecated in API6, Will be removed in API9, " +
             "Please use Notified event instead!" +
             "IntPtr(native integer pointer) is supposed to be not used in Application!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -144,9 +144,14 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="handle">Handle to an object of BaseHandle type.</param>
         /// <returns>Handle to an object of the PropertyNotification type.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when handle is null. </exception>
         /// <since_tizen> 4 </since_tizen>
         public static PropertyNotification DownCast(BaseHandle handle)
         {
+            if (null == handle)
+            {
+                throw new ArgumentNullException(nameof(handle));
+            }
             PropertyNotification ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as PropertyNotification;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -158,12 +163,12 @@ namespace Tizen.NUI
         /// <param name="rhs">A reference to the copied handle.</param>
         /// <returns>A reference to this.</returns>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+        [Obsolete("Deprecated in API6, Will be removed in API9, " +
             "Please use PropertyNotification() constructor instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyNotification Assign(PropertyNotification rhs)
         {
-            PropertyNotification ret = new PropertyNotification(Interop.PropertyNotification.PropertyNotification_Assign(swigCPtr, PropertyNotification.getCPtr(rhs)), false);
+            PropertyNotification ret = new PropertyNotification(Interop.PropertyNotification.Assign(SwigCPtr, PropertyNotification.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -175,7 +180,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public PropertyCondition GetCondition()
         {
-            PropertyCondition ret = new PropertyCondition(Interop.PropertyNotification.PropertyNotification_GetCondition__SWIG_0(swigCPtr), true);
+            PropertyCondition ret = new PropertyCondition(Interop.PropertyNotification.GetCondition(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -186,7 +191,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public Animatable GetTarget()
         {
-            BaseHandle ret = Registry.GetManagedBaseHandleFromNativePtr(Interop.PropertyNotification.PropertyNotification_GetTarget(swigCPtr));
+            BaseHandle ret = Registry.GetManagedBaseHandleFromNativePtr(Interop.PropertyNotification.GetTarget(SwigCPtr));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret as Animatable;
         }
@@ -198,7 +203,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public int GetTargetProperty()
         {
-            int ret = Interop.PropertyNotification.PropertyNotification_GetTargetProperty(swigCPtr);
+            int ret = Interop.PropertyNotification.GetTargetProperty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -210,7 +215,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public void SetNotifyMode(PropertyNotification.NotifyMode mode)
         {
-            Interop.PropertyNotification.PropertyNotification_SetNotifyMode(swigCPtr, (int)mode);
+            Interop.PropertyNotification.SetNotifyMode(SwigCPtr, (int)mode);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -221,7 +226,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public PropertyNotification.NotifyMode GetNotifyMode()
         {
-            PropertyNotification.NotifyMode ret = (PropertyNotification.NotifyMode)Interop.PropertyNotification.PropertyNotification_GetNotifyMode(swigCPtr);
+            PropertyNotification.NotifyMode ret = (PropertyNotification.NotifyMode)Interop.PropertyNotification.GetNotifyMode(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -233,7 +238,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public bool GetNotifyResult()
         {
-            bool ret = Interop.PropertyNotification.PropertyNotification_GetNotifyResult(swigCPtr);
+            bool ret = Interop.PropertyNotification.GetNotifyResult(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -243,26 +248,26 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>A signal object to Connect() with</returns>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+        [Obsolete("Deprecated in API6, Will be removed in API9, " +
             "Please use Notified event instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyNotifySignal NotifySignal()
         {
-            PropertyNotifySignal ret = new PropertyNotifySignal(Interop.PropertyNotification.PropertyNotification_NotifySignal(swigCPtr), false);
+            PropertyNotifySignal ret = new PropertyNotifySignal(Interop.PropertyNotification.NotifySignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PropertyNotification obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.PropertyNotification.delete_PropertyNotification(swigCPtr);
+            Interop.PropertyNotification.DeletePropertyNotification(swigCPtr);
         }
 
         // Callback for PropertyNotification NotifySignal

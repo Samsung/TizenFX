@@ -136,7 +136,7 @@ namespace Tizen.Network.Bluetooth
 
         internal IntPtr ManufacturerData;
     }
-    
+
     [NativeStruct("bt_device_sdp_info_s", Include="bluetooth_type.h", PkgConfig="capi-network-bluetooth")]
     [StructLayout(LayoutKind.Sequential)]
     internal struct BluetoothDeviceSdpStruct
@@ -225,17 +225,14 @@ namespace Tizen.Network.Bluetooth
         internal IntPtr data;
     }
 
+    [NativeStruct("bt_avrcp_metadata_attributes_info_s", Include="bluetooth_type.h", PkgConfig="capi-network-bluetooth")]
     [StructLayout(LayoutKind.Sequential)]
     internal struct TrackInfoStruct
     {
-        [MarshalAsAttribute(UnmanagedType.LPStr)]
-        internal string Title;
-        [MarshalAsAttribute(UnmanagedType.LPStr)]
-        internal string Artist;
-        [MarshalAsAttribute(UnmanagedType.LPStr)]
-        internal string Album;
-        [MarshalAsAttribute(UnmanagedType.LPStr)]
-        internal string Genre;
+        internal IntPtr Title;
+        internal IntPtr Artist;
+        internal IntPtr Album;
+        internal IntPtr Genre;
         internal uint total_tracks;
         internal uint number;
         internal uint duration;

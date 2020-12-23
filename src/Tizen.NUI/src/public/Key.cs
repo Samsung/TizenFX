@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
  *
  */
 
+using System;
 using System.ComponentModel;
 
 namespace Tizen.NUI
@@ -24,14 +25,14 @@ namespace Tizen.NUI
     /// The key structure is used to store a key press.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class Key : Disposable
+    public class Key : BaseHandle
     {
 
         /// <summary>
         /// The default constructor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public Key() : this(Interop.Key.new_Key__SWIG_0(), true)
+        public Key() : this(Interop.Key.New("", "", 0, 0, 0u, 0), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -45,12 +46,12 @@ namespace Tizen.NUI
         /// <param name="keyModifier">The key modifier for special keys like Shift and Alt.</param>
         /// <param name="timeStamp">The time (in ms) that the key event occurred.</param>
         /// <param name="keyState">The state of the key event.</param>
-        internal Key(string keyName, string keyString, int keyCode, int keyModifier, uint timeStamp, Key.StateType keyState) : this(Interop.Key.new_Key__SWIG_1(keyName, keyString, keyCode, keyModifier, timeStamp, (int)keyState), true)
+        internal Key(string keyName, string keyString, int keyCode, int keyModifier, uint timeStamp, Key.StateType keyState) : this(Interop.Key.New(keyName, keyString, keyCode, keyModifier, timeStamp, (int)keyState), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Key(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal Key(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Key.Upcast(cPtr), cMemoryOwn)
         {
         }
 
@@ -85,8 +86,8 @@ namespace Tizen.NUI
         {
             get
             {
-                string ret = Interop.NDalic.GetDeviceName(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                string ret = Interop.NDalic.GetDeviceName(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -99,13 +100,13 @@ namespace Tizen.NUI
         {
             get
             {
-                string ret = Interop.Key.Key_keyPressedName_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                string ret = Interop.Key.KeyPressedNameGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
             set
             {
-                Interop.Key.Key_keyPressedName_set(swigCPtr, value);
+                Interop.Key.KeyPressedNameSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
 
@@ -121,8 +122,8 @@ namespace Tizen.NUI
         {
             get
             {
-                string ret = Interop.Key.Key_logicalKey_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                string ret = Interop.Key.LogicalKeyGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -151,13 +152,13 @@ namespace Tizen.NUI
         {
             get
             {
-                string ret = Interop.Key.Key_keyString_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                string ret = Interop.Key.KeyStringGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
             set
             {
-                Interop.Key.Key_keyString_set(swigCPtr, value);
+                Interop.Key.KeyStringSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -170,13 +171,13 @@ namespace Tizen.NUI
         {
             get
             {
-                int ret = Interop.Key.Key_keyCode_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                int ret = Interop.Key.KeyCodeGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
             set
             {
-                Interop.Key.Key_keyCode_set(swigCPtr, value);
+                Interop.Key.KeyCodeSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -189,13 +190,13 @@ namespace Tizen.NUI
         {
             get
             {
-                int ret = Interop.Key.Key_keyModifier_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                int ret = Interop.Key.KeyModifierGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
             set
             {
-                Interop.Key.Key_keyModifier_set(swigCPtr, value);
+                Interop.Key.KeyModifierSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -208,13 +209,13 @@ namespace Tizen.NUI
         {
             get
             {
-                uint ret = Interop.Key.Key_time_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                uint ret = Interop.Key.TimeGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
             set
             {
-                Interop.Key.Key_time_set(swigCPtr, value);
+                Interop.Key.TimeSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -227,13 +228,13 @@ namespace Tizen.NUI
         {
             get
             {
-                Key.StateType ret = (Key.StateType)Interop.Key.Key_state_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Key.StateType ret = (Key.StateType)Interop.Key.StateGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
             set
             {
-                Interop.Key.Key_state_set(swigCPtr, (int)value);
+                Interop.Key.StateSet(SwigCPtr, (int)value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -246,8 +247,8 @@ namespace Tizen.NUI
         {
             get
             {
-                int ret = Interop.NDalic.GetDeviceClass(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                int ret = Interop.NDalic.GetDeviceClass(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return (DeviceClassType)ret;
             }
         }
@@ -260,8 +261,8 @@ namespace Tizen.NUI
         {
             get
             {
-                int ret = Interop.NDalic.GetDeviceSubClass(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                int ret = Interop.NDalic.GetDeviceSubClass(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return (DeviceSubClassType)ret;
             }
         }
@@ -270,12 +271,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Key.Key_keyPressed_set(swigCPtr, value);
+                Interop.Key.KeyPressedSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                string ret = Interop.Key.Key_keyPressed_get(swigCPtr);
+                string ret = Interop.Key.KeyPressedGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -288,7 +289,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool IsShiftModifier()
         {
-            bool ret = Interop.Key.Key_IsShiftModifier(swigCPtr);
+            bool ret = Interop.Key.IsShiftModifier(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -300,7 +301,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool IsCtrlModifier()
         {
-            bool ret = Interop.Key.Key_IsCtrlModifier(swigCPtr);
+            bool ret = Interop.Key.IsCtrlModifier(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -312,14 +313,14 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool IsAltModifier()
         {
-            bool ret = Interop.Key.Key_IsAltModifier(swigCPtr);
+            bool ret = Interop.Key.IsAltModifier(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Key obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         internal static Key GetKeyFromPtr(global::System.IntPtr cPtr)
@@ -333,7 +334,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.Key.delete_Key(swigCPtr);
+            Interop.Key.DeleteKey(swigCPtr);
         }
     }
 }

@@ -44,7 +44,7 @@ namespace Tizen.NUI.Binding
         public static int IndexOf<T>(this IEnumerable<T> enumerable, T item)
         {
             if (enumerable == null)
-                throw new ArgumentNullException("enumerable");
+                throw new ArgumentNullException(nameof(enumerable));
 
             var i = 0;
             foreach (T element in enumerable)

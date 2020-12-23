@@ -32,6 +32,17 @@ namespace Tizen.NUI.Components
     }
 
     /// <summary>
+    /// SelectedChangedEventArgs is a class to record item selected arguments which will sent to user.
+    /// </summary>
+    /// <since_tizen> 8 </since_tizen>
+    public class SelectedChangedEventArgs : EventArgs
+    {
+        /// <summary> Selected state </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public bool IsSelected { get; set; }
+    }
+
+    /// <summary>
     /// Button is one kind of common component, a button clearly describes what action will occur when the user selects it.
     /// Button may contain text or an icon.
     /// </summary>
@@ -43,20 +54,16 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty IconRelativeOrientationProperty = BindableProperty.Create(nameof(IconRelativeOrientation), typeof(IconOrientation?), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Button)bindable;
-            if (newValue != null)
+            var newIconOrientation = (IconOrientation?)newValue;
+            if (instance.iconRelativeOrientation != newIconOrientation)
             {
-                if (instance.buttonStyle != null && instance.buttonStyle.IconRelativeOrientation != (IconOrientation?)newValue)
-                {
-                    instance.buttonStyle.IconRelativeOrientation = (IconOrientation?)newValue;
-                    instance.UpdateUIContent();
-                }
+                instance.iconRelativeOrientation = newIconOrientation;
+                instance.UpdateUIContent();
             }
         },
-        defaultValueCreator: (bindable) =>
-        {
-            var instance = (Button)bindable;
-            return instance.buttonStyle?.IconRelativeOrientation;
-        });
+        defaultValueCreator: (bindable) => ((Button)bindable).iconRelativeOrientation
+        );
+
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty IsEnabledProperty = BindableProperty.Create(nameof(IsEnabled), typeof(bool), typeof(Button), true, propertyChanged: (bindable, oldValue, newValue) =>
@@ -136,37 +143,27 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty IconPaddingProperty = BindableProperty.Create(nameof(IconPadding), typeof(Extents), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Button)bindable;
-            if (null != newValue && null != instance.buttonStyle?.IconPadding)
-            {
-                instance.buttonStyle.IconPadding.CopyFrom((Extents)newValue);
-                instance.UpdateUIContent();
-            }
+            instance.iconPadding = (Extents)((Extents)newValue).Clone();
+            instance.UpdateUIContent();
         },
-        defaultValueCreator: (bindable) =>
-        {
-            var instance = (Button)bindable;
-            return instance.buttonStyle?.IconPadding;
-        });
+        defaultValueCreator: (bindable) => ((Button)bindable).iconPadding);
+
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TextPaddingProperty = BindableProperty.Create(nameof(TextPadding), typeof(Extents), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Button)bindable;
-            if (null != newValue && null != instance.buttonStyle?.TextPadding)
-            {
-                instance.buttonStyle.TextPadding.CopyFrom((Extents)newValue);
-                instance.UpdateUIContent();
-            }
+            instance.textPadding = (Extents)((Extents)newValue).Clone();
+            instance.UpdateUIContent();
         },
-        defaultValueCreator: (bindable) =>
-        {
-            var instance = (Button)bindable;
-            return instance.buttonStyle?.TextPadding;
-        });
+        defaultValueCreator: (bindable) => ((Button)bindable).textPadding);
 
+        private IconOrientation? iconRelativeOrientation;
         private bool isSelected = false;
         private bool isSelectable = false;
         private bool isEnabled = true;
+        private Extents iconPadding;
+        private Extents textPadding;
 
         static Button() { }
 
@@ -642,7 +639,7 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (IconOrientation?)GetValue(IconRelativeOrientationProperty);
+                return (IconOrientation?)GetValue(IconRelativeOrientationProperty) ?? IconOrientation.Left;
             }
             set
             {
@@ -656,7 +653,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public Extents IconPadding
         {
-            get => (Extents)GetValue(IconPaddingProperty);
+            get => (Extents)GetValue(IconPaddingProperty) ?? new Extents();
             set => SetValue(IconPaddingProperty, value);
         }
 
@@ -666,7 +663,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public Extents TextPadding
         {
-            get => (Extents)GetValue(TextPaddingProperty);
+            get => (Extents)GetValue(TextPaddingProperty) ?? new Extents();
             set => SetValue(TextPaddingProperty, value);
         }
 
@@ -747,6 +744,7 @@ namespace Tizen.NUI.Components
         /// <param name="touch">The touch event.</param>
         /// <returns>True if the event should be consumed.</returns>
         /// <since_tizen> 8 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10. Please use OnClicked instead.")]
         public override bool OnTouch(Touch touch)
         {
             return base.OnTouch(touch);
@@ -790,6 +788,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         [Obsolete("Deprecated in API8; Will be removed in API10. Please use ClickedEventArgs instead.")]
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
         public class ClickEventArgs : EventArgs
         {
         }
@@ -799,14 +798,19 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         [Obsolete("Deprecated in API8; Will be removed in API10. Please use View.ControlStateChangedEventArgs")]
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
         public class StateChangedEventArgs : EventArgs
         {
             /// <summary> previous state of Button </summary>
             /// <since_tizen> 6 </since_tizen>
+            /// It will be removed in API10
+            [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
             [Obsolete("Deprecated in API8; Will be removed in API10")]
             public ControlStates PreviousState;
             /// <summary> current state of Button </summary>
             /// <since_tizen> 6 </since_tizen>
+            /// It will be removed in API10
+            [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
             [Obsolete("Deprecated in API8; Will be removed in API10")]
             public ControlStates CurrentState;
         }

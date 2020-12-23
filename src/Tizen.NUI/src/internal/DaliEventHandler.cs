@@ -15,6 +15,7 @@
  *
  */
 using System;
+using System.ComponentModel;
 using System.Runtime.InteropServices;
 
 namespace Tizen.NUI
@@ -50,4 +51,11 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate R EventHandlerWithReturnType<T, U, R>(T source, U e);
+
+    /// <summary>
+    /// [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    /// </summary>
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public delegate TReturn ReturnTypeEventHandler<TSource, TEvent, TReturn>(TSource source, TEvent e);
 }

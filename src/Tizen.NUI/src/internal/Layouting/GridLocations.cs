@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
@@ -32,7 +33,7 @@ namespace Tizen.NUI
         private int totalHorizontalExpand = 0;
         private int totalVerticalExpand = 0;
 
-        private GridChild[] gridChildren;
+        private List<GridChild> gridChildren;
 
         /// <summary>
         /// The nested class to represent a node of DAG.
@@ -146,28 +147,24 @@ namespace Tizen.NUI
 
         private void InitChildrenData(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
         {
-            int childCount = LayoutChildren.Count;
             bool isHorizontal = (GridOrientation == Orientation.Horizontal);
             int mainPivot = 0, subPivot = 0;
             int[] pivotStack = new int[isHorizontal ? Columns : Rows];
 
             vLocations = hLocations = null;
             vEdgeList = hEdgeList = null;
-            gridChildren = new GridChild[childCount];
+            gridChildren = new List<GridChild>();
             maxColumnConut = Columns;
             maxRowCount = Rows;
 
             totalVerticalExpand = 0;
             totalHorizontalExpand = 0;
 
-            for (int i = 0; i < childCount; i++)
+            foreach (LayoutItem item in IterateLayoutChildren())
             {
-                LayoutItem item = LayoutChildren[i];
-                View view = item?.Owner;
-                if (view == null) continue;
-
                 int column, columnSpan, row, rowSpan;
                 StretchFlags verticalStretch, horizontalStretch;
+                View view = item.Owner;
 
                 column = GetColumn(view);
                 columnSpan = GetColumnSpan(view);
@@ -183,7 +180,7 @@ namespace Tizen.NUI
                     else
                         Tizen.Log.Error("NUI", "Row + RowSapn exceeds Grid Rows. Row + RowSapn (" + row + " + " + rowSpan + ") > Grid Rows(" + maxRowCount + ")");
 
-                    gridChildren[i] = new GridChild(null, new Node(0, 1, 0, 0), new Node(0, 1, 0, 0));
+                    gridChildren.Add(new GridChild(null, new Node(0, 1, 0, 0), new Node(0, 1, 0, 0)));
 
                     continue;
                 }
@@ -196,14 +193,14 @@ namespace Tizen.NUI
 
                 // assign column/row depending on GridOrientation. The main axis count(Columns on Horizontal, Rows otherwise) won't be exceeded
                 // explicit column(row) count which is assigned by Columns(Rows). but, cross axis count(Rows(Columns)) can be increased by sub axis count.
-                if (column == CellUndefined || row == CellUndefined)
+                if (column == AutoColumn || row == AutoRow)
                 {
                     (int point, int span) mainAxis = isHorizontal ? (column, columnSpan) : (row, rowSpan);
                     (int point, int span) subAxis = isHorizontal ? (row, rowSpan) : (column, columnSpan);
 
-                    if (subAxis.point != CellUndefined)
+                    if (subAxis.point != AutoColumn && subAxis.point != AutoRow)
                         subPivot = subAxis.point;
-                    if (mainAxis.point != CellUndefined)
+                    if (mainAxis.point != AutoColumn && mainAxis.point != AutoRow)
                         mainPivot = mainAxis.point;
 
                     if (mainPivot + mainAxis.span > pivotStack.Length)
@@ -221,7 +218,7 @@ namespace Tizen.NUI
 
                             if (n > pivotStack.Length)
                             {
-                                if (mainAxis.point != CellUndefined)
+                                if (mainAxis.point != AutoColumn && mainAxis.point != AutoRow)
                                     mainPivot = mainAxis.point;
                                 else
                                     mainPivot = 0;
@@ -257,9 +254,9 @@ namespace Tizen.NUI
                     maxRowCount = row + rowSpan;
 
                 MeasureChildWithMargins(item, widthMeasureSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0));
-                gridChildren[i] = new GridChild(item,
-                                                new Node(column, columnSpan, item.MeasuredWidth.Size.AsDecimal() + item.Owner.Margin.Start + item.Owner.Margin.End, horizontalStretch),
-                                                new Node(row, rowSpan, item.MeasuredHeight.Size.AsDecimal() + item.Owner.Margin.Top + item.Owner.Margin.Bottom, verticalStretch));
+                gridChildren.Add(new GridChild(item,
+                                               new Node(column, columnSpan, item.MeasuredWidth.Size.AsDecimal() + item.Owner.Margin.Start + item.Owner.Margin.End, horizontalStretch),
+                                               new Node(row, rowSpan, item.MeasuredHeight.Size.AsDecimal() + item.Owner.Margin.Top + item.Owner.Margin.Bottom, verticalStretch)));
             }
         }
 
@@ -269,13 +266,13 @@ namespace Tizen.NUI
             bool isHorizontal = (edgeList == hEdgeList);
             int axisCount = isHorizontal ? Columns : Rows;
 
-            edgeList = new Node[gridChildren.Length + axisCount];
+            edgeList = new Node[gridChildren.Count + axisCount];
 
-            for (int i = 0; i < gridChildren.Length; i++)
+            for (int i = 0; i < gridChildren.Count; i++)
                 edgeList[i] = isHorizontal ? gridChildren[i].Column : gridChildren[i].Row;
 
             // Add virtual edge that have no edge for connecting adjacent cells.
-            for (int i = LayoutChildren.Count, end = LayoutChildren.Count + axisCount, v = 0; i < end; i++, v++)
+            for (int i = gridChildren.Count, end = gridChildren.Count + axisCount, v = 0; i < end; i++, v++)
                 edgeList[i] = new Node(v, 1, 0, 0);
 
             Array.Sort(edgeList, (a, b) => a.Start.CompareTo(b.Start));
