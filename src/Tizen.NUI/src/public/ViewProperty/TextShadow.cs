@@ -24,8 +24,9 @@ namespace Tizen.NUI
     /// The Text Shadow for TextLabel.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class TextShadow : ICloneable
+    public class TextShadow : ICloneable, IDisposable
     {
+        private bool disposed = false;
         private readonly PropertyMap propertyMap = null;
 
         internal delegate void PropertyChangedCallback(TextShadow instance);
@@ -112,6 +113,31 @@ namespace Tizen.NUI
             }
 
             return new PropertyValue(instance.propertyMap);
+        }
+
+
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed)
+            {
+                return;
+            }
+            if (disposing)
+            {
+                propertyMap?.Dispose();
+                Color?.Dispose();
+                Offset?.Dispose();
+            }
+            disposed = true;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Dispose()
+        {
+            Dispose(true);
+            global::System.GC.SuppressFinalize(this);
         }
     }
 }

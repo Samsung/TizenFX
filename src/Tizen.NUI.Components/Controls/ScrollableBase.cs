@@ -1353,6 +1353,11 @@ namespace Tizen.NUI.Components
             }
         }
 
+        internal void BaseRemove(View view)
+        {
+            base.Remove(view);
+        }
+
         internal override bool OnAccessibilityPan(PanGesture gestures)
         {
             if (SnapToPage && scrollAnimation != null && scrollAnimation.State == Animation.States.Playing)

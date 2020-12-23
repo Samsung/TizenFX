@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,14 +15,18 @@
  *
  */
 
+using System.Collections.Generic;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.Wearable
 {
     internal class DefaultThemeCreator : IThemeCreator
     {
-        public Theme Create()
+        public Theme Create() => Create(null);
+
+        public Theme Create(IEnumerable<KeyValuePair<string, string>> changedResources)
         {
+            _ = changedResources;
             var theme = new Theme() { Id = "Tizen.NUI.Theme.Common" };
 
             theme.AddStyleWithoutClone("Tizen.NUI.Wearable.CircularPagination", new CircularPaginationStyle()

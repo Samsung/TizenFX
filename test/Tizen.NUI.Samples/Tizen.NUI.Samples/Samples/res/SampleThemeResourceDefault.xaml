@@ -1,8 +1,0 @@
-﻿<ResourceDictionary
-      xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
-      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
-
-    <Color x:Key="ButtonBackgroundColorNormal">0.054, 0.631, 0.921,1 </Color>
-    <Color x:Key="ButtonBackgroundColorPressed">0.454, 0.752, 0.905,1</Color>
-    <Color x:Key="ButtonBackgroundColorDisabled">0.88,0.88,0.88,1</Color>
-</ResourceDictionary>
