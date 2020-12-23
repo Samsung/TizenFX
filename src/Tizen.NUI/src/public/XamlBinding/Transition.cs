@@ -13,19 +13,6 @@ namespace Tizen.NUI
 {
     /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class StoryBoard
-    {
-        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Add(object obj)
-        {
-            int temp = 0;
-        }
-    }
-
-    /// <since_tizen> 5 </since_tizen>
-    /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
     public class AnimationBehavior
     {
         private string _key = null;
@@ -113,14 +100,19 @@ namespace Tizen.NUI
         }
     }
 
-    /// <since_tizen> 5 </since_tizen>
+
+    /// <summary>
+    /// It is the container to contain the behaviors of Transition.
+    /// </summary>
     /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class BehaviorContainer : IEnumerable
+    public class BehaviorContainer : List<AnimationBehavior>
     {
         private Dictionary<string, AnimationBehavior> behaviors = new Dictionary<string, AnimationBehavior>();
 
-        /// <since_tizen> 5 </since_tizen>
+        /// <summary>
+        /// The method for user to add behavior.
+        /// </summary>
         /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Add(object obj)
@@ -133,7 +125,9 @@ namespace Tizen.NUI
             }
         }
 
-        /// <since_tizen> 5 </since_tizen>
+        /// <summary>
+        /// The method for user to get the behavior by the key.
+        /// </summary>
         /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public AnimationBehavior GetAnimationBehavior(string key)
@@ -142,14 +136,6 @@ namespace Tizen.NUI
             behaviors.TryGetValue(key, out behavior);
 
             return behavior;
-        }
-
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public IEnumerator GetEnumerator()
-        {
-            return ((IEnumerable)behaviors).GetEnumerator();
         }
     }
 
@@ -172,25 +158,6 @@ namespace Tizen.NUI
             set
             {
                 name = value;
-            }
-        }
-
-        private Dictionary<string, AnimationBehavior> behaviors = new Dictionary<string, AnimationBehavior>();
-
-        /// <summary>
-        /// Hidden-API (Inhouse-API).
-        /// Convert previous "public AnimationBehavior[] Behaviors" property to method.
-        /// </summary>
-        /// <param name="Behaviors">Array of AnimationBehavior type</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetBehaviors(AnimationBehavior[] Behaviors)
-        {
-            if (null != Behaviors)
-            {
-                foreach (AnimationBehavior behavior in Behaviors)
-                {
-                    behaviors.Add(behavior.Key, behavior);
-                }
             }
         }
 

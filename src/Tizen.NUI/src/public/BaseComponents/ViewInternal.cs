@@ -1323,28 +1323,6 @@ namespace Tizen.NUI.BaseComponents
             return view;
         }
 
-        private void LoadTransitions()
-        {
-            foreach (string str in transitionNames)
-            {
-                string resourceName = str + ".xaml";
-                Transition trans = null;
-
-                string resource = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
-
-                string likelyResourcePath = resource + "animation/" + resourceName;
-
-                if (File.Exists(likelyResourcePath))
-                {
-                    trans = Xaml.Extensions.LoadObject<Transition>(likelyResourcePath);
-                }
-                if (trans != null)
-                {
-                    transDictionary.Add(trans.Name, trans);
-                }
-            }
-        }
-
         private void OnScaleChanged(float x, float y, float z)
         {
             Scale = new Vector3(x, y, z);

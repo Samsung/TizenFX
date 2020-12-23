@@ -46,7 +46,6 @@ namespace Tizen.NUI.BaseComponents
         private MeasureSpecification measureSpecificationHeight; // Layout height and internal Mode
         private bool backgroundImageSynchronosLoading = false;
         private Dictionary<string, Transition> transDictionary = new Dictionary<string, Transition>();
-        private string[] transitionNames;
         private bool controlStatePropagation = false;
         private ViewStyle viewStyle;
         private bool themeChangeSensitive = false;
@@ -2473,12 +2472,14 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// Used to restore the transition.
+        /// </summary>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public StoryBoard StoryBoard
+        public List<Transition> StoryBoard
         {
             get;
-            set;
-        }
+        } = new List<Transition>();
     }
 }

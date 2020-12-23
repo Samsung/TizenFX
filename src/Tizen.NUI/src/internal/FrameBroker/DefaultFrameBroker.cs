@@ -112,7 +112,7 @@ namespace Tizen.NUI
 
                 for (int i = 0; i < propertyCount; i++)
                 {
-                    animation.PropertiesList.Add(transition.AnimationDataList[i].Property);
+                    animation.PropertyList.Add(transition.AnimationDataList[i].Property);
                     animation.DestValueList.Add(transition.AnimationDataList[i].DestinationValue);
                     animation.StartTimeList.Add(80 +transition.AnimationDataList[i].StartTime);
                     animation.EndTimeList.Add(80 +transition.AnimationDataList[i].EndTime);

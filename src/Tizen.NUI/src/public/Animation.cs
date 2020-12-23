@@ -442,7 +442,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets the properties of the animation.
         /// </summary>
-        [Obsolete("Deprecated in API6, Will be removed in API9, Please use as keyword instead!")]
+        [Obsolete("Deprecated in API9, Will be removed in API11, Please use PropertyList instead")]
         [SuppressMessage("Microsoft.Naming", "CA1819:This API will be deprecated, so suppressing the warning for now")]
         public string[] Properties
         {
@@ -459,7 +459,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets the destination value for each property of the animation.
         /// </summary>
-        [Obsolete("Deprecated in API6, Will be removed in API9, Please use as keyword instead!")]
+        [Obsolete("Deprecated in API9, Will be removed in API11, Please use DestValueList instead")]
         [SuppressMessage("Microsoft.Naming", "CA1819:This API will be deprecated, so suppressing the warning for now")]
         public string[] DestValue
         {
@@ -476,7 +476,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets the start time for each property of the animation.
         /// </summary>
-        [Obsolete("Deprecated in API6, Will be removed in API9, Please use as keyword instead!")]
+        [Obsolete("Deprecated in API9, Will be removed in API11, Please use StartTimeList instead")]
         [SuppressMessage("Microsoft.Naming", "CA1819:This API will be deprecated, so suppressing the warning for now")]
         public int[] StartTime
         {
@@ -493,7 +493,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets the end time for each property of the animation.
         /// </summary>
-        [Obsolete("Deprecated in API6, Will be removed in API9, Please use as keyword instead!")]
+        [Obsolete("Deprecated in API9, Will be removed in API11, Please use EndTimeList instead")]
         [SuppressMessage("Microsoft.Naming", "CA1819:This API will be deprecated, so suppressing the warning for now")]
         public int[] EndTime
         {
@@ -512,7 +512,7 @@ namespace Tizen.NUI
         /// </summary>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public List<string> PropertiesList
+        public List<string> PropertyList
         {
             get
             {
