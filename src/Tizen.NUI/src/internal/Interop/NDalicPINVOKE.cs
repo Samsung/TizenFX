@@ -154,6 +154,7 @@ namespace Tizen.NUI
             [global::System.ThreadStatic]
             private static global::System.Exception pendingException = null;
             private static int numExceptionsPending = 0;
+            private static readonly object exceptionPendingLock = new object();
 
             /// <since_tizen> 3 </since_tizen>
             public static bool Pending
@@ -174,7 +175,7 @@ namespace Tizen.NUI
                 if (pendingException != null)
                     throw new global::System.ApplicationException("FATAL: An earlier pending exception from unmanaged code was missed and thus not thrown (" + pendingException.ToString() + ")", e);
                 pendingException = e;
-                lock (typeof(NDalicPINVOKE))
+                lock (exceptionPendingLock)
                 {
                     numExceptionsPending++;
                 }
@@ -190,7 +191,7 @@ namespace Tizen.NUI
                     {
                         e = pendingException;
                         pendingException = null;
-                        lock (typeof(NDalicPINVOKE))
+                        lock (exceptionPendingLock)
                         {
                             numExceptionsPending--;
                         }
