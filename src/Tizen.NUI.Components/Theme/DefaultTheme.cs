@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,39 +16,117 @@
  */
 #if !PROFILE_WEARABLE
 
+using System.Collections.Generic;
 using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
     // It is a C# version of res/Tizen.NUI.Components_Tizen.NUI.Theme.Common.xaml
     internal class DefaultThemeCreator : IThemeCreator
     {
-        public Theme Create()
+        public ResourceDictionary CreateThemeResource() => new ResourceDictionary()
+        {
+            ["ButtonBackgroundColorNormal"] = new Color(0.88f, 0.88f, 0.88f, 1),
+            ["ButtonBackgroundColorPressed"] = new Color(0.77f, 0.77f, 0.77f, 1),
+            ["ButtonBackgroundColorDisabled"] = new Color(0.88f, 0.88f, 0.88f, 1),
+            ["ButtonTextColorNormal"] = new Color(0.22f, 0.22f, 0.22f, 1),
+            ["ButtonTextColorPressed"] = new Color(0.11f, 0.11f, 0.11f, 1),
+            ["ButtonTextColorDisabled"] = new Color(0.66f, 0.66f, 0.66f, 1),
+            ["CheckBoxIconBackgroundImagePressed"] = FrameworkInformation.ResourcePath + "nui_component_default_checkbox_bg_p.png",
+            ["CheckBoxIconBackgroundImageSelected"] = FrameworkInformation.ResourcePath + "nui_component_default_checkbox_bg_p.png",
+            ["CheckBoxIconBackgroundImageOther"] = FrameworkInformation.ResourcePath + "nui_component_default_checkbox_bg_n.png",
+            ["CheckBoxIconImageResourceUrlPressed"] = "",
+            ["CheckBoxIconImageResourceUrlSelected"] = FrameworkInformation.ResourcePath + "nui_component_default_checkbox_s.png",
+            ["CheckBoxIconImageResourceUrlOther"] = "",
+            ["CheckBoxTextColorNormal"] = new Color(0.22f, 0.22f, 0.22f, 1),
+            ["CheckBoxTextColorPressed"] = new Color(0.11f, 0.11f, 0.11f, 1),
+            ["CheckBoxTextColorDisabled"] = new Color(0.66f, 0.66f, 0.66f, 1),
+            ["DropDownBackgroundImagePressed"] = FrameworkInformation.ResourcePath + "nui_component_default_checkbox_bg_p.png",
+            ["DropDownBackgroundImageOther"] = FrameworkInformation.ResourcePath + "nui_component_default_checkbox_bg_n.png",
+            ["DropDownIconImageResourceUrl"] = FrameworkInformation.ResourcePath + "nui_component_default_dropdown_button_icon.png",
+            ["DropDownListBackgroundImageResourceUrl"] = FrameworkInformation.ResourcePath + "nui_component_default_dropdown_list_bg.png",
+            ["DropDownDataItemBackgroundColorPressed"] = new Color(0.05f, 0.63f, 0.9f, 1),
+            ["DropDownDataItemBackgroundColorSelected"] = new Color(0.8f, 0.8f, 0.8f, 1),
+            ["DropDownDataItemBackgroundColorNormal"] = new Color(1, 1, 1, 1),
+            ["PopupBackgroundColor"] = new Color(0.9f, 0.9f, 0.9f, 1),
+            ["PopupImageShadowUrl"] = FrameworkInformation.ResourcePath + "nui_component_default_popup_shadow.png",
+            ["PopupButtonBackgroundColorNormal"] = new Color(1, 1, 1, 1),
+            ["PopupButtonBackgroundColorPressed"] = new Color(1, 1, 1, 0.5f),
+            ["PopupButtonOverlayBackgroundColorNormal"] = new Color(1, 1, 1, 1),
+            ["PopupButtonOverlayBackgroundColorPressed"] = new Color(0, 0, 0, 0.1f),
+            ["PopupButtonOverlayBackgroundColorSelected"] = new Color(1, 1, 1, 1),
+            ["PopupButtonTextColor"] = new Color(0.05f, 0.63f, 0.9f, 1),
+            ["ProgressTrackBackgroundColor"] = new Color(0, 0, 0, 0.1f),
+            ["ProgressBufferBackgroundColor"] = new Color(0.05f, 0.63f, 0.9f, 0.3f),
+            ["ProgressProgressBackgroundColor"] = new Color(0.05f, 0.63f, 0.9f, 1),
+            ["RadioButtonIconBackgroundImagePressed"] = FrameworkInformation.ResourcePath + "nui_component_default_radiobutton_p.png",
+            ["RadioButtonIconBackgroundImageSelected"] = FrameworkInformation.ResourcePath + "nui_component_default_radiobutton_s.png",
+            ["RadioButtonIconBackgroundImageOther"] = FrameworkInformation.ResourcePath + "nui_component_default_radiobutton_n.png",
+            ["RadioButtonTextColorNormal"] = new Color(0.22f, 0.22f, 0.22f, 1),
+            ["RadioButtonTextColorPressed"] = new Color(0.11f, 0.11f, 0.11f, 1),
+            ["RadioButtonTextColorDisabled"] = new Color(0.66f, 0.66f, 0.66f, 1),
+            ["SliderTrackColor"] = new Color(0, 0, 0, 0.1f),
+            ["SliderProgressColor"] = new Color(0.5f, 0.63f, 0.9f, 1),
+            ["SliderThumbImageResourceUrl"] = FrameworkInformation.ResourcePath + "nui_component_default_slider_thumb_n.png",
+            ["SliderThumbBackgroundImageNormal"] = FrameworkInformation.ResourcePath + "nui_component_default_slider_thumb_bg_p.png",
+            ["SliderThumbBackgroundImagePressed"] = FrameworkInformation.ResourcePath + "nui_component_default_slider_thumb_bg_p.png",
+            ["SwitchTrackImageResourceUrlNormal"] = FrameworkInformation.ResourcePath + "nui_component_default_switch_track_n.png",
+            ["SwitchTrackImageResourceUrlSelected"] = FrameworkInformation.ResourcePath + "nui_component_default_switch_track_s.png",
+            ["SwitchTrackImageResourceUrlDisabled"] = FrameworkInformation.ResourcePath + "nui_component_default_switch_track_d.png",
+            ["SwitchTrackImageResourceUrlDisabledSelected"] = FrameworkInformation.ResourcePath + "nui_component_default_switch_track_ds.png",
+            ["SwitchThumbImageResourceUrlNormal"] = FrameworkInformation.ResourcePath + "nui_component_default_switch_thumb_n.png",
+            ["SwitchThumbImageResourceUrlDisabled"] = FrameworkInformation.ResourcePath + "nui_component_default_switch_thumb_d.png",
+            ["SwitchThumbImageResourceUrlSelected"] = FrameworkInformation.ResourcePath + "nui_component_default_switch_thumb_n.png",
+            ["SwitchTextColorNormal"] = new Color(0.22f, 0.22f, 0.22f, 1),
+            ["SwitchTextColorPressed"] = new Color(0.11f, 0.11f, 0.11f, 1),
+            ["SwitchTextColorDisabled"] = new Color(0.66f, 0.66f, 0.66f, 1),
+            ["TabBackgroundColor"] = Color.Yellow,
+            ["TabUnderLineBackgroundColor"] = new Color(0.05f, 0.63f, 0.9f, 1.0f),
+            ["TabTextColorNormal"] = Color.Black,
+            ["TabTextColorSelected"] = new Color(0.05f, 0.63f, 0.9f, 1),
+            ["ToastBackgroundColor"] = new Color(0, 0, 0, 0.8f),
+            ["PaginationIndicatorImageUrlNormal"] = FrameworkInformation.ResourcePath + "nui_component_default_pagination_normal_dot.png",
+            ["PaginationIndicatorImageUrlSelected"] = FrameworkInformation.ResourcePath + "nui_component_default_pagination_focus_dot.png",
+            ["ScrollbarTrackColor"] = new Color(1, 1, 1, 0.15f),
+            ["ScrollbarThumbColor"] = new Color(0.6f, 0.6f, 0.6f, 1.0f),
+        };
+
+        public Theme Create() => Create(null);
+
+        public Theme Create(IEnumerable<KeyValuePair<string, string>> changedResources)
         {
             var theme = new Theme() { Id = "Tizen.NUI.Theme.Common" };
 
-            theme.AddStyleWithoutClone("Tizen.NUI.Components.Button", new ButtonStyle()
+            theme.SetChangedResources(changedResources);
+            theme.Resources = CreateThemeResource();
+            theme.OnThemeResourcesChanged();
+
+            ButtonStyle buttonSty = new ButtonStyle()
             {
                 Size = new Size(100, 45),
                 BackgroundColor = new Selector<Color>()
                 {
-                    Normal = new Color(0.88f, 0.88f, 0.88f, 1),
-                    Pressed = new Color(0.77f, 0.77f, 0.77f, 1),
-                    Disabled = new Color(0.88f, 0.88f, 0.88f, 1),
+                    Normal = (Color)theme.Resources["ButtonBackgroundColorNormal"],
+                    Pressed = (Color)theme.Resources["ButtonBackgroundColorPressed"],
+                    Disabled = (Color)theme.Resources["ButtonBackgroundColorDisabled"],
                 },
                 Text = new TextLabelStyle()
                 {
                     PointSize = 12,
                     TextColor = new Selector<Color>()
                     {
-                        Normal = new Color(0.22f, 0.22f, 0.22f, 1),
-                        Pressed = new Color(0.11f, 0.11f, 0.11f, 1),
-                        Disabled = new Color(0.66f, 0.66f, 0.66f, 1),
+                        Normal = (Color)theme.Resources["ButtonTextColorNormal"],
+                        Pressed = (Color)theme.Resources["ButtonTextColorPressed"],
+                        Disabled = (Color)theme.Resources["ButtonTextColorDisabled"],
                     }
                 }
-            });
+            };
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.Button", buttonSty);
+            buttonSty.Dispose();
+            buttonSty = null;
 
-            theme.AddStyleWithoutClone("Tizen.NUI.Components.CheckBox", new ButtonStyle()
+            ButtonStyle checkBoxSty = new ButtonStyle()
             {
                 Size = new Size(30, 30),
                 Icon = new ImageViewStyle()
@@ -61,15 +139,15 @@ namespace Tizen.NUI.Components
                     },
                     BackgroundImage = new Selector<string>()
                     {
-                        Pressed = FrameworkInformation.ResourcePath + "nui_component_default_checkbox_bg_p.png",
-                        Selected = FrameworkInformation.ResourcePath + "nui_component_default_checkbox_bg_p.png",
-                        Other = FrameworkInformation.ResourcePath + "nui_component_default_checkbox_bg_n.png",
+                        Pressed = (string)theme.Resources["CheckBoxIconBackgroundImagePressed"],
+                        Selected = (string)theme.Resources["CheckBoxIconBackgroundImageSelected"],
+                        Other = (string)theme.Resources["CheckBoxIconBackgroundImageOther"],
                     },
                     ResourceUrl = new Selector<string>()
                     {
-                        Pressed = "",
-                        Selected = FrameworkInformation.ResourcePath + "nui_component_default_checkbox_s.png",
-                        Other = "",
+                        Pressed = (string)theme.Resources["CheckBoxIconImageResourceUrlPressed"],
+                        Selected = (string)theme.Resources["CheckBoxIconImageResourceUrlSelected"],
+                        Other = (string)theme.Resources["CheckBoxIconImageResourceUrlOther"],
                     },
                 },
                 Text = new TextLabelStyle()
@@ -77,20 +155,23 @@ namespace Tizen.NUI.Components
                     PointSize = 12,
                     TextColor = new Selector<Color>()
                     {
-                        Normal = new Color(0.22f, 0.22f, 0.22f, 1),
-                        Pressed = new Color(0.11f, 0.11f, 0.11f, 1),
-                        Disabled = new Color(0.66f, 0.66f, 0.66f, 1),
+                        Normal = (Color)theme.Resources["CheckBoxTextColorNormal"],
+                        Pressed = (Color)theme.Resources["CheckBoxTextColorPressed"],
+                        Disabled = (Color)theme.Resources["CheckBoxTextColorDisabled"],
                     }
                 }
-            });
+            };
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.CheckBox", checkBoxSty);
+            checkBoxSty.Dispose();
+            checkBoxSty = null;
 
-            theme.AddStyleWithoutClone("Tizen.NUI.Components.Popup", new PopupStyle()
+            PopupStyle popupSty = new PopupStyle()
             {
                 Size = new Size(500, 280),
-                BackgroundColor = new Color(0.9f, 0.9f, 0.9f, 1),
+                BackgroundColor = (Color)theme.Resources["PopupBackgroundColor"],
                 ImageShadow = new ImageShadow()
                 {
-                    Url = FrameworkInformation.ResourcePath + "nui_component_default_popup_shadow.png",
+                    Url = (string)theme.Resources["PopupImageShadowUrl"],
                     Border = new Rectangle(24, 24, 24, 24),
                     Extents = new Vector2(48, 48)
                 },
@@ -104,42 +185,49 @@ namespace Tizen.NUI.Components
                     Size = new Size(0, 80),
                     BackgroundColor = new Selector<Color>()
                     {
-                        Normal = new Color(1, 1, 1, 1),
-                        Pressed = new Color(1, 1, 1, 0.5f),
+                        Normal = (Color)theme.Resources["PopupButtonBackgroundColorNormal"],
+                        Pressed = (Color)theme.Resources["PopupButtonBackgroundColorPressed"],
                     },
                     Overlay = new ImageViewStyle()
                     {
                         BackgroundColor = new Selector<Color>()
                         {
-                            Pressed = new Color(0, 0, 0, 0.1f),
-                            Other = new Color(1, 1, 1, 1),
+                            Normal = (Color)theme.Resources["PopupButtonOverlayBackgroundColorNormal"],
+                            Pressed = (Color)theme.Resources["PopupButtonOverlayBackgroundColorPressed"],
+                            Other = (Color)theme.Resources["PopupButtonOverlayBackgroundColorSelected"],
                         },
                     },
                     Text = new TextLabelStyle()
                     {
-                        TextColor = new Color(0.05f, 0.63f, 0.9f, 1),
+                        TextColor = (Color)theme.Resources["PopupButtonTextColor"],
                     }
                 }
-            });
+            };
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.Popup", popupSty);
+            popupSty.Dispose();
+            popupSty = null;
 
-            theme.AddStyleWithoutClone("Tizen.NUI.Components.Progress", new ProgressStyle()
+            ProgressStyle progressSty = new ProgressStyle()
             {
                 Size = new Size(200, 5),
                 Track = new ImageViewStyle()
                 {
-                    BackgroundColor = new Color(0, 0, 0, 0.1f),
+                    BackgroundColor = (Color)theme.Resources["ProgressTrackBackgroundColor"],
                 },
                 Buffer = new ImageViewStyle()
                 {
-                    BackgroundColor = new Color(0.05f, 0.63f, 0.9f, 0.3f),
+                    BackgroundColor = (Color)theme.Resources["ProgressBufferBackgroundColor"],
                 },
                 Progress = new ImageViewStyle()
                 {
-                    BackgroundColor = new Color(0.05f, 0.63f, 0.9f, 1),
+                    BackgroundColor = (Color)theme.Resources["ProgressProgressBackgroundColor"],
                 },
-            });
+            };
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.Progress", progressSty);
+            progressSty.Dispose();
+            progressSty = null;
 
-            theme.AddStyleWithoutClone("Tizen.NUI.Components.RadioButton", new ButtonStyle()
+            ButtonStyle radioButtonSty = new ButtonStyle()
             {
                 Size = new Size(30, 30),
                 Icon = new ImageViewStyle()
@@ -152,9 +240,9 @@ namespace Tizen.NUI.Components
                     },
                     BackgroundImage = new Selector<string>()
                     {
-                        Pressed = FrameworkInformation.ResourcePath + "nui_component_default_radiobutton_p.png",
-                        Selected = FrameworkInformation.ResourcePath + "nui_component_default_radiobutton_s.png",
-                        Other = FrameworkInformation.ResourcePath + "nui_component_default_radiobutton_n.png",
+                        Pressed = (string)theme.Resources["RadioButtonIconBackgroundImagePressed"],
+                        Selected = (string)theme.Resources["RadioButtonIconBackgroundImageSelected"],
+                        Other = (string)theme.Resources["RadioButtonIconBackgroundImageOther"],
                     }
                 },
                 Text = new TextLabelStyle()
@@ -162,38 +250,44 @@ namespace Tizen.NUI.Components
                     PointSize = 12,
                     TextColor = new Selector<Color>()
                     {
-                        Normal = new Color(0.22f, 0.22f, 0.22f, 1),
-                        Pressed = new Color(0.11f, 0.11f, 0.11f, 1),
-                        Disabled = new Color(0.66f, 0.66f, 0.66f, 1),
+                        Normal = (Color)theme.Resources["RadioButtonTextColorNormal"],
+                        Pressed = (Color)theme.Resources["RadioButtonTextColorPressed"],
+                        Disabled = (Color)theme.Resources["RadioButtonTextColorDisabled"],
                     }
                 }
-            });
+            };
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.RadioButton", radioButtonSty);
+            radioButtonSty.Dispose();
+            radioButtonSty = null;
 
-            theme.AddStyleWithoutClone("Tizen.NUI.Components.Slider", new SliderStyle()
+            SliderStyle sliderSty = new SliderStyle()
             {
                 Size = new Size(200, 50),
                 TrackThickness = 5,
                 Track = new ImageViewStyle()
                 {
-                    BackgroundColor = new Color(0, 0, 0, 0.1f),
+                    BackgroundColor = (Color)theme.Resources["SliderTrackColor"],
                 },
                 Progress = new ImageViewStyle()
                 {
-                    BackgroundColor = new Color(0.05f, 0.63f, 0.9f, 1),
+                    BackgroundColor = (Color)theme.Resources["SliderProgressColor"],
                 },
                 Thumb = new ImageViewStyle()
                 {
                     Size = new Size(50, 50),
-                    ResourceUrl = FrameworkInformation.ResourcePath + "nui_component_default_slider_thumb_n.png",
+                    ResourceUrl = (string)theme.Resources["SliderThumbImageResourceUrl"],
                     BackgroundImage = new Selector<string>()
                     {
-                        Normal = "",
-                        Pressed = FrameworkInformation.ResourcePath + "nui_component_default_slider_thumb_bg_p.png",
+                        Normal = (string)theme.Resources["SliderThumbBackgroundImageNormal"],
+                        Pressed = (string)theme.Resources["SliderThumbBackgroundImagePressed"],
                     }
                 },
-            });
+            };
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.Slider", sliderSty);
+            sliderSty.Dispose();
+            sliderSty = null;
 
-            theme.AddStyleWithoutClone("Tizen.NUI.Components.Switch", new SwitchStyle()
+            SwitchStyle switchSty = new SwitchStyle()
             {
                 Size = new Size(96, 60),
                 Track = new ImageViewStyle()
@@ -201,10 +295,10 @@ namespace Tizen.NUI.Components
                     Size = new Size(96, 60),
                     ResourceUrl = new Selector<string>()
                     {
-                        Normal = FrameworkInformation.ResourcePath + "nui_component_default_switch_track_n.png",
-                        Selected = FrameworkInformation.ResourcePath + "nui_component_default_switch_track_s.png",
-                        Disabled = FrameworkInformation.ResourcePath + "nui_component_default_switch_track_d.png",
-                        DisabledSelected = FrameworkInformation.ResourcePath + "nui_component_default_switch_track_ds.png",
+                        Normal = (string)theme.Resources["SwitchTrackImageResourceUrlNormal"],
+                        Selected = (string)theme.Resources["SwitchTrackImageResourceUrlSelected"],
+                        Disabled = (string)theme.Resources["SwitchTrackImageResourceUrlDisabled"],
+                        DisabledSelected = (string)theme.Resources["SwitchTrackImageResourceUrlDisabledSelected"],
                     }
                 },
                 Thumb = new ImageViewStyle()
@@ -212,9 +306,9 @@ namespace Tizen.NUI.Components
                     Size = new Size(60, 60),
                     ResourceUrl = new Selector<string>()
                     {
-                        Normal = FrameworkInformation.ResourcePath + "nui_component_default_switch_thumb_n.png",
-                        Disabled = FrameworkInformation.ResourcePath + "nui_component_default_switch_thumb_d.png",
-                        Selected = FrameworkInformation.ResourcePath + "nui_component_default_switch_thumb_n.png",
+                        Normal = (string)theme.Resources["SwitchThumbImageResourceUrlNormal"],
+                        Disabled = (string)theme.Resources["SwitchThumbImageResourceUrlDisabled"],
+                        Selected = (string)theme.Resources["SwitchThumbImageResourceUrlSelected"],
                     }
                 },
                 Text = new TextLabelStyle()
@@ -222,65 +316,83 @@ namespace Tizen.NUI.Components
                     PointSize = 12,
                     TextColor = new Selector<Color>()
                     {
-                        Normal = new Color(0.22f, 0.22f, 0.22f, 1),
-                        Pressed = new Color(0.11f, 0.11f, 0.11f, 1),
-                        Disabled = new Color(0.66f, 0.66f, 0.66f, 1),
+                        Normal = (Color)theme.Resources["SwitchTextColorNormal"],
+                        Pressed = (Color)theme.Resources["SwitchTextColorPressed"],
+                        Disabled = (Color)theme.Resources["SwitchTextColorDisabled"],
                     }
                 }
-            });
+            };
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.Switch", switchSty);
+            switchSty.Dispose();
+            switchSty = null;
 
-            theme.AddStyleWithoutClone("Tizen.NUI.Components.Tab", new TabStyle()
+            TabStyle tabSty = new TabStyle()
             {
                 Size = new Size(480, 80),
-                BackgroundColor = Color.Yellow,
+                BackgroundColor = (Color)theme.Resources["TabBackgroundColor"],
                 UnderLine = new ViewStyle()
                 {
                     Size = new Size(0, 6),
-                    BackgroundColor = new Color(0.05f, 0.63f, 0.9f, 1),
+                    BackgroundColor = (Color)theme.Resources["TabUnderLineBackgroundColor"],
                 },
                 Text = new TextLabelStyle()
                 {
                     PointSize = 16,
                     TextColor = new Selector<Color>()
                     {
-                        Normal = Color.Black,
-                        Selected = new Color(0.05f, 0.63f, 0.9f, 1),
+                        Normal = (Color)theme.Resources["TabTextColorNormal"],
+                        Selected = (Color)theme.Resources["TabTextColorSelected"],
                     }
                 }
-            });
+            };
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.Tab", tabSty);
+            tabSty.Dispose();
+            tabSty = null;
 
-            theme.AddStyleWithoutClone("Tizen.NUI.Components.Toast", new ToastStyle()
+            ToastStyle toastSty = new ToastStyle()
             {
                 Size = new Size(480, 80),
-                BackgroundColor = new Color(0, 0, 0, 0.8f),
+                BackgroundColor = (Color)theme.Resources["ToastBackgroundColor"],
                 Text = new TextLabelStyle()
                 {
                     Padding = new Extents(12, 12, 8, 8)
                 }
-            });
+            };
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.Toast", toastSty);
+            toastSty.Dispose();
+            toastSty = null;
 
-            theme.AddStyleWithoutClone("Tizen.NUI.Components.Loading", new LoadingStyle()
+            LoadingStyle loadingSty = new LoadingStyle()
             {
                 LoadingSize = new Size(100, 100),
-            });
+            };
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.Loading", loadingSty);
+            loadingSty.Dispose();
+            loadingSty = null;
 
-            theme.AddStyleWithoutClone("Tizen.NUI.Components.Pagination", new PaginationStyle()
+            PaginationStyle paginationSty = new PaginationStyle()
             {
                 IndicatorImageUrl = new Selector<string>()
                 {
-                    Normal = FrameworkInformation.ResourcePath + "nui_component_default_pagination_normal_dot.png",
-                    Selected = FrameworkInformation.ResourcePath + "nui_component_default_pagination_focus_dot.png",
+                    Normal = (string)theme.Resources["PaginationIndicatorImageUrlNormal"],
+                    Selected = (string)theme.Resources["PaginationIndicatorImageUrlSelected"],
                 }
-            });
+            };
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.Pagination", paginationSty);
+            paginationSty.Dispose();
+            paginationSty = null;
 
-            theme.AddStyleWithoutClone("Tizen.NUI.Components.Scrollbar", new ScrollbarStyle()
+            ScrollbarStyle scrollSty = new ScrollbarStyle()
             {
                 TrackThickness = 6,
                 ThumbThickness = 6,
-                TrackColor = new Color(1, 1, 1, 0.15f),
-                ThumbColor = new Color(0.6f, 0.6f, 0.6f, 1),
+                TrackColor = (Color)theme.Resources["ScrollbarTrackColor"],
+                ThumbColor = (Color)theme.Resources["ScrollbarThumbColor"],
                 TrackPadding = 4
-            });
+            };
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.Scrollbar", scrollSty);
+            scrollSty.Dispose();
+            scrollSty = null;
 
             return theme;
         }

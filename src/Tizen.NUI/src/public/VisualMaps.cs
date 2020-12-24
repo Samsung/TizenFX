@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+using System;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 
@@ -23,8 +24,9 @@ namespace Tizen.NUI
     /// A class encapsulating the transform map of the visual.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class VisualMap
+    public class VisualMap : IDisposable
     {
+        private bool disposed = false;
         /// <summary>
         /// outputVisualMap.
         /// </summary>
@@ -675,6 +677,37 @@ namespace Tizen.NUI
             if (_visualSizePolicy != null) { _visualTransformMap.Add((int)VisualTransformPropertyType.SizePolicy, new PropertyValue(_visualSizePolicy)); }
             if (_visualOrigin != null) { _visualTransformMap.Add((int)VisualTransformPropertyType.Origin, new PropertyValue((int)_visualOrigin)); }
             if (_visualAnchorPoint != null) { _visualTransformMap.Add((int)VisualTransformPropertyType.AnchorPoint, new PropertyValue((int)_visualAnchorPoint)); }
+        }
+
+
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed)
+            {
+                return;
+            }
+            if (disposing)
+            {
+                _commonlyUsedMap?.Dispose();
+                _mixColor?.Dispose();
+                _outputVisualMap?.Dispose();
+                _shader?.Dispose();
+                _visualOffset?.Dispose();
+                _visualOffsetPolicy?.Dispose();
+                _visualSize?.Dispose();
+                _visualSizePolicy?.Dispose();
+                _visualTransformMap?.Dispose();
+            }
+            disposed = true;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Dispose()
+        {
+            Dispose(true);
+            global::System.GC.SuppressFinalize(this);
         }
     }
 }

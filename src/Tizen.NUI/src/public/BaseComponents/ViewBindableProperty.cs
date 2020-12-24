@@ -139,43 +139,40 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty BackgroundImageProperty = BindableProperty.Create(nameof(BackgroundImage), typeof(string), typeof(View), default(string), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
-            if (newValue != null)
+            string url = (string)newValue;
+
+            if (string.IsNullOrEmpty(url))
             {
-                string url = (string)newValue;
-
-                if (string.IsNullOrEmpty(url))
-                {
-                    // Clear background
-                    Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.BACKGROUND, new PropertyValue());
-                    return;
-                }
-
-                if (view.backgroundExtraData == null)
-                {
-                    Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.BACKGROUND, new PropertyValue(url));
-                    view.BackgroundImageSynchronosLoading = view.backgroundImageSynchronosLoading;
-
-                    return;
-                }
-
-                PropertyMap map = new PropertyMap();
-
-                map.Add(ImageVisualProperty.URL, new PropertyValue(url))
-                   .Add(Visual.Property.CornerRadius, new PropertyValue(view.backgroundExtraData.CornerRadius))
-                   .Add(ImageVisualProperty.SynchronousLoading, new PropertyValue(view.backgroundImageSynchronosLoading));
-
-                if (view.backgroundExtraData.BackgroundImageBorder != null)
-                {
-                    map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.NPatch))
-                       .Add(NpatchImageVisualProperty.Border, new PropertyValue(view.backgroundExtraData.BackgroundImageBorder));
-                }
-                else
-                {
-                    map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
-                }
-
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.BACKGROUND, new PropertyValue(map));
+                // Clear background
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.BACKGROUND, new PropertyValue());
+                return;
             }
+
+            if (view.backgroundExtraData == null)
+            {
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.BACKGROUND, new PropertyValue(url));
+                view.BackgroundImageSynchronosLoading = view.backgroundImageSynchronosLoading;
+
+                return;
+            }
+
+            PropertyMap map = new PropertyMap();
+
+            map.Add(ImageVisualProperty.URL, new PropertyValue(url))
+               .Add(Visual.Property.CornerRadius, new PropertyValue(view.backgroundExtraData.CornerRadius))
+               .Add(ImageVisualProperty.SynchronousLoading, new PropertyValue(view.backgroundImageSynchronosLoading));
+
+            if (view.backgroundExtraData.BackgroundImageBorder != null)
+            {
+                map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.NPatch))
+                   .Add(NpatchImageVisualProperty.Border, new PropertyValue(view.backgroundExtraData.BackgroundImageBorder));
+            }
+            else
+            {
+                map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
+            }
+
+            Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.BACKGROUND, new PropertyValue(map));
         }),
         defaultValueCreator: (bindable) =>
         {
