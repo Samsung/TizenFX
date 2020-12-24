@@ -142,13 +142,17 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected override void ComposingPropertyMap()
         {
-            PropertyMap _animator = new PropertyMap();
-            _animator.Add("alphaFunction", new PropertyValue(_alphaFunction));
+            PropertyMap animator = new PropertyMap();
+            PropertyValue alphaFuc = new PropertyValue(_alphaFunction);
+            animator.Add("alphaFunction", alphaFuc);
 
-            PropertyMap _timePeriod = new PropertyMap();
-            _timePeriod.Add("duration", new PropertyValue((_endTime - _startTime) / 1000.0f));
-            _timePeriod.Add("delay", new PropertyValue(_startTime / 1000.0f));
-            _animator.Add("timePeriod", new PropertyValue(_timePeriod));
+            PropertyMap timePeriod = new PropertyMap();
+            PropertyValue timeValue = new PropertyValue((_endTime - _startTime) / 1000.0f);
+            timePeriod.Add("duration", timeValue);
+            PropertyValue timeStart = new PropertyValue(_startTime / 1000.0f);
+            timePeriod.Add("delay", timeStart);
+            PropertyValue timePer = new PropertyValue(timePeriod);
+            animator.Add("timePeriod", timePer);
 
             StringBuilder sb = new StringBuilder(_propertyIndex);
             sb[0] = (char)(sb[0] | 0x20);
@@ -156,13 +160,26 @@ namespace Tizen.NUI
 
             PropertyValue val = PropertyValue.CreateFromObject(_destinationValue);
 
-            PropertyMap _transition = new PropertyMap();
-            _transition.Add("target", new PropertyValue(_target));
-            _transition.Add("property", new PropertyValue(_str));
-            _transition.Add("targetValue", val);
-            _transition.Add("animator", new PropertyValue(_animator));
+            PropertyMap transition = new PropertyMap();
+            PropertyValue targetV = new PropertyValue(_target);
+            transition.Add("target", targetV);
+            PropertyValue targetStr = new PropertyValue(_str);
+            transition.Add("property", targetStr);
+            transition.Add("targetValue", val);
+            PropertyValue targetAnimator = new PropertyValue(animator);
+            transition.Add("animator", targetAnimator);
 
-            _outputVisualMap = _transition;
+            _outputVisualMap = transition;
+            alphaFuc.Dispose();
+            timeValue.Dispose();
+            timeStart.Dispose();
+            timePer.Dispose();
+            timePeriod.Dispose();
+            val.Dispose();
+            targetV.Dispose();
+            targetStr.Dispose();
+            targetAnimator.Dispose();
+            animator.Dispose();
             base.ComposingPropertyMap();
         }
     }

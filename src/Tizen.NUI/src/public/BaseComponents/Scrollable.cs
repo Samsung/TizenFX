@@ -237,30 +237,24 @@ namespace Tizen.NUI.BaseComponents
         {
             add
             {
-                lock (this)
+                // Restricted to only one listener
+                if (_scrollableStartedEventHandler == null)
                 {
-                    // Restricted to only one listener
-                    if (_scrollableStartedEventHandler == null)
-                    {
-                        _scrollableStartedEventHandler += value;
+                    _scrollableStartedEventHandler += value;
 
-                        _scrollableStartedCallbackDelegate = new StartedCallbackDelegate(OnStarted);
-                        this.ScrollStartedSignal().Connect(_scrollableStartedCallbackDelegate);
-                    }
+                    _scrollableStartedCallbackDelegate = new StartedCallbackDelegate(OnStarted);
+                    this.ScrollStartedSignal().Connect(_scrollableStartedCallbackDelegate);
                 }
             }
 
             remove
             {
-                lock (this)
+                if (_scrollableStartedEventHandler != null)
                 {
-                    if (_scrollableStartedEventHandler != null)
-                    {
-                        this.ScrollStartedSignal().Disconnect(_scrollableStartedCallbackDelegate);
-                    }
-
-                    _scrollableStartedEventHandler -= value;
+                    this.ScrollStartedSignal().Disconnect(_scrollableStartedCallbackDelegate);
                 }
+
+                _scrollableStartedEventHandler -= value;
             }
         }
 
@@ -272,30 +266,24 @@ namespace Tizen.NUI.BaseComponents
         {
             add
             {
-                lock (this)
+                // Restricted to only one listener
+                if (_scrollableUpdatedEventHandler == null)
                 {
-                    // Restricted to only one listener
-                    if (_scrollableUpdatedEventHandler == null)
-                    {
-                        _scrollableUpdatedEventHandler += value;
+                    _scrollableUpdatedEventHandler += value;
 
-                        _scrollableUpdatedCallbackDelegate = new UpdatedCallbackDelegate(OnUpdated);
-                        this.ScrollUpdatedSignal().Connect(_scrollableUpdatedCallbackDelegate);
-                    }
+                    _scrollableUpdatedCallbackDelegate = new UpdatedCallbackDelegate(OnUpdated);
+                    this.ScrollUpdatedSignal().Connect(_scrollableUpdatedCallbackDelegate);
                 }
             }
 
             remove
             {
-                lock (this)
+                if (_scrollableUpdatedEventHandler != null)
                 {
-                    if (_scrollableUpdatedEventHandler != null)
-                    {
-                        this.ScrollUpdatedSignal().Disconnect(_scrollableUpdatedCallbackDelegate);
-                    }
-
-                    _scrollableUpdatedEventHandler -= value;
+                    this.ScrollUpdatedSignal().Disconnect(_scrollableUpdatedCallbackDelegate);
                 }
+
+                _scrollableUpdatedEventHandler -= value;
             }
         }
 
@@ -308,30 +296,24 @@ namespace Tizen.NUI.BaseComponents
         {
             add
             {
-                lock (this)
+                // Restricted to only one listener
+                if (_scrollableCompletedEventHandler == null)
                 {
-                    // Restricted to only one listener
-                    if (_scrollableCompletedEventHandler == null)
-                    {
-                        _scrollableCompletedEventHandler += value;
+                    _scrollableCompletedEventHandler += value;
 
-                        _scrollableCompletedCallbackDelegate = new CompletedCallbackDelegate(OnCompleted);
-                        this.ScrollCompletedSignal().Connect(_scrollableCompletedCallbackDelegate);
-                    }
+                    _scrollableCompletedCallbackDelegate = new CompletedCallbackDelegate(OnCompleted);
+                    this.ScrollCompletedSignal().Connect(_scrollableCompletedCallbackDelegate);
                 }
             }
 
             remove
             {
-                lock (this)
+                if (_scrollableCompletedEventHandler != null)
                 {
-                    if (_scrollableCompletedEventHandler != null)
-                    {
-                        this.ScrollCompletedSignal().Disconnect(_scrollableCompletedCallbackDelegate);
-                    }
-
-                    _scrollableCompletedEventHandler -= value;
+                    this.ScrollCompletedSignal().Disconnect(_scrollableCompletedCallbackDelegate);
                 }
+
+                _scrollableCompletedEventHandler -= value;
             }
         }
 

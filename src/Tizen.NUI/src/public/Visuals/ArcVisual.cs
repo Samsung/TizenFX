@@ -141,12 +141,22 @@ namespace Tizen.NUI
             _outputVisualMap = null;
 
             base.ComposingPropertyMap();
+            PropertyValue arc = new PropertyValue((int)Visual.Type.Arc);
+            PropertyValue thickness = new PropertyValue(Thickness < 0.0f ? 0.0f : Thickness);
+            PropertyValue startAngle = new PropertyValue(StartAngle);
+            PropertyValue sweepAngle = new PropertyValue(SweepAngle);
+            PropertyValue cap = new PropertyValue((int)Cap);
+            _outputVisualMap.Add(Visual.Property.Type, arc);
+            _outputVisualMap.Add(ArcVisualProperty.Thickness, thickness);
+            _outputVisualMap.Add(ArcVisualProperty.StartAngle, startAngle);
+            _outputVisualMap.Add(ArcVisualProperty.SweepAngle, sweepAngle);
+            _outputVisualMap.Add(ArcVisualProperty.Cap, cap);
 
-            _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Arc));
-            _outputVisualMap.Add(ArcVisualProperty.Thickness, new PropertyValue(Thickness < 0.0f ? 0.0f : Thickness));
-            _outputVisualMap.Add(ArcVisualProperty.StartAngle, new PropertyValue(StartAngle));
-            _outputVisualMap.Add(ArcVisualProperty.SweepAngle, new PropertyValue(SweepAngle));
-            _outputVisualMap.Add(ArcVisualProperty.Cap, new PropertyValue((int)Cap));
+            arc.Dispose();
+            thickness.Dispose();
+            startAngle.Dispose();
+            sweepAngle.Dispose();
+            cap.Dispose();
         }
 
         #endregion Methods

@@ -612,6 +612,18 @@ namespace Tizen.NUI
             /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int ForegroundEffect = Interop.Renderer.RangesForegroundEffectGet();
+
+
+
+            [Obsolete("Please do not use this! Deprecated in API9, will be removed in API11! Please use ForegroundEffect instead!")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [SuppressMessage("Naming", "CA1707:Identifiers should not contain underscores", Justification = "<Pending>")]
+            public static readonly int FOREGROUND_EFFECT = Interop.Renderer.RangesForegroundEffectGet();
+
+            [Obsolete("Please do not use this! Deprecated in API9, will be removed in API11! Please use BackgroundEffect instead!")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [SuppressMessage("Naming", "CA1707:Identifiers should not contain underscores", Justification = "<Pending>")]
+            public static readonly int BACKGROUND_EFFECT = Interop.Renderer.RangesBackgroundEffectGet();
         }
 
         /// <summary>

@@ -49,31 +49,25 @@ namespace Tizen.NUI
         {
             add
             {
-                lock (this)
+                // Restricted to only one listener
+                if (_builderQuitEventHandler == null)
                 {
-                    // Restricted to only one listener
-                    if (_builderQuitEventHandler == null)
-                    {
-                        _builderQuitEventHandler += value;
+                    _builderQuitEventHandler += value;
 
-                        _builderQuitEventCallbackDelegate = new QuitEventCallbackDelegate(OnQuit);
-                        quitSignal = this.QuitSignal();
-                        quitSignal?.Connect(_builderQuitEventCallbackDelegate);
-                    }
+                    _builderQuitEventCallbackDelegate = new QuitEventCallbackDelegate(OnQuit);
+                    quitSignal = this.QuitSignal();
+                    quitSignal?.Connect(_builderQuitEventCallbackDelegate);
                 }
             }
 
             remove
             {
-                lock (this)
+                if (_builderQuitEventHandler != null)
                 {
-                    if (_builderQuitEventHandler != null)
-                    {
-                        quitSignal?.Disconnect(_builderQuitEventCallbackDelegate);
-                    }
-
-                    _builderQuitEventHandler -= value;
+                    quitSignal?.Disconnect(_builderQuitEventCallbackDelegate);
                 }
+
+                _builderQuitEventHandler -= value;
             }
         }
 
