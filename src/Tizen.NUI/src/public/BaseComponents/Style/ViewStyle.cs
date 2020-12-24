@@ -26,8 +26,9 @@ namespace Tizen.NUI.BaseComponents
     /// </summary>
     /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public partial class ViewStyle : BindableObject
+    public partial class ViewStyle : BindableObject, IDisposable
     {
+        private bool disposed = false;
         private string styleName;
         private View.States? state;
         private View.States? subState;
@@ -767,6 +768,46 @@ namespace Tizen.NUI.BaseComponents
         private void OnMarginChanged(ushort start, ushort end, ushort top, ushort bottom)
         {
             Margin = new Extents(start, end, top, bottom);
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                // Dispose managed state (managed objects).
+                cellIndex?.Dispose();
+                downFocusableView?.Dispose();
+                flexMargin?.Dispose();
+                leftFocusableView?.Dispose();
+                margin?.Dispose();
+                maximumSize?.Dispose();
+                minimumSize?.Dispose();
+                orientation?.Dispose();
+                padding?.Dispose();
+                parentOrigin?.Dispose();
+                pivotPoint?.Dispose();
+                position?.Dispose();
+                rightFocusableView?.Dispose();
+                scale?.Dispose();
+                size?.Dispose();
+                sizeModeFactor?.Dispose();
+                upFocusableView?.Dispose();
+            }
+
+            disposed = true;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Dispose()
+        {
+            Dispose(true);
+            global::System.GC.SuppressFinalize(this);
         }
     }
 }

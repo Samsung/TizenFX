@@ -19,12 +19,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
     internal interface IThemeCreator
     {
         Theme Create();
+        Theme Create(IEnumerable<KeyValuePair<string, string>> changedResources);
     }
 
     /// <summary>
@@ -52,7 +54,7 @@ namespace Tizen.NUI
         private static Theme defaultTheme;
         private static readonly List<Theme> builtinThemes = new List<Theme>(); // Themes provided by framework.
         private static readonly List<Theme> customThemes = new List<Theme>(); // Themes registered by user. (Legacy support)
-        private static readonly List<string> packages = new List<string>();
+        private static readonly List<IThemeCreator> packages = new List<IThemeCreator>();
 
         static ThemeManager()
         {
@@ -242,14 +244,31 @@ namespace Tizen.NUI
             return (Theme)result?.Clone();
         }
 
+        /// <summary>
+        /// Update current theme resources.
+        /// </summary>
+        /// <param name="changedResources"> An enumerable collection of the changed resources </param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void UpdateCurrentThemeResources(IEnumerable<KeyValuePair<string, string>> changedResources)
+        {
+            if (CurrentTheme == null) // if current theme is default theme,
+            {
+                DefaultTheme.Clear();
+                foreach (IThemeCreator themeCreator in packages)
+                {
+                    DefaultTheme.MergeWithoutClone(themeCreator.Create(changedResources));
+                }
+                NotifyThemeChanged();
+            }
+        }
+
         internal static void AddPackageTheme(IThemeCreator themeCreator)
         {
-            string name = themeCreator.GetType().FullName;
-            if (packages.FindIndex(x => string.Equals(x, name)) >= 0)
+            if (packages.Contains(themeCreator))
             {
                 return;
             }
-            packages.Add(name);
+            packages.Add(themeCreator);
             DefaultTheme.MergeWithoutClone(themeCreator.Create());
         }
 
