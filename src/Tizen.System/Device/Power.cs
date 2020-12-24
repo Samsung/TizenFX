@@ -15,6 +15,7 @@
 */
 
 using System;
+using System.ComponentModel;
 
 namespace Tizen.System
 {
@@ -77,6 +78,25 @@ namespace Tizen.System
             if (res != DeviceError.None)
             {
                 throw DeviceExceptionFactory.CreateException(res, "unable to release power lock.");
+            }
+        }
+        /// <summary>
+        /// Power off the device.
+        /// </summary>
+        /// <exception cref="UnauthorizedAccessException">If the privilege is not set.</exception>
+        /// <exception cref="InvalidOperationException">In case of any system error.</exception>
+        /// <example>
+        /// <code>
+        /// Tizen.System.Power.PowerOff();
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void PowerOff()
+        {
+            DeviceError res = (DeviceError)Interop.Device.DevicePowerPowerOff();
+            if (res != DeviceError.None)
+            {
+                throw DeviceExceptionFactory.CreateException(res, "unable to power off the device.");
             }
         }
     }
