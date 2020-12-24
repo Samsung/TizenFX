@@ -103,6 +103,7 @@ namespace Tizen.NUI.Components
                 }
                 paginationStyle.IndicatorSize = value;
                 UpdateVisual();
+                UpdateContainer();
             }
         }
 
@@ -470,6 +471,10 @@ namespace Tizen.NUI.Components
             if (paginationStyle == null)
             {
                 return;
+            }
+            if (paginationStyle.IndicatorSize == null)
+            {
+                paginationStyle.IndicatorSize = new Size(0, 0);
             }
             ImageVisual indicator = new ImageVisual
             {
