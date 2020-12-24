@@ -84,12 +84,8 @@ namespace Tizen.NUI
 
                 base.ComposingPropertyMap();
 
-                PropertyValue colorTemp = new PropertyValue((int)Visual.Type.Color);
-                _outputVisualMap.Add(Visual.Property.Type, colorTemp);
-                PropertyValue colorTemp1 = new PropertyValue(color);
-                _outputVisualMap.Add(ColorVisualProperty.MixColor, colorTemp1);
-                colorTemp.Dispose();
-                colorTemp1.Dispose();
+                _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Color));
+                _outputVisualMap.Add(ColorVisualProperty.MixColor, new PropertyValue(color));
             }
             else
             {

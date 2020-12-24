@@ -99,20 +99,11 @@ namespace Tizen.NUI
             if (_color != null && _size != null)
             {
                 _outputVisualMap = new PropertyMap();
-                PropertyValue border = new PropertyValue((int)Visual.Type.Border);
-                PropertyValue size = new PropertyValue((float)_size);
-                PropertyValue color = new PropertyValue(_color);
-                _outputVisualMap.Add(Visual.Property.Type, border);
-                _outputVisualMap.Add(BorderVisualProperty.Size, size);
-                _outputVisualMap.Add(BorderVisualProperty.Color, color);
-                PropertyValue antiAliasing = new PropertyValue((bool)_antiAliasing);
-                if (_antiAliasing != null) { _outputVisualMap.Add(BorderVisualProperty.AntiAliasing, antiAliasing); }
+                _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Border));
+                _outputVisualMap.Add(BorderVisualProperty.Size, new PropertyValue((float)_size));
+                _outputVisualMap.Add(BorderVisualProperty.Color, new PropertyValue(_color));
+                if (_antiAliasing != null) { _outputVisualMap.Add(BorderVisualProperty.AntiAliasing, new PropertyValue((bool)_antiAliasing)); }
                 base.ComposingPropertyMap();
-
-                border.Dispose();
-                size.Dispose();
-                color.Dispose();
-                antiAliasing.Dispose();
             }
         }
     }
