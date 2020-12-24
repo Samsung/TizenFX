@@ -76,6 +76,7 @@ namespace Tizen.NUI.BaseComponents
         /// Enumeration for describing the states of the view.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1717:Only FlagsAttribute enums should have plural names")]
         public enum States
         {
             /// <summary>
