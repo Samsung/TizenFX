@@ -944,7 +944,7 @@ namespace Tizen.NUI
             /// The state if it owns memory
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
-            [Obsolete("Deprecated in API9, Will be removed in API11, Please use SwigCMemOwn which is declared in parent class")]
+            [Obsolete("This has been deprecated in API9 and will be removed in API11. Please use swigCMemOwn which is declared in parent class")]
             [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible instance fields", Justification = "<Pending>")]
             protected bool swigCMemOwn;
             private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -1104,7 +1104,7 @@ namespace Tizen.NUI
             /// The state if it owns memory
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
-            //ToDo : raise ACR as [Obsolete("This has been deprecated in API9 and will be removed in API11. Please use SwigCMemOwn which is declared in parent class")]
+            [Obsolete("This has been deprecated in API9 and will be removed in API11. Please use SwigCMemOwn which is declared in parent class")]
             [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible instance fields", Justification = "<Pending>")]
             protected bool swigCMemOwn;
             private global::System.Runtime.InteropServices.HandleRef swigCPtr;
