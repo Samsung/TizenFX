@@ -33,8 +33,12 @@ namespace Tizen.NUI.Components
         private float curValue = 0;
         // the size of the low indicator
         private Size lowIndicatorSize = null;
+        private Size lowIndicatorTextSize = null;
+        private Size lowIndicatorImageSize = null;
         // the size of the high indicator
         private Size highIndicatorSize = null;
+        private Size highIndicatorTextSize = null;
+        private Size highIndicatorImageSize = null;
         // the track thickness value
         private uint? trackThickness = null;
         // the value of the space between track and indicator object
@@ -550,70 +554,70 @@ namespace Tizen.NUI.Components
 
         private Size LowIndicatorImageSize()
         {
-            Size size = new Size(0, 0);
+            lowIndicatorImageSize = new Size(0, 0);
             if (lowIndicatorSize != null)
             {
-                size = lowIndicatorSize;
+                lowIndicatorImageSize = lowIndicatorSize;
             }
             else
             {
                 if (sliderStyle != null && sliderStyle.LowIndicatorImage != null && sliderStyle.LowIndicatorImage.Size != null)
                 {
-                    size = sliderStyle.LowIndicatorImage.Size;
+                    lowIndicatorImageSize = sliderStyle.LowIndicatorImage.Size;
                 }
             }
-            return size;
+            return lowIndicatorImageSize;
         }
 
         private Size HighIndicatorImageSize()
         {
-            Size size = new Size(0, 0);
+            highIndicatorImageSize = new Size(0, 0);
             if (highIndicatorSize != null)
             {
-                size = highIndicatorSize;
+                highIndicatorImageSize = highIndicatorSize;
             }
             else
             {
                 if (sliderStyle != null && sliderStyle.HighIndicatorImage != null && sliderStyle.HighIndicatorImage.Size != null)
                 {
-                    size = sliderStyle.HighIndicatorImage.Size;
+                    highIndicatorImageSize = sliderStyle.HighIndicatorImage.Size;
                 }
             }
-            return size;
+            return highIndicatorImageSize;
         }
 
         private Size LowIndicatorTextSize()
         {
-            Size size = new Size(0, 0);
+            lowIndicatorTextSize = new Size(0, 0);
             if (lowIndicatorSize != null)
             {
-                size = lowIndicatorSize;
+                lowIndicatorTextSize = lowIndicatorSize;
             }
             else
             {
                 if (sliderStyle != null && sliderStyle.LowIndicator != null && sliderStyle.LowIndicator.Size != null)
                 {
-                    size = sliderStyle.LowIndicator.Size;
+                    lowIndicatorTextSize = sliderStyle.LowIndicator.Size;
                 }
             }
-            return size;
+            return lowIndicatorTextSize;
         }
 
         private Size HighIndicatorTextSize()
         {
-            Size size = new Size(0, 0);
+            highIndicatorTextSize = new Size(0, 0);
             if (highIndicatorSize != null)
             {
-                size = highIndicatorSize;
+                highIndicatorTextSize = highIndicatorSize;
             }
             else
             {
                 if (sliderStyle != null && sliderStyle.HighIndicator != null && sliderStyle.HighIndicator.Size != null)
                 {
-                    size = sliderStyle.HighIndicator.Size;
+                    highIndicatorTextSize = sliderStyle.HighIndicator.Size;
                 }
             }
-            return size;
+            return highIndicatorTextSize;
         }
     }
 }

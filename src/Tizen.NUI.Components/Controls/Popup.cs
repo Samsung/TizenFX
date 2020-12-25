@@ -203,6 +203,8 @@ namespace Tizen.NUI.Components
         private ButtonGroup btGroup = null;
         private Window window = null;
         private Layer container = new Layer();
+        private Button button;
+        private Position position;
         static Popup() { }
 
         /// <summary>
@@ -270,7 +272,8 @@ namespace Tizen.NUI.Components
         {
             if (popupStyle.Buttons != null)
             {
-                Button btn = new Button(popupStyle.Buttons);
+                button = new Button(popupStyle.Buttons);
+                Button btn = button;
                 btn.Text = buttonText;
                 btn.ClickEvent += ButtonClickEvent;
                 btGroup.AddItem(btn);
@@ -465,7 +468,8 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return popupStyle?.Title?.Position ?? new Position(0, 0, 0);
+                position = new Position(0, 0, 0);
+                return popupStyle?.Title?.Position ?? position;
             }
             set
             {

@@ -382,11 +382,15 @@ namespace Tizen.NUI.Components
             var window = NUIApplication.GetDefaultWindow();
             var defaultNavigator = window.GetDefaultNavigator();
 
-            var dialog = new Dialog(content);
-            SetDialogScrim(dialog);
+            using (var dialog = new Dialog(content))
+            {
+                SetDialogScrim(dialog);
 
-            var dialogPage = new Page(dialog);
-            defaultNavigator.Push(dialogPage);
+                using (var dialogPage = new Page(dialog))
+                {
+                    defaultNavigator.Push(dialogPage);
+                }
+            }
         }
 
         /// <summary>
@@ -402,11 +406,15 @@ namespace Tizen.NUI.Components
             var window = NUIApplication.GetDefaultWindow();
             var defaultNavigator = window.GetDefaultNavigator();
 
-            var dialog = new AlertDialog(titleContent, content, actionContent);
-            SetDialogScrim(dialog);
+            using (var dialog = new AlertDialog(titleContent, content, actionContent))
+            {
+                SetDialogScrim(dialog);
 
-            var dialogPage = new Page(dialog);
-            defaultNavigator.Push(dialogPage);
+                using (var dialogPage = new Page(dialog))
+                {
+                    defaultNavigator.Push(dialogPage);
+                }
+            }
         }
 
         /// <summary>
@@ -425,13 +433,16 @@ namespace Tizen.NUI.Components
             var window = NUIApplication.GetDefaultWindow();
             var defaultNavigator = window.GetDefaultNavigator();
 
-            var dialog = new AlertDialog(title, message, positiveButtonText, positiveButtonClickedHandler, negativeButtonText, negativeButtonClickedHandler);
-            SetDialogScrim(dialog);
+            using (var dialog = new AlertDialog(title, message, positiveButtonText, positiveButtonClickedHandler, negativeButtonText, negativeButtonClickedHandler))
+            {
+                SetDialogScrim(dialog);
 
-            var dialogPage = new Page(dialog);
-            defaultNavigator.Push(dialogPage);
+                using (var dialogPage = new Page(dialog))
+                {
+                    defaultNavigator.Push(dialogPage);
+                }  
+            }               
         }
-
 
         private static void SetDialogScrim(Dialog dialog)
         {

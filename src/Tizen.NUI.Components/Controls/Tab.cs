@@ -36,6 +36,7 @@ namespace Tizen.NUI.Components
         private Animation underlineAni = null;
         private bool isNeedAnimation = false;
         private Extents space;
+        private TabItem item;
         private TabStyle tabStyle => ViewStyle as TabStyle;
 
         static Tab() { }
@@ -595,7 +596,7 @@ namespace Tizen.NUI.Components
                 h = (int)Underline.Size.Height;
             }
 
-            Tab.TabItem item = new TabItem();
+            item = new TabItem();
             item.TextItem.ApplyStyle(tabStyle.Text);
 
             item.Text = itemData.Text;
