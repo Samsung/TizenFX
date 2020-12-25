@@ -25,56 +25,49 @@ namespace Tizen.NUI.Components
     /// Enumeration for describing the states of the view.
     /// </summary>
     [FlagsAttribute]
-    /// This will be public opened later. Before ACR, need to be hidden as inhouse API.
+    // Please remove this enum when 'Tizen.NUI.BaseComponents.Button.StateChangedEventArgs' and 'Tizen.NUI.BaseComponents.Slider.StateChangedArgs' are removed.
+    [Obsolete("This will be removed in API10. Please use Tizen.NUI.BaseComponents.ControlState instead!")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public enum ControlStates
     {
         /// <summary>
         /// The normal state.
         /// </summary>
-        /// This will be public opened later. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         Normal = 0,
         /// <summary>
         /// The focused state.
         /// </summary>
-        /// This will be public opened later. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         Focused = 1,
         /// <summary>
         /// The disabled state.
         /// </summary>
-        /// This will be public opened later. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         Disabled = 2,
         /// <summary>
         /// The Selected state.
         /// </summary>
-        /// This will be public opened later. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         Selected = 4,
         /// <summary>
         /// The Pressed state.
         /// </summary>
-        /// This will be public opened later. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         Pressed = 8,
         /// <summary>
         /// The DisabledFocused state.
         /// </summary>
-        /// This will be public opened later. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         DisabledFocused = Disabled | Focused,
         /// <summary>
         /// The SelectedFocused state.
         /// </summary>
-        /// This will be public opened later. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         SelectedFocused = Focused | Selected,
         /// <summary>
         /// The DisabledSelected state.
         /// </summary>
-        /// This will be public opened later. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         DisabledSelected = Disabled | Selected,
     }
