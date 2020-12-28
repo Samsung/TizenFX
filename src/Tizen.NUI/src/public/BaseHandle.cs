@@ -559,6 +559,18 @@ namespace Tizen.NUI
                 swigCPtr = value;
             }
         }
+
+        /// <summary>
+        /// swigCMemOwn
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal bool SwigCMemOwn => swigCMemOwn;
+
+        /// <summary>
+        /// A flag to check if it is already disposed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal bool Disposed => disposed;
     }
 
 }

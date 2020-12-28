@@ -4,6 +4,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using Tizen.NUI.BaseComponents;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -98,6 +99,12 @@ namespace Tizen.NUI
             Default,    // Read Writable, non-animatable property, event thread only
                         //  Animatable // Animatable property, Currently disabled, UK
         }
+
+        /// <summary>
+        /// ScriptableType. Read Writable, non-animatable property, event thread only.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ScriptableType Type => type;
     }
 
     /// <summary>
