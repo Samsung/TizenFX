@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -24,64 +25,18 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class TapGesture : Gesture
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-        internal TapGesture(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.TapGesture_SWIGUpcast(cPtr), cMemoryOwn)
-        {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-        }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TapGesture obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
 
         /// <summary>
-        /// Dispose.
+        /// Creates a TapGesture.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
+        public TapGesture() : this(Interop.TapGesture.New(0), true)
         {
-            if(disposed)
-            {
-                return;
-            }
-
-            if(type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_TapGesture(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-
-        /// <summary>
-        /// Gets the TapGesture from the pointer.
-        /// </summary>
-        /// <param name="cPtr">The pointer to cast.</param>
-        /// <returns>The TapGesture object.</returns>
-        internal static TapGesture GetTapGestureFromPtr(global::System.IntPtr cPtr)
+        internal TapGesture(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.TapGesture.Upcast(cPtr), cMemoryOwn)
         {
-            TapGesture ret = new TapGesture(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         /// <summary>
@@ -132,26 +87,16 @@ namespace Tizen.NUI
             }
         }
 
-        /// <summary>
-        /// Creates a TapGesture.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public TapGesture() : this(NDalicPINVOKE.new_TapGesture__SWIG_0(), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-
         private uint numberOfTaps
         {
             set
             {
-                NDalicPINVOKE.TapGesture_numberOfTaps_set(swigCPtr, value);
+                Interop.TapGesture.NumberOfTapsSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                uint ret = NDalicPINVOKE.TapGesture_numberOfTaps_get(swigCPtr);
+                uint ret = Interop.TapGesture.NumberOfTapsGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -161,12 +106,12 @@ namespace Tizen.NUI
         {
             set
             {
-                NDalicPINVOKE.TapGesture_numberOfTouches_set(swigCPtr, value);
+                Interop.TapGesture.NumberOfTouchesSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                uint ret = NDalicPINVOKE.TapGesture_numberOfTouches_get(swigCPtr);
+                uint ret = Interop.TapGesture.NumberOfTouchesGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -176,12 +121,12 @@ namespace Tizen.NUI
         {
             set
             {
-                NDalicPINVOKE.TapGesture_screenPoint_set(swigCPtr, Vector2.getCPtr(value));
+                Interop.TapGesture.ScreenPointSet(SwigCPtr, Vector2.getCPtr(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.TapGesture_screenPoint_get(swigCPtr);
+                global::System.IntPtr cPtr = Interop.TapGesture.ScreenPointGet(SwigCPtr);
                 Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -192,18 +137,40 @@ namespace Tizen.NUI
         {
             set
             {
-                NDalicPINVOKE.TapGesture_localPoint_set(swigCPtr, Vector2.getCPtr(value));
+                Interop.TapGesture.LocalPointSet(SwigCPtr, Vector2.getCPtr(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.TapGesture_localPoint_get(swigCPtr);
+                global::System.IntPtr cPtr = Interop.TapGesture.LocalPointGet(SwigCPtr);
                 Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
 
-    }
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TapGesture obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
+        }
 
+        /// <summary>
+        /// Gets the TapGesture from the pointer.
+        /// </summary>
+        /// <param name="cPtr">The pointer to cast.</param>
+        /// <returns>The TapGesture object.</returns>
+        internal static TapGesture GetTapGestureFromPtr(global::System.IntPtr cPtr)
+        {
+            TapGesture ret = new TapGesture(cPtr, false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.TapGesture.DeleteTapGesture(swigCPtr);
+        }
+    }
 }

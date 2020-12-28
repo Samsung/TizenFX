@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,204 +14,31 @@
  * limitations under the License.
  *
  */
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
-
     /// <summary>
     /// Base structure for different gestures that an application can receive.<br />
     /// A Gesture is an event that is produced from a combination of several touch events
     /// in a particular order or within a certain time frame (for example, pinch).<br />
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class Gesture : global::System.IDisposable
+    public class Gesture : BaseHandle
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-        /// <summary>
-        /// swigCMemOwn.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected bool swigCMemOwn;
-
-        internal Gesture(global::System.IntPtr cPtr, bool cMemoryOwn)
-        {
-            swigCMemOwn = cMemoryOwn;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-        }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Gesture obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        //A Flag to check who called Dispose(). (By User or DisposeQueue)
-        private bool isDisposeQueued = false;
-        /// <summary>
-        /// A Flat to check if it is already disposed.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected bool disposed = false;
-
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        ~Gesture()
-        {
-            if(!isDisposeQueued)
-            {
-                isDisposeQueued = true;
-                DisposeQueue.Instance.Add(this);
-            }
-        }
-
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public void Dispose()
-        {
-            //Throw excpetion if Dispose() is called in separate thread.
-            if (!Window.IsInstalled())
-            {
-                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-            }
-
-            if (isDisposeQueued)
-            {
-                Dispose(DisposeTypes.Implicit);
-            }
-            else
-            {
-                Dispose(DisposeTypes.Explicit);
-                System.GC.SuppressFinalize(this);
-            }
-        }
-
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected virtual void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if(type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_Gesture(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-            disposed = true;
-        }
-
-
-        /// <summary>
-        /// The gesture type.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public Gesture.GestureType Type
-        {
-            get
-            {
-                return type;
-            }
-        }
-
-        /// <summary>
-        /// The gesture state.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public Gesture.StateType State
-        {
-            get
-            {
-                return state;
-            }
-        }
-
-        /// <summary>
-        /// The time the gesture took place.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public uint Time
-        {
-            get
-            {
-                return time;
-            }
-        }
 
         /// <summary>
         /// The Copy constructor.
         /// </summary>
         /// <param name="rhs">A reference to the copied handle</param>
         /// <since_tizen> 3 </since_tizen>
-        public Gesture(Gesture rhs) : this(NDalicPINVOKE.new_Gesture(Gesture.getCPtr(rhs)), true)
+        public Gesture(Gesture rhs) : this(Interop.Gesture.NewGesture(Gesture.getCPtr(rhs)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        private Gesture.GestureType type
+        internal Gesture(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Gesture.Upcast(cPtr), cMemoryOwn)
         {
-            set
-            {
-                NDalicPINVOKE.Gesture_type_set(swigCPtr, (int)value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-            get
-            {
-                Gesture.GestureType ret = (Gesture.GestureType)NDalicPINVOKE.Gesture_type_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        private Gesture.StateType state
-        {
-            set
-            {
-                NDalicPINVOKE.Gesture_state_set(swigCPtr, (int)value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-            get
-            {
-                Gesture.StateType ret = (Gesture.StateType)NDalicPINVOKE.Gesture_state_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        private uint time
-        {
-            set
-            {
-                NDalicPINVOKE.Gesture_time_set(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-            get
-            {
-                uint ret = NDalicPINVOKE.Gesture_time_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
         }
 
         /// <summary>
@@ -280,6 +107,104 @@ namespace Tizen.NUI
             Possible
         }
 
-    }
+        /// <summary>
+        /// The gesture type.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public Gesture.GestureType Type
+        {
+            get
+            {
+                return type;
+            }
+        }
 
+        /// <summary>
+        /// The gesture state.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public Gesture.StateType State
+        {
+            get
+            {
+                return state;
+            }
+        }
+
+        /// <summary>
+        /// The time the gesture took place.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public uint Time
+        {
+            get
+            {
+                return time;
+            }
+        }
+
+        private Gesture.GestureType type
+        {
+            set
+            {
+                Interop.Gesture.TypeSet(SwigCPtr, (int)value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                Gesture.GestureType ret = (Gesture.GestureType)Interop.Gesture.TypeGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        private Gesture.StateType state
+        {
+            set
+            {
+                Interop.Gesture.StateSet(SwigCPtr, (int)value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                Gesture.StateType ret = (Gesture.StateType)Interop.Gesture.StateGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        private uint time
+        {
+            set
+            {
+                Interop.Gesture.TimeSet(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                uint ret = Interop.Gesture.TimeGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Gesture obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
+        }
+
+        internal static Gesture GetGestureFromPtr(global::System.IntPtr cPtr)
+        {
+            Gesture ret = new Gesture(cPtr, false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.Gesture.DeleteGesture(swigCPtr);
+        }
+    }
 }

@@ -202,7 +202,7 @@ namespace ElmSharp
             }
         }
 
-        class SignalData
+        class SignalData : IEquatable<SignalData>
         {
             public string Emission { get; set; }
             public string Source { get; set; }
@@ -216,22 +216,17 @@ namespace ElmSharp
                 Action = action;
             }
 
-            /// <summary>
-            /// Indicates whether this instance and a specified object are equal.
-            /// </summary>
-            /// <param name="obj">The object to compare with the current instance.</param>
-            /// <returns>
-            /// true if the object and this instance are of the same type and represent the same value.
-            /// otherwise, false.
-            /// </returns>
-            public override bool Equals(object obj)
+            public override bool Equals(object other)
             {
-                SignalData s = obj as SignalData;
-                if (s == null)
+                return Equals(other as SignalData);
+            }
+
+            public bool Equals(SignalData other) {
+                if (other == null)
                 {
                     return false;
                 }
-                return (Emission == s.Emission) && (Source == s.Source) && (Action == s.Action);
+                return (Emission == other.Emission) && (Source == other.Source) && (Action == other.Action);
             }
 
             public override int GetHashCode()

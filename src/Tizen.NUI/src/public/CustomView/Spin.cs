@@ -45,12 +45,6 @@ namespace Tizen.NUI
         private Color _textBackgroundColor;
         private int _maxTextLength;
 
-        // Called by DALi Builder if it finds a Spin control in a JSON file
-        static CustomView CreateInstance()
-        {
-            return new Spin();
-        }
-
         // static constructor registers the control type (only runs once)
         static Spin()
         {
@@ -68,6 +62,208 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Value to be set in the spin.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        [ScriptableProperty()]
+        public int Value
+        {
+            get
+            {
+                return _currentValue;
+            }
+            set
+            {
+                NUILog.Debug("Value set to " + value);
+                _currentValue = value;
+
+                // Make sure no invalid value is accepted
+                if (_currentValue < _minValue)
+                {
+                    _currentValue = _minValue;
+                }
+
+                if (_currentValue > _maxValue)
+                {
+                    _currentValue = _maxValue;
+                }
+
+                _textField.Text = _currentValue.ToString();
+            }
+        }
+
+        /// <summary>
+        /// Minimum value of the spin value.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        [ScriptableProperty()]
+        public int MinValue
+        {
+            get
+            {
+                return _minValue;
+            }
+            set
+            {
+                _minValue = value;
+            }
+        }
+
+        /// <summary>
+        /// Maximum value of the spin value.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        [ScriptableProperty()]
+        public int MaxValue
+        {
+            get
+            {
+                return _maxValue;
+            }
+            set
+            {
+                _maxValue = value;
+            }
+        }
+
+        /// <summary>
+        /// Increasing, decreasing step of the spin value when up or down keys are pressed.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        [ScriptableProperty()]
+        public int Step
+        {
+            get
+            {
+                return _singleStep;
+            }
+            set
+            {
+                _singleStep = value;
+            }
+        }
+
+        /// <summary>
+        /// Wrapping enabled status.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        [ScriptableProperty()]
+        public bool WrappingEnabled
+        {
+            get
+            {
+                return _wrappingEnabled;
+            }
+            set
+            {
+                _wrappingEnabled = value;
+            }
+        }
+
+        /// <summary>
+        /// Text point size of the spin value.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        [ScriptableProperty()]
+        public int TextPointSize
+        {
+            get
+            {
+                return _pointSize;
+            }
+            set
+            {
+                _pointSize = value;
+                _textField.PointSize = _pointSize;
+            }
+        }
+
+        /// <summary>
+        /// The color of the spin value.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        [ScriptableProperty()]
+        public Color TextColor
+        {
+            get
+            {
+                return _textColor;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    NUILog.Debug("TextColor set to " + value.R + "," + value.G + "," + value.B);
+                }
+
+                _textColor = value;
+                _textField.TextColor = _textColor;
+            }
+        }
+
+        /// <summary>
+        /// Maximum text lengh of the spin value.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        [ScriptableProperty()]
+        public int MaxTextLength
+        {
+            get
+            {
+                return _maxTextLength;
+            }
+            set
+            {
+                _maxTextLength = value;
+                _textField.MaxLength = _maxTextLength;
+            }
+        }
+
+        /// <summary>
+        /// Reference of TextField of the spin.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public TextField SpinText
+        {
+            get
+            {
+                return _textField;
+            }
+            set
+            {
+                _textField = value;
+            }
+        }
+
+        /// <summary>
+        /// Show indicator image, for example, up or down arrow image.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public string IndicatorImage
+        {
+            get
+            {
+                return _arrowImage;
+            }
+            set
+            {
+                _arrowImage = value;
+                _arrowVisual = VisualFactory.Instance.CreateVisual(
+                    new PropertyMap().Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image))
+                                 .Add(ImageVisualProperty.URL, new PropertyValue(_arrowImage))
+                                 .Add(ImageVisualProperty.DesiredHeight, new PropertyValue(150))
+                                 .Add(ImageVisualProperty.DesiredWidth, new PropertyValue(150)));
+                RegisterVisual(_arrowVisualPropertyIndex, _arrowVisual);
+            }
+        }
+
+        // Called by DALi Builder if it finds a Spin control in a JSON file
+        static CustomView CreateInstance()
+        {
+            return new Spin();
+        }
+
+        /// <summary>
         /// Overrides the method of OnInitialize() for the CustomView class.<br />
         /// This method is called after the control has been initialized.<br />
         /// Derived classes should do any second phase initialization by overriding this method.<br />
@@ -76,7 +272,6 @@ namespace Tizen.NUI
         public override void OnInitialize()
         {
             // Initialize the propertiesControl
-            //_arrowImage = "/home/tengxb/Workspace/nui-debug/examples/res/images/arrow.png";
             _arrowImage = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "picture.png";
             _textBackgroundColor = new Color(0.6f, 0.6f, 0.6f, 1.0f);
             _currentValue = 0;
@@ -196,200 +391,6 @@ namespace Tizen.NUI
             }
 
             return nextFocusedView;
-        }
-
-        /// <summary>
-        /// Value to be set in the spin.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        [ScriptableProperty()]
-        public int Value
-        {
-            get
-            {
-                return _currentValue;
-            }
-            set
-            {
-
-                NUILog.Debug("Value set to " + value);
-                _currentValue = value;
-
-                // Make sure no invalid value is accepted
-                if (_currentValue < _minValue)
-                {
-                    _currentValue = _minValue;
-                }
-
-                if (_currentValue > _maxValue)
-                {
-                    _currentValue = _maxValue;
-                }
-
-                _textField.Text = _currentValue.ToString();
-            }
-        }
-
-        /// <summary>
-        /// Minimum value of the spin value.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        [ScriptableProperty()]
-        public int MinValue
-        {
-            get
-            {
-                return _minValue;
-            }
-            set
-            {
-                _minValue = value;
-            }
-        }
-
-        /// <summary>
-        /// Maximum value of the spin value.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        [ScriptableProperty()]
-        public int MaxValue
-        {
-            get
-            {
-                return _maxValue;
-            }
-            set
-            {
-                _maxValue = value;
-            }
-        }
-
-        /// <summary>
-        /// Increasing, decreasing step of the spin value when up or down keys are pressed.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        [ScriptableProperty()]
-        public int Step
-        {
-            get
-            {
-                return _singleStep;
-            }
-            set
-            {
-                _singleStep = value;
-            }
-        }
-
-        /// <summary>
-        /// Wrapping enabled status.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        [ScriptableProperty()]
-        public bool WrappingEnabled
-        {
-            get
-            {
-                return _wrappingEnabled;
-            }
-            set
-            {
-                _wrappingEnabled = value;
-            }
-        }
-
-        /// <summary>
-        /// Text point size of the spin value.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        [ScriptableProperty()]
-        public int TextPointSize
-        {
-            get
-            {
-                return _pointSize;
-            }
-            set
-            {
-                _pointSize = value;
-                _textField.PointSize = _pointSize;
-            }
-        }
-
-        /// <summary>
-        /// The color of the spin value.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        [ScriptableProperty()]
-        public Color TextColor
-        {
-            get
-            {
-                return _textColor;
-            }
-            set
-            {
-                NUILog.Debug("TextColor set to " + value.R + "," + value.G + "," + value.B);
-
-                _textColor = value;
-                _textField.TextColor = _textColor;
-            }
-        }
-
-        /// <summary>
-        /// Maximum text lengh of the spin value.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        [ScriptableProperty()]
-        public int MaxTextLength
-        {
-            get
-            {
-                return _maxTextLength;
-            }
-            set
-            {
-                _maxTextLength = value;
-                _textField.MaxLength = _maxTextLength;
-            }
-        }
-
-        /// <summary>
-        /// Reference of TextField of the spin.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public TextField SpinText
-        {
-            get
-            {
-                return _textField;
-            }
-            set
-            {
-                _textField = value;
-            }
-        }
-
-        /// <summary>
-        /// Show indicator image, for example, up or down arrow image.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public string IndicatorImage
-        {
-            get
-            {
-                return _arrowImage;
-            }
-            set
-            {
-                _arrowImage = value;
-                _arrowVisual = VisualFactory.Instance.CreateVisual(
-                    new PropertyMap().Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image))
-                                 .Add(ImageVisualProperty.URL, new PropertyValue(_arrowImage))
-                                 .Add(ImageVisualProperty.DesiredHeight, new PropertyValue(150))
-                                 .Add(ImageVisualProperty.DesiredWidth, new PropertyValue(150)));
-                RegisterVisual(_arrowVisualPropertyIndex, _arrowVisual);
-            }
         }
     }
 }

@@ -10,12 +10,11 @@
 
 namespace Tizen.NUI
 {
-
     internal class SWIGTYPE_p_float
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal SWIGTYPE_p_float(global::System.IntPtr cPtr, bool futureUse)
+        internal SWIGTYPE_p_float(global::System.IntPtr cPtr)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -30,5 +29,4 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
     }
-
 }

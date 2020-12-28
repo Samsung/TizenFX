@@ -26,6 +26,7 @@ namespace Tizen.Content.MediaContent
     /// </remarks>
     /// <seealso cref="Storage"/>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Please do not use! this will be deprecated in level 6")]
     public class StorageCommand : MediaCommand
     {
         /// <summary>
@@ -33,8 +34,9 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <param name="database">The <see cref="MediaDatabase"/> that the commands run on.</param>
         /// <exception cref="ArgumentNullException"><paramref name="database"/> is null.</exception>
-        /// <exception cref="ObjectDisposedException"><paramref name="database"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException"><paramref name="database"/> has already been disposed.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Please do not use! this will be deprecated in level 6")]
         public StorageCommand(MediaDatabase database) : base(database)
         {
         }
@@ -44,9 +46,10 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <returns>The number of storages.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Please do not use! this will be deprecated in level 6")]
         public int Count() => Count(arguments: null);
 
         /// <summary>
@@ -55,9 +58,10 @@ namespace Tizen.Content.MediaContent
         /// <param name="arguments">The criteria to use to filter. This value can be null.</param>
         /// <returns>The number of storages filtered.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Please do not use! this will be deprecated in level 6")]
         public int Count(CountArguments arguments)
         {
             ValidateDatabase();
@@ -71,11 +75,12 @@ namespace Tizen.Content.MediaContent
         /// <param name="storageId">The storage ID to select.</param>
         /// <returns>The <see cref="Storage"/> instance if the matched record was found in the database, otherwise null.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="storageId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="storageId"/> is a zero-length string, contains only white space.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Please do not use! this will be deprecated in level 6")]
         public Storage Select(string storageId)
         {
             ValidateDatabase();
@@ -88,7 +93,12 @@ namespace Tizen.Content.MediaContent
             {
                 Interop.Storage.GetStorageInfoFromDb(storageId, out handle).ThrowIfError("Failed to query");
 
-                return handle == IntPtr.Zero ? null : new Storage(handle);
+                return new Storage(handle);
+            }
+            catch (ArgumentException)
+            {
+                // Native FW returns ArgumentException when there's no matched record.
+                return null;
             }
             finally
             {
@@ -104,9 +114,10 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <returns>The <see cref="MediaDataReader{TRecord}"/> containing the results.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Please do not use! this will be deprecated in level 6")]
         public MediaDataReader<Storage> Select() => Select(arguments: null);
 
         /// <summary>
@@ -115,9 +126,10 @@ namespace Tizen.Content.MediaContent
         /// <param name="arguments">The criteria to use to filter. This value can be null.</param>
         /// <returns>The <see cref="MediaDataReader{TRecord}"/> containing the results.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Please do not use! this will be deprecated in level 6")]
         public MediaDataReader<Storage> Select(SelectArguments arguments)
         {
             ValidateDatabase();
@@ -140,11 +152,12 @@ namespace Tizen.Content.MediaContent
         /// <param name="storageId">The storage ID.</param>
         /// <returns>The number of media information.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="storageId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="storageId"/> is a zero-length string, contains only white space.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Please do not use! this will be deprecated in level 6")]
         public int CountMedia(string storageId) => CountMedia(storageId, null);
 
         /// <summary>
@@ -154,11 +167,12 @@ namespace Tizen.Content.MediaContent
         /// <param name="arguments">The criteria to use to filter. This value can be null.</param>
         /// <returns>The number of media information.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="storageId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="storageId"/> is a zero-length string, contains only white space.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Please do not use! this will be deprecated in level 6")]
         public int CountMedia(string storageId, CountArguments arguments)
         {
             if (Exists(storageId) == false)
@@ -175,11 +189,12 @@ namespace Tizen.Content.MediaContent
         /// <param name="storageId">The storage ID.</param>
         /// <returns>The <see cref="MediaDataReader{TRecord}"/> containing the results.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="storageId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="storageId"/> is a zero-length string, contains only white space.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Please do not use! this will be deprecated in level 6")]
         public MediaDataReader<MediaInfo> SelectMedia(string storageId) => SelectMedia(storageId, null);
 
         /// <summary>
@@ -189,11 +204,12 @@ namespace Tizen.Content.MediaContent
         /// <param name="filter">The criteria to use to filter. This value can be null.</param>
         /// <returns>The <see cref="MediaDataReader{TRecord}"/> containing the results.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="storageId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="storageId"/> is a zero-length string, contains only white space.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Please do not use! this will be deprecated in level 6")]
         public MediaDataReader<MediaInfo> SelectMedia(string storageId, SelectArguments filter)
         {
             if (Exists(storageId) == false)

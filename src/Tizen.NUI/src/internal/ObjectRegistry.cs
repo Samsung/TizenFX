@@ -14,60 +14,27 @@
  * limitations under the License.
  *
  */
+using System;
+using System.Runtime.InteropServices;
 
 namespace Tizen.NUI
 {
-
-    using System;
-    using System.Runtime.InteropServices;
-
-
     internal class ObjectRegistry : BaseHandle
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal ObjectRegistry(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.ObjectRegistry_SWIGUpcast(cPtr), cMemoryOwn)
+        internal ObjectRegistry(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ObjectRegistry.Upcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ObjectRegistry obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
-        protected override void Dispose(DisposeTypes type)
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_ObjectRegistry(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
+            Interop.ObjectRegistry.DeleteObjectRegistry(swigCPtr);
         }
-
 
         /// <since_tizen> 3 </since_tizen>
         public class ObjectCreatedEventArgs : EventArgs
@@ -106,7 +73,6 @@ namespace Tizen.NUI
                 }
             }
         }
-
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void ObjectCreatedEventCallbackDelegate(IntPtr baseHandle);
@@ -211,37 +177,35 @@ namespace Tizen.NUI
         }
 
 
-        public ObjectRegistry() : this(NDalicPINVOKE.new_ObjectRegistry__SWIG_0(), true)
+        public ObjectRegistry() : this(Interop.ObjectRegistry.NewObjectRegistry(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public ObjectRegistry(ObjectRegistry handle) : this(NDalicPINVOKE.new_ObjectRegistry__SWIG_1(ObjectRegistry.getCPtr(handle)), true)
+        public ObjectRegistry(ObjectRegistry handle) : this(Interop.ObjectRegistry.NewObjectRegistry(ObjectRegistry.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public ObjectRegistry Assign(ObjectRegistry rhs)
         {
-            ObjectRegistry ret = new ObjectRegistry(NDalicPINVOKE.ObjectRegistry_Assign(swigCPtr, ObjectRegistry.getCPtr(rhs)), false);
+            ObjectRegistry ret = new ObjectRegistry(Interop.ObjectRegistry.Assign(SwigCPtr, ObjectRegistry.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public ObjectCreatedSignal ObjectCreatedSignal()
         {
-            ObjectCreatedSignal ret = new ObjectCreatedSignal(NDalicPINVOKE.ObjectRegistry_ObjectCreatedSignal(swigCPtr), false);
+            ObjectCreatedSignal ret = new ObjectCreatedSignal(Interop.ObjectRegistry.ObjectCreatedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public ObjectDestroyedSignal ObjectDestroyedSignal()
         {
-            ObjectDestroyedSignal ret = new ObjectDestroyedSignal(NDalicPINVOKE.ObjectRegistry_ObjectDestroyedSignal(swigCPtr), false);
+            ObjectDestroyedSignal ret = new ObjectDestroyedSignal(Interop.ObjectRegistry.ObjectDestroyedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-
     }
-
 }

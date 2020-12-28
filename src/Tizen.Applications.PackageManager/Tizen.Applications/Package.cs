@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -30,6 +30,7 @@ namespace Tizen.Applications
         private const string LogTag = "Tizen.Applications";
 
         private string _id = string.Empty;
+        private string _mainAppId = string.Empty;
         private string _label = string.Empty;
         private string _iconPath = string.Empty;
         private string _version = string.Empty;
@@ -44,6 +45,11 @@ namespace Tizen.Applications
         private IReadOnlyDictionary<CertificateType, PackageCertificate> _certificates;
         private List<string> _privileges;
         private int _installedTime;
+
+        private Dictionary<IntPtr, Interop.PackageManager.PackageManagerSizeInfoCallback> _packageManagerSizeInfoCallbackDict = new Dictionary<IntPtr, Interop.PackageManager.PackageManagerSizeInfoCallback>();
+        private int _callbackId = 0;
+        private List<PackageDependencyInformation> _dependencyTo;
+        private List<PackageDependencyInformation> _dependencyFrom;
 
         private Package(string pkgId)
         {
@@ -143,6 +149,19 @@ namespace Tizen.Applications
         public int InstalledTime { get { return _installedTime; } }
 
         /// <summary>
+        /// Main application info of the package.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public ApplicationInfo MainApplication
+        {
+            get
+            {
+                ApplicationInfo applicaionInfo = new ApplicationInfo(_mainAppId);
+                return applicaionInfo;
+            }
+        }
+
+        /// <summary>
         /// Retrieves all the application IDs of this package.
         /// </summary>
         /// <returns>Returns a dictionary containing all the application information for a given application type.</returns>
@@ -189,6 +208,29 @@ namespace Tizen.Applications
         }
 
         /// <summary>
+        /// Retrieves all the application IDs of this package.
+        /// </summary>
+        /// <param name="componentType">Optional: AppType enumeration value.</param>
+        /// <returns>Returns a dictionary containing all the application information for a given application type.</returns>
+        /// <since_tizen> 6 </since_tizen>
+        public IEnumerable<ApplicationInfo> GetApplications(ApplicationComponentType componentType)
+        {
+            return GetApplications(ToApplicationType(componentType));
+        }
+
+        /// <summary>
+        /// Packages required by this package
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public IEnumerable<PackageDependencyInformation> DependencyTo { get { return _dependencyTo; } }
+
+        /// <summary>
+        /// Packages that require this package
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public IEnumerable<PackageDependencyInformation> DependencyFrom { get { return _dependencyFrom; } }
+
+        /// <summary>
         /// Gets the package size information.
         /// </summary>
         /// <returns>Package size information.</returns>
@@ -204,9 +246,21 @@ namespace Tizen.Applications
                     var pkgSizeInfo = PackageSizeInformation.GetPackageSizeInformation(sizeInfoHandle);
                     tcs.TrySetResult(pkgSizeInfo);
                 }
+
+                lock (_packageManagerSizeInfoCallbackDict)
+                {
+                    _packageManagerSizeInfoCallbackDict.Remove(userData);
+                }
             };
 
-            Interop.PackageManager.ErrorCode err = Interop.PackageManager.PackageManagerGetSizeInfo(Id, sizeInfoCb, IntPtr.Zero);
+            IntPtr callbackId;
+            lock (_packageManagerSizeInfoCallbackDict)
+            {
+                callbackId = (IntPtr)_callbackId++;
+                _packageManagerSizeInfoCallbackDict[callbackId] = sizeInfoCb;
+            }
+
+            Interop.PackageManager.ErrorCode err = Interop.PackageManager.PackageManagerGetSizeInfo(Id, sizeInfoCb, callbackId);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
                 tcs.TrySetException(PackageManagerErrorFactory.GetException(err, "Failed to get total package size info of " + Id));
@@ -240,6 +294,11 @@ namespace Tizen.Applications
             Package package = new Package(pkgId);
 
             var err = Interop.PackageManager.ErrorCode.None;
+            err = Interop.Package.PackageInfoGetMainAppId(handle, out package._mainAppId);
+            if (err != Interop.PackageManager.ErrorCode.None)
+            {
+                Log.Warn(LogTag, "Failed to get package main app id of " + pkgId);
+            }
             err = Interop.Package.PackageInfoGetLabel(handle, out package._label);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
@@ -315,6 +374,8 @@ namespace Tizen.Applications
 
             package._certificates = PackageCertificate.GetPackageCertificates(handle);
             package._privileges = GetPackagePrivilegeInformation(handle);
+            package._dependencyTo = GetPackageDependency(handle);
+            package._dependencyFrom = GetPackageDependencyDependsOn(handle);
             return package;
         }
 
@@ -363,6 +424,55 @@ namespace Tizen.Applications
                 Log.Warn(LogTag, string.Format("Failed to get privilage info. err = {0}", err));
             }
             return privileges;
+        }
+
+        private ApplicationType ToApplicationType(ApplicationComponentType componentType)
+        {
+            ApplicationType applicationType = 0;
+            if (componentType == Tizen.Applications.ApplicationComponentType.UIApplication)
+                applicationType = Tizen.Applications.ApplicationType.Ui;
+            else if (componentType == Tizen.Applications.ApplicationComponentType.ServiceApplication)
+                applicationType = Tizen.Applications.ApplicationType.Service;
+            else if (componentType == Tizen.Applications.ApplicationComponentType.WidgetApplication)
+                applicationType = Tizen.Applications.ApplicationType.Widget;
+            else if (componentType == Tizen.Applications.ApplicationComponentType.WatchApplication)
+                applicationType = Tizen.Applications.ApplicationType.Watch;
+
+            return applicationType;
+        }
+
+        private static List<PackageDependencyInformation> GetPackageDependency(IntPtr packageInfoHandle)
+        {
+            List<PackageDependencyInformation> dependencies = new List<PackageDependencyInformation>();
+            Interop.Package.PackageInfoDependencyInfoCallback dependencyInfoCb = (from, to, type, requiredVersion, userData) =>
+            {
+                dependencies.Add(PackageDependencyInformation.GetPackageDependencyInformation(from, to, type, requiredVersion));
+                return true;
+            };
+
+            Interop.PackageManager.ErrorCode err = Interop.Package.PackageInfoForeachDependencyInfo(packageInfoHandle, dependencyInfoCb, IntPtr.Zero);
+            if (err != Interop.PackageManager.ErrorCode.None)
+            {
+                Log.Warn(LogTag, string.Format("Failed to get dependency info. err = {0}", err));
+            }
+            return dependencies;
+        }
+
+        private static List<PackageDependencyInformation> GetPackageDependencyDependsOn(IntPtr packageInfoHandle)
+        {
+            List<PackageDependencyInformation> dependencies = new List<PackageDependencyInformation>();
+            Interop.Package.PackageInfoDependencyInfoCallback dependencyInfoCb = (from, to, type, requiredVersion, userData) =>
+            {
+                dependencies.Add(PackageDependencyInformation.GetPackageDependencyInformation(from, to, type, requiredVersion));
+                return true;
+            };
+
+            Interop.PackageManager.ErrorCode err = Interop.Package.PackageInfoForeachDependencyInfoDependsOn(packageInfoHandle, dependencyInfoCb, IntPtr.Zero);
+            if (err != Interop.PackageManager.ErrorCode.None)
+            {
+                Log.Warn(LogTag, string.Format("Failed to get dependency info. err = {0}", err));
+            }
+            return dependencies;
         }
     }
 }

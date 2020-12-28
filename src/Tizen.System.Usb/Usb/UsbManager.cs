@@ -51,7 +51,7 @@ namespace Tizen.System.Usb
         /// <since_tizen> 4 </since_tizen>
         public UsbManager()
         {
-            if (_context == null) throw new NotSupportedException("USB host operations are not supported in this device");
+            if (_context == null) Interop.ErrorCode.NotSupported.ThrowIfFailed("USB host operations are not supported in this device");
 
             IntPtr hotpluggedAttachHandle, hotpluggedDetachHandle;
             _context.SetHotplugCb(HostHotplugAttachCallback, Interop.HotplugEventType.Attach,

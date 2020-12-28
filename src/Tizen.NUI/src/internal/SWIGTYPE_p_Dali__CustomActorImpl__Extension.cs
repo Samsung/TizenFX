@@ -10,12 +10,11 @@
 
 namespace Tizen.NUI
 {
-
     internal class SWIGTYPE_p_Dali__CustomActorImpl__Extension
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal SWIGTYPE_p_Dali__CustomActorImpl__Extension(global::System.IntPtr cPtr, bool futureUse)
+        internal SWIGTYPE_p_Dali__CustomActorImpl__Extension(global::System.IntPtr cPtr)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -24,11 +23,5 @@ namespace Tizen.NUI
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
         }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(SWIGTYPE_p_Dali__CustomActorImpl__Extension obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
     }
-
 }

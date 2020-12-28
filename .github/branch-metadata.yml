@@ -1,0 +1,38 @@
+master:
+  api-level: API9
+  labels: [ API9 ]
+  tizen-branch: tizen
+  version-prefix: 9.0.0
+
+API8:
+  api-level: API8
+  labels: [ API8 ]
+  tizen-branch: tizen_6.0
+  version-prefix: 8.0.0
+
+API7:
+  api-level: API7
+  labels: [ API7 ]
+  tizen-branch: tizen_5.5
+  version-prefix: 7.0.0
+
+API6:
+  api-level: API6
+  labels: [ API6 ]
+  tizen-branch: tizen_5.5_tv
+  version-prefix: 6.0.0
+
+API5:
+  api-level: API5
+  labels: [ API5 ]
+  tizen-branch: tizen_5.0
+  version-prefix: 5.0.0
+
+API4:
+  api-level: API4
+  labels: [ API4 ]
+  tizen-branch: tizen_4.0
+  version-prefix: 4.0.1
+
+DevelNUI:
+  labels: [ Devel-NUI ]

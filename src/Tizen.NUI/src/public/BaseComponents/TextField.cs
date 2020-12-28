@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,9 +18,9 @@ extern alias TizenSystemSettings;
 using TizenSystemSettings.Tizen.System;
 
 using System;
-using System.Runtime.InteropServices;
 using System.Globalization;
 using System.ComponentModel;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -28,316 +28,72 @@ namespace Tizen.NUI.BaseComponents
     /// A control which provides a single line editable text field.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class TextField : View
+    public partial class TextField : View
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private string textFieldTextSid = null;
         private string textFieldPlaceHolderTextSid = null;
         private bool systemlangTextFlag = false;
+        private InputMethodContext inputMethodCotext = null;
+        private TextFieldSelectorData selectorData;
 
-        internal TextField(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.TextField_SWIGUpcast(cPtr), cMemoryOwn)
-        {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-        }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TextField obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                DisposeQueue.Instance.Add(this);
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (_textFieldMaxLengthReachedCallbackDelegate != null)
-            {
-                this.MaxLengthReachedSignal().Disconnect(_textFieldMaxLengthReachedCallbackDelegate);
-            }
-
-            if (_textFieldTextChangedCallbackDelegate != null)
-            {
-                TextChangedSignal().Disconnect(_textFieldTextChangedCallbackDelegate);
-            }
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_TextField(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
-        }
-
-        /// <summary>
-        /// The TextChanged event arguments.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public class TextChangedEventArgs : EventArgs
-        {
-            private TextField _textField;
-
-            /// <summary>
-            /// TextField.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public TextField TextField
-            {
-                get
-                {
-                    return _textField;
-                }
-                set
-                {
-                    _textField = value;
-                }
-            }
-        }
-
-        /// <summary>
-        /// The MaxLengthReached event arguments.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public class MaxLengthReachedEventArgs : EventArgs
-        {
-            private TextField _textField;
-
-            /// <summary>
-            /// TextField.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public TextField TextField
-            {
-                get
-                {
-                    return _textField;
-                }
-                set
-                {
-                    _textField = value;
-                }
-            }
-        }
-
-
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void TextChangedCallbackDelegate(IntPtr textField);
-        private EventHandler<TextChangedEventArgs> _textFieldTextChangedEventHandler;
-        private TextChangedCallbackDelegate _textFieldTextChangedCallbackDelegate;
-
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void MaxLengthReachedCallbackDelegate(IntPtr textField);
-        private EventHandler<MaxLengthReachedEventArgs> _textFieldMaxLengthReachedEventHandler;
-        private MaxLengthReachedCallbackDelegate _textFieldMaxLengthReachedCallbackDelegate;
-
-        /// <summary>
-        /// The TextChanged event.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public event EventHandler<TextChangedEventArgs> TextChanged
-        {
-            add
-            {
-                if (_textFieldTextChangedEventHandler == null)
-                {
-                    _textFieldTextChangedCallbackDelegate = (OnTextChanged);
-                    TextChangedSignal().Connect(_textFieldTextChangedCallbackDelegate);
-                }
-                _textFieldTextChangedEventHandler += value;
-            }
-            remove
-            {
-                _textFieldTextChangedEventHandler -= value;
-                if (_textFieldTextChangedEventHandler == null && TextChangedSignal().Empty() == false)
-                {
-                    TextChangedSignal().Disconnect(_textFieldTextChangedCallbackDelegate);
-                }
-            }
-        }
-
-        private void OnTextChanged(IntPtr textField)
-        {
-            TextChangedEventArgs e = new TextChangedEventArgs();
-
-            // Populate all members of "e" (TextChangedEventArgs) with real data
-            e.TextField = Registry.GetManagedBaseHandleFromNativePtr(textField) as TextField;
-
-            if (_textFieldTextChangedEventHandler != null)
-            {
-                //here we send all data to user event handlers
-                _textFieldTextChangedEventHandler(this, e);
-            }
-
-        }
-
-        /// <summary>
-        /// The MaxLengthReached event.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public event EventHandler<MaxLengthReachedEventArgs> MaxLengthReached
-        {
-            add
-            {
-                if (_textFieldMaxLengthReachedEventHandler == null)
-                {
-                    _textFieldMaxLengthReachedCallbackDelegate = (OnMaxLengthReached);
-                    MaxLengthReachedSignal().Connect(_textFieldMaxLengthReachedCallbackDelegate);
-                }
-                _textFieldMaxLengthReachedEventHandler += value;
-            }
-            remove
-            {
-                if (_textFieldMaxLengthReachedEventHandler == null && MaxLengthReachedSignal().Empty() == false)
-                {
-                    this.MaxLengthReachedSignal().Disconnect(_textFieldMaxLengthReachedCallbackDelegate);
-                }
-                _textFieldMaxLengthReachedEventHandler -= value;
-            }
-        }
-
-        private void OnMaxLengthReached(IntPtr textField)
-        {
-            MaxLengthReachedEventArgs e = new MaxLengthReachedEventArgs();
-
-            // Populate all members of "e" (MaxLengthReachedEventArgs) with real data
-            e.TextField = Registry.GetManagedBaseHandleFromNativePtr(textField) as TextField;
-
-            if (_textFieldMaxLengthReachedEventHandler != null)
-            {
-                //here we send all data to user event handlers
-                _textFieldMaxLengthReachedEventHandler(this, e);
-            }
-
-        }
-
-        internal new class Property
-        {
-            internal static readonly int RENDERING_BACKEND = NDalicPINVOKE.TextField_Property_RENDERING_BACKEND_get();
-            internal static readonly int TEXT = NDalicPINVOKE.TextField_Property_TEXT_get();
-            internal static readonly int PLACEHOLDER_TEXT = NDalicPINVOKE.TextField_Property_PLACEHOLDER_TEXT_get();
-            internal static readonly int PLACEHOLDER_TEXT_FOCUSED = NDalicPINVOKE.TextField_Property_PLACEHOLDER_TEXT_FOCUSED_get();
-            internal static readonly int FONT_FAMILY = NDalicPINVOKE.TextField_Property_FONT_FAMILY_get();
-            internal static readonly int FONT_STYLE = NDalicPINVOKE.TextField_Property_FONT_STYLE_get();
-            internal static readonly int POINT_SIZE = NDalicPINVOKE.TextField_Property_POINT_SIZE_get();
-            internal static readonly int MAX_LENGTH = NDalicPINVOKE.TextField_Property_MAX_LENGTH_get();
-            internal static readonly int EXCEED_POLICY = NDalicPINVOKE.TextField_Property_EXCEED_POLICY_get();
-            internal static readonly int HORIZONTAL_ALIGNMENT = NDalicPINVOKE.TextField_Property_HORIZONTAL_ALIGNMENT_get();
-            internal static readonly int VERTICAL_ALIGNMENT = NDalicPINVOKE.TextField_Property_VERTICAL_ALIGNMENT_get();
-            internal static readonly int TEXT_COLOR = NDalicPINVOKE.TextField_Property_TEXT_COLOR_get();
-            internal static readonly int PLACEHOLDER_TEXT_COLOR = NDalicPINVOKE.TextField_Property_PLACEHOLDER_TEXT_COLOR_get();
-            internal static readonly int SHADOW_OFFSET = NDalicPINVOKE.TextField_Property_SHADOW_OFFSET_get();
-            internal static readonly int SHADOW_COLOR = NDalicPINVOKE.TextField_Property_SHADOW_COLOR_get();
-            internal static readonly int PRIMARY_CURSOR_COLOR = NDalicPINVOKE.TextField_Property_PRIMARY_CURSOR_COLOR_get();
-            internal static readonly int SECONDARY_CURSOR_COLOR = NDalicPINVOKE.TextField_Property_SECONDARY_CURSOR_COLOR_get();
-            internal static readonly int ENABLE_CURSOR_BLINK = NDalicPINVOKE.TextField_Property_ENABLE_CURSOR_BLINK_get();
-            internal static readonly int CURSOR_BLINK_INTERVAL = NDalicPINVOKE.TextField_Property_CURSOR_BLINK_INTERVAL_get();
-            internal static readonly int CURSOR_BLINK_DURATION = NDalicPINVOKE.TextField_Property_CURSOR_BLINK_DURATION_get();
-            internal static readonly int CURSOR_WIDTH = NDalicPINVOKE.TextField_Property_CURSOR_WIDTH_get();
-            internal static readonly int GRAB_HANDLE_IMAGE = NDalicPINVOKE.TextField_Property_GRAB_HANDLE_IMAGE_get();
-            internal static readonly int GRAB_HANDLE_PRESSED_IMAGE = NDalicPINVOKE.TextField_Property_GRAB_HANDLE_PRESSED_IMAGE_get();
-            internal static readonly int SCROLL_THRESHOLD = NDalicPINVOKE.TextField_Property_SCROLL_THRESHOLD_get();
-            internal static readonly int SCROLL_SPEED = NDalicPINVOKE.TextField_Property_SCROLL_SPEED_get();
-            internal static readonly int SELECTION_HANDLE_IMAGE_LEFT = NDalicPINVOKE.TextField_Property_SELECTION_HANDLE_IMAGE_LEFT_get();
-            internal static readonly int SELECTION_HANDLE_IMAGE_RIGHT = NDalicPINVOKE.TextField_Property_SELECTION_HANDLE_IMAGE_RIGHT_get();
-            internal static readonly int SELECTION_HANDLE_PRESSED_IMAGE_LEFT = NDalicPINVOKE.TextField_Property_SELECTION_HANDLE_PRESSED_IMAGE_LEFT_get();
-            internal static readonly int SELECTION_HANDLE_PRESSED_IMAGE_RIGHT = NDalicPINVOKE.TextField_Property_SELECTION_HANDLE_PRESSED_IMAGE_RIGHT_get();
-            internal static readonly int SELECTION_HANDLE_MARKER_IMAGE_LEFT = NDalicPINVOKE.TextField_Property_SELECTION_HANDLE_MARKER_IMAGE_LEFT_get();
-            internal static readonly int SELECTION_HANDLE_MARKER_IMAGE_RIGHT = NDalicPINVOKE.TextField_Property_SELECTION_HANDLE_MARKER_IMAGE_RIGHT_get();
-            internal static readonly int SELECTION_HIGHLIGHT_COLOR = NDalicPINVOKE.TextField_Property_SELECTION_HIGHLIGHT_COLOR_get();
-            internal static readonly int DECORATION_BOUNDING_BOX = NDalicPINVOKE.TextField_Property_DECORATION_BOUNDING_BOX_get();
-            internal static readonly int INPUT_METHOD_SETTINGS = NDalicPINVOKE.TextField_Property_INPUT_METHOD_SETTINGS_get();
-            internal static readonly int INPUT_COLOR = NDalicPINVOKE.TextField_Property_INPUT_COLOR_get();
-            internal static readonly int ENABLE_MARKUP = NDalicPINVOKE.TextField_Property_ENABLE_MARKUP_get();
-            internal static readonly int INPUT_FONT_FAMILY = NDalicPINVOKE.TextField_Property_INPUT_FONT_FAMILY_get();
-            internal static readonly int INPUT_FONT_STYLE = NDalicPINVOKE.TextField_Property_INPUT_FONT_STYLE_get();
-            internal static readonly int INPUT_POINT_SIZE = NDalicPINVOKE.TextField_Property_INPUT_POINT_SIZE_get();
-            internal static readonly int UNDERLINE = NDalicPINVOKE.TextField_Property_UNDERLINE_get();
-            internal static readonly int INPUT_UNDERLINE = NDalicPINVOKE.TextField_Property_INPUT_UNDERLINE_get();
-            internal static readonly int SHADOW = NDalicPINVOKE.TextField_Property_SHADOW_get();
-            internal static readonly int INPUT_SHADOW = NDalicPINVOKE.TextField_Property_INPUT_SHADOW_get();
-            internal static readonly int EMBOSS = NDalicPINVOKE.TextField_Property_EMBOSS_get();
-            internal static readonly int INPUT_EMBOSS = NDalicPINVOKE.TextField_Property_INPUT_EMBOSS_get();
-            internal static readonly int OUTLINE = NDalicPINVOKE.TextField_Property_OUTLINE_get();
-            internal static readonly int INPUT_OUTLINE = NDalicPINVOKE.TextField_Property_INPUT_OUTLINE_get();
-            internal static readonly int HIDDEN_INPUT_SETTINGS = NDalicManualPINVOKE.TextField_Property_HIDDEN_INPUT_SETTINGS_get();
-            internal static readonly int PIXEL_SIZE = NDalicManualPINVOKE.TextField_Property_PIXEL_SIZE_get();
-            internal static readonly int ENABLE_SELECTION = NDalicManualPINVOKE.TextField_Property_ENABLE_SELECTION_get();
-            internal static readonly int PLACEHOLDER = NDalicManualPINVOKE.TextField_Property_PLACEHOLDER_get();
-            internal static readonly int ELLIPSIS = NDalicManualPINVOKE.TextField_Property_ELLIPSIS_get();
-        }
-
-        internal class InputStyle
-        {
-            internal enum Mask
-            {
-                None = 0x0000,
-                Color = 0x0001,
-                FontFamily = 0x0002,
-                PointSize = 0x0004,
-                FontStyle = 0x0008,
-                Underline = 0x0010,
-                Shadow = 0x0020,
-                Emboss = 0x0040,
-                Outline = 0x0080
-            }
-
-        }
+        static TextField() { }
 
         /// <summary>
         /// Creates the TextField control.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public TextField() : this(NDalicPINVOKE.TextField_New(), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-        }
-        internal TextField(TextField handle) : this(NDalicPINVOKE.new_TextField__SWIG_1(TextField.getCPtr(handle)), true)
+        public TextField() : this(Interop.TextField.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal TextFieldSignal TextChangedSignal()
+        /// <summary>
+        /// Creates the TextField with setting the status of shown or hidden.
+        /// </summary>
+        /// <param name="shown">false : Not displayed (hidden), true : displayed (shown)</param>
+        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextField(bool shown) : this(Interop.TextField.New(), true)
         {
-            TextFieldSignal ret = new TextFieldSignal(NDalicPINVOKE.TextField_TextChangedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            SetVisible(shown);
         }
 
-        internal TextFieldSignal MaxLengthReachedSignal()
+        /// <summary>
+        /// Get attribues, it is abstract function and must be override.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override ViewStyle GetViewStyle()
         {
-            TextFieldSignal ret = new TextFieldSignal(NDalicPINVOKE.TextField_MaxLengthReachedSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            return new TextFieldStyle();
         }
 
-        internal SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextField_Dali__Toolkit__TextField__InputStyle__MaskF_t InputStyleChangedSignal()
+        internal TextField(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : base(Interop.TextField.Upcast(cPtr), cMemoryOwn, viewStyle)
         {
-            SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextField_Dali__Toolkit__TextField__InputStyle__MaskF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextField_Dali__Toolkit__TextField__InputStyle__MaskF_t(NDalicPINVOKE.TextField_InputStyleChangedSignal(swigCPtr), false);
+            if (!shown)
+            {
+                SetVisible(false);
+            }
+        }
+
+        internal TextField(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.TextField.Upcast(cPtr), cMemoryOwn, null)
+        {
+            if (!shown)
+            {
+                SetVisible(false);
+            }
+        }
+
+        internal TextField(TextField handle, bool shown = true) : this(Interop.TextField.NewTextField(TextField.getCPtr(handle)), true)
+        {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+
+            if (!shown)
+            {
+                SetVisible(false);
+            }
         }
 
         internal enum ExceedPolicyType
@@ -358,18 +114,32 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return (string)GetValue(TranslatableTextProperty);
+            }
+            set
+            {
+                selectorData?.TranslatableText.UpdateIfNeeds(this, value);
+                SetValue(TranslatableTextProperty, value);
+            }
+        }
+        private string translatableText
+        {
+            get
+            {
                 return textFieldTextSid;
             }
             set
             {
                 if (NUIApplication.MultilingualResourceManager == null)
                 {
-                    throw new ArgumentNullException("ResourceManager about multilingual is null");
+                    throw new ArgumentNullException(null, "ResourceManager about multilingual is null");
                 }
                 textFieldTextSid = value;
                 Text = SetTranslatable(textFieldTextSid);
+                NotifyPropertyChanged();
             }
         }
+
         /// <summary>
         /// The TranslatablePlaceholderText property.<br />
         /// The text can set the SID value.<br />
@@ -382,48 +152,32 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return (string)GetValue(TranslatablePlaceholderTextProperty);
+            }
+            set
+            {
+                SetValue(TranslatablePlaceholderTextProperty, value);
+                selectorData?.TranslatablePlaceholderText.UpdateIfNeeds(this, value);
+            }
+        }
+        private string translatablePlaceholderText
+        {
+            get
+            {
                 return textFieldPlaceHolderTextSid;
             }
             set
             {
                 if (NUIApplication.MultilingualResourceManager == null)
                 {
-                    throw new ArgumentNullException("ResourceManager about multilingual is null");
+                    throw new ArgumentNullException(null, "ResourceManager about multilingual is null");
                 }
                 textFieldPlaceHolderTextSid = value;
                 PlaceholderText = SetTranslatable(textFieldPlaceHolderTextSid);
+                NotifyPropertyChanged();
             }
         }
-        private string SetTranslatable(string textFieldSid)
-        {
-            string translatableText = null;
-            translatableText = NUIApplication.MultilingualResourceManager?.GetString(textFieldSid, new CultureInfo(SystemSettings.LocaleLanguage.Replace("_", "-")));
-            if (translatableText != null)
-            {
-                if (systemlangTextFlag == false)
-                {
-                    SystemSettings.LocaleLanguageChanged += new WeakEventHandler<LocaleLanguageChangedEventArgs>(SystemSettings_LocaleLanguageChanged).Handler;
-                    systemlangTextFlag = true;
-                }
-                return translatableText;
-            }
-            else
-            {
-                translatableText = "";
-                return translatableText;
-            }
-        }
-        private void SystemSettings_LocaleLanguageChanged(object sender, LocaleLanguageChangedEventArgs e)
-        {
-            if (textFieldTextSid != null)
-            {
-                Text = NUIApplication.MultilingualResourceManager?.GetString(textFieldTextSid, new CultureInfo(e.Value.Replace("_", "-")));
-            }
-            if (textFieldPlaceHolderTextSid != null)
-            {
-                PlaceholderText = NUIApplication.MultilingualResourceManager?.GetString(textFieldPlaceHolderTextSid, new CultureInfo(e.Value.Replace("_", "-")));
-            }
-        }
+
         /// <summary>
         /// The Text property.
         /// </summary>
@@ -432,13 +186,13 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                string temp;
-                GetProperty(TextField.Property.TEXT).Get(out temp);
-                return temp;
+                return (string)GetValue(TextProperty);
             }
             set
             {
-                SetProperty(TextField.Property.TEXT, new Tizen.NUI.PropertyValue(value));
+                SetValueAndForceSendChangeSignal(TextProperty, value);
+                selectorData?.Text.UpdateIfNeeds(this, value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -450,13 +204,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                string temp;
-                GetProperty(TextField.Property.PLACEHOLDER_TEXT).Get(out temp);
-                return temp;
+                return (string)GetValue(PlaceholderTextProperty);
             }
             set
             {
-                SetProperty(TextField.Property.PLACEHOLDER_TEXT, new Tizen.NUI.PropertyValue(value));
+                SetValue(PlaceholderTextProperty, value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -468,13 +221,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                string temp;
-                GetProperty(TextField.Property.PLACEHOLDER_TEXT_FOCUSED).Get(out temp);
-                return temp;
+                return (string)GetValue(PlaceholderTextFocusedProperty);
             }
             set
             {
-                SetProperty(TextField.Property.PLACEHOLDER_TEXT_FOCUSED, new Tizen.NUI.PropertyValue(value));
+                SetValue(PlaceholderTextFocusedProperty, value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -486,13 +238,13 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                string temp;
-                GetProperty(TextField.Property.FONT_FAMILY).Get(out temp);
-                return temp;
+                return (string)GetValue(FontFamilyProperty);
             }
             set
             {
-                SetProperty(TextField.Property.FONT_FAMILY, new Tizen.NUI.PropertyValue(value));
+                SetValue(FontFamilyProperty, value);
+                selectorData?.FontFamily.UpdateIfNeeds(this, value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -504,13 +256,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                PropertyMap temp = new PropertyMap();
-                GetProperty(TextField.Property.FONT_STYLE).Get(temp);
-                return temp;
+                return (PropertyMap)GetValue(FontStyleProperty);
             }
             set
             {
-                SetProperty(TextField.Property.FONT_STYLE, new Tizen.NUI.PropertyValue(value));
+                SetValue(FontStyleProperty, value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -522,13 +273,13 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(TextField.Property.POINT_SIZE).Get(out temp);
-                return temp;
+                return (float)GetValue(PointSizeProperty);
             }
             set
             {
-                SetProperty(TextField.Property.POINT_SIZE, new Tizen.NUI.PropertyValue(value));
+                SetValue(PointSizeProperty, value);
+                selectorData?.PointSize.UpdateIfNeeds(this, value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -540,13 +291,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                int temp = 0;
-                GetProperty(TextField.Property.MAX_LENGTH).Get(out temp);
-                return temp;
+                return (int)GetValue(MaxLengthProperty);
             }
             set
             {
-                SetProperty(TextField.Property.MAX_LENGTH, new Tizen.NUI.PropertyValue(value));
+                SetValue(MaxLengthProperty, value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -558,13 +308,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                int temp = 0;
-                GetProperty(TextField.Property.EXCEED_POLICY).Get(out temp);
-                return temp;
+                return (int)GetValue(ExceedPolicyProperty);
             }
             set
             {
-                SetProperty(TextField.Property.EXCEED_POLICY, new Tizen.NUI.PropertyValue(value));
+                SetValue(ExceedPolicyProperty, value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -576,51 +325,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                string temp;
-                if (GetProperty(TextField.Property.HORIZONTAL_ALIGNMENT).Get(out temp) == false)
-                {
-                    NUILog.Error("HorizontalAlignment get error!");
-                }
-
-                switch (temp)
-                {
-                    case "BEGIN":
-                        return HorizontalAlignment.Begin;
-                    case "CENTER":
-                        return HorizontalAlignment.Center;
-                    case "END":
-                        return HorizontalAlignment.End;
-                    default:
-                        return HorizontalAlignment.Begin;
-                }
+                return (HorizontalAlignment)GetValue(HorizontalAlignmentProperty);
             }
             set
             {
-                string valueToString = "";
-                switch (value)
-                {
-                    case HorizontalAlignment.Begin:
-                    {
-                        valueToString = "BEGIN";
-                        break;
-                    }
-                    case HorizontalAlignment.Center:
-                    {
-                        valueToString = "CENTER";
-                        break;
-                    }
-                    case HorizontalAlignment.End:
-                    {
-                        valueToString = "END";
-                        break;
-                    }
-                    default:
-                    {
-                        valueToString = "BEGIN";
-                        break;
-                    }
-                }
-                SetProperty(TextField.Property.HORIZONTAL_ALIGNMENT, new Tizen.NUI.PropertyValue(valueToString));
+                SetValue(HorizontalAlignmentProperty, value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -632,87 +342,57 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                string temp;
-                if (GetProperty(TextField.Property.VERTICAL_ALIGNMENT).Get(out temp) == false)
-                {
-                    NUILog.Error("VerticalAlignment get error!");
-                }
-
-                switch (temp)
-                {
-                    case "TOP":
-                        return VerticalAlignment.Top;
-                    case "CENTER":
-                        return VerticalAlignment.Center;
-                    case "BOTTOM":
-                        return VerticalAlignment.Bottom;
-                    default:
-                        return VerticalAlignment.Bottom;
-                }
+                return (VerticalAlignment)GetValue(VerticalAlignmentProperty);
             }
             set
             {
-                string valueToString = "";
-                switch (value)
-                {
-                    case VerticalAlignment.Top:
-                    {
-                        valueToString = "TOP";
-                        break;
-                    }
-                    case VerticalAlignment.Center:
-                    {
-                        valueToString = "CENTER";
-                        break;
-                    }
-                    case VerticalAlignment.Bottom:
-                    {
-                        valueToString = "BOTTOM";
-                        break;
-                    }
-                    default:
-                    {
-                        valueToString = "BOTTOM";
-                        break;
-                    }
-                }
-                SetProperty(TextField.Property.VERTICAL_ALIGNMENT, new Tizen.NUI.PropertyValue(valueToString));
+                SetValue(VerticalAlignmentProperty, value);
+                NotifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
 
         /// <summary>
         /// The TextColor property.
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (textField.TextColor.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Color TextColor
         {
             get
             {
-                Color temp = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-                GetProperty(TextField.Property.TEXT_COLOR).Get(temp);
-                return temp;
+                Color temp = (Color)GetValue(TextColorProperty);
+                return new Color(OnTextColorChanged, temp.R, temp.G, temp.B, temp.A);
             }
             set
             {
-                SetProperty(TextField.Property.TEXT_COLOR, new Tizen.NUI.PropertyValue(value));
+                SetValue(TextColorProperty, value);
+                selectorData?.TextColor.UpdateIfNeeds(this, value);
+                NotifyPropertyChanged();
             }
         }
 
         /// <summary>
         /// The PlaceholderTextColor property.
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (textField.PlaceholderTextColor.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Vector4 PlaceholderTextColor
         {
             get
             {
-                Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-                GetProperty(TextField.Property.PLACEHOLDER_TEXT_COLOR).Get(temp);
-                return temp;
+                Vector4 temp = (Vector4)GetValue(PlaceholderTextColorProperty);
+                return new Vector4(OnPlaceholderTextColorChanged, temp.X, temp.Y, temp.Z, temp.W);
             }
             set
             {
-                SetProperty(TextField.Property.PLACEHOLDER_TEXT_COLOR, new Tizen.NUI.PropertyValue(value));
+                SetValue(PlaceholderTextColorProperty, value);
+                selectorData?.PlaceholderTextColor.UpdateIfNeeds(this, value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -720,17 +400,27 @@ namespace Tizen.NUI.BaseComponents
         /// The ShadowOffset property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <remarks>
+        /// Deprecated.(API Level 6) Use Shadow instead.
+        /// The property cascade chaining set is possible. For example, this (textField.ShadowOffset.X = 0.1f;) is possible.
+        /// </remarks>
+        [Obsolete("Please do not use this ShadowOffset(Deprecated). Please use Shadow instead.")]
         public Vector2 ShadowOffset
         {
             get
             {
-                Vector2 temp = new Vector2(0.0f, 0.0f);
-                GetProperty(TextField.Property.SHADOW_OFFSET).Get(temp);
-                return temp;
+                PropertyMap map = new PropertyMap();
+                GetProperty(TextField.Property.SHADOW).Get(map);
+                Vector2 shadowOffset = new Vector2();
+                map.Find(TextField.Property.SHADOW, "offset")?.Get(shadowOffset);
+                return new Vector2(OnShadowOffsetChanged, shadowOffset.X, shadowOffset.Y);
             }
             set
             {
-                SetProperty(TextField.Property.SHADOW_OFFSET, new Tizen.NUI.PropertyValue(value));
+                PropertyMap temp = new PropertyMap();
+                temp.Insert("offset", new PropertyValue(value));
+                SetValue(ShadowProperty, temp);
+                NotifyPropertyChanged();
             }
         }
 
@@ -738,53 +428,70 @@ namespace Tizen.NUI.BaseComponents
         /// The ShadowColor property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <remarks>
+        /// Deprecated.(API Level 6) Use Shadow instead.
+        /// The property cascade chaining set is possible. For example, this (textField.ShadowColor.X = 0.1f;) is possible.
+        /// </remarks>
+        [Obsolete("Please do not use this ShadowColor(Deprecated). Please use Shadow instead.")]
         public Vector4 ShadowColor
         {
             get
             {
-                Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-                GetProperty(TextField.Property.SHADOW_COLOR).Get(temp);
-                return temp;
+                PropertyMap map = new PropertyMap();
+                GetProperty(TextField.Property.SHADOW).Get(map);
+                Vector4 shadowColor = new Vector4();
+                map.Find(TextField.Property.SHADOW, "color")?.Get(shadowColor);
+                return new Vector4(OnShadowColorChanged, shadowColor.X, shadowColor.Y, shadowColor.Z, shadowColor.W);
             }
             set
             {
-                SetProperty(TextField.Property.SHADOW_COLOR, new Tizen.NUI.PropertyValue(value));
+                PropertyMap temp = new PropertyMap();
+                temp.Insert("color", new PropertyValue(value));
+                SetValue(ShadowProperty, temp);
+                NotifyPropertyChanged();
             }
         }
 
         /// <summary>
         /// The PrimaryCursorColor property.
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (textField.PrimaryCursorColor.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Vector4 PrimaryCursorColor
         {
             get
             {
-                Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-                GetProperty(TextField.Property.PRIMARY_CURSOR_COLOR).Get(temp);
-                return temp;
+                Vector4 temp = (Vector4)GetValue(PrimaryCursorColorProperty);
+                return new Vector4(OnPrimaryCursorColorChanged, temp.X, temp.Y, temp.Z, temp.W);
             }
             set
             {
-                SetProperty(TextField.Property.PRIMARY_CURSOR_COLOR, new Tizen.NUI.PropertyValue(value));
+                SetValue(PrimaryCursorColorProperty, value);
+                selectorData?.PrimaryCursorColor.UpdateIfNeeds(this, value);
+                NotifyPropertyChanged();
             }
         }
 
         /// <summary>
         /// The SecondaryCursorColor property.
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (textField.SecondaryCursorColor.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Vector4 SecondaryCursorColor
         {
             get
             {
-                Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-                GetProperty(TextField.Property.SECONDARY_CURSOR_COLOR).Get(temp);
-                return temp;
+                Vector4 temp = (Vector4)GetValue(SecondaryCursorColorProperty);
+                return new Vector4(OnSecondaryCursorColorChanged, temp.X, temp.Y, temp.Z, temp.W);
             }
             set
             {
-                SetProperty(TextField.Property.SECONDARY_CURSOR_COLOR, new Tizen.NUI.PropertyValue(value));
+                SetValue(SecondaryCursorColorProperty, value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -796,13 +503,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                bool temp = false;
-                GetProperty(TextField.Property.ENABLE_CURSOR_BLINK).Get(out temp);
-                return temp;
+                return (bool)GetValue(EnableCursorBlinkProperty);
             }
             set
             {
-                SetProperty(TextField.Property.ENABLE_CURSOR_BLINK, new Tizen.NUI.PropertyValue(value));
+                SetValue(EnableCursorBlinkProperty, value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -814,13 +520,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(TextField.Property.CURSOR_BLINK_INTERVAL).Get(out temp);
-                return temp;
+                return (float)GetValue(CursorBlinkIntervalProperty);
             }
             set
             {
-                SetProperty(TextField.Property.CURSOR_BLINK_INTERVAL, new Tizen.NUI.PropertyValue(value));
+                SetValue(CursorBlinkIntervalProperty, value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -832,13 +537,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(TextField.Property.CURSOR_BLINK_DURATION).Get(out temp);
-                return temp;
+                return (float)GetValue(CursorBlinkDurationProperty);
             }
             set
             {
-                SetProperty(TextField.Property.CURSOR_BLINK_DURATION, new Tizen.NUI.PropertyValue(value));
+                SetValue(CursorBlinkDurationProperty, value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -850,13 +554,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                int temp = 0;
-                GetProperty(TextField.Property.CURSOR_WIDTH).Get(out temp);
-                return temp;
+                return (int)GetValue(CursorWidthProperty);
             }
             set
             {
-                SetProperty(TextField.Property.CURSOR_WIDTH, new Tizen.NUI.PropertyValue(value));
+                SetValue(CursorWidthProperty, value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -868,13 +571,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                string temp;
-                GetProperty(TextField.Property.GRAB_HANDLE_IMAGE).Get(out temp);
-                return temp;
+                return (string)GetValue(GrabHandleImageProperty);
             }
             set
             {
-                SetProperty(TextField.Property.GRAB_HANDLE_IMAGE, new Tizen.NUI.PropertyValue(value));
+                SetValue(GrabHandleImageProperty, value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -886,13 +588,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                string temp;
-                GetProperty(TextField.Property.GRAB_HANDLE_PRESSED_IMAGE).Get(out temp);
-                return temp;
+                return (string)GetValue(GrabHandlePressedImageProperty);
             }
             set
             {
-                SetProperty(TextField.Property.GRAB_HANDLE_PRESSED_IMAGE, new Tizen.NUI.PropertyValue(value));
+                SetValue(GrabHandlePressedImageProperty, value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -904,13 +605,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(TextField.Property.SCROLL_THRESHOLD).Get(out temp);
-                return temp;
+                return (float)GetValue(ScrollThresholdProperty);
             }
             set
             {
-                SetProperty(TextField.Property.SCROLL_THRESHOLD, new Tizen.NUI.PropertyValue(value));
+                SetValue(ScrollThresholdProperty, value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -922,13 +622,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(TextField.Property.SCROLL_SPEED).Get(out temp);
-                return temp;
+                return (float)GetValue(ScrollSpeedProperty);
             }
             set
             {
-                SetProperty(TextField.Property.SCROLL_SPEED, new Tizen.NUI.PropertyValue(value));
+                SetValue(ScrollSpeedProperty, value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -940,13 +639,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                PropertyMap temp = new PropertyMap();
-                GetProperty(TextField.Property.SELECTION_HANDLE_IMAGE_LEFT).Get(temp);
-                return temp;
+                return (PropertyMap)GetValue(SelectionHandleImageLeftProperty);
             }
             set
             {
-                SetProperty(TextField.Property.SELECTION_HANDLE_IMAGE_LEFT, new Tizen.NUI.PropertyValue(value));
+                SetValue(SelectionHandleImageLeftProperty, value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -958,13 +656,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                PropertyMap temp = new PropertyMap();
-                GetProperty(TextField.Property.SELECTION_HANDLE_IMAGE_RIGHT).Get(temp);
-                return temp;
+                return (PropertyMap)GetValue(SelectionHandleImageRightProperty);
             }
             set
             {
-                SetProperty(TextField.Property.SELECTION_HANDLE_IMAGE_RIGHT, new Tizen.NUI.PropertyValue(value));
+                SetValue(SelectionHandleImageRightProperty, value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -976,13 +673,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                PropertyMap temp = new PropertyMap();
-                GetProperty(TextField.Property.SELECTION_HANDLE_PRESSED_IMAGE_LEFT).Get(temp);
-                return temp;
+                return (PropertyMap)GetValue(SelectionHandlePressedImageLeftProperty);
             }
             set
             {
-                SetProperty(TextField.Property.SELECTION_HANDLE_PRESSED_IMAGE_LEFT, new Tizen.NUI.PropertyValue(value));
+                SetValue(SelectionHandlePressedImageLeftProperty, value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -994,13 +690,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                PropertyMap temp = new PropertyMap();
-                GetProperty(TextField.Property.SELECTION_HANDLE_PRESSED_IMAGE_RIGHT).Get(temp);
-                return temp;
+                return (PropertyMap)GetValue(SelectionHandlePressedImageRightProperty);
             }
             set
             {
-                SetProperty(TextField.Property.SELECTION_HANDLE_PRESSED_IMAGE_RIGHT, new Tizen.NUI.PropertyValue(value));
+                SetValue(SelectionHandlePressedImageRightProperty, value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -1012,13 +707,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                PropertyMap temp = new PropertyMap();
-                GetProperty(TextField.Property.SELECTION_HANDLE_MARKER_IMAGE_LEFT).Get(temp);
-                return temp;
+                return (PropertyMap)GetValue(SelectionHandleMarkerImageLeftProperty);
             }
             set
             {
-                SetProperty(TextField.Property.SELECTION_HANDLE_MARKER_IMAGE_LEFT, new Tizen.NUI.PropertyValue(value));
+                SetValue(SelectionHandleMarkerImageLeftProperty, value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -1030,49 +724,54 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                PropertyMap temp = new PropertyMap();
-                GetProperty(TextField.Property.SELECTION_HANDLE_MARKER_IMAGE_RIGHT).Get(temp);
-                return temp;
+                return (PropertyMap)GetValue(SelectionHandleMarkerImageRightProperty);
             }
             set
             {
-                SetProperty(TextField.Property.SELECTION_HANDLE_MARKER_IMAGE_RIGHT, new Tizen.NUI.PropertyValue(value));
+                SetValue(SelectionHandleMarkerImageRightProperty, value);
+                NotifyPropertyChanged();
             }
         }
 
         /// <summary>
         /// The SelectionHighlightColor property.
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (textField.SelectionHighlightColor.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Vector4 SelectionHighlightColor
         {
             get
             {
-                Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-                GetProperty(TextField.Property.SELECTION_HIGHLIGHT_COLOR).Get(temp);
-                return temp;
+                Vector4 temp = (Vector4)GetValue(SelectionHighlightColorProperty);
+                return new Vector4(OnSelectionHighlightColorChanged, temp.X, temp.Y, temp.Z, temp.W);
             }
             set
             {
-                SetProperty(TextField.Property.SELECTION_HIGHLIGHT_COLOR, new Tizen.NUI.PropertyValue(value));
+                SetValue(SelectionHighlightColorProperty, value);
+                NotifyPropertyChanged();
             }
         }
 
         /// <summary>
         /// The DecorationBoundingBox property.
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (textField.DecorationBoundingBox.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Rectangle DecorationBoundingBox
         {
             get
             {
-                Rectangle temp = new Rectangle(0, 0, 0, 0);
-                GetProperty(TextField.Property.DECORATION_BOUNDING_BOX).Get(temp);
-                return temp;
+                Rectangle temp = (Rectangle)GetValue(DecorationBoundingBoxProperty);
+                return new Rectangle(OnDecorationBoundingBoxChanged, temp.X, temp.Y, temp.Width, temp.Height);
             }
             set
             {
-                SetProperty(TextField.Property.DECORATION_BOUNDING_BOX, new Tizen.NUI.PropertyValue(value));
+                SetValue(DecorationBoundingBoxProperty, value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -1084,31 +783,33 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                PropertyMap temp = new PropertyMap();
-                GetProperty(TextField.Property.INPUT_METHOD_SETTINGS).Get(temp);
-                return temp;
+                return (PropertyMap)GetValue(InputMethodSettingsProperty);
             }
             set
             {
-                SetProperty(TextField.Property.INPUT_METHOD_SETTINGS, new Tizen.NUI.PropertyValue(value));
+                SetValue(InputMethodSettingsProperty, value);
+                NotifyPropertyChanged();
             }
         }
 
         /// <summary>
         /// The InputColor property.
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (textField.InputColor.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Vector4 InputColor
         {
             get
             {
-                Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-                GetProperty(TextField.Property.INPUT_COLOR).Get(temp);
-                return temp;
+                Vector4 temp = (Vector4)GetValue(InputColorProperty);
+                return new Vector4(OnInputColorChanged, temp.X, temp.Y, temp.Z, temp.W);
             }
             set
             {
-                SetProperty(TextField.Property.INPUT_COLOR, new Tizen.NUI.PropertyValue(value));
+                SetValue(InputColorProperty, value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -1120,13 +821,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                bool temp = false;
-                GetProperty(TextField.Property.ENABLE_MARKUP).Get(out temp);
-                return temp;
+                return (bool)GetValue(EnableMarkupProperty);
             }
             set
             {
-                SetProperty(TextField.Property.ENABLE_MARKUP, new Tizen.NUI.PropertyValue(value));
+                SetValue(EnableMarkupProperty, value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -1138,13 +838,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                string temp;
-                GetProperty(TextField.Property.INPUT_FONT_FAMILY).Get(out temp);
-                return temp;
+                return (string)GetValue(InputFontFamilyProperty);
             }
             set
             {
-                SetProperty(TextField.Property.INPUT_FONT_FAMILY, new Tizen.NUI.PropertyValue(value));
+                SetValue(InputFontFamilyProperty, value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -1156,13 +855,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                PropertyMap temp = new PropertyMap();
-                GetProperty(TextField.Property.INPUT_FONT_STYLE).Get(temp);
-                return temp;
+                return (PropertyMap)GetValue(InputFontStyleProperty);
             }
             set
             {
-                SetProperty(TextField.Property.INPUT_FONT_STYLE, new Tizen.NUI.PropertyValue(value));
+                SetValue(InputFontStyleProperty, value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -1174,13 +872,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(TextField.Property.INPUT_POINT_SIZE).Get(out temp);
-                return temp;
+                return (float)GetValue(InputPointSizeProperty);
             }
             set
             {
-                SetProperty(TextField.Property.INPUT_POINT_SIZE, new Tizen.NUI.PropertyValue(value));
+                SetValue(InputPointSizeProperty, value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -1192,13 +889,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                PropertyMap temp = new PropertyMap();
-                GetProperty(TextField.Property.UNDERLINE).Get(temp);
-                return temp;
+                return (PropertyMap)GetValue(UnderlineProperty);
             }
             set
             {
-                SetProperty(TextField.Property.UNDERLINE, new Tizen.NUI.PropertyValue(value));
+                SetValue(UnderlineProperty, value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -1210,13 +906,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                string temp;
-                GetProperty(TextField.Property.INPUT_UNDERLINE).Get(out temp);
-                return temp;
+                return (string)GetValue(InputUnderlineProperty);
             }
             set
             {
-                SetProperty(TextField.Property.INPUT_UNDERLINE, new Tizen.NUI.PropertyValue(value));
+                SetValue(InputUnderlineProperty, value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -1228,13 +923,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                PropertyMap temp = new PropertyMap();
-                GetProperty(TextField.Property.SHADOW).Get(temp);
-                return temp;
+                return (PropertyMap)GetValue(ShadowProperty);
             }
             set
             {
-                SetProperty(TextField.Property.SHADOW, new Tizen.NUI.PropertyValue(value));
+                SetValue(ShadowProperty, value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -1246,13 +940,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                string temp;
-                GetProperty(TextField.Property.INPUT_SHADOW).Get(out temp);
-                return temp;
+                return (string)GetValue(InputShadowProperty);
             }
             set
             {
-                SetProperty(TextField.Property.INPUT_SHADOW, new Tizen.NUI.PropertyValue(value));
+                SetValue(InputShadowProperty, value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -1264,13 +957,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                string temp;
-                GetProperty(TextField.Property.EMBOSS).Get(out temp);
-                return temp;
+                return (string)GetValue(EmbossProperty);
             }
             set
             {
-                SetProperty(TextField.Property.EMBOSS, new Tizen.NUI.PropertyValue(value));
+                SetValue(EmbossProperty, value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -1282,13 +974,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                string temp;
-                GetProperty(TextField.Property.INPUT_EMBOSS).Get(out temp);
-                return temp;
+                return (string)GetValue(InputEmbossProperty);
             }
             set
             {
-                SetProperty(TextField.Property.INPUT_EMBOSS, new Tizen.NUI.PropertyValue(value));
+                SetValue(InputEmbossProperty, value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -1300,13 +991,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                PropertyMap temp = new PropertyMap();
-                GetProperty(TextField.Property.OUTLINE).Get(temp);
-                return temp;
+                return (PropertyMap)GetValue(OutlineProperty);
             }
             set
             {
-                SetProperty(TextField.Property.OUTLINE, new Tizen.NUI.PropertyValue(value));
+                SetValue(OutlineProperty, value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -1318,13 +1008,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                string temp;
-                GetProperty(TextField.Property.INPUT_OUTLINE).Get(out temp);
-                return temp;
+                return (string)GetValue(InputOutlineProperty);
             }
             set
             {
-                SetProperty(TextField.Property.INPUT_OUTLINE, new Tizen.NUI.PropertyValue(value));
+                SetValue(InputOutlineProperty, value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -1336,13 +1025,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-                GetProperty(TextField.Property.HIDDEN_INPUT_SETTINGS).Get(temp);
-                return temp;
+                return (PropertyMap)GetValue(HiddenInputSettingsProperty);
             }
             set
             {
-                SetProperty(TextField.Property.HIDDEN_INPUT_SETTINGS, new Tizen.NUI.PropertyValue(value));
+                SetValue(HiddenInputSettingsProperty, value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -1354,13 +1042,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(TextField.Property.PIXEL_SIZE).Get(out temp);
-                return temp;
+                return (float)GetValue(PixelSizeProperty);
             }
             set
             {
-                SetProperty(TextField.Property.PIXEL_SIZE, new Tizen.NUI.PropertyValue(value));
+                SetValue(PixelSizeProperty, value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -1372,13 +1059,154 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                bool temp = false;
-                GetProperty(TextField.Property.ENABLE_SELECTION).Get(out temp);
+                return (bool)GetValue(EnableSelectionProperty);
+            }
+            set
+            {
+                SetValue(EnableSelectionProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The Enable selection property.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool EnableGrabHandle
+        {
+            get
+            {
+                return (bool)GetValue(EnableGrabHandleProperty);
+            }
+            set
+            {
+                SetValue(EnableGrabHandleProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The Enable selection property.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool EnableGrabHandlePopup
+        {
+            get
+            {
+                return (bool)GetValue(EnableGrabHandlePopupProperty);
+            }
+            set
+            {
+                SetValue(EnableGrabHandlePopupProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The Selected Text property.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done, Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string SelectedText
+        {
+            get
+            {
+                string temp;
+                GetProperty(TextField.Property.SelectedText).Get(out temp);
+                return temp;
+            }
+        }
+
+        /// <summary>
+        /// The start index for selection.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done, Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int SelectedTextStart
+        {
+            get
+            {
+                int temp;
+                GetProperty(TextField.Property.SelectedTextStart).Get(out temp);
                 return temp;
             }
             set
             {
-                SetProperty(TextField.Property.ENABLE_SELECTION, new Tizen.NUI.PropertyValue(value));
+                SetProperty(TextField.Property.SelectedTextStart, new PropertyValue(value));
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The end index for selection.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done, Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int SelectedTextEnd
+        {
+            get
+            {
+                int temp;
+                GetProperty(TextField.Property.SelectedTextEnd).Get(out temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(TextField.Property.SelectedTextEnd, new PropertyValue(value));
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Enable editing in text control.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done, Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool EnableEditing
+        {
+            get
+            {
+                bool temp;
+                GetProperty(TextField.Property.EnableEditing).Get(out temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(TextField.Property.EnableEditing, new PropertyValue(value));
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Specify primary cursor (caret) position in text control.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int PrimaryCursorPosition
+        {
+            get
+            {
+                int temp;
+                using (PropertyValue propertyValue = GetProperty(TextField.Property.PrimaryCursorPosition))
+                {
+                    propertyValue.Get(out temp);
+                }
+                return temp;
+            }
+            set
+            {
+                using (PropertyValue propertyValue = new PropertyValue(value))
+                {
+                    SetProperty(TextField.Property.PrimaryCursorPosition, propertyValue);
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -1411,13 +1239,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-                GetProperty(TextField.Property.PLACEHOLDER).Get(temp);
-                return temp;
+                return (PropertyMap)GetValue(PlaceholderProperty);
             }
             set
             {
-                SetProperty(TextField.Property.PLACEHOLDER, new Tizen.NUI.PropertyValue(value));
+                SetValue(PlaceholderProperty, value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -1431,17 +1258,335 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                bool temp = false;
-                GetProperty(TextField.Property.ELLIPSIS).Get(out temp);
-                return temp;
+                return (bool)GetValue(EllipsisProperty);
             }
             set
             {
-                SetProperty(TextField.Property.ELLIPSIS, new Tizen.NUI.PropertyValue(value));
+                SetValue(EllipsisProperty, value);
+                NotifyPropertyChanged();
             }
         }
 
+        /// <summary>
+        /// Enables selection of the text using the Shift key.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool EnableShiftSelection
+        {
+            get
+            {
+                return (bool)GetValue(EnableShiftSelectionProperty);
+            }
+            set
+            {
+                SetValue(EnableShiftSelectionProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
 
+        /// <summary>
+        /// The text alignment to match the direction of the system language.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public bool MatchSystemLanguageDirection
+        {
+            get
+            {
+                return (bool)GetValue(MatchSystemLanguageDirectionProperty);
+            }
+            set
+            {
+                SetValue(MatchSystemLanguageDirectionProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// Only used by the IL of xaml, will never changed to not hidden.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool IsCreateByXaml
+        {
+            get
+            {
+                return base.IsCreateByXaml;
+            }
+            set
+            {
+                base.IsCreateByXaml = value;
+
+                if (value == true)
+                {
+                    this.TextChanged += (obj, e) =>
+                    {
+                        this.Text = e.TextField.Text;
+                    };
+                }
+            }
+        }
+
+        private TextFieldSelectorData SelectorData
+        {
+            get
+            {
+                if (selectorData == null)
+                {
+                    selectorData = new TextFieldSelectorData();
+                }
+                return selectorData;
+            }
+        }
+
+        /// <summary>
+        /// Get the InputMethodContext instance.
+        /// </summary>
+        /// <returns>The InputMethodContext instance.</returns>
+        /// <since_tizen> 5 </since_tizen>
+        public InputMethodContext GetInputMethodContext()
+        {
+            if (inputMethodCotext == null)
+            {
+                /*Avoid raising InputMethodContext reference count.*/
+                inputMethodCotext = new InputMethodContext(Interop.TextField.GetInputMethodContext(SwigCPtr), true);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            return inputMethodCotext;
+        }
+
+        /// <summary>
+        /// Select the whole text.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be released at Tizen.NET API Level 5.5, so currently this would be used as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SelectWholeText()
+        {
+            Interop.TextField.SelectWholeText(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Clear selection of the text.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done, Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SelectNone()
+        {
+            _ = Interop.TextField.SelectNone(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TextField obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
+        }
+
+        internal SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextField_Dali__Toolkit__TextField__InputStyle__MaskF_t InputStyleChangedSignal()
+        {
+            SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextField_Dali__Toolkit__TextField__InputStyle__MaskF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextField_Dali__Toolkit__TextField__InputStyle__MaskF_t(Interop.TextField.InputStyleChangedSignal(SwigCPtr));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                DisposeQueue.Instance.Add(this);
+                return;
+            }
+
+            if (systemlangTextFlag)
+            {
+                SystemSettings.LocaleLanguageChanged -= SystemSettings_LocaleLanguageChanged;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+                selectorData?.Reset(this);
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+            if (this.HasBody())
+            {
+                if (_textFieldMaxLengthReachedCallbackDelegate != null)
+                {
+                    this.MaxLengthReachedSignal().Disconnect(_textFieldMaxLengthReachedCallbackDelegate);
+                }
+
+                if (_textFieldTextChangedCallbackDelegate != null)
+                {
+                    TextChangedSignal().Disconnect(_textFieldTextChangedCallbackDelegate);
+                }
+            }
+
+            base.Dispose(type);
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            // In order to speed up IME hide, temporarily add
+            GetInputMethodContext()?.DestroyContext();
+            Interop.TextField.DeleteTextField(swigCPtr);
+        }
+
+        private string SetTranslatable(string textFieldSid)
+        {
+            string translatableText = null;
+            translatableText = NUIApplication.MultilingualResourceManager?.GetString(textFieldSid, new CultureInfo(SystemSettings.LocaleLanguage.Replace("_", "-")));
+            if (translatableText != null)
+            {
+                if (systemlangTextFlag == false)
+                {
+                    SystemSettings.LocaleLanguageChanged += SystemSettings_LocaleLanguageChanged;
+                    systemlangTextFlag = true;
+                }
+                return translatableText;
+            }
+            else
+            {
+                translatableText = "";
+                return translatableText;
+            }
+        }
+
+        private void SystemSettings_LocaleLanguageChanged(object sender, LocaleLanguageChangedEventArgs e)
+        {
+            if (textFieldTextSid != null)
+            {
+                Text = NUIApplication.MultilingualResourceManager?.GetString(textFieldTextSid, new CultureInfo(e.Value.Replace("_", "-")));
+            }
+            if (textFieldPlaceHolderTextSid != null)
+            {
+                PlaceholderText = NUIApplication.MultilingualResourceManager?.GetString(textFieldPlaceHolderTextSid, new CultureInfo(e.Value.Replace("_", "-")));
+            }
+        }
+
+        internal new class Property
+        {
+            internal static readonly int TEXT = Interop.TextField.TextGet();
+            internal static readonly int PlaceholderText = Interop.TextField.PlaceholderTextGet();
+            internal static readonly int PlaceholderTextFocused = Interop.TextField.PlaceholderTextFocusedGet();
+            internal static readonly int FontFamily = Interop.TextField.FontFamilyGet();
+            internal static readonly int FontStyle = Interop.TextField.FontStyleGet();
+            internal static readonly int PointSize = Interop.TextField.PointSizeGet();
+            internal static readonly int MaxLength = Interop.TextField.MaxLengthGet();
+            internal static readonly int ExceedPolicy = Interop.TextField.ExceedPolicyGet();
+            internal static readonly int HorizontalAlignment = Interop.TextField.HorizontalAlignmentGet();
+            internal static readonly int VerticalAlignment = Interop.TextField.VerticalAlignmentGet();
+            internal static readonly int TextColor = Interop.TextField.TextColorGet();
+            internal static readonly int PlaceholderTextColor = Interop.TextField.PlaceholderTextColorGet();
+            internal static readonly int PrimaryCursorColor = Interop.TextField.PrimaryCursorColorGet();
+            internal static readonly int SecondaryCursorColor = Interop.TextField.SecondaryCursorColorGet();
+            internal static readonly int EnableCursorBlink = Interop.TextField.EnableCursorBlinkGet();
+            internal static readonly int CursorBlinkInterval = Interop.TextField.CursorBlinkIntervalGet();
+            internal static readonly int CursorBlinkDuration = Interop.TextField.CursorBlinkDurationGet();
+            internal static readonly int CursorWidth = Interop.TextField.CursorWidthGet();
+            internal static readonly int GrabHandleImage = Interop.TextField.GrabHandleImageGet();
+            internal static readonly int GrabHandlePressedImage = Interop.TextField.GrabHandlePressedImageGet();
+            internal static readonly int ScrollThreshold = Interop.TextField.ScrollThresholdGet();
+            internal static readonly int ScrollSpeed = Interop.TextField.ScrollSpeedGet();
+            internal static readonly int SelectionHandleImageLeft = Interop.TextField.SelectionHandleImageLeftGet();
+            internal static readonly int SelectionHandleImageRight = Interop.TextField.SelectionHandleImageRightGet();
+            internal static readonly int SelectionHandlePressedImageLeft = Interop.TextField.SelectionHandlePressedImageLeftGet();
+            internal static readonly int SelectionHandlePressedImageRight = Interop.TextField.SelectionHandlePressedImageRightGet();
+            internal static readonly int SelectionHandleMarkerImageLeft = Interop.TextField.SelectionHandleMarkerImageLeftGet();
+            internal static readonly int SelectionHandleMarkerImageRight = Interop.TextField.SelectionHandleMarkerImageRightGet();
+            internal static readonly int SelectionHighlightColor = Interop.TextField.SelectionHighlightColorGet();
+            internal static readonly int DecorationBoundingBox = Interop.TextField.DecorationBoundingBoxGet();
+            internal static readonly int InputMethodSettings = Interop.TextField.InputMethodSettingsGet();
+            internal static readonly int InputColor = Interop.TextField.InputColorGet();
+            internal static readonly int EnableMarkup = Interop.TextField.EnableMarkupGet();
+            internal static readonly int InputFontFamily = Interop.TextField.InputFontFamilyGet();
+            internal static readonly int InputFontStyle = Interop.TextField.InputFontStyleGet();
+            internal static readonly int InputPointSize = Interop.TextField.InputPointSizeGet();
+            internal static readonly int UNDERLINE = Interop.TextField.UnderlineGet();
+            internal static readonly int InputUnderline = Interop.TextField.InputUnderlineGet();
+            internal static readonly int SHADOW = Interop.TextField.ShadowGet();
+            internal static readonly int InputShadow = Interop.TextField.InputShadowGet();
+            internal static readonly int EMBOSS = Interop.TextField.EmbossGet();
+            internal static readonly int InputEmboss = Interop.TextField.InputEmbossGet();
+            internal static readonly int OUTLINE = Interop.TextField.OutlineGet();
+            internal static readonly int InputOutline = Interop.TextField.InputOutlineGet();
+            internal static readonly int HiddenInputSettings = Interop.TextField.HiddenInputSettingsGet();
+            internal static readonly int PixelSize = Interop.TextField.PixelSizeGet();
+            internal static readonly int EnableSelection = Interop.TextField.EnableSelectionGet();
+            internal static readonly int PLACEHOLDER = Interop.TextField.PlaceholderGet();
+            internal static readonly int ELLIPSIS = Interop.TextField.EllipsisGet();
+            internal static readonly int EnableShiftSelection = Interop.TextField.EnableShiftSelectionGet();
+            internal static readonly int MatchSystemLanguageDirection = Interop.TextField.MatchSystemLanguageDirectionGet();
+            internal static readonly int EnableGrabHandle = Interop.TextField.EnableGrabHandleGet();
+            internal static readonly int EnableGrabHandlePopup = Interop.TextField.EnableGrabHandlePopupGet();
+            internal static readonly int SelectedText = Interop.TextField.SelectedTextGet();
+            internal static readonly int SelectedTextStart = Interop.TextField.SelectedTextStartGet();
+            internal static readonly int SelectedTextEnd = Interop.TextField.SelectedTextEndGet();
+            internal static readonly int EnableEditing = Interop.TextField.EnableEditingGet();
+            internal static readonly int PrimaryCursorPosition = Interop.TextField.PrimaryCursorPositionGet();
+        }
+
+        internal class InputStyle
+        {
+            internal enum Mask
+            {
+                None = 0x0000,
+                Color = 0x0001,
+                FontFamily = 0x0002,
+                PointSize = 0x0004,
+                FontStyle = 0x0008,
+                Underline = 0x0010,
+                Shadow = 0x0020,
+                Emboss = 0x0040,
+                Outline = 0x0080
+            }
+        }
+
+        private void OnDecorationBoundingBoxChanged(int x, int y, int width, int height)
+        {
+            DecorationBoundingBox = new Rectangle(x, y, width, height);
+        }
+        private void OnInputColorChanged(float x, float y, float z, float w)
+        {
+            InputColor = new Vector4(x, y, z, w);
+        }
+        private void OnPlaceholderTextColorChanged(float r, float g, float b, float a)
+        {
+            PlaceholderTextColor = new Vector4(r, g, b, a);
+        }
+        private void OnPrimaryCursorColorChanged(float x, float y, float z, float w)
+        {
+            PrimaryCursorColor = new Vector4(x, y, z, w);
+        }
+        private void OnSecondaryCursorColorChanged(float x, float y, float z, float w)
+        {
+            SecondaryCursorColor = new Vector4(x, y, z, w);
+        }
+        private void OnSelectionHighlightColorChanged(float x, float y, float z, float w)
+        {
+            SelectionHighlightColor = new Vector4(x, y, z, w);
+        }
+        private void OnShadowColorChanged(float x, float y, float z, float w)
+        {
+            ShadowColor = new Vector4(x, y, z, w);
+        }
+        private void OnShadowOffsetChanged(float x, float y)
+        {
+            ShadowOffset = new Vector2(x, y);
+        }
+        private void OnTextColorChanged(float r, float g, float b, float a)
+        {
+            TextColor = new Color(r, g, b, a);
+        }
     }
-
 }

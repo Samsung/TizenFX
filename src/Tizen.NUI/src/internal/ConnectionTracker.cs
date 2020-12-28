@@ -17,78 +17,42 @@
 
 namespace Tizen.NUI
 {
-
     internal class ConnectionTracker : ConnectionTrackerInterface
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal ConnectionTracker(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.ConnectionTracker_SWIGUpcast(cPtr), cMemoryOwn)
+        internal ConnectionTracker(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ConnectionTracker.Upcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ConnectionTracker obj)
+
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        protected override void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_ConnectionTracker(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
+            Interop.ConnectionTracker.DeleteConnectionTracker(swigCPtr);
         }
 
         public void DisconnectAll()
         {
-            NDalicPINVOKE.ConnectionTracker_DisconnectAll(swigCPtr);
+            Interop.ConnectionTracker.DisconnectAll(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public virtual void SignalConnected(SlotObserver slotObserver, SWIGTYPE_p_Dali__CallbackBase callback)
         {
-            NDalicPINVOKE.ConnectionTracker_SignalConnected(swigCPtr, SlotObserver.getCPtr(slotObserver), SWIGTYPE_p_Dali__CallbackBase.getCPtr(callback));
+            Interop.ConnectionTracker.SignalConnected(SwigCPtr, SlotObserver.getCPtr(slotObserver), SWIGTYPE_p_Dali__CallbackBase.getCPtr(callback));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public new virtual void SignalDisconnected(SlotObserver slotObserver, SWIGTYPE_p_Dali__CallbackBase callback)
         {
-            NDalicPINVOKE.ConnectionTracker_SignalDisconnected(swigCPtr, SlotObserver.getCPtr(slotObserver), SWIGTYPE_p_Dali__CallbackBase.getCPtr(callback));
+            Interop.ConnectionTracker.SignalDisconnected(SwigCPtr, SlotObserver.getCPtr(slotObserver), SWIGTYPE_p_Dali__CallbackBase.getCPtr(callback));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = NDalicPINVOKE.ConnectionTracker_GetConnectionCount(swigCPtr);
+            uint ret = Interop.ConnectionTracker.GetConnectionCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-
     }
-
 }

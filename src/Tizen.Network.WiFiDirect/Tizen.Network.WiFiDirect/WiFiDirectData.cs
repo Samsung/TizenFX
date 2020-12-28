@@ -18,8 +18,11 @@ using System;
 using System.Runtime.InteropServices;
 using System.Collections.ObjectModel;
 
+using Tizen.Internals;
+
 namespace Tizen.Network.WiFiDirect
 {
+    [NativeStruct("wifi_direct_discovered_peer_info_s", Include="wifi-direct.h", PkgConfig="capi-network-wifi-direct")]
     [StructLayout(LayoutKind.Sequential)]
     internal struct DiscoveredPeerStruct
     {
@@ -56,6 +59,8 @@ namespace Tizen.Network.WiFiDirect
         [MarshalAsAttribute(UnmanagedType.I1)]
         internal bool _isMiracast;
     }
+
+    [NativeStruct("wifi_direct_connected_peer_info_s", Include="wifi-direct.h", PkgConfig="capi-network-wifi-direct")]
     [StructLayout(LayoutKind.Sequential)]
     internal struct ConnectedPeerStruct
     {

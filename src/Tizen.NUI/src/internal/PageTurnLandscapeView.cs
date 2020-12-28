@@ -20,74 +20,43 @@ namespace Tizen.NUI
 
     internal class PageTurnLandscapeView : PageTurnView
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal PageTurnLandscapeView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.PageTurnLandscapeView_SWIGUpcast(cPtr), cMemoryOwn)
+        internal PageTurnLandscapeView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.PageTurnLandScapeView.PageTurnLandscapeViewUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PageTurnLandscapeView obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
-        protected override void Dispose(DisposeTypes type)
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_PageTurnLandscapeView(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
+            Interop.PageTurnLandScapeView.DeletePageTurnLandscapeView(swigCPtr);
         }
 
-        public PageTurnLandscapeView(PageFactory pageFactory, Vector2 pageSize) : this(NDalicPINVOKE.PageTurnLandscapeView_New(PageFactory.getCPtr(pageFactory), Vector2.getCPtr(pageSize)), true)
+        public PageTurnLandscapeView(PageFactory pageFactory, Vector2 pageSize) : this(Interop.PageTurnLandScapeView.PageTurnLandscapeViewNew(PageFactory.getCPtr(pageFactory), Vector2.getCPtr(pageSize)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-        public PageTurnLandscapeView(PageTurnLandscapeView pageTurnLandscapeView) : this(NDalicPINVOKE.new_PageTurnLandscapeView__SWIG_1(PageTurnLandscapeView.getCPtr(pageTurnLandscapeView)), true)
+        public PageTurnLandscapeView(PageTurnLandscapeView pageTurnLandscapeView) : this(Interop.PageTurnLandScapeView.NewPageTurnLandscapeView(PageTurnLandscapeView.getCPtr(pageTurnLandscapeView)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public PageTurnLandscapeView Assign(PageTurnLandscapeView pageTurnLandscapeView)
         {
-            PageTurnLandscapeView ret = new PageTurnLandscapeView(NDalicPINVOKE.PageTurnLandscapeView_Assign(swigCPtr, PageTurnLandscapeView.getCPtr(pageTurnLandscapeView)), false);
+            PageTurnLandscapeView ret = new PageTurnLandscapeView(Interop.PageTurnLandScapeView.PageTurnLandscapeViewAssign(SwigCPtr, PageTurnLandscapeView.getCPtr(pageTurnLandscapeView)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public new static PageTurnLandscapeView DownCast(BaseHandle handle)
         {
-            PageTurnLandscapeView ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as PageTurnLandscapeView;
+            PageTurnLandscapeView ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as PageTurnLandscapeView;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-
     }
-
 }

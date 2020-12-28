@@ -42,23 +42,22 @@ namespace Tizen.Multimedia
         /// This property is meaningful only in overlay or EVAS surface display type.
         /// </remarks>
         /// <value>A <see cref="CameraDisplayMode"/> that specifies the display mode.</value>
-        /// <exception cref="InvalidOperationException">Display type is incorrect.</exception>
+        /// <exception cref="ArgumentException">Display mode type is incorrect.</exception>
         /// <exception cref="ObjectDisposedException" > The camera already has been disposed of.</exception>
         public CameraDisplayMode Mode
         {
             get
             {
-                CameraErrorFactory.ThrowIfError(Native.GetMode(_camera.GetHandle(), out var val),
-                    "Failed to get camera display mode");
+                Native.GetMode(_camera.GetHandle(), out var val).ThrowIfFailed("Failed to get camera display mode");
 
                 return val;
             }
 
             set
             {
-                ValidationUtil.ValidateEnum(typeof(CameraDisplayMode), value);
-                CameraErrorFactory.ThrowIfError(Native.SetMode(_camera.GetHandle(), value),
-                    "Failed to set camera display mode.");
+                ValidationUtil.ValidateEnum(typeof(CameraDisplayMode), value, nameof(value));
+
+                Native.SetMode(_camera.GetHandle(), value).ThrowIfFailed("Failed to set camera display mode.");
             }
         }
 
@@ -70,22 +69,19 @@ namespace Tizen.Multimedia
         /// <remarks>
         /// This property is meaningful only in overlay or EVAS surface display type.
         /// </remarks>
-        /// <exception cref="InvalidOperationException">Display type is incorrect.</exception>
         /// <exception cref="ObjectDisposedException" > The camera already has been disposed of.</exception>
         public bool Visible
         {
             get
             {
-                CameraErrorFactory.ThrowIfError(Native.GetVisible(_camera.GetHandle(), out bool val),
-                    "Failed to get visible value");
+                Native.GetVisible(_camera.GetHandle(), out bool val).ThrowIfFailed("Failed to get visible value");
 
                 return val;
             }
 
             set
             {
-                CameraErrorFactory.ThrowIfError(Native.SetVisible(_camera.GetHandle(), value),
-                    "Failed to set display visible.");
+                Native.SetVisible(_camera.GetHandle(), value).ThrowIfFailed("Failed to set display visible.");
             }
         }
 
@@ -97,24 +93,23 @@ namespace Tizen.Multimedia
         /// This property is meaningful only in overlay or EVAS surface display type.
         /// </remarks>
         /// <value>A <see cref="Rotation"/> that specifies the rotation of the camera device.</value>
-        /// <exception cref="InvalidOperationException">Display type is incorrect.</exception>
+        /// <exception cref="ArgumentException">Display rotation type is incorrect.</exception>
         /// <exception cref="ObjectDisposedException" > The camera already has been disposed of.</exception>
         public Rotation Rotation
         {
             get
             {
-                CameraErrorFactory.ThrowIfError(Native.GetRotation(_camera.GetHandle(), out var val),
-                    "Failed to get display rotation");
+                Native.GetRotation(_camera.GetHandle(), out var val).
+                    ThrowIfFailed("Failed to get display rotation");
 
                 return val;
             }
 
             set
             {
-                ValidationUtil.ValidateEnum(typeof(Rotation), value);
+                ValidationUtil.ValidateEnum(typeof(Rotation), value, nameof(value));
 
-                CameraErrorFactory.ThrowIfError(Native.SetRotation(_camera.GetHandle(), value),
-                    "Failed to set display rotation.");
+                Native.SetRotation(_camera.GetHandle(), value).ThrowIfFailed("Failed to set display rotation.");
             }
         }
 
@@ -126,14 +121,13 @@ namespace Tizen.Multimedia
         /// This property is meaningful only in overlay or EVAS surface display type.
         /// </remarks>
         /// <value>A <see cref="Flips"/> that specifies the camera flip type.</value>
-        /// <exception cref="InvalidOperationException">Display type is incorrect.</exception>
+        /// <exception cref="ArgumentException">Display flip type is incorrect.</exception>
         /// <exception cref="ObjectDisposedException" > The camera already has been disposed of.</exception>
         public Flips Flip
         {
             get
             {
-                CameraErrorFactory.ThrowIfError(Native.GetFlip(_camera.GetHandle(), out var val),
-                    "Failed to get display flip");
+                Native.GetFlip(_camera.GetHandle(), out var val).ThrowIfFailed("Failed to get display flip");
 
                 return val;
             }
@@ -142,8 +136,7 @@ namespace Tizen.Multimedia
             {
                 ValidationUtil.ValidateFlagsEnum(value, Flips.Horizontal | Flips.Vertical, nameof(Flips));
 
-                CameraErrorFactory.ThrowIfError(Native.SetFlip(_camera.GetHandle(), value),
-                    "Failed to set display flip.");
+                Native.SetFlip(_camera.GetHandle(), value).ThrowIfFailed("Failed to set display flip.");
             }
         }
 
@@ -154,22 +147,21 @@ namespace Tizen.Multimedia
         /// <remarks>
         /// This property is meaningful only in overlay or EVAS surface display type.
         /// </remarks>
-        /// <exception cref="InvalidOperationException">Display type is incorrect.</exception>
         /// <exception cref="ObjectDisposedException" > The camera already has been disposed of.</exception>
         public Rectangle RoiArea
         {
             get
             {
-                CameraErrorFactory.ThrowIfError(Native.GetRoiArea(_camera.GetHandle(),
-                    out int x, out int y, out int width, out int height), "Failed to get display roi area");
+                Native.GetRoiArea(_camera.GetHandle(), out int x, out int y, out int width, out int height).
+                    ThrowIfFailed("Failed to get display roi area");
 
                 return new Rectangle(x, y, width, height);
             }
 
             set
             {
-                CameraErrorFactory.ThrowIfError(Native.SetRoiArea(_camera.GetHandle(),
-                    value.X, value.Y, value.Width, value.Height), "Failed to set display roi area.");
+                Native.SetRoiArea(_camera.GetHandle(), value.X, value.Y, value.Width, value.Height).
+                    ThrowIfFailed("Failed to set display roi area.");
             }
         }
     }

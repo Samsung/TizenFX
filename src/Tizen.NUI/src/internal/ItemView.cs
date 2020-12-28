@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2018 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,492 +15,692 @@
  *
  */
 
+using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.InteropServices;
 using Tizen.NUI.BaseComponents;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
-
-    using System;
-    using System.Runtime.InteropServices;
-
-
-    internal class ItemView : Scrollable
+    /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class ItemView : Scrollable
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal ItemView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.ItemView_SWIGUpcast(cPtr), cMemoryOwn)
+        internal ItemView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ItemView.Upcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ItemView obj)
+
+        /// This will be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            Interop.ItemView.DeleteItemView(swigCPtr);
         }
 
-        protected override void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_ItemView(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
-        }
-
-        public Tizen.NUI.PropertyArray Layout
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new Tizen.NUI.PropertyArray Layout
         {
             get
             {
                 Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
-                GetProperty(ItemView.Property.LAYOUT).Get(temp);
+                PropertyValue layout = GetProperty(ItemView.Property.LAYOUT);
+                layout?.Get(temp);
+                layout?.Dispose();
                 return temp;
             }
             set
             {
-                SetProperty(ItemView.Property.LAYOUT, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(ItemView.Property.LAYOUT, setValue);
+                setValue.Dispose();
             }
         }
 
-        /// <since_tizen> 3 </since_tizen>
+        /// <summary>
+        /// Property for ItemView. This is internal use only, so not recommended to use. Need to use ItemView's properties.
+        /// </summary>
+        [Obsolete("Deprecated in API6; Will be removed in API9.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+#pragma warning disable CA1034, CA1052, CA1716 // Identifiers should not match keywords
         public new class Property
+#pragma warning restore CA1034, CA1052, CA1716 // Identifiers should not match keywords
         {
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int LAYOUT = NDalicManualPINVOKE.ItemView_Property_LAYOUT_get();
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int MINIMUM_SWIPE_SPEED = NDalicPINVOKE.ItemView_Property_MINIMUM_SWIPE_SPEED_get();
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int MINIMUM_SWIPE_DISTANCE = NDalicPINVOKE.ItemView_Property_MINIMUM_SWIPE_DISTANCE_get();
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int WHEEL_SCROLL_DISTANCE_STEP = NDalicPINVOKE.ItemView_Property_WHEEL_SCROLL_DISTANCE_STEP_get();
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int SNAP_TO_ITEM_ENABLED = NDalicPINVOKE.ItemView_Property_SNAP_TO_ITEM_ENABLED_get();
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int REFRESH_INTERVAL = NDalicPINVOKE.ItemView_Property_REFRESH_INTERVAL_get();
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int LAYOUT_POSITION = NDalicPINVOKE.ItemView_Property_LAYOUT_POSITION_get();
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int SCROLL_SPEED = NDalicPINVOKE.ItemView_Property_SCROLL_SPEED_get();
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int OVERSHOOT = NDalicPINVOKE.ItemView_Property_OVERSHOOT_get();
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int SCROLL_DIRECTION = NDalicPINVOKE.ItemView_Property_SCROLL_DIRECTION_get();
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int LAYOUT_ORIENTATION = NDalicPINVOKE.ItemView_Property_LAYOUT_ORIENTATION_get();
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int SCROLL_CONTENT_SIZE = NDalicPINVOKE.ItemView_Property_SCROLL_CONTENT_SIZE_get();
+            /// <summary>
+            /// LAYOUT. This is internal use only, so not recommended to use. Need to use ItemView's properties.
+            /// </summary>
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int LAYOUT = Interop.ItemView.LayoutGet();
+
+            /// <summary>
+            /// MINIMUM_SWIPE_SPEED. This is internal use only, so not recommended to use. Need to use ItemView's properties.
+            /// </summary>
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int MinimumSwipeSpeed = Interop.ItemView.MinimumSwipeSpeedGet();
+
+            /// <summary>
+            /// MINIMUM_SWIPE_DISTANCE. This is internal use only, so not recommended to use. Need to use ItemView's properties.
+            /// </summary>
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int MinimumSwipeDistance = Interop.ItemView.MinimumSwipeDistanceGet();
+
+            /// <summary>
+            /// WHEEL_SCROLL_DISTANCE_STEP. This is internal use only, so not recommended to use. Need to use ItemView's properties.
+            /// </summary>
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int WheelScrollDistanceStep = Interop.ItemView.WheelScrollDistanceStepGet();
+
+            /// <summary>
+            /// SNAP_TO_ITEM_ENABLED. This is internal use only, so not recommended to use. Need to use ItemView's properties.
+            /// </summary>
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int SnapToItemEnabled = Interop.ItemView.SnapToItemEnabledGet();
+
+            /// <summary>
+            /// REFRESH_INTERVAL. This is internal use only, so not recommended to use. Need to use ItemView's properties.
+            /// </summary>
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int RefreshInterval = Interop.ItemView.RefreshIntervalGet();
+
+            /// <summary>
+            /// LAYOUT_POSITION. This is internal use only, so not recommended to use. Need to use ItemView's properties.
+            /// </summary>
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int LayoutPosition = Interop.ItemView.LayoutPositionGet();
+
+            /// <summary>
+            /// SCROLL_SPEED. This is internal use only, so not recommended to use. Need to use ItemView's properties.
+            /// </summary>
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int ScrollSpeed = Interop.ItemView.ScrollSpeedGet();
+
+            /// <summary>
+            /// OVERSHOOT. This is internal use only, so not recommended to use. Need to use ItemView's properties.
+            /// </summary>
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int OVERSHOOT = Interop.ItemView.OvershootGet();
+
+            /// <summary>
+            /// SCROLL_DIRECTION. This is internal use only, so not recommended to use. Need to use ItemView's properties.
+            /// </summary>
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int ScrollDirection = Interop.ItemView.ScrollDirectionGet();
+
+            /// <summary>
+            /// LAYOUT_ORIENTATION. This is internal use only, so not recommended to use. Need to use ItemView's properties.
+            /// </summary>
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int LayoutOrientation = Interop.ItemView.LayoutOrientationGet();
+
+            /// <summary>
+            /// SCROLL_CONTENT_SIZE. This is internal use only, so not recommended to use. Need to use ItemView's properties.
+            /// </summary>
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int ScrollContentSize = Interop.ItemView.ScrollContentSizeGet();
         }
 
-        public ItemView(ItemFactory factory) : this(NDalicPINVOKE.ItemView_New(ItemFactory.getCPtr(factory)), true)
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ItemView(ItemFactory factory) : this(Interop.ItemView.New(ItemFactory.getCPtr(factory)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
         }
 
-        internal new static ItemView DownCast(BaseHandle handle)
+        internal static ItemView DownCast(BaseHandle handle)
         {
-            ItemView ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as ItemView;
+            ItemView ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as ItemView;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetLayoutCount()
         {
-            uint ret = NDalicPINVOKE.ItemView_GetLayoutCount(swigCPtr);
+            uint ret = Interop.ItemView.GetLayoutCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddLayout(ItemLayout layout)
         {
-            NDalicPINVOKE.ItemView_AddLayout(swigCPtr, ItemLayout.getCPtr(layout));
+            Interop.ItemView.AddLayout(SwigCPtr, ItemLayout.getCPtr(layout));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void RemoveLayout(uint layoutIndex)
         {
-            NDalicPINVOKE.ItemView_RemoveLayout(swigCPtr, layoutIndex);
+            Interop.ItemView.RemoveLayout(SwigCPtr, layoutIndex);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public SWIGTYPE_p_Dali__IntrusivePtrT_Dali__Toolkit__ItemLayout_t GetLayout(uint layoutIndex)
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new uint GetChildCount()
         {
-            SWIGTYPE_p_Dali__IntrusivePtrT_Dali__Toolkit__ItemLayout_t ret = new SWIGTYPE_p_Dali__IntrusivePtrT_Dali__Toolkit__ItemLayout_t(NDalicPINVOKE.ItemView_GetLayout(swigCPtr, layoutIndex), true);
+            uint ret = Interop.ActorInternal.GetChildCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public SWIGTYPE_p_Dali__IntrusivePtrT_Dali__Toolkit__ItemLayout_t GetActiveLayout()
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new View GetChildAt(uint index)
         {
-            SWIGTYPE_p_Dali__IntrusivePtrT_Dali__Toolkit__ItemLayout_t ret = new SWIGTYPE_p_Dali__IntrusivePtrT_Dali__Toolkit__ItemLayout_t(NDalicPINVOKE.ItemView_GetActiveLayout(swigCPtr), true);
+            View ret = new View(Interop.ActorInternal.GetChildAt(SwigCPtr, index), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        internal SWIGTYPE_p_Dali__IntrusivePtrT_Dali__Toolkit__ItemLayout_t GetLayout(uint layoutIndex)
+        {
+            SWIGTYPE_p_Dali__IntrusivePtrT_Dali__Toolkit__ItemLayout_t ret = new SWIGTYPE_p_Dali__IntrusivePtrT_Dali__Toolkit__ItemLayout_t(Interop.ItemView.GetLayout(SwigCPtr, layoutIndex));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal SWIGTYPE_p_Dali__IntrusivePtrT_Dali__Toolkit__ItemLayout_t GetActiveLayout()
+        {
+            SWIGTYPE_p_Dali__IntrusivePtrT_Dali__Toolkit__ItemLayout_t ret = new SWIGTYPE_p_Dali__IntrusivePtrT_Dali__Toolkit__ItemLayout_t(Interop.ItemView.GetActiveLayout(SwigCPtr));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float GetCurrentLayoutPosition(uint itemId)
         {
-            float ret = NDalicPINVOKE.ItemView_GetCurrentLayoutPosition(swigCPtr, itemId);
+            float ret = Interop.ItemView.GetCurrentLayoutPosition(SwigCPtr, itemId);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void ActivateLayout(uint layoutIndex, Vector3 targetSize, float durationSeconds)
         {
-            NDalicPINVOKE.ItemView_ActivateLayout(swigCPtr, layoutIndex, Vector3.getCPtr(targetSize), durationSeconds);
+            Interop.ItemView.ActivateLayout(SwigCPtr, layoutIndex, Vector3.getCPtr(targetSize), durationSeconds);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void DeactivateCurrentLayout()
         {
-            NDalicPINVOKE.ItemView_DeactivateCurrentLayout(swigCPtr);
+            Interop.ItemView.DeactivateCurrentLayout(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetMinimumSwipeSpeed(float speed)
         {
-            NDalicPINVOKE.ItemView_SetMinimumSwipeSpeed(swigCPtr, speed);
+            Interop.ItemView.SetMinimumSwipeSpeed(SwigCPtr, speed);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float GetMinimumSwipeSpeed()
         {
-            float ret = NDalicPINVOKE.ItemView_GetMinimumSwipeSpeed(swigCPtr);
+            float ret = Interop.ItemView.GetMinimumSwipeSpeed(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetMinimumSwipeDistance(float distance)
         {
-            NDalicPINVOKE.ItemView_SetMinimumSwipeDistance(swigCPtr, distance);
+            Interop.ItemView.SetMinimumSwipeDistance(SwigCPtr, distance);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float GetMinimumSwipeDistance()
         {
-            float ret = NDalicPINVOKE.ItemView_GetMinimumSwipeDistance(swigCPtr);
+            float ret = Interop.ItemView.GetMinimumSwipeDistance(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetWheelScrollDistanceStep(float step)
         {
-            NDalicPINVOKE.ItemView_SetWheelScrollDistanceStep(swigCPtr, step);
+            Interop.ItemView.SetWheelScrollDistanceStep(SwigCPtr, step);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float GetWheelScrollDistanceStep()
         {
-            float ret = NDalicPINVOKE.ItemView_GetWheelScrollDistanceStep(swigCPtr);
+            float ret = Interop.ItemView.GetWheelScrollDistanceStep(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetAnchoring(bool enabled)
         {
-            NDalicPINVOKE.ItemView_SetAnchoring(swigCPtr, enabled);
+            Interop.ItemView.SetAnchoring(SwigCPtr, enabled);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool GetAnchoring()
         {
-            bool ret = NDalicPINVOKE.ItemView_GetAnchoring(swigCPtr);
+            bool ret = Interop.ItemView.GetAnchoring(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetAnchoringDuration(float durationSeconds)
         {
-            NDalicPINVOKE.ItemView_SetAnchoringDuration(swigCPtr, durationSeconds);
+            Interop.ItemView.SetAnchoringDuration(SwigCPtr, durationSeconds);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float GetAnchoringDuration()
         {
-            float ret = NDalicPINVOKE.ItemView_GetAnchoringDuration(swigCPtr);
+            float ret = Interop.ItemView.GetAnchoringDuration(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void ScrollToItem(uint itemId, float durationSeconds)
         {
-            NDalicPINVOKE.ItemView_ScrollToItem(swigCPtr, itemId, durationSeconds);
+            Interop.ItemView.ScrollToItem(SwigCPtr, itemId, durationSeconds);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetRefreshInterval(float intervalLayoutPositions)
         {
-            NDalicPINVOKE.ItemView_SetRefreshInterval(swigCPtr, intervalLayoutPositions);
+            Interop.ItemView.SetRefreshInterval(SwigCPtr, intervalLayoutPositions);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float GetRefreshInterval()
         {
-            float ret = NDalicPINVOKE.ItemView_GetRefreshInterval(swigCPtr);
+            float ret = Interop.ItemView.GetRefreshInterval(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Refresh()
         {
-            NDalicPINVOKE.ItemView_Refresh(swigCPtr);
+            Interop.ItemView.Refresh(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public View GetItem(uint itemId)
         {
-            View ret = new View(NDalicPINVOKE.ItemView_GetItem(swigCPtr, itemId), true);
+            View ret = new View(Interop.ItemView.GetItem(SwigCPtr, itemId), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetItemId(View view)
         {
-            uint ret = NDalicPINVOKE.ItemView_GetItemId(swigCPtr, View.getCPtr(view));
+            uint ret = Interop.ItemView.GetItemId(SwigCPtr, View.getCPtr(view));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void InsertItem(Item newItem, float durationSeconds)
         {
-            NDalicPINVOKE.ItemView_InsertItem(swigCPtr, Item.getCPtr(newItem), durationSeconds);
+            Interop.ItemView.InsertItem(SwigCPtr, Item.getCPtr(newItem), durationSeconds);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public void InsertItems(ItemContainer newItems, float durationSeconds)
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void InsertItems(ItemCollection newItems, float durationSeconds)
         {
-            NDalicPINVOKE.ItemView_InsertItems(swigCPtr, ItemContainer.getCPtr(newItems), durationSeconds);
+            Interop.ItemView.InsertItems(SwigCPtr, ItemCollection.getCPtr(newItems), durationSeconds);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void RemoveItem(uint itemId, float durationSeconds)
         {
-            NDalicPINVOKE.ItemView_RemoveItem(swigCPtr, itemId, durationSeconds);
+            Interop.ItemView.RemoveItem(SwigCPtr, itemId, durationSeconds);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public void RemoveItems(ItemIdContainer itemIds, float durationSeconds)
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemoveItems(ItemIdCollection itemIds, float durationSeconds)
         {
-            NDalicPINVOKE.ItemView_RemoveItems(swigCPtr, ItemIdContainer.getCPtr(itemIds), durationSeconds);
+            Interop.ItemView.RemoveItems(SwigCPtr, ItemIdCollection.getCPtr(itemIds), durationSeconds);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void ReplaceItem(Item replacementItem, float durationSeconds)
         {
-            NDalicPINVOKE.ItemView_ReplaceItem(swigCPtr, Item.getCPtr(replacementItem), durationSeconds);
+            Interop.ItemView.ReplaceItem(SwigCPtr, Item.getCPtr(replacementItem), durationSeconds);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public void ReplaceItems(ItemContainer replacementItems, float durationSeconds)
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void ReplaceItems(ItemCollection replacementItems, float durationSeconds)
         {
-            NDalicPINVOKE.ItemView_ReplaceItems(swigCPtr, ItemContainer.getCPtr(replacementItems), durationSeconds);
+            Interop.ItemView.ReplaceItems(SwigCPtr, ItemCollection.getCPtr(replacementItems), durationSeconds);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetItemsParentOrigin(Vector3 parentOrigin)
         {
-            NDalicPINVOKE.ItemView_SetItemsParentOrigin(swigCPtr, Vector3.getCPtr(parentOrigin));
+            Interop.ItemView.SetItemsParentOrigin(SwigCPtr, Vector3.getCPtr(parentOrigin));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector3 GetItemsParentOrigin()
         {
-            Vector3 ret = new Vector3(NDalicPINVOKE.ItemView_GetItemsParentOrigin(swigCPtr), true);
+            Vector3 ret = new Vector3(Interop.ItemView.GetItemsParentOrigin(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetItemsAnchorPoint(Vector3 anchorPoint)
         {
-            NDalicPINVOKE.ItemView_SetItemsAnchorPoint(swigCPtr, Vector3.getCPtr(anchorPoint));
+            Interop.ItemView.SetItemsAnchorPoint(SwigCPtr, Vector3.getCPtr(anchorPoint));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector3 GetItemsAnchorPoint()
         {
-            Vector3 ret = new Vector3(NDalicPINVOKE.ItemView_GetItemsAnchorPoint(swigCPtr), true);
+            Vector3 ret = new Vector3(Interop.ItemView.GetItemsAnchorPoint(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void GetItemsRange(ItemRange range)
         {
-            NDalicPINVOKE.ItemView_GetItemsRange(swigCPtr, ItemRange.getCPtr(range));
+            Interop.ItemView.GetItemsRange(SwigCPtr, ItemRange.getCPtr(range));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public VoidSignal LayoutActivatedSignal()
+        internal VoidSignal LayoutActivatedSignal()
         {
-            VoidSignal ret = new VoidSignal(NDalicPINVOKE.ItemView_LayoutActivatedSignal(swigCPtr), false);
+            VoidSignal ret = new VoidSignal(Interop.ItemView.LayoutActivatedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float MinimumSwipeSpeed
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(ItemView.Property.MINIMUM_SWIPE_SPEED).Get(out temp);
-                return temp;
+                float returnValue = 0.0f;
+                PropertyValue minimumSwipeSpeed = GetProperty(ItemView.Property.MinimumSwipeSpeed);
+                minimumSwipeSpeed?.Get(out returnValue);
+                minimumSwipeSpeed?.Dispose();
+                return returnValue;
             }
             set
             {
-                SetProperty(ItemView.Property.MINIMUM_SWIPE_SPEED, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(ItemView.Property.MinimumSwipeSpeed, setValue);
+                setValue.Dispose();
             }
         }
+
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float MinimumSwipeDistance
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(ItemView.Property.MINIMUM_SWIPE_DISTANCE).Get(out temp);
-                return temp;
+                float returnValue = 0.0f;
+                PropertyValue minimumSwipDistance = GetProperty(ItemView.Property.MinimumSwipeDistance);
+                minimumSwipDistance?.Get(out returnValue);
+                minimumSwipDistance?.Dispose();
+                return returnValue;
             }
             set
             {
-                SetProperty(ItemView.Property.MINIMUM_SWIPE_DISTANCE, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(ItemView.Property.MinimumSwipeDistance, setValue);
+                setValue.Dispose();
             }
         }
+
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float WheelScrollDistanceStep
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(ItemView.Property.WHEEL_SCROLL_DISTANCE_STEP).Get(out temp);
-                return temp;
+                float returnValue = 0.0f;
+                PropertyValue wheelScrollDistanceStep = GetProperty(ItemView.Property.WheelScrollDistanceStep);
+                wheelScrollDistanceStep?.Get(out returnValue);
+                wheelScrollDistanceStep?.Dispose();
+                return returnValue;
             }
             set
             {
-                SetProperty(ItemView.Property.WHEEL_SCROLL_DISTANCE_STEP, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(ItemView.Property.WheelScrollDistanceStep, setValue);
+                setValue.Dispose();
             }
         }
+
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool SnapToItemEnabled
         {
             get
             {
-                bool temp = false;
-                GetProperty(ItemView.Property.SNAP_TO_ITEM_ENABLED).Get(out temp);
-                return temp;
+                bool returnValue = false;
+                PropertyValue snapToItemEnabled = GetProperty(ItemView.Property.SnapToItemEnabled);
+                snapToItemEnabled?.Get(out returnValue);
+                snapToItemEnabled?.Dispose();
+                return returnValue;
             }
             set
             {
-                SetProperty(ItemView.Property.SNAP_TO_ITEM_ENABLED, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(ItemView.Property.SnapToItemEnabled, setValue);
+                setValue.Dispose();
             }
         }
+
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float RefreshInterval
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(ItemView.Property.REFRESH_INTERVAL).Get(out temp);
-                return temp;
+                float returnValue = 0.0f;
+                PropertyValue refreshIntervalu = GetProperty(ItemView.Property.RefreshInterval);
+                refreshIntervalu?.Get(out returnValue);
+                refreshIntervalu?.Dispose();
+                return returnValue;
             }
             set
             {
-                SetProperty(ItemView.Property.REFRESH_INTERVAL, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(ItemView.Property.RefreshInterval, setValue);
+                setValue.Dispose();
             }
         }
+
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float LayoutPosition
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(ItemView.Property.LAYOUT_POSITION).Get(out temp);
-                return temp;
+                float returnValue = 0.0f;
+                PropertyValue layoutPosition = GetProperty(ItemView.Property.LayoutPosition);
+                layoutPosition?.Get(out returnValue);
+                layoutPosition?.Dispose();
+                return returnValue;
             }
             set
             {
-                SetProperty(ItemView.Property.LAYOUT_POSITION, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(ItemView.Property.LayoutPosition, setValue);
+                setValue.Dispose();
             }
         }
+
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float ScrollSpeed
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(ItemView.Property.SCROLL_SPEED).Get(out temp);
-                return temp;
+                float returnValue = 0.0f;
+                PropertyValue scrollSpeed = GetProperty(ItemView.Property.ScrollSpeed);
+                scrollSpeed?.Get(out returnValue);
+                scrollSpeed?.Dispose();
+                return returnValue;
             }
             set
             {
-                SetProperty(ItemView.Property.SCROLL_SPEED, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(ItemView.Property.ScrollSpeed, setValue);
+                setValue.Dispose();
             }
         }
+
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float Overshoot
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(ItemView.Property.OVERSHOOT).Get(out temp);
-                return temp;
+                float returnValue = 0.0f;
+                PropertyValue overShoot = GetProperty(ItemView.Property.OVERSHOOT);
+                overShoot?.Get(out returnValue);
+                overShoot?.Dispose();
+                return returnValue;
             }
             set
             {
-                SetProperty(ItemView.Property.OVERSHOOT, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(ItemView.Property.OVERSHOOT, setValue);
+                setValue.Dispose();
             }
         }
+
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector2 ScrollDirection
         {
             get
             {
-                Vector2 temp = new Vector2(0.0f, 0.0f);
-                GetProperty(ItemView.Property.SCROLL_DIRECTION).Get(temp);
-                return temp;
+                Vector2 returnValue = new Vector2(0.0f, 0.0f);
+                PropertyValue scrollDirection = GetProperty(ItemView.Property.ScrollDirection);
+                scrollDirection?.Get(returnValue);
+                scrollDirection?.Dispose();
+                return returnValue;
             }
             set
             {
-                SetProperty(ItemView.Property.SCROLL_DIRECTION, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(ItemView.Property.ScrollDirection, setValue);
+                setValue.Dispose();
             }
         }
+
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int LayoutOrientation
         {
             get
             {
-                int temp = 0;
-                GetProperty(ItemView.Property.LAYOUT_ORIENTATION).Get(out temp);
-                return temp;
+                int returnValue = 0;
+                PropertyValue layoutOrientation = GetProperty(ItemView.Property.LayoutOrientation);
+                layoutOrientation?.Get(out returnValue);
+                layoutOrientation?.Dispose();
+                return returnValue;
             }
             set
             {
-                SetProperty(ItemView.Property.LAYOUT_ORIENTATION, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(ItemView.Property.LayoutOrientation, setValue);
+                setValue.Dispose();
             }
         }
+
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float ScrollContentSize
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(ItemView.Property.SCROLL_CONTENT_SIZE).Get(out temp);
-                return temp;
+                float returnValue = 0.0f;
+                PropertyValue scrollContentSize = GetProperty(ItemView.Property.ScrollContentSize);
+                scrollContentSize?.Get(out returnValue);
+                scrollContentSize?.Dispose();
+                return returnValue;
             }
             set
             {
-                SetProperty(ItemView.Property.SCROLL_CONTENT_SIZE, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(ItemView.Property.ScrollContentSize, setValue);
+                setValue.Dispose();
             }
         }
-
     }
-
 }

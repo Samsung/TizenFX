@@ -14,14 +14,16 @@
 # limitations under the License.
 
 uid: Tizen.Content.MediaContent
-summary: *content
-remarks: The media content service does not manage hidden files.
-In addition, if "http://tizen.org/feature/content.scanning.others" feature is not supported,
-other-type files which are not included in the media content types such as image, video, sound or music, are ignored.
+summary: The Tizen.Content.MediaContent namespace provides types used in the entire content service.
+remarks: *content
 ---
-The Tizen.Content.MediaContent namespace provides types used in the entire content service.
 The information about media items (i.e. image, audio, and video) are managed in the content database
 and operations that involve database require an active connection with the media content service.
 During media scanning, the media content service extracts the media information automatically. The media information
 includes basic file information like path, size, modified time, etc. and some metadata like ID3 tag, EXIF,
 thumbnail, etc. (thumbnail extracted only in the internal and the SD card storage.
+
+The media content service does not manage hidden files.
+
+In addition, if "http://tizen.org/feature/content.scanning.others" feature is not supported,
+other-type files which are not included in the media content types such as image, video, sound or music, are ignored.

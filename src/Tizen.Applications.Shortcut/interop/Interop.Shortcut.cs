@@ -97,14 +97,14 @@ internal static partial class Interop
             COMM = -0x01160000 | 0x40
         }
 
-        [DllImport(Libraries.Shortcut, EntryPoint = "shortcut_add_to_home")]
-        internal static extern ErrorCode AddToHome(string name, int type, string uri, string icon, int dubplicate, ResultCallback result, IntPtr data);
+        [DllImport(Libraries.Shortcut, EntryPoint = "shortcut_add_to_home_sync")]
+        internal static extern ErrorCode AddToHome(string name, int type, string uri, string icon, int dubplicate);
 
-        [DllImport(Libraries.Shortcut, EntryPoint = "shortcut_add_to_home_widget")]
-        internal static extern ErrorCode AddToWidget(string name, ShortcutWidgetSize size,  string widgetId, string icon, double period, int dubplicate, ResultCallback result, IntPtr data);
+        [DllImport(Libraries.Shortcut, EntryPoint = "shortcut_add_to_home_widget_sync")]
+        internal static extern ErrorCode AddToWidget(string name, ShortcutWidgetSize size,  string widgetId, string icon, double period, int dubplicate);
 
-        [DllImport(Libraries.Shortcut, EntryPoint = "shortcut_remove_from_home")]
-        internal static extern ErrorCode Delete(string name, ResultCallback result, IntPtr data);
+        [DllImport(Libraries.Shortcut, EntryPoint = "shortcut_remove_from_home_sync")]
+        internal static extern ErrorCode Delete(string name);
 
         [DllImport(Libraries.Shortcut, EntryPoint = "shortcut_get_list")]
         internal static extern ErrorCode GetList(string name, ListCallback list, IntPtr data);

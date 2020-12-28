@@ -21,14 +21,6 @@ namespace Tizen.Multimedia
 {
     internal static class ValidationUtil
     {
-        internal static void ValidateEnum(Type enumType, object value)
-        {
-            if (!Enum.IsDefined(enumType, value))
-            {
-                throw new ArgumentException($"Invalid { enumType.Name } value : { value }");
-            }
-        }
-
         internal static void ValidateEnum(Type enumType, object value, string paramName)
         {
             if (!Enum.IsDefined(enumType, value))

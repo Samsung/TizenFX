@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,97 +20,31 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-
-    internal class CustomAlgorithmInterface : global::System.IDisposable
+    internal class CustomAlgorithmInterface : Disposable
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-        protected bool swigCMemOwn;
 
-        internal CustomAlgorithmInterface(global::System.IntPtr cPtr, bool cMemoryOwn)
+        internal CustomAlgorithmInterface(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-            swigCMemOwn = cMemoryOwn;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(CustomAlgorithmInterface obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
-        //A Flag to check who called Dispose(). (By User or DisposeQueue)
-        private bool isDisposeQueued = false;
-        //A Flat to check if it is already disposed.
-        protected bool disposed = false;
-
-
-        ~CustomAlgorithmInterface()
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (!isDisposeQueued)
-            {
-                isDisposeQueued = true;
-                DisposeQueue.Instance.Add(this);
-            }
-        }
-
-        public void Dispose()
-        {
-            //Throw excpetion if Dispose() is called in separate thread.
-            if (!Window.IsInstalled())
-            {
-                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-            }
-
-            if (isDisposeQueued)
-            {
-                Dispose(DisposeTypes.Implicit);
-            }
-            else
-            {
-                Dispose(DisposeTypes.Explicit);
-                System.GC.SuppressFinalize(this);
-            }
-        }
-
-        protected virtual void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_CustomAlgorithmInterface(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            disposed = true;
+            Interop.CustomAlgorithmInterface.DeleteCustomAlgorithmInterface(swigCPtr);
         }
 
         public virtual View GetNextFocusableView(View current, View proposed, View.FocusDirection direction)
         {
-            View ret = new View(NDalicPINVOKE.CustomAlgorithmInterface_GetNextFocusableActor(swigCPtr, View.getCPtr(current), View.getCPtr(proposed), (int)direction), true);
+            View ret = new View(Interop.CustomAlgorithmInterface.GetNextFocusableActor(SwigCPtr, View.getCPtr(current), View.getCPtr(proposed), (int)direction), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        internal CustomAlgorithmInterface() : this(NDalicPINVOKE.new_CustomAlgorithmInterface(), true)
+        internal CustomAlgorithmInterface() : this(Interop.CustomAlgorithmInterface.NewCustomAlgorithmInterface(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             SwigDirectorConnect();
@@ -120,7 +54,7 @@ namespace Tizen.NUI
         {
             if (SwigDerivedClassHasMethod("GetNextFocusableView", swigMethodTypes0))
                 swigDelegate0 = new SwigDelegateCustomAlgorithmInterface_0(SwigDirectorGetNextFocusableView);
-            NDalicPINVOKE.CustomAlgorithmInterface_director_connect(swigCPtr, swigDelegate0);
+            Interop.CustomAlgorithmInterface.DirectorConnect(SwigCPtr, swigDelegate0);
         }
 
         private bool SwigDerivedClassHasMethod(string methodName, global::System.Type[] methodTypes)
@@ -132,10 +66,23 @@ namespace Tizen.NUI
 
         private global::System.IntPtr SwigDirectorGetNextFocusableView(global::System.IntPtr current, global::System.IntPtr proposed, int direction)
         {
-            View currentView = Registry.GetManagedBaseHandleFromNativePtr(current) as View;
-            View proposedView = Registry.GetManagedBaseHandleFromNativePtr(proposed) as View;
+            if (current == global::System.IntPtr.Zero && proposed == global::System.IntPtr.Zero)
+            {
+                return global::System.IntPtr.Zero;
+            }
 
-            return View.getCPtr(GetNextFocusableView(currentView, proposedView, (View.FocusDirection)direction)).Handle;
+            try
+            {
+                View currentView = Registry.GetManagedBaseHandleFromNativePtr(current) as View;
+                View proposedView = Registry.GetManagedBaseHandleFromNativePtr(proposed) as View;
+
+                return View.getCPtr(GetNextFocusableView(currentView, proposedView, (View.FocusDirection)direction)).Handle;
+            }
+            catch (global::System.Exception ex)
+            {
+                Tizen.Log.Error("NUI", "Registry Error: " + ex);
+            }
+            return global::System.IntPtr.Zero;
         }
 
         internal delegate global::System.IntPtr SwigDelegateCustomAlgorithmInterface_0(global::System.IntPtr current, global::System.IntPtr proposed, int direction);
@@ -144,5 +91,4 @@ namespace Tizen.NUI
 
         private static global::System.Type[] swigMethodTypes0 = new global::System.Type[] { typeof(View), typeof(View), typeof(View.FocusDirection) };
     }
-
 }

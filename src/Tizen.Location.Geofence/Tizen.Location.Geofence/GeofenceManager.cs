@@ -24,15 +24,15 @@ namespace Tizen.Location.Geofence
     /// This API provides functions to set geofence with a geopoint, MAC address of Wi-Fi, and Bluetooth address.
     /// Also, notifications on events like changing in service status are provided.
     /// There are two kinds of places and fences:
-    /// <list>
-    /// <item>Public places and fences are created by the MyPlace application that can be used by all applications.</item>
-    /// <item>Private places and fences are created by the specified application that can be used by the same application.</item>
+    /// <list type="bullet">
+    /// <item><description>Public places and fences are created by the MyPlace application that can be used by all applications.</description></item>
+    /// <item><description>Private places and fences are created by the specified application that can be used by the same application.</description></item>
     /// </list>
     /// Notifications can be received about the following events:
-    /// <list>
-    /// <item>Zone in when a device enters a specific area.</item>
-    /// <item>Zone out when a device exits a specific area.</item>
-    /// <item>Results and errors for each event requested to the geofence module.</item>
+    /// <list type="bullet">
+    /// <item><description>Zone in when a device enters a specific area.</description></item>
+    /// <item><description>Zone out when a device exits a specific area.</description></item>
+    /// <item><description>Results and errors for each event requested to the geofence module.</description></item>
     /// </list>
     /// </summary>
     /// <since_tizen> 3 </since_tizen>

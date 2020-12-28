@@ -20,9 +20,9 @@ namespace Tizen.Location.Geofence
 {
     /// <summary>
     /// The geofence status describes the current state and duration of a geofence.
-    /// <list>
-    /// <item>State: The state is specified by the current state of the fence.</item>
-    /// <item>Duration: Geofence is specified by the duration of the current state.</item>
+    /// <list type="bullet">
+    /// <item><description>State: The state is specified by the current state of the fence.</description></item>
+    /// <item><description>Duration: Geofence is specified by the duration of the current state.</description></item>
     /// </list>
     /// </summary>
     /// <since_tizen> 3 </since_tizen>

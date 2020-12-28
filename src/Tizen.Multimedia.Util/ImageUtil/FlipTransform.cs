@@ -16,8 +16,8 @@
 
 using System;
 using System.Threading.Tasks;
-using static Interop.ImageUtil;
-using static Interop.ImageUtil.Transform;
+using static Interop;
+using NativeTransform = Interop.ImageUtil.Transform;
 
 namespace Tizen.Multimedia.Util
 {
@@ -75,7 +75,7 @@ namespace Tizen.Multimedia.Util
         private async Task<MediaPacket> ApplyAsync(TransformHandle handle, MediaPacket source,
             ImageRotation rotation)
         {
-            SetRotation(handle, rotation);
+            NativeTransform.SetRotation(handle, rotation);
             return await RunAsync(handle, source);
         }
 

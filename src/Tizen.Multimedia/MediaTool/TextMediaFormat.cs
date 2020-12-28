@@ -38,14 +38,9 @@ namespace Tizen.Multimedia
         public TextMediaFormat(MediaFormatTextMimeType mimeType, MediaFormatTextType textType)
             : base(MediaFormatType.Text)
         {
-            if (!Enum.IsDefined(typeof(MediaFormatTextMimeType), mimeType))
-            {
-                throw new ArgumentException($"Invalid mime type value : { (int)mimeType }");
-            }
-            if (!Enum.IsDefined(typeof(MediaFormatTextType), textType))
-            {
-                throw new ArgumentException($"Invalid text type value : { (int)textType }");
-            }
+            ValidationUtil.ValidateEnum(typeof(MediaFormatTextMimeType), mimeType, nameof(mimeType));
+            ValidationUtil.ValidateEnum(typeof(MediaFormatTextType), textType, nameof(textType));
+
             MimeType = mimeType;
             TextType = textType;
         }
@@ -59,48 +54,27 @@ namespace Tizen.Multimedia
         {
             Debug.Assert(handle != IntPtr.Zero, "The handle is invalid!");
 
-            MediaFormatTextMimeType mimeType;
-            MediaFormatTextType textType;
-
-            GetInfo(handle, out mimeType, out textType);
-
-            MimeType = mimeType;
-            TextType = textType;
-        }
-
-        /// <summary>
-        /// Retrieves text properties of the media format from a native handle.
-        /// </summary>
-        /// <param name="handle">A native handle that the properties are retrieved from.</param>
-        /// <param name="mimeType">An out parameter for the mime type.</param>
-        /// <param name="textType">An out parameter for the text type.</param>
-        private static void GetInfo(IntPtr handle, out MediaFormatTextMimeType mimeType,
-            out MediaFormatTextType textType)
-        {
-            int mimeTypeValue = 0;
-            int textTypeValue = 0;
-
-            int ret = Interop.MediaFormat.GetTextInfo(handle, out mimeTypeValue, out textTypeValue);
+            int ret = Interop.MediaFormat.GetTextInfo(handle, out var mimeType, out var textType);
 
             MultimediaDebug.AssertNoError(ret);
-
-            mimeType = (MediaFormatTextMimeType)mimeTypeValue;
-            textType = (MediaFormatTextType)textTypeValue;
 
             Debug.Assert(Enum.IsDefined(typeof(MediaFormatTextMimeType), mimeType),
                 "Invalid text mime type!");
             Debug.Assert(Enum.IsDefined(typeof(MediaFormatTextType), textType),
                 "Invalid text type!");
+
+            MimeType = mimeType;
+            TextType = textType;
         }
 
         internal override void AsNativeHandle(IntPtr handle)
         {
             Debug.Assert(Type == MediaFormatType.Text);
 
-            int ret = Interop.MediaFormat.SetTextMimeType(handle, (int)MimeType);
+            int ret = Interop.MediaFormat.SetTextMimeType(handle, MimeType);
             MultimediaDebug.AssertNoError(ret);
 
-            ret = Interop.MediaFormat.SetTextType(handle, (int)TextType);
+            ret = Interop.MediaFormat.SetTextType(handle, TextType);
             MultimediaDebug.AssertNoError(ret);
         }
 

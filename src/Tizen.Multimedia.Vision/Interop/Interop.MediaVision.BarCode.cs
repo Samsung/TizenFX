@@ -33,7 +33,7 @@ internal static partial class Interop
         /// </summary>
         internal static partial class BarcodeDetector
         {
-            [DllImport(Libraries.MediaVision, EntryPoint = "mv_barcode_detect")]
+            [DllImport(Libraries.MediaVisionBarcodeDetector, EntryPoint = "mv_barcode_detect")]
             internal static extern MediaVisionError Detect(IntPtr source, IntPtr engineCfg, Rectangle roi,
                 DetectedCallback detectCb, IntPtr userData = default(IntPtr));
 
@@ -55,11 +55,11 @@ internal static partial class Interop
         /// </summary>
         internal static partial class BarcodeGenerator
         {
-            [DllImport(Libraries.MediaVision, EntryPoint = "mv_barcode_generate_source")]
+            [DllImport(Libraries.MediaVisionBarcodeGenerator, EntryPoint = "mv_barcode_generate_source")]
             internal static extern MediaVisionError GenerateSource(IntPtr engineCfg, string message,
                 BarcodeType type, int qrEncMode, int qrEcc, int qrVersion, IntPtr source);
 
-            [DllImport(Libraries.MediaVision, EntryPoint = "mv_barcode_generate_image")]
+            [DllImport(Libraries.MediaVisionBarcodeGenerator, EntryPoint = "mv_barcode_generate_image")]
             internal static extern MediaVisionError GenerateImage(IntPtr engineCfg,
                 string message, int imageWidth, int imageHeight, BarcodeType type,
                 int qrEncMode, int qrEcc, int qrVersion, string imagePath, BarcodeImageFormat imageFormat);

@@ -110,6 +110,73 @@ namespace ElmSharp
     }
 
     /// <summary>
+    /// How the object should be rendered to output.
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
+    public enum RenderOp
+    {
+        /// <summary>
+        /// default op: d = d * (1 - sa) + s
+        /// </summary>
+        Blend = 0,
+
+        /// <summary>
+        /// d = d*(1 - sa) + s*da
+        /// </summary>
+        BlendRel = 1,
+
+        /// <summary>
+        /// d = s
+        /// </summary>
+        Copy = 2,
+
+        /// <summary>
+        /// d = s*da
+        /// </summary>
+        CopyRel = 3,
+
+        /// <summary>
+        /// d = d + s
+        /// </summary>
+        Add = 4,
+
+        /// <summary>
+        /// d = d + s*da
+        /// </summary>
+        AddRel = 5,
+
+        /// <summary>
+        /// d = d - s
+        /// </summary>
+        Sub = 6,
+
+        /// <summary>
+        /// d = d - s*da
+        /// </summary>
+        SubRel = 7,
+
+        /// <summary>
+        /// d = d*s + d*(1 - sa) + s*(1 - da)
+        /// </summary>
+        Tint = 8,
+
+        /// <summary>
+        /// d = d*(1 - sa + s)
+        /// </summary>
+        TintRel = 9,
+
+        /// <summary>
+        /// d = d*sa
+        /// </summary>
+        Mask = 10,
+
+        /// <summary>
+        /// d = d*s
+        /// </summary>
+        Mul = 11
+    }
+
+    /// <summary>
     /// The EvasObject is a base class for other widget classes.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
@@ -117,6 +184,7 @@ namespace ElmSharp
     {
         private IntPtr _realHandle = IntPtr.Zero;
         private EvasCanvas _evasCanvas;
+        private string _automationId;
 
         private event EventHandler _backButtonPressed;
 
@@ -124,6 +192,8 @@ namespace ElmSharp
 
         private Interop.Eext.EextEventCallback _backButtonHandler;
         private Interop.Eext.EextEventCallback _moreButtonHandler;
+
+        private static Dictionary<IntPtr, EvasObject> s_handleTable = new Dictionary<IntPtr, EvasObject>();
 
         /// <summary>
         /// Sets or gets the handle for EvasObject.
@@ -159,6 +229,8 @@ namespace ElmSharp
         EvasObjectEvent<EvasKeyEventArgs> _keydown;
         EvasObjectEvent _moved;
         EvasObjectEvent _resized;
+        EvasObjectEvent _shown;
+        EvasObjectEvent _hidden;
         EventHandler _renderPost;
         Interop.Evas.EvasCallback _renderPostCallback = null;
         Interop.Elementary.Elm_Tooltip_Content_Cb _tooltipContentCallback = null;
@@ -298,6 +370,26 @@ namespace ElmSharp
         }
 
         /// <summary>
+        /// Shown will be triggered when the widget is shown.
+        /// </summary>
+        /// <since_tizen> preview </since_tizen>
+        public event EventHandler Shown
+        {
+            add { _shown.On += value; }
+            remove { _shown.On -= value; }
+        }
+        
+        /// <summary>
+        /// Hidden will be triggered when the widget is hidden.
+        /// </summary>
+        /// <since_tizen> preview </since_tizen>
+        public event EventHandler Hidden
+        {
+            add { _hidden.On += value; }
+            remove { _hidden.On -= value; }
+        }
+
+        /// <summary>
         /// RenderPost Event Handler of the current widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
@@ -351,6 +443,24 @@ namespace ElmSharp
         }
 
         /// <summary>
+        /// Sets of gets a value that allow the automation framework to find and interact with this object.
+        /// </summary>
+        /// <since_tizen> preview </since_tizen>
+        public string AutomationId
+        {
+            get
+            {
+                return _automationId;
+            }
+            set
+            {
+                if (_automationId != null)
+                    throw new InvalidOperationException("AutomationId may only be set one time.");
+                _automationId = value;
+            }
+        }
+
+        /// <summary>
         /// Gets the current class's Name.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
@@ -358,7 +468,7 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Eo.eo_class_name_get(Interop.Eo.eo_class_get(RealHandle));
+                return Interop.Eo.efl_class_name_get(Interop.Eo.efl_class_get(RealHandle));
             }
         }
 
@@ -736,6 +846,23 @@ namespace ElmSharp
         }
 
         /// <summary>
+        /// Sets or gets the render operation to be used for rendering the Evas object.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public RenderOp RenderOperation
+        {
+            get
+            {
+                return (RenderOp)Interop.Evas.evas_object_render_op_get(RealHandle);
+            }
+            set
+            {
+                Interop.Evas.evas_object_render_op_set(RealHandle, (Interop.Evas.RenderOp)value);
+            }
+        }
+
+
+        /// <summary>
         /// Clips one object to another.
         /// </summary>
         /// <param name="clip">The object to clip object by.</param>
@@ -884,6 +1011,13 @@ namespace ElmSharp
             return obj.Handle;
         }
 
+	/// <summary>
+        /// Define cast to EvasObject operator from IntPtr
+        /// </summary>
+        /// <param name="handle">Native handle to EvasObject</param>
+        /// <since_tizen> preview </since_tizen>
+        public static explicit operator EvasObject(IntPtr handle) => EvasObject.s_handleTable.TryGetValue(handle, out EvasObject obj) ? obj : null;
+
         /// <summary>
         /// Requests the keyname key events to be directed to the current object.
         /// </summary>
@@ -988,11 +1122,26 @@ namespace ElmSharp
         /// <param name="y">y coordinate of the line.</param>
         /// <param name="w">w coordinate of the line.</param>
         /// <param name="h">h coordinate of the line.</param>
-        /// <returns></returns>
+        /// <returns>True on success, or False on error.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("GetTextBlockGeometryByLineNumber is obsolete as of version 5.0.0.14299 and is no longer supported.")]
         public bool GetTextBlockGeometryByLineNumber(int lineNumber, out int x, out int y, out int w, out int h)
         {
-            return Interop.Evas.evas_object_textblock_line_number_geometry_get(RealHandle, lineNumber, out x, out y, out w, out h);
+            x = -1; y = -1; w = -1; h = -1;
+
+            IntPtr _edjeHandle = Interop.Elementary.elm_layout_edje_get(RealHandle);
+            if (_edjeHandle == IntPtr.Zero)
+            {
+                return false;
+            }
+
+            IntPtr _textblock = Interop.Elementary.edje_object_part_object_get(_edjeHandle, "elm.text");
+            if (_textblock == IntPtr.Zero)
+            {
+                return false;
+            }
+
+            return Interop.Evas.evas_object_textblock_line_number_geometry_get(_textblock, lineNumber, out x, out y, out w, out h);
         }
 
         internal IntPtr GetData(string key)
@@ -1063,6 +1212,8 @@ namespace ElmSharp
                 Handle = CreateHandle(parent);
                 Debug.Assert(Handle != IntPtr.Zero);
 
+                s_handleTable[Handle] = this;
+
                 (parent as Window)?.AddChild(this);
 
                 OnRealized();
@@ -1071,8 +1222,11 @@ namespace ElmSharp
                 _keyup = new EvasObjectEvent<EvasKeyEventArgs>(this, RealHandle, EvasObjectCallbackType.KeyUp, EvasKeyEventArgs.Create);
                 _moved = new EvasObjectEvent(this, EvasObjectCallbackType.Move);
                 _resized = new EvasObjectEvent(this, EvasObjectCallbackType.Resize);
+                _shown = new EvasObjectEvent(this, EvasObjectCallbackType.Show);
+                _hidden = new EvasObjectEvent(this, EvasObjectCallbackType.Hide);
 
                 _deleted.On += (s, e) => MakeInvalidate();
+                _shown.On += (s, e) => Elementary.SendEvasObjectRealized(this);
             }
         }
 
@@ -1099,7 +1253,9 @@ namespace ElmSharp
                 (Parent as Window)?.RemoveChild(this);
 
                 Interop.Evas.evas_object_del(toBeDeleted);
+                Deleted?.Invoke(this, EventArgs.Empty);
                 Parent = null;
+                s_handleTable.Remove(toBeDeleted);
             }
         }
 
@@ -1107,6 +1263,7 @@ namespace ElmSharp
         {
             Deleted?.Invoke(this, EventArgs.Empty);
             OnInvalidate();
+            IntPtr toBeDeleted = Handle;
             Handle = IntPtr.Zero;
 
             MakeInvalidateEvent();
@@ -1114,11 +1271,14 @@ namespace ElmSharp
             (Parent as Window)?.RemoveChild(this);
             Parent = null;
             _deleted = null;
+
+            s_handleTable.Remove(toBeDeleted);
         }
 
         private void DisposeEvent()
         {
-            foreach (var evt in _eventStore)
+            var events = new List<IInvalidatable>(_eventStore);
+            foreach (var evt in events)
             {
                 evt.Dispose();
             }
@@ -1137,6 +1297,11 @@ namespace ElmSharp
         internal void AddToEventLifeTracker(IInvalidatable item)
         {
             _eventStore.Add(item);
+        }
+
+        internal void RemoveFromEventLifeTracker(IInvalidatable item)
+        {
+            _eventStore.Remove(item);
         }
     }
 }

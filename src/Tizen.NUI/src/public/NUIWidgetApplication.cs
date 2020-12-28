@@ -14,114 +14,93 @@
  * limitations under the License.
  *
  */
-
-using System;
-using System.ComponentModel;
 using Tizen.Applications;
 using Tizen.Applications.CoreBackend;
-using Tizen.NUI;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Threading;
+using System;
 
 namespace Tizen.NUI
 {
-
     /// <summary>
     /// Represents an application that have UI screen. The NUIWidgetApplication class has a default stage.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
-    [Obsolete("Please do not use! This will be deprecated!")]
-    [EditorBrowsable(EditorBrowsableState.Never)]
     public class NUIWidgetApplication : CoreApplication
     {
-
         /// <summary>
         /// The default constructor.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        public NUIWidgetApplication() : base(new NUIWidgetCoreBackend())
+        /// <remarks>Widget ID will be replaced as the application ID.</remarks>
+        /// <param name="widgetType">Derived widget class type.</param>
+        public NUIWidgetApplication(System.Type widgetType) : base(new NUIWidgetCoreBackend())
         {
-            Tizen.Log.Fatal("NUI", "### NUIWidgetApplication called");
+            Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
+            NUIWidgetCoreBackend core = Backend as NUIWidgetCoreBackend;
+            core?.RegisterWidgetInfo(new Dictionary<System.Type, string> { { widgetType, ApplicationInfo.ApplicationId } });
         }
 
         /// <summary>
-        /// The constructor with stylesheet.
+        /// The constructor for multi widget class and instance.
         /// </summary>
+        /// <param name="widgetTypes">List of derived widget class type.</param>
+        public NUIWidgetApplication(Dictionary<System.Type, string> widgetTypes) : base(new NUIWidgetCoreBackend())
+        {
+            if (widgetTypes == null)
+            {
+                throw new InvalidOperationException("Dictionary is null");
+            }
+            else
+            {
+                Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
+                NUIWidgetCoreBackend core = Backend as NUIWidgetCoreBackend;
+                core?.RegisterWidgetInfo(widgetTypes);
+            }
+        }
+
+        /// <summary>
+        /// The default constructor with stylesheet.
+        /// </summary>
+        /// <remarks>Widget ID will be replaced as the application ID.</remarks>
+        /// <param name="widgetType">Derived widget class type.</param>
         /// <param name="styleSheet">The styleSheet url.</param>
         /// <since_tizen> 4 </since_tizen>
-        public NUIWidgetApplication(string styleSheet) : base(new NUIWidgetCoreBackend(styleSheet))
+        public NUIWidgetApplication(System.Type widgetType, string styleSheet) : base(new NUIWidgetCoreBackend(styleSheet))
         {
-            Tizen.Log.Fatal("NUI", "### NUIWidgetApplication(string) called");
+            Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
+            NUIWidgetCoreBackend core = Backend as NUIWidgetCoreBackend;
+            core?.RegisterWidgetInfo(new Dictionary<System.Type, string> { { widgetType, ApplicationInfo.ApplicationId } });
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior.
+        /// Add WidgetInfo in runtime
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        protected override void OnLocaleChanged(LocaleChangedEventArgs e)
+        /// <param name="widgetType">Derived widget class type.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void AddWidgetType(System.Type widgetType)
         {
-            Log.Fatal("NUI", "OnLocaleChanged() is called!");
-            base.OnLocaleChanged(e);
+            NUIWidgetCoreBackend core = Backend as NUIWidgetCoreBackend;
+            core?.AddWidgetInfo(new Dictionary<System.Type, string> { { widgetType, ApplicationInfo.ApplicationId } });
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior.
+        /// Add WidgetInfo in runtime
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        protected override void OnLowBattery(LowBatteryEventArgs e)
+        /// <param name="widgetTypes">Derived widget class type.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void AddWidgetType(Dictionary<System.Type, string> widgetTypes)
         {
-            Log.Fatal("NUI", "OnLowBattery() is called!");
-            base.OnLowBattery(e);
+            NUIWidgetCoreBackend core = Backend as NUIWidgetCoreBackend;
+            core?.AddWidgetInfo(widgetTypes);
         }
 
-        /// <summary>
-        /// Overrides this method if want to handle behavior.
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        protected override void OnLowMemory(LowMemoryEventArgs e)
+        internal WidgetApplication ApplicationHandle
         {
-            Log.Fatal("NUI", "OnLowMemory() is called!");
-            base.OnLowMemory(e);
-        }
-
-        /// <summary>
-        /// Overrides this method if want to handle behavior.
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        protected override void OnRegionFormatChanged(RegionFormatChangedEventArgs e)
-        {
-            Log.Fatal("NUI", "OnRegionFormatChanged() is called!");
-            base.OnRegionFormatChanged(e);
-        }
-
-        /// <summary>
-        /// Overrides this method if want to handle behavior.
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        protected override void OnTerminate()
-        {
-            Log.Fatal("NUI", "OnTerminate() is called!");
-            base.OnTerminate();
-        }
-
-        /// <summary>
-        /// Overrides this method if want to handle behavior.
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        protected virtual void OnPreCreate()
-        {
-            Log.Fatal("NUI", "OnPreCreate() is called!");
-        }
-
-        /// <summary>
-        /// Overrides this method if want to handle behavior.
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        protected override void OnCreate()
-        {
-            // This is also required to create DisposeQueue on main thread.
-            DisposeQueue disposeQ = DisposeQueue.Instance;
-            disposeQ.Initialize();
-            Log.Fatal("NUI","OnCreate() is called!");
-            base.OnCreate();
+            get
+            {
+                return ((NUIWidgetCoreBackend)this.Backend).WidgetApplicationHandle;
+            }
         }
 
         /// <summary>
@@ -145,12 +124,76 @@ namespace Tizen.NUI
             base.Exit();
         }
 
-        internal WidgetApplication ApplicationHandle
+        /// <summary>
+        /// Overrides this method if want to handle OnLocaleChanged behavior.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        protected override void OnLocaleChanged(LocaleChangedEventArgs e)
         {
-            get
-            {
-                return ((NUIWidgetCoreBackend)this.Backend).WidgetApplicationHandle;
-            }
+            Log.Fatal("NUI", "OnLocaleChanged() is called!");
+            base.OnLocaleChanged(e);
+        }
+
+        /// <summary>
+        /// Overrides this method if want to handle OnLowBattery behavior.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        protected override void OnLowBattery(LowBatteryEventArgs e)
+        {
+            Log.Fatal("NUI", "OnLowBattery() is called!");
+            base.OnLowBattery(e);
+        }
+
+        /// <summary>
+        /// Overrides this method if want to handle OnLowMemory behavior.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        protected override void OnLowMemory(LowMemoryEventArgs e)
+        {
+            Log.Fatal("NUI", "OnLowMemory() is called!");
+            base.OnLowMemory(e);
+        }
+
+        /// <summary>
+        /// Overrides this method if want to handle OnRegionFormatChanged behavior.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        protected override void OnRegionFormatChanged(RegionFormatChangedEventArgs e)
+        {
+            Log.Fatal("NUI", "OnRegionFormatChanged() is called!");
+            base.OnRegionFormatChanged(e);
+        }
+
+        /// <summary>
+        /// Overrides this method if want to handle OnTerminate behavior.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        protected override void OnTerminate()
+        {
+            Log.Fatal("NUI", "OnTerminate() is called!");
+            base.OnTerminate();
+        }
+
+        /// <summary>
+        /// Overrides this method if want to handle OnPreCreate behavior.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        protected virtual void OnPreCreate()
+        {
+            Log.Fatal("NUI", "OnPreCreate() is called!");
+        }
+
+        /// <summary>
+        /// Overrides this method if want to handle OnCreate behavior.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        protected override void OnCreate()
+        {
+            // This is also required to create DisposeQueue on main thread.
+            DisposeQueue disposeQ = DisposeQueue.Instance;
+            disposeQ.Initialize();
+            Log.Fatal("NUI", "OnCreate() is called!");
+            base.OnCreate();
         }
     }
 }

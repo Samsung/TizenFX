@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -23,63 +24,14 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class Sampler : BaseHandle
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-        internal Sampler(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Sampler_SWIGUpcast(cPtr), cMemoryOwn)
-        {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-        }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Sampler obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_Sampler(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
-        }
 
         /// <summary>
         /// Create an instance of Sampler.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public Sampler() : this(NDalicPINVOKE.Sampler_New(), true)
+        public Sampler() : this(Interop.Sampler.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
         }
 
         /// <summary>
@@ -90,7 +42,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetFilterMode(FilterModeType minFilter, FilterModeType magFilter)
         {
-            NDalicPINVOKE.Sampler_SetFilterMode(swigCPtr, (int)minFilter, (int)magFilter);
+            Interop.Sampler.SetFilterMode(SwigCPtr, (int)minFilter, (int)magFilter);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -102,7 +54,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetWrapMode(WrapModeType uWrap, WrapModeType vWrap)
         {
-            NDalicPINVOKE.Sampler_SetWrapMode__SWIG_0(swigCPtr, (int)uWrap, (int)vWrap);
+            Interop.Sampler.SetWrapMode(SwigCPtr, (int)uWrap, (int)vWrap);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -115,10 +67,24 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetWrapMode(WrapModeType rWrap, WrapModeType sWrap, WrapModeType tWrap)
         {
-            NDalicPINVOKE.Sampler_SetWrapMode__SWIG_1(swigCPtr, (int)rWrap, (int)sWrap, (int)tWrap);
+            Interop.Sampler.SetWrapMode(SwigCPtr, (int)rWrap, (int)sWrap, (int)tWrap);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-    }
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Sampler obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
+        }
 
+        internal Sampler(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Sampler.Upcast(cPtr), cMemoryOwn)
+        {
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.Sampler.DeleteSampler(swigCPtr);
+        }
+    }
 }

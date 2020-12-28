@@ -39,10 +39,7 @@ namespace Tizen.Multimedia
         /// Gets the type of the current format.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public MediaFormatType Type
-        {
-            get;
-        }
+        public MediaFormatType Type { get; }
 
         /// <summary>
         /// Creates a media format from a native handle.
@@ -53,17 +50,16 @@ namespace Tizen.Multimedia
         {
             if (handle == IntPtr.Zero)
             {
-                throw new ArgumentException("The handle value is invalid.");
+                throw new ArgumentException("The handle value is invalid.", nameof(handle));
             }
 
-            int type = 0;
-            int ret = Interop.MediaFormat.GetType(handle, out type);
+            int ret = Interop.MediaFormat.GetType(handle, out var type);
 
             if (ret != (int)ErrorCode.InvalidOperation)
             {
                 MultimediaDebug.AssertNoError(ret);
 
-                switch ((MediaFormatType)type)
+                switch (type)
                 {
                     case MediaFormatType.Container:
                         return new ContainerMediaFormat(handle);
@@ -89,8 +85,7 @@ namespace Tizen.Multimedia
         /// <remarks>The returned handle must be destroyed using <see cref="Interop.MediaFormat.Unref(IntPtr)"/>.</remarks>
         internal IntPtr AsNativeHandle()
         {
-            IntPtr handle;
-            int ret = Interop.MediaFormat.Create(out handle);
+            int ret = Interop.MediaFormat.Create(out var handle);
 
             MultimediaDebug.AssertNoError(ret);
 

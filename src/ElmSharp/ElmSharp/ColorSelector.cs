@@ -128,7 +128,6 @@ namespace ElmSharp
             {
                 return Color.Default.A;
             }
-
             set
             {
                 Console.WriteLine("ColorSelector instance doesn't support to set Opacity.");
@@ -178,7 +177,7 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public ColorSelectorItem AddPaletteColor(Color color)
         {
-            ColorSelectorItem item = new ColorSelectorItem();
+            ColorSelectorItem item = new ColorSelectorItem(this);
             item.Handle = Interop.Elementary.elm_colorselector_palette_color_add(Handle, color.R, color.G, color.B, color.A);
             return item;
         }

@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -24,63 +25,30 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class ScrollViewEffect : BaseHandle
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-        internal ScrollViewEffect(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.ScrollViewEffect_SWIGUpcast(cPtr), cMemoryOwn)
-        {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-        }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ScrollViewEffect obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_ScrollViewEffect(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
-        }
 
         /// <summary>
         /// The constructor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public ScrollViewEffect() : this(NDalicPINVOKE.new_ScrollViewEffect(), true)
+        public ScrollViewEffect() : this(Interop.ScrollView.NewScrollViewEffect(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-    }
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ScrollViewEffect obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
+        }
 
+        internal ScrollViewEffect(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ScrollView.ScrollViewEffectUpcast(cPtr), cMemoryOwn)
+        {
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.ScrollView.DeleteScrollViewEffect(swigCPtr);
+        }
+    }
 }

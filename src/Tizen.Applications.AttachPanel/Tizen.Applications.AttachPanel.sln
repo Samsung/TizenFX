@@ -6,6 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Applications.AttachPanel", "Tizen.Applications.AttachPanel.csproj", "{C8C93D46-CACE-4BF1-8B50-6A6A00967045}"
 	ProjectSection(ProjectDependencies) = postProject
 		{AF2CEEB1-B3B2-4E2D-8854-A54871CD0D1C} = {AF2CEEB1-B3B2-4E2D-8854-A54871CD0D1C}
+		{0FF56FE4-CBFA-4E8E-B0A2-0FEDB856498D} = {0FF56FE4-CBFA-4E8E-B0A2-0FEDB856498D}
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Applications.Common", "..\Tizen.Applications.Common\Tizen.Applications.Common.csproj", "{D2B5F854-4FE1-473C-A8E3-53ABB0A966AA}"
@@ -15,6 +16,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Log", "..\Tizen.Log\Tizen.Log.csproj", "{AFF3D5BA-42DA-40CE-BC57-0DC1E92673B9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElmSharp", "..\ElmSharp\ElmSharp.csproj", "{AF2CEEB1-B3B2-4E2D-8854-A54871CD0D1C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.System.Information", "..\Tizen.System.Information\Tizen.System.Information.csproj", "{0FF56FE4-CBFA-4E8E-B0A2-0FEDB856498D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,6 +45,10 @@ Global
 		{AF2CEEB1-B3B2-4E2D-8854-A54871CD0D1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF2CEEB1-B3B2-4E2D-8854-A54871CD0D1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF2CEEB1-B3B2-4E2D-8854-A54871CD0D1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FF56FE4-CBFA-4E8E-B0A2-0FEDB856498D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FF56FE4-CBFA-4E8E-B0A2-0FEDB856498D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FF56FE4-CBFA-4E8E-B0A2-0FEDB856498D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FF56FE4-CBFA-4E8E-B0A2-0FEDB856498D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -431,7 +431,7 @@ namespace ElmSharp
         public bool Load(string file)
         {
             if (file == null)
-                throw new ArgumentNullException("file");
+                throw new ArgumentNullException(nameof(file));
 
             Interop.Elementary.elm_image_async_open_set(RealHandle, false);
             Interop.Elementary.elm_image_preload_disabled_set(RealHandle, true);
@@ -447,7 +447,7 @@ namespace ElmSharp
         public bool Load(Uri uri)
         {
             if (uri == null)
-                throw new ArgumentNullException("uri");
+                throw new ArgumentNullException(nameof(uri));
 
             return Load(uri.IsFile ? uri.LocalPath : uri.AbsoluteUri);
         }
@@ -468,7 +468,7 @@ namespace ElmSharp
         public unsafe bool Load(byte* img, long size)
         {
             if (img == null)
-                throw new ArgumentNullException("img");
+                throw new ArgumentNullException(nameof(img));
 
             Interop.Elementary.elm_image_async_open_set(RealHandle, false);
             Interop.Elementary.elm_image_preload_disabled_set(RealHandle, true);
@@ -484,7 +484,7 @@ namespace ElmSharp
         public bool Load(Stream stream)
         {
             if (stream == null)
-                throw new ArgumentNullException("stream");
+                throw new ArgumentNullException(nameof(stream));
 
             Interop.Elementary.elm_image_async_open_set(RealHandle, false);
             Interop.Elementary.elm_image_preload_disabled_set(RealHandle, true);
@@ -507,10 +507,10 @@ namespace ElmSharp
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>(true = success, false = error)</returns>
         /// <since_tizen> preview </since_tizen>
-        public Task<bool> LoadAsync(string file, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<bool> LoadAsync(string file, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (file == null)
-                throw new ArgumentNullException("file");
+                throw new ArgumentNullException(nameof(file));
 
             Interop.Elementary.elm_image_async_open_set(RealHandle, true);
             Interop.Elementary.elm_image_preload_disabled_set(RealHandle, false);
@@ -528,7 +528,6 @@ namespace ElmSharp
             SmartEvent loadReady = new SmartEvent(this, RealHandle, "load,ready");
             loadReady.On += (s, e) =>
             {
-                loadReady.Dispose();
                 LoadingCompleted?.Invoke(this, EventArgs.Empty);
                 if (tcs != null && !tcs.Task.IsCompleted)
                 {
@@ -539,7 +538,6 @@ namespace ElmSharp
             SmartEvent loadError = new SmartEvent(this, RealHandle, "load,error");
             loadError.On += (s, e) =>
             {
-                loadError.Dispose();
                 LoadingFailed?.Invoke(this, EventArgs.Empty);
                 if (tcs != null && !tcs.Task.IsCompleted)
                 {
@@ -547,13 +545,17 @@ namespace ElmSharp
                 }
             };
 
-            bool ret = Interop.Elementary.elm_image_file_set(RealHandle, file, null);
-            if (!ret)
+            using (loadReady)
+            using (loadError)
             {
-                throw new InvalidOperationException("Failed to set file to Image");
+                bool ret = Interop.Elementary.elm_image_file_set(RealHandle, file, null);
+                if (!ret)
+                {
+                    throw new InvalidOperationException("Failed to set file to Image");
+                }
+                // it should be return on main thread, because SmartEvent should be disposed on main thread
+                return await tcs.Task.ConfigureAwait(true); 
             }
-
-            return tcs.Task;
         }
 
         /// <summary>
@@ -566,7 +568,7 @@ namespace ElmSharp
         public Task<bool> LoadAsync(Uri uri, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (uri == null)
-                throw new ArgumentNullException("uri");
+                throw new ArgumentNullException(nameof(uri));
 
             return LoadAsync(uri.IsFile ? uri.LocalPath : uri.AbsoluteUri, cancellationToken);
         }
@@ -581,7 +583,7 @@ namespace ElmSharp
         public async Task<bool> LoadAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (stream == null)
-                throw new ArgumentNullException("stream");
+                throw new ArgumentNullException(nameof(stream));
 
             Interop.Elementary.elm_image_async_open_set(RealHandle, true);
             Interop.Elementary.elm_image_preload_disabled_set(RealHandle, false);
@@ -599,7 +601,6 @@ namespace ElmSharp
             SmartEvent loadReady = new SmartEvent(this, RealHandle, "load,ready");
             loadReady.On += (s, e) =>
             {
-                loadReady.Dispose();
                 LoadingCompleted?.Invoke(this, EventArgs.Empty);
                 if (tcs != null && !tcs.Task.IsCompleted)
                 {
@@ -610,7 +611,6 @@ namespace ElmSharp
             SmartEvent loadError = new SmartEvent(this, RealHandle, "load,error");
             loadError.On += (s, e) =>
             {
-                loadError.Dispose();
                 LoadingFailed?.Invoke(this, EventArgs.Empty);
                 if (tcs != null && !tcs.Task.IsCompleted)
                 {
@@ -618,25 +618,27 @@ namespace ElmSharp
                 }
             };
 
-            MemoryStream memstream = new MemoryStream();
-            await stream.CopyToAsync(memstream);
-
-            unsafe
+            using (MemoryStream memstream = new MemoryStream())
+            using (loadReady)
+            using (loadError)
             {
-                byte[] dataArr = memstream.ToArray();
-                fixed (byte* data = &dataArr[0])
+                await stream.CopyToAsync(memstream).ConfigureAwait(true);
+
+                unsafe
                 {
-                    bool ret = Interop.Elementary.elm_image_memfile_set(RealHandle, data, dataArr.Length, IntPtr.Zero, IntPtr.Zero);
-                    if (!ret)
+                    byte[] dataArr = memstream.ToArray();
+                    fixed (byte* data = &dataArr[0])
                     {
-                        return false;
+                        bool ret = Interop.Elementary.elm_image_memfile_set(RealHandle, data, dataArr.Length, IntPtr.Zero, IntPtr.Zero);
+                        if (!ret)
+                        {
+                            return false;
+                        }
                     }
                 }
+                // it should be return on main thread, because SmartEvent should be disposed on main thread
+                return await tcs.Task.ConfigureAwait(true);
             }
-
-            memstream.Dispose();
-
-            return await tcs.Task;
         }
 
         /// <summary>
@@ -673,7 +675,7 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
-            IntPtr handle = Interop.Elementary.elm_layout_add(parent);
+            IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);
             Interop.Elementary.elm_layout_theme_set(handle, "layout", "background", "default");
 
             RealHandle = Interop.Elementary.elm_image_add(handle);

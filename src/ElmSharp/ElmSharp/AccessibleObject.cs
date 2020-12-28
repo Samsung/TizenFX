@@ -199,7 +199,7 @@ namespace ElmSharp.Accessible
         /// </summary>
         /// <param name="parent">Parent EvasObject class.</param>
         /// <since_tizen> preview </since_tizen>
-        public AccessibleObject(EvasObject parent) : base(parent)
+        protected AccessibleObject(EvasObject parent) : base(parent)
         {
         }
 
@@ -207,7 +207,7 @@ namespace ElmSharp.Accessible
         /// Creates and initializes a new instance of the AccessibleObject class.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
-        public AccessibleObject() : base()
+        protected AccessibleObject()
         {
         }
 

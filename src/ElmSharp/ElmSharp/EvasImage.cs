@@ -296,6 +296,21 @@ namespace ElmSharp
         }
 
         /// <summary>
+        /// Save the given image object's contents to an (image) file.
+        ///
+        /// The extension suffix on file will determine which saver module Evas is to use when saving, thus the final file's format. If the file supports multiple data stored in it (Eet ones), you can specify the key to be used as the index of the image in it.
+        ///
+        /// You can specify some flags when saving the image.Currently acceptable flags are quality and compress.Eg.: "quality=100 compress=9" 
+        /// </summary>
+        /// <param name="file">The filename to be used to save the image (extension obligatory).</param>
+        /// <param name="key">The image key in the file (if an Eet one), or null, otherwise.</param>
+        /// <param name="flags">String containing the flags to be used (null for none).</param>
+        public void Save(string file, string key, string flags)
+        {
+            Interop.Evas.evas_object_image_save(RealHandle, file, key, flags);
+        }
+
+        /// <summary>
         /// Sets the content at a part of a given container widget.
         /// </summary>
         /// <param name="parent">The parent is a given container, which will be attached by the image as a child. It's <see cref="EvasObject"/> type.</param>

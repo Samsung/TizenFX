@@ -18,7 +18,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Text;
 using Tizen.Applications;
-using Tizen;
+using Tizen.Internals;
 using Tizen.Applications.DataControl;
 
 internal static partial class Interop
@@ -164,6 +164,7 @@ internal static partial class Interop
         internal delegate void MapBulkAddResponseCallback(int requestID,
             IntPtr provider, IntPtr bulkResults, bool providerResult, string error, IntPtr userData);
 
+        [NativeStruct("data_control_map_response_cb", Include="data_control.h", PkgConfig="data-control")]
         [StructLayoutAttribute(LayoutKind.Sequential)]
         internal struct MapResponseCallbacks
         {
@@ -184,6 +185,7 @@ internal static partial class Interop
         internal delegate void SqlBulkInsertResponseCallback(int requestID,
             IntPtr provider, IntPtr bulk_results, bool providerResult, string error, IntPtr userData);
 
+        [NativeStruct("data_control_sql_response_cb", Include="data_control.h", PkgConfig="data-control")]
         [StructLayoutAttribute(LayoutKind.Sequential)]
         internal struct SqlResponseCallbacks
         {
@@ -230,6 +232,7 @@ internal static partial class Interop
         internal delegate void MapBulkAddRequestCallback(int requestID,
             IntPtr provider, IntPtr bulkData, IntPtr userData);
 
+        [NativeStruct("data_control_provider_map_cb", Include="data_control.h", PkgConfig="data-control")]
         [StructLayoutAttribute(LayoutKind.Sequential)]
         internal struct MapRequestCallbacks
         {
@@ -252,6 +255,7 @@ internal static partial class Interop
         internal delegate void SqlBulkInsertRequestCallback(int requestID,
             IntPtr provider, IntPtr bulk_data, IntPtr userData);
 
+        [NativeStruct("data_control_provider_sql_cb", Include="data_control.h", PkgConfig="data-control")]
         [StructLayoutAttribute(LayoutKind.Sequential)]
         internal struct SqlRequestCallbacks
         {
@@ -300,6 +304,9 @@ internal static partial class Interop
         [DllImport(Libraries.DataControl, EntryPoint = "data_control_provider_send_error")]
         internal static extern ResultType SendError(int requestID, string error);
 
+        [DllImport(Libraries.DataControl, EntryPoint = "data_control_provider_get_client_appid")]
+        internal static extern ResultType GetClientAppId(int requestID, out string clientAppId);
+
         [DllImport(Libraries.DataControl, EntryPoint = "data_control_sql_insert")]
         internal static extern ResultType Insert(SafeDataControlHandle provider, SafeBundleHandle insertData, out int requestId);
 
@@ -346,8 +353,8 @@ internal static partial class Interop
         [DllImport(Libraries.DataControl, EntryPoint = "datacontrol_provider_write_socket")]
         internal static extern unsafe ResultType WriteSelectResult(int socketFd, byte* buffer, uint nbytes, out uint bytesWrite);
 
-        [DllImport(Libraries.DataControl, EntryPoint = "data_control_provider_send_data_change_noti")]
-        internal static extern ResultType SendDataChange(IntPtr handle, ChangeType type, SafeBundleHandle data);
+        [DllImport(Libraries.DataControl, EntryPoint = "data_control_provider_send_data_change_noti_by_data_id")]
+        internal static extern ResultType SendDataChange(string dataId, ChangeType type, SafeBundleHandle data);
 
         [DllImport(Libraries.DataControl, EntryPoint = "data_control_sql_step_next")]
         internal static extern ResultType Next(SafeCursorHandle cursor);

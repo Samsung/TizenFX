@@ -48,7 +48,30 @@ namespace ElmSharp
     /// <since_tizen> preview </since_tizen>
     public static class Elementary
     {
-        private static readonly string _themeFilePath = "/usr/share/elm-sharp/elm-sharp-theme.edj";
+        private const string _themeFilePath = "/usr/share/elm-sharp/elm-sharp-theme.edj";
+        private const string _tvThemeFilePath = "/usr/share/elm-sharp/vd-elm-sharp-theme.edj";
+
+        /// <summary>
+        /// EvasObjectRealized will be triggered when the EvasObject is realized.
+        /// </summary>
+        /// <since_tizen> preview </since_tizen>
+        public static event EventHandler EvasObjectRealized;
+
+        /// <summary>
+        /// ItemObjectRealized will be triggered when the ItemObject is realized.
+        /// </summary>
+        /// <since_tizen> preview </since_tizen>
+        public static event EventHandler ItemObjectRealized;
+
+        internal static void SendEvasObjectRealized(EvasObject obj)
+        {
+            EvasObjectRealized?.Invoke(obj, EventArgs.Empty);
+        }
+
+        internal static void SendItemObjectRealized(ItemObject obj)
+        {
+            ItemObjectRealized?.Invoke(obj, EventArgs.Empty);
+        }
 
         /// <summary>
         /// Gets or sets the configured finger size.
@@ -185,7 +208,8 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public static void Initialize()
         {
-            Interop.Elementary.elm_init(0, null);
+            if (!Window.IsPreloaded)
+                Interop.Elementary.elm_init(0, null);
         }
 
         /// <summary>
@@ -213,9 +237,13 @@ namespace ElmSharp
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void ThemeOverlay()
         {
-            if (File.Exists(_themeFilePath))
+            if (!Window.IsPreloaded)
             {
-                AddThemeOverlay(_themeFilePath);
+                if (File.Exists(_themeFilePath))
+                    AddThemeOverlay(_themeFilePath);
+
+                if (Elementary.GetProfile() == "tv" && File.Exists(_tvThemeFilePath))
+                    AddThemeOverlay(_tvThemeFilePath);
             }
         }
 

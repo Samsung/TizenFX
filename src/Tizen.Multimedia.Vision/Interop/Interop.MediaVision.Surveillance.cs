@@ -33,48 +33,48 @@ internal static partial class Interop
         /// </summary>
         internal static partial class Surveillance
         {
-            [DllImport(Libraries.MediaVision, EntryPoint = "mv_surveillance_event_trigger_create")]
+            [DllImport(Libraries.MediaVisionSurveillance, EntryPoint = "mv_surveillance_event_trigger_create")]
             internal static extern MediaVisionError EventTriggerCreate(string eventType, out IntPtr trigger);
 
-            [DllImport(Libraries.MediaVision, EntryPoint = "mv_surveillance_event_trigger_destroy")]
+            [DllImport(Libraries.MediaVisionSurveillance, EntryPoint = "mv_surveillance_event_trigger_destroy")]
             internal static extern int EventTriggerDestroy(IntPtr trigger);
 
-            [DllImport(Libraries.MediaVision, EntryPoint = "mv_surveillance_get_event_trigger_type")]
+            [DllImport(Libraries.MediaVisionSurveillance, EntryPoint = "mv_surveillance_get_event_trigger_type")]
             internal static extern int GetEventTriggerType(IntPtr trigger, out string eventType);
 
-            [DllImport(Libraries.MediaVision, EntryPoint = "mv_surveillance_set_event_trigger_roi")]
+            [DllImport(Libraries.MediaVisionSurveillance, EntryPoint = "mv_surveillance_set_event_trigger_roi")]
             internal static extern MediaVisionError SetEventTriggerRoi(IntPtr trigger, int numberOfPoints, Point[] roi);
 
-            [DllImport(Libraries.MediaVision, EntryPoint = "mv_surveillance_get_event_trigger_roi")]
+            [DllImport(Libraries.MediaVisionSurveillance, EntryPoint = "mv_surveillance_get_event_trigger_roi")]
             internal static extern MediaVisionError GetEventTriggerRoi(IntPtr trigger, out int numberOfPoints, out IntPtr roi);
 
-            [DllImport(Libraries.MediaVision, EntryPoint = "mv_surveillance_subscribe_event_trigger")]
+            [DllImport(Libraries.MediaVisionSurveillance, EntryPoint = "mv_surveillance_subscribe_event_trigger")]
             internal static extern MediaVisionError SubscribeEventTrigger(IntPtr trigger, int videoStreamId,
                 IntPtr engineCfg, EventOccurredCallback callback, IntPtr userData = default(IntPtr));
 
-            [DllImport(Libraries.MediaVision, EntryPoint = "mv_surveillance_unsubscribe_event_trigger")]
+            [DllImport(Libraries.MediaVisionSurveillance, EntryPoint = "mv_surveillance_unsubscribe_event_trigger")]
             internal static extern MediaVisionError UnsubscribeEventTrigger(IntPtr trigger, int videoStreamId);
 
-            [DllImport(Libraries.MediaVision, EntryPoint = "mv_surveillance_push_source")]
+            [DllImport(Libraries.MediaVisionSurveillance, EntryPoint = "mv_surveillance_push_source")]
             internal static extern MediaVisionError PushSource(IntPtr source, int videoStreamId);
 
-            [DllImport(Libraries.MediaVision, EntryPoint = "mv_surveillance_foreach_supported_event_type")]
+            [DllImport(Libraries.MediaVisionSurveillance, EntryPoint = "mv_surveillance_foreach_supported_event_type")]
             internal static extern int ForeachSupportedEventType(EventTypeCallback callback, IntPtr userData);
 
-            [DllImport(Libraries.MediaVision, EntryPoint = "mv_surveillance_foreach_event_result_name")]
+            [DllImport(Libraries.MediaVisionSurveillance, EntryPoint = "mv_surveillance_foreach_event_result_name")]
             internal static extern int ForeachEventResultName(string eventType, EventResultNameCallback callback,
                 IntPtr userData);
 
-            [DllImport(Libraries.MediaVision, EntryPoint = "mv_surveillance_get_result_value")]
+            [DllImport(Libraries.MediaVisionSurveillance, EntryPoint = "mv_surveillance_get_result_value")]
             internal static extern MediaVisionError GetResultValue(IntPtr result, string name, out int value);
 
-            [DllImport(Libraries.MediaVision, EntryPoint = "mv_surveillance_get_result_value")]
+            [DllImport(Libraries.MediaVisionSurveillance, EntryPoint = "mv_surveillance_get_result_value")]
             internal static extern MediaVisionError GetResultValue(IntPtr result, string name, [Out] int[] value);
 
-            [DllImport(Libraries.MediaVision, EntryPoint = "mv_surveillance_get_result_value")]
+            [DllImport(Libraries.MediaVisionSurveillance, EntryPoint = "mv_surveillance_get_result_value")]
             internal static extern MediaVisionError GetResultValue(IntPtr result, string name, [Out] double[] value);
 
-            [DllImport(Libraries.MediaVision, EntryPoint = "mv_surveillance_get_result_value")]
+            [DllImport(Libraries.MediaVisionSurveillance, EntryPoint = "mv_surveillance_get_result_value")]
             internal static extern MediaVisionError GetResultValue(IntPtr result, string name, [Out] Rectangle[] value);
 
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]

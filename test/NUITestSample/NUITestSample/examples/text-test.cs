@@ -121,6 +121,7 @@ namespace TextTest
             hiddenMap.Add(HiddenInputProperty.SubstituteCharacter, new PropertyValue(0x23));
             field.HiddenInputSettings = hiddenMap;
             field.EnableSelection = true;
+            field.EnableShiftSelection = false;
             window.Add(field);
 
             InputMethod inputMethod = new InputMethod();
@@ -151,6 +152,7 @@ namespace TextTest
             editor.EnableSelection = true;
             editor.Focusable = true;
             editor.Placeholder = propertyMap;
+            editor.MaxLength = 10;
             window.Add(editor);
             editor.TextChanged += (obj, e) => {
                 Tizen.Log.Debug("NUI", "editor line count: " + e.TextEditor.LineCount);
@@ -159,12 +161,18 @@ namespace TextTest
             editor.ScrollStateChanged += (obj, e)=> {
                 Tizen.Log.Debug("NUI", "editor scroll state:" + e.ScrollState);
             };
+            editor.MaxLengthReached += (obj, e)=> {
+                Tizen.Log.Debug("NUI", "editor max length: "+ e.TextEditor.MaxLength);
+            };
 
             Tizen.Log.Debug("NUI",  "editor id: " + editor.ID);
 
             FocusManager.Instance.SetCurrentFocusView(editor);
             editor.UpFocusableView = field;
             field.DownFocusableView = editor;
+
+            NUILog.Debug($"### field.EnableShiftSelection={field.EnableShiftSelection}, editor.EnableShiftSelection={editor.EnableShiftSelection}");
+
         }
 
         [STAThread]

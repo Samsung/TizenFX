@@ -57,7 +57,7 @@ namespace Tizen.Multimedia
                         "Cannot get volume level for AudioVolumeType.None");
                 }
 
-                Interop.AudioVolume.GetVolume(type, out var volume).Validate("Failed to get the volume level");
+                Interop.AudioVolume.GetVolume(type, out var volume).ThrowIfError("Failed to get the volume level");
 
                 return volume;
             }
@@ -79,7 +79,7 @@ namespace Tizen.Multimedia
                         $"valid volume level range is 0 <= x <= {nameof(MaxVolumeLevel)}[{nameof(AudioVolumeType)}]");
                 }
 
-                ret.Validate("Failed to set the volume level");
+                ret.ThrowIfError("Failed to set the volume level");
             }
         }
     }

@@ -1,0 +1,126 @@
+name: "Build Pull Request"
+
+on:
+  pull_request:
+    branches:
+    - master
+    - DevelNUI
+    - API*
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.402
+
+    - name: Get Changed Files
+      uses: lots0logs/gh-action-get-changed-files@2.1.4
+      id: getChangedFiles
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Build
+      id: build
+      uses: TizenAPI/tizenfx-build-actions/problem-filter@master
+      with:
+        run: ./build.sh full /p:BuildWithAnalyzer=True -consoleloggerparameters:NoSummary
+        files: ${{ steps.getChangedFiles.outputs.all }}
+
+    - name: Save Error Report
+      if: ${{ failure() && steps.build.outputs.errors }}
+      env:
+        BUILD_ERRORS: ${{ steps.build.outputs.errors }}
+      run: |
+        mkdir Artifacts
+        echo $BUILD_ERRORS > Artifacts/errors.json
+
+    - name: Pack
+      run: ./build.sh pack
+
+    - name: Checkout APITool
+      uses: actions/checkout@v2
+      with:
+        repository: TizenAPI/APITool
+        path: .apitool
+
+    - name: Extract API Spec
+      run: |
+        dotnet run -p .apitool/ \
+            -- print --format=json --include-hidden \
+            -o Artifacts/api.json Artifacts/bin/public/
+
+    - uses: actions/upload-artifact@v2
+      if: ${{ always() }}
+      with:
+        name: reports
+        if-no-files-found: ignore
+        path: Artifacts/*.json
+
+  check-api:
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.x
+
+    - name: Download Artifacts
+      uses: actions/download-artifact@v2
+      with:
+        name: reports
+        path: Artifacts
+
+    - name: Download Base API Spec
+      id: base-spec
+      uses: TizenAPI/tizenfx-build-actions/s3-download-public@master
+      with:
+        region: ap-northeast-2
+        bucket: tizenfx-api-specs
+        key: ${{ github.event.pull_request.base.sha }}.json
+        path: Artifacts/base-api.json
+
+    - uses: actions/checkout@v2
+      if: ${{ steps.base-spec.outputs.code != 200 }}
+      with:
+        ref: ${{ github.event.pull_request.base.sha }}
+        path: base
+
+    - name: Build Base Branch
+      if: ${{ steps.base-spec.outputs.code != 200 }}
+      uses: TizenAPI/tizenfx-build-actions/problem-filter@master
+      with:
+        run: ./build.sh full
+        working-directory: base
+
+    - name: Checkout APITool
+      if: ${{ steps.base-spec.outputs.code != 200 }}
+      uses: actions/checkout@v2
+      with:
+        repository: TizenAPI/APITool
+        path: .apitool
+
+    - name: Extract Base API
+      if: ${{ steps.base-spec.outputs.code != 200 }}
+      run: |
+        dotnet run -p .apitool/ \
+            -- print --format=json --include-hidden \
+            -o Artifacts/base-api.json base/Artifacts/bin/public/
+
+    - name: Check API Compatibilities
+      uses: TizenAPI/tizenfx-build-actions/apidb-compare@master
+      with:
+        file: Artifacts/api.json
+        base-file: Artifacts/base-api.json
+        output: Artifacts/api-comp.json
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: reports
+        path: Artifacts/api-comp.json

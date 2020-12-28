@@ -17,6 +17,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using Tizen.Internals;
 using Tizen.Uix.SttEngine;
 using static Tizen.Uix.SttEngine.Engine;
 
@@ -30,7 +31,7 @@ internal static partial class Interop
     /// </summary>
     internal static class SttEngine
     {
-        internal static string LogTag = "Tizen.Uix.SttEngine";
+        internal const string LogTag = "Tizen.Uix.SttEngine";
 
         private const int ErrorStt = -0x02F00000;
 
@@ -60,13 +61,13 @@ internal static partial class Interop
         internal delegate Error ForEachSupportedLangsCb(SupportedLanguages cb, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate Error IsValidLanguageCb(IntPtr language, IntPtr isValid);
+        internal delegate Error IsValidLanguageCb(string language, out byte isValid);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate bool SupportSilenceDetectionCb();
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate Error SupportRecognitionTypeCb(string type, out bool isSupported);
+        internal delegate Error SupportRecognitionTypeCb(string type, out byte isSupported);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate Error GetRecordingFormatCb(out AudioType types, out int rate, out int channels);
@@ -75,7 +76,7 @@ internal static partial class Interop
         internal delegate Error SetSilenceDetectionCb(bool isSet);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate Error CheckAppAgreedCb(string appid, out bool isAgreed);
+        internal delegate Error CheckAppAgreedCb(string appid, out byte isAgreed);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate bool NeedAppCredentialCb();
@@ -84,7 +85,7 @@ internal static partial class Interop
         internal delegate Error ForEachResultTimeCb(IntPtr timeInfo, ResultTime callback, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate Error StartCb(IntPtr language, IntPtr type, IntPtr appid, IntPtr credential, IntPtr userData);
+        internal delegate Error StartCb(string language, string type, string appid, string credential, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate Error SetRecordingDataCb(string data, uint length);
@@ -96,7 +97,7 @@ internal static partial class Interop
         internal delegate Error CancelCb();
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate Error GetInfoCb(out IntPtr engineUuid, out IntPtr engineName, out IntPtr engineSetting, out IntPtr useNetwork);
+        internal delegate Error GetInfoCb(out string engineUuid, out string engineName, out string engineSetting, out byte useNetwork);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate Error PrivateDataSetCb(string key, string data);
@@ -104,6 +105,7 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate Error PrivateDataRequestedCb(string key, out string data);
 
+        [NativeStruct("stte_request_callback_s", Include="stte.h", PkgConfig="stt-engine")]
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
         internal struct RequestCallbackStruct
         {

@@ -211,7 +211,8 @@ namespace Tizen.Network.Smartcard
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         public SmartcardChannel OpenBasicChannel(byte[] aid, byte p2)
         {
-            int ret = Interop.Smartcard.Session.SessionOpenBasicChannel(_sessionHandle, aid, aid.Length, p2, out _basicChannel);
+            int aidLen = (aid == null ? 0 : aid.Length);
+            int ret = Interop.Smartcard.Session.SessionOpenBasicChannel(_sessionHandle, aid, aidLen, p2, out _basicChannel);
             if (ret != (int)SmartcardError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to open basic channel, Error - " + (SmartcardError)ret);
@@ -234,7 +235,8 @@ namespace Tizen.Network.Smartcard
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
         public SmartcardChannel OpenLogicalChannel(byte[] aid, byte p2)
         {
-            int ret = Interop.Smartcard.Session.SessionOpenLogicalChannel(_sessionHandle, aid, aid.Length, p2, out _logicalChannel);
+            int aidLen = (aid == null ? 0 : aid.Length);
+            int ret = Interop.Smartcard.Session.SessionOpenLogicalChannel(_sessionHandle, aid, aidLen, p2, out _logicalChannel);
             if (ret != (int)SmartcardError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to open logical channel, Error - " + (SmartcardError)ret);

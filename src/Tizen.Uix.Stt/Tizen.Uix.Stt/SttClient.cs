@@ -364,6 +364,14 @@ namespace Tizen.Uix.Stt
         }
 
         /// <summary>
+        /// Destructor to destroy a STT instance.
+        /// </summary>
+        ~SttClient()
+        {
+            Dispose(false);
+        }
+
+        /// <summary>
         /// Event to be invoked when the recognition is done.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -373,28 +381,29 @@ namespace Tizen.Uix.Stt
             {
                 lock (thisLock)
                 {
-                    _resultDelegate = (IntPtr handle, ResultEvent e, IntPtr data, int dataCount, IntPtr msg, IntPtr userData) =>
-                {
-                    Log.Info(LogTag, "Recognition Result Event Triggered");
-                    if (data != null && msg != null)
+                    if (_recognitionResult == null)
                     {
-                        RecognitionResultEventArgs args = new RecognitionResultEventArgs(e, data, dataCount, Marshal.PtrToStringAnsi(msg));
-                        _recognitionResult?.Invoke(this, args);
+                        _resultDelegate = (IntPtr handle, ResultEvent e, IntPtr data, int dataCount, IntPtr msg, IntPtr userData) =>
+                        {
+                            Log.Info(LogTag, "Recognition Result Event Triggered");
+                            if (data != null && msg != null)
+                            {
+                                RecognitionResultEventArgs args = new RecognitionResultEventArgs(e, data, dataCount, Marshal.PtrToStringAnsi(msg));
+                                _recognitionResult?.Invoke(this, args);
+                            }
+                            else
+                            {
+                                Log.Info(LogTag, "Recognition Result Event null received");
+                            }
+                        };
+
+                        SttError error = SttSetRecognitionResultCB(_handle, _resultDelegate, IntPtr.Zero);
+                        if (error != SttError.None)
+                        {
+                            Log.Error(LogTag, "Add RecognitionResult Failed with error " + error);
+                        }
                     }
-                    else
-                    {
-                        Log.Info(LogTag, "Recognition Result Event null received");
-                    }
-                };
-                    SttError error = SttSetRecognitionResultCB(_handle, _resultDelegate, IntPtr.Zero);
-                    if (error != SttError.None)
-                    {
-                        Log.Error(LogTag, "Add RecognitionResult Failed with error " + error);
-                    }
-                    else
-                    {
-                        _recognitionResult += value;
-                    }
+                    _recognitionResult += value;
                 }
             }
 
@@ -402,13 +411,15 @@ namespace Tizen.Uix.Stt
             {
                 lock (thisLock)
                 {
-                    SttError error = SttUnsetRecognitionResultCB(_handle);
-                    if (error != SttError.None)
-                    {
-                        Log.Error(LogTag, "Remove RecognitionResult Failed with error " + error);
-                    }
-
                     _recognitionResult -= value;
+                    if (_recognitionResult == null)
+                    {
+                        SttError error = SttUnsetRecognitionResultCB(_handle);
+                        if (error != SttError.None)
+                        {
+                            Log.Error(LogTag, "Remove RecognitionResult Failed with error " + error);
+                        }
+                    }
                 }
             }
         }
@@ -423,22 +434,22 @@ namespace Tizen.Uix.Stt
             {
                 lock (thisLock)
                 {
-                    SttClient obj = this;
-                    _stateDelegate = (IntPtr handle, State previous, State current, IntPtr userData) =>
+                    if (_stateChanged == null)
                     {
-                        StateChangedEventArgs args = new StateChangedEventArgs(previous, current);
-                        _stateChanged?.Invoke(obj, args);
-                    };
-                    SttError error = SttSetStateChangedCB(_handle, _stateDelegate, IntPtr.Zero);
-                    if (error != SttError.None)
-                    {
-                        Log.Error(LogTag, "Add StateChanged Failed with error " + error);
-                    }
-                    else
-                    {
-                        _stateChanged += value;
-                    }
+                        SttClient obj = this;
+                        _stateDelegate = (IntPtr handle, State previous, State current, IntPtr userData) =>
+                        {
+                            StateChangedEventArgs args = new StateChangedEventArgs(previous, current);
+                            _stateChanged?.Invoke(obj, args);
+                        };
 
+                        SttError error = SttSetStateChangedCB(_handle, _stateDelegate, IntPtr.Zero);
+                        if (error != SttError.None)
+                        {
+                            Log.Error(LogTag, "Add StateChanged Failed with error " + error);
+                        }
+                    }
+                    _stateChanged += value;
                 }
             }
 
@@ -446,13 +457,15 @@ namespace Tizen.Uix.Stt
             {
                 lock (thisLock)
                 {
-                    SttError error = SttUnsetStateChangedCB(_handle);
-                    if (error != SttError.None)
-                    {
-                        Log.Error(LogTag, "Remove StateChanged Failed with error " + error);
-                    }
-
                     _stateChanged -= value;
+                    if (_stateChanged == null)
+                    {
+                        SttError error = SttUnsetStateChangedCB(_handle);
+                        if (error != SttError.None)
+                        {
+                            Log.Error(LogTag, "Remove StateChanged Failed with error " + error);
+                        }
+                    }
                 }
             }
 
@@ -468,36 +481,37 @@ namespace Tizen.Uix.Stt
             {
                 lock (thisLock)
                 {
-                    _errorDelegate = (IntPtr handle, SttError reason, IntPtr userData) =>
-                {
-                    ErrorOccurredEventArgs args = new ErrorOccurredEventArgs(handle, reason);
-                    _errorOccurred?.Invoke(this, args);
-                };
-                    SttError error = SttSetErrorCB(_handle, _errorDelegate, IntPtr.Zero);
-                    if (error != SttError.None)
+                    if (_errorOccurred == null)
                     {
-                        Log.Error(LogTag, "Add ErrorOccurred Failed with error " + error);
-                    }
+                        _errorDelegate = (IntPtr handle, SttError reason, IntPtr userData) =>
+                        {
+                            ErrorOccurredEventArgs args = new ErrorOccurredEventArgs(handle, reason);
+                            _errorOccurred?.Invoke(this, args);
+                        };
 
-                    else
-                    {
-                        _errorOccurred += value;
+                        SttError error = SttSetErrorCB(_handle, _errorDelegate, IntPtr.Zero);
+                        if (error != SttError.None)
+                        {
+                            Log.Error(LogTag, "Add ErrorOccurred Failed with error " + error);
+                        }
                     }
+                    _errorOccurred += value;
                 }
-
             }
 
             remove
             {
                 lock (thisLock)
                 {
-                    SttError error = SttUnsetErrorCB(_handle);
-                    if (error != SttError.None)
-                    {
-                        Log.Error(LogTag, "Remove ErrorOccurred Failed with error " + error);
-                    }
-
                     _errorOccurred -= value;
+                    if (_errorOccurred == null)
+                    {
+                        SttError error = SttUnsetErrorCB(_handle);
+                        if (error != SttError.None)
+                        {
+                            Log.Error(LogTag, "Remove ErrorOccurred Failed with error " + error);
+                        }
+                    }
                 }
             }
         }
@@ -512,38 +526,39 @@ namespace Tizen.Uix.Stt
             {
                 lock (thisLock)
                 {
-                    _languageDelegate = (IntPtr handle, IntPtr previousLanguage, IntPtr currentLanguage, IntPtr userData) =>
-                {
-                    string previousLanguageString = Marshal.PtrToStringAnsi(previousLanguage);
-                    string currentLanguageString = Marshal.PtrToStringAnsi(currentLanguage);
-                    DefaultLanguageChangedEventArgs args = new DefaultLanguageChangedEventArgs(previousLanguageString, currentLanguageString);
-                    _defaultLanguageChanged?.Invoke(this, args);
-                };
-                    SttError error = SttSetDefaultLanguageChangedCB(_handle, _languageDelegate, IntPtr.Zero);
-                    if (error != SttError.None)
+                    if (_defaultLanguageChanged == null)
                     {
-                        Log.Error(LogTag, "Add DefaultLanguageChanged Failed with error " + error);
-                    }
+                        _languageDelegate = (IntPtr handle, IntPtr previousLanguage, IntPtr currentLanguage, IntPtr userData) =>
+                        {
+                            string previousLanguageString = Marshal.PtrToStringAnsi(previousLanguage);
+                            string currentLanguageString = Marshal.PtrToStringAnsi(currentLanguage);
+                            DefaultLanguageChangedEventArgs args = new DefaultLanguageChangedEventArgs(previousLanguageString, currentLanguageString);
+                            _defaultLanguageChanged?.Invoke(this, args);
+                        };
 
-                    else
-                    {
-                        _defaultLanguageChanged += value;
+                        SttError error = SttSetDefaultLanguageChangedCB(_handle, _languageDelegate, IntPtr.Zero);
+                        if (error != SttError.None)
+                        {
+                            Log.Error(LogTag, "Add DefaultLanguageChanged Failed with error " + error);
+                        }
                     }
+                    _defaultLanguageChanged += value;
                 }
-
             }
 
             remove
             {
                 lock (thisLock)
                 {
-                    SttError error = SttUnsetDefaultLanguageChangedCB(_handle);
-                    if (error != SttError.None)
-                    {
-                        Log.Error(LogTag, "Remove DefaultLanguageChanged Failed with error " + error);
-                    }
-
                     _defaultLanguageChanged -= value;
+                    if (_defaultLanguageChanged == null)
+                    {
+                        SttError error = SttUnsetDefaultLanguageChangedCB(_handle);
+                        if (error != SttError.None)
+                        {
+                            Log.Error(LogTag, "Remove DefaultLanguageChanged Failed with error " + error);
+                        }
+                    }
                 }
             }
 
@@ -559,22 +574,23 @@ namespace Tizen.Uix.Stt
             {
                 lock (thisLock)
                 {
-                    _engineDelegate = (IntPtr handle, IntPtr engineId, IntPtr language, bool supportSilence, bool needCredential, IntPtr userData) =>
-                {
-                    string engineIdString = Marshal.PtrToStringAnsi(engineId);
-                    string languageString = Marshal.PtrToStringAnsi(language);
-                    EngineChangedEventArgs args = new EngineChangedEventArgs(engineIdString, languageString, supportSilence, needCredential);
-                    _engineChanged?.Invoke(this, args);
-                };
-                    SttError error = SttSetEngineChangedCB(_handle, _engineDelegate, IntPtr.Zero);
-                    if (error != SttError.None)
+                    if (_engineChanged == null)
                     {
-                        Log.Error(LogTag, "Add EngineChanged Failed with error " + error);
+                        _engineDelegate = (IntPtr handle, IntPtr engineId, IntPtr language, bool supportSilence, bool needCredential, IntPtr userData) =>
+                        {
+                            string engineIdString = Marshal.PtrToStringAnsi(engineId);
+                            string languageString = Marshal.PtrToStringAnsi(language);
+                            EngineChangedEventArgs args = new EngineChangedEventArgs(engineIdString, languageString, supportSilence, needCredential);
+                            _engineChanged?.Invoke(this, args);
+                        };
+
+                        SttError error = SttSetEngineChangedCB(_handle, _engineDelegate, IntPtr.Zero);
+                        if (error != SttError.None)
+                        {
+                            Log.Error(LogTag, "Add EngineChanged Failed with error " + error);
+                        }
                     }
-                    else
-                    {
-                        _engineChanged += value;
-                    }
+                    _engineChanged += value;
                 }
             }
 
@@ -582,13 +598,15 @@ namespace Tizen.Uix.Stt
             {
                 lock (thisLock)
                 {
-                    SttError error = SttUnsetEngineChangedCB(_handle);
-                    if (error != SttError.None)
-                    {
-                        Log.Error(LogTag, "Remove EngineChanged Failed with error " + error);
-                    }
-
                     _engineChanged -= value;
+                    if (_engineChanged == null)
+                    {
+                        SttError error = SttUnsetEngineChangedCB(_handle);
+                        if (error != SttError.None)
+                        {
+                            Log.Error(LogTag, "Remove EngineChanged Failed with error " + error);
+                        }
+                    }
                 }
             }
         }
@@ -653,7 +671,6 @@ namespace Tizen.Uix.Stt
                         Log.Error(LogTag, "GetRecordingVolume Failed with error " + error);
                         return 0.0f;
                     }
-
                 }
 
                 return volume;
@@ -771,17 +788,20 @@ namespace Tizen.Uix.Stt
         public IEnumerable<ResultTime> GetDetailedResult()
         {
             List<ResultTime> list = new List<ResultTime>();
-            _resultTimeDelegate = (IntPtr handle, int index, TimeEvent e, IntPtr text, IntPtr startTime, IntPtr endTime, IntPtr userData) =>
+            lock (thisLock)
             {
-                _result = new ResultTime(index, e, Marshal.PtrToStringAnsi(text), (long)startTime, (long)endTime);
-                list.Add(_result);
-                return true;
-            };
-            SttError error = SttForeachDetailedResult(_handle, _resultTimeDelegate, IntPtr.Zero);
-            if (error != SttError.None)
-            {
-                Log.Error(LogTag, "GetDetailedResult Failed with error " + error);
-                throw ExceptionFactory.CreateException(error);
+                _resultTimeDelegate = (IntPtr handle, int index, TimeEvent e, IntPtr text, IntPtr startTime, IntPtr endTime, IntPtr userData) =>
+                {
+                    _result = new ResultTime(index, e, Marshal.PtrToStringAnsi(text), (long)startTime, (long)endTime);
+                    list.Add(_result);
+                    return true;
+                };
+                SttError error = SttForeachDetailedResult(_handle, _resultTimeDelegate, IntPtr.Zero);
+                if (error != SttError.None)
+                {
+                    Log.Error(LogTag, "GetDetailedResult Failed with error " + error);
+                    throw ExceptionFactory.CreateException(error);
+                }
             }
             return list;
         }
@@ -887,13 +907,13 @@ namespace Tizen.Uix.Stt
             lock (thisLock)
             {
                 SupportedEngineCallback supportedEngineDelegate = (IntPtr handle, IntPtr engineId, IntPtr engineName, IntPtr userData) =>
-            {
-                string id = Marshal.PtrToStringAnsi(engineId);
-                string name = Marshal.PtrToStringAnsi(engineName);
-                SupportedEngine engine = new SupportedEngine(id, name);
-                engineList.Add(engine);
-                return true;
-            };
+                {
+                    string id = Marshal.PtrToStringAnsi(engineId);
+                    string name = Marshal.PtrToStringAnsi(engineName);
+                    SupportedEngine engine = new SupportedEngine(id, name);
+                    engineList.Add(engine);
+                    return true;
+                };
                 SttError error = SttForeEachSupportedEngines(_handle, supportedEngineDelegate, IntPtr.Zero);
                 if (error != SttError.None)
                 {
@@ -1040,11 +1060,11 @@ namespace Tizen.Uix.Stt
             lock (thisLock)
             {
                 SupportedLanguageCallback supportedLanguageDelegate = (IntPtr handle, IntPtr language, IntPtr userData) =>
-            {
-                string lang = Marshal.PtrToStringAnsi(language);
-                languageList.Add(lang);
-                return true;
-            };
+                {
+                    string lang = Marshal.PtrToStringAnsi(language);
+                    languageList.Add(lang);
+                    return true;
+                };
 
                 SttError error = SttForeachSupportedLanguages(_handle, supportedLanguageDelegate, IntPtr.Zero);
                 if (error != SttError.None)
@@ -1121,7 +1141,6 @@ namespace Tizen.Uix.Stt
                             recType = "stt.recognition.type.MAP";
                             break;
                         }
-
                 }
 
                 SttError error = SttIsRecognitionTypeSupported(_handle, recType, out supported);
@@ -1130,7 +1149,6 @@ namespace Tizen.Uix.Stt
                     Log.Error(LogTag, "IsRecognitionTypeSupported Failed with error " + error);
                     throw ExceptionFactory.CreateException(error);
                 }
-
             }
 
             return supported;
@@ -1392,7 +1410,6 @@ namespace Tizen.Uix.Stt
                             recType = "stt.recognition.type.MAP";
                             break;
                         }
-
                 }
 
                 SttError error = SttStart(_handle, language, recType);
@@ -1498,6 +1515,7 @@ namespace Tizen.Uix.Stt
         public void Dispose()
         {
             Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>
@@ -1511,16 +1529,20 @@ namespace Tizen.Uix.Stt
         {
             if (!disposedValue)
             {
-                if (disposing)
-                {
-                    SttError error = SttDestroy(_handle);
-                    if (error != SttError.None)
-                    {
-                        Log.Error(LogTag, "Destroy Failed with error " + error);
-                    }
-                }
+				lock (thisLock)
+				{
+					if (_handle != IntPtr.Zero)
+					{
+						SttError error = SttDestroy(_handle);
+						if (error != SttError.None)
+						{
+							Log.Error(LogTag, "Destroy Failed with error " + error);
+						}
+						_handle = IntPtr.Zero;
+					}
+				}
 
-                disposedValue = true;
+				disposedValue = true;
             }
         }
     }

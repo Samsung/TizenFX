@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,8 @@
  * limitations under the License.
  *
  */
- 
+using System.ComponentModel;
+
 namespace Tizen.NUI
 {
     /// <summary>
@@ -24,122 +25,20 @@ namespace Tizen.NUI
     /// on receiving timeTick signal.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
-    public class WatchTime : global::System.IDisposable
+    public class WatchTime : Disposable
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-        /// <summary>
-        /// swigCMemOwn.
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        protected bool swigCMemOwn;
-
-        internal WatchTime(global::System.IntPtr cPtr, bool cMemoryOwn)
-        {
-            swigCMemOwn = cMemoryOwn;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-        }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(WatchTime obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        //A Flag to check who called Dispose(). (By User or DisposeQueue)
-        private bool isDisposeQueued = false;
-
-        /// <summary>
-        /// A Flat to check if it is already disposed.
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        protected bool disposed = false;
-
-        /// <summary>
-        /// Distructor.
-        /// </summary>
-        ~WatchTime()
-        {
-            if (!isDisposeQueued)
-            {
-                isDisposeQueued = true;
-                DisposeQueue.Instance.Add(this);
-            }
-        }
-
-        /// <summary>
-        /// To make watch time instance be disposed.
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        public void Dispose()
-        {
-            //Throw excpetion if Dispose() is called in separate thread.
-            if (!Window.IsInstalled())
-            {
-                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-            }
-
-            if (isDisposeQueued)
-            {
-                Dispose(DisposeTypes.Implicit);
-            }
-            else
-            {
-                Dispose(DisposeTypes.Explicit);
-                System.GC.SuppressFinalize(this);
-            }
-        }
-
-        /// <summary>
-        /// you can override it to clean-up your own resources.
-        /// </summary>
-        /// <param name="type">DisposeTypes</param>
-        /// <since_tizen> 4 </since_tizen>
-        protected virtual void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicManualPINVOKE.delete_WatchTime(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            disposed = true;
-        }
-
-        internal static WatchTime GetWatchTimeFromPtr(global::System.IntPtr cPtr)
-        {
-            WatchTime ret = new WatchTime(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
 
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        public WatchTime() : this(NDalicManualPINVOKE.new_WatchTime(), true)
+        public WatchTime() : this(Interop.Watch.NewWatchTime(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal WatchTime(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        {
         }
 
         /// <summary>
@@ -155,13 +54,6 @@ namespace Tizen.NUI
             }
         }
 
-        internal int GetHour()
-        {
-            int ret = NDalicManualPINVOKE.WatchTime_GetHour(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         /// <summary>
         /// Get the current hour24.
         /// </summary>
@@ -173,13 +65,6 @@ namespace Tizen.NUI
             {
                 return GetHour24();
             }
-        }
-
-        internal int GetHour24()
-        {
-            int ret = NDalicManualPINVOKE.WatchTime_GetHour24(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         /// <summary>
@@ -195,13 +80,6 @@ namespace Tizen.NUI
             }
         }
 
-        internal int GetMinute()
-        {
-            int ret = NDalicManualPINVOKE.WatchTime_GetMinute(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         /// <summary>
         /// Get the current second.
         /// </summary>
@@ -213,13 +91,6 @@ namespace Tizen.NUI
             {
                 return GetSecond();
             }
-        }
-
-        internal int GetSecond()
-        {
-            int ret = NDalicManualPINVOKE.WatchTime_GetSecond(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         /// <summary>
@@ -235,13 +106,6 @@ namespace Tizen.NUI
             }
         }
 
-        internal int GetMillisecond()
-        {
-            int ret = NDalicManualPINVOKE.WatchTime_GetMillisecond(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         /// <summary>
         /// Get the current year.
         /// </summary>
@@ -253,13 +117,6 @@ namespace Tizen.NUI
             {
                 return GetYear();
             }
-        }
-
-        internal int GetYear()
-        {
-            int ret = NDalicManualPINVOKE.WatchTime_GetYear(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         /// <summary>
@@ -275,13 +132,6 @@ namespace Tizen.NUI
             }
         }
 
-        internal int GetMonth()
-        {
-            int ret = NDalicManualPINVOKE.WatchTime_GetMonth(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         /// <summary>
         /// Get the current day.
         /// </summary>
@@ -295,13 +145,6 @@ namespace Tizen.NUI
             }
         }
 
-        internal int GetDay()
-        {
-            int ret = NDalicManualPINVOKE.WatchTime_GetDay(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         /// <summary>
         /// Get the current week.
         /// </summary>
@@ -313,27 +156,6 @@ namespace Tizen.NUI
             {
                 return GetDayOfWeek();
             }
-        }
-
-        internal int GetDayOfWeek()
-        {
-            int ret = NDalicManualPINVOKE.WatchTime_GetDayOfWeek(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal SWIGTYPE_p_tm GetUtcTime()
-        {
-            SWIGTYPE_p_tm ret = new SWIGTYPE_p_tm(NDalicManualPINVOKE.WatchTime_GetUtcTime(swigCPtr), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal SWIGTYPE_p_time_t GetUtcTimeStamp()
-        {
-            SWIGTYPE_p_time_t ret = new SWIGTYPE_p_time_t(NDalicManualPINVOKE.WatchTime_GetUtcTimeStamp(swigCPtr), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         /// <summary>
@@ -354,13 +176,6 @@ namespace Tizen.NUI
             }
         }
 
-        internal string GetTimeZone()
-        {
-            string ret = NDalicManualPINVOKE.WatchTime_GetTimeZone(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         /// <summary>
         /// Get the daylight saving time status.
         /// </summary>
@@ -374,13 +189,114 @@ namespace Tizen.NUI
             }
         }
 
-        internal bool GetDaylightSavingTimeStatus()
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(WatchTime obj)
         {
-            bool ret = NDalicManualPINVOKE.WatchTime_GetDaylightSavingTimeStatus(swigCPtr);
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
+        }
+
+        internal static WatchTime GetWatchTimeFromPtr(global::System.IntPtr cPtr)
+        {
+            WatchTime ret = new WatchTime(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-    }
+        internal int GetDayOfWeek()
+        {
+            int ret = Interop.Watch.WatchTimeGetDayOfWeek(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
 
+        internal SWIGTYPE_p_tm GetUtcTime()
+        {
+            SWIGTYPE_p_tm ret = new SWIGTYPE_p_tm(Interop.Watch.WatchTimeGetUtcTime(SwigCPtr));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal SWIGTYPE_p_time_t GetUtcTimeStamp()
+        {
+            SWIGTYPE_p_time_t ret = new SWIGTYPE_p_time_t(Interop.Watch.WatchTimeGetUtcTimeStamp(SwigCPtr));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal string GetTimeZone()
+        {
+            string ret = Interop.Watch.WatchTimeGetTimeZone(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal bool GetDaylightSavingTimeStatus()
+        {
+            bool ret = Interop.Watch.WatchTimeGetDaylightSavingTimeStatus(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal int GetHour()
+        {
+            int ret = Interop.Watch.WatchTimeGetHour(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal int GetHour24()
+        {
+            int ret = Interop.Watch.WatchTimeGetHour24(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal int GetMinute()
+        {
+            int ret = Interop.Watch.WatchTimeGetMinute(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal int GetSecond()
+        {
+            int ret = Interop.Watch.WatchTimeGetSecond(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal int GetMillisecond()
+        {
+            int ret = Interop.Watch.WatchTimeGetMillisecond(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal int GetYear()
+        {
+            int ret = Interop.Watch.WatchTimeGetYear(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal int GetMonth()
+        {
+            int ret = Interop.Watch.WatchTimeGetMonth(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal int GetDay()
+        {
+            int ret = Interop.Watch.WatchTimeGetDay(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.Watch.DeleteWatchTime(swigCPtr);
+        }
+    }
 }

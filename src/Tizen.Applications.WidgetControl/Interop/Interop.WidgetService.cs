@@ -102,5 +102,20 @@ internal static partial class Interop
 
         [DllImport(Libraries.WidgetService, EntryPoint = "widget_service_get_widget_list_by_pkgid")]
         internal static extern ErrorCode GetWidgetListByPkgId(string pkgId, WidgetListCallback callback, IntPtr userData);
+
+        [DllImport(Libraries.WidgetService, EntryPoint = "widget_service_get_main_app_id")]
+        internal static extern string GetWidgetMainAppId(string widgetId);
+
+        [DllImport(Libraries.WidgetService, EntryPoint = "widget_service_get_package_id")]
+        internal static extern string GetWidgetPackageId(string widgetId);
+
+        [DllImport(Libraries.WidgetService, EntryPoint = "widget_service_get_widget_max_count")]
+        internal static extern int GetWidgetMaxCount(string widgetId);
+
+        [DllImport(Libraries.WidgetService, EntryPoint = "widget_service_get_instance_count")]
+        internal static extern int GetWidgetInstanceCount(string widgetId, string cluster, string category);
+
+        [DllImport(Libraries.WidgetService, EntryPoint = "widget_service_get_app_id_of_setup_app")]
+        internal static extern string GetSetupAppId(string widgetId);
     }
 }

@@ -22,11 +22,14 @@ internal static partial class Interop
 {
     internal static partial class Face
     {
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_face_clone")]
-        internal static extern MediaContentError Clone(out IntPtr dst, IntPtr src);
+        [DllImport(Libraries.MediaContent, EntryPoint = "media_face_create")]
+        internal static extern MediaContentError Create(string mediaId, out IntPtr face);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_face_destroy")]
         internal static extern MediaContentError Destroy(IntPtr face);
+
+        [DllImport(Libraries.MediaContent, EntryPoint = "media_face_clone")]
+        internal static extern MediaContentError Clone(out IntPtr dst, IntPtr src);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_face_get_face_id")]
         internal static extern MediaContentError GetId(IntPtr face, out IntPtr faceId);
@@ -44,9 +47,6 @@ internal static partial class Interop
         [DllImport(Libraries.MediaContent, EntryPoint = "media_face_get_tag")]
         internal static extern MediaContentError GetTag(IntPtr face, out IntPtr tag);
 
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_face_create")]
-        internal static extern MediaContentError Create(string mediaId, out IntPtr face);
-
         [DllImport(Libraries.MediaContent, EntryPoint = "media_face_set_face_rect")]
         internal static extern MediaContentError SetFaceRect(IntPtr face, int x, int y, int w, int h);
 
@@ -57,7 +57,7 @@ internal static partial class Interop
         internal static extern MediaContentError SetTag(IntPtr face, string tag);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_face_insert_to_db")]
-        internal static extern MediaContentError InsertToDb(IntPtr handle);
+        internal static extern MediaContentError Insert(IntPtr handle);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_face_update_to_db")]
         internal static extern MediaContentError Update(IntPtr face);

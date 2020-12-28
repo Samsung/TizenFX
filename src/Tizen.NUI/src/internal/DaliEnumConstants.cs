@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,14 +21,14 @@ using System.Runtime.CompilerServices;
 
 namespace Tizen.NUI
 {
-  namespace Constants
-  {
-    /// <summary>
-    /// Enumeration for texture types.
-    /// </summary>
-    /// <since_tizen> 3 </since_tizen>
-    public enum TextureType
+    namespace Constants
     {
+        /// <summary>
+        /// Enumeration for texture types.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public enum TextureType
+        {
             /// <summary>
             /// One 2D image
             /// </summary>
@@ -39,35 +39,7 @@ namespace Tizen.NUI
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             TextureCube = Tizen.NUI.TextureType.TEXTURE_CUBE
-    }
-
-    /// <summary>
-    /// Enumeration for stereoscopic view modes.
-    /// </summary>
-    /// <since_tizen> 3 </since_tizen>
-    public enum ViewMode
-    {
-            /// <summary>
-            /// Monoscopic (single camera). This is the default.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            Mono = Tizen.NUI.ViewMode.MONO,
-            /// <summary>
-            /// Stereoscopic. Frame buffer is split horizontally with the left and right camera views in their respective sides.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            StereoHorizontal = Tizen.NUI.ViewMode.STEREO_HORIZONTAL,
-            /// <summary>
-            /// Stereoscopic. Frame buffer is split vertically with the left camera view at the top and the right camera view at the bottom.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            StereoVertical = Tizen.NUI.ViewMode.STEREO_VERTICAL,
-            /// <summary>
-            /// Stereoscopic. Left/Right camera views are rendered into the framebuffer on alternate frames.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            StereoInterlaced = Tizen.NUI.ViewMode.STEREO_INTERLACED
-    }
+        }
 
         /// <summary>
         /// Enumeration for the direction
@@ -94,8 +66,6 @@ namespace Tizen.NUI
             }
         }
 
-
-
         /// <summary>
         /// ToolTip
         /// </summary>
@@ -112,47 +82,47 @@ namespace Tizen.NUI
                 /// The content to display.
                 /// </summary>
                 /// <since_tizen> 3 </since_tizen>
-                public static readonly int Content = NDalic.TOOLTIP_CONTENT;
+                public static readonly int Content = NDalic.TooltipContent;
                 /// <summary>
                 /// The layout of the content.
                 /// </summary>\
                 /// <since_tizen> 3 </since_tizen>
-                public static readonly int Layout = NDalic.TOOLTIP_LAYOUT;
+                public static readonly int Layout = NDalic.TooltipLayout;
                 /// <summary>
                 /// Time to wait in seconds before a tooltip is shown while the is movement is within the allowed threshold.
                 /// </summary>
                 /// <since_tizen> 3 </since_tizen>
-                public static readonly int WaitTime = NDalic.TOOLTIP_WAIT_TIME;
+                public static readonly int WaitTime = NDalic.TooltipWaitTime;
                 /// <summary>
                 /// The background of the tooltip.
                 /// </summary>
                 /// <since_tizen> 3 </since_tizen>
-                public static readonly int Background = NDalic.TOOLTIP_BACKGROUND;
+                public static readonly int Background = NDalic.TooltipBackground;
                 /// <summary>
                 /// The tail used by the tooltip.
                 /// </summary>
                 /// <since_tizen> 3 </since_tizen>
-                public static readonly int Tail = NDalic.TOOLTIP_TAIL;
+                public static readonly int Tail = NDalic.TooltipTail;
                 /// <summary>
                 /// The position of the tooltip in relation to the control.
                 /// </summary>
                 /// <since_tizen> 3 </since_tizen>
-                public static readonly int Position = NDalic.TOOLTIP_POSITION;
+                public static readonly int Position = NDalic.TooltipPosition;
                 /// <summary>
                 /// If Tooltip::Position::HOVER_POINT is used for the POSITION, then this is the offset the tooltip is displayed at from the hover point.
                 /// </summary>
                 /// <since_tizen> 3 </since_tizen>
-                public static readonly int HoverPointOffset = NDalic.TOOLTIP_HOVER_POINT_OFFSET;
+                public static readonly int HoverPointOffset = NDalic.TooltipHoverPointOffset;
                 /// <summary>
                 /// The movement threshold allowed before showing (or hiding a popup).
                 /// </summary>
                 /// <since_tizen> 3 </since_tizen>
-                public static readonly int MovementThreshold = NDalic.TOOLTIP_MOVEMENT_THRESHOLD;
+                public static readonly int MovementThreshold = NDalic.TooltipMovementThreshold;
                 /// <summary>
                 /// If true, the tooltip will disappear after hover movement beyond a certain distance.
                 /// </summary>
                 /// <since_tizen> 3 </since_tizen>
-                public static readonly int DisappearOnMovement = NDalic.TOOLTIP_DISAPPEAR_ON_MOVEMENT;
+                public static readonly int DisappearOnMovement = NDalic.TooltipDisappearOnMovement;
             }
 
             /// <summary>
@@ -165,12 +135,12 @@ namespace Tizen.NUI
                 /// The image to use as the background.
                 /// </summary>
                 /// <since_tizen> 3 </since_tizen>
-                public static readonly int Visual = NDalic.TOOLTIP_BACKGROUND_VISUAL;
+                public static readonly int Visual = NDalic.TooltipBackgroundVisual;
                 /// <summary>
                 /// The size of the borders in the order: left, right, bottom, top.
                 /// </summary>
                 /// <since_tizen> 3 </since_tizen>
-                public static readonly int Border = NDalic.TOOLTIP_BACKGROUND_BORDER;
+                public static readonly int Border = NDalic.TooltipBackgroundBorder;
             }
 
             /// <summary>
@@ -183,42 +153,99 @@ namespace Tizen.NUI
                 /// Whether to show the tail or not.
                 /// </summary>
                 /// <since_tizen> 3 </since_tizen>
-                public static readonly int Visibility = NDalic.TOOLTIP_TAIL_VISIBILITY;
+                public static readonly int Visibility = NDalic.TooltipTailVisibility;
                 /// <summary>
                 /// The image used for the tail if it is above the tooltip.
                 /// </summary>
                 /// <since_tizen> 3 </since_tizen>
-                public static readonly int AboveVisual = NDalic.TOOLTIP_TAIL_ABOVE_VISUAL;
+                public static readonly int AboveVisual = NDalic.TooltipTailAboveVisual;
                 /// <summary>
                 /// The image used for the tail if it is below the tooltip.
                 /// </summary>
                 /// <since_tizen> 3 </since_tizen>
-                public static readonly int BelowVisual = NDalic.TOOLTIP_TAIL_BELOW_VISUAL;
+                public static readonly int BelowVisual = NDalic.TooltipTailBelowVisual;
             }
         }
+
+        /// <summary>
+        /// Enumeration for stereoscopic view modes.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <remarks>
+        /// Deprecated.(API Level 6) Not used.
+        /// </remarks>
+        [Obsolete("Please do not use this ViewMode(Deprecated).")]
+        public enum ViewMode
+        {
+            /// <summary>
+            /// Monoscopic (single camera). This is the default.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            /// <remarks>
+            /// Deprecated.(API Level 6) Not used.
+            /// </remarks>
+            [Obsolete("Please do not use this ViewMode.Mono(Deprecated).")]
+            Mono,
+            /// <summary>
+            /// Stereoscopic. Frame buffer is split horizontally with the left and right camera views in their respective sides.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            /// <remarks>
+            /// Deprecated.(API Level 6) Not used.
+            /// </remarks>
+            [Obsolete("Please do not use this ViewMode.StereoHorizontal(Deprecated).")]
+            StereoHorizontal,
+            /// <summary>
+            /// Stereoscopic. Frame buffer is split vertically with the left camera view at the top and the right camera view at the bottom.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            /// <remarks>
+            /// Deprecated.(API Level 6) Not used.
+            /// </remarks>
+            [Obsolete("Please do not use this ViewMode.StereoVertical(Deprecated).")]
+            StereoVertical,
+            /// <summary>
+            /// Stereoscopic. Left/Right camera views are rendered into the framebuffer on alternate frames.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            /// <remarks>
+            /// Deprecated.(API Level 6) Not used.
+            /// </remarks>
+            [Obsolete("Please do not use this ViewMode.StereoInterlaced(Deprecated).")]
+            StereoInterlaced
+        }
+
     } // namespace Constants
 
 
-internal class NUILog
-{
-    [Conditional("DEBUG_ON")]
-    public static void Debug(string msg,
-        [CallerLineNumber] int lineNum = 0,
-        [CallerMemberName] string caller = null,
-        [CallerFilePath] string file = null
-    )
+    internal class NUILog
     {
-        Tizen.Log.Fatal("NUI", $"{msg} (at line {lineNum} of {caller} in {file})" );
+        [Conditional("NUI_DEBUG_ON")]
+        public static void Debug(string msg,
+            [CallerLineNumber] int lineNum = 0,
+            [CallerMemberName] string caller = null,
+            [CallerFilePath] string file = null
+        )
+        {
+            Tizen.Log.Debug("NUI", $"{msg} (at line {lineNum} of {caller} in {file})\n");
+        }
+
+        public static void Error(string msg,
+            [CallerLineNumber] int lineNum = 0,
+            [CallerMemberName] string caller = null,
+            [CallerFilePath] string file = null
+        )
+        {
+            Tizen.Log.Error("NUI", $"{msg} (at line {lineNum} of {caller} in {file})\n");
+        }
     }
 
-    public static void Error(string msg,
-        [CallerLineNumber] int lineNum = 0,
-        [CallerMemberName] string caller = null,
-        [CallerFilePath] string file = null
-    )
+#if !(NUI_DEBUG_ON)
+    internal class tlog
     {
-        Tizen.Log.Fatal("NUI", $"[ERROR] {msg} (at line {lineNum} of {caller} in {file})" );
+        internal static void Fatal(string tag, string msg) { _ = tag; _ = msg; }
+        internal static void Error(string tag, string msg) { _ = tag; _ = msg; }
     }
+#endif
+
 }
-
-} // namesapce Dali

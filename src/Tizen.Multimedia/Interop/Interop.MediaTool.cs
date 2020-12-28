@@ -83,12 +83,23 @@ namespace Tizen.Multimedia
             [DllImport(Libraries.MediaTool, EntryPoint = "media_packet_set_dts")]
             internal static extern int SetDts(IntPtr handle, ulong value);
 
-
             [DllImport(Libraries.MediaTool, EntryPoint = "media_packet_set_extra")]
             internal static extern int SetExtra(IntPtr handle, IntPtr value);
 
             [DllImport(Libraries.MediaTool, EntryPoint = "media_packet_get_extra")]
             internal static extern int GetExtra(IntPtr handle, out IntPtr value);
+
+            [DllImport(Libraries.MediaTool, EntryPoint = "media_packet_set_rotate_method")]
+            internal static extern int SetRotation(IntPtr handle, RotationFlip rotationFlip);
+
+            [DllImport(Libraries.MediaTool, EntryPoint = "media_packet_get_rotate_method")]
+            internal static extern int GetRotation(IntPtr handle, out RotationFlip rotationFlip);
+
+            [DllImport(Libraries.MediaTool, EntryPoint = "media_packet_set_duration")]
+            internal static extern int SetDuration(IntPtr handle, ulong value);
+
+            [DllImport(Libraries.MediaTool, EntryPoint = "media_packet_get_duration")]
+            internal static extern int GetDuration(IntPtr handle, out ulong value);
         }
 
         internal static class MediaFormat
@@ -100,24 +111,26 @@ namespace Tizen.Multimedia
             internal static extern int Unref(IntPtr handle);
 
             [DllImport(Libraries.MediaTool, EntryPoint = "media_format_get_type")]
-            internal static extern int GetType(IntPtr handle, out int type);
+            internal static extern int GetType(IntPtr handle, out MediaFormatType type);
 
             [DllImport(Libraries.MediaTool, EntryPoint = "media_format_get_container_mime")]
-            internal static extern int GetContainerMimeType(IntPtr handle, out int mimeType);
+            internal static extern int GetContainerMimeType(IntPtr handle,
+                out MediaFormatContainerMimeType mimeType);
 
             [DllImport(Libraries.MediaTool, EntryPoint = "media_format_set_container_mime")]
-            internal static extern int SetContainerMimeType(IntPtr handle, int mimeType);
+            internal static extern int SetContainerMimeType(IntPtr handle,
+                MediaFormatContainerMimeType mimeType);
 
             #region Video apis
             [DllImport(Libraries.MediaTool, EntryPoint = "media_format_get_video_info")]
-            internal static extern int GetVideoInfo(IntPtr handle, out int mimeType,
+            internal static extern int GetVideoInfo(IntPtr handle, out MediaFormatVideoMimeType mimeType,
                 out int width, out int height, out int averageBps, out int maxBps);
 
             [DllImport(Libraries.MediaTool, EntryPoint = "media_format_get_video_frame_rate")]
             internal static extern int GetVideoFrameRate(IntPtr handle, out int frameRate);
 
             [DllImport(Libraries.MediaTool, EntryPoint = "media_format_set_video_mime")]
-            internal static extern int SetVideoMimeType(IntPtr handle, int value);
+            internal static extern int SetVideoMimeType(IntPtr handle, MediaFormatVideoMimeType value);
 
             [DllImport(Libraries.MediaTool, EntryPoint = "media_format_set_video_width")]
             internal static extern int SetVideoWidth(IntPtr handle, int value);
@@ -128,20 +141,23 @@ namespace Tizen.Multimedia
             [DllImport(Libraries.MediaTool, EntryPoint = "media_format_set_video_avg_bps")]
             internal static extern int SetVideoAverageBps(IntPtr handle, int value);
 
+            [DllImport(Libraries.MediaTool, EntryPoint = "media_format_set_video_max_bps")]
+            internal static extern int SetVideoMaxBps(IntPtr handle, int value);
+
             [DllImport(Libraries.MediaTool, EntryPoint = "media_format_set_video_frame_rate")]
             internal static extern int SetVideoFrameRate(IntPtr handle, int value);
             #endregion
 
             #region Audio apis
             [DllImport(Libraries.MediaTool, EntryPoint = "media_format_get_audio_info")]
-            internal static extern int GetAudioInfo(IntPtr handle, out int mimeType,
+            internal static extern int GetAudioInfo(IntPtr handle, out MediaFormatAudioMimeType mimeType,
                 out int channel, out int sampleRate, out int bit, out int averageBps);
 
             [DllImport(Libraries.MediaTool, EntryPoint = "media_format_get_audio_aac_header_type")]
-            internal static extern int GetAudioAacType(IntPtr handle, out int aacType);
+            internal static extern int GetAudioAacType(IntPtr handle, out MediaFormatAacType aacType);
 
             [DllImport(Libraries.MediaTool, EntryPoint = "media_format_set_audio_mime")]
-            internal static extern int SetAudioMimeType(IntPtr handle, int value);
+            internal static extern int SetAudioMimeType(IntPtr handle, MediaFormatAudioMimeType value);
 
             [DllImport(Libraries.MediaTool, EntryPoint = "media_format_set_audio_channel")]
             internal static extern int SetAudioChannel(IntPtr handle, int value);
@@ -156,17 +172,38 @@ namespace Tizen.Multimedia
             internal static extern int SetAudioAverageBps(IntPtr handle, int value);
 
             [DllImport(Libraries.MediaTool, EntryPoint = "media_format_set_audio_aac_header_type")]
-            internal static extern int SetAudioAacType(IntPtr handle, int value);
+            internal static extern int SetAudioAacType(IntPtr handle, MediaFormatAacType value);
+
+            [DllImport(Libraries.MediaTool, EntryPoint = "media_format_set_audio_channel_mask")]
+            internal static extern int SetAudioChannelMask(IntPtr handle, ulong mask);
+
+            [DllImport(Libraries.MediaTool, EntryPoint = "media_format_get_audio_channel_mask")]
+            internal static extern int GetAudioChannelMask(IntPtr handle, out ulong mask);
+
+            [DllImport(Libraries.MediaTool, EntryPoint = "media_format_is_little_endian")]
+            internal static extern int IsLittleEndian(IntPtr handle, out bool isLittleEndian);
+
+            [DllImport(Libraries.MediaTool, EntryPoint = "media_format_get_audio_bit_depth")]
+            internal static extern int GetAudioBitDepth(IntPtr handle, out int bitDepth);
+
+            [DllImport(Libraries.MediaTool, EntryPoint = "media_format_channel_positions_from_mask")]
+            internal static extern int GetChannelPositionFromMask(IntPtr handle, ulong mask,
+                out MediaFormatAudioChannelPosition[] position);
+
+            [DllImport(Libraries.MediaTool, EntryPoint = "media_format_channel_positions_to_mask")]
+            internal static extern int GetMaskFromChannelPosition(IntPtr handle,
+                MediaFormatAudioChannelPosition[] position, out ulong mask);
             #endregion
 
             [DllImport(Libraries.MediaTool, EntryPoint = "media_format_get_text_info")]
-            internal static extern int GetTextInfo(IntPtr handle, out int mimeType, out int textType);
+            internal static extern int GetTextInfo(IntPtr handle,
+                out MediaFormatTextMimeType mimeType, out MediaFormatTextType textType);
 
             [DllImport(Libraries.MediaTool, EntryPoint = "media_format_set_text_mime")]
-            internal static extern int SetTextMimeType(IntPtr handle, int value);
+            internal static extern int SetTextMimeType(IntPtr handle, MediaFormatTextMimeType value);
 
             [DllImport(Libraries.MediaTool, EntryPoint = "media_format_set_text_type")]
-            internal static extern int SetTextType(IntPtr handle, int value);
+            internal static extern int SetTextType(IntPtr handle, MediaFormatTextType value);
         }
     }
 }

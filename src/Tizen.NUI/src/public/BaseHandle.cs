@@ -14,6 +14,12 @@
  * limitations under the License.
  *
  */
+using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using Tizen.NUI.Binding;
+using Tizen.NUI.Binding.Internals;
+
 namespace Tizen.NUI
 {
 
@@ -21,31 +27,62 @@ namespace Tizen.NUI
     /// BaseHandle is a handle to an internal Dali resource.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class BaseHandle : global::System.IDisposable
+    public class BaseHandle : Element, global::System.IDisposable
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         /// <summary>
         /// swigCMemOwn
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         protected bool swigCMemOwn;
-        private bool _registerMe;
+
+        /// <summary>
+        /// A flag to check if it is already disposed.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        protected bool disposed = false;
+
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        private global::System.Runtime.InteropServices.HandleRef swigCPtrCopy;
+        private bool registerMe;
+
+        //A Flag to check who called Dispose(). (By User or DisposeQueue)
+        private bool isDisposeQueued = false;
+
+        private bool disposedThis = false;
+
+        /// <summary>
+        /// Create an instance of BaseHandle.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public BaseHandle() : this(Interop.BaseHandle.NewBaseHandle())
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Create an instance of BaseHandle.
+        /// </summary>
+        /// <param name="handle">The BaseHandle instance.</param>
+        /// <since_tizen> 3 </since_tizen>
+        public BaseHandle(BaseHandle handle) : this(Interop.BaseHandle.NewBaseHandle(BaseHandle.getCPtr(handle)))
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
 
         internal BaseHandle(global::System.IntPtr cPtr, bool cMemoryOwn)
         {
             //to catch derived classes dali native exceptions
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-            _registerMe = swigCMemOwn = cMemoryOwn;
-
+            registerMe = swigCMemOwn = cMemoryOwn;
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-
             // using copy constructor to create another native handle so Registry.Unregister works fine.
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, NDalicPINVOKE.new_BaseHandle__SWIG_2(swigCPtr));
+            swigCPtrCopy = new global::System.Runtime.InteropServices.HandleRef(this, Interop.BaseHandle.NewBaseHandle(swigCPtr));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-            if (_registerMe)
+            if (registerMe)
             {
+
                 // Register this instance of BaseHandle in the registry.
                 Registry.Register(this);
             }
@@ -53,108 +90,39 @@ namespace Tizen.NUI
 
         internal BaseHandle(global::System.IntPtr cPtr)
         {
-            _registerMe = swigCMemOwn = true;
+            registerMe = swigCMemOwn = true;
 
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
 
             // using copy constructor to create another native handle so Registry.Unregister works fine.
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, NDalicPINVOKE.new_BaseHandle__SWIG_2(swigCPtr));
+            swigCPtrCopy = new global::System.Runtime.InteropServices.HandleRef(this, Interop.BaseHandle.NewBaseHandle(SwigCPtr));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-            if (_registerMe)
+            if (registerMe)
             {
                 // Register this instance of BaseHandle in the registry.
                 Registry.Register(this);
             }
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(BaseHandle obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        //A Flag to check who called Dispose(). (By User or DisposeQueue)
-        private bool isDisposeQueued = false;
-
-        /// <summary>
-        /// A Flat to check if it is already disposed.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected bool disposed = false;
-
         /// <summary>
         /// Dispose.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        ~BaseHandle()
-        {
-            if (!isDisposeQueued)
-            {
-                isDisposeQueued = true;
-                DisposeQueue.Instance.Add(this);
-            }
-        }
+        ~BaseHandle() => Dispose(false);
 
         /// <summary>
-        /// Dispose.
+        /// Event when a property is set.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public void Dispose()
+        /// <since_tizen> 5 </since_tizen>
+        public event PropertyChangedEventHandler PropertySet;
+
+        internal global::System.Runtime.InteropServices.HandleRef GetBaseHandleCPtrHandleRef
         {
-            //Throw excpetion if Dispose() is called in separate thread.
-            if (!Window.IsInstalled())
+            get
             {
-                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
+                return swigCPtrCopy;
             }
-
-            if (isDisposeQueued)
-            {
-                Dispose(DisposeTypes.Implicit);
-            }
-            else
-            {
-                Dispose(DisposeTypes.Explicit);
-                System.GC.SuppressFinalize(this);
-            }
-        }
-
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected virtual void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            //Unreference this instance from Registry.
-            if (_registerMe)
-            {
-                Registry.Unregister(this);
-            }
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                swigCMemOwn = false;
-                NDalicPINVOKE.delete_BaseHandle(swigCPtr);
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            disposed = true;
         }
 
         /// <summary>
@@ -264,11 +232,11 @@ namespace Tizen.NUI
         {
             if (!BaseHandle.ReferenceEquals(x, null) || !BaseHandle.ReferenceEquals(y, null))
             {
-                if (x.HasBody())
+                if (x != null && x.HasBody())
                 {
                     return x;
                 }
-                if (y.HasBody())
+                if (y != null && y.HasBody())
                 {
                     return y;
                 }
@@ -309,7 +277,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the the hash code of this baseHandle.
         /// </summary>
-        /// <returns>The Hash Code.</returns>
+        /// <returns>The hash code.</returns>
         /// <since_tizen> 5 </since_tizen>
         public override int GetHashCode()
         {
@@ -317,22 +285,67 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Create an instance of BaseHandle.
+        /// Dispose.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public BaseHandle() : this(NDalicPINVOKE.new_BaseHandle__SWIG_1())
+        public void Dispose()
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Dispose(true);
+            System.GC.SuppressFinalize(this);
         }
 
         /// <summary>
-        /// Create an instance of BaseHandle.
+        /// Hidden API (Inhouse API).
+        /// Dispose. 
         /// </summary>
-        /// <param name="handle">The BaseHandle instance.</param>
-        /// <since_tizen> 3 </since_tizen>
-        public BaseHandle(BaseHandle handle) : this(NDalicPINVOKE.new_BaseHandle__SWIG_2(BaseHandle.getCPtr(handle)))
+        /// <remarks>
+        /// Following the guide of https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose.
+        /// This will replace "protected virtual void Dispose(DisposeTypes type)" which is exactly same in functionality.
+        /// </remarks>
+        /// <param name="disposing">true in order to free managed objects</param>
+        // Protected implementation of Dispose pattern.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void Dispose(bool disposing)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (disposedThis)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                // TODO: dispose managed state (managed objects).
+                // Explicit call. user calls Dispose()
+
+                //Throw excpetion if Dispose() is called in separate thread.
+                if (!Window.IsInstalled())
+                {
+                    throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
+                }
+
+                if (isDisposeQueued)
+                {
+                    Dispose(DisposeTypes.Implicit);
+                }
+                else
+                {
+                    Dispose(DisposeTypes.Explicit);
+                }
+            }
+            else
+            {
+                // Implicit call. user doesn't call Dispose(), so this object is added into DisposeQueue to be disposed automatically.
+                if (!isDisposeQueued)
+                {
+                    isDisposeQueued = true;
+                    DisposeQueue.Instance.Add(this);
+                }
+            }
+
+            // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
+            // TODO: set large fields to null.
+
+            disposedThis = true;
         }
 
 
@@ -345,7 +358,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool DoAction(string actionName, PropertyMap attributes)
         {
-            bool ret = NDalicPINVOKE.BaseHandle_DoAction(swigCPtr, actionName, PropertyMap.getCPtr(attributes));
+            bool ret = Interop.BaseHandle.DoAction(swigCPtrCopy, actionName, PropertyMap.getCPtr(attributes));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -359,7 +372,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public string GetTypeName()
         {
-            string ret = NDalicPINVOKE.BaseHandle_GetTypeName(swigCPtr);
+            string ret = Interop.BaseHandle.GetTypeName(swigCPtrCopy);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -370,9 +383,9 @@ namespace Tizen.NUI
         /// <param name="info">The type information.</param>
         /// <returns>True If get the type info.</returns>
         /// <since_tizen> 3 </since_tizen>
-        public bool GetTypeInfo(TypeInfo info)
+        public bool GetTypeInfo(Tizen.NUI.TypeInfo info)
         {
-            bool ret = NDalicPINVOKE.BaseHandle_GetTypeInfo(swigCPtr, TypeInfo.getCPtr(info));
+            bool ret = Interop.BaseHandle.GetTypeInfo(swigCPtrCopy, Tizen.NUI.TypeInfo.getCPtr(info));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -383,7 +396,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Reset()
         {
-            NDalicPINVOKE.BaseHandle_Reset(swigCPtr);
+            Interop.BaseHandle.Reset(swigCPtrCopy);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -395,7 +408,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool EqualTo(BaseHandle rhs)
         {
-            bool ret = NDalicPINVOKE.BaseHandle_EqualTo(swigCPtr, BaseHandle.getCPtr(rhs));
+            bool ret = Interop.BaseHandle.EqualTo(swigCPtrCopy, BaseHandle.getCPtr(rhs));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -408,15 +421,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool NotEqualTo(BaseHandle rhs)
         {
-            bool ret = NDalicPINVOKE.BaseHandle_NotEqualTo(swigCPtr, BaseHandle.getCPtr(rhs));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal RefObject GetObjectPtr()
-        {
-            global::System.IntPtr cPtr = NDalicPINVOKE.BaseHandle_GetObjectPtr(swigCPtr);
-            RefObject ret = (cPtr == global::System.IntPtr.Zero) ? null : new RefObject(cPtr, false);
+            bool ret = Interop.BaseHandle.NotEqualTo(swigCPtrCopy, BaseHandle.getCPtr(rhs));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -428,12 +433,16 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool HasBody()
         {
-            if (disposed == true)
+            if (swigCPtrCopy.Handle == IntPtr.Zero)
             {
                 return false;
             }
 
-            bool ret = NDalicPINVOKE.BaseHandle_HasBody(swigCPtr);
+            if (disposed == true)
+            {
+                return false;
+            }
+            bool ret = Interop.BaseHandle.HasBody(swigCPtrCopy);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -451,19 +460,105 @@ namespace Tizen.NUI
                 return false;
             }
 
-            bool ret = NDalicPINVOKE.BaseHandle_IsEqual(swigCPtr, BaseHandle.getCPtr(rhs));
+            bool ret = Interop.BaseHandle.IsEqual(swigCPtrCopy, BaseHandle.getCPtr(rhs));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        internal global::System.Runtime.InteropServices.HandleRef GetBaseHandleCPtrHandleRef
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(BaseHandle obj)
         {
-            get
-            {
-                return swigCPtr;
-            }
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtrCopy;
         }
 
+        internal void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            PropertySet?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        protected virtual void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            //Unreference this instance from Registry.
+            if (registerMe)
+            {
+                Registry.Unregister(this);
+            }
+
+            if (SwigCPtr.Handle != IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    ReleaseSwigCPtr(SwigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+            if (swigCPtrCopy.Handle != global::System.IntPtr.Zero)
+            {
+                swigCMemOwn = false;
+                Interop.BaseHandle.DeleteBaseHandle(swigCPtrCopy);
+                swigCPtrCopy = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+
+            disposed = true;
+        }
+
+        /// <summary>
+        /// Release swigCPtr.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+        }
+
+        /// <summary>
+        /// Contains event arguments for the FocusChangeRequested event.
+        /// </summary>
+        [Obsolete("Deprecated in API9; Will be removed in API11.")]
+        public class FocusRequestArgs : EventArgs
+        {
+
+            /// <summary>
+            /// Gets or sets a value that indicates the starting focus state of the element for which a focus change is requested.
+            /// </summary>
+            public bool Focus { get; set; }
+
+            /// <summary>
+            /// Gets or sets a value that indicates the ending focus state of the element for which a focus change is requested.
+            /// </summary>
+            public bool Result { get; set; }
+        }
+
+        internal global::System.Runtime.InteropServices.HandleRef SwigCPtr
+        {
+            get => swigCPtr;
+            set
+            {
+                swigCPtr = value;
+            }
+        }
     }
 
 }

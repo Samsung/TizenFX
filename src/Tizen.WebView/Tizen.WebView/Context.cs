@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.ComponentModel;
 
 namespace Tizen.WebView
 {
@@ -50,6 +51,16 @@ namespace Tizen.WebView
     {
         private IntPtr _handle;
         private CookieManager _cookieManager;
+
+        private Interop.ChromiumEwk.DownloadStartCallback _downloadStartCallback;
+        
+        /// <summary>
+        /// The delegate for handling download request.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// <param name="url"> url of the download request. </param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public delegate void DownloadRequestDelegate(string url);
 
         internal Context(IntPtr handle)
         {
@@ -93,6 +104,39 @@ namespace Tizen.WebView
                 _cookieManager = new CookieManager(cookieManagerHandle);
             }
             return _cookieManager;
+        }
+
+        /// <summary>
+        /// Clears HTTP caches in the local storage and all resources cached in memory.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public void ClearResourceCache()
+        {
+            Interop.ChromiumEwk.ewk_context_resource_cache_clear(_handle);
+        }
+
+        /// <summary>
+        /// Informs the WebEngine low memory to release unused memory.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void NotifyLowMemory()
+        {
+            Interop.ChromiumEwk.ewk_context_notify_low_memory(_handle);
+        }
+
+        /// <summary>
+        /// Sets the delegate function for download request.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetDownloadRequestDelegate(DownloadRequestDelegate startDownloadCb)
+        {
+            _downloadStartCallback = (string url, IntPtr userData) =>
+            {
+                startDownloadCb(url);
+            };
+            Interop.ChromiumEwk.ewk_context_did_start_download_callback_set(_handle, _downloadStartCallback, IntPtr.Zero);
         }
     }
 }

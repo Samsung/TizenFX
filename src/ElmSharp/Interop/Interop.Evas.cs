@@ -495,6 +495,9 @@ internal static partial class Interop
         internal static extern void evas_object_render_op_set(IntPtr obj, RenderOp op);
 
         [DllImport(Libraries.Evas)]
+        internal static extern RenderOp evas_object_render_op_get(IntPtr obj);
+
+        [DllImport(Libraries.Evas)]
         internal static extern void evas_object_size_hint_aspect_set(IntPtr obj, int aspect, int w, int h);
 
         [DllImport(Libraries.Evas)]
@@ -633,6 +636,9 @@ internal static partial class Interop
 
         [DllImport(Libraries.Evas)]
         internal static extern void evas_font_path_global_prepend(string path);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_font_reinit();
 
         [DllImport(Libraries.Evas)]
         internal static extern void evas_color_argb_unpremul(int a, ref int r, ref int g, ref int b);

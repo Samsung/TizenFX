@@ -92,13 +92,16 @@ namespace Tizen.NUI
             // we add 1000, just incase View class starts using animatable properties
             int startAnimatablePropertyIndex = (int)Tizen.NUI.PropertyRanges.ANIMATABLE_PROPERTY_REGISTRATION_START_INDEX + maxCountPerDerivation;
 
-            while (viewType.GetTypeInfo().BaseType.Name != "CustomView")   // custom view is our C# view base class. we don't go any deeper.
+            if (viewType != null)
             {
-                // for every base class increase property start index
-                startEventPropertyIndex += (int)Tizen.NUI.PropertyRanges.DEFAULT_PROPERTY_MAX_COUNT_PER_DERIVATION; // DALi uses 10,000
-                startAnimatablePropertyIndex += maxCountPerDerivation;
-                NUILog.Debug("getStartPropertyIndex =  " + viewType.Name + "current index " + startEventPropertyIndex);
-                viewType = viewType.GetTypeInfo().BaseType;
+                while (viewType.GetTypeInfo().BaseType?.Name != "CustomView")   // custom view is our C# view base class. we don't go any deeper.
+                {
+                    // for every base class increase property start index
+                    startEventPropertyIndex += (int)Tizen.NUI.PropertyRanges.DEFAULT_PROPERTY_MAX_COUNT_PER_DERIVATION; // DALi uses 10,000
+                    startAnimatablePropertyIndex += maxCountPerDerivation;
+                    NUILog.Debug("getStartPropertyIndex =  " + viewType.Name + "current index " + startEventPropertyIndex);
+                    viewType = viewType.GetTypeInfo().BaseType;
+                }
             }
 
             range.startEventIndex = startEventPropertyIndex;
@@ -108,7 +111,6 @@ namespace Tizen.NUI
             range.lastUsedAnimationIndex = startAnimatablePropertyIndex;
 
         }
-
 
         /// <since_tizen> 3 </since_tizen>
         public struct PropertyRange
@@ -129,7 +131,6 @@ namespace Tizen.NUI
                 }
             }
 
-
             /// <since_tizen> 3 </since_tizen>
             public int startEventIndex;        // start of the property range
             /// <since_tizen> 3 </since_tizen>
@@ -140,8 +141,5 @@ namespace Tizen.NUI
             /// <since_tizen> 3 </since_tizen>
             public int lastUsedAnimationIndex; // last used of the property index
         };
-
-
-
     }
 }

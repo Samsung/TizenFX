@@ -14,56 +14,27 @@
  * limitations under the License.
  *
  */
- 
+
 using System;
 using System.Runtime.InteropServices;
+
 namespace Tizen.NUI
 {
     internal class WatchApplication : Application
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         internal WatchApplication(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(WatchApplication obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
-        protected override void Dispose(DisposeTypes type)
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-            DisConnectFromSignals();
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicManualPINVOKE.delete_WatchApplication(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
+            Interop.Watch.DeleteWatchApplication(swigCPtr);
         }
 
         private void DisConnectFromSignals()
@@ -79,14 +50,6 @@ namespace Tizen.NUI
             if (_ambientChangedCallback != null)
             {
                 this.AmbientChangedSignal().Disconnect(_ambientChangedCallback);
-            }
-        }
-
-        public new static WatchApplication Instance
-        {
-            get
-            {
-                return _instance;
             }
         }
 
@@ -117,7 +80,7 @@ namespace Tizen.NUI
 
         public new static WatchApplication New()
         {
-            WatchApplication ret = new WatchApplication(NDalicManualPINVOKE.WatchApplication_New__SWIG_0(), true);
+            WatchApplication ret = new WatchApplication(Interop.Watch.WatchApplicationNew(), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -127,7 +90,7 @@ namespace Tizen.NUI
             int argc = args.Length;
             string argvStr = string.Join(" ", args);
 
-            WatchApplication ret = new WatchApplication(NDalicManualPINVOKE.WatchApplication_New__SWIG_1(argc, argvStr), true);
+            WatchApplication ret = new WatchApplication(Interop.Watch.WatchApplicationNew(argc, argvStr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -137,12 +100,12 @@ namespace Tizen.NUI
             int argc = args.Length;
             string argvStr = string.Join(" ", args);
 
-            WatchApplication ret = new WatchApplication(NDalicManualPINVOKE.WatchApplication_New__SWIG_2(argc, argvStr, stylesheet), true);
+            WatchApplication ret = new WatchApplication(Interop.Watch.WatchApplicationNew(argc, argvStr, stylesheet), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        internal WatchApplication(WatchApplication implementation) : this(NDalicManualPINVOKE.new_WatchApplication__SWIG_1(WatchApplication.getCPtr(implementation)), true)
+        internal WatchApplication(WatchApplication implementation) : this(Interop.Watch.NewWatchApplication(WatchApplication.getCPtr(implementation)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -177,7 +140,7 @@ namespace Tizen.NUI
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void TimeTickCallbackType(IntPtr application, IntPtr watchTime);
         private TimeTickCallbackType _timeTickCallback;
-        private DaliEventHandler<object,TimeTickEventArgs> _timeTickEventHandler;
+        private DaliEventHandler<object, TimeTickEventArgs> _timeTickEventHandler;
 
         /// <summary>
         /// TimeTick event.
@@ -188,7 +151,7 @@ namespace Tizen.NUI
             {
                 if (_timeTickEventHandler == null)
                 {
-                    _timeTickCallback = new TimeTickCallbackType( OnTimeTick);
+                    _timeTickCallback = new TimeTickCallbackType(OnTimeTick);
                     TimeTickSignal().Connect(_timeTickCallback);
                 }
 
@@ -201,7 +164,7 @@ namespace Tizen.NUI
 
                 if (_timeTickEventHandler == null && TimeTickSignal().Empty() == false)
                 {
-                   TimeTickSignal().Disconnect(_timeTickCallback);
+                    TimeTickSignal().Disconnect(_timeTickCallback);
                 }
             }
         }
@@ -209,21 +172,16 @@ namespace Tizen.NUI
         private void OnTimeTick(IntPtr application, IntPtr watchTime)
         {
             TimeTickEventArgs e = new TimeTickEventArgs();
-            if (application != null)
-            {
-                e.Application = Application.GetApplicationFromPtr(application);
-            }
-            if(watchTime != null)
-            {
-                e.WatchTime = WatchTime.GetWatchTimeFromPtr(watchTime);
-            }
+            e.Application = this;
+            e.WatchTime = WatchTime.GetWatchTimeFromPtr(watchTime);
 
             _timeTickEventHandler?.Invoke(this, e);
+
         }
 
         internal WatchTimeSignal TimeTickSignal()
         {
-            WatchTimeSignal ret = new WatchTimeSignal(NDalicManualPINVOKE.WatchApplication_TimeTickSignal(swigCPtr), false);
+            WatchTimeSignal ret = new WatchTimeSignal(Interop.Watch.WatchApplicationTimeTickSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -258,7 +216,7 @@ namespace Tizen.NUI
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void AmbientTickCallbackType(IntPtr application, IntPtr watchTime);
         private AmbientTickCallbackType _ambientTickCallback;
-        private DaliEventHandler<object,AmbientTickEventArgs> _ambientTickEventHandler;
+        private DaliEventHandler<object, AmbientTickEventArgs> _ambientTickEventHandler;
 
         /// <summary>
         /// AmbientTick event.
@@ -269,7 +227,7 @@ namespace Tizen.NUI
             {
                 if (_ambientTickEventHandler == null)
                 {
-                    _ambientTickCallback = new AmbientTickCallbackType( OnAmbientTick);
+                    _ambientTickCallback = new AmbientTickCallbackType(OnAmbientTick);
                     AmbientTickSignal().Connect(_ambientTickCallback);
                 }
 
@@ -282,7 +240,7 @@ namespace Tizen.NUI
 
                 if (_ambientTickEventHandler == null && AmbientTickSignal().Empty() == false)
                 {
-                   AmbientTickSignal().Disconnect(_ambientTickCallback);
+                    AmbientTickSignal().Disconnect(_ambientTickCallback);
                 }
             }
         }
@@ -290,21 +248,15 @@ namespace Tizen.NUI
         private void OnAmbientTick(IntPtr application, IntPtr watchTime)
         {
             AmbientTickEventArgs e = new AmbientTickEventArgs();
-            if (application != null)
-            {
-                e.Application = Application.GetApplicationFromPtr(application);
-            }
-            if (watchTime != null)
-            {
-                e.WatchTime = WatchTime.GetWatchTimeFromPtr(watchTime);
-            }
 
+            e.Application = this;
+            e.WatchTime = WatchTime.GetWatchTimeFromPtr(watchTime);
             _ambientTickEventHandler?.Invoke(this, e);
         }
 
         internal WatchTimeSignal AmbientTickSignal()
         {
-            WatchTimeSignal ret = new WatchTimeSignal(NDalicManualPINVOKE.WatchApplication_AmbientTickSignal(swigCPtr), false);
+            WatchTimeSignal ret = new WatchTimeSignal(Interop.Watch.WatchApplicationAmbientTickSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -339,7 +291,7 @@ namespace Tizen.NUI
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void AmbientChangedCallbackType(IntPtr application, bool changed);
         private AmbientChangedCallbackType _ambientChangedCallback;
-        private DaliEventHandler<object,AmbientChangedEventArgs> _ambientChangedEventHandler;
+        private DaliEventHandler<object, AmbientChangedEventArgs> _ambientChangedEventHandler;
 
         /// <summary>
         /// AmbientChanged event.
@@ -350,7 +302,7 @@ namespace Tizen.NUI
             {
                 if (_ambientChangedEventHandler == null)
                 {
-                    _ambientChangedCallback = new AmbientChangedCallbackType( OnAmbientChanged);
+                    _ambientChangedCallback = new AmbientChangedCallbackType(OnAmbientChanged);
                     AmbientChangedSignal().Connect(_ambientChangedCallback);
                 }
 
@@ -363,7 +315,7 @@ namespace Tizen.NUI
 
                 if (_ambientChangedEventHandler == null && AmbientChangedSignal().Empty() == false)
                 {
-                   AmbientChangedSignal().Disconnect(_ambientChangedCallback);
+                    AmbientChangedSignal().Disconnect(_ambientChangedCallback);
                 }
             }
         }
@@ -371,24 +323,16 @@ namespace Tizen.NUI
         private void OnAmbientChanged(IntPtr application, bool changed)
         {
             AmbientChangedEventArgs e = new AmbientChangedEventArgs();
-            if (application != null)
-            {
-                e.Application = Application.GetApplicationFromPtr(application);
-            }
+            e.Application = this;
             e.Changed = changed;
-
             _ambientChangedEventHandler?.Invoke(this, e);
         }
 
         internal WatchBoolSignal AmbientChangedSignal()
         {
-            WatchBoolSignal ret = new WatchBoolSignal(NDalicManualPINVOKE.WatchApplication_AmbientChangedSignal(swigCPtr), false);
+            WatchBoolSignal ret = new WatchBoolSignal(Interop.Watch.WatchApplicationAmbientChangedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-
-        private static WatchApplication _instance; //singleton
-
     }
-
 }

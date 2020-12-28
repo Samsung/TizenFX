@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,104 +20,20 @@ using System.ComponentModel;
 
 namespace Tizen.NUI
 {
-    internal class ActivatedSignalType : global::System.IDisposable
+    internal class ActivatedSignalType : Disposable
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-        /// <summary>
-        /// swigCMemOwn
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected bool swigCMemOwn;
 
-        internal ActivatedSignalType(global::System.IntPtr cPtr, bool cMemoryOwn)
+        internal ActivatedSignalType(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-            swigCMemOwn = cMemoryOwn;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-        }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ActivatedSignalType obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        //A Flag to check who called Dispose(). (By User or DisposeQueue)
-        private bool isDisposeQueued = false;
-        /// <summary>
-        /// A Flat to check if it is already disposed.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected bool disposed = false;
-
-        /// <summary>
-        /// Dispose
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        ~ActivatedSignalType()
-        {
-            if (!isDisposeQueued)
-            {
-                isDisposeQueued = true;
-                DisposeQueue.Instance.Add(this);
-            }
         }
 
         /// <summary>
         /// Dispose
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public void Dispose()
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            //Throw excpetion if Dispose() is called in separate thread.
-            if (!Window.IsInstalled())
-            {
-                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-            }
-
-            if (isDisposeQueued)
-            {
-                Dispose(DisposeTypes.Implicit);
-            }
-            else
-            {
-                Dispose(DisposeTypes.Explicit);
-                System.GC.SuppressFinalize(this);
-            }
-        }
-
-        /// <summary>
-        /// Dispose
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected virtual void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicManualPINVOKE.delete_ActivatedSignalType(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            disposed = true;
+            Interop.ActivatedSignalType.DeleteActivatedSignalType(swigCPtr);
         }
 
         /// <summary>
@@ -127,7 +43,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool Empty()
         {
-            bool ret = NDalicManualPINVOKE.ActivatedSignalType_Empty(swigCPtr);
+            bool ret = Interop.ActivatedSignalType.Empty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -139,7 +55,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public uint GetConnectionCount()
         {
-            uint ret = NDalicManualPINVOKE.ActivatedSignalType_GetConnectionCount(swigCPtr);
+            uint ret = Interop.ActivatedSignalType.GetConnectionCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -153,7 +69,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                NDalicManualPINVOKE.ActivatedSignalType_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.ActivatedSignalType.Connect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -167,7 +83,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                NDalicManualPINVOKE.ActivatedSignalType_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.ActivatedSignalType.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -176,10 +92,10 @@ namespace Tizen.NUI
         /// Emits the signal.
         /// </summary>
         /// <param name="arg">The first value to pass to callbacks</param>
-        /// <since_tizen> 4 </since_tizen>
-        public void Emit(ImfManager arg)
+        /// <since_tizen> 5 </since_tizen>
+        public void Emit(InputMethodContext arg)
         {
-            NDalicManualPINVOKE.ActivatedSignalType_Emit(swigCPtr, ImfManager.getCPtr(arg));
+            Interop.ActivatedSignalType.Emit(SwigCPtr, InputMethodContext.getCPtr(arg));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -187,11 +103,9 @@ namespace Tizen.NUI
         /// The contructor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public ActivatedSignalType() : this(NDalicManualPINVOKE.new_ActivatedSignalType(), true)
+        public ActivatedSignalType() : this(Interop.ActivatedSignalType.NewActivatedSignalType(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-
     }
-
 }

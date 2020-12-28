@@ -37,18 +37,7 @@ namespace Tizen.Multimedia
             _owner = owner;
             _index = index;
 
-            int frequency = 0;
-            int range = 0;
-
-            Native.GetEqualizerBandFrequency(_owner.Player.Handle, _index, out frequency).
-                ThrowIfFailed("Failed to initialize equalizer band");
-
-            Native.GetEqualizerBandFrequencyRange(_owner.Player.Handle, _index, out range).
-                ThrowIfFailed("Failed to initialize equalizer band");
-
-            Frequency = frequency;
-            FrequencyRange = range;
-            Log.Debug(PlayerLog.Tag, "frequency : " + frequency + ", range : " + range);
+            Log.Debug(PlayerLog.Tag, "frequency : " + Frequency + ", range : " + FrequencyRange);
         }
 
         /// <summary>
@@ -59,22 +48,27 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentOutOfRangeException">
         ///     <paramref name="value"/> is not inside of <see cref="AudioEffect.BandLevelRange"/>.
         /// </exception>
+        /// <exception cref="NotAvailableException">
+        ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
+        /// </exception>
         /// <since_tizen> 3 </since_tizen>
         public int Level
         {
             get
             {
                 _owner.Player.ValidateNotDisposed();
+                _owner.Player.AudioOffload.CheckDisabled();
 
-                int value = 0;
-                Native.GetEqualizerBandLevel(_owner.Player.Handle, _index, out value).
-                    ThrowIfFailed("Failed to get the level of the equalizer band");
+                Native.GetEqualizerBandLevel(_owner.Player.Handle, _index, out var value).
+                    ThrowIfFailed(_owner.Player, "Failed to get the level of the equalizer band");
+
                 Log.Info(PlayerLog.Tag, "get level : " + value);
                 return value;
             }
             set
             {
                 _owner.Player.ValidateNotDisposed();
+                _owner.Player.AudioOffload.CheckDisabled();
 
                 if (value < _owner.BandLevelRange.Min || _owner.BandLevelRange.Max < value)
                 {
@@ -85,22 +79,50 @@ namespace Tizen.Multimedia
                 }
 
                 Native.SetEqualizerBandLevel(_owner.Player.Handle, _index, value).
-                    ThrowIfFailed("Failed to set the level of the equalizer band");
+                    ThrowIfFailed(_owner.Player, "Failed to set the level of the equalizer band");
             }
         }
 
 
         /// <summary>
-        /// Gets the frequency in the dB.
+        /// Gets the frequency in dB.
         /// </summary>
+        /// <exception cref="NotAvailableException">
+        ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
+        /// </exception>
         /// <since_tizen> 3 </since_tizen>
-        public int Frequency { get; }
+        public int Frequency
+        {
+            get
+            {
+                _owner.Player.AudioOffload.CheckDisabled();
+
+                Native.GetEqualizerBandFrequency(_owner.Player.Handle, _index, out var frequency).
+                ThrowIfFailed(_owner.Player, "Failed to initialize equalizer band");
+
+                return frequency;
+            }
+        }
 
         /// <summary>
-        /// Gets the frequency range in the dB.
+        /// Gets the frequency range in dB.
         /// </summary>
+        /// <exception cref="NotAvailableException">
+        ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
+        /// </exception>
         /// <since_tizen> 3 </since_tizen>
-        public int FrequencyRange { get; }
+        public int FrequencyRange
+        {
+            get
+            {
+                _owner.Player.AudioOffload.CheckDisabled();
+
+                Native.GetEqualizerBandFrequencyRange(_owner.Player.Handle, _index, out var frequencyRange).
+                ThrowIfFailed(_owner.Player, "Failed to initialize equalizer band");
+
+                return frequencyRange;
+            }
+        }
 
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,16 +14,17 @@
  * limitations under the License.
  *
  */
+using System.Runtime.InteropServices;
 using Tizen.NUI.BaseComponents;
+
 namespace Tizen.NUI
 {
     internal sealed class ViewWrapperImpl : ViewImpl
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         /// <since_tizen> 3 </since_tizen>
-        public delegate void OnStageConnectionDelegate(int depth);
+        public delegate void OnSceneConnectionDelegate(int depth);
         /// <since_tizen> 3 </since_tizen>
-        public delegate void OnStageDisconnectionDelegate();
+        public delegate void OnSceneDisconnectionDelegate();
         /// <since_tizen> 3 </since_tizen>
         public delegate void OnChildAddDelegate(View view);
         /// <since_tizen> 3 </since_tizen>
@@ -63,17 +64,11 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public delegate void OnLayoutNegotiatedDelegate(float size, DimensionType dimension);
         /// <since_tizen> 3 </since_tizen>
-        public delegate void OnControlChildAddDelegate(View child);
-        /// <since_tizen> 3 </since_tizen>
-        public delegate void OnControlChildRemoveDelegate(View child);
-        /// <since_tizen> 3 </since_tizen>
         public delegate void OnStyleChangeDelegate(StyleManager styleManager, StyleChangeType change);
         /// <since_tizen> 3 </since_tizen>
         public delegate bool OnAccessibilityActivatedDelegate();
         /// <since_tizen> 3 </since_tizen>
         public delegate bool OnAccessibilityPanDelegate(PanGesture gestures);
-        /// <since_tizen> 3 </since_tizen>
-        public delegate bool OnAccessibilityTouchDelegate(Touch touch);
         /// <since_tizen> 3 </since_tizen>
         public delegate bool OnAccessibilityValueChangeDelegate(bool isIncrease);
         /// <since_tizen> 3 </since_tizen>
@@ -97,8 +92,10 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public delegate void OnLongPressDelegate(LongPressGesture longPress);
 
-        public new OnStageConnectionDelegate OnStageConnection;
-        public new OnStageDisconnectionDelegate OnStageDisconnection;
+        public new OnSceneConnectionDelegate OnSceneConnection;
+        public new OnSceneDisconnectionDelegate OnSceneDisconnection;
+        public OnSceneConnectionDelegate OnStageConnection;
+        public OnSceneDisconnectionDelegate OnStageDisconnection;
         public new OnChildAddDelegate OnChildAdd;
         public new OnChildRemoveDelegate OnChildRemove;
         public new OnPropertySetDelegate OnPropertySet;
@@ -118,12 +115,9 @@ namespace Tizen.NUI
         public new RelayoutDependentOnChildrenDelegate RelayoutDependentOnChildren;
         public new OnCalculateRelayoutSizeDelegate OnCalculateRelayoutSize;
         public new OnLayoutNegotiatedDelegate OnLayoutNegotiated;
-        public new OnControlChildAddDelegate OnControlChildAdd;
-        public new OnControlChildRemoveDelegate OnControlChildRemove;
         public new OnStyleChangeDelegate OnStyleChange;
         public new OnAccessibilityActivatedDelegate OnAccessibilityActivated;
         public new OnAccessibilityPanDelegate OnAccessibilityPan;
-        public new OnAccessibilityTouchDelegate OnAccessibilityTouch;
         public new OnAccessibilityValueChangeDelegate OnAccessibilityValueChange;
         public new OnAccessibilityZoomDelegate OnAccessibilityZoom;
         public OnFocusGainedDelegate OnFocusGained;
@@ -136,48 +130,20 @@ namespace Tizen.NUI
         public new OnTapDelegate OnTap;
         public new OnLongPressDelegate OnLongPress;
 
-        internal ViewWrapperImpl(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicManualPINVOKE.ViewWrapperImpl_SWIGUpcast(cPtr), cMemoryOwn)
+        internal ViewWrapperImpl(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ViewWrapperImpl.Upcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ViewWrapperImpl obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
-        protected override void Dispose(DisposeTypes type)
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
         }
 
-        public ViewWrapperImpl(CustomViewBehaviour behaviourFlags) : this(NDalicManualPINVOKE.new_ViewWrapperImpl((int)behaviourFlags), true)
+        public ViewWrapperImpl(CustomViewBehaviour behaviourFlags) : this(Interop.ViewWrapperImpl.NewViewWrapperImpl((int)behaviourFlags), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             DirectorConnect();
@@ -185,141 +151,135 @@ namespace Tizen.NUI
 
         public static ViewWrapper New(string typeName, ViewWrapperImpl viewWrapper)
         {
-            ViewWrapper ret = new ViewWrapper(NDalicManualPINVOKE.ViewWrapperImpl_New(typeName, ViewWrapperImpl.getCPtr(viewWrapper)), true);
+            ViewWrapper ret = new ViewWrapper(Interop.ViewWrapperImpl.New(typeName, ViewWrapperImpl.getCPtr(viewWrapper)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void RelayoutRequest()
         {
-            NDalicManualPINVOKE.ViewWrapperImpl_RelayoutRequest(swigCPtr);
+            Interop.ViewWrapperImpl.RelayoutRequest(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public float GetHeightForWidthBase(float width)
         {
-            float ret = NDalicManualPINVOKE.ViewWrapperImpl_GetHeightForWidthBase(swigCPtr, width);
+            float ret = Interop.ViewWrapperImpl.GetHeightForWidthBase(SwigCPtr, width);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public float GetWidthForHeightBase(float height)
         {
-            float ret = NDalicManualPINVOKE.ViewWrapperImpl_GetWidthForHeightBase(swigCPtr, height);
+            float ret = Interop.ViewWrapperImpl.GetWidthForHeightBase(SwigCPtr, height);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public float CalculateChildSizeBase(View child, DimensionType dimension)
         {
-            float ret = NDalicManualPINVOKE.ViewWrapperImpl_CalculateChildSizeBase(swigCPtr, View.getCPtr(child), (int)dimension);
+            float ret = Interop.ViewWrapperImpl.CalculateChildSizeBase(SwigCPtr, View.getCPtr(child), (int)dimension);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public bool RelayoutDependentOnChildrenBase(DimensionType dimension)
         {
-            bool ret = NDalicManualPINVOKE.ViewWrapperImpl_RelayoutDependentOnChildrenBase__SWIG_0(swigCPtr, (int)dimension);
+            bool ret = Interop.ViewWrapperImpl.RelayoutDependentOnChildrenBase(SwigCPtr, (int)dimension);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public bool RelayoutDependentOnChildrenBase()
         {
-            bool ret = NDalicManualPINVOKE.ViewWrapperImpl_RelayoutDependentOnChildrenBase__SWIG_1(swigCPtr);
+            bool ret = Interop.ViewWrapperImpl.RelayoutDependentOnChildrenBase(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void RegisterVisual(int index, VisualBase visual)
         {
-            NDalicManualPINVOKE.ViewWrapperImpl_RegisterVisual__SWIG_0(swigCPtr, index, VisualBase.getCPtr(visual));
+            Interop.ViewWrapperImpl.RegisterVisual(SwigCPtr, index, VisualBase.getCPtr(visual));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void RegisterVisual(int index, VisualBase visual, bool enabled)
         {
-            NDalicManualPINVOKE.ViewWrapperImpl_RegisterVisual__SWIG_1(swigCPtr, index, VisualBase.getCPtr(visual), enabled);
+            Interop.ViewWrapperImpl.RegisterVisual(SwigCPtr, index, VisualBase.getCPtr(visual), enabled);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void UnregisterVisual(int index)
         {
-            NDalicManualPINVOKE.ViewWrapperImpl_UnregisterVisual(swigCPtr, index);
+            Interop.ViewWrapperImpl.UnregisterVisual(SwigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public VisualBase GetVisual(int index)
         {
-            System.IntPtr cPtr = NDalicManualPINVOKE.ViewWrapperImpl_GetVisual(swigCPtr, index);
-            VisualBase ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as VisualBase;
-
+            //to fix memory leak issue, match the handle count with native side.
+            System.IntPtr cPtr = Interop.ViewWrapperImpl.GetVisual(SwigCPtr, index);
+            VisualBase ret = this.GetInstanceSafely<VisualBase>(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void EnableVisual(int index, bool enable)
         {
-            NDalicManualPINVOKE.ViewWrapperImpl_EnableVisual(swigCPtr, index, enable);
+            Interop.ViewWrapperImpl.EnableVisual(SwigCPtr, index, enable);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public bool IsVisualEnabled(int index)
         {
-            bool ret = NDalicManualPINVOKE.ViewWrapperImpl_IsVisualEnabled(swigCPtr, index);
+            bool ret = Interop.ViewWrapperImpl.IsVisualEnabled(SwigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public Animation CreateTransition(TransitionData transitionData)
         {
-            Animation ret = new Animation(NDalicManualPINVOKE.ViewWrapperImpl_CreateTransition(swigCPtr, TransitionData.getCPtr(transitionData)), true);
+            Animation ret = new Animation(Interop.ViewWrapperImpl.CreateTransition(SwigCPtr, TransitionData.getCPtr(transitionData)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void EmitFocusSignal(bool focusGained)
         {
-            NDalicManualPINVOKE.ViewWrapperImpl_EmitKeyInputFocusSignal(swigCPtr, focusGained);
+            Interop.ViewWrapperImpl.EmitKeyInputFocusSignal(SwigCPtr, focusGained);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void ApplyThemeStyle()
         {
-            NDalicManualPINVOKE.ViewWrapperImpl_ApplyThemeStyle(swigCPtr);
+            Interop.ViewWrapperImpl.ApplyThemeStyle(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         private void DirectorConnect()
         {
-            Delegate0 = new DelegateViewWrapperImpl_0(DirectorOnStageConnection);
-            Delegate1 = new DelegateViewWrapperImpl_1(DirectorOnStageDisconnection);
+            Delegate0 = new DelegateViewWrapperImpl_0(DirectorOnSceneConnection);
+            Delegate1 = new DelegateViewWrapperImpl_1(DirectorOnSceneDisconnection);
             Delegate2 = new DelegateViewWrapperImpl_2(DirectorOnChildAdd);
             Delegate3 = new DelegateViewWrapperImpl_3(DirectorOnChildRemove);
             Delegate4 = new DelegateViewWrapperImpl_4(DirectorOnPropertySet);
             Delegate5 = new DelegateViewWrapperImpl_5(DirectorOnSizeSet);
             Delegate6 = new DelegateViewWrapperImpl_6(DirectorOnSizeAnimation);
-            Delegate7 = new DelegateViewWrapperImpl_7(DirectorOnTouch);
-            Delegate8 = new DelegateViewWrapperImpl_8(DirectorOnHover);
             Delegate9 = new DelegateViewWrapperImpl_9(DirectorOnKey);
-            Delegate10 = new DelegateViewWrapperImpl_10(DirectorOnWheel);
             Delegate11 = new DelegateViewWrapperImpl_11(DirectorOnRelayout);
             Delegate12 = new DelegateViewWrapperImpl_12(DirectorOnSetResizePolicy);
             Delegate13 = new DelegateViewWrapperImpl_13(DirectorGetNaturalSize);
             Delegate14 = new DelegateViewWrapperImpl_14(DirectorCalculateChildSize);
             Delegate15 = new DelegateViewWrapperImpl_15(DirectorGetHeightForWidth);
             Delegate16 = new DelegateViewWrapperImpl_16(DirectorGetWidthForHeight);
-            Delegate17 = new DelegateViewWrapperImpl_17(DirectorRelayoutDependentOnChildren__SWIG_0);
-            Delegate18 = new DelegateViewWrapperImpl_18(DirectorRelayoutDependentOnChildren__SWIG_1);
+            Delegate17 = new DelegateViewWrapperImpl_17(DirectorRelayoutDependentOnChildrenWithDimension);
+            Delegate18 = new DelegateViewWrapperImpl_18(DirectorRelayoutDependentOnChildren);
             Delegate19 = new DelegateViewWrapperImpl_19(DirectorOnCalculateRelayoutSize);
             Delegate20 = new DelegateViewWrapperImpl_20(DirectorOnLayoutNegotiated);
             Delegate21 = new DelegateViewWrapperImpl_21(DirectorOnInitialize);
-            Delegate22 = new DelegateViewWrapperImpl_22(DirectorOnControlChildAdd);
-            Delegate23 = new DelegateViewWrapperImpl_23(DirectorOnControlChildRemove);
             Delegate24 = new DelegateViewWrapperImpl_24(DirectorOnStyleChange);
             Delegate25 = new DelegateViewWrapperImpl_25(DirectorOnAccessibilityActivated);
             Delegate26 = new DelegateViewWrapperImpl_26(DirectorOnAccessibilityPan);
-            Delegate27 = new DelegateViewWrapperImpl_27(DirectorOnAccessibilityTouch);
             Delegate28 = new DelegateViewWrapperImpl_28(DirectorOnAccessibilityValueChange);
             Delegate29 = new DelegateViewWrapperImpl_29(DirectorOnAccessibilityZoom);
             Delegate30 = new DelegateViewWrapperImpl_30(DirectorOnFocusGained);
@@ -331,16 +291,18 @@ namespace Tizen.NUI
             Delegate36 = new DelegateViewWrapperImpl_36(DirectorOnPan);
             Delegate37 = new DelegateViewWrapperImpl_37(DirectorOnTap);
             Delegate38 = new DelegateViewWrapperImpl_38(DirectorOnLongPress);
-            NDalicManualPINVOKE.ViewWrapperImpl_director_connect(swigCPtr, Delegate0, Delegate1, Delegate2, Delegate3, Delegate4, Delegate5, Delegate6, Delegate7, Delegate8, Delegate9, Delegate10, Delegate11, Delegate12, Delegate13, Delegate14, Delegate15, Delegate16, Delegate17, Delegate18, Delegate19, Delegate20, Delegate21, Delegate22, Delegate23, Delegate24, Delegate25, Delegate26, Delegate27, Delegate28, Delegate29, Delegate30, Delegate31, Delegate32, Delegate33, Delegate34, Delegate35, Delegate36, Delegate37, Delegate38, null, null);
+            Interop.ViewWrapperImpl.DirectorConnect(SwigCPtr, Delegate0, Delegate1, Delegate2, Delegate3, Delegate4, Delegate5, Delegate6, Delegate9, Delegate11, Delegate12, Delegate13, Delegate14, Delegate15, Delegate16, Delegate17, Delegate18, Delegate19, Delegate20, Delegate21, Delegate24, Delegate25, Delegate26, Delegate28, Delegate29, Delegate30, Delegate31, Delegate32, Delegate33, Delegate34, Delegate35, Delegate36, Delegate37, Delegate38, null, null);
         }
 
-        private void DirectorOnStageConnection(int depth)
+        private void DirectorOnSceneConnection(int depth)
         {
+            OnSceneConnection(depth);
             OnStageConnection(depth);
         }
 
-        private void DirectorOnStageDisconnection()
+        private void DirectorOnSceneDisconnection()
         {
+            OnSceneDisconnection();
             OnStageDisconnection();
         }
 
@@ -349,7 +311,10 @@ namespace Tizen.NUI
             View view = Registry.GetManagedBaseHandleFromNativePtr(child) as View;
             if (view)
             {
-                OnChildAdd(view);
+                if (null != OnChildAdd)
+                {
+                    OnChildAdd(view);
+                }
             }
         }
 
@@ -407,7 +372,10 @@ namespace Tizen.NUI
 
         private void DirectorOnSetResizePolicy(int policy, int dimension)
         {
-            OnSetResizePolicy((ResizePolicyType)policy, (DimensionType)dimension);
+            if (null != OnSetResizePolicy)
+            {
+                OnSetResizePolicy((ResizePolicyType)policy, (DimensionType)dimension);
+            }
         }
 
         private global::System.IntPtr DirectorGetNaturalSize()
@@ -435,12 +403,19 @@ namespace Tizen.NUI
             return GetWidthForHeight(height);
         }
 
-        private bool DirectorRelayoutDependentOnChildren__SWIG_0(int dimension)
+        private bool DirectorRelayoutDependentOnChildrenWithDimension(int dimension)
         {
-            return RelayoutDependentOnChildrenDimension((DimensionType)dimension);
+            if (null == RelayoutDependentOnChildrenDimension)
+            {
+                return false;
+            }
+            else
+            {
+                return RelayoutDependentOnChildrenDimension((DimensionType)dimension);
+            }
         }
 
-        private bool DirectorRelayoutDependentOnChildren__SWIG_1()
+        private bool DirectorRelayoutDependentOnChildren()
         {
             return RelayoutDependentOnChildren();
         }
@@ -459,24 +434,6 @@ namespace Tizen.NUI
         {
         }
 
-        private void DirectorOnControlChildAdd(global::System.IntPtr child)
-        {
-            View view = Registry.GetManagedBaseHandleFromNativePtr(child) as View;
-            if (view)
-            {
-                OnControlChildAdd(view);
-            }
-        }
-
-        private void DirectorOnControlChildRemove(global::System.IntPtr child)
-        {
-            View view = Registry.GetManagedBaseHandleFromNativePtr(child) as View;
-            if (view)
-            {
-                OnControlChildRemove(view);
-            }
-        }
-
         private void DirectorOnStyleChange(global::System.IntPtr styleManager, int change)
         {
             if (OnStyleChange != null)
@@ -493,11 +450,6 @@ namespace Tizen.NUI
         private bool DirectorOnAccessibilityPan(global::System.IntPtr gesture)
         {
             return OnAccessibilityPan(new PanGesture(gesture, false));
-        }
-
-        private bool DirectorOnAccessibilityTouch(global::System.IntPtr touch)
-        {
-            return OnAccessibilityTouch(new Touch(touch, false));
         }
 
         private bool DirectorOnAccessibilityValueChange(bool isIncrease)
@@ -523,14 +475,10 @@ namespace Tizen.NUI
         private global::System.IntPtr DirectorGetNextFocusableActor(global::System.IntPtr currentFocusedActor, int direction, bool loopEnabled)
         {
             View view = GetNextFocusableView(Registry.GetManagedBaseHandleFromNativePtr(currentFocusedActor) as View, (View.FocusDirection)direction, loopEnabled);
-            if (view)
-            {
-                return View.getCPtr(view).Handle;
-            }
-            else
-            {
-                return currentFocusedActor;
-            }
+
+            if (view != null) return View.getCPtr(view).Handle;
+
+            return global::System.IntPtr.Zero;
         }
 
         private void DirectorOnFocusChangeCommitted(global::System.IntPtr commitedFocusableView)
@@ -578,13 +526,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public delegate void DelegateViewWrapperImpl_6(global::System.IntPtr animation, global::System.IntPtr targetSize);
         /// <since_tizen> 3 </since_tizen>
-        public delegate bool DelegateViewWrapperImpl_7(global::System.IntPtr arg0);
-        /// <since_tizen> 3 </since_tizen>
-        public delegate bool DelegateViewWrapperImpl_8(global::System.IntPtr arg0);
-        /// <since_tizen> 3 </since_tizen>
         public delegate bool DelegateViewWrapperImpl_9(global::System.IntPtr arg0);
-        /// <since_tizen> 3 </since_tizen>
-        public delegate bool DelegateViewWrapperImpl_10(global::System.IntPtr arg0);
         /// <since_tizen> 3 </since_tizen>
         public delegate void DelegateViewWrapperImpl_11(global::System.IntPtr size, global::System.IntPtr container);
         /// <since_tizen> 3 </since_tizen>
@@ -653,10 +595,7 @@ namespace Tizen.NUI
         private DelegateViewWrapperImpl_4 Delegate4;
         private DelegateViewWrapperImpl_5 Delegate5;
         private DelegateViewWrapperImpl_6 Delegate6;
-        private DelegateViewWrapperImpl_7 Delegate7;
-        private DelegateViewWrapperImpl_8 Delegate8;
         private DelegateViewWrapperImpl_9 Delegate9;
-        private DelegateViewWrapperImpl_10 Delegate10;
         private DelegateViewWrapperImpl_11 Delegate11;
         private DelegateViewWrapperImpl_12 Delegate12;
         private DelegateViewWrapperImpl_13 Delegate13;
@@ -668,12 +607,9 @@ namespace Tizen.NUI
         private DelegateViewWrapperImpl_19 Delegate19;
         private DelegateViewWrapperImpl_20 Delegate20;
         private DelegateViewWrapperImpl_21 Delegate21;
-        private DelegateViewWrapperImpl_22 Delegate22;
-        private DelegateViewWrapperImpl_23 Delegate23;
         private DelegateViewWrapperImpl_24 Delegate24;
         private DelegateViewWrapperImpl_25 Delegate25;
         private DelegateViewWrapperImpl_26 Delegate26;
-        private DelegateViewWrapperImpl_27 Delegate27;
         private DelegateViewWrapperImpl_28 Delegate28;
         private DelegateViewWrapperImpl_29 Delegate29;
         private DelegateViewWrapperImpl_30 Delegate30;
@@ -686,6 +622,6 @@ namespace Tizen.NUI
         private DelegateViewWrapperImpl_37 Delegate37;
         private DelegateViewWrapperImpl_38 Delegate38;
 
-        public static readonly int VIEW_BEHAVIOUR_FLAG_COUNT = NDalicManualPINVOKE.ViewWrapperImpl_CONTROL_BEHAVIOUR_FLAG_COUNT_get();
+        public static readonly int ViewBehaviourFlagCount = Interop.ViewWrapperImpl.ControlBehaviourFlagCountGet();
     }
 }

@@ -40,8 +40,6 @@ namespace Tizen.Multimedia
         /// <since_tizen> 3 </since_tizen>
         public Radio()
         {
-            CompatibilitySupport.DisableSessionBackwardCompatibility();
-
             ValidateFeatureSupported(FeatureFmRadio);
 
             Native.Create(out _handle);
@@ -122,6 +120,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the current state of the radio.
         /// </summary>
+        /// <exception cref="ObjectDisposedException">The radio already has been disposed.</exception>
         /// <since_tizen> 3 </since_tizen>
         public RadioState State
         {
@@ -140,6 +139,7 @@ namespace Tizen.Multimedia
         ///     -or- <br/>
         ///     <paramref name="value"/> is greater than <see cref="Range.Max"/> of <see cref="FrequencyRange"/>.
         /// </exception>
+        /// <exception cref="ObjectDisposedException">The radio already has been disposed.</exception>
         /// <since_tizen> 3 </since_tizen>
         public int Frequency
         {
@@ -163,6 +163,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the current signal strength in the range of -128 ~ 128 dBm.
         /// </summary>
+        /// <exception cref="ObjectDisposedException">The radio already has been disposed.</exception>
         /// <since_tizen> 3 </since_tizen>
         public int SignalStrength
         {
@@ -181,6 +182,7 @@ namespace Tizen.Multimedia
         /// true if the radio is muted; otherwise, false.
         /// The default is false.
         /// </value>
+        /// <exception cref="ObjectDisposedException">The radio already has been disposed.</exception>
         /// <since_tizen> 3 </since_tizen>
         public bool IsMuted
         {
@@ -198,6 +200,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the channel spacing for the current region.
         /// </summary>
+        /// <exception cref="ObjectDisposedException">The radio already has been disposed.</exception>
         /// <since_tizen> 3 </since_tizen>
         public int ChannelSpacing
         {
@@ -219,6 +222,7 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     <paramref name="value"/> is greater than 1.0.
         /// </exception>
+        /// <exception cref="ObjectDisposedException">The radio already has been disposed.</exception>
         /// <since_tizen> 3 </since_tizen>
         public float Volume
         {
@@ -242,6 +246,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the frequency for the region in the range of 87500 ~ 108000 kHz.
         /// </summary>
+        /// <exception cref="ObjectDisposedException">The radio already has been disposed.</exception>
         /// <since_tizen> 3 </since_tizen>
         public Range FrequencyRange
         {
@@ -259,6 +264,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <remarks>The radio must be in the <see cref="RadioState.Ready"/> state.</remarks>
         /// <exception cref="InvalidOperationException">The radio is not in the valid state.</exception>
+        /// <exception cref="ObjectDisposedException">The radio already has been disposed.</exception>
         /// <since_tizen> 3 </since_tizen>
         public void Start()
         {
@@ -272,6 +278,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <remarks>The radio must be in the <see cref="RadioState.Playing"/> state.</remarks>
         /// <exception cref="InvalidOperationException">The radio is not in the valid state.</exception>
+        /// <exception cref="ObjectDisposedException">The radio already has been disposed.</exception>
         /// <since_tizen> 3 </since_tizen>
         public void Stop()
         {
@@ -285,6 +292,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <remarks>The radio must be in the <see cref="RadioState.Ready"/> or <see cref="RadioState.Playing"/> state.</remarks>
         /// <exception cref="InvalidOperationException">The radio is not in the valid state.</exception>
+        /// <exception cref="ObjectDisposedException">The radio already has been disposed.</exception>
         /// <seealso cref="ScanUpdated"/>
         /// <seealso cref="ScanCompleted"/>
         /// <since_tizen> 3 </since_tizen>
@@ -300,6 +308,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <remarks>The radio must be in the <see cref="RadioState.Scanning"/> state.</remarks>
         /// <exception cref="InvalidOperationException">The radio is not in the valid state.</exception>
+        /// <exception cref="ObjectDisposedException">The radio already has been disposed.</exception>
         /// <seealso cref="ScanStopped"/>
         /// <since_tizen> 3 </since_tizen>
         public void StopScan()
@@ -323,6 +332,7 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     Seeking is in progress.
         /// </exception>
+        /// <exception cref="ObjectDisposedException">The radio already has been disposed.</exception>
         /// <since_tizen> 3 </since_tizen>
         public Task<int> SeekUpAsync()
         {
@@ -343,6 +353,7 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     Seeking is in progress.
         /// </exception>
+        /// <exception cref="ObjectDisposedException">The radio already has been disposed.</exception>
         /// <since_tizen> 3 </since_tizen>
         public Task<int> SeekDownAsync()
         {
@@ -375,6 +386,8 @@ namespace Tizen.Multimedia
 
         private void ValidateRadioState(params RadioState[] required)
         {
+            ValidateNotDisposed();
+
             RadioState curState = State;
 
             if (required.Contains(curState) == false)
@@ -412,6 +425,14 @@ namespace Tizen.Multimedia
         public void Dispose()
         {
             Dispose(true);
+        }
+
+        private void ValidateNotDisposed()
+        {
+            if (_disposed)
+            {
+                throw new ObjectDisposedException(nameof(Radio));
+            }
         }
         #endregion
     }

@@ -16,24 +16,33 @@
 
 
 using System;
-using System.IO;
-using System.Text;
 using System.Runtime.InteropServices;
+using Tizen.Internals;
 
 internal static partial class Interop
 {
+#if PROFILE_TV
+    private const string PkgConfig = "trustzone-nwd";
+#else
+    private const string PkgConfig = "tef-libteec";
+#endif
+
+
+    [NativeStruct("TEEC_Context", Include="tee_client_api.h", PkgConfig=PkgConfig)]
     [StructLayout(LayoutKind.Sequential)]
     internal struct TEEC_Context
     {
         public readonly IntPtr imp;
     }
 
+    [NativeStruct("TEEC_Session", Include="tee_client_api.h", PkgConfig=PkgConfig)]
     [StructLayout(LayoutKind.Sequential)]
     internal struct TEEC_Session
     {
         public readonly IntPtr imp;
     }
 
+    [NativeStruct("TEEC_UUID", Include="tee_client_api.h", PkgConfig=PkgConfig)]
     [StructLayout(LayoutKind.Sequential)]
     internal struct TEEC_UUID
     {
@@ -56,6 +65,7 @@ internal static partial class Interop
         }
     }
 
+    [NativeStruct("TEEC_SharedMemory", Include="tee_client_api.h", PkgConfig=PkgConfig)]
     [StructLayout(LayoutKind.Sequential,Pack=8)]
     internal struct TEEC_SharedMemory
     {
@@ -66,6 +76,7 @@ internal static partial class Interop
 		public byte[] padding;
     }
 
+    [NativeStruct("TEEC_Value", Include="tee_client_api.h", PkgConfig=PkgConfig)]
     [StructLayout(LayoutKind.Sequential,Pack=8)]
     internal struct TEEC_Value
     {
@@ -73,6 +84,7 @@ internal static partial class Interop
         public UInt32 b;
     }
 
+    [NativeStruct("TEEC_TempMemoryReference", Include="tee_client_api.h", PkgConfig=PkgConfig, Arch=NativeStructArch.Only32Bits)]
     [StructLayout(LayoutKind.Sequential)]
     internal struct TEEC_TempMemoryReference32
     {
@@ -80,6 +92,7 @@ internal static partial class Interop
         public UInt32 size;
     }
 
+    [NativeStruct("TEEC_RegisteredMemoryReference", Include="tee_client_api.h", PkgConfig=PkgConfig, Arch=NativeStructArch.Only32Bits)]
     [StructLayout(LayoutKind.Sequential)]
     internal struct TEEC_RegisteredMemoryReference32
     {
@@ -88,6 +101,7 @@ internal static partial class Interop
         public UInt32 offset;
     }
 
+    [NativeStruct("TEEC_Parameter", Include="tee_client_api.h", PkgConfig=PkgConfig, Arch=NativeStructArch.Only32Bits)]
     [StructLayout(LayoutKind.Explicit)]
     internal struct TEEC_Parameter32
     {
@@ -99,6 +113,7 @@ internal static partial class Interop
         public TEEC_Value value;
     }
 
+    [NativeStruct("TEEC_Operation", Include="tee_client_api.h", PkgConfig=PkgConfig, Arch=NativeStructArch.Only32Bits)]
     [StructLayout(LayoutKind.Sequential)]
     internal struct TEEC_Operation32
     {
@@ -109,6 +124,7 @@ internal static partial class Interop
         public IntPtr imp;
     }
 
+    [NativeStruct("TEEC_TempMemoryReference", Include="tee_client_api.h", PkgConfig=PkgConfig, Arch=NativeStructArch.Only64Bits)]
     [StructLayout(LayoutKind.Sequential)]
     internal struct TEEC_TempMemoryReference64
     {
@@ -116,6 +132,7 @@ internal static partial class Interop
         public UInt64 size;
     }
 
+    [NativeStruct("TEEC_RegisteredMemoryReference", Include="tee_client_api.h", PkgConfig=PkgConfig, Arch=NativeStructArch.Only64Bits)]
     [StructLayout(LayoutKind.Sequential)]
     internal struct TEEC_RegisteredMemoryReference64
     {
@@ -124,6 +141,7 @@ internal static partial class Interop
         public UInt64 offset;
     }
 
+    [NativeStruct("TEEC_Parameter", Include="tee_client_api.h", PkgConfig=PkgConfig, Arch=NativeStructArch.Only64Bits)]
     [StructLayout(LayoutKind.Explicit)]
     internal struct TEEC_Parameter64
     {
@@ -135,6 +153,7 @@ internal static partial class Interop
         public TEEC_Value value;
     }
 
+    [NativeStruct("TEEC_Operation", Include="tee_client_api.h", PkgConfig=PkgConfig, Arch=NativeStructArch.Only64Bits)]
     [StructLayout(LayoutKind.Sequential)]
     internal struct TEEC_Operation64
     {

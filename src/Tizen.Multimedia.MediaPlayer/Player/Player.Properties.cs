@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -24,17 +24,57 @@ using static Interop;
 
 namespace Tizen.Multimedia
 {
+    /// <summary>
+    /// Represents properties for streaming buffering time.
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
+    public struct PlayerBufferingTime
+    {
+        /// <summary>
+        /// Initializes a new instance of the PlayerBufferingTime struct.
+        /// </summary>
+        /// <param name="preBufferMillisecond">A duration of buffering data that must be prerolled to start playback.</param>
+        /// Except 0 and -1, setting at least 1000 milliseconds is recommended to ensure the normal buffering operation.
+        /// 0 : use platform default value which could be different depending on the streaming type and network status. (the initial value)
+        /// -1 : use current value. (since 5.5)
+        /// <param name="reBufferMillisecond">A duration of buffering data that must be prerolled to resume playback,
+        /// when player is internally paused for buffering.
+        /// Except 0 and -1, setting at least 1000 milliseconds is recommended to ensure the normal buffering operation.
+        /// 0 : use platform default value, which depends on the streaming type and network status. It is set as the initial value of this parameter.
+        /// If the player state is <see cref="PlayerState.Playing"/> or <see cref="PlayerState.Paused"/>,
+        /// this function will return correct time value instead of 0. (since 5.5)
+        /// -1 : use current value. (since 5.5)</param>
+        /// <since_tizen> 5 </since_tizen>
+        public PlayerBufferingTime(int preBufferMillisecond = -1, int reBufferMillisecond = -1)
+        {
+            PreBufferMillisecond = preBufferMillisecond;
+            ReBufferMillisecond = reBufferMillisecond;
+        }
+
+        /// <summary>
+        /// Gets or sets the duration of buffering data that must be prerolled to start playback.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public int PreBufferMillisecond
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the duration of buffering data that must be prerolled to resume playback
+        /// if player enters pause state for buffering.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public int ReBufferMillisecond
+        {
+            get;
+            set;
+        }
+    }
     /// <since_tizen> 3 </since_tizen>
     public partial class Player
     {
-        private void RetrieveProperties()
-        {
-            NativePlayer.GetAudioLatencyMode(Handle, out _audioLatencyMode).
-                ThrowIfFailed("Failed to initialize the player");
-
-            NativePlayer.IsLooping(Handle, out _isLooping).ThrowIfFailed("Failed to initialize the player");
-        }
-
         /// <summary>
         /// Gets the native handle of the player.
         /// </summary>
@@ -53,6 +93,7 @@ namespace Tizen.Multimedia
         #region Network configuration
         private string _cookie = "";
         private string _userAgent = "";
+        private const int MinBufferingTime = -1;
 
         /// <summary>
         /// Gets or sets the cookie for streaming playback.
@@ -66,7 +107,6 @@ namespace Tizen.Multimedia
         {
             get
             {
-                Log.Info(PlayerLog.Tag, "get cookie : " + _cookie);
                 return _cookie;
             }
             set
@@ -79,7 +119,7 @@ namespace Tizen.Multimedia
                 }
 
                 NativePlayer.SetStreamingCookie(Handle, value, value.Length).
-                    ThrowIfFailed("Failed to set the cookie to the player");
+                    ThrowIfFailed(this, "Failed to set the cookie to the player");
 
                 _cookie = value;
             }
@@ -97,7 +137,6 @@ namespace Tizen.Multimedia
         {
             get
             {
-                Log.Info(PlayerLog.Tag, "get useragent : " + _userAgent);
                 return _userAgent;
             }
             set
@@ -110,9 +149,49 @@ namespace Tizen.Multimedia
                 }
 
                 NativePlayer.SetStreamingUserAgent(Handle, value, value.Length).
-                    ThrowIfFailed("Failed to set the user agent to the player");
+                    ThrowIfFailed(this, "Failed to set the user agent to the player");
 
                 _userAgent = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the streaming buffering time.
+        /// </summary>
+        /// <remarks>To set, the player must be in the <see cref="PlayerState.Idle"/> state.</remarks>
+        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     <pramref name="PreBufferMillisecond"/> is less than -1.<br/>
+        ///     -or-<br/>
+        ///     <pramref name="ReBufferMillisecond"/> is less than -1.<br/>
+        /// </exception>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
+        /// <seealso cref="PlayerBufferingTime"/>
+        /// <since_tizen> 5 </since_tizen>
+        public PlayerBufferingTime BufferingTime
+        {
+            get
+            {
+                ValidateNotDisposed();
+
+                NativePlayer.GetStreamingBufferingTime(Handle, out var PreBuffMillisecond, out var ReBuffMillisecond).
+                        ThrowIfFailed(this, "Failed to get the buffering time of the player");
+
+                return new PlayerBufferingTime(PreBuffMillisecond, ReBuffMillisecond);
+            }
+            set
+            {
+                ValidatePlayerState(PlayerState.Idle);
+
+                if (value.PreBufferMillisecond < MinBufferingTime || value.ReBufferMillisecond < MinBufferingTime)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(value), value,
+                        $"invalid range, got { value.PreBufferMillisecond }, { value.ReBufferMillisecond }.");
+                }
+
+                NativePlayer.SetStreamingBufferingTime(Handle, value.PreBufferMillisecond, value.ReBufferMillisecond).
+                    ThrowIfFailed(this, "Failed to set the buffering time of the player");
             }
         }
         #endregion
@@ -134,15 +213,14 @@ namespace Tizen.Multimedia
                     return PlayerState.Preparing;
                 }
 
-                NativePlayer.GetState(Handle, out var state).ThrowIfFailed("Failed to retrieve the state of the player");
+                NativePlayer.GetState(Handle, out var state).
+                    ThrowIfFailed(this, "Failed to retrieve the state of the player");
 
                 Debug.Assert(Enum.IsDefined(typeof(PlayerState), state));
 
                 return (PlayerState)state;
             }
         }
-
-        private AudioLatencyMode _audioLatencyMode;
 
         /// <summary>
         /// Gets or sets the audio latency mode.
@@ -155,32 +233,33 @@ namespace Tizen.Multimedia
         /// </remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="ArgumentException">The value is not valid.</exception>
+        /// <exception cref="NotAvailableException">
+        ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
+        /// </exception>
+        /// <seealso cref="AudioOffload"/>
         /// <since_tizen> 3 </since_tizen>
         public AudioLatencyMode AudioLatencyMode
         {
             get
             {
-                Log.Info(PlayerLog.Tag, "get audio latency mode : " + _audioLatencyMode);
-                return _audioLatencyMode;
+                AudioOffload.CheckDisabled();
+
+                NativePlayer.GetAudioLatencyMode(Handle, out var value).
+                    ThrowIfFailed(this, "Failed to get the audio latency mode of the player");
+
+                return value;
             }
             set
             {
                 ValidateNotDisposed();
+                AudioOffload.CheckDisabled();
 
-                if (_audioLatencyMode == value)
-                {
-                    return;
-                }
-                ValidationUtil.ValidateEnum(typeof(AudioLatencyMode), value);
+                ValidationUtil.ValidateEnum(typeof(AudioLatencyMode), value, nameof(value));
 
                 NativePlayer.SetAudioLatencyMode(Handle, value).
-                    ThrowIfFailed("Failed to set the audio latency mode of the player");
-
-                _audioLatencyMode = value;
+                    ThrowIfFailed(this, "Failed to set the audio latency mode of the player");
             }
         }
-
-        private bool _isLooping;
 
         /// <summary>
         /// Gets or sets the looping state.
@@ -192,31 +271,30 @@ namespace Tizen.Multimedia
         {
             get
             {
-                Log.Info(PlayerLog.Tag, "get looping : " + _isLooping);
-                return _isLooping;
+                NativePlayer.IsLooping(Handle, out var value).
+                    ThrowIfFailed(this, "Failed to get the looping state of the player");
+
+                return value;
             }
             set
             {
                 ValidateNotDisposed();
 
-                if (_isLooping == value)
-                {
-                    return;
-                }
-
-                NativePlayer.SetLooping(Handle, value).ThrowIfFailed("Failed to set the looping state of the player");
-
-                _isLooping = value;
+                NativePlayer.SetLooping(Handle, value).
+                    ThrowIfFailed(this, "Failed to set the looping state of the player");
             }
         }
 
         #region Display methods
+
+        private PlayerDisplaySettings _displaySettings;
+
         /// <summary>
         /// Gets the display settings.
         /// </summary>
         /// <value>A <see cref="PlayerDisplaySettings"/> that specifies the display settings.</value>
         /// <since_tizen> 3 </since_tizen>
-        public PlayerDisplaySettings DisplaySettings { get; }
+        public PlayerDisplaySettings DisplaySettings => _displaySettings;
 
         private Display _display;
 
@@ -275,6 +353,8 @@ namespace Tizen.Multimedia
 
                     throw new ArgumentException("The display has already been assigned to another.");
                 }
+
+                SetDisplay(value).ThrowIfFailed(this, "Failed to configure display of the player");
 
                 ReplaceDisplay(value);
             }
@@ -356,7 +436,7 @@ namespace Tizen.Multimedia
             }
         }
 
-        private readonly AudioEffect _audioEffect;
+        private AudioEffect _audioEffect;
 
         /// <summary>
         /// Gets the audio effect.
@@ -387,8 +467,8 @@ namespace Tizen.Multimedia
         {
             get
             {
-                bool value = false;
-                NativePlayer.IsMuted(Handle, out value).ThrowIfFailed("Failed to get the mute state of the player");
+                NativePlayer.IsMuted(Handle, out var value).
+                    ThrowIfFailed(this, "Failed to get the mute state of the player");
 
                 Log.Info(PlayerLog.Tag, "get mute : " + value);
 
@@ -396,7 +476,7 @@ namespace Tizen.Multimedia
             }
             set
             {
-                NativePlayer.SetMute(Handle, value).ThrowIfFailed("Failed to set the mute state of the player");
+                NativePlayer.SetMute(Handle, value).ThrowIfFailed(this, "Failed to set the mute state of the player");
             }
         }
 
@@ -417,7 +497,8 @@ namespace Tizen.Multimedia
             {
                 float value = 0.0F;
                 NativePlayer.GetVolume(Handle, out value, out value).
-                    ThrowIfFailed("Failed to get the volume of the player");
+                    ThrowIfFailed(this, "Failed to get the volume of the player");
+
                 return value;
             }
             set
@@ -429,7 +510,283 @@ namespace Tizen.Multimedia
                 }
 
                 NativePlayer.SetVolume(Handle, value, value).
-                    ThrowIfFailed("Failed to set the volume of the player");
+                    ThrowIfFailed(this, "Failed to set the volume of the player");
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the audio-only state.
+        /// </summary>
+        /// <value>true if the playback is audio-only mode; otherwise, false. The default value is false.</value>
+        /// The <see cref="Player"/> must be in the <see cref="PlayerState.Ready"/>,
+        /// <see cref="PlayerState.Playing"/>, or <see cref="PlayerState.Paused"/> state.
+        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public bool IsAudioOnly
+        {
+            get
+            {
+                ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
+                NativePlayer.IsAudioOnly(Handle, out var value).
+                    ThrowIfFailed(this, "Failed to get the audio-only state of the player");
+                return value;
+            }
+            set
+            {
+                ValidateNotDisposed();
+                ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
+                NativePlayer.SetAudioOnly(Handle, value).
+                    ThrowIfFailed(this, "Failed to set the audio-only state of the player");
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the player's replaygain state.
+        /// </summary>
+        /// <value>If the replaygain status is true, replaygain is applied (if contents has a replaygain tag);
+        /// otherwise, the replaygain is not affected by tag and properties.</value>
+        /// <remarks>This function could be unavailable depending on the audio codec type.</remarks>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     The player is not in the valid state.
+        /// </exception>
+        /// <exception cref="NotAvailableException">If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
+        ///     -or-<br/>
+        ///     The function is not available depending on the audio codec type. (Since tizen 6.0)
+        /// </exception>
+        /// <seealso cref="AudioOffload"/>
+        /// <seealso cref="AudioCodecType"/>
+        /// <since_tizen> 5 </since_tizen>
+        public bool ReplayGain
+        {
+            get
+            {
+                ValidateNotDisposed();
+                AudioOffload.CheckDisabled();
+
+                NativePlayer.IsReplayGain(Handle, out var value).
+                    ThrowIfFailed(this, "Failed to get the replaygain of the player");
+                return value;
+            }
+            set
+            {
+                ValidateNotDisposed();
+                AudioOffload.CheckDisabled();
+
+                NativePlayer.SetReplayGain(Handle, value).
+                    ThrowIfFailed(this, "Failed to set the replaygain of the player");
+            }
+        }
+
+        /// <summary>
+        /// Enables or disables controlling the pitch of audio.
+        /// Gets the status of controlling the pitch of audio.
+        /// </summary>
+        /// <value>The value indicating whether or not AudioPitch is enabled. The default is false.</value>
+        /// <remarks>This function is used for audio content only.
+        /// To set, the player must be in the <see cref="PlayerState.Idle"/> state.
+        /// This function could be unavailable depending on the audio codec type.</remarks>
+        /// <exception cref="InvalidOperationException">
+        ///     The player is not in the valid state.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="NotAvailableException">If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
+        ///     -or-<br/>
+        ///     The function is not available depending on the audio codec type. (Since tizen 6.0)
+        /// </exception>
+        /// <seealso cref="AudioPitch"/>
+        /// <seealso cref="AudioOffload"/>
+        /// <seealso cref="AudioCodecType"/>
+        /// <since_tizen> 6 </since_tizen>
+        public bool AudioPitchEnabled
+        {
+            get
+            {
+                ValidateNotDisposed();
+                AudioOffload.CheckDisabled();
+
+                NativePlayer.IsAudioPitchEnabled(Handle, out var value).
+                    ThrowIfFailed(this, "Failed to get whether the audio pitch is enabled or not");
+                return value;
+            }
+
+            set
+            {
+                ValidateNotDisposed();
+                AudioOffload.CheckDisabled();
+                ValidatePlayerState(PlayerState.Idle);
+
+                NativePlayer.SetAudioPitchEnabled(Handle, value).
+                    ThrowIfFailed(this, "Failed to enable the audio pitch of the player");
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the pitch of audio.
+        /// </summary>
+        /// <value>The audio stream pitch value. The default is 1.</value>
+        /// <remarks>Enabling pitch control could increase the CPU usage on some devices.
+        /// This function is used for audio content only.
+        /// This function could be unavailable depending on the audio codec type.</remarks>
+        /// <exception cref="InvalidOperationException">
+        ///     A pitch is not enabled.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     value is less than 0.5.
+        ///     -or-<br/>
+        ///     value is greater than 2.0.
+        /// </exception>
+        /// <exception cref="NotAvailableException">If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
+        ///     -or-<br/>
+        ///     The function is not available depending on the audio codec type. (Since tizen 6.0)
+        /// </exception>
+        /// <seealso cref="AudioPitchEnabled"/>
+        /// <seealso cref="AudioOffload"/>
+        /// <seealso cref="AudioCodecType"/>
+        /// <since_tizen> 6 </since_tizen>
+        public float AudioPitch
+        {
+            get
+            {
+                ValidateNotDisposed();
+                AudioOffload.CheckDisabled();
+
+                if (AudioPitchEnabled == false)
+                {
+                    throw new InvalidOperationException("An audio pitch is not enabled.");
+                }
+
+                NativePlayer.GetAudioPitch(Handle, out var value).
+                    ThrowIfFailed(this, "Failed to get the audio pitch");
+
+                return value;
+            }
+
+            set
+            {
+                ValidateNotDisposed();
+                AudioOffload.CheckDisabled();
+
+                if (AudioPitchEnabled == false)
+                {
+                    throw new InvalidOperationException("An audio pitch is not enabled.");
+                }
+
+                if (value < 0.5F || 2.0F < value)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(value), value, "Valid value is 0.5 to 2.0");
+                }
+
+                NativePlayer.SetAudioPitch(Handle, value).ThrowIfFailed(this, "Failed to set the audio pitch");
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the default codec type of the audio decoder.
+        /// </summary>
+        /// <value>A <see cref="CodecType"/> specifies the type.
+        /// The default codec type could be different depending on the device capability.</value>
+        /// <remarks>
+        /// <para>To set, the player must be in the <see cref="PlayerState.Idle"/> state.</para>
+        /// <para>If H/W audio codec type is not supported in some cases, S/W audio codec type could be used instead.</para>
+        /// <para>The availability could be changed depending on the codec capability.
+        /// If an application wants to use the H/W audio codec type as default,
+        /// The following functions should be called after the codec type is set. :<br/>
+        /// <see cref="AudioEffect.IsAvailable"/><br/>
+        /// <see cref="EnableExportingAudioData"/><br/>
+        /// <see cref="DisableExportingAudioData"/><br/>
+        /// <see cref="ReplayGain"/><br/>
+        /// <see cref="AudioPitch"/><br/>
+        /// <see cref="AudioPitchEnabled"/><br/></para>
+        /// </remarks>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="ArgumentException">The value is not valid.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     The player is not in the valid state.
+        ///     -or-<br/>
+        ///     Operation failed; internal error.
+        /// </exception>
+        /// <exception cref="CodecNotSupportedException">The selected codec is not supported.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public CodecType AudioCodecType
+        {
+            get
+            {
+                ValidateNotDisposed();
+
+                NativePlayer.GetAudioCodecType(Handle, out var value).
+                    ThrowIfFailed(this, "Failed to get the type of the audio codec");
+
+                return value;
+            }
+            set
+            {
+                ValidateNotDisposed();
+                ValidatePlayerState(PlayerState.Idle);
+
+                ValidationUtil.ValidateEnum(typeof(CodecType), value, nameof(value));
+
+                NativePlayer.SetAudioCodecType(Handle, value).
+                    ThrowIfFailed(this, "Failed to set the type of the audio codec");
+            }
+        }
+
+        private SphericalVideo _sphericalVideo;
+
+        /// <summary>
+        /// Gets the spherical video settings.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public SphericalVideo SphericalVideo
+        {
+            get
+            {
+                if (_sphericalVideo == null)
+                {
+                    _sphericalVideo = new SphericalVideo(this);
+                }
+
+                return _sphericalVideo;
+            }
+        }
+
+        private AdaptiveVariants _adaptiveVariants;
+
+        /// <summary>
+        /// Gets the adaptive variants settings.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public AdaptiveVariants AdaptiveVariants
+        {
+            get
+            {
+                if (_adaptiveVariants == null)
+                {
+                    _adaptiveVariants = new AdaptiveVariants(this);
+                }
+
+                return _adaptiveVariants;
+            }
+        }
+
+        private AudioOffload _audioOffload;
+
+        /// <summary>
+        /// Gets the setting for audio offload.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public AudioOffload AudioOffload
+        {
+            get
+            {
+                if (_audioOffload == null)
+                {
+                    _audioOffload = new AudioOffload(this);
+                }
+
+                return _audioOffload;
             }
         }
     }
