@@ -637,6 +637,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(RowSpanProperty, value);
+                SetValue(GridLayout.RowSpanProperty, (int)value);
                 NotifyPropertyChanged();
             }
         }
@@ -654,6 +655,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(ColumnSpanProperty, value);
+                SetValue(GridLayout.ColumnSpanProperty, (int)value);
                 NotifyPropertyChanged();
             }
         }
