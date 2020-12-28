@@ -123,21 +123,13 @@ namespace Tizen.NUI
         /// <summary>
         /// Enumeration for instances of properties belonging to the Shader class.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        [Obsolete("Deprecated in API6; Will be removed in API9.")]
-#pragma warning disable CA1716, CA1052, CA1034 // Identifiers should not match keywords
-        public class Property
-#pragma warning restore CA1716, CA1052, CA1034 // Identifiers should not match keywords
+        internal class Property
         {
             /// <summary>
             /// The default value is empty.
             /// Format: {"vertex":"","fragment":"",hints:"","vertexPrefix":"","fragmentPrefix":""}
             /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int PROGRAM = Interop.Shader.ProgramGet();
+            internal static readonly int PROGRAM = Interop.Shader.ProgramGet();
         }
     }
 }

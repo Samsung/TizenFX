@@ -33,7 +33,6 @@ using System.Reflection;
 using System.Xml;
 using Tizen.NUI.Binding;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.UIComponents;
 using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI.Xaml

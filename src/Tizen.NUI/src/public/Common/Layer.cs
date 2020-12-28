@@ -64,14 +64,6 @@ namespace Tizen.NUI
             LayerUI,
 
             /// <summary>
-            /// Deprecated in API6; Will be removed in API9. Please use LayerUI instead.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            [Obsolete("Deprecated in API6; Will be removed in API9. Please use LayerUI instead.")]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            Layer2D = LayerUI,
-
-            /// <summary>
             /// Layer will use depth test.
             /// This mode is designed for a 3 dimensional scene where actors in front
             /// of other actors will obscure them, i.e. the actors are sorted by the
