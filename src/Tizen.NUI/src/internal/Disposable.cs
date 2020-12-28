@@ -177,9 +177,12 @@ namespace Tizen.NUI
             }
         }
 
-        internal bool SwigCMemOwn
-        {
-            get => swigCMemOwn;
-        }
+        internal bool SwigCMemOwn => swigCMemOwn;
+
+        /// <summary>
+        /// A Flag to check if it is already disposed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal bool Disposed => disposed;
     }
 }

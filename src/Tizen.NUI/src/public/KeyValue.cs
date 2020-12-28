@@ -17,6 +17,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
@@ -30,16 +31,25 @@ namespace Tizen.NUI
         /// <summary>
         /// Int key.
         /// </summary>
+        /// When deleting the field, change it to prperty.
+        [Obsolete("Deprecated in API9, Will be removed in API11. Please use IntegerKey instead.")]
+        [SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
         public int? KeyInt = null;
 
         /// <summary>
         /// String key.
         /// </summary>
+        /// When deleting the field, change it to prperty.
+        [Obsolete("Deprecated in API9, Will be removed in API11. Please use StringKey instead.")]
+        [SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
         public string KeyString = null;
 
         /// <summary>
         /// True value.
         /// </summary>
+        /// When deleting the field, change it to prperty.
+        [Obsolete("Deprecated in API9, Will be removed in API11. Please use PropertyValue instead.")]
+        [SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
         public PropertyValue TrueValue = null;
 
         private string _key = null;
@@ -118,6 +128,55 @@ namespace Tizen.NUI
             {
                 _originalValue = value;
                 TrueValue = PropertyValue.CreateFromObject(value);
+            }
+        }
+
+        /// <summary>
+        /// Int key.
+        /// </summary>
+        /// When deleting the field, change it to prperty.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int? IntegerKey
+        {
+            get
+            {
+                return KeyInt;
+            }
+            set
+            {
+                KeyInt = value;
+            }
+        }
+
+        /// <summary>
+        /// String key.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string StringKey
+        {
+            get
+            {
+                return KeyString;
+            }
+            set
+            {
+                KeyString = value;
+            }
+        }
+
+        /// <summary>
+        /// Property value.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyValue PropertyValue
+        {
+            get
+            {
+                return TrueValue;
+            }
+            set
+            {
+                TrueValue = value;
             }
         }
 
