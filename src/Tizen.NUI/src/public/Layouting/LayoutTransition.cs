@@ -18,6 +18,7 @@
 using System.Collections.Generic;
 using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.NUI
 {
@@ -134,18 +135,82 @@ namespace Tizen.NUI
         /// Get, Set the time transition should execute for . Milliseconds.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// When deleting the field, change it to prperty.
+        [Obsolete("Deprecated in API9, Will be removed in API11. Please use GetDuration, SetDuration instead!")]
+        [SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
         public int Duration;
+
         /// <summary>
         /// Get, Set the delay before the transition executes. Milliseconds.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// When deleting the field, change it to prperty.
+        [Obsolete("Deprecated in API9, Will be removed in API11. Please use GetDelay, SetDelay instead!")]
+        [SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
         public int Delay;
+
         /// <summary>
         /// Get, Set the function to alter the transition path over time.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// When deleting the field, change it to prperty.
+        [Obsolete("Deprecated in API9, Will be removed in API11. Please use GetAlphaFunction, SetAlphaFunction instead!")]
+        [SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
         public AlphaFunction AlphaFunction;
 
+        /// <summary>
+        /// Set the time transition should execute for . Milliseconds.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetDuration(int duration)
+        {
+            Duration = duration;
+        }
+
+        /// <summary>
+        /// Get the time transition should execute for . Milliseconds.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int GetDuration()
+        {
+            return Duration;
+        }
+
+        /// <summary>
+        /// Set the delay before the transition executes. Milliseconds.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetDelay(int delay)
+        {
+            Delay = delay;
+        }
+
+        /// <summary>
+        /// Get the delay before the transition executes. Milliseconds.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int GetDelay()
+        {
+            return Delay;
+        }
+
+        /// <summary>
+        /// Set the function to alter the transition path over time.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetAlphaFunction(AlphaFunction alphaFunction)
+        {
+            AlphaFunction = alphaFunction;
+        }
+
+        /// <summary>
+        /// Get the function to alter the transition path over time.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public AlphaFunction GetAlphaFunction()
+        {
+            return AlphaFunction;
+        }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void Dispose(bool disposing)
