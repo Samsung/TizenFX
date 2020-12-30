@@ -43,7 +43,7 @@ namespace Tizen.Applications
         private static event EventHandler<PackageManagerEventArgs> s_clearDataEventHandler;
 
         private static readonly object s_pkgEventLock = new object();
-        private static Interop.PackageManager.PackageManagerEventCallback s_packageManagerEventCallback;
+        private static Interop.PackageManager.PackageManagerEventCallback s_packageManagerEventCallback = new Interop.PackageManager.PackageManagerEventCallback(InternalEventCallback);
 
         private static Dictionary<IntPtr, Interop.PackageManager.PackageManagerTotalSizeInfoCallback> s_totalSizeInfoCallbackDict = new Dictionary<IntPtr, Interop.PackageManager.PackageManagerTotalSizeInfoCallback>();
         private static int s_callbackId = 0;
@@ -1290,10 +1290,13 @@ namespace Tizen.Applications
             {
                 lock (Handle)
                 {
-                    if (s_packageManagerEventCallback != null)
-                        return;
+                    Log.Debug(LogTag, "Reset Package Event");
+                    err = Interop.PackageManager.PackageManagerUnsetEvent(Handle);
+                    if (err != Interop.PackageManager.ErrorCode.None)
+                    {
+                        throw PackageManagerErrorFactory.GetException(err, "Failed to unregister package manager event event.");
+                    }
 
-                    s_packageManagerEventCallback = new Interop.PackageManager.PackageManagerEventCallback(InternalEventCallback);
                     err = Interop.PackageManager.PackageManagerSetEvent(Handle, s_packageManagerEventCallback, IntPtr.Zero);
                 }
             }
@@ -1358,7 +1361,6 @@ namespace Tizen.Applications
                 {
                     throw PackageManagerErrorFactory.GetException(err, "Failed to unregister package manager event event.");
                 }
-                s_packageManagerEventCallback = null;
             }
         }
     }
