@@ -29,6 +29,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.System.Information", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.NUI.Wearable", "..\..\src\Tizen.NUI.Wearable\Tizen.NUI.Wearable.csproj", "{A2B607F9-5B9B-43AC-A8CA-E0FDF2A6694E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.System.Feedback", "..\..\src\Tizen.System.Feedback\Tizen.System.Feedback.csproj", "{D422D03E-7E32-4230-8306-B16DFE27E95A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{A2B607F9-5B9B-43AC-A8CA-E0FDF2A6694E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2B607F9-5B9B-43AC-A8CA-E0FDF2A6694E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2B607F9-5B9B-43AC-A8CA-E0FDF2A6694E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D422D03E-7E32-4230-8306-B16DFE27E95A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D422D03E-7E32-4230-8306-B16DFE27E95A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D422D03E-7E32-4230-8306-B16DFE27E95A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D422D03E-7E32-4230-8306-B16DFE27E95A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
