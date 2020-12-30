@@ -563,21 +563,20 @@ namespace Tizen.NUI
                 throw new ArgumentNullException(nameof(relativeValue));
             }
 
-            Property _prop = PropertyHelper.GetPropertyFromString(target, property);
-            relativeValue = AvoidFloatPropertyHasIntegerValue(target, _prop, relativeValue);
+            Property[] propertyList = PropertyHelper.GetPropertiesFromString(target, property);
+            relativeValue = AvoidFloatPropertyHasIntegerValue(target, propertyList[0], relativeValue);
             PropertyValue val = PropertyValue.CreateFromObject(relativeValue);
 
             if (alphaFunction != null)
             {
-                AnimateBy(_prop, val, alphaFunction);
+                propertyList.ForEach(x => { AnimateBy(x, val, alphaFunction); x.Dispose(); });
             }
             else
             {
-                AnimateBy(_prop, val);
+                propertyList.ForEach(x => { AnimateBy(x, val); x.Dispose(); });
             }
 
-            val.Dispose();
-            _prop.Dispose();
+            val.Dispose();            
         }
 
         /// <summary>
@@ -602,25 +601,24 @@ namespace Tizen.NUI
                 throw new ArgumentNullException(nameof(relativeValue));
             }
 
-            Property _prop = PropertyHelper.GetPropertyFromString(target, property);
-            relativeValue = AvoidFloatPropertyHasIntegerValue(target, _prop, relativeValue);
+            Property[] propertyList = PropertyHelper.GetPropertiesFromString(target, property);
+            relativeValue = AvoidFloatPropertyHasIntegerValue(target, propertyList[0], relativeValue);
             PropertyValue val = PropertyValue.CreateFromObject(relativeValue);
 
             if (alphaFunction != null)
             {
                 Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime));
-                AnimateBy(_prop, val, alphaFunction, time);
+                propertyList.ForEach(x => { AnimateBy(x, val, alphaFunction, time); x.Dispose(); });
                 time.Dispose();
             }
             else
             {
                 Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime));
-                AnimateBy(_prop, val, time);
+                propertyList.ForEach(x => { AnimateBy(x, val, time); x.Dispose(); });
                 time.Dispose();
             }
 
             val.Dispose();
-            _prop.Dispose();
         }
 
         /// <summary>
@@ -643,21 +641,20 @@ namespace Tizen.NUI
                 throw new ArgumentNullException(nameof(destinationValue));
             }
 
-            Property _prop = PropertyHelper.GetPropertyFromString(target, property);
-            destinationValue = AvoidFloatPropertyHasIntegerValue(target, _prop, destinationValue);
+            Property[] propertyList = PropertyHelper.GetPropertiesFromString(target, property);
+            destinationValue = AvoidFloatPropertyHasIntegerValue(target, propertyList[0], destinationValue);
             PropertyValue val = PropertyValue.CreateFromObject(destinationValue);
 
             if (alphaFunction != null)
             {
-                AnimateTo(_prop, val, alphaFunction);
+                propertyList.ForEach(x => { AnimateTo(x, val, alphaFunction); x.Dispose(); });
             }
             else
             {
-                AnimateTo(_prop, val);
+                propertyList.ForEach(x => { AnimateTo(x, val); x.Dispose(); });
             }
 
             val.Dispose();
-            _prop.Dispose();
         }
 
         /// <summary>
@@ -718,25 +715,24 @@ namespace Tizen.NUI
                 throw new ArgumentNullException(nameof(destinationValue));
             }
 
-            Property _prop = PropertyHelper.GetPropertyFromString(target, property);
-            destinationValue = AvoidFloatPropertyHasIntegerValue(target, _prop, destinationValue);
+            Property[] propertyList = PropertyHelper.GetPropertiesFromString(target, property);
+            destinationValue = AvoidFloatPropertyHasIntegerValue(target, propertyList[0], destinationValue);
             PropertyValue val = PropertyValue.CreateFromObject(destinationValue);
 
             if (alphaFunction != null)
             {
                 Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime));
-                AnimateTo(_prop, val, alphaFunction, time);
+                propertyList.ForEach(x => { AnimateTo(x, val, alphaFunction, time); x.Dispose(); });
                 time.Dispose();
             }
             else
             {
                 Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime));
-                AnimateTo(_prop, val, time);
+                propertyList.ForEach(x => { AnimateTo(x, val, time); x.Dispose(); });
                 time.Dispose();
             }
 
             val.Dispose();
-            _prop.Dispose();
         }
 
         /// <summary>
@@ -750,23 +746,16 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void AnimateBetween(View target, string property, KeyFrames keyFrames, Interpolation interpolation = Interpolation.Linear, AlphaFunction alphaFunction = null)
         {
-            Property _prop = PropertyHelper.GetPropertyFromString(target, property);
-
-            if (_prop.propertyIndex == Property.InvalidIndex)
-            {
-                throw new System.ArgumentException("second argument string property is invalid parameter!");
-            }
+            Property[] propertyList = PropertyHelper.GetPropertiesFromString(target, property);
 
             if (alphaFunction != null)
             {
-                AnimateBetween(_prop, keyFrames, alphaFunction, interpolation);
+                propertyList.ForEach(x => { AnimateBetween(x, keyFrames, alphaFunction, interpolation); x.Dispose(); });
             }
             else
             {
-                AnimateBetween(_prop, keyFrames, interpolation);
+                propertyList.ForEach(x => { AnimateBetween(x, keyFrames, interpolation); x.Dispose(); });
             }
-
-            _prop.Dispose();
         }
 
         /// <summary>
@@ -782,20 +771,19 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void AnimateBetween(View target, string property, KeyFrames keyFrames, int startTime, int endTime, Interpolation interpolation = Interpolation.Linear, AlphaFunction alphaFunction = null)
         {
-            Property _prop = PropertyHelper.GetPropertyFromString(target, property);
+            Property[] propertyList = PropertyHelper.GetPropertiesFromString(target, property);
 
             Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime));
             if (alphaFunction != null)
             {
-                AnimateBetween(_prop, keyFrames, alphaFunction, time, interpolation);
+                propertyList.ForEach(x => { AnimateBetween(x, keyFrames, alphaFunction, time, interpolation); x.Dispose(); });
             }
             else
             {
-                AnimateBetween(_prop, keyFrames, time, interpolation);
+                propertyList.ForEach(x => { AnimateBetween(x, keyFrames, time, interpolation); x.Dispose(); });
             }
 
             time.Dispose();
-            _prop.Dispose();
         }
 
         /// <summary>
