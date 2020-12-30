@@ -54,7 +54,7 @@ namespace Tizen.NUI.Components
             {
                 var newValueList = newValue as List<string>;
                 instance.loadingStyle.ImageList = newValueList;
-                instance.imageVisual.URLS = newValueList;
+                if (instance.imageVisual != null) instance.imageVisual.URLS = newValueList;
             }
         },
         defaultValueCreator: (bindable) =>
