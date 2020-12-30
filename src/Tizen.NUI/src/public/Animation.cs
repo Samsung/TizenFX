@@ -567,14 +567,8 @@ namespace Tizen.NUI
             relativeValue = AvoidFloatPropertyHasIntegerValue(target, _prop, relativeValue);
             PropertyValue val = PropertyValue.CreateFromObject(relativeValue);
 
-            if (alphaFunction != null)
-            {
-                AnimateBy(_prop, val, alphaFunction);
-            }
-            else
-            {
-                AnimateBy(_prop, val);
-            }
+            AnimateBy(_prop, val, alphaFunction);
+            if (_prop.RelatedProperty != null) AnimateBy(_prop.RelatedProperty, val, alphaFunction);
 
             val.Dispose();
             _prop.Dispose();
@@ -605,20 +599,12 @@ namespace Tizen.NUI
             Property _prop = PropertyHelper.GetPropertyFromString(target, property);
             relativeValue = AvoidFloatPropertyHasIntegerValue(target, _prop, relativeValue);
             PropertyValue val = PropertyValue.CreateFromObject(relativeValue);
+            Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime));
 
-            if (alphaFunction != null)
-            {
-                Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime));
-                AnimateBy(_prop, val, alphaFunction, time);
-                time.Dispose();
-            }
-            else
-            {
-                Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime));
-                AnimateBy(_prop, val, time);
-                time.Dispose();
-            }
+            AnimateBy(_prop, val, alphaFunction, time);
+            if (_prop.RelatedProperty != null) AnimateBy(_prop.RelatedProperty, val, alphaFunction, time);
 
+            time.Dispose();
             val.Dispose();
             _prop.Dispose();
         }
@@ -647,14 +633,8 @@ namespace Tizen.NUI
             destinationValue = AvoidFloatPropertyHasIntegerValue(target, _prop, destinationValue);
             PropertyValue val = PropertyValue.CreateFromObject(destinationValue);
 
-            if (alphaFunction != null)
-            {
-                AnimateTo(_prop, val, alphaFunction);
-            }
-            else
-            {
-                AnimateTo(_prop, val);
-            }
+            AnimateTo(_prop, val, alphaFunction);
+            if (_prop.RelatedProperty != null) AnimateTo(_prop.RelatedProperty, val, alphaFunction);
 
             val.Dispose();
             _prop.Dispose();
@@ -721,20 +701,12 @@ namespace Tizen.NUI
             Property _prop = PropertyHelper.GetPropertyFromString(target, property);
             destinationValue = AvoidFloatPropertyHasIntegerValue(target, _prop, destinationValue);
             PropertyValue val = PropertyValue.CreateFromObject(destinationValue);
+            Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime));
 
-            if (alphaFunction != null)
-            {
-                Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime));
-                AnimateTo(_prop, val, alphaFunction, time);
-                time.Dispose();
-            }
-            else
-            {
-                Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime));
-                AnimateTo(_prop, val, time);
-                time.Dispose();
-            }
+            AnimateTo(_prop, val, alphaFunction, time);
+            if (_prop.RelatedProperty != null) AnimateTo(_prop.RelatedProperty, val, alphaFunction, time);
 
+            time.Dispose();
             val.Dispose();
             _prop.Dispose();
         }
@@ -752,19 +724,8 @@ namespace Tizen.NUI
         {
             Property _prop = PropertyHelper.GetPropertyFromString(target, property);
 
-            if (_prop.propertyIndex == Property.InvalidIndex)
-            {
-                throw new System.ArgumentException("second argument string property is invalid parameter!");
-            }
-
-            if (alphaFunction != null)
-            {
-                AnimateBetween(_prop, keyFrames, alphaFunction, interpolation);
-            }
-            else
-            {
-                AnimateBetween(_prop, keyFrames, interpolation);
-            }
+            AnimateBetween(_prop, keyFrames, alphaFunction, interpolation);
+            if (_prop.RelatedProperty != null) AnimateBetween(_prop.RelatedProperty, keyFrames, alphaFunction, interpolation);
 
             _prop.Dispose();
         }
@@ -783,16 +744,10 @@ namespace Tizen.NUI
         public void AnimateBetween(View target, string property, KeyFrames keyFrames, int startTime, int endTime, Interpolation interpolation = Interpolation.Linear, AlphaFunction alphaFunction = null)
         {
             Property _prop = PropertyHelper.GetPropertyFromString(target, property);
-
             Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime));
-            if (alphaFunction != null)
-            {
-                AnimateBetween(_prop, keyFrames, alphaFunction, time, interpolation);
-            }
-            else
-            {
-                AnimateBetween(_prop, keyFrames, time, interpolation);
-            }
+
+            AnimateBetween(_prop, keyFrames, alphaFunction, time, interpolation);
+            if (_prop.RelatedProperty != null) AnimateBetween(_prop.RelatedProperty, keyFrames, alphaFunction, time, interpolation);
 
             time.Dispose();
             _prop.Dispose();
@@ -1228,63 +1183,61 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal void AnimateBy(Property target, PropertyValue relativeValue)
-        {
-            Interop.Animation.AnimateBy(SwigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(relativeValue));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         internal void AnimateBy(Property target, PropertyValue relativeValue, AlphaFunction alpha)
         {
-            Interop.Animation.AnimateByAlphaFunction(SwigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(relativeValue), AlphaFunction.getCPtr(alpha));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal void AnimateBy(Property target, PropertyValue relativeValue, TimePeriod period)
-        {
-            Interop.Animation.AnimateByTimePeriod(SwigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(relativeValue), TimePeriod.getCPtr(period));
+            if (alpha == null)
+            {
+                Interop.Animation.AnimateBy(SwigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(relativeValue));
+            }
+            else
+            {
+                Interop.Animation.AnimateByAlphaFunction(SwigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(relativeValue), AlphaFunction.getCPtr(alpha));
+            }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void AnimateBy(Property target, PropertyValue relativeValue, AlphaFunction alpha, TimePeriod period)
         {
-            Interop.Animation.AnimateBy(SwigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(relativeValue), AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal void AnimateTo(Property target, PropertyValue destinationValue)
-        {
-            Interop.Animation.AnimateTo(SwigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(destinationValue));
+            if (alpha == null)
+            {
+                Interop.Animation.AnimateByTimePeriod(SwigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(relativeValue), TimePeriod.getCPtr(period));
+            }
+            else
+            {
+                Interop.Animation.AnimateBy(SwigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(relativeValue), AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period));
+            }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void AnimateTo(Property target, PropertyValue destinationValue, AlphaFunction alpha)
         {
-            Interop.Animation.AnimateToAlphaFunction(SwigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(destinationValue), AlphaFunction.getCPtr(alpha));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal void AnimateTo(Property target, PropertyValue destinationValue, TimePeriod period)
-        {
-            Interop.Animation.AnimateToTimePeriod(SwigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(destinationValue), TimePeriod.getCPtr(period));
+            if (alpha == null)
+            {
+                Interop.Animation.AnimateTo(SwigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(destinationValue));
+            }
+            else
+            {
+                Interop.Animation.AnimateToAlphaFunction(SwigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(destinationValue), AlphaFunction.getCPtr(alpha));
+            }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void AnimateTo(Property target, PropertyValue destinationValue, AlphaFunction alpha, TimePeriod period)
         {
-            Interop.Animation.AnimateTo(SwigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(destinationValue), AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period));
+            if (alpha == null)
+            {
+                Interop.Animation.AnimateToTimePeriod(SwigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(destinationValue), TimePeriod.getCPtr(period));
+            }
+            else
+            {
+                Interop.Animation.AnimateTo(SwigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(destinationValue), AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period));
+            }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void AnimateBetween(Property target, KeyFrames keyFrames)
         {
             Interop.Animation.AnimateBetween(SwigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal void AnimateBetween(Property target, KeyFrames keyFrames, Animation.Interpolation interpolation)
-        {
-            Interop.Animation.AnimateBetween(SwigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), (int)interpolation);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1296,19 +1249,20 @@ namespace Tizen.NUI
 
         internal void AnimateBetween(Property target, KeyFrames keyFrames, AlphaFunction alpha, Animation.Interpolation interpolation)
         {
-            Interop.Animation.AnimateBetweenAlphaFunctionInterpolation(SwigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), AlphaFunction.getCPtr(alpha), (int)interpolation);
+            if (alpha == null)
+            {
+                Interop.Animation.AnimateBetween(SwigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), (int)interpolation);
+            }
+            else
+            {
+                Interop.Animation.AnimateBetweenAlphaFunctionInterpolation(SwigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), AlphaFunction.getCPtr(alpha), (int)interpolation);
+            }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void AnimateBetween(Property target, KeyFrames keyFrames, TimePeriod period)
         {
             Interop.Animation.AnimateBetweenTimePeriod(SwigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), TimePeriod.getCPtr(period));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal void AnimateBetween(Property target, KeyFrames keyFrames, TimePeriod period, Animation.Interpolation interpolation)
-        {
-            Interop.Animation.AnimateBetweenTimePeriodInterpolation(SwigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), TimePeriod.getCPtr(period), (int)interpolation);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1320,7 +1274,14 @@ namespace Tizen.NUI
 
         internal void AnimateBetween(Property target, KeyFrames keyFrames, AlphaFunction alpha, TimePeriod period, Animation.Interpolation interpolation)
         {
-            Interop.Animation.AnimateBetween(SwigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period), (int)interpolation);
+            if (alpha == null)
+            {
+                Interop.Animation.AnimateBetweenTimePeriodInterpolation(SwigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), TimePeriod.getCPtr(period), (int)interpolation);
+            }
+            else
+            {
+                Interop.Animation.AnimateBetween(SwigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period), (int)interpolation);
+            }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

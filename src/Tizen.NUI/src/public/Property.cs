@@ -149,6 +149,12 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// This is an extra information that is provided optionally.
+        /// This indicates related property that can be used in Animation.
+        /// </summary>
+        internal Property RelatedProperty { get; set; }
+
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Property obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
