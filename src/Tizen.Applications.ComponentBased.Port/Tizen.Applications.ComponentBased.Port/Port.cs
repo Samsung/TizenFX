@@ -86,11 +86,11 @@ namespace Tizen.Applications.ComponentBased
         /// <exception cref="OutOfMemoryException">Thrown when the memory is insufficient.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when because of permission denied.</exception>
         /// <exception cref="global::System.IO.IOException">Thrown when because of I/O error.</exception>
-        /// <param name="portName">The name of the port</param>
+        /// <param name="endpoint">The name of the endpoint</param>
         /// <param name="timeout">The interval of timeout</param>
         /// <param name="request">The parcel data to send</param>
         /// <since_tizen> 9 </since_tizen>
-        public void Send(string portName, int timeout, Parcel request)
+        public void Send(string endpoint, int timeout, Parcel request)
         {
             if (request == null)
             {
@@ -98,7 +98,7 @@ namespace Tizen.Applications.ComponentBased
             }
 
             Interop.ComponentPort.ErrorCode err;
-            err = Interop.ComponentPort.Send(_port, portName, timeout, request.SafeParcelHandle);
+            err = Interop.ComponentPort.Send(_port, endpoint, timeout, request.SafeParcelHandle);
             if (err != Interop.ComponentPort.ErrorCode.None)
             {
                 throw ComponentPortErrorFactory.GetException(err, "Failed to send the request.");
@@ -112,12 +112,12 @@ namespace Tizen.Applications.ComponentBased
         /// <exception cref="OutOfMemoryException">Thrown when the memory is insufficient.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when because of permission denied.</exception>
         /// <exception cref="global::System.IO.IOException">Thrown when because of I/O error.</exception>
-        /// <param name="portName">The name of the port</param>
+        /// <param name="endpoint">The name of the endpoint</param>
         /// <param name="timeout">The interval of timeout</param>
         /// <param name="request">The parcel data to send</param>
         /// <returns>The received parcel data</returns>
         /// /// <since_tizen> 9 </since_tizen>
-        public Parcel SendSync(string portName, int timeout, Parcel request)
+        public Parcel SendSync(string endpoint, int timeout, Parcel request)
         {
             if (request == null)
             {
@@ -125,7 +125,7 @@ namespace Tizen.Applications.ComponentBased
             }
 
             Interop.ComponentPort.ErrorCode err;
-            err = Interop.ComponentPort.SendSync(_port, portName, timeout, request.SafeParcelHandle, out SafeParcelHandle res);
+            err = Interop.ComponentPort.SendSync(_port, endpoint, timeout, request.SafeParcelHandle, out SafeParcelHandle res);
             if (err != Interop.ComponentPort.ErrorCode.None)
             {
                 throw ComponentPortErrorFactory.GetException(err, "Failed to send the request.");

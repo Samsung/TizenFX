@@ -69,11 +69,11 @@ internal static partial class Interop
         // void component_port_cancel(component_port_h port);
 
         [DllImport(Libraries.ComponentPort, EntryPoint = "component_port_send")]
-        internal static extern ErrorCode Send(SafePortHandle handle, string portName, Int32 timeout, SafeParcelHandle request);
-        // int component_port_send(component_port_h port, const char *port_name, int timeout, parcel_h request);
+        internal static extern ErrorCode Send(SafePortHandle handle, string endpoint, Int32 timeout, SafeParcelHandle request);
+        // int component_port_send(component_port_h port, const char *endpoint, int timeout, parcel_h request);
 
         [DllImport(Libraries.ComponentPort, EntryPoint = "component_port_send_sync")]
-        internal static extern ErrorCode SendSync(SafePortHandle handle, string portName, Int32 timeout, SafeParcelHandle request, out SafeParcelHandle response);
-        // int component_port_send(component_port_h port, const char *port_name, int timeout, parcel_h request, parcel_h *response);
+        internal static extern ErrorCode SendSync(SafePortHandle handle, string endpoint, Int32 timeout, SafeParcelHandle request, out SafeParcelHandle response);
+        // int component_port_send(component_port_h port, const char *endpoint, int timeout, parcel_h request, parcel_h *response);
     }
 }
