@@ -1229,9 +1229,9 @@ namespace Tizen.NUI.BaseComponents
             imageMap?.Insert(NpatchImageVisualProperty.SynchronousLoading, synchronosLoading);
             synchronosLoading?.Dispose();
 
-            if (backgroundExtraData != null && backgroundExtraData.CornerRadius > 0)
+            if (CornerRadius > 0)
             {
-                PropertyValue cornerRadius = new PropertyValue(backgroundExtraData.CornerRadius);
+                PropertyValue cornerRadius = new PropertyValue(CornerRadius);
                 imageMap?.Insert(Visual.Property.CornerRadius, cornerRadius);
                 cornerRadius?.Dispose();
             }

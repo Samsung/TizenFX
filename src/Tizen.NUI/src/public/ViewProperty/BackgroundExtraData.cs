@@ -16,6 +16,7 @@
  */
 using System;
 using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
@@ -37,6 +38,8 @@ namespace Tizen.NUI
 
         private Rectangle backgroundImageBorder;
 
+        internal bool Outdated { get; set; } = false;
+
         /// <summary></summary>
         internal Rectangle BackgroundImageBorder
         {
@@ -57,6 +60,44 @@ namespace Tizen.NUI
             return CornerRadius == 0 && Rectangle.IsNullOrZero(BackgroundImageBorder);
         }
 
+        internal void UpdateIfNeeds(View view)
+        {
+            if (!Outdated) return;
+
+            PropertyMap backgroundMap = new PropertyMap();
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.BACKGROUND).Get(backgroundMap);
+
+            Update(backgroundMap);
+
+            backgroundMap.Dispose();
+        }
+
+        internal void UpdateIfNeeds(PropertyMap backgroundMap)
+        {
+            if (!Outdated) return;
+
+            Update(backgroundMap);
+        }
+
+        private void Update(PropertyMap backgroundMap)
+        {
+            float cornerRadius = 0;
+            backgroundMap.Find(Visual.Property.CornerRadius)?.Get(out cornerRadius);
+            CornerRadius = cornerRadius;
+
+            int cornerRadiusPolicy = (int)VisualTransformPolicyType.Absolute;
+            backgroundMap.Find(Visual.Property.CornerRadiusPolicy)?.Get(out cornerRadiusPolicy);
+            CornerRadiusPolicy = (VisualTransformPolicyType)cornerRadiusPolicy;
+
+            int visualType = 0;
+            backgroundMap.Find(Visual.Property.Type)?.Get(out visualType);
+            if (visualType == (int)Visual.Type.Image || visualType == (int)Visual.Type.NPatch)
+            {
+                backgroundMap.Find(NpatchImageVisualProperty.Border)?.Get(backgroundImageBorder);
+            }
+
+            Outdated = false;
+        }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void Dispose(bool disposing)

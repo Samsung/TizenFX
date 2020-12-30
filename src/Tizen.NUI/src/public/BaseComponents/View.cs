@@ -30,7 +30,7 @@ namespace Tizen.NUI.BaseComponents
     public partial class View : Container, IResourcesProvider
     {
         internal Size2D sizeSetExplicitly = new Size2D(); // Store size set by API, will be used in place of NaturalSize if not set.
-        internal BackgroundExtraData backgroundExtraData;
+        private BackgroundExtraData backgroundExtraData;
 
         private bool layoutSet = false;
         private LayoutItem layout; // Exclusive layout assigned to this View.
@@ -92,7 +92,7 @@ namespace Tizen.NUI.BaseComponents
                 SetVisible(false);
             }
 
-            backgroundExtraData = uiControl.backgroundExtraData == null ? null : new BackgroundExtraData(uiControl.backgroundExtraData);
+            BackgroundExtraData = uiControl.BackgroundExtraData == null ? null : new BackgroundExtraData(uiControl.BackgroundExtraData);
         }
 
         internal View(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : this(cPtr, cMemoryOwn, shown)

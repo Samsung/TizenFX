@@ -272,6 +272,16 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        internal BackgroundExtraData BackgroundExtraData
+        {
+            get
+            {
+                backgroundExtraData?.UpdateIfNeeds(this);
+                return backgroundExtraData;
+            }
+            set => backgroundExtraData = value;
+        }
+
         /// <summary>
         /// Indicates that this View should listen Touch event to handle its ControlState.
         /// </summary>

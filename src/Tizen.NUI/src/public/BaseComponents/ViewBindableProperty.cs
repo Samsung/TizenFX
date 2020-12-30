@@ -83,7 +83,7 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                if (view.backgroundExtraData == null)
+                if (view.BackgroundExtraData == null)
                 {
                     Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.BACKGROUND, new PropertyValue((Color)newValue));
                     return;
@@ -148,7 +148,7 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-            if (view.backgroundExtraData == null)
+            if (view.BackgroundExtraData == null)
             {
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.BACKGROUND, new PropertyValue(url));
                 view.BackgroundImageSynchronosLoading = view.backgroundImageSynchronosLoading;
@@ -194,7 +194,7 @@ namespace Tizen.NUI.BaseComponents
 
             var backgroundImageBorder = isEmptyValue ? null : (Rectangle)newValue;
 
-            (view.backgroundExtraData ?? (view.backgroundExtraData = new BackgroundExtraData())).BackgroundImageBorder = backgroundImageBorder;
+            (view.BackgroundExtraData ?? (view.backgroundExtraData = new BackgroundExtraData())).BackgroundImageBorder = backgroundImageBorder;
 
             if (isEmptyValue)
             {
@@ -226,7 +226,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 
-            return view.backgroundExtraData?.BackgroundImageBorder;
+            return view.BackgroundExtraData?.BackgroundImageBorder;
         });
         /// <summary>
         /// BackgroundProperty
@@ -1564,14 +1564,11 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty CornerRadiusProperty = BindableProperty.Create(nameof(CornerRadius), typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
-            (view.backgroundExtraData ?? (view.backgroundExtraData = new BackgroundExtraData())).CornerRadius = (float)newValue;
+            (view.BackgroundExtraData ?? (view.backgroundExtraData = new BackgroundExtraData())).CornerRadius = (float)newValue;
             view.ApplyCornerRadius();
         },
-        defaultValueCreator: (bindable) =>
-        {
-            var view = (View)bindable;
-            return view.backgroundExtraData == null ? 0 : view.backgroundExtraData.CornerRadius;
-        });
+        defaultValueCreator: (bindable) => (((View)bindable).BackgroundExtraData?.CornerRadius ?? 0)
+        );
 
         /// <summary>
         /// CornerRadiusPolicy Property
@@ -1580,17 +1577,14 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty CornerRadiusPolicyProperty = BindableProperty.Create(nameof(CornerRadiusPolicy), typeof(VisualTransformPolicyType), typeof(View), VisualTransformPolicyType.Absolute, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
-            (view.backgroundExtraData ?? (view.backgroundExtraData = new BackgroundExtraData())).CornerRadiusPolicy = (VisualTransformPolicyType)newValue;
+            (view.BackgroundExtraData ?? (view.backgroundExtraData = new BackgroundExtraData())).CornerRadiusPolicy = (VisualTransformPolicyType)newValue;
             if (view.backgroundExtraData.CornerRadius != 0)
             {
                 view.ApplyCornerRadius();
             }
         },
-        defaultValueCreator: (bindable) =>
-        {
-            var view = (View)bindable;
-            return view.backgroundExtraData == null ? VisualTransformPolicyType.Absolute : view.backgroundExtraData.CornerRadiusPolicy;
-        });
+        defaultValueCreator: (bindable) => (((View)bindable).BackgroundExtraData?.CornerRadiusPolicy ?? VisualTransformPolicyType.Absolute)
+        );
 
         /// <summary>
         /// EnableControlState property
