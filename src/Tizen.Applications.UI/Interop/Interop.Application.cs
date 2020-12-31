@@ -23,7 +23,7 @@ using Tizen.Internals.Errors;
 
 internal static partial class Interop
 {
-    internal static partial class Application
+    internal static unsafe partial class Application
     {
         internal delegate void AppEventCallback(IntPtr handle, IntPtr data);
 
@@ -58,11 +58,11 @@ internal static partial class Interop
         [StructLayout(LayoutKind.Sequential)]
         internal struct UIAppLifecycleCallbacks
         {
-            public AppCreateCallback OnCreate;
-            public AppTerminateCallback OnTerminate;
-            public AppPauseCallback OnPause;
-            public AppResumeCallback OnResume;
-            public AppControlCallback OnAppControl;
+            public delegate* unmanaged<IntPtr, byte> OnCreate;
+            public delegate* unmanaged<IntPtr, void> OnTerminate;
+            public delegate* unmanaged<IntPtr, void> OnPause;
+            public delegate* unmanaged<IntPtr, void> OnResume;
+            public delegate* unmanaged<IntPtr, IntPtr, void> OnAppControl;
         }
     }
 }

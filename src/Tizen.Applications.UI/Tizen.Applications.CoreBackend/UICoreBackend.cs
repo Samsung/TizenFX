@@ -17,10 +17,11 @@
 using System;
 
 using Tizen.Internals.Errors;
+using System.Runtime.InteropServices;
 
 namespace Tizen.Applications.CoreBackend
 {
-    internal class UICoreBackend : DefaultCoreBackend
+    internal unsafe class UICoreBackend : DefaultCoreBackend
     {
         private Interop.Application.UIAppLifecycleCallbacks _callbacks;
         private IntPtr _lowMemoryEventHandle = IntPtr.Zero;
@@ -37,11 +38,11 @@ namespace Tizen.Applications.CoreBackend
 
         public UICoreBackend()
         {
-            _callbacks.OnCreate = new Interop.Application.AppCreateCallback(OnCreateNative);
-            _callbacks.OnTerminate = new Interop.Application.AppTerminateCallback(OnTerminateNative);
-            _callbacks.OnAppControl = new Interop.Application.AppControlCallback(OnAppControlNative);
-            _callbacks.OnResume = new Interop.Application.AppResumeCallback(OnResumeNative);
-            _callbacks.OnPause = new Interop.Application.AppPauseCallback(OnPauseNative);
+            _callbacks.OnCreate = (delegate* unmanaged <IntPtr, byte>)&OnCreateNative;
+            _callbacks.OnTerminate = (delegate* unmanaged <IntPtr, void>)&OnTerminateNative;
+            _callbacks.OnAppControl = (delegate* unmanaged <IntPtr, IntPtr, void>)&OnAppControlNative;
+            _callbacks.OnResume = (delegate* unmanaged <IntPtr, void>)&OnResumeNative;
+            _callbacks.OnPause = (delegate* unmanaged <IntPtr, void>)&OnPauseNative;
 
             _onLowMemoryNative = new Interop.Application.AppEventCallback(OnLowMemoryNative);
             _onLowBatteryNative = new Interop.Application.AppEventCallback(OnLowBatteryNative);
@@ -130,7 +131,8 @@ namespace Tizen.Applications.CoreBackend
             }
         }
 
-        private bool OnCreateNative(IntPtr data)
+        [UnmanagedCallersOnly]
+        private static byte OnCreateNative(IntPtr data)
         {
             if (Handlers.ContainsKey(EventType.PreCreated))
             {
@@ -143,10 +145,11 @@ namespace Tizen.Applications.CoreBackend
                 var handler = Handlers[EventType.Created] as Action;
                 handler?.Invoke();
             }
-            return true;
+            return 1;
         }
 
-        private void OnTerminateNative(IntPtr data)
+        [UnmanagedCallersOnly]
+        private static void OnTerminateNative(IntPtr data)
         {
             if (Handlers.ContainsKey(EventType.Terminated))
             {
@@ -155,7 +158,8 @@ namespace Tizen.Applications.CoreBackend
             }
         }
 
-        private void OnAppControlNative(IntPtr appControlHandle, IntPtr data)
+        [UnmanagedCallersOnly]
+        private static void OnAppControlNative(IntPtr appControlHandle, IntPtr data)
         {
             if (Handlers.ContainsKey(EventType.AppControlReceived))
             {
@@ -168,7 +172,8 @@ namespace Tizen.Applications.CoreBackend
             }
         }
 
-        private void OnResumeNative(IntPtr data)
+        [UnmanagedCallersOnly]
+        private static void OnResumeNative(IntPtr data)
         {
             if (Handlers.ContainsKey(EventType.Resumed))
             {
@@ -177,7 +182,8 @@ namespace Tizen.Applications.CoreBackend
             }
         }
 
-        private void OnPauseNative(IntPtr data)
+        [UnmanagedCallersOnly]
+        private static void OnPauseNative(IntPtr data)
         {
             if (Handlers.ContainsKey(EventType.Paused))
             {

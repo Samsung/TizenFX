@@ -76,7 +76,7 @@ namespace Tizen.Applications.CoreBackend
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected IDictionary<EventType, object> Handlers = new Dictionary<EventType, object>();
+        protected static IDictionary<EventType, object> Handlers = new Dictionary<EventType, object>();
 
         /// <summary>
         /// Constructor of DefaultCoreBackend class.
