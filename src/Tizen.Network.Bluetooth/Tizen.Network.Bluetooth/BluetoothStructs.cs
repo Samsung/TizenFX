@@ -63,7 +63,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The name of the device.
         /// </summary>
-        [MarshalAsAttribute(UnmanagedType.LPStr)]
+        [MarshalAsAttribute(UnmanagedType.LPTStr)]
         internal string Name;
 
         /// <summary>
