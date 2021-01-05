@@ -113,13 +113,11 @@ namespace Tizen.NUI
         /// <summary>
         /// Event arguments that passed via time tick event signal.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public class TimeTickEventArgs : EventArgs
         {
             /// <summary>
             /// Application.
             /// </summary>
-            /// <since_tizen> 4 </since_tizen>
             public Application Application
             {
                 get;
@@ -129,7 +127,6 @@ namespace Tizen.NUI
             /// <summary>
             /// WatchTime.
             /// </summary>
-            /// <since_tizen> 4 </since_tizen>
             public WatchTime WatchTime
             {
                 get;
@@ -189,13 +186,11 @@ namespace Tizen.NUI
         /// <summary>
         /// Event arguments that passed via ambient tick event signal.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public class AmbientTickEventArgs : EventArgs
         {
             /// <summary>
             /// Application.
             /// </summary>
-            /// <since_tizen> 4 </since_tizen>
             public Application Application
             {
                 get;
@@ -205,7 +200,6 @@ namespace Tizen.NUI
             /// <summary>
             /// WatchTime.
             /// </summary>
-            /// <since_tizen> 4 </since_tizen>
             public WatchTime WatchTime
             {
                 get;
@@ -264,13 +258,11 @@ namespace Tizen.NUI
         /// <summary>
         /// Event arguments that passed via ambient tick event signal.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public class AmbientChangedEventArgs : EventArgs
         {
             /// <summary>
             /// Application.
             /// </summary>
-            /// <since_tizen> 4 </since_tizen>
             public Application Application
             {
                 get;
@@ -280,7 +272,6 @@ namespace Tizen.NUI
             /// <summary>
             /// Changed.
             /// </summary>
-            /// <since_tizen> 4 </since_tizen>
             public bool Changed
             {
                 get;

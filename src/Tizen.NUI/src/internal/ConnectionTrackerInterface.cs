@@ -35,7 +35,6 @@ namespace Tizen.NUI
         /// <summary>
         /// Dispose
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.ConnectionTracker.DeleteConnectionTrackerInterface(swigCPtr);
@@ -46,7 +45,6 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="slotObserver">The slot observer i.e. a signal. Ownership is not passed</param>
         /// <param name="callback">The call back. Ownership is not passed</param>
-        /// <since_tizen> 4 </since_tizen>
         public virtual void SignalConnected(SlotObserver slotObserver, SWIGTYPE_p_CallbackBase callback)
         {
             Interop.ConnectionTracker.ConnectionTrackerInterfaceSignalConnected(SwigCPtr, SlotObserver.getCPtr(slotObserver), SWIGTYPE_p_CallbackBase.getCPtr(callback));

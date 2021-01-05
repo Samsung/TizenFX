@@ -37,12 +37,10 @@ namespace Tizen.NUI
             Interop.PageTurnView.DeletePageTurnView(swigCPtr);
         }
 
-        /// <since_tizen> 3 </since_tizen>
         public class PagePanStartedEventArgs : EventArgs
         {
             private PageTurnView _pageTurnView;
 
-            /// <since_tizen> 3 </since_tizen>
             public PageTurnView PageTurnView
             {
                 get
@@ -56,12 +54,10 @@ namespace Tizen.NUI
             }
         }
 
-        /// <since_tizen> 3 </since_tizen>
         public class PagePanFinishedEventArgs : EventArgs
         {
             private PageTurnView _pageTurnView;
 
-            /// <since_tizen> 3 </since_tizen>
             public PageTurnView PageTurnView
             {
                 get
@@ -75,14 +71,12 @@ namespace Tizen.NUI
             }
         }
 
-        /// <since_tizen> 3 </since_tizen>
         public class PageTurnStartedEventArgs : EventArgs
         {
             private PageTurnView _pageTurnView;
             private uint _pageIndex;
             private bool _isTurningForward;
 
-            /// <since_tizen> 3 </since_tizen>
             public PageTurnView PageTurnView
             {
                 get
@@ -95,7 +89,6 @@ namespace Tizen.NUI
                 }
             }
 
-            /// <since_tizen> 3 </since_tizen>
             public uint PageIndex
             {
                 get
@@ -108,7 +101,6 @@ namespace Tizen.NUI
                 }
             }
 
-            /// <since_tizen> 3 </since_tizen>
             public bool IsTurningForward
             {
                 get
@@ -123,14 +115,12 @@ namespace Tizen.NUI
 
         }
 
-        /// <since_tizen> 3 </since_tizen>
         public class PageTurnFinishedEventArgs : EventArgs
         {
             private PageTurnView _pageTurnView;
             private uint _pageIndex;
             private bool _isTurningForward;
 
-            /// <since_tizen> 3 </since_tizen>
             public PageTurnView PageTurnView
             {
                 get
@@ -143,7 +133,6 @@ namespace Tizen.NUI
                 }
             }
 
-            /// <since_tizen> 3 </since_tizen>
             public uint PageIndex
             {
                 get
@@ -156,7 +145,6 @@ namespace Tizen.NUI
                 }
             }
 
-            /// <since_tizen> 3 </since_tizen>
             public bool IsTurningForward
             {
                 get
