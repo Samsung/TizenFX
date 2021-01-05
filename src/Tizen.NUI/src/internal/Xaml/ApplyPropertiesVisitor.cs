@@ -375,7 +375,7 @@ namespace Tizen.NUI.Xaml
 
             //Call TrySetProperty first and then TrySetValue to keep the code logic consistent whether it is through xaml or code.
             //If we can assign that value to a normal property, let's do it
-            if (xpe == null && TrySetProperty(xamlelement, localName, value, serviceProvider, context, out xpe))
+            if (xpe == null && TrySetProperty(xamlelement, property, localName, value, serviceProvider, context, out xpe))
                 return;
 
             //If it's a BindableProberty, SetValue
@@ -560,7 +560,7 @@ namespace Tizen.NUI.Xaml
             return true;
         }
 
-        static bool TrySetProperty(object element, string localName, object value, XamlServiceProvider serviceProvider, HydrationContext context, out Exception exception)
+        static bool TrySetProperty(object element, BindableProperty property, string localName, object value, XamlServiceProvider serviceProvider, HydrationContext context, out Exception exception)
         {
             exception = null;
 
@@ -571,6 +571,9 @@ namespace Tizen.NUI.Xaml
                 return false;
 
             if (!IsVisibleFrom(setter, context.RootElement))
+                return false;
+
+            if (propertyInfo.PropertyType != property.ReturnType)
                 return false;
 
             if (serviceProvider != null && serviceProvider.IProvideValueTarget != null)
