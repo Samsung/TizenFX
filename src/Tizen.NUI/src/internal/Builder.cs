@@ -34,7 +34,6 @@ namespace Tizen.NUI
             Interop.Builder.DeleteBuilder(swigCPtr);
         }
 
-        /// <since_tizen> 3 </since_tizen>
         public class QuitEventArgs : EventArgs
         {
         }
@@ -258,7 +257,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// <since_tizen> 3 </since_tizen>
         public enum UIFormat
         {
             JSON
