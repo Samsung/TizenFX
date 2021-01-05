@@ -12,13 +12,11 @@ using static Tizen.NUI.Animation;
 namespace Tizen.NUI
 {
     /// <since_tizen> 5 </since_tizen>
-    /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class AnimationBehavior
     {
         private string _key = null;
         /// <since_tizen> 5 </since_tizen>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string Key
         {
@@ -35,7 +33,6 @@ namespace Tizen.NUI
         private string _property = null;
 
         /// <since_tizen> 5 </since_tizen>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string Property
         {
@@ -52,7 +49,6 @@ namespace Tizen.NUI
         private string _destValue = null;
 
         /// <since_tizen> 5 </since_tizen>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string DestValue
         {
@@ -69,7 +65,6 @@ namespace Tizen.NUI
         private int _startTime = -1;
 
         /// <since_tizen> 5 </since_tizen>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int StartTime
         {
@@ -86,7 +81,6 @@ namespace Tizen.NUI
         private int _endTime = -1;
 
         /// <since_tizen> 5 </since_tizen>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int EndTime
         {
@@ -105,7 +99,6 @@ namespace Tizen.NUI
     /// <summary>
     /// It is the container to contain the behaviors of Transition.
     /// </summary>
-    /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class BehaviorContainer : List<AnimationBehavior>
     {
@@ -114,7 +107,6 @@ namespace Tizen.NUI
         /// <summary>
         /// The method for user to add behavior.
         /// </summary>
-        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Add(object obj)
         {
@@ -129,7 +121,6 @@ namespace Tizen.NUI
         /// <summary>
         /// The method for user to get the behavior by the key.
         /// </summary>
-        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public AnimationBehavior GetAnimationBehavior(string key)
         {
@@ -141,14 +132,12 @@ namespace Tizen.NUI
     }
 
     /// <since_tizen> 5 </since_tizen>
-    /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Transition : Animation
     {
         private string name;
 
         /// <since_tizen> 5 </since_tizen>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string Name
         {
@@ -163,7 +152,6 @@ namespace Tizen.NUI
         }
 
         /// <since_tizen> 5 </since_tizen>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AnimateTo(View instance, string behaviorKey)
         {
@@ -198,7 +186,6 @@ namespace Tizen.NUI
         }
 
         /// <since_tizen> 5 </since_tizen>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AnimateBy(View instance, string behaviorKey)
         {
@@ -233,7 +220,6 @@ namespace Tizen.NUI
         }
 
         /// <since_tizen> 5 </since_tizen>
-        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public BehaviorContainer Behaviors
         {

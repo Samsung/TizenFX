@@ -2475,9 +2475,8 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Used to restore the transition.
         /// </summary>
-        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public List<Transition> StoryBoard
+        public IList<Transition> TransitionList
         {
             get;
         } = new List<Transition>();

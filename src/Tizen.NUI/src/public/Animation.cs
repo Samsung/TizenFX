@@ -56,10 +56,10 @@ namespace Tizen.NUI
         private int[] _startTime = null;
         private int[] _endTime = null;
 
-        private List<string> _propertyList = null;
-        private List<string> _destValueList = null;
-        private List<int> _startTimeList = null;
-        private List<int> _endTimeList = null;
+        private List<string> propertyList = null;
+        private List<string> destValueList = null;
+        private List<int> startTimeList = null;
+        private List<int> endTimeList = null;
 
         /// <summary>
         /// Creates an initialized animation.<br />
@@ -442,7 +442,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets the properties of the animation.
         /// </summary>
-        [Obsolete("Deprecated in API9, Will be removed in API11, Please use PropertyList instead")]
+        //ToDo : will raise deprecated-ACR, [Obsolete("Deprecated in API9, Will be removed in API11, Please use PropertyList instead")]
         [SuppressMessage("Microsoft.Naming", "CA1819:This API will be deprecated, so suppressing the warning for now")]
         public string[] Properties
         {
@@ -459,7 +459,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets the destination value for each property of the animation.
         /// </summary>
-        [Obsolete("Deprecated in API9, Will be removed in API11, Please use DestValueList instead")]
+        //ToDo : will raise deprecated-ACR, [Obsolete("Deprecated in API9, Will be removed in API11, Please use DestValueList instead")]
         [SuppressMessage("Microsoft.Naming", "CA1819:This API will be deprecated, so suppressing the warning for now")]
         public string[] DestValue
         {
@@ -476,7 +476,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets the start time for each property of the animation.
         /// </summary>
-        [Obsolete("Deprecated in API9, Will be removed in API11, Please use StartTimeList instead")]
+        //ToDo : will raise deprecated-ACR, [Obsolete("Deprecated in API9, Will be removed in API11, Please use StartTimeList instead")]
         [SuppressMessage("Microsoft.Naming", "CA1819:This API will be deprecated, so suppressing the warning for now")]
         public int[] StartTime
         {
@@ -493,7 +493,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets the end time for each property of the animation.
         /// </summary>
-        [Obsolete("Deprecated in API9, Will be removed in API11, Please use EndTimeList instead")]
+        //ToDo : will raise deprecated-ACR, [Obsolete("Deprecated in API9, Will be removed in API11, Please use EndTimeList instead")]
         [SuppressMessage("Microsoft.Naming", "CA1819:This API will be deprecated, so suppressing the warning for now")]
         public int[] EndTime
         {
@@ -510,72 +510,68 @@ namespace Tizen.NUI
         /// <summary>
         /// Get the list of the properties of the animation.
         /// </summary>
-        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public List<string> PropertyList
+        public IList<string> PropertyList
         {
             get
             {
-                if (null == _propertyList)
+                if (null == propertyList)
                 {
-                    _propertyList = new List<string>();
+                    propertyList = new List<string>();
                 }
 
-                return _propertyList;
+                return propertyList;
             }
         }
 
         /// <summary>
         /// Get the list of the destination value for each property of the animation.
         /// </summary>
-        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public List<string> DestValueList
+        public IList<string> DestValueList
         {
             get
             {
-                if (null == _destValueList)
+                if (null == destValueList)
                 {
-                    _destValueList = new List<string>();
+                    destValueList = new List<string>();
                 }
 
-                return _destValueList;
+                return destValueList;
             }
         }
 
         /// <summary>
         /// Get the list of the start time for each property of the animation.
         /// </summary>
-        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public List<int> StartTimeList
+        public IList<int> StartTimeList
         {
             get
             {
-                if (null == _startTimeList)
+                if (null == startTimeList)
                 {
-                    _startTimeList = new List<int>();
+                    startTimeList = new List<int>();
                 }
 
-                return _startTimeList;
+                return startTimeList;
             }
         }
 
         /// <summary>
         /// Get the list of end time for each property of the animation.
         /// </summary>
-        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public List<int> EndTimeList
+        public IList<int> EndTimeList
         {
             get
             {
-                if (null == _endTimeList)
+                if (null == endTimeList)
                 {
-                    _endTimeList = new List<int>();
+                    endTimeList = new List<int>();
                 }
 
-                return _endTimeList;
+                return endTimeList;
             }
         }
 
@@ -760,27 +756,27 @@ namespace Tizen.NUI
 
             Clear();
 
-            if (null != _propertyList && null != _destValueList && null != _startTimeList && null != _endTimeList)
+            if (null != propertyList && null != destValueList && null != startTimeList && null != endTimeList)
             {
-                if (_propertyList.Count == _destValueList.Count
+                if (propertyList.Count == destValueList.Count
                     &&
-                    _startTimeList.Count == _endTimeList.Count
+                    startTimeList.Count == endTimeList.Count
                     &&
-                    _propertyList.Count == _startTimeList.Count)
+                    propertyList.Count == startTimeList.Count)
                 {
-                    int count = _propertyList.Count;
+                    int count = propertyList.Count;
                     for (int index = 0; index < count; index++)
                     {
                         var elementType = target.GetType();
-                        PropertyInfo propertyInfo = elementType.GetProperties().FirstOrDefault(fi => fi.Name == _propertyList[index]);
+                        PropertyInfo propertyInfo = elementType.GetProperties().FirstOrDefault(fi => fi.Name == propertyList[index]);
 
                         if (propertyInfo != null)
                         {
-                            object destinationValue = ConvertTo(_destValueList[index], propertyInfo.PropertyType);
+                            object destinationValue = ConvertTo(destValueList[index], propertyInfo.PropertyType);
 
                             if (destinationValue != null)
                             {
-                                AnimateTo(target, _propertyList[index], destinationValue, _startTimeList[index], _endTimeList[index]);
+                                AnimateTo(target, propertyList[index], destinationValue, startTimeList[index], endTimeList[index]);
                             }
                         }
                     }
