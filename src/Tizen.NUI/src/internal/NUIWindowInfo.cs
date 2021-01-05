@@ -18,7 +18,6 @@ namespace Tizen.NUI
         /// Initializes the NUI Window class.
         /// </summary>
         /// <param name="win">The window object of component.</param>
-        /// <since_tizen> 6 </since_tizen>
         internal NUIWindowInfo(Window win)
         {
             _win = win;
@@ -64,7 +63,6 @@ namespace Tizen.NUI
         /// Dispose the window resources
         /// </summary>
         /// <returns></returns>
-        /// <since_tizen> 6 </since_tizen>
         public void Dispose()
         {
             Dispose(true);

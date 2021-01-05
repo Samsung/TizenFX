@@ -77,13 +77,11 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// Bool selector.
     /// </summary>
-    /// <since_tizen> 6 </since_tizen>
     internal class BoolSelector : Selector<bool?>
     {
         /// <summary>
         /// Bool selector clone function.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new BoolSelector Clone()
@@ -166,13 +164,11 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// Size2D selector.
     /// </summary>
-    /// <since_tizen> 6 </since_tizen>
     internal class Size2DSelector : Selector<Size2D>
     {
         /// <summary>
         /// Size2D selector clone function.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new Size2DSelector Clone()
@@ -183,13 +179,11 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// Position2D selector.
     /// </summary>
-    /// <since_tizen> 6 </since_tizen>
     internal class Position2DSelector : Selector<Position2D>
     {
         /// <summary>
         /// Position2D selector clone function.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new Position2DSelector Clone()
@@ -201,13 +195,11 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// Position selector.
     /// </summary>
-    /// <since_tizen> 6 </since_tizen>
     internal class PositionSelector : Selector<Position>
     {
         /// <summary>
         /// Position selector clone function.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new PositionSelector Clone()
@@ -239,13 +231,11 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// Vector3 selector.
     /// </summary>
-    /// <since_tizen> 6 </since_tizen>
     internal class Vector3Selector : Selector<Vector3>
     {
         /// <summary>
         /// Vector3 selector clone function.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new Vector3Selector Clone()
@@ -277,13 +267,11 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// Horizontal alignment selector.
     /// </summary>
-    /// <since_tizen> 6 </since_tizen>
     internal class HorizontalAlignmentSelector : Selector<HorizontalAlignment?>
     {
         /// <summary>
         /// Horizontal alignment selector clone function.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new HorizontalAlignmentSelector Clone()
@@ -294,13 +282,11 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// Vertical alignment selector.
     /// </summary>
-    /// <since_tizen> 6 </since_tizen>
     internal class VerticalAlignmentSelector : Selector<VerticalAlignment?>
     {
         /// <summary>
         /// Vertical alignment selector clone function.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new VerticalAlignmentSelector Clone()
@@ -312,13 +298,11 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// AutoScrollStopMode selector.
     /// </summary>
-    /// <since_tizen> 6 </since_tizen>
     internal class AutoScrollStopModeSelector : Selector<AutoScrollStopMode?>
     {
         /// <summary>
         /// AutoScrollStopMode selector clone function.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new AutoScrollStopModeSelector Clone()
@@ -330,13 +314,11 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// ResizePolicyType selector.
     /// </summary>
-    /// <since_tizen> 6 </since_tizen>
     internal class ResizePolicyTypeSelector : Selector<ResizePolicyType?>
     {
         /// <summary>
         /// ResizePolicyType selector clone function.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new ResizePolicyTypeSelector Clone()
