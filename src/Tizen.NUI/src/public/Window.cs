@@ -1227,7 +1227,7 @@ namespace Tizen.NUI
 
         internal Vector2 GetSize()
         {
-            var val = new Uint16Pair(Interop.Window.GetSize(SwigCPtr), false);
+            var val = new Uint16Pair(Interop.Window.GetSize(SwigCPtr), true);
             Vector2 ret = new Vector2(val.GetWidth(), val.GetHeight());
             val.Dispose();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1324,7 +1324,7 @@ namespace Tizen.NUI
 
         internal Size2D GetWindowSize()
         {
-            var val = new Uint16Pair(Interop.Window.GetSize(SwigCPtr), false);
+            var val = new Uint16Pair(Interop.Window.GetSize(SwigCPtr), true);
             Size2D ret = new Size2D(val.GetWidth(), val.GetHeight());
             val.Dispose();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
