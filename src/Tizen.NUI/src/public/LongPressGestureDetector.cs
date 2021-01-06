@@ -85,6 +85,7 @@ namespace Tizen.NUI
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void DetectedCallbackType(IntPtr actor, IntPtr longPressGesture);
         private DetectedCallbackType _detectedCallback;
+        private LongPressGestureDetectedSignal detectedSignal;
 
         /// <summary>
         /// This signal is emitted when the specified long press is detected on the attached view.
@@ -98,7 +99,8 @@ namespace Tizen.NUI
                 if (_detectedEventHandler == null)
                 {
                     _detectedCallback = OnLongPressGestureDetected;
-                    DetectedSignal().Connect(_detectedCallback);
+                    detectedSignal = DetectedSignal();
+                    detectedSignal.Connect(_detectedCallback);
                 }
 
                 _detectedEventHandler += value;
@@ -108,9 +110,11 @@ namespace Tizen.NUI
             {
                 _detectedEventHandler -= value;
 
-                if (_detectedEventHandler == null && DetectedSignal().Empty() == false)
+                if (_detectedEventHandler == null && detectedSignal?.Empty() == false)
                 {
-                    DetectedSignal().Disconnect(_detectedCallback);
+                    detectedSignal.Disconnect(_detectedCallback);
+                    detectedSignal.Dispose();
+                    detectedSignal = null;
                 }
             }
         }
@@ -204,9 +208,11 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (_detectedEventHandler == null && DetectedSignal().Empty() == false)
+            if (_detectedEventHandler == null && detectedSignal?.Empty() == false)
             {
-                DetectedSignal().Disconnect(_detectedCallback);
+                detectedSignal.Disconnect(_detectedCallback);
+                detectedSignal.Dispose();
+                detectedSignal = null;
             }
             Interop.LongPressGestureDetector.DeleteLongPressGestureDetector(swigCPtr);
         }
