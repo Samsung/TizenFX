@@ -58,6 +58,7 @@ namespace Tizen.NUI
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void DetectedCallbackType(IntPtr actor, IntPtr pinchGesture);
         private DetectedCallbackType _detectedCallback;
+        private PinchGestureDetectedSignal detectedSignal;
 
         /// <summary>
         /// This signal is emitted when the specified pinch is detected on the attached view.
@@ -71,7 +72,8 @@ namespace Tizen.NUI
                 if (_detectedEventHandler == null)
                 {
                     _detectedCallback = OnPinchGestureDetected;
-                    DetectedSignal().Connect(_detectedCallback);
+                    detectedSignal = DetectedSignal();
+                    detectedSignal.Connect(_detectedCallback);
                 }
 
                 _detectedEventHandler += value;
@@ -81,9 +83,11 @@ namespace Tizen.NUI
             {
                 _detectedEventHandler -= value;
 
-                if (_detectedEventHandler == null && DetectedSignal().Empty() == false)
+                if (_detectedEventHandler == null && detectedSignal?.Empty() == false)
                 {
-                    DetectedSignal().Disconnect(_detectedCallback);
+                    detectedSignal.Disconnect(_detectedCallback);
+                    detectedSignal.Dispose();
+                    detectedSignal = null;
                 }
             }
         }
@@ -128,7 +132,8 @@ namespace Tizen.NUI
         {
             if (_detectedCallback != null)
             {
-                DetectedSignal().Disconnect(_detectedCallback);
+                detectedSignal?.Disconnect(_detectedCallback);
+                detectedSignal?.Dispose();
             }
 
             Interop.PinchGesture.DeletePinchGestureDetector(swigCPtr);

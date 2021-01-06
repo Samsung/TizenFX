@@ -35,6 +35,7 @@ namespace Tizen.NUI
         private static readonly StyleManager instance = StyleManager.Get();
         private EventHandler<StyleChangedEventArgs> _styleManagerStyleChangedEventHandler;
         private StyleChangedCallbackDelegate _styleManagerStyleChangedCallbackDelegate;
+        private StyleChangedSignal styleChangedSignal;
 
         /// <summary>
         /// Creates a StyleManager handle.<br />
@@ -63,16 +64,19 @@ namespace Tizen.NUI
                 if (_styleManagerStyleChangedEventHandler == null)
                 {
                     _styleManagerStyleChangedCallbackDelegate = (OnStyleChanged);
-                    StyleChangedSignal().Connect(_styleManagerStyleChangedCallbackDelegate);
+                    styleChangedSignal = StyleChangedSignal();
+                    styleChangedSignal.Connect(_styleManagerStyleChangedCallbackDelegate);
                 }
                 _styleManagerStyleChangedEventHandler += value;
             }
             remove
             {
                 _styleManagerStyleChangedEventHandler -= value;
-                if (_styleManagerStyleChangedEventHandler == null && StyleChangedSignal().Empty() == false)
+                if (_styleManagerStyleChangedEventHandler == null && styleChangedSignal?.Empty() == false)
                 {
-                    StyleChangedSignal().Disconnect(_styleManagerStyleChangedCallbackDelegate);
+                    styleChangedSignal.Disconnect(_styleManagerStyleChangedCallbackDelegate);
+                    styleChangedSignal.Dispose();
+                    styleChangedSignal = null;
                 }
             }
         }
