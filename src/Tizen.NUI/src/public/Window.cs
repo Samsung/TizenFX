@@ -1145,8 +1145,9 @@ namespace Tizen.NUI
 
         internal Vector2 GetSize()
         {
-            var val = new Uint16Pair(Interop.Window.GetSize(swigCPtr), false);
+            var val = new Uint16Pair(Interop.Window.GetSize(swigCPtr), true);
             Vector2 ret = new Vector2(val.GetWidth(), val.GetHeight());
+            val.Dispose();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1238,8 +1239,9 @@ namespace Tizen.NUI
 
         internal Size2D GetWindowSize()
         {
-            var val = new Uint16Pair(Interop.Window.GetSize(swigCPtr), false);
+            var val = new Uint16Pair(Interop.Window.GetSize(swigCPtr), true);
             Size2D ret = new Size2D(val.GetWidth(), val.GetHeight());
+            val.Dispose();
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -1404,7 +1406,7 @@ namespace Tizen.NUI
         /// <code>
         /// void MyFunction( int frameId )
         /// </code>
-        /// This callback will be deleted once it is called. 
+        /// This callback will be deleted once it is called.
         /// <remarks>
         /// Ownership of the callback is passed onto this class
         /// </remarks>
@@ -1427,7 +1429,7 @@ namespace Tizen.NUI
         /// <code>
         /// void MyFunction( int frameId )
         /// </code>
-        /// This callback will be deleted once it is called. 
+        /// This callback will be deleted once it is called.
         /// <remarks>
         /// Ownership of the callback is passed onto this class
         /// </remarks>
