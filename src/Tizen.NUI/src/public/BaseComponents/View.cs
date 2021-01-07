@@ -536,11 +536,8 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                using (PropertyValue setValue = new Tizen.NUI.PropertyValue(value))
-                {
-                    SetProperty(View.Property.TOOLTIP, setValue);
-                    NotifyPropertyChanged();
-                }
+                SetProperty(View.Property.TOOLTIP, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -911,15 +908,9 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                using (PropertyValue screenPosition = GetProperty(View.Property.ScreenPosition)) 
-                {
-                    using (Vector2 vectorValue = new Vector2(0.0f, 0.0f))
-                    {
-                        Vector2 position = vectorValue;
-                        screenPosition?.Get(position);
-                        return position;
-                    }
-                }
+                Vector2 temp = new Vector2(0.0f, 0.0f);
+                GetProperty(View.Property.ScreenPosition).Get(temp);
+                return temp;
             }
         }
 
@@ -959,20 +950,14 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                using (PropertyValue positionUsesAnchor = GetProperty(View.Property.PositionUsesAnchorPoint))
-                {
-                    bool returnValue = false;
-                    positionUsesAnchor?.Get(out returnValue);
-                    return returnValue;
-                }
+                bool temp = false;
+                GetProperty(View.Property.PositionUsesAnchorPoint).Get(out temp);
+                return temp;
             }
             set
             {
-                using (PropertyValue setValue = new Tizen.NUI.PropertyValue(value))
-                {
-                    SetProperty(View.Property.PositionUsesAnchorPoint, setValue);
-                    NotifyPropertyChanged();
-                }
+                SetProperty(View.Property.PositionUsesAnchorPoint, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -1055,13 +1040,10 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                using (Vector3 vectorValue = new Vector3(Interop.Actor.GetNaturalSize(SwigCPtr), true))
-                {
-                    Vector3 naturalSize = vectorValue;
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
+                Vector3 temp = new Vector3(Interop.Actor.GetNaturalSize(SwigCPtr), true);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
 
-                    return new Size2D((int)naturalSize?.Width, (int)naturalSize?.Height);
-                }
+                return new Size2D((int)temp.Width, (int)temp.Height);
             }
         }
 
@@ -1257,15 +1239,9 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                using (PropertyValue worldPos = GetProperty(View.Property.WorldPosition))
-                {
-                    using (Vector3 vectorValue = new Vector3(0.0f, 0.0f, 0.0f))
-                    {
-                        Vector3 position = vectorValue;
-                        worldPos?.Get(position);
-                        return position;
-                    }
-                }
+                Vector3 temp = new Vector3(0.0f, 0.0f, 0.0f);
+                GetProperty(View.Property.WorldPosition).Get(temp);
+                return temp;
             }
         }
 
@@ -1303,14 +1279,9 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                using (PropertyValue worldOri = GetProperty(View.Property.WorldOrientation))
-                {
-                    using (Rotation rotation = new Rotation())
-                    {
-                        worldOri?.Get(rotation);
-                        return rotation;
-                    }
-                }
+                Rotation temp = new Rotation();
+                GetProperty(View.Property.WorldOrientation).Get(temp);
+                return temp;
             }
         }
 
@@ -1412,14 +1383,9 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                using (PropertyValue worldScale = GetProperty(View.Property.WorldScale))
-                {
-                    using (Vector3 vectorValue = new Vector3(0.0f, 0.0f, 0.0f))
-                    {
-                        worldScale?.Get(vectorValue);
-                        return vectorValue;
-                    }
-                }
+                Vector3 temp = new Vector3(0.0f, 0.0f, 0.0f);
+                GetProperty(View.Property.WorldScale).Get(temp);
+                return temp;
             }
         }
 
@@ -1440,12 +1406,9 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                using (PropertyValue visible = GetProperty(View.Property.VISIBLE))
-                {
-                    bool isVisible = false;
-                    visible?.Get(out isVisible);
-                    return isVisible;
-                }
+                bool temp = false;
+                GetProperty(View.Property.VISIBLE).Get(out temp);
+                return temp;
             }
         }
 
@@ -1457,14 +1420,9 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                using (PropertyValue worldColor = GetProperty(View.Property.WorldColor))
-                {
-                    using (Vector4 vectorValue = new Vector4(0.0f, 0.0f, 0.0f, 0.0f))
-                    {
-                        worldColor?.Get(vectorValue);
-                        return vectorValue;
-                    }
-                }
+                Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
+                GetProperty(View.Property.WorldColor).Get(temp);
+                return temp;
             }
         }
 
@@ -1880,22 +1838,14 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                using (PropertyValue anchorPoint = GetProperty(View.Property.AnchorPoint))
-                {
-                    using (Position position = new Position(0.0f, 0.0f, 0.0f))
-                    { 
-                        anchorPoint?.Get(position);
-                        return new Position(OnAnchorPointChanged, position.X, position.Y, position.Z);
-                    }
-                }
+                Position temp = new Position(0.0f, 0.0f, 0.0f);
+                GetProperty(View.Property.AnchorPoint).Get(temp);
+                return new Position(OnAnchorPointChanged, temp.X, temp.Y, temp.Z);
             }
             set
             {
-                using (PropertyValue setValue = new Tizen.NUI.PropertyValue(value))
-                {
-                    SetProperty(View.Property.AnchorPoint, setValue);
-                    NotifyPropertyChanged();
-                }
+                SetProperty(View.Property.AnchorPoint, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -1946,11 +1896,8 @@ namespace Tizen.NUI.BaseComponents
 
                 if (basehandle is Layer layer)
                 {
-                    using (View view = new View(Layer.getCPtr(layer).Handle, false))
-                    {
-                        ret = view;
-                        NUILog.Error("This Parent property is deprecated, shoud do not be used");
-                    }
+                    ret = new View(Layer.getCPtr(layer).Handle, false);
+                    NUILog.Error("This Parent property is deprecated, shoud do not be used");
                 }
                 else
                 {
@@ -2171,23 +2118,15 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                using (PropertyValue padding = GetProperty(View.Property.PADDING))
-                {
-                    using (Extents extents = new Extents(0, 0, 0, 0))
-                    {
-                        padding?.Get(extents);
-                        return new Extents(OnPaddingEXChanged, extents.Start, extents.End, extents.Top, extents.Bottom);
-                    }
-                }
+                Extents temp = new Extents(0, 0, 0, 0);
+                GetProperty(View.Property.PADDING).Get(temp);
+                return new Extents(OnPaddingEXChanged, temp.Start, temp.End, temp.Top, temp.Bottom);
             }
             set
             {
-                using (PropertyValue setValue = new Tizen.NUI.PropertyValue(value))
-                {
-                    SetProperty(View.Property.PADDING, setValue);
-                    NotifyPropertyChanged();
-                    layout?.RequestLayout();
-                }
+                SetProperty(View.Property.PADDING, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
+                layout?.RequestLayout();
             }
         }
 
@@ -2342,19 +2281,13 @@ namespace Tizen.NUI.BaseComponents
                 backgroundImageSynchronosLoading = value;
 
                 string bgUrl = null;
-                using (PropertyValue url = Background.Find(ImageVisualProperty.URL))
-                {
-                    url?.Get(out bgUrl);
-                }
+                Background.Find(ImageVisualProperty.URL)?.Get(out bgUrl);
 
                 if (!string.IsNullOrEmpty(bgUrl))
                 {
                     PropertyMap bgMap = this.Background;
-                    using (PropertyValue addedProperty = new PropertyValue(backgroundImageSynchronosLoading))
-                    {
-                        bgMap.Add("synchronousLoading", addedProperty);
-                        Background = bgMap;
-                    }
+                    bgMap.Add("synchronousLoading", new PropertyValue(backgroundImageSynchronosLoading));
+                    Background = bgMap;
                 }
             }
         }
@@ -2437,20 +2370,14 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                using (PropertyValue captureAllTouch = GetProperty(View.Property.CaptureAllTouchAfterStart))
-                {
-                    bool isGrabTouch = false;
-                    captureAllTouch?.Get(out isGrabTouch);
-                    return isGrabTouch;
-                }
+                bool temp = false;
+                GetProperty(View.Property.CaptureAllTouchAfterStart).Get(out temp);
+                return temp;
             }
             set
             {
-                using (PropertyValue setValue = new Tizen.NUI.PropertyValue(value))
-                {
-                    SetProperty(View.Property.CaptureAllTouchAfterStart, setValue);
-                    NotifyPropertyChanged();
-                }
+                SetProperty(View.Property.CaptureAllTouchAfterStart, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -2464,20 +2391,14 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                using (PropertyValue blendEquation = GetProperty(View.Property.BlendEquation))
-                {
-                    int type = 0;
-                    blendEquation?.Get(out type);
-                    return (BlendEquationType)type;
-                }
+                int temp = 0;
+                GetProperty(View.Property.BlendEquation).Get(out temp);
+                return (BlendEquationType)temp;
             }
             set
             {
-                using (PropertyValue setValue = new Tizen.NUI.PropertyValue((int)value))
-                {
-                    SetProperty(View.Property.BlendEquation, setValue);
-                    NotifyPropertyChanged();
-                }
+                SetProperty(View.Property.BlendEquation, new Tizen.NUI.PropertyValue((int)value));
+                NotifyPropertyChanged();
             }
         }
 

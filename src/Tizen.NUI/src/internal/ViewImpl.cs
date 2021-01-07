@@ -567,48 +567,27 @@ namespace Tizen.NUI
 
         private void SwigDirectorOnPropertySet(int index, global::System.IntPtr propertyValue)
         {
-            using (PropertyValue setValue = new PropertyValue(propertyValue, true))
-            {
-                OnPropertySet(index, setValue);
-            }
+            OnPropertySet(index, new PropertyValue(propertyValue, true));
         }
 
         private void SwigDirectorOnSizeSet(global::System.IntPtr targetSize)
         {
-            using (Vector3 setValue = new Vector3(targetSize, false))
-            {
-                OnSizeSet(setValue);
-            }
+            OnSizeSet(new Vector3(targetSize, false));
         }
 
         private void SwigDirectorOnSizeAnimation(global::System.IntPtr animation, global::System.IntPtr targetSize)
         {
-            using (Animation setAnimation = new Animation(animation, false))
-            {
-                using (Vector3 setTargetSize = new Vector3(targetSize, false))
-                {
-                    OnSizeAnimation(setAnimation, setTargetSize);
-                }
-            }
+            OnSizeAnimation(new Animation(animation, false), new Vector3(targetSize, false));
         }
 
         private bool SwigDirectorOnKeyEvent(global::System.IntPtr arg0)
         {
-            using (Key setKey = new Key(arg0, false))
-            {
-                return OnKeyEvent(setKey);
-            }
+            return OnKeyEvent(new Key(arg0, false));
         }
 
         private void SwigDirectorOnRelayout(global::System.IntPtr size, global::System.IntPtr container)
         {
-            using (Vector2 setSize = new Vector2(size, false))
-            {
-                using (RelayoutContainer setContainer = new RelayoutContainer(container, false))
-                {
-                    OnRelayout(setSize, setContainer);
-                }
-            }
+            OnRelayout(new Vector2(size, false), new RelayoutContainer(container, false));
         }
 
         private void SwigDirectorOnSetResizePolicy(int policy, int dimension)
@@ -682,10 +661,7 @@ namespace Tizen.NUI
 
         private bool SwigDirectorOnAccessibilityPan(global::System.IntPtr gesture)
         {
-            using (PanGesture setPanGesture = new PanGesture(gesture, true)) 
-            {
-                return OnAccessibilityPan(setPanGesture);
-            }
+            return OnAccessibilityPan(new PanGesture(gesture, true));
         }
 
         private bool SwigDirectorOnAccessibilityValueChange(bool isIncrease)
@@ -725,50 +701,32 @@ namespace Tizen.NUI
 
         private void SwigDirectorOnPinch(global::System.IntPtr pinch)
         {
-            using (PinchGesture setPinch = new PinchGesture(pinch, false))
-            {
-                OnPinch(setPinch);
-            }
+            OnPinch(new PinchGesture(pinch, false));
         }
 
         private void SwigDirectorOnPan(global::System.IntPtr pan)
         {
-            using (PanGesture setPan = new PanGesture(pan, false))
-            {
-                OnPan(setPan);
-            }
+            OnPan(new PanGesture(pan, false));
         }
 
         private void SwigDirectorOnTap(global::System.IntPtr tap)
         {
-            using (TapGesture setTapGesture = new TapGesture(tap, false))
-            {
-                OnTap(setTapGesture);
-            }
+            OnTap(new TapGesture(tap, false));
         }
 
         private void SwigDirectorOnLongPress(global::System.IntPtr longPress)
         {
-            using (LongPressGesture setLongPress = new LongPressGesture(longPress, false))
-            {
-                OnLongPress(setLongPress);
-            }
+            OnLongPress(new LongPressGesture(longPress, false));
         }
 
         private void SwigDirectorSignalConnected(global::System.IntPtr slotObserver, global::System.IntPtr callback)
         {
-            using (SlotObserver setSlotObserver = new SlotObserver(slotObserver, false))
-            {
-                SignalConnected((slotObserver == global::System.IntPtr.Zero) ? null : setSlotObserver, (callback == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_Dali__CallbackBase(callback));
-            }
+            SignalConnected((slotObserver == global::System.IntPtr.Zero) ? null : new SlotObserver(slotObserver, false), (callback == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_Dali__CallbackBase(callback));
         }
 
         private void SwigDirectorSignalDisconnected(global::System.IntPtr slotObserver, global::System.IntPtr callback)
         {
-            using (SlotObserver setSlotObserver = new SlotObserver(slotObserver, false))
-            {
-                SignalDisconnected((slotObserver == global::System.IntPtr.Zero) ? null : setSlotObserver, (callback == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_Dali__CallbackBase(callback));
-            }
+            SignalDisconnected((slotObserver == global::System.IntPtr.Zero) ? null : new SlotObserver(slotObserver, false), (callback == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_Dali__CallbackBase(callback));
         }
 
         public delegate void SwigDelegateViewImpl_0(int depth);
