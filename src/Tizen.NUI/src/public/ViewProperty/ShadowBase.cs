@@ -217,10 +217,10 @@ namespace Tizen.NUI
 
             PropertyValue temp = transformMap.Find((int)VisualTransformPropertyType.Offset);
             temp?.Get(Offset);
-            temp.Dispose();
+            temp?.Dispose();
             temp = transformMap.Find((int)VisualTransformPropertyType.ExtraSize);
             temp?.Get(Extents);
-            temp.Dispose();
+            temp?.Dispose();
         }
     }
 }

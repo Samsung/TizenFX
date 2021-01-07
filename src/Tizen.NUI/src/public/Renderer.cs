@@ -48,8 +48,8 @@ namespace Tizen.NUI
             {
                 int temp = 0;
                 Tizen.NUI.PropertyValue pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.DepthIndex);
-                pValue?.Get(out temp);
-                pValue?.Dispose();
+                pValue.Get(out temp);
+                pValue.Dispose();
                 return temp;
             }
             set
@@ -70,8 +70,8 @@ namespace Tizen.NUI
             {
                 int temp = 0;
                 var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.FaceCullingMode);
-                pValue?.Get(out temp);
-                pValue?.Dispose();
+                pValue.Get(out temp);
+                pValue.Dispose();
                 return temp;
             }
             set
@@ -92,8 +92,8 @@ namespace Tizen.NUI
             {
                 int temp = 0;
                 var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.BlendMode);
-                pValue?.Get(out temp);
-                pValue?.Dispose();
+                pValue.Get(out temp);
+                pValue.Dispose();
                 return temp;
             }
             set
@@ -114,8 +114,8 @@ namespace Tizen.NUI
             {
                 int temp = 0;
                 var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.BlendEquationRgb);
-                pValue?.Get(out temp);
-                pValue?.Dispose();
+                pValue.Get(out temp);
+                pValue.Dispose();
                 return temp;
             }
             set
@@ -136,8 +136,8 @@ namespace Tizen.NUI
             {
                 int temp = 0;
                 var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.BlendEquationAlpha);
-                pValue?.Get(out temp);
-                pValue?.Dispose();
+                pValue.Get(out temp);
+                pValue.Dispose();
                 return temp;
             }
             set
@@ -158,8 +158,8 @@ namespace Tizen.NUI
             {
                 int temp = 0;
                 var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.BlendFactorSrcRgb);
-                pValue?.Get(out temp);
-                pValue?.Dispose();
+                pValue.Get(out temp);
+                pValue.Dispose();
                 return temp;
             }
             set
@@ -180,8 +180,8 @@ namespace Tizen.NUI
             {
                 int temp = 0;
                 var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.BlendFactorDestRgb);
-                pValue?.Get(out temp);
-                pValue?.Dispose();
+                pValue.Get(out temp);
+                pValue.Dispose();
                 return temp;
             }
             set
@@ -202,8 +202,8 @@ namespace Tizen.NUI
             {
                 int temp = 0;
                 var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.BlendFactorSrcAlpha);
-                pValue?.Get(out temp);
-                pValue?.Dispose();
+                pValue.Get(out temp);
+                pValue.Dispose();
                 return temp;
             }
             set
@@ -224,8 +224,8 @@ namespace Tizen.NUI
             {
                 int temp = 0;
                 var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.BlendFactorDestAlpha);
-                pValue?.Get(out temp);
-                pValue?.Dispose();
+                pValue.Get(out temp);
+                pValue.Dispose();
                 return temp;
             }
             set
@@ -246,8 +246,8 @@ namespace Tizen.NUI
             {
                 Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
                 var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.BlendColor);
-                pValue?.Get(temp);
-                pValue?.Dispose();
+                pValue.Get(temp);
+                pValue.Dispose();
                 return temp;
             }
             set
@@ -268,8 +268,8 @@ namespace Tizen.NUI
             {
                 bool temp = false;
                 var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.BlendPreMultipliedAlpha);
-                pValue?.Get(out temp);
-                pValue?.Dispose();
+                pValue.Get(out temp);
+                pValue.Dispose();
                 return temp;
             }
             set
@@ -290,8 +290,8 @@ namespace Tizen.NUI
             {
                 int temp = 0;
                 var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.IndexRangeFirst);
-                pValue?.Get(out temp);
-                pValue?.Dispose();
+                pValue.Get(out temp);
+                pValue.Dispose();
                 return temp;
             }
             set
@@ -312,8 +312,8 @@ namespace Tizen.NUI
             {
                 int temp = 0;
                 var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.IndexRangeCount);
-                pValue?.Get(out temp);
-                pValue?.Dispose();
+                pValue.Get(out temp);
+                pValue.Dispose();
                 return temp;
             }
             set
@@ -334,8 +334,8 @@ namespace Tizen.NUI
             {
                 int temp = 0;
                 var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.DepthWriteMode);
-                pValue?.Get(out temp);
-                pValue?.Dispose();
+                pValue.Get(out temp);
+                pValue.Dispose();
                 return temp;
             }
             set
@@ -356,8 +356,8 @@ namespace Tizen.NUI
             {
                 int temp = 0;
                 var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.DepthFunction);
-                pValue?.Get(out temp);
-                pValue?.Dispose();
+                pValue.Get(out temp);
+                pValue.Dispose();
                 return temp;
             }
             set
@@ -378,8 +378,8 @@ namespace Tizen.NUI
             {
                 int temp = 0;
                 var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.DepthTestMode);
-                pValue?.Get(out temp);
-                pValue?.Dispose();
+                pValue.Get(out temp);
+                pValue.Dispose();
                 return temp;
             }
             set
@@ -400,8 +400,8 @@ namespace Tizen.NUI
             {
                 int temp = 0;
                 var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.RenderMode);
-                pValue?.Get(out temp);
-                pValue?.Dispose();
+                pValue.Get(out temp);
+                pValue.Dispose();
                 return temp;
             }
             set
@@ -422,8 +422,8 @@ namespace Tizen.NUI
             {
                 int temp = 0;
                 var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.StencilFunction);
-                pValue?.Get(out temp);
-                pValue?.Dispose();
+                pValue.Get(out temp);
+                pValue.Dispose();
                 return temp;
             }
             set
@@ -444,8 +444,8 @@ namespace Tizen.NUI
             {
                 int temp = 0;
                 var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.StencilFunctionMask);
-                pValue?.Get(out temp);
-                pValue?.Dispose();
+                pValue.Get(out temp);
+                pValue.Dispose();
                 return temp;
             }
             set
@@ -466,8 +466,8 @@ namespace Tizen.NUI
             {
                 int temp = 0;
                 var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.StencilFunctionReference);
-                pValue?.Get(out temp);
-                pValue?.Dispose();
+                pValue.Get(out temp);
+                pValue.Dispose();
                 return temp;
             }
             set
@@ -488,8 +488,8 @@ namespace Tizen.NUI
             {
                 int temp = 0;
                 var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.StencilMask);
-                pValue?.Get(out temp);
-                pValue?.Dispose();
+                pValue.Get(out temp);
+                pValue.Dispose();
                 return temp;
             }
             set
@@ -510,8 +510,8 @@ namespace Tizen.NUI
             {
                 int temp = 0;
                 var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.StencilOperationOnFail);
-                pValue?.Get(out temp);
-                pValue?.Dispose();
+                pValue.Get(out temp);
+                pValue.Dispose();
                 return temp;
             }
             set
@@ -532,8 +532,8 @@ namespace Tizen.NUI
             {
                 int temp = 0;
                 var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.StencilOperationOnZFail);
-                pValue?.Get(out temp);
-                pValue?.Dispose();
+                pValue.Get(out temp);
+                pValue.Dispose();
                 return temp;
             }
             set
@@ -554,8 +554,8 @@ namespace Tizen.NUI
             {
                 int temp = 0;
                 var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.StencilOperationOnZPass);
-                pValue?.Get(out temp);
-                pValue?.Dispose();
+                pValue.Get(out temp);
+                pValue.Dispose();
                 return temp;
             }
             set
