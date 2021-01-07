@@ -172,7 +172,6 @@ namespace Tizen.NUI
         /// [Obsolete("Please do not use! this will be deprecated")]
         /// </summary>
         /// Please do not use! this will be deprecated!
-        /// <since_tizen> 5 </since_tizen>
         [Obsolete("Please do not use! this will be deprecated.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AccessibilityActivate()
@@ -185,7 +184,6 @@ namespace Tizen.NUI
         /// [Obsolete("Please do not use! this will be deprecated")]
         /// </summary>
         /// Please do not use! this will be deprecated!
-        /// <since_tizen> 5 </since_tizen>
         [Obsolete("Please do not use! this will be deprecated.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void KeyboardEnter()
@@ -219,7 +217,6 @@ namespace Tizen.NUI
         /// [Obsolete("Please do not use! this will be deprecated")]
         /// </summary>
         /// Please do not use! this will be deprecated!
-        /// <since_tizen> 5 </since_tizen>
         [Obsolete("Please do not use! this will be deprecated.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool EmitKeyEventSignal(Key arg0)
@@ -570,27 +567,48 @@ namespace Tizen.NUI
 
         private void SwigDirectorOnPropertySet(int index, global::System.IntPtr propertyValue)
         {
-            OnPropertySet(index, new PropertyValue(propertyValue, true));
+            using (PropertyValue setValue = new PropertyValue(propertyValue, true))
+            {
+                OnPropertySet(index, setValue);
+            }
         }
 
         private void SwigDirectorOnSizeSet(global::System.IntPtr targetSize)
         {
-            OnSizeSet(new Vector3(targetSize, false));
+            using (Vector3 setValue = new Vector3(targetSize, false))
+            {
+                OnSizeSet(setValue);
+            }
         }
 
         private void SwigDirectorOnSizeAnimation(global::System.IntPtr animation, global::System.IntPtr targetSize)
         {
-            OnSizeAnimation(new Animation(animation, false), new Vector3(targetSize, false));
+            using (Animation setAnimation = new Animation(animation, false))
+            {
+                using (Vector3 setTargetSize = new Vector3(targetSize, false))
+                {
+                    OnSizeAnimation(setAnimation, setTargetSize);
+                }
+            }
         }
 
         private bool SwigDirectorOnKeyEvent(global::System.IntPtr arg0)
         {
-            return OnKeyEvent(new Key(arg0, false));
+            using (Key setKey = new Key(arg0, false))
+            {
+                return OnKeyEvent(setKey);
+            }
         }
 
         private void SwigDirectorOnRelayout(global::System.IntPtr size, global::System.IntPtr container)
         {
-            OnRelayout(new Vector2(size, false), new RelayoutContainer(container, false));
+            using (Vector2 setSize = new Vector2(size, false))
+            {
+                using (RelayoutContainer setContainer = new RelayoutContainer(container, false))
+                {
+                    OnRelayout(setSize, setContainer);
+                }
+            }
         }
 
         private void SwigDirectorOnSetResizePolicy(int policy, int dimension)
@@ -664,7 +682,10 @@ namespace Tizen.NUI
 
         private bool SwigDirectorOnAccessibilityPan(global::System.IntPtr gesture)
         {
-            return OnAccessibilityPan(new PanGesture(gesture, true));
+            using (PanGesture setPanGesture = new PanGesture(gesture, true)) 
+            {
+                return OnAccessibilityPan(setPanGesture);
+            }
         }
 
         private bool SwigDirectorOnAccessibilityValueChange(bool isIncrease)
@@ -704,107 +725,88 @@ namespace Tizen.NUI
 
         private void SwigDirectorOnPinch(global::System.IntPtr pinch)
         {
-            OnPinch(new PinchGesture(pinch, false));
+            using (PinchGesture setPinch = new PinchGesture(pinch, false))
+            {
+                OnPinch(setPinch);
+            }
         }
 
         private void SwigDirectorOnPan(global::System.IntPtr pan)
         {
-            OnPan(new PanGesture(pan, false));
+            using (PanGesture setPan = new PanGesture(pan, false))
+            {
+                OnPan(setPan);
+            }
         }
 
         private void SwigDirectorOnTap(global::System.IntPtr tap)
         {
-            OnTap(new TapGesture(tap, false));
+            using (TapGesture setTapGesture = new TapGesture(tap, false))
+            {
+                OnTap(setTapGesture);
+            }
         }
 
         private void SwigDirectorOnLongPress(global::System.IntPtr longPress)
         {
-            OnLongPress(new LongPressGesture(longPress, false));
+            using (LongPressGesture setLongPress = new LongPressGesture(longPress, false))
+            {
+                OnLongPress(setLongPress);
+            }
         }
 
         private void SwigDirectorSignalConnected(global::System.IntPtr slotObserver, global::System.IntPtr callback)
         {
-            SignalConnected((slotObserver == global::System.IntPtr.Zero) ? null : new SlotObserver(slotObserver, false), (callback == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_Dali__CallbackBase(callback));
+            using (SlotObserver setSlotObserver = new SlotObserver(slotObserver, false))
+            {
+                SignalConnected((slotObserver == global::System.IntPtr.Zero) ? null : setSlotObserver, (callback == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_Dali__CallbackBase(callback));
+            }
         }
 
         private void SwigDirectorSignalDisconnected(global::System.IntPtr slotObserver, global::System.IntPtr callback)
         {
-            SignalDisconnected((slotObserver == global::System.IntPtr.Zero) ? null : new SlotObserver(slotObserver, false), (callback == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_Dali__CallbackBase(callback));
+            using (SlotObserver setSlotObserver = new SlotObserver(slotObserver, false))
+            {
+                SignalDisconnected((slotObserver == global::System.IntPtr.Zero) ? null : setSlotObserver, (callback == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_Dali__CallbackBase(callback));
+            }
         }
 
-        /// <since_tizen> 3 </since_tizen>
         public delegate void SwigDelegateViewImpl_0(int depth);
-        /// <since_tizen> 3 </since_tizen>
         public delegate void SwigDelegateViewImpl_1();
-        /// <since_tizen> 3 </since_tizen>
         public delegate void SwigDelegateViewImpl_2(global::System.IntPtr child);
-        /// <since_tizen> 3 </since_tizen>
         public delegate void SwigDelegateViewImpl_3(global::System.IntPtr child);
-        /// <since_tizen> 3 </since_tizen>
         public delegate void SwigDelegateViewImpl_4(int index, global::System.IntPtr propertyValue);
-        /// <since_tizen> 3 </since_tizen>
         public delegate void SwigDelegateViewImpl_5(global::System.IntPtr targetSize);
-        /// <since_tizen> 3 </since_tizen>
         public delegate void SwigDelegateViewImpl_6(global::System.IntPtr animation, global::System.IntPtr targetSize);
-        /// <since_tizen> 3 </since_tizen>
         public delegate bool SwigDelegateViewImpl_9(global::System.IntPtr arg0);
-        /// <since_tizen> 3 </since_tizen>
         public delegate void SwigDelegateViewImpl_11(global::System.IntPtr size, global::System.IntPtr container);
-        /// <since_tizen> 3 </since_tizen>
         public delegate void SwigDelegateViewImpl_12(int policy, int dimension);
-        /// <since_tizen> 3 </since_tizen>
         public delegate global::System.IntPtr SwigDelegateViewImpl_13();
-        /// <since_tizen> 3 </since_tizen>
         public delegate float SwigDelegateViewImpl_14(global::System.IntPtr child, int dimension);
-        /// <since_tizen> 3 </since_tizen>
         public delegate float SwigDelegateViewImpl_15(float width);
-        /// <since_tizen> 3 </since_tizen>
         public delegate float SwigDelegateViewImpl_16(float height);
-        /// <since_tizen> 3 </since_tizen>
         public delegate bool SwigDelegateViewImpl_17(int dimension);
-        /// <since_tizen> 3 </since_tizen>
         public delegate bool SwigDelegateViewImpl_18();
-        /// <since_tizen> 3 </since_tizen>
         public delegate void SwigDelegateViewImpl_19(int dimension);
-        /// <since_tizen> 3 </since_tizen>
         public delegate void SwigDelegateViewImpl_20(float size, int dimension);
-        /// <since_tizen> 3 </since_tizen>
         public delegate void SwigDelegateViewImpl_21();
-        /// <since_tizen> 3 </since_tizen>
         public delegate void SwigDelegateViewImpl_22(global::System.IntPtr child);
-        /// <since_tizen> 3 </since_tizen>
         public delegate void SwigDelegateViewImpl_23(global::System.IntPtr child);
-        /// <since_tizen> 3 </since_tizen>
         public delegate void SwigDelegateViewImpl_24(global::System.IntPtr styleManager, int change);
-        /// <since_tizen> 3 </since_tizen>
         public delegate bool SwigDelegateViewImpl_25();
-        /// <since_tizen> 3 </since_tizen>
         public delegate bool SwigDelegateViewImpl_26(global::System.IntPtr gesture);
-        /// <since_tizen> 3 </since_tizen>
         public delegate bool SwigDelegateViewImpl_28(bool isIncrease);
-        /// <since_tizen> 3 </since_tizen>
         public delegate bool SwigDelegateViewImpl_29();
-        /// <since_tizen> 3 </since_tizen>
         public delegate void SwigDelegateViewImpl_30();
-        /// <since_tizen> 3 </since_tizen>
         public delegate void SwigDelegateViewImpl_31();
-        /// <since_tizen> 3 </since_tizen>
         public delegate global::System.IntPtr SwigDelegateViewImpl_32(global::System.IntPtr currentFocusedActor, int direction, bool loopEnabled);
-        /// <since_tizen> 3 </since_tizen>
         public delegate void SwigDelegateViewImpl_33(global::System.IntPtr commitedFocusableActor);
-        /// <since_tizen> 3 </since_tizen>
         public delegate bool SwigDelegateViewImpl_34();
-        /// <since_tizen> 3 </since_tizen>
         public delegate void SwigDelegateViewImpl_35(global::System.IntPtr pinch);
-        /// <since_tizen> 3 </since_tizen>
         public delegate void SwigDelegateViewImpl_36(global::System.IntPtr pan);
-        /// <since_tizen> 3 </since_tizen>
         public delegate void SwigDelegateViewImpl_37(global::System.IntPtr tap);
-        /// <since_tizen> 3 </since_tizen>
         public delegate void SwigDelegateViewImpl_38(global::System.IntPtr longPress);
-        /// <since_tizen> 3 </since_tizen>
         public delegate void SwigDelegateViewImpl_39(global::System.IntPtr slotObserver, global::System.IntPtr callback);
-        /// <since_tizen> 3 </since_tizen>
         public delegate void SwigDelegateViewImpl_40(global::System.IntPtr slotObserver, global::System.IntPtr callback);
 
         private SwigDelegateViewImpl_0 swigDelegate0;
