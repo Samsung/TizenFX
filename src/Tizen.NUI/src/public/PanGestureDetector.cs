@@ -58,6 +58,7 @@ namespace Tizen.NUI
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void DetectedCallbackType(IntPtr actor, IntPtr panGesture);
         private DetectedCallbackType _detectedCallback;
+        private PanGestureDetectedSignal detectedSignal;
 
         /// <summary>
         /// This signal is emitted when the specified pan is detected on the attached view.
@@ -71,7 +72,8 @@ namespace Tizen.NUI
                 if (_detectedEventHandler == null)
                 {
                     _detectedCallback = OnPanGestureDetected;
-                    DetectedSignal().Connect(_detectedCallback);
+                    detectedSignal = DetectedSignal();
+                    detectedSignal.Connect(_detectedCallback);
                 }
 
                 _detectedEventHandler += value;
@@ -81,9 +83,11 @@ namespace Tizen.NUI
             {
                 _detectedEventHandler -= value;
 
-                if (_detectedEventHandler == null && DetectedSignal().Empty() == false)
+                if (_detectedEventHandler == null && detectedSignal?.Empty() == false)
                 {
-                    DetectedSignal().Disconnect(_detectedCallback);
+                    detectedSignal.Disconnect(_detectedCallback);
+                    detectedSignal.Dispose();
+                    detectedSignal = null;
                 }
             }
         }
@@ -225,7 +229,9 @@ namespace Tizen.NUI
             get
             {
                 Vector2 temp = new Vector2(0.0f, 0.0f);
-                Tizen.NUI.Object.GetProperty(SwigCPtr, PanGestureDetector.Property.ScreenDisplacement).Get(temp);
+                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, PanGestureDetector.Property.ScreenDisplacement);
+                pValue.Get(temp);
+                pValue.Dispose();
                 return temp;
             }
         }
@@ -240,7 +246,9 @@ namespace Tizen.NUI
             get
             {
                 Vector2 temp = new Vector2(0.0f, 0.0f);
-                Tizen.NUI.Object.GetProperty(SwigCPtr, PanGestureDetector.Property.ScreenVelocity).Get(temp);
+                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, PanGestureDetector.Property.ScreenVelocity);
+                pValue.Get(temp);
+                pValue.Dispose();
                 return temp;
             }
         }
@@ -255,7 +263,9 @@ namespace Tizen.NUI
             get
             {
                 Vector2 temp = new Vector2(0.0f, 0.0f);
-                Tizen.NUI.Object.GetProperty(SwigCPtr, PanGestureDetector.Property.LocalPosition).Get(temp);
+                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, PanGestureDetector.Property.LocalPosition);
+                pValue.Get(temp);
+                pValue.Dispose();
                 return temp;
             }
         }
@@ -270,7 +280,9 @@ namespace Tizen.NUI
             get
             {
                 Vector2 temp = new Vector2(0.0f, 0.0f);
-                Tizen.NUI.Object.GetProperty(SwigCPtr, PanGestureDetector.Property.LocalDisplacement).Get(temp);
+                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, PanGestureDetector.Property.LocalDisplacement);
+                pValue.Get(temp);
+                pValue.Dispose();
                 return temp;
             }
         }
@@ -285,7 +297,9 @@ namespace Tizen.NUI
             get
             {
                 Vector2 temp = new Vector2(0.0f, 0.0f);
-                Tizen.NUI.Object.GetProperty(SwigCPtr, PanGestureDetector.Property.LocalVelocity).Get(temp);
+                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, PanGestureDetector.Property.LocalVelocity);
+                pValue.Get(temp);
+                pValue.Dispose();
                 return temp;
             }
         }
@@ -300,7 +314,9 @@ namespace Tizen.NUI
             get
             {
                 bool temp = false;
-                Tizen.NUI.Object.GetProperty(SwigCPtr, PanGestureDetector.Property.PANNING).Get(out temp);
+                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, PanGestureDetector.Property.PANNING);
+                pValue.Get(out temp);
+                pValue.Dispose();
                 return temp;
             }
         }
@@ -519,7 +535,8 @@ namespace Tizen.NUI
         {
             if (_detectedCallback != null)
             {
-                DetectedSignal().Disconnect(_detectedCallback);
+                detectedSignal?.Disconnect(_detectedCallback);
+                detectedSignal?.Dispose();
             }
 
             Interop.PanGestureDetector.DeletePanGestureDetector(swigCPtr);
