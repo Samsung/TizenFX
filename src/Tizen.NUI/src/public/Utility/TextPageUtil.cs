@@ -131,9 +131,7 @@ namespace Tizen.NUI.Utility
             uint count = cutOffIndexArray.Count();
             for (uint i = 0; i < count; i++)
             {
-                PropertyValue temp = cutOffIndexArray.GetElementAt(i);
-                temp.Get(out cutOffIndex); // Gets the last index of text shown on the actual screen.
-                temp.Dispose();
+                cutOffIndexArray.GetElementAt(i).Get(out cutOffIndex); // Gets the last index of text shown on the actual screen.
 
                 // If markup is enabled, It should parse markup
                 if (label.EnableMarkup)

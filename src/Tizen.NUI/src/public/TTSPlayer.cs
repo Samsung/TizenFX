@@ -29,7 +29,6 @@ namespace Tizen.NUI
     {
         private static readonly TTSPlayer instance = TTSPlayer.Get();
         private StateChangedEventCallbackType _stateChangedEventCallback;
-        private StateChangedSignalType stateChangedSignal;
 
         internal TTSPlayer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.TtsPlayer.Upcast(cPtr), cMemoryOwn)
         {
@@ -60,8 +59,7 @@ namespace Tizen.NUI
                 if (_stateChangedEventHandler == null)
                 {
                     _stateChangedEventCallback = OnStateChanged;
-                    stateChangedSignal = StateChangedSignal();
-                    stateChangedSignal.Connect(_stateChangedEventCallback);
+                    StateChangedSignal().Connect(_stateChangedEventCallback);
                 }
 
                 _stateChangedEventHandler += value;
@@ -70,11 +68,9 @@ namespace Tizen.NUI
             {
                 _stateChangedEventHandler -= value;
 
-                if (_stateChangedEventHandler == null && stateChangedSignal?.Empty() == false && _stateChangedEventCallback != null)
+                if (_stateChangedEventHandler == null && StateChangedSignal().Empty() == false && _stateChangedEventCallback != null)
                 {
-                    stateChangedSignal.Disconnect(_stateChangedEventCallback);
-                    stateChangedSignal.Dispose();
-                    stateChangedSignal = null;
+                    StateChangedSignal().Disconnect(_stateChangedEventCallback);
                 }
             }
         }

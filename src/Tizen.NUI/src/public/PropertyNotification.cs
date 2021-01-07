@@ -31,7 +31,6 @@ namespace Tizen.NUI
 
         private DaliEventHandler<object, NotifyEventArgs> _propertyNotificationNotifyEventHandler;
         private NotifyEventCallbackDelegate _propertyNotificationNotifyEventCallbackDelegate;
-        private PropertyNotifySignal notifySignal;
 
         /// <summary>
         /// Create a instance of PropertyNotification.
@@ -73,8 +72,7 @@ namespace Tizen.NUI
                     _propertyNotificationNotifyEventHandler += value;
 
                     _propertyNotificationNotifyEventCallbackDelegate = new NotifyEventCallbackDelegate(OnPropertyNotificationNotify);
-                    notifySignal = this.NotifySignal();
-                    notifySignal.Connect(_propertyNotificationNotifyEventCallbackDelegate);
+                    this.NotifySignal().Connect(_propertyNotificationNotifyEventCallbackDelegate);
                 }
             }
 
@@ -82,9 +80,7 @@ namespace Tizen.NUI
             {
                 if (_propertyNotificationNotifyEventHandler != null)
                 {
-                    notifySignal?.Disconnect(_propertyNotificationNotifyEventCallbackDelegate);
-                    notifySignal?.Dispose();
-                    notifySignal = null;
+                    this.NotifySignal().Disconnect(_propertyNotificationNotifyEventCallbackDelegate);
                 }
 
                 _propertyNotificationNotifyEventHandler -= value;
