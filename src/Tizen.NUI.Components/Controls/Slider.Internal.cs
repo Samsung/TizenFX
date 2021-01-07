@@ -550,70 +550,66 @@ namespace Tizen.NUI.Components
 
         private Size LowIndicatorImageSize()
         {
-            Size size = new Size(0, 0);
             if (lowIndicatorSize != null)
             {
-                size = lowIndicatorSize;
+                return lowIndicatorSize;
             }
             else
             {
                 if (sliderStyle != null && sliderStyle.LowIndicatorImage != null && sliderStyle.LowIndicatorImage.Size != null)
                 {
-                    size = sliderStyle.LowIndicatorImage.Size;
+                    return sliderStyle.LowIndicatorImage.Size;
                 }
             }
-            return size;
+            return Size.Zero;
         }
 
         private Size HighIndicatorImageSize()
         {
-            Size size = new Size(0, 0);
             if (highIndicatorSize != null)
             {
-                size = highIndicatorSize;
+                return highIndicatorSize;
             }
             else
             {
                 if (sliderStyle != null && sliderStyle.HighIndicatorImage != null && sliderStyle.HighIndicatorImage.Size != null)
                 {
-                    size = sliderStyle.HighIndicatorImage.Size;
+                    return sliderStyle.HighIndicatorImage.Size;
                 }
             }
-            return size;
+            return Size.Zero;
         }
 
         private Size LowIndicatorTextSize()
         {
-            Size size = new Size(0, 0);
             if (lowIndicatorSize != null)
             {
-                size = lowIndicatorSize;
+                return lowIndicatorSize;
             }
             else
             {
                 if (sliderStyle != null && sliderStyle.LowIndicator != null && sliderStyle.LowIndicator.Size != null)
                 {
-                    size = sliderStyle.LowIndicator.Size;
+                    return sliderStyle.LowIndicator.Size;
                 }
             }
-            return size;
+            return Size.Zero;
         }
 
         private Size HighIndicatorTextSize()
         {
-            Size size = new Size(0, 0);
             if (highIndicatorSize != null)
             {
-                size = highIndicatorSize;
+                return highIndicatorSize;
             }
             else
             {
                 if (sliderStyle != null && sliderStyle.HighIndicator != null && sliderStyle.HighIndicator.Size != null)
                 {
-                    size = sliderStyle.HighIndicator.Size;
+                    return sliderStyle.HighIndicator.Size;
                 }
             }
-            return size;
+            return Size.Zero;
         }
     }
 }

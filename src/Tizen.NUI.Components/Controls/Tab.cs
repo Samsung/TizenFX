@@ -595,25 +595,27 @@ namespace Tizen.NUI.Components
                 h = (int)Underline.Size.Height;
             }
 
-            Tab.TabItem item = new TabItem();
-            item.TextItem.ApplyStyle(tabStyle.Text);
-
-            item.Text = itemData.Text;
-            item.SizeHeight = SizeHeight - h - topSpace;
-            item.PositionY = topSpace;
-            item.TouchEvent += ItemTouchEvent;
-            Add(item);
-
-            if (index >= itemList.Count)
+            using (Tab.TabItem item = new TabItem())
             {
-                itemList.Add(item);
-            }
-            else
-            {
-                itemList.Insert(index, item);
-            }
+                item.TextItem.ApplyStyle(tabStyle.Text);
 
-            UpdateItems();
+                item.Text = itemData.Text;
+                item.SizeHeight = SizeHeight - h - topSpace;
+                item.PositionY = topSpace;
+                item.TouchEvent += ItemTouchEvent;
+                Add(item);
+
+                if (index >= itemList.Count)
+                {
+                    itemList.Add(item);
+                }
+                else
+                {
+                    itemList.Insert(index, item);
+                }
+
+                UpdateItems();
+            }
         }
 
         private void UpdateItems()

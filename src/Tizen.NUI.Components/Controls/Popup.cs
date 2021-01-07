@@ -270,11 +270,13 @@ namespace Tizen.NUI.Components
         {
             if (popupStyle.Buttons != null)
             {
-                Button btn = new Button(popupStyle.Buttons);
-                btn.Text = buttonText;
-                btn.ClickEvent += ButtonClickEvent;
-                btGroup.AddItem(btn);
-                UpdateView();
+                using (Button btn = new Button(popupStyle.Buttons))
+                {
+                    btn.Text = buttonText;
+                    btn.ClickEvent += ButtonClickEvent;
+                    btGroup.AddItem(btn);
+                    UpdateView();
+                }
             }
         }
 
@@ -465,7 +467,10 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return popupStyle?.Title?.Position ?? new Position(0, 0, 0);
+                using (Position position = new Position(0, 0, 0))
+                {
+                    return popupStyle?.Title?.Position ?? position;
+                }
             }
             set
             {
