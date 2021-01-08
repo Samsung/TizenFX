@@ -53,6 +53,7 @@ namespace Tizen.NUI
         {
             PropertyValue val = PropertyValue.CreateFromObject(value);
             Add(progress, val);
+            val.Dispose();
         }
 
         /// <summary>
@@ -66,6 +67,7 @@ namespace Tizen.NUI
         {
             PropertyValue val = PropertyValue.CreateFromObject(value);
             Add(progress, val, alpha);
+            val.Dispose();
         }
 
         /// <summary>
