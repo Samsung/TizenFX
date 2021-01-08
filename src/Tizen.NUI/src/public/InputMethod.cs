@@ -390,7 +390,13 @@ namespace Tizen.NUI
         private PropertyMap ComposingInputMethodMap()
         {
             PropertyMap _outputMap = new PropertyMap();
-            if (_panelLayout != null) { _outputMap.Add("PANEL_LAYOUT", new PropertyValue((int)_panelLayout)); }
+            PropertyValue temp;
+            if (_panelLayout != null)
+            {
+                temp = new PropertyValue((int)_panelLayout);
+                _outputMap.Add("PANEL_LAYOUT", temp);
+                temp.Dispose();
+            }
             if (_actionButton != null)
             {
                 // Temporarily specify the values to match the types of ecore_imf.
@@ -398,10 +404,22 @@ namespace Tizen.NUI
                 else if (_actionButton == InputMethod.ActionButtonTitleType.Send) _actionButton = (InputMethod.ActionButtonTitleType.Send - 1); // 7
                 else if (_actionButton == InputMethod.ActionButtonTitleType.SignIn) _actionButton = (InputMethod.ActionButtonTitleType.SignIn - 1); // 8
                 else if (_actionButton == InputMethod.ActionButtonTitleType.Unspecified || _actionButton == InputMethod.ActionButtonTitleType.None) _actionButton = InputMethod.ActionButtonTitleType.Default;
-                _outputMap.Add("BUTTON_ACTION", new PropertyValue((int)_actionButton));
+                temp = new PropertyValue((int)_actionButton);
+                _outputMap.Add("BUTTON_ACTION", temp);
+                temp.Dispose();
             }
-            if (_autoCapital != null) { _outputMap.Add("AUTO_CAPITALIZE", new PropertyValue((int)_autoCapital)); }
-            if (_variation != null) { _outputMap.Add("VARIATION", new PropertyValue((int)_variation)); }
+            if (_autoCapital != null)
+            {
+                temp = new PropertyValue((int)_autoCapital);
+                _outputMap.Add("AUTO_CAPITALIZE", temp);
+                temp.Dispose();
+            }
+            if (_variation != null)
+            {
+                temp = new PropertyValue((int)_variation);
+                _outputMap.Add("VARIATION", temp);
+                temp.Dispose();
+            }
             return _outputMap;
         }
     }
