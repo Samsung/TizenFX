@@ -58,7 +58,6 @@ namespace Tizen.NUI
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void DetectedCallbackType(IntPtr actor, IntPtr rotationGesture);
         private DetectedCallbackType _detectedCallback;
-        private RotationGestureDetectedSignal detectedSignal;
 
         /// <summary>
         /// This signal is emitted when the specified rotation is detected on the attached view.
@@ -72,8 +71,7 @@ namespace Tizen.NUI
                 if (_detectedEventHandler == null)
                 {
                     _detectedCallback = OnRotationGestureDetected;
-                    detectedSignal = DetectedSignal();
-                    detectedSignal.Connect(_detectedCallback);
+                    DetectedSignal().Connect(_detectedCallback);
                 }
 
                 _detectedEventHandler += value;
@@ -83,11 +81,9 @@ namespace Tizen.NUI
             {
                 _detectedEventHandler -= value;
 
-                if (_detectedEventHandler == null && detectedSignal?.Empty() == false)
+                if (_detectedEventHandler == null && DetectedSignal().Empty() == false)
                 {
-                    detectedSignal.Disconnect(_detectedCallback);
-                    detectedSignal.Dispose();
-                    detectedSignal = null;
+                    DetectedSignal().Disconnect(_detectedCallback);
                 }
             }
         }
@@ -132,8 +128,7 @@ namespace Tizen.NUI
         {
             if (_detectedCallback != null)
             {
-                detectedSignal?.Disconnect(_detectedCallback);
-                detectedSignal?.Dispose();
+                DetectedSignal().Disconnect(_detectedCallback);
             }
 
             Interop.RotationGesture.DeleteRotationGestureDetector(swigCPtr);

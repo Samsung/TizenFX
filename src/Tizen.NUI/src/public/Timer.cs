@@ -38,7 +38,7 @@ namespace Tizen.NUI
         private bool played = false;
         private EventHandlerWithReturnType<object, TickEventArgs, bool> _timerTickEventHandler;
         private TickCallbackDelegate _timerTickCallbackDelegate;
-        private TimerSignalType tickSignal;
+
         private System.IntPtr _timerTickCallbackOfNative;
 
         /// <summary>
@@ -89,19 +89,16 @@ namespace Tizen.NUI
             {
                 if (_timerTickEventHandler == null && disposed == false)
                 {
-                    tickSignal = TickSignal();
-                    tickSignal.Connect(_timerTickCallbackOfNative);
+                    TickSignal().Connect(_timerTickCallbackOfNative);
                 }
                 _timerTickEventHandler += value;
             }
             remove
             {
                 _timerTickEventHandler -= value;
-                if (_timerTickEventHandler == null && tickSignal?.Empty() == false)
+                if (_timerTickEventHandler == null && TickSignal().Empty() == false)
                 {
-                    tickSignal.Disconnect(_timerTickCallbackOfNative);
-                    tickSignal.Dispose();
-                    tickSignal = null;
+                    TickSignal().Disconnect(_timerTickCallbackOfNative);
                 }
             }
         }
@@ -273,8 +270,7 @@ namespace Tizen.NUI
 
             if (this != null && _timerTickCallbackDelegate != null)
             {
-                tickSignal?.Disconnect(_timerTickCallbackOfNative);
-                tickSignal?.Dispose();
+                TickSignal().Disconnect(_timerTickCallbackOfNative);
             }
 
             if (disposed)
