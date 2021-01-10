@@ -29,7 +29,7 @@ namespace Tizen.NUI
         /// The constructor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public PropertyMap() : this(Interop.PropertyMap.new_Property_Map__SWIG_0(), true)
+        public PropertyMap() : this(Interop.PropertyMap.NewPropertyMap(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -39,7 +39,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="other">The map to copy from.</param>
         /// <since_tizen> 3 </since_tizen>
-        public PropertyMap(PropertyMap other) : this(Interop.PropertyMap.new_Property_Map__SWIG_1(PropertyMap.getCPtr(other)), true)
+        public PropertyMap(PropertyMap other) : this(Interop.PropertyMap.NewPropertyMap(PropertyMap.getCPtr(other)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -93,7 +93,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public uint Count()
         {
-            uint ret = Interop.PropertyMap.Property_Map_Count(swigCPtr);
+            uint ret = Interop.PropertyMap.Count(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -105,7 +105,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool Empty()
         {
-            bool ret = Interop.PropertyMap.Property_Map_Empty(swigCPtr);
+            bool ret = Interop.PropertyMap.Empty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -119,7 +119,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Insert(string key, PropertyValue value)
         {
-            Interop.PropertyMap.Property_Map_Insert__SWIG_0(swigCPtr, key, PropertyValue.getCPtr(value));
+            Interop.PropertyMap.Insert(SwigCPtr, key, PropertyValue.getCPtr(value));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -132,7 +132,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Insert(int key, PropertyValue value)
         {
-            Interop.PropertyMap.Property_Map_Insert__SWIG_2(swigCPtr, key, PropertyValue.getCPtr(value));
+            Interop.PropertyMap.Insert(SwigCPtr, key, PropertyValue.getCPtr(value));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -146,7 +146,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public PropertyMap Add(string key, PropertyValue value)
         {
-            Interop.PropertyMap.Property_Map_Add__SWIG_0(swigCPtr, key, PropertyValue.getCPtr(value));
+            Interop.PropertyMap.Add(SwigCPtr, key, PropertyValue.getCPtr(value));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return this;
         }
@@ -161,7 +161,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public PropertyMap Add(int key, PropertyValue value)
         {
-            Interop.PropertyMap.Property_Map_Add__SWIG_2(swigCPtr, key, PropertyValue.getCPtr(value));
+            Interop.PropertyMap.Add(SwigCPtr, key, PropertyValue.getCPtr(value));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return this;
         }
@@ -172,15 +172,20 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="keyValue">The keyvalue to insert.</param>
         /// <returns>Returns a reference to this object.</returns>
+        /// <exception cref="global::System.ArgumentNullException"> Thrown when keyValue is null. </exception>
         public PropertyMap Add(KeyValue keyValue)
         {
+            if (null == keyValue)
+            {
+                throw new global::System.ArgumentNullException(nameof(keyValue));
+            }
             if (keyValue.KeyInt != null)
             {
-                Interop.PropertyMap.Property_Map_Add__SWIG_2(swigCPtr, (int)keyValue.KeyInt, PropertyValue.getCPtr(keyValue.TrueValue));
+                Interop.PropertyMap.Add(SwigCPtr, (int)keyValue.KeyInt, PropertyValue.getCPtr(keyValue.TrueValue));
             }
             else if (keyValue.KeyString != null)
             {
-                Interop.PropertyMap.Property_Map_Add__SWIG_0(swigCPtr, keyValue.KeyString, PropertyValue.getCPtr(keyValue.TrueValue));
+                Interop.PropertyMap.Add(SwigCPtr, keyValue.KeyString, PropertyValue.getCPtr(keyValue.TrueValue));
             }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -195,7 +200,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public PropertyValue GetValue(uint position)
         {
-            PropertyValue ret = new PropertyValue(Interop.PropertyMap.Property_Map_GetValue(swigCPtr, position), false);
+            PropertyValue ret = new PropertyValue(Interop.PropertyMap.GetValue(SwigCPtr, position), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -208,7 +213,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public PropertyKey GetKeyAt(uint position)
         {
-            PropertyKey ret = new PropertyKey(Interop.PropertyMap.Property_Map_GetKeyAt(swigCPtr, position), true);
+            PropertyKey ret = new PropertyKey(Interop.PropertyMap.GetKeyAt(SwigCPtr, position), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -221,7 +226,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public PropertyValue Find(int key)
         {
-            global::System.IntPtr cPtr = Interop.PropertyMap.Property_Map_Find__SWIG_2(swigCPtr, key);
+            global::System.IntPtr cPtr = Interop.PropertyMap.Find(SwigCPtr, key);
             PropertyValue ret = (cPtr == global::System.IntPtr.Zero) ? null : new PropertyValue(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -236,7 +241,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public PropertyValue Find(int indexKey, string stringKey)
         {
-            global::System.IntPtr cPtr = Interop.PropertyMap.Property_Map_Find__SWIG_3(swigCPtr, indexKey, stringKey);
+            global::System.IntPtr cPtr = Interop.PropertyMap.Find(SwigCPtr, indexKey, stringKey);
             PropertyValue ret = (cPtr == global::System.IntPtr.Zero) ? null : new PropertyValue(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -248,7 +253,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Clear()
         {
-            Interop.PropertyMap.Property_Map_Clear(swigCPtr);
+            Interop.PropertyMap.Clear(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -260,7 +265,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Merge(PropertyMap from)
         {
-            Interop.PropertyMap.Property_Map_Merge(swigCPtr, PropertyMap.getCPtr(from));
+            Interop.PropertyMap.Merge(SwigCPtr, PropertyMap.getCPtr(from));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -271,7 +276,7 @@ namespace Tizen.NUI
         /// <returns>The value for the element with the specified key.</returns>
         internal PropertyValue ValueOfIndex(string key)
         {
-            PropertyValue ret = new PropertyValue(Interop.PropertyMap.Property_Map_ValueOfIndex__SWIG_0(swigCPtr, key), false);
+            PropertyValue ret = new PropertyValue(Interop.PropertyMap.ValueOfIndex(SwigCPtr, key), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -283,25 +288,25 @@ namespace Tizen.NUI
         /// <returns>The value for the element with the specified key.</returns>
         internal PropertyValue ValueOfIndex(int key)
         {
-            PropertyValue ret = new PropertyValue(Interop.PropertyMap.Property_Map_ValueOfIndex__SWIG_2(swigCPtr, key), false);
+            PropertyValue ret = new PropertyValue(Interop.PropertyMap.ValueOfIndex(SwigCPtr, key), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PropertyMap obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         internal void SetValue(int key, PropertyValue value)
         {
-            Interop.PropertyMap.Property_Map_SetValue_IntKey(swigCPtr, key, PropertyValue.getCPtr(value));
+            Interop.PropertyMap.SetValueIntKey(SwigCPtr, key, PropertyValue.getCPtr(value));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void SetValue(string key, PropertyValue value)
         {
-            Interop.PropertyMap.Property_Map_SetValue_StringKey(swigCPtr, key, PropertyValue.getCPtr(value));
+            Interop.PropertyMap.SetValueStringKey(SwigCPtr, key, PropertyValue.getCPtr(value));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -309,7 +314,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.PropertyMap.delete_Property_Map(swigCPtr);
+            Interop.PropertyMap.DeletePropertyMap(swigCPtr);
         }
     }
 }

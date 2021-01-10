@@ -75,7 +75,7 @@ namespace Tizen.NUI.Wearable
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TrackColorProperty = BindableProperty.Create(nameof(TrackColor), typeof(Color), typeof(CircularProgressStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            ((CircularProgressStyle)bindable).trackColor = (Color)newValue;
+            ((CircularProgressStyle)bindable).trackColor = newValue == null ? null : new Color((Color)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -86,7 +86,7 @@ namespace Tizen.NUI.Wearable
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ProgressColorProperty = BindableProperty.Create(nameof(ProgressColor), typeof(Color), typeof(CircularProgressStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            ((CircularProgressStyle)bindable).progressColor = (Color)newValue;
+            ((CircularProgressStyle)bindable).progressColor = newValue == null ? null : new Color((Color)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -130,8 +130,6 @@ namespace Tizen.NUI.Wearable
         [EditorBrowsable(EditorBrowsableState.Never)]
         public CircularProgressStyle(CircularProgressStyle style) : base(style)
         {
-            if (null == style) return;
-            this.CopyFrom(style);
         }
 
         /// <summary>
@@ -247,47 +245,19 @@ namespace Tizen.NUI.Wearable
         }
 
         /// <summary>
-        /// Style's clone function.
-        /// </summary>
-        /// <param name="bindableObject">The style that need to copy.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override void CopyFrom(BindableObject bindableObject)
-        {
-            base.CopyFrom(bindableObject);
-
-            CircularProgressStyle progressStyle = bindableObject as CircularProgressStyle;
-
-            if (null != progressStyle)
-            {
-                isEnabled = progressStyle.isEnabled;
-                thickness = progressStyle.Thickness;
-                maxValue = progressStyle.maxValue;
-                minValue = progressStyle.minValue;
-                currentValue = progressStyle.currentValue;
-                trackColor = progressStyle.trackColor;
-                progressColor = progressStyle.progressColor;
-            }
-        }
-
-        /// <summary>
         /// Dispose CircularProgressStyle and all children on it.
         /// </summary>
-        /// <param name="type">Dispose type.</param>
+        /// <param name="disposing">true in order to free managed objects</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void Dispose(DisposeTypes type)
+        protected override void Dispose(bool disposing)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
+            if (disposing)
             {
                 trackColor?.Dispose();
                 progressColor?.Dispose();
             }
 
-            base.Dispose(type);
+            base.Dispose(disposing);
         }
 
         private void Initialize()

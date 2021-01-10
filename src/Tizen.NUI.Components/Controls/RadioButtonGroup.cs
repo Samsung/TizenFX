@@ -42,6 +42,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public RadioButtonGroup() : base()
         {
+            EnableMultiSelection = false;
         }
 
         /// <summary>
@@ -83,31 +84,6 @@ namespace Tizen.NUI.Components
             if (null == radio) return;
             base.RemoveSelection(radio);
             radio.ItemGroup = null;
-        }
-
-        /// <summary>
-        /// Handle user's select action. Turn on check state of selected RadioButton,
-        /// and turn out check state of other RadioButtons in RadioButtonGroup
-        /// </summary>
-        /// <param name="selection">The selection selected by user</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void SelectionHandler(SelectButton selection)
-        {
-            RadioButton radio = selection as RadioButton;
-            if (!ItemGroup.Contains(radio))
-            {
-                return;
-            }
-
-            foreach (RadioButton btn in ItemGroup)
-            {
-                if (btn != null && btn != radio && btn.IsEnabled == true)
-                {
-                    btn.IsSelected = false;
-                }
-            }
         }
     }
 }

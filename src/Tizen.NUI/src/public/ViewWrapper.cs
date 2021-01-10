@@ -27,17 +27,17 @@ namespace Tizen.NUI
     {
         internal ViewWrapperImpl viewWrapperImpl;
 
-        internal ViewWrapper(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ViewWrapper.ViewWrapper_SWIGUpcast(cPtr), cMemoryOwn)
+        internal ViewWrapper(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ViewWrapper.Upcast(cPtr), cMemoryOwn, null)
         {
         }
 
-        internal ViewWrapper(string typeName, ViewWrapperImpl implementation) : this(Interop.ViewWrapper.ViewWrapper_New(typeName, ViewWrapperImpl.getCPtr(implementation)), true)
+        internal ViewWrapper(string typeName, ViewWrapperImpl implementation) : this(Interop.ViewWrapper.New(typeName, ViewWrapperImpl.getCPtr(implementation)), true)
         {
             viewWrapperImpl = implementation;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal ViewWrapper(string typeName, ViewWrapperImpl implementation, ViewStyle viewStyle) : base(Interop.ViewWrapper.ViewWrapper_SWIGUpcast(Interop.ViewWrapper.ViewWrapper_New(typeName, ViewWrapperImpl.getCPtr(implementation))), true, viewStyle)
+        internal ViewWrapper(string typeName, ViewWrapperImpl implementation, ViewStyle viewStyle) : base(Interop.ViewWrapper.Upcast(Interop.ViewWrapper.New(typeName, ViewWrapperImpl.getCPtr(implementation))), true, viewStyle)
         {
             viewWrapperImpl = implementation;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -47,7 +47,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.ViewWrapper.delete_ViewWrapper(swigCPtr);
+            Interop.ViewWrapper.DeleteViewWrapper(swigCPtr);
         }
     }
 }

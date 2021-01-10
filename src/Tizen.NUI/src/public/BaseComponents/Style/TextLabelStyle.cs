@@ -323,16 +323,7 @@ namespace Tizen.NUI.BaseComponents
         /// Create an empty instance.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextLabelStyle()
-        {
-        }
-
-        /// <summary>
-        /// Create an instance and set properties from the given TextLabel.
-        /// </summary>
-        /// <param name="textLabel">The TextLabel instance that includes property data.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextLabelStyle(TextLabel textLabel) : base(textLabel)
+        public TextLabelStyle() : base()
         {
         }
 

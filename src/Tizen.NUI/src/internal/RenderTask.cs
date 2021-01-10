@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+using System;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 
@@ -24,18 +25,18 @@ namespace Tizen.NUI
     public class RenderTask : Animatable
     {
 
-        internal RenderTask(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.RenderTask.RenderTask_SWIGUpcast(cPtr), cMemoryOwn)
+        internal RenderTask(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.RenderTask.Upcast(cPtr), cMemoryOwn)
         {
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(RenderTask obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.RenderTask.delete_RenderTask(swigCPtr);
+            Interop.RenderTask.DeleteRenderTask(swigCPtr);
         }
 
 
@@ -48,18 +49,18 @@ namespace Tizen.NUI
 
         internal class Property
         {
-            internal static readonly int VIEWPORT_POSITION = Interop.RenderTask.RenderTask_Property_VIEWPORT_POSITION_get();
-            internal static readonly int VIEWPORT_SIZE = Interop.RenderTask.RenderTask_Property_VIEWPORT_SIZE_get();
-            internal static readonly int CLEAR_COLOR = Interop.RenderTask.RenderTask_Property_CLEAR_COLOR_get();
-            internal static readonly int REQUIRES_SYNC = Interop.RenderTask.RenderTask_Property_REQUIRES_SYNC_get();
+            internal static readonly int ViewportPosition = Interop.RenderTask.ViewportPositionGet();
+            internal static readonly int ViewportSize = Interop.RenderTask.ViewportSizeGet();
+            internal static readonly int ClearColor = Interop.RenderTask.ClearColorGet();
+            internal static readonly int RequiresSync = Interop.RenderTask.RequiresSyncGet();
         }
 
         internal static SWIGTYPE_p_f_r_Dali__Vector2__bool DEFAULT_SCREEN_TO_FRAMEBUFFER_FUNCTION
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.RenderTask.RenderTask_DEFAULT_SCREEN_TO_FRAMEBUFFER_FUNCTION_get();
-                SWIGTYPE_p_f_r_Dali__Vector2__bool ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_f_r_Dali__Vector2__bool(cPtr, false);
+                global::System.IntPtr cPtr = Interop.RenderTask.DefaultScreenToFramebufferFunctionGet();
+                SWIGTYPE_p_f_r_Dali__Vector2__bool ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_f_r_Dali__Vector2__bool(cPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -69,8 +70,8 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.RenderTask.RenderTask_FULLSCREEN_FRAMEBUFFER_FUNCTION_get();
-                SWIGTYPE_p_f_r_Dali__Vector2__bool ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_f_r_Dali__Vector2__bool(cPtr, false);
+                global::System.IntPtr cPtr = Interop.RenderTask.FullscreenFramebufferFunctionGet();
+                SWIGTYPE_p_f_r_Dali__Vector2__bool ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_f_r_Dali__Vector2__bool(cPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -80,8 +81,8 @@ namespace Tizen.NUI
         {
             get
             {
-                bool ret = Interop.RenderTask.RenderTask_DEFAULT_EXCLUSIVE_get();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                bool ret = Interop.RenderTask.DefaultExclusiveGet();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -90,8 +91,8 @@ namespace Tizen.NUI
         {
             get
             {
-                bool ret = Interop.RenderTask.RenderTask_DEFAULT_INPUT_ENABLED_get();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                bool ret = Interop.RenderTask.DefaultInputEnabledGet();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -100,9 +101,9 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.RenderTask.RenderTask_DEFAULT_CLEAR_COLOR_get();
+                global::System.IntPtr cPtr = Interop.RenderTask.DefaultClearColorGet();
                 Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -111,8 +112,8 @@ namespace Tizen.NUI
         {
             get
             {
-                bool ret = Interop.RenderTask.RenderTask_DEFAULT_CLEAR_ENABLED_get();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                bool ret = Interop.RenderTask.DefaultClearEnabledGet();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -121,8 +122,8 @@ namespace Tizen.NUI
         {
             get
             {
-                bool ret = Interop.RenderTask.RenderTask_DEFAULT_CULL_MODE_get();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                bool ret = Interop.RenderTask.DefaultCullModeGet();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -131,236 +132,240 @@ namespace Tizen.NUI
         {
             get
             {
-                uint ret = Interop.RenderTask.RenderTask_DEFAULT_REFRESH_RATE_get();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                uint ret = Interop.RenderTask.DefaultRefreshRateGet();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
 
-        public RenderTask() : this(Interop.RenderTask.new_RenderTask__SWIG_0(), true)
+        public RenderTask() : this(Interop.RenderTask.NewRenderTask(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public static RenderTask DownCast(BaseHandle handle)
         {
-            RenderTask ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as RenderTask;
+            if (handle == null)
+            {
+                throw new global::System.ArgumentNullException(nameof(handle));
+            }
+            RenderTask ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as RenderTask;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public RenderTask(RenderTask handle) : this(Interop.RenderTask.new_RenderTask__SWIG_1(RenderTask.getCPtr(handle)), true)
+        public RenderTask(RenderTask handle) : this(Interop.RenderTask.NewRenderTask(RenderTask.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public RenderTask Assign(RenderTask rhs)
         {
-            RenderTask ret = new RenderTask(Interop.RenderTask.RenderTask_Assign(swigCPtr, RenderTask.getCPtr(rhs)), false);
+            RenderTask ret = new RenderTask(Interop.RenderTask.Assign(SwigCPtr, RenderTask.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetSourceView(View view)
         {
-            Interop.RenderTask.RenderTask_SetSourceActor(swigCPtr, View.getCPtr(view));
+            Interop.RenderTask.SetSourceActor(SwigCPtr, View.getCPtr(view));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public View GetSourceView()
         {
-            View ret = new View(Interop.RenderTask.RenderTask_GetSourceActor(swigCPtr), true);
+            View ret = new View(Interop.RenderTask.GetSourceActor(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetExclusive(bool exclusive)
         {
-            Interop.RenderTask.RenderTask_SetExclusive(swigCPtr, exclusive);
+            Interop.RenderTask.SetExclusive(SwigCPtr, exclusive);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public bool IsExclusive()
         {
-            bool ret = Interop.RenderTask.RenderTask_IsExclusive(swigCPtr);
+            bool ret = Interop.RenderTask.IsExclusive(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetInputEnabled(bool enabled)
         {
-            Interop.RenderTask.RenderTask_SetInputEnabled(swigCPtr, enabled);
+            Interop.RenderTask.SetInputEnabled(SwigCPtr, enabled);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public bool GetInputEnabled()
         {
-            bool ret = Interop.RenderTask.RenderTask_GetInputEnabled(swigCPtr);
+            bool ret = Interop.RenderTask.GetInputEnabled(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void SetCamera(Camera camera)
         {
-            Interop.RenderTask.RenderTask_SetCameraActor(swigCPtr, Camera.getCPtr(camera));
+            Interop.RenderTask.SetCameraActor(SwigCPtr, Camera.getCPtr(camera));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal Camera GetCamera()
         {
-            Camera ret = new Camera(Interop.RenderTask.RenderTask_GetCameraActor(swigCPtr), true);
+            Camera ret = new Camera(Interop.RenderTask.GetCameraActor(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetFrameBuffer(FrameBuffer frameBuffer)
         {
-            Interop.RenderTask.RenderTask_SetFrameBuffer(swigCPtr, FrameBuffer.getCPtr(frameBuffer));
+            Interop.RenderTask.SetFrameBuffer(SwigCPtr, FrameBuffer.getCPtr(frameBuffer));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public FrameBuffer GetFrameBuffer()
         {
-            FrameBuffer ret = new FrameBuffer(Interop.RenderTask.RenderTask_GetFrameBuffer(swigCPtr), true);
+            FrameBuffer ret = new FrameBuffer(Interop.RenderTask.GetFrameBuffer(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void SetScreenToFrameBufferFunction(SWIGTYPE_p_f_r_Dali__Vector2__bool conversionFunction)
         {
-            Interop.RenderTask.RenderTask_SetScreenToFrameBufferFunction(swigCPtr, SWIGTYPE_p_f_r_Dali__Vector2__bool.getCPtr(conversionFunction));
+            Interop.RenderTask.SetScreenToFrameBufferFunction(SwigCPtr, SWIGTYPE_p_f_r_Dali__Vector2__bool.getCPtr(conversionFunction));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal SWIGTYPE_p_f_r_Dali__Vector2__bool GetScreenToFrameBufferFunction()
         {
-            global::System.IntPtr cPtr = Interop.RenderTask.RenderTask_GetScreenToFrameBufferFunction(swigCPtr);
-            SWIGTYPE_p_f_r_Dali__Vector2__bool ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_f_r_Dali__Vector2__bool(cPtr, false);
+            global::System.IntPtr cPtr = Interop.RenderTask.GetScreenToFrameBufferFunction(SwigCPtr);
+            SWIGTYPE_p_f_r_Dali__Vector2__bool ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_f_r_Dali__Vector2__bool(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetScreenToFrameBufferMappingView(View mappingView)
         {
-            Interop.RenderTask.RenderTask_SetScreenToFrameBufferMappingActor(swigCPtr, View.getCPtr(mappingView));
+            Interop.RenderTask.SetScreenToFrameBufferMappingActor(SwigCPtr, View.getCPtr(mappingView));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public View GetScreenToFrameBufferMappingView()
         {
-            View ret = new View(Interop.RenderTask.RenderTask_GetScreenToFrameBufferMappingActor(swigCPtr), true);
+            View ret = new View(Interop.RenderTask.GetScreenToFrameBufferMappingActor(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetViewportPosition(Vector2 position)
         {
-            Interop.RenderTask.RenderTask_SetViewportPosition(swigCPtr, Vector2.getCPtr(position));
+            Interop.RenderTask.SetViewportPosition(SwigCPtr, Vector2.getCPtr(position));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public Vector2 GetCurrentViewportPosition()
         {
-            Vector2 ret = new Vector2(Interop.RenderTask.RenderTask_GetCurrentViewportPosition(swigCPtr), true);
+            Vector2 ret = new Vector2(Interop.RenderTask.GetCurrentViewportPosition(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetViewportSize(Vector2 size)
         {
-            Interop.RenderTask.RenderTask_SetViewportSize(swigCPtr, Vector2.getCPtr(size));
+            Interop.RenderTask.SetViewportSize(SwigCPtr, Vector2.getCPtr(size));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public Vector2 GetCurrentViewportSize()
         {
-            Vector2 ret = new Vector2(Interop.RenderTask.RenderTask_GetCurrentViewportSize(swigCPtr), true);
+            Vector2 ret = new Vector2(Interop.RenderTask.GetCurrentViewportSize(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetViewport(Rectangle viewport)
         {
-            Interop.RenderTask.RenderTask_SetViewport(swigCPtr, Rectangle.getCPtr(viewport));
+            Interop.RenderTask.SetViewport(SwigCPtr, Rectangle.getCPtr(viewport));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public Rectangle GetViewport()
         {
-            Rectangle ret = new Rectangle(Interop.RenderTask.RenderTask_GetViewport(swigCPtr), true);
+            Rectangle ret = new Rectangle(Interop.RenderTask.GetViewport(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetClearColor(Vector4 color)
         {
-            Interop.RenderTask.RenderTask_SetClearColor(swigCPtr, Vector4.getCPtr(color));
+            Interop.RenderTask.SetClearColor(SwigCPtr, Vector4.getCPtr(color));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public Vector4 GetClearColor()
         {
-            Vector4 ret = new Vector4(Interop.RenderTask.RenderTask_GetClearColor(swigCPtr), true);
+            Vector4 ret = new Vector4(Interop.RenderTask.GetClearColor(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetClearEnabled(bool enabled)
         {
-            Interop.RenderTask.RenderTask_SetClearEnabled(swigCPtr, enabled);
+            Interop.RenderTask.SetClearEnabled(SwigCPtr, enabled);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public bool GetClearEnabled()
         {
-            bool ret = Interop.RenderTask.RenderTask_GetClearEnabled(swigCPtr);
+            bool ret = Interop.RenderTask.GetClearEnabled(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetCullMode(bool cullMode)
         {
-            Interop.RenderTask.RenderTask_SetCullMode(swigCPtr, cullMode);
+            Interop.RenderTask.SetCullMode(SwigCPtr, cullMode);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public bool GetCullMode()
         {
-            bool ret = Interop.RenderTask.RenderTask_GetCullMode(swigCPtr);
+            bool ret = Interop.RenderTask.GetCullMode(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetRefreshRate(uint refreshRate)
         {
-            Interop.RenderTask.RenderTask_SetRefreshRate(swigCPtr, refreshRate);
+            Interop.RenderTask.SetRefreshRate(SwigCPtr, refreshRate);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public uint GetRefreshRate()
         {
-            uint ret = Interop.RenderTask.RenderTask_GetRefreshRate(swigCPtr);
+            uint ret = Interop.RenderTask.GetRefreshRate(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public bool WorldToViewport(Vector3 position, out float viewportX, out float viewportY)
         {
-            bool ret = Interop.RenderTask.RenderTask_WorldToViewport(swigCPtr, Vector3.getCPtr(position), out viewportX, out viewportY);
+            bool ret = Interop.RenderTask.WorldToViewport(SwigCPtr, Vector3.getCPtr(position), out viewportX, out viewportY);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public bool ViewportToLocal(View view, float viewportX, float viewportY, out float localX, out float localY)
         {
-            bool ret = Interop.RenderTask.RenderTask_ViewportToLocal(swigCPtr, View.getCPtr(view), viewportX, viewportY, out localX, out localY);
+            bool ret = Interop.RenderTask.ViewportToLocal(SwigCPtr, View.getCPtr(view), viewportX, viewportY, out localX, out localY);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal RenderTaskSignal FinishedSignal()
         {
-            RenderTaskSignal ret = new RenderTaskSignal(Interop.RenderTask.RenderTask_FinishedSignal(swigCPtr), false);
+            RenderTaskSignal ret = new RenderTaskSignal(Interop.RenderTask.FinishedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -377,12 +382,12 @@ namespace Tizen.NUI
             get
             {
                 Vector2 temp = new Vector2(0.0f, 0.0f);
-                GetProperty(RenderTask.Property.VIEWPORT_POSITION).Get(temp);
+                GetProperty(RenderTask.Property.ViewportPosition).Get(temp);
                 return temp;
             }
             set
             {
-                SetProperty(RenderTask.Property.VIEWPORT_POSITION, new Tizen.NUI.PropertyValue(value));
+                SetProperty(RenderTask.Property.ViewportPosition, new Tizen.NUI.PropertyValue(value));
             }
         }
         public Vector2 ViewportSize
@@ -390,12 +395,12 @@ namespace Tizen.NUI
             get
             {
                 Vector2 temp = new Vector2(0.0f, 0.0f);
-                GetProperty(RenderTask.Property.VIEWPORT_SIZE).Get(temp);
+                GetProperty(RenderTask.Property.ViewportSize).Get(temp);
                 return temp;
             }
             set
             {
-                SetProperty(RenderTask.Property.VIEWPORT_SIZE, new Tizen.NUI.PropertyValue(value));
+                SetProperty(RenderTask.Property.ViewportSize, new Tizen.NUI.PropertyValue(value));
             }
         }
         public Vector4 ClearColor
@@ -403,12 +408,12 @@ namespace Tizen.NUI
             get
             {
                 Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-                GetProperty(RenderTask.Property.CLEAR_COLOR).Get(temp);
+                GetProperty(RenderTask.Property.ClearColor).Get(temp);
                 return temp;
             }
             set
             {
-                SetProperty(RenderTask.Property.CLEAR_COLOR, new Tizen.NUI.PropertyValue(value));
+                SetProperty(RenderTask.Property.ClearColor, new Tizen.NUI.PropertyValue(value));
             }
         }
         public bool RequiresSync
@@ -416,12 +421,12 @@ namespace Tizen.NUI
             get
             {
                 bool temp = false;
-                GetProperty(RenderTask.Property.REQUIRES_SYNC).Get(out temp);
+                GetProperty(RenderTask.Property.RequiresSync).Get(out temp);
                 return temp;
             }
             set
             {
-                SetProperty(RenderTask.Property.REQUIRES_SYNC, new Tizen.NUI.PropertyValue(value));
+                SetProperty(RenderTask.Property.RequiresSync, new Tizen.NUI.PropertyValue(value));
             }
         }
     }

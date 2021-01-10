@@ -33,7 +33,7 @@ namespace Tizen.NUI
         /// </summary>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public PinchGestureDetector() : this(Interop.PinchGesture.PinchGestureDetector_New(), true)
+        public PinchGestureDetector() : this(Interop.PinchGesture.PinchGestureDetectorNew(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -45,12 +45,12 @@ namespace Tizen.NUI
         /// <param name="handle">A reference to the copied handle</param>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public PinchGestureDetector(PinchGestureDetector handle) : this(Interop.PinchGesture.new_PinchGestureDetector__SWIG_1(PinchGestureDetector.getCPtr(handle)), true)
+        public PinchGestureDetector(PinchGestureDetector handle) : this(Interop.PinchGesture.NewPinchGestureDetector(PinchGestureDetector.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal PinchGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.PinchGesture.PinchGestureDetector_SWIGUpcast(cPtr), cMemoryOwn)
+        internal PinchGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.PinchGesture.PinchGestureDetectorUpcast(cPtr), cMemoryOwn)
         {
         }
 
@@ -98,26 +98,26 @@ namespace Tizen.NUI
 
         internal new static PinchGestureDetector DownCast(BaseHandle handle)
         {
-            PinchGestureDetector ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as PinchGestureDetector;
+            PinchGestureDetector ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as PinchGestureDetector;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PinchGestureDetector obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         internal PinchGestureDetector Assign(PinchGestureDetector rhs)
         {
-            PinchGestureDetector ret = new PinchGestureDetector(Interop.PinchGesture.PinchGestureDetector_Assign(swigCPtr, PinchGestureDetector.getCPtr(rhs)), false);
+            PinchGestureDetector ret = new PinchGestureDetector(Interop.PinchGesture.PinchGestureDetectorAssign(SwigCPtr, PinchGestureDetector.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal PinchGestureDetectedSignal DetectedSignal()
         {
-            PinchGestureDetectedSignal ret = new PinchGestureDetectedSignal(Interop.PinchGesture.PinchGestureDetector_DetectedSignal(swigCPtr), false);
+            PinchGestureDetectedSignal ret = new PinchGestureDetectedSignal(Interop.PinchGesture.PinchGestureDetectorDetectedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -131,7 +131,7 @@ namespace Tizen.NUI
                 DetectedSignal().Disconnect(_detectedCallback);
             }
 
-            Interop.PinchGesture.delete_PinchGestureDetector(swigCPtr);
+            Interop.PinchGesture.DeletePinchGestureDetector(swigCPtr);
         }
 
         private void OnPinchGestureDetected(IntPtr actor, IntPtr pinchGesture)

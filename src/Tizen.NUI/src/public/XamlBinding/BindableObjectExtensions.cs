@@ -14,9 +14,9 @@ namespace Tizen.NUI.Binding
                                       string stringFormat = null)
         {
             if (self == null)
-                throw new ArgumentNullException("self");
+                throw new ArgumentNullException(nameof(self));
             if (targetProperty == null)
-                throw new ArgumentNullException("targetProperty");
+                throw new ArgumentNullException(nameof(targetProperty));
 
             var binding = new Binding(path, mode, converter, stringFormat: stringFormat);
             self.SetBinding(targetProperty, binding);
@@ -24,16 +24,16 @@ namespace Tizen.NUI.Binding
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [Obsolete]
+        [ObsoleteAttribute(" ", false)]
         public static void SetBinding<TSource>(this BindableObject self, BindableProperty targetProperty, Expression<Func<TSource, object>> sourceProperty, BindingMode mode = BindingMode.Default,
                                                IValueConverter converter = null, string stringFormat = null)
         {
             if (self == null)
-                throw new ArgumentNullException("self");
+                throw new ArgumentNullException(nameof(self));
             if (targetProperty == null)
-                throw new ArgumentNullException("targetProperty");
+                throw new ArgumentNullException(nameof(targetProperty));
             if (sourceProperty == null)
-                throw new ArgumentNullException("sourceProperty");
+                throw new ArgumentNullException(nameof(sourceProperty));
 
             Binding binding = Binding.Create(sourceProperty, mode, converter, stringFormat: stringFormat);
             self.SetBinding(targetProperty, binding);

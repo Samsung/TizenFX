@@ -28,20 +28,20 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.ActorTouchDataSignal.delete_ActorTouchDataSignal(swigCPtr);
+            Interop.ActorTouchDataSignal.DeleteActorTouchDataSignal(swigCPtr);
         }
 
 
         public bool Empty()
         {
-            bool ret = Interop.ActorTouchDataSignal.ActorTouchDataSignal_Empty(swigCPtr);
+            bool ret = Interop.ActorTouchDataSignal.Empty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.ActorTouchDataSignal.ActorTouchDataSignal_GetConnectionCount(swigCPtr);
+            uint ret = Interop.ActorTouchDataSignal.GetConnectionCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -50,7 +50,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.ActorTouchDataSignal.ActorTouchDataSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.ActorTouchDataSignal.Connect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -59,19 +59,19 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.ActorTouchDataSignal.ActorTouchDataSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.ActorTouchDataSignal.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public bool Emit(View arg1, Touch arg2)
         {
-            bool ret = Interop.ActorTouchDataSignal.ActorTouchDataSignal_Emit(swigCPtr, View.getCPtr(arg1), Touch.getCPtr(arg2));
+            bool ret = Interop.ActorTouchDataSignal.Emit(SwigCPtr, View.getCPtr(arg1), Touch.getCPtr(arg2));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public TouchDataSignal() : this(Interop.ActorTouchDataSignal.new_ActorTouchDataSignal(), true)
+        public TouchDataSignal() : this(Interop.ActorTouchDataSignal.NewActorTouchDataSignal(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

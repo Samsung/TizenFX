@@ -311,7 +311,7 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                if(null != Style?.Thumb)
+                if (null != Style?.Thumb)
                 {
                     Style.Thumb.BackgroundColor = value;
                     RelayoutRequest();
@@ -495,22 +495,6 @@ namespace Tizen.NUI.Components
         protected override ViewStyle CreateViewStyle()
         {
             return new ScrollBarStyle();
-        }
-
-        /// <summary>
-        /// Theme change callback when theme is changed, this callback will be trigger.
-        /// </summary>
-        /// <param name="sender">The sender</param>
-        /// <param name="e">The event data</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
-        {
-            ScrollBarStyle tempStyle = StyleManager.Instance.GetViewStyle(StyleName) as ScrollBarStyle;
-            if (tempStyle != null)
-            {
-                Style.CopyFrom(tempStyle);
-                UpdateValue();
-            }
         }
 
         private void Initialize()

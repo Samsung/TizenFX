@@ -23,18 +23,18 @@ namespace Tizen.NUI
     internal class Alignment : View
     {
 
-        internal Alignment(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Alignment.Alignment_SWIGUpcast(cPtr), cMemoryOwn)
+        internal Alignment(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Alignment.Upcast(cPtr), cMemoryOwn)
         {
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Alignment obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.Alignment.delete_Alignment(swigCPtr);
+            Interop.Alignment.DeleteAlignment(swigCPtr);
         }
 
         /// <since_tizen> 3 </since_tizen>
@@ -47,23 +47,23 @@ namespace Tizen.NUI
 
             internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Padding obj)
             {
-                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-            }
- 
-            /// <since_tizen> 3 </since_tizen>
-            protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
-            {
-                Interop.Alignment.delete_Alignment_Padding(swigCPtr);
+                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
             }
 
             /// <since_tizen> 3 </since_tizen>
-            public Padding() : this(Interop.Alignment.new_Alignment_Padding__SWIG_0(), true)
+            protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+            {
+                Interop.Alignment.DeleteAlignmentPadding(swigCPtr);
+            }
+
+            /// <since_tizen> 3 </since_tizen>
+            public Padding() : this(Interop.Alignment.NewAlignmentPadding(), true)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
 
             /// <since_tizen> 3 </since_tizen>
-            public Padding(float l, float r, float t, float b) : this(Interop.Alignment.new_Alignment_Padding__SWIG_1(l, r, t, b), true)
+            public Padding(float l, float r, float t, float b) : this(Interop.Alignment.NewAlignmentPadding(l, r, t, b), true)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -73,12 +73,12 @@ namespace Tizen.NUI
             {
                 set
                 {
-                    Interop.Alignment.Alignment_Padding_left_set(swigCPtr, value);
+                    Interop.Alignment.PaddingLeftSet(SwigCPtr, value);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
                 get
                 {
-                    float ret = Interop.Alignment.Alignment_Padding_left_get(swigCPtr);
+                    float ret = Interop.Alignment.PaddingLeftGet(SwigCPtr);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                     return ret;
                 }
@@ -89,12 +89,12 @@ namespace Tizen.NUI
             {
                 set
                 {
-                    Interop.Alignment.Alignment_Padding_right_set(swigCPtr, value);
+                    Interop.Alignment.PaddingRightSet(SwigCPtr, value);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
                 get
                 {
-                    float ret = Interop.Alignment.Alignment_Padding_right_get(swigCPtr);
+                    float ret = Interop.Alignment.PaddingRightGet(SwigCPtr);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                     return ret;
                 }
@@ -105,12 +105,12 @@ namespace Tizen.NUI
             {
                 set
                 {
-                    Interop.Alignment.Alignment_Padding_top_set(swigCPtr, value);
+                    Interop.Alignment.PaddingTopSet(SwigCPtr, value);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
                 get
                 {
-                    float ret = Interop.Alignment.Alignment_Padding_top_get(swigCPtr);
+                    float ret = Interop.Alignment.PaddingTopGet(SwigCPtr);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                     return ret;
                 }
@@ -121,34 +121,34 @@ namespace Tizen.NUI
             {
                 set
                 {
-                    Interop.Alignment.Alignment_Padding_bottom_set(swigCPtr, value);
+                    Interop.Alignment.PaddingBottomSet(SwigCPtr, value);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
                 get
                 {
-                    float ret = Interop.Alignment.Alignment_Padding_bottom_get(swigCPtr);
+                    float ret = Interop.Alignment.PaddingBottomGet(SwigCPtr);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                     return ret;
                 }
             }
         }
 
-        public Alignment(Alignment.Type horizontal, Alignment.Type vertical) : this(Interop.Alignment.Alignment_New__SWIG_0((int)horizontal, (int)vertical), true)
+        public Alignment(Alignment.Type horizontal, Alignment.Type vertical) : this(Interop.Alignment.New((int)horizontal, (int)vertical), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-        public Alignment(Alignment.Type horizontal) : this(Interop.Alignment.Alignment_New__SWIG_1((int)horizontal), true)
+        public Alignment(Alignment.Type horizontal) : this(Interop.Alignment.New((int)horizontal), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-        public Alignment() : this(Interop.Alignment.Alignment_New__SWIG_2(), true)
+        public Alignment() : this(Interop.Alignment.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-        public Alignment(Alignment alignment) : this(Interop.Alignment.new_Alignment__SWIG_1(Alignment.getCPtr(alignment)), true)
+        public Alignment(Alignment alignment) : this(Interop.Alignment.NewAlignment(Alignment.getCPtr(alignment)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -162,46 +162,46 @@ namespace Tizen.NUI
 
         public void SetAlignmentType(Alignment.Type type)
         {
-            Interop.Alignment.Alignment_SetAlignmentType(swigCPtr, (int)type);
+            Interop.Alignment.SetAlignmentType(SwigCPtr, (int)type);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public Alignment.Type GetAlignmentType()
         {
-            Alignment.Type ret = (Alignment.Type)Interop.Alignment.Alignment_GetAlignmentType(swigCPtr);
+            Alignment.Type ret = (Alignment.Type)Interop.Alignment.GetAlignmentType(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetScaling(Alignment.Scaling scaling)
         {
-            Interop.Alignment.Alignment_SetScaling(swigCPtr, (int)scaling);
+            Interop.Alignment.SetScaling(SwigCPtr, (int)scaling);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public Alignment.Scaling GetScaling()
         {
-            Alignment.Scaling ret = (Alignment.Scaling)Interop.Alignment.Alignment_GetScaling(swigCPtr);
+            Alignment.Scaling ret = (Alignment.Scaling)Interop.Alignment.GetScaling(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetPadding(Alignment.Padding padding)
         {
-            Interop.Alignment.Alignment_SetPadding(swigCPtr, Alignment.Padding.getCPtr(padding));
+            Interop.Alignment.SetPadding(SwigCPtr, Alignment.Padding.getCPtr(padding));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public Alignment.Padding GetPadding()
         {
-            Alignment.Padding ret = new Alignment.Padding(Interop.Alignment.Alignment_GetPadding(swigCPtr), false);
+            Alignment.Padding ret = new Alignment.Padding(Interop.Alignment.GetPadding(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public Alignment Assign(Alignment alignment)
         {
-            Alignment ret = new Alignment(Interop.Alignment.Alignment_Assign(swigCPtr, Alignment.getCPtr(alignment)), false);
+            Alignment ret = new Alignment(Interop.Alignment.Assign(SwigCPtr, Alignment.getCPtr(alignment)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

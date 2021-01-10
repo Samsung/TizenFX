@@ -55,11 +55,11 @@ namespace Tizen.NUI.Xaml
         {
             if (TypedBinding == null)
                 return new Tizen.NUI.Binding.Binding(Path, Mode, Converter, ConverterParameter, StringFormat, Source)
-				{
-				    UpdateSourceEventName = UpdateSourceEventName,
+                {
+                    UpdateSourceEventName = UpdateSourceEventName,
                     FallbackValue = FallbackValue,
                     TargetNullValue = TargetNullValue,
-				};
+                };
 
             TypedBinding.Mode = Mode;
             TypedBinding.Converter = Converter;

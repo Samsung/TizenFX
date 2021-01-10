@@ -26,10 +26,10 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     internal class FrameProvider : IDisposable
     {
-        private string LogTag = "NUI";
-        private readonly SafeFrameProviderHandle _handle;
-        private Interop.FrameProvider.FrameProviderEventCallbacks _callbacks;
-        private bool _disposed = false;
+        private string logTag = "NUI";
+        private readonly SafeFrameProviderHandle handle;
+        private Interop.FrameProvider.FrameProviderEventCallbacks callbacks;
+        private bool disposed = false;
 
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="window">The window instance of Ecore_Wl2_Window pointer.</param>
         /// <exception cref="ArgumentException">Thrown when failed because of an invalid parameter.</exception>
-        /// <exception cref="Exceptions.OutOfMemoryException">Thrown when the memory is insufficient.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when the memory is insufficient.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed to create the frame broker handle.</exception>
         /// <remarks>This class is only avaliable for platform level signed applications.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -50,10 +50,10 @@ namespace Tizen.NUI
                 throw FrameProviderErrorFactory.GetException(Interop.FrameProvider.ErrorCode.InvalidParameter, "Invalid parameter");
             }
 
-            _callbacks.OnShow = new Interop.FrameProvider.ShowCallback(OnShowNative);
-            _callbacks.OnHide = new Interop.FrameProvider.HideCallback(OnHideNative);
+            callbacks.OnShow = new Interop.FrameProvider.ShowCallback(OnShowNative);
+            callbacks.OnHide = new Interop.FrameProvider.HideCallback(OnHideNative);
 
-            err = Interop.FrameProvider.Create(window.GetNativeWindowHandler(), ref _callbacks, IntPtr.Zero, out _handle);
+            err = Interop.FrameProvider.Create(window.GetNativeWindowHandler(), ref callbacks, IntPtr.Zero, out handle);
             if (err != Interop.FrameProvider.ErrorCode.None)
             {
                 throw FrameProviderErrorFactory.GetException(err, "Failed to create frame provider handle");
@@ -76,13 +76,13 @@ namespace Tizen.NUI
 
         private void OnShowNative(IntPtr handle, IntPtr userData)
         {
-            Log.Debug(LogTag, "OnShowNative()");
+            Log.Debug(logTag, "OnShowNative()");
             Shown?.Invoke(this, EventArgs.Empty);
         }
 
         private void OnHideNative(IntPtr handle, IntPtr userdata)
         {
-            Log.Debug(LogTag, "OnHideNative()");
+            Log.Debug(logTag, "OnHideNative()");
             Hidden?.Invoke(this, EventArgs.Empty);
         }
 
@@ -93,7 +93,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal void NotifyShowStatus(Bundle extraData)
         {
-            Interop.FrameProvider.ErrorCode err = Interop.FrameProvider.NotifyShowStatus(_handle, extraData.SafeBundleHandle);
+            Interop.FrameProvider.ErrorCode err = Interop.FrameProvider.NotifyShowStatus(handle, extraData.SafeBundleHandle);
             if (err != Interop.FrameProvider.ErrorCode.None)
             {
                 throw FrameProviderErrorFactory.GetException(err, "Failed to notify show status");
@@ -107,7 +107,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal void NotifyHideStatus(Bundle extraData)
         {
-            Interop.FrameProvider.ErrorCode err = Interop.FrameProvider.NotifyHideStatus(_handle, extraData.SafeBundleHandle);
+            Interop.FrameProvider.ErrorCode err = Interop.FrameProvider.NotifyHideStatus(handle, extraData.SafeBundleHandle);
             if (err != Interop.FrameProvider.ErrorCode.None)
             {
                 throw FrameProviderErrorFactory.GetException(err, "Failed to notify hide status");
@@ -117,10 +117,10 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void Dispose(bool disposing)
         {
-            if (!_disposed)
+            if (!disposed)
             {
-                _handle.Dispose();
-                _disposed = true;
+                handle.Dispose();
+                disposed = true;
             }
         }
 
@@ -128,7 +128,6 @@ namespace Tizen.NUI
         public void Dispose()
         {
             Dispose(true);
-         
         }
     }
 }

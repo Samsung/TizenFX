@@ -35,9 +35,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty ButtonHeightProperty = BindableProperty.Create(nameof(ButtonHeight), typeof(int), typeof(Popup), default(int), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Popup)bindable;
-            if (newValue != null && instance?.popupStyle?.Buttons?.Size != null )
+            if (newValue != null && instance?.popupStyle?.Buttons?.Size != null)
             {
-                instance.popupStyle.Buttons.Size.Height = (int)newValue;
+                instance.popupStyle.Buttons.SizeHeight = (int)newValue;
                 instance.btGroup.Itemheight = (int)newValue;
                 instance.UpdateView();
             }
@@ -91,7 +91,7 @@ namespace Tizen.NUI.Components
         {
             var instance = (Popup)bindable;
             if (newValue != null)
-            {  
+            {
                 if (instance.popupStyle?.Buttons?.Text != null)
                 {
                     instance.popupStyle.Buttons.Text.TextColor = (Color)newValue;
@@ -357,7 +357,15 @@ namespace Tizen.NUI.Components
             {
                 if (null == titleText)
                 {
-                    titleText = new TextLabel();
+                    titleText = new TextLabel
+                    {
+                        PositionUsesPivotPoint = true,
+                        ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft,
+                        PivotPoint = Tizen.NUI.PivotPoint.TopLeft,
+                        HorizontalAlignment = HorizontalAlignment.Begin,
+                        VerticalAlignment = VerticalAlignment.Bottom,
+                        Text = "Title"
+                    };
                     Add(titleText);
                 }
                 return titleText;
@@ -480,7 +488,7 @@ namespace Tizen.NUI.Components
             {
                 if (popupStyle?.Title?.Size != null)
                 {
-                    popupStyle.Title.Size.Height = value;
+                    popupStyle.Title.SizeHeight = value;
                 }
             }
         }
@@ -549,7 +557,7 @@ namespace Tizen.NUI.Components
         public string ButtonFontFamily
         {
             get
-            {           
+            {
                 return (string)GetValue(ButtonFontFamilyProperty);
             }
             set
@@ -601,7 +609,7 @@ namespace Tizen.NUI.Components
         public HorizontalAlignment ButtonTextAlignment
         {
             get
-            {   
+            {
                 return (HorizontalAlignment)GetValue(ButtonTextAlignmentProperty);
             }
             set
@@ -619,7 +627,7 @@ namespace Tizen.NUI.Components
         public string ButtonBackground
         {
             get
-            {     
+            {
                 return (string)GetValue(ButtonBackgroundProperty);
             }
             set
@@ -638,7 +646,7 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                
+
                 return (Rectangle)GetValue(ButtonBackgroundBorderProperty);
             }
             set
@@ -740,9 +748,26 @@ namespace Tizen.NUI.Components
         public override void ApplyStyle(ViewStyle viewStyle)
         {
             base.ApplyStyle(viewStyle);
-            PopupStyle ppStyle = viewStyle as PopupStyle;
-            if (null != ppStyle)
+
+            if (viewStyle is PopupStyle ppStyle)
             {
+                if (ppStyle.Buttons == null)
+                {
+                    ppStyle.Buttons = new ButtonStyle();
+                }
+
+                if (ppStyle.Buttons.PositionUsesPivotPoint == null) ppStyle.Buttons.PositionUsesPivotPoint = true;
+                if (ppStyle.Buttons.ParentOrigin == null) ppStyle.Buttons.ParentOrigin = Tizen.NUI.ParentOrigin.BottomLeft;
+                if (ppStyle.Buttons.PivotPoint == null) ppStyle.Buttons.PivotPoint = Tizen.NUI.PivotPoint.BottomLeft;
+
+                if (btGroup != null)
+                {
+                    for (int i = 0; i < btGroup.Count; i++)
+                    {
+                        GetButton(i)?.ApplyStyle(ppStyle.Buttons);
+                    }
+                }
+
                 Title.ApplyStyle(ppStyle.Title);
                 Title.RaiseToTop();
             }
@@ -758,20 +783,12 @@ namespace Tizen.NUI.Components
             return new PopupStyle();
         }
 
-        /// <summary>
-        /// Theme change callback when theme is changed, this callback will be trigger.
-        /// </summary>
-        /// <param name="sender">The sender</param>
-        /// <param name="e">The event data</param>
+        /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
+        protected override void OnUpdate()
         {
-            PopupStyle ppStyle = StyleManager.Instance.GetViewStyle(StyleName) as PopupStyle;
-            if (ppStyle != null)
-            {
-                ApplyStyle(ppStyle);
-                UpdateView();
-            }
+            base.OnUpdate();
+            UpdateView();
         }
 
         private void Initialize()
@@ -799,6 +816,7 @@ namespace Tizen.NUI.Components
 
         private void UpdateView()
         {
+            if (popupStyle == null) return;
             btGroup.UpdateButton(popupStyle.Buttons);
             UpdateContentView();
             UpdateTitle();
@@ -847,7 +865,7 @@ namespace Tizen.NUI.Components
                 titleY = (int)Title.Position.Y;
             }
 
-            if (btGroup.Count != 0 && popupStyle?.Buttons?.Size != null )
+            if (btGroup.Count != 0 && popupStyle?.Buttons?.Size != null)
             {
                 buttonH = (int)popupStyle.Buttons.Size.Height;
             }
@@ -868,10 +886,13 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         [Obsolete("Deprecated in API8; Will be removed in API10")]
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
         public class ButtonClickEventArgs : EventArgs
         {
             /// <summary> Button index which is clicked in Popup </summary>
             /// <since_tizen> 6 </since_tizen>
+            /// It will be removed in API10
+            [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
             [Obsolete("Deprecated in API8; Will be removed in API10")]
             public int ButtonIndex;
         }

@@ -30,7 +30,7 @@ namespace Tizen.NUI
     public class ScrollViewPagePathEffect : ScrollViewEffect
     {
 
-        internal ScrollViewPagePathEffect(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ScrollView.ScrollViewPagePathEffect_SWIGUpcast(cPtr), cMemoryOwn)
+        internal ScrollViewPagePathEffect(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ScrollView.ScrollViewPagePathEffectUpcast(cPtr), cMemoryOwn)
         {
         }
 
@@ -39,7 +39,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.ScrollView.delete_ScrollViewPagePathEffect(swigCPtr);
+            Interop.ScrollView.DeleteScrollViewPagePathEffect(swigCPtr);
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace Tizen.NUI
         /// <returns>A handle to a newly allocated Dali resource.</returns>
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ScrollViewPagePathEffect(Path path, Vector3 forward, int inputPropertyIndex, Vector3 pageSize, uint pageCount) : this(Interop.ScrollView.ScrollViewPagePathEffect_New(Path.getCPtr(path), Vector3.getCPtr(forward), inputPropertyIndex, Vector3.getCPtr(pageSize), pageCount), true)
+        public ScrollViewPagePathEffect(Path path, Vector3 forward, int inputPropertyIndex, Vector3 pageSize, uint pageCount) : this(Interop.ScrollView.ScrollViewPagePathEffectNew(Path.getCPtr(path), Vector3.getCPtr(forward), inputPropertyIndex, Vector3.getCPtr(pageSize), pageCount), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -74,7 +74,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ApplyToPage(View page, uint pageOrder)
         {
-            Interop.ScrollView.ScrollViewPagePathEffect_ApplyToPage(swigCPtr, View.getCPtr(page), pageOrder);
+            Interop.ScrollView.ScrollViewPagePathEffectApplyToPage(SwigCPtr, View.getCPtr(page), pageOrder);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
     }

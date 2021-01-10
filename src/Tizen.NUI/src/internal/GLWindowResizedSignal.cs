@@ -26,19 +26,19 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.GLWindowResizedSignal.GlWindow_delete_ResizedSignal(swigCPtr);
+            Interop.GLWindowResizedSignal.GlWindowDeleteResizedSignal(swigCPtr);
         }
 
         public bool Empty()
         {
-            bool ret = Interop.GLWindowResizedSignal.GlWindow_ResizedSignal_Empty(swigCPtr);
+            bool ret = Interop.GLWindowResizedSignal.GlWindowResizedSignalEmpty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.GLWindowResizedSignal.GlWindow_ResizedSignal_GetConnectionCount(swigCPtr);
+            uint ret = Interop.GLWindowResizedSignal.GlWindowResizedSignalGetConnectionCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -47,7 +47,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.GLWindowResizedSignal.GlWindow_ResizedSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.GLWindowResizedSignal.GlWindowResizedSignalConnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -56,18 +56,18 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.GLWindowResizedSignal.GlWindow_ResizedSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.GLWindowResizedSignal.GlWindowResizedSignalDisconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public void Emit(Size2D arg)
         {
-            Interop.GLWindowResizedSignal.GlWindow_ResizedSignal_Emit(swigCPtr, Size2D.getCPtr(arg));
+            Interop.GLWindowResizedSignal.GlWindowResizedSignalEmit(SwigCPtr, Size2D.getCPtr(arg));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public GLWindowResizedSignal() : this(Interop.GLWindowResizedSignal.new_GlWindow_ResizedSignal(), true)
+        public GLWindowResizedSignal() : this(Interop.GLWindowResizedSignal.NewGlWindowResizedSignal(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

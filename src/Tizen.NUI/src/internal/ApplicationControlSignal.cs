@@ -26,19 +26,19 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.ApplicationControlSignal.delete_ApplicationControlSignal(swigCPtr);
+            Interop.ApplicationControlSignal.DeleteApplicationControlSignal(swigCPtr);
         }
 
         public bool Empty()
         {
-            bool ret = Interop.ApplicationControlSignal.ApplicationControlSignal_Empty(swigCPtr);
+            bool ret = Interop.ApplicationControlSignal.Empty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.ApplicationControlSignal.ApplicationControlSignal_GetConnectionCount(swigCPtr);
+            uint ret = Interop.ApplicationControlSignal.GetConnectionCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -47,7 +47,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.ApplicationControlSignal.ApplicationControlSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.ApplicationControlSignal.Connect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -56,18 +56,18 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.ApplicationControlSignal.ApplicationControlSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.ApplicationControlSignal.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public void Emit(Application arg1, System.IntPtr arg2)
         {
-            Interop.ApplicationControlSignal.ApplicationControlSignal_Emit(swigCPtr, Application.getCPtr(arg1), arg2);
+            Interop.ApplicationControlSignal.Emit(SwigCPtr, Application.getCPtr(arg1), arg2);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public ApplicationControlSignal() : this(Interop.ApplicationControlSignal.new_ApplicationControlSignal(), true)
+        public ApplicationControlSignal() : this(Interop.ApplicationControlSignal.NewApplicationControlSignal(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

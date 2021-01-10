@@ -51,7 +51,7 @@ namespace Tizen.NUI.Xaml
             IList<KeyValuePair<string, string>> xmlns;
             var attributes = ParseXamlAttributes(reader, out xmlns);
             var prefixes = PrefixesToIgnore(xmlns);
-            (rootNode.IgnorablePrefixes ?? (rootNode.IgnorablePrefixes=new List<string>())).AddRange(prefixes);
+            (rootNode.IgnorablePrefixes ?? (rootNode.IgnorablePrefixes = new List<string>())).AddRange(prefixes);
             rootNode.Properties.AddRange(attributes);
             ParseXamlElementFor(rootNode, reader);
         }
@@ -190,7 +190,7 @@ namespace Tizen.NUI.Xaml
             throw new XamlParseException("Closing PropertyElement expected", (IXmlLineInfo)reader);
         }
 
-        static IList<KeyValuePair<XmlName, INode>> ParseXamlAttributes(XmlReader reader, out IList<KeyValuePair<string,string>> xmlns)
+        static IList<KeyValuePair<XmlName, INode>> ParseXamlAttributes(XmlReader reader, out IList<KeyValuePair<string, string>> xmlns)
         {
             Debug.Assert(reader.NodeType == XmlNodeType.Element);
             var attributes = new List<KeyValuePair<XmlName, INode>>();
@@ -200,13 +200,14 @@ namespace Tizen.NUI.Xaml
                 reader.MoveToAttribute(i);
 
                 //skip xmlns
-                if (reader.NamespaceURI == "http://www.w3.org/2000/xmlns/") {
+                if (reader.NamespaceURI == "http://www.w3.org/2000/xmlns/")
+                {
                     xmlns.Add(new KeyValuePair<string, string>(reader.LocalName, reader.Value));
                     continue;
                 }
 
                 var namespaceUri = reader.NamespaceURI;
-                if (reader.LocalName.Contains(".") && namespaceUri == "")
+                if (reader.LocalName.Contains(".") && string.IsNullOrEmpty(namespaceUri))
                     namespaceUri = ((IXmlNamespaceResolver)reader).LookupNamespace("");
                 var propertyName = new XmlName(namespaceUri, reader.LocalName);
 
@@ -214,50 +215,52 @@ namespace Tizen.NUI.Xaml
 
                 if (reader.NamespaceURI == X2006Uri)
                 {
-                    switch (reader.Name) {
-                    case "x:Key":
-                        propertyName = XmlName.xKey;
-                        break;
-                    case "x:Name":
-                        propertyName = XmlName.xName;
-                        break;
-                    case "x:Class":
-                    case "x:FieldModifier":
-                        continue;
-                    default:
-                        Debug.WriteLine("Unhandled attribute {0}", reader.Name);
-                        continue;
+                    switch (reader.Name)
+                    {
+                        case "x:Key":
+                            propertyName = XmlName.xKey;
+                            break;
+                        case "x:Name":
+                            propertyName = XmlName.xName;
+                            break;
+                        case "x:Class":
+                        case "x:FieldModifier":
+                            continue;
+                        default:
+                            Debug.WriteLine("Unhandled attribute {0}", reader.Name);
+                            continue;
                     }
                 }
 
                 if (reader.NamespaceURI == X2009Uri)
                 {
-                    switch (reader.Name) {
-                    case "x:Key":
-                        propertyName = XmlName.xKey;
-                        break;
-                    case "x:Name":
-                        propertyName = XmlName.xName;
-                        break;
-                    case "x:TypeArguments":
-                        propertyName = XmlName.xTypeArguments;
-                        value = TypeArgumentsParser.ParseExpression((string)value, (IXmlNamespaceResolver)reader, (IXmlLineInfo)reader);
-                        break;
-                    case "x:DataType":
-                        propertyName = XmlName.xDataType;
-                        break;
-                    case "x:Class":
-                    case "x:FieldModifier":
-                        continue;
-                    case "x:FactoryMethod":
-                        propertyName = XmlName.xFactoryMethod;
-                        break;
-                    case "x:Arguments":
-                        propertyName = XmlName.xArguments;
-                        break;
-                    default:
-                        Debug.WriteLine("Unhandled attribute {0}", reader.Name);
-                        continue;
+                    switch (reader.Name)
+                    {
+                        case "x:Key":
+                            propertyName = XmlName.xKey;
+                            break;
+                        case "x:Name":
+                            propertyName = XmlName.xName;
+                            break;
+                        case "x:TypeArguments":
+                            propertyName = XmlName.xTypeArguments;
+                            value = TypeArgumentsParser.ParseExpression((string)value, (IXmlNamespaceResolver)reader, (IXmlLineInfo)reader);
+                            break;
+                        case "x:DataType":
+                            propertyName = XmlName.xDataType;
+                            break;
+                        case "x:Class":
+                        case "x:FieldModifier":
+                            continue;
+                        case "x:FactoryMethod":
+                            propertyName = XmlName.xFactoryMethod;
+                            break;
+                        case "x:Arguments":
+                            propertyName = XmlName.xArguments;
+                            break;
+                        default:
+                            Debug.WriteLine("Unhandled attribute {0}", reader.Name);
+                            continue;
                     }
                 }
 
@@ -271,7 +274,8 @@ namespace Tizen.NUI.Xaml
         static IList<string> PrefixesToIgnore(IList<KeyValuePair<string, string>> xmlns)
         {
             var prefixes = new List<string>();
-            foreach (var kvp in xmlns) {
+            foreach (var kvp in xmlns)
+            {
                 var prefix = kvp.Key;
 
                 string typeName = null, ns = null, asm = null;
@@ -313,7 +317,8 @@ namespace Tizen.NUI.Xaml
             s_xmlnsDefinitions = new List<XmlnsDefinitionAttribute>();
 
             foreach (var assembly in s_assemblies)
-                foreach (XmlnsDefinitionAttribute attribute in assembly.GetCustomAttributes(typeof(XmlnsDefinitionAttribute))) {
+                foreach (XmlnsDefinitionAttribute attribute in assembly.GetCustomAttributes(typeof(XmlnsDefinitionAttribute)))
+                {
                     s_xmlnsDefinitions.Add(attribute);
                     attribute.AssemblyName = attribute.AssemblyName ?? assembly.FullName;
                 }
@@ -333,16 +338,19 @@ namespace Tizen.NUI.Xaml
             var lookupAssemblies = new List<XmlnsDefinitionAttribute>();
             var lookupNames = new List<string>();
 
-            foreach (var xmlnsDef in s_xmlnsDefinitions) {
+            foreach (var xmlnsDef in s_xmlnsDefinitions)
+            {
                 if (xmlnsDef.XmlNamespace != namespaceURI)
                     continue;
                 lookupAssemblies.Add(xmlnsDef);
             }
 
-            if (lookupAssemblies.Count == 0) {
+            if (lookupAssemblies.Count == 0)
+            {
                 string ns, asmstring, _;
                 XmlnsHelper.ParseXmlns(namespaceURI, out _, out ns, out asmstring);
-                lookupAssemblies.Add(new XmlnsDefinitionAttribute(namespaceURI, ns) {
+                lookupAssemblies.Add(new XmlnsDefinitionAttribute(namespaceURI, ns)
+                {
                     AssemblyName = asmstring ?? currentAssembly.FullName
                 });
             }
@@ -361,7 +369,8 @@ namespace Tizen.NUI.Xaml
             }
 
             Type type = null;
-            foreach (var asm in lookupAssemblies) {
+            foreach (var asm in lookupAssemblies)
+            {
                 foreach (var name in lookupNames)
                 {
                     if ((type = Type.GetType($"{asm.ClrNamespace}.{name}, {asm.AssemblyName}")) != null)
@@ -387,7 +396,7 @@ namespace Tizen.NUI.Xaml
             if (type != null && typeArguments != null)
             {
                 XamlParseException innerexception = null;
-                var args = typeArguments.Select(delegate(XmlType xmltype)
+                var args = typeArguments.Select(delegate (XmlType xmltype)
                 {
                     XamlParseException xpe;
                     var t = GetElementType(xmltype, xmlInfo, currentAssembly, out xpe);
@@ -407,7 +416,12 @@ namespace Tizen.NUI.Xaml
             }
 
             if (type == null)
-                exception = new XamlParseException($"Type {elementName} not found in xmlns {namespaceURI}", xmlInfo);
+            {
+                var message = $"Type {elementName} not found in xmlns {namespaceURI}\n";
+                message += "\n  - Make sure the all used assemblies (e.g. Tizen.NUI.Components) are included in the application project.";
+                message += "\n  - Make sure the type and namespace are correct.\n";
+                exception = new XamlParseException($"message", xmlInfo);
+            }
 
             return type;
         }

@@ -24,9 +24,9 @@ namespace Tizen.NUI.Binding
         public void SetBinding(BindableProperty property, BindingBase binding)
         {
             if (property == null)
-                throw new ArgumentNullException("property");
+                throw new ArgumentNullException(nameof(property));
             if (binding == null)
-                throw new ArgumentNullException("binding");
+                throw new ArgumentNullException(nameof(binding));
 
             Values.Remove(property);
             Bindings[property] = binding;
@@ -35,7 +35,7 @@ namespace Tizen.NUI.Binding
         public void SetValue(BindableProperty property, object value)
         {
             if (property == null)
-                throw new ArgumentNullException("property");
+                throw new ArgumentNullException(nameof(property));
 
             Bindings.Remove(property);
             Values[property] = value;

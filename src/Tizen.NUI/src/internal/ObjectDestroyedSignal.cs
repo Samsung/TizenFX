@@ -27,20 +27,20 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.ObjectDestroyedSignal.delete_ObjectDestroyedSignal(swigCPtr);
+            Interop.ObjectDestroyedSignal.DeleteObjectDestroyedSignal(swigCPtr);
         }
 
 
         public bool Empty()
         {
-            bool ret = Interop.ObjectDestroyedSignal.ObjectDestroyedSignal_Empty(swigCPtr);
+            bool ret = Interop.ObjectDestroyedSignal.Empty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.ObjectDestroyedSignal.ObjectDestroyedSignal_GetConnectionCount(swigCPtr);
+            uint ret = Interop.ObjectDestroyedSignal.GetConnectionCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -49,7 +49,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.ObjectDestroyedSignal.ObjectDestroyedSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.ObjectDestroyedSignal.Connect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -58,18 +58,18 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.ObjectDestroyedSignal.ObjectDestroyedSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.ObjectDestroyedSignal.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public void Emit(RefObject arg)
         {
-            Interop.ObjectDestroyedSignal.ObjectDestroyedSignal_Emit(swigCPtr, RefObject.getCPtr(arg));
+            Interop.ObjectDestroyedSignal.Emit(SwigCPtr, RefObject.getCPtr(arg));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public ObjectDestroyedSignal() : this(Interop.ObjectDestroyedSignal.new_ObjectDestroyedSignal(), true)
+        public ObjectDestroyedSignal() : this(Interop.ObjectDestroyedSignal.NewObjectDestroyedSignal(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

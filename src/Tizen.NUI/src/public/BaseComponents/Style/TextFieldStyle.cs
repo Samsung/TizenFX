@@ -530,16 +530,7 @@ namespace Tizen.NUI.BaseComponents
         /// Create an empty instance.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextFieldStyle()
-        {
-        }
-
-        /// <summary>
-        /// Create an instance and set properties from the given TextField.
-        /// </summary>
-        /// <param name="textField">The TextField instance that includes property data.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextFieldStyle(TextField textField) : base(textField)
+        public TextFieldStyle() : base()
         {
         }
 

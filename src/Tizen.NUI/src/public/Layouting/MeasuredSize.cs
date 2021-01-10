@@ -52,13 +52,13 @@ namespace Tizen.NUI
         /// LayoutLength size property
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public LayoutLength Size{ get; set;}
+        public LayoutLength Size { get; set; }
 
         /// <summary>
         /// Measured state for this size.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public StateType State{ get; set; }
+        public StateType State { get; set; }
 
         /// <summary>
         /// Measured states for a Size value.

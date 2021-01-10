@@ -33,11 +33,11 @@ namespace Tizen.NUI
         /// </summary>
         private static VisualFactory instance;
 
-        internal VisualFactory(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.VisualFactory.VisualFactory_SWIGUpcast(cPtr), cMemoryOwn)
+        internal VisualFactory(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.VisualFactory.Upcast(cPtr), cMemoryOwn)
         {
         }
 
-        internal VisualFactory() : this(Interop.VisualFactory.new_VisualFactory__SWIG_0(), true)
+        internal VisualFactory() : this(Interop.VisualFactory.NewVisualFactory(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -52,8 +52,8 @@ namespace Tizen.NUI
             {
                 if (!instance)
                 {
-                    instance = new VisualFactory(Interop.VisualFactory.VisualFactory_Get(), true);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    instance = new VisualFactory(Interop.VisualFactory.Get(), true);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 }
 
                 return instance;
@@ -82,7 +82,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public VisualBase CreateVisual(PropertyMap propertyMap)
         {
-            VisualBase ret = new VisualBase(Interop.VisualFactory.VisualFactory_CreateVisual__SWIG_0(swigCPtr, PropertyMap.getCPtr(propertyMap)), true);
+            VisualBase ret = new VisualBase(Interop.VisualFactory.CreateVisual(SwigCPtr, PropertyMap.getCPtr(propertyMap)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

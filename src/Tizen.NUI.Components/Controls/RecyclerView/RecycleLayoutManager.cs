@@ -58,23 +58,23 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public View Container{get;set;}
- 
+        public View Container { get; set; }
+
         /// <summary>
         /// Size of RecycleItem.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Size ItemSize{get;set;} = new Size();
- 
+        public Size ItemSize { get; set; } = new Size();
+
         /// <summary>
         /// Get/Set the orientation in the layout.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Orientation LayoutOrientation{get;set;} = Orientation.Vertical;
+        public Orientation LayoutOrientation { get; set; } = Orientation.Vertical;
 
         /// <summary>
         /// How far can you reach the next item.
@@ -90,7 +90,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public int DataCount{get; set;}
+        public int DataCount { get; set; }
 
         /// <summary>
         /// The last scrolled position which is calculated by ScrollableBase. The value should be updated in the Recycle() method.
@@ -108,7 +108,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void Layout(float scrollPosition)
         {
-           
+
         }
 
         /// <summary>

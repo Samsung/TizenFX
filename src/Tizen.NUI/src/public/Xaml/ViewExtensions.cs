@@ -29,12 +29,14 @@ using System;
 using System.Reflection;
 using System.ComponentModel;
 using Tizen.NUI.Binding;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.NUI.Xaml
 {
     /// <summary>
     /// Extension class for View defining Tizen.NUI.Xaml.Extensions.LoadFromXaml{TView} method.
     /// </summary>
+    [SuppressMessage("Microsoft.Design", "CA1724: Type names should not match namespaces")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public static class Extensions
     {
@@ -47,7 +49,7 @@ namespace Tizen.NUI.Xaml
         /// <returns>A TXaml with the properties that are defined in the application manifest for callingType.</returns>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static TXaml LoadFromXaml<TXaml>(this TXaml view, Type callingType) 
+        public static TXaml LoadFromXaml<TXaml>(this TXaml view, Type callingType)
         {
             XamlLoader.Load(view, callingType);
             return view;

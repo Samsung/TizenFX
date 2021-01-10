@@ -34,7 +34,7 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public partial class GLWindow : BaseHandle
     {
-        internal GLWindow(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.GLWindow.GlWindow_SWIGUpcast(cPtr), cMemoryOwn)
+        internal GLWindow(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.GLWindow.GlWindowUpcast(cPtr), cMemoryOwn)
         {
 
         }
@@ -45,7 +45,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>A new GLWindow.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public GLWindow() : this(Interop.GLWindow.GlWindow_New__SWIG_0(), true)
+        public GLWindow() : this(Interop.GLWindow.GlWindowNew(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -59,7 +59,7 @@ namespace Tizen.NUI
         /// <param name="isTranslucent">Whether Window is translucent.</param>
         /// <returns>A new Window.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public GLWindow(string name, Rectangle windowPosition = null, bool isTranslucent = false) : this(Interop.GLWindow.GlWindow_New__SWIG_1( Rectangle.getCPtr(windowPosition), name, "", isTranslucent), true)
+        public GLWindow(string name, Rectangle windowPosition = null, bool isTranslucent = false) : this(Interop.GLWindow.GlWindowNew(Rectangle.getCPtr(windowPosition), name, "", isTranslucent), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -80,19 +80,19 @@ namespace Tizen.NUI
             /// Landscape orientation. A wide view area is needed.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            Landscape = 1,
+            Landscape = 90,
 
             /// <summary>
             /// Portrait inverse orientation.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            PortraitInverse = 2,
+            PortraitInverse = 180,
 
             /// <summary>
             /// Landscape inverse orientation.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            LandscapeInverse = 3,
+            LandscapeInverse = 270,
 
             /// <summary>
             /// No orientation. It is for the preferred orientation
@@ -106,22 +106,33 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets a size of the window.
         /// </summary>
+        /// <exception cref="ArgumentNullException"> Thrown when value is null. </exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Size2D WindowSize
         {
             get
             {
-                var val = new Rectangle(Interop.GLWindow.GlWindow_GetPositionSize(swigCPtr), true);
+                global::System.IntPtr intPtr = Interop.GLWindow.GlWindowGetPositionSize(SwigCPtr);
+                var val = new Rectangle(intPtr, true);
                 Size2D ret = new Size2D(val.Width, val.Height);
+                val.Dispose();
 
                 return ret;
             }
             set
             {
-                var val = new Rectangle(Interop.GLWindow.GlWindow_GetPositionSize(swigCPtr), true);
-                Rectangle ret = new Rectangle(val.X, val.Y, value.Width, value.Height );
+                if (null == value)
+                {
+                    throw new ArgumentNullException(nameof(value));
+                }
 
-                Interop.GLWindow.GlWindow_SetPositionSize(swigCPtr, Rectangle.getCPtr(ret));
+                global::System.IntPtr intPtr = Interop.GLWindow.GlWindowGetPositionSize(SwigCPtr);
+                Rectangle val = new Rectangle(intPtr, true);
+                Rectangle ret = new Rectangle(val.X, val.Y, value.Width, value.Height);
+                val.Dispose();
+
+                Interop.GLWindow.GlWindowSetPositionSize(SwigCPtr, Rectangle.getCPtr(ret));
+                ret.Dispose();
             }
         }
 
@@ -153,9 +164,9 @@ namespace Tizen.NUI
         /// <param name="msaa">The bit of msaa.</param>
         /// <param name="version">The GLES version.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetEglConfig( bool depth, bool stencil, int msaa, GLESVersion version )
+        public void SetEglConfig(bool depth, bool stencil, int msaa, GLESVersion version)
         {
-            Interop.GLWindow.GlWindow_SetEglConfig(swigCPtr, depth, stencil, msaa, (int)version);
+            Interop.GLWindow.GlWindowSetEglConfig(SwigCPtr, depth, stencil, msaa, (int)version);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -165,7 +176,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Show()
         {
-            Interop.GLWindow.GlWindow_Show(swigCPtr);
+            Interop.GLWindow.GlWindowShow(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -175,7 +186,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Hide()
         {
-            Interop.GLWindow.GlWindow_Hide(swigCPtr);
+            Interop.GLWindow.GlWindowHide(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -185,7 +196,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Raise()
         {
-            Interop.GLWindow.GlWindow_Raise(swigCPtr);
+            Interop.GLWindow.GlWindowRaise(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -195,7 +206,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Lower()
         {
-            Interop.GLWindow.GlWindow_Lower(swigCPtr);
+            Interop.GLWindow.GlWindowLower(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -205,7 +216,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Activate()
         {
-            Interop.GLWindow.GlWindow_Activate(swigCPtr);
+            Interop.GLWindow.GlWindowActivate(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -218,14 +229,16 @@ namespace Tizen.NUI
         {
             get
             {
-                Rectangle val = new Rectangle(Interop.GLWindow.GlWindow_GetPositionSize(swigCPtr), true);
-                Rectangle ret = new Rectangle(val.X, val.Y, val.Width, val.Height );
+                global::System.IntPtr intPtr = Interop.GLWindow.GlWindowGetPositionSize(SwigCPtr);
+                Rectangle val = new Rectangle(intPtr, true);
+                Rectangle ret = new Rectangle(val.X, val.Y, val.Width, val.Height);
+                val.Dispose();
 
                 return ret;
             }
             set
             {
-                Interop.GLWindow.GlWindow_SetPositionSize(swigCPtr, Rectangle.getCPtr(value));
+                Interop.GLWindow.GlWindowSetPositionSize(SwigCPtr, Rectangle.getCPtr(value));
             }
         }
 
@@ -236,7 +249,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetSupportedAuxiliaryHintCount()
         {
-            uint ret = Interop.GLWindow.GlWindow_GetSupportedAuxiliaryHintCount(swigCPtr);
+            uint ret = Interop.GLWindow.GlWindowGetSupportedAuxiliaryHintCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -249,7 +262,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string GetSupportedAuxiliaryHint(uint index)
         {
-            string ret = Interop.GLWindow.GlWindow_GetSupportedAuxiliaryHint(swigCPtr, index);
+            string ret = Interop.GLWindow.GlWindowGetSupportedAuxiliaryHint(SwigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -263,7 +276,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint AddAuxiliaryHint(string hint, string value)
         {
-            uint ret = Interop.GLWindow.GlWindow_AddAuxiliaryHint(swigCPtr, hint, value);
+            uint ret = Interop.GLWindow.GlWindowAddAuxiliaryHint(SwigCPtr, hint, value);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -276,7 +289,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool RemoveAuxiliaryHint(uint id)
         {
-            bool ret = Interop.GLWindow.GlWindow_RemoveAuxiliaryHint(swigCPtr, id);
+            bool ret = Interop.GLWindow.GlWindowRemoveAuxiliaryHint(SwigCPtr, id);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -290,7 +303,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool SetAuxiliaryHintValue(uint id, string value)
         {
-            bool ret = Interop.GLWindow.GlWindow_SetAuxiliaryHintValue(swigCPtr, id, value);
+            bool ret = Interop.GLWindow.GlWindowSetAuxiliaryHintValue(SwigCPtr, id, value);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -303,7 +316,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string GetAuxiliaryHintValue(uint id)
         {
-            string ret = Interop.GLWindow.GlWindow_GetAuxiliaryHintValue(swigCPtr, id);
+            string ret = Interop.GLWindow.GlWindowGetAuxiliaryHintValue(SwigCPtr, id);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -316,7 +329,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetAuxiliaryHintId(string hint)
         {
-            uint ret = Interop.GLWindow.GlWindow_GetAuxiliaryHintId(swigCPtr, hint);
+            uint ret = Interop.GLWindow.GlWindowGetAuxiliaryHintId(SwigCPtr, hint);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -328,7 +341,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetInputRegion(Rectangle inputRegion)
         {
-            Interop.GLWindow.GlWindow_SetInputRegion(swigCPtr, Rectangle.getCPtr(inputRegion));
+            Interop.GLWindow.GlWindowSetInputRegion(SwigCPtr, Rectangle.getCPtr(inputRegion));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -344,7 +357,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetOpaqueState(bool opaque)
         {
-            Interop.GLWindow.GlWindow_SetOpaqueState(swigCPtr, opaque);
+            Interop.GLWindow.GlWindowSetOpaqueState(SwigCPtr, opaque);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -356,7 +369,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsOpaqueState()
         {
-            bool ret = Interop.GLWindow.GlWindow_IsOpaqueState(swigCPtr);
+            bool ret = Interop.GLWindow.GlWindowIsOpaqueState(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -368,7 +381,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetPreferredOrientation(GLWindow.GLWindowOrientation orientation)
         {
-            Interop.GLWindow.GlWindow_SetPreferredOrientation(swigCPtr, (int)orientation);
+            Interop.GLWindow.GlWindowSetPreferredOrientation(SwigCPtr, (int)orientation);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -379,7 +392,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public GLWindow.GLWindowOrientation GetCurrentOrientation()
         {
-            GLWindow.GLWindowOrientation ret = (GLWindow.GLWindowOrientation)Interop.GLWindow.GlWindow_GetCurrentOrientation(swigCPtr);
+            GLWindow.GLWindowOrientation ret = (GLWindow.GLWindowOrientation)Interop.GLWindow.GlWindowGetCurrentOrientation(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -389,16 +402,25 @@ namespace Tizen.NUI
         /// This API is for setting several orientations one time.
         /// </summary>
         /// <param name="orientations">The list of orientations.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when orientations is null. </exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetAvailableOrientations(List<GLWindow.GLWindowOrientation> orientations)
         {
+            if (null == orientations)
+            {
+                throw new ArgumentNullException(nameof(orientations));
+            }
+
             PropertyArray orientationArray = new PropertyArray();
             for (int i = 0; i < orientations.Count; i++)
             {
-                orientationArray.PushBack(new PropertyValue((int)orientations[i]));
+                PropertyValue val = new PropertyValue((int)orientations[i]);
+                orientationArray.PushBack(val);
+                val.Dispose();
             }
 
-            Interop.GLWindow.GlWindow_SetAvailableOrientations(swigCPtr, PropertyArray.getCPtr(orientationArray), orientations.Count);
+            Interop.GLWindow.GlWindowSetAvailableOrientations(SwigCPtr, PropertyArray.getCPtr(orientationArray), orientations.Count);
+            orientationArray.Dispose();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -409,7 +431,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RenderOnce()
         {
-            Interop.GLWindow.GlWindow_RenderOnce(swigCPtr);
+            Interop.GLWindow.GlWindowRenderOnce(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -426,7 +448,7 @@ namespace Tizen.NUI
         /// Type of callback to render to frame to use native GL code.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public delegate void GLRenderFrameCallbackType();
+        public delegate int GLRenderFrameCallbackType();
 
         GLRenderFrameCallbackType GLRenderFrameCallback;
         HandleRef RenderHandlerRef;
@@ -448,7 +470,7 @@ namespace Tizen.NUI
         /// <param name="glRenderFrame">The callback function to render to the frame</param>
         /// <param name="glTerminate">The callback function to clean-up application GL resource</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void RegisterGlCallback( GLInitializeCallbackType glInit, GLRenderFrameCallbackType glRenderFrame, GLTerminateCallbackType glTerminate )
+        public void RegisterGlCallback(GLInitializeCallbackType glInit, GLRenderFrameCallbackType glRenderFrame, GLTerminateCallbackType glTerminate)
         {
             GLInitializeCallback = glInit;
             InitHandleRef = new HandleRef(this, Marshal.GetFunctionPointerForDelegate<Delegate>(GLInitializeCallback));
@@ -459,7 +481,7 @@ namespace Tizen.NUI
             GLTerminateCallback = glTerminate;
             TerminateHandlerRef = new HandleRef(this, Marshal.GetFunctionPointerForDelegate<Delegate>(GLTerminateCallback));
 
-            Interop.GLWindow.GlWindow_RegisterGlCallback(swigCPtr, InitHandleRef, RenderHandlerRef, TerminateHandlerRef);
+            Interop.GLWindow.GlWindowRegisterGlCallback(SwigCPtr, InitHandleRef, RenderHandlerRef, TerminateHandlerRef);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -491,7 +513,7 @@ namespace Tizen.NUI
         /// This will not be public opened.
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.Window.delete_Window(swigCPtr);
+            Interop.Window.DeleteWindow(swigCPtr);
         }
     }
 }

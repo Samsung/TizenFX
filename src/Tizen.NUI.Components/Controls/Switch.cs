@@ -317,21 +317,6 @@ namespace Tizen.NUI.Components
             IsSelectable = true;
         }
 
-        /// <summary>
-        /// Theme change callback when theme is changed, this callback will be trigger.
-        /// </summary>
-        /// <param name="sender">The sender</param>
-        /// <param name="e">The event data</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
-        {
-            SwitchStyle switchStyle = StyleManager.Instance.GetViewStyle(StyleName) as SwitchStyle;
-            if (null != switchStyle)
-            {
-                ApplyStyle(switchStyle);
-            }
-        }
-
         private void OnSelect()
         {
             ((SwitchExtension)Extension)?.OnSelectedChanged(this);
@@ -355,7 +340,10 @@ namespace Tizen.NUI.Components
         /// SelectEventArgs is a class to record item selected arguments which will sent to user.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// It will be removed in API10
         [Obsolete("Deprecated in API8; Will be removed in API10. Please use SelectedChangedEventArgs instead.")]
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
         public class SelectEventArgs : EventArgs
         {
             /// <summary> Select state of Switch </summary>

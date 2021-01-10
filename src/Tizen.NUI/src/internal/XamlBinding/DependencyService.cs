@@ -111,7 +111,7 @@ namespace Tizen.NUI.Binding
                     Tizen.Log.Fatal("NUI", "Could not load assembly: {0} for Attibute {1} | Some renderers may not be loaded", assembly.FullName, targetAttrType.FullName);
                     continue;
                 }
-                
+
                 if (attributes.Length == 0)
                     continue;
 

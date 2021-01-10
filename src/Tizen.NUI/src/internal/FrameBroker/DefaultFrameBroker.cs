@@ -26,23 +26,36 @@ namespace Tizen.NUI
     {
         private Window window;
         private ImageView providerImage;
+        private bool isAnimating;
 
-        public delegate void AnimationEventHandler();
+        public delegate void AnimationEventHandler(bool direction);
         internal event AnimationEventHandler AnimationInitialized;
         internal event AnimationEventHandler AnimationFinished;
+
+        internal View mainView;
+        private bool direction;
+
+        internal Animation animation;
 
         internal DefaultFrameBroker(Window window) : base(window)
         {
             this.window = window;
+            isAnimating = false;
         }
 
         protected override void OnFrameResumed(FrameData frame)
         {
             base.OnFrameResumed(frame);
-            if (AnimationInitialized != null)
+
+            direction = frame.DirectionForward;
+
+            if (isAnimating)
             {
-                AnimationInitialized();
+                return;
             }
+            isAnimating = true;
+
+            AnimationInitialized?.Invoke(frame.DirectionForward);
 
             if (frame.DirectionForward)
             {
@@ -56,21 +69,60 @@ namespace Tizen.NUI
             StartAnimation();
         }
 
-        private void PlayAnimateTo(FrameData frame, TransitionAnimation animation)
+        protected override void OnFramePaused()
         {
-            if (animation)
-            {
-                providerImage = frame.Image;
-                providerImage.Size = window.Size;
-                window.Add(providerImage);
+            base.OnFramePaused();
+            animation?.Stop();
 
-                if (animation is SlideIn)
+            ResetImage();
+
+            isAnimating = false;
+        }
+
+        private void PlayAnimateTo(FrameData frame, TransitionAnimation transition)
+        {
+            if (transition != null)
+            {
+                //ResetImage();
+                if (!providerImage)
                 {
-                    SlideIn slideIn = animation as SlideIn;
-                    providerImage.PositionX = slideIn.GetDefaultInitValue();
+                    providerImage = new ImageView(transition.DefaultImageStyle);
+                    providerImage.ParentOrigin = transition.DefaultImageStyle.ParentOrigin;
+                    providerImage.PivotPoint = transition.DefaultImageStyle.PivotPoint;
+                    providerImage.PositionUsesPivotPoint = true;
+                    providerImage.AddRenderer(GetRenderer(frame));
+                    if (mainView)
+                    {
+                        mainView.Add(providerImage);
+                        providerImage.LowerToBottom();
+                    }
+                    else
+                    {
+                        window.Add(providerImage);
+                    }
+                }
+                else
+                {
+                    providerImage.ApplyStyle(transition.DefaultImageStyle.Clone());
                 }
 
+                providerImage.Show();
+                int propertyCount = transition.AnimationDataList.Count;
+                animation = new Animation(transition.DurationMilliSeconds+80);
+                animation.Properties = new string[propertyCount];
+                animation.DestValue = new string[propertyCount];
+                animation.StartTime = new int[propertyCount];
+                animation.EndTime = new int[propertyCount];
+
+                for (int i = 0; i < propertyCount; i++)
+                {
+                    animation.Properties[i] = transition.AnimationDataList[i].Property;
+                    animation.DestValue[i] = transition.AnimationDataList[i].DestinationValue;
+                    animation.StartTime[i] = 80+transition.AnimationDataList[i].StartTime;
+                    animation.EndTime[i] = 80+transition.AnimationDataList[i].EndTime;
+                }
                 animation.PlayAnimateTo(providerImage);
+                animation.Finished += Ani_Finished;
             }
             else
             {
@@ -78,9 +130,10 @@ namespace Tizen.NUI
             }
         }
 
+
         private TransitionAnimation forwardAnimation;
-        internal TransitionAnimation ForwardAnimation 
-        { 
+        internal TransitionAnimation ForwardAnimation
+        {
             get
             {
                 return forwardAnimation;
@@ -88,7 +141,6 @@ namespace Tizen.NUI
             set
             {
                 forwardAnimation = value;
-                forwardAnimation.Finished += Ani_Finished;
             }
         }
 
@@ -96,30 +148,31 @@ namespace Tizen.NUI
         internal TransitionAnimation BackwardAnimation
         {
             get
-            { 
+            {
                 return backwardAnimation;
             }
             set
             {
                 backwardAnimation = value;
-                backwardAnimation.Finished += Ani_Finished;
             }
         }
 
         private void Ani_Finished(object sender, EventArgs e)
         {
-            if (AnimationFinished != null)
-            {
-                AnimationFinished();
-            }
+            FinishAnimation();
 
+            AnimationFinished?.Invoke(direction);
+        }
+
+        private void ResetImage()
+        {
             if (providerImage != null)
             {
-                providerImage.Unparent();
-                providerImage.Dispose();
-                providerImage = null;
+                providerImage.Hide();
+                //providerImage.Unparent();
+                //providerImage.Dispose();
+                //providerImage = null;
             }
-            FinishAnimation();
         }
     }
 }

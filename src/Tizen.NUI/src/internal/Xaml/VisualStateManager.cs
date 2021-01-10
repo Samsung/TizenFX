@@ -18,8 +18,8 @@ namespace Tizen.NUI.Xaml
         }
 
         public static readonly BindableProperty VisualStateGroupsProperty =
-            BindableProperty.CreateAttached("VisualStateGroups", typeof(VisualStateGroupList), typeof(/*VisualElement*/BaseHandle), 
-                defaultValue: null, propertyChanged: VisualStateGroupsPropertyChanged, 
+            BindableProperty.CreateAttached("VisualStateGroups", typeof(VisualStateGroupList), typeof(/*VisualElement*/BaseHandle),
+                defaultValue: null, propertyChanged: VisualStateGroupsPropertyChanged,
                 defaultValueCreator: bindable => new VisualStateGroupList());
 
         static void VisualStateGroupsPropertyChanged(BindableObject bindable, object oldValue, object newValue)
@@ -96,7 +96,7 @@ namespace Tizen.NUI.Xaml
         readonly IList<VisualStateGroup> _internalList;
 
         void Validate(IList<VisualStateGroup> groups)
-        { 
+        {
             // If we have 1 group, no need to worry about duplicate group names
             if (groups.Count > 1)
             {
@@ -117,7 +117,7 @@ namespace Tizen.NUI.Xaml
             }
         }
 
-        public VisualStateGroupList() 
+        public VisualStateGroupList()
         {
             _internalList = new WatchAddList<VisualStateGroup>(Validate);
         }
@@ -199,7 +199,7 @@ namespace Tizen.NUI.Xaml
 
     [RuntimeNameProperty(nameof(Name))]
     [ContentProperty(nameof(States))]
-    internal sealed class VisualStateGroup 
+    internal sealed class VisualStateGroup
     {
         public VisualStateGroup()
         {
@@ -226,7 +226,7 @@ namespace Tizen.NUI.Xaml
 
         internal VisualStateGroup Clone()
         {
-            var clone =  new VisualStateGroup {TargetType = TargetType, Name = Name, CurrentState = CurrentState};
+            var clone = new VisualStateGroup { TargetType = TargetType, Name = Name, CurrentState = CurrentState };
             foreach (VisualState state in States)
             {
                 clone.States.Add(state.Clone());
@@ -249,7 +249,7 @@ namespace Tizen.NUI.Xaml
     }
 
     [RuntimeNameProperty(nameof(Name))]
-    internal sealed class VisualState 
+    internal sealed class VisualState
     {
         public VisualState()
         {
@@ -257,7 +257,7 @@ namespace Tizen.NUI.Xaml
         }
 
         public string Name { get; set; }
-        public IList<Setter> Setters { get;}
+        public IList<Setter> Setters { get; }
         public Type TargetType { get; set; }
 
         internal VisualState Clone()

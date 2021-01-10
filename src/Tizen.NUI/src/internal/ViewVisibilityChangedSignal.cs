@@ -29,20 +29,20 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.ViewVisibilityChangedSignal.delete_ViewVisibilityChangedSignal(swigCPtr);
+            Interop.ViewVisibilityChangedSignal.DeleteViewVisibilityChangedSignal(swigCPtr);
         }
 
 
         public bool Empty()
         {
-            bool ret = Interop.ViewVisibilityChangedSignal.ViewVisibilityChangedSignal_Empty(swigCPtr);
+            bool ret = Interop.ViewVisibilityChangedSignal.Empty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.ViewVisibilityChangedSignal.ViewVisibilityChangedSignal_GetConnectionCount(swigCPtr);
+            uint ret = Interop.ViewVisibilityChangedSignal.GetConnectionCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -51,7 +51,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.ViewVisibilityChangedSignal.ViewVisibilityChangedSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.ViewVisibilityChangedSignal.Connect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -60,18 +60,18 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.ViewVisibilityChangedSignal.ViewVisibilityChangedSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.ViewVisibilityChangedSignal.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public void Emit(View arg)
         {
-            Interop.ViewVisibilityChangedSignal.ViewVisibilityChangedSignal_Emit(swigCPtr, View.getCPtr(arg));
+            Interop.ViewVisibilityChangedSignal.Emit(SwigCPtr, View.getCPtr(arg));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public ViewVisibilityChangedSignal() : this(Interop.ViewVisibilityChangedSignal.new_ViewVisibilityChangedSignal(), true)
+        public ViewVisibilityChangedSignal() : this(Interop.ViewVisibilityChangedSignal.NewViewVisibilityChangedSignal(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

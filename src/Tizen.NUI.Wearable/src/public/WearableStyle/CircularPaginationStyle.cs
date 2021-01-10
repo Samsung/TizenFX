@@ -29,6 +29,43 @@ namespace Tizen.NUI.Wearable
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class CircularPaginationStyle : ControlStyle
     {
+        /// <summary>The IndicatorSize bindable property.</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty IndicatorSizeProperty = BindableProperty.Create(nameof(IndicatorSize), typeof(Size), typeof(CircularPaginationStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            ((CircularPaginationStyle)bindable).indicatorSize = newValue == null ? null : new Size((Size)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            return ((CircularPaginationStyle)bindable).indicatorSize;
+        });
+
+        /// <summary>The IndicatorImageUrlSelector bindable property.</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty IndicatorImageUrlSelectorProperty = BindableProperty.Create("IndicatorImageUrlSelector", typeof(Selector<string>), typeof(CircularPaginationStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            ((CircularPaginationStyle)bindable).indicatorImageUrl = ((Selector<string>)newValue)?.Clone();
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            return ((CircularPaginationStyle)bindable).indicatorImageUrl;
+        });
+
+        /// <summary>The CenterIndicatorImageUrlSelector bindable property.</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty CenterIndicatorImageUrlSelectorProperty = BindableProperty.Create("CenterIndicatorImageUrlSelector", typeof(Selector<string>), typeof(CircularPaginationStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            ((CircularPaginationStyle)bindable).centerIndicatorImageUrl = ((Selector<string>)newValue)?.Clone();
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            return ((CircularPaginationStyle)bindable).centerIndicatorImageUrl;
+        });
+
+        private Size indicatorSize;
+        private Selector<string> indicatorImageUrl;
+        private Selector<string> centerIndicatorImageUrl;
+
         static CircularPaginationStyle() { }
 
         /// <summary>
@@ -50,9 +87,6 @@ namespace Tizen.NUI.Wearable
         [EditorBrowsable(EditorBrowsableState.Never)]
         public CircularPaginationStyle(CircularPaginationStyle style) : base(style)
         {
-            if (null == style) return;
-
-            this.CopyFrom(style);
         }
 
         /// <summary>
@@ -61,7 +95,11 @@ namespace Tizen.NUI.Wearable
         /// <since_tizen> 8 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Size IndicatorSize { get; set; }
+        public Size IndicatorSize
+        {
+            get => (Size)GetValue(IndicatorSizeProperty);
+            set => SetValue(IndicatorSizeProperty, value);
+        }
 
         /// <summary>
         /// Gets or sets the resource of indicator.
@@ -69,7 +107,11 @@ namespace Tizen.NUI.Wearable
         /// <since_tizen> 8 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Selector<string> IndicatorImageURL { get; set; } = new Selector<string>();
+        public Selector<string> IndicatorImageURL
+        {
+            get => (Selector<string>)GetValue(IndicatorImageUrlSelectorProperty);
+            set => SetValue(IndicatorImageUrlSelectorProperty, value);
+        }
 
         /// <summary>
         /// Gets or sets the resource of the center indicator.
@@ -77,34 +119,10 @@ namespace Tizen.NUI.Wearable
         /// <since_tizen> 8 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Selector<string> CenterIndicatorImageURL { get; set; } = new Selector<string>();
-
-        /// <summary>
-        /// Retrieves a copy of CircularPaginationStyle.
-        /// </summary>
-        /// <since_tizen> 8 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override void CopyFrom(BindableObject bindableObject)
+        public Selector<string> CenterIndicatorImageURL
         {
-            base.CopyFrom(bindableObject);
-
-            CircularPaginationStyle circularPaginationStyle = bindableObject as CircularPaginationStyle;
-            if (null != circularPaginationStyle)
-            {
-                if (null != circularPaginationStyle.IndicatorSize)
-                {
-                    IndicatorSize = new Size(circularPaginationStyle.IndicatorSize.Width, circularPaginationStyle.IndicatorSize.Height);
-                }
-                if (null != circularPaginationStyle.IndicatorImageURL)
-                {
-                    IndicatorImageURL?.Clone(circularPaginationStyle.IndicatorImageURL);
-                }
-                if (null != circularPaginationStyle.CenterIndicatorImageURL)
-                {
-                    CenterIndicatorImageURL?.Clone(circularPaginationStyle.CenterIndicatorImageURL);
-                }
-            }
+            get => (Selector<string>)GetValue(CenterIndicatorImageUrlSelectorProperty);
+            set => SetValue(CenterIndicatorImageUrlSelectorProperty, value);
         }
 
         private void Initialize()
@@ -112,13 +130,13 @@ namespace Tizen.NUI.Wearable
             IndicatorSize = new Size(10, 10);
             IndicatorImageURL = new Selector<string>()
             {
-                Normal = "/usr/share/dotnet.tizen/framework/res/" + "nui_component_default_pagination_normal_dot.png",
-                Selected = "/usr/share/dotnet.tizen/framework/res/" + "nui_component_default_pagination_focus_dot.png",
+                Normal = Tizen.NUI.FrameworkInformation.ResourcePath + "nui_component_default_pagination_normal_dot.png",
+                Selected = Tizen.NUI.FrameworkInformation.ResourcePath + "nui_component_default_pagination_focus_dot.png",
             };
             CenterIndicatorImageURL = new Selector<string>()
             {
-                Normal = "/usr/share/dotnet.tizen/framework/res/" + "nui_wearable_circular_pagination_center_normal_dot.png",
-                Selected = "/usr/share/dotnet.tizen/framework/res/" + "nui_wearable_circular_pagination_center_focus_dot.png",
+                Normal = Tizen.NUI.FrameworkInformation.ResourcePath + "nui_wearable_circular_pagination_center_normal_dot.png",
+                Selected = Tizen.NUI.FrameworkInformation.ResourcePath + "nui_wearable_circular_pagination_center_focus_dot.png",
             };
         }
     }

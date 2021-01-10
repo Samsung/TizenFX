@@ -33,7 +33,7 @@ namespace Tizen.NUI.Components
         public OverlayAnimationButtonStyle() : base()
         {
             CornerRadius = 10;
-            BackgroundColor = new Color(0.3f, 0.3f, 0.3f, 0.5f);
+            BackgroundColor = new Selector<Color> { All = new Color(0.3f, 0.3f, 0.3f, 0.5f) };
             // PositionUsesPivotPoint = true;
             IconRelativeOrientation = Button.IconOrientation.Top;
             Text = new TextLabelStyle
@@ -109,7 +109,7 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            var overlayImage = button.GetCurrentOverlayImage(this);
+            var overlayImage = button.OverlayImage;
 
             if (overlayImage == null)
             {
@@ -120,13 +120,22 @@ namespace Tizen.NUI.Components
             {
                 var keyFrames = new KeyFrames();
                 keyFrames.Add(0.0f, 0.0f);
-                keyFrames.Add(0.25f, 1.0f, new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear));
-                keyFrames.Add(1.0f, 0.0f, new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOut));
+                AlphaFunction linear = new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear);
+                keyFrames.Add(0.25f, 1.0f, linear);
+                linear.Dispose();
+                AlphaFunction ease = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOut);
+                keyFrames.Add(1.0f, 0.0f, ease);
+                ease.Dispose();
 
                 PressAnimation = new Animation(600);
                 PressAnimation.EndAction = Animation.EndActions.StopFinal;
                 PressAnimation.AnimateBetween(overlayImage, "Opacity", keyFrames);
-                PressAnimation.AnimateTo(overlayImage, "Scale", new Vector3(1, 1, 1), 0, 600, new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOut));
+                keyFrames.Dispose();
+                Vector3 vec = new Vector3(1, 1, 1);
+                AlphaFunction easeout = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOut);
+                PressAnimation.AnimateTo(overlayImage, "Scale", vec, 0, 600, easeout);
+                vec.Dispose();
+                easeout.Dispose();
             }
 
             if (PressAnimation.State == Animation.States.Playing)
@@ -155,11 +164,11 @@ namespace Tizen.NUI.Components
             }
 
             if (PressAnimation.State == Animation.States.Playing)
-                {
-                    PressAnimation.Stop();
-                }
-                PressAnimation.Dispose();
-                PressAnimation = null;
+            {
+                PressAnimation.Stop();
+            }
+            PressAnimation.Dispose();
+            PressAnimation = null;
         }
     }
 }

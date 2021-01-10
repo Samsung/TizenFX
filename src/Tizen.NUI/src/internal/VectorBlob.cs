@@ -26,19 +26,19 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.VectorBlob.delete_VectorBlob(swigCPtr);
+            Interop.VectorBlob.DeleteVectorBlob(swigCPtr);
         }
 
         public byte R
         {
             set
             {
-                Interop.VectorBlob.VectorBlob_r_set(swigCPtr, value);
+                Interop.VectorBlob.RSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                byte ret = Interop.VectorBlob.VectorBlob_r_get(swigCPtr);
+                byte ret = Interop.VectorBlob.RGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -48,12 +48,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.VectorBlob.VectorBlob_g_set(swigCPtr, value);
+                Interop.VectorBlob.GSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                byte ret = Interop.VectorBlob.VectorBlob_g_get(swigCPtr);
+                byte ret = Interop.VectorBlob.GGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -63,12 +63,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.VectorBlob.VectorBlob_b_set(swigCPtr, value);
+                Interop.VectorBlob.BSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                byte ret = Interop.VectorBlob.VectorBlob_b_get(swigCPtr);
+                byte ret = Interop.VectorBlob.BGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -78,18 +78,18 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.VectorBlob.VectorBlob_a_set(swigCPtr, value);
+                Interop.VectorBlob.ASet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                byte ret = Interop.VectorBlob.VectorBlob_a_get(swigCPtr);
+                byte ret = Interop.VectorBlob.AGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
 
-        public VectorBlob() : this(Interop.VectorBlob.new_VectorBlob(), true)
+        public VectorBlob() : this(Interop.VectorBlob.NewVectorBlob(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

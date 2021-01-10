@@ -32,12 +32,12 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(WidgetApplication obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.WidgetApplication.delete_WidgetApplication(swigCPtr);
+            Interop.WidgetApplication.DeleteWidgetApplication(swigCPtr);
         }
 
         public static WidgetApplication NewWidgetApplication(string[] args, string stylesheet)
@@ -53,7 +53,7 @@ namespace Tizen.NUI
             int argc = args.Length;
             string argvStr = string.Join(" ", args);
 
-            IntPtr widgetIntPtr = Interop.WidgetApplication.WidgetApplication_New(argc, argvStr, stylesheet);
+            IntPtr widgetIntPtr = Interop.WidgetApplication.New(argc, argvStr, stylesheet);
 
             WidgetApplication ret = new WidgetApplication(widgetIntPtr, false);
 
@@ -62,14 +62,14 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal WidgetApplication(WidgetApplication widgetApplication) : this(Interop.WidgetApplication.new_WidgetApplication__SWIG_1(WidgetApplication.getCPtr(widgetApplication)), true)
+        internal WidgetApplication(WidgetApplication widgetApplication) : this(Interop.WidgetApplication.NewWidgetApplication(WidgetApplication.getCPtr(widgetApplication)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal WidgetApplication Assign(WidgetApplication widgetApplication)
         {
-            WidgetApplication ret = new WidgetApplication(Interop.WidgetApplication.WidgetApplication_Assign(swigCPtr, WidgetApplication.getCPtr(widgetApplication)), false);
+            WidgetApplication ret = new WidgetApplication(Interop.WidgetApplication.Assign(SwigCPtr, WidgetApplication.getCPtr(widgetApplication)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -91,13 +91,13 @@ namespace Tizen.NUI
             _createWidgetFunctionDelegateList.Add(newDelegate);
 
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(newDelegate);
-            CreateWidgetFunction createWidgetFunction = new CreateWidgetFunction(ip, true);
+            CreateWidgetFunction createWidgetFunction = new CreateWidgetFunction(ip);
 
-            Interop.WidgetApplication.WidgetApplication_RegisterWidgetCreatingFunction(swigCPtr, ref widgetName, CreateWidgetFunction.getCPtr(createWidgetFunction));
+            Interop.WidgetApplication.RegisterWidgetCreatingFunction(SwigCPtr, ref widgetName, CreateWidgetFunction.getCPtr(createWidgetFunction));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public void AddWidgetInstance( Widget widget )
+        public void AddWidgetInstance(Widget widget)
         {
             _widgetList.Add(widget);
         }
@@ -109,11 +109,11 @@ namespace Tizen.NUI
 
         public void AddWidgetInfo(Dictionary<Type, string> newWidgetInfo)
         {
-            foreach (KeyValuePair<Type, string> widgetInfo in newWidgetInfo )
+            foreach (KeyValuePair<Type, string> widgetInfo in newWidgetInfo)
             {
-                if ( _widgetInfo.ContainsKey(widgetInfo.Key) == false )
+                if (_widgetInfo.ContainsKey(widgetInfo.Key) == false)
                 {
-                    _widgetInfo.Add(widgetInfo.Key, widgetInfo.Value );
+                    _widgetInfo.Add(widgetInfo.Key, widgetInfo.Value);
                     string widgetName = widgetInfo.Value;
                     RegisterWidgetCreatingFunction(ref widgetName);
                 }
@@ -122,6 +122,11 @@ namespace Tizen.NUI
 
         public static System.IntPtr WidgetCreateFunction(ref string widgetName)
         {
+            if ((Instance as WidgetApplication) == null)
+            {
+                return IntPtr.Zero;
+            }
+
             Dictionary<System.Type, string> widgetInfo = (Instance as WidgetApplication).WidgetInfo;
 
             foreach (System.Type widgetType in widgetInfo.Keys)
@@ -129,7 +134,7 @@ namespace Tizen.NUI
                 if (widgetInfo[widgetType] == widgetName)
                 {
                     Widget widget = Activator.CreateInstance(widgetType) as Widget;
-                    if (widget)
+                    if (widget != null)
                     {
                         return widget.GetIntPtr();
                     }

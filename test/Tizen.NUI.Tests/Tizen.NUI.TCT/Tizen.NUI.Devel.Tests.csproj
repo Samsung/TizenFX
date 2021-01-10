@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Property Group for .NET Core Project -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <!-- Property Group for Tizen Project -->
+  <PropertyGroup>
+    <TizenCreateTpkOnBuild>true</TizenCreateTpkOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugType>portable</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>None</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+	<Folder Include="lib\" />
+  </ItemGroup>
+
+  <!--Import Project="..\Common\dependencies.props" /-->
+  <ItemGroup>
+    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.9" />
+  </ItemGroup>
+
+  <!-- Include Nuget Package for Tizen Project building -->
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Tizen.Log\Tizen.Log.csproj" />
+    <ProjectReference Include="..\..\..\src\Tizen.NUI.Components\Tizen.NUI.Components.csproj" />
+    <ProjectReference Include="..\..\..\src\Tizen.NUI\Tizen.NUI.csproj" />
+    <ProjectReference Include="..\nunit.framework\nunit.framework.csproj" />
+    <ProjectReference Include="..\nunitlite\nunitlite.csproj" />
+  </ItemGroup>
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="sdb root on&#xD;&#xA;sdb shell &quot;mount -o remount,rw /&quot;&#xD;&#xA;sdb shell &quot;rm /usr/share/dotnet.tizen/framework/*.ni.dll&quot;&#xD;&#xA;sdb push $(TargetDir)Tizen.NUI.dll $(TargetDir)Tizen.NUI.pdb /usr/share/dotnet.tizen/framework/&#xD;&#xA;sdb shell &quot;chsmack -a '_' /usr/share/dotnet.tizen/framework/Tizen.NUI.dll&quot;&#xD;&#xA;sdb shell &quot;chsmack -a '_' /usr/share/dotnet.tizen/framework/Tizen.NUI.pdb&quot;&#xD;&#xA;sdb push $(TargetDir)Tizen.NUI.Components.dll $(TargetDir)Tizen.NUI.Components.pdb /usr/share/dotnet.tizen/framework/&#xD;&#xA;sdb shell &quot;chsmack -a '_' /usr/share/dotnet.tizen/framework/Tizen.NUI.Components.dll&quot;&#xD;&#xA;sdb shell &quot;chsmack -a '_' /usr/share/dotnet.tizen/framework/Tizen.NUI.Components.pdb&quot;&#xD;&#xA;sdb shell sync&#xD;&#xA;" />
+  </Target>
+
+</Project>

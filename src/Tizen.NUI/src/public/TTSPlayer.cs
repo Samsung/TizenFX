@@ -30,16 +30,16 @@ namespace Tizen.NUI
         private static readonly TTSPlayer instance = TTSPlayer.Get();
         private StateChangedEventCallbackType _stateChangedEventCallback;
 
-        internal TTSPlayer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.TtsPlayer.TtsPlayer_SWIGUpcast(cPtr), cMemoryOwn)
+        internal TTSPlayer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.TtsPlayer.Upcast(cPtr), cMemoryOwn)
         {
         }
 
-        internal TTSPlayer() : this(Interop.TtsPlayer.new_TtsPlayer__SWIG_0(), true)
+        internal TTSPlayer() : this(Interop.TtsPlayer.NewTtsPlayer(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal TTSPlayer(TTSPlayer handle) : this(Interop.TtsPlayer.new_TtsPlayer__SWIG_1(TTSPlayer.getCPtr(handle)), true)
+        internal TTSPlayer(TTSPlayer handle) : this(Interop.TtsPlayer.NewTtsPlayer(TTSPlayer.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -145,7 +145,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static TTSPlayer Get(TTSMode mode)
         {
-            TTSPlayer ret = new TTSPlayer(Interop.TtsPlayer.TtsPlayer_Get__SWIG_0((int)mode), true);
+            TTSPlayer ret = new TTSPlayer(Interop.TtsPlayer.Get((int)mode), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -157,7 +157,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static TTSPlayer Get()
         {
-            TTSPlayer ret = new TTSPlayer(Interop.TtsPlayer.TtsPlayer_Get__SWIG_1(), true);
+            TTSPlayer ret = new TTSPlayer(Interop.TtsPlayer.Get(), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -170,7 +170,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Play(string text)
         {
-            Interop.TtsPlayer.TtsPlayer_Play(swigCPtr, text);
+            Interop.TtsPlayer.Play(SwigCPtr, text);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -181,7 +181,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Stop()
         {
-            Interop.TtsPlayer.TtsPlayer_Stop(swigCPtr);
+            Interop.TtsPlayer.Stop(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -192,7 +192,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Pause()
         {
-            Interop.TtsPlayer.TtsPlayer_Pause(swigCPtr);
+            Interop.TtsPlayer.Pause(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -203,7 +203,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Resume()
         {
-            Interop.TtsPlayer.TtsPlayer_Resume(swigCPtr);
+            Interop.TtsPlayer.Resume(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -215,26 +215,26 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public TTSState GetState()
         {
-            TTSState ret = (TTSState)Interop.TtsPlayer.TtsPlayer_GetState(swigCPtr);
+            TTSState ret = (TTSState)Interop.TtsPlayer.GetState(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TTSPlayer obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         internal StateChangedSignalType StateChangedSignal()
         {
-            StateChangedSignalType ret = new StateChangedSignalType(Interop.TtsPlayer.TtsPlayer_StateChangedSignal(swigCPtr), false);
+            StateChangedSignalType ret = new StateChangedSignalType(Interop.TtsPlayer.StateChangedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal TTSPlayer Assign(TTSPlayer rhs)
         {
-            TTSPlayer ret = new TTSPlayer(Interop.TtsPlayer.TtsPlayer_Assign(swigCPtr, TTSPlayer.getCPtr(rhs)), false);
+            TTSPlayer ret = new TTSPlayer(Interop.TtsPlayer.Assign(SwigCPtr, TTSPlayer.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

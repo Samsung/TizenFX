@@ -26,7 +26,7 @@ namespace Tizen.NUI
     /// The Color class.
     /// </summary>
     [Tizen.NUI.Binding.TypeConverter(typeof(ColorTypeConverter))]
-    public class Color : Disposable
+    public class Color : Disposable, ICloneable
     {
         /// <summary>
         /// Gets the black colored Color class.
@@ -88,7 +88,7 @@ namespace Tizen.NUI
         /// Default constructor
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public Color() : this(Interop.Vector4.new_Vector4__SWIG_0(), true)
+        public Color() : this(Interop.Vector4.NewVector4(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -102,7 +102,7 @@ namespace Tizen.NUI
         /// <param name="b">The blue component.</param>
         /// <param name="a">The alpha component.</param>
         /// <since_tizen> 3 </since_tizen>
-        public Color(float r, float g, float b, float a) : this(Interop.Vector4.new_Vector4__SWIG_1(ValueCheck(r), ValueCheck(g), ValueCheck(b), ValueCheck(a)), true)
+        public Color(float r, float g, float b, float a) : this(Interop.Vector4.NewVector4(ValueCheck(r), ValueCheck(g), ValueCheck(b), ValueCheck(a)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -112,7 +112,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="array">array Array of R,G,B,A.</param>
         /// <since_tizen> 3 </since_tizen>
-        public Color(float[] array) : this(Interop.Vector4.new_Vector4__SWIG_2(ValueCheck(array)), true)
+        public Color(float[] array) : this(Interop.Vector4.NewVector4(ValueCheck(array)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -121,19 +121,24 @@ namespace Tizen.NUI
         /// The conversion constructor from an hexcode of four floats.
         /// </summary>
         /// <param name="hexColor">Hex color code</param>
+        /// <exception cref="ArgumentNullException">This exception is thrown when hexColor is null.</exception>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Color(string hexColor) : this(Interop.Vector4.new_Vector4__SWIG_0(), true)
+        public Color(string hexColor) : this(Interop.Vector4.NewVector4(), true)
         {
             try
             {
+                if (null == hexColor)
+                {
+                    throw new ArgumentNullException(nameof(hexColor));
+                }
                 hexColor = hexColor.Replace("#", "");
-                
-                R = ((float)Convert.ToInt32(hexColor.Substring(0,2), 16))/255.0f;
-                G = ((float)Convert.ToInt32(hexColor.Substring(2,2), 16))/255.0f;
-                B = ((float)Convert.ToInt32(hexColor.Substring(4,2), 16))/255.0f;
-                A = hexColor.Length > 6 ? ((float)Convert.ToInt32(hexColor.Substring(6,2), 16))/255.0f : 1.0f;
+
+                R = ((float)Convert.ToInt32(hexColor.Substring(0, 2), 16)) / 255.0f;
+                G = ((float)Convert.ToInt32(hexColor.Substring(2, 2), 16)) / 255.0f;
+                B = ((float)Convert.ToInt32(hexColor.Substring(4, 2), 16)) / 255.0f;
+                A = hexColor.Length > 6 ? ((float)Convert.ToInt32(hexColor.Substring(6, 2), 16)) / 255.0f : 1.0f;
             }
             catch
             {
@@ -146,7 +151,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="color">System.Drawing.Color instance</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Color(global::System.Drawing.Color color) : this(Interop.Vector4.new_Vector4__SWIG_0(), true)
+        public Color(global::System.Drawing.Color color) : this(Interop.Vector4.NewVector4(), true)
         {
             R = color.R / 255.0f;
             G = color.G / 255.0f;
@@ -159,16 +164,16 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="other">The copy target.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Color(Color other) : this(other.R, other.G, other.B, other.A)
+        public Color(Color other) : this((float)other?.R, (float)other.G, (float)other.B, (float)other.A)
         {
         }
 
         internal Color(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-			hashDummy = false;
+            hashDummy = false;
         }
 
-        internal Color(ColorChangedCallback cb, float r, float g, float b, float a) : this(Interop.Vector4.new_Vector4__SWIG_1(ValueCheck(r), ValueCheck(g), ValueCheck(b), ValueCheck(a)), true)
+        internal Color(ColorChangedCallback cb, float r, float g, float b, float a) : this(Interop.Vector4.NewVector4(ValueCheck(r), ValueCheck(g), ValueCheck(b), ValueCheck(a)), true)
         {
             callback = cb;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -184,20 +189,32 @@ namespace Tizen.NUI
         /// <summary>
         /// The red component.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new Color(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// Color color = new Color();
+        /// color.R = 0.1f; 
+        /// // Please USE like this
+        /// float r = 0.1f, g = 0.5f, b = 0.9f, a = 1.0f;
+        /// Color color = new Color(r, g, b, a);
+        /// </code>
         /// <since_tizen> 3 </since_tizen>
         public float R
         {
             set
             {
-                Interop.Vector4.Vector4_r_set(swigCPtr, ValueCheck(value));
+                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Color(...) constructor");
+                Interop.Vector4.RSet(SwigCPtr, ValueCheck(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
                 callback?.Invoke(R, G, B, A);
             }
             get
             {
-                float ret = Interop.Vector4.Vector4_r_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                float ret = Interop.Vector4.RGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -205,20 +222,32 @@ namespace Tizen.NUI
         /// <summary>
         /// The green component.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new Color(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// Color color = new Color();
+        /// color.G = 0.5f; 
+        /// // Please USE like this
+        /// float r = 0.1f, g = 0.5f, b = 0.9f, a = 1.0f;
+        /// Color color = new Color(r, g, b, a);
+        /// </code>
         /// <since_tizen> 3 </since_tizen>
         public float G
         {
             set
             {
-                Interop.Vector4.Vector4_g_set(swigCPtr, ValueCheck(value));
+                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Color(...) constructor");
+                Interop.Vector4.GSet(SwigCPtr, ValueCheck(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
                 callback?.Invoke(R, G, B, A);
             }
             get
             {
-                float ret = Interop.Vector4.Vector4_g_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                float ret = Interop.Vector4.GGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -226,20 +255,32 @@ namespace Tizen.NUI
         /// <summary>
         /// The blue component.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new Color(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// Color color = new Color();
+        /// color.B = 0.9f; 
+        /// // Please USE like this
+        /// float r = 0.1f, g = 0.5f, b = 0.9f, a = 1.0f;
+        /// Color color = new Color(r, g, b, a);
+        /// </code>
         /// <since_tizen> 3 </since_tizen>
         public float B
         {
             set
             {
-                Interop.Vector4.Vector4_b_set(swigCPtr, ValueCheck(value));
+                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Color(...) constructor");
+                Interop.Vector4.BSet(SwigCPtr, ValueCheck(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
                 callback?.Invoke(R, G, B, A);
             }
             get
             {
-                float ret = Interop.Vector4.Vector4_b_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                float ret = Interop.Vector4.BGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -247,20 +288,32 @@ namespace Tizen.NUI
         /// <summary>
         /// The alpha component.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new Color(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// Color color = new Color();
+        /// color.A = 1.0f; 
+        /// // Please USE like this
+        /// float r = 0.1f, g = 0.5f, b = 0.9f, a = 1.0f;
+        /// Color color = new Color(r, g, b, a);
+        /// </code>
         /// <since_tizen> 3 </since_tizen>
         public float A
         {
             set
             {
-                Interop.Vector4.Vector4_a_set(swigCPtr, ValueCheck(value));
+                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Color(...) constructor");
+                Interop.Vector4.ASet(SwigCPtr, ValueCheck(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
                 callback?.Invoke(R, G, B, A);
             }
             get
             {
-                float ret = Interop.Vector4.Vector4_a_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                float ret = Interop.Vector4.AGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -286,7 +339,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator Vector4(Color color)
         {
-            return new Vector4(color.R, color.G, color.B, color.A);
+            return new Vector4((float)color?.R, (float)color.G, (float)color.B, (float)color.A);
         }
 
         /// <summary>
@@ -296,7 +349,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator Color(Vector4 vec)
         {
-            return new Color(vec.R, vec.G, vec.B, vec.A);
+            return new Color((float)vec?.R, (float)vec.G, (float)vec.B, (float)vec.A);
         }
 
         /// <summary>
@@ -305,9 +358,14 @@ namespace Tizen.NUI
         /// <param name="arg1">The first value.</param>
         /// <param name="arg2">The second value.</param>
         /// <returns>The color containing the result of the addition.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when arg1 is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         public static Color operator +(Color arg1, Color arg2)
         {
+            if (null == arg1)
+            {
+                throw new ArgumentNullException(nameof(arg1));
+            }
             Color result = arg1.Add(arg2);
             return ValueCheck(result);
         }
@@ -318,9 +376,14 @@ namespace Tizen.NUI
         /// <param name="arg1">The first value.</param>
         /// <param name="arg2">The second value.</param>
         /// <returns>The color containing the result of the subtraction.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when arg1 is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         public static Color operator -(Color arg1, Color arg2)
         {
+            if (null == arg1)
+            {
+                throw new ArgumentNullException(nameof(arg1));
+            }
             Color result = arg1.Subtract(arg2);
             return ValueCheck(result);
         }
@@ -330,9 +393,14 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="arg1">The target value.</param>
         /// <returns>The color containg the negation.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when arg1 is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         public static Color operator -(Color arg1)
         {
+            if (null == arg1)
+            {
+                throw new ArgumentNullException(nameof(arg1));
+            }
             Color result = arg1.Subtract();
             return ValueCheck(result);
         }
@@ -343,9 +411,14 @@ namespace Tizen.NUI
         /// <param name="arg1">The first value.</param>
         /// <param name="arg2">The second value.</param>
         /// <returns>The color containing the result of the multiplication.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when arg1 is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         public static Color operator *(Color arg1, Color arg2)
         {
+            if (null == arg1)
+            {
+                throw new ArgumentNullException(nameof(arg1));
+            }
             Color result = arg1.Multiply(arg2);
             return ValueCheck(result);
         }
@@ -356,9 +429,14 @@ namespace Tizen.NUI
         /// <param name="arg1">The first value.</param>
         /// <param name="arg2">The second value.</param>
         /// <returns>The color containing the result of the multiplication.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when arg1 is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         public static Color operator *(Color arg1, float arg2)
         {
+            if (null == arg1)
+            {
+                throw new ArgumentNullException(nameof(arg1));
+            }
             Color result = arg1.Multiply(arg2);
             return ValueCheck(result);
         }
@@ -369,9 +447,14 @@ namespace Tizen.NUI
         /// <param name="arg1">The first value.</param>
         /// <param name="arg2">The second value.</param>
         /// <returns>The color containing the result of the division.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when arg1 is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         public static Color operator /(Color arg1, Color arg2)
         {
+            if (null == arg1)
+            {
+                throw new ArgumentNullException(nameof(arg1));
+            }
             Color result = arg1.Divide(arg2);
             return ValueCheck(result);
         }
@@ -382,9 +465,14 @@ namespace Tizen.NUI
         /// <param name="arg1">The first value.</param>
         /// <param name="arg2">The second value.</param>
         /// <returns>The color containing the result of the division.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when arg1 is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         public static Color operator /(Color arg1, float arg2)
         {
+            if (null == arg1)
+            {
+                throw new ArgumentNullException(nameof(arg1));
+            }
             Color result = arg1.Divide(arg2);
             return ValueCheck(result);
         }
@@ -397,7 +485,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool EqualTo(Color rhs)
         {
-            bool ret = Interop.Vector4.Vector4_EqualTo(swigCPtr, Color.getCPtr(rhs));
+            bool ret = Interop.Vector4.EqualTo(SwigCPtr, Color.getCPtr(rhs));
 
             if (rhs == null) return false;
 
@@ -413,14 +501,18 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool NotEqualTo(Color rhs)
         {
-            bool ret = Interop.Vector4.Vector4_NotEqualTo(swigCPtr, Color.getCPtr(rhs));
+            bool ret = Interop.Vector4.NotEqualTo(SwigCPtr, Color.getCPtr(rhs));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public object Clone() => new Color(this);
+
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Color obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         internal static Color GetColorFromPtr(global::System.IntPtr cPtr)
@@ -432,176 +524,157 @@ namespace Tizen.NUI
 
         internal static Color ValueCheck(Color color)
         {
-            if (color.R < 0.0f)
+            float r = color.R;
+            float g = color.G;
+            float b = color.B;
+            float a = color.A;
+
+            if (IsInvalidValue(ref r) | IsInvalidValue(ref g) | IsInvalidValue(ref b) | IsInvalidValue(ref a))
             {
-                color.R = 0.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
+                NUILog.Error($"The value of Result is invalid! Should be between [0, 1]. Color is {color.R}, {color.G}, {color.B}, {color.A}");
             }
-            else if (color.R > 1.0f)
-            {
-                color.R = 1.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            if (color.G < 0.0f)
-            {
-                color.G = 0.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            else if (color.G > 1.0f)
-            {
-                color.G = 1.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            if (color.B < 0.0f)
-            {
-                color.B = 0.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            else if (color.B > 1.0f)
-            {
-                color.B = 1.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            if (color.A < 0.0f)
-            {
-                color.A = 0.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            else if (color.A > 1.0f)
-            {
-                color.A = 1.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
+            color = new Color(r, g, b, a);
             return color;
         }
 
         internal static float ValueCheck(float value)
         {
-            if (value < 0.0f)
+            float refValue = value;
+            if (IsInvalidValue(ref refValue))
             {
-                value = 0.0f;
-                NUILog.Error("The value of Parameters is invalid! Should be between [0, 1].");
+                NUILog.Error($"The value of Result is invalid! Should be between [0, 1]. float value is {value}");
             }
-            else if (value > 1.0f)
-            {
-                value = 1.0f;
-                NUILog.Error("The value of Parameters is invalid! Should be between [0, 1].");
-            }
-            return value;
+            return refValue;
         }
 
         internal static float[] ValueCheck(float[] arr)
         {
+            if (null == arr)
+            {
+                throw new ArgumentNullException(nameof(arr));
+            }
+
             for (int i = 0; i < arr.Length; i++)
             {
-                if (arr[i] < 0.0f)
+                float refValue = arr[i];
+                if (IsInvalidValue(ref refValue))
                 {
-                    arr[i] = 0.0f;
-                    NUILog.Error("The value of Parameters is invalid! Should be between [0, 1].");
-                }
-                else if (arr[i] > 1.0f)
-                {
-                    arr[i] = 1.0f;
-                    NUILog.Error("The value of Parameters is invalid! Should be between [0, 1].");
+                    NUILog.Error($"The value of Result is invalid! Should be between [0, 1]. arr[] is {arr[i]}");
+                    arr[i] = refValue;
                 }
             }
             return arr;
+        }
+
+        private static bool IsInvalidValue(ref float value)
+        {
+            if (value < 0.0f)
+            {
+                value = 0.0f;
+                return true;
+            }
+            else if (value > 1.0f)
+            {
+                value = 1.0f;
+                return true;
+            }
+            return false;
         }
 
         /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.Vector4.delete_Vector4(swigCPtr);
+            Interop.Vector4.DeleteVector4(swigCPtr);
         }
 
         private Color Add(Color rhs)
         {
-            Color ret = new Color(Interop.Vector4.Vector4_Add(swigCPtr, Color.getCPtr(rhs)), true);
+            Color ret = new Color(Interop.Vector4.Add(SwigCPtr, Color.getCPtr(rhs)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Color AddAssign(Vector4 rhs)
         {
-            Color ret = new Color(Interop.Vector4.Vector4_AddAssign(swigCPtr, Color.getCPtr(rhs)), false);
+            Color ret = new Color(Interop.Vector4.AddAssign(SwigCPtr, Color.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Color Subtract(Color rhs)
         {
-            Color ret = new Color(Interop.Vector4.Vector4_Subtract__SWIG_0(swigCPtr, Color.getCPtr(rhs)), true);
+            Color ret = new Color(Interop.Vector4.Subtract(SwigCPtr, Color.getCPtr(rhs)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Color SubtractAssign(Color rhs)
         {
-            Color ret = new Color(Interop.Vector4.Vector4_SubtractAssign(swigCPtr, Color.getCPtr(rhs)), false);
+            Color ret = new Color(Interop.Vector4.SubtractAssign(SwigCPtr, Color.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Color Multiply(Color rhs)
         {
-            Color ret = new Color(Interop.Vector4.Vector4_Multiply__SWIG_0(swigCPtr, Color.getCPtr(rhs)), true);
+            Color ret = new Color(Interop.Vector4.Multiply(SwigCPtr, Color.getCPtr(rhs)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Color Multiply(float rhs)
         {
-            Color ret = new Color(Interop.Vector4.Vector4_Multiply__SWIG_1(swigCPtr, rhs), true);
+            Color ret = new Color(Interop.Vector4.Multiply(SwigCPtr, rhs), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Color MultiplyAssign(Color rhs)
         {
-            Color ret = new Color(Interop.Vector4.Vector4_MultiplyAssign__SWIG_0(swigCPtr, Color.getCPtr(rhs)), false);
+            Color ret = new Color(Interop.Vector4.MultiplyAssign(SwigCPtr, Color.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Color MultiplyAssign(float rhs)
         {
-            Color ret = new Color(Interop.Vector4.Vector4_MultiplyAssign__SWIG_1(swigCPtr, rhs), false);
+            Color ret = new Color(Interop.Vector4.MultiplyAssign(SwigCPtr, rhs), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Color Divide(Vector4 rhs)
         {
-            Color ret = new Color(Interop.Vector4.Vector4_Divide__SWIG_0(swigCPtr, Color.getCPtr(rhs)), true);
+            Color ret = new Color(Interop.Vector4.Divide(SwigCPtr, Color.getCPtr(rhs)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Color Divide(float rhs)
         {
-            Color ret = new Color(Interop.Vector4.Vector4_Divide__SWIG_1(swigCPtr, rhs), true);
+            Color ret = new Color(Interop.Vector4.Divide(SwigCPtr, rhs), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Color DivideAssign(Color rhs)
         {
-            Color ret = new Color(Interop.Vector4.Vector4_DivideAssign__SWIG_0(swigCPtr, Color.getCPtr(rhs)), false);
+            Color ret = new Color(Interop.Vector4.DivideAssign(SwigCPtr, Color.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Color DivideAssign(float rhs)
         {
-            Color ret = new Color(Interop.Vector4.Vector4_DivideAssign__SWIG_1(swigCPtr, rhs), false);
+            Color ret = new Color(Interop.Vector4.DivideAssign(SwigCPtr, rhs), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Color Subtract()
         {
-            Color ret = new Color(Interop.Vector4.Vector4_Subtract__SWIG_1(swigCPtr), true);
+            Color ret = new Color(Interop.Vector4.Subtract(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -609,7 +682,7 @@ namespace Tizen.NUI
         private static bool EqualsColorValue(float f1, float f2)
         {
             float EPS = (float)Math.Abs(f1 * .00001);
-            if(Math.Abs(f1 - f2) <= EPS)
+            if (Math.Abs(f1 - f2) <= EPS)
             {
                 return true;
             }
@@ -657,7 +730,7 @@ namespace Tizen.NUI
 
         private float ValueOfIndex(uint index)
         {
-            float ret = Interop.Vector4.Vector4_ValueOfIndex__SWIG_0(swigCPtr, index);
+            float ret = Interop.Vector4.ValueOfIndex(SwigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

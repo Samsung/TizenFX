@@ -20,7 +20,8 @@ namespace Tizen.NUI.Xaml
 
             xmlns = xmlns.Trim();
 
-            if (xmlns.StartsWith("using:", StringComparison.Ordinal)) {
+            if (xmlns.StartsWith("using:", StringComparison.Ordinal))
+            {
                 ParseUsing(xmlns, out typeName, out ns, out asm);
                 return;
             }
@@ -60,8 +61,10 @@ namespace Tizen.NUI.Xaml
         {
             typeName = ns = asm = null;
 
-            foreach (var decl in xmlns.Split(';')) {
-                if (decl.StartsWith("using:", StringComparison.Ordinal)) {
+            foreach (var decl in xmlns.Split(';'))
+            {
+                if (decl.StartsWith("using:", StringComparison.Ordinal))
+                {
                     ns = decl.Substring(6, decl.Length - 6);
                     continue;
                 }

@@ -9,67 +9,67 @@ namespace Tizen.NUI
         internal static partial class Window
         {
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_New__SWIG_0")]
-            public static extern global::System.IntPtr Window_New__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, bool jarg3);
+            public static extern global::System.IntPtr New(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, bool jarg3);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_New__SWIG_1")]
-            public static extern global::System.IntPtr Window_New__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+            public static extern global::System.IntPtr New(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_New__SWIG_2")]
-            public static extern global::System.IntPtr Window_New__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, bool jarg4);
+            public static extern global::System.IntPtr New(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, bool jarg4);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_New__SWIG_3")]
-            public static extern global::System.IntPtr Window_New__SWIG_3(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3);
+            public static extern global::System.IntPtr New(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Window__SWIG_0")]
-            public static extern global::System.IntPtr new_Window__SWIG_0();
+            public static extern global::System.IntPtr NewWindow();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Window")]
-            public static extern void delete_Window(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern void DeleteWindow(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Window__SWIG_1")]
-            public static extern global::System.IntPtr new_Window__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern global::System.IntPtr NewWindow(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_Assign")]
-            public static extern global::System.IntPtr Window_Assign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            public static extern global::System.IntPtr Assign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_New_Root_Layout")]
-            public static extern global::System.IntPtr Window_NewRootLayout();
-                        
+            public static extern global::System.IntPtr NewRootLayout();
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_SetClass")]
-            public static extern void Window_SetClass(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3);
+            public static extern void SetClass(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_Raise")]
-            public static extern void Window_Raise(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern void Raise(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_Lower")]
-            public static extern void Window_Lower(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern void Lower(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_Activate")]
-            public static extern void Window_Activate(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern void Activate(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_AddAvailableOrientation")]
-            public static extern void Window_AddAvailableOrientation(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            public static extern void AddAvailableOrientation(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_RemoveAvailableOrientation")]
-            public static extern void Window_RemoveAvailableOrientation(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            public static extern void RemoveAvailableOrientation(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_SetPreferredOrientation")]
-            public static extern void Window_SetPreferredOrientation(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            public static extern void SetPreferredOrientation(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_GetPreferredOrientation")]
-            public static extern int Window_GetPreferredOrientation(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern int GetPreferredOrientation(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_GetCurrentOrientation")]
-            public static extern int Window_GetCurrentOrientation(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern int GetCurrentOrientation(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_SetAvailableOrientations")]
-            public static extern void Window_SetAvailableOrientations(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-            
+            public static extern void SetAvailableOrientations(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_SetPositionSize")]
-            public static extern void Window_SetPositionSize(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-        
+            public static extern void SetPositionSize(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_SWIGUpcast")]
-            public static extern global::System.IntPtr Window_SWIGUpcast(global::System.IntPtr jarg1);
+            public static extern global::System.IntPtr Upcast(global::System.IntPtr jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FocusChangedSignal")]
             public static extern global::System.IntPtr FocusChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -142,10 +142,10 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GetBrightness")]
             public static extern int GetBrightness(global::System.Runtime.InteropServices.HandleRef jarg1);
-            
+
             // For windows resized signal
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_ResizeSignal")]
-            public static extern global::System.IntPtr Window_ResizeSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern global::System.IntPtr ResizeSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_SetSize")]
             public static extern void SetSize(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
@@ -163,10 +163,10 @@ namespace Tizen.NUI
             public static extern global::System.IntPtr SetTransparency(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_FeedKeyEvent")]
-            public static extern void Window_FeedKeyEvent(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern void FeedKeyEvent(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Adaptor_RenderOnce")]
-            public static extern void Window_RenderOnce(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern void RenderOnce(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_Add")]
             public static extern void Add(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);

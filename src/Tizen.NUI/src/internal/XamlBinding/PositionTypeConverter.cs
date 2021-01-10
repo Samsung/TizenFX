@@ -14,11 +14,11 @@ namespace Tizen.NUI.Binding
             if (value != null)
             {
                 string[] parts = value.Split('.');
-                if (parts.Length == 1 || ( parts.Length == 2 && (parts[0].Trim() == "ParentOrigin" || parts[0].Trim() == "PivotPoint") ))
+                if (parts.Length == 1 || (parts.Length == 2 && (parts[0].Trim() == "ParentOrigin" || parts[0].Trim() == "PivotPoint")))
                 {
                     string position = parts[parts.Length - 1].Trim();
 
-                    switch(position)
+                    switch (position)
                     {
                         case "Top":
                             return ParentOrigin.Top;
@@ -87,7 +87,7 @@ namespace Tizen.NUI.Binding
         public override string ConvertToString(object value)
         {
             Position2D position = (Position2D)value;
-            return  position.X.ToString() + " " + position.Y.ToString();
+            return position.X.ToString() + " " + position.Y.ToString();
         }
     }
 }

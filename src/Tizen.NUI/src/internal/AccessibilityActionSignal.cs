@@ -30,19 +30,19 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.AccessibilityManager.delete_AccessibilityActionSignal(swigCPtr);
+            Interop.AccessibilityManager.DeleteAccessibilityActionSignal(swigCPtr);
         }
 
         public bool Empty()
         {
-            bool ret = Interop.AccessibilityManager.AccessibilityActionSignal_Empty(swigCPtr);
+            bool ret = Interop.AccessibilityManager.AccessibilityActionSignalEmpty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.AccessibilityManager.AccessibilityActionSignal_GetConnectionCount(swigCPtr);
+            uint ret = Interop.AccessibilityManager.AccessibilityActionSignalGetConnectionCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -51,7 +51,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.AccessibilityManager.AccessibilityActionSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.AccessibilityManager.AccessibilityActionSignalConnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -60,19 +60,19 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.AccessibilityManager.AccessibilityActionSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.AccessibilityManager.AccessibilityActionSignalDisconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public bool Emit(AccessibilityManager arg)
         {
-            bool ret = Interop.AccessibilityManager.AccessibilityActionSignal_Emit(swigCPtr, AccessibilityManager.getCPtr(arg));
+            bool ret = Interop.AccessibilityManager.AccessibilityActionSignalEmit(SwigCPtr, AccessibilityManager.getCPtr(arg));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public AccessibilityActionSignal() : this(Interop.AccessibilityManager.new_AccessibilityActionSignal(), true)
+        public AccessibilityActionSignal() : this(Interop.AccessibilityManager.NewAccessibilityActionSignal(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

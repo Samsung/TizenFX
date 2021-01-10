@@ -24,7 +24,7 @@ namespace Tizen.NUI
     /// KeyboardTypeSignalType
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
-    [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+    [Obsolete("Deprecated in API6, Will be removed in API9, " +
         "Please use InputMethodContext.KeyboardTypeChanged event instead!")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class KeyboardTypeSignalType : Disposable
@@ -39,7 +39,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.KeyboardTypeSignalType.delete_KeyboardTypeSignalType(swigCPtr);
+            Interop.KeyboardTypeSignalType.DeleteKeyboardTypeSignalType(swigCPtr);
         }
 
         /// <summary>
@@ -47,12 +47,12 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>True if there are any slots connected to the signal</returns>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+        [Obsolete("Deprecated in API6, Will be removed in API9, " +
             "Please use InputMethodContext.KeyboardTypeChanged event instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Empty()
         {
-            bool ret = Interop.KeyboardTypeSignalType.KeyboardTypeSignalType_Empty(swigCPtr);
+            bool ret = Interop.KeyboardTypeSignalType.Empty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -62,12 +62,12 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>The number of slots connected to this signal</returns>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+        [Obsolete("Deprecated in API6, Will be removed in API9, " +
             "Please use InputMethodContext.KeyboardTypeChanged event instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetConnectionCount()
         {
-            uint ret = Interop.KeyboardTypeSignalType.KeyboardTypeSignalType_GetConnectionCount(swigCPtr);
+            uint ret = Interop.KeyboardTypeSignalType.GetConnectionCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -77,14 +77,14 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="func">The function to connect</param>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+        [Obsolete("Deprecated in API6, Will be removed in API9, " +
             "Please use InputMethodContext.KeyboardTypeChanged event instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Connect(System.Delegate func)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.KeyboardTypeSignalType.KeyboardTypeSignalType_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.KeyboardTypeSignalType.Connect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -94,14 +94,14 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="func">The function to disconnect</param>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+        [Obsolete("Deprecated in API6, Will be removed in API9, " +
             "Please use InputMethodContext.KeyboardTypeChanged event instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Disconnect(System.Delegate func)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.KeyboardTypeSignalType.KeyboardTypeSignalType_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.KeyboardTypeSignalType.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -111,12 +111,12 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="arg">The member function to connect</param>
         /// <since_tizen> 5 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+        [Obsolete("Deprecated in API6, Will be removed in API9, " +
             "Please use InputMethodContext.KeyboardTypeChanged event instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Emit(InputMethodContext.KeyboardType arg)
         {
-            Interop.KeyboardTypeSignalType.KeyboardTypeSignalType_Emit(swigCPtr, (int)arg);
+            Interop.KeyboardTypeSignalType.Emit(SwigCPtr, (int)arg);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -124,10 +124,10 @@ namespace Tizen.NUI
         /// The contructor.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+        [Obsolete("Deprecated in API6, Will be removed in API9, " +
             "Please use InputMethodContext.KeyboardTypeChanged event instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public KeyboardTypeSignalType() : this(Interop.KeyboardTypeSignalType.new_KeyboardTypeSignalType(), true)
+        public KeyboardTypeSignalType() : this(Interop.KeyboardTypeSignalType.NewKeyboardTypeSignalType(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

@@ -29,19 +29,19 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.ControlKeySignal.delete_ControlKeySignal(swigCPtr);
+            Interop.ControlKeySignal.DeleteControlKeySignal(swigCPtr);
         }
 
         public bool Empty()
         {
-            bool ret = Interop.ControlKeySignal.ControlKeySignal_Empty(swigCPtr);
+            bool ret = Interop.ControlKeySignal.Empty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.ControlKeySignal.ControlKeySignal_GetConnectionCount(swigCPtr);
+            uint ret = Interop.ControlKeySignal.GetConnectionCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -50,7 +50,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.ControlKeySignal.ControlKeySignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.ControlKeySignal.Connect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -59,19 +59,19 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.ControlKeySignal.ControlKeySignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.ControlKeySignal.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public bool Emit(View arg1, Key arg2)
         {
-            bool ret = Interop.ControlKeySignal.ControlKeySignal_Emit(swigCPtr, View.getCPtr(arg1), Key.getCPtr(arg2));
+            bool ret = Interop.ControlKeySignal.Emit(SwigCPtr, View.getCPtr(arg1), Key.getCPtr(arg2));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public ControlKeySignal() : this(Interop.ControlKeySignal.new_ControlKeySignal(), true)
+        public ControlKeySignal() : this(Interop.ControlKeySignal.NewControlKeySignal(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

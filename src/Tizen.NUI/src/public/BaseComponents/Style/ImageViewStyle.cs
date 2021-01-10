@@ -126,16 +126,7 @@ namespace Tizen.NUI.BaseComponents
         /// Create an empty instance.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageViewStyle()
-        {
-        }
-
-        /// <summary>
-        /// Create an instance and set properties from the given ImageView.
-        /// </summary>
-        /// <param name="imageView">The ImageView instance that includes property data.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageViewStyle(ImageView imageView) : base(imageView)
+        public ImageViewStyle() : base()
         {
         }
 

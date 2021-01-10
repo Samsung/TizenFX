@@ -29,12 +29,12 @@ namespace Tizen.NUI
         {
             HandleRef CPtr = new HandleRef(wrapper, cPtr);
             T ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as T;
-            Interop.BaseHandle.delete_BaseHandle(CPtr);
+            Interop.BaseHandle.DeleteBaseHandle(CPtr);
             CPtr = new HandleRef(null, IntPtr.Zero);
             return ret;
         }
 
-        public static string GetValueString(this PropertyInfo property,  object obj, Type propertyType)
+        public static string GetValueString(this PropertyInfo property, object obj, Type propertyType)
         {
             string ret = "";
             object value = property.GetValue(obj);

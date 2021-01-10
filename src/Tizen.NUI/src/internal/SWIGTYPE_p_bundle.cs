@@ -24,7 +24,7 @@ namespace Tizen.NUI
     /// This should be internal, please do not use.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
-    [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+    [Obsolete("Deprecated in API6, Will be removed in API9, " +
         "Please do not use!" +
         "IntPtr(native integer pointer) is supposed to be not used in Application!")]
     [EditorBrowsable(EditorBrowsableState.Never)]
@@ -32,7 +32,7 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal SWIGTYPE_p_bundle(global::System.IntPtr cPtr, bool futureUse)
+        internal SWIGTYPE_p_bundle(global::System.IntPtr cPtr)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }

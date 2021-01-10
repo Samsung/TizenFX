@@ -18,8 +18,12 @@ namespace Tizen.NUI.Binding
                 {
                     return new Extents(ushort.Parse(parts[0].Trim(), CultureInfo.InvariantCulture),
                                        ushort.Parse(parts[1].Trim(), CultureInfo.InvariantCulture),
-                                       ushort.Parse(parts[2].Trim(), CultureInfo.InvariantCulture), 
+                                       ushort.Parse(parts[2].Trim(), CultureInfo.InvariantCulture),
                                        ushort.Parse(parts[3].Trim(), CultureInfo.InvariantCulture));
+                }
+                else if (parts.Length == 1)
+                {
+                    return new Extents(ushort.Parse(parts[0].Trim(), CultureInfo.InvariantCulture));
                 }
             }
 

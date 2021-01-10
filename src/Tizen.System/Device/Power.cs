@@ -15,12 +15,16 @@
 */
 
 using System;
+using System.ComponentModel;
 
 namespace Tizen.System
 {
     /// <summary>
     /// Enumeration for power lock type.
     /// </summary>
+    /// <remarks>
+    /// DisplayDim may be ignored if the DIM state is disabled on the platform.
+    /// </remarks>
     /// <since_tizen> 5 </since_tizen>
     public enum PowerLock
     {
@@ -149,6 +153,48 @@ namespace Tizen.System
             if (res != DeviceError.None)
             {
                 throw DeviceExceptionFactory.CreateException(res, "unable to release power lock.");
+            }
+        }
+        /// <summary>
+        /// Power off the device.
+        /// </summary>
+        /// <privilege>http://tizen.org/privilege/reboot</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <exception cref="UnauthorizedAccessException">If the privilege is not set.</exception>
+        /// <exception cref="InvalidOperationException">In case of any system error.</exception>
+        /// <example>
+        /// <code>
+        /// Tizen.System.Power.PowerOff();
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void PowerOff()
+        {
+            DeviceError res = (DeviceError)Interop.Device.DevicePowerPowerOff();
+            if (res != DeviceError.None)
+            {
+                throw DeviceExceptionFactory.CreateException(res, "unable to power off the device.");
+            }
+        }
+        /// <summary>
+        /// Reboot the device.
+        /// </summary>
+        /// <privilege>http://tizen.org/privilege/reboot</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <exception cref="UnauthorizedAccessException">If the privilege is not set.</exception>
+        /// <exception cref="InvalidOperationException">In case of any system error.</exception>
+        /// <example>
+        /// <code>
+        /// Tizen.System.Power.Reboot(null);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void Reboot(string reason)
+        {
+            DeviceError res = (DeviceError)Interop.Device.DevicePowerReboot(reason);
+            if (res != DeviceError.None)
+            {
+                throw DeviceExceptionFactory.CreateException(res, "unable to reboot the device.");
             }
         }
     }

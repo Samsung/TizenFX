@@ -126,7 +126,7 @@ namespace Tizen.NUI.Binding
         SVG = Visual.Type.SVG,
         AnimatedImage = Visual.Type.AnimatedImage
     }
-    
+
     internal enum VisualAlignTypeExtension
     {
         TopBegin = Visual.AlignType.TopBegin,

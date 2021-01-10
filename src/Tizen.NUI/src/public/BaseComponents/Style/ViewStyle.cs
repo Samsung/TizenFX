@@ -26,8 +26,9 @@ namespace Tizen.NUI.BaseComponents
     /// </summary>
     /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public partial class ViewStyle : BindableObject
+    public partial class ViewStyle : BindableObject, IDisposable
     {
+        private bool disposed = false;
         private string styleName;
         private View.States? state;
         private View.States? subState;
@@ -74,6 +75,7 @@ namespace Tizen.NUI.BaseComponents
         private Extents margin;
         private float? weight;
         private bool? enableControlState;
+        private bool? themeChangeSensitive;
 
         private Selector<ImageShadow> imageShadow;
         private Selector<Shadow> boxShadow;
@@ -83,8 +85,9 @@ namespace Tizen.NUI.BaseComponents
         private Selector<Color> backgroundColorSelector;
         private Selector<Rectangle> backgroundImageBorderSelector;
         private Selector<Color> colorSelector;
+        private VisualTransformPolicyType? cornerRadiusPolicy;
 
-        static ViewStyle() {}
+        static ViewStyle() { }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -94,20 +97,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ViewStyle(ViewStyle viewAttributes)
         {
-            if (null != viewAttributes)
-            {
-                this.CopyFrom(viewAttributes);
-            }
-        }
-
-        /// <summary>
-        /// Create an instance and set properties from the given view.
-        /// </summary>
-        /// <param name="view">The View that includes property data.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ViewStyle(View view)
-        {
-            CopyPropertiesFromView(view);
+            CopyFrom(viewAttributes);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -679,6 +669,18 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Whether the CornerRadius property value is relative (percentage [0.0f to 1.0f] of the view size) or absolute (in world units).
+        /// It is absolute by default.
+        /// When the policy is relative, the corner radius is relative to the smaller of the view's width and height.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public VisualTransformPolicyType? CornerRadiusPolicy
+        {
+            get => (VisualTransformPolicyType?)GetValue(CornerRadiusPolicyProperty);
+            set => SetValue(CornerRadiusPolicyProperty, value);
+        }
+
+        /// <summary>
         /// The EnableControlState value of the View.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -689,6 +691,27 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The ThemeChangeSensitive value of the View.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool? ThemeChangeSensitive
+        {
+            get => (bool?)GetValue(ThemeChangeSensitiveProperty);
+            set => SetValue(ThemeChangeSensitiveProperty, value);
+        }
+
+
+        /// <summary>
+        /// Allow null properties when merging it into other Theme.
+        /// If the value is true, the null properties reset target properties of the other ViewStyle with same key when merge.
+        /// It is used in <seealso cref="Theme.Merge(string)"/>, <seealso cref="Theme.Merge(Theme)"/>.
+        /// It is also used in <seealso cref="Theme.GetStyle(string)"/> when the Theme has a parent and needs to merge.
+        /// Please note that it is false by default.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool SolidNull { get; set; } = false;
+
+        /// <summary>
         /// Set style's bindable properties from the view.
         /// </summary>
         /// <param name="view">The view that includes property data.</param>
@@ -697,9 +720,9 @@ namespace Tizen.NUI.BaseComponents
         {
             if (view == null) return;
 
-            BindableProperty.GetBindablePropertysOfType(GetType(), out var styleProperties);            
+            BindableProperty.GetBindablePropertysOfType(GetType(), out var styleProperties);
             BindableProperty.GetBindablePropertysOfType(view.GetType(), out var viewProperties);
-            
+
 
             if (styleProperties == null || viewProperties == null) return;
 
@@ -713,17 +736,28 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal ViewStyle CreateInstance()
-        {
-            return (ViewStyle)Activator.CreateInstance(GetType());
-        }
-
-        internal ViewStyle Clone()
+        /// <summary>Create a cloned ViewStyle.</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ViewStyle Clone()
         {
             var cloned = CreateInstance();
             cloned.CopyFrom(this);
 
             return cloned;
+        }
+
+        /// <summary>Create a cloned ViewStyle.</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Merge(ViewStyle other)
+        {
+            AllowNullCopy = other?.SolidNull ?? false;
+            CopyFrom(other);
+            AllowNullCopy = false;
+        }
+
+        internal ViewStyle CreateInstance()
+        {
+            return (ViewStyle)Activator.CreateInstance(GetType());
         }
 
         private void OnPaddingChanged(ushort start, ushort end, ushort top, ushort bottom)
@@ -734,6 +768,46 @@ namespace Tizen.NUI.BaseComponents
         private void OnMarginChanged(ushort start, ushort end, ushort top, ushort bottom)
         {
             Margin = new Extents(start, end, top, bottom);
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                // Dispose managed state (managed objects).
+                cellIndex?.Dispose();
+                downFocusableView?.Dispose();
+                flexMargin?.Dispose();
+                leftFocusableView?.Dispose();
+                margin?.Dispose();
+                maximumSize?.Dispose();
+                minimumSize?.Dispose();
+                orientation?.Dispose();
+                padding?.Dispose();
+                parentOrigin?.Dispose();
+                pivotPoint?.Dispose();
+                position?.Dispose();
+                rightFocusableView?.Dispose();
+                scale?.Dispose();
+                size?.Dispose();
+                sizeModeFactor?.Dispose();
+                upFocusableView?.Dispose();
+            }
+
+            disposed = true;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Dispose()
+        {
+            Dispose(true);
+            global::System.GC.SuppressFinalize(this);
         }
     }
 }

@@ -27,19 +27,19 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.WindowFocusSignalType.delete_WindowFocusSignalType(swigCPtr);
+            Interop.WindowFocusSignalType.DeleteWindowFocusSignalType(swigCPtr);
         }
 
         public bool Empty()
         {
-            bool ret = Interop.WindowFocusSignalType.WindowFocusSignalType_Empty(swigCPtr);
+            bool ret = Interop.WindowFocusSignalType.Empty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.WindowFocusSignalType.WindowFocusSignalType_GetConnectionCount(swigCPtr);
+            uint ret = Interop.WindowFocusSignalType.GetConnectionCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -48,7 +48,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.WindowFocusSignalType.WindowFocusSignalType_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.WindowFocusSignalType.Connect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -57,18 +57,18 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.WindowFocusSignalType.WindowFocusSignalType_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.WindowFocusSignalType.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public void Emit(Window window, bool focusIn)
         {
-            Interop.WindowFocusSignalType.WindowFocusSignalType_Emit(swigCPtr, Window.getCPtr(window), focusIn);
+            Interop.WindowFocusSignalType.Emit(SwigCPtr, Window.getCPtr(window), focusIn);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public WindowFocusSignalType() : this(Interop.WindowFocusSignalType.new_WindowFocusSignalType(), true)
+        public WindowFocusSignalType() : this(Interop.WindowFocusSignalType.NewWindowFocusSignalType(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

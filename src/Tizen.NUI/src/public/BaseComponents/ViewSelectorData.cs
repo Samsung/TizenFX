@@ -22,7 +22,7 @@ namespace Tizen.NUI.BaseComponents
     /// </summary>
     internal class ViewSelectorData
     {
-        public TriggerableSelector<Color> BackgroundColor { get; } = new TriggerableSelector<Color>(View.BackgroundColorProperty, delegate(View view)
+        public TriggerableSelector<Color> BackgroundColor { get; } = new TriggerableSelector<Color>(View.BackgroundColorProperty, delegate (View view)
         {
             var background = view.Background;
             int visualType = 0;
@@ -36,17 +36,17 @@ namespace Tizen.NUI.BaseComponents
             }
             return null;
         });
-        public TriggerableSelector<string> BackgroundImage { get; } = new TriggerableSelector<string>(View.BackgroundImageProperty, delegate(View view)
+        public TriggerableSelector<string> BackgroundImage { get; } = new TriggerableSelector<string>(View.BackgroundImageProperty, delegate (View view)
         {
             string backgroundImage = null;
             view.Background.Find(ImageVisualProperty.URL)?.Get(out backgroundImage);
             return backgroundImage;
         });
         public TriggerableSelector<Rectangle> BackgroundImageBorder { get; } = new TriggerableSelector<Rectangle>(View.BackgroundImageBorderProperty);
-        public TriggerableSelector<Color> Color { get; } = new TriggerableSelector<Color>(View.ColorProperty, delegate(View view)
+        public TriggerableSelector<Color> Color { get; } = new TriggerableSelector<Color>(View.ColorProperty, delegate (View view)
         {
             Color color = new Color();
-            if (view.GetProperty(Interop.ActorProperty.Actor_Property_COLOR_get()).Get(color))
+            if (view.GetProperty(Interop.ActorProperty.ColorGet()).Get(color))
             {
                 return color;
             }

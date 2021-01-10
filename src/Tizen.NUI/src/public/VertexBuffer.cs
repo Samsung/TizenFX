@@ -34,13 +34,13 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="bufferFormat">The map of names and types that describes the components of the buffer.</param>
         /// <since_tizen> 8 </since_tizen>
-        public VertexBuffer(PropertyMap bufferFormat) : this(Interop.VertexBuffer.VertexBuffer_New(PropertyMap.getCPtr(bufferFormat)), true)
+        public VertexBuffer(PropertyMap bufferFormat) : this(Interop.VertexBuffer.New(PropertyMap.getCPtr(bufferFormat)), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) 
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal VertexBuffer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.VertexBuffer.VertexBuffer_SWIGUpcast(cPtr), cMemoryOwn)
+        internal VertexBuffer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.VertexBuffer.Upcast(cPtr), cMemoryOwn)
         {
         }
 
@@ -49,10 +49,16 @@ namespace Tizen.NUI
         /// This function expects an array of structures with the same format that was given in the construction.
         /// </summary>
         /// <param name="vertices">The vertex data that will be copied to the buffer.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when vertices is null. </exception>
         /// <since_tizen> 8 </since_tizen>
 
         public void SetData<VertexType>(VertexType[] vertices) where VertexType : struct
         {
+            if (null == vertices)
+            {
+                throw new ArgumentNullException(nameof(vertices));
+            }
+
             int structSize = Marshal.SizeOf<VertexType>();
             global::System.IntPtr buffer = Marshal.AllocHGlobal(structSize * vertices.Length);
 
@@ -61,8 +67,8 @@ namespace Tizen.NUI
                 Marshal.StructureToPtr(vertices[i], buffer + i * structSize, true);
             }
 
-            Interop.VertexBuffer.VertexBuffer_SetData(swigCPtr, buffer, (uint)vertices.Length);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) 
+            Interop.VertexBuffer.SetData(SwigCPtr, buffer, (uint)vertices.Length);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -73,22 +79,22 @@ namespace Tizen.NUI
         /// <since_tizen> 8 </since_tizen>
         public uint GetSize()
         {
-            uint ret = Interop.VertexBuffer.VertexBuffer_GetSize(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) 
+            uint ret = Interop.VertexBuffer.GetSize(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(VertexBuffer obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.VertexBuffer.delete_VertexBuffer(swigCPtr);
+            Interop.VertexBuffer.DeleteVertexBuffer(swigCPtr);
         }
     }
 }
