@@ -39,8 +39,6 @@ namespace Tizen.NUI.BaseComponents
         private Dictionary<TransitionCondition, TransitionList> layoutTransitions;
         private int widthPolicy = LayoutParamPolicies.WrapContent; // Layout width policy
         private int heightPolicy = LayoutParamPolicies.WrapContent; // Layout height policy
-        private int oldWidthPolicy = LayoutParamPolicies.MatchParent; // // Store Layout width to compare against later
-        private int oldHeightPolicy = LayoutParamPolicies.MatchParent; // Store Layout height to compare against later
         private float weight = 0.0f; // Weighting of child View in a Layout
         private MeasureSpecification measureSpecificationWidth; // Layout width and internal Mode
         private MeasureSpecification measureSpecificationHeight; // Layout height and internal Mode
@@ -2005,22 +2003,21 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                widthPolicy = value;
-                if (oldWidthPolicy != widthPolicy)
-                {
-                    if (widthPolicy >= 0)
-                    {
-                        measureSpecificationWidth = new MeasureSpecification(new LayoutLength(value), MeasureSpecification.ModeType.Exactly);
+                if (value == widthPolicy)
+                    return;
 
-                        if (heightPolicy >= 0) // Policy an exact value
-                        {
-                            // Create Size2D only both _widthPolicy and _heightPolicy are set.
-                            Size2D = new Size2D(widthPolicy, heightPolicy);
-                        }
+                widthPolicy = value;
+                if (widthPolicy >= 0)
+                {
+                    measureSpecificationWidth = new MeasureSpecification(new LayoutLength(value), MeasureSpecification.ModeType.Exactly);
+
+                    if (heightPolicy >= 0) // Policy an exact value
+                    {
+                        // Create Size2D only both _widthPolicy and _heightPolicy are set.
+                        Size2D = new Size2D(widthPolicy, heightPolicy);
                     }
-                    layout?.RequestLayout();
-                    oldWidthPolicy = widthPolicy;
                 }
+                layout?.RequestLayout();
             }
         }
 
@@ -2036,23 +2033,22 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
+                if (value == heightPolicy)
+                    return;
+
                 heightPolicy = value;
-                if (oldHeightPolicy != heightPolicy)
+                if (heightPolicy >= 0)
                 {
-                    if (heightPolicy >= 0)
+                    measureSpecificationHeight = new MeasureSpecification(new LayoutLength(value), MeasureSpecification.ModeType.Exactly);
+
+                    if (widthPolicy >= 0) // Policy an exact value
                     {
-                        measureSpecificationHeight = new MeasureSpecification(new LayoutLength(value), MeasureSpecification.ModeType.Exactly);
-
-                        if (widthPolicy >= 0) // Policy an exact value
-                        {
-                            // Create Size2D only both _widthPolicy and _heightPolicy are set.
-                            Size2D = new Size2D(widthPolicy, heightPolicy);
-                        }
-
+                        // Create Size2D only both _widthPolicy and _heightPolicy are set.
+                        Size2D = new Size2D(widthPolicy, heightPolicy);
                     }
-                    layout?.RequestLayout();
-                    oldHeightPolicy = heightPolicy;
+
                 }
+                layout?.RequestLayout();
             }
         }
 
