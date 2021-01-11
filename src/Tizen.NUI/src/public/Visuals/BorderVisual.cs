@@ -23,9 +23,9 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class BorderVisual : VisualMap
     {
-        private Color color = null;
-        private float? size = null;
-        private bool? antiAliasing = null;
+        private Color _color = null;
+        private float? _size = null;
+        private bool? _antiAliasing = null;
 
         /// <summary>
         /// Constructor.
@@ -44,11 +44,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return color;
+                return _color;
             }
             set
             {
-                color = value;
+                _color = value;
                 UpdateVisual();
             }
         }
@@ -62,11 +62,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return size ?? (-1.0f);
+                return _size ?? (-1.0f);
             }
             set
             {
-                size = value;
+                _size = value;
                 UpdateVisual();
             }
         }
@@ -81,11 +81,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return antiAliasing ?? (false);
+                return _antiAliasing ?? (false);
             }
             set
             {
-                antiAliasing = value;
+                _antiAliasing = value;
                 UpdateVisual();
             }
         }
@@ -96,27 +96,13 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected override void ComposingPropertyMap()
         {
-            if (color != null && size != null)
+            if (_color != null && _size != null)
             {
                 _outputVisualMap = new PropertyMap();
-                PropertyValue temp = new PropertyValue((int)Visual.Type.Border);
-                _outputVisualMap.Add(Visual.Property.Type, temp);
-                temp.Dispose();
-
-                temp = new PropertyValue((float)size);
-                _outputVisualMap.Add(BorderVisualProperty.Size, temp);
-                temp.Dispose();
-
-                temp = new PropertyValue(color);
-                _outputVisualMap.Add(BorderVisualProperty.Color, temp);
-                temp.Dispose();
-
-                if (antiAliasing != null)
-                {
-                    temp = new PropertyValue((bool)antiAliasing);
-                    _outputVisualMap.Add(BorderVisualProperty.AntiAliasing, temp);
-                    temp.Dispose();
-                }
+                _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Border));
+                _outputVisualMap.Add(BorderVisualProperty.Size, new PropertyValue((float)_size));
+                _outputVisualMap.Add(BorderVisualProperty.Color, new PropertyValue(_color));
+                if (_antiAliasing != null) { _outputVisualMap.Add(BorderVisualProperty.AntiAliasing, new PropertyValue((bool)_antiAliasing)); }
                 base.ComposingPropertyMap();
             }
         }

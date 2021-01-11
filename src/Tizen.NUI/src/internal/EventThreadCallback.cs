@@ -20,6 +20,7 @@ namespace Tizen.NUI
 {
     internal class EventThreadCallback : Disposable
     {
+        /// <since_tizen> 3 </since_tizen>
         public delegate void CallbackDelegate();
 
         internal EventThreadCallback(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)

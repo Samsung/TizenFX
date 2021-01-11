@@ -41,6 +41,7 @@ namespace Tizen.NUI
         /// This method is called when the slot is disconnecting.
         /// </summary>
         /// <param name="callback">The callback attached to the signal disconnected.</param>
+        /// <since_tizen> 4 </since_tizen>
         public virtual void SlotDisconnected(SWIGTYPE_p_Dali__CallbackBase callback)
         {
             SlotObserver_SlotDisconnected(SwigCPtr, SWIGTYPE_p_Dali__CallbackBase.getCPtr(callback));

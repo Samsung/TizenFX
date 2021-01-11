@@ -124,6 +124,7 @@ namespace Tizen.NUI
             }
         }
 
+        /// <since_tizen> 3 </since_tizen>
         public enum StateType
         {
             Started,

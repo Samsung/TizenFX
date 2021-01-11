@@ -37,6 +37,7 @@ namespace Tizen.NUI
         /// Queries whether there are any connected slots.
         /// </summary>
         /// <returns>True if there are any slots connected to the signal</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool Empty()
         {
             bool ret = Interop.StatusSignalType.Empty(SwigCPtr);
@@ -48,6 +49,7 @@ namespace Tizen.NUI
         /// Queries the number of slots.
         /// </summary>
         /// <returns>The number of slots connected to this signal</returns>
+        /// <since_tizen> 3 </since_tizen>
         public uint GetConnectionCount()
         {
             uint ret = Interop.StatusSignalType.GetConnectionCount(SwigCPtr);
@@ -59,6 +61,7 @@ namespace Tizen.NUI
         /// Connects a function.
         /// </summary>
         /// <param name="func">The function to connect</param>
+        /// <since_tizen> 3 </since_tizen>
         public void Connect(System.Delegate func)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
@@ -72,6 +75,7 @@ namespace Tizen.NUI
         /// Disconnects a function.
         /// </summary>
         /// <param name="func">The function to disconnect</param>
+        /// <since_tizen> 3 </since_tizen>
         public void Disconnect(System.Delegate func)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
@@ -85,6 +89,7 @@ namespace Tizen.NUI
         /// Connects a member function.
         /// </summary>
         /// <param name="arg">The member function to connect</param>
+        /// <since_tizen> 3 </since_tizen>
         public void Emit(bool arg)
         {
             Interop.StatusSignalType.Emit(SwigCPtr, arg);
@@ -94,6 +99,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The constructor.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public StatusSignalType() : this(Interop.StatusSignalType.NewStatusSignalType(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
