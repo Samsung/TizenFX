@@ -291,7 +291,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Sets the relative offset for bottom target.
-        /// When <paramref name="value"/> is 0 the bottom edge of the <paramref name="view"/> is aligned to the top edge of the right target.<br/>
+        /// When <paramref name="value"/> is 0 the bottom edge of the <paramref name="view"/> is aligned to the top edge of the bottom target.<br/>
         /// When <paramref name="value"/> is 1 the bottom edges of the bottom target and <paramref name="view"/> are aligned.
         /// </summary>
         /// <param name="view">The child view whose size and position is being changed.</param>
