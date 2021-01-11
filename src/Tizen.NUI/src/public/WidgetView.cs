@@ -814,6 +814,16 @@ namespace Tizen.NUI
             internal static readonly int PermanentDelete = Interop.WidgetView.PermanentDeleteGet();
             internal static readonly int RetryText = Interop.WidgetView.RetryTextGet();
             internal static readonly int EFFECT = Interop.WidgetView.EffectGet();
+
+
+            [Obsolete("Please do not use this! Deprecated in API9, will be removed in API11! Please use WidgetId instead!")]
+            internal static readonly int WIDGET_ID = Interop.WidgetView.WidgetIdGet();
+            [Obsolete("Please do not use this! Deprecated in API9, will be removed in API11! Please use ContentInfo instead!")]
+            internal static readonly int CONTENT_INFO = Interop.WidgetView.ContentInfoGet();
+            [Obsolete("Please do not use this! Deprecated in API9, will be removed in API11! Please use UpdatePeriod instead!")]
+            internal static readonly int UPDATE_PERIOD = Interop.WidgetView.UpdatePeriodGet();
+            [Obsolete("Please do not use this! Deprecated in API9, will be removed in API11! Please use LoadingText instead!")]
+            internal static readonly int LOADING_TEXT = Interop.WidgetView.LoadingTextGet();
         }
     }
 

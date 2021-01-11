@@ -46,6 +46,18 @@ namespace Tizen.NUI
         private WindowTransitionEffectSignal transitionEffectSignal;
         private KeyboardRepeatSettingsChangedEventCallbackType keyboardRepeatSettingsChangedEventCallback;
         private KeyboardRepeatSettingsChangedSignal keyboardRepeatSettingsChangedSignal;
+        private WindowFocusSignalType windowFocusChangedSignal;
+        private WindowFocusSignalType windowFocusChangedSignal2;
+        private TouchDataSignal touchDataSignal;
+        private TouchSignal touchSignal;
+        private WheelSignal wheelSignal;
+        private StageWheelSignal stageWheelSignal;
+        private KeyEventSignal keyEventSignal;
+        private VoidSignal sceneCreatedSignal;
+        private ResizeSignal resizeSignal;
+        private VoidSignal eventProcessingFinishedSignal;
+        private VoidSignal contextLostSignal;
+        private VoidSignal contextRegainedSignal;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WindowFocusChangedEventCallbackType(IntPtr window, bool focusGained);
@@ -73,7 +85,8 @@ namespace Tizen.NUI
                 if (_windowFocusChangedEventHandler == null)
                 {
                     _windowFocusChangedEventCallback = OnWindowFocusedChanged;
-                    WindowFocusChangedSignal().Connect(_windowFocusChangedEventCallback);
+                    windowFocusChangedSignal = WindowFocusChangedSignal();
+                    windowFocusChangedSignal?.Connect(_windowFocusChangedEventCallback);
                 }
 
                 _windowFocusChangedEventHandler += value;
@@ -82,9 +95,9 @@ namespace Tizen.NUI
             {
                 _windowFocusChangedEventHandler -= value;
 
-                if (_windowFocusChangedEventHandler == null && WindowFocusChangedSignal().Empty() == false && _windowFocusChangedEventCallback != null)
+                if (_windowFocusChangedEventHandler == null && windowFocusChangedSignal?.Empty() == false && _windowFocusChangedEventCallback != null)
                 {
-                    WindowFocusChangedSignal().Disconnect(_windowFocusChangedEventCallback);
+                    windowFocusChangedSignal?.Disconnect(_windowFocusChangedEventCallback);
                 }
             }
         }
@@ -103,16 +116,18 @@ namespace Tizen.NUI
                 if (_rootLayerTouchDataEventHandler == null)
                 {
                     _rootLayerTouchDataCallback = OnWindowTouch;
-                    this.TouchDataSignal().Connect(_rootLayerTouchDataCallback);
+                    touchDataSignal = this.TouchDataSignal();
+                    touchDataSignal?.Connect(_rootLayerTouchDataCallback);
                 }
                 _rootLayerTouchDataEventHandler += value;
             }
             remove
             {
                 _rootLayerTouchDataEventHandler -= value;
-                if (_rootLayerTouchDataEventHandler == null && TouchSignal().Empty() == false && _rootLayerTouchDataCallback != null)
+                touchSignal = TouchSignal();
+                if (_rootLayerTouchDataEventHandler == null && touchSignal?.Empty() == false && _rootLayerTouchDataCallback != null)
                 {
-                    this.TouchDataSignal().Disconnect(_rootLayerTouchDataCallback);
+                    touchDataSignal?.Disconnect(_rootLayerTouchDataCallback);
                 }
             }
         }
@@ -128,29 +143,31 @@ namespace Tizen.NUI
                 if (_stageWheelHandler == null)
                 {
                     _wheelEventCallback = OnStageWheel;
-                    WheelEventSignal().Connect(_wheelEventCallback);
+                    wheelSignal = WheelEventSignal();
+                    wheelSignal?.Connect(_wheelEventCallback);
                 }
                 _stageWheelHandler += value;
 
                 if (DetentEventHandler == null)
                 {
                     DetentEventCallback = OnDetentEvent;
-                    StageWheelEventSignal().Connect(DetentEventCallback);
+                    stageWheelSignal = StageWheelEventSignal();
+                    stageWheelSignal?.Connect(DetentEventCallback);
                 }
                 DetentEventHandler += value;
             }
             remove
             {
                 _stageWheelHandler -= value;
-                if (_stageWheelHandler == null && WheelEventSignal().Empty() == false)
+                if (_stageWheelHandler == null && wheelSignal?.Empty() == false)
                 {
-                    WheelEventSignal().Disconnect(_wheelEventCallback);
+                    wheelSignal?.Disconnect(_wheelEventCallback);
                 }
 
                 DetentEventHandler -= value;
-                if (DetentEventHandler == null && StageWheelEventSignal().Empty() == false)
+                if (DetentEventHandler == null && stageWheelSignal?.Empty() == false)
                 {
-                    StageWheelEventSignal().Disconnect(DetentEventCallback);
+                    stageWheelSignal?.Disconnect(DetentEventCallback);
                 }
             }
         }
@@ -166,16 +183,17 @@ namespace Tizen.NUI
                 if (_stageKeyHandler == null)
                 {
                     _stageKeyCallbackDelegate = OnStageKey;
-                    KeyEventSignal().Connect(_stageKeyCallbackDelegate);
+                    keyEventSignal = KeyEventSignal();
+                    keyEventSignal?.Connect(_stageKeyCallbackDelegate);
                 }
                 _stageKeyHandler += value;
             }
             remove
             {
                 _stageKeyHandler -= value;
-                if (_stageKeyHandler == null && KeyEventSignal().Empty() == false)
+                if (_stageKeyHandler == null && keyEventSignal?.Empty() == false)
                 {
-                    KeyEventSignal().Disconnect(_stageKeyCallbackDelegate);
+                    keyEventSignal?.Disconnect(_stageKeyCallbackDelegate);
                 }
             }
         }
@@ -191,7 +209,8 @@ namespace Tizen.NUI
                 if (_windowResizeEventHandler == null)
                 {
                     _windowResizeEventCallback = OnResized;
-                    ResizeSignal().Connect(_windowResizeEventCallback);
+                    resizeSignal = ResizeSignal();
+                    resizeSignal?.Connect(_windowResizeEventCallback);
                 }
 
                 _windowResizeEventHandler += value;
@@ -200,9 +219,9 @@ namespace Tizen.NUI
             {
                 _windowResizeEventHandler -= value;
 
-                if (_windowResizeEventHandler == null && ResizeSignal().Empty() == false && _windowResizeEventCallback != null)
+                if (_windowResizeEventHandler == null && resizeSignal?.Empty() == false && _windowResizeEventCallback != null)
                 {
-                    ResizeSignal().Disconnect(_windowResizeEventCallback);
+                    resizeSignal?.Disconnect(_windowResizeEventCallback);
                 }
             }
         }
@@ -225,7 +244,8 @@ namespace Tizen.NUI
                 if (_windowFocusChangedEventHandler2 == null)
                 {
                     _windowFocusChangedEventCallback2 = OnWindowFocusedChanged2;
-                    WindowFocusChangedSignal().Connect(_windowFocusChangedEventCallback2);
+                    windowFocusChangedSignal2 = WindowFocusChangedSignal();
+                    windowFocusChangedSignal2?.Connect(_windowFocusChangedEventCallback2);
                 }
 
                 _windowFocusChangedEventHandler2 += value;
@@ -234,9 +254,9 @@ namespace Tizen.NUI
             {
                 _windowFocusChangedEventHandler2 -= value;
 
-                if (_windowFocusChangedEventHandler2 == null && WindowFocusChangedSignal().Empty() == false && _windowFocusChangedEventCallback2 != null)
+                if (_windowFocusChangedEventHandler2 == null && windowFocusChangedSignal2?.Empty() == false && _windowFocusChangedEventCallback2 != null)
                 {
-                    WindowFocusChangedSignal().Disconnect(_windowFocusChangedEventCallback2);
+                    windowFocusChangedSignal2?.Disconnect(_windowFocusChangedEventCallback2);
                 }
             }
         }
@@ -320,7 +340,8 @@ namespace Tizen.NUI
                 if (_stageEventProcessingFinishedEventHandler == null)
                 {
                     _stageEventProcessingFinishedEventCallbackDelegate = OnEventProcessingFinished;
-                    EventProcessingFinishedSignal().Connect(_stageEventProcessingFinishedEventCallbackDelegate);
+                    eventProcessingFinishedSignal = EventProcessingFinishedSignal();
+                    eventProcessingFinishedSignal?.Connect(_stageEventProcessingFinishedEventCallbackDelegate);
                 }
                 _stageEventProcessingFinishedEventHandler += value;
 
@@ -328,9 +349,9 @@ namespace Tizen.NUI
             remove
             {
                 _stageEventProcessingFinishedEventHandler -= value;
-                if (_stageEventProcessingFinishedEventHandler == null && EventProcessingFinishedSignal().Empty() == false)
+                if (_stageEventProcessingFinishedEventHandler == null && eventProcessingFinishedSignal?.Empty() == false)
                 {
-                    EventProcessingFinishedSignal().Disconnect(_stageEventProcessingFinishedEventCallbackDelegate);
+                    eventProcessingFinishedSignal?.Disconnect(_stageEventProcessingFinishedEventCallbackDelegate);
                 }
             }
         }
@@ -342,16 +363,17 @@ namespace Tizen.NUI
                 if (_stageContextLostEventHandler == null)
                 {
                     _stageContextLostEventCallbackDelegate = OnContextLost;
-                    ContextLostSignal().Connect(_stageContextLostEventCallbackDelegate);
+                    contextLostSignal = ContextLostSignal();
+                    contextLostSignal?.Connect(_stageContextLostEventCallbackDelegate);
                 }
                 _stageContextLostEventHandler += value;
             }
             remove
             {
                 _stageContextLostEventHandler -= value;
-                if (_stageContextLostEventHandler == null && ContextLostSignal().Empty() == false)
+                if (_stageContextLostEventHandler == null && contextLostSignal?.Empty() == false)
                 {
-                    ContextLostSignal().Disconnect(_stageContextLostEventCallbackDelegate);
+                    contextLostSignal?.Disconnect(_stageContextLostEventCallbackDelegate);
                 }
             }
         }
@@ -363,16 +385,17 @@ namespace Tizen.NUI
                 if (_stageContextRegainedEventHandler == null)
                 {
                     _stageContextRegainedEventCallbackDelegate = OnContextRegained;
-                    ContextRegainedSignal().Connect(_stageContextRegainedEventCallbackDelegate);
+                    contextRegainedSignal = ContextRegainedSignal();
+                    contextRegainedSignal?.Connect(_stageContextRegainedEventCallbackDelegate);
                 }
                 _stageContextRegainedEventHandler += value;
             }
             remove
             {
                 _stageContextRegainedEventHandler -= value;
-                if (_stageContextRegainedEventHandler == null && ContextRegainedSignal().Empty() == false)
+                if (_stageContextRegainedEventHandler == null && contextRegainedSignal?.Empty() == false)
                 {
-                    this.ContextRegainedSignal().Disconnect(_stageContextRegainedEventCallbackDelegate);
+                    contextRegainedSignal?.Disconnect(_stageContextRegainedEventCallbackDelegate);
                 }
             }
         }
@@ -384,16 +407,17 @@ namespace Tizen.NUI
                 if (_stageSceneCreatedEventHandler == null)
                 {
                     _stageSceneCreatedEventCallbackDelegate = OnSceneCreated;
-                    SceneCreatedSignal().Connect(_stageSceneCreatedEventCallbackDelegate);
+                    sceneCreatedSignal = SceneCreatedSignal();
+                    sceneCreatedSignal?.Connect(_stageSceneCreatedEventCallbackDelegate);
                 }
                 _stageSceneCreatedEventHandler += value;
             }
             remove
             {
                 _stageSceneCreatedEventHandler -= value;
-                if (_stageSceneCreatedEventHandler == null && SceneCreatedSignal().Empty() == false)
+                if (_stageSceneCreatedEventHandler == null && sceneCreatedSignal?.Empty() == false)
                 {
-                    SceneCreatedSignal().Disconnect(_stageSceneCreatedEventCallbackDelegate);
+                    sceneCreatedSignal?.Disconnect(_stageSceneCreatedEventCallbackDelegate);
                 }
             }
         }
@@ -484,57 +508,57 @@ namespace Tizen.NUI
         {
             if (_windowFocusChangedEventCallback != null)
             {
-                WindowFocusChangedSignal().Disconnect(_windowFocusChangedEventCallback);
+                windowFocusChangedSignal?.Disconnect(_windowFocusChangedEventCallback);
             }
 
             if (_rootLayerTouchDataCallback != null)
             {
-                TouchDataSignal().Disconnect(_rootLayerTouchDataCallback);
+                touchDataSignal?.Disconnect(_rootLayerTouchDataCallback);
             }
 
             if (_wheelEventCallback != null)
             {
-                WheelEventSignal().Disconnect(_wheelEventCallback);
+                wheelSignal?.Disconnect(_wheelEventCallback);
             }
 
             if (DetentEventCallback != null)
             {
-                StageWheelEventSignal().Disconnect(DetentEventCallback);
+                stageWheelSignal?.Disconnect(DetentEventCallback);
             }
 
             if (_stageKeyCallbackDelegate != null)
             {
-                KeyEventSignal().Disconnect(_stageKeyCallbackDelegate);
+                keyEventSignal?.Disconnect(_stageKeyCallbackDelegate);
             }
 
             if (_stageEventProcessingFinishedEventCallbackDelegate != null)
             {
-                EventProcessingFinishedSignal().Disconnect(_stageEventProcessingFinishedEventCallbackDelegate);
+                eventProcessingFinishedSignal?.Disconnect(_stageEventProcessingFinishedEventCallbackDelegate);
             }
 
             if (_stageContextLostEventCallbackDelegate != null)
             {
-                ContextLostSignal().Disconnect(_stageContextLostEventCallbackDelegate);
+                contextLostSignal?.Disconnect(_stageContextLostEventCallbackDelegate);
             }
 
             if (_stageContextRegainedEventCallbackDelegate != null)
             {
-                ContextRegainedSignal().Disconnect(_stageContextRegainedEventCallbackDelegate);
+                contextRegainedSignal?.Disconnect(_stageContextRegainedEventCallbackDelegate);
             }
 
             if (_stageSceneCreatedEventCallbackDelegate != null)
             {
-                SceneCreatedSignal().Disconnect(_stageSceneCreatedEventCallbackDelegate);
+                sceneCreatedSignal?.Disconnect(_stageSceneCreatedEventCallbackDelegate);
             }
 
             if (_windowResizeEventCallback != null)
             {
-                ResizeSignal().Disconnect(_windowResizeEventCallback);
+                resizeSignal?.Disconnect(_windowResizeEventCallback);
             }
 
             if (_windowFocusChangedEventCallback2 != null)
             {
-                WindowFocusChangedSignal().Disconnect(_windowFocusChangedEventCallback2);
+                windowFocusChangedSignal2?.Disconnect(_windowFocusChangedEventCallback2); 
             }
 
             if (transitionEffectSignal != null)
@@ -704,7 +728,7 @@ namespace Tizen.NUI
             // e.WindowSize = new Size2D(val.GetWidth(), val.GetHeight());
             // val.Dispose();
 
-            // Workaround : windowSize should be valid pointer from dali, 
+            // Workaround : windowSize should be valid pointer from dali,
             // but currenlty it is fixed and is not Uint16Pair class.
             // will be fixed later.
             e.WindowSize = this.WindowSize;
@@ -742,9 +766,9 @@ namespace Tizen.NUI
 
             TransitionEffectEventArgs e = new TransitionEffectEventArgs();
 
-            e.State = (EffectStates)state;
+            e.State = (EffectState)state;
 
-            e.Type = (EffectTypes)type;
+            e.Type = (EffectType)type;
 
             if (transitionEffectHandler != null)
             {
@@ -945,14 +969,14 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class TransitionEffectEventArgs : EventArgs
         {
-            private EffectStates state;
-            private EffectTypes type;
+            private EffectState state;
+            private EffectType type;
 
             /// <summary>
             /// State
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public EffectStates State
+            public EffectState State
             {
                 get
                 {
@@ -967,7 +991,7 @@ namespace Tizen.NUI
             /// Type
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public EffectTypes Type
+            public EffectType Type
             {
                 get
                 {
