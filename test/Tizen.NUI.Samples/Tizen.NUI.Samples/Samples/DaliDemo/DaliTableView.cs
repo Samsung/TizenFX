@@ -6,8 +6,6 @@ using Tizen.NUI.UIComponents;
 
 namespace Tizen.NUI.Samples
 {
-    using tlog = Tizen.Log;
-
     public class Example
     {
         public Example(string name, string title)
@@ -46,8 +44,6 @@ namespace Tizen.NUI.Samples
 
     public class DaliTableView
     {
-        static readonly string tag = "NUITEST";
-
         static private uint mCurPage = 0;
 
         static public string DEMO_IMAGE_DIR = CommonResource.GetDaliResourcePath() + "DaliDemo/";
@@ -199,8 +195,6 @@ namespace Tizen.NUI.Samples
             mAnimationTimer.Tick += PauseBackgroundAnimation;
             mAnimationTimer.Start();
             mBackgroundAnimsPlaying = true;
-
-            tlog.Debug(tag, $"Initialize() end!");
         }
 
         private bool PauseBackgroundAnimation(object source, Timer.TickEventArgs e)
@@ -363,16 +357,14 @@ namespace Tizen.NUI.Samples
             label.Text = title;
             label.HorizontalAlignment = HorizontalAlignment.Center;
             label.VerticalAlignment = VerticalAlignment.Center;
-            label.WidthResizePolicy = ResizePolicyType.FillToParent;
             label.HeightResizePolicy = ResizePolicyType.FillToParent;
-
-            var fit = new PropertyMap();
-            fit.Add("enable", new PropertyValue(true)).Add("minSize", new PropertyValue(5.0f)).Add("maxSize", new PropertyValue(50.0f));
-            label.TextFit = fit;
+            //var fit = new PropertyMap();
+            //fit.Add("enable", new PropertyValue(true)).Add("minSize", new PropertyValue(3.0f)).Add("maxSize", new PropertyValue(50.0f));
+            //label.TextFit = fit;
+            label.PointSize = 11.0f * (float)(NUIApplication.GetDefaultWindow().Size.Height) / 1080.0f;
 
             // Pad around the label as its size is the same as the 9-patch border. It will overlap it without padding.
             label.SetPadding(new PaddingType((int)TILE_LABEL_PADDING, (int)TILE_LABEL_PADDING, (int)TILE_LABEL_PADDING, (int)TILE_LABEL_PADDING));
-
             focusableTile.Add(label);
 
             // Connect to the touch events

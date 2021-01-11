@@ -185,7 +185,7 @@ namespace Tizen.NUI.BaseComponents
                 }
 
                 mCurrentFrame = value;
-                AnimationState = State.Paused;
+                AnimationState = AnimationStates.Paused;
 
                 base.SetMinMaxFrame(0, mTotalFrameNum - 1);
                 base.CurrentFrame = mCurrentFrame;
@@ -200,7 +200,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public RepeatModeType RepeatMode
+        public RepeatModes RepeatMode
         {
             set
             {
@@ -209,10 +209,10 @@ namespace Tizen.NUI.BaseComponents
 
                 switch (mRepeatMode)
                 {
-                    case RepeatModeType.Restart:
+                    case RepeatModes.Restart:
                         LoopingMode = LoopingModeType.Restart;
                         break;
-                    case RepeatModeType.Reverse:
+                    case RepeatModes.Reverse:
                         LoopingMode = LoopingModeType.AutoReverse;
                         break;
                     default:
@@ -230,7 +230,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public State AnimationState
+        public AnimationStates AnimationState
         {
             private set
             {
@@ -238,11 +238,11 @@ namespace Tizen.NUI.BaseComponents
             }
             get
             {
-                if (CurrentAnimationState == State.Playing)
+                if (CurrentAnimationState == AnimationStates.Playing)
                 {
                     if (PlayState == PlayStateType.Stopped)
                     {
-                        CurrentAnimationState = State.Stopped;
+                        CurrentAnimationState = AnimationStates.Stopped;
                     }
                 }
                 return CurrentAnimationState;
@@ -314,7 +314,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// A marker has its start frame and end frame.
+        /// A marker has its start frame and end frame. 
         /// Animation will play between the start frame and the end frame of the marker if one marker is specified.
         /// Or animation will play between the start frame of the first marker and the end frame of the second marker if two markers are specified.   *
         /// </summary>
@@ -367,7 +367,7 @@ namespace Tizen.NUI.BaseComponents
             base.Margin = tmp;
 
             base.Play();
-            AnimationState = State.Playing;
+            AnimationState = AnimationStates.Playing;
 
             tlog.Fatal(tag, $" [{GetId()}] mIsMinMaxSet={mIsMinMaxSet}) ]VAV END]");
         }
@@ -387,7 +387,7 @@ namespace Tizen.NUI.BaseComponents
             }
 
             base.Pause();
-            AnimationState = State.Paused;
+            AnimationState = AnimationStates.Paused;
 
             tlog.Fatal(tag, $" [{GetId()}] ]VAV END]");
         }
@@ -402,7 +402,7 @@ namespace Tizen.NUI.BaseComponents
         /// </param>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Stop(EndAction endAction = EndAction.Cancel)
+        public void Stop(EndActions endAction = EndActions.Cancel)
         {
             tlog.Fatal(tag, $"[VAV START[ [{GetId()}] endAction:({endAction}), PlayState={PlayState}");
 
@@ -411,7 +411,7 @@ namespace Tizen.NUI.BaseComponents
                 throw new InvalidOperationException("Resource Url not yet Set");
             }
 
-            if (AnimationState == State.Stopped)
+            if (AnimationState == AnimationStates.Stopped)
             {
                 return;
             }
@@ -421,13 +421,13 @@ namespace Tizen.NUI.BaseComponents
                 mEndAction = endAction;
                 switch (endAction)
                 {
-                    case EndAction.Cancel:
+                    case EndActions.Cancel:
                         StopBehavior = StopBehaviorType.CurrentFrame;
                         break;
-                    case EndAction.Discard:
+                    case EndActions.Discard:
                         StopBehavior = StopBehaviorType.MinimumFrame;
                         break;
-                    case EndAction.StopFinal:
+                    case EndActions.StopFinal:
                         StopBehavior = StopBehaviorType.MaximumFrame;
                         break;
                     default:
@@ -435,11 +435,11 @@ namespace Tizen.NUI.BaseComponents
                         break;
                 }
             }
-            AnimationState = State.Stopped;
+            AnimationState = AnimationStates.Stopped;
 
             base.Stop();
 
-            if (endAction == EndAction.StopFinal)
+            if (endAction == EndActions.StopFinal)
             {
                 switch (mIsMinMaxSet)
                 {
@@ -476,39 +476,18 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// RepeatMode of animation.
         /// </summary>
-        [Obsolete("Please do not use! This will be removed. Please use AnimatedVectorImageView.RepeatModeType instead!")]
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
         public enum RepeatModes
         {
             /// <summary>
-            /// When the animation reaches the end and RepeatCount is nonZero, the animation restarts from the beginning.
-            /// </summary>
-            [Obsolete("Please do not use! This will be removed. Please use AnimatedVectorImageView.RepeatModeType.Restart instead!")]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            Restart = LoopingModeType.Restart,
-            /// <summary>
-            /// When the animation reaches the end and RepeatCount nonZero, the animation reverses direction on every animation cycle.
-            /// </summary>
-            [Obsolete("Please do not use! This will be removed. Please use AnimatedVectorImageView.RepeatModeType.Reverse instead!")]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            Reverse = LoopingModeType.AutoReverse
-        }
-
-        /// <summary>
-        /// RepeatMode type of animation.
-        /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public enum RepeatModeType
-        {
-            /// <summary>
-            /// When the animation reaches the end and RepeatCount is nonZero, the animation restarts from the beginning.
+            /// When the animation reaches the end and RepeatCount is nonZero, the animation restarts from the beginning. 
             /// </summary>
             // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
             [EditorBrowsable(EditorBrowsableState.Never)]
             Restart = LoopingModeType.Restart,
             /// <summary>
-            /// When the animation reaches the end and RepeatCount nonZero, the animation reverses direction on every animation cycle.
+            /// When the animation reaches the end and RepeatCount nonZero, the animation reverses direction on every animation cycle. 
             /// </summary>
             // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
             [EditorBrowsable(EditorBrowsableState.Never)]
@@ -518,72 +497,30 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// EndActions of animation.
         /// </summary>
-        [Obsolete("Please do not use! This will be removed. Please use AnimatedVectorImageView.EndAction instead!")]
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
         public enum EndActions
         {
             /// <summary> End action is Cancel, Animation Stops at the Current Frame.</summary>
-            [Obsolete("Please do not use! This will be removed. Please use AnimatedVectorImageView.EndAction.Cancel instead!")]
+            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
             [EditorBrowsable(EditorBrowsableState.Never)]
             Cancel = 0,
             /// <summary>  End action is Discard, Animation Stops at the Min Frame</summary>
-            [Obsolete("Please do not use! This will be removed. Please use AnimatedVectorImageView.EndAction.Discard instead!")]
+            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
             [EditorBrowsable(EditorBrowsableState.Never)]
             Discard = 1,
             /// <summary> End action is StopFinal, Animation Stops at the Max Frame</summary>
-            [Obsolete("Please do not use! This will be removed. Please use AnimatedVectorImageView.EndAction.StopFinal instead!")]
+            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
             [EditorBrowsable(EditorBrowsableState.Never)]
             StopFinal = 2
         }
 
         /// <summary>
-        /// EndAction of animation.
+        /// AnimationStates of animation.
         /// </summary>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public enum EndAction
-        {
-            /// <summary> End action is Cancel, Animation Stops at the Current Frame.</summary>
-            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            Cancel = 0,
-            /// <summary>  End action is Discard, Animation Stops at the Min Frame</summary>
-            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            Discard = 1,
-            /// <summary> End action is StopFinal, Animation Stops at the Max Frame</summary>
-            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            StopFinal = 2
-        }
-
-        /// <summary>
-        /// AnimationState of animation.
-        /// </summary>
-        [Obsolete("Please do not use! This will be removed. Please use AnimatedVectorImageView.State instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public enum AnimationStates
-        {
-            /// <summary> The animation has stopped.</summary>
-            [Obsolete("Please do not use! This will be removed. Please use AnimatedVectorImageView.State.Stopped instead!")]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            Stopped = PlayStateType.Stopped,
-            /// <summary> The animation is playing.</summary>
-            [Obsolete("Please do not use! This will be removed. Please use AnimatedVectorImageView.State.Playing instead!")]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            Playing = PlayStateType.Playing,
-            /// <summary> The animation is paused.</summary>
-            [Obsolete("Please do not use! This will be removed. Please use AnimatedVectorImageView.State.Paused instead!")]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            Paused = PlayStateType.Paused
-        }
-
-        /// <summary>
-        /// Animation State of animation.
-        /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public enum State
         {
             /// <summary> The animation has stopped.</summary>
             // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
@@ -609,11 +546,11 @@ namespace Tizen.NUI.BaseComponents
         private string mResourceURL = null;
         private int mRepeatCount = 0;
         private int mTotalFrameNum = 0;
-        private RepeatModeType mRepeatMode = RepeatModeType.Restart;
+        private RepeatModes mRepeatMode = RepeatModes.Restart;
         private int mMinFrame = -1, mMaxFrame = -1;
         private minMaxSetTypes mIsMinMaxSet = minMaxSetTypes.NotSetByUser;
         private int mCurrentFrame = -1;
-        private EndAction mEndAction = EndAction.Cancel;
+        private EndActions mEndAction = EndActions.Cancel;
         private enum minMaxSetTypes
         {
             NotSetByUser,
@@ -623,7 +560,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         private string tag = "NUITEST";
-        private State CurrentAnimationState = State.Stopped;
+        private AnimationStates CurrentAnimationState = AnimationStates.Stopped;
         #endregion Private
     }
 }

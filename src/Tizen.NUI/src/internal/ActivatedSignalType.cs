@@ -30,6 +30,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Dispose
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.ActivatedSignalType.DeleteActivatedSignalType(swigCPtr);
@@ -39,6 +40,7 @@ namespace Tizen.NUI
         /// Queries whether there are any connected slots.
         /// </summary>
         /// <returns>True if there are any slots connected to the signal</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool Empty()
         {
             bool ret = Interop.ActivatedSignalType.Empty(SwigCPtr);
@@ -50,6 +52,7 @@ namespace Tizen.NUI
         /// Queries the number of slots.
         /// </summary>
         /// <returns>The number of slots connected to this signal</returns>
+        /// <since_tizen> 3 </since_tizen>
         public uint GetConnectionCount()
         {
             uint ret = Interop.ActivatedSignalType.GetConnectionCount(SwigCPtr);
@@ -61,6 +64,7 @@ namespace Tizen.NUI
         /// Connects a function.
         /// </summary>
         /// <param name="func">The function to connect</param>
+        /// <since_tizen> 3 </since_tizen>
         public void Connect(System.Delegate func)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
@@ -74,6 +78,7 @@ namespace Tizen.NUI
         /// Disconnects a function.
         /// </summary>
         /// <param name="func">The function to disconnect</param>
+        /// <since_tizen> 3 </since_tizen>
         public void Disconnect(System.Delegate func)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
@@ -87,6 +92,7 @@ namespace Tizen.NUI
         /// Emits the signal.
         /// </summary>
         /// <param name="arg">The first value to pass to callbacks</param>
+        /// <since_tizen> 5 </since_tizen>
         public void Emit(InputMethodContext arg)
         {
             Interop.ActivatedSignalType.Emit(SwigCPtr, InputMethodContext.getCPtr(arg));
@@ -96,6 +102,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The contructor.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ActivatedSignalType() : this(Interop.ActivatedSignalType.NewActivatedSignalType(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

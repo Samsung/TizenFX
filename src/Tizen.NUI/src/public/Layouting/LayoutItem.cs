@@ -600,19 +600,22 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    if (independent)
+                    if (Owner.Position != null)
                     {
-                        // If height or width specification is not explicitly defined,
-                        // the size of the owner view must be reset even the ExcludeLayouting is true.
-                        if (Owner.HeightSpecification < 0 || Owner.WidthSpecification < 0)
+                        if(independent)
+                        {
+                            // If height or width specification is not explicitly defined,
+                            // the size of the owner view must be reset even the ExcludeLayouting is true.
+                            if (Owner.HeightSpecification < 0 || Owner.WidthSpecification < 0)
+                            {
+                                Owner.SetSize(right - left, bottom - top);
+                            }
+                        }
+                        else
                         {
                             Owner.SetSize(right - left, bottom - top);
+                            Owner.SetPosition(left, top);
                         }
-                    }
-                    else
-                    {
-                        Owner.SetSize(right - left, bottom - top);
-                        Owner.SetPosition(left, top);
                     }
                 }
 

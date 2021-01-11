@@ -21,7 +21,6 @@ namespace Tizen.NUI
     /// The Direction Bias type.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1712: Do not prefix enum values with type name")]
     public enum DirectionBias
     {
         /// <summary>
