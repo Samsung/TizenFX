@@ -11,7 +11,7 @@ namespace Tizen.NUI.Binding
 {
     /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    [ProvideCompiledAttribute("Tizen.NUI.Xaml.Core.XamlC.Size2DTypeConverter")]
+    [ProvideCompiledAttribute("Tizen.NUI.Xaml.Core.XamlC.SizeTypeConverter")]
     public class SizeTypeConverter : TypeConverter
     {
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.

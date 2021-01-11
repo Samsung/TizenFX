@@ -1290,13 +1290,6 @@ namespace Tizen.Applications
             {
                 lock (Handle)
                 {
-                    Log.Debug(LogTag, "Reset Package Event");
-                    err = Interop.PackageManager.PackageManagerUnsetEvent(Handle);
-                    if (err != Interop.PackageManager.ErrorCode.None)
-                    {
-                        throw PackageManagerErrorFactory.GetException(err, "Failed to unregister package manager event event.");
-                    }
-
                     err = Interop.PackageManager.PackageManagerSetEvent(Handle, s_packageManagerEventCallback, IntPtr.Zero);
                 }
             }
