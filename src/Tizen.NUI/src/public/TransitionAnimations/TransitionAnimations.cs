@@ -39,12 +39,8 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// Transition animation effect.
-    /// This is normally used to specify transitions for a NUIApplication.
+    /// Transition animation effect
     /// </summary>
-    /// <seealso cref="TransitionOptions.ForwardAnimation" />
-    /// <seealso cref="TransitionOptions.BackwardAnimation" />
-    /// <seealso cref="NUIApplication.TransitionOptions" />
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class TransitionAnimation : IDisposable
     {

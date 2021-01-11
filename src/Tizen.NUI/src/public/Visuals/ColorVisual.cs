@@ -23,8 +23,8 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class ColorVisual : VisualMap
     {
-        private Color mixColorForColorVisual = null;
-        private bool? renderIfTransparent = false;
+        private Color _mixColorForColorVisual = null;
+        private bool? _renderIfTransparent = false;
 
         /// <summary>
         /// Constructor.
@@ -43,11 +43,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return mixColorForColorVisual;
+                return _mixColorForColorVisual;
             }
             set
             {
-                mixColorForColorVisual = value;
+                _mixColorForColorVisual = value;
                 UpdateVisual();
             }
         }
@@ -61,11 +61,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return renderIfTransparent ?? (false);
+                return _renderIfTransparent ?? (false);
             }
             set
             {
-                renderIfTransparent = value;
+                _renderIfTransparent = value;
                 UpdateVisual();
             }
         }
@@ -76,7 +76,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected override void ComposingPropertyMap()
         {
-            Color color = mixColorForColorVisual ?? _mixColor;
+            Color color = _mixColorForColorVisual ?? _mixColor;
 
             if (color != null)
             {
@@ -84,13 +84,8 @@ namespace Tizen.NUI
 
                 base.ComposingPropertyMap();
 
-                PropertyValue temp = new PropertyValue((int)Visual.Type.Color);
-                _outputVisualMap.Add(Visual.Property.Type, temp);
-                temp.Dispose();
-
-                temp = new PropertyValue(color);
-                _outputVisualMap.Add(ColorVisualProperty.MixColor, temp);
-                temp.Dispose();
+                _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Color));
+                _outputVisualMap.Add(ColorVisualProperty.MixColor, new PropertyValue(color));
             }
             else
             {

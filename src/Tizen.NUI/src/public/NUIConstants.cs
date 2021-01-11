@@ -755,7 +755,6 @@ namespace Tizen.NUI
     }
 
     /// <since_tizen> 3 </since_tizen>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1717:Only FlagsAttribute enums should have plural names")]
     public enum DisposeTypes
     {
         /// <summary>

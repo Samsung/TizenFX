@@ -87,7 +87,6 @@ namespace Tizen.NUI
         /// This specifies the various types of BuiltinFunctions.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1717:Only FlagsAttribute enums should have plural names")]
         public enum BuiltinFunctions
         {
             /// <summary>
@@ -170,7 +169,6 @@ namespace Tizen.NUI
         /// This specifies which mode is set for AlphaFunction.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1717:Only FlagsAttribute enums should have plural names")]
         public enum Modes
         {
             /// <summary>

@@ -25,6 +25,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="arg0">A valid handle to the target object.</param>
         /// <param name="propertyIndex">The index of a property.</param>
+        /// <since_tizen> 3 </since_tizen>
         public Property(Animatable arg0, int propertyIndex) : this(Interop.Property.NewProperty(Animatable.getCPtr(arg0), propertyIndex), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -36,6 +37,7 @@ namespace Tizen.NUI
         /// <param name="arg0">A valid handle to the target object.</param>
         /// <param name="propertyIndex">The index of a property.</param>
         /// <param name="componentIndex">Index to a sub component of a property, for use with Vector2, Vector3 and Vector4. -1 for the main property (default is -1).</param>
+        /// <since_tizen> 3 </since_tizen>
         public Property(Animatable arg0, int propertyIndex, int componentIndex) : this(Interop.Property.NewProperty(Animatable.getCPtr(arg0), propertyIndex, componentIndex), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -47,6 +49,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="arg0">A valid handle to the target object.</param>
         /// <param name="propertyName">The property name.</param>
+        /// <since_tizen> 3 </since_tizen>
         public Property(Animatable arg0, string propertyName) : this(Interop.Property.NewProperty(Animatable.getCPtr(arg0), propertyName), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -59,6 +62,7 @@ namespace Tizen.NUI
         /// <param name="arg0">A valid handle to the target object.</param>
         /// <param name="propertyName">The property name.</param>
         /// <param name="componentIndex">Index to a sub component of a property, for use with Vector2, Vector3 and Vector4. -1 for main property (default is -1).</param>
+        /// <since_tizen> 3 </since_tizen>
         public Property(Animatable arg0, string propertyName, int componentIndex) : this(Interop.Property.NewProperty(Animatable.getCPtr(arg0), propertyName, componentIndex), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -71,6 +75,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets the index of the property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int propertyIndex
         {
             set
@@ -89,6 +94,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets the component index of the property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int componentIndex
         {
             set

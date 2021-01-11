@@ -81,12 +81,20 @@ namespace Tizen.NUI.Samples
             {
                 NUIApplication.GetDefaultWindow().Remove(navigator);
 
+                firstButton.Dispose();
+                firstButton = null;
+
+                secondButton.Dispose();
+                secondButton = null;
+
+                firstPage.Dispose();
+                firstPage = null;
+
+                secondPage.Dispose();
+                secondPage = null;
+
                 navigator.Dispose();
                 navigator = null;
-                firstButton = null;
-                firstPage = null;
-                secondButton = null;
-                secondPage = null;
             }
         }
     }

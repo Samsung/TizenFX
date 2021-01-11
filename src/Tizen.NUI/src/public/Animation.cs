@@ -158,7 +158,6 @@ namespace Tizen.NUI
         /// Enumeration for what to do when the animation ends, stopped, or destroyed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1717:Only FlagsAttribute enums should have plural names")]
         public enum EndActions
         {
             /// <summary>
@@ -196,7 +195,6 @@ namespace Tizen.NUI
         /// </summary>
         /// <remarks>Calling Reset() on this class will not reset the animation. It will call the BaseHandle.Reset() which drops the object handle.</remarks>
         /// <since_tizen> 3 </since_tizen>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1717:Only FlagsAttribute enums should have plural names")]
         public enum States
         {
             /// <summary>

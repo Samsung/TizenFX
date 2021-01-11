@@ -17,7 +17,6 @@
 #if !PROFILE_WEARABLE
 
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
 
@@ -96,7 +95,6 @@ namespace Tizen.NUI.Components
 
         public Theme Create() => Create(null);
 
-        [SuppressMessage("Microsoft.Reliability", "CA2000: Dispose objects before losing scope", Justification = "The responsibility to dispose the object is transferred to the theme object.")]
         public Theme Create(IEnumerable<KeyValuePair<string, string>> changedResources)
         {
             var theme = new Theme() { Id = "Tizen.NUI.Theme.Common" };

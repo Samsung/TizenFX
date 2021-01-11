@@ -39,7 +39,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public AnimatedImageView() : base()
         {
-            dirtyFlag = true;
+            mDirtyFlag = true;
         }
 
         /// <summary>
@@ -72,12 +72,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return url;
+                return mUrl;
             }
             set
             {
-                dirtyFlag = true;
-                url = value;
+                mDirtyFlag = true;
+                mUrl = value;
             }
         }
 
@@ -90,7 +90,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return resourceURLs;
+                return mResourceURLs;
             }
         }
 
@@ -104,12 +104,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return batchSize;
+                return mBatchSize;
             }
             set
             {
-                dirtyFlag = true;
-                batchSize = value;
+                mDirtyFlag = true;
+                mBatchSize = value;
             }
         }
 
@@ -127,12 +127,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return cacheSize;
+                return mCacheSize;
             }
             set
             {
-                dirtyFlag = true;
-                cacheSize = value;
+                mDirtyFlag = true;
+                mCacheSize = value;
             }
         }
 
@@ -149,12 +149,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return frameDelay;
+                return mFrameDelay;
             }
             set
             {
-                dirtyFlag = true;
-                frameDelay = value;
+                mDirtyFlag = true;
+                mFrameDelay = value;
             }
         }
 
@@ -167,86 +167,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return loopCount;
+                return mLoopCount;
             }
             set
             {
-                dirtyFlag = true;
-                loopCount = value;
-            }
-        }
-
-        /// <summary>
-        /// Sets or gets the stop behavior.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public StopBehaviorType StopBehavior
-        {
-            set
-            {
-                stopBehavior = (StopBehaviorType)value;
-                dirtyFlag = true;
-            }
-            get
-            {
-                return stopBehavior;
-            }
-        }
-
-        /// <summary>
-        /// Get the number of total frames
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int TotalFrame
-        {
-            get
-            {
-                int ret = -1;
-                PropertyMap map = Image;
-                if (map != null)
-                {
-                    PropertyValue val = map.Find(ImageVisualProperty.TotalFrameNumber);
-                    if (val != null)
-                    {
-                        if (val.Get(out ret))
-                        {
-                            return ret;
-                        }
-                    }
-                }
-                return ret;
-            }
-        }
-
-        /// <summary>
-        /// Set or get the current frame. When setting a specific frame, it is displayed as a still image.
-        /// </summary>
-        /// <remarks>
-        /// Gets the value set by a user. If the setting value is out-ranged, it is reset as a minimum frame or a maximum frame.
-        /// </remarks>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int CurrentFrame
-        {
-            set
-            {
-                DoAction(ImageView.Property.IMAGE, (int)ActionType.jumpTo, new PropertyValue(value));
-            }
-            get
-            {
-                int ret = -1;
-                PropertyMap map = Image;
-                if (map != null)
-                {
-                    PropertyValue val = map.Find(ImageVisualProperty.CurrentFrameNumber);
-                    if (val != null)
-                    {
-                        if (val.Get(out ret))
-                        {
-                            return ret;
-                        }
-                    }
-                }
-                return ret;
+                mDirtyFlag = true;
+                mLoopCount = value;
             }
         }
         #endregion Property
@@ -259,61 +185,56 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetValues()
         {
-            if (dirtyFlag == false)
+            if (mDirtyFlag == false)
             {
                 return;
             }
-            dirtyFlag = false;
+            mDirtyFlag = false;
 
             PropertyMap tMap = new PropertyMap();
             PropertyValue animatiedImage = new PropertyValue((int)Visual.Type.AnimatedImage);
             tMap.Insert(Visual.Property.Type, animatiedImage);
-            if (resourceURLs?.Count != 0)
+            if (mResourceURLs?.Count != 0)
             {
-                PropertyArray indexPropertyArray = new PropertyArray();
+                PropertyArray mArray = new PropertyArray();
                 PropertyArray returnedArr = new PropertyArray();
                 PropertyValue index = new PropertyValue();
-                foreach (var iter in resourceURLs)
+                foreach (var iter in mResourceURLs)
                 {
                     index = new PropertyValue(iter);
-                    returnedArr = indexPropertyArray.Add(index);
+                    returnedArr = mArray.Add(index);
                 }
                 index.Dispose();
                 returnedArr.Dispose();
-                PropertyValue arrayProperty = new PropertyValue(indexPropertyArray);
-                tMap.Insert(ImageVisualProperty.URL, arrayProperty);
-                PropertyValue frameDelayProperty = new PropertyValue(frameDelay);
-                tMap.Insert(ImageVisualProperty.FrameDelay, frameDelayProperty);
+                PropertyValue array = new PropertyValue(mArray);
+                tMap.Insert(ImageVisualProperty.URL, array);
+                PropertyValue batchSize = new PropertyValue(mBatchSize);
+                tMap.Insert(ImageVisualProperty.BatchSize, batchSize);
+                PropertyValue cacheSize = new PropertyValue(mCacheSize);
+                tMap.Insert(ImageVisualProperty.CacheSize, cacheSize);
+                PropertyValue frameDelay = new PropertyValue(mFrameDelay);
+                tMap.Insert(ImageVisualProperty.FrameDelay, frameDelay);
+                PropertyValue loopCount = new PropertyValue(mLoopCount);
+                tMap.Insert(ImageVisualProperty.LoopCount, loopCount);
 
-                arrayProperty.Dispose();
-                indexPropertyArray.Dispose();
-                frameDelayProperty.Dispose();
+                loopCount.Dispose();
+                frameDelay.Dispose();
+                cacheSize.Dispose();
+                batchSize.Dispose();
+                mArray.Dispose();
+                array.Dispose();
             }
             else
             {
-                PropertyValue urlProperty = new PropertyValue(url);
-                tMap.Insert(ImageVisualProperty.URL, urlProperty);
-                urlProperty.Dispose();
+                PropertyValue url = new PropertyValue(mUrl);
+                tMap.Insert(ImageVisualProperty.URL, url);
+                url.Dispose();
             }
 
-            PropertyValue batchSizeProperty = new PropertyValue(batchSize);
-            tMap.Insert(ImageVisualProperty.BatchSize, batchSizeProperty);
-            PropertyValue cacheSizeProperty = new PropertyValue(cacheSize);
-            tMap.Insert(ImageVisualProperty.CacheSize, cacheSizeProperty);
-            PropertyValue loopCountProperty = new PropertyValue(loopCount);
-            tMap.Insert(ImageVisualProperty.LoopCount, loopCountProperty);
-            PropertyValue stopBehaviorProperty = new PropertyValue((int)stopBehavior);
-            tMap.Insert(ImageVisualProperty.StopBehavior, stopBehaviorProperty);
-
-            loopCountProperty.Dispose();
-            cacheSizeProperty.Dispose();
-            batchSizeProperty.Dispose();
-            stopBehaviorProperty.Dispose();
-
-            propertyMap = tMap;
-            PropertyValue mapProperty = new PropertyValue(propertyMap);
-            SetProperty(ImageView.Property.IMAGE, mapProperty);
-            mapProperty.Dispose();
+            mMap = tMap;
+            PropertyValue map = new PropertyValue(mMap);
+            SetProperty(ImageView.Property.IMAGE, map);
+            map.Dispose();
 
             tMap.Dispose();
             animatiedImage.Dispose();
@@ -355,37 +276,6 @@ namespace Tizen.NUI.BaseComponents
 
 
         #region Event, Enum, Struct, ETC
-
-        /// <summary>
-        /// Enumeration for what to do when the animation is stopped.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public enum StopBehaviorType
-        {
-            /// <summary>
-            /// When the animation is stopped, the current frame is shown.
-            /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            CurrentFrame,
-            /// <summary>
-            /// When the animation is stopped, the min frame (first frame) is shown.
-            /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            MinimumFrame,
-            /// <summary>
-            /// When the animation is stopped, the max frame (last frame) is shown.
-            /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            MaximumFrame
-        }
-
-        private enum ActionType
-        {
-            play,
-            pause,
-            stop,
-            jumpTo,
-        };
         #endregion Event, Enum, Struct, ETC
 
 
@@ -394,15 +284,14 @@ namespace Tizen.NUI.BaseComponents
 
 
         #region Private
-        private string url = "";
-        private List<string> resourceURLs = new List<string>();
-        private int batchSize = 1;
-        private int cacheSize = 1;
-        private int frameDelay = 0;
-        private int loopCount = -1;
-        private bool dirtyFlag = false;
-        private StopBehaviorType stopBehavior;
-        private PropertyMap propertyMap;
+        string mUrl = "";
+        List<string> mResourceURLs = new List<string>();
+        int mBatchSize = 1;
+        int mCacheSize = 1;
+        int mFrameDelay = 0;
+        int mLoopCount = -1;
+        bool mDirtyFlag = false;
+        PropertyMap mMap;
         #endregion Private
     }
 }

@@ -75,7 +75,6 @@ namespace Tizen.NUI
     /// The properties that can be animated.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1717:Only FlagsAttribute enums should have plural names")]
     public enum AnimatableProperties
     {
         /// <summary>
