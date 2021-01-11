@@ -47,16 +47,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                Tizen.NUI.PropertyValue pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.DepthIndex);
-                pValue.Get(out temp);
-                pValue.Dispose();
+                Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.DepthIndex).Get(out temp);
                 return temp;
             }
             set
             {
-                var temp = new Tizen.NUI.PropertyValue(value);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.DepthIndex, temp);
-                temp.Dispose();
+                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.DepthIndex, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -69,16 +65,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.FaceCullingMode);
-                pValue.Get(out temp);
-                pValue.Dispose();
+                Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.FaceCullingMode).Get(out temp);
                 return temp;
             }
             set
             {
-                var temp = new Tizen.NUI.PropertyValue(value);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.FaceCullingMode, temp);
-                temp.Dispose();
+                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.FaceCullingMode, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -91,16 +83,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.BlendMode);
-                pValue.Get(out temp);
-                pValue.Dispose();
+                Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.BlendMode).Get(out temp);
                 return temp;
             }
             set
             {
-                var temp = new Tizen.NUI.PropertyValue(value);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.BlendMode, temp);
-                temp.Dispose();
+                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.BlendMode, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -113,16 +101,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.BlendEquationRgb);
-                pValue.Get(out temp);
-                pValue.Dispose();
+                Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.BlendEquationRgb).Get(out temp);
                 return temp;
             }
             set
             {
-                var temp = new Tizen.NUI.PropertyValue(value);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.BlendEquationRgb, temp);
-                temp.Dispose();
+                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.BlendEquationRgb, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -135,16 +119,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.BlendEquationAlpha);
-                pValue.Get(out temp);
-                pValue.Dispose();
+                Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.BlendEquationAlpha).Get(out temp);
                 return temp;
             }
             set
             {
-                var temp = new Tizen.NUI.PropertyValue(value);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.BlendEquationAlpha, temp);
-                temp.Dispose();
+                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.BlendEquationAlpha, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -157,16 +137,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.BlendFactorSrcRgb);
-                pValue.Get(out temp);
-                pValue.Dispose();
+                Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.BlendFactorSrcRgb).Get(out temp);
                 return temp;
             }
             set
             {
-                var temp = new Tizen.NUI.PropertyValue(value);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.BlendFactorSrcRgb, temp);
-                temp.Dispose();
+                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.BlendFactorSrcRgb, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -179,16 +155,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.BlendFactorDestRgb);
-                pValue.Get(out temp);
-                pValue.Dispose();
+                Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.BlendFactorDestRgb).Get(out temp);
                 return temp;
             }
             set
             {
-                var temp = new Tizen.NUI.PropertyValue(value);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.BlendFactorDestRgb, temp);
-                temp.Dispose();
+                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.BlendFactorDestRgb, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -201,16 +173,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.BlendFactorSrcAlpha);
-                pValue.Get(out temp);
-                pValue.Dispose();
+                Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.BlendFactorSrcAlpha).Get(out temp);
                 return temp;
             }
             set
             {
-                var temp = new Tizen.NUI.PropertyValue(value);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.BlendFactorSrcAlpha, temp);
-                temp.Dispose();
+                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.BlendFactorSrcAlpha, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -223,16 +191,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.BlendFactorDestAlpha);
-                pValue.Get(out temp);
-                pValue.Dispose();
+                Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.BlendFactorDestAlpha).Get(out temp);
                 return temp;
             }
             set
             {
-                var temp = new Tizen.NUI.PropertyValue(value);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.BlendFactorDestAlpha, temp);
-                temp.Dispose();
+                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.BlendFactorDestAlpha, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -245,16 +209,12 @@ namespace Tizen.NUI
             get
             {
                 Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.BlendColor);
-                pValue.Get(temp);
-                pValue.Dispose();
+                Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.BlendColor).Get(temp);
                 return temp;
             }
             set
             {
-                var temp = new Tizen.NUI.PropertyValue(value);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.BlendColor, temp);
-                temp.Dispose();
+                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.BlendColor, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -267,16 +227,12 @@ namespace Tizen.NUI
             get
             {
                 bool temp = false;
-                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.BlendPreMultipliedAlpha);
-                pValue.Get(out temp);
-                pValue.Dispose();
+                Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.BlendPreMultipliedAlpha).Get(out temp);
                 return temp;
             }
             set
             {
-                var temp = new Tizen.NUI.PropertyValue(value);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.BlendPreMultipliedAlpha, temp);
-                temp.Dispose();
+                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.BlendPreMultipliedAlpha, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -289,16 +245,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.IndexRangeFirst);
-                pValue.Get(out temp);
-                pValue.Dispose();
+                Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.IndexRangeFirst).Get(out temp);
                 return temp;
             }
             set
             {
-                var temp = new Tizen.NUI.PropertyValue(value);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.IndexRangeFirst, temp);
-                temp.Dispose();
+                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.IndexRangeFirst, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -311,16 +263,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.IndexRangeCount);
-                pValue.Get(out temp);
-                pValue.Dispose();
+                Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.IndexRangeCount).Get(out temp);
                 return temp;
             }
             set
             {
-                var temp = new Tizen.NUI.PropertyValue(value);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.IndexRangeCount, temp);
-                temp.Dispose();
+                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.IndexRangeCount, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -333,16 +281,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.DepthWriteMode);
-                pValue.Get(out temp);
-                pValue.Dispose();
+                Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.DepthWriteMode).Get(out temp);
                 return temp;
             }
             set
             {
-                var temp = new Tizen.NUI.PropertyValue(value);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.DepthWriteMode, temp);
-                temp.Dispose();
+                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.DepthWriteMode, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -355,16 +299,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.DepthFunction);
-                pValue.Get(out temp);
-                pValue.Dispose();
+                Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.DepthFunction).Get(out temp);
                 return temp;
             }
             set
             {
-                var temp = new Tizen.NUI.PropertyValue(value);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.DepthFunction, temp);
-                temp.Dispose();
+                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.DepthFunction, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -377,16 +317,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.DepthTestMode);
-                pValue.Get(out temp);
-                pValue.Dispose();
+                Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.DepthTestMode).Get(out temp);
                 return temp;
             }
             set
             {
-                var temp = new Tizen.NUI.PropertyValue(value);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.DepthTestMode, temp);
-                temp.Dispose();
+                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.DepthTestMode, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -399,16 +335,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.RenderMode);
-                pValue.Get(out temp);
-                pValue.Dispose();
+                Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.RenderMode).Get(out temp);
                 return temp;
             }
             set
             {
-                var temp = new Tizen.NUI.PropertyValue(value);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.RenderMode, temp);
-                temp.Dispose();
+                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.RenderMode, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -421,16 +353,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.StencilFunction);
-                pValue.Get(out temp);
-                pValue.Dispose();
+                Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.StencilFunction).Get(out temp);
                 return temp;
             }
             set
             {
-                var temp = new Tizen.NUI.PropertyValue(value);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.StencilFunction, temp);
-                temp.Dispose();
+                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.StencilFunction, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -443,16 +371,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.StencilFunctionMask);
-                pValue.Get(out temp);
-                pValue.Dispose();
+                Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.StencilFunctionMask).Get(out temp);
                 return temp;
             }
             set
             {
-                var temp = new Tizen.NUI.PropertyValue(value);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.StencilFunctionMask, temp);
-                temp.Dispose();
+                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.StencilFunctionMask, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -465,16 +389,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.StencilFunctionReference);
-                pValue.Get(out temp);
-                pValue.Dispose();
+                Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.StencilFunctionReference).Get(out temp);
                 return temp;
             }
             set
             {
-                var temp = new Tizen.NUI.PropertyValue(value);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.StencilFunctionReference, temp);
-                temp.Dispose();
+                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.StencilFunctionReference, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -487,16 +407,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.StencilMask);
-                pValue.Get(out temp);
-                pValue.Dispose();
+                Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.StencilMask).Get(out temp);
                 return temp;
             }
             set
             {
-                var temp = new Tizen.NUI.PropertyValue(value);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.StencilMask, temp);
-                temp.Dispose();
+                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.StencilMask, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -509,16 +425,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.StencilOperationOnFail);
-                pValue.Get(out temp);
-                pValue.Dispose();
+                Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.StencilOperationOnFail).Get(out temp);
                 return temp;
             }
             set
             {
-                var temp = new Tizen.NUI.PropertyValue(value);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.StencilOperationOnFail, temp);
-                temp.Dispose();
+                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.StencilOperationOnFail, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -531,16 +443,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.StencilOperationOnZFail);
-                pValue.Get(out temp);
-                pValue.Dispose();
+                Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.StencilOperationOnZFail).Get(out temp);
                 return temp;
             }
             set
             {
-                var temp = new Tizen.NUI.PropertyValue(value);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.StencilOperationOnZFail, temp);
-                temp.Dispose();
+                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.StencilOperationOnZFail, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -553,16 +461,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.StencilOperationOnZPass);
-                pValue.Get(out temp);
-                pValue.Dispose();
+                Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.StencilOperationOnZPass).Get(out temp);
                 return temp;
             }
             set
             {
-                var temp = new Tizen.NUI.PropertyValue(value);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.StencilOperationOnZPass, temp);
-                temp.Dispose();
+                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.StencilOperationOnZPass, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -708,18 +612,6 @@ namespace Tizen.NUI
             /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int ForegroundEffect = Interop.Renderer.RangesForegroundEffectGet();
-
-
-
-            [Obsolete("Please do not use this! Deprecated in API9, will be removed in API11! Please use ForegroundEffect instead!")]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            [SuppressMessage("Naming", "CA1707:Identifiers should not contain underscores", Justification = "<Pending>")]
-            public static readonly int FOREGROUND_EFFECT = Interop.Renderer.RangesForegroundEffectGet();
-
-            [Obsolete("Please do not use this! Deprecated in API9, will be removed in API11! Please use BackgroundEffect instead!")]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            [SuppressMessage("Naming", "CA1707:Identifiers should not contain underscores", Justification = "<Pending>")]
-            public static readonly int BACKGROUND_EFFECT = Interop.Renderer.RangesBackgroundEffectGet();
         }
 
         /// <summary>

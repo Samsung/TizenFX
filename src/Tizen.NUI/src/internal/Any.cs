@@ -72,6 +72,7 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <since_tizen> 3 </since_tizen>
         public class AnyContainerBase : Disposable
         {
 
@@ -84,16 +85,19 @@ namespace Tizen.NUI
                 return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
             }
 
+            /// <since_tizen> 3 </since_tizen>
             protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
             {
                 Interop.Any.DeleteAnyAnyContainerBase(swigCPtr);
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public AnyContainerBase(SWIGTYPE_p_std__type_info type, SWIGTYPE_p_f_r_q_const__Dali__Any__AnyContainerBase__p_Dali__Any__AnyContainerBase cloneFunc, SWIGTYPE_p_f_p_q_const__Dali__Any__AnyContainerBase__void deleteFunc) : this(Interop.Any.NewAnyAnyContainerBase(SWIGTYPE_p_std__type_info.getCPtr(type), SWIGTYPE_p_f_r_q_const__Dali__Any__AnyContainerBase__p_Dali__Any__AnyContainerBase.getCPtr(cloneFunc), SWIGTYPE_p_f_p_q_const__Dali__Any__AnyContainerBase__void.getCPtr(deleteFunc)), true)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public new SWIGTYPE_p_std__type_info GetType()
             {
                 SWIGTYPE_p_std__type_info ret = new SWIGTYPE_p_std__type_info(Interop.Any.AnyContainerBaseGetType(SwigCPtr));
@@ -101,6 +105,7 @@ namespace Tizen.NUI
                 return ret;
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public SWIGTYPE_p_std__type_info mType
             {
                 get
@@ -111,6 +116,7 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public SWIGTYPE_p_f_r_q_const__Dali__Any__AnyContainerBase__p_Dali__Any__AnyContainerBase mCloneFunc
             {
                 set
@@ -127,6 +133,7 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public SWIGTYPE_p_f_p_q_const__Dali__Any__AnyContainerBase__void mDeleteFunc
             {
                 set

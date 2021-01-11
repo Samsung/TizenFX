@@ -122,35 +122,6 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WidgetView_SWIGUpcast")]
             public static extern global::System.IntPtr Upcast(global::System.IntPtr jarg1);
-
-
-            [Obsolete("Please do not use this! Deprecated in API9, will be removed in API11! Please use WidgetView.PauseWidget(...) instead!")]
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WidgetView_PauseWidget")]
-            public static extern bool WidgetView_PauseWidget(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [Obsolete("Please do not use this! Deprecated in API9, will be removed in API11! Please use WidgetView.ResumeWidget(...) instead!")]
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WidgetView_ResumeWidget")]
-            public static extern bool WidgetView_ResumeWidget(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [Obsolete("Please do not use this! Deprecated in API9, will be removed in API11! Please use WidgetView.TerminateWidget(...) instead!")]
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WidgetView_TerminateWidget")]
-            public static extern bool WidgetView_TerminateWidget(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [Obsolete("Please do not use this! Deprecated in API9, will be removed in API11! Please use WidgetView.DeleteWidgetView(...) instead!")]
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WidgetView")]
-            public static extern void delete_WidgetView(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [Obsolete("Please do not use this! Deprecated in API9, will be removed in API11! Please use WidgetView.Upcast(...) instead!")]
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WidgetView_SWIGUpcast")]
-            public static extern global::System.IntPtr WidgetView_SWIGUpcast(global::System.IntPtr jarg1);
-
-            [Obsolete("Please do not use this! Deprecated in API9, will be removed in API11! Please use WidgetView.WidgetAddedSignal(...) instead!")]
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WidgetView_WidgetAddedSignal")]
-            public static extern global::System.IntPtr WidgetView_WidgetAddedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [Obsolete("Please do not use this! Deprecated in API9, will be removed in API11! Please use WidgetView.WidgetDeletedSignal(...) instead!")]
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WidgetView_WidgetDeletedSignal")]
-            public static extern global::System.IntPtr WidgetView_WidgetDeletedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
         }
     }
 }

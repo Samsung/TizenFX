@@ -34,6 +34,7 @@ namespace Tizen.NUI
             Interop.Builder.DeleteBuilder(swigCPtr);
         }
 
+        /// <since_tizen> 3 </since_tizen>
         public class QuitEventArgs : EventArgs
         {
         }
@@ -48,25 +49,31 @@ namespace Tizen.NUI
         {
             add
             {
-                // Restricted to only one listener
-                if (_builderQuitEventHandler == null)
+                lock (this)
                 {
-                    _builderQuitEventHandler += value;
+                    // Restricted to only one listener
+                    if (_builderQuitEventHandler == null)
+                    {
+                        _builderQuitEventHandler += value;
 
-                    _builderQuitEventCallbackDelegate = new QuitEventCallbackDelegate(OnQuit);
-                    quitSignal = this.QuitSignal();
-                    quitSignal?.Connect(_builderQuitEventCallbackDelegate);
+                        _builderQuitEventCallbackDelegate = new QuitEventCallbackDelegate(OnQuit);
+                        quitSignal = this.QuitSignal();
+                        quitSignal?.Connect(_builderQuitEventCallbackDelegate);
+                    }
                 }
             }
 
             remove
             {
-                if (_builderQuitEventHandler != null)
+                lock (this)
                 {
-                    quitSignal?.Disconnect(_builderQuitEventCallbackDelegate);
-                }
+                    if (_builderQuitEventHandler != null)
+                    {
+                        quitSignal?.Disconnect(_builderQuitEventCallbackDelegate);
+                    }
 
-                _builderQuitEventHandler -= value;
+                    _builderQuitEventHandler -= value;
+                }
             }
         }
 
@@ -257,6 +264,7 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <since_tizen> 3 </since_tizen>
         public enum UIFormat
         {
             JSON
