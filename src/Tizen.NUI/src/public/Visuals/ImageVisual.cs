@@ -23,25 +23,25 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class ImageVisual : VisualMap
     {
-        private string url = null;
-        private string alphaMaskUrl = null;
-        private string auxiliaryImageUrl = null;
-        private FittingModeType? fittingMode = null;
-        private SamplingModeType? samplingMode = null;
-        private int? desiredWidth = null;
-        private int? desiredHeight = null;
-        private bool? synchronousLoading = false;
-        private bool? borderOnly = null;
-        private Vector4 pixelArea = null;
-        private WrapModeType? wrapModeU = null;
-        private WrapModeType? wrapModeV = null;
-        private float? auxiliaryImageAlpha = null;
-        private float? maskContentScale = null;
-        private bool? cropToMask = null;
-        private ReleasePolicyType? releasePolicy = null;
-        private LoadPolicyType? loadPolicy = null;
-        private bool? orientationCorrection = true;
-        private bool? atlasing = false;
+        private string _url = null;
+        private string _alphaMaskUrl = null;
+        private string _auxiliaryImageUrl = null;
+        private FittingModeType? _fittingMode = null;
+        private SamplingModeType? _samplingMode = null;
+        private int? _desiredWidth = null;
+        private int? _desiredHeight = null;
+        private bool? _synchronousLoading = false;
+        private bool? _borderOnly = null;
+        private Vector4 _pixelArea = null;
+        private WrapModeType? _wrapModeU = null;
+        private WrapModeType? _wrapModeV = null;
+        private float? _auxiliaryImageAlpha = null;
+        private float? _maskContentScale = null;
+        private bool? _cropToMask = null;
+        private ReleasePolicyType? _releasePolicy = null;
+        private LoadPolicyType? _loadPolicy = null;
+        private bool? _orientationCorrection = true;
+        private bool? _atlasing = false;
 
         /// <summary>
         /// Constructor.
@@ -60,11 +60,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return url;
+                return _url;
             }
             set
             {
-                url = (value == null ? "" : value);
+                _url = (value == null ? "" : value);
                 UpdateVisual();
             }
         }
@@ -79,11 +79,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return alphaMaskUrl;
+                return _alphaMaskUrl;
             }
             set
             {
-                alphaMaskUrl = value;
+                _alphaMaskUrl = value;
                 UpdateVisual();
             }
         }
@@ -97,11 +97,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return auxiliaryImageUrl;
+                return _auxiliaryImageUrl;
             }
             set
             {
-                auxiliaryImageUrl = value;
+                _auxiliaryImageUrl = value;
                 UpdateVisual();
             }
         }
@@ -117,11 +117,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return fittingMode ?? (FittingModeType.ShrinkToFit);
+                return _fittingMode ?? (FittingModeType.ShrinkToFit);
             }
             set
             {
-                fittingMode = value;
+                _fittingMode = value;
                 UpdateVisual();
             }
         }
@@ -137,11 +137,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return samplingMode ?? (SamplingModeType.Box);
+                return _samplingMode ?? (SamplingModeType.Box);
             }
             set
             {
-                samplingMode = value;
+                _samplingMode = value;
                 UpdateVisual();
             }
         }
@@ -157,11 +157,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return desiredWidth ?? (-1);
+                return _desiredWidth ?? (-1);
             }
             set
             {
-                desiredWidth = value;
+                _desiredWidth = value;
                 UpdateVisual();
             }
         }
@@ -177,11 +177,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return desiredHeight ?? (-1);
+                return _desiredHeight ?? (-1);
             }
             set
             {
-                desiredHeight = value;
+                _desiredHeight = value;
                 UpdateVisual();
             }
         }
@@ -197,11 +197,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return synchronousLoading ?? (false);
+                return _synchronousLoading ?? (false);
             }
             set
             {
-                synchronousLoading = value;
+                _synchronousLoading = value;
                 UpdateVisual();
             }
         }
@@ -217,11 +217,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return borderOnly ?? (false);
+                return _borderOnly ?? (false);
             }
             set
             {
-                borderOnly = value;
+                _borderOnly = value;
                 UpdateVisual();
             }
         }
@@ -239,11 +239,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return pixelArea ?? (new Vector4(0.0f, 0.0f, 1.0f, 1.0f));
+                return _pixelArea ?? (new Vector4(0.0f, 0.0f, 1.0f, 1.0f));
             }
             set
             {
-                pixelArea = value;
+                _pixelArea = value;
                 UpdateVisual();
             }
         }
@@ -260,11 +260,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return wrapModeU ?? (WrapModeType.Default);
+                return _wrapModeU ?? (WrapModeType.Default);
             }
             set
             {
-                wrapModeU = value;
+                _wrapModeU = value;
                 UpdateVisual();
             }
         }
@@ -282,11 +282,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return wrapModeV ?? (WrapModeType.Default);
+                return _wrapModeV ?? (WrapModeType.Default);
             }
             set
             {
-                wrapModeV = value;
+                _wrapModeV = value;
                 UpdateVisual();
             }
         }
@@ -299,11 +299,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return maskContentScale ?? 1.0f;
+                return _maskContentScale ?? 1.0f;
             }
             set
             {
-                maskContentScale = value;
+                _maskContentScale = value;
                 UpdateVisual();
             }
         }
@@ -316,11 +316,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return cropToMask ?? false;
+                return _cropToMask ?? false;
             }
             set
             {
-                cropToMask = value;
+                _cropToMask = value;
                 UpdateVisual();
             }
         }
@@ -333,11 +333,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return auxiliaryImageAlpha ?? 1.0f;
+                return _auxiliaryImageAlpha ?? 1.0f;
             }
             set
             {
-                auxiliaryImageAlpha = value;
+                _auxiliaryImageAlpha = value;
                 UpdateVisual();
             }
         }
@@ -351,11 +351,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return releasePolicy ?? (ReleasePolicyType.Destroyed);
+                return _releasePolicy ?? (ReleasePolicyType.Destroyed);
             }
             set
             {
-                releasePolicy = value;
+                _releasePolicy = value;
                 UpdateVisual();
             }
         }
@@ -370,11 +370,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return loadPolicy ?? (LoadPolicyType.Attached);
+                return _loadPolicy ?? (LoadPolicyType.Attached);
             }
             set
             {
-                loadPolicy = value;
+                _loadPolicy = value;
                 UpdateVisual();
             }
         }
@@ -390,11 +390,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return orientationCorrection ?? (true);
+                return _orientationCorrection ?? (true);
             }
             set
             {
-                orientationCorrection = value;
+                _orientationCorrection = value;
                 UpdateVisual();
             }
         }
@@ -408,11 +408,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return atlasing ?? (false);
+                return _atlasing ?? (false);
             }
             set
             {
-                atlasing = value;
+                _atlasing = value;
                 UpdateVisual();
             }
         }
@@ -423,142 +423,29 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected override void ComposingPropertyMap()
         {
-            if (url != null)
+            if (_url != null)
             {
                 _outputVisualMap = new PropertyMap();
-                PropertyValue temp = new PropertyValue((int)Visual.Type.Image);
-                _outputVisualMap.Add(Visual.Property.Type, temp);
-                temp.Dispose();
-
-                temp = new PropertyValue(url);
-                _outputVisualMap.Add(ImageVisualProperty.URL, temp);
-                temp.Dispose();
-
-                if (alphaMaskUrl != null)
-                {
-                    temp = new PropertyValue(alphaMaskUrl);
-                    _outputVisualMap.Add(ImageVisualProperty.AlphaMaskURL, temp);
-                    temp.Dispose();
-                }
-
-                if (auxiliaryImageUrl != null)
-                {
-                    temp = new PropertyValue(auxiliaryImageUrl);
-                    _outputVisualMap.Add(ImageVisualProperty.AuxiliaryImageURL, temp);
-                    temp.Dispose();
-                }
-
-                if (fittingMode != null)
-                {
-                    temp = new PropertyValue((int)fittingMode);
-                    _outputVisualMap.Add(ImageVisualProperty.FittingMode, temp);
-                    temp.Dispose();
-                }
-
-                if (samplingMode != null)
-                {
-                    temp = new PropertyValue((int)samplingMode);
-                    _outputVisualMap.Add(ImageVisualProperty.SamplingMode, temp);
-                    temp.Dispose();
-                }
-
-                if (desiredWidth != null)
-                {
-                    temp = new PropertyValue((int)desiredWidth);
-                    _outputVisualMap.Add(ImageVisualProperty.DesiredWidth, temp);
-                    temp.Dispose();
-                }
-
-                if (desiredHeight != null)
-                {
-                    temp = new PropertyValue((int)desiredHeight);
-                    _outputVisualMap.Add(ImageVisualProperty.DesiredHeight, temp);
-                    temp.Dispose();
-                }
-
-                if (synchronousLoading != null)
-                {
-                    temp = new PropertyValue((bool)synchronousLoading);
-                    _outputVisualMap.Add(ImageVisualProperty.SynchronousLoading, temp);
-                    temp.Dispose();
-                }
-
-                if (borderOnly != null)
-                {
-                    temp = new PropertyValue((bool)borderOnly);
-                    _outputVisualMap.Add(ImageVisualProperty.BorderOnly, temp);
-                    temp.Dispose();
-                }
-
-                if (pixelArea != null)
-                {
-                    temp = new PropertyValue(pixelArea);
-                    _outputVisualMap.Add(ImageVisualProperty.PixelArea, temp);
-                    temp.Dispose();
-                }
-
-                if (wrapModeU != null)
-                {
-                    temp = new PropertyValue((int)wrapModeU);
-                    _outputVisualMap.Add(ImageVisualProperty.WrapModeU, temp);
-                    temp.Dispose();
-                }
-
-                if (wrapModeV != null)
-                {
-                    temp = new PropertyValue((int)wrapModeV);
-                    _outputVisualMap.Add(ImageVisualProperty.WrapModeV, temp);
-                    temp.Dispose();
-                }
-
-                if (maskContentScale != null)
-                {
-                    temp = new PropertyValue((float)maskContentScale);
-                    _outputVisualMap.Add(ImageVisualProperty.MaskContentScale, temp);
-                    temp.Dispose();
-                }
-
-                if (cropToMask != null)
-                {
-                    temp = new PropertyValue((bool)cropToMask);
-                    _outputVisualMap.Add(ImageVisualProperty.CropToMask, temp);
-                    temp.Dispose();
-                }
-
-                if (auxiliaryImageAlpha != null)
-                {
-                    temp = new PropertyValue((float)auxiliaryImageAlpha);
-                    _outputVisualMap.Add(ImageVisualProperty.AuxiliaryImageAlpha, temp);
-                    temp.Dispose();
-                }
-
-                if (releasePolicy != null)
-                {
-                    temp = new PropertyValue((int)releasePolicy);
-                    _outputVisualMap.Add(ImageVisualProperty.ReleasePolicy, temp);
-                    temp.Dispose();
-                }
-
-                if (loadPolicy != null)
-                {
-                    temp = new PropertyValue((int)loadPolicy);
-                    _outputVisualMap.Add(ImageVisualProperty.LoadPolicy, temp);
-                    temp.Dispose();
-                }
-
-                if (orientationCorrection != null)
-                {
-                    temp = new PropertyValue((bool)orientationCorrection);
-                    _outputVisualMap.Add(ImageVisualProperty.OrientationCorrection, temp);
-                    temp.Dispose();
-                }
-
-                if (atlasing != null)
-                {
-                    temp = new PropertyValue((bool)atlasing);
-                    _outputVisualMap.Add(ImageVisualProperty.Atlasing, temp);
-                    temp.Dispose();
-                }
+                _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
+                _outputVisualMap.Add(ImageVisualProperty.URL, new PropertyValue(_url));
+                if (_alphaMaskUrl != null) { _outputVisualMap.Add(ImageVisualProperty.AlphaMaskURL, new PropertyValue(_alphaMaskUrl)); }
+                if (_auxiliaryImageUrl != null) { _outputVisualMap.Add(ImageVisualProperty.AuxiliaryImageURL, new PropertyValue(_auxiliaryImageUrl)); }
+                if (_fittingMode != null) { _outputVisualMap.Add(ImageVisualProperty.FittingMode, new PropertyValue((int)_fittingMode)); }
+                if (_samplingMode != null) { _outputVisualMap.Add(ImageVisualProperty.SamplingMode, new PropertyValue((int)_samplingMode)); }
+                if (_desiredWidth != null) { _outputVisualMap.Add(ImageVisualProperty.DesiredWidth, new PropertyValue((int)_desiredWidth)); }
+                if (_desiredHeight != null) { _outputVisualMap.Add(ImageVisualProperty.DesiredHeight, new PropertyValue((int)_desiredHeight)); }
+                if (_synchronousLoading != null) { _outputVisualMap.Add(ImageVisualProperty.SynchronousLoading, new PropertyValue((bool)_synchronousLoading)); }
+                if (_borderOnly != null) { _outputVisualMap.Add(ImageVisualProperty.BorderOnly, new PropertyValue((bool)_borderOnly)); }
+                if (_pixelArea != null) { _outputVisualMap.Add(ImageVisualProperty.PixelArea, new PropertyValue(_pixelArea)); }
+                if (_wrapModeU != null) { _outputVisualMap.Add(ImageVisualProperty.WrapModeU, new PropertyValue((int)_wrapModeU)); }
+                if (_wrapModeV != null) { _outputVisualMap.Add(ImageVisualProperty.WrapModeV, new PropertyValue((int)_wrapModeV)); }
+                if (_maskContentScale != null) { _outputVisualMap.Add(ImageVisualProperty.MaskContentScale, new PropertyValue((float)_maskContentScale)); }
+                if (_cropToMask != null) { _outputVisualMap.Add(ImageVisualProperty.CropToMask, new PropertyValue((bool)_cropToMask)); }
+                if (_auxiliaryImageAlpha != null) { _outputVisualMap.Add(ImageVisualProperty.AuxiliaryImageAlpha, new PropertyValue((float)_auxiliaryImageAlpha)); }
+                if (_releasePolicy != null) { _outputVisualMap.Add(ImageVisualProperty.ReleasePolicy, new PropertyValue((int)_releasePolicy)); }
+                if (_loadPolicy != null) { _outputVisualMap.Add(ImageVisualProperty.LoadPolicy, new PropertyValue((int)_loadPolicy)); }
+                if (_orientationCorrection != null) { _outputVisualMap.Add(ImageVisualProperty.OrientationCorrection, new PropertyValue((bool)_orientationCorrection)); }
+                if (_atlasing != null) { _outputVisualMap.Add(ImageVisualProperty.Atlasing, new PropertyValue((bool)_atlasing)); }
                 base.ComposingPropertyMap();
             }
         }

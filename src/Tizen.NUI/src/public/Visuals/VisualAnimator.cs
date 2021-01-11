@@ -25,12 +25,12 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class VisualAnimator : VisualMap
     {
-        private string alphaFunction = null;
-        private int startTime = 0;
-        private int endTime = 0;
-        private string target = null;
-        private string propertyIndex = null;
-        private object destinationValue = null;
+        private string _alphaFunction = null;
+        private int _startTime = 0;
+        private int _endTime = 0;
+        private string _target = null;
+        private string _propertyIndex = null;
+        private object _destinationValue = null;
 
         /// <summary>
         /// Create VisualAnimator object.
@@ -48,11 +48,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return alphaFunction.GetValueByDescription<AlphaFunction.BuiltinFunctions>();
+                return _alphaFunction.GetValueByDescription<AlphaFunction.BuiltinFunctions>();
             }
             set
             {
-                alphaFunction = value.GetDescription();
+                _alphaFunction = value.GetDescription();
             }
         }
 
@@ -64,11 +64,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return startTime;
+                return _startTime;
             }
             set
             {
-                startTime = value;
+                _startTime = value;
             }
         }
 
@@ -80,11 +80,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return endTime;
+                return _endTime;
             }
             set
             {
-                endTime = value;
+                _endTime = value;
             }
         }
 
@@ -96,11 +96,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return target;
+                return _target;
             }
             set
             {
-                target = value;
+                _target = value;
             }
         }
 
@@ -112,11 +112,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return propertyIndex;
+                return _propertyIndex;
             }
             set
             {
-                propertyIndex = value;
+                _propertyIndex = value;
             }
         }
 
@@ -128,11 +128,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return destinationValue;
+                return _destinationValue;
             }
             set
             {
-                destinationValue = value;
+                _destinationValue = value;
             }
         }
 
@@ -142,50 +142,28 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected override void ComposingPropertyMap()
         {
-            PropertyMap animator = new PropertyMap();
-            PropertyValue temp = new PropertyValue(alphaFunction);
-            animator.Add("alphaFunction", temp);
-            temp.Dispose();
+            PropertyMap _animator = new PropertyMap();
+            _animator.Add("alphaFunction", new PropertyValue(_alphaFunction));
 
-            PropertyMap timePeriod = new PropertyMap();
-            temp = new PropertyValue((endTime - startTime) / 1000.0f);
-            timePeriod.Add("duration", temp);
-            temp.Dispose();
+            PropertyMap _timePeriod = new PropertyMap();
+            _timePeriod.Add("duration", new PropertyValue((_endTime - _startTime) / 1000.0f));
+            _timePeriod.Add("delay", new PropertyValue(_startTime / 1000.0f));
+            _animator.Add("timePeriod", new PropertyValue(_timePeriod));
 
-            temp = new PropertyValue(startTime / 1000.0f);
-            timePeriod.Add("delay", temp);
-            temp.Dispose();
-
-            temp = new PropertyValue(timePeriod);
-            animator.Add("timePeriod", temp);
-            temp.Dispose();
-
-            StringBuilder sb = new StringBuilder(propertyIndex);
+            StringBuilder sb = new StringBuilder(_propertyIndex);
             sb[0] = (char)(sb[0] | 0x20);
-            string str = sb.ToString();
+            string _str = sb.ToString();
 
-            PropertyValue val = PropertyValue.CreateFromObject(destinationValue);
+            PropertyValue val = PropertyValue.CreateFromObject(_destinationValue);
 
-            PropertyMap transition = new PropertyMap();
-            temp = new PropertyValue(target);
-            transition.Add("target", temp);
-            temp.Dispose();
+            PropertyMap _transition = new PropertyMap();
+            _transition.Add("target", new PropertyValue(_target));
+            _transition.Add("property", new PropertyValue(_str));
+            _transition.Add("targetValue", val);
+            _transition.Add("animator", new PropertyValue(_animator));
 
-            temp = new PropertyValue(str);
-            transition.Add("property", temp);
-            temp.Dispose();
-
-            transition.Add("targetValue", val);
-            temp = new PropertyValue(animator);
-            transition.Add("animator", temp);
-            temp.Dispose();
-
-            _outputVisualMap = transition;
+            _outputVisualMap = _transition;
             base.ComposingPropertyMap();
-
-            animator.Dispose();
-            timePeriod.Dispose();
-            val.Dispose();
         }
     }
     //temporary fix for TCT

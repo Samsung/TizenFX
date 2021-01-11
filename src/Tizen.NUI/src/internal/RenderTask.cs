@@ -383,68 +383,52 @@ namespace Tizen.NUI
         {
             get
             {
-                Vector2 retVal = new Vector2(0.0f, 0.0f);
-                PropertyValue viewportPos = GetProperty(RenderTask.Property.ViewportPosition);
-                viewportPos?.Get(retVal);
-                viewportPos?.Dispose();
-                return retVal;
+                Vector2 temp = new Vector2(0.0f, 0.0f);
+                GetProperty(RenderTask.Property.ViewportPosition).Get(temp);
+                return temp;
             }
             set
             {
-                PropertyValue setVal = new Tizen.NUI.PropertyValue(value);
-                SetProperty(RenderTask.Property.ViewportPosition, setVal);
-                setVal?.Dispose();
+                SetProperty(RenderTask.Property.ViewportPosition, new Tizen.NUI.PropertyValue(value));
             }
         }
         public Vector2 ViewportSize
         {
             get
             {
-                Vector2 retVal = new Vector2(0.0f, 0.0f);
-                PropertyValue viewportSize = GetProperty(RenderTask.Property.ViewportSize);
-                viewportSize?.Get(retVal);
-                viewportSize?.Dispose();
-                return retVal;
+                Vector2 temp = new Vector2(0.0f, 0.0f);
+                GetProperty(RenderTask.Property.ViewportSize).Get(temp);
+                return temp;
             }
             set
             {
-                PropertyValue setVal = new Tizen.NUI.PropertyValue(value);
-                SetProperty(RenderTask.Property.ViewportSize, setVal);
-                setVal?.Dispose();
+                SetProperty(RenderTask.Property.ViewportSize, new Tizen.NUI.PropertyValue(value));
             }
         }
         public Vector4 ClearColor
         {
             get
             {
-                Vector4 retVal = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-                PropertyValue clearColor = GetProperty(RenderTask.Property.ClearColor);
-                clearColor?.Get(retVal);
-                clearColor?.Dispose();
-                return retVal;
+                Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
+                GetProperty(RenderTask.Property.ClearColor).Get(temp);
+                return temp;
             }
             set
             {
-                PropertyValue setVal = new Tizen.NUI.PropertyValue(value);
-                SetProperty(RenderTask.Property.ClearColor, setVal);
-                setVal?.Dispose();
+                SetProperty(RenderTask.Property.ClearColor, new Tizen.NUI.PropertyValue(value));
             }
         }
         public bool RequiresSync
         {
             get
             {
-                bool retVal = false;
-                PropertyValue reqSync = GetProperty(RenderTask.Property.RequiresSync);
-                reqSync?.Get(out retVal);
-                reqSync?.Dispose();
-                return retVal;
+                bool temp = false;
+                GetProperty(RenderTask.Property.RequiresSync).Get(out temp);
+                return temp;
             }
             set
             {
-                PropertyValue setVal = new Tizen.NUI.PropertyValue(value);
-                SetProperty(RenderTask.Property.RequiresSync, setVal);
-                setVal?.Dispose();
+                SetProperty(RenderTask.Property.RequiresSync, new Tizen.NUI.PropertyValue(value));
             }
         }
     }

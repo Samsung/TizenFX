@@ -37,10 +37,12 @@ namespace Tizen.NUI
             Interop.PageTurnView.DeletePageTurnView(swigCPtr);
         }
 
+        /// <since_tizen> 3 </since_tizen>
         public class PagePanStartedEventArgs : EventArgs
         {
             private PageTurnView _pageTurnView;
 
+            /// <since_tizen> 3 </since_tizen>
             public PageTurnView PageTurnView
             {
                 get
@@ -54,10 +56,12 @@ namespace Tizen.NUI
             }
         }
 
+        /// <since_tizen> 3 </since_tizen>
         public class PagePanFinishedEventArgs : EventArgs
         {
             private PageTurnView _pageTurnView;
 
+            /// <since_tizen> 3 </since_tizen>
             public PageTurnView PageTurnView
             {
                 get
@@ -71,12 +75,14 @@ namespace Tizen.NUI
             }
         }
 
+        /// <since_tizen> 3 </since_tizen>
         public class PageTurnStartedEventArgs : EventArgs
         {
             private PageTurnView _pageTurnView;
             private uint _pageIndex;
             private bool _isTurningForward;
 
+            /// <since_tizen> 3 </since_tizen>
             public PageTurnView PageTurnView
             {
                 get
@@ -89,6 +95,7 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public uint PageIndex
             {
                 get
@@ -101,6 +108,7 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public bool IsTurningForward
             {
                 get
@@ -115,12 +123,14 @@ namespace Tizen.NUI
 
         }
 
+        /// <since_tizen> 3 </since_tizen>
         public class PageTurnFinishedEventArgs : EventArgs
         {
             private PageTurnView _pageTurnView;
             private uint _pageIndex;
             private bool _isTurningForward;
 
+            /// <since_tizen> 3 </since_tizen>
             public PageTurnView PageTurnView
             {
                 get
@@ -133,6 +143,7 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public uint PageIndex
             {
                 get
@@ -145,6 +156,7 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public bool IsTurningForward
             {
                 get
@@ -183,24 +195,30 @@ namespace Tizen.NUI
         {
             add
             {
-                // Restricted to only one listener
-                if (_pageTurnViewPagePanStartedEventHandler == null)
+                lock (this)
                 {
-                    _pageTurnViewPagePanStartedEventHandler += value;
+                    // Restricted to only one listener
+                    if (_pageTurnViewPagePanStartedEventHandler == null)
+                    {
+                        _pageTurnViewPagePanStartedEventHandler += value;
 
-                    _pageTurnViewPagePanStartedCallbackDelegate = new PagePanStartedCallbackDelegate(OnPagePanStarted);
-                    this.PagePanStartedSignal().Connect(_pageTurnViewPagePanStartedCallbackDelegate);
+                        _pageTurnViewPagePanStartedCallbackDelegate = new PagePanStartedCallbackDelegate(OnPagePanStarted);
+                        this.PagePanStartedSignal().Connect(_pageTurnViewPagePanStartedCallbackDelegate);
+                    }
                 }
             }
 
             remove
             {
-                if (_pageTurnViewPagePanStartedEventHandler != null)
+                lock (this)
                 {
-                    this.PagePanStartedSignal().Disconnect(_pageTurnViewPagePanStartedCallbackDelegate);
-                }
+                    if (_pageTurnViewPagePanStartedEventHandler != null)
+                    {
+                        this.PagePanStartedSignal().Disconnect(_pageTurnViewPagePanStartedCallbackDelegate);
+                    }
 
-                _pageTurnViewPagePanStartedEventHandler -= value;
+                    _pageTurnViewPagePanStartedEventHandler -= value;
+                }
             }
         }
 
@@ -223,24 +241,30 @@ namespace Tizen.NUI
         {
             add
             {
-                // Restricted to only one listener
-                if (_pageTurnViewPagePanFinishedEventHandler == null)
+                lock (this)
                 {
-                    _pageTurnViewPagePanFinishedEventHandler += value;
+                    // Restricted to only one listener
+                    if (_pageTurnViewPagePanFinishedEventHandler == null)
+                    {
+                        _pageTurnViewPagePanFinishedEventHandler += value;
 
-                    _pageTurnViewPagePanFinishedCallbackDelegate = new PagePanFinishedCallbackDelegate(OnPagePanFinished);
-                    this.PagePanFinishedSignal().Connect(_pageTurnViewPagePanFinishedCallbackDelegate);
+                        _pageTurnViewPagePanFinishedCallbackDelegate = new PagePanFinishedCallbackDelegate(OnPagePanFinished);
+                        this.PagePanFinishedSignal().Connect(_pageTurnViewPagePanFinishedCallbackDelegate);
+                    }
                 }
             }
 
             remove
             {
-                if (_pageTurnViewPagePanFinishedEventHandler != null)
+                lock (this)
                 {
-                    this.PagePanFinishedSignal().Disconnect(_pageTurnViewPagePanFinishedCallbackDelegate);
-                }
+                    if (_pageTurnViewPagePanFinishedEventHandler != null)
+                    {
+                        this.PagePanFinishedSignal().Disconnect(_pageTurnViewPagePanFinishedCallbackDelegate);
+                    }
 
-                _pageTurnViewPagePanFinishedEventHandler -= value;
+                    _pageTurnViewPagePanFinishedEventHandler -= value;
+                }
             }
         }
 
@@ -264,24 +288,30 @@ namespace Tizen.NUI
         {
             add
             {
-                // Restricted to only one listener
-                if (_pageTurnViewPageTurnStartedEventHandler == null)
+                lock (this)
                 {
-                    _pageTurnViewPageTurnStartedEventHandler += value;
+                    // Restricted to only one listener
+                    if (_pageTurnViewPageTurnStartedEventHandler == null)
+                    {
+                        _pageTurnViewPageTurnStartedEventHandler += value;
 
-                    _pageTurnViewPageTurnStartedCallbackDelegate = new PageTurnStartedCallbackDelegate(OnPageTurnStarted);
-                    this.PageTurnStartedSignal().Connect(_pageTurnViewPageTurnStartedCallbackDelegate);
+                        _pageTurnViewPageTurnStartedCallbackDelegate = new PageTurnStartedCallbackDelegate(OnPageTurnStarted);
+                        this.PageTurnStartedSignal().Connect(_pageTurnViewPageTurnStartedCallbackDelegate);
+                    }
                 }
             }
 
             remove
             {
-                if (_pageTurnViewPageTurnStartedEventHandler != null)
+                lock (this)
                 {
-                    this.PageTurnStartedSignal().Disconnect(_pageTurnViewPageTurnStartedCallbackDelegate);
-                }
+                    if (_pageTurnViewPageTurnStartedEventHandler != null)
+                    {
+                        this.PageTurnStartedSignal().Disconnect(_pageTurnViewPageTurnStartedCallbackDelegate);
+                    }
 
-                _pageTurnViewPageTurnStartedEventHandler -= value;
+                    _pageTurnViewPageTurnStartedEventHandler -= value;
+                }
             }
         }
 
@@ -308,24 +338,30 @@ namespace Tizen.NUI
         {
             add
             {
-                // Restricted to only one listener
-                if (_pageTurnViewPageTurnFinishedEventHandler == null)
+                lock (this)
                 {
-                    _pageTurnViewPageTurnFinishedEventHandler += value;
+                    // Restricted to only one listener
+                    if (_pageTurnViewPageTurnFinishedEventHandler == null)
+                    {
+                        _pageTurnViewPageTurnFinishedEventHandler += value;
 
-                    _pageTurnViewPageTurnFinishedCallbackDelegate = new PageTurnFinishedCallbackDelegate(OnPageTurnFinished);
-                    this.PageTurnFinishedSignal().Connect(_pageTurnViewPageTurnFinishedCallbackDelegate);
+                        _pageTurnViewPageTurnFinishedCallbackDelegate = new PageTurnFinishedCallbackDelegate(OnPageTurnFinished);
+                        this.PageTurnFinishedSignal().Connect(_pageTurnViewPageTurnFinishedCallbackDelegate);
+                    }
                 }
             }
 
             remove
             {
-                if (_pageTurnViewPageTurnFinishedEventHandler != null)
+                lock (this)
                 {
-                    this.PageTurnFinishedSignal().Disconnect(_pageTurnViewPageTurnFinishedCallbackDelegate);
-                }
+                    if (_pageTurnViewPageTurnFinishedEventHandler != null)
+                    {
+                        this.PageTurnFinishedSignal().Disconnect(_pageTurnViewPageTurnFinishedCallbackDelegate);
+                    }
 
-                _pageTurnViewPageTurnFinishedEventHandler -= value;
+                    _pageTurnViewPageTurnFinishedEventHandler -= value;
+                }
             }
         }
 

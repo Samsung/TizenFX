@@ -37,6 +37,7 @@ namespace Tizen.NUI
             Interop.Alignment.DeleteAlignment(swigCPtr);
         }
 
+        /// <since_tizen> 3 </since_tizen>
         public new class Padding : Disposable
         {
 
@@ -49,21 +50,25 @@ namespace Tizen.NUI
                 return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
             }
 
+            /// <since_tizen> 3 </since_tizen>
             protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
             {
                 Interop.Alignment.DeleteAlignmentPadding(swigCPtr);
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public Padding() : this(Interop.Alignment.NewAlignmentPadding(), true)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public Padding(float l, float r, float t, float b) : this(Interop.Alignment.NewAlignmentPadding(l, r, t, b), true)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public float left
             {
                 set
@@ -79,6 +84,7 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public float right
             {
                 set
@@ -94,6 +100,7 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public float top
             {
                 set
@@ -109,6 +116,7 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public float bottom
             {
                 set
@@ -198,6 +206,7 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <since_tizen> 3 </since_tizen>
         public enum Type
         {
             HorizontalLeft = 1,
@@ -208,6 +217,7 @@ namespace Tizen.NUI
             VerticalBottom = 32
         }
 
+        /// <since_tizen> 3 </since_tizen>
         public enum Scaling
         {
             ScaleNone,

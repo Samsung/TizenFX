@@ -14,7 +14,6 @@
  * limitations under the License.
  *
  */
-using System.Collections.Generic;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
@@ -53,22 +52,15 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ImagesProperty = BindableProperty.Create(nameof(Images), typeof(string[]), typeof(LoadingStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            ((LoadingStyle)bindable).images = newValue == null ? null : new List<string>((string[])newValue);
+            ((LoadingStyle)bindable).images = (string[])((string[])newValue)?.Clone();
         },
-        defaultValueCreator: (bindable) => ((LoadingStyle)bindable).images?.ToArray()
-        );
-
-        /// <summary>The Images bindable property.</summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ImageListProperty = BindableProperty.Create(nameof(ImageList), typeof(IList<string>), typeof(LoadingStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        defaultValueCreator: (bindable) =>
         {
-            ((LoadingStyle)bindable).images = newValue as List<string>;
-        },
-        defaultValueCreator: (bindable) => ((LoadingStyle)bindable).images
-        );
+            return ((LoadingStyle)bindable).images;
+        });
 
         private Selector<int?> frameRate;
-        private List<string> images;
+        private string[] images;
 
         static LoadingStyle() { }
 
@@ -93,25 +85,8 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public string[] Images
         {
-            get => (ImageList as List<string>)?.ToArray();
+            get => (string[])GetValue(ImagesProperty);
             set => SetValue(ImagesProperty, value);
-        }
-
-        /// <summary>
-        /// Gets loading image resources.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public IList<string> ImageList
-        {
-            get
-            {
-                if (images == null)
-                {
-                    images = new List<string>();
-                }
-                return GetValue(ImageListProperty) as List<string>;
-            }
-            internal set => SetValue(ImageListProperty, value);
         }
 
         /// <summary>
