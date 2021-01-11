@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2021 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,13 @@
  */
 
 using System;
+using System.IO;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Security;
+using System.Xml.Serialization;
 
 namespace Tizen.Applications.ComponentBased
 {
@@ -24,6 +31,7 @@ namespace Tizen.Applications.ComponentBased
     /// <since_tizen> 9 </since_tizen>
     public abstract class ComponentPort : IDisposable
     {
+        private static string LogTag = "ComponentPort";
         private readonly string _portName;
         private readonly SafePortHandle _port;
         private Interop.ComponentPort.ComponentPortRequestCallback _requestEventCallback;
@@ -48,6 +56,18 @@ namespace Tizen.Applications.ComponentBased
             _syncRequestEventCallback = new Interop.ComponentPort.ComponentPortSyncRequestCallback(OnSyncRequestEvent);
             Interop.ComponentPort.SetRequestCb(_port, _requestEventCallback, IntPtr.Zero);
             Interop.ComponentPort.SetSyncRequestCb(_port, _syncRequestEventCallback, IntPtr.Zero);
+        }
+
+        /// <summary>
+        /// Gets the port name.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public String PortName
+        {
+            get
+            {
+                return _portName;
+            }
         }
 
         /// <summary>
@@ -88,17 +108,23 @@ namespace Tizen.Applications.ComponentBased
         /// <exception cref="global::System.IO.IOException">Thrown when because of I/O error.</exception>
         /// <param name="endpoint">The name of the endpoint</param>
         /// <param name="timeout">The interval of timeout</param>
-        /// <param name="request">The parcel data to send</param>
+        /// <param name="request">The serializable data to send</param>
         /// <since_tizen> 9 </since_tizen>
-        public void Send(string endpoint, int timeout, Parcel request)
+        public void Send(string endpoint, int timeout, IEnvelope request)
         {
             if (request == null)
             {
                 throw new ArgumentException("request is null");
             }
 
+            if (!request.GetType().IsSerializable)
+            {
+                throw new ArgumentException("request is not serializable");
+            }
+
+            using Parcel reqParcel = ToParcel(request);
             Interop.ComponentPort.ErrorCode err;
-            err = Interop.ComponentPort.Send(_port, endpoint, timeout, request.SafeParcelHandle);
+            err = Interop.ComponentPort.Send(_port, endpoint, timeout, reqParcel.SafeParcelHandle);
             if (err != Interop.ComponentPort.ErrorCode.None)
             {
                 throw ComponentPortErrorFactory.GetException(err, "Failed to send the request.");
@@ -114,25 +140,32 @@ namespace Tizen.Applications.ComponentBased
         /// <exception cref="global::System.IO.IOException">Thrown when because of I/O error.</exception>
         /// <param name="endpoint">The name of the endpoint</param>
         /// <param name="timeout">The interval of timeout</param>
-        /// <param name="request">The parcel data to send</param>
-        /// <returns>The received parcel data</returns>
+        /// <param name="request">The serializable data to send</param>
+        /// <returns>The received serializable data</returns>
         /// /// <since_tizen> 9 </since_tizen>
-        public Parcel SendSync(string endpoint, int timeout, Parcel request)
+        public IEnvelope SendSync(string endpoint, int timeout, IEnvelope request)
         {
             if (request == null)
             {
                 throw new ArgumentException("request is null");
             }
 
+            if (!request.GetType().IsSerializable)
+            {
+                throw new ArgumentException("request is not serializable");
+            }
+
+            using Parcel reqParcel = ToParcel(request);
             Interop.ComponentPort.ErrorCode err;
-            err = Interop.ComponentPort.SendSync(_port, endpoint, timeout, request.SafeParcelHandle, out SafeParcelHandle res);
+            err = Interop.ComponentPort.SendSync(_port, endpoint, timeout, reqParcel.SafeParcelHandle, out SafeParcelHandle resSafeHandle);
             if (err != Interop.ComponentPort.ErrorCode.None)
             {
                 throw ComponentPortErrorFactory.GetException(err, "Failed to send the request.");
             }
 
-            var response = new Parcel(res);  
-            res.Dispose();
+            
+            using Parcel resParcel = new Parcel(resSafeHandle);
+            IEnvelope response = FromParcel(resParcel);
             return response;
         }
 
@@ -140,42 +173,91 @@ namespace Tizen.Applications.ComponentBased
         /// Abstrace method for receiving a request event.
         /// </summary>
         /// <param name="sender">The name of the sender</param>
-        /// <param name="request">The parcel data</param>
+        /// <param name="request">The serializable data</param>
         /// <since_tizen> 9 </since_tizen>
-        protected abstract void OnRequestEvent(string sender, Parcel request);
+        protected abstract void OnRequestEvent(string sender, IEnvelope request);
 
         /// <summary>
         /// Abstrace method for receiving a synchronous request event.
         /// </summary>
         /// <param name="sender">The name of the sender</param>
-        /// <param name="request">The parcel data</param>
+        /// <param name="request">The serializable data</param>
         /// <since_tizen> 9 </since_tizen>
-        protected abstract Parcel OnSyncRequestEvent(string sender, Parcel request);
+        protected abstract IEnvelope OnSyncRequestEvent(string sender, IEnvelope request);
 
 
         private void OnRequestEvent(string sender, IntPtr request, IntPtr data)
         {
-            SafeParcelHandle safeHandle = new SafeParcelHandle(request, false);
-            var req = new Parcel(safeHandle);
+            SafeParcelHandle reqSafeHandle = new SafeParcelHandle(request, false);
+            using var reqParcel = new Parcel(reqSafeHandle);
+            IEnvelope req = FromParcel(reqParcel);
             OnRequestEvent(sender, req);
-            req.Dispose();
-            safeHandle.Dispose();
         }
 
         private void OnSyncRequestEvent(string sender, IntPtr request, IntPtr response, IntPtr data)
         {
             SafeParcelHandle reqSafeHandle = new SafeParcelHandle(request, false);
-            Parcel req = new Parcel(reqSafeHandle);
-            Parcel ret = OnSyncRequestEvent(sender, req);
-            SafeParcelHandle safeHandle = new SafeParcelHandle(response, false);
-            Parcel res = new Parcel(safeHandle);
-            res.Write(ret.Marshall());
-            res.Dispose();
-            safeHandle.Dispose();
-            req.Dispose();
-            req.Dispose();
-            reqSafeHandle.Dispose();            
+            using Parcel reqParcel = new Parcel(reqSafeHandle);
+            IEnvelope req = FromParcel(reqParcel);
+
+            IEnvelope result = OnSyncRequestEvent(sender, req);
+            using Parcel resultParcel = ToParcel(result);
+
+            SafeParcelHandle resSafeHandle = new SafeParcelHandle(response, false);
+            using Parcel resParcel = new Parcel(resSafeHandle);
+            resParcel.UnMarshall(resultParcel.Marshall());
         }
+
+        private Parcel ToParcel(IEnvelope envelope)
+        {
+            if (envelope == null)
+                return null;
+
+            BinaryFormatter formatter = new BinaryFormatter
+            {
+                Binder = new PortBinder(),
+                AssemblyFormat = FormatterAssemblyStyle.Full
+            };
+
+            using MemoryStream stream = new MemoryStream();
+            formatter.Serialize(stream, envelope);
+            Parcel parcel = new Parcel();
+            parcel.UnMarshall(stream.ToArray());
+            return parcel;
+        }
+
+        private IEnvelope FromParcel(Parcel parcel)
+        {
+            if (parcel == null)
+                return null;
+
+            BinaryFormatter formatter = new BinaryFormatter
+            {
+                Binder = new PortBinder(),
+                AssemblyFormat = FormatterAssemblyStyle.Full,
+            };
+            using MemoryStream stream = new MemoryStream(parcel.Marshall());
+            IEnvelope envelope = null;
+            try
+            {
+                envelope = (IEnvelope)formatter.Deserialize(stream);
+            }
+            catch (ArgumentException e)
+            {
+                Log.Error(LogTag, "ArgumentException occurs: " + e.Message);
+            }
+            catch (SerializationException e)
+            {
+                Log.Error(LogTag, "SerializationException occurs: " + e.Message);
+            }
+            catch (SecurityException e)
+            {
+                Log.Error(LogTag, "SecurityException occurs: " + e.Message);
+            }
+
+            return envelope;
+        }
+
 
         #region IDisposable Support
         private bool disposedValue = false;
@@ -218,6 +300,45 @@ namespace Tizen.Applications.ComponentBased
             GC.SuppressFinalize(this);
         }
         #endregion
+
+        internal sealed class PortBinder : SerializationBinder
+        {
+            private static string LogTag = "PortBinder";
+
+            private string GetAssemblyName(string typeName)
+            {
+                foreach (Assembly a in AppDomain.CurrentDomain.GetAssemblies())
+                {
+                    foreach (Type t in a.GetTypes())
+                    {
+                        if (t.FullName == typeName)
+                        {
+                            Log.Warn(LogTag, "Found! AssemblyName: " + a.FullName);
+                            return a.FullName;
+                        }
+                    }
+                }
+
+                return string.Empty;
+            }
+
+            public override Type BindToType(string assemblyName, string typeName)
+            {
+                Type returntype = null;
+                Log.Warn(LogTag, "AssemblyName: " + assemblyName);
+                Log.Warn(LogTag, "TypeName: " + typeName);
+                string foundAssemblyName = GetAssemblyName(typeName);
+                if (foundAssemblyName.Length != 0)
+                {
+                    returntype = Type.GetType(String.Format("{0}, {1}", typeName, foundAssemblyName));
+                }
+                else
+                {
+                    returntype = Type.GetType(String.Format("{0}, {1}", typeName, assemblyName));
+                }
+                return returntype;
+            }
+        }
 
         internal static class ComponentPortErrorFactory
         {

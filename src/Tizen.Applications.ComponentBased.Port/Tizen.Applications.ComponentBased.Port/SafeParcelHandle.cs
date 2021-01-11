@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2021 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 
 namespace Tizen.Applications
 {
-    public sealed class SafeParcelHandle : SafeHandle
+    internal sealed class SafeParcelHandle : SafeHandle
     {
         public SafeParcelHandle() : base(IntPtr.Zero, true)
         {

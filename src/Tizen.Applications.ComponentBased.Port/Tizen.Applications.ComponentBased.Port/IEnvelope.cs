@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2021 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,25 +14,17 @@
  * limitations under the License.
  */
 
-namespace Tizen.Applications
+namespace Tizen.Applications.ComponentBased
 {
     /// <summary>
-    /// Interface Parcelable
+    /// The interface for serializing and deserializing.
+    /// Marker interface.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
-    public interface IParcelable
-    {
-        /// <summary>
-        /// Writes the data to the parcel object.
-        /// </summary>
-        /// <param name="parcel">Parcel data</param>
-        void WriteToParcel(Parcel parcel);
 
-        /// <summary>
-        /// Reads the data from the parcel object.
-        /// </summary>
-        /// <param name="parcel">Parcel data</param>
-        /// <since_tizen> 9 </since_tizen>
-        void ReadFromParcel(Parcel parcel);
+#pragma warning disable CA1040
+    public interface IEnvelope
+#pragma warning restore CA1040
+    { 
     }
 }

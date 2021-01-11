@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2021 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,23 +19,45 @@ using System.Runtime.InteropServices;
 
 namespace Tizen.Applications.ComponentBased
 {
+    /// <summary>
+    /// Represents a wrapper class for an unmanaged port handle.
+    /// </summary>
+    /// <since_tizen> 9 </since_tizen>
     public sealed class SafePortHandle : SafeHandle
     {
+        /// <summary>
+        /// Initializes a new instance of the SafePortHandle class.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public SafePortHandle() : base(IntPtr.Zero, true)
         {
 
         }
 
+        /// <summary>
+        /// Initializes a new instance of the SafePortHandle class.
+        /// </summary>
+        /// <param name="existingHandle">An IntPtr object that represents the pre-existing handle to use.</param>
+        /// <param name="ownsHandle">true to reliably release the handle during the finalization phase; false to prevent reliable release.</param>
+        /// <since_tizen> 9 </since_tizen>
         public SafePortHandle(IntPtr existingHandle, bool ownsHandle) : base(IntPtr.Zero, ownsHandle)
         {
             SetHandle(existingHandle);
         }
 
+        /// <summary>
+        /// Gets a value that indicates whether the handle is invalid.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public override bool IsInvalid
         {
             get { return this.handle == IntPtr.Zero; }
         }
 
+        /// <summary>
+        /// When overridden in a derived class, executes the code required to free the handle.
+        /// </summary>
+        /// <returns>true if the handle is released successfully.</returns>
         protected override bool ReleaseHandle()
         {
             Interop.ComponentPort.DangerousDestroy(this.handle);
