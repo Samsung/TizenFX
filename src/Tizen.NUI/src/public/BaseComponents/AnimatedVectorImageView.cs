@@ -179,8 +179,8 @@ namespace Tizen.NUI.BaseComponents
                     value = totalFrameNum - 1;
                 }
 
-                currentFrame = value;
-                AnimationState = AnimationStates.Paused;
+                mCurrentFrame = value;
+                AnimationState = State.Paused;
 
                 base.SetMinMaxFrame(0, totalFrameNum - 1);
                 base.CurrentFrame = currentFrame;
@@ -194,7 +194,7 @@ namespace Tizen.NUI.BaseComponents
         /// RepeatMode of animation.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public RepeatModes RepeatMode
+        public RepeatModeType RepeatMode
         {
             set
             {
@@ -203,10 +203,10 @@ namespace Tizen.NUI.BaseComponents
 
                 switch (repeatMode)
                 {
-                    case RepeatModes.Restart:
+                    case RepeatModeType.Restart:
                         LoopingMode = LoopingModeType.Restart;
                         break;
-                    case RepeatModes.Reverse:
+                    case RepeatModeType.Reverse:
                         LoopingMode = LoopingModeType.AutoReverse;
                         break;
                     default:
@@ -252,7 +252,7 @@ namespace Tizen.NUI.BaseComponents
         /// Get state of animation.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public AnimationStates AnimationState
+        public State AnimationState
         {
             private set
             {
@@ -260,11 +260,11 @@ namespace Tizen.NUI.BaseComponents
             }
             get
             {
-                if (CurrentAnimationState == AnimationStates.Playing)
+                if (CurrentAnimationState == State.Playing)
                 {
                     if (PlayState == PlayStateType.Stopped)
                     {
-                        CurrentAnimationState = AnimationStates.Stopped;
+                        CurrentAnimationState = State.Stopped;
                     }
                 }
                 return CurrentAnimationState;
@@ -385,7 +385,7 @@ namespace Tizen.NUI.BaseComponents
             base.Margin = tmp;
 
             base.Play();
-            AnimationState = AnimationStates.Playing;
+            AnimationState = State.Playing;
 
             tlog.Fatal(tag, $" [{GetId()}] isMinMaxSet={isMinMaxSet}) ]VAV END]");
         }
@@ -404,7 +404,7 @@ namespace Tizen.NUI.BaseComponents
             }
 
             base.Pause();
-            AnimationState = AnimationStates.Paused;
+            AnimationState = State.Paused;
 
             tlog.Fatal(tag, $" [{GetId()}] ]VAV END]");
         }
@@ -418,7 +418,7 @@ namespace Tizen.NUI.BaseComponents
         /// End action is StopFinal, Animation Stops at the Max Frame
         /// </param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Stop(EndActions endAction = EndActions.Cancel)
+        public void Stop(EndAction endAction = EndAction.Cancel)
         {
             tlog.Fatal(tag, $"[VAV START[ [{GetId()}] endAction:({endAction}), PlayState={PlayState}");
 
@@ -427,7 +427,7 @@ namespace Tizen.NUI.BaseComponents
                 throw new InvalidOperationException("Resource Url not yet Set");
             }
 
-            if (AnimationState == AnimationStates.Stopped)
+            if (AnimationState == State.Stopped)
             {
                 return;
             }
@@ -437,13 +437,13 @@ namespace Tizen.NUI.BaseComponents
                 internalEndAction = endAction;
                 switch (endAction)
                 {
-                    case EndActions.Cancel:
+                    case EndAction.Cancel:
                         StopBehavior = StopBehaviorType.CurrentFrame;
                         break;
-                    case EndActions.Discard:
+                    case EndAction.Discard:
                         StopBehavior = StopBehaviorType.MinimumFrame;
                         break;
-                    case EndActions.StopFinal:
+                    case EndAction.StopFinal:
                         StopBehavior = StopBehaviorType.MaximumFrame;
                         break;
                     default:
@@ -451,11 +451,11 @@ namespace Tizen.NUI.BaseComponents
                         break;
                 }
             }
-            AnimationState = AnimationStates.Stopped;
+            AnimationState = State.Stopped;
 
             base.Stop();
 
-            if (endAction == EndActions.StopFinal)
+            if (endAction == EndAction.StopFinal)
             {
                 switch (isMinMaxSet)
                 {
@@ -515,6 +515,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// RepeatMode type of animation.
         /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
         public enum RepeatModeType
         {
@@ -556,6 +557,28 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// EndAction of animation.
         /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum EndAction
+        {
+            /// <summary> End action is Cancel, Animation Stops at the Current Frame.</summary>
+            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Cancel = 0,
+            /// <summary>  End action is Discard, Animation Stops at the Min Frame</summary>
+            [Obsolete("Please do not use! This will be removed. Please use AnimatedVectorImageView.EndAction.Discard instead!")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Discard = 1,
+            /// <summary> End action is StopFinal, Animation Stops at the Max Frame</summary>
+            [Obsolete("Please do not use! This will be removed. Please use AnimatedVectorImageView.EndAction.StopFinal instead!")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            StopFinal = 2
+        }
+
+        /// <summary>
+        /// AnimationState of animation.
+        /// </summary>
+        [Obsolete("Please do not use! This will be removed. Please use AnimatedVectorImageView.State instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public enum EndAction
         {
@@ -596,6 +619,27 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Animation State of animation.
         /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum State
+        {
+            /// <summary> The animation has stopped.</summary>
+            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Stopped = PlayStateType.Stopped,
+            /// <summary> The animation is playing.</summary>
+            [Obsolete("Please do not use! This will be removed. Please use AnimatedVectorImageView.State.Playing instead!")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Playing = PlayStateType.Playing,
+            /// <summary> The animation is paused.</summary>
+            [Obsolete("Please do not use! This will be removed. Please use AnimatedVectorImageView.State.Paused instead!")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Paused = PlayStateType.Paused
+        }
+
+        /// <summary>
+        /// Animation State of animation.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new enum State
         {
@@ -615,15 +659,14 @@ namespace Tizen.NUI.BaseComponents
         #endregion Internal
 
         #region Private
-        private string resourceURL = null;
-        private int repeatCount = 0;
-        private int totalFrameNum = 0;
-        private int minFrame = -1, mMaxFrame = -1;
-        private minMaxSetTypes isMinMaxSet = minMaxSetTypes.NotSetByUser;
-        private int currentFrame = -1;
-        private EndActions internalEndAction = EndActions.Cancel;
-        private RepeatModeType repeat = RepeatModeType.Restart;
-        private RepeatModes repeatMode = RepeatModes.Restart;
+        private string mResourceURL = null;
+        private int mRepeatCount = 0;
+        private int mTotalFrameNum = 0;
+        private RepeatModeType mRepeatMode = RepeatModeType.Restart;
+        private int mMinFrame = -1, mMaxFrame = -1;
+        private minMaxSetTypes mIsMinMaxSet = minMaxSetTypes.NotSetByUser;
+        private int mCurrentFrame = -1;
+        private EndAction mEndAction = EndAction.Cancel;
         private enum minMaxSetTypes
         {
             NotSetByUser,
@@ -633,7 +676,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         private string tag = "NUITEST";
-        private AnimationStates CurrentAnimationState = AnimationStates.Stopped;
+        private State CurrentAnimationState = State.Stopped;
         #endregion Private
     }
 }
