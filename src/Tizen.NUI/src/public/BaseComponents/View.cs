@@ -830,10 +830,6 @@ namespace Tizen.NUI.BaseComponents
                 sizeSetExplicitly = value;  // Store size set by API, will be used in place of NaturalSize if not set.
                 SetValue(Size2DProperty, value);
 
-                widthPolicy = value.Width;
-                heightPolicy = value.Height;
-                
-                layout?.RequestLayout();
                 NotifyPropertyChanged();
             }
         }
