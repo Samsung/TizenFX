@@ -74,6 +74,8 @@ namespace Tizen.NUI
             {
                 SetTransformMap(transformMap);
             }
+            transformProperty.Dispose();
+            transformMap.Dispose();
         }
 
         /// <summary>
@@ -187,8 +189,10 @@ namespace Tizen.NUI
 
             if (!noOffset.Equals(Offset))
             {
-                transformMap[(int)VisualTransformPropertyType.OffsetPolicy] = new PropertyValue(new Vector2((int)VisualTransformPolicyType.Absolute, (int)VisualTransformPolicyType.Absolute));
+                var temp = new Vector2((int)VisualTransformPolicyType.Absolute, (int)VisualTransformPolicyType.Absolute);
+                transformMap[(int)VisualTransformPropertyType.OffsetPolicy] = new PropertyValue(temp);
                 transformMap[(int)VisualTransformPropertyType.Offset] = PropertyValue.CreateWithGuard(Offset);
+                temp.Dispose();
             }
 
             if (!noExtents.Equals(Extents))
@@ -199,7 +203,9 @@ namespace Tizen.NUI
             transformMap[(int)VisualTransformPropertyType.Origin] = new PropertyValue((int)Visual.AlignType.Center);
             transformMap[(int)VisualTransformPropertyType.AnchorPoint] = new PropertyValue((int)Visual.AlignType.Center);
 
-            return new PropertyValue(transformMap);
+            var ret = new PropertyValue(transformMap);
+            transformMap.Dispose();
+            return ret;
         }
 
         private void SetTransformMap(PropertyMap transformMap)
@@ -209,8 +215,12 @@ namespace Tizen.NUI
                 return;
             }
 
-            transformMap.Find((int)VisualTransformPropertyType.Offset)?.Get(Offset);
-            transformMap.Find((int)VisualTransformPropertyType.ExtraSize)?.Get(Extents);
+            PropertyValue temp = transformMap.Find((int)VisualTransformPropertyType.Offset);
+            temp?.Get(Offset);
+            temp?.Dispose();
+            temp = transformMap.Find((int)VisualTransformPropertyType.ExtraSize);
+            temp?.Get(Extents);
+            temp?.Dispose();
         }
     }
 }

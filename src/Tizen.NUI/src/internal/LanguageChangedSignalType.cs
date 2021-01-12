@@ -37,7 +37,6 @@ namespace Tizen.NUI
         /// Queries whether there are any connected slots.
         /// </summary>
         /// <returns>True if there are any slots connected to the signal</returns>
-        /// <since_tizen> 4 </since_tizen>
         public bool Empty()
         {
             bool ret = Interop.LanguageChangedSignalType.Empty(SwigCPtr);
@@ -49,7 +48,6 @@ namespace Tizen.NUI
         /// Queries the number of slots.
         /// </summary>
         /// <returns>The number of slots connected to this signal</returns>
-        /// <since_tizen> 4 </since_tizen>
         public uint GetConnectionCount()
         {
             uint ret = Interop.LanguageChangedSignalType.GetConnectionCount(SwigCPtr);
@@ -61,7 +59,6 @@ namespace Tizen.NUI
         /// Connects a member function.
         /// </summary>
         /// <param name="func">The member function to connect</param>
-        /// <since_tizen> 4 </since_tizen>
         public void Connect(System.Delegate func)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
@@ -75,7 +72,6 @@ namespace Tizen.NUI
         /// Disconnects a function.
         /// </summary>
         /// <param name="func">The function to disconnect</param>
-        /// <since_tizen> 4 </since_tizen>
         public void Disconnect(System.Delegate func)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
@@ -88,7 +84,6 @@ namespace Tizen.NUI
         /// <summary>
         /// Emits the signal.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public void Emit(int arg)
         {
             Interop.LanguageChangedSignalType.Emit(SwigCPtr, arg);
@@ -98,7 +93,6 @@ namespace Tizen.NUI
         /// <summary>
         /// The contructor.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public LanguageChangedSignalType() : this(Interop.LanguageChangedSignalType.NewLanguageChangedSignalType(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
