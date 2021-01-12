@@ -106,38 +106,6 @@ namespace Tizen.NUI.BaseComponents
             this.layout?.RequestLayout();
         }
 
-        /// <summary>
-        /// Stores the calculated width value and its ModeType. Width component.
-        /// </summary>
-        internal MeasureSpecification MeasureSpecificationWidth
-        {
-            set
-            {
-                measureSpecificationWidth = value;
-                layout?.RequestLayout();
-            }
-            get
-            {
-                return measureSpecificationWidth;
-            }
-        }
-
-        /// <summary>
-        /// Stores the calculated width value and its ModeType. Height component.
-        /// </summary>
-        internal MeasureSpecification MeasureSpecificationHeight
-        {
-            set
-            {
-                measureSpecificationHeight = value;
-                layout?.RequestLayout();
-            }
-            get
-            {
-                return measureSpecificationHeight;
-            }
-        }
-
         internal void AttachTransitionsToChildren(LayoutTransition transition)
         {
             // Iterate children, adding the transition unless a transition
