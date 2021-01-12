@@ -39,8 +39,6 @@ namespace Tizen.NUI.BaseComponents
         private Dictionary<TransitionCondition, TransitionList> layoutTransitions;
         private int widthPolicy = LayoutParamPolicies.WrapContent; // Layout width policy
         private int heightPolicy = LayoutParamPolicies.WrapContent; // Layout height policy
-        private int oldWidthPolicy = LayoutParamPolicies.MatchParent; // // Store Layout width to compare against later
-        private int oldHeightPolicy = LayoutParamPolicies.MatchParent; // Store Layout height to compare against later
         private float weight = 0.0f; // Weighting of child View in a Layout
         private bool backgroundImageSynchronosLoading = false;
         private Dictionary<string, Transition> transDictionary = new Dictionary<string, Transition>();
@@ -2000,20 +1998,19 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
+                if (value == widthPolicy)
+                    return;
+
                 widthPolicy = value;
-                if (oldWidthPolicy != widthPolicy)
+                if (widthPolicy >= 0)
                 {
-                    if (widthPolicy >= 0)
+                    if (heightPolicy >= 0) // Policy an exact value
                     {
-                        if (heightPolicy >= 0) // Policy an exact value
-                        {
-                            // Create Size2D only both _widthPolicy and _heightPolicy are set.
-                            Size2D = new Size2D(widthPolicy, heightPolicy);
-                        }
+                        // Create Size2D only both _widthPolicy and _heightPolicy are set.
+                        Size2D = new Size2D(widthPolicy, heightPolicy);
                     }
-                    layout?.RequestLayout();
-                    oldWidthPolicy = widthPolicy;
                 }
+                layout?.RequestLayout();
             }
         }
 
@@ -2029,21 +2026,19 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                heightPolicy = value;
-                if (oldHeightPolicy != heightPolicy)
-                {
-                    if (heightPolicy >= 0)
-                    {
-                        if (widthPolicy >= 0) // Policy an exact value
-                        {
-                            // Create Size2D only both _widthPolicy and _heightPolicy are set.
-                            Size2D = new Size2D(widthPolicy, heightPolicy);
-                        }
+                if (value == heightPolicy)
+                    return;
 
+                heightPolicy = value;
+                if (heightPolicy >= 0)
+                {
+                    if (widthPolicy >= 0) // Policy an exact value
+                    {
+                        // Create Size2D only both _widthPolicy and _heightPolicy are set.
+                        Size2D = new Size2D(widthPolicy, heightPolicy);
                     }
-                    layout?.RequestLayout();
-                    oldHeightPolicy = heightPolicy;
                 }
+                layout?.RequestLayout();
             }
         }
 
