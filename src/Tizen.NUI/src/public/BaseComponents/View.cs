@@ -2037,7 +2037,6 @@ namespace Tizen.NUI.BaseComponents
                         // Create Size2D only both _widthPolicy and _heightPolicy are set.
                         Size2D = new Size2D(widthPolicy, heightPolicy);
                     }
-
                 }
                 layout?.RequestLayout();
             }
