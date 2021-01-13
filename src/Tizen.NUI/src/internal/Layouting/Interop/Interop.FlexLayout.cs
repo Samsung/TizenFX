@@ -21,7 +21,7 @@ namespace Tizen.NUI
             public static extern global::System.IntPtr FlexLayout_AddChildWithMargin( global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, Tizen.NUI.FlexLayout.ChildMeasureCallback jarg4, int jarg5);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexLayout_RemoveChild")]
-            public static extern global::System.IntPtr FlexLayout_RemoveChild( global::System.Runtime.InteropServices.HandleRef jarg1, LayoutItem jarg2);
+            public static extern global::System.IntPtr FlexLayout_RemoveChild( global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexLayout_CalculateLayout")]
             public static extern global::System.IntPtr FlexLayout_CalculateLayout( global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3, bool jarg4);
