@@ -17,6 +17,7 @@
 using System;
 using System.Collections.Concurrent;
 using System.Threading;
+using System.Runtime.InteropServices;
 
 namespace Tizen.Applications
 {
@@ -91,16 +92,16 @@ namespace Tizen.Applications
             }
         }
 
-        private static class GSourceManager
+        private static unsafe class GSourceManager
         {
-            private static Interop.Glib.GSourceFunc _wrapperHandler;
+            private static delegate* unmanaged <IntPtr, byte> _wrapperHandler;
             private static Object _transactionLock;
             private static ConcurrentDictionary<int, Action> _handlerMap;
             private static int _transactionId;
 
             static GSourceManager()
             {
-                _wrapperHandler = new Interop.Glib.GSourceFunc(Handler);
+                _wrapperHandler = (delegate* unmanaged <IntPtr, byte>)&Handler;
                 _transactionLock = new Object();
                 _handlerMap = new ConcurrentDictionary<int, Action>();
                 _transactionId = 0;
@@ -117,14 +118,15 @@ namespace Tizen.Applications
                 Interop.Glib.IdleAdd(_wrapperHandler, (IntPtr)id);
             }
 
-            private static bool Handler(IntPtr userData)
+            [UnmanagedCallersOnly]
+            private static byte Handler(IntPtr userData)
             {
                 int key = (int)userData;
                 if (_handlerMap.TryRemove(key, out Action action))
                 {
                     action?.Invoke();
                 }
-                return false;
+                return 0;
             }
         }
     }

@@ -19,13 +19,10 @@ using System.Runtime.InteropServices;
 
 internal static partial class Interop
 {
-    internal static partial class Glib
+    internal static unsafe partial class Glib
     {
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate bool GSourceFunc(IntPtr userData);
-
         [DllImport(Libraries.Glib, EntryPoint = "g_idle_add", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern uint IdleAdd(GSourceFunc d, IntPtr data);
+        internal static extern uint IdleAdd(delegate* unmanaged<IntPtr, byte> d, IntPtr data);
 
         [DllImport(Libraries.Glib, EntryPoint = "g_source_remove", CallingConvention = CallingConvention.Cdecl)]
         internal static extern bool RemoveSource(uint source);
