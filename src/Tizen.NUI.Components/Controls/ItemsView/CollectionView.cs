@@ -105,6 +105,7 @@ namespace Tizen.NUI.Components
         private DataTemplate itemTemplate = null;
         private IEnumerable itemsSource = null;
         private ItemsLayouter itemsLayouter = null;
+        private bool wasRelayouted = false;
         private bool needInitalizeLayouter = false;
         private object selectedItem;
         private SelectionList selectedItems;
@@ -358,6 +359,7 @@ namespace Tizen.NUI.Components
                     ContentContainer.Add(value);
                 }
                 header = value;
+                needInitalizeLayouter = true;
                 Init();
             }
         }
@@ -385,6 +387,7 @@ namespace Tizen.NUI.Components
                     ContentContainer.Add(value);
                 }
                 footer = value;
+                needInitalizeLayouter = true;
                 Init();
             }
         }
@@ -420,6 +423,13 @@ namespace Tizen.NUI.Components
             {
                 base.InternalItemSource = value;
             }
+        }
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnRelayout(Vector2 size, RelayoutContainer container)
+        {
+            wasRelayouted = true;
+            if (needInitalizeLayouter) Init();
         }
 
         /// <inheritdoc/>
@@ -886,6 +896,8 @@ namespace Tizen.NUI.Components
             if (ItemTemplate == null) return;
 
             if (disposed) return;
+            if (!wasRelayouted) return;
+
             if (needInitalizeLayouter)
             {
                 if (InternalItemSource == null) return;
