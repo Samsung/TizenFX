@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Tizen.NUI.Binding
 {
-    internal class DataTemplate : ElementTemplate
+    public class DataTemplate : ElementTemplate
     {
         public DataTemplate()
         {

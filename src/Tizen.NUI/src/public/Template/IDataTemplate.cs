@@ -1,9 +1,9 @@
 using System;
 using System.ComponentModel;
 
-namespace Tizen.NUI.Binding.Internals
+namespace Tizen.NUI.Binding
 {
-    internal interface IDataTemplate
+    public interface IDataTemplate
     {
         Func<object> LoadTemplate { get; set; }
     }

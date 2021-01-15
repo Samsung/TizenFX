@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Tizen.NUI.Binding
 {
-    internal abstract class DataTemplateSelector : DataTemplate
+    public abstract class DataTemplateSelector : DataTemplate
     {
         Dictionary<Type, DataTemplate> _dataTemplates = new Dictionary<Type, DataTemplate>();
 
