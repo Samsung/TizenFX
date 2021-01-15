@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2021 Samsung Electronics Co., Ltd.
+﻿﻿/* Copyright (c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -217,11 +217,10 @@ namespace Tizen.NUI.Components
         /// <param name="index"> Index position of realizing item </param>
         internal virtual ViewItem RealizeItem(int index)
         {
-            object context = InternalItemSource.GetItem(index);
             // Check DataTemplate is Same!
             if (ItemTemplate is DataTemplateSelector)
             {
-                // Need to implements for caching of selector!
+                // Need to implements
             }
             else
             {
@@ -229,17 +228,17 @@ namespace Tizen.NUI.Components
                ViewItem item = PopRecycleCache(ItemTemplate);
                if (item != null)
                {
-                    DecorateItem(item, index, context);
+                    DecorateItem(item, index);
                     return item;
                }
             }
 
-            object content = DataTemplateExtensions.CreateContent(ItemTemplate, context, (BindableObject)this) ?? throw new Exception("Template return null object.");
+            object content = ItemTemplate.CreateContent() ?? throw new Exception("Template return null object.");
             if (content is ViewItem)
             {
                 ViewItem item = (ViewItem)content;
                 ContentContainer.Add(item);
-                DecorateItem(item, index, context);
+                DecorateItem(item, index);
                 return item;
             }
             else
@@ -269,8 +268,8 @@ namespace Tizen.NUI.Components
 
             if (!recycle || !PushRecycleCache(item))
             {
-                //ContentContainer.Remove(item);
-                Utility.Dispose(item);
+                ContentContainer.Remove(item);
+                item.Dispose();
             }
         }
 
@@ -358,8 +357,8 @@ namespace Tizen.NUI.Components
                 {
                     foreach (ViewItem item in RecycleCache)
                     {
-                        //ContentContainer.Remove(item);
-                        Utility.Dispose(item);
+                        ContentContainer.Remove(item);
+                        item.Dispose();
                     }
                     RecycleCache.Clear();
                 }
@@ -381,12 +380,12 @@ namespace Tizen.NUI.Components
             //InternalItemsLayouter.RequestLayout(ScrollingDirection == Direction.Horizontal ? ContentContainer.CurrentPosition.X : ContentContainer.CurrentPosition.Y);
         }
 
-        private void DecorateItem(ViewItem item, int index, object context)
+        private void DecorateItem(ViewItem item, int index)
         {
             item.Index = index;
             item.ParentItemsView = this;
             item.Template = (ItemTemplate as DataTemplateSelector)?.SelectDataTemplate(InternalItemSource.GetItem(index), this) ?? ItemTemplate;
-            item.BindingContext = context;
+            item.BindingContext = InternalItemSource.GetItem(index);
             item.Relayout += OnItemRelayout;
         }
     }

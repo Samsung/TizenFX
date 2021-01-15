@@ -381,6 +381,7 @@ namespace Tizen.NUI.Components
             {
                 BackgroundColor = new Selector<Color>()
                 {
+<<<<<<< HEAD
                     Normal = (Color)theme.Resources["ViewItemBackgroundColorNormal"],
                     Pressed = (Color)theme.Resources["ViewItemBackgroundColorPressed"],
                     Disabled = (Color)theme.Resources["ViewItemBackgroundColorDisabled"],
@@ -460,6 +461,15 @@ namespace Tizen.NUI.Components
                     BackgroundColor = new Color(0.85f, 0.85f, 0.85f, 1),
                 },
             });
+=======
+                    Normal = new Color(1, 1, 1, 1),
+                    Pressed = new Color(0.85f, 0.85f, 0.85f, 1),
+                    Disabled = new Color(0.70f, 0.70f, 0.70f, 1),
+                    Selected = new Color(0.701f, 0.898f, 0.937f, 1)
+                }
+            });
+
+>>>>>>> ff0732088... Introduce CollectionView and related classes.
 
             return theme;
         }

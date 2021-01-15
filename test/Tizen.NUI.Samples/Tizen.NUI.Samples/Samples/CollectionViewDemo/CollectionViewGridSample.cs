@@ -11,6 +11,34 @@ namespace Tizen.NUI.Samples
         int itemCount = 500;
         int selectedCount;
         ItemSelectionMode selMode;
+        ViewItemStyle titleStyle = new ViewItemStyle()
+        {
+            Name = "titleStyle",
+            BackgroundColor = new Selector<Color>()
+            {
+                Normal = new Color(0.972F, 0.952F, 0.749F, 1),
+                Pressed = new Color(0.1F, 0.85F, 0.85F, 1),
+                Disabled = new Color(0.70F, 0.70F, 0.70F, 1),
+                Selected = new Color(0.701F, 0.898F, 0.937F, 1)
+            }
+        };
+        class SampleGridTitleItem : OneLineLinearItem
+        {
+            public SampleGridTitleItem(ViewItemStyle titleStyle) : base(titleStyle)
+            {
+                WidthSpecification = LayoutParamPolicies.MatchParent;
+                HeightSpecification = 120;
+            }
+        }
+
+        class SampleGridItem : OutLineGridItem
+        {
+            public SampleGridItem() : base()
+            {
+                WidthSpecification = 180;
+                HeightSpecification = 240;
+            }
+        }
 
         public void Activate()
         {
@@ -18,8 +46,9 @@ namespace Tizen.NUI.Samples
 
             List<Gallery> myViewModelSource = new GalleryViewModel().CreateData(itemCount);
             selMode = ItemSelectionMode.MultipleSelections;
-            DefaultTitleItem myTitle = new DefaultTitleItem();
+            SampleGridTitleItem myTitle = new SampleGridTitleItem(titleStyle);
             myTitle.Text = "Grid Sample Count["+itemCount+"] Selected["+selectedCount+"]";
+            myTitle.Label.PointSize = 9;
 
             colView = new CollectionView()
             {
@@ -27,16 +56,17 @@ namespace Tizen.NUI.Samples
                 ItemsLayouter = new GridLayouter(),
                 ItemTemplate = new DataTemplate(() =>
                 {
-                    DefaultGridItem item = new DefaultGridItem();
-                    item.WidthSpecification = 180;
-                    item.HeightSpecification = 240;
+                    SampleGridItem item = new SampleGridItem();
                     //Decorate Label
-                    item.Caption.SetBinding(TextLabel.TextProperty, "ViewLabel");
-                    item.Caption.HorizontalAlignment = HorizontalAlignment.Center;
+                    item.Label.SetBinding(TextLabel.TextProperty, "ViewLabel");
+                    item.Label.PointSize = 5;
+                    item.Label.HorizontalAlignment = HorizontalAlignment.Center;
+                    item.LabelPadding = new Extents(5, 5, 5, 5);
                     //Decorate Image
                     item.Image.SetBinding(ImageView.ResourceUrlProperty, "ImageUrl");
                     item.Image.WidthSpecification = 170;
                     item.Image.HeightSpecification = 170;
+                    item.ImagePadding = new Extents(5, 5, 5, 5);
                     //Decorate Badge checkbox.
                     //[NOTE] This is sample of CheckBox usage in CollectionView.
                     // Checkbox change their selection by IsSelectedProperty bindings with
@@ -45,6 +75,7 @@ namespace Tizen.NUI.Samples
                     item.Badge.SetBinding(CheckBox.IsSelectedProperty, "Selected");
                     item.Badge.WidthSpecification = 30;
                     item.Badge.HeightSpecification = 30;
+                    item.BadgePadding = new Extents(2, 2, 2, 2);
 
                     return item;
                 }),
@@ -90,7 +121,7 @@ namespace Tizen.NUI.Samples
                 }
                 else continue;
             }
-            if (colView.Header != null && colView.Header is DefaultTitleItem title)
+            if (colView.Header != null && colView.Header is SampleGridTitleItem title)
             {
                 title.Text = "Grid Sample Count["+itemCount+"] Selected["+selectedCount+"]";
             }

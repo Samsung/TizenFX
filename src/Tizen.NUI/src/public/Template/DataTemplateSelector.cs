@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 namespace Tizen.NUI.Binding
 {
-    [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class DataTemplateSelector : DataTemplate
     {
         Dictionary<Type, DataTemplate> _dataTemplates = new Dictionary<Type, DataTemplate>();

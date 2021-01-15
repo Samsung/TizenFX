@@ -1,19 +1,3 @@
-/* Copyright (c) 2021 Samsung Electronics Co., Ltd.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- */
-
 using System;
 using System.Collections;
 using System.Collections.Specialized;
@@ -22,14 +6,14 @@ namespace Tizen.NUI.Components
 {
     internal class ObservableItemSource : IItemSource
     {
-        readonly IEnumerable itemsSource;
-        readonly ICollectionChangedNotifier notifier;
-        bool disposed;
+        readonly IEnumerable _itemsSource;
+        readonly ICollectionChangedNotifier _notifier;
+        bool _disposed;
 
-        public ObservableItemSource(IEnumerable itemSource, ICollectionChangedNotifier changedNotifier)
+        public ObservableItemSource(IEnumerable itemSource, ICollectionChangedNotifier notifier)
         {
-            itemsSource = itemSource as IList ?? itemSource as IEnumerable;
-            notifier = changedNotifier;
+            _itemsSource = itemSource as IList ?? itemSource as IEnumerable;
+            _notifier = notifier;
 
             ((INotifyCollectionChanged)itemSource).CollectionChanged += CollectionChanged;
         }
@@ -80,16 +64,16 @@ namespace Tizen.NUI.Components
 
         protected virtual void Dispose(bool disposing)
         {
-            if (disposed)
+            if (_disposed)
             {
                 return;
             }
 
-            disposed = true;
+            _disposed = true;
 
             if (disposing)
             {
-                ((INotifyCollectionChanged)itemsSource).CollectionChanged -= CollectionChanged;
+                ((INotifyCollectionChanged)_itemsSource).CollectionChanged -= CollectionChanged;
             }
         }
 
@@ -133,7 +117,7 @@ namespace Tizen.NUI.Components
                     Move(args);
                     break;
                 case NotifyCollectionChangedAction.Reset:
-                    notifier.NotifyDataSetChanged();
+                    _notifier.NotifyDataSetChanged();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(args));
@@ -148,13 +132,13 @@ namespace Tizen.NUI.Components
             if (count == 1)
             {
                 // For a single item, we can use NotifyItemMoved and get the animation
-                notifier.NotifyItemMoved(this, AdjustPositionForHeader(args.OldStartingIndex), AdjustPositionForHeader(args.NewStartingIndex));
+                _notifier.NotifyItemMoved(this, AdjustPositionForHeader(args.OldStartingIndex), AdjustPositionForHeader(args.NewStartingIndex));
                 return;
             }
 
             var start = AdjustPositionForHeader(Math.Min(args.OldStartingIndex, args.NewStartingIndex));
             var end = AdjustPositionForHeader(Math.Max(args.OldStartingIndex, args.NewStartingIndex) + count);
-            notifier.NotifyItemRangeChanged(this, start, end);
+            _notifier.NotifyItemRangeChanged(this, start, end);
         }
 
         void Add(NotifyCollectionChangedEventArgs args)
@@ -165,11 +149,11 @@ namespace Tizen.NUI.Components
 
             if (count == 1)
             {
-                notifier.NotifyItemInserted(this, startIndex);
+                _notifier.NotifyItemInserted(this, startIndex);
                 return;
             }
 
-            notifier.NotifyItemRangeInserted(this, startIndex, count);
+            _notifier.NotifyItemRangeInserted(this, startIndex, count);
         }
 
         void Remove(NotifyCollectionChangedEventArgs args)
@@ -180,7 +164,7 @@ namespace Tizen.NUI.Components
             {
                 // INCC implementation isn't giving us enough information to know where the removed items were in the
                 // collection. So the best we can do is a NotifyDataSetChanged()
-                notifier.NotifyDataSetChanged();
+                _notifier.NotifyDataSetChanged();
                 return;
             }
 
@@ -191,11 +175,11 @@ namespace Tizen.NUI.Components
 
             if (count == 1)
             {
-                notifier.NotifyItemRemoved(this, startIndex);
+                _notifier.NotifyItemRemoved(this, startIndex);
                 return;
             }
 
-            notifier.NotifyItemRangeRemoved(this, startIndex, count);
+            _notifier.NotifyItemRangeRemoved(this, startIndex, count);
         }
 
         void Replace(NotifyCollectionChangedEventArgs args)
@@ -210,11 +194,11 @@ namespace Tizen.NUI.Components
                 // notification to the adapter
                 if (newCount == 1)
                 {
-                    notifier.NotifyItemChanged(this, startIndex);
+                    _notifier.NotifyItemChanged(this, startIndex);
                 }
                 else
                 {
-                    notifier.NotifyItemRangeChanged(this, startIndex, newCount);
+                    _notifier.NotifyItemRangeChanged(this, startIndex, newCount);
                 }
 
                 return;
@@ -222,27 +206,27 @@ namespace Tizen.NUI.Components
 
             // The original and replacement sets are of unequal size; this means that everything currently in view will 
             // have to be updated. So we just have to use NotifyDataSetChanged and let the RecyclerView update everything
-            notifier.NotifyDataSetChanged();
+            _notifier.NotifyDataSetChanged();
         }
 
         internal int ItemsCount()
         {
-            if (itemsSource is IList list)
+            if (_itemsSource is IList list)
                 return list.Count;
 
             int count = 0;
-            foreach (var item in itemsSource)
+            foreach (var item in _itemsSource)
                 count++;
             return count;
         }
 
         internal object ElementAt(int index)
         {
-            if (itemsSource is IList list)
+            if (_itemsSource is IList list)
                 return list[index];
 
             int count = 0;
-            foreach (var item in itemsSource)
+            foreach (var item in _itemsSource)
             {
                 if (count == index)
                     return item;
@@ -254,11 +238,11 @@ namespace Tizen.NUI.Components
 
         internal int IndexOf(object item)
         {
-            if (itemsSource is IList list)
+            if (_itemsSource is IList list)
                 return list.IndexOf(item);
 
             int count = 0;
-            foreach (var i in itemsSource)
+            foreach (var i in _itemsSource)
             {
                 if (i == item)
                     return count;

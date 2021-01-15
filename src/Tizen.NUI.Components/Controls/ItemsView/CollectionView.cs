@@ -1,4 +1,5 @@
-﻿/* Copyright (c) 2021 Samsung Electronics Co., Ltd.
+﻿﻿/* Copyright (c) 2020 Samsung Electronics Co., Ltd.
+
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -67,7 +68,7 @@ namespace Tizen.NUI.Components
                 propertyChanged: (bindable, oldValue, newValue)=>
                 {
                     var colView = (CollectionView)bindable;
-                    var oldSelection = colView.selectedItems ?? selectEmpty;
+                    var oldSelection = colView.selectedItems ?? s_empty;
                     //FIXME : CoerceSelectedItems calls only isCreatedByXaml
                     var newSelection = (SelectionList)CoerceSelectedItems(colView, newValue);
                     colView.selectedItems = newSelection;
@@ -100,14 +101,10 @@ namespace Tizen.NUI.Components
                 });
 
 
-        private static readonly IList<object> selectEmpty = new List<object>(0);
+        private static readonly IList<object> s_empty = new List<object>(0);
         private DataTemplate itemTemplate = null;
         private IEnumerable itemsSource = null;
         private ItemsLayouter itemsLayouter = null;
-        private DataTemplate groupHeaderTemplate;
-        private DataTemplate groupFooterTemplate;
-        private bool isGrouped;
-        private bool wasRelayouted = false;
         private bool needInitalizeLayouter = false;
         private object selectedItem;
         private SelectionList selectedItems;
@@ -350,8 +347,8 @@ namespace Tizen.NUI.Components
             {
                 if (header != null)
                 {
-                    //ContentContainer.Remove(header);
-                    Utility.Dispose(header);
+                    ContentContainer.Remove(header);
+                    //header.Dispose();
                 }
                 if (value != null)
                 {
@@ -361,7 +358,6 @@ namespace Tizen.NUI.Components
                     ContentContainer.Add(value);
                 }
                 header = value;
-                needInitalizeLayouter = true;
                 Init();
             }
         }
@@ -378,8 +374,8 @@ namespace Tizen.NUI.Components
             {
                 if (footer != null)
                 {
-                    //ContentContainer.Remove(footer);
-                    Utility.Dispose(footer);
+                    ContentContainer.Remove(footer);
+                    //footer.Dispose();
                 }
                 if (value != null)
                 {
@@ -389,7 +385,6 @@ namespace Tizen.NUI.Components
                     ContentContainer.Add(value);
                 }
                 footer = value;
-                needInitalizeLayouter = true;
                 Init();
             }
         }
@@ -398,24 +393,7 @@ namespace Tizen.NUI.Components
         /// Boolean flag of group feature existence.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool IsGrouped 
-        { 
-            get => isGrouped;
-            set
-            {
-                isGrouped = value;
-                needInitalizeLayouter = true;
-                //Need to re-intialize Internal Item Source.
-                if (InternalItemSource != null)
-                {
-                    InternalItemSource.Dispose();
-                    InternalItemSource = null;
-                }
-                if (ItemsSource != null)
-                    InternalItemSource = ItemsSourceFactory.Create(this);
-                Init();
-            }
-        }
+        public bool IsGrouped { get; set; }
 
         /// <summary>
         ///  DataTemplate of group header. Group feature is not supported yet.
@@ -442,15 +420,6 @@ namespace Tizen.NUI.Components
             {
                 base.InternalItemSource = value;
             }
-        }
-        /// <inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override void OnRelayout(Vector2 size, RelayoutContainer container)
-        {
-            base.OnRelayout(size, container);
-
-            wasRelayouted = true;
-            if (needInitalizeLayouter) Init();
         }
 
         /// <inheritdoc/>
@@ -686,47 +655,7 @@ namespace Tizen.NUI.Components
                 return Footer;
             }
 
-            if (isGrouped)
-            {
-                var context = InternalItemSource.GetItem(index);
-                if (InternalItemSource.IsGroupHeader(index))
-                {
-                    // Cache?
-                    //Is Selector is necessary?
-                    ViewItem groupHeader = (ViewItem)DataTemplateExtensions.CreateContent(GroupHeaderTemplate, context, this);
-                    groupHeader.Index = index;
-                    groupHeader.ParentItemsView = this;
-                    groupHeader.ParentGroup = context;
-                    groupHeader.Template = (GroupHeaderTemplate as DataTemplateSelector)?.SelectDataTemplate(context, this) ?? GroupHeaderTemplate;
-                    groupHeader.BindingContext = context;
-                    groupHeader.isGroupHeader = true;
-                    groupHeader.isGroupFooter = false;
-                    ContentContainer.Add(groupHeader);
-
-                    //group selection?
-                    return groupHeader;
-                }
-                else if (InternalItemSource.IsGroupFooter(index))
-                {
-                    // Cache?
-                    //Is Selector is necessary?
-                    ViewItem groupFooter = (ViewItem)DataTemplateExtensions.CreateContent(GroupFooterTemplate, context, this);
-                    groupFooter.Index = index;
-                    groupFooter.ParentItemsView = this;
-                    groupFooter.ParentGroup = context;
-                    groupFooter.Template = (GroupFooterTemplate as DataTemplateSelector)?.SelectDataTemplate(context, this) ?? GroupFooterTemplate;
-                    groupFooter.BindingContext = context;
-                    groupFooter.isGroupHeader = false;
-                    groupFooter.isGroupFooter = true;
-                    ContentContainer.Add(groupFooter);
-
-                    //group selection?
-                    return groupFooter;
-                }
-            }
-
             ViewItem item = base.RealizeItem(index);
-            if (isGrouped) item.ParentGroup = InternalItemSource.GetGroupParent(index);
 
             switch (SelectionMode)
             {
@@ -756,12 +685,6 @@ namespace Tizen.NUI.Components
             if (item == Footer)
             {
                 item.Hide();
-                return;
-            }
-            if (item.isGroupHeader || item.isGroupFooter)
-            {
-                //ContentContainer.Remove(item);
-                Utility.Dispose(item);
                 return;
             }
 
@@ -855,12 +778,12 @@ namespace Tizen.NUI.Components
                 }
                 if (Header != null)
                 {
-                    Utility.Dispose(Header);
+                    Header.Dispose();
                     Header = null;
                 }
                 if (Footer != null)
                 {
-                    Utility.Dispose(Footer);
+                    Footer.Dispose();
                     Footer = null;
                 }
                 GroupHeaderTemplate = null;
@@ -969,12 +892,6 @@ namespace Tizen.NUI.Components
 
                 InternalItemSource.HasHeader = (header != null);
                 InternalItemSource.HasFooter = (footer != null);
-            }
-
-            if (!wasRelayouted) return;
-
-            if (needInitalizeLayouter)
-            {
                 ItemsLayouter.Initialize(this);
                 needInitalizeLayouter = false;
             }
