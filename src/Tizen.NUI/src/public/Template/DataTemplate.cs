@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 namespace Tizen.NUI.Binding
 {
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class DataTemplate : ElementTemplate
     {
         /// <summary>
