@@ -316,7 +316,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public new virtual Size2D GetNaturalSize()
         {
-            return sizeSetExplicitly;  // Returns the size set explicitly on View unless Overridden.
+            return (Size2D)GetValue(Size2DProperty);
         }
 
         /// <summary>
