@@ -970,6 +970,26 @@ namespace Tizen.NUI.BaseComponents
             return (bool)temp;
         }));
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty FontSizeScaleProperty = BindableProperty.Create(nameof(FontSizeScale), typeof(float), typeof(TextLabel), default(float), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        {
+            var textField = (TextField)bindable;
+            if (newValue != null)
+            {
+                using (var property = new Tizen.NUI.PropertyValue((float)newValue))
+                {
+                    Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.FontSizeScale, property);
+                }
+            }
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        {
+            var textField = (TextField)bindable;
+            float temp;
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.FontSizeScale).Get(out temp);
+            return temp;
+        }));
+
         #region Selectors
         internal static readonly BindableProperty TranslatableTextSelectorProperty = BindableProperty.Create("TranslatableTextSelector", typeof(Selector<string>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
         {

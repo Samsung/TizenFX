@@ -1813,6 +1813,21 @@ namespace Tizen.NUI
     }
 
     /// <summary>
+    /// FontSizeScale constant.
+    /// </summary>
+    /// <since_tizen> 9 </since_tizen>
+    /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public struct FontSizeScale
+    {
+        /// <summary>
+        /// UseSystemSetting
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public const float UseSystemSetting = -1.0f;
+    }
+
+    /// <summary>
     /// TODO This is to get TizenFX resource path. It needs to be fixed to use application framework API in the future.
     /// Internal use only. Do not open this API.
     /// </summary>
