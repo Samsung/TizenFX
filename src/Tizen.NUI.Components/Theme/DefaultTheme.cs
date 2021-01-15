@@ -368,6 +368,18 @@ namespace Tizen.NUI.Components
                 TrackPadding = 4
             });
 
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.ViewItem", new ViewItemStyle()
+            {
+                BackgroundColor = new Selector<Color>()
+                {
+                    Normal = new Color(1, 1, 1, 1),
+                    Pressed = new Color(0.85f, 0.85f, 0.85f, 1),
+                    Disabled = new Color(0.70f, 0.70f, 0.70f, 1),
+                    Selected = new Color(0.701f, 0.898f, 0.937f, 1)
+                }
+            });
+
+
             return theme;
         }
     }
