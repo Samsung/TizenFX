@@ -3,7 +3,7 @@
 namespace Tizen.NUI.Binding
 {
     [EditorBrowsable(EditorBrowsableState.Never)]
-    internal static class DataTemplateExtensions
+    public static class DataTemplateExtensions
     {
         public static DataTemplate SelectDataTemplate(this DataTemplate self, object item, BindableObject container)
         {
