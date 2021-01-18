@@ -46,8 +46,6 @@ namespace Tizen.NUI.Components
 
         private Feedback feedback = null;
 
-        private TapGestureDetector tapGestureDetector = null;
-
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ControlStyle Style => (ControlStyle)ViewStyle.Clone();
@@ -110,25 +108,27 @@ namespace Tizen.NUI.Components
 
                 if (value)
                 {
-                    Debug.Assert(feedback == null && tapGestureDetector == null);
-
-                    tapGestureDetector = new TapGestureDetector();
-                    tapGestureDetector.Attach(this);
-                    tapGestureDetector.Detected += OnTapGestureDetected;
                     feedback = new Feedback();
+                    this.TouchEvent += OnTouchPlayFeedback;
                 }
                 else
                 {
-                    Debug.Assert(feedback != null && tapGestureDetector != null);
-
-                    feedback.Stop();
+                    this.TouchEvent -= OnTouchPlayFeedback;
                     feedback = null;
-
-                    tapGestureDetector.Detected -= OnTapGestureDetected;
-                    tapGestureDetector.Detach(this);
-                    tapGestureDetector = null;
                 }
             }
+        }
+
+        private bool OnTouchPlayFeedback(object source, TouchEventArgs e)
+        {
+            if (Feedback && e?.Touch.GetState(0) == PointStateType.Down)
+            {
+                if (feedback != null && feedback.IsSupportedPattern(FeedbackType.Sound, "Tap"))
+                {
+                    feedback.Play(FeedbackType.Sound, "Tap");
+                }
+            }
+            return false;
         }
 
         /// Internal used.
@@ -185,9 +185,11 @@ namespace Tizen.NUI.Components
                 return;
             }
 
+            feedback = null;
+            this.TouchEvent -= OnTouchPlayFeedback;
+
             if (type == DisposeTypes.Explicit)
             {
-                Feedback = false; // Release feedback resources.
             }
 
             base.Dispose(type);
@@ -246,25 +248,6 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Tap gesture callback.
-        /// </summary>
-        /// <param name="source">The sender</param>
-        /// <param name="e">The tap gesture event data</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual void OnTapGestureDetected(object source, TapGestureDetector.DetectedEventArgs e)
-        {
-            if (Feedback && e?.TapGesture?.State == Gesture.StateType.Started)
-            {
-                if (feedback != null && feedback.IsSupportedPattern(FeedbackType.Sound, "Tap"))
-                {
-                    feedback.Play(FeedbackType.Sound, "Tap");
-                }
-            }
-        }
-
-        /// <summary>
         /// Update by style.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
@@ -317,6 +300,8 @@ namespace Tizen.NUI.Components
             StateFocusableOnTouchMode = false;
 
             EnableControlState = true;
+
+            Feedback = true;
         }
     }
 }
