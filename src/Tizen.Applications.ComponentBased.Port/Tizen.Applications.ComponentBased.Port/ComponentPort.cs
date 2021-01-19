@@ -110,7 +110,7 @@ namespace Tizen.Applications.ComponentBased
         /// <param name="timeout">The interval of timeout</param>
         /// <param name="request">The serializable data to send</param>
         /// <since_tizen> 9 </since_tizen>
-        public void Send(string endpoint, int timeout, IEnvelope request)
+        public void Send(string endpoint, int timeout, object request)
         {
             if (request == null)
             {
@@ -143,7 +143,7 @@ namespace Tizen.Applications.ComponentBased
         /// <param name="request">The serializable data to send</param>
         /// <returns>The received serializable data</returns>
         /// /// <since_tizen> 9 </since_tizen>
-        public IEnvelope SendSync(string endpoint, int timeout, IEnvelope request)
+        public object SendSync(string endpoint, int timeout, object request)
         {
             if (request == null)
             {
@@ -165,7 +165,7 @@ namespace Tizen.Applications.ComponentBased
 
             
             using Parcel resParcel = new Parcel(resSafeHandle);
-            IEnvelope response = FromParcel(resParcel);
+            object response = FromParcel(resParcel);
             return response;
         }
 
@@ -175,7 +175,7 @@ namespace Tizen.Applications.ComponentBased
         /// <param name="sender">The name of the sender</param>
         /// <param name="request">The serializable data</param>
         /// <since_tizen> 9 </since_tizen>
-        protected abstract void OnRequestEvent(string sender, IEnvelope request);
+        protected abstract void OnRequestEvent(string sender, object request);
 
         /// <summary>
         /// Abstrace method for receiving a synchronous request event.
@@ -183,14 +183,14 @@ namespace Tizen.Applications.ComponentBased
         /// <param name="sender">The name of the sender</param>
         /// <param name="request">The serializable data</param>
         /// <since_tizen> 9 </since_tizen>
-        protected abstract IEnvelope OnSyncRequestEvent(string sender, IEnvelope request);
+        protected abstract object OnSyncRequestEvent(string sender, object request);
 
 
         private void OnRequestEvent(string sender, IntPtr request, IntPtr data)
         {
             SafeParcelHandle reqSafeHandle = new SafeParcelHandle(request, false);
             using var reqParcel = new Parcel(reqSafeHandle);
-            IEnvelope req = FromParcel(reqParcel);
+            object req = FromParcel(reqParcel);
             OnRequestEvent(sender, req);
         }
 
@@ -198,9 +198,9 @@ namespace Tizen.Applications.ComponentBased
         {
             SafeParcelHandle reqSafeHandle = new SafeParcelHandle(request, false);
             using Parcel reqParcel = new Parcel(reqSafeHandle);
-            IEnvelope req = FromParcel(reqParcel);
+            object req = FromParcel(reqParcel);
 
-            IEnvelope result = OnSyncRequestEvent(sender, req);
+            object result = OnSyncRequestEvent(sender, req);
             using Parcel resultParcel = ToParcel(result);
 
             SafeParcelHandle resSafeHandle = new SafeParcelHandle(response, false);
@@ -208,7 +208,7 @@ namespace Tizen.Applications.ComponentBased
             resParcel.UnMarshall(resultParcel.Marshall());
         }
 
-        private Parcel ToParcel(IEnvelope envelope)
+        private Parcel ToParcel(object envelope)
         {
             if (envelope == null)
                 return null;
@@ -226,7 +226,7 @@ namespace Tizen.Applications.ComponentBased
             return parcel;
         }
 
-        private IEnvelope FromParcel(Parcel parcel)
+        private object FromParcel(Parcel parcel)
         {
             if (parcel == null)
                 return null;
@@ -237,10 +237,10 @@ namespace Tizen.Applications.ComponentBased
                 AssemblyFormat = FormatterAssemblyStyle.Full,
             };
             using MemoryStream stream = new MemoryStream(parcel.Marshall());
-            IEnvelope envelope = null;
+            object envelope = null;
             try
             {
-                envelope = (IEnvelope)formatter.Deserialize(stream);
+                envelope = (object)formatter.Deserialize(stream);
             }
             catch (ArgumentException e)
             {
