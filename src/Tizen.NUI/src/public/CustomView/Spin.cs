@@ -66,6 +66,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         [ScriptableProperty()]
+        // GetValue() is in BindableObject. It's different from this Value.
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1721: Property names should not match get methods")]
         public int Value
         {
             get

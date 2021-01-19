@@ -193,8 +193,8 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Deprecated in API9, will be removed in API11. Please use ChildCount property instead!")]
         public new uint GetChildCount()
         {
             uint ret = Interop.ActorInternal.GetChildCount(SwigCPtr);
@@ -250,16 +250,16 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Deprecated in API9, will be removed in API11. Please use MinimumSwipeSpeed property instead!")]
         public void SetMinimumSwipeSpeed(float speed)
         {
             Interop.ItemView.SetMinimumSwipeSpeed(SwigCPtr, speed);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Deprecated in API9, will be removed in API11. Please use MinimumSwipeSpeed property instead!")]
         public float GetMinimumSwipeSpeed()
         {
             float ret = Interop.ItemView.GetMinimumSwipeSpeed(SwigCPtr);
@@ -267,16 +267,16 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Deprecated in API9, will be removed in API11. Please use MinimumSwipeDistance property instead!")]
         public void SetMinimumSwipeDistance(float distance)
         {
             Interop.ItemView.SetMinimumSwipeDistance(SwigCPtr, distance);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Deprecated in API9, will be removed in API11. Please use MinimumSwipeDistance property instead!")]
         public float GetMinimumSwipeDistance()
         {
             float ret = Interop.ItemView.GetMinimumSwipeDistance(SwigCPtr);
@@ -284,16 +284,16 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Deprecated in API9, will be removed in API11. Please use WheelScrollDistanceStep property instead!")]
         public void SetWheelScrollDistanceStep(float step)
         {
             Interop.ItemView.SetWheelScrollDistanceStep(SwigCPtr, step);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Deprecated in API9, will be removed in API11. Please use WheelScrollDistanceStep property instead!")]
         public float GetWheelScrollDistanceStep()
         {
             float ret = Interop.ItemView.GetWheelScrollDistanceStep(SwigCPtr);
@@ -343,16 +343,16 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Deprecated in API9, will be removed in API11. Please use RefreshInterval property instead!")]
         public void SetRefreshInterval(float intervalLayoutPositions)
         {
             Interop.ItemView.SetRefreshInterval(SwigCPtr, intervalLayoutPositions);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Deprecated in API9, will be removed in API11. Please use RefreshInterval property instead!")]
         public float GetRefreshInterval()
         {
             float ret = Interop.ItemView.GetRefreshInterval(SwigCPtr);

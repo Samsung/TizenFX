@@ -155,6 +155,8 @@ namespace Tizen.NUI.BaseComponents
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        // GetViewStyle() is not public.
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1721: Property names should not match get methods")]
         public ViewStyle ViewStyle
         {
             get
@@ -1442,7 +1444,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return GetChildCount();
+                return Convert.ToUInt32(Children.Count);
             }
         }
 
