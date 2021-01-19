@@ -114,4 +114,9 @@ internal static partial class Interop
             internal static extern int StopBrowsing(uint browser);
         }
     }
+    internal static partial class Libc
+    {
+        [DllImport(Libraries.Libc, EntryPoint = "free")]
+        public static extern void Free(IntPtr userData);
+    }
 }
