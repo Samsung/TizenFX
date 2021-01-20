@@ -20,6 +20,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AccessibilityManager_SetAccessibilityAttribute")]
             public static extern void AccessibilityManager_SetAccessibilityAttribute(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, int jarg3, string jarg4);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AccessibilityManager_DeleteAccessibilityAttribute")]
+            public static extern void AccessibilityManager_DeleteAccessibilityAttribute(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AccessibilityManager_GetAccessibilityAttribute")]
             public static extern string AccessibilityManager_GetAccessibilityAttribute(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, int jarg3);
 

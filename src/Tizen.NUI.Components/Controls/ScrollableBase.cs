@@ -1009,6 +1009,7 @@ namespace Tizen.NUI.Components
 
             if (type == DisposeTypes.Explicit)
             {
+                AccessibilityManager.Instance.DeleteAccessibilityAttribute(this);
                 StopVerticalShadowAnimation();
                 StopScroll();
 
