@@ -1370,10 +1370,8 @@ namespace Tizen.NUI.BaseComponents
 
         private void InitializeStyle(ViewStyle style)
         {
-            if (!ThemeManager.ThemeApplied) return;
-
-            if (style == null) UpdateStyle(); // Use style in the current theme
-            else ApplyStyle(style.Clone());   // Use given style
+            if (style != null) ApplyStyle(style.Clone());   // Use given style
+            else if (ThemeManager.ThemeApplied) UpdateStyle(); // Use style in the current theme
         }
     }
 }

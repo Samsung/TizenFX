@@ -27,6 +27,7 @@ namespace Tizen.NUI.BaseComponents
         public TriggerableSelector<string> FontFamily { get; } = new TriggerableSelector<string>(TextLabel.FontFamilyProperty);
         public TriggerableSelector<Color> TextColor { get; } = new TriggerableSelector<Color>(TextLabel.TextColorProperty, GetTextColor);
         public TriggerableSelector<float?> PointSize { get; } = new TriggerableSelector<float?>(TextLabel.PointSizeProperty);
+        public TriggerableSelector<float?> PixelSize { get; } = new TriggerableSelector<float?>(TextLabel.PixelSizeProperty);
         public TriggerableSelector<TextShadow> TextShadow { get; } = new TriggerableSelector<TextShadow>(TextLabel.TextShadowProperty);
 
         public virtual void Reset(View view)
@@ -36,6 +37,7 @@ namespace Tizen.NUI.BaseComponents
             FontFamily.Reset(view);
             TextColor.Reset(view);
             PointSize.Reset(view);
+            PixelSize.Reset(view);
             TextShadow.Reset(view);
         }
 
