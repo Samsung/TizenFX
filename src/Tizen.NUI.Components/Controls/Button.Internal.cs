@@ -362,6 +362,7 @@ namespace Tizen.NUI.Components
 
             if (type == DisposeTypes.Explicit)
             {
+                AccessibilityManager.Instance.DeleteAccessibilityAttribute(this);
                 Extension?.OnDispose(this);
 
                 if (buttonIcon != null)
