@@ -124,7 +124,7 @@ namespace Tizen.NUI.Accessibility
             /// </summary>
             // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public SayFinishedStates State
+            public SayFinishedState State
             {
                 private set;
                 get;
@@ -132,7 +132,7 @@ namespace Tizen.NUI.Accessibility
 
             internal SayFinishedEventArgs(int result)
             {
-                State = (SayFinishedStates)(result);
+                State = (SayFinishedState)(result);
                 tlog.Fatal(tag, $"SayFinishedEventArgs Constructor! State={State}");
             }
         }
@@ -140,9 +140,42 @@ namespace Tizen.NUI.Accessibility
         /// <summary>
         /// Enum of Say finished event argument status
         /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [Obsolete("Please do not use! This will be removed. Please use Accessibility.SayFinishedState instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public enum SayFinishedStates
+        {
+            /// <summary>
+            /// Invalid
+            /// </summary>
+            [Obsolete("Please do not use! This will be removed. Please use Accessibility.SayFinishedState.Invalid instead!")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Invalid = -1,
+            /// <summary>
+            /// Cancelled
+            /// </summary>
+            [Obsolete("Please do not use! This will be removed. Please use Accessibility.SayFinishedState.Invalid instead!")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Cancelled = 1,
+            /// <summary>
+            /// Stopped
+            /// </summary>
+            [Obsolete("Please do not use! This will be removed. Please use Accessibility.SayFinishedState.Invalid instead!")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Stopped = 2,
+            /// <summary>
+            /// Skipped
+            /// </summary>
+            [Obsolete("Please do not use! This will be removed. Please use Accessibility.SayFinishedState.Invalid instead!")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Skipped = 3
+        }
+
+        /// <summary>
+        /// Enum of Say finished event argument status
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum SayFinishedState
         {
             /// <summary>
             /// Invalid

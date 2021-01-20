@@ -37,7 +37,10 @@ namespace Tizen.NUI.Components
         //This will be replaced with view transition class instance.
         private Animation _newAnimation = null;
 
+        //TODO: Needs to consider how to remove disposed window from dictionary.
+        //Two dictionaries are required to remove disposed navigator from dictionary.
         private static Dictionary<Window, Navigator> windowNavigator = new Dictionary<Window, Navigator>();
+        private static Dictionary<Navigator, Window> navigatorWindow = new Dictionary<Navigator, Window>();
 
         /// <summary>
         /// Creates a new instance of a Navigator.
@@ -310,6 +313,38 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Disposes Navigator and all children on it.
+        /// </summary>
+        /// <param name="type">Dispose type.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                foreach (Page page in NavigationPages)
+                {
+                    Utility.Dispose(page);
+                }
+                NavigationPages.Clear();
+
+                Window window;
+
+                if (navigatorWindow.TryGetValue(this, out window) == true)
+                {
+                    navigatorWindow.Remove(this);
+                    windowNavigator.Remove(window);
+                }
+            }
+
+            base.Dispose(type);
+        }
+
+        /// <summary>
         /// Returns the default navigator of the given window.
         /// </summary>
         /// <returns>The default navigator of the given window.</returns>
@@ -332,6 +367,7 @@ namespace Tizen.NUI.Components
             defaultNavigator.HeightResizePolicy = ResizePolicyType.FillToParent;
             window.Add(defaultNavigator);
             windowNavigator.Add(window, defaultNavigator);
+            navigatorWindow.Add(defaultNavigator, window);
 
             return defaultNavigator;
         }

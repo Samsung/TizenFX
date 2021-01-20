@@ -23,11 +23,13 @@ namespace Tizen.NUI.Samples
         const int mColumn = 3;
         const int mContents = mRow * mColumn;
 
+        Size2D windowSize;
+
         public void Activate()
         {
             Window window = NUIApplication.GetDefaultWindow();
             window.BackgroundColor = Color.White;
-            Size2D windowSize = window.WindowSize;
+            windowSize = window.Size;
 
             // Create Table
             TableView table = new TableView(mRow, mColumn)
@@ -50,7 +52,7 @@ namespace Tizen.NUI.Samples
                 {
                     TextLabel content = CreateText();
                     content.Name = "TextLabel" + exampleCount;
-                    content.Text = "Row" + row + " - Column" + column;
+                    content.Text = "R" + row + " - C" + column;
 
                     ///////////////////////////////////////////////////////////////////////////////////////////////
                     ///                 How to set Accessibility attribute to components                        ///
@@ -84,13 +86,9 @@ namespace Tizen.NUI.Samples
         TextLabel CreateText()
         {
             TextLabel label = new TextLabel();
-            label.PositionUsesPivotPoint = true;
-            label.PivotPoint = PivotPoint.Center;
-            label.ParentOrigin = ParentOrigin.Center;
             label.MultiLine = true;
             label.HorizontalAlignment = HorizontalAlignment.Center;
             label.VerticalAlignment = VerticalAlignment.Center;
-            label.HeightResizePolicy = ResizePolicyType.FillToParent;
             label.Focusable = true;
             return label;
         }

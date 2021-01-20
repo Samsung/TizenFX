@@ -9,6 +9,6 @@ namespace Tizen.NUI.Binding.Internals
     {
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        void SetDynamicResource(BindableProperty property, string key);
+        void SetDynamicResource(BindableProperty targetProperty, string key);
     }
 }

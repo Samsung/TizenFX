@@ -15,7 +15,9 @@
  *
  */
 
+using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
@@ -30,12 +32,18 @@ namespace Tizen.NUI
         /// MeasureSpecification Size value.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// When deleting the field, change it to prperty.
+        [Obsolete("Deprecated in API9, Will be removed in API11. Please use GetSize,SetSize instead!")]
+        [SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
         public LayoutLength Size;
 
         /// <summary>
         /// MeasureSpecification Mode.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// When deleting the field, change it to prperty.
+        [Obsolete("Deprecated in API9, Will be removed in API11. Please use GetMode,SetMode instead!")]
+        [SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
         public MeasureSpecification.ModeType Mode;
 
         /// <summary>
@@ -70,6 +78,42 @@ namespace Tizen.NUI
             /// The child must guarantee that it and all of it's descendants will fit within this size.
             /// </summary>
             AtMost
+        }
+
+        /// <summary>
+        /// Set MeasureSpecification Size value.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetSize(LayoutLength size)
+        {
+            Size = size;
+        }
+
+        /// <summary>
+        /// Get MeasureSpecification Size value.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public LayoutLength GetSize()
+        {
+            return Size;
+        }
+
+        /// <summary>
+        /// Set MeasureSpecification Mode.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetMode(MeasureSpecification.ModeType mode)
+        {
+            Mode = mode;
+        }
+
+        /// <summary>
+        /// Get MeasureSpecification Mode.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public MeasureSpecification.ModeType GetMode()
+        {
+            return Mode;
         }
     }
 }

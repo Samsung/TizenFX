@@ -15,6 +15,7 @@
  *
  */
 
+using System;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 
@@ -23,65 +24,50 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// Enumeration for describing the states of the view.
     /// </summary>
-    /// <since_tizen> 6 </since_tizen>
-    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [FlagsAttribute]
+    // Please remove this enum when 'Tizen.NUI.BaseComponents.Button.StateChangedEventArgs' and 'Tizen.NUI.BaseComponents.Slider.StateChangedArgs' are removed.
+    [Obsolete("This will be removed in API10. Please use Tizen.NUI.BaseComponents.ControlState instead!")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public enum ControlStates
     {
         /// <summary>
         /// The normal state.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         Normal = 0,
         /// <summary>
         /// The focused state.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         Focused = 1,
         /// <summary>
         /// The disabled state.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         Disabled = 2,
         /// <summary>
         /// The Selected state.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         Selected = 4,
         /// <summary>
         /// The Pressed state.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         Pressed = 8,
         /// <summary>
         /// The DisabledFocused state.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         DisabledFocused = Disabled | Focused,
         /// <summary>
         /// The SelectedFocused state.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         SelectedFocused = Focused | Selected,
         /// <summary>
         /// The DisabledSelected state.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         DisabledSelected = Disabled | Selected,
     }
