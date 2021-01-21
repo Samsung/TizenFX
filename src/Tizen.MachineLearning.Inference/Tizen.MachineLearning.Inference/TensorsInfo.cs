@@ -327,10 +327,6 @@ namespace Tizen.MachineLearning.Inference
 
             for (int i = 0; i < this.Count; ++i)
             {
-                // Name
-                if (string.Compare(this.GetTensorName(i), other.GetTensorName(i)) != 0)
-                    return false;
-
                 // Type
                 if (this.GetTensorType(i) != other.GetTensorType(i))
                     return false;
