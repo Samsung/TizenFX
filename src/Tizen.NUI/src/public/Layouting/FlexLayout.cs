@@ -626,7 +626,7 @@ namespace Tizen.NUI
         {
             // When child View is removed from it's parent View (that is a Layout) then remove it from the layout too.
             // FlexLayout refers to the child as a View not LayoutItem.
-            Interop.FlexLayout.FlexLayout_RemoveChild(swigCPtr, child);
+            Interop.FlexLayout.FlexLayout_RemoveChild(swigCPtr, child.Owner.SwigCPtr);
         }
 
         /// <summary>
