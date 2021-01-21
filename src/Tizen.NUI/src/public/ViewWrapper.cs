@@ -49,5 +49,63 @@ namespace Tizen.NUI
         {
             Interop.ViewWrapper.delete_ViewWrapper(swigCPtr);
         }
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                if (viewWrapperImpl != null)
+                {
+                    viewWrapperImpl.OnSceneConnection = null;
+                    viewWrapperImpl.OnSceneDisconnection = null;
+                    viewWrapperImpl.OnStageConnection = null;
+                    viewWrapperImpl.OnStageDisconnection = null;
+                    viewWrapperImpl.OnChildAdd = null;
+                    viewWrapperImpl.OnChildRemove = null;
+                    viewWrapperImpl.OnPropertySet = null;
+                    viewWrapperImpl.OnSizeSet = null;
+                    viewWrapperImpl.OnSizeAnimation = null;
+                    viewWrapperImpl.OnTouch = null;
+                    viewWrapperImpl.OnHover = null;
+                    viewWrapperImpl.OnKey = null;
+                    viewWrapperImpl.OnWheel = null;
+                    viewWrapperImpl.OnRelayout = null;
+                    viewWrapperImpl.OnSetResizePolicy = null;
+                    viewWrapperImpl.GetNaturalSize = null;
+                    viewWrapperImpl.CalculateChildSize = null;
+                    viewWrapperImpl.GetHeightForWidth = null;
+                    viewWrapperImpl.GetWidthForHeight = null;
+                    viewWrapperImpl.RelayoutDependentOnChildrenDimension = null;
+                    viewWrapperImpl.RelayoutDependentOnChildren = null;
+                    viewWrapperImpl.OnCalculateRelayoutSize = null;
+                    viewWrapperImpl.OnLayoutNegotiated = null;
+                    viewWrapperImpl.OnStyleChange = null;
+                    viewWrapperImpl.OnAccessibilityActivated = null;
+                    viewWrapperImpl.OnAccessibilityPan = null;
+                    viewWrapperImpl.OnAccessibilityValueChange = null;
+                    viewWrapperImpl.OnAccessibilityZoom = null;
+                    viewWrapperImpl.OnFocusGained = null;
+                    viewWrapperImpl.OnFocusLost = null;
+                    viewWrapperImpl.GetNextFocusableView = null;
+                    viewWrapperImpl.OnFocusChangeCommitted = null;
+                    viewWrapperImpl.OnKeyboardEnter = null;
+                    viewWrapperImpl.OnPinch = null;
+                    viewWrapperImpl.OnPan = null;
+                    viewWrapperImpl.OnTap = null;
+                    viewWrapperImpl.OnLongPress = null;
+
+                    viewWrapperImpl.Dispose();
+                    viewWrapperImpl = null;
+                }
+            }
+
+            base.Dispose(type);
+        }
     }
 }
