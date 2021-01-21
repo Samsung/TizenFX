@@ -51,12 +51,16 @@ namespace Tizen.NUI
             get
             {
                 Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
-                Tizen.NUI.Object.GetProperty(SwigCPtr, Path.Property.POINTS).Get(temp);
+                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Path.Property.POINTS);
+                pValue.Get(temp);
+                pValue.Dispose();
                 return temp;
             }
             set
             {
-                Tizen.NUI.Object.SetProperty(SwigCPtr, Path.Property.POINTS, new Tizen.NUI.PropertyValue(value));
+                var temp = new Tizen.NUI.PropertyValue(value);
+                Tizen.NUI.Object.SetProperty(SwigCPtr, Path.Property.POINTS, temp);
+                temp.Dispose();
             }
         }
 
@@ -69,12 +73,16 @@ namespace Tizen.NUI
             get
             {
                 Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
-                Tizen.NUI.Object.GetProperty(SwigCPtr, Path.Property.ControlPoints).Get(temp);
+                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Path.Property.ControlPoints);
+                pValue.Get(temp);
+                pValue.Dispose();
                 return temp;
             }
             set
             {
-                Tizen.NUI.Object.SetProperty(SwigCPtr, Path.Property.ControlPoints, new Tizen.NUI.PropertyValue(value));
+                var temp = new Tizen.NUI.PropertyValue(value);
+                Tizen.NUI.Object.SetProperty(SwigCPtr, Path.Property.ControlPoints, temp);
+                temp.Dispose();
             }
         }
 
