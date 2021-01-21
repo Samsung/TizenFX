@@ -339,6 +339,23 @@ namespace Tizen.MachineLearning.Inference
         }
 
         /// <summary>
+        /// Create a new TensorsInfo object cloned from the current tensors information.
+        /// </summary>
+        /// <returns>Hard-copied TensorsInfo object</returns>
+        /// <since_tizen> 9 </since_tizen>
+        internal TensorsInfo Clone()
+        {
+            TensorsInfo retInfo = null;
+            retInfo = new TensorsInfo();
+
+            foreach (TensorInfo t in _infoList) {
+                retInfo.AddTensorInfo(t.Name, t.Type, t.Dimension);
+            }
+
+            return retInfo;
+        }
+
+        /// <summary>
         /// Make TensorsInfo object from Native handle
         /// </summary>
         /// <param name="handle">Handle of TensorsInfo object</param>
