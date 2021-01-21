@@ -201,11 +201,17 @@ namespace Tizen.Applications.ComponentBased
             object req = FromParcel(reqParcel);
 
             object result = OnSyncRequestEvent(sender, req);
-            using Parcel resultParcel = ToParcel(result);
-
-            SafeParcelHandle resSafeHandle = new SafeParcelHandle(response, false);
-            using Parcel resParcel = new Parcel(resSafeHandle);
-            resParcel.UnMarshall(resultParcel.Marshall());
+            if (!result.GetType().IsSerializable)
+            {
+                Log.Error(LogTag, "result is not serializable");
+            }
+            else
+            {
+                using Parcel resultParcel = ToParcel(result);
+                SafeParcelHandle resSafeHandle = new SafeParcelHandle(response, false);
+                using Parcel resParcel = new Parcel(resSafeHandle);
+                resParcel.UnMarshall(resultParcel.Marshall());
+            }
         }
 
         private Parcel ToParcel(object envelope)
