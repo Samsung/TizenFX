@@ -703,12 +703,17 @@ namespace Tizen.NUI
         /// Callback when child is removed from container.<br />
         /// </summary>
         /// <param name="child">The Layout child.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when child is null. </exception>
         /// <since_tizen> 6 </since_tizen>
         protected override void OnChildRemove(LayoutItem child)
         {
+            if (null == child)
+            {
+                throw new ArgumentNullException(nameof(child));
+            }
             // When child View is removed from it's parent View (that is a Layout) then remove it from the layout too.
             // FlexLayout refers to the child as a View not LayoutItem.
-            Interop.FlexLayout.RemoveChild(swigCPtr, child);
+            Interop.FlexLayout.RemoveChild(swigCPtr, child.Owner.SwigCPtr);
         }
 
         /// <summary>
