@@ -29,7 +29,6 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public partial class View : Container, IResourcesProvider
     {
-        internal Size2D sizeSetExplicitly = new Size2D(); // Store size set by API, will be used in place of NaturalSize if not set.
         internal BackgroundExtraData backgroundExtraData;
 
         private bool layoutSet = false;
@@ -827,13 +826,8 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                sizeSetExplicitly = value;  // Store size set by API, will be used in place of NaturalSize if not set.
                 SetValue(Size2DProperty, value);
 
-                widthPolicy = value.Width;
-                heightPolicy = value.Height;
-                
-                layout?.RequestLayout();
                 NotifyPropertyChanged();
             }
         }
