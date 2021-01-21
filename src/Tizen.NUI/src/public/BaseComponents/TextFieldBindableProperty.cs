@@ -1021,6 +1021,16 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             return textField.SelectorData.PointSize.Get(textField);
         });
+        internal static readonly BindableProperty PixelSizeSelectorProperty = BindableProperty.Create("PixelSizeSelector", typeof(Selector<float?>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textField = (TextField)bindable;
+            textField.SelectorData.PixelSize.Update(textField, (Selector<float?>)newValue, true);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textField = (TextField)bindable;
+            return textField.SelectorData.PixelSize.Get(textField);
+        });
         internal static readonly BindableProperty TextColorSelectorProperty = BindableProperty.Create("TextColorSelector", typeof(Selector<Color>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
