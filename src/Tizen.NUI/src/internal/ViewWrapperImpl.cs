@@ -394,27 +394,11 @@ namespace Tizen.NUI
 
         private void DirectorOnSizeAnimation(global::System.IntPtr animation, global::System.IntPtr targetSize)
         {
-            var ani = new Animation(animation, false);
+            var ani = new Animation(animation, true);
             var vector3 = new Vector3(targetSize, false);
             OnSizeAnimation?.Invoke(ani, vector3);
             ani.Dispose();
             vector3.Dispose();
-        }
-
-        private bool DirectorOnTouch(global::System.IntPtr arg0)
-        {
-            var touch = new Touch(arg0, false);
-            var ret = OnTouch(touch);
-            touch.Dispose();
-            return ret;
-        }
-
-        private bool DirectorOnHover(global::System.IntPtr arg0)
-        {
-            var hover = new Hover(arg0, false);
-            var ret = OnHover(hover);
-            hover.Dispose();
-            return ret;
         }
 
         private bool DirectorOnKey(global::System.IntPtr arg0)
@@ -423,12 +407,6 @@ namespace Tizen.NUI
             var ret = OnKey(key);
             key.Dispose();
             return ret;
-        }
-
-        private bool DirectorOnWheel(global::System.IntPtr arg0)
-        {
-            var wheel = new Wheel(arg0, false);
-            return OnWheel(wheel);
         }
 
         private void DirectorOnRelayout(global::System.IntPtr size, global::System.IntPtr container)
@@ -472,14 +450,7 @@ namespace Tizen.NUI
 
         private bool DirectorRelayoutDependentOnChildrenWithDimension(int dimension)
         {
-            if (null == RelayoutDependentOnChildrenDimension)
-            {
-                return false;
-            }
-            else
-            {
-                return RelayoutDependentOnChildrenDimension?.Invoke((DimensionType)dimension) ?? false;
-            }
+            return RelayoutDependentOnChildrenDimension?.Invoke((DimensionType)dimension) ?? false;
         }
 
         private bool DirectorRelayoutDependentOnChildren()
@@ -503,7 +474,7 @@ namespace Tizen.NUI
 
         private void DirectorOnStyleChange(global::System.IntPtr styleManager, int change)
         {
-            var styleManger = new StyleManager(styleManager, false);
+            var styleManger = new StyleManager(styleManager, true);
             OnStyleChange?.Invoke(styleManger, (StyleChangeType)change);
             styleManger.Dispose();
         }
@@ -515,7 +486,7 @@ namespace Tizen.NUI
 
         private bool DirectorOnAccessibilityPan(global::System.IntPtr gesture)
         {
-            var panGesture = new PanGesture(gesture, false);
+            var panGesture = new PanGesture(gesture, true);
             var ret = OnAccessibilityPan?.Invoke(panGesture) ?? false;
             panGesture.Dispose();
             return ret;
