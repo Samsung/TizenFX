@@ -33,7 +33,7 @@ namespace Tizen.Applications.ComponentBased
     {
         private static string LogTag = "ComponentPort";
         private readonly string _portName;
-        private readonly SafePortHandle _port;
+        private IntPtr _port = IntPtr.Zero;
         private Interop.ComponentPort.ComponentPortRequestCallback _requestEventCallback;
         private Interop.ComponentPort.ComponentPortSyncRequestCallback _syncRequestEventCallback;
 
@@ -279,8 +279,9 @@ namespace Tizen.Applications.ComponentBased
             {
                 if (disposing)
                 {
-                    if (_port != null && !_port.IsInvalid)
-                        _port.Dispose();
+                    if (_port != IntPtr.Zero)
+                        Interop.ComponentPort.Destroy(_port);
+                    _port = IntPtr.Zero;
                 }
 
                 disposedValue = true;

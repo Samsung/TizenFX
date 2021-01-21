@@ -41,39 +41,39 @@ internal static partial class Interop
         }
 
         [DllImport(Libraries.ComponentPort, EntryPoint = "component_port_create")]
-        internal static extern ErrorCode Create(string portName, out SafePortHandle handle);
+        internal static extern ErrorCode Create(string portName, out IntPtr handle);
         // int component_port_create(const char *port_name, component_port_h *port);
 
         [DllImport(Libraries.ComponentPort, EntryPoint = "component_port_destroy")]
-        internal static extern ErrorCode DangerousDestroy(IntPtr handle);
+        internal static extern ErrorCode Destroy(IntPtr handle);
         // int component_port_destroy(component_port_h port);
 
         [DllImport(Libraries.ComponentPort, EntryPoint = "component_port_set_request_cb")]
-        internal static extern ErrorCode SetRequestCb(SafePortHandle handle, ComponentPortRequestCallback callback, IntPtr userData);
+        internal static extern ErrorCode SetRequestCb(IntPtr handle, ComponentPortRequestCallback callback, IntPtr userData);
         // int component_port_set_request_cb(component_port_h port, component_port_request_cb callback, void *user_data);
 
         [DllImport(Libraries.ComponentPort, EntryPoint = "component_port_set_sync_request_cb")]
-        internal static extern ErrorCode SetSyncRequestCb(SafePortHandle handle, ComponentPortSyncRequestCallback callback, IntPtr userData);
+        internal static extern ErrorCode SetSyncRequestCb(IntPtr handle, ComponentPortSyncRequestCallback callback, IntPtr userData);
         // int component_port_set_sync_request_cb(component_port_h port, component_port_sync_request_cb callback, void *user_data);
 
         [DllImport(Libraries.ComponentPort, EntryPoint = "component_port_add_privilege")]
-        internal static extern ErrorCode AddPrivilege(SafePortHandle handle, string privilege);
+        internal static extern ErrorCode AddPrivilege(IntPtr handle, string privilege);
         // int component_port_add_privilege(component_port_h port, const char *privilege);
 
         [DllImport(Libraries.ComponentPort, EntryPoint = "component_port_wait_for_event")]
-        internal static extern void WaitForEvent(SafePortHandle handle);
+        internal static extern void WaitForEvent(IntPtr handle);
         // void component_port_wait_for_event(component_port_h port);
 
         [DllImport(Libraries.ComponentPort, EntryPoint = "component_port_cancel")]
-        internal static extern void Cancel(SafePortHandle handle);
+        internal static extern void Cancel(IntPtr handle);
         // void component_port_cancel(component_port_h port);
 
         [DllImport(Libraries.ComponentPort, EntryPoint = "component_port_send")]
-        internal static extern ErrorCode Send(SafePortHandle handle, string endpoint, Int32 timeout, SafeParcelHandle request);
+        internal static extern ErrorCode Send(IntPtr handle, string endpoint, Int32 timeout, SafeParcelHandle request);
         // int component_port_send(component_port_h port, const char *endpoint, int timeout, parcel_h request);
 
         [DllImport(Libraries.ComponentPort, EntryPoint = "component_port_send_sync")]
-        internal static extern ErrorCode SendSync(SafePortHandle handle, string endpoint, Int32 timeout, SafeParcelHandle request, out SafeParcelHandle response);
+        internal static extern ErrorCode SendSync(IntPtr handle, string endpoint, Int32 timeout, SafeParcelHandle request, out SafeParcelHandle response);
         // int component_port_send(component_port_h port, const char *endpoint, int timeout, parcel_h request, parcel_h *response);
     }
 }
