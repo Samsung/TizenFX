@@ -486,18 +486,6 @@ namespace Tizen.NUI.Accessibility
             Interop.AccessibilityManager.SetAccessibilityAttribute(SwigCPtr, View.getCPtr(view), (int)type, text);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        
-        /// <summary>
-        /// Delete the information of the specified view's accessibility attribute.
-        /// </summary>
-        /// <param name="view"> The view to delete</param>
-        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void DeleteAccessibilityAttribute(View view)
-        {
-            Interop.AccessibilityManager.AccessibilityManager_DeleteAccessibilityAttribute(SwigCPtr, View.getCPtr(view));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
 
         /// <summary>
         /// Gets the text of the specified view's accessibility attribute.
