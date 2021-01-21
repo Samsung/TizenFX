@@ -48,7 +48,7 @@ namespace Tizen.Applications.ComponentBased
         /// <summary>
         /// Gets a value that indicates whether the handle is invalid.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 9 </since_tizen>
         public override bool IsInvalid
         {
             get { return this.handle == IntPtr.Zero; }
