@@ -122,9 +122,11 @@ namespace Tizen.Applications.ComponentBased
                 throw new ArgumentException("request is not serializable");
             }
 
-            using Parcel reqParcel = ToParcel(request);
             Interop.ComponentPort.ErrorCode err;
-            err = Interop.ComponentPort.Send(_port, endpoint, timeout, reqParcel.SafeParcelHandle);
+            using (Parcel reqParcel = ToParcel(request))
+            {
+                err = Interop.ComponentPort.Send(_port, endpoint, timeout, reqParcel.SafeParcelHandle);
+            }
             if (err != Interop.ComponentPort.ErrorCode.None)
             {
                 throw ComponentPortErrorFactory.GetException(err, "Failed to send the request.");
@@ -155,18 +157,22 @@ namespace Tizen.Applications.ComponentBased
                 throw new ArgumentException("request is not serializable");
             }
 
-            using Parcel reqParcel = ToParcel(request);
+            SafeParcelHandle resSafeHandle = null;
             Interop.ComponentPort.ErrorCode err;
-            err = Interop.ComponentPort.SendSync(_port, endpoint, timeout, reqParcel.SafeParcelHandle, out SafeParcelHandle resSafeHandle);
+            using (Parcel reqParcel = ToParcel(request))
+            {             
+                err = Interop.ComponentPort.SendSync(_port, endpoint, timeout, reqParcel.SafeParcelHandle, out resSafeHandle);
+            }
             if (err != Interop.ComponentPort.ErrorCode.None)
             {
                 throw ComponentPortErrorFactory.GetException(err, "Failed to send the request.");
             }
 
-            
-            using Parcel resParcel = new Parcel(resSafeHandle);
-            object response = FromParcel(resParcel);
-            return response;
+            using (Parcel resParcel = new Parcel(resSafeHandle))
+            {
+                object response = FromParcel(resParcel);
+                return response;
+            }            
         }
 
         /// <summary>
@@ -189,16 +195,22 @@ namespace Tizen.Applications.ComponentBased
         private void OnRequestEvent(string sender, IntPtr request, IntPtr data)
         {
             SafeParcelHandle reqSafeHandle = new SafeParcelHandle(request, false);
-            using var reqParcel = new Parcel(reqSafeHandle);
-            object req = FromParcel(reqParcel);
-            OnRequestEvent(sender, req);
+            using (var reqParcel = new Parcel(reqSafeHandle))
+            {
+                object req = FromParcel(reqParcel);
+                OnRequestEvent(sender, req);
+            }
         }
 
         private void OnSyncRequestEvent(string sender, IntPtr request, IntPtr response, IntPtr data)
         {
             SafeParcelHandle reqSafeHandle = new SafeParcelHandle(request, false);
-            using Parcel reqParcel = new Parcel(reqSafeHandle);
-            object req = FromParcel(reqParcel);
+
+            object req = null;
+            using (Parcel reqParcel = new Parcel(reqSafeHandle))
+            {
+                req = FromParcel(reqParcel);
+            }
 
             object result = OnSyncRequestEvent(sender, req);
             if (!result.GetType().IsSerializable)
@@ -207,10 +219,14 @@ namespace Tizen.Applications.ComponentBased
             }
             else
             {
-                using Parcel resultParcel = ToParcel(result);
-                SafeParcelHandle resSafeHandle = new SafeParcelHandle(response, false);
-                using Parcel resParcel = new Parcel(resSafeHandle);
-                resParcel.UnMarshall(resultParcel.Marshall());
+               SafeParcelHandle resSafeHandle = new SafeParcelHandle(response, false);
+               using (Parcel resParcel = new Parcel(resSafeHandle))
+                {
+                    using (Parcel resultParcel = ToParcel(result))
+                    {
+                        resParcel.UnMarshall(resultParcel.Marshall());
+                    }
+                }
             }
         }
 
@@ -225,11 +241,13 @@ namespace Tizen.Applications.ComponentBased
                 AssemblyFormat = FormatterAssemblyStyle.Full
             };
 
-            using MemoryStream stream = new MemoryStream();
-            formatter.Serialize(stream, envelope);
-            Parcel parcel = new Parcel();
-            parcel.UnMarshall(stream.ToArray());
-            return parcel;
+            using (MemoryStream stream = new MemoryStream())
+            {
+                formatter.Serialize(stream, envelope);
+                Parcel parcel = new Parcel();
+                parcel.UnMarshall(stream.ToArray());
+                return parcel;
+            }
         }
 
         private object FromParcel(Parcel parcel)
@@ -242,23 +260,26 @@ namespace Tizen.Applications.ComponentBased
                 Binder = new PortBinder(),
                 AssemblyFormat = FormatterAssemblyStyle.Full,
             };
-            using MemoryStream stream = new MemoryStream(parcel.Marshall());
+
             object envelope = null;
-            try
+            using (MemoryStream stream = new MemoryStream(parcel.Marshall()))
             {
-                envelope = (object)formatter.Deserialize(stream);
-            }
-            catch (ArgumentException e)
-            {
-                Log.Error(LogTag, "ArgumentException occurs: " + e.Message);
-            }
-            catch (SerializationException e)
-            {
-                Log.Error(LogTag, "SerializationException occurs: " + e.Message);
-            }
-            catch (SecurityException e)
-            {
-                Log.Error(LogTag, "SecurityException occurs: " + e.Message);
+                try
+                {
+                    envelope = (object)formatter.Deserialize(stream);
+                }
+                catch (ArgumentException e)
+                {
+                    Log.Error(LogTag, "ArgumentException occurs: " + e.Message);
+                }
+                catch (SerializationException e)
+                {
+                    Log.Error(LogTag, "SerializationException occurs: " + e.Message);
+                }
+                catch (SecurityException e)
+                {
+                    Log.Error(LogTag, "SecurityException occurs: " + e.Message);
+                }
             }
 
             return envelope;
