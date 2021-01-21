@@ -613,6 +613,7 @@ namespace Tizen.NUI.Components
             mPanGestureDetector = new PanGestureDetector();
             mPanGestureDetector.Attach(this);
             mPanGestureDetector.AddDirection(PanGestureDetector.DirectionVertical);
+            if (mPanGestureDetector.GetMaximumTouchesRequired() < 2) mPanGestureDetector.SetMaximumTouchesRequired(2);
             mPanGestureDetector.Detected += OnPanGestureDetected;
 
             ClippingMode = ClippingModeType.ClipToBoundingBox;
