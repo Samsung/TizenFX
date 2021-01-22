@@ -1047,6 +1047,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(PixelSizeProperty, value);
+                selectorData?.PixelSize.UpdateIfNeeds(this, value);
                 NotifyPropertyChanged();
             }
         }

@@ -611,6 +611,10 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.SIZE, new Tizen.NUI.PropertyValue(new Size((Size2D)newValue)));
+                view.widthPolicy = ((Size2D)newValue).Width;
+                view.heightPolicy = ((Size2D)newValue).Height;
+
+                view.layout?.RequestLayout();
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>

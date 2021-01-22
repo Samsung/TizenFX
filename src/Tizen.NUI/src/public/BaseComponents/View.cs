@@ -830,10 +830,6 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetValue(Size2DProperty, value);
 
-                widthPolicy = value.Width;
-                heightPolicy = value.Height;
-                
-                layout?.RequestLayout();
                 NotifyPropertyChanged();
             }
         }

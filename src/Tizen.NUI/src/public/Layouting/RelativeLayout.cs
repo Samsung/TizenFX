@@ -378,11 +378,10 @@ namespace Tizen.NUI
                     Geometry horizontalGeometry = GetHorizontalLayout(childLayout.Owner);
                     Geometry verticalGeometry = GetVerticalLayout(childLayout.Owner);
 
-                    LayoutLength childLeft =  new LayoutLength(horizontalGeometry.Position);
-                    LayoutLength childRight = new LayoutLength(horizontalGeometry.Position + horizontalGeometry.Size);
-                    LayoutLength childTop = new LayoutLength(verticalGeometry.Position);
-                    LayoutLength childBottom = new LayoutLength(verticalGeometry.Position + verticalGeometry.Size);
-
+                    LayoutLength childLeft = new LayoutLength(horizontalGeometry.Position + Padding.Start + childLayout.Margin.Start);
+                    LayoutLength childRight = new LayoutLength(horizontalGeometry.Position + horizontalGeometry.Size + Padding.Start - childLayout.Margin.End);
+                    LayoutLength childTop = new LayoutLength(verticalGeometry.Position + Padding.Top + childLayout.Margin.Top);
+                    LayoutLength childBottom = new LayoutLength(verticalGeometry.Position + verticalGeometry.Size + Padding.Top - childLayout.Margin.Bottom);
                     childLayout.Layout(childLeft, childTop, childRight, childBottom);
                 }
             }
