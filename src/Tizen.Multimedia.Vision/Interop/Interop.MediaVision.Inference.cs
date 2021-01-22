@@ -63,6 +63,9 @@ internal static partial class Interop
             internal delegate bool SupportedBackendCallback(string backend, bool isSupported,
                 IntPtr userData = default(IntPtr));
 
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+            internal delegate void PoseLandmarkDetectedCallback(IntPtr source, IntPtr poses,
+                IntPtr userData = default(IntPtr));
 
             [DllImport(Libraries.MediaVisionInference, EntryPoint = "mv_inference_create")]
             internal static extern MediaVisionError Create(out IntPtr handle);
@@ -95,6 +98,19 @@ internal static partial class Interop
             [DllImport(Libraries.MediaVisionInference, EntryPoint = "mv_inference_facial_landmark_detect")]
             internal static extern MediaVisionError DetectFacialLandmark(IntPtr source, IntPtr inference,
                 IntPtr roi, FacialLandmarkDetectedCallback callback, IntPtr userData = default(IntPtr));
+
+            [DllImport(Libraries.MediaVisionInference, EntryPoint = "mv_inference_pose_get_number_of_poses")]
+            internal static extern MediaVisionError GetPoseNum(IntPtr result, out int numPose);
+
+            [DllImport(Libraries.MediaVisionInference, EntryPoint = "mv_inference_pose_get_number_of_landmarks")]
+            internal static extern MediaVisionError GetLandmarkNum(IntPtr result, out int numLandmark);
+
+            [DllImport(Libraries.MediaVisionInference, EntryPoint = "mv_inference_pose_get_landmark")]
+            internal static extern MediaVisionError GetLandmark(IntPtr result, int index, int part, out Point location, out float score);
+
+            [DllImport(Libraries.MediaVisionInference, EntryPoint = "mv_inference_pose_landmark_detect")]
+            internal static extern MediaVisionError DetectPoseLandmark(IntPtr source, IntPtr inference,
+                IntPtr roi, PoseLandmarkDetectedCallback callback, IntPtr userData = default(IntPtr));
         }
     }
 }
