@@ -531,7 +531,9 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                SetProperty(View.Property.TOOLTIP, new Tizen.NUI.PropertyValue(value));
+                var temp = new Tizen.NUI.PropertyValue(value);
+                SetProperty(View.Property.TOOLTIP, temp);
+                temp.Dispose();
                 NotifyPropertyChanged();
             }
         }
@@ -896,7 +898,9 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 Vector2 temp = new Vector2(0.0f, 0.0f);
-                GetProperty(View.Property.ScreenPosition).Get(temp);
+                var pValue = GetProperty(View.Property.ScreenPosition);
+                pValue.Get(temp);
+                pValue.Dispose();
                 return temp;
             }
         }
@@ -938,12 +942,16 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 bool temp = false;
-                GetProperty(View.Property.PositionUsesAnchorPoint).Get(out temp);
+                var pValue = GetProperty(View.Property.PositionUsesAnchorPoint);
+                pValue.Get(out temp);
+                pValue.Dispose();
                 return temp;
             }
             set
             {
-                SetProperty(View.Property.PositionUsesAnchorPoint, new Tizen.NUI.PropertyValue(value));
+                var temp = new Tizen.NUI.PropertyValue(value);
+                SetProperty(View.Property.PositionUsesAnchorPoint, temp);
+                temp.Dispose();
                 NotifyPropertyChanged();
             }
         }
@@ -1030,7 +1038,9 @@ namespace Tizen.NUI.BaseComponents
                 Vector3 temp = new Vector3(Interop.Actor.GetNaturalSize(SwigCPtr), true);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
 
-                return new Size2D((int)temp.Width, (int)temp.Height);
+                Size2D sz = new Size2D((int)temp.Width, (int)temp.Height);
+                temp.Dispose();
+                return sz;
             }
         }
 
@@ -1227,7 +1237,9 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 Vector3 temp = new Vector3(0.0f, 0.0f, 0.0f);
-                GetProperty(View.Property.WorldPosition).Get(temp);
+                var pValue = GetProperty(View.Property.WorldPosition);
+                pValue.Get(temp);
+                pValue.Dispose();
                 return temp;
             }
         }
@@ -1267,7 +1279,9 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 Rotation temp = new Rotation();
-                GetProperty(View.Property.WorldOrientation).Get(temp);
+                var pValue = GetProperty(View.Property.WorldOrientation);
+                pValue.Get(temp);
+                pValue.Dispose();
                 return temp;
             }
         }
@@ -1371,7 +1385,9 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 Vector3 temp = new Vector3(0.0f, 0.0f, 0.0f);
-                GetProperty(View.Property.WorldScale).Get(temp);
+                var pValue = GetProperty(View.Property.WorldScale);
+                pValue.Get(temp);
+                pValue.Dispose();
                 return temp;
             }
         }
@@ -1394,7 +1410,9 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 bool temp = false;
-                GetProperty(View.Property.VISIBLE).Get(out temp);
+                var pValue = GetProperty(View.Property.VISIBLE);
+                pValue.Get(out temp);
+                pValue.Dispose();
                 return temp;
             }
         }
@@ -1408,7 +1426,9 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-                GetProperty(View.Property.WorldColor).Get(temp);
+                var pValue = GetProperty(View.Property.WorldColor);
+                pValue.Get(temp);
+                pValue.Dispose();
                 return temp;
             }
         }
@@ -1826,12 +1846,18 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 Position temp = new Position(0.0f, 0.0f, 0.0f);
-                GetProperty(View.Property.AnchorPoint).Get(temp);
-                return new Position(OnAnchorPointChanged, temp.X, temp.Y, temp.Z);
+                var pValue = GetProperty(View.Property.AnchorPoint);
+                pValue.Get(temp);
+                pValue.Dispose();
+                Position ret = new Position(OnAnchorPointChanged, temp.X, temp.Y, temp.Z);
+                temp.Dispose();
+                return ret;
             }
             set
             {
-                SetProperty(View.Property.AnchorPoint, new Tizen.NUI.PropertyValue(value));
+                var temp = new Tizen.NUI.PropertyValue(value);
+                SetProperty(View.Property.AnchorPoint, temp);
+                temp.Dispose();
                 NotifyPropertyChanged();
             }
         }
@@ -2099,12 +2125,18 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 Extents temp = new Extents(0, 0, 0, 0);
-                GetProperty(View.Property.PADDING).Get(temp);
-                return new Extents(OnPaddingEXChanged, temp.Start, temp.End, temp.Top, temp.Bottom);
+                var pValue = GetProperty(View.Property.PADDING);
+                pValue.Get(temp);
+                pValue.Dispose();
+                Extents ret = new Extents(OnPaddingEXChanged, temp.Start, temp.End, temp.Top, temp.Bottom);
+                temp.Dispose();
+                return ret;
             }
             set
             {
-                SetProperty(View.Property.PADDING, new Tizen.NUI.PropertyValue(value));
+                var temp = new Tizen.NUI.PropertyValue(value);
+                SetProperty(View.Property.PADDING, temp);
+                temp.Dispose();
                 NotifyPropertyChanged();
                 layout?.RequestLayout();
             }
@@ -2261,12 +2293,16 @@ namespace Tizen.NUI.BaseComponents
                 backgroundImageSynchronosLoading = value;
 
                 string bgUrl = null;
-                Background.Find(ImageVisualProperty.URL)?.Get(out bgUrl);
+                var pValue = Background.Find(ImageVisualProperty.URL);
+                pValue?.Get(out bgUrl);
+                pValue?.Dispose();
 
                 if (!string.IsNullOrEmpty(bgUrl))
                 {
                     PropertyMap bgMap = this.Background;
-                    bgMap.Add("synchronousLoading", new PropertyValue(backgroundImageSynchronosLoading));
+                    var temp = new PropertyValue(backgroundImageSynchronosLoading);
+                    bgMap.Add("synchronousLoading", temp);
+                    temp.Dispose();
                     Background = bgMap;
                 }
             }
@@ -2351,12 +2387,16 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 bool temp = false;
-                GetProperty(View.Property.CaptureAllTouchAfterStart).Get(out temp);
+                var pValue = GetProperty(View.Property.CaptureAllTouchAfterStart);
+                pValue.Get(out temp);
+                pValue.Dispose();
                 return temp;
             }
             set
             {
-                SetProperty(View.Property.CaptureAllTouchAfterStart, new Tizen.NUI.PropertyValue(value));
+                var temp = new Tizen.NUI.PropertyValue(value);
+                SetProperty(View.Property.CaptureAllTouchAfterStart, temp);
+                temp.Dispose();
                 NotifyPropertyChanged();
             }
         }
@@ -2372,12 +2412,16 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 int temp = 0;
-                GetProperty(View.Property.BlendEquation).Get(out temp);
+                var pValue = GetProperty(View.Property.BlendEquation);
+                pValue.Get(out temp);
+                pValue.Dispose();
                 return (BlendEquationType)temp;
             }
             set
             {
-                SetProperty(View.Property.BlendEquation, new Tizen.NUI.PropertyValue((int)value));
+                var temp = new Tizen.NUI.PropertyValue((int)value);
+                SetProperty(View.Property.BlendEquation, temp);
+                temp.Dispose();
                 NotifyPropertyChanged();
             }
         }
