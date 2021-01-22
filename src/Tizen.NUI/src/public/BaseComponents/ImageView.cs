@@ -1135,23 +1135,10 @@ namespace Tizen.NUI.BaseComponents
             {
                 if(_resourceUrl != null)
                 {
-                  Size2D imageSize = ImageLoading.GetOriginalImageSize(_resourceUrl);
-
-                  int adjustedDesiredWidth, adjustedDesiredHeight;
-                  float aspectOfDesiredSize = (float)_desired_height / (float)_desired_width;
-                  float aspectOfImageSize = (float)imageSize.Height / (float)imageSize.Width;
-                  if( aspectOfImageSize > aspectOfDesiredSize)
-                  {
-                      adjustedDesiredWidth = _desired_width;
-                      adjustedDesiredHeight = imageSize.Height * _desired_width / imageSize.Width;
-                  }
-                  else
-                  {
-                      adjustedDesiredWidth = imageSize.Width * _desired_height/ imageSize.Height;
-                      adjustedDesiredHeight = _desired_height;
-                  }
-                  temp.Insert(ImageVisualProperty.DesiredWidth, new PropertyValue(adjustedDesiredWidth));
-                  temp.Insert(ImageVisualProperty.DesiredHeight, new PropertyValue(adjustedDesiredHeight));
+                  Size2D desiredSize = new Size2D(_desired_width,_desired_height);
+                  Size2D imageSize = ImageLoading.GetClosestImageSize(_resourceUrl, desiredSize, FittingModeType.ScaleToFill);
+                  temp.Insert(ImageVisualProperty.DesiredWidth, new PropertyValue((int)imageSize.Width));
+                  temp.Insert(ImageVisualProperty.DesiredHeight, new PropertyValue((int)imageSize.Height));
                   temp.Insert(ImageVisualProperty.FittingMode, new PropertyValue((int) FittingModeType.ScaleToFill));
                 }
             }
