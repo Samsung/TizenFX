@@ -1048,7 +1048,9 @@ namespace Tizen.NUI.BaseComponents
             {
                 backgroundMap[Visual.Property.CornerRadius] = new PropertyValue(backgroundExtraData.CornerRadius);
                 backgroundMap[Visual.Property.CornerRadiusPolicy] = new PropertyValue((int)backgroundExtraData.CornerRadiusPolicy);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, View.Property.BACKGROUND, new PropertyValue(backgroundMap));
+                var temp = new PropertyValue(backgroundMap);
+                Tizen.NUI.Object.SetProperty(SwigCPtr, View.Property.BACKGROUND, temp);
+                temp.Dispose();
             }
             backgroundMap.Dispose();
             background.Dispose();
@@ -1060,7 +1062,9 @@ namespace Tizen.NUI.BaseComponents
             {
                 shadowMap[Visual.Property.CornerRadius] = new PropertyValue(backgroundExtraData.CornerRadius);
                 shadowMap[Visual.Property.CornerRadiusPolicy] = new PropertyValue((int)backgroundExtraData.CornerRadiusPolicy);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, View.Property.SHADOW, new PropertyValue(shadowMap));
+                var temp = new PropertyValue(shadowMap);
+                Tizen.NUI.Object.SetProperty(SwigCPtr, View.Property.SHADOW, temp);
+                temp.Dispose();
             }
             shadowMap.Dispose();
             shadow.Dispose();
