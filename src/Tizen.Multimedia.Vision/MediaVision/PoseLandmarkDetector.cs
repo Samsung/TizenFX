@@ -65,6 +65,7 @@ namespace Tizen.Multimedia.Vision
         /// If not set, full image area will be used to detect Pose landmark.
         /// </remarks>
         /// <feature>http://tizen.org/feature/vision.inference</feature>
+        /// <feature>http://tizen.org/feature/vision.inference.face</feature>
         /// <param name="source">The source of the media where poses will be detected.</param>
         /// <param name="config">The engine's configuration that will be used for detecting.</param>
         /// <returns>
