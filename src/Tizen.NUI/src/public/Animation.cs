@@ -443,7 +443,7 @@ namespace Tizen.NUI
         /// Gets or sets the properties of the animation.
         /// </summary>
         //ToDo : will raise deprecated-ACR, [Obsolete("Deprecated in API9, Will be removed in API11, Please use PropertyList instead")]
-        [SuppressMessage("Microsoft.Naming", "CA1819:This API will be deprecated, so suppressing the warning for now")]
+        [SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays", Justification = "This API will be deprecated, so suppressing the warning for now")]
         public string[] Properties
         {
             get
@@ -460,7 +460,7 @@ namespace Tizen.NUI
         /// Gets or sets the destination value for each property of the animation.
         /// </summary>
         //ToDo : will raise deprecated-ACR, [Obsolete("Deprecated in API9, Will be removed in API11, Please use DestValueList instead")]
-        [SuppressMessage("Microsoft.Naming", "CA1819:This API will be deprecated, so suppressing the warning for now")]
+        [SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays", Justification = "This API will be deprecated, so suppressing the warning for now")]
         public string[] DestValue
         {
             get
@@ -477,7 +477,7 @@ namespace Tizen.NUI
         /// Gets or sets the start time for each property of the animation.
         /// </summary>
         //ToDo : will raise deprecated-ACR, [Obsolete("Deprecated in API9, Will be removed in API11, Please use StartTimeList instead")]
-        [SuppressMessage("Microsoft.Naming", "CA1819:This API will be deprecated, so suppressing the warning for now")]
+        [SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays", Justification = "This API will be deprecated, so suppressing the warning for now")]
         public int[] StartTime
         {
             get
@@ -494,7 +494,7 @@ namespace Tizen.NUI
         /// Gets or sets the end time for each property of the animation.
         /// </summary>
         //ToDo : will raise deprecated-ACR, [Obsolete("Deprecated in API9, Will be removed in API11, Please use EndTimeList instead")]
-        [SuppressMessage("Microsoft.Naming", "CA1819:This API will be deprecated, so suppressing the warning for now")]
+        [SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays", Justification = "This API will be deprecated, so suppressing the warning for now")]
         public int[] EndTime
         {
             get
