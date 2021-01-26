@@ -413,6 +413,10 @@ namespace Tizen.NUI.Components
             LayoutDirectionChanged += OnLayoutDirectionChanged;
 
             AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "Button");
+            
+            #if PROFILE_MOBILE
+                Feedback = true;
+            #endif
         }
 
         private void UpdateUIContent()
