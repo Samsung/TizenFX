@@ -366,6 +366,7 @@ namespace Tizen.NUI.Components
                 RelayoutBaseComponent(false);
                 UpdateBgTrackSize();
                 UpdateBgTrackPosition();
+                UpdateWarningTrackSize();
                 UpdateValue();
             }
         }
@@ -452,6 +453,7 @@ namespace Tizen.NUI.Components
                 if (null != thumbImage)
                 {
                     thumbImage.Size = value;
+                    thumbSize = value;
                     sliderStyle.Thumb.Size = value;
                 }
             }
@@ -472,6 +474,7 @@ namespace Tizen.NUI.Components
                 if (null != thumbImage)
                 {
                     thumbImage.ResourceUrl = value;
+                    thumbImageUrl = value;
                     sliderStyle.Thumb.ResourceUrl = value;
                 }
             }
@@ -495,6 +498,7 @@ namespace Tizen.NUI.Components
                 else
                 {
                     thumbImage.SetValue(ImageView.ResourceUrlSelectorProperty, value);
+                    thumbImageUrlSelector = value;
                 }
             }
         }
@@ -514,6 +518,7 @@ namespace Tizen.NUI.Components
                 if (null != thumbImage)
                 {
                     thumbImage.Color = value;
+                    thumbColor = value;
                     sliderStyle.Thumb.Color = value;
                 }
             }
@@ -572,6 +577,123 @@ namespace Tizen.NUI.Components
             set
             {
                 SetValue(TrackThicknessProperty, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the warning start value between minimum value and maximum value of slider.
+        /// </summary>
+        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float WarningStartValue
+        {
+            get
+            {
+                return warningStartValue;
+            }
+            set
+            {
+                warningStartValue = value;
+                UpdateValue(); // Seoyeon : Maybe should update..
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the color of the warning track image object.
+        /// </summary>
+        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color WarningTrackColor
+        {
+            get
+            {
+                return warningTrackImage?.BackgroundColor;
+            }
+            set
+            {
+                if (null != warningTrackImage)
+                {
+                    warningTrackImage.BackgroundColor = value;
+                    sliderStyle.WarningTrack.BackgroundColor = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the color of the warning slided track image object.
+        /// </summary>
+        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color WarningSlidedTrackColor
+        {
+            get
+            {
+                return warningSlidedTrackImage?.BackgroundColor;
+            }
+            set
+            {
+                if (null != warningSlidedTrackImage)
+                {
+                    warningSlidedTrackImage.BackgroundColor = value;
+                    sliderStyle.WarningProgress.BackgroundColor = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the resource url of the warning thumb image object.
+        /// </summary>
+        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string WarningThumbImageUrl
+        {
+            get
+            {
+                return warningThumbImageUrl;
+            }
+            set
+            {
+                warningThumbImageUrl = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the resource url selector of the warning thumb image object.
+        /// Getter returns copied selector value if exist, null otherwise.
+        /// </summary>
+        /// <exception cref="NullReferenceException">Thrown when setting null value.</exception>
+        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public StringSelector WarningThumbImageUrlSelector
+        {
+            get => warningThumbImageUrlSelector == null ? null : new StringSelector((Selector<string>)warningThumbImageUrlSelector);
+            set
+            {
+                if (value == null)
+                {
+                    throw new NullReferenceException("Slider.WarningThumbImageUrlSelector is null");
+                }
+                else
+                {
+                    warningThumbImageUrlSelector = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the color of the warning thumb image object.
+        /// </summary>
+        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color WarningThumbColor
+        {
+            get
+            {
+                return warningThumbColor;
+            }
+            set
+            {
+                warningThumbColor = value;
             }
         }
 
@@ -851,6 +973,28 @@ namespace Tizen.NUI.Components
                         slidedTrackImage.SizeWidth = (float)trackThickness.Value;
                     }
                 }
+                if (warningTrackImage != null)
+                {
+                    if (direction == DirectionType.Horizontal)
+                    {
+                        warningTrackImage.SizeHeight = (float)trackThickness.Value;
+                    }
+                    else if (direction == DirectionType.Vertical)
+                    {
+                        warningTrackImage.SizeWidth = (float)trackThickness.Value;
+                    }
+                }
+                if (warningSlidedTrackImage != null)
+                {
+                    if (direction == DirectionType.Horizontal)
+                    {
+                        warningSlidedTrackImage.SizeHeight = (float)trackThickness.Value;
+                    }
+                    else if (direction == DirectionType.Vertical)
+                    {
+                        warningSlidedTrackImage.SizeWidth = (float)trackThickness.Value;
+                    }
+                }
             }
         }
 
@@ -951,6 +1095,16 @@ namespace Tizen.NUI.Components
                 CreateValueIndicator().ApplyStyle(sliderStyle.ValueIndicatorImage);
             }
 
+            if (null != sliderStyle?.WarningTrack)
+            {
+                CreateWarningTrack().ApplyStyle(sliderStyle.WarningTrack);
+            }
+
+            if (null != sliderStyle?.WarningProgress)
+            {
+                CreateWarningSlidedTrack().ApplyStyle(sliderStyle.WarningProgress);
+            }
+
             EnableControlStatePropagation = true;
         }
 
@@ -991,6 +1145,8 @@ namespace Tizen.NUI.Components
                     thumbImage.TouchEvent -= OnTouchEventForThumb;
                     Utility.Dispose(thumbImage);
                 }
+                Utility.Dispose(warningSlidedTrackImage);
+                Utility.Dispose(warningTrackImage);
                 Utility.Dispose(slidedTrackImage);
                 if (null != bgTrackImage)
                 {
@@ -1021,6 +1177,7 @@ namespace Tizen.NUI.Components
             UpdateComponentByIndicatorTypeChanged();
             UpdateBgTrackSize();
             UpdateBgTrackPosition();
+            UpdateWarningTrackSize();
             UpdateLowIndicatorSize();
             UpdateValue();
         }

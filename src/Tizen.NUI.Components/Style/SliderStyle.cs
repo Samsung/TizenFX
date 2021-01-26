@@ -123,6 +123,20 @@ namespace Tizen.NUI.Components
         public ImageViewStyle Thumb { get; set; } = new ImageViewStyle();
 
         /// <summary>
+        /// Get or set background warning track.
+        /// </summary>
+        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageViewStyle WarningTrack { get; set; } = new ImageViewStyle();
+
+        /// <summary>
+        /// Get or set slided warning track.
+        /// </summary>
+        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageViewStyle WarningProgress { get; set; } = new ImageViewStyle();
+
+        /// <summary>
         /// Get or set low indicator image.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
@@ -214,6 +228,8 @@ namespace Tizen.NUI.Components
                 Track.CopyFrom(sliderStyle.Track);
                 Progress.CopyFrom(sliderStyle.Progress);
                 Thumb.CopyFrom(sliderStyle.Thumb);
+                WarningTrack.CopyFrom(sliderStyle.WarningTrack);
+                WarningProgress.CopyFrom(sliderStyle.WarningProgress);
                 LowIndicatorImage.CopyFrom(sliderStyle.LowIndicatorImage);
                 HighIndicatorImage.CopyFrom(sliderStyle.HighIndicatorImage);
                 LowIndicator.CopyFrom(sliderStyle.LowIndicator);
