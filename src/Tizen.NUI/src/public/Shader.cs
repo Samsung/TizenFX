@@ -59,12 +59,16 @@ namespace Tizen.NUI
             get
             {
                 Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-                Tizen.NUI.Object.GetProperty(SwigCPtr, Shader.Property.PROGRAM).Get(temp);
+                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Shader.Property.PROGRAM);
+                pValue.Get(temp);
+                pValue.Dispose();
                 return temp;
             }
             set
             {
-                Tizen.NUI.Object.SetProperty(SwigCPtr, Shader.Property.PROGRAM, new Tizen.NUI.PropertyValue(value));
+                var temp = new Tizen.NUI.PropertyValue(value);
+                Tizen.NUI.Object.SetProperty(SwigCPtr, Shader.Property.PROGRAM, temp);
+                temp.Dispose();
             }
         }
 

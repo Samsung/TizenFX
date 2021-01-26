@@ -30,26 +30,20 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_Property_URL_get")]
             public static extern int UrlGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_Property_CACHE_MODEL_get")]
-            public static extern int CacheModelGet();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_Property_COOKIE_ACCEPT_POLICY_get")]
-            public static extern int CookieAcceptPolicyGet();
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_Property_USER_AGENT_get")]
             public static extern int UserAgentGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_Property_ENABLE_JAVASCRIPT_get")]
-            public static extern int EnableJavascriptGet();
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_GetBackForwardList")]
+            public static extern global::System.IntPtr GetWebBackForwardList(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_Property_LOAD_IMAGES_AUTOMATICALLY_get")]
-            public static extern int LoadImagesAutomaticallyGet();
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_GetContext")]
+            public static extern global::System.IntPtr GetWebContext(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_Property_DEFAULT_TEXT_ENCODING_NAME_get")]
-            public static extern int DefaultTextEncodingNameGet();
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_GetCookieManager")]
+            public static extern global::System.IntPtr GetWebCookieManager(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_Property_DEFAULT_FONT_SIZE_get")]
-            public static extern int DefaultFontSizeGet();
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_GetSettings")]
+            public static extern global::System.IntPtr GetWebSettings(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_Property_SCROLL_POSITION_get")]
             public static extern int ScrollPositionGet();
@@ -63,8 +57,8 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_LoadUrl")]
             public static extern void LoadUrl(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_LoadHTMLString")]
-            public static extern void LoadHTMLString(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_LoadHtmlString")]
+            public static extern void LoadHtmlString(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_Reload")]
             public static extern void Reload(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -101,12 +95,6 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_ClearHistory")]
             public static extern void ClearHistory(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_ClearCache")]
-            public static extern void ClearCache(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_ClearCookies")]
-            public static extern void ClearCookies(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_SWIGUpcast")]
             public static extern global::System.IntPtr Upcast(global::System.IntPtr jarg1);

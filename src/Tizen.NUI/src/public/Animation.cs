@@ -31,6 +31,7 @@ namespace Tizen.NUI
     using Tizen.NUI.Binding;
     using System.Globalization;
     using Tizen.NUI.Xaml.Internals;
+    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// Animation can be used to animate the properties of any number of objects, typically view.<br />
@@ -54,6 +55,11 @@ namespace Tizen.NUI
         private string[] _destValue = null;
         private int[] _startTime = null;
         private int[] _endTime = null;
+
+        private List<string> propertyList = null;
+        private List<string> destValueList = null;
+        private List<int> startTimeList = null;
+        private List<int> endTimeList = null;
 
         /// <summary>
         /// Creates an initialized animation.<br />
@@ -436,6 +442,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets the properties of the animation.
         /// </summary>
+        //ToDo : will raise deprecated-ACR, [Obsolete("Deprecated in API9, Will be removed in API11, Please use PropertyList instead")]
+        [SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays", Justification = "This API will be deprecated, so suppressing the warning for now")]
         public string[] Properties
         {
             get
@@ -451,6 +459,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets the destination value for each property of the animation.
         /// </summary>
+        //ToDo : will raise deprecated-ACR, [Obsolete("Deprecated in API9, Will be removed in API11, Please use DestValueList instead")]
+        [SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays", Justification = "This API will be deprecated, so suppressing the warning for now")]
         public string[] DestValue
         {
             get
@@ -466,6 +476,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets the start time for each property of the animation.
         /// </summary>
+        //ToDo : will raise deprecated-ACR, [Obsolete("Deprecated in API9, Will be removed in API11, Please use StartTimeList instead")]
+        [SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays", Justification = "This API will be deprecated, so suppressing the warning for now")]
         public int[] StartTime
         {
             get
@@ -481,6 +493,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets the end time for each property of the animation.
         /// </summary>
+        //ToDo : will raise deprecated-ACR, [Obsolete("Deprecated in API9, Will be removed in API11, Please use EndTimeList instead")]
+        [SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays", Justification = "This API will be deprecated, so suppressing the warning for now")]
         public int[] EndTime
         {
             get
@@ -490,6 +504,74 @@ namespace Tizen.NUI
             set
             {
                 _endTime = value;
+            }
+        }
+
+        /// <summary>
+        /// Get the list of the properties of the animation.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public IList<string> PropertyList
+        {
+            get
+            {
+                if (null == propertyList)
+                {
+                    propertyList = new List<string>();
+                }
+
+                return propertyList;
+            }
+        }
+
+        /// <summary>
+        /// Get the list of the destination value for each property of the animation.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public IList<string> DestValueList
+        {
+            get
+            {
+                if (null == destValueList)
+                {
+                    destValueList = new List<string>();
+                }
+
+                return destValueList;
+            }
+        }
+
+        /// <summary>
+        /// Get the list of the start time for each property of the animation.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public IList<int> StartTimeList
+        {
+            get
+            {
+                if (null == startTimeList)
+                {
+                    startTimeList = new List<int>();
+                }
+
+                return startTimeList;
+            }
+        }
+
+        /// <summary>
+        /// Get the list of end time for each property of the animation.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public IList<int> EndTimeList
+        {
+            get
+            {
+                if (null == endTimeList)
+                {
+                    endTimeList = new List<int>();
+                }
+
+                return endTimeList;
             }
         }
 
@@ -673,26 +755,57 @@ namespace Tizen.NUI
             }
 
             Clear();
-            if (_properties.Length == _destValue.Length && _startTime.Length == _endTime.Length && _properties.Length == _startTime.Length)
-            {
-                int length = _properties.Length;
-                for (int index = 0; index < length; index++)
-                {
-                    //object destinationValue = _destValue[index];
-                    var elementType = target.GetType();
-                    PropertyInfo propertyInfo = elementType.GetProperties().FirstOrDefault(fi => fi.Name == _properties[index]);
-                    //var propertyInfo = elementType.GetRuntimeProperties().FirstOrDefault(p => p.Name == localName);
-                    if (propertyInfo != null)
-                    {
-                        object destinationValue = ConvertTo(_destValue[index], propertyInfo.PropertyType);
 
-                        if (destinationValue != null)
+            if (null != propertyList && null != destValueList && null != startTimeList && null != endTimeList)
+            {
+                if (propertyList.Count == destValueList.Count
+                    &&
+                    startTimeList.Count == endTimeList.Count
+                    &&
+                    propertyList.Count == startTimeList.Count)
+                {
+                    int count = propertyList.Count;
+                    for (int index = 0; index < count; index++)
+                    {
+                        var elementType = target.GetType();
+                        PropertyInfo propertyInfo = elementType.GetProperties().FirstOrDefault(fi => fi.Name == propertyList[index]);
+
+                        if (propertyInfo != null)
                         {
-                            AnimateTo(target, _properties[index], destinationValue, _startTime[index], _endTime[index]);
+                            object destinationValue = ConvertTo(destValueList[index], propertyInfo.PropertyType);
+
+                            if (destinationValue != null)
+                            {
+                                AnimateTo(target, propertyList[index], destinationValue, startTimeList[index], endTimeList[index]);
+                            }
                         }
                     }
+                    Play();
                 }
-                Play();
+            }
+            else
+            {
+                if (_properties.Length == _destValue.Length && _startTime.Length == _endTime.Length && _properties.Length == _startTime.Length)
+                {
+                    int length = _properties.Length;
+                    for (int index = 0; index < length; index++)
+                    {
+                        //object destinationValue = _destValue[index];
+                        var elementType = target.GetType();
+                        PropertyInfo propertyInfo = elementType.GetProperties().FirstOrDefault(fi => fi.Name == _properties[index]);
+                        //var propertyInfo = elementType.GetRuntimeProperties().FirstOrDefault(p => p.Name == localName);
+                        if (propertyInfo != null)
+                        {
+                            object destinationValue = ConvertTo(_destValue[index], propertyInfo.PropertyType);
+
+                            if (destinationValue != null)
+                            {
+                                AnimateTo(target, _properties[index], destinationValue, _startTime[index], _endTime[index]);
+                            }
+                        }
+                    }
+                    Play();
+                }
             }
         }
 

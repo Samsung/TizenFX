@@ -606,6 +606,17 @@ namespace Tizen.NUI.BaseComponents
             var textLabel = (TextLabel)bindable;
             return textLabel.SelectorData.TextShadow.Get(textLabel);
         });
+
+        internal static readonly BindableProperty PixelSizeSelectorProperty = BindableProperty.Create("PixelSizeSelector", typeof(Selector<float?>), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            ((TextLabel)bindable).SelectorData.PixelSize.Update(textLabel, (Selector<float?>)newValue, true);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            return textLabel.SelectorData.PixelSize.Get(textLabel);
+        });
         #endregion
 
     }
