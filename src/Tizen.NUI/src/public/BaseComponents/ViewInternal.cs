@@ -1048,7 +1048,9 @@ namespace Tizen.NUI.BaseComponents
             {
                 backgroundMap[Visual.Property.CornerRadius] = new PropertyValue(backgroundExtraData.CornerRadius);
                 backgroundMap[Visual.Property.CornerRadiusPolicy] = new PropertyValue((int)backgroundExtraData.CornerRadiusPolicy);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, View.Property.BACKGROUND, new PropertyValue(backgroundMap));
+                var temp = new PropertyValue(backgroundMap);
+                Tizen.NUI.Object.SetProperty(SwigCPtr, View.Property.BACKGROUND, temp);
+                temp.Dispose();
             }
             backgroundMap.Dispose();
             background.Dispose();
@@ -1060,7 +1062,9 @@ namespace Tizen.NUI.BaseComponents
             {
                 shadowMap[Visual.Property.CornerRadius] = new PropertyValue(backgroundExtraData.CornerRadius);
                 shadowMap[Visual.Property.CornerRadiusPolicy] = new PropertyValue((int)backgroundExtraData.CornerRadiusPolicy);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, View.Property.SHADOW, new PropertyValue(shadowMap));
+                var temp = new PropertyValue(shadowMap);
+                Tizen.NUI.Object.SetProperty(SwigCPtr, View.Property.SHADOW, temp);
+                temp.Dispose();
             }
             shadowMap.Dispose();
             shadow.Dispose();
@@ -1370,10 +1374,8 @@ namespace Tizen.NUI.BaseComponents
 
         private void InitializeStyle(ViewStyle style)
         {
-            if (!ThemeManager.ThemeApplied) return;
-
-            if (style == null) UpdateStyle(); // Use style in the current theme
-            else ApplyStyle(style.Clone());   // Use given style
+            if (style != null) ApplyStyle(style.Clone());   // Use given style
+            else if (ThemeManager.ThemeApplied) UpdateStyle(); // Use style in the current theme
         }
     }
 }
