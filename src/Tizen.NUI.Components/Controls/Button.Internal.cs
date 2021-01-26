@@ -414,6 +414,8 @@ namespace Tizen.NUI.Components
             LayoutDirectionChanged += OnLayoutDirectionChanged;
 
             AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "Button");
+            
+            Feedback = true;
         }
 
         private void UpdateUIContent()
