@@ -214,21 +214,16 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Dispose SliderStyle and all children on it.
         /// </summary>
-        /// <param name="type">Dispose type.</param>
+        /// <param name="disposing">true in order to free managed objects</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void Dispose(DisposeTypes type)
+        protected override void Dispose(bool disposing)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
+            if (disposing)
             {
                 trackPadding?.Dispose();
             }
 
-            base.Dispose(type);
+            base.Dispose(disposing);
         }
     }
 }

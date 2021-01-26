@@ -26,7 +26,7 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PathConstrainer obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
@@ -60,26 +60,26 @@ namespace Tizen.NUI
 
         internal PathConstrainer Assign(PathConstrainer rhs)
         {
-            PathConstrainer ret = new PathConstrainer(Interop.PathConstrainer.Assign(swigCPtr, PathConstrainer.getCPtr(rhs)), false);
+            PathConstrainer ret = new PathConstrainer(Interop.PathConstrainer.Assign(SwigCPtr, PathConstrainer.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void Apply(Tizen.NUI.Property target, Tizen.NUI.Property source, Vector2 range, Vector2 wrap)
         {
-            Interop.PathConstrainer.Apply(swigCPtr, Tizen.NUI.Property.getCPtr(target), Tizen.NUI.Property.getCPtr(source), Vector2.getCPtr(range), Vector2.getCPtr(wrap));
+            Interop.PathConstrainer.Apply(SwigCPtr, Tizen.NUI.Property.getCPtr(target), Tizen.NUI.Property.getCPtr(source), Vector2.getCPtr(range), Vector2.getCPtr(wrap));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Apply(Tizen.NUI.Property target, Tizen.NUI.Property source, Vector2 range)
         {
-            Interop.PathConstrainer.Apply(swigCPtr, Tizen.NUI.Property.getCPtr(target), Tizen.NUI.Property.getCPtr(source), Vector2.getCPtr(range));
+            Interop.PathConstrainer.Apply(SwigCPtr, Tizen.NUI.Property.getCPtr(target), Tizen.NUI.Property.getCPtr(source), Vector2.getCPtr(range));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void Remove(Animatable target)
         {
-            Interop.PathConstrainer.Remove(swigCPtr, Animatable.getCPtr(target));
+            Interop.PathConstrainer.Remove(SwigCPtr, Animatable.getCPtr(target));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -88,12 +88,12 @@ namespace Tizen.NUI
             get
             {
                 Vector3 temp = new Vector3(0.0f, 0.0f, 0.0f);
-                Tizen.NUI.Object.GetProperty(swigCPtr, PathConstrainer.Property.FORWARD).Get(temp);
+                Tizen.NUI.Object.GetProperty(SwigCPtr, PathConstrainer.Property.FORWARD).Get(temp);
                 return temp;
             }
             set
             {
-                Tizen.NUI.Object.SetProperty(swigCPtr, PathConstrainer.Property.FORWARD, new Tizen.NUI.PropertyValue(value));
+                Tizen.NUI.Object.SetProperty(SwigCPtr, PathConstrainer.Property.FORWARD, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -102,12 +102,12 @@ namespace Tizen.NUI
             get
             {
                 Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
-                Tizen.NUI.Object.GetProperty(swigCPtr, PathConstrainer.Property.POINTS).Get(temp);
+                Tizen.NUI.Object.GetProperty(SwigCPtr, PathConstrainer.Property.POINTS).Get(temp);
                 return temp;
             }
             set
             {
-                Tizen.NUI.Object.SetProperty(swigCPtr, PathConstrainer.Property.POINTS, new Tizen.NUI.PropertyValue(value));
+                Tizen.NUI.Object.SetProperty(SwigCPtr, PathConstrainer.Property.POINTS, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -116,12 +116,12 @@ namespace Tizen.NUI
             get
             {
                 Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
-                Tizen.NUI.Object.GetProperty(swigCPtr, PathConstrainer.Property.ControlPoints).Get(temp);
+                Tizen.NUI.Object.GetProperty(SwigCPtr, PathConstrainer.Property.ControlPoints).Get(temp);
                 return temp;
             }
             set
             {
-                Tizen.NUI.Object.SetProperty(swigCPtr, PathConstrainer.Property.ControlPoints, new Tizen.NUI.PropertyValue(value));
+                Tizen.NUI.Object.SetProperty(SwigCPtr, PathConstrainer.Property.ControlPoints, new Tizen.NUI.PropertyValue(value));
             }
         }
     }

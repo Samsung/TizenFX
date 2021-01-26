@@ -37,8 +37,9 @@ namespace Tizen.NUI
     /// [Draft] Base class for layouts. It is used to layout a View
     /// It can be laid out by a LayoutGroup.
     /// </summary>
-    public class LayoutItem
+    public class LayoutItem : IDisposable
     {
+        private bool disposed = false;
         static bool LayoutDebugFrameData = false; // Debug flag
         private MeasureSpecification OldWidthMeasureSpec; // Store measure specification to compare against later
         private MeasureSpecification OldHeightMeasureSpec; // Store measure specification to compare against later
@@ -599,22 +600,19 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    if (Owner.Position != null)
+                    if (independent)
                     {
-                        if(independent)
-                        {
-                            // If height or width specification is not explicitly defined,
-                            // the size of the owner view must be reset even the ExcludeLayouting is true.
-                            if (Owner.HeightSpecification < 0 || Owner.WidthSpecification < 0)
-                            {
-                                Owner.SetSize(right - left, bottom - top);
-                            }
-                        }
-                        else
+                        // If height or width specification is not explicitly defined,
+                        // the size of the owner view must be reset even the ExcludeLayouting is true.
+                        if (Owner.HeightSpecification < 0 || Owner.WidthSpecification < 0)
                         {
                             Owner.SetSize(right - left, bottom - top);
-                            Owner.SetPosition(left, top);
                         }
+                    }
+                    else
+                    {
+                        Owner.SetSize(right - left, bottom - top);
+                        Owner.SetPosition(left, top);
                     }
                 }
 
@@ -623,6 +621,30 @@ namespace Tizen.NUI
             }
 
             return changed;
+        }
+
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void Dispose(bool disposing)
+        {
+            if(disposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                _margin?.Dispose();
+                _padding?.Dispose();
+            }
+            disposed = true;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Dispose()
+        {
+            Dispose(true);
+            global::System.GC.SuppressFinalize(this);
         }
     }
 }

@@ -49,6 +49,27 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Hidden API (Inhouse API).
+        /// Constructor.
+        /// Using Uri class to provide safe sevice and secure API.
+        /// </summary>
+        /// <param name="uri">uri.</param>
+        /// <param name="border">border.</param>
+        /// <param name="offset">offset.</param>
+        /// <param name="extents">extents.</param>
+        /// <exception cref="ArgumentNullException">Thrown when uri is null.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageShadow(Uri uri, Rectangle border, Vector2 offset, Vector2 extents) : base(offset, extents)
+        {
+            if (uri == null)
+            {
+                throw new ArgumentNullException(nameof(uri));
+            }
+            Url = uri.AbsoluteUri;
+            Border = border == null ? null : new Rectangle(border);
+        }
+
+        /// <summary>
         /// Constructor
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -62,10 +83,14 @@ namespace Tizen.NUI
         internal ImageShadow(PropertyMap propertyMap) : base(propertyMap)
         {
             Border = noBorder;
-            propertyMap.Find(ImageVisualProperty.Border)?.Get(Border);
+            PropertyValue pValue = propertyMap.Find(ImageVisualProperty.Border);
+            pValue?.Get(Border);
+            pValue?.Dispose();
 
             string url = null;
-            propertyMap.Find(ImageVisualProperty.URL)?.Get(out url);
+            pValue = propertyMap.Find(ImageVisualProperty.URL);
+            pValue?.Get(out url);
+            pValue?.Dispose();
             Url = url;
         }
 

@@ -29,7 +29,7 @@ namespace Tizen.NUI
     /// For more information about the flex layout API and how to use it please refer to https://yogalayout.com/docs/
     /// We implement the subset of the API in the class below.
     /// </summary>
-    public class FlexLayout : LayoutGroup, global::System.IDisposable
+    public class FlexLayout : LayoutGroup
     {
         /// <summary>
         /// FlexItemProperty
@@ -95,6 +95,7 @@ namespace Tizen.NUI
         private bool swigCMemOwn;
         private bool disposed;
         private bool isDisposeQueued = false;
+        private bool disposedThis = false;
 
         private MeasureSpecification parentMeasureSpecificationWidth;
         private MeasureSpecification parentMeasureSpecificationHeight;
@@ -275,26 +276,73 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
+        /// <summary>
+        /// Hidden API (Inhouse API).
+        /// Destructor.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        ~FlexLayout() => Dispose(false);
+
         /// <inheritdoc/>
         /// <since_tizen> 6 </since_tizen>
-        public void Dispose()
+        public new void Dispose()
         {
-            // Throw exception if Dispose() is called in separate thread.
-            if (!Window.IsInstalled())
+            Dispose(true);
+            System.GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Hidden API (Inhouse API).
+        /// Dispose. 
+        /// </summary>
+        /// <remarks>
+        /// Following the guide of https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose.
+        /// This will replace "protected virtual void Dispose(DisposeTypes type)" which is exactly same in functionality.
+        /// </remarks>
+        /// <param name="disposing">true in order to free managed objects</param>
+        // Protected implementation of Dispose pattern.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(bool disposing)
+        {
+            if (disposedThis)
             {
-                Tizen.Log.Error("NUI", "This API called from separate thread.This API must be called from MainThread.");
                 return;
             }
 
-            if (isDisposeQueued)
+            if (disposing)
             {
-                Dispose(DisposeTypes.Implicit);
+                // TODO: dispose managed state (managed objects).
+                // Explicit call. user calls Dispose()
+
+                //Throw excpetion if Dispose() is called in separate thread.
+                if (!Window.IsInstalled())
+                {
+                    throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
+                }
+
+                if (isDisposeQueued)
+                {
+                    Dispose(DisposeTypes.Implicit);
+                }
+                else
+                {
+                    Dispose(DisposeTypes.Explicit);
+                }
             }
             else
             {
-                Dispose(DisposeTypes.Explicit);
-                System.GC.SuppressFinalize(this);
+                // Implicit call. user doesn't call Dispose(), so this object is added into DisposeQueue to be disposed automatically.
+                if (!isDisposeQueued)
+                {
+                    isDisposeQueued = true;
+                    DisposeQueue.Instance.Add(this);
+                }
             }
+
+            // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
+            // TODO: set large fields to null.
+            disposedThis = true;
+            base.Dispose(disposing);
         }
 
         /// <inheritdoc/>
@@ -308,25 +356,36 @@ namespace Tizen.NUI
 
             if (type == DisposeTypes.Explicit)
             {
-                // Called by User
-                // Release your own managed resources here.
-                // You should release all of your own disposable objects here.
-
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
             }
 
-            // Release your own unmanaged resources here.
-            // You should not access any managed member here except static instance.
-            // because the execution order of Finalizes is non-deterministic.
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    Interop.FlexLayout.DeleteFlexLayout(swigCPtr);
+                    ReleaseSwigCPtr(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
+
             disposed = true;
+        }
+
+        /// <summary>
+        /// Hidden API (Inhouse API).
+        /// Release swigCPtr.
+        /// </summary>
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.FlexLayout.DeleteFlexLayout(swigCPtr);
         }
 
         /// <summary>
@@ -644,12 +703,17 @@ namespace Tizen.NUI
         /// Callback when child is removed from container.<br />
         /// </summary>
         /// <param name="child">The Layout child.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when child is null. </exception>
         /// <since_tizen> 6 </since_tizen>
         protected override void OnChildRemove(LayoutItem child)
         {
+            if (null == child)
+            {
+                throw new ArgumentNullException(nameof(child));
+            }
             // When child View is removed from it's parent View (that is a Layout) then remove it from the layout too.
             // FlexLayout refers to the child as a View not LayoutItem.
-            Interop.FlexLayout.RemoveChild(swigCPtr, child);
+            Interop.FlexLayout.RemoveChild(swigCPtr, child.Owner.SwigCPtr);
         }
 
         /// <summary>
@@ -752,6 +816,7 @@ namespace Tizen.NUI
                     // Get the frame for the child, start, top, end, bottom.
                     Vector4 frame = new Vector4(Interop.FlexLayout.GetNodeFrame(swigCPtr, childIndex), true);
                     childLayout.Layout(new LayoutLength(frame.X), new LayoutLength(frame.Y), new LayoutLength(frame.Z), new LayoutLength(frame.W));
+                    frame.Dispose();
                 }
             }
         }

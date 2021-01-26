@@ -37,10 +37,9 @@ namespace Tizen.NUI
         /// Queries whether there are any connected slots.
         /// </summary>
         /// <returns>True if there are any slots connected to the signal</returns>
-        /// <since_tizen> 4 </since_tizen>
         public bool Empty()
         {
-            bool ret = Interop.LanguageChangedSignalType.Empty(swigCPtr);
+            bool ret = Interop.LanguageChangedSignalType.Empty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -49,10 +48,9 @@ namespace Tizen.NUI
         /// Queries the number of slots.
         /// </summary>
         /// <returns>The number of slots connected to this signal</returns>
-        /// <since_tizen> 4 </since_tizen>
         public uint GetConnectionCount()
         {
-            uint ret = Interop.LanguageChangedSignalType.GetConnectionCount(swigCPtr);
+            uint ret = Interop.LanguageChangedSignalType.GetConnectionCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -61,12 +59,11 @@ namespace Tizen.NUI
         /// Connects a member function.
         /// </summary>
         /// <param name="func">The member function to connect</param>
-        /// <since_tizen> 4 </since_tizen>
         public void Connect(System.Delegate func)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
             {
-                Interop.LanguageChangedSignalType.Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.LanguageChangedSignalType.Connect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -75,12 +72,11 @@ namespace Tizen.NUI
         /// Disconnects a function.
         /// </summary>
         /// <param name="func">The function to disconnect</param>
-        /// <since_tizen> 4 </since_tizen>
         public void Disconnect(System.Delegate func)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
             {
-                Interop.LanguageChangedSignalType.Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.LanguageChangedSignalType.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -88,17 +84,15 @@ namespace Tizen.NUI
         /// <summary>
         /// Emits the signal.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public void Emit(int arg)
         {
-            Interop.LanguageChangedSignalType.Emit(swigCPtr, arg);
+            Interop.LanguageChangedSignalType.Emit(SwigCPtr, arg);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
         /// The contructor.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public LanguageChangedSignalType() : this(Interop.LanguageChangedSignalType.NewLanguageChangedSignalType(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

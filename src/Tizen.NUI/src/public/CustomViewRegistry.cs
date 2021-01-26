@@ -4,6 +4,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using Tizen.NUI.BaseComponents;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -98,6 +99,12 @@ namespace Tizen.NUI
             Default,    // Read Writable, non-animatable property, event thread only
                         //  Animatable // Animatable property, Currently disabled, UK
         }
+
+        /// <summary>
+        /// ScriptableType. Read Writable, non-animatable property, event thread only.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ScriptableType Type => type;
     }
 
     /// <summary>
@@ -352,8 +359,10 @@ namespace Tizen.NUI
                 System.Object val = view.GetType().GetProperty(propertyName).GetAccessors()[0].Invoke(view, null);
 
                 PropertyValue value = PropertyValue.CreateFromObject(val);
+                IntPtr ptr = (IntPtr)PropertyValue.getCPtr(value);
+                value.Dispose();
 
-                return (IntPtr)PropertyValue.getCPtr(value);
+                return ptr;
             }
             else
             {
@@ -424,6 +433,7 @@ namespace Tizen.NUI
                     {
                         propertyInfo.SetValue(view, value);
                     }
+                    value.Dispose();
                 }
                 else if (type.Equals(typeof(Vector3)))
                 {
@@ -433,6 +443,7 @@ namespace Tizen.NUI
                     {
                         propertyInfo.SetValue(view, value);
                     }
+                    value.Dispose();
                 }
                 else if (type.Equals(typeof(Vector4)))
                 {
@@ -443,6 +454,7 @@ namespace Tizen.NUI
                     {
                         propertyInfo.SetValue(view, value);
                     }
+                    value.Dispose();
                 }
                 else if (type.Equals(typeof(Position)))
                 {
@@ -452,6 +464,7 @@ namespace Tizen.NUI
                     {
                         propertyInfo.SetValue(view, value);
                     }
+                    value.Dispose();
                 }
                 else if (type.Equals(typeof(Size)))
                 {
@@ -459,8 +472,11 @@ namespace Tizen.NUI
                     ok = propValue.Get(value);
                     if (ok)
                     {
-                        propertyInfo.SetValue(view, new Size(value.Width, value.Height, value.Depth));
+                        Size sz = new Size(value.Width, value.Height, value.Depth);
+                        propertyInfo.SetValue(view, sz);
+                        sz.Dispose();
                     };
+                    value.Dispose();
                 }
                 else if (type.Equals(typeof(Color)))
                 {
@@ -471,6 +487,7 @@ namespace Tizen.NUI
                     {
                         propertyInfo.SetValue(view, (Color)value);
                     };
+                    value.Dispose();
                 }
                 else if (type.Equals(typeof(PropertyMap)))
                 {
@@ -480,6 +497,7 @@ namespace Tizen.NUI
                     {
                         propertyInfo.SetValue(view, map);
                     }
+                    map.Dispose();
                 }
                 else if (type.Equals(typeof(PropertyArray)))
                 {
@@ -489,6 +507,7 @@ namespace Tizen.NUI
                     {
                         propertyInfo.SetValue(view, array);
                     }
+                    array.Dispose();
                 }
                 else
                 {
@@ -503,6 +522,7 @@ namespace Tizen.NUI
             {
                 throw new global::System.InvalidOperationException("failed to find the control to write a property to: cptr = " + refObjectPtr);
             }
+            propValue.Dispose();
         }
     }
 }

@@ -59,18 +59,22 @@ namespace Tizen.NUI
             get
             {
                 Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-                Tizen.NUI.Object.GetProperty(swigCPtr, Shader.Property.PROGRAM).Get(temp);
+                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Shader.Property.PROGRAM);
+                pValue.Get(temp);
+                pValue.Dispose();
                 return temp;
             }
             set
             {
-                Tizen.NUI.Object.SetProperty(swigCPtr, Shader.Property.PROGRAM, new Tizen.NUI.PropertyValue(value));
+                var temp = new Tizen.NUI.PropertyValue(value);
+                Tizen.NUI.Object.SetProperty(SwigCPtr, Shader.Property.PROGRAM, temp);
+                temp.Dispose();
             }
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Shader obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         internal Shader(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Shader.Upcast(cPtr), cMemoryOwn)

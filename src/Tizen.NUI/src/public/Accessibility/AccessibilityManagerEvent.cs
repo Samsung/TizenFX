@@ -25,127 +25,127 @@ namespace Tizen.NUI.Accessibility
     {
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool StatusChangedEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerStatusChangedEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerStatusChangedEventHandler;
         private StatusChangedEventCallbackDelegate _accessibilityManagerStatusChangedEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionNextEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionNextEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionNextEventHandler;
         private ActionNextEventCallbackDelegate _accessibilityManagerActionNextEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionPreviousEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionPreviousEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionPreviousEventHandler;
         private ActionPreviousEventCallbackDelegate _accessibilityManagerActionPreviousEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionActivateEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionActivateEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionActivateEventHandler;
         private ActionActivateEventCallbackDelegate _accessibilityManagerActionActivateEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionReadEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionReadEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionReadEventHandler;
         private ActionReadEventCallbackDelegate _accessibilityManagerActionReadEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionOverEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionOverEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionOverEventHandler;
         private ActionOverEventCallbackDelegate _accessibilityManagerActionOverEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionReadNextEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionReadNextEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionReadNextEventHandler;
         private ActionReadNextEventCallbackDelegate _accessibilityManagerActionReadNextEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionReadPreviousEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionReadPreviousEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionReadPreviousEventHandler;
         private ActionReadPreviousEventCallbackDelegate _accessibilityManagerActionReadPreviousEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionUpEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionUpEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionUpEventHandler;
         private ActionUpEventCallbackDelegate _accessibilityManagerActionUpEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionDownEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionDownEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionDownEventHandler;
         private ActionDownEventCallbackDelegate _accessibilityManagerActionDownEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionClearFocusEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionClearFocusEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionClearFocusEventHandler;
         private ActionClearFocusEventCallbackDelegate _accessibilityManagerActionClearFocusEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionBackEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionBackEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionBackEventHandler;
         private ActionBackEventCallbackDelegate _accessibilityManagerActionBackEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionScrollUpEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionScrollUpEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionScrollUpEventHandler;
         private ActionScrollUpEventCallbackDelegate _accessibilityManagerActionScrollUpEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionScrollDownEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionScrollDownEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionScrollDownEventHandler;
         private ActionScrollDownEventCallbackDelegate _accessibilityManagerActionScrollDownEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionPageLeftEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionPageLeftEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionPageLeftEventHandler;
         private ActionPageLeftEventCallbackDelegate _accessibilityManagerActionPageLeftEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionPageRightEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionPageRightEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionPageRightEventHandler;
         private ActionPageRightEventCallbackDelegate _accessibilityManagerActionPageRightEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionPageUpEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionPageUpEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionPageUpEventHandler;
         private ActionPageUpEventCallbackDelegate _accessibilityManagerActionPageUpEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionPageDownEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionPageDownEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionPageDownEventHandler;
         private ActionPageDownEventCallbackDelegate _accessibilityManagerActionPageDownEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionMoveToFirstEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionMoveToFirstEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionMoveToFirstEventHandler;
         private ActionMoveToFirstEventCallbackDelegate _accessibilityManagerActionMoveToFirstEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionMoveToLastEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionMoveToLastEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionMoveToLastEventHandler;
         private ActionMoveToLastEventCallbackDelegate _accessibilityManagerActionMoveToLastEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionReadFromTopEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionReadFromTopEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionReadFromTopEventHandler;
         private ActionReadFromTopEventCallbackDelegate _accessibilityManagerActionReadFromTopEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionReadFromNextEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionReadFromNextEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionReadFromNextEventHandler;
         private ActionReadFromNextEventCallbackDelegate _accessibilityManagerActionReadFromNextEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionZoomEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionZoomEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionZoomEventHandler;
         private ActionZoomEventCallbackDelegate _accessibilityManagerActionZoomEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionReadPauseResumeEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionReadPauseResumeEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionReadPauseResumeEventHandler;
         private ActionReadPauseResumeEventCallbackDelegate _accessibilityManagerActionReadPauseResumeEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionStartStopEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionStartStopEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionStartStopEventHandler;
         private ActionStartStopEventCallbackDelegate _accessibilityManagerActionStartStopEventCallbackDelegate;
 
         /*
@@ -180,29 +180,28 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> StatusChanged
+        public event ReturnTypeEventHandler<object, EventArgs, bool> StatusChanged
         {
             add
             {
                 // Restricted to only one listener
                 if (_accessibilityManagerStatusChangedEventHandler == null)
                 {
-                    _accessibilityManagerStatusChangedEventHandler += value;
-
                     _accessibilityManagerStatusChangedEventCallbackDelegate = new StatusChangedEventCallbackDelegate(OnStatusChanged);
                     this.StatusChangedSignal().Connect(_accessibilityManagerStatusChangedEventCallbackDelegate);
                 }
+
+                _accessibilityManagerStatusChangedEventHandler += value;
             }
 
             remove
             {
+                _accessibilityManagerStatusChangedEventHandler -= value;
 
-                if (_accessibilityManagerStatusChangedEventHandler != null)
+                if (_accessibilityManagerStatusChangedEventHandler == null && StatusChangedSignal().Empty() == false)
                 {
                     this.StatusChangedSignal().Disconnect(_accessibilityManagerStatusChangedEventCallbackDelegate);
                 }
-
-                _accessibilityManagerStatusChangedEventHandler -= value;
 
             }
         }
@@ -214,28 +213,28 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionNext
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionNext
         {
             add
             {
                 // Restricted to only one listener
                 if (_accessibilityManagerActionNextEventHandler == null)
                 {
-                    _accessibilityManagerActionNextEventHandler += value;
-
                     _accessibilityManagerActionNextEventCallbackDelegate = new ActionNextEventCallbackDelegate(OnActionNext);
                     this.ActionNextSignal().Connect(_accessibilityManagerActionNextEventCallbackDelegate);
                 }
+
+                _accessibilityManagerActionNextEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerActionNextEventHandler != null)
+                _accessibilityManagerActionNextEventHandler -= value;
+
+                if (_accessibilityManagerActionNextEventHandler == null && ActionNextSignal().Empty() == false)
                 {
                     this.ActionNextSignal().Disconnect(_accessibilityManagerActionNextEventCallbackDelegate);
                 }
-
-                _accessibilityManagerActionNextEventHandler -= value;
             }
         }
 
@@ -246,28 +245,28 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionPrevious
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionPrevious
         {
             add
             {
                 // Restricted to only one listener
                 if (_accessibilityManagerActionPreviousEventHandler == null)
                 {
-                    _accessibilityManagerActionPreviousEventHandler += value;
-
                     _accessibilityManagerActionPreviousEventCallbackDelegate = new ActionPreviousEventCallbackDelegate(OnActionPrevious);
                     this.ActionPreviousSignal().Connect(_accessibilityManagerActionPreviousEventCallbackDelegate);
                 }
+
+                _accessibilityManagerActionPreviousEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerActionPreviousEventHandler != null)
+                _accessibilityManagerActionPreviousEventHandler -= value;
+
+                if (_accessibilityManagerActionPreviousEventHandler == null && ActionPreviousSignal().Empty() == false)
                 {
                     this.ActionPreviousSignal().Disconnect(_accessibilityManagerActionPreviousEventCallbackDelegate);
                 }
-
-                _accessibilityManagerActionPreviousEventHandler -= value;
             }
         }
 
@@ -278,28 +277,28 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionActivate
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionActivate
         {
             add
             {
                 // Restricted to only one listener
                 if (_accessibilityManagerActionActivateEventHandler == null)
                 {
-                    _accessibilityManagerActionActivateEventHandler += value;
-
                     _accessibilityManagerActionActivateEventCallbackDelegate = new ActionActivateEventCallbackDelegate(OnActionActivate);
                     this.ActionActivateSignal().Connect(_accessibilityManagerActionActivateEventCallbackDelegate);
                 }
+
+                _accessibilityManagerActionActivateEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerActionActivateEventHandler != null)
+                _accessibilityManagerActionActivateEventHandler -= value;
+
+                if (_accessibilityManagerActionActivateEventHandler == null && ActionActivateSignal().Empty() == false)
                 {
                     this.ActionActivateSignal().Disconnect(_accessibilityManagerActionActivateEventCallbackDelegate);
                 }
-
-                _accessibilityManagerActionActivateEventHandler -= value;
             }
         }
 
@@ -310,28 +309,28 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionRead
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionRead
         {
             add
             {
                 // Restricted to only one listener
                 if (_accessibilityManagerActionReadEventHandler == null)
                 {
-                    _accessibilityManagerActionReadEventHandler += value;
-
                     _accessibilityManagerActionReadEventCallbackDelegate = new ActionReadEventCallbackDelegate(OnActionRead);
                     this.ActionReadSignal().Connect(_accessibilityManagerActionReadEventCallbackDelegate);
                 }
+
+                _accessibilityManagerActionReadEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerActionReadEventHandler != null)
+                _accessibilityManagerActionReadEventHandler -= value;
+
+                if (_accessibilityManagerActionReadEventHandler == null && ActionReadSignal().Empty() == false)
                 {
                     this.ActionReadSignal().Disconnect(_accessibilityManagerActionReadEventCallbackDelegate);
                 }
-
-                _accessibilityManagerActionReadEventHandler -= value;
             }
         }
 
@@ -342,28 +341,29 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionOver
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionOver
         {
             add
             {
                 // Restricted to only one listener
                 if (_accessibilityManagerActionOverEventHandler == null)
                 {
-                    _accessibilityManagerActionOverEventHandler += value;
-
                     _accessibilityManagerActionOverEventCallbackDelegate = new ActionOverEventCallbackDelegate(OnActionOver);
                     this.ActionOverSignal().Connect(_accessibilityManagerActionOverEventCallbackDelegate);
                 }
+
+                _accessibilityManagerActionOverEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerActionOverEventHandler != null)
+                _accessibilityManagerActionOverEventHandler -= value;
+
+                if (_accessibilityManagerActionOverEventHandler == null && ActionOverSignal().Empty() == false)
                 {
                     this.ActionOverSignal().Disconnect(_accessibilityManagerActionOverEventCallbackDelegate);
                 }
 
-                _accessibilityManagerActionOverEventHandler -= value;
             }
         }
 
@@ -374,28 +374,28 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionReadNext
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionReadNext
         {
             add
             {
                 // Restricted to only one listener
                 if (_accessibilityManagerActionReadNextEventHandler == null)
                 {
-                    _accessibilityManagerActionReadNextEventHandler += value;
-
                     _accessibilityManagerActionReadNextEventCallbackDelegate = new ActionReadNextEventCallbackDelegate(OnActionReadNext);
                     this.ActionReadNextSignal().Connect(_accessibilityManagerActionReadNextEventCallbackDelegate);
                 }
+
+                _accessibilityManagerActionReadNextEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerActionReadNextEventHandler != null)
+                _accessibilityManagerActionReadNextEventHandler -= value;
+
+                if (_accessibilityManagerActionReadNextEventHandler == null && ActionReadNextSignal().Empty() == false)
                 {
                     this.ActionReadNextSignal().Disconnect(_accessibilityManagerActionReadNextEventCallbackDelegate);
                 }
-
-                _accessibilityManagerActionReadNextEventHandler -= value;
             }
         }
 
@@ -406,28 +406,28 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionReadPrevious
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionReadPrevious
         {
             add
             {
                 // Restricted to only one listener
                 if (_accessibilityManagerActionReadPreviousEventHandler == null)
                 {
-                    _accessibilityManagerActionReadPreviousEventHandler += value;
-
                     _accessibilityManagerActionReadPreviousEventCallbackDelegate = new ActionReadPreviousEventCallbackDelegate(OnActionReadPrevious);
                     this.ActionReadPreviousSignal().Connect(_accessibilityManagerActionReadPreviousEventCallbackDelegate);
                 }
+
+                _accessibilityManagerActionReadPreviousEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerActionReadPreviousEventHandler != null)
+                _accessibilityManagerActionReadPreviousEventHandler -= value;
+
+                if (_accessibilityManagerActionReadPreviousEventHandler == null && ActionReadPreviousSignal().Empty() == false)
                 {
                     this.ActionReadPreviousSignal().Disconnect(_accessibilityManagerActionReadPreviousEventCallbackDelegate);
                 }
-
-                _accessibilityManagerActionReadPreviousEventHandler -= value;
             }
         }
 
@@ -439,28 +439,28 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionUp
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionUp
         {
             add
             {
                 // Restricted to only one listener
                 if (_accessibilityManagerActionUpEventHandler == null)
                 {
-                    _accessibilityManagerActionUpEventHandler += value;
-
                     _accessibilityManagerActionUpEventCallbackDelegate = new ActionUpEventCallbackDelegate(OnActionUp);
                     this.ActionUpSignal().Connect(_accessibilityManagerActionUpEventCallbackDelegate);
                 }
+
+                _accessibilityManagerActionUpEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerActionUpEventHandler != null)
+                _accessibilityManagerActionUpEventHandler -= value;
+
+                if (_accessibilityManagerActionUpEventHandler == null && ActionUpSignal().Empty() == false)
                 {
                     this.ActionUpSignal().Disconnect(_accessibilityManagerActionUpEventCallbackDelegate);
                 }
-
-                _accessibilityManagerActionUpEventHandler -= value;
             }
         }
 
@@ -472,28 +472,28 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionDown
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionDown
         {
             add
             {
                 // Restricted to only one listener
                 if (_accessibilityManagerActionDownEventHandler == null)
                 {
-                    _accessibilityManagerActionDownEventHandler += value;
-
                     _accessibilityManagerActionDownEventCallbackDelegate = new ActionDownEventCallbackDelegate(OnActionDown);
                     this.ActionDownSignal().Connect(_accessibilityManagerActionDownEventCallbackDelegate);
                 }
+
+                _accessibilityManagerActionDownEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerActionDownEventHandler != null)
+                _accessibilityManagerActionDownEventHandler -= value;
+
+                if (_accessibilityManagerActionDownEventHandler == null && ActionDownSignal().Empty() == false)
                 {
                     this.ActionDownSignal().Disconnect(_accessibilityManagerActionDownEventCallbackDelegate);
                 }
-
-                _accessibilityManagerActionDownEventHandler -= value;
             }
         }
 
@@ -505,28 +505,28 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionClearFocus
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionClearFocus
         {
             add
             {
                 // Restricted to only one listener
                 if (_accessibilityManagerActionClearFocusEventHandler == null)
                 {
-                    _accessibilityManagerActionClearFocusEventHandler += value;
-
                     _accessibilityManagerActionClearFocusEventCallbackDelegate = new ActionClearFocusEventCallbackDelegate(OnActionClearFocus);
                     this.ActionClearFocusSignal().Connect(_accessibilityManagerActionClearFocusEventCallbackDelegate);
                 }
+
+                _accessibilityManagerActionClearFocusEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerActionClearFocusEventHandler != null)
+                _accessibilityManagerActionClearFocusEventHandler -= value;
+
+                if (_accessibilityManagerActionClearFocusEventHandler == null && ActionClearFocusSignal().Empty() == false)
                 {
                     this.ActionClearFocusSignal().Disconnect(_accessibilityManagerActionClearFocusEventCallbackDelegate);
                 }
-
-                _accessibilityManagerActionClearFocusEventHandler -= value;
             }
         }
 
@@ -537,29 +537,28 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionBack
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionBack
         {
             add
             {
                 // Restricted to only one listener
                 if (_accessibilityManagerActionBackEventHandler == null)
                 {
-                    _accessibilityManagerActionBackEventHandler += value;
-
                     _accessibilityManagerActionBackEventCallbackDelegate = new ActionBackEventCallbackDelegate(OnActionBack);
                     this.ActionBackSignal().Connect(_accessibilityManagerActionBackEventCallbackDelegate);
                 }
+
+                _accessibilityManagerActionBackEventHandler += value;
             }
 
             remove
             {
+                _accessibilityManagerActionBackEventHandler -= value;
 
-                if (_accessibilityManagerActionBackEventHandler != null)
+                if (_accessibilityManagerActionBackEventHandler == null && ActionBackSignal().Empty() == false)
                 {
                     this.ActionBackSignal().Disconnect(_accessibilityManagerActionBackEventCallbackDelegate);
                 }
-
-                _accessibilityManagerActionBackEventHandler -= value;
             }
         }
 
@@ -570,28 +569,28 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionScrollUp
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionScrollUp
         {
             add
             {
                 // Restricted to only one listener
                 if (_accessibilityManagerActionScrollUpEventHandler == null)
                 {
-                    _accessibilityManagerActionScrollUpEventHandler += value;
-
                     _accessibilityManagerActionScrollUpEventCallbackDelegate = new ActionScrollUpEventCallbackDelegate(OnActionScrollUp);
                     this.ActionScrollUpSignal().Connect(_accessibilityManagerActionScrollUpEventCallbackDelegate);
                 }
+
+                _accessibilityManagerActionScrollUpEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerActionScrollUpEventHandler != null)
+                _accessibilityManagerActionScrollUpEventHandler -= value;
+
+                if (_accessibilityManagerActionScrollUpEventHandler == null && ActionScrollUpSignal().Empty() == false)
                 {
                     this.ActionScrollUpSignal().Disconnect(_accessibilityManagerActionScrollUpEventCallbackDelegate);
                 }
-
-                _accessibilityManagerActionScrollUpEventHandler -= value;
             }
         }
 
@@ -602,29 +601,28 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionScrollDown
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionScrollDown
         {
             add
             {
                 // Restricted to only one listener
                 if (_accessibilityManagerActionScrollDownEventHandler == null)
                 {
-                    _accessibilityManagerActionScrollDownEventHandler += value;
-
                     _accessibilityManagerActionScrollDownEventCallbackDelegate = new ActionScrollDownEventCallbackDelegate(OnActionScrollDown);
                     this.ActionScrollDownSignal().Connect(_accessibilityManagerActionScrollDownEventCallbackDelegate);
                 }
+
+                _accessibilityManagerActionScrollDownEventHandler += value;
             }
 
             remove
             {
+                _accessibilityManagerActionScrollDownEventHandler -= value;
 
-                if (_accessibilityManagerActionScrollDownEventHandler != null)
+                if (_accessibilityManagerActionScrollDownEventHandler == null && ActionScrollDownSignal().Empty() == false)
                 {
                     this.ActionScrollDownSignal().Disconnect(_accessibilityManagerActionScrollDownEventCallbackDelegate);
                 }
-
-                _accessibilityManagerActionScrollDownEventHandler -= value;
             }
         }
 
@@ -635,28 +633,28 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionPageLeft
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionPageLeft
         {
             add
             {
                 // Restricted to only one listener
                 if (_accessibilityManagerActionPageLeftEventHandler == null)
                 {
-                    _accessibilityManagerActionPageLeftEventHandler += value;
-
                     _accessibilityManagerActionPageLeftEventCallbackDelegate = new ActionPageLeftEventCallbackDelegate(OnActionPageLeft);
                     this.ActionPageLeftSignal().Connect(_accessibilityManagerActionPageLeftEventCallbackDelegate);
                 }
+
+                _accessibilityManagerActionPageLeftEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerActionPageLeftEventHandler != null)
+                _accessibilityManagerActionPageLeftEventHandler -= value;
+
+                if (_accessibilityManagerActionPageLeftEventHandler == null && ActionPageLeftSignal().Empty() == false)
                 {
                     this.ActionPageLeftSignal().Disconnect(_accessibilityManagerActionPageLeftEventCallbackDelegate);
                 }
-
-                _accessibilityManagerActionPageLeftEventHandler -= value;
             }
         }
 
@@ -667,28 +665,28 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionPageRight
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionPageRight
         {
             add
             {
                 // Restricted to only one listener
                 if (_accessibilityManagerActionPageRightEventHandler == null)
                 {
-                    _accessibilityManagerActionPageRightEventHandler += value;
-
                     _accessibilityManagerActionPageRightEventCallbackDelegate = new ActionPageRightEventCallbackDelegate(OnActionPageRight);
                     this.ActionPageRightSignal().Connect(_accessibilityManagerActionPageRightEventCallbackDelegate);
                 }
+
+                _accessibilityManagerActionPageRightEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerActionPageRightEventHandler != null)
+                _accessibilityManagerActionPageRightEventHandler -= value;
+
+                if (_accessibilityManagerActionPageRightEventHandler == null && ActionPageRightSignal().Empty() == false)
                 {
                     this.ActionPageRightSignal().Disconnect(_accessibilityManagerActionPageRightEventCallbackDelegate);
                 }
-
-                _accessibilityManagerActionPageRightEventHandler -= value;
             }
         }
 
@@ -699,28 +697,28 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionPageUp
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionPageUp
         {
             add
             {
                 // Restricted to only one listener
                 if (_accessibilityManagerActionPageUpEventHandler == null)
                 {
-                    _accessibilityManagerActionPageUpEventHandler += value;
-
                     _accessibilityManagerActionPageUpEventCallbackDelegate = new ActionPageUpEventCallbackDelegate(OnActionPageUp);
                     this.ActionPageUpSignal().Connect(_accessibilityManagerActionPageUpEventCallbackDelegate);
                 }
+
+                _accessibilityManagerActionPageUpEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerActionPageUpEventHandler != null)
+                _accessibilityManagerActionPageUpEventHandler -= value;
+
+                if (_accessibilityManagerActionPageUpEventHandler == null && ActionPageUpSignal().Empty() == false)
                 {
                     this.ActionPageUpSignal().Disconnect(_accessibilityManagerActionPageUpEventCallbackDelegate);
                 }
-
-                _accessibilityManagerActionPageUpEventHandler -= value;
             }
         }
 
@@ -731,28 +729,28 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionPageDown
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionPageDown
         {
             add
             {
                 // Restricted to only one listener
                 if (_accessibilityManagerActionPageDownEventHandler == null)
                 {
-                    _accessibilityManagerActionPageDownEventHandler += value;
-
                     _accessibilityManagerActionPageDownEventCallbackDelegate = new ActionPageDownEventCallbackDelegate(OnActionPageDown);
                     this.ActionPageDownSignal().Connect(_accessibilityManagerActionPageDownEventCallbackDelegate);
                 }
+
+                _accessibilityManagerActionPageDownEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerActionPageDownEventHandler != null)
+                _accessibilityManagerActionPageDownEventHandler -= value;
+
+                if (_accessibilityManagerActionPageDownEventHandler == null && ActionPageDownSignal().Empty() == false)
                 {
                     this.ActionPageDownSignal().Disconnect(_accessibilityManagerActionPageDownEventCallbackDelegate);
                 }
-
-                _accessibilityManagerActionPageDownEventHandler -= value;
             }
         }
 
@@ -764,28 +762,28 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionMoveToFirst
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionMoveToFirst
         {
             add
             {
                 // Restricted to only one listener
                 if (_accessibilityManagerActionMoveToFirstEventHandler == null)
                 {
-                    _accessibilityManagerActionMoveToFirstEventHandler += value;
-
                     _accessibilityManagerActionMoveToFirstEventCallbackDelegate = new ActionMoveToFirstEventCallbackDelegate(OnActionMoveToFirst);
                     this.ActionMoveToFirstSignal().Connect(_accessibilityManagerActionMoveToFirstEventCallbackDelegate);
                 }
+
+                _accessibilityManagerActionMoveToFirstEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerActionMoveToFirstEventHandler != null)
+                _accessibilityManagerActionMoveToFirstEventHandler -= value;
+
+                if (_accessibilityManagerActionMoveToFirstEventHandler == null && ActionMoveToFirstSignal().Empty() == false)
                 {
                     this.ActionMoveToFirstSignal().Disconnect(_accessibilityManagerActionMoveToFirstEventCallbackDelegate);
                 }
-
-                _accessibilityManagerActionMoveToFirstEventHandler -= value;
             }
         }
 
@@ -797,28 +795,28 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionMoveToLast
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionMoveToLast
         {
             add
             {
                 // Restricted to only one listener
                 if (_accessibilityManagerActionMoveToLastEventHandler == null)
                 {
-                    _accessibilityManagerActionMoveToLastEventHandler += value;
-
                     _accessibilityManagerActionMoveToLastEventCallbackDelegate = new ActionMoveToLastEventCallbackDelegate(OnActionMoveToLast);
                     this.ActionMoveToLastSignal().Connect(_accessibilityManagerActionMoveToLastEventCallbackDelegate);
                 }
+
+                _accessibilityManagerActionMoveToLastEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerActionMoveToLastEventHandler != null)
+                _accessibilityManagerActionMoveToLastEventHandler -= value;
+
+                if (_accessibilityManagerActionMoveToLastEventHandler == null && ActionMoveToLastSignal().Empty() == false)
                 {
                     this.ActionMoveToLastSignal().Disconnect(_accessibilityManagerActionMoveToLastEventCallbackDelegate);
                 }
-
-                _accessibilityManagerActionMoveToLastEventHandler -= value;
             }
         }
 
@@ -830,28 +828,28 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionReadFromTop
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionReadFromTop
         {
             add
             {
                 // Restricted to only one listener
                 if (_accessibilityManagerActionReadFromTopEventHandler == null)
                 {
-                    _accessibilityManagerActionReadFromTopEventHandler += value;
-
                     _accessibilityManagerActionReadFromTopEventCallbackDelegate = new ActionReadFromTopEventCallbackDelegate(OnActionReadFromTop);
                     this.ActionReadFromTopSignal().Connect(_accessibilityManagerActionReadFromTopEventCallbackDelegate);
                 }
+
+                _accessibilityManagerActionReadFromTopEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerActionReadFromTopEventHandler != null)
+                _accessibilityManagerActionReadFromTopEventHandler -= value;
+
+                if (_accessibilityManagerActionReadFromTopEventHandler == null && ActionReadFromTopSignal().Empty() == false)
                 {
                     this.ActionReadFromTopSignal().Disconnect(_accessibilityManagerActionReadFromTopEventCallbackDelegate);
                 }
-
-                _accessibilityManagerActionReadFromTopEventHandler -= value;
             }
         }
 
@@ -863,28 +861,28 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionReadFromNext
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionReadFromNext
         {
             add
             {
                 // Restricted to only one listener
                 if (_accessibilityManagerActionReadFromNextEventHandler == null)
                 {
-                    _accessibilityManagerActionReadFromNextEventHandler += value;
-
                     _accessibilityManagerActionReadFromNextEventCallbackDelegate = new ActionReadFromNextEventCallbackDelegate(OnActionReadFromNext);
                     this.ActionReadFromNextSignal().Connect(_accessibilityManagerActionReadFromNextEventCallbackDelegate);
                 }
+
+                _accessibilityManagerActionReadFromNextEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerActionReadFromNextEventHandler != null)
+                _accessibilityManagerActionReadFromNextEventHandler -= value;
+
+                if (_accessibilityManagerActionReadFromNextEventHandler == null && ActionReadFromNextSignal().Empty() == false)
                 {
                     this.ActionReadFromNextSignal().Disconnect(_accessibilityManagerActionReadFromNextEventCallbackDelegate);
                 }
-
-                _accessibilityManagerActionReadFromNextEventHandler -= value;
             }
         }
 
@@ -895,28 +893,28 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionZoom
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionZoom
         {
             add
             {
                 // Restricted to only one listener
                 if (_accessibilityManagerActionZoomEventHandler == null)
                 {
-                    _accessibilityManagerActionZoomEventHandler += value;
-
                     _accessibilityManagerActionZoomEventCallbackDelegate = new ActionZoomEventCallbackDelegate(OnActionZoom);
                     this.ActionZoomSignal().Connect(_accessibilityManagerActionZoomEventCallbackDelegate);
                 }
+
+                _accessibilityManagerActionZoomEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerActionZoomEventHandler != null)
+                _accessibilityManagerActionZoomEventHandler -= value;
+
+                if (_accessibilityManagerActionZoomEventHandler == null && ActionZoomSignal().Empty() == false)
                 {
                     this.ActionZoomSignal().Disconnect(_accessibilityManagerActionZoomEventCallbackDelegate);
                 }
-
-                _accessibilityManagerActionZoomEventHandler -= value;
             }
         }
 
@@ -927,28 +925,28 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionReadPauseResume
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionReadPauseResume
         {
             add
             {
                 // Restricted to only one listener
                 if (_accessibilityManagerActionReadPauseResumeEventHandler == null)
                 {
-                    _accessibilityManagerActionReadPauseResumeEventHandler += value;
-
                     _accessibilityManagerActionReadPauseResumeEventCallbackDelegate = new ActionReadPauseResumeEventCallbackDelegate(OnActionReadPauseResume);
                     this.ActionReadPauseResumeSignal().Connect(_accessibilityManagerActionReadPauseResumeEventCallbackDelegate);
                 }
+
+                _accessibilityManagerActionReadPauseResumeEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerActionReadPauseResumeEventHandler != null)
+                _accessibilityManagerActionReadPauseResumeEventHandler -= value;
+
+                if (_accessibilityManagerActionReadPauseResumeEventHandler == null && ActionReadPauseResumeSignal().Empty() == false)
                 {
                     this.ActionReadPauseResumeSignal().Disconnect(_accessibilityManagerActionReadPauseResumeEventCallbackDelegate);
                 }
-
-                _accessibilityManagerActionReadPauseResumeEventHandler -= value;
             }
         }
 
@@ -959,28 +957,28 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionStartStop
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionStartStop
         {
             add
             {
                 // Restricted to only one listener
                 if (_accessibilityManagerActionStartStopEventHandler == null)
                 {
-                    _accessibilityManagerActionStartStopEventHandler += value;
-
                     _accessibilityManagerActionStartStopEventCallbackDelegate = new ActionStartStopEventCallbackDelegate(OnActionStartStop);
                     this.ActionStartStopSignal().Connect(_accessibilityManagerActionStartStopEventCallbackDelegate);
                 }
+
+                _accessibilityManagerActionStartStopEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerActionStartStopEventHandler != null)
+                _accessibilityManagerActionStartStopEventHandler -= value;
+
+                if (_accessibilityManagerActionStartStopEventHandler == null && ActionStartStopSignal().Empty() == false)
                 {
                     this.ActionStartStopSignal().Disconnect(_accessibilityManagerActionStartStopEventCallbackDelegate);
                 }
-
-                _accessibilityManagerActionStartStopEventHandler -= value;
             }
         }
 
@@ -1051,21 +1049,21 @@ namespace Tizen.NUI.Accessibility
                 // Restricted to only one listener
                 if (_accessibilityManagerFocusChangedEventHandler == null)
                 {
-                    _accessibilityManagerFocusChangedEventHandler += value;
-
                     _accessibilityManagerFocusChangedEventCallbackDelegate = new FocusChangedEventCallbackDelegate(OnFocusChanged);
                     this.FocusChangedSignal().Connect(_accessibilityManagerFocusChangedEventCallbackDelegate);
                 }
+
+                _accessibilityManagerFocusChangedEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerFocusChangedEventHandler != null)
+                _accessibilityManagerFocusChangedEventHandler -= value;
+
+                if (_accessibilityManagerFocusChangedEventHandler == null && FocusChangedSignal().Empty() == false)
                 {
                     this.FocusChangedSignal().Disconnect(_accessibilityManagerFocusChangedEventCallbackDelegate);
                 }
-
-                _accessibilityManagerFocusChangedEventHandler -= value;
             }
         }
 
@@ -1083,21 +1081,21 @@ namespace Tizen.NUI.Accessibility
                 // Restricted to only one listener
                 if (_accessibilityManagerFocusedViewActivatedEventHandler == null)
                 {
-                    _accessibilityManagerFocusedViewActivatedEventHandler += value;
-
                     _accessibilityManagerFocusedViewActivatedEventCallbackDelegate = new FocusedViewActivatedEventCallbackDelegate(OnFocusedViewActivated);
                     this.FocusedViewActivatedSignal().Connect(_accessibilityManagerFocusedViewActivatedEventCallbackDelegate);
                 }
+
+                _accessibilityManagerFocusedViewActivatedEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerFocusedViewActivatedEventHandler != null)
+                _accessibilityManagerFocusedViewActivatedEventHandler -= value;
+
+                if (_accessibilityManagerFocusedViewActivatedEventHandler == null && FocusedViewActivatedSignal().Empty() == false)
                 {
                     this.FocusedViewActivatedSignal().Disconnect(_accessibilityManagerFocusedViewActivatedEventCallbackDelegate);
                 }
-
-                _accessibilityManagerFocusedViewActivatedEventHandler -= value;
             }
         }
 
@@ -1115,21 +1113,21 @@ namespace Tizen.NUI.Accessibility
                 // Restricted to only one listener
                 if (_accessibilityManagerFocusOvershotEventHandler == null)
                 {
-                    _accessibilityManagerFocusOvershotEventHandler += value;
-
                     _accessibilityManagerFocusOvershotEventCallbackDelegate = new FocusOvershotEventCallbackDelegate(OnFocusOvershot);
                     this.FocusOvershotSignal().Connect(_accessibilityManagerFocusOvershotEventCallbackDelegate);
                 }
+
+                _accessibilityManagerFocusOvershotEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerFocusOvershotEventHandler != null)
+                _accessibilityManagerFocusOvershotEventHandler -= value;
+
+                if (_accessibilityManagerFocusOvershotEventHandler == null && FocusOvershotSignal().Empty() == false)
                 {
                     this.FocusOvershotSignal().Disconnect(_accessibilityManagerFocusOvershotEventCallbackDelegate);
                 }
-
-                _accessibilityManagerFocusOvershotEventHandler -= value;
             }
         }
     }

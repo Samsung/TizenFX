@@ -46,36 +46,34 @@ namespace Tizen.NUI
         {
             add
             {
-                lock (this)
+                // Restricted to only one listener
+                if (_scrollViewSnapStartedEventHandler == null)
                 {
-                    // Restricted to only one listener
-                    if (_scrollViewSnapStartedEventHandler == null)
-                    {
-                        _scrollViewSnapStartedEventHandler += value;
+                    _scrollViewSnapStartedEventHandler += value;
 
-                        _scrollViewSnapStartedCallbackDelegate = new SnapStartedCallbackDelegate(OnSnapStarted);
-                        this.SnapStartedSignal().Connect(_scrollViewSnapStartedCallbackDelegate);
-                    }
+                    _scrollViewSnapStartedCallbackDelegate = new SnapStartedCallbackDelegate(OnSnapStarted);
+                    ScrollViewSnapStartedSignal snapStarted = this.SnapStartedSignal();
+                    snapStarted?.Connect(_scrollViewSnapStartedCallbackDelegate);
+                    snapStarted?.Dispose();
                 }
             }
 
             remove
             {
-                lock (this)
+                if (_scrollViewSnapStartedEventHandler != null)
                 {
-                    if (_scrollViewSnapStartedEventHandler != null)
-                    {
-                        this.SnapStartedSignal().Disconnect(_scrollViewSnapStartedCallbackDelegate);
-                    }
-
-                    _scrollViewSnapStartedEventHandler -= value;
+                    ScrollViewSnapStartedSignal snapStarted = this.SnapStartedSignal();
+                    snapStarted?.Disconnect(_scrollViewSnapStartedCallbackDelegate);
+                    snapStarted?.Dispose();
                 }
+
+                _scrollViewSnapStartedEventHandler -= value;
             }
         }
 
         internal ScrollViewSnapStartedSignal SnapStartedSignal()
         {
-            ScrollViewSnapStartedSignal ret = new ScrollViewSnapStartedSignal(Interop.ScrollView.SnapStartedSignal(swigCPtr), false);
+            ScrollViewSnapStartedSignal ret = new ScrollViewSnapStartedSignal(Interop.ScrollView.SnapStartedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -110,6 +108,7 @@ namespace Tizen.NUI
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             /// It will be removed in API9
+            // ToDo : will proceed ACR as private bool swigCMemOwn;
             [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
             [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
             [EditorBrowsable(EditorBrowsableState.Never)]

@@ -39,7 +39,7 @@ namespace Tizen.NUI
         /// <returns>true if there is no signal attached</returns>
         public bool Empty()
         {
-            bool ret = Interop.LowBatterySignal.LowBatterySignalTypeEmpty(swigCPtr);
+            bool ret = Interop.LowBatterySignal.LowBatterySignalTypeEmpty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -50,7 +50,7 @@ namespace Tizen.NUI
         /// <returns>number of attached signals</returns>
         public uint GetConnectionCount()
         {
-            uint ret = Interop.LowBatterySignal.LowBatterySignalTypeGetConnectionCount(swigCPtr);
+            uint ret = Interop.LowBatterySignal.LowBatterySignalTypeGetConnectionCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -63,7 +63,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
             {
-                Interop.LowBatterySignal.LowBatterySignalTypeConnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.LowBatterySignal.LowBatterySignalTypeConnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -76,14 +76,14 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
             {
-                Interop.LowBatterySignal.LowBatterySignalTypeDisconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.LowBatterySignal.LowBatterySignalTypeDisconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         internal void Emit(Application.BatteryStatus arg)
         {
-            Interop.LowBatterySignal.LowBatterySignalTypeEmit(swigCPtr, (int)arg);
+            Interop.LowBatterySignal.LowBatterySignalTypeEmit(SwigCPtr, (int)arg);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

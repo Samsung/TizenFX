@@ -26,7 +26,7 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(StringValuePair obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
@@ -53,12 +53,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.StringValuePair.FirstSet(swigCPtr, value);
+                Interop.StringValuePair.FirstSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                string ret = Interop.StringValuePair.FirstGet(swigCPtr);
+                string ret = Interop.StringValuePair.FirstGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -68,12 +68,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.StringValuePair.SecondSet(swigCPtr, PropertyValue.getCPtr(value));
+                Interop.StringValuePair.SecondSet(SwigCPtr, PropertyValue.getCPtr(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                global::System.IntPtr cPtr = Interop.StringValuePair.SecondGet(swigCPtr);
+                global::System.IntPtr cPtr = Interop.StringValuePair.SecondGet(SwigCPtr);
                 PropertyValue ret = (cPtr == global::System.IntPtr.Zero) ? null : new PropertyValue(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;

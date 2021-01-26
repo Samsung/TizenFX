@@ -399,7 +399,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public void DestroyContext()
         {
-            Interop.InputMethodContext.Finalize(swigCPtr);
+            Interop.InputMethodContext.Finalize(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -411,7 +411,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public void Activate()
         {
-            Interop.InputMethodContext.Activate(swigCPtr);
+            Interop.InputMethodContext.Activate(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -422,7 +422,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public void Deactivate()
         {
-            Interop.InputMethodContext.Deactivate(swigCPtr);
+            Interop.InputMethodContext.Deactivate(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -434,7 +434,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public bool RestoreAfterFocusLost()
         {
-            bool ret = Interop.InputMethodContext.RestoreAfterFocusLost(swigCPtr);
+            bool ret = Interop.InputMethodContext.RestoreAfterFocusLost(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -446,7 +446,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public void SetRestoreAfterFocusLost(bool toggle)
         {
-            Interop.InputMethodContext.SetRestoreAfterFocusLost(swigCPtr, toggle);
+            Interop.InputMethodContext.SetRestoreAfterFocusLost(SwigCPtr, toggle);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -456,7 +456,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public new void Reset()
         {
-            Interop.InputMethodContext.Reset(swigCPtr);
+            Interop.InputMethodContext.Reset(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -466,7 +466,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public void NotifyCursorPosition()
         {
-            Interop.InputMethodContext.NotifyCursorPosition(swigCPtr);
+            Interop.InputMethodContext.NotifyCursorPosition(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -477,7 +477,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public void SetCursorPosition(uint cursorPosition)
         {
-            Interop.InputMethodContext.SetCursorPosition(swigCPtr, cursorPosition);
+            Interop.InputMethodContext.SetCursorPosition(SwigCPtr, cursorPosition);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -488,7 +488,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public uint GetCursorPosition()
         {
-            uint ret = Interop.InputMethodContext.GetCursorPosition(swigCPtr);
+            uint ret = Interop.InputMethodContext.GetCursorPosition(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -500,7 +500,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public void SetSurroundingText(string text)
         {
-            Interop.InputMethodContext.SetSurroundingText(swigCPtr, text);
+            Interop.InputMethodContext.SetSurroundingText(SwigCPtr, text);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -511,7 +511,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public string GetSurroundingText()
         {
-            string ret = Interop.InputMethodContext.GetSurroundingText(swigCPtr);
+            string ret = Interop.InputMethodContext.GetSurroundingText(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -523,7 +523,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public void NotifyTextInputMultiLine(bool multiLine)
         {
-            Interop.InputMethodContext.NotifyTextInputMultiLine(swigCPtr, multiLine);
+            Interop.InputMethodContext.NotifyTextInputMultiLine(SwigCPtr, multiLine);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -534,7 +534,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public InputMethodContext.TextDirection GetTextDirection()
         {
-            InputMethodContext.TextDirection ret = (InputMethodContext.TextDirection)Interop.InputMethodContext.GetTextDirection(swigCPtr);
+            InputMethodContext.TextDirection ret = (InputMethodContext.TextDirection)Interop.InputMethodContext.GetTextDirection(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -550,7 +550,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public Rectangle GetInputMethodArea()
         {
-            Rectangle ret = new Rectangle(Interop.InputMethodContext.GetInputMethodArea(swigCPtr), true);
+            Rectangle ret = new Rectangle(Interop.InputMethodContext.GetInputMethodArea(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -562,7 +562,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public void SetInputPanelUserData(string text)
         {
-            Interop.InputMethodContext.SetInputPanelUserData(swigCPtr, text);
+            Interop.InputMethodContext.SetInputPanelUserData(SwigCPtr, text);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -573,7 +573,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public void GetInputPanelUserData(out string text)
         {
-            Interop.InputMethodContext.GetInputPanelUserData(swigCPtr, out text);
+            Interop.InputMethodContext.GetInputPanelUserData(SwigCPtr, out text);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -584,7 +584,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public InputMethodContext.State GetInputPanelState()
         {
-            InputMethodContext.State ret = (InputMethodContext.State)Interop.InputMethodContext.GetInputPanelState(swigCPtr);
+            InputMethodContext.State ret = (InputMethodContext.State)Interop.InputMethodContext.GetInputPanelState(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -597,7 +597,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public void SetReturnKeyState(bool visible)
         {
-            Interop.InputMethodContext.SetReturnKeyState(swigCPtr, visible);
+            Interop.InputMethodContext.SetReturnKeyState(SwigCPtr, visible);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -608,7 +608,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public void AutoEnableInputPanel(bool enabled)
         {
-            Interop.InputMethodContext.AutoEnableInputPanel(swigCPtr, enabled);
+            Interop.InputMethodContext.AutoEnableInputPanel(SwigCPtr, enabled);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -618,7 +618,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public void ShowInputPanel()
         {
-            Interop.InputMethodContext.ShowInputPanel(swigCPtr);
+            Interop.InputMethodContext.ShowInputPanel(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -628,7 +628,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public void HideInputPanel()
         {
-            Interop.InputMethodContext.HideInputPanel(swigCPtr);
+            Interop.InputMethodContext.HideInputPanel(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -640,7 +640,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public InputMethodContext.KeyboardType GetKeyboardType()
         {
-            InputMethodContext.KeyboardType ret = (InputMethodContext.KeyboardType)Interop.InputMethodContext.GetKeyboardType(swigCPtr);
+            InputMethodContext.KeyboardType ret = (InputMethodContext.KeyboardType)Interop.InputMethodContext.GetKeyboardType(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -653,7 +653,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public string GetInputPanelLocale()
         {
-            string ret = Interop.InputMethodContext.GetInputPanelLocale(swigCPtr);
+            string ret = Interop.InputMethodContext.GetInputPanelLocale(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -666,7 +666,7 @@ namespace Tizen.NUI
         /// <since_tizen> 8 </since_tizen>
         public void SetMIMEType(string mimeType)
         {
-            Interop.InputMethodContext.SetMIMEType(swigCPtr, mimeType);
+            Interop.InputMethodContext.SetMIMEType(SwigCPtr, mimeType);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -678,7 +678,7 @@ namespace Tizen.NUI
         /// <since_tizen> 8 </since_tizen>
         public void SetInputPanelPosition(uint x, uint y)
         {
-            Interop.InputMethodContext.SetInputPanelPosition(swigCPtr, x, y);
+            Interop.InputMethodContext.SetInputPanelPosition(SwigCPtr, x, y);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -689,7 +689,7 @@ namespace Tizen.NUI
         /// <since_tizen> 8 </since_tizen>
         public void SetInputPanelLanguage(InputMethodContext.InputPanelLanguage language)
         {
-            Interop.InputMethodContext.SetInputPanelLanguage(swigCPtr, (int)language);
+            Interop.InputMethodContext.SetInputPanelLanguage(SwigCPtr, (int)language);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -700,14 +700,14 @@ namespace Tizen.NUI
         /// <since_tizen> 8 </since_tizen>
         public InputMethodContext.InputPanelLanguage GetInputPanelLanguage()
         {
-            InputMethodContext.InputPanelLanguage ret = (InputMethodContext.InputPanelLanguage)Interop.InputMethodContext.GetInputPanelLanguage(swigCPtr);
+            InputMethodContext.InputPanelLanguage ret = (InputMethodContext.InputPanelLanguage)Interop.InputMethodContext.GetInputPanelLanguage(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(InputMethodContext obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, IntPtr.Zero) : obj.SwigCPtr;
         }
 
         internal InputMethodContext(InputMethodContext inputMethodContext) : this(Interop.InputMethodContext.NewInputMethodContext(InputMethodContext.getCPtr(inputMethodContext)), true)
@@ -717,7 +717,7 @@ namespace Tizen.NUI
 
         internal InputMethodContext Assign(InputMethodContext inputMethodContext)
         {
-            InputMethodContext ret = new InputMethodContext(Interop.InputMethodContext.Assign(swigCPtr, InputMethodContext.getCPtr(inputMethodContext)), false);
+            InputMethodContext ret = new InputMethodContext(Interop.InputMethodContext.Assign(SwigCPtr, InputMethodContext.getCPtr(inputMethodContext)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -731,68 +731,68 @@ namespace Tizen.NUI
 
         internal void ApplyOptions(InputMethodOptions options)
         {
-            Interop.InputMethodContext.ApplyOptions(swigCPtr, InputMethodOptions.getCPtr(options));
+            Interop.InputMethodContext.ApplyOptions(SwigCPtr, InputMethodOptions.getCPtr(options));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void AllowTextPrediction(bool prediction)
         {
-            Interop.InputMethodContext.AllowTextPrediction(swigCPtr, prediction);
+            Interop.InputMethodContext.AllowTextPrediction(SwigCPtr, prediction);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal bool IsTextPredictionAllowed()
         {
-            bool ret = Interop.InputMethodContext.IsTextPredictionAllowed(swigCPtr);
+            bool ret = Interop.InputMethodContext.IsTextPredictionAllowed(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal ActivatedSignalType ActivatedSignal()
         {
-            ActivatedSignalType ret = new ActivatedSignalType(Interop.InputMethodContext.ActivatedSignal(swigCPtr), false);
+            ActivatedSignalType ret = new ActivatedSignalType(Interop.InputMethodContext.ActivatedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal KeyboardEventSignalType EventReceivedSignal()
         {
-            KeyboardEventSignalType ret = new KeyboardEventSignalType(Interop.InputMethodContext.EventReceivedSignal(swigCPtr), false);
+            KeyboardEventSignalType ret = new KeyboardEventSignalType(Interop.InputMethodContext.EventReceivedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal StatusSignalType StatusChangedSignal()
         {
-            StatusSignalType ret = new StatusSignalType(Interop.InputMethodContext.StatusChangedSignal(swigCPtr), false);
+            StatusSignalType ret = new StatusSignalType(Interop.InputMethodContext.StatusChangedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal KeyboardResizedSignalType ResizedSignal()
         {
-            KeyboardResizedSignalType ret = new KeyboardResizedSignalType(Interop.InputMethodContext.ResizedSignal(swigCPtr), false);
+            KeyboardResizedSignalType ret = new KeyboardResizedSignalType(Interop.InputMethodContext.ResizedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal LanguageChangedSignalType LanguageChangedSignal()
         {
-            LanguageChangedSignalType ret = new LanguageChangedSignalType(Interop.InputMethodContext.LanguageChangedSignal(swigCPtr), false);
+            LanguageChangedSignalType ret = new LanguageChangedSignalType(Interop.InputMethodContext.LanguageChangedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal KeyboardTypeSignalType KeyboardTypeChangedSignal()
         {
-            KeyboardTypeSignalType ret = new KeyboardTypeSignalType(Interop.InputMethodContext.KeyboardTypeChangedSignal(swigCPtr), false);
+            KeyboardTypeSignalType ret = new KeyboardTypeSignalType(Interop.InputMethodContext.KeyboardTypeChangedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal ContentReceivedSignalType ContentReceivedSignal()
         {
-            ContentReceivedSignalType ret = new ContentReceivedSignalType(Interop.InputMethodContext.ContentReceivedSignal(swigCPtr), false);
+            ContentReceivedSignalType ret = new ContentReceivedSignalType(Interop.InputMethodContext.ContentReceivedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -944,6 +944,8 @@ namespace Tizen.NUI
             /// The state if it owns memory
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
+            [Obsolete("Deprecated in API9, Will be removed in API11, Please use SwigCMemOwn which is declared in parent class")]
+            [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible instance fields", Justification = "<Pending>")]
             protected bool swigCMemOwn;
             private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
@@ -1102,6 +1104,8 @@ namespace Tizen.NUI
             /// The state if it owns memory
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
+            //ToDo : raise ACR as [Obsolete("This has been deprecated in API9 and will be removed in API11. Please use SwigCMemOwn which is declared in parent class")]
+            [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible instance fields", Justification = "<Pending>")]
             protected bool swigCMemOwn;
             private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 

@@ -734,6 +734,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(PixelSizeProperty, value);
+                selectorData?.PixelSize.UpdateIfNeeds(this, value);
                 NotifyPropertyChangedAndRequestLayout();
             }
         }
@@ -982,7 +983,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TextLabel obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         /// This will not be public opened.
@@ -995,10 +996,8 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Get attribues, it is abstract function and must be override.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override ViewStyle GetViewStyle()
+        protected override ViewStyle CreateViewStyle()
         {
             return new TextLabelStyle();
         }

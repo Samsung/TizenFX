@@ -29,7 +29,7 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(WatchApplication obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
@@ -113,13 +113,11 @@ namespace Tizen.NUI
         /// <summary>
         /// Event arguments that passed via time tick event signal.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public class TimeTickEventArgs : EventArgs
         {
             /// <summary>
             /// Application.
             /// </summary>
-            /// <since_tizen> 4 </since_tizen>
             public Application Application
             {
                 get;
@@ -129,7 +127,6 @@ namespace Tizen.NUI
             /// <summary>
             /// WatchTime.
             /// </summary>
-            /// <since_tizen> 4 </since_tizen>
             public WatchTime WatchTime
             {
                 get;
@@ -181,7 +178,7 @@ namespace Tizen.NUI
 
         internal WatchTimeSignal TimeTickSignal()
         {
-            WatchTimeSignal ret = new WatchTimeSignal(Interop.Watch.WatchApplicationTimeTickSignal(swigCPtr), false);
+            WatchTimeSignal ret = new WatchTimeSignal(Interop.Watch.WatchApplicationTimeTickSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -189,13 +186,11 @@ namespace Tizen.NUI
         /// <summary>
         /// Event arguments that passed via ambient tick event signal.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public class AmbientTickEventArgs : EventArgs
         {
             /// <summary>
             /// Application.
             /// </summary>
-            /// <since_tizen> 4 </since_tizen>
             public Application Application
             {
                 get;
@@ -205,7 +200,6 @@ namespace Tizen.NUI
             /// <summary>
             /// WatchTime.
             /// </summary>
-            /// <since_tizen> 4 </since_tizen>
             public WatchTime WatchTime
             {
                 get;
@@ -256,7 +250,7 @@ namespace Tizen.NUI
 
         internal WatchTimeSignal AmbientTickSignal()
         {
-            WatchTimeSignal ret = new WatchTimeSignal(Interop.Watch.WatchApplicationAmbientTickSignal(swigCPtr), false);
+            WatchTimeSignal ret = new WatchTimeSignal(Interop.Watch.WatchApplicationAmbientTickSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -264,13 +258,11 @@ namespace Tizen.NUI
         /// <summary>
         /// Event arguments that passed via ambient tick event signal.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public class AmbientChangedEventArgs : EventArgs
         {
             /// <summary>
             /// Application.
             /// </summary>
-            /// <since_tizen> 4 </since_tizen>
             public Application Application
             {
                 get;
@@ -280,7 +272,6 @@ namespace Tizen.NUI
             /// <summary>
             /// Changed.
             /// </summary>
-            /// <since_tizen> 4 </since_tizen>
             public bool Changed
             {
                 get;
@@ -330,7 +321,7 @@ namespace Tizen.NUI
 
         internal WatchBoolSignal AmbientChangedSignal()
         {
-            WatchBoolSignal ret = new WatchBoolSignal(Interop.Watch.WatchApplicationAmbientChangedSignal(swigCPtr), false);
+            WatchBoolSignal ret = new WatchBoolSignal(Interop.Watch.WatchApplicationAmbientChangedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

@@ -20,7 +20,6 @@ namespace Tizen.NUI
 {
     internal class EventThreadCallback : Disposable
     {
-        /// <since_tizen> 3 </since_tizen>
         public delegate void CallbackDelegate();
 
         internal EventThreadCallback(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
@@ -43,9 +42,9 @@ namespace Tizen.NUI
 
         public void Trigger()
         {
-            if ((System.IntPtr)swigCPtr != global::System.IntPtr.Zero)
+            if ((System.IntPtr)SwigCPtr != global::System.IntPtr.Zero)
             {
-                Interop.EventThreadCallback.Trigger(swigCPtr);
+                Interop.EventThreadCallback.Trigger(SwigCPtr);
             }
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)

@@ -53,6 +53,7 @@ namespace Tizen.NUI
         {
             PropertyValue val = PropertyValue.CreateFromObject(value);
             Add(progress, val);
+            val.Dispose();
         }
 
         /// <summary>
@@ -66,6 +67,7 @@ namespace Tizen.NUI
         {
             PropertyValue val = PropertyValue.CreateFromObject(value);
             Add(progress, val, alpha);
+            val.Dispose();
         }
 
         /// <summary>
@@ -75,7 +77,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public new PropertyType GetType()
         {
-            PropertyType ret = (PropertyType)Interop.KeyFrames.GetType(swigCPtr);
+            PropertyType ret = (PropertyType)Interop.KeyFrames.GetType(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -88,7 +90,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Add(float progress, PropertyValue value)
         {
-            Interop.KeyFrames.Add(swigCPtr, progress, PropertyValue.getCPtr(value));
+            Interop.KeyFrames.Add(SwigCPtr, progress, PropertyValue.getCPtr(value));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -101,13 +103,13 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Add(float progress, PropertyValue value, AlphaFunction alpha)
         {
-            Interop.KeyFrames.Add(swigCPtr, progress, PropertyValue.getCPtr(value), AlphaFunction.getCPtr(alpha));
+            Interop.KeyFrames.Add(SwigCPtr, progress, PropertyValue.getCPtr(value), AlphaFunction.getCPtr(alpha));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(KeyFrames obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         /// This will not be public opened.

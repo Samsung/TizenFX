@@ -9,9 +9,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.NUI
 {
+    [SuppressMessage("Microsoft.Design", "CA1001:Types that own disposable fields should be disposable", Justification = "This is a singleton class and is not disposed")]
     internal class DisposeQueue
     {
         private static readonly DisposeQueue _disposableQueue = new DisposeQueue();
@@ -26,6 +28,7 @@ namespace Tizen.NUI
 
         ~DisposeQueue()
         {
+            Tizen.Log.Debug("NUI",$"DisposeQueue is destroyed\n");
         }
 
         public static DisposeQueue Instance

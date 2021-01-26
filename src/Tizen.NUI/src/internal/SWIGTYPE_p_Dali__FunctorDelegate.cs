@@ -25,7 +25,6 @@ namespace Tizen.NUI
         /// <summary>
         /// The Constructor.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         protected SWIGTYPE_p_Dali__FunctorDelegate()
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);

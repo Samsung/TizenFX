@@ -247,22 +247,17 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// Dispose CircularProgressStyle and all children on it.
         /// </summary>
-        /// <param name="type">Dispose type.</param>
+        /// <param name="disposing">true in order to free managed objects</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void Dispose(DisposeTypes type)
+        protected override void Dispose(bool disposing)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
+            if (disposing)
             {
                 trackColor?.Dispose();
                 progressColor?.Dispose();
             }
 
-            base.Dispose(type);
+            base.Dispose(disposing);
         }
 
         private void Initialize()

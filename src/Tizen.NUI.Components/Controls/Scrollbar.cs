@@ -243,7 +243,7 @@ namespace Tizen.NUI.Components
                 trackVisual = new ColorVisual
                 {
                     SuppressUpdateVisual = true,
-                    Color = TrackColor,
+                    MixColor = TrackColor,
                     SizePolicy = VisualTransformPolicyType.Absolute,
                     Origin = calculator.CalculatorTrackAlign(),
                     AnchorPoint = calculator.CalculatorTrackAlign(),
@@ -633,7 +633,7 @@ namespace Tizen.NUI.Components
             {
                 float padding = ((trackSize.Height - thumbSize.Height) / 2.0f) + trackPadding?.Bottom ?? 0;
                 float pos = Math.Min(Math.Max(currentPosition, 0.0f), contentLength - visibleLength);
-                return new Vector2(trackPadding?.Start ?? 0 + trackSize.Width * pos / contentLength, -padding);
+                return new Vector2((trackPadding?.Start ?? 0) + trackSize.Width * pos / contentLength, -padding);
             }
 
             public override Vector2 CalculateThumbPaddingPosition(Size trackSize, Size thumbSize, Vector2 thumbCurrentPosition, Extents trackPadding)
@@ -645,7 +645,7 @@ namespace Tizen.NUI.Components
             public override Vector2 CalculateThumbScrollPosition(Size trackSize, Vector2 thumbCurrentPosition, Extents trackPadding)
             {
                 float pos = Math.Min(Math.Max(currentPosition, 0.0f), contentLength - visibleLength);
-                return new Vector2(trackPadding?.Start ?? 0 + trackSize.Width * pos / contentLength, thumbCurrentPosition.Y);
+                return new Vector2((trackPadding?.Start ?? 0) + trackSize.Width * pos / contentLength, thumbCurrentPosition.Y);
             }
         }
 

@@ -39,11 +39,16 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// Transition animation effect
+    /// Transition animation effect.
+    /// This is normally used to specify transitions for a NUIApplication.
     /// </summary>
+    /// <seealso cref="TransitionOptions.ForwardAnimation" />
+    /// <seealso cref="TransitionOptions.BackwardAnimation" />
+    /// <seealso cref="NUIApplication.TransitionOptions" />
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class TransitionAnimation
+    public class TransitionAnimation : IDisposable
     {
+        private bool disposed = false;
         private ImageViewStyle defaultImageStyle;
         private List<TransitionAnimationData> animationDataList;
         
@@ -135,6 +140,28 @@ namespace Tizen.NUI
             {
                 defaultImageStyle = value;
             }
+        }
+
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed)
+            {
+                return;
+            }
+            if (disposing)
+            {
+                defaultImageStyle?.Dispose();
+            }
+            disposed = true;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Dispose()
+        {
+            Dispose(true);
+            global::System.GC.SuppressFinalize(this);
         }
     }
 

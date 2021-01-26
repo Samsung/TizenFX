@@ -45,7 +45,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public uint GetArgumentCount()
         {
-            uint ret = Interop.PropertyCondition.GetArgumentCount(swigCPtr);
+            uint ret = Interop.PropertyCondition.GetArgumentCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -58,7 +58,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public float GetArgument(uint index)
         {
-            float ret = Interop.PropertyCondition.GetArgument(swigCPtr, index);
+            float ret = Interop.PropertyCondition.GetArgument(SwigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -146,7 +146,7 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PropertyCondition obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         /// This will not be public opened.

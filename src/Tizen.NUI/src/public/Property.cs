@@ -25,7 +25,6 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="arg0">A valid handle to the target object.</param>
         /// <param name="propertyIndex">The index of a property.</param>
-        /// <since_tizen> 3 </since_tizen>
         public Property(Animatable arg0, int propertyIndex) : this(Interop.Property.NewProperty(Animatable.getCPtr(arg0), propertyIndex), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -37,7 +36,6 @@ namespace Tizen.NUI
         /// <param name="arg0">A valid handle to the target object.</param>
         /// <param name="propertyIndex">The index of a property.</param>
         /// <param name="componentIndex">Index to a sub component of a property, for use with Vector2, Vector3 and Vector4. -1 for the main property (default is -1).</param>
-        /// <since_tizen> 3 </since_tizen>
         public Property(Animatable arg0, int propertyIndex, int componentIndex) : this(Interop.Property.NewProperty(Animatable.getCPtr(arg0), propertyIndex, componentIndex), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -49,7 +47,6 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="arg0">A valid handle to the target object.</param>
         /// <param name="propertyName">The property name.</param>
-        /// <since_tizen> 3 </since_tizen>
         public Property(Animatable arg0, string propertyName) : this(Interop.Property.NewProperty(Animatable.getCPtr(arg0), propertyName), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -62,7 +59,6 @@ namespace Tizen.NUI
         /// <param name="arg0">A valid handle to the target object.</param>
         /// <param name="propertyName">The property name.</param>
         /// <param name="componentIndex">Index to a sub component of a property, for use with Vector2, Vector3 and Vector4. -1 for main property (default is -1).</param>
-        /// <since_tizen> 3 </since_tizen>
         public Property(Animatable arg0, string propertyName, int componentIndex) : this(Interop.Property.NewProperty(Animatable.getCPtr(arg0), propertyName, componentIndex), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -75,17 +71,16 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets the index of the property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
         public int propertyIndex
         {
             set
             {
-                Interop.Property.PropertyIndexSet(swigCPtr, value);
+                Interop.Property.PropertyIndexSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                int ret = Interop.Property.PropertyIndexGet(swigCPtr);
+                int ret = Interop.Property.PropertyIndexGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -94,17 +89,16 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets the component index of the property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
         public int componentIndex
         {
             set
             {
-                Interop.Property.ComponentIndexSet(swigCPtr, value);
+                Interop.Property.ComponentIndexSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                int ret = Interop.Property.ComponentIndexGet(swigCPtr);
+                int ret = Interop.Property.ComponentIndexGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -144,12 +138,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Property.ObjectSet(swigCPtr, Animatable.getCPtr(value));
+                Interop.Property.ObjectSet(SwigCPtr, Animatable.getCPtr(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                Animatable ret = new Animatable(Interop.Property.ObjectGet(swigCPtr), false);
+                Animatable ret = new Animatable(Interop.Property.ObjectGet(SwigCPtr), false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -157,7 +151,7 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Property obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)

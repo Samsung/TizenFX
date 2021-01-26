@@ -66,30 +66,24 @@ namespace Tizen.NUI
         {
             add
             {
-                lock (this)
+                // Restricted to only one listener
+                if (_propertyNotificationNotifyEventHandler == null)
                 {
-                    // Restricted to only one listener
-                    if (_propertyNotificationNotifyEventHandler == null)
-                    {
-                        _propertyNotificationNotifyEventHandler += value;
+                    _propertyNotificationNotifyEventHandler += value;
 
-                        _propertyNotificationNotifyEventCallbackDelegate = new NotifyEventCallbackDelegate(OnPropertyNotificationNotify);
-                        this.NotifySignal().Connect(_propertyNotificationNotifyEventCallbackDelegate);
-                    }
+                    _propertyNotificationNotifyEventCallbackDelegate = new NotifyEventCallbackDelegate(OnPropertyNotificationNotify);
+                    this.NotifySignal().Connect(_propertyNotificationNotifyEventCallbackDelegate);
                 }
             }
 
             remove
             {
-                lock (this)
+                if (_propertyNotificationNotifyEventHandler != null)
                 {
-                    if (_propertyNotificationNotifyEventHandler != null)
-                    {
-                        this.NotifySignal().Disconnect(_propertyNotificationNotifyEventCallbackDelegate);
-                    }
-
-                    _propertyNotificationNotifyEventHandler -= value;
+                    this.NotifySignal().Disconnect(_propertyNotificationNotifyEventCallbackDelegate);
                 }
+
+                _propertyNotificationNotifyEventHandler -= value;
             }
         }
 
@@ -168,7 +162,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyNotification Assign(PropertyNotification rhs)
         {
-            PropertyNotification ret = new PropertyNotification(Interop.PropertyNotification.Assign(swigCPtr, PropertyNotification.getCPtr(rhs)), false);
+            PropertyNotification ret = new PropertyNotification(Interop.PropertyNotification.Assign(SwigCPtr, PropertyNotification.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -180,7 +174,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public PropertyCondition GetCondition()
         {
-            PropertyCondition ret = new PropertyCondition(Interop.PropertyNotification.GetCondition(swigCPtr), true);
+            PropertyCondition ret = new PropertyCondition(Interop.PropertyNotification.GetCondition(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -191,7 +185,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public Animatable GetTarget()
         {
-            BaseHandle ret = Registry.GetManagedBaseHandleFromNativePtr(Interop.PropertyNotification.GetTarget(swigCPtr));
+            BaseHandle ret = Registry.GetManagedBaseHandleFromNativePtr(Interop.PropertyNotification.GetTarget(SwigCPtr));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret as Animatable;
         }
@@ -203,7 +197,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public int GetTargetProperty()
         {
-            int ret = Interop.PropertyNotification.GetTargetProperty(swigCPtr);
+            int ret = Interop.PropertyNotification.GetTargetProperty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -215,7 +209,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public void SetNotifyMode(PropertyNotification.NotifyMode mode)
         {
-            Interop.PropertyNotification.SetNotifyMode(swigCPtr, (int)mode);
+            Interop.PropertyNotification.SetNotifyMode(SwigCPtr, (int)mode);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -226,7 +220,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public PropertyNotification.NotifyMode GetNotifyMode()
         {
-            PropertyNotification.NotifyMode ret = (PropertyNotification.NotifyMode)Interop.PropertyNotification.GetNotifyMode(swigCPtr);
+            PropertyNotification.NotifyMode ret = (PropertyNotification.NotifyMode)Interop.PropertyNotification.GetNotifyMode(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -238,7 +232,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public bool GetNotifyResult()
         {
-            bool ret = Interop.PropertyNotification.GetNotifyResult(swigCPtr);
+            bool ret = Interop.PropertyNotification.GetNotifyResult(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -253,14 +247,14 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyNotifySignal NotifySignal()
         {
-            PropertyNotifySignal ret = new PropertyNotifySignal(Interop.PropertyNotification.NotifySignal(swigCPtr), false);
+            PropertyNotifySignal ret = new PropertyNotifySignal(Interop.PropertyNotification.NotifySignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PropertyNotification obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         /// This will not be public opened.

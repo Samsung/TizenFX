@@ -25,7 +25,9 @@ namespace Tizen.NUI
 {
     /// <summary>
     /// Setting screen transition options.
+    /// This is used to describe the transition of NUIApplication.
     /// </summary>
+    /// <seealso cref="NUIApplication.TransitionOptions" />
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class TransitionOptions : IDisposable
     {
@@ -219,6 +221,11 @@ namespace Tizen.NUI
             this.frameBroker.SendLaunchRequest(appControl, true);
         }
 
+        /// <summary>
+        /// Hidden API (Inhouse API).
+        /// Dispose.
+        /// </summary>
+        /// <param name="disposing"></param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void Dispose(bool disposing)
         {
@@ -244,6 +251,7 @@ namespace Tizen.NUI
         public void Dispose()
         {
             Dispose(true);
+            System.GC.SuppressFinalize(this);
         }
     }
 }

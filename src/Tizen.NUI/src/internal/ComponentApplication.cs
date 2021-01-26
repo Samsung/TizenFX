@@ -92,30 +92,24 @@ namespace Tizen.NUI
         {
             add
             {
-                lock (this)
+                // Restricted to only one listener
+                if (_applicationCreateNativeEventHandler == null)
                 {
-                    // Restricted to only one listener
-                    if (_applicationCreateNativeEventHandler == null)
-                    {
-                        _applicationCreateNativeEventHandler += value;
+                    _applicationCreateNativeEventHandler += value;
 
-                        _applicationCreateNativeEventCallbackDelegate = new NUIComponentApplicationCreatenativeEventCallbackDelegate(OnApplicationCreateNative);
-                        Connect(_applicationCreateNativeEventCallbackDelegate);
-                    }
+                    _applicationCreateNativeEventCallbackDelegate = new NUIComponentApplicationCreatenativeEventCallbackDelegate(OnApplicationCreateNative);
+                    Connect(_applicationCreateNativeEventCallbackDelegate);
                 }
             }
 
             remove
             {
-                lock (this)
+                if (_applicationCreateNativeEventHandler != null)
                 {
-                    if (_applicationCreateNativeEventHandler != null)
-                    {
-                        Disconnect(_applicationCreateNativeEventCallbackDelegate);
-                    }
-
-                    _applicationCreateNativeEventHandler -= value;
+                    Disconnect(_applicationCreateNativeEventCallbackDelegate);
                 }
+
+                _applicationCreateNativeEventHandler -= value;
             }
         }
 

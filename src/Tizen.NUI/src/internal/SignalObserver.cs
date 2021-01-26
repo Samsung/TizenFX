@@ -38,10 +38,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="slotObserver">The signal that has disconnected</param>
         /// <param name="callback">The callback attached to the signal disconnected</param>
-        /// <since_tizen> 4 </since_tizen>
         public virtual void SignalDisconnected(SlotObserver slotObserver, SWIGTYPE_p_Dali__CallbackBase callback)
         {
-            Interop.SignalObserver.SignalDisconnected(swigCPtr, SlotObserver.getCPtr(slotObserver), SWIGTYPE_p_Dali__CallbackBase.getCPtr(callback));
+            Interop.SignalObserver.SignalDisconnected(SwigCPtr, SlotObserver.getCPtr(slotObserver), SWIGTYPE_p_Dali__CallbackBase.getCPtr(callback));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
     }

@@ -51,12 +51,16 @@ namespace Tizen.NUI
             get
             {
                 Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
-                Tizen.NUI.Object.GetProperty(swigCPtr, Path.Property.POINTS).Get(temp);
+                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Path.Property.POINTS);
+                pValue.Get(temp);
+                pValue.Dispose();
                 return temp;
             }
             set
             {
-                Tizen.NUI.Object.SetProperty(swigCPtr, Path.Property.POINTS, new Tizen.NUI.PropertyValue(value));
+                var temp = new Tizen.NUI.PropertyValue(value);
+                Tizen.NUI.Object.SetProperty(SwigCPtr, Path.Property.POINTS, temp);
+                temp.Dispose();
             }
         }
 
@@ -69,12 +73,16 @@ namespace Tizen.NUI
             get
             {
                 Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
-                Tizen.NUI.Object.GetProperty(swigCPtr, Path.Property.ControlPoints).Get(temp);
+                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Path.Property.ControlPoints);
+                pValue.Get(temp);
+                pValue.Dispose();
                 return temp;
             }
             set
             {
-                Tizen.NUI.Object.SetProperty(swigCPtr, Path.Property.ControlPoints, new Tizen.NUI.PropertyValue(value));
+                var temp = new Tizen.NUI.PropertyValue(value);
+                Tizen.NUI.Object.SetProperty(SwigCPtr, Path.Property.ControlPoints, temp);
+                temp.Dispose();
             }
         }
 
@@ -85,7 +93,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void AddPoint(Position point)
         {
-            Interop.Path.AddPoint(swigCPtr, Position.getCPtr(point));
+            Interop.Path.AddPoint(SwigCPtr, Position.getCPtr(point));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -96,7 +104,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void AddControlPoint(Vector3 point)
         {
-            Interop.Path.AddControlPoint(swigCPtr, Vector3.getCPtr(point));
+            Interop.Path.AddControlPoint(SwigCPtr, Vector3.getCPtr(point));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -112,7 +120,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void GenerateControlPoints(float curvature)
         {
-            Interop.Path.GenerateControlPoints(swigCPtr, curvature);
+            Interop.Path.GenerateControlPoints(SwigCPtr, curvature);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -125,7 +133,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Sample(float progress, Vector3 position, Vector3 tangent)
         {
-            Interop.Path.Sample(swigCPtr, progress, Vector3.getCPtr(position), Vector3.getCPtr(tangent));
+            Interop.Path.Sample(SwigCPtr, progress, Vector3.getCPtr(position), Vector3.getCPtr(tangent));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -136,7 +144,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public Vector3 GetPoint(uint index)
         {
-            Vector3 ret = new Vector3(Interop.Path.GetPoint(swigCPtr, index), false);
+            Vector3 ret = new Vector3(Interop.Path.GetPoint(SwigCPtr, index), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -148,7 +156,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public Vector3 GetControlPoint(uint index)
         {
-            Vector3 ret = new Vector3(Interop.Path.GetControlPoint(swigCPtr, index), false);
+            Vector3 ret = new Vector3(Interop.Path.GetControlPoint(SwigCPtr, index), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -160,14 +168,14 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public uint GetPointCount()
         {
-            uint ret = Interop.Path.GetPointCount(swigCPtr);
+            uint ret = Interop.Path.GetPointCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Path obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         /// This will not be public opened.

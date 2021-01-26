@@ -29,13 +29,12 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ConnectionTrackerInterface obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         /// <summary>
         /// Dispose
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.ConnectionTracker.DeleteConnectionTrackerInterface(swigCPtr);
@@ -46,10 +45,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="slotObserver">The slot observer i.e. a signal. Ownership is not passed</param>
         /// <param name="callback">The call back. Ownership is not passed</param>
-        /// <since_tizen> 4 </since_tizen>
         public virtual void SignalConnected(SlotObserver slotObserver, SWIGTYPE_p_CallbackBase callback)
         {
-            Interop.ConnectionTracker.ConnectionTrackerInterfaceSignalConnected(swigCPtr, SlotObserver.getCPtr(slotObserver), SWIGTYPE_p_CallbackBase.getCPtr(callback));
+            Interop.ConnectionTracker.ConnectionTrackerInterfaceSignalConnected(SwigCPtr, SlotObserver.getCPtr(slotObserver), SWIGTYPE_p_CallbackBase.getCPtr(callback));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
     }

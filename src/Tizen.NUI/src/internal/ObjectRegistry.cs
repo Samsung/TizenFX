@@ -28,7 +28,7 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ObjectRegistry obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
@@ -36,12 +36,10 @@ namespace Tizen.NUI
             Interop.ObjectRegistry.DeleteObjectRegistry(swigCPtr);
         }
 
-        /// <since_tizen> 3 </since_tizen>
         public class ObjectCreatedEventArgs : EventArgs
         {
             private BaseHandle _baseHandle;
 
-            /// <since_tizen> 3 </since_tizen>
             public BaseHandle BaseHandle
             {
                 get
@@ -55,12 +53,10 @@ namespace Tizen.NUI
             }
         }
 
-        /// <since_tizen> 3 </since_tizen>
         public class ObjectDestroyedEventArgs : EventArgs
         {
             private RefObject _refObject;
 
-            /// <since_tizen> 3 </since_tizen>
             public RefObject RefObject
             {
                 get
@@ -88,30 +84,24 @@ namespace Tizen.NUI
         {
             add
             {
-                lock (this)
+                // Restricted to only one listener
+                if (_objectRegistryObjectCreatedEventHandler == null)
                 {
-                    // Restricted to only one listener
-                    if (_objectRegistryObjectCreatedEventHandler == null)
-                    {
-                        _objectRegistryObjectCreatedEventHandler += value;
+                    _objectRegistryObjectCreatedEventHandler += value;
 
-                        _objectRegistryObjectCreatedEventCallbackDelegate = new ObjectCreatedEventCallbackDelegate(OnObjectCreated);
-                        this.ObjectCreatedSignal().Connect(_objectRegistryObjectCreatedEventCallbackDelegate);
-                    }
+                    _objectRegistryObjectCreatedEventCallbackDelegate = new ObjectCreatedEventCallbackDelegate(OnObjectCreated);
+                    this.ObjectCreatedSignal().Connect(_objectRegistryObjectCreatedEventCallbackDelegate);
                 }
             }
 
             remove
             {
-                lock (this)
+                if (_objectRegistryObjectCreatedEventHandler != null)
                 {
-                    if (_objectRegistryObjectCreatedEventHandler != null)
-                    {
-                        this.ObjectCreatedSignal().Disconnect(_objectRegistryObjectCreatedEventCallbackDelegate);
-                    }
-
-                    _objectRegistryObjectCreatedEventHandler -= value;
+                    this.ObjectCreatedSignal().Disconnect(_objectRegistryObjectCreatedEventCallbackDelegate);
                 }
+
+                _objectRegistryObjectCreatedEventHandler -= value;
             }
         }
 
@@ -134,30 +124,24 @@ namespace Tizen.NUI
         {
             add
             {
-                lock (this)
+                // Restricted to only one listener
+                if (_objectRegistryObjectDestroyedEventHandler == null)
                 {
-                    // Restricted to only one listener
-                    if (_objectRegistryObjectDestroyedEventHandler == null)
-                    {
-                        _objectRegistryObjectDestroyedEventHandler += value;
+                    _objectRegistryObjectDestroyedEventHandler += value;
 
-                        _objectRegistryObjectDestroyedEventCallbackDelegate = new ObjectDestroyedEventCallbackDelegate(OnObjectDestroyed);
-                        this.ObjectDestroyedSignal().Connect(_objectRegistryObjectDestroyedEventCallbackDelegate);
-                    }
+                    _objectRegistryObjectDestroyedEventCallbackDelegate = new ObjectDestroyedEventCallbackDelegate(OnObjectDestroyed);
+                    this.ObjectDestroyedSignal().Connect(_objectRegistryObjectDestroyedEventCallbackDelegate);
                 }
             }
 
             remove
             {
-                lock (this)
+                if (_objectRegistryObjectDestroyedEventHandler != null)
                 {
-                    if (_objectRegistryObjectDestroyedEventHandler != null)
-                    {
-                        this.ObjectDestroyedSignal().Disconnect(_objectRegistryObjectDestroyedEventCallbackDelegate);
-                    }
-
-                    _objectRegistryObjectDestroyedEventHandler -= value;
+                    this.ObjectDestroyedSignal().Disconnect(_objectRegistryObjectDestroyedEventCallbackDelegate);
                 }
+
+                _objectRegistryObjectDestroyedEventHandler -= value;
             }
         }
 
@@ -189,21 +173,21 @@ namespace Tizen.NUI
 
         public ObjectRegistry Assign(ObjectRegistry rhs)
         {
-            ObjectRegistry ret = new ObjectRegistry(Interop.ObjectRegistry.Assign(swigCPtr, ObjectRegistry.getCPtr(rhs)), false);
+            ObjectRegistry ret = new ObjectRegistry(Interop.ObjectRegistry.Assign(SwigCPtr, ObjectRegistry.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public ObjectCreatedSignal ObjectCreatedSignal()
         {
-            ObjectCreatedSignal ret = new ObjectCreatedSignal(Interop.ObjectRegistry.ObjectCreatedSignal(swigCPtr), false);
+            ObjectCreatedSignal ret = new ObjectCreatedSignal(Interop.ObjectRegistry.ObjectCreatedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public ObjectDestroyedSignal ObjectDestroyedSignal()
         {
-            ObjectDestroyedSignal ret = new ObjectDestroyedSignal(Interop.ObjectRegistry.ObjectDestroyedSignal(swigCPtr), false);
+            ObjectDestroyedSignal ret = new ObjectDestroyedSignal(Interop.ObjectRegistry.ObjectDestroyedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

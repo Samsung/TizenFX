@@ -32,6 +32,8 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 8 </since_tizen>
     public class RadioButton : SelectButton
     {
+        private bool selectedAgain = false;
+
         static RadioButton() { }
 
         /// <summary>
@@ -85,19 +87,6 @@ namespace Tizen.NUI.Components
             }
         }
 
-        /// <summary>
-        /// Set CheckState to true after selecting RadioButton.
-        /// </summary>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void OnSelectedChanged()
-        {
-            if (!IsSelected)
-            {
-                IsSelected = true;
-            }
-        }
-
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override ImageView CreateIcon()
@@ -111,6 +100,87 @@ namespace Tizen.NUI.Components
                 HeightResizePolicy = ResizePolicyType.SizeRelativeToParent,
                 SizeModeFactor = new Vector3(1, 1, 1),
             };
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool OnKey(Key key)
+        {
+            if ((IsEnabled == false) || (key == null))
+            {
+                return false;
+            }
+
+            if (key.State == Key.StateType.Up)
+            {
+                if (key.KeyPressedName == "Return")
+                {
+                    if (IsSelected == true)
+                    {
+                        selectedAgain = true;
+                    }
+                }
+            }
+
+            bool ret = base.OnKey(key);
+
+            if (selectedAgain == true)
+            {
+                IsSelected = true;
+                selectedAgain = false;
+            }
+
+            return ret;
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override bool HandleControlStateOnTouch(Touch touch)
+        {
+            if ((IsEnabled == false) || (touch == null))
+            {
+                return false;
+            }
+
+            PointStateType state = touch.GetState(0);
+            switch (state)
+            {
+                case PointStateType.Up:
+                    if (IsSelected == true)
+                    {
+                        selectedAgain = true;
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+            bool ret = base.HandleControlStateOnTouch(touch);
+
+            if (selectedAgain == true)
+            {
+                IsSelected = true;
+                selectedAgain = false;
+            }
+
+            return ret;
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void OnControlStateChanged(ControlStateChangedEventArgs info)
+        {
+            if (info.PreviousState.Contains(ControlState.Selected) != info.CurrentState.Contains(ControlState.Selected))
+            {
+                // RadioButton does not invoke SelectedChanged if button or key
+                // is unpressed while its state is selected.
+                if (selectedAgain == true)
+                {
+                    return;
+                }
+
+                base.OnControlStateChanged(info);
+            }
         }
     }
 }

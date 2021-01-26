@@ -30,15 +30,11 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         protected bool disposed = false;
 
-        /// This will not be public.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected bool swigCMemOwn;
-
-        /// This will not be public.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        private bool swigCMemOwn { get; set; }
         private bool isDisposeQueued = false;
+
+        private bool disposedThis = false;
 
         /// <summary>
         /// Create an instance of Disposable.
@@ -62,14 +58,7 @@ namespace Tizen.NUI
         /// Dispose.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        ~Disposable()
-        {
-            if (!isDisposeQueued)
-            {
-                isDisposeQueued = true;
-                DisposeQueue.Instance.Add(this);
-            }
-        }
+        ~Disposable() => Dispose(false);
 
         /// <summary>
         /// Dispose.
@@ -77,22 +66,62 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public void Dispose()
         {
-            //Throw excpetion if Dispose() is called in separate thread.
-            if (!Window.IsInstalled())
+            Dispose(true);
+            System.GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Hidden API (Inhouse API).
+        /// Dispose. 
+        /// </summary>
+        /// <remarks>
+        /// Following the guide of https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose.
+        /// This will replace "protected virtual void Dispose(DisposeTypes type)" which is exactly same in functionality.
+        /// </remarks>
+        /// <param name="disposing">true in order to free managed objects</param>
+        // Protected implementation of Dispose pattern.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposedThis)
             {
-                Tizen.Log.Error("NUI", "This API called from separate thread. This API must be called from MainThread.");
                 return;
             }
 
-            if (isDisposeQueued)
+            if (disposing)
             {
-                Dispose(DisposeTypes.Implicit);
+                // TODO: dispose managed state (managed objects).
+                // Explicit call. user calls Dispose()
+
+                //Throw excpetion if Dispose() is called in separate thread.
+                if (!Window.IsInstalled())
+                {
+                    throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
+                }
+
+                if (isDisposeQueued)
+                {
+                    Dispose(DisposeTypes.Implicit);
+                }
+                else
+                {
+                    Dispose(DisposeTypes.Explicit);
+                }
             }
             else
             {
-                Dispose(DisposeTypes.Explicit);
-                System.GC.SuppressFinalize(this);
+                // Implicit call. user doesn't call Dispose(), so this object is added into DisposeQueue to be disposed automatically.
+                if (!isDisposeQueued)
+                {
+                    isDisposeQueued = true;
+                    DisposeQueue.Instance.Add(this);
+                }
             }
+
+            // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
+            // TODO: set large fields to null.
+
+            disposedThis = true;
         }
 
         /// <summary>
@@ -118,7 +147,7 @@ namespace Tizen.NUI
             //because the execution order of Finalizes is non-deterministic.
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
-                if (swigCMemOwn)
+                if (SwigCMemOwn)
                 {
                     swigCMemOwn = false;
                     ReleaseSwigCPtr(swigCPtr);
@@ -142,6 +171,18 @@ namespace Tizen.NUI
         internal global::System.Runtime.InteropServices.HandleRef SwigCPtr
         {
             get => swigCPtr;
+            set
+            {
+                swigCPtr = value;
+            }
         }
+
+        internal bool SwigCMemOwn => swigCMemOwn;
+
+        /// <summary>
+        /// A Flag to check if it is already disposed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal bool Disposed => disposed;
     }
 }
