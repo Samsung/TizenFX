@@ -41,6 +41,8 @@ namespace Tizen.NUI
         private Size2D _windowSize2D = null;
         private Position2D _windowPosition2D = null;
         private TransitionOptions transitionOptions;
+        private string appId = null;
+        internal static NUIApplication me;
 
         private static bool isPreLoad = false;
 
@@ -51,6 +53,7 @@ namespace Tizen.NUI
         public NUIApplication() : base(new NUICoreBackend())
         {
             Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
+            me = this;
         }
 
         /// <summary>
@@ -66,6 +69,7 @@ namespace Tizen.NUI
             Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
             _windowSize2D = windowSize;
             _windowPosition2D = windowPosition;
+            me = this;
         }
 
         /// <summary>
@@ -76,6 +80,7 @@ namespace Tizen.NUI
         public NUIApplication(string styleSheet) : base(new NUICoreBackend(styleSheet))
         {
             Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
+            me = this;
         }
 
         /// <summary>
@@ -92,6 +97,7 @@ namespace Tizen.NUI
             Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
             _windowSize2D = windowSize;
             _windowPosition2D = windowPosition;
+            me = this;
         }
 
         /// <summary>
@@ -103,6 +109,7 @@ namespace Tizen.NUI
         public NUIApplication(string styleSheet, WindowMode windowMode) : base(new NUICoreBackend(styleSheet, windowMode))
         {
             Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
+            me = this;
         }
 
         /// <summary>
@@ -120,6 +127,7 @@ namespace Tizen.NUI
             Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
             _windowSize2D = windowSize;
             _windowPosition2D = windowPosition;
+            me = this;
         }
 
         /// <summary>
@@ -142,6 +150,7 @@ namespace Tizen.NUI
             if (windowSize != null) { _windowSize2D = windowSize; }
             if (windowPosition != null) { _windowPosition2D = windowPosition; }
             Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
+            me = this;
         }
 
         /// <summary>
@@ -201,6 +210,19 @@ namespace Tizen.NUI
             get
             {
                 return GetDefaultWindow();
+            }
+        }
+
+        /// <summary>
+        /// Gets the Application Id.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string AppId
+        {
+            get
+            {
+                return appId;
             }
         }
 
@@ -377,6 +399,7 @@ namespace Tizen.NUI
         protected override void OnCreate()
         {
             base.OnCreate();
+            appId = Tizen.Applications.Application.Current.ApplicationInfo.ApplicationId;
         }
 
         /// <summary>
