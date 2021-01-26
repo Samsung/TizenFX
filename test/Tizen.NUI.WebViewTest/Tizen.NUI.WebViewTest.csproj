@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <AssemblyName>Tizen.NUI.WebViewTest</AssemblyName>
+    <SignAssembly>true</SignAssembly>
+    <PackageId>Tizen.NUI.WebViewTest</PackageId>
+    <Authors>Tizen.NUI.WebViewTest</Authors>
+    <Company>Tizen.NUI.WebViewTest</Company>
+    <Product>Tizen.NUI.WebViewTest</Product>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugType>portable</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>None</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+	<PackageReference Include="Tizen.NET" Version="8.0.0.15722" />
+	<PackageReference Include="Tizen.NET.Sdk" Version="1.0.9" />
+  </ItemGroup>
+
+</Project>
+
