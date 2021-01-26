@@ -176,8 +176,8 @@ namespace Tizen.Applications.Messages
 
                     args.Remote = new RemoteValues()
                     {
-                        AppId = remoteAppId,
-                        PortName = remotePortName,
+                        AppId = remoteAppId != null ? remoteAppId : String.Empty,
+                        PortName = remotePortName != null ? remotePortName : String.Empty,
                         Trusted = trusted
                     };
                     MessageReceived?.Invoke(this, args);
