@@ -168,6 +168,7 @@ namespace Tizen.NUI
             internal static readonly int ScrollPosition = Interop.WebView.ScrollPositionGet();
             internal static readonly int ScrollSize = Interop.WebView.ScrollSizeGet();
             internal static readonly int ContentSize = Interop.WebView.ContentSizeGet();
+            internal static readonly int Title = Interop.WebView.TitleGet();
         }
 
         private static readonly BindableProperty UrlProperty = BindableProperty.Create(nameof(Url), typeof(string), typeof(WebView), string.Empty, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
@@ -213,7 +214,7 @@ namespace Tizen.NUI
         defaultValueCreator: (bindable) =>
         {
             var webview = (WebView)bindable;
-            Vector2 temp = new Vector2(0.0f, 0.0f); ;
+            Vector2 temp = new Vector2(0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.ScrollPosition).Get(temp);
             return temp;
         });
@@ -221,7 +222,7 @@ namespace Tizen.NUI
         private static readonly BindableProperty ScrollSizeProperty = BindableProperty.Create(nameof(ScrollSize), typeof(Vector2), typeof(WebView), null, defaultValueCreator: (bindable) =>
         {
             var webview = (WebView)bindable;
-            Vector2 temp = new Vector2(0.0f, 0.0f); ;
+            Vector2 temp = new Vector2(0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.ScrollSize).Get(temp);
             return temp;
         });
@@ -229,9 +230,17 @@ namespace Tizen.NUI
         private static readonly BindableProperty ContentSizeProperty = BindableProperty.Create(nameof(ContentSize), typeof(Vector2), typeof(WebView), null, defaultValueCreator: (bindable) =>
         {
             var webview = (WebView)bindable;
-            Vector2 temp = new Vector2(0.0f, 0.0f); ;
+            Vector2 temp = new Vector2(0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.ContentSize).Get(temp);
             return temp;
+        });
+
+        private static readonly BindableProperty TitleProperty = BindableProperty.Create(nameof(Title), typeof(string), typeof(WebView), null, defaultValueCreator: (bindable) =>
+        {
+            var webview = (WebView)bindable;
+            string title;
+            Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.Title).Get(out title);
+            return title;
         });
 
         /// <summary>
@@ -250,6 +259,17 @@ namespace Tizen.NUI
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public WebView(string locale, string timezoneId) : this(Interop.WebView.New2(locale, timezoneId), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Creates an uninitialized WebView.
+        /// <param name="argc">count of args</param>
+        /// <param name="args">args array</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public WebView(int argc, string[] args) : this(Interop.WebView.New3(argc, args), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -573,6 +593,31 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Gets title of web page.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string Title
+        {
+            get
+            {
+                return (string)GetValue(TitleProperty);
+            }
+        }
+
+        /// <summary>
+        /// Gets fav icon.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageView Favicon
+        {
+            get
+            {
+                global::System.IntPtr imageView = Interop.WebView.GetFavicon(SwigCPtr);
+                return new ImageView(imageView, false);
+            }
+        }
+
+        /// <summary>
         /// Loads a html.
         /// <param name="url">The path of Web</param>
         /// </summary>
@@ -740,6 +785,16 @@ namespace Tizen.NUI
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(handler);
             Interop.WebView.AddJavaScriptMessageHandler(SwigCPtr, objectName, new System.Runtime.InteropServices.HandleRef(this, ip));
 
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Clears title resources of current WebView.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void ClearAllTilesResources()
+        {
+            Interop.WebView.ClearAllTilesResources(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
