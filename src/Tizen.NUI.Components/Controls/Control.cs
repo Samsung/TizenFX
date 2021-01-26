@@ -303,8 +303,6 @@ namespace Tizen.NUI.Components
             StateFocusableOnTouchMode = false;
 
             EnableControlState = true;
-
-            Feedback = true;
         }
     }
 }
