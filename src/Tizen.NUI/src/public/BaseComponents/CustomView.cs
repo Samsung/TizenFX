@@ -314,6 +314,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <returns>The view's natural size</returns>
         /// <since_tizen> 3 </since_tizen>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1721: Property names should not match get methods")]
         public new virtual Size2D GetNaturalSize()
         {
             return (Size2D)GetValue(Size2DProperty);
@@ -338,6 +339,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="width">Width to use</param>
         /// <returns>The height based on the width</returns>
         /// <since_tizen> 3 </since_tizen>
+        // [Obsolete("Deprecated in API9, will be removed in API11. Please use HeightForWidth property instead!")]
         public new virtual float GetHeightForWidth(float width)
         {
             return viewWrapperImpl.GetHeightForWidthBase(width);
@@ -350,6 +352,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="height">Height to use</param>
         /// <returns>The width based on the width</returns>
         /// <since_tizen> 3 </since_tizen>
+        // [Obsolete("Deprecated in API9, will be removed in API11. Please use WidthForHeight property instead!")]
         public new virtual float GetWidthForHeight(float height)
         {
             return viewWrapperImpl.GetWidthForHeightBase(height);
