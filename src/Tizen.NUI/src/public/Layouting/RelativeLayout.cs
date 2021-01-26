@@ -23,7 +23,7 @@ namespace Tizen.NUI
     /// <summary>
     /// RelativeLayout calculates the size and position of all the children based on their relationship to each other.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public partial class RelativeLayout : LayoutGroup
     {
         /// <summary>
@@ -101,7 +101,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Constructor
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public RelativeLayout() { }
 
         /// <summary>
@@ -110,7 +110,7 @@ namespace Tizen.NUI
         /// <param name="view">The child view whose size and position is being changed.</param>
         /// <returns>The object whose size and position is being used as reference.</returns>
         /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         [Binding.TypeConverter(typeof(RelativeTargetConverter))]
         public static View GetLeftTarget(BindableObject view) => GetAttachedValue<View>(view, LeftTargetProperty);
 
@@ -120,7 +120,7 @@ namespace Tizen.NUI
         /// <param name="view">The child view whose size and position is being changed.</param>
         /// <returns>The object whose size and position is being used as reference.</returns>
         /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         [Binding.TypeConverter(typeof(RelativeTargetConverter))]
         public static View GetRightTarget(BindableObject view) => GetAttachedValue<View>(view, RightTargetProperty);
 
@@ -130,7 +130,7 @@ namespace Tizen.NUI
         /// <param name="view">The child view whose size and position is being changed.</param>
         /// <returns>The object whose size and position is being used as reference.</returns>
         /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         [Binding.TypeConverter(typeof(RelativeTargetConverter))]
         public static View GetTopTarget(BindableObject view) => GetAttachedValue<View>(view, TopTargetProperty);
 
@@ -140,7 +140,7 @@ namespace Tizen.NUI
         /// <param name="view">The child view whose size and position is being changed.</param>
         /// <returns>The object whose size and position is being used as reference.</returns>
         /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         [Binding.TypeConverter(typeof(RelativeTargetConverter))]
         public static View GetBottomTarget(BindableObject view) => GetAttachedValue<View>(view, BottomTargetProperty);
 
@@ -150,7 +150,7 @@ namespace Tizen.NUI
         /// <param name="view">The child view whose size and position is being changed.</param>
         /// <returns>The ratio between left and right of the <seealso cref="LeftTargetProperty"/>.</returns>
         /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static float GetLeftRelativeOffset(View view) => GetAttachedValue<float>(view, LeftRelativeOffsetProperty);
 
         /// <summary>
@@ -159,7 +159,7 @@ namespace Tizen.NUI
         /// <param name="view">The child view whose size and position is being changed.</param>
         /// <returns>The ratio between left and right of the <seealso cref="RightTargetProperty"/>.</returns>
         /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static float GetRightRelativeOffset(View view) => GetAttachedValue<float>(view, RightRelativeOffsetProperty);
 
         /// <summary>
@@ -168,7 +168,7 @@ namespace Tizen.NUI
         /// <param name="view">The child view whose size and position is being changed.</param>
         /// <returns>The ratio between top and bottom of the <seealso cref="TopTargetProperty"/>.</returns>
         /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static float GetTopRelativeOffset(View view) => GetAttachedValue<float>(view, TopRelativeOffsetProperty);
 
         /// <summary>
@@ -177,7 +177,7 @@ namespace Tizen.NUI
         /// <param name="view">The child view whose size and position is being changed.</param>
         /// <returns>The ratio between top and bottom of the <seealso cref="BottomTargetProperty"/>.</returns>
         /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static float GetBottomRelativeOffset(View view) => GetAttachedValue<float>(view, BottomRelativeOffsetProperty);
 
         /// <summary>
@@ -186,7 +186,7 @@ namespace Tizen.NUI
         /// <param name="view">The child view.</param>
         /// <returns>The horizontal alignment of <paramref name="view"/>.</returns>
         /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static Alignment GetHorizontalAlignment(View view) => GetAttachedValue<Alignment>(view, HorizontalAlignmentProperty);
 
         /// <summary>
@@ -195,7 +195,7 @@ namespace Tizen.NUI
         /// <param name="view">The child view.</param>
         /// <returns>The vertical alignment of <paramref name="view"/>.</returns>
         /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static Alignment GetVerticalAlignment(View view) => GetAttachedValue<Alignment>(view, VerticalAlignmentProperty);
 
         /// <summary>
@@ -204,7 +204,7 @@ namespace Tizen.NUI
         /// <param name="view">The child view.</param>
         /// <returns>True if to fill the space, false otherwise.</returns>
         /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static bool GetFillHorizontal(View view) => GetAttachedValue<bool>(view, FillHorizontalProperty);
 
         /// <summary>
@@ -213,7 +213,7 @@ namespace Tizen.NUI
         /// <param name="view">The child view.</param>
         /// <returns>True if to fill the space, false otherwise.</returns>
         /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static bool GetFillVertical(View view) => GetAttachedValue<bool>(view, FillVerticalProperty);
 
         /// <summary>
@@ -223,7 +223,7 @@ namespace Tizen.NUI
         /// <param name="view">The child view whose size and position is being changed.</param>
         /// <param name="reference">The object whose size and position is being used as reference.</param>
         /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static void SetLeftTarget(View view, View reference) => SetAttachedValue(view, LeftTargetProperty, reference);
 
         /// <summary>
@@ -233,7 +233,7 @@ namespace Tizen.NUI
         /// <param name="view">The child view whose size and position is being changed.</param>
         /// <param name="reference">The object whose size and position is being used as reference.</param>
         /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static void SetRightTarget(View view, View reference) => SetAttachedValue(view, RightTargetProperty, reference);
 
         /// <summary>
@@ -243,7 +243,7 @@ namespace Tizen.NUI
         /// <param name="view">The child view whose size and position is being changed.</param>
         /// <param name="reference">The object whose size and position is being used as reference.</param>
         /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static void SetTopTarget(View view, View reference) => SetAttachedValue(view, TopTargetProperty, reference);
 
         /// <summary>
@@ -253,7 +253,7 @@ namespace Tizen.NUI
         /// <param name="view">The child view whose size and position is being changed.</param>
         /// <param name="reference">The object whose size and position is being used as reference.</param>
         /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static void SetBottomTarget(View view, View reference) => SetAttachedValue(view, BottomTargetProperty, reference);
 
         /// <summary>
@@ -264,7 +264,7 @@ namespace Tizen.NUI
         /// <param name="view">The child view whose size and position is being changed.</param>
         /// <param name="value">The ratio between left and right of the <seealso cref="LeftTargetProperty"/>.</param>
         /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static void SetLeftRelativeOffset(View view, float value) => SetAttachedValue(view, LeftRelativeOffsetProperty, value);
 
         /// <summary>
@@ -275,7 +275,7 @@ namespace Tizen.NUI
         /// <param name="view">The child view whose size and position is being changed.</param>
         /// <param name="value">The ratio between left and right of the <seealso cref="RightTargetProperty"/>.</param>
         /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static void SetRightRelativeOffset(View view, float value) => SetAttachedValue(view, RightRelativeOffsetProperty, value);
 
         /// <summary>
@@ -286,18 +286,18 @@ namespace Tizen.NUI
         /// <param name="view">The child view whose size and position is being changed.</param>
         /// <param name="value">The ratio between left and right of the <seealso cref="TopTargetProperty"/>.</param>
         /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static void SetTopRelativeOffset(View view, float value) => SetAttachedValue(view, TopRelativeOffsetProperty, value);
 
         /// <summary>
         /// Sets the relative offset for bottom target.
-        /// When <paramref name="value"/> is 0 the bottom edge of the <paramref name="view"/> is aligned to the top edge of the right target.<br/>
+        /// When <paramref name="value"/> is 0 the bottom edge of the <paramref name="view"/> is aligned to the top edge of the bottom target.<br/>
         /// When <paramref name="value"/> is 1 the bottom edges of the bottom target and <paramref name="view"/> are aligned.
         /// </summary>
         /// <param name="view">The child view whose size and position is being changed.</param>
         /// <param name="value">The ratio between left and right of the <seealso cref="BottomTargetProperty"/>.</param>
         /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static void SetBottomRelativeOffset(View view, float value) => SetAttachedValue(view, BottomRelativeOffsetProperty, value);
 
         /// <summary>
@@ -306,7 +306,7 @@ namespace Tizen.NUI
         /// <param name="view">The child view.</param>
         /// <param name="value">The horizontal alignment of <paramref name="view"/>.</param>
         /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static void SetHorizontalAlignment(View view, Alignment value) => SetAttachedValue(view, HorizontalAlignmentProperty, value);
 
         /// <summary>
@@ -315,7 +315,7 @@ namespace Tizen.NUI
         /// <param name="view">The child view.</param>
         /// <param name="value">The vertical alignment of <paramref name="view"/>.</param>
         /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static void SetVerticalAlignment(View view, Alignment value) => SetAttachedValue(view, VerticalAlignmentProperty, value);
 
         /// <summary>
@@ -324,7 +324,7 @@ namespace Tizen.NUI
         /// <param name="view">The child view.</param>
         /// <param name="value">True if to fill the space, false otherwise.</param>
         /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static void SetFillHorizontal(View view, bool value) => SetAttachedValue(view, FillHorizontalProperty, value);
 
         /// <summary>
@@ -333,11 +333,11 @@ namespace Tizen.NUI
         /// <param name="view">The child view.</param>
         /// <param name="value">True if to fill the space, false otherwise.</param>
         /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static void SetFillVertical(View view, bool value) => SetAttachedValue(view, FillVerticalProperty, value);
 
         /// <inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
         {
             MeasuredSize.StateType childWidthState = MeasuredSize.StateType.MeasuredSizeOK;
@@ -367,7 +367,7 @@ namespace Tizen.NUI
         }
 
         /// <inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         protected override void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
         {
             for (int i = 0; i < LayoutChildren.Count; i++)
@@ -378,11 +378,10 @@ namespace Tizen.NUI
                     Geometry horizontalGeometry = GetHorizontalLayout(childLayout.Owner);
                     Geometry verticalGeometry = GetVerticalLayout(childLayout.Owner);
 
-                    LayoutLength childLeft =  new LayoutLength(horizontalGeometry.Position);
-                    LayoutLength childRight = new LayoutLength(horizontalGeometry.Position + horizontalGeometry.Size);
-                    LayoutLength childTop = new LayoutLength(verticalGeometry.Position);
-                    LayoutLength childBottom = new LayoutLength(verticalGeometry.Position + verticalGeometry.Size);
-
+                    LayoutLength childLeft = new LayoutLength(horizontalGeometry.Position + Padding.Start + childLayout.Margin.Start);
+                    LayoutLength childRight = new LayoutLength(horizontalGeometry.Position + horizontalGeometry.Size + Padding.Start - childLayout.Margin.End);
+                    LayoutLength childTop = new LayoutLength(verticalGeometry.Position + Padding.Top + childLayout.Margin.Top);
+                    LayoutLength childBottom = new LayoutLength(verticalGeometry.Position + verticalGeometry.Size + Padding.Top - childLayout.Margin.Bottom);
                     childLayout.Layout(childLeft, childTop, childRight, childBottom);
                 }
             }
@@ -391,14 +390,17 @@ namespace Tizen.NUI
         }
 
         /// <summary>The alignment of the relative layout child.</summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public enum Alignment
         {
             /// <summary>At the start of the container.</summary>
+            /// <since_tizen> 9 </since_tizen>
             Start = 0,
             /// <summary>At the center of the container.</summary>
+            /// <since_tizen> 9 </since_tizen>
             Center = 1,
             /// <summary>At the end of the container.</summary>
+            /// <since_tizen> 9 </since_tizen>
             End = 2,
         }
     }

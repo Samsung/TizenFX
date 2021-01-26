@@ -83,10 +83,14 @@ namespace Tizen.NUI
         internal ImageShadow(PropertyMap propertyMap) : base(propertyMap)
         {
             Border = noBorder;
-            propertyMap.Find(ImageVisualProperty.Border)?.Get(Border);
+            PropertyValue pValue = propertyMap.Find(ImageVisualProperty.Border);
+            pValue?.Get(Border);
+            pValue?.Dispose();
 
             string url = null;
-            propertyMap.Find(ImageVisualProperty.URL)?.Get(out url);
+            pValue = propertyMap.Find(ImageVisualProperty.URL);
+            pValue?.Get(out url);
+            pValue?.Dispose();
             Url = url;
         }
 

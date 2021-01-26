@@ -423,6 +423,7 @@ namespace Tizen.NUI
                 Position2D position = GetPosition();
                 Size2D size = GetSize();
                 Rectangle ret = new Rectangle(position.X, position.Y, size.Width, size.Height);
+                position.Dispose();
                 return ret;
             }
             set
@@ -1165,11 +1166,17 @@ namespace Tizen.NUI
             {
                 for (int i = 0; i < orientations.Count; i++)
                 {
-                    orientationArray.PushBack(new PropertyValue((int)orientations[i]));
+                    PropertyValue value = new PropertyValue((int)orientations[i]);
+                    orientationArray.PushBack(value);
                 }
             }
 
             Interop.Window.SetAvailableOrientations(SwigCPtr, PropertyArray.getCPtr(orientationArray));
+            for (uint i = 0; i < orientationArray.Count(); i++)
+            {
+                orientationArray[i].Dispose();
+            }
+            orientationArray.Dispose();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1220,7 +1227,7 @@ namespace Tizen.NUI
 
         internal Vector2 GetSize()
         {
-            var val = new Uint16Pair(Interop.Window.GetSize(SwigCPtr), false);
+            var val = new Uint16Pair(Interop.Window.GetSize(SwigCPtr), true);
             Vector2 ret = new Vector2(val.GetWidth(), val.GetHeight());
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -1309,17 +1316,15 @@ namespace Tizen.NUI
             }
             var val = new Uint16Pair((uint)size.Width, (uint)size.Height);
             Interop.Window.SetSize(SwigCPtr, Uint16Pair.getCPtr(val));
-
+            val.Dispose();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
             // Resetting Window size should request a relayout of the tree.
         }
 
         internal Size2D GetWindowSize()
         {
-            var val = new Uint16Pair(Interop.Window.GetSize(SwigCPtr), false);
+            var val = new Uint16Pair(Interop.Window.GetSize(SwigCPtr), true);
             Size2D ret = new Size2D(val.GetWidth(), val.GetHeight());
-
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1332,7 +1337,7 @@ namespace Tizen.NUI
             }
             var val = new Uint16Pair((uint)position.X, (uint)position.Y);
             Interop.Window.SetPosition(SwigCPtr, Uint16Pair.getCPtr(val));
-
+            val.Dispose();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             // Setting Position of the window should request a relayout of the tree.
         }
@@ -1341,7 +1346,7 @@ namespace Tizen.NUI
         {
             var val = new Uint16Pair(Interop.Window.GetPosition(SwigCPtr), true);
             Position2D ret = new Position2D(val.GetX(), val.GetY());
-
+            val.Dispose();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

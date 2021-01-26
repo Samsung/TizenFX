@@ -29,7 +29,7 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 6 </since_tizen>
     public class Loading : Control
     {
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <summary>The ImageArray bindable property.</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ImageArrayProperty = BindableProperty.Create(nameof(ImageArray), typeof(string[]), typeof(Loading), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -37,7 +37,7 @@ namespace Tizen.NUI.Components
             if (newValue != null)
             {
                 instance.loadingStyle.Images = (string[])newValue;
-                instance.imageVisual.URLS = new List<string>((string[])newValue);
+                instance.imageVisual.URLS = instance.loadingStyle.ImageList as List<string>;
             }
         },
         defaultValueCreator: (bindable) =>
@@ -45,7 +45,23 @@ namespace Tizen.NUI.Components
             var instance = (Loading)bindable;
             return instance.loadingStyle.Images;
         });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <summary>The ImageList bindable property.</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ImageListProperty = BindableProperty.Create(nameof(ImageList), typeof(IList<string>), typeof(Loading), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Loading)bindable;
+            if (newValue != null)
+            {
+                var newValueList = newValue as List<string>;
+                instance.loadingStyle.ImageList = newValueList;
+                if (instance.imageVisual != null) instance.imageVisual.URLS = newValueList;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            return ((Loading)bindable).loadingStyle.ImageList;
+        });
+        /// <summary>The Size bindable property.</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new static readonly BindableProperty SizeProperty = BindableProperty.Create(nameof(Size), typeof(Size), typeof(Loading), new Size(0, 0), propertyChanged: (bindable, oldValue, newValue) =>
          {
@@ -62,7 +78,7 @@ namespace Tizen.NUI.Components
             var instance = (View)bindable;
             return instance.Size;
         });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <summary>The FrameRate bindable property.</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty FrameRateProperty = BindableProperty.Create(nameof(FrameRate), typeof(int), typeof(Loading), (int)(1000 / 16.6f), propertyChanged: (bindable, oldValue, newValue) =>
           {
@@ -160,6 +176,18 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Gets loading image resource array.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public IList<string> ImageList
+        {
+            get
+            {
+                return GetValue(ImageListProperty) as List<string>;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets loading size.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
@@ -250,7 +278,8 @@ namespace Tizen.NUI.Components
         {
             if (null != loadingStyle.Images)
             {
-                imageVisual.URLS = new List<string>(loadingStyle.Images);
+                loadingStyle.ImageList = new List<string>(loadingStyle.Images);
+                imageVisual.URLS = loadingStyle.ImageList as List<string>;
             }
             if (null != loadingStyle.FrameRate?.All && 0 != loadingStyle.FrameRate.All.Value)
             {
