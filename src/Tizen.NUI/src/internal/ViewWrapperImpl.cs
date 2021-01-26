@@ -143,6 +143,21 @@ namespace Tizen.NUI
         {
         }
 
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                DirectorDisconnect();
+            }
+
+            base.Dispose(type);
+        }
+
         public ViewWrapperImpl(CustomViewBehaviour behaviourFlags) : this(Interop.ViewWrapperImpl.NewViewWrapperImpl((int)behaviourFlags), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -294,16 +309,55 @@ namespace Tizen.NUI
             Interop.ViewWrapperImpl.DirectorConnect(SwigCPtr, Delegate0, Delegate1, Delegate2, Delegate3, Delegate4, Delegate5, Delegate6, Delegate9, Delegate11, Delegate12, Delegate13, Delegate14, Delegate15, Delegate16, Delegate17, Delegate18, Delegate19, Delegate20, Delegate21, Delegate24, Delegate25, Delegate26, Delegate28, Delegate29, Delegate30, Delegate31, Delegate32, Delegate33, Delegate34, Delegate35, Delegate36, Delegate37, Delegate38, null, null);
         }
 
+
+        private void DirectorDisconnect()
+        {
+            Delegate0 = null;
+            Delegate1 = null;
+            Delegate2 = null;
+            Delegate3 = null;
+            Delegate4 = null;
+            Delegate5 = null;
+            Delegate6 = null;
+            Delegate9 = null;
+            Delegate11 = null;
+            Delegate12 = null;
+            Delegate13 = null;
+            Delegate14 = null;
+            Delegate15 = null;
+            Delegate16 = null;
+            Delegate17 = null;
+            Delegate18 = null;
+            Delegate19 = null;
+            Delegate20 = null;
+            Delegate21 = null;
+            Delegate24 = null;
+            Delegate25 = null;
+            Delegate26 = null;
+            Delegate28 = null;
+            Delegate29 = null;
+            Delegate30 = null;
+            Delegate31 = null;
+            Delegate32 = null;
+            Delegate33 = null;
+            Delegate34 = null;
+            Delegate35 = null;
+            Delegate36 = null;
+            Delegate37 = null;
+            Delegate38 = null;
+            Interop.ViewWrapperImpl.DirectorConnect(SwigCPtr, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+        }
+
         private void DirectorOnSceneConnection(int depth)
         {
-            OnSceneConnection(depth);
-            OnStageConnection(depth);
+            OnSceneConnection?.Invoke(depth);
+            OnStageConnection?.Invoke(depth);
         }
 
         private void DirectorOnSceneDisconnection()
         {
-            OnSceneDisconnection();
-            OnStageDisconnection();
+            OnSceneDisconnection?.Invoke();
+            OnStageDisconnection?.Invoke();
         }
 
         private void DirectorOnChildAdd(global::System.IntPtr child)
@@ -311,10 +365,7 @@ namespace Tizen.NUI
             View view = Registry.GetManagedBaseHandleFromNativePtr(child) as View;
             if (view)
             {
-                if (null != OnChildAdd)
-                {
-                    OnChildAdd(view);
-                }
+                OnChildAdd?.Invoke(view);
             }
         }
 
@@ -323,59 +374,53 @@ namespace Tizen.NUI
             View view = Registry.GetManagedBaseHandleFromNativePtr(child) as View;
             if (view)
             {
-                OnChildRemove(view);
+                OnChildRemove?.Invoke(view);
             }
         }
 
         private void DirectorOnPropertySet(int index, global::System.IntPtr propertyValue)
         {
-            if (OnPropertySet != null)
-            {
-                OnPropertySet(index, new PropertyValue(propertyValue, true));
-            }
+            var value = new PropertyValue(propertyValue, true);
+            OnPropertySet?.Invoke(index, value);
+            value.Dispose();
         }
 
         private void DirectorOnSizeSet(global::System.IntPtr targetSize)
         {
-            OnSizeSet(new Vector3(targetSize, false));
+            var vector3 = new Vector3(targetSize, false);
+            OnSizeSet?.Invoke(vector3);
+            vector3.Dispose();
         }
 
         private void DirectorOnSizeAnimation(global::System.IntPtr animation, global::System.IntPtr targetSize)
         {
-            OnSizeAnimation(new Animation(animation, false), new Vector3(targetSize, false));
-        }
-
-        private bool DirectorOnTouch(global::System.IntPtr arg0)
-        {
-            return OnTouch(new Touch(arg0, false));
-        }
-
-        private bool DirectorOnHover(global::System.IntPtr arg0)
-        {
-            return OnHover(new Hover(arg0, false));
+            var ani = new Animation(animation, true);
+            var vector3 = new Vector3(targetSize, false);
+            OnSizeAnimation?.Invoke(ani, vector3);
+            ani.Dispose();
+            vector3.Dispose();
         }
 
         private bool DirectorOnKey(global::System.IntPtr arg0)
         {
-            return OnKey(new Key(arg0, false));
-        }
-
-        private bool DirectorOnWheel(global::System.IntPtr arg0)
-        {
-            return OnWheel(new Wheel(arg0, false));
+            var key = new Key(arg0, false);
+            var ret = OnKey(key);
+            key.Dispose();
+            return ret;
         }
 
         private void DirectorOnRelayout(global::System.IntPtr size, global::System.IntPtr container)
         {
-            OnRelayout(new Vector2(size, false), new RelayoutContainer(container, false));
+            var vector2 = new Vector2(size, false);
+            var relayoutContainer = new RelayoutContainer(container, false);
+            OnRelayout(vector2, relayoutContainer);
+            vector2.Dispose();
+            relayoutContainer.Dispose();
         }
 
         private void DirectorOnSetResizePolicy(int policy, int dimension)
         {
-            if (null != OnSetResizePolicy)
-            {
-                OnSetResizePolicy((ResizePolicyType)policy, (DimensionType)dimension);
-            }
+            OnSetResizePolicy?.Invoke((ResizePolicyType)policy, (DimensionType)dimension);
         }
 
         private global::System.IntPtr DirectorGetNaturalSize()
@@ -388,46 +433,39 @@ namespace Tizen.NUI
             View view = Registry.GetManagedBaseHandleFromNativePtr(child) as View;
             if (view)
             {
-                return CalculateChildSize(view, (DimensionType)dimension);
+                return CalculateChildSize?.Invoke(view, (DimensionType)dimension) ?? 0.0f;
             }
             return 0.0f;
         }
 
         private float DirectorGetHeightForWidth(float width)
         {
-            return GetHeightForWidth(width);
+            return GetHeightForWidth?.Invoke(width) ?? 0.0f;
         }
 
         private float DirectorGetWidthForHeight(float height)
         {
-            return GetWidthForHeight(height);
+            return GetWidthForHeight?.Invoke(height) ?? 0.0f;
         }
 
         private bool DirectorRelayoutDependentOnChildrenWithDimension(int dimension)
         {
-            if (null == RelayoutDependentOnChildrenDimension)
-            {
-                return false;
-            }
-            else
-            {
-                return RelayoutDependentOnChildrenDimension((DimensionType)dimension);
-            }
+            return RelayoutDependentOnChildrenDimension?.Invoke((DimensionType)dimension) ?? false;
         }
 
         private bool DirectorRelayoutDependentOnChildren()
         {
-            return RelayoutDependentOnChildren();
+            return RelayoutDependentOnChildren?.Invoke() ?? false;
         }
 
         private void DirectorOnCalculateRelayoutSize(int dimension)
         {
-            OnCalculateRelayoutSize((DimensionType)dimension);
+            OnCalculateRelayoutSize?.Invoke((DimensionType)dimension);
         }
 
         private void DirectorOnLayoutNegotiated(float size, int dimension)
         {
-            OnLayoutNegotiated(size, (DimensionType)dimension);
+            OnLayoutNegotiated?.Invoke(size, (DimensionType)dimension);
         }
 
         private void DirectorOnInitialize()
@@ -436,79 +474,93 @@ namespace Tizen.NUI
 
         private void DirectorOnStyleChange(global::System.IntPtr styleManager, int change)
         {
-            if (OnStyleChange != null)
-            {
-                OnStyleChange(new StyleManager(styleManager, false), (StyleChangeType)change);
-            }
+            var styleManger = new StyleManager(styleManager, true);
+            OnStyleChange?.Invoke(styleManger, (StyleChangeType)change);
+            styleManger.Dispose();
         }
 
         private bool DirectorOnAccessibilityActivated()
         {
-            return OnAccessibilityActivated();
+            return OnAccessibilityActivated?.Invoke() ?? false;
         }
 
         private bool DirectorOnAccessibilityPan(global::System.IntPtr gesture)
         {
-            return OnAccessibilityPan(new PanGesture(gesture, false));
+            var panGesture = new PanGesture(gesture, true);
+            var ret = OnAccessibilityPan?.Invoke(panGesture) ?? false;
+            panGesture.Dispose();
+            return ret;
         }
 
         private bool DirectorOnAccessibilityValueChange(bool isIncrease)
         {
-            return OnAccessibilityValueChange(isIncrease);
+            return OnAccessibilityValueChange?.Invoke(isIncrease) ?? false;
         }
 
         private bool DirectorOnAccessibilityZoom()
         {
-            return OnAccessibilityZoom();
+            return OnAccessibilityZoom?.Invoke() ?? false;
         }
 
         private void DirectorOnFocusGained()
         {
-            OnFocusGained();
+            OnFocusGained?.Invoke();
         }
 
         private void DirectorOnFocusLost()
         {
-            OnFocusLost();
+            OnFocusLost?.Invoke();
         }
 
         private global::System.IntPtr DirectorGetNextFocusableActor(global::System.IntPtr currentFocusedActor, int direction, bool loopEnabled)
         {
             View view = GetNextFocusableView(Registry.GetManagedBaseHandleFromNativePtr(currentFocusedActor) as View, (View.FocusDirection)direction, loopEnabled);
-
-            if (view != null) return View.getCPtr(view).Handle;
-
-            return global::System.IntPtr.Zero;
+            if (view)
+            {
+                return View.getCPtr(view).Handle;
+            }
+            else
+            {
+                return currentFocusedActor;
+            }
         }
 
         private void DirectorOnFocusChangeCommitted(global::System.IntPtr commitedFocusableView)
         {
-            OnFocusChangeCommitted(Registry.GetManagedBaseHandleFromNativePtr(commitedFocusableView) as View);
+            OnFocusChangeCommitted?.Invoke(Registry.GetManagedBaseHandleFromNativePtr(commitedFocusableView) as View);
         }
 
         private bool DirectorOnKeyboardEnter()
         {
-            return OnKeyboardEnter();
+            return OnKeyboardEnter?.Invoke() ?? false;
         }
 
         private void DirectorOnPinch(global::System.IntPtr pinch)
         {
-            OnPinch(new PinchGesture(pinch, false));
+            var pinchGesture = new PinchGesture(pinch, false);
+            OnPinch?.Invoke(pinchGesture);
+            pinchGesture.Dispose();
         }
 
         private void DirectorOnPan(global::System.IntPtr pan)
         {
-            OnPan(new PanGesture(pan, false));
+            var panGesture = new PanGesture(pan, false);
+            OnPan?.Invoke(panGesture);
+            panGesture.Dispose();
         }
 
         private void DirectorOnTap(global::System.IntPtr tap)
         {
-            OnTap(new TapGesture(tap, false));
+            var tapGesture = new TapGesture(tap, false);
+            OnTap?.Invoke(tapGesture);
+            tapGesture.Dispose();
         }
 
         private void DirectorOnLongPress(global::System.IntPtr longPress)
         {
-            OnLongPress(new LongPressGesture(longPress, false));
+            var longGesture = new LongPressGesture(longPress, false);
+            OnLongPress?.Invoke(longGesture);
+            longGesture.Dispose();
         }
 
         /// <since_tizen> 3 </since_tizen>
