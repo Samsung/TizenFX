@@ -25,6 +25,7 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class WidgetViewManager : BaseHandle
     {
+        private static WidgetViewManager instance;
 
         /// <summary>
         /// Creates a new widgetView manager object.
@@ -34,8 +35,35 @@ namespace Tizen.NUI
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
+
+        /// <summary>
+        /// Creates a new widgetView manager object.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        internal WidgetViewManager() : this(Interop.WidgetViewManager.New(Application.getCPtr(NUIApplication.me?.ApplicationHandle), NUIApplication.me?.AppId), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
         internal WidgetViewManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.WidgetViewManager.Upcast(cPtr), cMemoryOwn)
         {
+        }
+
+        /// <summary>
+        /// Gets the singleton of the WidgetViewManager object.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static WidgetViewManager Instance
+        {
+            get
+            {
+                if(!instance)
+                {
+                    instance  = new WidgetViewManager();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+                return instance;
+            }
         }
 
         /// <summary>
@@ -51,6 +79,19 @@ namespace Tizen.NUI
         public WidgetView AddWidget(string widgetId, string contentInfo, int width, int height, float updatePeriod)
         {
             WidgetView ret = new WidgetView(Interop.WidgetViewManager.AddWidget(SwigCPtr, widgetId, contentInfo, width, height, updatePeriod), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Remove a widget view object.
+        /// </summary>
+        /// <param name="widgetView">widgetView to remove</param>
+        /// <returns> True on success, false otherwise.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool RemoveWidget(WidgetView widgetView)
+        {
+            bool ret = Interop.WidgetViewManager.RemoveWidget(SwigCPtr, WidgetView.getCPtr(widgetView));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
