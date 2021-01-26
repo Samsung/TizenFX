@@ -315,6 +315,7 @@ namespace Tizen.NUI.Components
         private void Initialize()
         {
             IsSelectable = true;
+            Feedback = true;
         }
 
         private void OnSelect()
