@@ -1060,6 +1060,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         /// <feature> http://tizen.org/feature/opengles.surfaceless_context </feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1721: Property names should not match get methods")]
         public Window GetParent()
         {
             if (IsSupportedMultiWindow() == false)
