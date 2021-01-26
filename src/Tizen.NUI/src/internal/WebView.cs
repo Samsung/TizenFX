@@ -36,6 +36,9 @@ namespace Tizen.NUI
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WebViewPageLoadErrorCallbackDelegate(IntPtr data, string pageUrl, int errorCode);
 
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void WebViewScrollEdgeReachedCallbackDelegate(IntPtr data, int edge);
+
         private readonly WebViewPageLoadSignal pageLoadStartedSignal;
         private EventHandler<WebViewPageLoadEventArgs> pageLoadStartedEventHandler;
         private WebViewPageLoadCallbackDelegate pageLoadStartedCallback;
@@ -48,11 +51,16 @@ namespace Tizen.NUI
         private EventHandler<WebViewPageLoadErrorEventArgs> pageLoadErrorEventHandler;
         private WebViewPageLoadErrorCallbackDelegate pageLoadErrorCallback;
 
+        private readonly WebViewScrollEdgeReachedSignal scrollEdgeReachedSignal;
+        private EventHandler<WebViewScrollEdgeReachedEventArgs> scrollEdgeReachedEventHandler;
+        private WebViewScrollEdgeReachedCallbackDelegate scrollEdgeReachedCallback;
+
         internal WebView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.WebView.Upcast(cPtr), cMemoryOwn)
         {
             pageLoadStartedSignal = new WebViewPageLoadSignal(Interop.WebView.NewWebViewPageLoadSignalPageLoadStarted(SwigCPtr));
             pageLoadFinishedSignal = new WebViewPageLoadSignal(Interop.WebView.NewWebViewPageLoadSignalPageLoadFinished(SwigCPtr));
             pageLoadErrorSignal = new WebViewPageLoadErrorSignal(Interop.WebView.NewWebViewPageLoadErrorSignalPageLoadError(SwigCPtr));
+            scrollEdgeReachedSignal = new WebViewScrollEdgeReachedSignal(Interop.WebView.NewWebViewScrollEdgeReachedSignalScrollEdgeReached(SwigCPtr));
 
             BackForwardList = new WebBackForwardList(Interop.WebView.GetWebBackForwardList(SwigCPtr), false);
             Context = new WebContext(Interop.WebView.GetWebContext(SwigCPtr), false);
@@ -147,10 +155,19 @@ namespace Tizen.NUI
             pageLoadErrorEventHandler?.Invoke(this, e);
         }
 
+        private void OnScrollEdgeReached(IntPtr data, int edge)
+        {
+            WebViewScrollEdgeReachedEventArgs arg = new WebViewScrollEdgeReachedEventArgs((WebViewScrollEdgeReachedEventArgs.Edge)edge);
+            scrollEdgeReachedEventHandler?.Invoke(this, arg);
+        }
+
         internal static new class Property
         {
             internal static readonly int Url = Interop.WebView.UrlGet();
             internal static readonly int UserAgent = Interop.WebView.UserAgentGet();
+            internal static readonly int ScrollPosition = Interop.WebView.ScrollPositionGet();
+            internal static readonly int ScrollSize = Interop.WebView.ScrollSizeGet();
+            internal static readonly int ContentSize = Interop.WebView.ContentSizeGet();
         }
 
         private static readonly BindableProperty UrlProperty = BindableProperty.Create(nameof(Url), typeof(string), typeof(WebView), string.Empty, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
@@ -184,6 +201,38 @@ namespace Tizen.NUI
             Tizen.NUI.Object.GetProperty((HandleRef)webview.SwigCPtr, WebView.Property.UserAgent).Get(out temp);
             return temp;
         }));
+
+        private static readonly BindableProperty ScrollPositionProperty = BindableProperty.Create(nameof(ScrollPosition), typeof(Vector2), typeof(WebView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var webview = (WebView)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty(webview.SwigCPtr, WebView.Property.ScrollPosition, new Tizen.NUI.PropertyValue((Vector2)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var webview = (WebView)bindable;
+            Vector2 temp = new Vector2(0.0f, 0.0f); ;
+            Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.ScrollPosition).Get(temp);
+            return temp;
+        });
+
+        private static readonly BindableProperty ScrollSizeProperty = BindableProperty.Create(nameof(ScrollSize), typeof(Vector2), typeof(WebView), null, defaultValueCreator: (bindable) =>
+        {
+            var webview = (WebView)bindable;
+            Vector2 temp = new Vector2(0.0f, 0.0f); ;
+            Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.ScrollSize).Get(temp);
+            return temp;
+        });
+
+        private static readonly BindableProperty ContentSizeProperty = BindableProperty.Create(nameof(ContentSize), typeof(Vector2), typeof(WebView), null, defaultValueCreator: (bindable) =>
+        {
+            var webview = (WebView)bindable;
+            Vector2 temp = new Vector2(0.0f, 0.0f); ;
+            Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.ContentSize).Get(temp);
+            return temp;
+        });
 
         /// <summary>
         /// Creates an uninitialized WebView.
@@ -371,6 +420,55 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// The postion of scroll.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Position ScrollPosition
+        {
+            get
+            {
+                Vector2 pv = (Vector2)GetValue(ScrollPositionProperty);
+                return new Position(pv.X, pv.Y);
+            }
+            set
+            {
+                if (value != null)
+                {
+                    Position pv = value;
+                    Vector2 vpv = new Vector2(pv.X, pv.Y);
+                    SetValue(ScrollPositionProperty, vpv);
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// The size of scroll, read-only.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Size ScrollSize
+        {
+            get
+            {
+                Vector2 sv = (Vector2)GetValue(ScrollSizeProperty);
+                return new Size(sv.Width, sv.Height);
+            }
+        }
+
+        /// <summary>
+        /// The size of content, read-only.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Size ContentSize
+        {
+            get
+            {
+                Vector2 sv = (Vector2)GetValue(ContentSizeProperty);
+                return new Size(sv.Width, sv.Height);
+            }
+        }
+
+        /// <summary>
         /// Event for the PageLoadStarted signal which can be used to subscribe or unsubscribe the event handler.<br />
         /// This signal is emitted when page loading has started.<br />
         /// </summary>
@@ -449,6 +547,32 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Event for the ScrollEdgeReached signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted when web view is scrolled to edge.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<WebViewScrollEdgeReachedEventArgs> ScrollEdgeReached
+        {
+            add
+            {
+                if (scrollEdgeReachedEventHandler == null)
+                {
+                    scrollEdgeReachedCallback = OnScrollEdgeReached;
+                    scrollEdgeReachedSignal.Connect(scrollEdgeReachedCallback);
+                }
+                scrollEdgeReachedEventHandler += value;
+            }
+            remove
+            {
+                scrollEdgeReachedEventHandler -= value;
+                if (scrollEdgeReachedEventHandler == null && scrollEdgeReachedCallback != null)
+                {
+                    scrollEdgeReachedSignal.Disconnect(scrollEdgeReachedCallback);
+                }
+            }
+        }
+
+        /// <summary>
         /// Loads a html.
         /// <param name="url">The path of Web</param>
         /// </summary>
@@ -518,6 +642,18 @@ namespace Tizen.NUI
         public void Resume()
         {
             Interop.WebView.Resume(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Scroll web view by deltaX and detlaY.
+        /// <param name="deltaX">The deltaX of scroll</param>
+        /// <param name="deltaY">The deltaY of scroll</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void ScrollBy(int deltaX, int deltaY)
+        {
+            Interop.WebView.ScrollBy(SwigCPtr, deltaX, deltaY);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
