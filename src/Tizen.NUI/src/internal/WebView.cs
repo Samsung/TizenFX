@@ -50,7 +50,6 @@ namespace Tizen.NUI
         private readonly WebViewPageLoadErrorSignal pageLoadErrorSignal;
         private EventHandler<WebViewPageLoadErrorEventArgs> pageLoadErrorEventHandler;
         private WebViewPageLoadErrorCallbackDelegate pageLoadErrorCallback;
-
         private readonly WebViewScrollEdgeReachedSignal scrollEdgeReachedSignal;
         private EventHandler<WebViewScrollEdgeReachedEventArgs> scrollEdgeReachedEventHandler;
         private WebViewScrollEdgeReachedCallbackDelegate scrollEdgeReachedCallback;
@@ -61,6 +60,11 @@ namespace Tizen.NUI
             pageLoadFinishedSignal = new WebViewPageLoadSignal(Interop.WebView.new_WebViewPageLoadSignal_PageLoadFinished(swigCPtr));
             pageLoadErrorSignal = new WebViewPageLoadErrorSignal(Interop.WebView.new_WebViewPageLoadErrorSignal_PageLoadError(swigCPtr));
             scrollEdgeReachedSignal = new WebViewScrollEdgeReachedSignal(Interop.WebView.NewWebViewScrollEdgeReachedSignalScrollEdgeReached(swigCPtr));
+
+            BackForwardList = new WebBackForwardList(Interop.WebView.GetWebBackForwardList(SwigCPtr), false);
+            Context = new WebContext(Interop.WebView.GetWebContext(SwigCPtr), false);
+            CookieManager = new WebCookieManager(Interop.WebView.GetWebCookieManager(SwigCPtr), false);
+            Settings = new WebSettings(Interop.WebView.GetWebSettings(SwigCPtr), false);
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(WebView obj)
@@ -101,6 +105,11 @@ namespace Tizen.NUI
                 pageLoadStartedSignal.Dispose();
                 pageLoadFinishedSignal.Dispose();
                 pageLoadErrorSignal.Dispose();
+
+                BackForwardList.Dispose();
+                Context.Dispose();
+                CookieManager.Dispose();
+                Settings.Dispose();
             }
 
             base.Dispose(type);
@@ -121,10 +130,7 @@ namespace Tizen.NUI
             e.WebView = Registry.GetManagedBaseHandleFromNativePtr(data) as WebView;
             e.PageUrl = pageUrl;
 
-            if (pageLoadStartedEventHandler != null)
-            {
-                pageLoadStartedEventHandler(this, e);
-            }
+            pageLoadStartedEventHandler?.Invoke(this, e);
         }
 
         private void OnPageLoadFinished(IntPtr data, string pageUrl)
@@ -134,10 +140,7 @@ namespace Tizen.NUI
             e.WebView = Registry.GetManagedBaseHandleFromNativePtr(data) as WebView;
             e.PageUrl = pageUrl;
 
-            if (pageLoadFinishedEventHandler != null)
-            {
-                pageLoadFinishedEventHandler(this, e);
-            }
+            pageLoadFinishedEventHandler?.Invoke(this, e);
         }
 
         private void OnPageLoadError(IntPtr data, string pageUrl, int errorCode)
@@ -148,10 +151,7 @@ namespace Tizen.NUI
             e.PageUrl = pageUrl;
             e.ErrorCode = (WebViewPageLoadErrorEventArgs.LoadErrorCode)errorCode;
 
-            if (pageLoadErrorEventHandler != null)
-            {
-                pageLoadErrorEventHandler(this, e);
-            }
+            pageLoadErrorEventHandler?.Invoke(this, e);
         }
 
         private void OnScrollEdgeReached(IntPtr data, int edge)
@@ -163,13 +163,7 @@ namespace Tizen.NUI
         internal static new class Property
         {
             internal static readonly int URL = Interop.WebView.WebView_Property_URL_get();
-            internal static readonly int CACHE_MODEL = Interop.WebView.WebView_Property_CACHE_MODEL_get();
-            internal static readonly int COOKIE_ACCEPT_POLICY = Interop.WebView.WebView_Property_COOKIE_ACCEPT_POLICY_get();
             internal static readonly int USER_AGENT = Interop.WebView.WebView_Property_USER_AGENT_get();
-            internal static readonly int ENABLE_JAVASCRIPT = Interop.WebView.WebView_Property_ENABLE_JAVASCRIPT_get();
-            internal static readonly int LOAD_IMAGES_AUTOMATICALLY = Interop.WebView.WebView_Property_LOAD_IMAGES_AUTOMATICALLY_get();
-            internal static readonly int DEFAULT_TEXT_ENCODING_NAME = Interop.WebView.WebView_Property_DEFAULT_TEXT_ENCODING_NAME_get();
-            internal static readonly int DEFAULT_FONT_SIZE = Interop.WebView.WebView_Property_DEFAULT_FONT_SIZE_get();
             internal static readonly int ScrollPosition = Interop.WebView.ScrollPositionGet();
             internal static readonly int ScrollSize = Interop.WebView.ScrollSizeGet();
             internal static readonly int ContentSize = Interop.WebView.ContentSizeGet();
@@ -191,54 +185,6 @@ namespace Tizen.NUI
             return temp;
         });
 
-        private static readonly BindableProperty CacheModelProperty = BindableProperty.Create(nameof(CacheModel), typeof(CacheModel), typeof(WebView), CacheModel.DocumentViewer, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var webview = (WebView)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(webview.swigCPtr, WebView.Property.CACHE_MODEL, new Tizen.NUI.PropertyValue((int)newValue));
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var webview = (WebView)bindable;
-            string temp;
-            if (Tizen.NUI.Object.GetProperty(webview.swigCPtr, WebView.Property.CACHE_MODEL).Get(out temp) == false)
-            {
-                NUILog.Error("CacheModel get error!");
-            }
-            switch (temp)
-            {
-                case "DOCUMENT_VIEWER": return CacheModel.DocumentViewer;
-                case "DOCUMENT_BROWSER": return CacheModel.DocumentBrowser;
-                default: return CacheModel.PrimaryWebBrowser;
-            }
-        });
-
-        private static readonly BindableProperty CookieAcceptPolicyProperty = BindableProperty.Create(nameof(CookieAcceptPolicy), typeof(CookieAcceptPolicy), typeof(WebView), CookieAcceptPolicy.NoThirdParty, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var webview = (WebView)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(webview.swigCPtr, WebView.Property.COOKIE_ACCEPT_POLICY, new Tizen.NUI.PropertyValue((int)newValue));
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var webview = (WebView)bindable;
-            string temp;
-            if (Tizen.NUI.Object.GetProperty(webview.swigCPtr, WebView.Property.COOKIE_ACCEPT_POLICY).Get(out temp) == false)
-            {
-                NUILog.Error("CookieAcceptPolicy get error!");
-            }
-            switch (temp)
-            {
-                case "ALWAYS": return CookieAcceptPolicy.Always;
-                case "NEVER": return CookieAcceptPolicy.Never;
-                default: return CookieAcceptPolicy.NoThirdParty;
-            }
-        });
-
         private static readonly BindableProperty UserAgentProperty = BindableProperty.Create(nameof(UserAgent), typeof(string), typeof(WebView), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var webview = (WebView)bindable;
@@ -254,71 +200,6 @@ namespace Tizen.NUI
             Tizen.NUI.Object.GetProperty(webview.swigCPtr, WebView.Property.USER_AGENT).Get(out temp);
             return temp;
         });
-
-        private static readonly BindableProperty EnableJavaScriptProperty = BindableProperty.Create(nameof(EnableJavaScript), typeof(bool), typeof(WebView), true, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var webview = (WebView)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(webview.swigCPtr, WebView.Property.ENABLE_JAVASCRIPT, new Tizen.NUI.PropertyValue((bool)newValue));
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var webview = (WebView)bindable;
-            bool temp;
-            Tizen.NUI.Object.GetProperty(webview.swigCPtr, WebView.Property.ENABLE_JAVASCRIPT).Get(out temp);
-            return temp;
-        });
-
-        private static readonly BindableProperty LoadImagesAutomaticallyProperty = BindableProperty.Create(nameof(LoadImagesAutomatically), typeof(bool), typeof(WebView), true, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var webview = (WebView)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(webview.swigCPtr, WebView.Property.LOAD_IMAGES_AUTOMATICALLY, new Tizen.NUI.PropertyValue((bool)newValue));
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var webview = (WebView)bindable;
-            bool temp;
-            Tizen.NUI.Object.GetProperty(webview.swigCPtr, WebView.Property.LOAD_IMAGES_AUTOMATICALLY).Get(out temp);
-            return temp;
-        });
-
-        private static readonly BindableProperty DefaultTextEncodingNameProperty = BindableProperty.Create(nameof(DefaultTextEncodingName), typeof(string), typeof(WebView), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var webview = (WebView)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(webview.swigCPtr, WebView.Property.DEFAULT_TEXT_ENCODING_NAME, new Tizen.NUI.PropertyValue((string)newValue));
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var webview = (WebView)bindable;
-            string temp;
-            Tizen.NUI.Object.GetProperty(webview.swigCPtr, WebView.Property.DEFAULT_TEXT_ENCODING_NAME).Get(out temp);
-            return temp;
-        });
-
-        private static readonly BindableProperty DefaultFontSizeProperty = BindableProperty.Create(nameof(DefaultFontSize), typeof(int), typeof(WebView), 16, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var webview = (WebView)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(webview.swigCPtr, WebView.Property.DEFAULT_FONT_SIZE, new Tizen.NUI.PropertyValue((int)newValue));
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var webview = (WebView)bindable;
-            int temp;
-            Tizen.NUI.Object.GetProperty(webview.swigCPtr, WebView.Property.DEFAULT_FONT_SIZE).Get(out temp);
-            return temp;
-        });
-
 
         private static readonly BindableProperty ScrollPositionProperty = BindableProperty.Create(nameof(ScrollPosition), typeof(Vector2), typeof(WebView), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -359,7 +240,6 @@ namespace Tizen.NUI
         public WebView() : this(Interop.WebView.WebView_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
         }
 
         /// <summary>
@@ -384,6 +264,30 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// BackForwardList.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public WebBackForwardList BackForwardList { get; }
+
+        /// <summary>
+        /// Context.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public WebContext Context { get; }
+
+        /// <summary>
+        /// CookieManager.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public WebCookieManager CookieManager { get; }
+
+        /// <summary>
+        /// BackForwardList.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public WebSettings Settings { get; }
+
+        /// <summary>
         /// The url to load.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -401,36 +305,34 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The cache model of the current WebView.
+        /// Deprecated. The cache model of the current WebView.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public CacheModel CacheModel
         {
             get
             {
-                return (CacheModel)GetValue(CacheModelProperty);
+                return (CacheModel)Context.CacheModel;
             }
             set
             {
-                SetValue(CacheModelProperty, value);
-                NotifyPropertyChanged();
+                Context.CacheModel = (WebContext.CacheModelType)value;
             }
         }
 
         /// <summary>
-        /// The cookie acceptance policy.
+        /// Deprecated. The cookie acceptance policy.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public CookieAcceptPolicy CookieAcceptPolicy
         {
             get
             {
-                return (CookieAcceptPolicy)GetValue(CookieAcceptPolicyProperty);
+                return (CookieAcceptPolicy)CookieManager.CookieAcceptPolicy;
             }
             set
             {
-                SetValue(CookieAcceptPolicyProperty, value);
-                NotifyPropertyChanged();
+                CookieManager.CookieAcceptPolicy = (WebCookieManager.CookieAcceptPolicyType)value;
             }
         }
 
@@ -452,36 +354,34 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Whether JavaScript is enabled.
+        /// Deprecated. Whether JavaScript is enabled.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool EnableJavaScript
         {
             get
             {
-                return (bool)GetValue(EnableJavaScriptProperty);
+                return Settings.EnableJavaScript;
             }
             set
             {
-                SetValue(EnableJavaScriptProperty, value);
-                NotifyPropertyChanged();
+                Settings.EnableJavaScript = value;
             }
         }
 
         /// <summary>
-        /// Whether images can be loaded automatically.
+        /// Deprecated. Whether images can be loaded automatically.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool LoadImagesAutomatically
         {
             get
             {
-                return (bool)GetValue(LoadImagesAutomaticallyProperty);
+                return Settings.AllowImagesLoadAutomatically;
             }
             set
             {
-                SetValue(LoadImagesAutomaticallyProperty, value);
-                NotifyPropertyChanged();
+                Settings.AllowImagesLoadAutomatically = value;
             }
         }
 
@@ -494,12 +394,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return (string)GetValue(DefaultTextEncodingNameProperty);
+                return Settings.DefaultTextEncodingName;
             }
             set
             {
-                SetValue(DefaultTextEncodingNameProperty, value);
-                NotifyPropertyChanged();
+                Settings.DefaultTextEncodingName = value;
             }
         }
 
@@ -511,12 +410,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return (int)GetValue(DefaultFontSizeProperty);
+                return Settings.DefaultFontSize;
             }
             set
             {
-                SetValue(DefaultFontSizeProperty, value);
-                NotifyPropertyChanged();
+                Settings.DefaultFontSize = value;
             }
         }
 
@@ -685,13 +583,24 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Returns the URL of the Web
+        /// Deprecated. Loads a html by string.
         /// <param name="data">The data of Web</param>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void LoadHTMLString(string data)
         {
-            Interop.WebView.WebView_LoadHTMLString(swigCPtr, data);
+            Interop.WebView.LoadHtmlString(SwigCPtr, data);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Loads a html by string.
+        /// <param name="data">The data of Web</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void LoadHtmlString(string data)
+        {
+            Interop.WebView.LoadHtmlString(SwigCPtr, data);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -844,23 +753,21 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Clears the cache of current WebView.
+        /// Deprecated. Clears the cache of current WebView.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ClearCache()
         {
-            Interop.WebView.WebView_ClearCache(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Context.ClearCache();
         }
 
         /// <summary>
-        /// Clears all the cookies of current WebView.
+        /// Deprecated. Clears all the cookies of current WebView.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ClearCookies()
         {
-            Interop.WebView.WebView_ClearCookies(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            CookieManager.ClearCookies();
         }
     }
 }
