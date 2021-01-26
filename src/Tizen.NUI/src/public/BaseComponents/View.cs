@@ -41,7 +41,6 @@ namespace Tizen.NUI.BaseComponents
         private float weight = 0.0f; // Weighting of child View in a Layout
         private bool backgroundImageSynchronosLoading = false;
         private Dictionary<string, Transition> transDictionary = new Dictionary<string, Transition>();
-        private string[] transitionNames;
         private bool controlStatePropagation = false;
         private ViewStyle viewStyle;
         private bool themeChangeSensitive = false;
@@ -2323,21 +2322,6 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string[] TransitionNames
-        {
-            get
-            {
-                return transitionNames;
-            }
-            set
-            {
-                transitionNames = value;
-                LoadTransitions();
-            }
-        }
-
         /// <summary>
         /// Enable/Disable ControlState propagation for children.
         /// It is false by default.
@@ -2511,5 +2495,14 @@ namespace Tizen.NUI.BaseComponents
                 }
             }
         }
+
+        /// <summary>
+        /// Used to restore the transition.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public IList<Transition> TransitionList
+        {
+            get;
+        } = new List<Transition>();
     }
 }
