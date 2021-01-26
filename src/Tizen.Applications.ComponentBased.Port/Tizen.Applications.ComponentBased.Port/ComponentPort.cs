@@ -40,7 +40,7 @@ namespace Tizen.Applications.ComponentBased
         /// <summary>
         /// Constructor for this class.
         /// </summary>
-        /// <exception cref="ArgumentException">Thrown when the arugment is invalid.</exception>
+        /// <exception cref="ArgumentException">Thrown when the argument is invalid.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when the memory is insufficient.</exception>
         /// <exception cref="global::System.IO.IOException">Thrown when because of I/O error.</exception>
         /// <param name="portName">The name of the port.</param>
@@ -62,7 +62,7 @@ namespace Tizen.Applications.ComponentBased
         /// Gets the port name.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public String PortName
+        public string PortName
         {
             get
             {
@@ -176,7 +176,7 @@ namespace Tizen.Applications.ComponentBased
         }
 
         /// <summary>
-        /// Abstrace method for receiving a request event.
+        /// Abstract method for receiving a request event.
         /// </summary>
         /// <param name="sender">The name of the sender</param>
         /// <param name="request">The serializable data</param>
@@ -184,10 +184,11 @@ namespace Tizen.Applications.ComponentBased
         protected abstract void OnRequestEvent(string sender, object request);
 
         /// <summary>
-        /// Abstrace method for receiving a synchronous request event.
+        /// Abstract method for receiving a synchronous request event.
         /// </summary>
         /// <param name="sender">The name of the sender</param>
         /// <param name="request">The serializable data</param>
+        /// <returns>The serializable data</returns>
         /// <since_tizen> 9 </since_tizen>
         protected abstract object OnSyncRequestEvent(string sender, object request);
 
