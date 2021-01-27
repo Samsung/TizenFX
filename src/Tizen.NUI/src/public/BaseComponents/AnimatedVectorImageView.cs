@@ -179,7 +179,7 @@ namespace Tizen.NUI.BaseComponents
                     value = totalFrameNum - 1;
                 }
 
-                mCurrentFrame = value;
+                currentFrame = value;
                 AnimationState = AnimationStates.Paused;
 
                 base.SetMinMaxFrame(0, totalFrameNum - 1);
@@ -203,10 +203,10 @@ namespace Tizen.NUI.BaseComponents
 
                 switch (repeatMode)
                 {
-                    case RepeatModeType.Restart:
+                    case RepeatModes.Restart:
                         LoopingMode = LoopingModeType.Restart;
                         break;
-                    case RepeatModeType.Reverse:
+                    case RepeatModes.Reverse:
                         LoopingMode = LoopingModeType.AutoReverse;
                         break;
                     default:
@@ -232,10 +232,10 @@ namespace Tizen.NUI.BaseComponents
 
                 switch (repeat)
                 {
-                    case RepeatModes.Restart:
+                    case RepeatModeType.Restart:
                         LoopingMode = LoopingModeType.Restart;
                         break;
-                    case RepeatModes.Reverse:
+                    case RepeatModeType.Reverse:
                         LoopingMode = LoopingModeType.AutoReverse;
                         break;
                     default:
@@ -334,7 +334,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// A marker has its start frame and end frame. 
+        /// A marker has its start frame and end frame.
         /// Animation will play between the start frame and the end frame of the marker if one marker is specified.
         /// Or animation will play between the start frame of the first marker and the end frame of the second marker if two markers are specified.   *
         /// </summary>
@@ -492,17 +492,39 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// RepeatMode of animation.
         /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [Obsolete("Please do not use! This will be removed. Please use AnimatedVectorImageView.RepeatModeType instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
+        // Suppress warning : This has been being used by users, so that the interface can not be changed.
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1717:Only FlagsAttribute enums should have plural names", Justification = "<Pending>")]
         public enum RepeatModes
         {
             /// <summary>
-            /// When the animation reaches the end and RepeatCount is nonZero, the animation restarts from the beginning. 
+            /// When the animation reaches the end and RepeatCount is nonZero, the animation restarts from the beginning.
+            /// </summary>
+            [Obsolete("Please do not use! This will be removed. Please use AnimatedVectorImageView.RepeatModeType.Restart instead!")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Restart = LoopingModeType.Restart,
+            /// <summary>
+            /// When the animation reaches the end and RepeatCount nonZero, the animation reverses direction on every animation cycle.
+            /// </summary>
+            [Obsolete("Please do not use! This will be removed. Please use AnimatedVectorImageView.RepeatModeType.Reverse instead!")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Reverse = LoopingModeType.AutoReverse
+        }
+
+        /// <summary>
+        /// RepeatMode type of animation.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum RepeatModeType
+        {
+            /// <summary>
+            /// When the animation reaches the end and RepeatCount is nonZero, the animation restarts from the beginning.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             Restart = LoopingModeType.Restart,
             /// <summary>
-            /// When the animation reaches the end and RepeatCount nonZero, the animation reverses direction on every animation cycle. 
+            /// When the animation reaches the end and RepeatCount nonZero, the animation reverses direction on every animation cycle.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             Reverse = LoopingModeType.AutoReverse
@@ -511,12 +533,14 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// EndActions of animation.
         /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [Obsolete("Please do not use! This will be removed. Please use AnimatedVectorImageView.EndAction instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
+        // Suppress warning : This has been being used by users, so that the interface can not be changed.
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1717:Only FlagsAttribute enums should have plural names", Justification = "<Pending>")]
         public enum EndActions
         {
             /// <summary> End action is Cancel, Animation Stops at the Current Frame.</summary>
-            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+            [Obsolete("Please do not use! This will be removed. Please use AnimatedVectorImageView.EndAction.Cancel instead!")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             Cancel = 0,
             /// <summary>  End action is Discard, Animation Stops at the Min Frame</summary>
@@ -530,14 +554,33 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// AnimationStates of animation.
+        /// EndAction of animation.
         /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum EndAction
+        {
+            /// <summary> End action is Cancel, Animation Stops at the Current Frame.</summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Cancel = 0,
+            /// <summary>  End action is Discard, Animation Stops at the Min Frame</summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Discard = 1,
+            /// <summary> End action is StopFinal, Animation Stops at the Max Frame</summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            StopFinal = 2
+        }
+
+        /// <summary>
+        /// AnimationState of animation.
+        /// </summary>
+        [Obsolete("Please do not use! This will be removed. Please use AnimatedVectorImageView.State instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        // Suppress warning : This has been being used by users, so that the interface can not be changed.
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1717:Only FlagsAttribute enums should have plural names", Justification = "<Pending>")]
         public enum AnimationStates
         {
             /// <summary> The animation has stopped.</summary>
-            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+            [Obsolete("Please do not use! This will be removed. Please use AnimatedVectorImageView.State.Stopped instead!")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             Stopped = PlayStateType.Stopped,
             /// <summary> The animation is playing.</summary>
@@ -572,14 +615,15 @@ namespace Tizen.NUI.BaseComponents
         #endregion Internal
 
         #region Private
-        private string mResourceURL = null;
-        private int mRepeatCount = 0;
-        private int mTotalFrameNum = 0;
-        private RepeatModes mRepeatMode = RepeatModes.Restart;
-        private int mMinFrame = -1, mMaxFrame = -1;
-        private minMaxSetTypes mIsMinMaxSet = minMaxSetTypes.NotSetByUser;
-        private int mCurrentFrame = -1;
-        private EndActions mEndAction = EndActions.Cancel;
+        private string resourceURL = null;
+        private int repeatCount = 0;
+        private int totalFrameNum = 0;
+        private int minFrame = -1, mMaxFrame = -1;
+        private minMaxSetTypes isMinMaxSet = minMaxSetTypes.NotSetByUser;
+        private int currentFrame = -1;
+        private EndActions internalEndAction = EndActions.Cancel;
+        private RepeatModeType repeat = RepeatModeType.Restart;
+        private RepeatModes repeatMode = RepeatModes.Restart;
         private enum minMaxSetTypes
         {
             NotSetByUser,

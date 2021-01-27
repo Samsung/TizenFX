@@ -35,6 +35,15 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WidgetViewManager_SWIGUpcast")]
             public static extern global::System.IntPtr Upcast(global::System.IntPtr jarg1);
+
+
+            [Obsolete("Please do not use this! Deprecated in API9, will be removed in API11! Please use WidgetViewManager.New(...) instead!")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WidgetViewManager_New")]
+            public static extern global::System.IntPtr WidgetViewManager_New(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+            [Obsolete("Please do not use this! Deprecated in API9, will be removed in API11! Please use WidgetViewManager.AddWidget(...) instead!")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WidgetViewManager_AddWidget")]
+            public static extern global::System.IntPtr WidgetViewManager_AddWidget(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, int jarg4, int jarg5, float jarg6);
         }
     }
 }
