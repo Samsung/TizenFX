@@ -57,6 +57,7 @@ namespace Tizen.NUI
         /// <pre>The child container has been initialized.</pre>
         /// <returns>The parent container.</returns>
         /// <since_tizen> 4 </since_tizen>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1721: Property names should not match get methods")]
         public new Container Parent
         {
             get
@@ -76,7 +77,7 @@ namespace Tizen.NUI
         {
             get
             {
-                return GetChildCount();
+                return Convert.ToUInt32(Children.Count);
             }
         }
 
@@ -113,6 +114,7 @@ namespace Tizen.NUI
         /// <pre>The child container has been initialized.</pre>
         /// <returns>The parent container.</returns>
         /// <since_tizen> 4 </since_tizen>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1721: Property names should not match get methods")]
         public abstract Container GetParent();
 
         /// <summary>
@@ -121,6 +123,7 @@ namespace Tizen.NUI
         /// <pre>The container has been initialized.</pre>
         /// <returns>The number of children.</returns>
         /// <since_tizen> 4 </since_tizen>
+        // [Obsolete("Deprecated in API9, will be removed in API11. Please use ChildCount property instead!")]
         public abstract UInt32 GetChildCount();
 
         internal abstract View FindCurrentChildById(uint id);

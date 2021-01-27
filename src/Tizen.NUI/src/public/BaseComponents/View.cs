@@ -160,7 +160,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (null == viewStyle)
                 {
-                    ApplyStyle(GetViewStyle());
+                    ApplyStyle(CreateViewStyle());
                 }
 
                 return viewStyle;
@@ -1457,7 +1457,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return GetChildCount();
+                return Convert.ToUInt32(Children.Count);
             }
         }
 
@@ -2419,18 +2419,6 @@ namespace Tizen.NUI.BaseComponents
         {
             get => (bool)GetValue(ThemeChangeSensitiveProperty);
             set => SetValue(ThemeChangeSensitiveProperty, value);
-        }
-
-        /// <summary>
-        /// Get Style, it is abstract function and must be override.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        // TODO: It should be deprecated. please use CreateViewStyle instead.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual ViewStyle GetViewStyle()
-        {
-            return CreateViewStyle();
         }
 
         /// <summary>
