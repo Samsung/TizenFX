@@ -159,8 +159,35 @@ namespace Tizen.NUI
         /// <summary>
         /// Enumeration for transition effect's state.
         /// </summary>
+        [Obsolete("Please do not use! This will be removed. Please use Window.EffectState instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public enum EffectStates
+        {
+            /// <summary>
+            /// None state.
+            /// </summary>
+            [Obsolete("Please do not use! This will be removed. Please use Window.EffectState.None instead!")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            None = 0,
+            /// <summary>
+            /// Transition effect is started.
+            /// </summary>
+            [Obsolete("Please do not use! This will be removed. Please use Window.EffectState.Start instead!")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Start,
+            /// <summary>
+            /// Transition effect is ended.
+            /// </summary>
+            [Obsolete("Please do not use! This will be removed. Please use Window.EffectState.End instead!")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            End,
+        }
+
+        /// <summary>
+        /// Enumeration for transition effect's state.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum EffectState
         {
             /// <summary>
             /// None state.
@@ -182,8 +209,35 @@ namespace Tizen.NUI
         /// <summary>
         /// Enumeration for transition effect's type.
         /// </summary>
+        [Obsolete("Please do not use! This will be removed. Please use Window.EffectType instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public enum EffectTypes
+        {
+            /// <summary>
+            /// None type.
+            /// </summary>
+            [Obsolete("Please do not use! This will be removed. Please use Window.EffectType.None instead!")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            None = 0,
+            /// <summary>
+            /// Window show effect.
+            /// </summary>
+            [Obsolete("Please do not use! This will be removed. Please use Window.EffectType.Show instead!")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Show,
+            /// <summary>
+            /// Window hide effect.
+            /// </summary>
+            [Obsolete("Please do not use! This will be removed. Please use Window.EffectType.Hide instead!")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Hide,
+        }
+
+        /// <summary>
+        /// Enumeration for transition effect's type.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum EffectType
         {
             /// <summary>
             /// None type.
@@ -369,6 +423,7 @@ namespace Tizen.NUI
                 Position2D position = GetPosition();
                 Size2D size = GetSize();
                 Rectangle ret = new Rectangle(position.X, position.Y, size.Width, size.Height);
+                position.Dispose();
                 return ret;
             }
             set
@@ -1112,11 +1167,17 @@ namespace Tizen.NUI
             {
                 for (int i = 0; i < orientations.Count; i++)
                 {
-                    orientationArray.PushBack(new PropertyValue((int)orientations[i]));
+                    PropertyValue value = new PropertyValue((int)orientations[i]);
+                    orientationArray.PushBack(value);
                 }
             }
 
             Interop.Window.SetAvailableOrientations(SwigCPtr, PropertyArray.getCPtr(orientationArray));
+            for (uint i = 0; i < orientationArray.Count(); i++)
+            {
+                orientationArray[i].Dispose();
+            }
+            orientationArray.Dispose();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1167,7 +1228,7 @@ namespace Tizen.NUI
 
         internal Vector2 GetSize()
         {
-            var val = new Uint16Pair(Interop.Window.GetSize(SwigCPtr), false);
+            var val = new Uint16Pair(Interop.Window.GetSize(SwigCPtr), true);
             Vector2 ret = new Vector2(val.GetWidth(), val.GetHeight());
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -1256,17 +1317,15 @@ namespace Tizen.NUI
             }
             var val = new Uint16Pair((uint)size.Width, (uint)size.Height);
             Interop.Window.SetSize(SwigCPtr, Uint16Pair.getCPtr(val));
-
+            val.Dispose();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
             // Resetting Window size should request a relayout of the tree.
         }
 
         internal Size2D GetWindowSize()
         {
-            var val = new Uint16Pair(Interop.Window.GetSize(SwigCPtr), false);
+            var val = new Uint16Pair(Interop.Window.GetSize(SwigCPtr), true);
             Size2D ret = new Size2D(val.GetWidth(), val.GetHeight());
-
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1279,7 +1338,7 @@ namespace Tizen.NUI
             }
             var val = new Uint16Pair((uint)position.X, (uint)position.Y);
             Interop.Window.SetPosition(SwigCPtr, Uint16Pair.getCPtr(val));
-
+            val.Dispose();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             // Setting Position of the window should request a relayout of the tree.
         }
@@ -1288,7 +1347,7 @@ namespace Tizen.NUI
         {
             var val = new Uint16Pair(Interop.Window.GetPosition(SwigCPtr), true);
             Position2D ret = new Position2D(val.GetX(), val.GetY());
-
+            val.Dispose();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1434,7 +1493,7 @@ namespace Tizen.NUI
         /// <code>
         /// void MyFunction( int frameId )
         /// </code>
-        /// This callback will be deleted once it is called. 
+        /// This callback will be deleted once it is called.
         /// <remarks>
         /// Ownership of the callback is passed onto this class
         /// </remarks>
@@ -1457,7 +1516,7 @@ namespace Tizen.NUI
         /// <code>
         /// void MyFunction( int frameId )
         /// </code>
-        /// This callback will be deleted once it is called. 
+        /// This callback will be deleted once it is called.
         /// <remarks>
         /// Ownership of the callback is passed onto this class
         /// </remarks>

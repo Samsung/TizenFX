@@ -25,7 +25,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="NUnit" Version="3.12.0" />
     <PackageReference Include="Tizen.NET.Sdk" Version="1.0.9" />
     <ProjectReference Include="../../../src/Tizen/Tizen.csproj" />
     <ProjectReference Include="../../../src/Tizen.Applications.Common/Tizen.Applications.Common.csproj" />
