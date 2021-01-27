@@ -43,6 +43,10 @@ namespace Tizen.NUI
         private EventHandler<WebViewPageLoadEventArgs> pageLoadStartedEventHandler;
         private WebViewPageLoadCallbackDelegate pageLoadStartedCallback;
 
+        private readonly WebViewPageLoadSignal pageLoadInProgressSignal;
+        private EventHandler<WebViewPageLoadEventArgs> pageLoadInProgressEventHandler;
+        private WebViewPageLoadCallbackDelegate pageLoadInProgressCallback;
+
         private readonly WebViewPageLoadSignal pageLoadFinishedSignal;
         private EventHandler<WebViewPageLoadEventArgs> pageLoadFinishedEventHandler;
         private WebViewPageLoadCallbackDelegate pageLoadFinishedCallback;
@@ -50,16 +54,34 @@ namespace Tizen.NUI
         private readonly WebViewPageLoadErrorSignal pageLoadErrorSignal;
         private EventHandler<WebViewPageLoadErrorEventArgs> pageLoadErrorEventHandler;
         private WebViewPageLoadErrorCallbackDelegate pageLoadErrorCallback;
+
         private readonly WebViewScrollEdgeReachedSignal scrollEdgeReachedSignal;
         private EventHandler<WebViewScrollEdgeReachedEventArgs> scrollEdgeReachedEventHandler;
         private WebViewScrollEdgeReachedCallbackDelegate scrollEdgeReachedCallback;
 
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void WebViewUrlChangedCallbackDelegate(IntPtr data, string pageUrl);
+
+        private readonly WebViewUrlChangedSignal urlChangedSignal;
+        private EventHandler<WebViewUrlChangedEventArgs> urlChangedEventHandler;
+        private WebViewUrlChangedCallbackDelegate urlChangedCallback;
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate IntPtr WebViewCreateWindowCallbackDelegate(IntPtr data);
+
+        private readonly WebViewCreateWindowSignal createWindowSignal;
+        private EventHandlerWithReturnType<WebView, WebViewCreateWindowEventArgs, WebView> createWindowEventHandler;
+        private WebViewCreateWindowCallbackDelegate createWindowCallback;
+
         internal WebView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.WebView.WebView_SWIGUpcast(cPtr), cMemoryOwn)
         {
             pageLoadStartedSignal = new WebViewPageLoadSignal(Interop.WebView.new_WebViewPageLoadSignal_PageLoadStarted(swigCPtr));
+            pageLoadInProgressSignal = new WebViewPageLoadSignal(Interop.WebView.new_WebViewPageLoadSignal_PageLoadInProgress(swigCPtr));
             pageLoadFinishedSignal = new WebViewPageLoadSignal(Interop.WebView.new_WebViewPageLoadSignal_PageLoadFinished(swigCPtr));
             pageLoadErrorSignal = new WebViewPageLoadErrorSignal(Interop.WebView.new_WebViewPageLoadErrorSignal_PageLoadError(swigCPtr));
             scrollEdgeReachedSignal = new WebViewScrollEdgeReachedSignal(Interop.WebView.NewWebViewScrollEdgeReachedSignalScrollEdgeReached(swigCPtr));
+            urlChangedSignal = new WebViewUrlChangedSignal(Interop.WebView.new_WebViewUrlChangedSignal_UrlChanged(swigCPtr));
+            createWindowSignal = new WebViewCreateWindowSignal(Interop.WebView.WebViewCreateWindowSignal_CreateWindow(swigCPtr));
 
             BackForwardList = new WebBackForwardList(Interop.WebView.GetWebBackForwardList(SwigCPtr), false);
             Context = new WebContext(Interop.WebView.GetWebContext(SwigCPtr), false);
@@ -103,8 +125,12 @@ namespace Tizen.NUI
                 //Release your own managed resources here.
                 //You should release all of your own disposable objects here.
                 pageLoadStartedSignal.Dispose();
+                pageLoadInProgressSignal.Dispose();
                 pageLoadFinishedSignal.Dispose();
                 pageLoadErrorSignal.Dispose();
+				scrollEdgeReachedSignal.Dispose();
+				urlChangedSignal.Dispose();
+                createWindowSignal.Dispose();
 
                 BackForwardList.Dispose();
                 Context.Dispose();
@@ -133,6 +159,14 @@ namespace Tizen.NUI
             pageLoadStartedEventHandler?.Invoke(this, e);
         }
 
+        private void OnPageLoadInProgress(IntPtr data, string pageUrl)
+        {
+            WebViewPageLoadEventArgs e = new WebViewPageLoadEventArgs();
+            e.WebView = null; // uesless
+            e.PageUrl = null; // useless
+            pageLoadInProgressEventHandler?.Invoke(this, e);
+        }
+
         private void OnPageLoadFinished(IntPtr data, string pageUrl)
         {
             WebViewPageLoadEventArgs e = new WebViewPageLoadEventArgs();
@@ -158,6 +192,21 @@ namespace Tizen.NUI
         {
             WebViewScrollEdgeReachedEventArgs arg = new WebViewScrollEdgeReachedEventArgs((WebViewScrollEdgeReachedEventArgs.Edge)edge);
             scrollEdgeReachedEventHandler?.Invoke(this, arg);
+        }
+
+        private void OnUrlChanged(IntPtr data, string pageUrl)
+        {
+            WebViewUrlChangedEventArgs e = new WebViewUrlChangedEventArgs(pageUrl);
+            urlChangedEventHandler?.Invoke(this, e);
+        }
+
+        private IntPtr OnCreateWindowRequest(IntPtr data)
+        {
+            WebViewCreateWindowEventArgs e = new WebViewCreateWindowEventArgs();
+            WebView newView = createWindowEventHandler?.Invoke(this, e);
+            IntPtr nip = (IntPtr)newView.swigCPtr;
+
+            return nip;
         }
 
         internal static new class Property
@@ -514,6 +563,32 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Event for the PageLoadInProgress signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted when page loading is in progress.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<WebViewPageLoadEventArgs> PageLoadInProgress
+        {
+            add
+            {
+                if (pageLoadInProgressEventHandler == null)
+                {
+                    pageLoadInProgressCallback = OnPageLoadInProgress;
+                    pageLoadInProgressSignal.Connect(pageLoadInProgressCallback);
+                }
+                pageLoadInProgressEventHandler += value;
+            }
+            remove
+            {
+                pageLoadInProgressEventHandler -= value;
+                if (pageLoadInProgressEventHandler == null && pageLoadInProgressCallback != null)
+                {
+                    pageLoadInProgressSignal.Disconnect(pageLoadInProgressCallback);
+                }
+            }
+        }
+
+        /// <summary>
         /// Event for the PageLoadFinished signal which can be used to subscribe or unsubscribe the event handler.<br />
         /// This signal is emitted when page loading has finished.<br />
         /// </summary>
@@ -587,6 +662,58 @@ namespace Tizen.NUI
                 if (scrollEdgeReachedEventHandler == null && scrollEdgeReachedCallback != null)
                 {
                     scrollEdgeReachedSignal.Disconnect(scrollEdgeReachedCallback);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Event for the UrlChanged signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted when url is changed.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<WebViewUrlChangedEventArgs> UrlChanged
+        {
+            add
+            {
+                if (urlChangedEventHandler == null)
+                {
+                    urlChangedCallback = OnUrlChanged;
+                    urlChangedSignal.Connect(urlChangedCallback);
+                }
+                urlChangedEventHandler += value;
+            }
+            remove
+            {
+                urlChangedEventHandler -= value;
+                if (urlChangedEventHandler == null && urlChangedCallback != null)
+                {
+                    urlChangedSignal.Disconnect(urlChangedCallback);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Event for the CreateWindow signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted when a new view need be created.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandlerWithReturnType<WebView, WebViewCreateWindowEventArgs, WebView> CreateWindowRequest
+        {
+            add
+            {
+                if (createWindowEventHandler == null)
+                {
+                    createWindowCallback = OnCreateWindowRequest;
+                    createWindowSignal.Connect(createWindowCallback);
+                }
+                createWindowEventHandler += value;
+            }
+            remove
+            {
+                createWindowEventHandler -= value;
+                if (createWindowEventHandler == null && createWindowCallback != null)
+                {
+                    createWindowSignal.Disconnect(createWindowCallback);
                 }
             }
         }
@@ -784,6 +911,98 @@ namespace Tizen.NUI
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(handler);
             Interop.WebView.WebView_AddJavaScriptMessageHandler(swigCPtr, objectName, new System.Runtime.InteropServices.HandleRef(this, ip));
 
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// The callback function that is invoked when the message is received from the script.
+        /// </summary>
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public delegate void JavaScriptAlertCallback(string message);
+
+        /// <summary>
+        /// Add a message handler into the WebView.
+        /// <param name="callback">The callback function</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RegisterJavaScriptAlertCallback(JavaScriptAlertCallback callback)
+        {
+            System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(callback);
+            Interop.WebView.WebView_RegisterJavaScriptAlertCallback(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Reply for alert popup.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void JavaScriptAlertReply()
+        {
+            Interop.WebView.WebView_JavaScriptAlertReply(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// The callback function that is invoked when the message is received from the script.
+        /// </summary>
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public delegate void JavaScriptConfirmCallback(string message);
+
+        /// <summary>
+        /// Add a message handler into the WebView.
+        /// <param name="callback">The callback function</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RegisterJavaScriptConfirmCallback(JavaScriptConfirmCallback callback)
+        {
+            System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(callback);
+            Interop.WebView.WebView_RegisterJavaScriptConfirmCallback(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Reply for confirm popup.
+        /// <param name="confirmed">confirmed or not</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void JavaScriptConfirmReply(bool confirmed)
+        {
+            Interop.WebView.WebView_JavaScriptConfirmReply(swigCPtr, confirmed);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// The callback function that is invoked when the message is received from the script.
+        /// </summary>
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public delegate void JavaScriptPromptCallback(string message1, string message2);
+
+        /// <summary>
+        /// Add a message handler into the WebView.
+        /// <param name="callback">The callback function</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RegisterJavaScriptPromptCallback(JavaScriptPromptCallback callback)
+        {
+            System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(callback);
+            Interop.WebView.WebView_RegisterJavaScriptPromptCallback(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Reply for promp popup.
+        /// <param name="result">text in prompt input field.</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void JavaScriptPromptReply(string result)
+        {
+            Interop.WebView.WebView_JavaScriptPromptReply(swigCPtr, result);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
