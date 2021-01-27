@@ -66,30 +66,24 @@ namespace Tizen.NUI
         {
             add
             {
-                lock (this)
+                // Restricted to only one listener
+                if (_propertyNotificationNotifyEventHandler == null)
                 {
-                    // Restricted to only one listener
-                    if (_propertyNotificationNotifyEventHandler == null)
-                    {
-                        _propertyNotificationNotifyEventHandler += value;
+                    _propertyNotificationNotifyEventHandler += value;
 
-                        _propertyNotificationNotifyEventCallbackDelegate = new NotifyEventCallbackDelegate(OnPropertyNotificationNotify);
-                        this.NotifySignal().Connect(_propertyNotificationNotifyEventCallbackDelegate);
-                    }
+                    _propertyNotificationNotifyEventCallbackDelegate = new NotifyEventCallbackDelegate(OnPropertyNotificationNotify);
+                    this.NotifySignal().Connect(_propertyNotificationNotifyEventCallbackDelegate);
                 }
             }
 
             remove
             {
-                lock (this)
+                if (_propertyNotificationNotifyEventHandler != null)
                 {
-                    if (_propertyNotificationNotifyEventHandler != null)
-                    {
-                        this.NotifySignal().Disconnect(_propertyNotificationNotifyEventCallbackDelegate);
-                    }
-
-                    _propertyNotificationNotifyEventHandler -= value;
+                    this.NotifySignal().Disconnect(_propertyNotificationNotifyEventCallbackDelegate);
                 }
+
+                _propertyNotificationNotifyEventHandler -= value;
             }
         }
 

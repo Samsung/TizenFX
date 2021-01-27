@@ -112,11 +112,9 @@ namespace Tizen.NUI
 
         }
 
-        /// <since_tizen> 3 </since_tizen>
         public struct PropertyRange
         {
 
-            /// <since_tizen> 3 </since_tizen>
             public int GetNextFreePropertyIndex(ScriptableProperty.ScriptableType type)
             {
                 if (type == ScriptableProperty.ScriptableType.Default)
@@ -131,14 +129,10 @@ namespace Tizen.NUI
                 }
             }
 
-            /// <since_tizen> 3 </since_tizen>
             public int startEventIndex;        // start of the property range
-            /// <since_tizen> 3 </since_tizen>
             public int lastUsedEventIndex;     // last used of the property index
 
-            /// <since_tizen> 3 </since_tizen>
             public int startAnimationIndex;    // start of the property range
-            /// <since_tizen> 3 </since_tizen>
             public int lastUsedAnimationIndex; // last used of the property index
         };
     }

@@ -23,8 +23,8 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class ColorVisual : VisualMap
     {
-        private Color _mixColorForColorVisual = null;
-        private bool? _renderIfTransparent = false;
+        private Color mixColorForColorVisual = null;
+        private bool? renderIfTransparent = false;
 
         /// <summary>
         /// Constructor.
@@ -43,11 +43,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _mixColorForColorVisual;
+                return mixColorForColorVisual;
             }
             set
             {
-                _mixColorForColorVisual = value;
+                mixColorForColorVisual = value;
                 UpdateVisual();
             }
         }
@@ -61,11 +61,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _renderIfTransparent ?? (false);
+                return renderIfTransparent ?? (false);
             }
             set
             {
-                _renderIfTransparent = value;
+                renderIfTransparent = value;
                 UpdateVisual();
             }
         }
@@ -76,7 +76,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected override void ComposingPropertyMap()
         {
-            Color color = _mixColorForColorVisual ?? _mixColor;
+            Color color = mixColorForColorVisual ?? _mixColor;
 
             if (color != null)
             {
@@ -84,8 +84,13 @@ namespace Tizen.NUI
 
                 base.ComposingPropertyMap();
 
-                _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Color));
-                _outputVisualMap.Add(ColorVisualProperty.MixColor, new PropertyValue(color));
+                PropertyValue temp = new PropertyValue((int)Visual.Type.Color);
+                _outputVisualMap.Add(Visual.Property.Type, temp);
+                temp.Dispose();
+
+                temp = new PropertyValue(color);
+                _outputVisualMap.Add(ColorVisualProperty.MixColor, temp);
+                temp.Dispose();
             }
             else
             {

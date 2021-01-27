@@ -151,7 +151,6 @@ namespace Tizen.NUI
         /// whenever the collection is modified. This has been done for changes in the size of the
         /// collection, but not when one of the elements of the collection is modified as it is a bit
         /// tricky to detect unmanaged code that modifies the collection under our feet.
-        /// <since_tizen> 3 </since_tizen>
         public sealed class TouchPointContainerEnumerator : global::System.Collections.IEnumerator
           , global::System.Collections.Generic.IEnumerator<TouchPoint>
         {
@@ -160,7 +159,6 @@ namespace Tizen.NUI
             private object currentObject;
             private int currentSize;
 
-            /// <since_tizen> 3 </since_tizen>
             public TouchPointContainerEnumerator(TouchPointContainer collection)
             {
                 collectionRef = collection;
@@ -170,7 +168,6 @@ namespace Tizen.NUI
             }
 
             // Type-safe iterator Current
-            /// <since_tizen> 3 </since_tizen>
             public TouchPoint Current
             {
                 get
@@ -194,7 +191,6 @@ namespace Tizen.NUI
                 }
             }
 
-            /// <since_tizen> 3 </since_tizen>
             public bool MoveNext()
             {
                 int size = collectionRef.Count;
@@ -211,7 +207,6 @@ namespace Tizen.NUI
                 return moveOkay;
             }
 
-            /// <since_tizen> 3 </since_tizen>
             public void Reset()
             {
                 currentIndex = -1;
@@ -222,7 +217,6 @@ namespace Tizen.NUI
                 }
             }
 
-            /// <since_tizen> 3 </since_tizen>
             public void Dispose()
             {
                 currentIndex = -1;

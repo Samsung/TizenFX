@@ -46,34 +46,28 @@ namespace Tizen.NUI
         {
             add
             {
-                lock (this)
+                // Restricted to only one listener
+                if (_scrollViewSnapStartedEventHandler == null)
                 {
-                    // Restricted to only one listener
-                    if (_scrollViewSnapStartedEventHandler == null)
-                    {
-                        _scrollViewSnapStartedEventHandler += value;
+                    _scrollViewSnapStartedEventHandler += value;
 
-                        _scrollViewSnapStartedCallbackDelegate = new SnapStartedCallbackDelegate(OnSnapStarted);
-                        ScrollViewSnapStartedSignal snapStarted = this.SnapStartedSignal();
-                        snapStarted?.Connect(_scrollViewSnapStartedCallbackDelegate);
-                        snapStarted?.Dispose();
-                    }
+                    _scrollViewSnapStartedCallbackDelegate = new SnapStartedCallbackDelegate(OnSnapStarted);
+                    ScrollViewSnapStartedSignal snapStarted = this.SnapStartedSignal();
+                    snapStarted?.Connect(_scrollViewSnapStartedCallbackDelegate);
+                    snapStarted?.Dispose();
                 }
             }
 
             remove
             {
-                lock (this)
+                if (_scrollViewSnapStartedEventHandler != null)
                 {
-                    if (_scrollViewSnapStartedEventHandler != null)
-                    {
-                        ScrollViewSnapStartedSignal snapStarted = this.SnapStartedSignal();
-                        snapStarted?.Disconnect(_scrollViewSnapStartedCallbackDelegate);
-                        snapStarted?.Dispose();
-                    }
-
-                    _scrollViewSnapStartedEventHandler -= value;
+                    ScrollViewSnapStartedSignal snapStarted = this.SnapStartedSignal();
+                    snapStarted?.Disconnect(_scrollViewSnapStartedCallbackDelegate);
+                    snapStarted?.Dispose();
                 }
+
+                _scrollViewSnapStartedEventHandler -= value;
             }
         }
 
