@@ -133,9 +133,9 @@ namespace Tizen.NUI.Binding
                 BindableProperty implicitStyleProperty = BindableProperty.Create(nameof(ImplicitStyle), typeof(Style), typeof(View), default(Style),
                         propertyChanged: (bindable, oldvalue, newvalue) => OnImplicitStyleChanged());
                 _implicitStyles.Add(implicitStyleProperty);
-                Target.SetDynamicResource(implicitStyleProperty, type?.FullName);
+                Target.SetDynamicResource(implicitStyleProperty, type.FullName);
                 type = type.GetTypeInfo().BaseType;
-                if (s_stopAtTypes.Contains(type))
+                if (type != null && s_stopAtTypes.Contains(type))
                     return;
             }
         }
