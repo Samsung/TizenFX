@@ -20,7 +20,11 @@ internal static partial class Interop
 {
     internal static partial class Libraries
     {
-        public const string Dlog = "libdlog.so.0";
+        #if NOTIZEN
+            public const string Dlog = "dlog";
+        #else
+            public const string Dlog = "libdlog.so.0";
+        #endif
     }
 
     internal static partial class Dlog

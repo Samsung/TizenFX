@@ -7,7 +7,11 @@ namespace ElmSharp.Test
 {
     internal static class Log
     {
-        const string Library = "libdlog.so.0";
+        #if NOTIZEN
+            public const string Library = "dlog";
+        #else
+            public const string Library = "libdlog.so.0";
+        #endif
         const string TAG = "ElmSharp.Test";
 
         public static void Debug(string message,

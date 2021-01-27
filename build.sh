@@ -1,6 +1,19 @@
 #!/bin/bash -e
 
-SCRIPT_DIR=$(dirname $(readlink -f $0))
+realpath() {
+  OURPWD=$PWD
+  cd "$(dirname "$1")"
+  LINK=$(readlink "$(basename "$1")")
+  while [ "$LINK" ]; do
+    cd "$(dirname "$LINK")"
+    LINK=$(readlink "$(basename "$1")")
+  done
+  REALPATH="$PWD/$(basename "$1")"
+  cd "$OURPWD"
+  echo "$REALPATH"
+}
+
+SCRIPT_DIR=$(dirname $(realpath "$0"))
 
 CONFIGURATION=Release
 SLN_NAME=_Build
@@ -11,8 +24,15 @@ PROFILES=(mobile tv wearable)
 TARGET_ASSEMBLY_DIR=/usr/share/dotnet.tizen/framework
 TARGET_PRELOAD_DIR=/usr/share/dotnet.tizen/preload
 
+trim_version() {
+    OUT=$(echo $1 | cut -d '.' -f 1)
+    OUT=$OUT"."$(echo $1 | cut -d '.' -f 2)
+    OUT=$OUT"."$(echo $1 | cut -d '.' -f 3)
+    echo "$OUT"
+}
+
 source $SCRIPT_DIR/packaging/version.txt
-VERSION_PREFIX=$(expr $NUGET_VERSION : '\([0-9]\+\.[0-9]\+\.[0-9]\+\)')
+VERSION_PREFIX=$(trim_version $NUGET_VERSION)
 
 usage() {
   echo "Usage: $0 [command] [args]"
@@ -69,7 +89,7 @@ restore() {
 }
 
 build() {
-  dotnet build --no-restore -c $CONFIGURATION /fl $@
+  dotnet build --no-restore -c $CONFIGURATION -fl $@
 }
 
 copy_artifacts() {
@@ -169,8 +189,8 @@ cmd_pack() {
   for nuspec in $nuspecs; do
     dotnet pack --no-restore --no-build --nologo -o $OUTDIR \
            $SCRIPT_DIR/build/pack.csproj \
-           /p:Version=$VERSION \
-           /p:NuspecFile=$(readlink -f $nuspec)
+           -p:Version=$VERSION \
+           -p:NuspecFile=$(realpath $nuspec)
   done
 }
 
