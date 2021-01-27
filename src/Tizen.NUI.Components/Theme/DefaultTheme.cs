@@ -72,6 +72,7 @@ namespace Tizen.NUI.Components
             ["SliderThumbImageResourceUrl"] = FrameworkInformation.ResourcePath + "nui_component_default_slider_thumb_n.png",
             ["SliderThumbBackgroundImageNormal"] = FrameworkInformation.ResourcePath + "nui_component_default_slider_thumb_bg_p.png",
             ["SliderThumbBackgroundImagePressed"] = FrameworkInformation.ResourcePath + "nui_component_default_slider_thumb_bg_p.png",
+            ["SliderValueIndicatorImage"] = FrameworkInformation.ResourcePath + "nui_component_default_slider_value_indicator.png",
             ["SwitchTrackImageResourceUrlNormal"] = FrameworkInformation.ResourcePath + "nui_component_default_switch_track_n.png",
             ["SwitchTrackImageResourceUrlSelected"] = FrameworkInformation.ResourcePath + "nui_component_default_switch_track_s.png",
             ["SwitchTrackImageResourceUrlDisabled"] = FrameworkInformation.ResourcePath + "nui_component_default_switch_track_d.png",
@@ -268,6 +269,11 @@ namespace Tizen.NUI.Components
                         Normal = (string)theme.Resources["SliderThumbBackgroundImageNormal"],
                         Pressed = (string)theme.Resources["SliderThumbBackgroundImagePressed"],
                     }
+                },
+                ValueIndicatorImage = new ImageViewStyle()
+                {
+                    Size = new Size(83, 54),
+                    ResourceUrl = (string)theme.Resources["SliderValueIndicatorImage"],
                 },
             });
 
