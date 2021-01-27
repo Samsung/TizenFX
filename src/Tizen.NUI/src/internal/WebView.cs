@@ -264,11 +264,10 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Creates an uninitialized WebView.
-        /// <param name="argc">count of args</param>
         /// <param name="args">args array</param>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public WebView(int argc, string[] args) : this(Interop.WebView.WebView_New_3(argc, args), true)
+        public WebView(string[] args) : this(Interop.WebView.WebView_New_3(args.Length, args), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
