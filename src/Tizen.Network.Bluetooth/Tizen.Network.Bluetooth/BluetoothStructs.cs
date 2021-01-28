@@ -63,8 +63,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The name of the device.
         /// </summary>
-        [MarshalAsAttribute(UnmanagedType.LPStr)]
-        internal string Name;
+        internal IntPtr Name;
 
         /// <summary>
         /// The class of the device.
@@ -241,6 +240,9 @@ namespace Tizen.Network.Bluetooth
     {
         internal static BluetoothDevice ConvertStructToDeviceClass(BluetoothDeviceStruct device)
         {
+            const int DeviceNameLengthMax = 248;
+            const int UuidLengthMax = 50;
+
             BluetoothDevice resultDevice = new BluetoothDevice();
             Collection<string> uuidList = null;
 
@@ -250,13 +252,16 @@ namespace Tizen.Network.Bluetooth
                 Marshal.Copy (device.ServiceUuidList, extensionList, 0, device.ServiceCount);
                 uuidList = new Collection<string> ();
                 foreach (IntPtr extension in extensionList) {
-                    string uuid = Marshal.PtrToStringAnsi (extension);
-                    uuidList.Add (uuid);
+                    if (extension != IntPtr.Zero)
+                    {
+                        string uuid = Marshal.PtrToStringAnsi (extension, UuidLengthMax);
+                        uuidList.Add (uuid);
+                    }
                 }
             }
 
             resultDevice.RemoteDeviceAddress = device.Address;
-            resultDevice.RemoteDeviceName = device.Name;
+            resultDevice.RemoteDeviceName = Marshal.PtrToStringAnsi(device.Name, DeviceNameLengthMax);
             resultDevice.RemoteDeviceClass = new BluetoothClass();
             resultDevice.Class.MajorType = device.Class.MajorDeviceClassType;
             resultDevice.Class.MinorType = device.Class.MinorDeviceClassType;

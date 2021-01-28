@@ -670,13 +670,18 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnSize2DChanged(int? width, int? height)
         {
+            PropertyValue temp;
             if (width != null)
             {
-                Tizen.NUI.Object.SetProperty(this.SwigCPtr, View.Property.SizeWidth, new Tizen.NUI.PropertyValue((float)width));
+                temp = new Tizen.NUI.PropertyValue((float)width);
+                Tizen.NUI.Object.SetProperty(this.SwigCPtr, View.Property.SizeWidth, temp);
+                temp.Dispose();
             }
             if (height != null)
             {
-                Tizen.NUI.Object.SetProperty(this.SwigCPtr, View.Property.SizeHeight, new Tizen.NUI.PropertyValue((float)height));
+                temp = new Tizen.NUI.PropertyValue((float)height);
+                Tizen.NUI.Object.SetProperty(this.SwigCPtr, View.Property.SizeHeight, temp);
+                temp.Dispose();
             }
         }
 
@@ -727,17 +732,24 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnSizeChanged(float? width, float? height, float? depth)
         {
+            PropertyValue temp;
             if (width != null)
             {
-                Tizen.NUI.Object.SetProperty(this.SwigCPtr, View.Property.SizeWidth, new Tizen.NUI.PropertyValue((float)width));
+                temp = new Tizen.NUI.PropertyValue((float)width);
+                Tizen.NUI.Object.SetProperty(this.SwigCPtr, View.Property.SizeWidth, temp);
+                temp.Dispose();
             }
             if (height != null)
             {
-                Tizen.NUI.Object.SetProperty(this.SwigCPtr, View.Property.SizeHeight, new Tizen.NUI.PropertyValue((float)height));
+                temp = new Tizen.NUI.PropertyValue((float)height);
+                Tizen.NUI.Object.SetProperty(this.SwigCPtr, View.Property.SizeHeight, temp);
+                temp.Dispose();
             }
             if (depth != null)
             {
-                Tizen.NUI.Object.SetProperty(this.SwigCPtr, View.Property.SizeDepth, new Tizen.NUI.PropertyValue((float)depth));
+                temp = new Tizen.NUI.PropertyValue((float)depth);
+                Tizen.NUI.Object.SetProperty(this.SwigCPtr, View.Property.SizeDepth, temp);
+                temp.Dispose();
             }
         }
 

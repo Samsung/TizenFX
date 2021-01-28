@@ -77,7 +77,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// <since_tizen> 3 </since_tizen>
         public enum IluminationTypeEnum
         {
             DIFFUSE,
@@ -89,104 +88,136 @@ namespace Tizen.NUI
         {
             get
             {
-                string temp;
-                GetProperty(Model3dView.Property.GeometryUrl).Get(out temp);
-                return temp;
+                string retVal = "";
+                PropertyValue geometry = GetProperty(Model3dView.Property.GeometryUrl);
+                geometry?.Get(out retVal);
+                geometry?.Dispose();
+                return retVal;
             }
             set
             {
-                SetProperty(Model3dView.Property.GeometryUrl, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setVal = new Tizen.NUI.PropertyValue(value);
+                SetProperty(Model3dView.Property.GeometryUrl, setVal);
+                setVal?.Dispose();
             }
         }
         public string MaterialUrl
         {
             get
             {
-                string temp;
-                GetProperty(Model3dView.Property.MaterialUrl).Get(out temp);
-                return temp;
+                string retVal = "" ;
+                PropertyValue material = GetProperty(Model3dView.Property.MaterialUrl);
+                material?.Get(out retVal);
+                material?.Dispose();
+                return retVal;
             }
             set
             {
-                SetProperty(Model3dView.Property.MaterialUrl, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setVal = new Tizen.NUI.PropertyValue(value);
+                SetProperty(Model3dView.Property.MaterialUrl, setVal);
+                setVal?.Dispose();
             }
         }
         public string ImagesUrl
         {
             get
             {
-                string temp;
-                GetProperty(Model3dView.Property.ImagesUrl).Get(out temp);
-                return temp;
+                string retVal = "";
+                PropertyValue images = GetProperty(Model3dView.Property.ImagesUrl);
+                images?.Get(out retVal);
+                images?.Dispose();
+                return retVal;
             }
             set
             {
-                SetProperty(Model3dView.Property.ImagesUrl, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setVal = new Tizen.NUI.PropertyValue(value);
+                SetProperty(Model3dView.Property.ImagesUrl, setVal);
+                setVal?.Dispose();
             }
         }
         public int IlluminationType
         {
             get
             {
-                int temp = 0;
-                GetProperty(Model3dView.Property.IlluminationType).Get(out temp);
-                return temp;
+                int retVal = 0;
+                PropertyValue illumination = GetProperty(Model3dView.Property.IlluminationType);
+                illumination?.Get(out retVal);
+                illumination?.Dispose();
+                return retVal;
             }
             set
             {
-                SetProperty(Model3dView.Property.IlluminationType, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setVal = new Tizen.NUI.PropertyValue(value);
+                SetProperty(Model3dView.Property.IlluminationType, setVal);
+                setVal?.Dispose();
             }
         }
         public string Texture0Url
         {
             get
             {
-                string temp;
-                GetProperty(Model3dView.Property.Texture0Url).Get(out temp);
-                return temp;
+                string retVal = "";
+                PropertyValue texture0 = GetProperty(Model3dView.Property.Texture0Url);
+                texture0?.Get(out retVal);
+                texture0?.Dispose();
+                return retVal;
             }
             set
             {
-                SetProperty(Model3dView.Property.Texture0Url, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setVal = new Tizen.NUI.PropertyValue(value);
+                SetProperty(Model3dView.Property.Texture0Url, setVal);
+                setVal?.Dispose();
             }
         }
         public string Texture1Url
         {
             get
             {
-                string temp;
-                GetProperty(Model3dView.Property.Texture1Url).Get(out temp);
-                return temp;
+                string retVal = "";
+                PropertyValue texture1 = GetProperty(Model3dView.Property.Texture1Url);
+                texture1?.Get(out retVal);
+                texture1?.Dispose();
+                return retVal;
             }
             set
             {
-                SetProperty(Model3dView.Property.Texture1Url, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setVal = new Tizen.NUI.PropertyValue(value);
+                SetProperty(Model3dView.Property.Texture1Url, setVal);
+                setVal?.Dispose();
             }
         }
         public string Texture2Url
         {
             get
             {
-                string temp;
-                GetProperty(Model3dView.Property.Texture2Url).Get(out temp);
-                return temp;
+                string retVal = "";
+                PropertyValue texture2 = GetProperty(Model3dView.Property.Texture2Url);
+                texture2?.Get(out retVal);
+                texture2?.Dispose();
+                return retVal;
             }
             set
             {
-                SetProperty(Model3dView.Property.Texture2Url, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setVal = new Tizen.NUI.PropertyValue(value);
+                SetProperty(Model3dView.Property.Texture2Url, setVal);
+                setVal?.Dispose();
             }
         }
         public Vector3 LightPosition
         {
             get
             {
-                Vector3 temp = new Vector3(0.0f, 0.0f, 0.0f);
-                GetProperty(Model3dView.Property.LightPosition).Get(temp);
-                return temp;
+                Vector3 retVal = new Vector3(0.0f, 0.0f, 0.0f);
+                PropertyValue lightPos = GetProperty(Model3dView.Property.LightPosition);
+                lightPos?.Get(retVal);
+                lightPos?.Dispose();
+                return retVal;
             }
             set
             {
-                SetProperty(Model3dView.Property.LightPosition, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setVal = new Tizen.NUI.PropertyValue(value);
+                SetProperty(Model3dView.Property.LightPosition, setVal);
+                setVal?.Dispose();
             }
         }
     }

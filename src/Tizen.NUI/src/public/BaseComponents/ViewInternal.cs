@@ -106,38 +106,6 @@ namespace Tizen.NUI.BaseComponents
             this.layout?.RequestLayout();
         }
 
-        /// <summary>
-        /// Stores the calculated width value and its ModeType. Width component.
-        /// </summary>
-        internal MeasureSpecification MeasureSpecificationWidth
-        {
-            set
-            {
-                measureSpecificationWidth = value;
-                layout?.RequestLayout();
-            }
-            get
-            {
-                return measureSpecificationWidth;
-            }
-        }
-
-        /// <summary>
-        /// Stores the calculated width value and its ModeType. Height component.
-        /// </summary>
-        internal MeasureSpecification MeasureSpecificationHeight
-        {
-            set
-            {
-                measureSpecificationHeight = value;
-                layout?.RequestLayout();
-            }
-            get
-            {
-                return measureSpecificationHeight;
-            }
-        }
-
         internal void AttachTransitionsToChildren(LayoutTransition transition)
         {
             // Iterate children, adding the transition unless a transition
@@ -1080,7 +1048,9 @@ namespace Tizen.NUI.BaseComponents
             {
                 backgroundMap[Visual.Property.CornerRadius] = new PropertyValue(backgroundExtraData.CornerRadius);
                 backgroundMap[Visual.Property.CornerRadiusPolicy] = new PropertyValue((int)backgroundExtraData.CornerRadiusPolicy);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, View.Property.BACKGROUND, new PropertyValue(backgroundMap));
+                var temp = new PropertyValue(backgroundMap);
+                Tizen.NUI.Object.SetProperty(SwigCPtr, View.Property.BACKGROUND, temp);
+                temp.Dispose();
             }
             backgroundMap.Dispose();
             background.Dispose();
@@ -1092,7 +1062,9 @@ namespace Tizen.NUI.BaseComponents
             {
                 shadowMap[Visual.Property.CornerRadius] = new PropertyValue(backgroundExtraData.CornerRadius);
                 shadowMap[Visual.Property.CornerRadiusPolicy] = new PropertyValue((int)backgroundExtraData.CornerRadiusPolicy);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, View.Property.SHADOW, new PropertyValue(shadowMap));
+                var temp = new PropertyValue(shadowMap);
+                Tizen.NUI.Object.SetProperty(SwigCPtr, View.Property.SHADOW, temp);
+                temp.Dispose();
             }
             shadowMap.Dispose();
             shadow.Dispose();
@@ -1323,28 +1295,6 @@ namespace Tizen.NUI.BaseComponents
             return view;
         }
 
-        private void LoadTransitions()
-        {
-            foreach (string str in transitionNames)
-            {
-                string resourceName = str + ".xaml";
-                Transition trans = null;
-
-                string resource = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
-
-                string likelyResourcePath = resource + "animation/" + resourceName;
-
-                if (File.Exists(likelyResourcePath))
-                {
-                    trans = Xaml.Extensions.LoadObject<Transition>(likelyResourcePath);
-                }
-                if (trans != null)
-                {
-                    transDictionary.Add(trans.Name, trans);
-                }
-            }
-        }
-
         private void OnScaleChanged(float x, float y, float z)
         {
             Scale = new Vector3(x, y, z);
@@ -1402,10 +1352,8 @@ namespace Tizen.NUI.BaseComponents
 
         private void InitializeStyle(ViewStyle style)
         {
-            if (!ThemeManager.ThemeApplied) return;
-
-            if (style == null) UpdateStyle(); // Use style in the current theme
-            else ApplyStyle(style.Clone());   // Use given style
+            if (style != null) ApplyStyle(style.Clone());   // Use given style
+            else if (ThemeManager.ThemeApplied) UpdateStyle(); // Use style in the current theme
         }
     }
 }

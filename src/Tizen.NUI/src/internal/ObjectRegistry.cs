@@ -36,12 +36,10 @@ namespace Tizen.NUI
             Interop.ObjectRegistry.DeleteObjectRegistry(swigCPtr);
         }
 
-        /// <since_tizen> 3 </since_tizen>
         public class ObjectCreatedEventArgs : EventArgs
         {
             private BaseHandle _baseHandle;
 
-            /// <since_tizen> 3 </since_tizen>
             public BaseHandle BaseHandle
             {
                 get
@@ -55,12 +53,10 @@ namespace Tizen.NUI
             }
         }
 
-        /// <since_tizen> 3 </since_tizen>
         public class ObjectDestroyedEventArgs : EventArgs
         {
             private RefObject _refObject;
 
-            /// <since_tizen> 3 </since_tizen>
             public RefObject RefObject
             {
                 get
@@ -88,30 +84,24 @@ namespace Tizen.NUI
         {
             add
             {
-                lock (this)
+                // Restricted to only one listener
+                if (_objectRegistryObjectCreatedEventHandler == null)
                 {
-                    // Restricted to only one listener
-                    if (_objectRegistryObjectCreatedEventHandler == null)
-                    {
-                        _objectRegistryObjectCreatedEventHandler += value;
+                    _objectRegistryObjectCreatedEventHandler += value;
 
-                        _objectRegistryObjectCreatedEventCallbackDelegate = new ObjectCreatedEventCallbackDelegate(OnObjectCreated);
-                        this.ObjectCreatedSignal().Connect(_objectRegistryObjectCreatedEventCallbackDelegate);
-                    }
+                    _objectRegistryObjectCreatedEventCallbackDelegate = new ObjectCreatedEventCallbackDelegate(OnObjectCreated);
+                    this.ObjectCreatedSignal().Connect(_objectRegistryObjectCreatedEventCallbackDelegate);
                 }
             }
 
             remove
             {
-                lock (this)
+                if (_objectRegistryObjectCreatedEventHandler != null)
                 {
-                    if (_objectRegistryObjectCreatedEventHandler != null)
-                    {
-                        this.ObjectCreatedSignal().Disconnect(_objectRegistryObjectCreatedEventCallbackDelegate);
-                    }
-
-                    _objectRegistryObjectCreatedEventHandler -= value;
+                    this.ObjectCreatedSignal().Disconnect(_objectRegistryObjectCreatedEventCallbackDelegate);
                 }
+
+                _objectRegistryObjectCreatedEventHandler -= value;
             }
         }
 
@@ -134,30 +124,24 @@ namespace Tizen.NUI
         {
             add
             {
-                lock (this)
+                // Restricted to only one listener
+                if (_objectRegistryObjectDestroyedEventHandler == null)
                 {
-                    // Restricted to only one listener
-                    if (_objectRegistryObjectDestroyedEventHandler == null)
-                    {
-                        _objectRegistryObjectDestroyedEventHandler += value;
+                    _objectRegistryObjectDestroyedEventHandler += value;
 
-                        _objectRegistryObjectDestroyedEventCallbackDelegate = new ObjectDestroyedEventCallbackDelegate(OnObjectDestroyed);
-                        this.ObjectDestroyedSignal().Connect(_objectRegistryObjectDestroyedEventCallbackDelegate);
-                    }
+                    _objectRegistryObjectDestroyedEventCallbackDelegate = new ObjectDestroyedEventCallbackDelegate(OnObjectDestroyed);
+                    this.ObjectDestroyedSignal().Connect(_objectRegistryObjectDestroyedEventCallbackDelegate);
                 }
             }
 
             remove
             {
-                lock (this)
+                if (_objectRegistryObjectDestroyedEventHandler != null)
                 {
-                    if (_objectRegistryObjectDestroyedEventHandler != null)
-                    {
-                        this.ObjectDestroyedSignal().Disconnect(_objectRegistryObjectDestroyedEventCallbackDelegate);
-                    }
-
-                    _objectRegistryObjectDestroyedEventHandler -= value;
+                    this.ObjectDestroyedSignal().Disconnect(_objectRegistryObjectDestroyedEventCallbackDelegate);
                 }
+
+                _objectRegistryObjectDestroyedEventHandler -= value;
             }
         }
 

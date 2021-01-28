@@ -38,7 +38,7 @@ namespace Tizen.NUI
             GetRelativeOffsetTo = GetRightRelativeOffset,
             GetAlignment = GetHorizontalAlignment,
             GetFill = GetFillHorizontal,
-            GetMeasuredSize = (item) => { return item.MeasuredWidth.Size.AsDecimal(); }
+            GetMeasuredSize = (item) => item.MeasuredWidth.Size.AsDecimal() + item.Margin.Start + item.Margin.End
         };
         private static readonly RelativePropertyGetters RelativeVerticalPropertyGetters = new RelativePropertyGetters
         {
@@ -49,7 +49,7 @@ namespace Tizen.NUI
             GetRelativeOffsetTo = GetBottomRelativeOffset,
             GetAlignment = GetVerticalAlignment,
             GetFill = GetFillVertical,
-            GetMeasuredSize = (item) => { return item.MeasuredHeight.Size.AsDecimal(); }
+            GetMeasuredSize = (item) => item.MeasuredHeight.Size.AsDecimal() + item.Margin.Top + item.Margin.Bottom
         };
 
         delegate Relative GetRelative(View view, in float layoutSize);
@@ -167,6 +167,8 @@ namespace Tizen.NUI
 
             float startPosition = cacheFrom.viewGeometry.Position + cacheFrom.viewGeometry.Size * RelativeOffsetFrom;
             float endPosition = cacheTo.viewGeometry.Position + cacheTo.viewGeometry.Size * RelativeOffsetTo;
+            if (startPosition > endPosition)
+                (startPosition, endPosition) = (endPosition, startPosition);
 
             float alignment = propertyGetters.GetAlignment(view).ToFloat();
             bool fill = propertyGetters.GetFill(view);
@@ -190,10 +192,17 @@ namespace Tizen.NUI
 
         private (float, float) CalculateChildrenSize(float parentWidth, float parentHeight)
         {
-            int minWidth = (int)SuggestedMinimumWidth.AsDecimal();
-            int maxWidth = (int)parentWidth;
-            int minHeight = (int)SuggestedMinimumHeight.AsDecimal();
-            int maxHeight = (int)parentHeight;
+            int horizontalPadding = Padding.Start + Padding.End;
+            int verticalPadding = Padding.Top + Padding.Bottom;
+            int minWidth = (int)SuggestedMinimumWidth.AsDecimal() - horizontalPadding;
+            int maxWidth = (int)parentWidth - verticalPadding;
+            int minHeight = (int)SuggestedMinimumHeight.AsDecimal() - verticalPadding;
+            int maxHeight = (int)parentHeight - verticalPadding;
+
+            if (minWidth < 0) minWidth = 0;
+            if (maxWidth < 0) maxWidth = 0;
+            if (minHeight < 0) minHeight = 0;
+            if (maxHeight < 0) maxHeight = 0;
 
             // Find minimum size that satisfy all constraints
             float BinarySearch(int min, int max, Dictionary<View, Relative> Cache, GetRelative GetRelative)
@@ -219,14 +228,14 @@ namespace Tizen.NUI
                 return current;
             }
 
-            float ChildrenWidth = BinarySearch(minWidth, maxWidth, HorizontalRelativeCache, GetHorizontalRelative);
-            float ChildrenHeight = BinarySearch(minHeight, maxHeight, VerticalRelativeCache, GetVerticalRelative);
+            float ChildrenWidth = BinarySearch(minWidth, maxWidth, HorizontalRelativeCache, GetHorizontalRelative) + horizontalPadding;
+            float ChildrenHeight = BinarySearch(minHeight, maxHeight, VerticalRelativeCache, GetVerticalRelative) + verticalPadding;
             return (ChildrenWidth, ChildrenHeight);
         }
 
-        private Geometry GetHorizontalLayout(View view) => GetHorizontalRelative(view, MeasuredWidth.Size.AsDecimal()).viewGeometry;
+        private Geometry GetHorizontalLayout(View view) => GetHorizontalRelative(view, MeasuredWidth.Size.AsDecimal() - (Padding.Start + Padding.End)).viewGeometry;
 
-        private Geometry GetVerticalLayout(View view) => GetVerticalRelative(view, MeasuredHeight.Size.AsDecimal()).viewGeometry;
+        private Geometry GetVerticalLayout(View view) => GetVerticalRelative(view, MeasuredHeight.Size.AsDecimal() - (Padding.Top + Padding.Bottom)).viewGeometry;
 
         private struct Geometry
         {
