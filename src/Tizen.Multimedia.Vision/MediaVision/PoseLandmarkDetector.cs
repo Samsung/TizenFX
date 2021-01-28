@@ -36,7 +36,7 @@ namespace Tizen.Multimedia.Vision
         /// Represents a location in the 2D space.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public Point location
+        public Point Location
         {
             get;
             set;
@@ -45,7 +45,7 @@ namespace Tizen.Multimedia.Vision
         /// Confidence score of point.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public float score
+        public float Score
         {
             get;
             set;
@@ -145,8 +145,8 @@ namespace Tizen.Multimedia.Vision
                 for (int nl = 0; nl < numOfLandMarks; nl++)
                 {
                     InteropInference.GetLandmark(poses, np, nl, out location, out score).Validate("Failed to GetLandmark");
-                    results[np, nl].score = score;
-                    results[np, nl].location = location.ToApiStruct();
+                    results[np, nl].Score = score;
+                    results[np, nl].Location = location.ToApiStruct();
                 }
             }
             return results;
