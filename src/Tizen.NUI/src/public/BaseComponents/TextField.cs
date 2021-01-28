@@ -35,6 +35,8 @@ namespace Tizen.NUI.BaseComponents
         private bool systemlangTextFlag = false;
         private InputMethodContext inputMethodCotext = null;
         private TextFieldSelectorData selectorData;
+        private float fontSizeScale = 1.0f;
+        private bool hasFontSizeChangedCallback = false;
 
         static TextField() { }
 
@@ -1302,6 +1304,54 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// The FontSizeScale property. <br />
+        /// The default value is 1.0. <br />
+        /// If FontSizeScale.UseSystemSetting, will use the SystemSettings.FontSize internally. <br />
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float FontSizeScale
+        {
+            get
+            {
+                return fontSizeScale;
+            }
+            set
+            {
+                float newFontSizeScale;
+
+                if (fontSizeScale == value) return;
+
+                fontSizeScale = value;
+                if (fontSizeScale == Tizen.NUI.FontSizeScale.UseSystemSetting)
+                {
+                    SystemSettingsFontSize systemSettingsFontSize;
+
+                    try
+                    {
+                        systemSettingsFontSize = SystemSettings.FontSize;
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("{0} Exception caught.", e);
+                        systemSettingsFontSize = SystemSettingsFontSize.Normal;
+                    }
+                    newFontSizeScale = TextUtils.GetFontSizeScale(systemSettingsFontSize);
+                    addFontSizeChangedCallback();
+                }
+                else
+                {
+                    newFontSizeScale = fontSizeScale;
+                    removeFontSizeChangedCallback();
+                }
+
+                SetValue(FontSizeScaleProperty, newFontSizeScale);
+                NotifyPropertyChanged();
+            }
+        }
+
         /// Only used by the IL of xaml, will never changed to not hidden.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool IsCreateByXaml
@@ -1405,6 +1455,8 @@ namespace Tizen.NUI.BaseComponents
                 SystemSettings.LocaleLanguageChanged -= SystemSettings_LocaleLanguageChanged;
             }
 
+            removeFontSizeChangedCallback();
+
             if (type == DisposeTypes.Explicit)
             {
                 //Called by User
@@ -1473,6 +1525,47 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        private void SystemSettingsFontSizeChanged(object sender, FontSizeChangedEventArgs e)
+        {
+            float newFontSizeScale = TextUtils.GetFontSizeScale(e.Value);
+            SetValue(FontSizeScaleProperty, newFontSizeScale);
+            NotifyPropertyChanged();
+        }
+
+        private void addFontSizeChangedCallback()
+        {
+            if (hasFontSizeChangedCallback != true)
+            {
+                try
+                {
+                    SystemSettings.FontSizeChanged += SystemSettingsFontSizeChanged;
+                    hasFontSizeChangedCallback = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("{0} Exception caught.", e);
+                    hasFontSizeChangedCallback = false;
+                }
+            }
+        }
+
+        private void removeFontSizeChangedCallback()
+        {
+            if (hasFontSizeChangedCallback == true)
+            {
+                try
+                {
+                    SystemSettings.FontSizeChanged -= SystemSettingsFontSizeChanged;
+                    hasFontSizeChangedCallback = false;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("{0} Exception caught.", e);
+                    hasFontSizeChangedCallback = true;
+                }
+            }
+        }
+
         internal new class Property
         {
             internal static readonly int TEXT = Interop.TextField.TextGet();
@@ -1533,6 +1626,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int SelectedTextEnd = Interop.TextField.SelectedTextEndGet();
             internal static readonly int EnableEditing = Interop.TextField.EnableEditingGet();
             internal static readonly int PrimaryCursorPosition = Interop.TextField.PrimaryCursorPositionGet();
+            internal static readonly int FontSizeScale = Interop.TextField.FontSizeScaleGet();
         }
 
         internal class InputStyle
