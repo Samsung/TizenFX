@@ -252,7 +252,7 @@ namespace Tizen.NUI.Components
 
         private ImageView CreateValueIndicator()
         {
-            if (valueIndicatorImage == null)
+            if (null == valueIndicatorImage)
             {
                 valueIndicatorImage = new ImageView()
                 {

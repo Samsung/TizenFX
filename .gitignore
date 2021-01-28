@@ -213,3 +213,8 @@ CompilationErrors-*.txt
 
 # external libraries
 externals/libs/
+
+# coverage
+tools/coverage
+coverage.json
+
