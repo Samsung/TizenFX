@@ -1060,6 +1060,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         /// <feature> http://tizen.org/feature/opengles.surfaceless_context </feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1721: Property names should not match get methods")]
         public Window GetParent()
         {
             if (IsSupportedMultiWindow() == false)
@@ -1229,7 +1230,6 @@ namespace Tizen.NUI
         {
             var val = new Uint16Pair(Interop.Window.GetSize(SwigCPtr), true);
             Vector2 ret = new Vector2(val.GetWidth(), val.GetHeight());
-            val.Dispose();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1326,7 +1326,6 @@ namespace Tizen.NUI
         {
             var val = new Uint16Pair(Interop.Window.GetSize(SwigCPtr), true);
             Size2D ret = new Size2D(val.GetWidth(), val.GetHeight());
-            val.Dispose();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
