@@ -34,6 +34,8 @@ namespace Tizen.NUI.BaseComponents
         private string textEditorPlaceHolderTextSid = null;
         private bool systemlangTextFlag = false;
         private InputMethodContext inputMethodContext = null;
+        private float fontSizeScale = 1.0f;
+        private bool hasFontSizeChangedCallback = false;
 
         /// <summary>
         /// Creates the TextEditor control.
@@ -1268,6 +1270,54 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The FontSizeScale property. <br />
+        /// The default value is 1.0. <br />
+        /// If FontSizeScale.UseSystemSetting, will use the SystemSettings.FontSize internally. <br />
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float FontSizeScale
+        {
+            get
+            {
+                return fontSizeScale;
+            }
+            set
+            {
+                float newFontSizeScale;
+
+                if (fontSizeScale == value) return;
+
+                fontSizeScale = value;
+                if (fontSizeScale == Tizen.NUI.FontSizeScale.UseSystemSetting)
+                {
+                    SystemSettingsFontSize systemSettingsFontSize;
+
+                    try
+                    {
+                        systemSettingsFontSize = SystemSettings.FontSize;
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("{0} Exception caught.", e);
+                        systemSettingsFontSize = SystemSettingsFontSize.Normal;
+                    }
+                    newFontSizeScale = TextUtils.GetFontSizeScale(systemSettingsFontSize);
+                    addFontSizeChangedCallback();
+                }
+                else
+                {
+                    newFontSizeScale = fontSizeScale;
+                    removeFontSizeChangedCallback();
+                }
+
+                SetValue(FontSizeScaleProperty, newFontSizeScale);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// Scroll the text control by specific amount..
         /// </summary>
         /// <param name="scroll">The amount (in pixels) of scrolling in horizontal &amp; vertical directions.</param>
@@ -1342,6 +1392,8 @@ namespace Tizen.NUI.BaseComponents
                 SystemSettings.LocaleLanguageChanged -= SystemSettings_LocaleLanguageChanged;
             }
 
+            removeFontSizeChangedCallback();
+
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
@@ -1400,6 +1452,47 @@ namespace Tizen.NUI.BaseComponents
             if (textEditorPlaceHolderTextSid != null)
             {
                 PlaceholderText = NUIApplication.MultilingualResourceManager?.GetString(textEditorPlaceHolderTextSid, new CultureInfo(e.Value.Replace("_", "-")));
+            }
+        }
+
+        private void SystemSettingsFontSizeChanged(object sender, FontSizeChangedEventArgs e)
+        {
+            float newFontSizeScale = TextUtils.GetFontSizeScale(e.Value);
+            SetValue(FontSizeScaleProperty, newFontSizeScale);
+            NotifyPropertyChanged();
+        }
+
+        private void addFontSizeChangedCallback()
+        {
+            if (hasFontSizeChangedCallback != true)
+            {
+                try
+                {
+                    SystemSettings.FontSizeChanged += SystemSettingsFontSizeChanged;
+                    hasFontSizeChangedCallback = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("{0} Exception caught.", e);
+                    hasFontSizeChangedCallback = false;
+                }
+            }
+        }
+
+        private void removeFontSizeChangedCallback()
+        {
+            if (hasFontSizeChangedCallback == true)
+            {
+                try
+                {
+                    SystemSettings.FontSizeChanged -= SystemSettingsFontSizeChanged;
+                    hasFontSizeChangedCallback = false;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("{0} Exception caught.", e);
+                    hasFontSizeChangedCallback = true;
+                }
             }
         }
 
@@ -1466,6 +1559,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int HorizontalScrollPosition = Interop.TextEditor.HorizontalScrollPositionGet();
             internal static readonly int VerticalScrollPosition = Interop.TextEditor.VerticalScrollPositionGet();
             internal static readonly int PrimaryCursorPosition = Interop.TextEditor.PrimaryCursorPositionGet();
+            internal static readonly int FontSizeScale = Interop.TextEditor.FontSizeScaleGet();
         }
 
         internal class InputStyle
