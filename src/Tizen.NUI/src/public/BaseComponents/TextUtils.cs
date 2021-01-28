@@ -15,6 +15,8 @@
  *
  */
 
+extern alias TizenSystemSettings;
+using TizenSystemSettings.Tizen.System;
 using System;
 using System.ComponentModel;
 using System.Collections.Generic;
@@ -1097,6 +1099,58 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-    }
 
+#if PROFILE_TV
+        private const float FontSizeScaleSmall = 0.8f;
+        private const float FontSizeScaleNormal = 1.0f;
+        private const float FontSizeScaleLarge = 1.5f;
+        private const float FontSizeScaleHuge = 1.9f;
+        private const float FontSizeScaleGiant = 2.5f;
+#elif PROFILE_WEARABLE
+        // The following values from 'system-settings/libutil/sstu.c'
+        private const float FontSizeScaleSmall = 0.9f;
+        private const float FontSizeScaleNormal = 1.0f;
+        private const float FontSizeScaleLarge = 1.1f;
+        private const float FontSizeScaleHuge = 1.9f;
+        private const float FontSizeScaleGiant = 2.5f;
+#else   // PROFILE_MOBILE and etc
+        // The following values from 'system-settings/libutil/sstu.c'
+        private const float FontSizeScaleSmall = 0.8f;
+        private const float FontSizeScaleNormal = 1.0f;
+        private const float FontSizeScaleLarge = 1.5f;
+        private const float FontSizeScaleHuge = 1.9f;
+        private const float FontSizeScaleGiant = 2.5f;
+#endif
+
+        /// <summary>
+        /// It returns a float value according to SystemSettingsFontSize.
+        /// The returned value can be used for FontSizeScale property.
+        /// <param name="systemSettingsFontSize">The SystemSettingsFontSize enum value.</param>
+        /// <returns> A float value for FontSizeScale property. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static float GetFontSizeScale(SystemSettingsFontSize systemSettingsFontSize) {
+            float ret = FontSizeScaleNormal;
+
+            switch (systemSettingsFontSize) {
+                case SystemSettingsFontSize.Small:
+                    ret = FontSizeScaleSmall;
+                    break;
+                case SystemSettingsFontSize.Normal:
+                    ret = FontSizeScaleNormal;
+                    break;
+                case SystemSettingsFontSize.Large:
+                    ret = FontSizeScaleLarge;
+                    break;
+                case SystemSettingsFontSize.Huge:
+                    ret = FontSizeScaleHuge;
+                    break;
+                case SystemSettingsFontSize.Giant:
+                    ret = FontSizeScaleGiant;
+                    break;
+            }
+
+            return ret;
+        }
+    }
 }
