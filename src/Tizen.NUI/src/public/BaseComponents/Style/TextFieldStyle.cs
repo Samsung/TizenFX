@@ -438,15 +438,15 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PixelSizeProperty = BindableProperty.Create(nameof(PixelSize), typeof(float?), typeof(TextFieldStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PixelSizeSelectorProperty = BindableProperty.Create("PixelSizeSelector", typeof(float?), typeof(TextFieldStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textFieldStyle = (TextFieldStyle)bindable;
-            textFieldStyle.pixelSize = (float?)newValue;
+            textFieldStyle.pixelSizeSelector = ((Selector<float?>)newValue)?.Clone();
         },
         defaultValueCreator: (bindable) =>
         {
             var textFieldStyle = (TextFieldStyle)bindable;
-            return textFieldStyle.pixelSize;
+            return textFieldStyle.pixelSizeSelector;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -511,7 +511,7 @@ namespace Tizen.NUI.BaseComponents
         private string emboss;
         private string inputEmboss;
         private string inputOutline;
-        private float? pixelSize;
+        private Selector<float?> pixelSizeSelector;
         private bool? enableSelection;
         private bool? ellipsis;
         private bool? matchSystemLanguageDirection;
@@ -792,10 +792,10 @@ namespace Tizen.NUI.BaseComponents
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public float? PixelSize
+        public Selector<float?> PixelSize
         {
-            get => (float?)GetValue(PixelSizeProperty);
-            set => SetValue(PixelSizeProperty, value);
+            get => (Selector<float?>)GetValue(PixelSizeSelectorProperty) ?? (pixelSizeSelector = new Selector<float?>());
+            set => SetValue(PixelSizeSelectorProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.

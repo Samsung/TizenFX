@@ -39,6 +39,12 @@ namespace Tizen.NUI.Components
         private uint? trackThickness = null;
         // the value of the space between track and indicator object
         private Extents _spaceBetweenTrackAndIndicator = null;
+        // Whether the value indicator is shown or not
+        private bool isValueShown = false;
+        // the value indicator text
+        private TextLabel valueIndicatorText = null;
+        // the value indicator image object
+        private ImageView valueIndicatorImage = null;
 
         private PanGestureDetector panGestureDetector = null;
         private float currentSlidedOffset;
@@ -58,6 +64,10 @@ namespace Tizen.NUI.Components
             isFocused = false;
             isPressed = false;
             LayoutDirectionChanged += OnLayoutDirectionChanged;
+
+            panGestureDetector = new PanGestureDetector();
+            panGestureDetector.Attach(this);
+            panGestureDetector.Detected += OnPanGestureDetected;
         }
 
         private void OnLayoutDirectionChanged(object sender, LayoutDirectionChangedEventArgs e)
@@ -161,13 +171,51 @@ namespace Tizen.NUI.Components
                     slidedTrackImage.Add(thumbImage);
                 }
                 thumbImage.TouchEvent += OnTouchEventForThumb;
-
-                panGestureDetector = new PanGestureDetector();
-                panGestureDetector.Attach(thumbImage);
-                panGestureDetector.Detected += OnPanGestureDetected;
             }
 
             return thumbImage;
+        }
+
+        private ImageView CreateValueIndicator()
+        {
+            if (null == valueIndicatorImage)
+            {
+                valueIndicatorImage = new ImageView()
+                {
+                    PositionUsesPivotPoint = true,
+                    ParentOrigin = Tizen.NUI.ParentOrigin.Center,
+                    PivotPoint = Tizen.NUI.PivotPoint.Center,
+                    WidthResizePolicy = ResizePolicyType.Fixed,
+                    HeightResizePolicy = ResizePolicyType.Fixed,
+                };
+                if (valueIndicatorText != null)
+                {
+                    valueIndicatorImage.Add(valueIndicatorText);
+                }
+                // TODO : ValueIndicator can be a child of Thumb
+                this.Add(valueIndicatorImage);
+            }
+
+            valueIndicatorImage.Hide();
+            return valueIndicatorImage;
+        }
+
+        private TextLabel CreateValueIndicatorText()
+        {
+            if (null == valueIndicatorText)
+            {
+                valueIndicatorText = new TextLabel()
+                {
+                    WidthResizePolicy = ResizePolicyType.Fixed,
+                    HeightResizePolicy = ResizePolicyType.Fixed
+                };
+                if (valueIndicatorImage != null)
+                {
+                    valueIndicatorImage.Add(valueIndicatorText);
+                }
+            }
+
+            return valueIndicatorText;
         }
 
         private void OnPanGestureDetected(object source, PanGestureDetector.DetectedEventArgs e)
@@ -182,6 +230,12 @@ namespace Tizen.NUI.Components
                 {
                     currentSlidedOffset = slidedTrackImage.SizeHeight;
                 }
+
+                if (isValueShown)
+                {
+                    valueIndicatorImage.Show();
+                }
+
                 if (null != sliderSlidingStartedHandler)
                 {
                     SliderSlidingStartedEventArgs args = new SliderSlidingStartedEventArgs();
@@ -206,6 +260,11 @@ namespace Tizen.NUI.Components
 
             if (e.PanGesture.State == Gesture.StateType.Finished)
             {
+                if (isValueShown)
+                {
+                    valueIndicatorImage.Hide();
+                }
+
                 if (null != slidingFinishedHandler)
                 {
                     SlidingFinishedArgs args = new SlidingFinishedArgs();
@@ -265,6 +324,19 @@ namespace Tizen.NUI.Components
                     highIndicatorText.PivotPoint = NUI.PivotPoint.CenterRight;
                     highIndicatorText.PositionUsesPivotPoint = true;
                 }
+                if (valueIndicatorImage != null)
+                {
+                    valueIndicatorImage.ParentOrigin = NUI.ParentOrigin.TopLeft;
+                    valueIndicatorImage.PivotPoint = NUI.PivotPoint.BottomCenter;
+                    valueIndicatorImage.PositionUsesPivotPoint = true;
+                }
+                if (valueIndicatorText != null)
+                {
+                    valueIndicatorText.ParentOrigin = NUI.ParentOrigin.TopCenter;
+                    valueIndicatorText.PivotPoint = NUI.PivotPoint.TopCenter;
+                    valueIndicatorText.PositionUsesPivotPoint = true;
+                    valueIndicatorText.Padding = new Extents(0, 0, 5, 0); // TODO : How to set the text as center
+                }
                 if (panGestureDetector != null)
                 {
                     if (!isInitial)
@@ -311,6 +383,19 @@ namespace Tizen.NUI.Components
                     highIndicatorText.ParentOrigin = NUI.ParentOrigin.TopCenter;
                     highIndicatorText.PivotPoint = NUI.PivotPoint.TopCenter;
                     highIndicatorText.PositionUsesPivotPoint = true;
+                }
+                if (valueIndicatorImage != null)
+                {
+                    valueIndicatorImage.ParentOrigin = NUI.ParentOrigin.BottomCenter;
+                    valueIndicatorImage.PivotPoint = NUI.PivotPoint.BottomCenter;
+                    valueIndicatorImage.PositionUsesPivotPoint = true;
+                }
+                if (valueIndicatorText != null)
+                {
+                    valueIndicatorText.ParentOrigin = NUI.ParentOrigin.TopCenter;
+                    valueIndicatorText.PivotPoint = NUI.PivotPoint.TopCenter;
+                    valueIndicatorText.PositionUsesPivotPoint = true;
+                    valueIndicatorText.Padding = new Extents(0, 0, 5, 0); // TODO : How to set the text as center
                 }
                 if (panGestureDetector != null)
                 {
@@ -496,11 +581,21 @@ namespace Tizen.NUI.Components
                 }
                 float slidedTrackLength = (float)BgTrackLength() * ratio;
                 slidedTrackImage.Size2D = new Size2D((int)(slidedTrackLength + round), (int)curTrackThickness); //Add const round to reach Math.Round function.
+
+                if (isValueShown)
+                {
+                    valueIndicatorImage.Position = new Position(slidedTrackImage.Size2D.Width, 0);
+                }
             }
             else if (direction == DirectionType.Vertical)
             {
                 float slidedTrackLength = (float)BgTrackLength() * ratio;
                 slidedTrackImage.Size2D = new Size2D((int)(curTrackThickness + round), (int)slidedTrackLength); //Add const round to reach Math.Round function.
+
+                if (isValueShown)
+                {
+                    valueIndicatorImage.Position = new Position(0, -(slidedTrackImage.Size2D.Height + thumbImage.Size.Height / 2));
+                }
             }
         }
 

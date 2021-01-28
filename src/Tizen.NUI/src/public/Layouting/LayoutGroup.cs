@@ -141,7 +141,7 @@ namespace Tizen.NUI
                 // If child removed then set all siblings not being added to a ChangeOnRemove transition.
                 SetConditionsForAnimationOnLayoutGroup(TransitionCondition.ChangeOnRemove);
             }
-
+            OnChildRemove(layoutItem);
             RequestLayout();
         }
 

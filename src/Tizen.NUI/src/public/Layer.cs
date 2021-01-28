@@ -155,12 +155,16 @@ namespace Tizen.NUI
             get
             {
                 float temp = 0.0f;
-                GetProperty(View.Property.OPACITY).Get(out temp);
+                var pValue = GetProperty(View.Property.OPACITY);
+                pValue.Get(out temp);
+                pValue.Dispose();
                 return temp;
             }
             set
             {
-                SetProperty(View.Property.OPACITY, new Tizen.NUI.PropertyValue(value));
+                var temp = new Tizen.NUI.PropertyValue(value);
+                SetProperty(View.Property.OPACITY, temp);
+                temp.Dispose();
             }
         }
 
@@ -173,12 +177,16 @@ namespace Tizen.NUI
             get
             {
                 bool temp = false;
-                GetProperty(View.Property.VISIBLE).Get(out temp);
+                var pValue = GetProperty(View.Property.VISIBLE);
+                pValue.Get(out temp);
+                pValue.Dispose();
                 return temp;
             }
             set
             {
-                SetProperty(View.Property.VISIBLE, new Tizen.NUI.PropertyValue(value));
+                var temp = new Tizen.NUI.PropertyValue(value);
+                SetProperty(View.Property.VISIBLE, temp);
+                temp.Dispose();
             }
         }
 
@@ -347,6 +355,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>The child count of the layer.</returns>
         /// <since_tizen> 4 </since_tizen>
+        // [Obsolete("Deprecated in API9, will be removed in API11. Please use ChildCount property instead!")]
         public override uint GetChildCount()
         {
             return Convert.ToUInt32(Children.Count);

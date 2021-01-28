@@ -66,6 +66,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         [ScriptableProperty()]
+        // GetValue() is in BindableObject. It's different from this Value.
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1721: Property names should not match get methods")]
         public int Value
         {
             get
@@ -248,11 +250,26 @@ namespace Tizen.NUI
             set
             {
                 _arrowImage = value;
-                _arrowVisual = VisualFactory.Instance.CreateVisual(
-                    new PropertyMap().Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image))
-                                 .Add(ImageVisualProperty.URL, new PropertyValue(_arrowImage))
-                                 .Add(ImageVisualProperty.DesiredHeight, new PropertyValue(150))
-                                 .Add(ImageVisualProperty.DesiredWidth, new PropertyValue(150)));
+                var ptMap = new PropertyMap();
+                var temp = new PropertyValue((int)Visual.Type.Image);
+                ptMap.Add(Visual.Property.Type, temp);
+                temp.Dispose();
+
+                temp = new PropertyValue(_arrowImage);
+                ptMap.Add(ImageVisualProperty.URL, temp);
+                temp.Dispose();
+
+                temp = new PropertyValue(150);
+                ptMap.Add(ImageVisualProperty.DesiredHeight, temp);
+                temp.Dispose();
+
+                temp = new PropertyValue(150);
+                ptMap.Add(ImageVisualProperty.DesiredWidth, temp);
+                temp.Dispose();
+
+                _arrowVisual = VisualFactory.Instance.CreateVisual(ptMap);
+                ptMap.Dispose();
+
                 RegisterVisual(_arrowVisualPropertyIndex, _arrowVisual);
             }
         }
@@ -281,12 +298,29 @@ namespace Tizen.NUI
             _maxTextLength = 0;
 
             // Create image visual for the arrow keys
-            _arrowVisualPropertyIndex = RegisterProperty("ArrowImage", new PropertyValue(_arrowImage), Tizen.NUI.PropertyAccessMode.ReadWrite);
-            _arrowVisual = VisualFactory.Instance.CreateVisual(
-                new PropertyMap().Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image))
-                                 .Add(ImageVisualProperty.URL, new PropertyValue(_arrowImage))
-                                 .Add(ImageVisualProperty.DesiredHeight, new PropertyValue(150))
-                                 .Add(ImageVisualProperty.DesiredWidth, new PropertyValue(150)));
+            var temp = new PropertyValue(_arrowImage);
+            _arrowVisualPropertyIndex = RegisterProperty("ArrowImage", temp, Tizen.NUI.PropertyAccessMode.ReadWrite);
+            temp.Dispose();
+
+            var ptMap = new PropertyMap();
+            temp = new PropertyValue((int)Visual.Type.Image);
+            ptMap.Add(Visual.Property.Type, temp);
+            temp.Dispose();
+
+            temp = new PropertyValue(_arrowImage);
+            ptMap.Add(ImageVisualProperty.URL, temp);
+            temp.Dispose();
+
+            temp = new PropertyValue(150);
+            ptMap.Add(ImageVisualProperty.DesiredHeight, temp);
+            temp.Dispose();
+
+            temp = new PropertyValue(150);
+            ptMap.Add(ImageVisualProperty.DesiredWidth, temp);
+            temp.Dispose();
+
+            _arrowVisual = VisualFactory.Instance.CreateVisual(ptMap);
+            ptMap.Dispose();
             RegisterVisual(_arrowVisualPropertyIndex, _arrowVisual);
 
             // Create a text field

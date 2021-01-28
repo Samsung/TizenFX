@@ -195,15 +195,6 @@ namespace Tizen.NUI
 
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public new uint GetChildCount()
-        {
-            uint ret = Interop.ActorInternal.GetChildCount(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public new View GetChildAt(uint index)
         {
             View ret = new View(Interop.ActorInternal.GetChildAt(SwigCPtr, index), true);
@@ -252,57 +243,6 @@ namespace Tizen.NUI
 
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetMinimumSwipeSpeed(float speed)
-        {
-            Interop.ItemView.SetMinimumSwipeSpeed(SwigCPtr, speed);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public float GetMinimumSwipeSpeed()
-        {
-            float ret = Interop.ItemView.GetMinimumSwipeSpeed(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetMinimumSwipeDistance(float distance)
-        {
-            Interop.ItemView.SetMinimumSwipeDistance(SwigCPtr, distance);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public float GetMinimumSwipeDistance()
-        {
-            float ret = Interop.ItemView.GetMinimumSwipeDistance(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetWheelScrollDistanceStep(float step)
-        {
-            Interop.ItemView.SetWheelScrollDistanceStep(SwigCPtr, step);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public float GetWheelScrollDistanceStep()
-        {
-            float ret = Interop.ItemView.GetWheelScrollDistanceStep(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetAnchoring(bool enabled)
         {
             Interop.ItemView.SetAnchoring(SwigCPtr, enabled);
@@ -341,23 +281,6 @@ namespace Tizen.NUI
         {
             Interop.ItemView.ScrollToItem(SwigCPtr, itemId, durationSeconds);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetRefreshInterval(float intervalLayoutPositions)
-        {
-            Interop.ItemView.SetRefreshInterval(SwigCPtr, intervalLayoutPositions);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public float GetRefreshInterval()
-        {
-            float ret = Interop.ItemView.GetRefreshInterval(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.

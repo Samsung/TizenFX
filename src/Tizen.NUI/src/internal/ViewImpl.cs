@@ -39,6 +39,21 @@ namespace Tizen.NUI
             throw new global::System.MethodAccessException("C++ destructor does not have public access");
         }
 
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                SwigDirectorDisconnect();
+            }
+
+            base.Dispose(type);
+        }
+
         public static View New()
         {
             View ret = new View(Interop.ViewImpl.New(), true);
@@ -524,6 +539,45 @@ namespace Tizen.NUI
             Interop.ViewImpl.DirectorConnect(SwigCPtr, swigDelegate0, swigDelegate1, swigDelegate2, swigDelegate3, swigDelegate4, swigDelegate5, swigDelegate6, swigDelegate9, swigDelegate11, swigDelegate12, swigDelegate13, swigDelegate14, swigDelegate15, swigDelegate16, swigDelegate17, swigDelegate18, swigDelegate19, swigDelegate20, swigDelegate21, swigDelegate24, swigDelegate25, swigDelegate26, swigDelegate28, swigDelegate29, swigDelegate30, swigDelegate31, swigDelegate32, swigDelegate33, swigDelegate34, swigDelegate35, swigDelegate36, swigDelegate37, swigDelegate38, swigDelegate39, swigDelegate40);
         }
 
+        private void SwigDirectorDisconnect()
+        {
+            swigDelegate0 = null;
+            swigDelegate1 = null;
+            swigDelegate2 = null;
+            swigDelegate3 = null;
+            swigDelegate4 = null;
+            swigDelegate5 = null;
+            swigDelegate6 = null;
+            swigDelegate9 = null;
+            swigDelegate11 = null;
+            swigDelegate12 = null;
+            swigDelegate13 = null;
+            swigDelegate14 = null;
+            swigDelegate15 = null;
+            swigDelegate16 = null;
+            swigDelegate17 = null;
+            swigDelegate18 = null;
+            swigDelegate19 = null;
+            swigDelegate20 = null;
+            swigDelegate21 = null;
+            swigDelegate24 = null;
+            swigDelegate25 = null;
+            swigDelegate26 = null;
+            swigDelegate28 = null;
+            swigDelegate29 = null;
+            swigDelegate30 = null;
+            swigDelegate31 = null;
+            swigDelegate32 = null;
+            swigDelegate33 = null;
+            swigDelegate34 = null;
+            swigDelegate35 = null;
+            swigDelegate36 = null;
+            swigDelegate37 = null;
+            swigDelegate38 = null;
+            swigDelegate39 = null;
+            swigDelegate40 = null;
+            Interop.ViewImpl.DirectorConnect(SwigCPtr, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+        }
 
         private bool SwigDerivedClassHasMethod(string methodName, global::System.Type[] methodTypes)
         {
