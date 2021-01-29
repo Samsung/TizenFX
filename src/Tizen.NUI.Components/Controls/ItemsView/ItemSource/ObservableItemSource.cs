@@ -6,14 +6,14 @@ namespace Tizen.NUI.Components
 {
     internal class ObservableItemSource : IItemSource
     {
-        readonly IEnumerable _itemsSource;
-        readonly ICollectionChangedNotifier _notifier;
-        bool _disposed;
+        readonly IEnumerable itemsSource;
+        readonly ICollectionChangedNotifier notifier;
+        bool disposed;
 
-        public ObservableItemSource(IEnumerable itemSource, ICollectionChangedNotifier notifier)
+        public ObservableItemSource(IEnumerable itemSource, ICollectionChangedNotifier changedNotifier)
         {
-            _itemsSource = itemSource as IList ?? itemSource as IEnumerable;
-            _notifier = notifier;
+            itemsSource = itemSource as IList ?? itemSource as IEnumerable;
+            notifier = changedNotifier;
 
             ((INotifyCollectionChanged)itemSource).CollectionChanged += CollectionChanged;
         }
@@ -64,16 +64,16 @@ namespace Tizen.NUI.Components
 
         protected virtual void Dispose(bool disposing)
         {
-            if (_disposed)
+            if (disposed)
             {
                 return;
             }
 
-            _disposed = true;
+            disposed = true;
 
             if (disposing)
             {
-                ((INotifyCollectionChanged)_itemsSource).CollectionChanged -= CollectionChanged;
+                ((INotifyCollectionChanged)itemsSource).CollectionChanged -= CollectionChanged;
             }
         }
 
@@ -117,7 +117,7 @@ namespace Tizen.NUI.Components
                     Move(args);
                     break;
                 case NotifyCollectionChangedAction.Reset:
-                    _notifier.NotifyDataSetChanged();
+                    notifier.NotifyDataSetChanged();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(args));
@@ -132,13 +132,13 @@ namespace Tizen.NUI.Components
             if (count == 1)
             {
                 // For a single item, we can use NotifyItemMoved and get the animation
-                _notifier.NotifyItemMoved(this, AdjustPositionForHeader(args.OldStartingIndex), AdjustPositionForHeader(args.NewStartingIndex));
+                notifier.NotifyItemMoved(this, AdjustPositionForHeader(args.OldStartingIndex), AdjustPositionForHeader(args.NewStartingIndex));
                 return;
             }
 
             var start = AdjustPositionForHeader(Math.Min(args.OldStartingIndex, args.NewStartingIndex));
             var end = AdjustPositionForHeader(Math.Max(args.OldStartingIndex, args.NewStartingIndex) + count);
-            _notifier.NotifyItemRangeChanged(this, start, end);
+            notifier.NotifyItemRangeChanged(this, start, end);
         }
 
         void Add(NotifyCollectionChangedEventArgs args)
@@ -149,11 +149,11 @@ namespace Tizen.NUI.Components
 
             if (count == 1)
             {
-                _notifier.NotifyItemInserted(this, startIndex);
+                notifier.NotifyItemInserted(this, startIndex);
                 return;
             }
 
-            _notifier.NotifyItemRangeInserted(this, startIndex, count);
+            notifier.NotifyItemRangeInserted(this, startIndex, count);
         }
 
         void Remove(NotifyCollectionChangedEventArgs args)
@@ -164,7 +164,7 @@ namespace Tizen.NUI.Components
             {
                 // INCC implementation isn't giving us enough information to know where the removed items were in the
                 // collection. So the best we can do is a NotifyDataSetChanged()
-                _notifier.NotifyDataSetChanged();
+                notifier.NotifyDataSetChanged();
                 return;
             }
 
@@ -175,11 +175,11 @@ namespace Tizen.NUI.Components
 
             if (count == 1)
             {
-                _notifier.NotifyItemRemoved(this, startIndex);
+                notifier.NotifyItemRemoved(this, startIndex);
                 return;
             }
 
-            _notifier.NotifyItemRangeRemoved(this, startIndex, count);
+            notifier.NotifyItemRangeRemoved(this, startIndex, count);
         }
 
         void Replace(NotifyCollectionChangedEventArgs args)
@@ -194,11 +194,11 @@ namespace Tizen.NUI.Components
                 // notification to the adapter
                 if (newCount == 1)
                 {
-                    _notifier.NotifyItemChanged(this, startIndex);
+                    notifier.NotifyItemChanged(this, startIndex);
                 }
                 else
                 {
-                    _notifier.NotifyItemRangeChanged(this, startIndex, newCount);
+                    notifier.NotifyItemRangeChanged(this, startIndex, newCount);
                 }
 
                 return;
@@ -206,27 +206,27 @@ namespace Tizen.NUI.Components
 
             // The original and replacement sets are of unequal size; this means that everything currently in view will 
             // have to be updated. So we just have to use NotifyDataSetChanged and let the RecyclerView update everything
-            _notifier.NotifyDataSetChanged();
+            notifier.NotifyDataSetChanged();
         }
 
         internal int ItemsCount()
         {
-            if (_itemsSource is IList list)
+            if (itemsSource is IList list)
                 return list.Count;
 
             int count = 0;
-            foreach (var item in _itemsSource)
+            foreach (var item in itemsSource)
                 count++;
             return count;
         }
 
         internal object ElementAt(int index)
         {
-            if (_itemsSource is IList list)
+            if (itemsSource is IList list)
                 return list[index];
 
             int count = 0;
-            foreach (var item in _itemsSource)
+            foreach (var item in itemsSource)
             {
                 if (count == index)
                     return item;
@@ -238,11 +238,11 @@ namespace Tizen.NUI.Components
 
         internal int IndexOf(object item)
         {
-            if (_itemsSource is IList list)
+            if (itemsSource is IList list)
                 return list.IndexOf(item);
 
             int count = 0;
-            foreach (var i in _itemsSource)
+            foreach (var i in itemsSource)
             {
                 if (i == item)
                     return count;

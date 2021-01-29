@@ -7,12 +7,12 @@ namespace Tizen.NUI.Components
 {
     internal class ObservableGroupedSource : IGroupableItemSource, ICollectionChangedNotifier
     {
-        readonly ICollectionChangedNotifier _notifier;
-        readonly IList _groupSource;
-        List<IItemSource> _groups = new List<IItemSource>();
-        readonly bool _hasGroupHeaders;
-        readonly bool _hasGroupFooters;
-        bool _disposed;
+        readonly ICollectionChangedNotifier notifier;
+        readonly IList groupSource;
+        List<IItemSource> groups = new List<IItemSource>();
+        readonly bool hasGroupHeaders;
+        readonly bool hasGroupFooters;
+        bool disposed;
 
         public int Count
         {
@@ -20,9 +20,9 @@ namespace Tizen.NUI.Components
             {
                 var groupContents = 0;
 
-                for (int n = 0; n < _groups.Count; n++)
+                for (int n = 0; n < groups.Count; n++)
                 {
-                    groupContents += _groups[n].Count;
+                    groupContents += groups[n].Count;
                 }
 
                 return (HasHeader ? 1 : 0)
@@ -34,17 +34,19 @@ namespace Tizen.NUI.Components
         public bool HasHeader { get; set; }
         public bool HasFooter { get; set; }
 
-        public ObservableGroupedSource(CollectionView groupableItemsView, ICollectionChangedNotifier notifier)
+        public ObservableGroupedSource(CollectionView groupableItemsView, ICollectionChangedNotifier changedNotifier)
         {
-            var groupSource = groupableItemsView.ItemsSource;
+            var source = groupableItemsView.ItemsSource;
 
-            _notifier = notifier;
-            _groupSource = groupSource as IList ?? new ListSource(groupSource);
+            notifier = changedNotifier;
+            groupSource = source as IList ?? new ListSource(source);
 
-            _hasGroupFooters = groupableItemsView.GroupFooterTemplate != null;
-            _hasGroupHeaders = groupableItemsView.GroupHeaderTemplate != null;
+            hasGroupFooters = groupableItemsView.GroupFooterTemplate != null;
+            hasGroupHeaders = groupableItemsView.GroupHeaderTemplate != null;
+            HasHeader = groupableItemsView.Header != null;
+            HasFooter = groupableItemsView.Footer != null;
 
-            if (_groupSource is INotifyCollectionChanged incc)
+            if (groupSource is INotifyCollectionChanged incc)
             {
                 incc.CollectionChanged += CollectionChanged;
             }
@@ -74,14 +76,16 @@ namespace Tizen.NUI.Components
 
         public bool IsGroupHeader(int position)
         {
+            //Console.WriteLine("LSH ::: {0} is Group Header?", position);
             if (IsFooter(position) || IsHeader(position))
             {
                 return false;
             }
 
             var (group, inGroup) = GetGroupAndIndex(position);
+            //Console.WriteLine("LSH ::: {0}'s group {1}, index {2} answer{3}", position, group, inGroup, groups[group].IsHeader(inGroup));
 
-            return _groups[group].IsHeader(inGroup);
+            return groups[group].IsHeader(inGroup);
         }
 
         public bool IsGroupFooter(int position)
@@ -93,21 +97,21 @@ namespace Tizen.NUI.Components
 
             var (group, inGroup) = GetGroupAndIndex(position);
 
-            return _groups[group].IsFooter(inGroup);
+            return groups[group].IsFooter(inGroup);
         }
 
         public int GetPosition(object item)
         {
             int previousGroupsOffset = 0;
 
-            for (int groupIndex = 0; groupIndex < _groupSource.Count; groupIndex++)
+            for (int groupIndex = 0; groupIndex < groupSource.Count; groupIndex++)
             {
-                if (_groupSource[groupIndex].Equals(item))
+                if (groupSource[groupIndex].Equals(item))
                 {
                     return AdjustPositionForHeader(groupIndex);
                 }
 
-                var group = _groups[groupIndex];
+                var group = groups[groupIndex];
                 var inGroup = group.GetPosition(item);
 
                 if (inGroup > -1)
@@ -128,10 +132,16 @@ namespace Tizen.NUI.Components
             if (IsGroupFooter(position) || IsGroupHeader(position))
             {
                 // This is looping to find the group/index twice, need to make it less inefficient
-                return _groupSource[group];
+                return groupSource[group];
             }
 
-            return _groups[group].GetItem(inGroup);
+            return groups[group].GetItem(inGroup);
+        }
+
+        public object GetGroupParent(int position)
+        {
+            var (group, inGroup) = GetGroupAndIndex(position);
+            return groupSource[group];
         }
 
         // The ICollectionChangedNotifier methods are called by child observable items sources (i.e., the groups)
@@ -146,65 +156,65 @@ namespace Tizen.NUI.Components
         public void NotifyItemChanged(IItemSource group, int localIndex)
         {
             localIndex = GetAbsolutePosition(group, localIndex);
-            _notifier.NotifyItemChanged(this, localIndex);
+            notifier.NotifyItemChanged(this, localIndex);
         }
 
         public void NotifyItemInserted(IItemSource group, int localIndex)
         {
             localIndex = GetAbsolutePosition(group, localIndex);
-            _notifier.NotifyItemInserted(this, localIndex);
+            notifier.NotifyItemInserted(this, localIndex);
         }
 
         public void NotifyItemMoved(IItemSource group, int localFromIndex, int localToIndex)
         {
             localFromIndex = GetAbsolutePosition(group, localFromIndex);
             localToIndex = GetAbsolutePosition(group, localToIndex);
-            _notifier.NotifyItemMoved(this, localFromIndex, localToIndex);
+            notifier.NotifyItemMoved(this, localFromIndex, localToIndex);
         }
 
         public void NotifyItemRangeChanged(IItemSource group, int localStartIndex, int localEndIndex)
         {
             localStartIndex = GetAbsolutePosition(group, localStartIndex);
             localEndIndex = GetAbsolutePosition(group, localEndIndex);
-            _notifier.NotifyItemRangeChanged(this, localStartIndex, localEndIndex);
+            notifier.NotifyItemRangeChanged(this, localStartIndex, localEndIndex);
         }
 
         public void NotifyItemRangeInserted(IItemSource group, int localIndex, int count)
         {
             localIndex = GetAbsolutePosition(group, localIndex);
-            _notifier.NotifyItemRangeInserted(this, localIndex, count);
+            notifier.NotifyItemRangeInserted(this, localIndex, count);
         }
 
         public void NotifyItemRangeRemoved(IItemSource group, int localIndex, int count)
         {
             localIndex = GetAbsolutePosition(group, localIndex);
-            _notifier.NotifyItemRangeRemoved(this, localIndex, count);
+            notifier.NotifyItemRangeRemoved(this, localIndex, count);
         }
 
         public void NotifyItemRemoved(IItemSource group, int localIndex)
         {
             localIndex = GetAbsolutePosition(group, localIndex);
-            _notifier.NotifyItemRemoved(this, localIndex);
+            notifier.NotifyItemRemoved(this, localIndex);
         }
 
         protected virtual void Dispose(bool disposing)
         {
-            if (_disposed)
+            if (disposed)
             {
                 return;
             }
 
-            _disposed = true;
+           disposed = true;
 
             if (disposing)
             {
                 ClearGroupTracking();
 
-                if (_groupSource is INotifyCollectionChanged notifyCollectionChanged)
+                if (groupSource is INotifyCollectionChanged notifyCollectionChanged)
                 {
                     notifyCollectionChanged.CollectionChanged -= CollectionChanged;
                 }
-                if (_groupSource is IDisposable dispoableSource) dispoableSource.Dispose();
+                if (groupSource is IDisposable dispoableSource) dispoableSource.Dispose();
             }
         }
 
@@ -212,21 +222,21 @@ namespace Tizen.NUI.Components
         {
             ClearGroupTracking();
 
-            for (int n = 0; n < _groupSource.Count; n++)
+            for (int n = 0; n < groupSource.Count; n++)
             {
-                var source = ItemsSourceFactory.Create(_groupSource[n] as IEnumerable, this);
-                source.HasFooter = _hasGroupFooters;
-                source.HasHeader = _hasGroupHeaders;
-                _groups.Add(source);
+                var source = ItemsSourceFactory.Create(groupSource[n] as IEnumerable, this);
+                source.HasFooter = hasGroupFooters;
+                source.HasHeader = hasGroupHeaders;
+                groups.Add(source);
             }
         }
 
         void ClearGroupTracking()
         {
-            for (int n = _groups.Count - 1; n >= 0; n--)
+            for (int n = groups.Count - 1; n >= 0; n--)
             {
-                _groups[n].Dispose();
-                _groups.RemoveAt(n);
+                groups[n].Dispose();
+                groups.RemoveAt(n);
             }
         }
 
@@ -270,27 +280,27 @@ namespace Tizen.NUI.Components
         void Reload()
         {
             UpdateGroupTracking();
-            _notifier.NotifyDataSetChanged();
+            notifier.NotifyDataSetChanged();
         }
 
         void Add(NotifyCollectionChangedEventArgs args)
         {
-            var groupIndex = args.NewStartingIndex > -1 ? args.NewStartingIndex : _groupSource.IndexOf(args.NewItems[0]);
+            var groupIndex = args.NewStartingIndex > -1 ? args.NewStartingIndex : groupSource.IndexOf(args.NewItems[0]);
             var groupCount = args.NewItems.Count;
 
             UpdateGroupTracking();
 
             // Determine the absolute starting position and the number of items in the groups being added
-            var absolutePosition = GetAbsolutePosition(_groups[groupIndex], 0);
+            var absolutePosition = GetAbsolutePosition(groups[groupIndex], 0);
             var itemCount = CountItemsInGroups(groupIndex, groupCount);
 
             if (itemCount == 1)
             {
-                _notifier.NotifyItemInserted(this, absolutePosition);
+                notifier.NotifyItemInserted(this, absolutePosition);
                 return;
             }
 
-            _notifier.NotifyItemRangeInserted(this, absolutePosition, itemCount);
+            notifier.NotifyItemRangeInserted(this, absolutePosition, itemCount);
         }
 
         void Remove(NotifyCollectionChangedEventArgs args)
@@ -308,21 +318,21 @@ namespace Tizen.NUI.Components
             // If we have a start index, we can be more clever about removing the group(s) (and get the nifty animations)
             var groupCount = args.OldItems.Count;
 
-            var absolutePosition = GetAbsolutePosition(_groups[groupIndex], 0);
+            var absolutePosition = GetAbsolutePosition(groups[groupIndex], 0);
 
             // Figure out how many items are in the groups we're removing
             var itemCount = CountItemsInGroups(groupIndex, groupCount);
 
             if (itemCount == 1)
             {
-                _notifier.NotifyItemRemoved(this, absolutePosition);
+                notifier.NotifyItemRemoved(this, absolutePosition);
 
                 UpdateGroupTracking();
 
                 return;
             }
 
-            _notifier.NotifyItemRangeRemoved(this, absolutePosition, itemCount);
+            notifier.NotifyItemRangeRemoved(this, absolutePosition, itemCount);
 
             UpdateGroupTracking();
         }
@@ -339,8 +349,8 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            var newStartIndex = args.NewStartingIndex > -1 ? args.NewStartingIndex : _groupSource.IndexOf(args.NewItems[0]);
-            var oldStartIndex = args.OldStartingIndex > -1 ? args.OldStartingIndex : _groupSource.IndexOf(args.OldItems[0]);
+            var newStartIndex = args.NewStartingIndex > -1 ? args.NewStartingIndex : groupSource.IndexOf(args.NewItems[0]);
+            var oldStartIndex = args.OldStartingIndex > -1 ? args.OldStartingIndex : groupSource.IndexOf(args.OldItems[0]);
 
             var newItemCount = CountItemsInGroups(newStartIndex, groupCount);
             var oldItemCount = CountItemsInGroups(oldStartIndex, groupCount);
@@ -355,16 +365,16 @@ namespace Tizen.NUI.Components
 
             // We are replacing one set of items with a set of equal size; we can do a simple item or range notification 
             var firstGroupIndex = Math.Min(newStartIndex, oldStartIndex);
-            var absolutePosition = GetAbsolutePosition(_groups[firstGroupIndex], 0);
+            var absolutePosition = GetAbsolutePosition(groups[firstGroupIndex], 0);
 
             if (newItemCount == 1)
             {
-                _notifier.NotifyItemChanged(this, absolutePosition);
+                notifier.NotifyItemChanged(this, absolutePosition);
                 UpdateGroupTracking();
             }
             else
             {
-                _notifier.NotifyItemRangeChanged(this, absolutePosition, newItemCount * 2);
+                notifier.NotifyItemRangeChanged(this, absolutePosition, newItemCount * 2);
                 UpdateGroupTracking();
             }
         }
@@ -375,22 +385,22 @@ namespace Tizen.NUI.Components
             var end = Math.Max(args.OldStartingIndex, args.NewStartingIndex) + args.NewItems.Count;
 
             var itemCount = CountItemsInGroups(start, end - start);
-            var absolutePosition = GetAbsolutePosition(_groups[start], 0);
+            var absolutePosition = GetAbsolutePosition(groups[start], 0);
 
-            _notifier.NotifyItemRangeChanged(this, absolutePosition, itemCount);
+            notifier.NotifyItemRangeChanged(this, absolutePosition, itemCount);
 
             UpdateGroupTracking();
         }
 
         int GetAbsolutePosition(IItemSource group, int indexInGroup)
         {
-            var groupIndex = _groups.IndexOf(group);
+            var groupIndex = groups.IndexOf(group);
 
             var runningIndex = 0;
 
             for (int n = 0; n < groupIndex; n++)
             {
-                runningIndex += _groups[n].Count;
+                runningIndex += groups[n].Count;
             }
 
             return AdjustPositionForHeader(runningIndex + indexInGroup);
@@ -400,6 +410,8 @@ namespace Tizen.NUI.Components
         {
             absolutePosition = AdjustIndexForHeader(absolutePosition);
 
+            //Console.WriteLine("LSH:: Get absolute: {0}", absolutePosition);
+
             var group = 0;
             var localIndex = 0;
 
@@ -407,7 +419,7 @@ namespace Tizen.NUI.Components
             {
                 localIndex += 1;
 
-                if (localIndex == _groups[group].Count)
+                if (localIndex == groups[group].Count)
                 {
                     group += 1;
                     localIndex = 0;
@@ -434,7 +446,7 @@ namespace Tizen.NUI.Components
             var itemCount = 0;
             for (int n = 0; n < groupCount; n++)
             {
-                itemCount += _groups[groupStartIndex + n].Count;
+                itemCount += groups[groupStartIndex + n].Count;
             }
             return itemCount;
         }

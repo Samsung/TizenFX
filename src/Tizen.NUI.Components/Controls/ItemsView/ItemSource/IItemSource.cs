@@ -77,5 +77,13 @@ namespace Tizen.NUI.Components
         /// <param name="position">The position for checking group footer.</param>
        [EditorBrowsable(EditorBrowsableState.Never)]
         bool IsGroupFooter(int position);
+
+        /// <summary>
+        /// Boolean checker for position is group footer or not
+        /// </summary>
+        /// <param name="position">The position for checking group footer.</param>
+       [EditorBrowsable(EditorBrowsableState.Never)]
+        object GetGroupParent(int position);
+
     }
 }

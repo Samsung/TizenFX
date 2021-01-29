@@ -10,7 +10,7 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class SelectionChangedEventArgs : EventArgs
     {
-        static readonly IReadOnlyList<object> s_empty = new List<object>(0);
+        static readonly IReadOnlyList<object> selectEmpty = new List<object>(0);
 
         /// <summary>
         /// Previous selecitdon list.
@@ -27,8 +27,8 @@ namespace Tizen.NUI.Components
 
         internal SelectionChangedEventArgs(object previousSelection, object currentSelection)
         {
-            PreviousSelection = previousSelection != null ? new List<object>(1) { previousSelection } : s_empty;
-            CurrentSelection = currentSelection != null ? new List<object>(1) { currentSelection } : s_empty;
+            PreviousSelection = previousSelection != null ? new List<object>(1) { previousSelection } : selectEmpty;
+            CurrentSelection = currentSelection != null ? new List<object>(1) { currentSelection } : selectEmpty;
         }
 
         internal SelectionChangedEventArgs(IList<object> previousSelection, IList<object> currentSelection)
