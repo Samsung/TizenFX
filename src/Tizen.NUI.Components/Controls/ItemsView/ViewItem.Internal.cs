@@ -9,8 +9,9 @@ namespace Tizen.NUI.Components
     public partial class ViewItem
     {
         internal ItemsView ParentItemsView = null;
-        internal ViewItem ParentGroup = null;
-        internal ViewItem ParentItem = null;
+        internal object ParentGroup = null;
+        internal bool isGroupHeader;
+        internal bool isGroupFooter;
         private bool styleApplied = false;
 
         /// <summary>
@@ -81,7 +82,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnClicked(ClickedEventArgs eventArgs)
         {
-            Console.WriteLine("On Clicked Called {0}", this.Index);
+            //Console.WriteLine("On Clicked Called {0}", this.Index);
         }
 
         /// <summary>
@@ -221,15 +222,27 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Get ViewItem style.
+        /// </summary>
+        /// <returns>The default ViewItem style.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override ViewStyle CreateViewStyle()
+        {
+            return new ViewItemStyle();
+        }
+
+        /// <summary>
         /// It is hijack by using protected, style copy problem when class inherited from Button.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         private void Initialize()
         {
-            EnableControlStatePropagation = true;
+            //FIXME!
+            IsCreateByXaml = true;
+            Layout = new AbsoluteLayout();
             UpdateState();
 
-            AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "Button");
+            AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "ViewItem");
         }
 
         /// <summary>

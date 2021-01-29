@@ -2,36 +2,36 @@
 {
     internal class UngroupedItemSource : IGroupableItemSource
     {
-        readonly IItemSource _source;
+        readonly IItemSource source;
 
-        public UngroupedItemSource(IItemSource source)
+        public UngroupedItemSource(IItemSource itemSource)
         {
-            _source = source;
+            source = itemSource;
         }
 
-        public int Count => _source.Count;
+        public int Count => source.Count;
 
-        public bool HasHeader { get => _source.HasHeader; set => _source.HasHeader = value; }
-        public bool HasFooter { get => _source.HasFooter; set => _source.HasFooter = value; }
+        public bool HasHeader { get => source.HasHeader; set => source.HasHeader = value; }
+        public bool HasFooter { get => source.HasFooter; set => source.HasFooter = value; }
 
         public void Dispose()
         {
-            _source.Dispose();
+            source.Dispose();
         }
 
         public object GetItem(int position)
         {
-            return _source.GetItem(position);
+            return source.GetItem(position);
         }
 
         public int GetPosition(object item)
         {
-            return _source.GetPosition(item);
+            return source.GetPosition(item);
         }
 
         public bool IsFooter(int position)
         {
-            return _source.IsFooter(position);
+            return source.IsFooter(position);
         }
 
         public bool IsGroupFooter(int position)
@@ -46,7 +46,12 @@
 
         public bool IsHeader(int position)
         {
-            return _source.IsHeader(position);
+            return source.IsHeader(position);
+        }
+
+        public object GetGroupParent(int position)
+        {
+            return null;
         }
     }
 }

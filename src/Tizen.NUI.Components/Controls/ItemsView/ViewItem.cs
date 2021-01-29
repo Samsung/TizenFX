@@ -111,7 +111,25 @@ namespace Tizen.NUI.Components
         private bool isSelected = false;
         private bool isSelectable = true;
         private bool isEnabled = true;
+        private ViewItemStyle itemStyle => ViewStyle as ViewItemStyle;
 
+        /// <summary>
+        /// Return a copied Style instance of Toast
+        /// </summary>
+        /// <remarks>
+        /// It returns copied Style instance and changing it does not effect to the Toast.
+        /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new ViewItemStyle Style
+        {
+            get
+            {
+                var result = new ViewItemStyle(itemStyle);
+                result.CopyPropertiesFromView(this);
+                return result;
+            }
+        }
 
         static ViewItem() {}
 
@@ -121,10 +139,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ViewItem() : base()
         {
-            //FIXME!
-            IsCreateByXaml = true;
-            Layout = new AbsoluteLayout();
-            ViewItem viewItem = this;
             Initialize();
         }
 
@@ -135,9 +149,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ViewItem(string style) : base(style)
         {
-            //FIXME!
-            IsCreateByXaml = true;
-            Layout = new AbsoluteLayout();
             Initialize();
         }
 
@@ -148,9 +159,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ViewItem(ViewItemStyle itemStyle) : base(itemStyle)
         {
-            //FIXME!
-            IsCreateByXaml = true;
-            Layout = new AbsoluteLayout();
             Initialize();
         }
 
