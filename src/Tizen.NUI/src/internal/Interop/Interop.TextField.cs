@@ -253,6 +253,9 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_SelectNone")]
             public static extern int SelectNone(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_FONT_SIZE_SCALE_get")]
+            public static extern int FontSizeScaleGet();
         }
     }
 }
