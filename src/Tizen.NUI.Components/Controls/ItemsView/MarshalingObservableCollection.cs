@@ -12,7 +12,7 @@ namespace Tizen.NUI.Components
 
     internal class MarshalingObservableCollection : List<object>, INotifyCollectionChanged
     {
-        readonly IList _internalCollection;
+        readonly IList internalCollection;
 
         public MarshalingObservableCollection(IList list)
         {
@@ -21,10 +21,10 @@ namespace Tizen.NUI.Components
                 throw new ArgumentException($"{nameof(list)} must implement {nameof(INotifyCollectionChanged)}");
             }
 
-            _internalCollection = list;
+            internalCollection = list;
             incc.CollectionChanged += InternalCollectionChanged;
 
-            foreach (var item in _internalCollection)
+            foreach (var item in internalCollection)
             {
                 Add(item);
             }
@@ -49,9 +49,9 @@ namespace Tizen.NUI.Components
             if (args.Action == NotifyCollectionChangedAction.Reset)
             {
                 var items = new List<object>();
-                for (int n = 0; n < _internalCollection.Count; n++)
+                for (int n = 0; n < internalCollection.Count; n++)
                 {
-                    items.Add(_internalCollection[n]);
+                    items.Add(internalCollection[n]);
                 }
 
                 args = new ResetNotifyCollectionChangedEventArgs(items);

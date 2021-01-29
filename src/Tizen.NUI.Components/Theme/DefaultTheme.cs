@@ -93,6 +93,11 @@ namespace Tizen.NUI.Components
             ["PaginationIndicatorImageUrlSelected"] = FrameworkInformation.ResourcePath + "nui_component_default_pagination_focus_dot.png",
             ["ScrollbarTrackColor"] = new Color(1, 1, 1, 0.15f),
             ["ScrollbarThumbColor"] = new Color(0.6f, 0.6f, 0.6f, 1.0f),
+            ["ViewItemBackgroundColorNormal"] = new Color(1, 1, 1, 1),
+            ["ViewItemBackgroundColorPressed"] = new Color(0.85f, 0.85f, 0.85f, 1),
+            ["ViewItemBackgroundColorDisabled"] = new Color(0.70f, 0.70f, 0.70f, 1),
+            ["ViewItemBackgroundColorSelected"] = new Color(0.701f, 0.898f, 0.937f, 1),
+            ["TitleBackgroundColorNormal"] = new Color(0.78f, 0.78f, 0.78f, 1),
         };
 
         public Theme Create() => Create(null);
@@ -372,13 +377,85 @@ namespace Tizen.NUI.Components
             {
                 BackgroundColor = new Selector<Color>()
                 {
-                    Normal = new Color(1, 1, 1, 1),
-                    Pressed = new Color(0.85f, 0.85f, 0.85f, 1),
-                    Disabled = new Color(0.70f, 0.70f, 0.70f, 1),
-                    Selected = new Color(0.701f, 0.898f, 0.937f, 1)
-                }
+                    Normal = (Color)theme.Resources["ViewItemBackgroundColorNormal"],
+                    Pressed = (Color)theme.Resources["ViewItemBackgroundColorPressed"],
+                    Disabled = (Color)theme.Resources["ViewItemBackgroundColorDisabled"],
+                    Selected = (Color)theme.Resources["ViewItemBackgroundColorSelected"],
+                },
+            });
+            
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.DefaultLinearItem", new DefaultLinearItemStyle()
+            {
+                SizeHeight = 100,
+                Padding = new Extents(10, 10, 20, 20),
+                BackgroundColor = new Selector<Color>()
+                {
+                    Normal = (Color)theme.Resources["ViewItemBackgroundColorNormal"],
+                    Pressed = (Color)theme.Resources["ViewItemBackgroundColorPressed"],
+                    Disabled = (Color)theme.Resources["ViewItemBackgroundColorDisabled"],
+                    Selected = (Color)theme.Resources["ViewItemBackgroundColorSelected"],
+                },
+                Label = new TextLabelStyle()
+                {
+                    PointSize = 20,
+                    Ellipsis = true,
+                },
+                SubLabel = new TextLabelStyle()
+                {
+                    PointSize = 12,
+                    Ellipsis = true,
+                },
+                Icon = new ViewStyle()
+                {
+                    Margin = new Extents(0, 10, 0, 0)
+                },
+                Extra = new ViewStyle()
+                {
+                    Margin = new Extents(10, 0, 0, 0)
+                },
+                Seperator = new ViewStyle()
+                {
+                    Margin = new Extents(5, 5, 0, 0),
+                    BackgroundColor = new Color(0.78f, 0.78f, 0.78f, 1),
+                },
+            });
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.DefaultGridItem", new DefaultGridItemStyle()
+            {
+                Padding = new Extents(5, 5, 5, 5),
+                Caption = new TextLabelStyle()
+                {
+                    PointSize = 9,
+                    Ellipsis = true,
+                },
+                Badge = new ViewStyle()
+                {
+                    Margin = new Extents(5, 5, 5, 5),
+                },
             });
 
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.DefaultTitleItem", new DefaultTitleItemStyle()
+            {
+                SizeHeight = 50,
+                Padding = new Extents(10, 10, 5, 5),
+                BackgroundColor = new Selector<Color>()
+                {
+                    Normal = (Color)theme.Resources["TitleBackgroundColorNormal"],
+                },
+                Label = new TextLabelStyle()
+                {
+                    PointSize = 15,
+                    Ellipsis = true,
+                },
+                Icon = new ViewStyle()
+                {
+                    Margin = new Extents(10, 0, 0, 0)
+                },
+                Seperator = new ViewStyle()
+                {
+                    Margin = new Extents(0, 0, 0, 0),
+                    BackgroundColor = new Color(0.85f, 0.85f, 0.85f, 1),
+                },
+            });
 
             return theme;
         }

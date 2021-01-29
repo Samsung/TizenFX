@@ -14,6 +14,7 @@
  *
  */
 using System;
+using System.Linq;
 using Tizen.NUI.BaseComponents;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,8 +32,17 @@ namespace Tizen.NUI.Components
         private Size2D sizeCandidate;
         private int spanSize = 1;
         private float align = 0.5f;
+        private bool hasHeader;
         private float headerSize;
+        private bool hasFooter;
         private float footerSize;
+        private bool isGrouped;
+        private List<GroupInfo> groups = new List<GroupInfo>();
+        private bool hasGroupHeader;
+        private float groupHeaderSize;
+        private bool hasGroupFooter;
+        private float groupFooterSize;
+        private GroupInfo Visited;
 
         /// <summary>
         /// Clean up ItemsLayouter.
@@ -53,11 +63,12 @@ namespace Tizen.NUI.Components
                 colView.UnrealizeItem(item, false);
             }
             VisibleItems.Clear();
+            groups.Clear();
 
             FirstVisible = 0;
             LastVisible = 0;
 
-            bool isHorizontal = (colView.ScrollingDirection == ScrollableBase.Direction.Horizontal);
+            isHorizontal = (colView.ScrollingDirection == ScrollableBase.Direction.Horizontal);
 
             ViewItem header = colView?.Header;
             ViewItem footer = colView?.Footer;
@@ -66,7 +77,7 @@ namespace Tizen.NUI.Components
             int pureCount = count - (header ? 1 : 0) - (footer? 1 : 0);
 
             // 2. Get the header / footer and size deligated item and measure the size.
-            if (header)
+            if (header != null)
             {
                 MeasureChild(colView, header);
 
@@ -74,9 +85,12 @@ namespace Tizen.NUI.Components
                 height = header.Layout != null ? header.Layout.MeasuredHeight.Size.AsRoundedValue() : 0;
 
                 headerSize = isHorizontal ? width : height;
+                hasHeader = true;
+
+                colView.UnrealizeItem(header);
             }
 
-            if (footer)
+            if (footer != null)
             {
                 MeasureChild(colView, footer);
 
@@ -85,53 +99,210 @@ namespace Tizen.NUI.Components
 
                 footerSize = isHorizontal ? width : height;
                 footer.Index = count - 1;
+                hasFooter = true;
+
+                colView.UnrealizeItem(footer);
             }
 
             int firstIndex = header? 1 : 0;
 
-            // Get Size Deligate. FIXME if group exist index must be changed.
-            ViewItem sizeDeligate = colView.RealizeItem(firstIndex);
-            if (sizeDeligate == null)
+            if (colView.IsGrouped)
             {
-                throw new Exception("Cannot create content from DatTemplate.");
-            }
-            sizeDeligate.BindingContext = colView.InternalItemSource.GetItem(firstIndex);
+                isGrouped = true;
 
-            // Need to Set proper hieght or width on scroll direciton.
-            if (sizeDeligate.Layout == null)
+                if (colView.GroupHeaderTemplate != null)
+                {
+                    hasGroupHeader = true;
+                    while (!colView.InternalItemSource.IsGroupHeader(firstIndex)) firstIndex++;
+                    //must be always true
+                    if (colView.InternalItemSource.IsGroupHeader(firstIndex))
+                    {
+                        ViewItem groupHeader = colView.RealizeItem(firstIndex);
+                        firstIndex++;
+
+                        if (groupHeader == null) throw new Exception("["+firstIndex+"] Group Header failed to realize!");
+
+                        // Need to Set proper hieght or width on scroll direciton.
+                        if (groupHeader.Layout == null)
+                        {
+                            width =  groupHeader.WidthSpecification;
+                            height = groupHeader.HeightSpecification;
+                        }
+                        else
+                        {
+                            MeasureChild(colView, groupHeader);
+
+                            width = groupHeader.Layout.MeasuredWidth.Size.AsRoundedValue();
+                            height = groupHeader.Layout.MeasuredHeight.Size.AsRoundedValue();
+                        }
+                        //Console.WriteLine("[NUI] GroupHeader Size {0} :{0}", width, height);
+                        // pick the StepCandidate.
+                        groupHeaderSize = isHorizontal ? width : height;
+                        colView.UnrealizeItem(groupHeader);
+                    }
+                }
+                else
+                {
+                    hasGroupHeader = false;
+                    groupHeaderSize = 0F;
+                }
+
+                if (colView.GroupFooterTemplate != null)
+                {
+                    hasGroupFooter = true;
+                    int firstFooter = firstIndex;
+                    while (!colView.InternalItemSource.IsGroupFooter(firstFooter)) firstFooter++;
+                    //must be always true
+                    if (colView.InternalItemSource.IsGroupFooter(firstFooter))
+                    {
+                        ViewItem groupFooter = colView.RealizeItem(firstFooter);
+
+                        if (groupFooter == null) throw new Exception("["+firstFooter+"] Group Footer failed to realize!");
+                        // Need to Set proper hieght or width on scroll direciton.
+                        if (groupFooter.Layout == null)
+                        {
+                            width =  groupFooter.WidthSpecification;
+                            height = groupFooter.HeightSpecification;
+                        }
+                        else
+                        {
+                            MeasureChild(colView, groupFooter);
+
+                            width = groupFooter.Layout.MeasuredWidth.Size.AsRoundedValue();
+                            height = groupFooter.Layout.MeasuredHeight.Size.AsRoundedValue();
+                        }
+                        // pick the StepCandidate.
+                        groupFooterSize = isHorizontal ? width : height;
+
+                        colView.UnrealizeItem(groupFooter);
+                    }
+                }
+                else
+                {
+                    hasGroupFooter = false;
+                    groupFooterSize = 0F;
+                }
+            }
+            else isGrouped = false;
+
+            bool failed = false;
+            //Final Check of FirstIndex
+            while (colView.InternalItemSource.IsHeader(firstIndex) ||
+                    colView.InternalItemSource.IsGroupHeader(firstIndex) ||
+                    colView.InternalItemSource.IsGroupFooter(firstIndex))
             {
-                width = sizeDeligate.WidthSpecification;
-                height = sizeDeligate.HeightSpecification;
+                if (colView.InternalItemSource.IsFooter(firstIndex))
+                {
+                    StepCandidate = 0F;
+                    failed = true;
+                    break;
+                }
+                firstIndex++;
             }
-            else
+
+            sizeCandidate = new Size2D(0, 0);
+            if (!failed)
             {
-                MeasureChild(colView, sizeDeligate);
+                // Get Size Deligate. FIXME if group exist index must be changed.
+                ViewItem sizeDeligate = colView.RealizeItem(firstIndex);
+                if (sizeDeligate == null)
+                {
+                    throw new Exception("Cannot create content from DatTemplate.");
+                }
+                sizeDeligate.BindingContext = colView.InternalItemSource.GetItem(firstIndex);
 
-                width = sizeDeligate.Layout.MeasuredWidth.Size.AsRoundedValue();
-                height = sizeDeligate.Layout.MeasuredHeight.Size.AsRoundedValue();
+                // Need to Set proper hieght or width on scroll direciton.
+                if (sizeDeligate.Layout == null)
+                {
+                    width = sizeDeligate.WidthSpecification;
+                    height = sizeDeligate.HeightSpecification;
+                }
+                else
+                {
+                    MeasureChild(colView, sizeDeligate);
+
+                    width = sizeDeligate.Layout.MeasuredWidth.Size.AsRoundedValue();
+                    height = sizeDeligate.Layout.MeasuredHeight.Size.AsRoundedValue();
+                }
+                //Console.WriteLine("[NUI] item Size {0} :{1}", width, height);
+
+                // pick the StepCandidate.
+                StepCandidate = isHorizontal ? width : height;
+                spanSize = isHorizontal ? Convert.ToInt32(Math.Truncate((double)(colView.Size.Height / height))):
+                                        Convert.ToInt32(Math.Truncate((double)(colView.Size.Width / width)));
+
+                sizeCandidate = new Size2D(Convert.ToInt32(width), Convert.ToInt32(height));
+                
+                colView.UnrealizeItem(sizeDeligate);
             }
 
-            //Console.WriteLine("[NUI] item Size {0} :{1}", width, height);
-
-            // pick the StepCandidate.
-            StepCandidate = isHorizontal ? width : height;
-            spanSize = isHorizontal ? Convert.ToInt32(Math.Truncate((double)(colView.Size.Height / height))):
-                                      Convert.ToInt32(Math.Truncate((double)(colView.Size.Width / width)));
             if (StepCandidate < 1) StepCandidate = 1;
             if (spanSize < 1) spanSize = 1;
 
-            sizeCandidate = new Size2D(Convert.ToInt32(width), Convert.ToInt32(height));
+            if (isGrouped)
+            {
+                float Current = 0.0F;
+                IGroupableItemSource source = colView.InternalItemSource;
+                GroupInfo currentGroup = null;
 
-            // 3. Measure the scroller content size.
-            ScrollContentSize = StepCandidate * Convert.ToInt32(Math.Ceiling((double)pureCount / (double)spanSize));
-            if (header) ScrollContentSize += headerSize;
-            if (footer) ScrollContentSize += footerSize;
+                for (int i = 0; i < count; i++)
+                {
+                    if (i == 0 && hasHeader)
+                    {
+                        Current += headerSize;
+                    }
+                    else if (i == count -1 && hasFooter)
+                    {
+                        Current += footerSize;
+                    }
+                    else
+                    {
+                        //GroupHeader must always exist in group usage.
+                        if (source.IsGroupHeader(i))
+                        {
+                            currentGroup = new GroupInfo()
+                            {
+                                GroupParent = source.GetGroupParent(i),
+                                StartIndex = i,
+                                Count = 1,
+                                GroupSize = groupHeaderSize,
+                                GroupPosition = Current
+                            };
+                            groups.Add(currentGroup);
+                            Current += groupHeaderSize;
+                        }
+                        //optional
+                        else if (source.IsGroupFooter(i))
+                        {
+                            //currentGroup.hasFooter = true;
+                            currentGroup.Count++;
+                            currentGroup.GroupSize += groupFooterSize;
+                            Current += groupFooterSize;
+                        }
+                        else
+                        {
+                            currentGroup.Count++;
+                            int index = i - currentGroup.StartIndex - 1; // groupHeader must always exist.
+                            if ((index % spanSize) == 0)
+                            { 
+                                currentGroup.GroupSize += StepCandidate;
+                                Current += StepCandidate;
+                            }
+                        }
+                    }
+                }
+                ScrollContentSize = Current;           
+            }
+            else
+            {
+                // 3. Measure the scroller content size.
+                ScrollContentSize = StepCandidate * Convert.ToInt32(Math.Ceiling((double)pureCount / (double)spanSize));
+                if (hasHeader) ScrollContentSize += headerSize;
+                if (hasFooter) ScrollContentSize += footerSize;
+            }
+
             if (isHorizontal) colView.ContentContainer.SizeWidth = ScrollContentSize;
             else colView.ContentContainer.SizeHeight = ScrollContentSize;
-
-            colView.UnrealizeItem(sizeDeligate);
-            if (header != null) colView.UnrealizeItem(header);
-            if (footer != null) colView.UnrealizeItem(footer);
 
             base.Initialize(colView);
             //Console.WriteLine("Init Done, StepCnadidate{0}, spanSize{1}, Scroll{2}", StepCandidate, spanSize, ScrollContentSize);
@@ -199,7 +370,7 @@ namespace Tizen.NUI.Components
                 (float X, float Y) pos = GetItemPosition(i);
                 // 5. Placing item.
                 item.Position = new Position(pos.X, pos.Y);
-                // Console.WriteLine("[NUI] ["+item.Index+"] ["+item.Position.X+", "+item.Position.Y+" ==== \n");
+                //Console.WriteLine("[NUI] ["+item.Index+"] ["+item.Position.X+", "+item.Position.Y+" ==== \n");
             }
             //Console.WriteLine("Realize Done");
         }
@@ -210,11 +381,6 @@ namespace Tizen.NUI.Components
         {
            if (item == null) throw new ArgumentNullException(nameof(item));
            if (colView == null) return (0, 0);
-          /*
-           is group?
-           is Header? - it cannot be a header
-           is Footer? - it cannot be a footer
-           */
 
            return GetItemPosition(colView.InternalItemSource.GetPosition(item));
         }
@@ -225,12 +391,21 @@ namespace Tizen.NUI.Components
         {
            if (item == null) throw new ArgumentNullException(nameof(item));
            if (sizeCandidate == null) return (0, 0);
-           /*
-           is group?
-           is Header? - it cannot be a header
-           is Footer? - it cannot be a footer
-           */
-           // gengrid item has to be all same size.
+
+           if (isGrouped)
+           {
+               int index = colView.InternalItemSource.GetPosition(item);
+               float view = (isHorizontal ? colView.Size.Height : colView.Size.Width);
+
+               if (colView.InternalItemSource.IsGroupHeader(index))
+               {
+                   return (isHorizontal ? (groupHeaderSize, view) : (view, groupHeaderSize));
+               }
+               else if (colView.InternalItemSource.IsGroupFooter(index))
+               {
+                   return (isHorizontal ? (groupFooterSize, view) : (view, groupFooterSize));
+               }
+           }
 
            return (sizeCandidate.Width, sizeCandidate.Height);
         }
@@ -309,10 +484,10 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override (int start, int end) FindVisibleItems((float X, float Y)visibleArea)
         {
-            bool hasHeader = (colView.Header != null);
-            bool hasFooter = (colView.Footer != null);
             int MaxIndex = colView.InternalItemSource.Count - 1 - (hasFooter ? 1 : 0);
-            (int start, int end) found;
+            int adds = spanSize * 2;
+            int skipGroup = -1;
+            (int start, int end) found = (0, 0);
 
             // Header is Showing
             if (hasHeader && visibleArea.X < headerSize)
@@ -321,11 +496,55 @@ namespace Tizen.NUI.Components
             }
             else
             {
-                float visibleAreaX = visibleArea.X - (hasHeader ? headerSize : 0);
-                found.start = (Convert.ToInt32(Math.Abs(visibleAreaX / StepCandidate)) - 1) * spanSize;
-
+                if (isGrouped)
+                {
+                    bool failed = true;
+                    foreach(GroupInfo gInfo in groups)
+                    {
+                        skipGroup++;
+                        // in the Group
+                        if (gInfo.GroupPosition <= visibleArea.X &&
+                            gInfo.GroupPosition + gInfo.GroupSize >= visibleArea.X)
+                        {
+                            if (gInfo.GroupPosition + groupHeaderSize >= visibleArea.X)
+                            {
+                                found.start = gInfo.StartIndex - adds;
+                                failed = false;
+                            }
+                            //can be step in spanSize...
+                            for (int i = 1; i < gInfo.Count; i++)
+                            {
+                                if (!failed) break;
+                                // Reach last index of group.
+                                if (i == (gInfo.Count - 1))
+                                {
+                                    found.start = gInfo.StartIndex + i - adds;
+                                    failed = false;
+                                    break;
+                                    
+                                }
+                                else if ((((i - 1) / spanSize) * StepCandidate) + StepCandidate >= visibleArea.X - gInfo.GroupPosition - groupHeaderSize)
+                                {
+                                    found.start = gInfo.StartIndex + i - adds;
+                                    failed = false;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    //footer only shows?
+                    if (failed)
+                    {
+                        found.start = MaxIndex;
+                    }
+                }
+                else
+                {
+                    float visibleAreaX = visibleArea.X - (hasHeader ? headerSize : 0);
+                    found.start = (Convert.ToInt32(Math.Abs(visibleAreaX / StepCandidate)) - 1) * spanSize;
+                    if (hasHeader) found.start += 1;
+                }
                 if (found.start < 0) found.start = 0;
-                if (hasHeader) found.start += 1;
             }
 
             if (hasFooter && visibleArea.Y > ScrollContentSize - footerSize)
@@ -334,11 +553,56 @@ namespace Tizen.NUI.Components
             }
             else
             {
-                float visibleAreaY = visibleArea.Y - (hasHeader ? headerSize : 0);
+                if (isGrouped)
+                {
+                    bool failed = true;
+                    if (skipGroup < 0) skipGroup = 0;
+                    // can it be start from founded group...?
+                    //foreach(GroupInfo gInfo in groups.Skip(skipGroup))
+                    foreach(GroupInfo gInfo in groups)
+                    {
+                        // in the Group
+                        if (gInfo.GroupPosition <= visibleArea.Y &&
+                            gInfo.GroupPosition + gInfo.GroupSize >= visibleArea.Y)
+                        {
+                            if (gInfo.GroupPosition + groupHeaderSize >= visibleArea.Y)
+                            {
+                                found.end = gInfo.StartIndex + adds;
+                                failed = false;
+                            }
+                            //can be step in spanSize...
+                            for (int i = 1; i < gInfo.Count; i++)
+                            {
+                                if (!failed) break;
+                                // Reach last index of group.
+                                if (i == (gInfo.Count - 1))
+                                {
+                                    found.end = gInfo.StartIndex + i + adds;
+                                    failed = false;
+                                    break;                                    
+                                }
+                                else if ((((i - 1) / spanSize) * StepCandidate) + StepCandidate >= visibleArea.Y - gInfo.GroupPosition - groupHeaderSize)
+                                {
+                                    found.end = gInfo.StartIndex + i + adds;
+                                    failed = false;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    //footer only shows?
+                    if (failed)
+                    {
+                        found.start = MaxIndex;
+                    }
+                }
+                else
+                {
+                    float visibleAreaY = visibleArea.Y - (hasHeader ? headerSize : 0);
                 //Need to Consider GroupHeight!!!!
-                found.end = (Convert.ToInt32(Math.Abs(visibleAreaY / StepCandidate)) + 1) * spanSize;
-
-                if (hasHeader) found.end += 1;
+                    found.end = (Convert.ToInt32(Math.Abs(visibleAreaY / StepCandidate)) + 1) * spanSize + adds;
+                    if (hasHeader) found.end += 1;
+                }
                 if (found.end > (MaxIndex)) found.end = MaxIndex;
             }
             return found;
@@ -347,33 +611,59 @@ namespace Tizen.NUI.Components
         private (float X, float Y) GetItemPosition(int index)
         {
             if (sizeCandidate == null) return (0, 0);
-            bool isHorizontal = (colView.ScrollingDirection == ScrollableBase.Direction.Horizontal);
-            bool hasHeader = (colView.Header != null);
-            bool hasFooter = (colView.Footer != null);
-            float xPos, yPos;
+            float xPos = 0F, yPos = 0F;
 
             if (hasHeader && index == 0)
             {
                 return (0, 0);
             }
-            if (hasFooter && index == colView.InternalItemSource.Count)
+            if (hasFooter && index == colView.InternalItemSource.Count - 1)
             {
                 xPos = isHorizontal ? ScrollContentSize - footerSize : 0;
                 yPos = isHorizontal ? 0 : ScrollContentSize - footerSize;
                 return (xPos, yPos);
             }
+            if (isGrouped)
+            {
+                GroupInfo myGroup = GetGroupInfo(index);
+                if (colView.InternalItemSource.IsGroupHeader(index))
+                {
+                    xPos = isHorizontal ? myGroup.GroupPosition : 0;
+                    yPos = isHorizontal ? 0 : myGroup.GroupPosition;
+                }
+                else if (colView.InternalItemSource.IsGroupFooter(index))
+                {
+                    xPos = isHorizontal ? myGroup.GroupPosition + myGroup.GroupSize - groupFooterSize : 0;
+                    yPos = isHorizontal ? 0 : myGroup.GroupPosition + myGroup.GroupSize - groupFooterSize;
+                }
+                else
+                {
+                    int pureIndex = index - myGroup.StartIndex - 1;
+                    int division = pureIndex / spanSize;
+                    int remainder = pureIndex % spanSize;
+                    int emptyArea = isHorizontal ? (int)(colView.Size.Height - (sizeCandidate.Height * spanSize)) :
+                                                    (int)(colView.Size.Width - (sizeCandidate.Width * spanSize));
+                    if (division < 0) division = 0;
+                    if (remainder < 0) remainder = 0;
 
-            int pureIndex = index - (colView.Header ? 1 : 0);
-            // int convert must be truncate value.
-            int division = pureIndex / spanSize;
-            int remainder = pureIndex % spanSize;
-            int emptyArea = isHorizontal ? (int)(colView.Size.Height - (sizeCandidate.Height * spanSize)) :
-                                            (int)(colView.Size.Width - (sizeCandidate.Width * spanSize));
-            if (division < 0) division = 0;
-            if (remainder < 0) remainder = 0;
+                    xPos = isHorizontal ? division * sizeCandidate.Width + myGroup.GroupPosition + groupHeaderSize : emptyArea * align + remainder * sizeCandidate.Width;
+                    yPos = isHorizontal ? emptyArea * align + remainder * sizeCandidate.Height : division * sizeCandidate.Height + myGroup.GroupPosition + groupHeaderSize;
+                }
+            }
+            else
+            {
+                int pureIndex = index - (colView.Header ? 1 : 0);
+                // int convert must be truncate value.
+                int division = pureIndex / spanSize;
+                int remainder = pureIndex % spanSize;
+                int emptyArea = isHorizontal ? (int)(colView.Size.Height - (sizeCandidate.Height * spanSize)) :
+                                                (int)(colView.Size.Width - (sizeCandidate.Width * spanSize));
+                if (division < 0) division = 0;
+                if (remainder < 0) remainder = 0;
 
-            xPos = isHorizontal ? division * sizeCandidate.Width + (hasHeader ? headerSize : 0) : emptyArea * align + remainder * sizeCandidate.Width;
-            yPos = isHorizontal ? emptyArea * align + remainder * sizeCandidate.Height : division * sizeCandidate.Height + (hasHeader ? headerSize : 0);
+                xPos = isHorizontal ? division * sizeCandidate.Width + (hasHeader ? headerSize : 0) : emptyArea * align + remainder * sizeCandidate.Width;
+                yPos = isHorizontal ? emptyArea * align + remainder * sizeCandidate.Height : division * sizeCandidate.Height + (hasHeader ? headerSize : 0);
+            }
 
             return (xPos, yPos);
         }
@@ -386,6 +676,60 @@ namespace Tizen.NUI.Components
             }
 
             return null;
+        }
+
+        private GroupInfo GetGroupInfo(int index)
+        {
+            if (Visited != null)
+            {
+                if (Visited.StartIndex <= index && Visited.StartIndex + Visited.Count > index)
+                return Visited;
+            }
+            int count = 0;
+            IGroupableItemSource source = colView.InternalItemSource;
+            if (source.HasHeader) count++;
+            foreach (GroupInfo group in groups)
+            {
+                if (group.StartIndex <= index && group.StartIndex + group.Count > index)
+                {
+                    Visited = group;
+                    return group;
+                }
+            }
+            Visited = null;
+            return null;
+        }
+
+        private object GetGroupParent(int index)
+        {
+            int count = 0;
+            if (Visited != null)
+            {
+                if (Visited.StartIndex <= index && Visited.StartIndex + Visited.Count > index)
+                return Visited.GroupParent;
+            }
+            IGroupableItemSource source = colView.InternalItemSource;
+            if (source.HasHeader) count++;
+            foreach (GroupInfo group in groups)
+            {
+                if (group.StartIndex <= index && group.StartIndex + group.Count > index)
+                {
+                    Visited = group;
+                    return group.GroupParent;
+                }
+            }
+            Visited = null;
+            return null;
+        }
+
+        class GroupInfo
+        {
+            public object GroupParent;
+            public int StartIndex;
+            public int Count;
+            public float GroupSize;
+            public float GroupPosition; 
+            //Items relative position from the GroupPosition
         }
     }
 }
