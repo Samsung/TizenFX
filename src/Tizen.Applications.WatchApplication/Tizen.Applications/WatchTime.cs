@@ -292,7 +292,7 @@ namespace Tizen.Applications
                     else
                         Log.Error(LOGTAG, "Failed to get UtcTimestamp err : " + err);
                 }
-                return (new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).AddSeconds(ts).ToLocalTime();
+                return (new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).AddSeconds(ts).AddMilliseconds(Millisecond);
             }
         }
     }
