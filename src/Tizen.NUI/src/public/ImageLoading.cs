@@ -211,7 +211,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get the size of an original image
+        /// Get the size of an original image. this method will not respect any rotation of image
         /// </summary>
         /// <param name="filename">The name of the image.</param>
         /// <returns>Dimension of the original image.</returns>
@@ -220,7 +220,24 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Size2D GetOriginalImageSize(string filename)
         {
-            var val = new Uint16Pair(Interop.ImageLoading.GetOriginalImageSize(filename), true);
+            var val = new Uint16Pair(Interop.ImageLoading.GetOriginalImageSize_SWIG_0(filename), true);
+            Size2D ret = new Size2D(val.GetWidth(), val.GetHeight());
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Get the size of an original image consider rotation
+        /// </summary>
+        /// <param name="filename">The name of the image.</param>
+        /// <param name="orientationCorrection">Reorient the image to respect any orientation metadata in its header.</param>
+        /// <returns>Dimension of the original image.</returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be released at Tizen.NET API Level 9. Therefore, currently this would be used as an in-house API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Size2D GetOriginalImageSize(string filename, bool orientationCorrection )
+        {
+            var val = new Uint16Pair(Interop.ImageLoading.GetOriginalImageSize_SWIG_1(filename,orientationCorrection), true);
             Size2D ret = new Size2D(val.GetWidth(), val.GetHeight());
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
