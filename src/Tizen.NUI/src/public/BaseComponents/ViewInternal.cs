@@ -51,6 +51,28 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        internal LayoutLength SuggestedMinimumWidth
+        {
+            get
+            {
+                float result = Interop.Actor.GetSuggestedMinimumWidth(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending)
+                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return new LayoutLength(result);
+            }
+        }
+
+        internal LayoutLength SuggestedMinimumHeight
+        {
+            get
+            {
+                float result = Interop.Actor.GetSuggestedMinimumHeight(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending)
+                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return new LayoutLength(result);
+            }
+        }
+
         internal float WorldPositionX
         {
             get
