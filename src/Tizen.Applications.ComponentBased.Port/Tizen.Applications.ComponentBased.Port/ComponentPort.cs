@@ -78,6 +78,11 @@ namespace Tizen.Applications.ComponentBased
         /// <since_tizen> 9 </since_tizen>
         public void AddPrivilege(string privilege)
         {
+            if (privilege == null || privilege.Length == 0)
+            {
+                throw new ArgumentException("Invalid argument");
+            }
+
             Interop.ComponentPort.AddPrivilege(_port, privilege);
         }
 
