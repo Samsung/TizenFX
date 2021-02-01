@@ -78,7 +78,7 @@ namespace Tizen.Applications.ComponentBased
         /// <since_tizen> 9 </since_tizen>
         public void AddPrivilege(string privilege)
         {
-            if (privilege == null || privilege.Length == 0)
+            if (string.IsNullOrEmpty(privilege))
             {
                 throw new ArgumentException("Invalid argument");
             }
