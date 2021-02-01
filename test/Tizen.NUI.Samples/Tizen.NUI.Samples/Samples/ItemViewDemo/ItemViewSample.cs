@@ -210,8 +210,8 @@ namespace Tizen.NUI.Samples
             mContentView.Add(mItemView);
 
             mItemView.Layout = mLayout;
-            mItemView.SetMinimumSwipeDistance(MIN_SWIPE_DISTANCE);
-            mItemView.SetMinimumSwipeSpeed(MIN_SWIPE_SPEED);
+            mItemView.MinimumSwipeDistance = MIN_SWIPE_DISTANCE;
+            mItemView.MinimumSwipeSpeed = MIN_SWIPE_SPEED;
 
             SetLayout((int)mCurrentLayout);
             SetLayoutTitle();
