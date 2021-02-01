@@ -96,8 +96,11 @@ namespace Tizen.NUI.Wearable
             {
                 FocusedIndex = Math.Max(0, FocusedIndex - 1);
                 centerItem = Container.Children[FocusedIndex] as RecycleItem;
-                centerItem.Position = new Position(0.0f, Math.Abs(StepSize * (centerItem.DataIndex)));
-                centerItem.Scale = new Vector3(1.0f, 1.0f, 1.0f);
+                if (centerItem != null)
+                {
+                    centerItem.Position = new Position(0.0f, Math.Abs(StepSize * (centerItem.DataIndex)));
+                    centerItem.Scale = new Vector3(1.0f, 1.0f, 1.0f);
+                }
             }
             else
             {
