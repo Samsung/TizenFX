@@ -196,7 +196,7 @@ namespace Tizen.Applications
                 err = Interop.ApplicationManager.AppManagerForeachAppInfo(cb, IntPtr.Zero);
                 if (err != Interop.ApplicationManager.ErrorCode.None)
                 {
-                    throw ApplicationManagerErrorFactory.GetException(err, "Failed to foreach the appinfo.");
+                    Log.Error(LogTag, "Failed to retrieve the application Info. err " + err.ToString());
                 }
                 return result;
             }).ConfigureAwait(false);
@@ -261,7 +261,20 @@ namespace Tizen.Applications
                     }
                     return false;
                 };
-                filter.Fetch(cb);
+
+                try
+                {
+                    filter.Fetch(cb);
+                }
+                catch (InvalidOperationException)
+                {
+                    Log.Error(LogTag, "InvalidOperationException occurs");
+                }
+                catch (ArgumentException)
+                {
+                    Log.Error(LogTag, "ArgumentException occurs");
+                }
+
                 return result;
             }).ConfigureAwait(false);
         }
@@ -295,7 +308,20 @@ namespace Tizen.Applications
                     }
                     return false;
                 };
-                filter.Fetch(cb);
+
+                try
+                {
+                    filter.Fetch(cb);
+                }
+                catch (InvalidOperationException)
+                {
+                    Log.Error(LogTag, "InvalidOperationException occurs");
+                }
+                catch (ArgumentException)
+                {
+                    Log.Error(LogTag, "ArgumentException occurs");
+                }
+
                 return result;
             }).ConfigureAwait(false);
         }
@@ -333,7 +359,7 @@ namespace Tizen.Applications
                 err = Interop.ApplicationManager.AppManagerForeachAppContext(cb, IntPtr.Zero);
                 if (err != Interop.ApplicationManager.ErrorCode.None)
                 {
-                    throw ApplicationManagerErrorFactory.GetException(err, "Failed to foreach appcontext.");
+                    Log.Error(LogTag, "Failed to retrieve the running app context. err " + err.ToString());
                 }
                 return result;
             }).ConfigureAwait(false);
@@ -372,7 +398,7 @@ namespace Tizen.Applications
                 err = Interop.ApplicationManager.AppManagerForeachRunningAppContext(cb, IntPtr.Zero);
                 if (err != Interop.ApplicationManager.ErrorCode.None)
                 {
-                    throw ApplicationManagerErrorFactory.GetException(err, "Failed to foreach appcontext.");
+                    Log.Error(LogTag, "Failed to retrieve the running app context. err " + err.ToString());
                 }
                 return result;
             }).ConfigureAwait(false);
