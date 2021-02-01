@@ -29,8 +29,13 @@ namespace Tizen.NUI.BaseComponents
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class RendererParameters : Disposable
     {
-        internal RendererParameters(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        protected bool swigCMemOwn;
+
+        internal RendererParameters(global::System.IntPtr cPtr, bool cMemoryOwn)
         {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(RendererParameters obj)
@@ -41,10 +46,30 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Dispose
         /// </summary>
-        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        protected override void Dispose(DisposeTypes type)
         {
-            Interop.RendererParameters.delete_RendererParameters(swigCPtr);
+            if (disposed)
+            {
+                return;
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    Interop.RendererParameters.delete_RendererParameters(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+
+            base.Dispose(type);
         }
+
 
         /// <summary>
         /// Construct RendererParameters
@@ -637,9 +662,13 @@ namespace Tizen.NUI.BaseComponents
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class EmbeddedItemInfo : Disposable
     {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        protected bool swigCMemOwn;
 
-        internal EmbeddedItemInfo(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal EmbeddedItemInfo(global::System.IntPtr cPtr, bool cMemoryOwn)
         {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(EmbeddedItemInfo obj)
@@ -650,11 +679,29 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Dispose
         /// </summary>
-        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        protected override void Dispose(DisposeTypes type)
         {
-            Interop.EmbeddedItemInfo.delete_EmbeddedItemInfo(swigCPtr);
-        }
+            if (disposed)
+            {
+                return;
+            }
 
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    Interop.EmbeddedItemInfo.delete_EmbeddedItemInfo(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+
+            base.Dispose(type);
+        }
         /// <summary>
         /// Construct EmbeddedItemInfo
         /// </summary>
@@ -813,9 +860,13 @@ namespace Tizen.NUI.BaseComponents
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class ShadowParameters : Disposable
     {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        protected bool swigCMemOwn;
 
-        internal ShadowParameters(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal ShadowParameters(global::System.IntPtr cPtr, bool cMemoryOwn)
         {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ShadowParameters obj)
@@ -826,11 +877,29 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Dispose
         /// </summary>
-        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        protected override void Dispose(DisposeTypes type)
         {
-            Interop.ShadowParameters.delete_ShadowParameters(swigCPtr);
-        }
+            if (disposed)
+            {
+                return;
+            }
 
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    Interop.ShadowParameters.delete_ShadowParameters(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+
+            base.Dispose(type);
+        }
         /// <summary>
         /// Construct ShadowParameters
         /// </summary>
