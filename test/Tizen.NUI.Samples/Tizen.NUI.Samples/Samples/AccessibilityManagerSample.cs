@@ -29,6 +29,7 @@ namespace Tizen.NUI.Samples
         {
             Window window = NUIApplication.GetDefaultWindow();
             window.BackgroundColor = Color.White;
+            window.KeyEvent += OnKeyEvent;
             windowSize = window.Size;
 
             // Create Table
@@ -100,6 +101,14 @@ namespace Tizen.NUI.Samples
             {
                 // Here, in the sample, if one finger double tap, the following log will shows in terminal.
                 Tizen.Log.Error(tag, "The current focused view is "+ args.View.Name +"\n");
+            }
+        }
+
+        public void OnKeyEvent(object sender, Window.KeyEventArgs e)
+        {
+            if (e.Key.State == Key.StateType.Down && (e.Key.KeyPressedName == "XF86Back" || e.Key.KeyPressedName == "Escape"))
+            {
+                Exit();
             }
         }
 
