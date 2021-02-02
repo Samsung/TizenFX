@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -45,7 +45,11 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="state">The state.</param>
         /// <param name="value">The value associated with state.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Add(ControlState state, T value) => SelectorItems.Add(new SelectorItem<T>(state, value));
+        public void Add(ControlState state, T value)
+        {
+            SelectorItems.Add(new SelectorItem<T>(state, value));
+            All = default;
+        }
 
         /// <summary>
         /// Adds the specified state and value to the <see cref="SelectorItems"/>.
@@ -298,6 +302,22 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Clone with type converter.
+        /// </summary>
+        /// <exception cref="ArgumentNullException"> Thrown when converter is null. </exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Selector<TOut> Clone<TOut>(Converter<T, TOut> converter)
+        {
+            if (converter == null) throw new ArgumentNullException(nameof(converter));
+
+            Selector<TOut> result = new Selector<TOut>();
+            result.All = converter(All);
+            result.SelectorItems = SelectorItems.ConvertAll<SelectorItem<TOut>>(m => new SelectorItem<TOut>(m.State, converter(m.Value)));
+
+            return result;
+        }
+
+        /// <summary>
         /// Copy values from other selector.
         /// </summary>
         /// <exception cref="ArgumentNullException"> Thrown when other is null. </exception>
@@ -520,9 +540,12 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="list">The list for adding state-value pair.</param>
         /// <param name="state">The state.</param>
         /// <param name="value">The value associated with state.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when given list is null. </exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void Add<T>(this IList<SelectorItem<T>> list, ControlState state, T value)
         {
+            if (list == null) throw new ArgumentNullException(nameof(list));
+
             list.Add(new SelectorItem<T>(state, value));
         }
     }
