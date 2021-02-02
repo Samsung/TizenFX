@@ -40,7 +40,7 @@ namespace Tizen.NUI.Components
         /// Parent ItemsView.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected ItemsView ItemsView{ get; set; }
+        protected RecyclerView ItemsView{ get; set; }
 
         /// <summary>
         /// The last scrolled position which is calculated by ScrollableBase. The value should be updated in the Recycle() method.
@@ -64,7 +64,7 @@ namespace Tizen.NUI.Components
         /// Visible ViewItem.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected List<ViewItem> VisibleItems { get; } = new List<ViewItem>();
+        protected List<RecyclerViewItem> VisibleItems { get; } = new List<RecyclerViewItem>();
 
         /// <summary>
         /// Flag of layouter initialization.
@@ -88,20 +88,20 @@ namespace Tizen.NUI.Components
         /// boolean flag of scrollable horizontal direction.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected bool isHorizontal { get; set; }
+        protected bool IsHorizontal { get; set; }
 
         /// <summary>
         /// Clean up ItemsLayouter.
         /// </summary>
         /// <param name="view"> ItemsView of layouter.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public virtual void Initialize(ItemsView view)
+        public virtual void Initialize(RecyclerView view)
         {
             ItemsView = view ?? throw new ArgumentNullException(nameof(view));
             Container = view.ContentContainer;
             PrevScrollPosition = 0.0f;
 
-            isHorizontal = (view.ScrollingDirection == ScrollableBase.Direction.Horizontal);
+            IsHorizontal = (view.ScrollingDirection == ScrollableBase.Direction.Horizontal);
 
             IsInitialized = true;
         }
@@ -123,7 +123,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void Clear()
         {
-            foreach (ViewItem item in VisibleItems)
+            foreach (RecyclerViewItem item in VisibleItems)
             {
                 if (ItemsView != null) ItemsView.UnrealizeItem(item, false);
             }
@@ -180,7 +180,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="item">updated ViewItem.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public virtual void NotifyItemSizeChanged(ViewItem item)
+        public virtual void NotifyItemSizeChanged(RecyclerViewItem item)
         {
         }
 
@@ -297,7 +297,7 @@ namespace Tizen.NUI.Components
         /// <param name="parent">Parent ItemsView.</param>
         /// <param name="child">Child ViewItem to Measure()</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual void MeasureChild(ItemsView parent, ViewItem child)
+        protected virtual void MeasureChild(RecyclerView parent, RecyclerViewItem child)
         {
             if (parent == null) throw new ArgumentNullException(nameof(parent));
             if (child == null) throw new ArgumentNullException(nameof(child));

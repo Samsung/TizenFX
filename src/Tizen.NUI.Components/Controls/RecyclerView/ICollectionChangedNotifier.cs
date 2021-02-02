@@ -60,10 +60,10 @@ namespace Tizen.NUI.Components
         /// Notify the range of observable items from start to end are changed.
         /// </summary>
         /// <param name="source"></param>
-        /// <param name="start"></param>
-        /// <param name="end"></param>
+        /// <param name="startIndex"></param>
+        /// <param name="endIndex"></param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        void NotifyItemRangeChanged(IItemSource source, int start, int end);
+        void NotifyItemRangeChanged(IItemSource source, int startIndex, int endIndex);
 
         /// <summary>
         /// Notify the count range of observable items are inserted in startIndex.

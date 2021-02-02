@@ -23,74 +23,78 @@ using Tizen.NUI.Accessibility;
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// DefaultTitleItem is one kind of common component, a DefaultTitleItem clearly describes what action will occur when the user selects it.
-    /// DefaultTitleItem may contain text or an icon.
+    /// DefaultLinearItem is one kind of common component, a DefaultLinearItem clearly describes what action will occur when the user selects it.
+    /// DefaultLinearItem may contain text or an icon.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class DefaultTitleItem : ViewItem
+    public class DefaultLinearItem : RecyclerViewItem
     {
-        private TextLabel itemLabel;
         private View itemIcon;
+        private TextLabel itemLabel;
+        private TextLabel itemSubLabel;
+        private View itemExtra;
         private View itemSeperator;
         private bool layoutChanged;
         private Size prevSize;
-        private DefaultTitleItemStyle itemStyle => ViewStyle as DefaultTitleItemStyle;
+        private DefaultLinearItemStyle ItemStyle => ViewStyle as DefaultLinearItemStyle;
 
         /// <summary>
-        /// Return a copied Style instance of DefaultTitleItem
+        /// Return a copied Style instance of DefaultLinearItem
         /// </summary>
         /// <remarks>
-        /// It returns copied Style instance and changing it does not effect to the DefaultTitleItem.
+        /// It returns copied Style instance and changing it does not effect to the DefaultLinearItem.
         /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public new DefaultTitleItemStyle Style
+        public new DefaultLinearItemStyle Style
         {
             get
             {
-                var result = new DefaultTitleItemStyle(itemStyle);
+                var result = new DefaultLinearItemStyle(ItemStyle);
                 result.CopyPropertiesFromView(this);
                 if (itemLabel) result.Label.CopyPropertiesFromView(itemLabel);
+                if (itemSubLabel) result.SubLabel.CopyPropertiesFromView(itemSubLabel);
                 if (itemIcon) result.Icon.CopyPropertiesFromView(itemIcon);
+                if (itemExtra) result.Extra.CopyPropertiesFromView(itemExtra);
                 if (itemSeperator) result.Seperator.CopyPropertiesFromView(itemSeperator);
 
                 return result;
             }
         }
 
-        static DefaultTitleItem() {}
+        static DefaultLinearItem() {}
 
         /// <summary>
-        /// Creates a new instance of DefaultTitleItem.
+        /// Creates a new instance of DefaultLinearItem.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public DefaultTitleItem() : base()
+        public DefaultLinearItem() : base()
         {
             Initialize();
         }
 
         /// <summary>
-        /// Creates a new instance of a DefaultTitleItem with style.
+        /// Creates a new instance of a DefaultLinearItem with style.
         /// </summary>
-        /// <param name="style">Create DefaultTitleItem by style defined in UX.</param>
+        /// <param name="style">Create DefaultLinearItem by style defined in UX.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public DefaultTitleItem(string style) : base(style)
+        public DefaultLinearItem(string style) : base(style)
         {
             Initialize();
         }
 
         /// <summary>
-        /// Creates a new instance of a DefaultTitleItem with style.
+        /// Creates a new instance of a DefaultLinearItem with style.
         /// </summary>
-        /// <param name="itemStyle">Create DefaultTitleItem by style customized by user.</param>
+        /// <param name="itemStyle">Create DefaultLinearItem by style customized by user.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public DefaultTitleItem(DefaultTitleItemStyle itemStyle) : base(itemStyle)
+        public DefaultLinearItem(DefaultLinearItemStyle itemStyle) : base(itemStyle)
         {
             Initialize();
         }
 
         /// <summary>
-        /// Icon part of DefaultTitleItem.
+        /// Icon part of DefaultLinearItem.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public View Icon
@@ -99,7 +103,7 @@ namespace Tizen.NUI.Components
             {
                 if (itemIcon == null)
                 {
-                    itemIcon = CreateIcon(itemStyle?.Icon);
+                    itemIcon = CreateIcon(ItemStyle?.Icon);
                     if (itemIcon != null)
                     {
                         layoutChanged = true;
@@ -139,7 +143,7 @@ namespace Tizen.NUI.Components
         */
 
         /// <summary>
-        /// DefaultTitleItem's text part of DefaultTitleItem
+        /// DefaultLinearItem's text part of DefaultLinearItem
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TextLabel Label
@@ -148,7 +152,7 @@ namespace Tizen.NUI.Components
             {
                 if (itemLabel == null)
                 {
-                    itemLabel = CreateLabel(itemStyle?.Label);
+                    itemLabel = CreateLabel(ItemStyle?.Label);
                     if (itemLabel != null)
                     {
                         layoutChanged = true;
@@ -165,7 +169,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// The text of DefaultTitleItem.
+        /// The text of DefaultLinearItem.
         /// </summary>
        [EditorBrowsable(EditorBrowsableState.Never)]
         public string Text
@@ -181,7 +185,77 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Seperator devider of DefaultTitleItem. it will place at the end of item.
+        /// DefaultLinearItem's secondary text part of DefaultLinearItem
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextLabel SubLabel
+        {
+            get
+            {
+                if (itemSubLabel == null)
+                {
+                    itemSubLabel = CreateLabel(ItemStyle?.SubLabel);
+                    if (itemLabel != null)
+                    {
+                        layoutChanged = true;
+                        Add(itemSubLabel);
+                    }
+                }
+                return itemSubLabel;
+            }
+            internal set
+            {
+                itemSubLabel = value;
+                AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Label, itemSubLabel.Text);
+            }
+        }
+
+        /// <summary>
+        /// The text of DefaultLinearItem.
+        /// </summary>
+       [EditorBrowsable(EditorBrowsableState.Never)]
+        public string SubText
+        {
+            get
+            {
+                return SubLabel.Text;
+            }
+            set
+            {
+                SubLabel.Text = value;
+            }
+        }
+
+        /// <summary>
+        /// Extra icon part of DefaultLinearItem. it will place next of label.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public View Extra
+        {
+            get
+            {
+                if (itemExtra == null)
+                {
+                    itemExtra = CreateIcon(ItemStyle?.Extra);
+                    if (itemExtra != null)
+                    {
+                        layoutChanged = true;
+                        Add(itemExtra);
+                        itemExtra.Relayout += OnExtraRelayout;
+                    }
+                }
+                return itemExtra;
+            }
+            set
+            {
+                if (itemExtra != null) Remove(itemExtra);
+                itemExtra = value;
+                Add(itemExtra);
+            }
+        }
+
+        /// <summary>
+        /// Seperator devider of DefaultLinearItem. it will place at the end of item.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public View Seperator
@@ -190,7 +264,7 @@ namespace Tizen.NUI.Components
             {
                 if (itemSeperator == null)
                 {
-                    itemSeperator = new View(itemStyle?.Seperator)
+                    itemSeperator = new View(ItemStyle?.Seperator)
                     {
                         //need to consider horizontal/vertical!
                         WidthSpecification = LayoutParamPolicies.MatchParent,
@@ -205,7 +279,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Apply style to DefaultTitleItemStyle.
+        /// Apply style to DefaultLinearItemStyle.
         /// </summary>
         /// <param name="viewStyle">The style to apply.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -213,12 +287,16 @@ namespace Tizen.NUI.Components
         {
 
             base.ApplyStyle(viewStyle);
-            if (viewStyle != null && viewStyle is DefaultTitleItemStyle defaultStyle)
+            if (viewStyle != null && viewStyle is DefaultLinearItemStyle defaultStyle)
             {
                 if (itemLabel != null)
                     itemLabel.ApplyStyle(defaultStyle.Label);
+                if (itemSubLabel != null)
+                    itemSubLabel.ApplyStyle(defaultStyle.SubLabel);
                 if (itemIcon != null)
                     itemIcon.ApplyStyle(defaultStyle.Icon);
+                if (itemExtra != null)
+                    itemExtra.ApplyStyle(defaultStyle.Extra);
                 if (itemSeperator != null)
                     itemSeperator.ApplyStyle(defaultStyle.Seperator);
             }
@@ -271,11 +349,17 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void MeasureChild()
         {
+            var pad = Padding;
             if (itemLabel)
             {
-                var pad = Padding;
                 var margin = itemLabel.Margin;
                 itemLabel.SizeWidth = SizeWidth - pad.Start - pad.End - margin.Start - margin.End;
+            }
+
+            if (itemSubLabel)
+            {
+                var margin = itemSubLabel.Margin;
+                itemSubLabel.SizeWidth = SizeWidth - pad.Start - pad.End - margin.Start - margin.End;
             }
         }
 
@@ -291,22 +375,77 @@ namespace Tizen.NUI.Components
             if (itemIcon != null)
             {
                 RelativeLayout.SetLeftTarget(itemIcon, this);
-                RelativeLayout.SetLeftRelativeOffset(itemIcon, 1.0F);
+                RelativeLayout.SetLeftRelativeOffset(itemIcon, 0.0F);
                 RelativeLayout.SetRightTarget(itemIcon, this);
-                RelativeLayout.SetRightRelativeOffset(itemIcon, 1.0F);
+                RelativeLayout.SetRightRelativeOffset(itemIcon, 0.0F);
                 RelativeLayout.SetTopTarget(itemIcon, this);
                 RelativeLayout.SetTopRelativeOffset(itemIcon, 0.0F);
                 RelativeLayout.SetBottomTarget(itemIcon, this);
                 RelativeLayout.SetBottomRelativeOffset(itemIcon, 1.0F);
                 RelativeLayout.SetVerticalAlignment(itemIcon, RelativeLayout.Alignment.Center);
-                RelativeLayout.SetHorizontalAlignment(itemIcon, RelativeLayout.Alignment.End);
+                RelativeLayout.SetHorizontalAlignment(itemIcon, RelativeLayout.Alignment.Start);
             }
 
-            RelativeLayout.SetLeftTarget(itemLabel, this);
-            RelativeLayout.SetLeftRelativeOffset(itemLabel, 0.0F);
+            if (itemExtra != null)
+            {
+                RelativeLayout.SetLeftTarget(itemExtra, this);
+                RelativeLayout.SetLeftRelativeOffset(itemExtra, 1.0F);
+                RelativeLayout.SetRightTarget(itemExtra, this);
+                RelativeLayout.SetRightRelativeOffset(itemIcon, 1.0F);
+                RelativeLayout.SetTopTarget(itemExtra, this);
+                RelativeLayout.SetTopRelativeOffset(itemExtra, 0.0F);
+                RelativeLayout.SetBottomTarget(itemExtra, this);
+                RelativeLayout.SetBottomRelativeOffset(itemExtra, 1.0F);
+                RelativeLayout.SetVerticalAlignment(itemExtra, RelativeLayout.Alignment.Center);
+                RelativeLayout.SetHorizontalAlignment(itemExtra, RelativeLayout.Alignment.End);
+            }
+
+            if (itemSubLabel != null)
+            {
+                if (itemIcon)
+                {
+                    RelativeLayout.SetLeftTarget(itemSubLabel, itemIcon);
+                    RelativeLayout.SetLeftRelativeOffset(itemSubLabel, 1.0F);
+                }
+                else
+                {
+                    RelativeLayout.SetLeftTarget(itemSubLabel, this);
+                    RelativeLayout.SetLeftRelativeOffset(itemSubLabel, 0.0F);
+                }
+                if (itemExtra)
+                {
+                    RelativeLayout.SetRightTarget(itemSubLabel, itemExtra);
+                    RelativeLayout.SetRightRelativeOffset(itemSubLabel, 0.0F);
+                }
+                else
+                {
+                    RelativeLayout.SetRightTarget(itemSubLabel, this);
+                    RelativeLayout.SetRightRelativeOffset(itemSubLabel, 1.0F);
+                }
+
+                RelativeLayout.SetTopTarget(itemSubLabel, this);
+                RelativeLayout.SetTopRelativeOffset(itemSubLabel, 1.0F);
+                RelativeLayout.SetBottomTarget(itemSubLabel, this);
+                RelativeLayout.SetBottomRelativeOffset(itemSubLabel, 1.0F);
+                RelativeLayout.SetVerticalAlignment(itemSubLabel, RelativeLayout.Alignment.End);
+
+                RelativeLayout.SetHorizontalAlignment(itemSubLabel, RelativeLayout.Alignment.Center);
+                RelativeLayout.SetFillHorizontal(itemSubLabel, true);
+            }
+
             if (itemIcon)
             {
-                RelativeLayout.SetRightTarget(itemLabel, itemIcon);
+                RelativeLayout.SetLeftTarget(itemLabel, itemIcon);
+                RelativeLayout.SetLeftRelativeOffset(itemLabel, 1.0F);
+            }
+            else
+            {
+                RelativeLayout.SetLeftTarget(itemLabel, this);
+                RelativeLayout.SetLeftRelativeOffset(itemLabel, 0.0F);
+            }
+            if (itemExtra)
+            {
+                RelativeLayout.SetRightTarget(itemLabel, itemExtra);
                 RelativeLayout.SetRightRelativeOffset(itemLabel, 0.0F);
             }
             else
@@ -317,8 +456,17 @@ namespace Tizen.NUI.Components
 
             RelativeLayout.SetTopTarget(itemLabel, this);
             RelativeLayout.SetTopRelativeOffset(itemLabel, 0.0F);
-            RelativeLayout.SetBottomTarget(itemLabel, this);
-            RelativeLayout.SetBottomRelativeOffset(itemLabel, 1.0F);
+
+            if (itemSubLabel)
+            {
+                RelativeLayout.SetBottomTarget(itemLabel, itemSubLabel);
+                RelativeLayout.SetBottomRelativeOffset(itemLabel, 0.0F);
+            }
+            else
+            {
+                RelativeLayout.SetBottomTarget(itemLabel, this);
+                RelativeLayout.SetBottomRelativeOffset(itemLabel, 1.0F);
+            }
             RelativeLayout.SetVerticalAlignment(itemLabel, RelativeLayout.Alignment.Center);
             RelativeLayout.SetHorizontalAlignment(itemLabel, RelativeLayout.Alignment.Center);
             RelativeLayout.SetFillHorizontal(itemLabel, true);
@@ -356,9 +504,17 @@ namespace Tizen.NUI.Components
                 {
                     Utility.Dispose(itemIcon);
                 }
+                if (itemExtra != null)
+                {
+                    Utility.Dispose(itemExtra);
+                }
                 if (itemLabel != null)
                 {
                     Utility.Dispose(itemLabel);
+                }
+                if (itemSubLabel != null)
+                {
+                    Utility.Dispose(itemSubLabel);
                 }
                 if (itemSeperator != null)
                 {
@@ -370,13 +526,13 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Get DefaultTitleItem style.
+        /// Get DefaultLinearItem style.
         /// </summary>
-        /// <returns>The default DefaultTitleItem style.</returns>
+        /// <returns>The default DefaultLinearItem style.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override ViewStyle CreateViewStyle()
         {
-            return new DefaultTitleItemStyle();
+            return new DefaultLinearItemStyle();
         }
 
         private void Initialize()

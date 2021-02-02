@@ -27,7 +27,7 @@ namespace Tizen.NUI.Components
     /// DefaultGridItem may contain text or an icon.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class DefaultGridItem : ViewItem
+    public class DefaultGridItem : RecyclerViewItem
     {
         private TextLabel itemCaption;
         private ImageView itemImage;
@@ -35,7 +35,7 @@ namespace Tizen.NUI.Components
         private CaptionOrientation captionOrientation;
         private bool layoutChanged;
 
-        private DefaultGridItemStyle itemStyle => ViewStyle as DefaultGridItemStyle;
+        private DefaultGridItemStyle ItemStyle => ViewStyle as DefaultGridItemStyle;
 
         /// <summary>
         /// Return a copied Style instance of DefaultLinearItem
@@ -49,7 +49,7 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                var result = new DefaultGridItemStyle(itemStyle);
+                var result = new DefaultGridItemStyle(ItemStyle);
                 result.CopyPropertiesFromView(this);
                 if (itemCaption) result.Caption.CopyPropertiesFromView(itemCaption);
                 if (itemImage) result.Image.CopyPropertiesFromView(itemImage);
@@ -128,7 +128,7 @@ namespace Tizen.NUI.Components
             {
                 if ( itemImage == null)
                 {
-                    itemImage = CreateImage(itemStyle.Image);
+                    itemImage = CreateImage(ItemStyle.Image);
                     if (itemImage != null)
                     {
                         Add(itemImage);
@@ -164,8 +164,11 @@ namespace Tizen.NUI.Components
                     Remove(itemBadge);
                 }
                 itemBadge = value;
-                itemBadge.ApplyStyle(itemStyle.Badge);
-                Add(itemBadge);
+                if (itemBadge != null)
+                {
+                    itemBadge.ApplyStyle(ItemStyle.Badge);
+                    Add(itemBadge);
+                }
                 layoutChanged = true;
             }
         }
@@ -198,7 +201,7 @@ namespace Tizen.NUI.Components
             {
                 if (itemCaption == null)
                 {
-                    itemCaption = CreateLabel(itemStyle.Caption);
+                    itemCaption = CreateLabel(ItemStyle.Caption);
                     if (itemCaption != null)
                     {
                         Add(itemCaption);

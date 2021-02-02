@@ -23,73 +23,73 @@ using Tizen.NUI.Components.Extension;
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// ViewItemStyle is a class which saves ViewItem's ux data.
+    /// RecyclerViewItemStyle is a class which saves RecyclerViewItem's ux data.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class ViewItemStyle : ControlStyle
+    public class RecyclerViewItemStyle : ControlStyle
     {
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IsSelectableProperty = BindableProperty.Create(nameof(IsSelectable), typeof(bool?), typeof(ViewItemStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IsSelectableProperty = BindableProperty.Create(nameof(IsSelectable), typeof(bool?), typeof(RecyclerViewItemStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            var viewItemStyle = (ViewItemStyle)bindable;
-            viewItemStyle.isSelectable = (bool?)newValue;
+            var RecyclerViewItemStyle = (RecyclerViewItemStyle)bindable;
+            RecyclerViewItemStyle.isSelectable = (bool?)newValue;
         },
         defaultValueCreator: (bindable) =>
         {
-            var viewItemStyle = (ViewItemStyle)bindable;
-            return viewItemStyle.isSelectable;
+            var RecyclerViewItemStyle = (RecyclerViewItemStyle)bindable;
+            return RecyclerViewItemStyle.isSelectable;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IsSelectedProperty = BindableProperty.Create(nameof(IsSelected), typeof(bool?), typeof(ViewItemStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IsSelectedProperty = BindableProperty.Create(nameof(IsSelected), typeof(bool?), typeof(RecyclerViewItemStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            var viewItemStyle = (ViewItemStyle)bindable;
-            viewItemStyle.isSelected = (bool?)newValue;
+            var RecyclerViewItemStyle = (RecyclerViewItemStyle)bindable;
+            RecyclerViewItemStyle.isSelected = (bool?)newValue;
         },
         defaultValueCreator: (bindable) =>
         {
-            var viewItemStyle = (ViewItemStyle)bindable;
-            return viewItemStyle.isSelected;
+            var RecyclerViewItemStyle = (RecyclerViewItemStyle)bindable;
+            return RecyclerViewItemStyle.isSelected;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IsEnabledProperty = BindableProperty.Create(nameof(IsEnabled), typeof(bool?), typeof(ViewItemStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IsEnabledProperty = BindableProperty.Create(nameof(IsEnabled), typeof(bool?), typeof(RecyclerViewItemStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            var viewItemStyle = (ViewItemStyle)bindable;
-            viewItemStyle.isEnabled = (bool?)newValue;
+            var RecyclerViewItemStyle = (RecyclerViewItemStyle)bindable;
+            RecyclerViewItemStyle.isEnabled = (bool?)newValue;
         },
         defaultValueCreator: (bindable) =>
         {
-            var viewItemStyle = (ViewItemStyle)bindable;
-            return viewItemStyle.isEnabled;
+            var RecyclerViewItemStyle = (RecyclerViewItemStyle)bindable;
+            return RecyclerViewItemStyle.isEnabled;
         });
 
         private bool? isSelectable;
         private bool? isSelected;
         private bool? isEnabled;
 
-        static ViewItemStyle() { }
+        static RecyclerViewItemStyle() { }
 
         /// <summary>
-        /// Creates a new instance of a ViewItemStyle.
+        /// Creates a new instance of a RecyclerViewItemStyle.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public ViewItemStyle() : base()
+        public RecyclerViewItemStyle() : base()
         {
         }
 
         /// <summary>
-        /// Creates a new instance of a ViewItemStyle with style.
+        /// Creates a new instance of a RecyclerViewItemStyle with style.
         /// </summary>
-        /// <param name="style">Create ViewItemStyle by style customized by user.</param>
+        /// <param name="style">Create RecyclerViewItemStyle by style customized by user.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ViewItemStyle(ViewItemStyle style) : base(style)
+        public RecyclerViewItemStyle(RecyclerViewItemStyle style) : base(style)
         {
         }
 
         /// <summary>
-        /// Flag to decide ViewItem can be selected or not.
+        /// Flag to decide RecyclerViewItem can be selected or not.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? IsSelectable
@@ -99,7 +99,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Flag to decide selected state in ViewItem.
+        /// Flag to decide selected state in RecyclerViewItem.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? IsSelected
@@ -109,7 +109,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Flag to decide viewItem can be selected or not.
+        /// Flag to decide RecyclerViewItem can be selected or not.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? IsEnabled
@@ -127,10 +127,12 @@ namespace Tizen.NUI.Components
         {
             base.CopyFrom(bindableObject);
 
-            if (bindableObject is ViewItemStyle viewItemStyle)
+            /*
+            if (bindableObject is RecyclerViewItemStyle RecyclerViewItemStyle)
             {
                 //
             }
+            */
         }
     }
 }

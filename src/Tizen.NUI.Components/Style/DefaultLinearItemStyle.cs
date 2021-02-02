@@ -26,7 +26,7 @@ namespace Tizen.NUI.Components
     /// DefaultLinearItemStyle is a class which saves DefaultLinearItem's ux data.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class DefaultLinearItemStyle : ViewItemStyle
+    public class DefaultLinearItemStyle : RecyclerViewItemStyle
     {
         static DefaultLinearItemStyle() { }
 
@@ -86,13 +86,13 @@ namespace Tizen.NUI.Components
         {
             base.CopyFrom(bindableObject);
 
-            if (bindableObject is DefaultLinearItemStyle viewItemStyle)
+            if (bindableObject is DefaultLinearItemStyle RecyclerViewItemStyle)
             {
-                Label.CopyFrom(viewItemStyle.Label);
-                SubLabel.CopyFrom(viewItemStyle.SubLabel);
-                Icon.CopyFrom(viewItemStyle.Icon);
-                Extra.CopyFrom(viewItemStyle.Extra);
-                Seperator.CopyFrom(viewItemStyle.Seperator);
+                Label.CopyFrom(RecyclerViewItemStyle.Label);
+                SubLabel.CopyFrom(RecyclerViewItemStyle.SubLabel);
+                Icon.CopyFrom(RecyclerViewItemStyle.Icon);
+                Extra.CopyFrom(RecyclerViewItemStyle.Extra);
+                Seperator.CopyFrom(RecyclerViewItemStyle.Seperator);
             }
         }
     }

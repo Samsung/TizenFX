@@ -43,9 +43,9 @@ namespace Tizen.NUI.Components
             return new ListSource(itemsSource);
         }
 
-        public static IItemSource Create(ItemsView itemsView)
+        public static IItemSource Create(RecyclerView recyclerView)
         {
-            return Create(itemsView.ItemsSource, itemsView);
+            return Create(recyclerView.ItemsSource, recyclerView);
         }
 
         public static IGroupableItemSource Create(CollectionView colView)
