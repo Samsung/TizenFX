@@ -169,6 +169,7 @@ namespace Tizen.NUI
             internal static readonly int ScrollSize = Interop.WebView.ScrollSizeGet();
             internal static readonly int ContentSize = Interop.WebView.ContentSizeGet();
             internal static readonly int Title = Interop.WebView.TitleGet();
+            internal static readonly int VideoHoleEnabled = Interop.WebView.VideoHoleEnabledGet();
         }
 
         private static readonly BindableProperty UrlProperty = BindableProperty.Create(nameof(Url), typeof(string), typeof(WebView), string.Empty, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
@@ -241,6 +242,22 @@ namespace Tizen.NUI
             string title;
             Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.Title).Get(out title);
             return title;
+        });
+
+        private static readonly BindableProperty VideoHoleEnabledProperty = BindableProperty.Create(nameof(VideoHoleEnabled), typeof(bool), typeof(WebView), true, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var webview = (WebView)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty(webview.SwigCPtr, WebView.Property.VideoHoleEnabled, new Tizen.NUI.PropertyValue((bool)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var webview = (WebView)bindable;
+            bool temp;
+            Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.VideoHoleEnabled).Get(out temp);
+            return temp;
         });
 
         /// <summary>
@@ -484,6 +501,23 @@ namespace Tizen.NUI
             {
                 Vector2 sv = (Vector2)GetValue(ContentSizeProperty);
                 return new Size(sv.Width, sv.Height);
+            }
+        }
+
+        /// <summary>
+        /// Whether video hole is enabled or not.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool VideoHoleEnabled
+        {
+            get
+            {
+                return (bool)GetValue(VideoHoleEnabledProperty);
+            }
+            set
+            {
+                SetValue(VideoHoleEnabledProperty, value);
+                NotifyPropertyChanged();
             }
         }
 
