@@ -25,7 +25,7 @@ namespace Tizen.NUI.Components
     {
         readonly ICollectionChangedNotifier notifier;
         readonly IList groupSource;
-        List<IItemSource> groups = new List<IItemSource>();
+        readonly List<IItemSource> groups = new List<IItemSource>();
         readonly bool hasGroupHeaders;
         readonly bool hasGroupFooters;
         bool disposed;
@@ -50,17 +50,17 @@ namespace Tizen.NUI.Components
         public bool HasHeader { get; set; }
         public bool HasFooter { get; set; }
 
-        public ObservableGroupedSource(CollectionView groupableItemsView, ICollectionChangedNotifier changedNotifier)
+        public ObservableGroupedSource(CollectionView colView, ICollectionChangedNotifier changedNotifier)
         {
-            var source = groupableItemsView.ItemsSource;
+            var source = colView.ItemsSource;
 
             notifier = changedNotifier;
             groupSource = source as IList ?? new ListSource(source);
 
-            hasGroupFooters = groupableItemsView.GroupFooterTemplate != null;
-            hasGroupHeaders = groupableItemsView.GroupHeaderTemplate != null;
-            HasHeader = groupableItemsView.Header != null;
-            HasFooter = groupableItemsView.Footer != null;
+            hasGroupFooters = colView.GroupFooterTemplate != null;
+            hasGroupHeaders = colView.GroupHeaderTemplate != null;
+            HasHeader = colView.Header != null;
+            HasFooter = colView.Footer != null;
 
             if (groupSource is INotifyCollectionChanged incc)
             {
@@ -92,14 +92,12 @@ namespace Tizen.NUI.Components
 
         public bool IsGroupHeader(int position)
         {
-            //Console.WriteLine("LSH ::: {0} is Group Header?", position);
             if (IsFooter(position) || IsHeader(position))
             {
                 return false;
             }
 
             var (group, inGroup) = GetGroupAndIndex(position);
-            //Console.WriteLine("LSH ::: {0}'s group {1}, index {2} answer{3}", position, group, inGroup, groups[group].IsHeader(inGroup));
 
             return groups[group].IsHeader(inGroup);
         }
@@ -425,8 +423,6 @@ namespace Tizen.NUI.Components
         (int, int) GetGroupAndIndex(int absolutePosition)
         {
             absolutePosition = AdjustIndexForHeader(absolutePosition);
-
-            //Console.WriteLine("LSH:: Get absolute: {0}", absolutePosition);
 
             var group = 0;
             var localIndex = 0;

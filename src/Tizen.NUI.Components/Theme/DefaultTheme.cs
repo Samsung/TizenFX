@@ -97,10 +97,10 @@ namespace Tizen.NUI.Components
             ["PaginationIndicatorImageUrlSelected"] = FrameworkInformation.ResourcePath + "nui_component_default_pagination_focus_dot.png",
             ["ScrollbarTrackColor"] = new Color(1, 1, 1, 0.15f),
             ["ScrollbarThumbColor"] = new Color(0.6f, 0.6f, 0.6f, 1.0f),
-            ["ViewItemBackgroundColorNormal"] = new Color(1, 1, 1, 1),
-            ["ViewItemBackgroundColorPressed"] = new Color(0.85f, 0.85f, 0.85f, 1),
-            ["ViewItemBackgroundColorDisabled"] = new Color(0.70f, 0.70f, 0.70f, 1),
-            ["ViewItemBackgroundColorSelected"] = new Color(0.701f, 0.898f, 0.937f, 1),
+            ["RecyclerViewItemBackgroundColorNormal"] = new Color(1, 1, 1, 1),
+            ["RecyclerViewItemBackgroundColorPressed"] = new Color(0.85f, 0.85f, 0.85f, 1),
+            ["RecyclerViewItemBackgroundColorDisabled"] = new Color(0.70f, 0.70f, 0.70f, 1),
+            ["RecyclerViewItemBackgroundColorSelected"] = new Color(0.701f, 0.898f, 0.937f, 1),
             ["TitleBackgroundColorNormal"] = new Color(0.78f, 0.78f, 0.78f, 1),
         };
 
@@ -377,10 +377,11 @@ namespace Tizen.NUI.Components
                 TrackPadding = 4
             });
 
-            theme.AddStyleWithoutClone("Tizen.NUI.Components.ViewItem", new ViewItemStyle()
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.RecyclerViewItem", new RecyclerViewItemStyle()
             {
                 BackgroundColor = new Selector<Color>()
                 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -389,6 +390,12 @@ namespace Tizen.NUI.Components
                     Pressed = (Color)theme.Resources["ViewItemBackgroundColorPressed"],
                     Disabled = (Color)theme.Resources["ViewItemBackgroundColorDisabled"],
                     Selected = (Color)theme.Resources["ViewItemBackgroundColorSelected"],
+=======
+                    Normal = (Color)theme.Resources["RecyclerViewItemBackgroundColorNormal"],
+                    Pressed = (Color)theme.Resources["RecyclerViewItemBackgroundColorPressed"],
+                    Disabled = (Color)theme.Resources["RecyclerViewItemBackgroundColorDisabled"],
+                    Selected = (Color)theme.Resources["RecyclerViewItemBackgroundColorSelected"],
+>>>>>>> 366ec3263... [NUI] Remove Old RecyclerView and Renamed ItemsView to RecyclerView
                 },
             });
             
@@ -398,10 +405,10 @@ namespace Tizen.NUI.Components
                 Padding = new Extents(10, 10, 20, 20),
                 BackgroundColor = new Selector<Color>()
                 {
-                    Normal = (Color)theme.Resources["ViewItemBackgroundColorNormal"],
-                    Pressed = (Color)theme.Resources["ViewItemBackgroundColorPressed"],
-                    Disabled = (Color)theme.Resources["ViewItemBackgroundColorDisabled"],
-                    Selected = (Color)theme.Resources["ViewItemBackgroundColorSelected"],
+                    Normal = (Color)theme.Resources["RecyclerViewItemBackgroundColorNormal"],
+                    Pressed = (Color)theme.Resources["RecyclerViewItemBackgroundColorPressed"],
+                    Disabled = (Color)theme.Resources["RecyclerViewItemBackgroundColorDisabled"],
+                    Selected = (Color)theme.Resources["RecyclerViewItemBackgroundColorSelected"],
                 },
                 Label = new TextLabelStyle()
                 {

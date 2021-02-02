@@ -6,9 +6,9 @@ using Tizen.NUI.Accessibility; // To use AccessibilityManager
 
 namespace Tizen.NUI.Components
 {
-    public partial class ViewItem
+    public partial class RecyclerViewItem
     {
-        internal ItemsView ParentItemsView = null;
+        internal RecyclerView ParentItemsView = null;
         internal object ParentGroup = null;
         internal bool isGroupHeader;
         internal bool isGroupFooter;
@@ -31,7 +31,7 @@ namespace Tizen.NUI.Components
             if (IsSelected) targetState += ControlState.Selected;
 
             // Pressed, PressedSelected
-            if (isPressed) targetState += ControlState.Pressed;
+            if (IsPressed) targetState += ControlState.Pressed;
 
             // Focused, FocusedPressed, FocusedPressedSelected, DisabledFocused, DisabledSelectedFocused
             if (IsFocused) targetState += ControlState.Focused;
@@ -51,12 +51,12 @@ namespace Tizen.NUI.Components
             }
 
             // Touch Down
-            isPressed = true;
+            IsPressed = true;
             UpdateState();
 
             // Touch Up
-            bool clicked = isPressed && IsEnabled;
-            isPressed = false;
+            bool clicked = IsPressed && IsEnabled;
+            IsPressed = false;
 
             if (IsSelectable)
             {
@@ -109,17 +109,17 @@ namespace Tizen.NUI.Components
             switch (state)
             {
                 case PointStateType.Down:
-                    isPressed = true;
+                    IsPressed = true;
                     UpdateState();
                     return true;
                 case PointStateType.Interrupted:
-                    isPressed = false;
+                    IsPressed = false;
                     UpdateState();
                     return true;
                 case PointStateType.Up:
                     {
-                        bool clicked = isPressed && IsEnabled;
-                        isPressed = false;
+                        bool clicked = IsPressed && IsEnabled;
+                        IsPressed = false;
 
                         if (!clicked) return true;
 
@@ -215,9 +215,9 @@ namespace Tizen.NUI.Components
 
             var statePressed = controlStateChangedInfo.CurrentState.Contains(ControlState.Pressed);
 
-            if (isPressed != statePressed)
+            if (IsPressed != statePressed)
             {
-                isPressed = statePressed;
+                IsPressed = statePressed;
             }
         }
 
@@ -228,7 +228,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override ViewStyle CreateViewStyle()
         {
-            return new ViewItemStyle();
+            return new RecyclerViewItemStyle();
         }
 
         /// <summary>

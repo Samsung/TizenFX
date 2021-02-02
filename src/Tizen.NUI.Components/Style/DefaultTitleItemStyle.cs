@@ -26,7 +26,7 @@ namespace Tizen.NUI.Components
     /// DefaultTitleItemStyle is a class which saves DefaultLinearItem's ux data.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class DefaultTitleItemStyle : ViewItemStyle
+    public class DefaultTitleItemStyle : RecyclerViewItemStyle
     {
         static DefaultTitleItemStyle() { }
 
@@ -74,11 +74,11 @@ namespace Tizen.NUI.Components
         {
             base.CopyFrom(bindableObject);
 
-            if (bindableObject is DefaultTitleItemStyle viewItemStyle)
+            if (bindableObject is DefaultTitleItemStyle RecyclerViewItemStyle)
             {
-                Label.CopyFrom(viewItemStyle.Label);
-                Icon.CopyFrom(viewItemStyle.Icon);
-                Seperator.CopyFrom(viewItemStyle.Seperator);
+                Label.CopyFrom(RecyclerViewItemStyle.Label);
+                Icon.CopyFrom(RecyclerViewItemStyle.Icon);
+                Seperator.CopyFrom(RecyclerViewItemStyle.Seperator);
             }
         }
     }

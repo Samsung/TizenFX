@@ -26,7 +26,7 @@ namespace Tizen.NUI.Components
     /// DefaultGridItemStyle is a class which saves DefaultLinearItem's ux data.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class DefaultGridItemStyle : ViewItemStyle
+    public class DefaultGridItemStyle : RecyclerViewItemStyle
     {
     
         static DefaultGridItemStyle() { }
@@ -76,12 +76,12 @@ namespace Tizen.NUI.Components
         {
             base.CopyFrom(bindableObject);
 
-            if (bindableObject is DefaultGridItemStyle viewItemStyle)
+            if (bindableObject is DefaultGridItemStyle RecyclerViewItemStyle)
             {
-                Caption.CopyFrom(viewItemStyle.Caption);
-                Image.CopyFrom(viewItemStyle.Image);
-                Badge.CopyFrom(viewItemStyle.Badge);
-                //Border.CopyFrom(viewItemStyle.Border);
+                Caption.CopyFrom(RecyclerViewItemStyle.Caption);
+                Image.CopyFrom(RecyclerViewItemStyle.Image);
+                Badge.CopyFrom(RecyclerViewItemStyle.Badge);
+                //Border.CopyFrom(RecyclerViewItemStyle.Border);
             }
         }
     }

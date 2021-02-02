@@ -28,7 +28,7 @@ namespace Tizen.NUI.Components
     /// This class provides a View that can layouting items in list and grid with high performance.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class CollectionView : ItemsView
+    public class CollectionView : RecyclerView
     {
         /// <summary>
         /// Binding Property of selected item in single selection.
@@ -43,7 +43,7 @@ namespace Tizen.NUI.Components
                     colView.selectedItem = newValue;
                     var args = new SelectionChangedEventArgs(oldValue, newValue);
 
-                    foreach (ViewItem item in colView.ContentContainer.Children.Where((item) => item is ViewItem))
+                    foreach (RecyclerViewItem item in colView.ContentContainer.Children.Where((item) => item is RecyclerViewItem))
                     {
                         if (item.BindingContext == null) continue;
                         if (item.BindingContext == oldValue) item.IsSelected = false;
@@ -113,8 +113,8 @@ namespace Tizen.NUI.Components
         private SelectionList selectedItems;
         private bool suppressSelectionChangeNotification;
         private ItemSelectionMode selectionMode = ItemSelectionMode.None;
-        private ViewItem header;
-        private ViewItem footer;
+        private RecyclerViewItem header;
+        private RecyclerViewItem footer;
         private View focusedView;
         private int prevFocusedDataIndex = 0;
 
@@ -343,7 +343,7 @@ namespace Tizen.NUI.Components
         /// note : internal index and count will be increased.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ViewItem Header
+        public RecyclerViewItem Header
         {
             get => header;
             set
@@ -371,7 +371,7 @@ namespace Tizen.NUI.Components
         /// note : internal count will be increased.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ViewItem Footer
+        public RecyclerViewItem Footer
         {
             get => footer;
             set
@@ -421,13 +421,38 @@ namespace Tizen.NUI.Components
         ///  DataTemplate of group header. Group feature is not supported yet.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public DataTemplate GroupHeaderTemplate { get; set; }
+        public DataTemplate GroupHeaderTemplate
+        {
+            get
+            {
+                return groupHeaderTemplate;
+            }
+            set
+            {
+                groupHeaderTemplate = value;
+                needInitalizeLayouter = true;
+                Init();
+            }
+        }
 
         /// <summary>
         /// DataTemplate of group footer. Group feature is not supported yet.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public DataTemplate GroupFooterTemplate { get; set; }
+        public DataTemplate GroupFooterTemplate
+        {
+            get
+            {
+                return groupFooterTemplate;
+            }
+            set
+            {
+                groupFooterTemplate = value;
+                needInitalizeLayouter = true;
+                Init();
+            }
+        }
+
 
         /// <summary>
         /// Internal encapsulated items data source.
@@ -466,7 +491,7 @@ namespace Tizen.NUI.Components
                 {
                     for (int i = 0; i < ContentContainer.Children.Count; i++)
                     {
-                        ViewItem item = Children[i] as ViewItem;
+                        RecyclerViewItem item = Children[i] as RecyclerViewItem;
                         if (item?.Index == prevFocusedDataIndex)
                         {
                             nextFocusedView = item;
@@ -522,7 +547,7 @@ namespace Tizen.NUI.Components
                 }
 
                 focusedView = nextFocusedView;
-                prevFocusedDataIndex = (nextFocusedView is ViewItem) ? ((ViewItem)nextFocusedView).Index : -1;
+                prevFocusedDataIndex = (nextFocusedView as RecyclerViewItem)?.Index ?? -1;
 
                 ScrollTo(targetPosition, true);
             }
@@ -620,21 +645,21 @@ namespace Tizen.NUI.Components
             }
 
             float scrollPos, curPos, curSize, curItemSize;
-            (float X, float Y) itemPos = ItemsLayouter.GetItemPosition(item);
-            (float X, float Y) itemSize = ItemsLayouter.GetItemSize(item);
+            (float x, float y) = ItemsLayouter.GetItemPosition(item);
+            (float width, float height) = ItemsLayouter.GetItemSize(item);
             if (ScrollingDirection == Direction.Horizontal)
             {
-                scrollPos = itemPos.X;
+                scrollPos = x;
                 curPos = ScrollPosition.X;
                 curSize = Size.Width;
-                curItemSize = itemSize.X;
+                curItemSize = width;
             }
             else
             {
-                scrollPos = itemPos.Y;
+                scrollPos = y;
                 curPos = ScrollPosition.Y;
                 curSize = Size.Height;
-                curItemSize = itemSize.Y;
+                curItemSize = height;
             }
 
             //Console.WriteLine("[NUI] ScrollTo [{0}:{1}], curPos{2}, itemPos{3}, curSize{4}, itemSize{5}", InternalItemSource.GetPosition(item), align, curPos, scrollPos, curSize, curItemSize);
@@ -672,7 +697,7 @@ namespace Tizen.NUI.Components
         }
 
         // Realize and Decorate the item.
-        internal override ViewItem RealizeItem(int index)
+        internal override RecyclerViewItem RealizeItem(int index)
         {
             if (index == 0 && Header != null)
             {
@@ -693,11 +718,11 @@ namespace Tizen.NUI.Components
                 {
                     // Cache?
                     //Is Selector is necessary?
-                    ViewItem groupHeader = (ViewItem)DataTemplateExtensions.CreateContent(GroupHeaderTemplate, context, this);
+                    RecyclerViewItem groupHeader = (RecyclerViewItem)DataTemplateExtensions.CreateContent(groupHeaderTemplate, context, this);
                     groupHeader.Index = index;
                     groupHeader.ParentItemsView = this;
                     groupHeader.ParentGroup = context;
-                    groupHeader.Template = (GroupHeaderTemplate as DataTemplateSelector)?.SelectDataTemplate(context, this) ?? GroupHeaderTemplate;
+                    groupHeader.Template = (groupHeaderTemplate as DataTemplateSelector)?.SelectDataTemplate(context, this) ?? groupHeaderTemplate;
                     groupHeader.BindingContext = context;
                     groupHeader.isGroupHeader = true;
                     groupHeader.isGroupFooter = false;
@@ -710,11 +735,11 @@ namespace Tizen.NUI.Components
                 {
                     // Cache?
                     //Is Selector is necessary?
-                    ViewItem groupFooter = (ViewItem)DataTemplateExtensions.CreateContent(GroupFooterTemplate, context, this);
+                    RecyclerViewItem groupFooter = (RecyclerViewItem)DataTemplateExtensions.CreateContent(groupFooterTemplate, context, this);
                     groupFooter.Index = index;
                     groupFooter.ParentItemsView = this;
                     groupFooter.ParentGroup = context;
-                    groupFooter.Template = (GroupFooterTemplate as DataTemplateSelector)?.SelectDataTemplate(context, this) ?? GroupFooterTemplate;
+                    groupFooter.Template = (groupFooterTemplate as DataTemplateSelector)?.SelectDataTemplate(context, this) ?? groupFooterTemplate;
                     groupFooter.BindingContext = context;
                     groupFooter.isGroupHeader = false;
                     groupFooter.isGroupFooter = true;
@@ -725,7 +750,7 @@ namespace Tizen.NUI.Components
                 }
             }
 
-            ViewItem item = base.RealizeItem(index);
+            RecyclerViewItem item = base.RealizeItem(index);
             if (isGrouped) item.ParentGroup = InternalItemSource.GetGroupParent(index);
 
             switch (SelectionMode)
@@ -746,7 +771,7 @@ namespace Tizen.NUI.Components
         }
 
         // Unrealize and caching the item.
-        internal override void UnrealizeItem(ViewItem item, bool recycle = true)
+        internal override void UnrealizeItem(RecyclerViewItem item, bool recycle = true)
         {
             if (item == Header)
             {
@@ -776,7 +801,7 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            foreach (ViewItem item in ContentContainer.Children.Where((item) => item is ViewItem))
+            foreach (RecyclerViewItem item in ContentContainer.Children.Where((item) => item is RecyclerViewItem))
             {
                 if (item.BindingContext == null) continue;
                 if (newSelection.Contains(item.BindingContext))
@@ -863,8 +888,8 @@ namespace Tizen.NUI.Components
                     Utility.Dispose(Footer);
                     Footer = null;
                 }
-                GroupHeaderTemplate = null;
-                GroupFooterTemplate = null;
+                groupHeaderTemplate = null;
+                groupFooterTemplate = null;
                 //
             }
 
