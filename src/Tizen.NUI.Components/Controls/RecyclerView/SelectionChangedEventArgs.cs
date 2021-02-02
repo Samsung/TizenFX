@@ -29,15 +29,15 @@ namespace Tizen.NUI.Components
         static readonly IReadOnlyList<object> selectEmpty = new List<object>(0);
 
         /// <summary>
-        /// Previous selecitdon list.
+        /// Previous selection list.
         /// </summary>
        [EditorBrowsable(EditorBrowsableState.Never)]
         public IReadOnlyList<object> PreviousSelection { get; }
 
         /// <summary>
-        /// Current selecitdon list.    
+        /// Current selection list.    
         ///  </summary>
-       [EditorBrowsable(EditorBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public IReadOnlyList<object> CurrentSelection { get; }
 
 
