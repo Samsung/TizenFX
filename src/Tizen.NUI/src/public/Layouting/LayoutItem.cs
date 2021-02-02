@@ -402,16 +402,7 @@ namespace Tizen.NUI
         {
             get
             {
-                float maximumWidth = Owner.MaximumSize.Width;
-                float minimumWidth = Owner.MinimumSize.Width;
-
-                float baseHeight = Owner.MaximumSize.Height > 0 ? Math.Min(Owner.MaximumSize.Height, Owner.NaturalSize.Height) : Owner.NaturalSize.Height;
-                float baseWidth = Owner.GetWidthForHeight(baseHeight);
-
-                float result = minimumWidth > 0 ? Math.Max(baseWidth, minimumWidth) : baseWidth;
-                result = maximumWidth > 0 ? Math.Min(result, maximumWidth) : result;
-
-                return new LayoutLength(result);
+                return Owner.SuggestedMinimumWidth;
             }
         }
 
@@ -424,16 +415,7 @@ namespace Tizen.NUI
         {
             get
             {
-                float maximumHeight = Owner.MaximumSize.Height;
-                float minimumHeight = Owner.MinimumSize.Height;
-
-                float baseWidth = Owner.MaximumSize.Width > 0 ? Math.Min(Owner.MaximumSize.Width, Owner.NaturalSize.Width) : Owner.NaturalSize.Width;
-                float baseHeight = Owner.GetHeightForWidth(baseWidth);
-
-                float result = minimumHeight > 0 ? Math.Max(baseHeight, minimumHeight) : baseHeight;
-                result = maximumHeight > 0 ? Math.Min(result, maximumHeight) : result;
-
-                return new LayoutLength(result);
+                return Owner.SuggestedMinimumHeight;
             }
         }
 

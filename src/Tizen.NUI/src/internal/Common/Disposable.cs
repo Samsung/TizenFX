@@ -34,8 +34,6 @@ namespace Tizen.NUI
         private bool swigCMemOwn { get; set; }
         private bool isDisposeQueued = false;
 
-        private bool disposedThis = false;
-
         /// <summary>
         /// Create an instance of Disposable.
         /// </summary>
@@ -83,7 +81,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void Dispose(bool disposing)
         {
-            if (disposedThis)
+            if (disposed)
             {
                 return;
             }
@@ -120,8 +118,6 @@ namespace Tizen.NUI
 
             // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
             // TODO: set large fields to null.
-
-            disposedThis = true;
         }
 
         /// <summary>

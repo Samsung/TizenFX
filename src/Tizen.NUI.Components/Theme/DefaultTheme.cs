@@ -26,6 +26,10 @@ namespace Tizen.NUI.Components
     // It is a C# version of res/Tizen.NUI.Components_Tizen.NUI.Theme.Common.xaml
     internal class DefaultThemeCreator : IThemeCreator
     {
+        private DefaultThemeCreator() { }
+
+        public static IThemeCreator Instance { get; set; } = new DefaultThemeCreator();
+
         public ResourceDictionary CreateThemeResource() => new ResourceDictionary()
         {
             ["ButtonBackgroundColorNormal"] = new Color(0.039f, 0.055f, 0.29f, 1),
