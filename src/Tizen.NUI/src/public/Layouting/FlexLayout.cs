@@ -95,7 +95,6 @@ namespace Tizen.NUI
         private bool swigCMemOwn;
         private bool disposed;
         private bool isDisposeQueued = false;
-        private bool disposedThis = false;
 
         private MeasureSpecification parentMeasureSpecificationWidth;
         private MeasureSpecification parentMeasureSpecificationHeight;
@@ -304,7 +303,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(bool disposing)
         {
-            if (disposedThis)
+            if (disposed)
             {
                 return;
             }
@@ -341,7 +340,6 @@ namespace Tizen.NUI
 
             // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
             // TODO: set large fields to null.
-            disposedThis = true;
             base.Dispose(disposing);
         }
 

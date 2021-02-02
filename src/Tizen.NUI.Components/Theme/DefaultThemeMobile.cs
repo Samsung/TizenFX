@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-#if !PROFILE_WEARABLE && !PROFILE_MOBILE
+#if PROFILE_MOBILE
 
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -28,13 +28,12 @@ namespace Tizen.NUI.Components
     {
         public ResourceDictionary CreateThemeResource() => new ResourceDictionary()
         {
-            ["ButtonBackgroundColorNormal"] = new Color(0.039f, 0.055f, 0.29f, 1),
-            ["ButtonBackgroundColorFocused"] = new Color(0, 0.2f, 0.545f, 1),
-            ["ButtonBackgroundColorPressed"] = new Color(0.106f, 0.412f, 0.792f, 1),
-            ["ButtonBackgroundColorDisabled"] = new Color(0.765f, 0.792f, 0.824f, 1),
-            ["ButtonTextColorNormal"] = Color.White,
-            ["ButtonTextColorPressed"] = Color.White,
-            ["ButtonTextColorDisabled"] = Color.White,
+            ["ButtonBackgroundColorNormal"] = new Color(0.88f, 0.88f, 0.88f, 1),
+            ["ButtonBackgroundColorPressed"] = new Color(0.77f, 0.77f, 0.77f, 1),
+            ["ButtonBackgroundColorDisabled"] = new Color(0.88f, 0.88f, 0.88f, 1),
+            ["ButtonTextColorNormal"] = new Color(0.22f, 0.22f, 0.22f, 1),
+            ["ButtonTextColorPressed"] = new Color(0.11f, 0.11f, 0.11f, 1),
+            ["ButtonTextColorDisabled"] = new Color(0.66f, 0.66f, 0.66f, 1),
             ["CheckBoxIconBackgroundImagePressed"] = FrameworkInformation.ResourcePath + "nui_component_default_checkbox_bg_p.png",
             ["CheckBoxIconBackgroundImageSelected"] = FrameworkInformation.ResourcePath + "nui_component_default_checkbox_bg_p.png",
             ["CheckBoxIconBackgroundImageOther"] = FrameworkInformation.ResourcePath + "nui_component_default_checkbox_bg_n.png",
@@ -108,8 +107,7 @@ namespace Tizen.NUI.Components
 
             theme.AddStyleWithoutClone("Tizen.NUI.Components.Button", new ButtonStyle()
             {
-                Size = new Size(339, 96),
-                CornerRadius = 28,
+                Size = new Size(100, 45),
                 BackgroundColor = new Selector<Color>()
                 {
                     Normal = (Color)theme.Resources["ButtonBackgroundColorNormal"],
@@ -118,7 +116,7 @@ namespace Tizen.NUI.Components
                 },
                 Text = new TextLabelStyle()
                 {
-                    PixelSize = 32,
+                    PointSize = 12,
                     TextColor = new Selector<Color>()
                     {
                         Normal = (Color)theme.Resources["ButtonTextColorNormal"],
