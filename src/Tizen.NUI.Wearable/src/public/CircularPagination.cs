@@ -64,7 +64,7 @@ namespace Tizen.NUI.Wearable
 
         static CircularPagination()
         {
-            ThemeManager.AddPackageTheme(new DefaultThemeCreator());
+            ThemeManager.AddPackageTheme(DefaultThemeCreator.Instance);
         }
 
         /// <summary>
