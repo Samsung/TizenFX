@@ -52,7 +52,7 @@ namespace Tizen.NUI.Components
 
         static Control()
         {
-            ThemeManager.AddPackageTheme(new DefaultThemeCreator());
+            ThemeManager.AddPackageTheme(DefaultThemeCreator.Instance);
         }
 
         /// <summary>
