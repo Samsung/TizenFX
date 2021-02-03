@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+using System;
 using System.ComponentModel;
 
 namespace Tizen.NUI
@@ -28,6 +29,8 @@ namespace Tizen.NUI
         /// A Flag to check if it is already disposed.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API9, Will be removed in API11, Please use Disposed")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible instance fields", Justification = "<Pending>")]
         protected bool disposed = false;
 
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
