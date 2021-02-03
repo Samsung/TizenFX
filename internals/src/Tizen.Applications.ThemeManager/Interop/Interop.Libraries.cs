@@ -18,6 +18,6 @@ internal static partial class Interop
 {
     internal static partial class Libraries
     {
-        public const string ThemeManager = "libcapi-appfw-tizen-theme.so";
+        public const string ThemeManager = "libcapi-appfw-tizen-theme.so.1";
     }
 }
