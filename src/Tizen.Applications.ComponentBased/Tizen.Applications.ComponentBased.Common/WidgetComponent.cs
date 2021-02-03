@@ -21,7 +21,7 @@ namespace Tizen.Applications.ComponentBased.Common
     /// <summary>
     /// The class for showing UI module
     /// </summary>
-    /// <since_tizen> 6.5 </since_tizen>
+    /// <since_tizen> 9 </since_tizen>
     public abstract class WidgetComponent : BaseComponent
     {
 
@@ -31,7 +31,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// <param name="width">The width of the widget component instance</param>
         /// <param name="height">The height of the widget component instance</param>
         /// <returns>True if a service component is successfully created</returns>
-        /// <since_tizen> 6.5 </since_tizen>
+        /// <since_tizen> 9 </since_tizen>
         public abstract bool OnCreate(int width, int height);
 
         /// <summary>
@@ -40,14 +40,14 @@ namespace Tizen.Applications.ComponentBased.Common
         /// <param name="width">The width of the widget window</param>
         /// <param name="height">The height of the widget window</param>
         /// <returns>Window object to use</returns>
-        /// <since_tizen> 6.5 </since_tizen>
+        /// <since_tizen> 9 </since_tizen>
         public abstract IWindowProxy CreateWindowInfo(int width, int height);
 
         /// <summary>
         /// Overrides this method if want to handle behavior when the component is started.
         /// </summary>
         /// <param name="restarted">True if it was restarted</param>
-        /// <since_tizen> 6.5 </since_tizen>
+        /// <since_tizen> 9 </since_tizen>
         public virtual void OnStart(bool restarted)
         {
         }
@@ -55,7 +55,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the component is resumed.
         /// </summary>
-        /// <since_tizen> 6.5 </since_tizen>
+        /// <since_tizen> 9 </since_tizen>
         public virtual void OnResume()
         {
         }
@@ -63,7 +63,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the component is paused.
         /// </summary>
-        /// <since_tizen> 6.5 </since_tizen>
+        /// <since_tizen> 9 </since_tizen>
         public virtual void OnPause()
         {
         }
@@ -71,7 +71,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the component is stopped.
         /// </summary>
-        /// <since_tizen> 6.5 </since_tizen>
+        /// <since_tizen> 9 </since_tizen>
         public virtual void OnStop()
         {
         }
@@ -80,7 +80,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// Overrides this method if want to handle behavior when the component is destroyed.
         /// </summary>
         /// <param name="permanent">True if the instance is permanent</param>
-        /// <since_tizen> 6.5 </since_tizen>
+        /// <since_tizen> 9 </since_tizen>
         public virtual void OnDestroy(bool permanent)
         {
         }

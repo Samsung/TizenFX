@@ -21,7 +21,7 @@ namespace Tizen.Applications.ComponentBased.Common
     /// <summary>
     /// Proxy for window
     /// </summary>
-    /// <since_tizen> 6.5 </since_tizen>
+    /// <since_tizen> 9 </since_tizen>
     public interface IWindowProxy : IWindowInfo
     {
         /// <summary>
