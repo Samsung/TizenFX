@@ -44,7 +44,7 @@ namespace Tizen.NUI.Binding
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        // [Obsolete("Deprecated in API9, will be removed in API11. Please use GetValue() instead!")]
+        [Obsolete("Deprecated in API9, will be removed in API11. Please use GetValue() instead!")]
         public object Value
         {
             get { return ((BindingCondition)Condition).Value; }

@@ -297,14 +297,14 @@ namespace Tizen.NUI
             return ret;
         }
 
-        // [Obsolete("Deprecated in API9, will be removed in API11. Please use ClearColor property instead!")]
+        [Obsolete("Deprecated in API9, will be removed in API11. Please use ClearColor property instead!")]
         public void SetClearColor(Vector4 color)
         {
             Interop.RenderTask.SetClearColor(SwigCPtr, Vector4.getCPtr(color));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        // [Obsolete("Deprecated in API9, will be removed in API11. Please use ClearColor property instead!")]
+        [Obsolete("Deprecated in API9, will be removed in API11. Please use ClearColor property instead!")]
         public Vector4 GetClearColor()
         {
             Vector4 ret = new Vector4(Interop.RenderTask.GetClearColor(SwigCPtr), true);
