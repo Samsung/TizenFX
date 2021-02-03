@@ -28,19 +28,24 @@ namespace Tizen.Security.TEEC
     /// This type denotes the Session Login Method used in OpenSession.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
     public class LoginMethod
     {
         /// <summary>No login data is provided.</summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
         public const uint Public      = 0x00000000;
         /// <summary>Login data about the user running the client application process is provided.</summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
         public const uint User        = 0x00000001;
         /// <summary>Login data about the group running the client application process is provided.</summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
         public const uint Group       = 0x00000002;
         /// <summary>Login data about the running client application itself is provided.</summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
         public const uint Application = 0x00000003;
     }
 
@@ -48,6 +53,7 @@ namespace Tizen.Security.TEEC
     /// This type denotes the Value parameter.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
     public enum TEFValueType : UInt32
     {
         /// <summary>The parameter is a ValueType tagged as the input.</summary>
@@ -63,6 +69,7 @@ namespace Tizen.Security.TEEC
     /// describing a region of memory which needs to be temporarily registered for the duration of the operation.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
     public enum TEFTempMemoryType : UInt32
     {
         /// <summary>The parameter is a TempMemoryType and is tagged as the input.</summary>
@@ -77,6 +84,7 @@ namespace Tizen.Security.TEEC
     /// This type denotes the SharedMemoryReference parameter.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
     public enum TEFRegisteredMemoryType : UInt32
     {
         /// <summary>The parameter is a registered memory reference that refers to the entirety of its parent shared memory block.</summary>
@@ -94,6 +102,7 @@ namespace Tizen.Security.TEEC
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     [Flags]
+    [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
     public enum SharedMemoryFlags : UInt32
     {
         /// <summary>A flag indicates the shared memory can be read.</summary>
@@ -109,6 +118,7 @@ namespace Tizen.Security.TEEC
     /// with the implementation or allocated by it.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
     public sealed class SharedMemory : IDisposable
     {
         private bool disposed = false;
@@ -158,6 +168,7 @@ namespace Tizen.Security.TEEC
         /// <summary>
         /// Disposable interface implememtation.
         /// </summary>
+        [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
         public void Dispose()
         {
             Dispose(true);
@@ -170,6 +181,7 @@ namespace Tizen.Security.TEEC
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/tee.client</privilege>
         /// <privlevel>partner</privlevel>
+        [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
         public UInt32 Size
         {
             get { return shm.size.ToUInt32(); }
@@ -180,6 +192,7 @@ namespace Tizen.Security.TEEC
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/tee.client</privilege>
         /// <privlevel>partner</privlevel>
+        [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
         public IntPtr Address
         {
             get { return shm.buffer; }
@@ -195,6 +208,7 @@ namespace Tizen.Security.TEEC
         /// <param name="data">The source data buffer to copy data from.</param>
         /// <param name="dstOffs">The starting offset in the destination shared memory.</param>
         /// <exception cref="InvalidOperationException">The operation is invalid.</exception>
+        [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
         public void SetData(byte[] data, int dstOffs)
         {
             Marshal.Copy(data, 0, shm.buffer + dstOffs, data.Length);
@@ -209,6 +223,7 @@ namespace Tizen.Security.TEEC
         /// <param name="data">The destination data buffer to copy data into.</param>
         /// <param name="srcOffs">The starting offset in the source shared memory.</param>
         /// <exception cref="InvalidOperationException">The operation is invalid.</exception>
+        [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
         public void GetData(byte[] data, int srcOffs)
         {
             Marshal.Copy(shm.buffer + srcOffs, data, 0, data.Length);
@@ -221,6 +236,7 @@ namespace Tizen.Security.TEEC
     /// Parameters are used to exchange data between CA and TA.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
     public abstract class Parameter
     {
         internal Parameter(uint t)
@@ -234,6 +250,7 @@ namespace Tizen.Security.TEEC
     /// This type defines a template for the parameter types.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
     public abstract class BaseParameter<TEnum> : Parameter where TEnum : struct, IComparable, IFormattable, IConvertible // as close to Enum as possible
     {
         internal BaseParameter(TEnum t) : base((uint)(object)t)
@@ -245,6 +262,7 @@ namespace Tizen.Security.TEEC
         /// This property represents the access type to this parameter.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
         public TEnum Type { get; }
     }
 
@@ -252,6 +270,7 @@ namespace Tizen.Security.TEEC
     /// This type defines a temporary memory reference.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
     public sealed class TempMemoryReference : BaseParameter<TEFTempMemoryType>
     {
         /// <summary>
@@ -261,6 +280,7 @@ namespace Tizen.Security.TEEC
         /// <param name="buffer">The address of the allocated memory buffer.</param>
         /// <param name="size">The size of the buffer.</param>
         /// <param name="type">The kind of access allowed for TA <see cref="TEFTempMemoryType"/>.</param>
+        [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
         public TempMemoryReference(IntPtr buffer, uint size, TEFTempMemoryType type) :
                 base(type)
         {
@@ -271,11 +291,13 @@ namespace Tizen.Security.TEEC
         /// This property represents the memory address of the buffer.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
         public IntPtr Buffer { get; }
         /// <summary>
         /// This property represents the size of the buffer.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
         public uint Size { get; internal set; }
     };
 
@@ -283,6 +305,7 @@ namespace Tizen.Security.TEEC
     /// This type defines a memory reference that uses a pre-registered or pre-allocated shared memory block.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
     public sealed class RegisteredMemoryReference : BaseParameter<TEFRegisteredMemoryType>
     {
         /// <summary>
@@ -295,6 +318,7 @@ namespace Tizen.Security.TEEC
         /// <param name="size">The size of the buffer part.</param>
         /// <param name="offset">The offset of the buffer in the shared memory.</param>
         /// <param name="type">The kind of access allowed for TA <see cref="TEFRegisteredMemoryType"/>.</param>
+        [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
         public RegisteredMemoryReference(SharedMemory parent, uint size, uint offset, TEFRegisteredMemoryType type) :
                 base(type)
         {
@@ -315,6 +339,7 @@ namespace Tizen.Security.TEEC
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/tee.client</privilege>
         /// <privlevel>partner</privlevel>
+        [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
         public SharedMemory Parent { get; }
         /// <summary>
         /// This property represents the size (in bytes) of the shared memory.
@@ -322,6 +347,7 @@ namespace Tizen.Security.TEEC
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/tee.client</privilege>
         /// <privlevel>partner</privlevel>
+        [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
         public uint Size { get; internal set; }
         /// <summary>
         /// This property represents the offset (in bytes) from the start of the shared memory.
@@ -329,6 +355,7 @@ namespace Tizen.Security.TEEC
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/tee.client</privilege>
         /// <privlevel>partner</privlevel>
+        [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
         public uint Offset { get; }
     };
 
@@ -337,6 +364,7 @@ namespace Tizen.Security.TEEC
     /// passed by a value.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
     public sealed class Value : BaseParameter<TEFValueType>
     {
         /// <summary>
@@ -346,6 +374,7 @@ namespace Tizen.Security.TEEC
         /// <param name="a">User paramter A.</param>
         /// <param name="b">User paramter B.</param>
         /// <param name="type">The kind of access allowed for TA <see cref="TEFValueType"/>.</param>
+        [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
         public Value(uint a, uint b, TEFValueType type) :
                 base(type)
         {
@@ -356,11 +385,13 @@ namespace Tizen.Security.TEEC
         /// This property represents an unsigned integer A.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
         public uint A { get; internal set; }
         /// <summary>
         /// This property represents an unsigned integer B.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
         public uint B { get; internal set; }
     };
 
@@ -369,6 +400,7 @@ namespace Tizen.Security.TEEC
     /// This type denotes a TEE Session, the logical container linking a client application with a particular trusted application.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
     public sealed class Session : IDisposable
     {
         private bool disposed = false;
@@ -412,6 +444,7 @@ namespace Tizen.Security.TEEC
         /// <summary>
         /// Disposable interface implememtation.
         /// </summary>
+        [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
         public void Dispose()
         {
             Dispose(true);
@@ -665,6 +698,7 @@ namespace Tizen.Security.TEEC
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">The operation is invalid.</exception>
+        [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
         public void Close() {
             Dispose();
         }
@@ -686,6 +720,7 @@ namespace Tizen.Security.TEEC
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">The operation is invalid.</exception>
         /// <exception cref="ArgumentException">The argument <paramref name="paramlist"/> is wrong.</exception>
+        [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
         public void InvokeCommand(uint commandID, Parameter[] paramlist)
         {
             int ret;
@@ -746,6 +781,7 @@ namespace Tizen.Security.TEEC
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">The operation is invalid.</exception>
         /// <exception cref="ArgumentException">One of the arguments is wrong.</exception>
+        [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
         public async Task InvokeCommandAsync(uint commandID, Parameter[] paramlist, CancellationToken token = default(CancellationToken))
         {
             await Task.Factory.StartNew(() => InvokeCommand(commandID, paramlist));
@@ -771,6 +807,7 @@ namespace Tizen.Security.TEEC
     /// This type denotes a TEE Context, the main logical container linking a Client Application with a particular TEE.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
     public sealed class Context : IDisposable
     {
         private bool disposed = false;
@@ -790,6 +827,7 @@ namespace Tizen.Security.TEEC
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">The operation is invalid.</exception>
+        [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
         public Context(string name)
         {
             if (!TeeFeature.IsEnabled())
@@ -842,6 +880,7 @@ namespace Tizen.Security.TEEC
         /// <privilege>http://tizen.org/privilege/tee.client</privilege>
         /// <privlevel>partner</privlevel>
         /// <feature>http://tizen.org/feature/security.tee</feature>
+        [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
         public void Dispose() {
             if (shmcnt != 0) {
                 Tizen.Log.Error("TZ_CLIENTAPI", "Context.Dispose not all shm released yet!");
@@ -869,6 +908,7 @@ namespace Tizen.Security.TEEC
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">The operation is invalid.</exception>
         /// <exception cref="ArgumentException">One of the arguments is wrong.</exception>
+        [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
         public Session OpenSession(Guid destination, uint loginMethod, byte[] connectionData, Parameter[] paramlist)
         {
             Session ses = new Session(this);
@@ -891,6 +931,7 @@ namespace Tizen.Security.TEEC
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">The operation is invalid.</exception>
+        [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
         public Session OpenSession(Guid destination)
         {
             Session ses = new Session(this);
@@ -920,6 +961,7 @@ namespace Tizen.Security.TEEC
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">The operation is invalid.</exception>
         /// <exception cref="ArgumentException">One of the arguments is wrong.</exception>
+        [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
         public async Task<Session> OpenSessionAsync(Guid destination, uint loginMethod, byte[] connectionData, Parameter[] paramlist, CancellationToken token = default(CancellationToken))
         {
             Task<Session> task = Task<Session>.Factory.StartNew(() =>
@@ -942,6 +984,7 @@ namespace Tizen.Security.TEEC
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">The operation is invalid.</exception>
+        [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
         public async Task<Session> OpenSessionAsync(Guid destination, CancellationToken token = default(CancellationToken))
         {
             Task<Session> task = Task<Session>.Factory.StartNew(() =>
@@ -968,6 +1011,7 @@ namespace Tizen.Security.TEEC
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">The operation is invalid.</exception>
         /// <exception cref="ArgumentException">The argument <paramref name="memaddr"/> is wrong.</exception>
+        [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
         public SharedMemory RegisterSharedMemory(IntPtr memaddr, UInt32 size, SharedMemoryFlags flags)
         {
             SharedMemory sharedmem =  new SharedMemory(this);
@@ -995,6 +1039,7 @@ namespace Tizen.Security.TEEC
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">The operation is invalid.</exception>
+        [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
         public SharedMemory AllocateSharedMemory(UInt32 size, SharedMemoryFlags flags)
         {
             SharedMemory sharedmem =  new SharedMemory(this);
@@ -1028,6 +1073,7 @@ namespace Tizen.Security.TEEC
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">The operation is invalid.</exception>
         /// <exception cref="ArgumentException">The argument is wrong.</exception>
+        [Obsolete("Deprecated in API9, Will be removed in API11. This API will be removed without any alternatives.")]
         public void ReleaseSharedMemory(SharedMemory shm)
         {
             shm.Dispose();
