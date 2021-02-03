@@ -221,7 +221,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <seealso cref="Container.GetChildCount" />
         /// <since_tizen> 4 </since_tizen>
-        // [Obsolete("Deprecated in API9, will be removed in API11. Please use ChildCount property instead!")]
+        [Obsolete("Deprecated in API9, will be removed in API11. Please use ChildCount property instead!")]
         public override uint GetChildCount()
         {
             return Convert.ToUInt32(Children.Count);
@@ -262,7 +262,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="styleName">A string matching a style described in a stylesheet.</param>
         /// <since_tizen> 3 </since_tizen>
-        // [Obsolete("Deprecated in API9, will be removed in API11. Please use StyleName property instead!")]
+        [Obsolete("Deprecated in API9, will be removed in API11. Please use StyleName property instead!")]
         public void SetStyleName(string styleName)
         {
             Interop.View.SetStyleName(SwigCPtr, styleName);
@@ -274,7 +274,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <returns>A string matching a style, or an empty string.</returns>
         /// <since_tizen> 3 </since_tizen>
-        // [Obsolete("Deprecated in API9, will be removed in API11. Please use StyleName property instead!")]
+        [Obsolete("Deprecated in API9, will be removed in API11. Please use StyleName property instead!")]
         public string GetStyleName()
         {
             string ret = Interop.View.GetStyleName(SwigCPtr);
@@ -468,7 +468,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="width">The width to use.</param>
         /// <returns>The height based on the width.</returns>
         /// <since_tizen> 3 </since_tizen>
-        // [Obsolete("Deprecated in API9, will be removed in API11. Please use HeightForWidth property instead!")]
+        [Obsolete("Deprecated in API9, will be removed in API11. Please use HeightForWidth property instead!")]
         public float GetHeightForWidth(float width)
         {
             float ret = Interop.Actor.GetHeightForWidth(SwigCPtr, width);
@@ -485,7 +485,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="height">The height to use.</param>
         /// <returns>The width based on the height.</returns>
         /// <since_tizen> 3 </since_tizen>
-        // [Obsolete("Deprecated in API9, will be removed in API11. Please use WidthForHeight property instead!")]
+        [Obsolete("Deprecated in API9, will be removed in API11. Please use WidthForHeight property instead!")]
         public float GetWidthForHeight(float height)
         {
             float ret = Interop.Actor.GetWidthForHeight(SwigCPtr, height);
@@ -526,7 +526,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="paddingOut">the value of padding for the view</param>
         /// <since_tizen> 3 </since_tizen>
-        // [Obsolete("Deprecated in API9, will be removed in API11. Please use Padding property instead!")]
+        [Obsolete("Deprecated in API9, will be removed in API11. Please use Padding property instead!")]
         public void GetPadding(PaddingType paddingOut)
         {
             Interop.Actor.GetPadding(SwigCPtr, PaddingType.getCPtr(paddingOut));

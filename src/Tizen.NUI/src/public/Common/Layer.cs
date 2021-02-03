@@ -355,7 +355,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>The child count of the layer.</returns>
         /// <since_tizen> 4 </since_tizen>
-        // [Obsolete("Deprecated in API9, will be removed in API11. Please use ChildCount property instead!")]
+        [Obsolete("Deprecated in API9, will be removed in API11. Please use ChildCount property instead!")]
         public override uint GetChildCount()
         {
             return Convert.ToUInt32(Children.Count);
