@@ -1310,8 +1310,6 @@ namespace Tizen.NUI.BaseComponents
         /// If FontSizeScale.UseSystemSetting, will use the SystemSettings.FontSize internally. <br />
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public float FontSizeScale
         {
             get
