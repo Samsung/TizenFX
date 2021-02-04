@@ -21,7 +21,6 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Security;
-using System.Xml.Serialization;
 
 namespace Tizen.Applications.ComponentBased
 {
@@ -89,6 +88,63 @@ namespace Tizen.Applications.ComponentBased
         /// <summary>
         /// Waits for events.
         /// </summary>
+        /// <reamrks>
+        /// This method runs a main loop until Cancel() is called.
+        /// The code in the next line will not run until Cancel() is called.
+        /// It is recommended that this method uses in the sub thread.
+        /// </reamrks>
+        /// <example>
+        /// <code>
+        /// public class CommPort : ComponentPort
+        /// {
+        ///     public CommPort(string portName) : base(portName)
+        ///     {
+        ///     }
+        ///
+        ///     protected override void OnRequestEvent(string sender, object request)
+        ///     {
+        ///         ...
+        ///     }
+        ///
+        ///     protected override object OnSyncRequestEvent(string sender, object request)
+        ///     {
+        ///         ...
+        ///         var response = new Response();
+        ///         return response;
+        ///     }
+        /// }
+        ///
+        /// public class CommService : ServiceComponent {
+        ///     private CommPort _port;
+        ///     private Thread _thread;
+        ///
+        ///     private void OnPortThread()
+        ///     {
+        ///         _port.WaitForEvent();
+        ///     }
+        ///
+        ///     protected override bool OnCreate()
+        ///     {
+        ///         _port = new CommPort("Comm");
+        ///         _thread = new Thread(new ThreadStart(OnPortThread));
+        ///         _thread.Start();
+        ///         return true;
+        ///     }
+        ///
+        ///     protected override void OnStartCommand(AppControl appControl, bool restarted)
+        ///     {
+        ///         base.OnStartCommand(appControl, restarted);
+        ///     }
+        ///
+        ///     public override void OnDestroy()
+        ///     {
+        ///         base.OnDestroy();
+        ///         _port.Cancel();
+        ///         _thread.Join();
+        ///     }
+        /// }
+        /// </code>
+        /// </example>
         /// <since_tizen> 9 </since_tizen>
         public void WaitForEvent()
         {
@@ -112,7 +168,7 @@ namespace Tizen.Applications.ComponentBased
         /// <exception cref="UnauthorizedAccessException">Thrown when because of permission denied.</exception>
         /// <exception cref="global::System.IO.IOException">Thrown when because of I/O error.</exception>
         /// <param name="endpoint">The name of the endpoint</param>
-        /// <param name="timeout">The interval of timeout</param>
+        /// <param name="timeout">The timeout in milliseconds, -1 to use the default timeout</param>
         /// <param name="request">The serializable data to send</param>
         /// <since_tizen> 9 </since_tizen>
         public void Send(string endpoint, int timeout, object request)
@@ -146,7 +202,7 @@ namespace Tizen.Applications.ComponentBased
         /// <exception cref="UnauthorizedAccessException">Thrown when because of permission denied.</exception>
         /// <exception cref="global::System.IO.IOException">Thrown when because of I/O error.</exception>
         /// <param name="endpoint">The name of the endpoint</param>
-        /// <param name="timeout">The interval of timeout</param>
+        /// <param name="timeout">The timeout in milliseconds, -1 to use the default timeout</param>
         /// <param name="request">The serializable data to send</param>
         /// <returns>The received serializable data</returns>
         /// /// <since_tizen> 9 </since_tizen>
