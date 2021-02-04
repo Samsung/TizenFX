@@ -210,7 +210,7 @@ namespace Tizen.NUI.UIComponents
 
         }
 
-        internal ProgressBar(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ProgressBar.Upcast(cPtr), cMemoryOwn)
+        internal ProgressBar(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

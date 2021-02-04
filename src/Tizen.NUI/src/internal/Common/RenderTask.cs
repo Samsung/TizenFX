@@ -25,7 +25,7 @@ namespace Tizen.NUI
     public class RenderTask : Animatable
     {
 
-        internal RenderTask(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.RenderTask.Upcast(cPtr), cMemoryOwn)
+        internal RenderTask(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

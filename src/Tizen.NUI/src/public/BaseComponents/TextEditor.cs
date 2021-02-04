@@ -68,7 +68,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal TextEditor(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.TextEditor.Upcast(cPtr), cMemoryOwn)
+        internal TextEditor(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(cPtr, cMemoryOwn)
         {
             if (!shown)
             {

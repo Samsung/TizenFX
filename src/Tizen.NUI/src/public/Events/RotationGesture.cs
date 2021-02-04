@@ -28,7 +28,7 @@ namespace Tizen.NUI
     public class RotationGesture : Gesture
     {
 
-        internal RotationGesture(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.RotationGesture.Upcast(cPtr), cMemoryOwn)
+        internal RotationGesture(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

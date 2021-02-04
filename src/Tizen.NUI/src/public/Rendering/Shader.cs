@@ -77,7 +77,7 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
-        internal Shader(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Shader.Upcast(cPtr), cMemoryOwn)
+        internal Shader(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

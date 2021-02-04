@@ -56,7 +56,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal PixelBuffer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.PixelBuffer.Upcast(cPtr), cMemoryOwn)
+        internal PixelBuffer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
