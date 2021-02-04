@@ -22,7 +22,7 @@ using Tizen.NUI.Binding;
 namespace Tizen.NUI.Components
 {
     // Represents padding data : Start, End, Top, Bottom
-    using PaddingType = Tuple<ushort, ushort, ushort, ushort>;
+    using PaddingType = ValueTuple<ushort, ushort, ushort, ushort>;
 
     /// <summary>
     /// The Scrollbar is a component that contains track and thumb to indicate the current scrolled position of a scrollable object.
