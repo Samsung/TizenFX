@@ -56,6 +56,15 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// This is used to improve theme performance.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        static public void PreLoad()
+        {
+            ThemeManager.AddPackageTheme(DefaultThemeCreator.Instance);
+        }
+
+        /// <summary>
         /// Construct an empty Control.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
