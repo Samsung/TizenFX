@@ -170,7 +170,7 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
-        internal StyleManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.StyleManager.Upcast(cPtr), cMemoryOwn)
+        internal StyleManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

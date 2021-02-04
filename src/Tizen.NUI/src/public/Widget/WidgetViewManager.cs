@@ -44,7 +44,7 @@ namespace Tizen.NUI
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        internal WidgetViewManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.WidgetViewManager.Upcast(cPtr), cMemoryOwn)
+        internal WidgetViewManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

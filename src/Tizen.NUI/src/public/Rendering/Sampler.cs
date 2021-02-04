@@ -76,7 +76,7 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
-        internal Sampler(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Sampler.Upcast(cPtr), cMemoryOwn)
+        internal Sampler(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

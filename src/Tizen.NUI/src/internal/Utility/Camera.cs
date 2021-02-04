@@ -25,7 +25,7 @@ namespace Tizen.NUI
     public class Camera : View
     {
 
-        internal Camera(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.CameraActor.Upcast(cPtr), cMemoryOwn)
+        internal Camera(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

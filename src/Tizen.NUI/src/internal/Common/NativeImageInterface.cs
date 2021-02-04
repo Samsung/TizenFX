@@ -23,7 +23,7 @@ namespace Tizen.NUI
     public class NativeImageInterface : RefObject
     {
 
-        internal NativeImageInterface(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.NativeImageInterface.Upcast(cPtr), cMemoryOwn)
+        internal NativeImageInterface(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

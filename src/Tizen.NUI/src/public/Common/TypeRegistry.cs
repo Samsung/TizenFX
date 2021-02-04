@@ -27,7 +27,7 @@ namespace Tizen.NUI
     public class TypeRegistry : BaseHandle
     {
 
-        internal TypeRegistry(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.TypeRegistry.Upcast(cPtr), cMemoryOwn)
+        internal TypeRegistry(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

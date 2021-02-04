@@ -21,7 +21,7 @@ namespace Tizen.NUI
     internal class CustomActorImpl : RefObject
     {
 
-        internal CustomActorImpl(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.CustomActorImpl.Upcast(cPtr), cMemoryOwn)
+        internal CustomActorImpl(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

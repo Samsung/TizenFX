@@ -49,7 +49,7 @@ namespace Tizen.NUI
         });
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal GaussianBlurView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.GaussianBlurView.Upcast(cPtr), cMemoryOwn)
+        internal GaussianBlurView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }

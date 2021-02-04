@@ -46,7 +46,7 @@ namespace Tizen.NUI
             return isSupported;
         }
 
-        internal Window(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Window.Upcast(cPtr), cMemoryOwn)
+        internal Window(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
             if (Interop.Stage.IsInstalled())
             {

@@ -27,7 +27,7 @@ namespace Tizen.NUI
 
         private static readonly FontClient instance = FontClient.Get();
 
-        internal FontClient(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.FontClient.Upcast(cPtr), cMemoryOwn)
+        internal FontClient(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

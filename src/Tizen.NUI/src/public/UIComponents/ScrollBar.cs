@@ -264,7 +264,7 @@ namespace Tizen.NUI.UIComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal ScrollBar(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ScrollBar.Upcast(cPtr), cMemoryOwn)
+        internal ScrollBar(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

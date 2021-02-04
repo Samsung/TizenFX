@@ -52,7 +52,7 @@ namespace Tizen.NUI
 
         }
 
-        internal TapGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.TapGestureDetector.Upcast(cPtr), cMemoryOwn)
+        internal TapGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

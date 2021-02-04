@@ -75,7 +75,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Animation(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Animation.Upcast(cPtr), cMemoryOwn)
+        internal Animation(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
 
             _animationFinishedEventCallback = OnFinished;
