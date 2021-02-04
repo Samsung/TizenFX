@@ -228,6 +228,6 @@
   </c:PaginationStyle>
 
   <!--Scrollbar-->
-  <c:ScrollbarStyle x:Key="Tizen.NUI.Components.Scrollbar" TrackThickness="6" ThumbThickness="6" TrackColor="1, 1, 1, 0.15" ThumbColor="0.6, 0.6, 0.6, 1.0" TrackPadding="4" />
+  <c:ScrollbarStyle x:Key="Tizen.NUI.Components.Scrollbar" TrackThickness="8" ThumbThickness="8" TrackColor="0.435, 0.435, 0.435, 0.1" ThumbColor="0, 0, 0, 0.2" TrackPadding="8" />
 
 </Theme>
