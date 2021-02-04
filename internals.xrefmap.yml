@@ -149,6 +149,19 @@ references:
   isSpec: "True"
   fullName: Tizen.Applications.ThemeManager.Theme.GetStrings
   nameWithType: Theme.GetStrings
+- uid: Tizen.Applications.ThemeManager.Theme.HasKey(System.String)
+  name: HasKey(String)
+  href: internals/api/Tizen.Applications.ThemeManager.Theme.html#Tizen_Applications_ThemeManager_Theme_HasKey_System_String_
+  commentId: M:Tizen.Applications.ThemeManager.Theme.HasKey(System.String)
+  fullName: Tizen.Applications.ThemeManager.Theme.HasKey(System.String)
+  nameWithType: Theme.HasKey(String)
+- uid: Tizen.Applications.ThemeManager.Theme.HasKey*
+  name: HasKey
+  href: internals/api/Tizen.Applications.ThemeManager.Theme.html#Tizen_Applications_ThemeManager_Theme_HasKey_
+  commentId: Overload:Tizen.Applications.ThemeManager.Theme.HasKey
+  isSpec: "True"
+  fullName: Tizen.Applications.ThemeManager.Theme.HasKey
+  nameWithType: Theme.HasKey
 - uid: Tizen.Applications.ThemeManager.Theme.Id
   name: Id
   href: internals/api/Tizen.Applications.ThemeManager.Theme.html#Tizen_Applications_ThemeManager_Theme_Id
