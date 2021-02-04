@@ -24,7 +24,9 @@ namespace Tizen.NUI.Devel.Tests
         {
         }
 
+#if (EXAMPLE)
         [Test]
+#endif
         [Category("P1")]
         [Description("view memory leak test")]
         [Property("SPEC", "local test")]

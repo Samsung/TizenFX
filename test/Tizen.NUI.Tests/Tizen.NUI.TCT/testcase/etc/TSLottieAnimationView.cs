@@ -24,7 +24,9 @@ namespace Tizen.NUI.Devel.Tests
         {
         }
 
+#if (EXAMPLE)
         [Test]
+#endif
         [Category("P1")]
         [Description("LottieAnimationView constructor test")]
         [Property("SPEC", "Tizen.NUI.BaseComponents.LottieAnimationView.LottieAnimationView C")]
@@ -52,7 +54,9 @@ namespace Tizen.NUI.Devel.Tests
             lottie3.Dispose();
         }
 
+#if (EXAMPLE)
         [Test]
+#endif
         [Category("P1")]
         [Description("URL test")]
         [Property("SPEC", "Tizen.NUI.BaseComponents.LottieAnimationView.URL A")]
@@ -75,7 +79,9 @@ namespace Tizen.NUI.Devel.Tests
             await Task.Delay(500);
         }
 
+#if (EXAMPLE)
         [Test]
+#endif
         [Category("P1")]
         [Description("PlayState test")]
         [Property("SPEC", "Tizen.NUI.BaseComponents.LottieAnimationView.PlayState A")]
@@ -121,7 +127,9 @@ namespace Tizen.NUI.Devel.Tests
             await Task.Delay(500);
         }
 
+#if (EXAMPLE)
         [Test]
+#endif
         [Category("P1")]
         [Description("TotalFrame test")]
         [Property("SPEC", "Tizen.NUI.BaseComponents.LottieAnimationView.TotalFrame A")]
@@ -154,7 +162,9 @@ namespace Tizen.NUI.Devel.Tests
             await Task.Delay(500);
         }
 
+#if (EXAMPLE)
         [Test]
+#endif
         [Category("P1")]
         [Description("CurrentFrame test")]
         [Property("SPEC", "Tizen.NUI.BaseComponents.LottieAnimationView.CurrentFrame A")]
@@ -183,7 +193,9 @@ namespace Tizen.NUI.Devel.Tests
 
         }
 
+#if (EXAMPLE)
         [Test]
+#endif
         [Category("P1")]
         [Description("LoopingMode test")]
         [Property("SPEC", "Tizen.NUI.BaseComponents.LottieAnimationView.LoopingMode A")]
@@ -219,7 +231,9 @@ namespace Tizen.NUI.Devel.Tests
             await Task.Delay(500);
         }
 
+#if (EXAMPLE)
         [Test]
+#endif
         [Category("P1")]
         [Description("LoopCount test")]
         [Property("SPEC", "Tizen.NUI.BaseComponents.LottieAnimationView.LoopCount A")]
@@ -253,7 +267,9 @@ namespace Tizen.NUI.Devel.Tests
             await Task.Delay(500);
         }
 
+#if (EXAMPLE)
         [Test]
+#endif
         [Category("P1")]
         [Description("StopBehavior test")]
         [Property("SPEC", "Tizen.NUI.BaseComponents.LottieAnimationView.StopBehavior A")]
@@ -294,7 +310,9 @@ namespace Tizen.NUI.Devel.Tests
             await Task.Delay(500);
         }
 
+#if (EXAMPLE)
         [Test]
+#endif
         [Category("P1")]
         [Description("RedrawInScalingDown test")]
         [Property("SPEC", "Tizen.NUI.BaseComponents.LottieAnimationView.RedrawInScalingDown A")]
@@ -331,7 +349,9 @@ namespace Tizen.NUI.Devel.Tests
             await Task.Delay(500);
         }
 
+#if (EXAMPLE)
         [Test]
+#endif
         [Category("P1")]
         [Description("SetMinMaxFrame test")]
         [Property("SPEC", "Tizen.NUI.BaseComponents.LottieAnimationView.SetMinMaxFrame M")]
@@ -385,7 +405,9 @@ namespace Tizen.NUI.Devel.Tests
             await Task.Delay(500);
         }
 
+#if (EXAMPLE)
         [Test]
+#endif
         [Category("P1")]
         [Description("Play test")]
         [Property("SPEC", "Tizen.NUI.BaseComponents.LottieAnimationView.Play M")]
@@ -418,7 +440,9 @@ namespace Tizen.NUI.Devel.Tests
             await Task.Delay(500);
         }
 
+#if (EXAMPLE)
         [Test]
+#endif
         [Category("P1")]
         [Description("Pause test")]
         [Property("SPEC", "Tizen.NUI.BaseComponents.LottieAnimationView.Pause M")]
@@ -454,7 +478,9 @@ namespace Tizen.NUI.Devel.Tests
             await Task.Delay(500);
         }
 
+#if (EXAMPLE)
         [Test]
+#endif
         [Category("P1")]
         [Description("Stop test")]
         [Property("SPEC", "Tizen.NUI.BaseComponents.LottieAnimationView.Stop M")]
@@ -488,7 +514,9 @@ namespace Tizen.NUI.Devel.Tests
             await Task.Delay(500);
         }
 
+#if (EXAMPLE)
         [Test]
+#endif
         [Category("P1")]
         [Description("GetContentInfo test")]
         [Property("SPEC", "Tizen.NUI.BaseComponents.LottieAnimationView.GetContentInfo M")]
@@ -526,7 +554,9 @@ namespace Tizen.NUI.Devel.Tests
             await Task.Delay(500);
         }
 
+#if (EXAMPLE)
         [Test]
+#endif
         [Category("P1")]
         [Description("Finished test")]
         [Property("SPEC", "Tizen.NUI.BaseComponents.LottieAnimationView.Finished E")]
@@ -582,7 +612,9 @@ namespace Tizen.NUI.Devel.Tests
             finishedCheck = true;
         }
 
+#if (EXAMPLE)
         [Test]
+#endif
         [Category("P1")]
         [Description("RedrawInScalingDown animation test")]
         [Property("SPEC", "Tizen.NUI.BaseComponents.LottieAnimationView.RedrawInScalingDown A")]

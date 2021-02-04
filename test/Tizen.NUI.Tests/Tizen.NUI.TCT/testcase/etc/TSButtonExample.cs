@@ -1,6 +1,3 @@
-#define EXAMPLE
-#undef EXAMPLE
-
 using NUnit.Framework;
 using NUnit.Framework.TUnit;
 using System;
@@ -29,7 +26,9 @@ namespace Tizen.NUI.Devel.Tests
             Tizen.Log.Info(TAG, "Destroy() is called!");
         }
 
+#if (EXAMPLE)
         [Test]
+#endif
         [Category("P1")]
         [Description("Test Button empty constructor. Check it has been triggered")]
         [Property("SPEC", "Tizen.NUI.Components.Button.Button C")]
@@ -45,7 +44,9 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<Components.Button>(button, "Should be an instance of Button!");
         }
 
-        //[Test]
+#if (EXAMPLE)
+        [Test]
+#endif
         [Category("P2")]
         [Description("Check exception when constructing a Button with nonexistent style.")]
         [Property("SPEC", "Tizen.NUI.Components.Button.Button C")]
@@ -67,7 +68,9 @@ namespace Tizen.NUI.Devel.Tests
             }
         }
 
-        //[Test]
+#if (EXAMPLE)
+        [Test]
+#endif
         [Category("P1")]
         [Description("Test Button constructor using style. Check it has been triggered")]
         [Property("SPEC", "Tizen.NUI.Components.Button.Button C")]

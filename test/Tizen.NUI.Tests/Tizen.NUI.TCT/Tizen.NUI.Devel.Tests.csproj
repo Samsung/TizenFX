@@ -9,10 +9,14 @@
   <!-- Property Group for Tizen Project -->
   <PropertyGroup>
     <TizenCreateTpkOnBuild>true</TizenCreateTpkOnBuild>
+    <AssemblyName>Tizen.NUI.Devel.Tests</AssemblyName>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>NuiSample.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>portable</DebugType>
+    <DefineConstants>TRACE;DEBUG;EXAMPLE_OFF</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>None</DebugType>
@@ -35,8 +39,5 @@
     <ProjectReference Include="..\nunit.framework\nunit.framework.csproj" />
     <ProjectReference Include="..\nunitlite\nunitlite.csproj" />
   </ItemGroup>
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="sdb root on&#xD;&#xA;sdb shell &quot;mount -o remount,rw /&quot;&#xD;&#xA;sdb shell &quot;rm /usr/share/dotnet.tizen/framework/*.ni.dll&quot;&#xD;&#xA;sdb push $(TargetDir)Tizen.NUI.dll $(TargetDir)Tizen.NUI.pdb /usr/share/dotnet.tizen/framework/&#xD;&#xA;sdb shell &quot;chsmack -a '_' /usr/share/dotnet.tizen/framework/Tizen.NUI.dll&quot;&#xD;&#xA;sdb shell &quot;chsmack -a '_' /usr/share/dotnet.tizen/framework/Tizen.NUI.pdb&quot;&#xD;&#xA;sdb push $(TargetDir)Tizen.NUI.Components.dll $(TargetDir)Tizen.NUI.Components.pdb /usr/share/dotnet.tizen/framework/&#xD;&#xA;sdb shell &quot;chsmack -a '_' /usr/share/dotnet.tizen/framework/Tizen.NUI.Components.dll&quot;&#xD;&#xA;sdb shell &quot;chsmack -a '_' /usr/share/dotnet.tizen/framework/Tizen.NUI.Components.pdb&quot;&#xD;&#xA;sdb shell sync&#xD;&#xA;" />
-  </Target>
 
 </Project>

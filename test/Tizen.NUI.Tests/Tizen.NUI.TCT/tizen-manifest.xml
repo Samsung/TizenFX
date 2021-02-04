@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="Tizen.NUI.Devel.Tests" version="1.0.0" api-version="8" xmlns="http://tizen.org/ns/packages">
+<manifest package="Tizen.NUI.Devel.Tests" version="1.0.0" api-version="9" xmlns="http://tizen.org/ns/packages">
     <profile name="common" />
     <ui-application appid="Tizen.NUI.Devel.Tests" exec="Tizen.NUI.Devel.Tests.dll" multiple="false" taskmanage="true" splash-screen-display="true" type="dotnet" launch_mode="single">
         <icon>nui-csharp.png</icon>
