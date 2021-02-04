@@ -22,7 +22,7 @@ namespace Tizen.NUI
     internal class Model3dView : View
     {
 
-        internal Model3dView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Model3DView.Model3dViewUpcast(cPtr), cMemoryOwn)
+        internal Model3dView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

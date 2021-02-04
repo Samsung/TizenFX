@@ -54,7 +54,7 @@ namespace Tizen.NUI.UIComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Popup(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Popup.Upcast(cPtr), cMemoryOwn)
+        internal Popup(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

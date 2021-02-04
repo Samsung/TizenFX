@@ -25,7 +25,7 @@ namespace Tizen.NUI
     public class ItemLayout : RefObject
     {
 
-        internal ItemLayout(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ItemLayout.Upcast(cPtr), cMemoryOwn)
+        internal ItemLayout(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
