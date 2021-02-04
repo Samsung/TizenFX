@@ -430,7 +430,7 @@ namespace Tizen.NUI.Components
             {
                 if (scrollBar)
                 {
-                    scrollBar.Unparent();
+                    base.Remove(scrollBar);
                 }
                 scrollBar = value;
 
