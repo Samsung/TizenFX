@@ -55,7 +55,7 @@ namespace Tizen.NUI
         private EventHandler<WebViewScrollEdgeReachedEventArgs> scrollEdgeReachedEventHandler;
         private WebViewScrollEdgeReachedCallbackDelegate scrollEdgeReachedCallback;
 
-        internal WebView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.WebView.Upcast(cPtr), cMemoryOwn)
+        internal WebView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
             pageLoadStartedSignal = new WebViewPageLoadSignal(Interop.WebView.NewWebViewPageLoadSignalPageLoadStarted(SwigCPtr));
             pageLoadFinishedSignal = new WebViewPageLoadSignal(Interop.WebView.NewWebViewPageLoadSignalPageLoadFinished(SwigCPtr));

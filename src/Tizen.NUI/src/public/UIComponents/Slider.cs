@@ -322,7 +322,7 @@ namespace Tizen.NUI.UIComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Slider(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Slider.Upcast(cPtr), cMemoryOwn)
+        internal Slider(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

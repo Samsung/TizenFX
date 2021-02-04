@@ -48,7 +48,7 @@ namespace Tizen.NUI
         private EventHandler<FocusedViewActivatedEventArgs> _focusedViewEnterKeyEventHandler2;
         private FocusedViewEnterKeyEventCallback2 _focusedViewEnterKeyEventCallback2;
 
-        internal FocusManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.FocusManager.Upcast(cPtr), cMemoryOwn)
+        internal FocusManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

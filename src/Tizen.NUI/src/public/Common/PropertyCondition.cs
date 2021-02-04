@@ -34,7 +34,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal PropertyCondition(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.PropertyCondition.Upcast(cPtr), cMemoryOwn)
+        internal PropertyCondition(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

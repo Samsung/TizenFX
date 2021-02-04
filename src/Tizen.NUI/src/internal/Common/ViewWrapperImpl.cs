@@ -130,7 +130,7 @@ namespace Tizen.NUI
         public new OnTapDelegate OnTap;
         public new OnLongPressDelegate OnLongPress;
 
-        internal ViewWrapperImpl(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ViewWrapperImpl.Upcast(cPtr), cMemoryOwn)
+        internal ViewWrapperImpl(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

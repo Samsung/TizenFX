@@ -20,7 +20,7 @@ namespace Tizen.NUI
     internal class RenderTaskList : BaseHandle
     {
 
-        internal RenderTaskList(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.RenderTask.RenderTaskListUpcast(cPtr), cMemoryOwn)
+        internal RenderTaskList(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

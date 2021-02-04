@@ -334,7 +334,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal ImageView(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : base(Interop.ImageView.Upcast(cPtr), cMemoryOwn, viewStyle)
+        internal ImageView(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : base(cPtr, cMemoryOwn, viewStyle)
         {
             if (!shown)
             {
@@ -342,7 +342,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal ImageView(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.ImageView.Upcast(cPtr), cMemoryOwn, null)
+        internal ImageView(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(cPtr, cMemoryOwn, null)
         {
             if (!shown)
             {
