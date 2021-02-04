@@ -34,7 +34,7 @@ namespace Tizen.NUI
         }
 
         private IntPtr Handle;
-        internal NativeImageSource(IntPtr cPtr, bool cMemoryOwn) : base(Interop.NativeImageSource.Upcast(Interop.NativeImageSource.New(cPtr)), cMemoryOwn)
+        internal NativeImageSource(IntPtr cPtr, bool cMemoryOwn) : base(Interop.NativeImageSource.New(cPtr), cMemoryOwn)
         {
             Handle = cPtr;
         }
