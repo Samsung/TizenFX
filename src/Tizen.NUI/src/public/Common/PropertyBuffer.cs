@@ -39,7 +39,7 @@ namespace Tizen.NUI
 
         }
 
-        internal PropertyBuffer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.PropertyBuffer.Upcast(cPtr), cMemoryOwn)
+        internal PropertyBuffer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

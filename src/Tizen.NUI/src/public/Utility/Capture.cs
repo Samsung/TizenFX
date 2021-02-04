@@ -60,7 +60,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Capture(IntPtr cPtr, bool cMemoryOwn) : base(Interop.Capture.Upcast(cPtr), cMemoryOwn)
+        internal Capture(IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

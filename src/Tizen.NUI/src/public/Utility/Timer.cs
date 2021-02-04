@@ -58,7 +58,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Timer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Timer.Upcast(cPtr), cMemoryOwn)
+        internal Timer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
 
             _timerTickCallbackDelegate = OnTick;

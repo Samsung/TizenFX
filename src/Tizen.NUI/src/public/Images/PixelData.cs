@@ -55,7 +55,7 @@ namespace Tizen.NUI
 
         }
 
-        internal PixelData(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.PixelData.Upcast(cPtr), cMemoryOwn)
+        internal PixelData(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

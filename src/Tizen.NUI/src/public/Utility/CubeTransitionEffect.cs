@@ -51,7 +51,7 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
-        internal CubeTransitionEffect(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.CubeTransitionEffect.Upcast(cPtr), cMemoryOwn)
+        internal CubeTransitionEffect(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
@@ -335,7 +335,7 @@ namespace Tizen.NUI
         }
 
 
-        internal CubeTransitionWaveEffect(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.CubeTransitionWaveEffect.Upcast(cPtr), cMemoryOwn)
+        internal CubeTransitionWaveEffect(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
@@ -363,7 +363,7 @@ namespace Tizen.NUI
         }
 
 
-        internal CubeTransitionCrossEffect(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.CubeTransitionCrossEffect.Upcast(cPtr), cMemoryOwn)
+        internal CubeTransitionCrossEffect(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
@@ -391,7 +391,7 @@ namespace Tizen.NUI
         }
 
 
-        internal CubeTransitionFoldEffect(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.CubeTransitionWaveEffect.Upcast(cPtr), cMemoryOwn)
+        internal CubeTransitionFoldEffect(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
