@@ -168,10 +168,7 @@ namespace Tizen.NUI
             OnAttachedToOwner();
             // Add layout to parent layout if a layout container
             View parent = Owner.GetParent() as View;
-            if (parent != null)
-            {
-                (parent?.Layout as LayoutGroup)?.Add( this );
-            }
+            (parent?.Layout as LayoutGroup)?.Add( this );
 
             // If Add or ChangeOnAdd then do not update condition
             if (ConditionForAnimation.Equals(TransitionCondition.Unspecified))
@@ -554,9 +551,9 @@ namespace Tizen.NUI
                                                          " top:" + _layoutPositionData.Top +
                                                          " right:" + _layoutPositionData.Right +
                                                          " bottom:" + _layoutPositionData.Bottom );
-                View onwerView = Owner.GetParent() as View;
+                View ownerView = Owner.GetParent() as View;
 
-                if (onwerView != null && onwerView.Layout != null && onwerView.Layout.LayoutWithTransition)
+                if (ownerView != null && ownerView.Layout != null && ownerView.Layout.LayoutWithTransition)
                 {
                     NUIApplication.GetDefaultWindow().LayoutController.AddTransitionDataEntry(_layoutPositionData);
                 }
