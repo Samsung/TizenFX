@@ -29,7 +29,6 @@ namespace Tizen.Applications.ComponentBased.Common
         /// </summary>
         /// <param name="width">The width of the window</param>
         /// <param name="height">The height of the window</param>
-        /// <returns></returns>
         void InitializeWindow(int width, int height);
     }
 }
