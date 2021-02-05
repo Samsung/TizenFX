@@ -117,6 +117,8 @@ namespace Tizen.NUI.Components
         private RecyclerViewItem footer;
         private View focusedView;
         private int prevFocusedDataIndex = 0;
+        private List<RecyclerViewItem> recycleGroupHeaderCache { get; } = new List<RecyclerViewItem>();
+        private List<RecyclerViewItem> recycleGroupFooterCache { get; } = new List<RecyclerViewItem>();
 
         /// <summary>
         /// Base constructor.
@@ -716,34 +718,43 @@ namespace Tizen.NUI.Components
                 var context = InternalItemSource.GetItem(index);
                 if (InternalItemSource.IsGroupHeader(index))
                 {
-                    // Cache?
-                    //Is Selector is necessary?
-                    RecyclerViewItem groupHeader = (RecyclerViewItem)DataTemplateExtensions.CreateContent(groupHeaderTemplate, context, this);
-                    groupHeader.Index = index;
-                    groupHeader.ParentItemsView = this;
-                    groupHeader.ParentGroup = context;
-                    groupHeader.Template = (groupHeaderTemplate as DataTemplateSelector)?.SelectDataTemplate(context, this) ?? groupHeaderTemplate;
-                    groupHeader.BindingContext = context;
-                    groupHeader.isGroupHeader = true;
-                    groupHeader.isGroupFooter = false;
-                    ContentContainer.Add(groupHeader);
+                    DataTemplate templ = (groupHeaderTemplate as DataTemplateSelector)?.SelectDataTemplate(context, this) ?? groupHeaderTemplate;
 
+                    RecyclerViewItem groupHeader = PopRecycleGroupCache(templ, true);
+                    if (groupHeader == null)
+                    {
+                        groupHeader = (RecyclerViewItem)DataTemplateExtensions.CreateContent(groupHeaderTemplate, context, this);
+
+                        groupHeader.ParentItemsView = this;
+                        groupHeader.Template = templ;
+                        groupHeader.isGroupHeader = true;
+                        groupHeader.isGroupFooter = false;
+                        ContentContainer.Add(groupHeader);
+                    }
+                    groupHeader.Index = index;
+                    groupHeader.ParentGroup = context;
+                    groupHeader.BindingContext = context;
                     //group selection?
                     return groupHeader;
                 }
                 else if (InternalItemSource.IsGroupFooter(index))
                 {
-                    // Cache?
-                    //Is Selector is necessary?
-                    RecyclerViewItem groupFooter = (RecyclerViewItem)DataTemplateExtensions.CreateContent(groupFooterTemplate, context, this);
+                    DataTemplate templ = (groupFooterTemplate as DataTemplateSelector)?.SelectDataTemplate(context, this) ?? groupFooterTemplate;
+
+                    RecyclerViewItem groupFooter = PopRecycleGroupCache(templ, false);
+                    if (groupFooter == null)
+                    {
+                        groupFooter = (RecyclerViewItem)DataTemplateExtensions.CreateContent(groupFooterTemplate, context, this);
+
+                        groupFooter.ParentItemsView = this;
+                        groupFooter.Template = templ;
+                        groupFooter.isGroupHeader = false;
+                        groupFooter.isGroupFooter = true;
+                        ContentContainer.Add(groupFooter);
+                    }
                     groupFooter.Index = index;
-                    groupFooter.ParentItemsView = this;
                     groupFooter.ParentGroup = context;
-                    groupFooter.Template = (groupFooterTemplate as DataTemplateSelector)?.SelectDataTemplate(context, this) ?? groupFooterTemplate;
                     groupFooter.BindingContext = context;
-                    groupFooter.isGroupHeader = false;
-                    groupFooter.isGroupFooter = true;
-                    ContentContainer.Add(groupFooter);
 
                     //group selection?
                     return groupFooter;
@@ -785,8 +796,8 @@ namespace Tizen.NUI.Components
             }
             if (item.isGroupHeader || item.isGroupFooter)
             {
-                //ContentContainer.Remove(item);
-                Utility.Dispose(item);
+                if (!recycle || !PushRecycleGroupCache(item))
+                    Utility.Dispose(item);
                 return;
             }
 
@@ -1015,6 +1026,43 @@ namespace Tizen.NUI.Components
             }
         }
 
+        private bool PushRecycleGroupCache(RecyclerViewItem item)
+        {
+            if (item == null) throw new ArgumentNullException(nameof(item));
+            if (RecycleCache.Count >= 20) return false;
+            if (item.Template == null) return false;
+            if (item.isGroupHeader)
+            {
+                recycleGroupHeaderCache.Add(item);
+            }
+            else if (item.isGroupFooter)
+            {
+                recycleGroupFooterCache.Add(item);
+            }
+            else return false;
+            item.Hide();
+            item.Index = -1;
+            return true;
+        }
+
+        private RecyclerViewItem PopRecycleGroupCache(DataTemplate Template, bool isHeader)
+        {
+            RecyclerViewItem viewItem = null;
+
+            var Cache = (isHeader ? recycleGroupHeaderCache : recycleGroupFooterCache);
+            for (int i = 0; i < Cache.Count; i++)
+            {
+                viewItem = Cache[i];
+                if (Template == viewItem.Template) break;
+            }
+
+            if (viewItem != null)
+            {
+                Cache.Remove(viewItem);
+                viewItem.Show();
+            }
+            return viewItem;
+        }
 
     }
 }
