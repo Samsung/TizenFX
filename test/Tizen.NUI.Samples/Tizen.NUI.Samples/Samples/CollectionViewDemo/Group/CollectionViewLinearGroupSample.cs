@@ -1,33 +1,35 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.ComponentModel;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Components;
 using Tizen.NUI.Binding;
-using System.ComponentModel;
-using System;
 
 namespace Tizen.NUI.Samples
 {
-    public class CollectionViewLinearSample : IExample
+    public class CollectionViewLinearGroupSample : IExample
     {
         CollectionView colView;
-        int itemCount = 500;
         string selectedItem;
         ItemSelectionMode selMode;
+        ObservableCollection<Album> groupSource;
 
         public void Activate()
         {
             Window window = NUIApplication.GetDefaultWindow();
 
-            var myViewModelSource = new GalleryViewModel(itemCount);
+            groupSource = new AlbumViewModel();
             selMode = ItemSelectionMode.SingleSelection;
             DefaultTitleItem myTitle = new DefaultTitleItem();
-            myTitle.Text = "Linear Sample Count["+itemCount+"]";
+            //To Bind the Count property changes, need to create custom property for count.
+            myTitle.Text = "Linear Sample Group["+ groupSource.Count+"]";
             //Set Width Specification as MatchParent to fit the Item width with parent View.
             myTitle.WidthSpecification = LayoutParamPolicies.MatchParent;
 
             colView = new CollectionView()
             {
-                ItemsSource = myViewModelSource,
+                ItemsSource = groupSource,
                 ItemsLayouter = new LinearLayouter(),
                 ItemTemplate = new DataTemplate(() =>
                 {
@@ -58,10 +60,27 @@ namespace Tizen.NUI.Samples
                     item.Extra.WidthSpecification = 80;
                     item.Extra.HeightSpecification = 80;
                     */
+                    return item;
+                }),
+                GroupHeaderTemplate = new DataTemplate(() =>
+                {
+                    var rand = new Random();
+                    RecyclerViewItem item = new RecyclerViewItem();
+                    item.WidthSpecification = LayoutParamPolicies.MatchParent;
+                    item.HeightSpecification = 50;
+                    item.BackgroundColor = new Color(0, 0, 0, 1);
+                    /*
+                    DefaultTitleItem group = new DefaultTitleItem();
+                    //Set Width Specification as MatchParent to fit the Item width with parent View.
+                    group.WidthSpecification = LayoutParamPolicies.MatchParent;
 
+                    group.Label.SetBinding(TextLabel.TextProperty, "Date");
+                    group.Label.HorizontalAlignment = HorizontalAlignment.Begin;
+                    */
                     return item;
                 }),
                 Header = myTitle,
+                IsGrouped = true,
                 ScrollingDirection = ScrollableBase.Direction.Vertical,
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 HeightSpecification = LayoutParamPolicies.MatchParent,
@@ -98,7 +117,7 @@ namespace Tizen.NUI.Samples
             if (colView.Header != null && colView.Header is DefaultTitleItem)
             {
                 DefaultTitleItem title = (DefaultTitleItem)colView.Header;
-                title.Text = "Linear Sample Count[" + itemCount + (selectedItem != null ? "] Selected [" + selectedItem + "]" : "]");
+                title.Text = "Linear Sample Count[" + groupSource + (selectedItem != null ? "] Selected [" + selectedItem + "]" : "]");
             }
         }
         public void Deactivate()
