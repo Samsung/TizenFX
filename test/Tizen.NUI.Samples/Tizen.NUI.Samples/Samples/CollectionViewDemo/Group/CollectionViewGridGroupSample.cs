@@ -1,31 +1,34 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.ComponentModel;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Components;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Samples
 {
-    public class CollectionViewGridSample : IExample
+    public class CollectionViewGridGroupSample : IExample
     {
         CollectionView colView;
-        int itemCount = 500;
         int selectedCount;
         ItemSelectionMode selMode;
+        ObservableCollection<Album> groupSource;
 
         public void Activate()
         {
             Window window = NUIApplication.GetDefaultWindow();
 
-            var myViewModelSource = new GalleryViewModel(itemCount);
+            groupSource = new AlbumViewModel();
             selMode = ItemSelectionMode.MultipleSelections;
             DefaultTitleItem myTitle = new DefaultTitleItem();
-            myTitle.Text = "Grid Sample Count["+itemCount+"] Selected["+selectedCount+"]";
+            myTitle.Text = "Grid Sample Count["+ groupSource.Count+"] Selected["+selectedCount+"]";
             //Set Width Specification as MatchParent to fit the Item width with parent View.
             myTitle.WidthSpecification = LayoutParamPolicies.MatchParent;
 
             colView = new CollectionView()
             {
-                ItemsSource = myViewModelSource,
+                ItemsSource = groupSource,
                 ItemsLayouter = new GridLayouter(),
                 ItemTemplate = new DataTemplate(() =>
                 {
@@ -51,7 +54,19 @@ namespace Tizen.NUI.Samples
 
                     return item;
                 }),
+                GroupHeaderTemplate = new DataTemplate(() =>
+                {
+                    DefaultTitleItem group = new DefaultTitleItem();
+                    //Set Width Specification as MatchParent to fit the Item width with parent View.
+                    group.WidthSpecification = LayoutParamPolicies.MatchParent;
+
+                    group.Label.SetBinding(TextLabel.TextProperty, "Date");
+                    group.Label.HorizontalAlignment = HorizontalAlignment.Begin;
+
+                    return group;
+                }),
                 Header = myTitle,
+                IsGrouped = true,
                 ScrollingDirection = ScrollableBase.Direction.Vertical,
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 HeightSpecification = LayoutParamPolicies.MatchParent,
@@ -98,7 +113,7 @@ namespace Tizen.NUI.Samples
             if (colView.Header != null && colView.Header is DefaultTitleItem)
             {
                 DefaultTitleItem title = (DefaultTitleItem)colView.Header;
-                title.Text = "Grid Sample Count["+itemCount+"] Selected["+selectedCount+"]";
+                title.Text = "Grid Sample Count["+ groupSource.Count + "] Selected["+selectedCount+"]";
             }
         }
 

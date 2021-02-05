@@ -20,7 +20,7 @@ using System.ComponentModel;
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// Base interface for encapsulated data source in ItemsView.
+    /// Base interface for encapsulated data source in RecyclerView.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public interface IItemSource : IDisposable

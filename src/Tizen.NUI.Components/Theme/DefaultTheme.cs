@@ -390,8 +390,8 @@ namespace Tizen.NUI.Components
             
             theme.AddStyleWithoutClone("Tizen.NUI.Components.DefaultLinearItem", new DefaultLinearItemStyle()
             {
-                SizeHeight = 100,
-                Padding = new Extents(10, 10, 20, 20),
+                SizeHeight = 130,
+                Padding = new Extents(20, 20, 5, 5),
                 BackgroundColor = new Selector<Color>()
                 {
                     Normal = (Color)theme.Resources["RecyclerViewItemBackgroundColorNormal"],
@@ -401,21 +401,21 @@ namespace Tizen.NUI.Components
                 },
                 Label = new TextLabelStyle()
                 {
-                    PointSize = 20,
+                    PointSize = 10,
                     Ellipsis = true,
                 },
                 SubLabel = new TextLabelStyle()
                 {
-                    PointSize = 12,
+                    PointSize = 6,
                     Ellipsis = true,
                 },
                 Icon = new ViewStyle()
                 {
-                    Margin = new Extents(0, 10, 0, 0)
+                    Margin = new Extents(0, 20, 0, 0)
                 },
                 Extra = new ViewStyle()
                 {
-                    Margin = new Extents(10, 0, 0, 0)
+                    Margin = new Extents(20, 0, 0, 0)
                 },
                 Seperator = new ViewStyle()
                 {
@@ -439,7 +439,7 @@ namespace Tizen.NUI.Components
 
             theme.AddStyleWithoutClone("Tizen.NUI.Components.DefaultTitleItem", new DefaultTitleItemStyle()
             {
-                SizeHeight = 50,
+                SizeHeight = 90,
                 Padding = new Extents(10, 10, 5, 5),
                 BackgroundColor = new Selector<Color>()
                 {
@@ -447,7 +447,7 @@ namespace Tizen.NUI.Components
                 },
                 Label = new TextLabelStyle()
                 {
-                    PointSize = 15,
+                    PointSize = 10,
                     Ellipsis = true,
                 },
                 Icon = new ViewStyle()
