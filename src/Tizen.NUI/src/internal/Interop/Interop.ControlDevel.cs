@@ -17,6 +17,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace Tizen.NUI
@@ -115,6 +116,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_delete_States")]
             public static extern void                  DaliToolkitDevelControlDeleteStates(IntPtr arg1);
 
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_States_Copy")]
+            public static extern IntPtr                DaliToolkitDevelControlStatesCopy(Tizen.NUI.BaseComponents.AccessibilityStates arg1);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_States_Get")]
             public static extern bool                  DaliToolkitDevelControlStatesGet(Tizen.NUI.BaseComponents.AccessibilityStates arg1, int arg2);
 
@@ -153,6 +157,43 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_Bridge_Remove_Popup")]
             public static extern void                  DaliAccessibilityBridgeRemovePopup(global::System.Runtime.InteropServices.HandleRef arg1);
+
+            // SetAccessibilityConstructor
+
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+            public delegate IntPtr AccessibilityGetName();
+
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+            public delegate IntPtr AccessibilityGetDescription();
+
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+            public delegate bool AccessibilityDoAction(IntPtr name);
+
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+            public delegate IntPtr AccessibilityCalculateStates();
+
+            // Keep this structure layout binary compatible with the respective C# structure!
+            [StructLayout(LayoutKind.Sequential)]
+            public class AccessibilityDelegate
+            {
+                [MarshalAs(UnmanagedType.FunctionPtr)]
+                public AccessibilityGetName GetName;
+
+                [MarshalAs(UnmanagedType.FunctionPtr)]
+                public AccessibilityGetDescription GetDescription;
+
+                [MarshalAs(UnmanagedType.FunctionPtr)]
+                public AccessibilityDoAction DoAction;
+
+                [MarshalAs(UnmanagedType.FunctionPtr)]
+                public AccessibilityCalculateStates CalculateStates;
+            }
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_SetAccessibilityConstructor_NUI")]
+            public static extern void                  DaliToolkitDevelControlSetAccessibilityConstructor(HandleRef arg1_self, int arg2_role, int arg3_iface, IntPtr arg4_vtable, int arg5_vtableSize);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibleImpl_NUI_DuplicateString")]
+            public static extern IntPtr DaliToolkitDevelControlAccessibleImplNUIDuplicateString(string arg);
         }
     }
 }

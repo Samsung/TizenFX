@@ -17,6 +17,8 @@ namespace Tizen.NUI.Components
         private bool isPressed = false;
         private bool styleApplied = false;
 
+        public override string AccessibilityGetName() { return Text; }
+
         /// <summary>
         /// The ButtonExtension instance that is injected by ButtonStyle.
         /// </summary>
@@ -38,7 +40,8 @@ namespace Tizen.NUI.Components
                 WidthResizePolicy = ResizePolicyType.FillToParent,
                 HeightResizePolicy = ResizePolicyType.FillToParent,
                 HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Center
+                VerticalAlignment = VerticalAlignment.Center,
+                AccessibilityHighlightable = false
             };
         }
 
@@ -53,7 +56,8 @@ namespace Tizen.NUI.Components
             {
                 PositionUsesPivotPoint = true,
                 ParentOrigin = NUI.ParentOrigin.Center,
-                PivotPoint = NUI.PivotPoint.Center
+                PivotPoint = NUI.PivotPoint.Center,
+                AccessibilityHighlightable = false
             };
         }
 
@@ -70,7 +74,8 @@ namespace Tizen.NUI.Components
                 ParentOrigin = NUI.ParentOrigin.Center,
                 PivotPoint = NUI.PivotPoint.Center,
                 WidthResizePolicy = ResizePolicyType.FillToParent,
-                HeightResizePolicy = ResizePolicyType.FillToParent
+                HeightResizePolicy = ResizePolicyType.FillToParent,
+                AccessibilityHighlightable = false
             };
         }
 
@@ -408,6 +413,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         private void Initialize()
         {
+            AccessibilityHighlightable = true;
             EnableControlStatePropagation = true;
             UpdateState();
             LayoutDirectionChanged += OnLayoutDirectionChanged;
@@ -452,6 +458,8 @@ namespace Tizen.NUI.Components
 
         internal override bool OnAccessibilityActivated()
         {
+            Tizen.Log.Error("NUI", "XXX: Button.OnAccessibilityActivated");
+
             if (!IsEnabled)
             {
                 return false;

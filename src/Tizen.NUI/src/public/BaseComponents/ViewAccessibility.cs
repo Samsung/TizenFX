@@ -331,5 +331,63 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
+
+        private IntPtr strdup(string arg)
+        {
+            return Interop.ControlDevel.DaliToolkitDevelControlAccessibleImplNUIDuplicateString(arg ?? "");
+        }
+
+        private IntPtr statesdup(AccessibilityStates states)
+        {
+            return Interop.ControlDevel.DaliToolkitDevelControlStatesCopy(states);
+        }
+
+        private Interop.ControlDevel.AccessibilityDelegate _accessibilityDelegate = null;
+        private IntPtr _accessibilityDelegatePtr;
+
+        public enum AccessibilityInterface
+        {
+            None = 0,
+            Value = 1,
+            EditableText = 2,
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetAccessibilityConstructor(Role role, AccessibilityInterface iface = AccessibilityInterface.None)
+        {
+            var size = Marshal.SizeOf<Interop.ControlDevel.AccessibilityDelegate>();
+
+            if (_accessibilityDelegate == null)
+            {
+                _accessibilityDelegate = new Interop.ControlDevel.AccessibilityDelegate()
+                {
+                    GetName = () => strdup(AccessibilityGetName()),
+                    GetDescription = () => strdup(AccessibilityGetDescription()),
+                    DoAction = (name) => AccessibilityDoAction(Marshal.PtrToStringAnsi(name)),
+                    CalculateStates = () => statesdup(AccessibilityCalculateStates()),
+                };
+
+                _accessibilityDelegatePtr = Marshal.AllocHGlobal(size);
+                Marshal.StructureToPtr(_accessibilityDelegate, _accessibilityDelegatePtr, false);
+            }
+
+            Interop.ControlDevel.DaliToolkitDevelControlSetAccessibilityConstructor(SwigCPtr, (int)role, (int)iface, _accessibilityDelegatePtr, size);
+
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+
+            if (_accessibilityDelegate != null)
+            {
+                Marshal.DestroyStructure<Interop.ControlDevel.AccessibilityDelegate>(_accessibilityDelegatePtr);
+                Marshal.FreeHGlobal(_accessibilityDelegatePtr);
+                _accessibilityDelegate = null;
+            }
+        }
     }
 }

@@ -374,6 +374,11 @@ namespace Tizen.NUI.Components
             set
             {
                 TextLabel.Text = value;
+
+                if (IsHighlighted && String.IsNullOrEmpty(AccessibilityName) && GetNameSignal().Empty())
+                {
+                    EmitAccessibilityEvent(ObjectPropertyChangeEvent.Name);
+                }
             }
         }
 
