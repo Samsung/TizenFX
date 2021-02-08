@@ -60,7 +60,8 @@ internal static partial class Interop
         internal enum NativeComponentType
         {
             Frame = 0,
-            Service
+            Service,
+            Widget
         }
 
         internal enum NativeDisplayStatus {
@@ -132,6 +133,39 @@ internal static partial class Interop
             public ServiceSuspendedStateCallback OnSuspendedState;
         }
 
+        internal delegate IntPtr WidgetCreateCallback(IntPtr context, int width, int height, IntPtr userData);
+        internal delegate void WidgetStartCallback(IntPtr context, bool restarted, IntPtr userData);
+        internal delegate void WidgetResumeCallback(IntPtr context, IntPtr userData);
+        internal delegate void WidgetPauseCallback(IntPtr context, IntPtr userData);
+        internal delegate void WidgetStopCallback(IntPtr context, IntPtr userData);
+        internal delegate void WidgetDestroyCallback(IntPtr context, bool permanent, IntPtr userData);
+        internal delegate void WidgetRestoreCallback(IntPtr context, IntPtr content, IntPtr userData);
+        internal delegate void WidgetSaveCallback(IntPtr context, IntPtr content, IntPtr userData);
+        internal delegate void WidgetDeviceOrientationChangedCallback(IntPtr context, int orientation, IntPtr userData);
+        internal delegate void WidgetLanguageChangedCallback(IntPtr context, string language, IntPtr userData);
+        internal delegate void WidgetRegionFormatChangedCallback(IntPtr context, string region, IntPtr userData);
+        internal delegate void WidgetLowBatteryCallback(IntPtr context, int status, IntPtr userData);
+        internal delegate void WidgetLowMemoryCallback(IntPtr context, int status, IntPtr userData);
+        internal delegate void WidgetSuspendedStateCallback(IntPtr context, int state, IntPtr userData);
+
+        internal struct WidgetLifecycleCallbacks
+        {
+            public WidgetCreateCallback OnCreate;
+            public WidgetStartCallback OnStart;
+            public WidgetResumeCallback OnResume;
+            public WidgetPauseCallback OnPause;
+            public WidgetStopCallback OnStop;
+            public WidgetDestroyCallback OnDestroy;
+            public WidgetRestoreCallback OnRestore;
+            public WidgetSaveCallback OnSave;
+            public WidgetDeviceOrientationChangedCallback OnDeviceOrientationChanged;
+            public WidgetLanguageChangedCallback OnLanguageChanged;
+            public WidgetRegionFormatChangedCallback OnRegionFormatChanged;
+            public WidgetLowBatteryCallback OnLowBattery;
+            public WidgetLowMemoryCallback OnLowMemory;
+            public WidgetSuspendedStateCallback OnSuspendedState;
+        }
+
         internal delegate IntPtr BaseCreateCallback(IntPtr context, IntPtr userData);
         internal delegate void BaseDestroyCallback(IntPtr context, IntPtr userData);
         internal delegate void BaseRestoreCallback(IntPtr context, IntPtr content, IntPtr userData);
@@ -155,6 +189,9 @@ internal static partial class Interop
         [DllImport(Libraries.CompCoreBase, EntryPoint = "component_based_app_base_add_service_component")]
         internal static extern IntPtr BaseAddServiceComponent(IntPtr comp_class, string compId, ref ServiceLifecycleCallbacks callback, IntPtr userData);
 
+        [DllImport(Libraries.WidgetCompCoreBase, EntryPoint = "component_based_app_base_add_widget_component")]
+        internal static extern IntPtr BaseAddWidgetComponent(IntPtr comp_class, string compId, ref WidgetLifecycleCallbacks callback, IntPtr userData);
+
         [DllImport(Libraries.CompCoreBase, EntryPoint = "base_frame_create_window")]
         internal static extern IntPtr BaseFrameCreateWindow(out IntPtr winHandle, int winId, IntPtr raw);
 
@@ -166,6 +203,15 @@ internal static partial class Interop
 
         [DllImport(Libraries.CompCoreBase, EntryPoint = "base_frame_get_display_status")]
         internal static extern ErrorCode BaseFrameGetDisplayStatus(IntPtr context, out NativeDisplayStatus status);
+
+        [DllImport(Libraries.WidgetCompCoreBase, EntryPoint = "base_widget_create_window")]
+        internal static extern IntPtr BaseWidgetCreateWindow(out IntPtr winHandle, int winId, IntPtr raw);
+
+        [DllImport(Libraries.WidgetCompCoreBase, EntryPoint = "base_widget_window_get_id")]
+        internal static extern IntPtr BaseWidgetWindowGetId(IntPtr winHandle, out int winId);
+
+        [DllImport(Libraries.WidgetCompCoreBase, EntryPoint = "base_widget_window_get_raw")]
+        internal static extern IntPtr BaseWidgetWindowGetRaw(IntPtr winHandle, out IntPtr raw);
 
         [DllImport(Libraries.CompCoreBase, EntryPoint = "component_get_instance_id")]
         internal static extern ErrorCode GetInstanceId(IntPtr context, out string instanceId);
