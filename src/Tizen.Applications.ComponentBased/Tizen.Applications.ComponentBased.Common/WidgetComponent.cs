@@ -26,7 +26,7 @@ namespace Tizen.Applications.ComponentBased.Common
     {
 
         /// <summary>
-        /// Overrides this method to handle behavior when the component is launched.
+        /// Override this method to handle behavior when the component is launched.
         /// </summary>
         /// <param name="width">The width of the widget component instance</param>
         /// <param name="height">The height of the widget component instance</param>
@@ -35,7 +35,7 @@ namespace Tizen.Applications.ComponentBased.Common
         public abstract bool OnCreate(int width, int height);
 
         /// <summary>
-        /// Overrides this method to create window. It will be called before OnCreate method.
+        /// Override this method to create window. It will be called before OnCreate method.
         /// </summary>
         /// <param name="width">The width of the widget window</param>
         /// <param name="height">The height of the widget window</param>
@@ -44,7 +44,7 @@ namespace Tizen.Applications.ComponentBased.Common
         public abstract IWindowProxy CreateWindowInfo(int width, int height);
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the component is started.
+        /// Overrid this method if want to handle behavior when the component is started.
         /// </summary>
         /// <param name="restarted">True if it was restarted</param>
         /// <since_tizen> 9 </since_tizen>
@@ -53,7 +53,7 @@ namespace Tizen.Applications.ComponentBased.Common
         }
 
         /// <summary>
-        /// Overrides this method if you want to handle the behavior when the component is resumed.
+        /// Override this method if you want to handle the behavior when the component is resumed.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public virtual void OnResume()
@@ -61,7 +61,7 @@ namespace Tizen.Applications.ComponentBased.Common
         }
 
         /// <summary>
-        /// Overrides this method if you want to handle the behavior when the component is paused.
+        /// Override this method if you want to handle the behavior when the component is paused.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public virtual void OnPause()
@@ -69,7 +69,7 @@ namespace Tizen.Applications.ComponentBased.Common
         }
 
         /// <summary>
-        /// Overrides this method if you want to handle the behavior when the component is stopped.
+        /// Override this method if you want to handle the behavior when the component is stopped.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public virtual void OnStop()
@@ -77,7 +77,7 @@ namespace Tizen.Applications.ComponentBased.Common
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the component is destroyed.
+        /// Override this method if want to handle behavior when the component is destroyed.
         /// </summary>
         /// <param name="permanent">True if the instance is permanent</param>
         /// <since_tizen> 9 </since_tizen>
