@@ -88,11 +88,11 @@ namespace Tizen.Applications.ComponentBased
         /// <summary>
         /// Waits for events.
         /// </summary>
-        /// <reamrks>
+        /// <remarks>
         /// This method runs a main loop until Cancel() is called.
         /// The code in the next line will not run until Cancel() is called.
         /// It is recommended that this method uses in the sub thread.
-        /// </reamrks>
+        /// </remarks>
         /// <example>
         /// <code>
         /// public class CommPort : ComponentPort
