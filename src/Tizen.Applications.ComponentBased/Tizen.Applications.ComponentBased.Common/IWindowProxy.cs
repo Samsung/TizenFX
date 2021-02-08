@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2021 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -14,10 +14,21 @@
  * limitations under the License.
  */
 
-internal static partial class Interop
+using System;
+
+namespace Tizen.Applications.ComponentBased.Common
 {
-    internal static partial class Libraries
+    /// <summary>
+    /// Proxy for window
+    /// </summary>
+    /// <since_tizen> 9 </since_tizen>
+    public interface IWindowProxy : IWindowInfo
     {
-        public const string ThemeManager = "libcapi-appfw-tizen-theme.so.1";
+        /// <summary>
+        /// Initialize window
+        /// </summary>
+        /// <param name="width">The width of the window</param>
+        /// <param name="height">The height of the window</param>
+        void InitializeWindow(int width, int height);
     }
 }
