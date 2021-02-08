@@ -381,21 +381,10 @@ namespace Tizen.NUI.Components
             {
                 BackgroundColor = new Selector<Color>()
                 {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 504863eb4... [CollectionView] Implement Groupable Features and Refactoring Items
-                    Normal = (Color)theme.Resources["ViewItemBackgroundColorNormal"],
-                    Pressed = (Color)theme.Resources["ViewItemBackgroundColorPressed"],
-                    Disabled = (Color)theme.Resources["ViewItemBackgroundColorDisabled"],
-                    Selected = (Color)theme.Resources["ViewItemBackgroundColorSelected"],
-=======
                     Normal = (Color)theme.Resources["RecyclerViewItemBackgroundColorNormal"],
                     Pressed = (Color)theme.Resources["RecyclerViewItemBackgroundColorPressed"],
                     Disabled = (Color)theme.Resources["RecyclerViewItemBackgroundColorDisabled"],
                     Selected = (Color)theme.Resources["RecyclerViewItemBackgroundColorSelected"],
->>>>>>> 366ec3263... [NUI] Remove Old RecyclerView and Renamed ItemsView to RecyclerView
                 },
             });
             
@@ -446,7 +435,6 @@ namespace Tizen.NUI.Components
                 {
                     Margin = new Extents(5, 5, 5, 5),
                 },
-<<<<<<< HEAD
             });
 
             theme.AddStyleWithoutClone("Tizen.NUI.Components.DefaultTitleItem", new DefaultTitleItemStyle()
@@ -472,42 +460,6 @@ namespace Tizen.NUI.Components
                     BackgroundColor = new Color(0.85f, 0.85f, 0.85f, 1),
                 },
             });
-=======
-                    Normal = new Color(1, 1, 1, 1),
-                    Pressed = new Color(0.85f, 0.85f, 0.85f, 1),
-                    Disabled = new Color(0.70f, 0.70f, 0.70f, 1),
-                    Selected = new Color(0.701f, 0.898f, 0.937f, 1)
-                }
-            });
-
->>>>>>> ff0732088... Introduce CollectionView and related classes.
-=======
-            });
-
-            theme.AddStyleWithoutClone("Tizen.NUI.Components.DefaultTitleItem", new DefaultTitleItemStyle()
-            {
-                SizeHeight = 50,
-                Padding = new Extents(10, 10, 5, 5),
-                BackgroundColor = new Selector<Color>()
-                {
-                    Normal = (Color)theme.Resources["TitleBackgroundColorNormal"],
-                },
-                Label = new TextLabelStyle()
-                {
-                    PointSize = 15,
-                    Ellipsis = true,
-                },
-                Icon = new ViewStyle()
-                {
-                    Margin = new Extents(10, 0, 0, 0)
-                },
-                Seperator = new ViewStyle()
-                {
-                    Margin = new Extents(0, 0, 0, 0),
-                    BackgroundColor = new Color(0.85f, 0.85f, 0.85f, 1),
-                },
-            });
->>>>>>> 504863eb4... [CollectionView] Implement Groupable Features and Refactoring Items
 
             return theme;
         }
