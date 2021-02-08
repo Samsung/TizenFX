@@ -15,6 +15,8 @@
  */
 
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Runtime.InteropServices;
 using Tizen;
 using Tizen.Applications;
@@ -31,6 +33,8 @@ internal static partial class Interop
             InvalidParameter = Tizen.Internals.Errors.ErrorCode.InvalidParameter,
             PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,
             IoError = Tizen.Internals.Errors.ErrorCode.IoError,
+            NoSuchTheme = Tizen.Internals.Errors.ErrorCode.NoSuchFile,
+            KeyNotAvailable = Tizen.Internals.Errors.ErrorCode.KeyNotAvailable,
         }
 
         internal static class ThemeManagerErrorFactory
@@ -45,6 +49,10 @@ internal static partial class Interop
                         return new ArgumentException(errMessage);
                     case Interop.ThemeManager.ErrorCode.PermissionDenied:
                         return new UnauthorizedAccessException(errMessage);
+                    case Interop.ThemeManager.ErrorCode.NoSuchTheme:
+                        return new FileNotFoundException(errMessage);
+                    case Interop.ThemeManager.ErrorCode.KeyNotAvailable:
+                        return new KeyNotFoundException(errMessage);
                     case Interop.ThemeManager.ErrorCode.IoError:
                     default:
                         return new InvalidOperationException(errMessage);
@@ -96,6 +104,9 @@ internal static partial class Interop
 
         [DllImport(Libraries.ThemeManager, EntryPoint = "theme_get_bool")]
         internal static extern ErrorCode GetBool(IntPtr handle, string key, out bool val);
+
+        [DllImport(Libraries.ThemeManager, EntryPoint = "theme_is_key_exist")]
+        internal static extern ErrorCode IsKeyExist(IntPtr handle, string key, out bool val);
 
         [DllImport(Libraries.ThemeManager, EntryPoint = "theme_clone")]
         internal static extern ErrorCode ThemeClone(IntPtr handle, out IntPtr cloned);
