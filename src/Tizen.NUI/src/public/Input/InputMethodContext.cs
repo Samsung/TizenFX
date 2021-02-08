@@ -48,7 +48,7 @@ namespace Tizen.NUI
 
         }
 
-        internal InputMethodContext(IntPtr cPtr, bool cMemoryOwn) : base(Interop.InputMethodContext.Upcast(cPtr), cMemoryOwn)
+        internal InputMethodContext(IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

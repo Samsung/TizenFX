@@ -24,7 +24,7 @@ namespace Tizen.NUI
     internal class Builder : BaseHandle
     {
 
-        internal Builder(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Builder.Upcast(cPtr), cMemoryOwn)
+        internal Builder(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

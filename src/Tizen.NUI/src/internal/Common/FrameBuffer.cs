@@ -24,7 +24,7 @@ namespace Tizen.NUI
     public class FrameBuffer : BaseHandle
     {
 
-        internal FrameBuffer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.FrameBuffer.Upcast(cPtr), cMemoryOwn)
+        internal FrameBuffer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

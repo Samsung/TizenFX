@@ -22,7 +22,7 @@ namespace Tizen.NUI
     internal class ObjectRegistry : BaseHandle
     {
 
-        internal ObjectRegistry(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ObjectRegistry.Upcast(cPtr), cMemoryOwn)
+        internal ObjectRegistry(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

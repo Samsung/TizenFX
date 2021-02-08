@@ -40,7 +40,7 @@ namespace Tizen.NUI
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal VertexBuffer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.VertexBuffer.Upcast(cPtr), cMemoryOwn)
+        internal VertexBuffer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
