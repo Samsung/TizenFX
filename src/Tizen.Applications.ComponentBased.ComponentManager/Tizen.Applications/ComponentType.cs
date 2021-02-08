@@ -30,6 +30,12 @@ namespace Tizen.Applications.ComponentBased
         /// <summary>
         /// Service component
         /// </summary>
-        Service = 1
+        Service = 1,
+
+        /// <summary>
+        /// Widget component
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        Widget = 2
     }
 }
