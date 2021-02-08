@@ -29,58 +29,893 @@ namespace Tizen.NUI
     public class Color : Disposable, ICloneable
     {
         /// <summary>
+        /// Gets the alice_blue colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color AliceBlue = NDalic.ALICE_BLUE;
+
+        /// <summary>
+        /// Gets the antique_white colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color AntiqueWhite = NDalic.ANTIQUE_WHITE;
+
+        /// <summary>
+        /// Gets the aqua colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Aqua = NDalic.AQUA;
+
+        /// <summary>
+        /// Gets the aqua_marine colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color AquaMarine = NDalic.AQUA_MARINE;
+
+        /// <summary>
+        /// Gets the azure colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Azure = NDalic.AZURE;
+
+        /// <summary>
+        /// Gets the beige colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Beige = NDalic.BEIGE;
+
+        /// <summary>
+        /// Gets the bisque colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Bisque = NDalic.BISQUE;
+
+        /// <summary>
         /// Gets the black colored Color class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly Color Black = new Color(0.0f, 0.0f, 0.0f, 1.0f);
+        public static readonly Color Black = NDalic.BLACK;
 
         /// <summary>
-        /// Gets the white colored Color class.
+        /// Gets the blanche_dalmond colored Color class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly Color White = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-
-        /// <summary>
-        /// Gets the red colored Color class.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public static readonly Color Red = new Color(1.0f, 0.0f, 0.0f, 1.0f);
-
-        /// <summary>
-        /// Gets the green colored Color class.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public static readonly Color Green = new Color(0.0f, 1.0f, 0.0f, 1.0f);
+        public static readonly Color BlancheDalmond = NDalic.BLANCHE_DALMOND;
 
         /// <summary>
         /// Gets the blue colored Color class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly Color Blue = new Color(0.0f, 0.0f, 1.0f, 1.0f);
+        public static readonly Color Blue = NDalic.BLUE;
 
         /// <summary>
-        /// Gets the yellow colored Color class.
+        /// Gets the blue_violet colored Color class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly Color Yellow = new Color(1.0f, 1.0f, 0.0f, 1.0f);
+        public static readonly Color BlueViolet = NDalic.BLUE_VIOLET;
 
         /// <summary>
-        /// Gets the magenta colored Color class.
+        /// Gets the brown colored Color class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly Color Magenta = new Color(1.0f, 0.0f, 1.0f, 1.0f);
+        public static readonly Color Brown = NDalic.BROWN;
+
+        /// <summary>
+        /// Gets the burly_wood colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color BurlyWood = NDalic.BURLY_WOOD;
+
+        /// <summary>
+        /// Gets the cadet_blue colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color CadetBlue = NDalic.CADET_BLUE;
+
+        /// <summary>
+        /// Gets the chartreuse colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Chartreuse = NDalic.CHARTREUSE;
+
+        /// <summary>
+        /// Gets the chocolate colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Chocolate = NDalic.CHOCOLATE;
+
+        /// <summary>
+        /// Gets the coral colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Coral = NDalic.CORAL;
+
+        /// <summary>
+        /// Gets the cornflower_blue colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color CornflowerBlue = NDalic.CORNFLOWER_BLUE;
+
+        /// <summary>
+        /// Gets the cornsilk colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Cornsilk = NDalic.CORNSILK;
+
+        /// <summary>
+        /// Gets the crimson colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Crimson = NDalic.CRIMSON;
 
         /// <summary>
         /// Gets the cyan colored Color class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly Color Cyan = new Color(0.0f, 1.0f, 1.0f, 1.0f);
+        public static readonly Color Cyan = NDalic.CYAN;
+
+        /// <summary>
+        /// Gets the dark_blue colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color DarkBlue = NDalic.DARK_BLUE;
+
+        /// <summary>
+        /// Gets the dark_cyan colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color DarkCyan = NDalic.DARK_CYAN;
+
+        /// <summary>
+        /// Gets the dark_goldenrod colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color DarkGoldenrod = NDalic.DARK_GOLDENROD;
+
+        /// <summary>
+        /// Gets the dark_gray colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color DarkGray = NDalic.DARK_GRAY;
+
+        /// <summary>
+        /// Gets the dark_green colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color DarkGreen = NDalic.DARK_GREEN;
+
+        /// <summary>
+        /// Gets the dark_grey colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color DarkGrey = NDalic.DARK_GREY;
+
+        /// <summary>
+        /// Gets the dark_khaki colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color DarkKhaki = NDalic.DARK_KHAKI;
+
+        /// <summary>
+        /// Gets the dark_magenta colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color DarkMagenta = NDalic.DARK_MAGENTA;
+
+        /// <summary>
+        /// Gets the dark_olive_green colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color DarkOliveGreen = NDalic.DARK_OLIVE_GREEN;
+
+        /// <summary>
+        /// Gets the dark_orange colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color DarkOrange = NDalic.DARK_ORANGE;
+
+        /// <summary>
+        /// Gets the dark_orchid colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color DarkOrchid = NDalic.DARK_ORCHID;
+
+        /// <summary>
+        /// Gets the dark_red colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color DarkRed = NDalic.DARK_RED;
+
+        /// <summary>
+        /// Gets the dark_salmon colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color DarkSalmon = NDalic.DARK_SALMON;
+
+        /// <summary>
+        /// Gets the dark_sea_green colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color DarkSeaGreen = NDalic.DARK_SEA_GREEN;
+
+        /// <summary>
+        /// Gets the dark_slate_blue colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color DarkSlateBlue = NDalic.DARK_SLATE_BLUE;
+
+        /// <summary>
+        /// Gets the dark_slate_gray colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color DarkSlateGray = NDalic.DARK_SLATE_GRAY;
+
+        /// <summary>
+        /// Gets the dark_slate_grey colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color DarkSlateGrey = NDalic.DARK_SLATE_GREY;
+
+        /// <summary>
+        /// Gets the dark_turquoise colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color DarkTurquoise = NDalic.DARK_TURQUOISE;
+
+        /// <summary>
+        /// Gets the dark_violet colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color DarkViolet = NDalic.DARK_VIOLET;
+
+        /// <summary>
+        /// Gets the deep_pink colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color DeepPink = NDalic.DEEP_PINK;
+
+        /// <summary>
+        /// Gets the deep_sky_blue colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color DeepSkyBlue = NDalic.DEEP_SKY_BLUE;
+
+        /// <summary>
+        /// Gets the dim_gray colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color DimGray = NDalic.DIM_GRAY;
+
+        /// <summary>
+        /// Gets the dim_grey colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color DimGrey = NDalic.DIM_GREY;
+
+        /// <summary>
+        /// Gets the dodger_blue colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color DodgerBlue = NDalic.DODGER_BLUE;
+
+        /// <summary>
+        /// Gets the fire_brick colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color FireBrick = NDalic.FIRE_BRICK;
+
+        /// <summary>
+        /// Gets the floral_white colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color FloralWhite = NDalic.FLORAL_WHITE;
+
+        /// <summary>
+        /// Gets the forest_green colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color ForestGreen = NDalic.FOREST_GREEN;
+
+        /// <summary>
+        /// Gets the fuchsia colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Fuchsia = NDalic.FUCHSIA;
+
+        /// <summary>
+        /// Gets the gainsboro colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Gainsboro = NDalic.GAINSBORO;
+
+        /// <summary>
+        /// Gets the ghost_white colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color GhostWhite = NDalic.GHOST_WHITE;
+
+        /// <summary>
+        /// Gets the gold colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Gold = NDalic.GOLD;
+
+        /// <summary>
+        /// Gets the golden_rod colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color GoldenRod = NDalic.GOLDEN_ROD;
+
+        /// <summary>
+        /// Gets the gray colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Gray = NDalic.GRAY;
+
+        /// <summary>
+        /// Gets the green colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Green = NDalic.GREEN;
+
+        /// <summary>
+        /// Gets the green_yellow colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color GreenYellow = NDalic.GREEN_YELLOW;
+
+        /// <summary>
+        /// Gets the grey colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Grey = NDalic.GREY;
+
+        /// <summary>
+        /// Gets the honeydew colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Honeydew = NDalic.HONEYDEW;
+
+        /// <summary>
+        /// Gets the hot_pink colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color HotPink = NDalic.HOT_PINK;
+
+        /// <summary>
+        /// Gets the indianred colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Indianred = NDalic.INDIANRED;
+
+        /// <summary>
+        /// Gets the indigo colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Indigo = NDalic.INDIGO;
+
+        /// <summary>
+        /// Gets the ivory colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Ivory = NDalic.IVORY;
+
+        /// <summary>
+        /// Gets the khaki colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Khaki = NDalic.KHAKI;
+
+        /// <summary>
+        /// Gets the lavender colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Lavender = NDalic.LAVENDER;
+
+        /// <summary>
+        /// Gets the lavender_blush colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color LavenderBlush = NDalic.LAVENDER_BLUSH;
+
+        /// <summary>
+        /// Gets the lawn_green colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color LawnGreen = NDalic.LAWN_GREEN;
+
+        /// <summary>
+        /// Gets the lemon_chiffon colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color LemonChiffon = NDalic.LEMON_CHIFFON;
+
+        /// <summary>
+        /// Gets the light_blue colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color LightBlue = NDalic.LIGHT_BLUE;
+
+        /// <summary>
+        /// Gets the light_coral colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color LightCoral = NDalic.LIGHT_CORAL;
+
+        /// <summary>
+        /// Gets the light_cyan colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color LightCyan = NDalic.LIGHT_CYAN;
+
+        /// <summary>
+        /// Gets the light_golden_rod_yellow colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color LightGoldenRodYellow = NDalic.LIGHT_GOLDEN_ROD_YELLOW;
+
+        /// <summary>
+        /// Gets the light_gray colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color LightGray = NDalic.LIGHT_GRAY;
+
+        /// <summary>
+        /// Gets the light_green colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color LightGreen = NDalic.LIGHT_GREEN;
+
+        /// <summary>
+        /// Gets the light_grey colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color LightGrey = NDalic.LIGHT_GREY;
+
+        /// <summary>
+        /// Gets the light_pink colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color LightPink = NDalic.LIGHT_PINK;
+
+        /// <summary>
+        /// Gets the light_salmon colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color LightSalmon = NDalic.LIGHT_SALMON;
+
+        /// <summary>
+        /// Gets the light_sea_green colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color LightSeaGreen = NDalic.LIGHT_SEA_GREEN;
+
+        /// <summary>
+        /// Gets the light_sky_blue colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color LightSkyBlue = NDalic.LIGHT_SKY_BLUE;
+
+        /// <summary>
+        /// Gets the light_slate_gray colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color LightSlateGray = NDalic.LIGHT_SLATE_GRAY;
+
+        /// <summary>
+        /// Gets the light_slate_grey colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color LightSlateGrey = NDalic.LIGHT_SLATE_GREY;
+
+        /// <summary>
+        /// Gets the light_steel_blue colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color LightSteelBlue = NDalic.LIGHT_STEEL_BLUE;
+
+        /// <summary>
+        /// Gets the light_yellow colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color LightYellow = NDalic.LIGHT_YELLOW;
+
+        /// <summary>
+        /// Gets the lime colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Lime = NDalic.LIME;
+
+        /// <summary>
+        /// Gets the lime_green colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color LimeGreen = NDalic.LIME_GREEN;
+
+        /// <summary>
+        /// Gets the linen colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Linen = NDalic.LINEN;
+
+        /// <summary>
+        /// Gets the magenta colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Magenta = NDalic.MAGENTA;
+
+        /// <summary>
+        /// Gets the maroon colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Maroon = NDalic.MAROON;
+
+        /// <summary>
+        /// Gets the medium_aqua_marine colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color MediumAquaMarine = NDalic.MEDIUM_AQUA_MARINE;
+
+        /// <summary>
+        /// Gets the medium_blue colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color MediumBlue = NDalic.MEDIUM_BLUE;
+
+        /// <summary>
+        /// Gets the medium_orchid colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color MediumOrchid = NDalic.MEDIUM_ORCHID;
+
+        /// <summary>
+        /// Gets the medium_purple colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color MediumPurple = NDalic.MEDIUM_PURPLE;
+
+        /// <summary>
+        /// Gets the medium_sea_green colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color MediumSeaGreen = NDalic.MEDIUM_SEA_GREEN;
+
+        /// <summary>
+        /// Gets the medium_slate_blue colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color MediumSlateBlue = NDalic.MEDIUM_SLATE_BLUE;
+
+        /// <summary>
+        /// Gets the medium_spring_green colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color MediumSpringGreen = NDalic.MEDIUM_SPRING_GREEN;
+
+        /// <summary>
+        /// Gets the medium_turquoise colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color MediumTurquoise = NDalic.MEDIUM_TURQUOISE;
+
+        /// <summary>
+        /// Gets the medium_violetred colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color MediumVioletred = NDalic.MEDIUM_VIOLETRED;
+
+        /// <summary>
+        /// Gets the midnight_blue colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color MidnightBlue = NDalic.MIDNIGHT_BLUE;
+
+        /// <summary>
+        /// Gets the mint_cream colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color MintCream = NDalic.MINT_CREAM;
+
+        /// <summary>
+        /// Gets the misty_rose colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color MistyRose = NDalic.MISTY_ROSE;
+
+        /// <summary>
+        /// Gets the moccasin colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Moccasin = NDalic.MOCCASIN;
+
+        /// <summary>
+        /// Gets the navajo_white colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color NavajoWhite = NDalic.NAVAJO_WHITE;
+
+        /// <summary>
+        /// Gets the navy colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Navy = NDalic.NAVY;
+
+        /// <summary>
+        /// Gets the old_lace colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color OldLace = NDalic.OLD_LACE;
+
+        /// <summary>
+        /// Gets the olive colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Olive = NDalic.OLIVE;
+
+        /// <summary>
+        /// Gets the olive_drab colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color OliveDrab = NDalic.OLIVE_DRAB;
+
+        /// <summary>
+        /// Gets the orange colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Orange = NDalic.ORANGE;
+
+        /// <summary>
+        /// Gets the orange_red colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color OrangeRed = NDalic.ORANGE_RED;
+
+        /// <summary>
+        /// Gets the orchid colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Orchid = NDalic.ORCHID;
+
+        /// <summary>
+        /// Gets the pale_golden_rod colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color PaleGoldenRod = NDalic.PALE_GOLDEN_ROD;
+
+        /// <summary>
+        /// Gets the pale_green colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color PaleGreen = NDalic.PALE_GREEN;
+
+        /// <summary>
+        /// Gets the  Pale_Turquoise colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color PaleTurquoise = NDalic. PALE_TURQUOISE;
+
+        /// <summary>
+        /// Gets the Pale_Violet_Red colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color PaleVioletRed = NDalic.PALE_VIOLET_RED;
+
+        /// <summary>
+        /// Gets the Papaya_whip  colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color PapayaWhip = NDalic.PAPAYA_WHIP ;
+
+        /// <summary>
+        /// Gets the Peach_puff colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color PeachPuff = NDalic.PEACH_PUFF;
+
+        /// <summary>
+        /// Gets the peru colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Peru = NDalic.PERU;
+
+        /// <summary>
+        /// Gets the pink colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Pink = NDalic.PINK;
+
+        /// <summary>
+        /// Gets the plum colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Plum = NDalic.PLUM;
+
+        /// <summary>
+        /// Gets the powder_blue colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color PowderBlue = NDalic.POWDER_BLUE;
+
+        /// <summary>
+        /// Gets the purple colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Purple = NDalic.PURPLE;
+
+        /// <summary>
+        /// Gets the red colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Red = NDalic.RED;
+
+        /// <summary>
+        /// Gets the rosy_brown colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color RosyBrown = NDalic.ROSY_BROWN;
+
+        /// <summary>
+        /// Gets the royal_blue colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color RoyalBlue = NDalic.ROYAL_BLUE;
+
+        /// <summary>
+        /// Gets the saddle_brown colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color SaddleBrown = NDalic.SADDLE_BROWN;
+
+        /// <summary>
+        /// Gets the salmon colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Salmon = NDalic.SALMON;
+
+        /// <summary>
+        /// Gets the sandy_brown colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color SandyBrown = NDalic.SANDY_BROWN;
+
+        /// <summary>
+        /// Gets the sea_green colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color SeaGreen = NDalic.SEA_GREEN;
+
+        /// <summary>
+        /// Gets the sea_shell colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color SeaShell = NDalic.SEA_SHELL;
+
+        /// <summary>
+        /// Gets the sienna colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Sienna = NDalic.SIENNA;
+
+        /// <summary>
+        /// Gets the silver colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Silver = NDalic.SILVER;
+
+        /// <summary>
+        /// Gets the sky_blue colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color SkyBlue = NDalic.SKY_BLUE;
+
+        /// <summary>
+        /// Gets the slate_blue colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color SlateBlue = NDalic.SLATE_BLUE;
+
+        /// <summary>
+        /// Gets the slate_gray colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color SlateGray = NDalic.SLATE_GRAY;
+
+        /// <summary>
+        /// Gets the slate_grey colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color SlateGrey = NDalic.SLATE_GREY;
+
+        /// <summary>
+        /// Gets the snow colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Snow = NDalic.SNOW;
+
+        /// <summary>
+        /// Gets the spring_green colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color SpringGreen = NDalic.SPRING_GREEN;
+
+        /// <summary>
+        /// Gets the steel_blue colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color SteelBlue = NDalic.STEEL_BLUE;
+
+        /// <summary>
+        /// Gets the tan colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Tan = NDalic.TAN;
+
+        /// <summary>
+        /// Gets the teal colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Teal = NDalic.TEAL;
+
+        /// <summary>
+        /// Gets the thistle colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Thistle = NDalic.THISTLE;
+
+        /// <summary>
+        /// Gets the tomato colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Tomato = NDalic.TOMATO;
 
         /// <summary>
         /// Gets the  transparent colored Color class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly Color Transparent = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+        public static readonly Color Transparent = NDalic.TRANSPARENT;
+
+        /// <summary>
+        /// Gets the turquoise colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Turquoise = NDalic.TURQUOISE;
+
+        /// <summary>
+        /// Gets the violet colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Violet = NDalic.VIOLET;
+
+        /// <summary>
+        /// Gets the wheat colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Wheat = NDalic.WHEAT;
+
+        /// <summary>
+        /// Gets the white colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color White = NDalic.WHITE;
+
+        /// <summary>
+        /// Gets the white_smoke colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color WhiteSmoke = NDalic.WHITE_SMOKE;
+
+        /// <summary>
+        /// Gets the yellow colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color Yellow = NDalic.YELLOW;
+
+        /// <summary>
+        /// Gets the yellow_green colored Color class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly Color YellowGreen = NDalic.YELLOW_GREEN;
+
 
         private readonly bool hashDummy;
 
