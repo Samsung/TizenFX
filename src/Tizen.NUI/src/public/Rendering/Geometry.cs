@@ -35,7 +35,7 @@ namespace Tizen.NUI
 
         }
 
-        internal Geometry(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Geometry.Upcast(cPtr), cMemoryOwn)
+        internal Geometry(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

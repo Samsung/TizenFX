@@ -28,7 +28,7 @@ namespace Tizen.NUI
     public class ItemView : Scrollable
     {
 
-        internal ItemView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ItemView.Upcast(cPtr), cMemoryOwn)
+        internal ItemView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

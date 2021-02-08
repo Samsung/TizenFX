@@ -52,7 +52,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Hover(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Hover.Upcast(cPtr), cMemoryOwn)
+        internal Hover(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

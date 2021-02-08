@@ -20,7 +20,7 @@ namespace Tizen.NUI
     internal class AsyncImageLoader : BaseHandle
     {
 
-        internal AsyncImageLoader(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.AsyncImageLoader.Upcast(cPtr), cMemoryOwn)
+        internal AsyncImageLoader(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

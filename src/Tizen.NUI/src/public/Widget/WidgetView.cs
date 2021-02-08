@@ -51,7 +51,7 @@ namespace Tizen.NUI
 
         }
 
-        internal WidgetView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.WidgetView.Upcast(cPtr), cMemoryOwn)
+        internal WidgetView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
         internal WidgetView(WidgetView handle) : this(Interop.WidgetView.NewWidgetView(WidgetView.getCPtr(handle)), true)

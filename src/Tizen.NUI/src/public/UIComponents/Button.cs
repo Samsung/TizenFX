@@ -458,7 +458,7 @@ namespace Tizen.NUI.UIComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Button(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Button.Upcast(cPtr), cMemoryOwn)
+        internal Button(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

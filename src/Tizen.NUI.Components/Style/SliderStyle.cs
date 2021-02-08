@@ -27,6 +27,9 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 8 </since_tizen>
     public class SliderStyle : ControlStyle
     {
+        /// <summary>
+        /// IndicatorTypeProperty
+        /// </summary> 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty IndicatorTypeProperty = BindableProperty.Create(nameof(IndicatorType), typeof(IndicatorType?), typeof(SliderStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -41,6 +44,10 @@ namespace Tizen.NUI.Components
             var instance = (SliderStyle)bindable;
             return instance.privateIndicatorType;
         });
+
+        /// <summary>
+        /// SpaceBetweenTrackAndIndicatorProperty
+        /// </summary> 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty SpaceBetweenTrackAndIndicatorProperty = BindableProperty.Create(nameof(SpaceBetweenTrackAndIndicator), typeof(uint?), typeof(SliderStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -55,6 +62,10 @@ namespace Tizen.NUI.Components
             var instance = (SliderStyle)bindable;
             return instance.privateSpaceBetweenTrackAndIndicator;
         });
+
+        /// <summary>
+        /// TrackThicknessProperty
+        /// </summary> 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TrackThicknessProperty = BindableProperty.Create(nameof(TrackThickness), typeof(uint?), typeof(SliderStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -69,6 +80,10 @@ namespace Tizen.NUI.Components
             var instance = (SliderStyle)bindable;
             return instance.privateTrackThickness;
         });
+
+        /// <summary>
+        /// TrackPaddingProperty
+        /// </summary> 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TrackPaddingProperty = BindableProperty.Create(nameof(TrackPadding), typeof(Extents), typeof(SliderStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -121,6 +136,20 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         public ImageViewStyle Thumb { get; set; } = new ImageViewStyle();
+
+        /// <summary>
+        /// Get or set background warning track.
+        /// </summary>
+        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageViewStyle WarningTrack { get; set; } = new ImageViewStyle();
+
+        /// <summary>
+        /// Get or set slided warning track.
+        /// </summary>
+        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageViewStyle WarningProgress { get; set; } = new ImageViewStyle();
 
         /// <summary>
         /// Get or set low indicator image.
@@ -214,6 +243,8 @@ namespace Tizen.NUI.Components
                 Track.CopyFrom(sliderStyle.Track);
                 Progress.CopyFrom(sliderStyle.Progress);
                 Thumb.CopyFrom(sliderStyle.Thumb);
+                WarningTrack.CopyFrom(sliderStyle.WarningTrack);
+                WarningProgress.CopyFrom(sliderStyle.WarningProgress);
                 LowIndicatorImage.CopyFrom(sliderStyle.LowIndicatorImage);
                 HighIndicatorImage.CopyFrom(sliderStyle.HighIndicatorImage);
                 LowIndicator.CopyFrom(sliderStyle.LowIndicator);

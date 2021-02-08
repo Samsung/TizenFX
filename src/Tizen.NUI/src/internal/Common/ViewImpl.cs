@@ -25,7 +25,7 @@ namespace Tizen.NUI
     internal class ViewImpl : CustomActorImpl
     {
 
-        internal ViewImpl(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ViewImpl.Upcast(cPtr), cMemoryOwn)
+        internal ViewImpl(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

@@ -107,7 +107,7 @@ namespace Tizen.NUI
 
         }
 
-        internal AutofillContainer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.AutofillContainer.Upcast(cPtr), cMemoryOwn)
+        internal AutofillContainer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

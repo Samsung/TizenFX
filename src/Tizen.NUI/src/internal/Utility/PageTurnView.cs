@@ -23,7 +23,7 @@ namespace Tizen.NUI
     internal class PageTurnView : View
     {
 
-        internal PageTurnView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.PageTurnView.Upcast(cPtr), cMemoryOwn)
+        internal PageTurnView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
