@@ -306,6 +306,25 @@ namespace Tizen.Applications.ThemeManager
                 managedArray[iterator] = Marshal.PtrToStringAnsi(IntPtrArray[iterator]);
             }
         }
+
+        /// <summary>
+        /// Check the given key is exist or not.
+        /// </summary>
+        /// <param name="key">The string key to find information.</param>
+        /// <since_tizen> 9 </since_tizen>
+        /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
+        public bool HasKey(string key)
+        {
+            bool val;
+            var err = Interop.ThemeManager.IsKeyExist(_handle, key, out val);
+            if (err != Interop.ThemeManager.ErrorCode.None)
+            {
+                throw Interop.ThemeManager.ThemeManagerErrorFactory.GetException(err, "Failed to check existence of the key");
+            }
+
+            return val;
+        }
+
         /// <summary>
         /// Releases all resources used by the Theme class.
         /// </summary>
