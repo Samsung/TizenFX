@@ -95,54 +95,9 @@ namespace Tizen.Applications.ComponentBased
         /// </remarks>
         /// <example>
         /// <code>
-        /// public class CommPort : ComponentPort
-        /// {
-        ///     public CommPort(string portName) : base(portName)
-        ///     {
-        ///     }
-        ///
-        ///     protected override void OnRequestEvent(string sender, object request)
-        ///     {
-        ///         ...
-        ///     }
-        ///
-        ///     protected override object OnSyncRequestEvent(string sender, object request)
-        ///     {
-        ///         ...
-        ///         var response = new Response();
-        ///         return response;
-        ///     }
-        /// }
-        ///
-        /// public class CommService : ServiceComponent {
-        ///     private CommPort _port;
-        ///     private Thread _thread;
-        ///
-        ///     private void OnPortThread()
-        ///     {
-        ///         _port.WaitForEvent();
-        ///     }
-        ///
-        ///     protected override bool OnCreate()
-        ///     {
-        ///         _port = new CommPort("Comm");
-        ///         _thread = new Thread(new ThreadStart(OnPortThread));
-        ///         _thread.Start();
-        ///         return true;
-        ///     }
-        ///
-        ///     protected override void OnStartCommand(AppControl appControl, bool restarted)
-        ///     {
-        ///         base.OnStartCommand(appControl, restarted);
-        ///     }
-        ///
-        ///     public override void OnDestroy()
-        ///     {
-        ///         base.OnDestroy();
-        ///         _port.Cancel();
-        ///         _thread.Join();
-        ///     }
-        /// }
+        /// CommPort port = new CommPort("Comm");
+        /// Thread thread = new Thread(() => port.WaitForEvent());
+        /// thread.Start();
         /// </code>
         /// </example>
         /// <since_tizen> 9 </since_tizen>
