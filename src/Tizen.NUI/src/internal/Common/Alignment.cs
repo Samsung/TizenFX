@@ -23,7 +23,7 @@ namespace Tizen.NUI
     internal class Alignment : View
     {
 
-        internal Alignment(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Alignment.Upcast(cPtr), cMemoryOwn)
+        internal Alignment(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

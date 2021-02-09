@@ -33,7 +33,7 @@ namespace Tizen.NUI.Accessibility
     {
         private static readonly AccessibilityManager instance = AccessibilityManager.Get();
 
-        internal AccessibilityManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.AccessibilityManager.Upcast(cPtr), cMemoryOwn)
+        internal AccessibilityManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

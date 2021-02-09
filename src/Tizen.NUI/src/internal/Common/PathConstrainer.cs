@@ -20,7 +20,7 @@ namespace Tizen.NUI
     internal class PathConstrainer : BaseHandle
     {
 
-        internal PathConstrainer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.PathConstrainer.Upcast(cPtr), cMemoryOwn)
+        internal PathConstrainer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

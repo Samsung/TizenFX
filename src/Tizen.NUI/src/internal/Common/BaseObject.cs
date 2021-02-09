@@ -21,7 +21,7 @@ namespace Tizen.NUI
     internal class BaseObject : RefObject
     {
 
-        internal BaseObject(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.BaseObject.Upcast(cPtr), cMemoryOwn)
+        internal BaseObject(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

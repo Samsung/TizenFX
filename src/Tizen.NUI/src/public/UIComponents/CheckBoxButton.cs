@@ -47,7 +47,7 @@ namespace Tizen.NUI.UIComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal CheckBoxButton(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.CheckBoxButton.Upcast(cPtr), cMemoryOwn)
+        internal CheckBoxButton(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

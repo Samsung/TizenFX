@@ -35,7 +35,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal TapGesture(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.TapGesture.Upcast(cPtr), cMemoryOwn)
+        internal TapGesture(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

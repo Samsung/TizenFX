@@ -20,7 +20,7 @@ namespace Tizen.NUI
     internal class ConnectionTracker : ConnectionTrackerInterface
     {
 
-        internal ConnectionTracker(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ConnectionTracker.Upcast(cPtr), cMemoryOwn)
+        internal ConnectionTracker(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
