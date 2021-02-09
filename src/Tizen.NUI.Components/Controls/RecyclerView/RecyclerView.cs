@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2020 Samsung Electronics Co., Ltd.
+﻿/* Copyright (c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,219 +14,263 @@
  *
  */
 using System;
-using Tizen.NUI.BaseComponents;
+using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// [Draft] This class provides a View that can recycle items to improve performance.
+    /// [Draft] This class provides a View that can layouting items in list and grid with high performance.
     /// </summary>
-    /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class RecyclerView : ScrollableBase
+    public abstract class RecyclerView : ScrollableBase, ICollectionChangedNotifier
     {
-        private RecycleAdapter adapter;
-        private RecycleLayoutManager layoutManager;
-        private int totalItemCount = 15;
-        private List<PropertyNotification> notifications = new List<PropertyNotification>();
-
+        /// <summary>
+        /// Base Constructor
+        /// </summary>
+       [EditorBrowsable(EditorBrowsableState.Never)]
         public RecyclerView() : base()
         {
-            Initialize(new RecycleAdapter(), new RecycleLayoutManager());
+            Scrolling += OnScrolling;
         }
 
         /// <summary>
-        /// Default constructor.
+        /// Item's source data.
         /// </summary>
-        /// <param name="adapter">Recycle adapter of RecyclerView.</param>
-        /// <param name="layoutManager">Recycle layoutManager of RecyclerView.</param>
-        /// <since_tizen> 8 </since_tizen>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public RecyclerView(RecycleAdapter adapter, RecycleLayoutManager layoutManager)
+        public virtual IEnumerable ItemsSource { get; set; }
+
+        /// <summary>
+        /// DataTemplate for items.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual DataTemplate ItemTemplate { get; set; }
+
+        /// <summary>
+        /// Internal encapsulated items data source.
+        /// </summary>
+        internal IItemSource InternalItemSource { get; set;}
+
+        /// <summary>
+        /// RecycleCache of ViewItem.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected List<RecyclerViewItem> RecycleCache { get; } = new List<RecyclerViewItem>();
+
+        /// <summary>
+        /// Internal Items Layouter.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected ItemsLayouter InternalItemsLayouter {get; set; }
+
+        /// <summary>
+        /// Max size of RecycleCache. Default is 50.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected int CacheMax { get; set; } = 50;
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnRelayout(Vector2 size, RelayoutContainer container)
         {
-            Initialize(adapter, layoutManager);
-        }
-
-        private void Initialize(RecycleAdapter adapter, RecycleLayoutManager layoutManager)
-        {
-            FocusGroup = true;
-            SetKeyboardNavigationSupport(true);
-            Scrolling += OnScrolling;
-
-            this.adapter = adapter;
-            this.adapter.OnDataChanged += OnAdapterDataChanged;
-
-            this.layoutManager = layoutManager;
-            this.layoutManager.Container = ContentContainer;
-            this.layoutManager.ItemSize = this.adapter.CreateRecycleItem().Size;
-            this.layoutManager.DataCount = this.adapter.Data.Count;
-
-            InitializeItems();
-        }
-
-        private void OnItemSizeChanged(object source, PropertyNotification.NotifyEventArgs args)
-        {
-            layoutManager.Layout(ScrollingDirection == Direction.Horizontal ? ContentContainer.CurrentPosition.X : ContentContainer.CurrentPosition.Y);
-        }
-
-        public int TotalItemCount
-        {
-            get
+            //Console.WriteLine("[NUI] On ReLayout [{0} {0}]", size.X, size.Y);
+            base.OnRelayout(size, container);
+            if (InternalItemsLayouter != null && ItemsSource != null && ItemTemplate != null) 
             {
-                return totalItemCount;
+                InternalItemsLayouter.Initialize(this);
+                InternalItemsLayouter.RequestLayout(ScrollingDirection == Direction.Horizontal ? ContentContainer.CurrentPosition.X : ContentContainer.CurrentPosition.Y, true);
             }
-            set
-            {
-                totalItemCount = value;
-                InitializeItems();
-            }
         }
 
-        private void InitializeItems()
+        /// <summary>
+        /// Notify Dataset is Changed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void NotifyDataSetChanged()
         {
-            for (int i = Children.Count - 1; i > -1; i--)
+            //Need to update view.
+            if (InternalItemsLayouter != null)
             {
-                Children[i].Unparent();
-                notifications[i].Notified -= OnItemSizeChanged;
-                notifications.RemoveAt(i);
-            }
-
-            for (int i = 0; i < totalItemCount; i++)
-            {
-                RecycleItem item = adapter.CreateRecycleItem();
-                item.DataIndex = i;
-                item.Name = "[" + i + "] recycle";
-
-                if (i < adapter.Data.Count)
+                InternalItemsLayouter.NotifyDataSetChanged();
+                if (ScrollingDirection == Direction.Horizontal)
                 {
-                    adapter.BindData(item);
+                    ContentContainer.SizeWidth =
+                        InternalItemsLayouter.CalculateLayoutOrientationSize();
                 }
-                Add(item);
-
-                PropertyNotification noti = item.AddPropertyNotification("size", PropertyCondition.Step(0.1f));
-                noti.Notified += OnItemSizeChanged;
-                notifications.Add(noti);
+                else
+                {
+                    ContentContainer.SizeHeight =
+                        InternalItemsLayouter.CalculateLayoutOrientationSize();
+                }
             }
+        }
 
-            layoutManager.Layout(0.0f);
-
-            if (ScrollingDirection == Direction.Horizontal)
+        /// <summary>
+        /// Notify observable item is changed.
+        /// </summary>
+        /// <param name="source">Dataset source.</param>
+        /// <param name="startIndex">Changed item index.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void NotifyItemChanged(IItemSource source, int startIndex)
+        {
+            if (InternalItemsLayouter != null)
             {
-                ContentContainer.SizeWidth = layoutManager.CalculateLayoutOrientationSize();
+                InternalItemsLayouter.NotifyItemChanged(source, startIndex);
+            }
+        }
+
+        /// <summary>
+        /// Notify observable item is inserted in dataset.
+        /// </summary>
+        /// <param name="source">Dataset source.</param>
+        /// <param name="startIndex">Inserted item index.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void NotifyItemInserted(IItemSource source, int startIndex)
+        {
+            if (InternalItemsLayouter != null)
+            {
+                InternalItemsLayouter.NotifyItemInserted(source, startIndex);
+            }
+        }
+
+        /// <summary>
+        /// Notify observable item is moved from fromPosition to ToPosition.
+        /// </summary>
+        /// <param name="source">Dataset source.</param>
+        /// <param name="fromPosition">Previous item position.</param>
+        /// <param name="toPosition">Moved item position.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void NotifyItemMoved(IItemSource source, int fromPosition, int toPosition)
+        {
+            if (InternalItemsLayouter != null)
+            {
+                InternalItemsLayouter.NotifyItemMoved(source, fromPosition, toPosition);
+            }
+        }
+
+        /// <summary>
+        /// Notify range of observable items from start to end are changed.
+        /// </summary>
+        /// <param name="source">Dataset source.</param>
+        /// <param name="start">Start index of changed items range.</param>
+        /// <param name="end">End index of changed items range.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void NotifyItemRangeChanged(IItemSource source, int start, int end)
+        {
+            if (InternalItemsLayouter != null)
+            {
+                InternalItemsLayouter.NotifyItemRangeChanged(source, start, end);
+            }
+        }
+
+        /// <summary>
+        /// Notify count range of observable count items are inserted in startIndex.
+        /// </summary>
+        /// <param name="source">Dataset source.</param>
+        /// <param name="startIndex">Start index of inserted items range.</param>
+        /// <param name="count">The number of inserted items.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void NotifyItemRangeInserted(IItemSource source, int startIndex, int count)
+        {
+            if (InternalItemsLayouter != null)
+            {
+                InternalItemsLayouter.NotifyItemRangeInserted(source, startIndex, count);
+            }
+        }
+
+        /// <summary>
+        /// Notify the count range of observable items from the startIndex are removed.
+        /// </summary>
+        /// <param name="source">Dataset source.</param>
+        /// <param name="startIndex">Start index of removed items range.</param>
+        /// <param name="count">The number of removed items</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void NotifyItemRangeRemoved(IItemSource source, int startIndex, int count)
+        {
+            if (InternalItemsLayouter != null)
+            {
+                InternalItemsLayouter.NotifyItemRangeRemoved(source, startIndex, count);
+            }
+        }
+
+        /// <summary>
+        /// Notify the observable item in startIndex is removed.
+        /// </summary>
+        /// <param name="source">Dataset source.</param>
+        /// <param name="startIndex">Index of removed item.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void NotifyItemRemoved(IItemSource source, int startIndex)
+        {
+            if (InternalItemsLayouter != null)
+            {
+                InternalItemsLayouter.NotifyItemRemoved(source, startIndex);
+            }
+        }
+
+        /// <summary>
+        /// Realize indexed item.
+        /// </summary>
+        /// <param name="index"> Index position of realizing item </param>
+        internal virtual RecyclerViewItem RealizeItem(int index)
+        {
+            object context = InternalItemSource.GetItem(index);
+            // Check DataTemplate is Same!
+            if (ItemTemplate is DataTemplateSelector)
+            {
+                // Need to implements for caching of selector!
             }
             else
             {
-                ContentContainer.SizeHeight = layoutManager.CalculateLayoutOrientationSize();
+               // pop item
+               RecyclerViewItem item = PopRecycleCache(ItemTemplate);
+               if (item != null)
+               {
+                    DecorateItem(item, index, context);
+                    return item;
+               }
             }
-        }
 
-
-        public new Direction ScrollingDirection
-        {
-            get
+            object content = DataTemplateExtensions.CreateContent(ItemTemplate, context, (BindableObject)this) ?? throw new Exception("Template return null object.");
+            if (content is RecyclerViewItem)
             {
-                return base.ScrollingDirection;
+                RecyclerViewItem item = (RecyclerViewItem)content;
+                ContentContainer.Add(item);
+                DecorateItem(item, index, context);
+                return item;
             }
-            set
+            else
             {
-                base.ScrollingDirection = value;
-
-                if (ScrollingDirection == Direction.Horizontal)
-                {
-                    ContentContainer.SizeWidth = layoutManager.CalculateLayoutOrientationSize();
-                }
-                else
-                {
-                    ContentContainer.SizeHeight = layoutManager.CalculateLayoutOrientationSize();
-                }
+                throw new Exception("Template content must be type of ViewItem");
             }
-        }
 
-        /// <summary>
-        /// Recycler adpater.
-        /// </summary>
-        /// <since_tizen> 8 </since_tizen>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public RecycleAdapter Adapter
-        {
-            get
-            {
-                return adapter;
-            }
-            set
-            {
-                if (adapter != null)
-                {
-                    adapter.OnDataChanged -= OnAdapterDataChanged;
-                }
-
-                adapter = value;
-                adapter.OnDataChanged += OnAdapterDataChanged;
-                layoutManager.ItemSize = adapter.CreateRecycleItem().Size;
-                layoutManager.DataCount = adapter.Data.Count;
-                InitializeItems();
-            }
         }
 
         /// <summary>
-        /// Recycler layoutManager.
+        /// Unrealize indexed item.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public RecycleLayoutManager LayoutManager
+        /// <param name="item"> Target item for unrealizing </param>
+        /// <param name="recycle"> Allow recycle. default is true </param>
+        internal virtual void UnrealizeItem(RecyclerViewItem item, bool recycle = true)
         {
-            get
+            item.Index = -1;
+            item.ParentItemsView = null;
+            // Remove BindingContext null set for performance improving.
+            //item.BindingContext = null; 
+            item.IsPressed = false;
+            item.IsSelected = false;
+            item.IsEnabled = true;
+            // Remove Update Style on default for performance improving.
+            //item.UpdateState();
+            item.Relayout -= OnItemRelayout;
+
+            if (!recycle || !PushRecycleCache(item))
             {
-                return layoutManager;
-            }
-            set
-            {
-                layoutManager = value;
-                layoutManager.Container = ContentContainer;
-                layoutManager.ItemSize = adapter.CreateRecycleItem().Size;
-                layoutManager.DataCount = adapter.Data.Count;
-                InitializeItems();
-            }
-        }
-
-        private void OnScrolling(object source, ScrollEventArgs args)
-        {
-            layoutManager.Layout(ScrollingDirection == Direction.Horizontal ? args.Position.X : args.Position.Y);
-            List<RecycleItem> recycledItemList = layoutManager.Recycle(ScrollingDirection == Direction.Horizontal ? args.Position.X : args.Position.Y);
-            BindData(recycledItemList);
-        }
-
-        private void OnAdapterDataChanged(object source, EventArgs args)
-        {
-            List<RecycleItem> changedData = new List<RecycleItem>();
-
-            foreach (RecycleItem item in Children)
-            {
-                changedData.Add(item);
-            }
-
-            BindData(changedData);
-        }
-
-        private void BindData(List<RecycleItem> changedData)
-        {
-            foreach (RecycleItem item in changedData)
-            {
-                if (item.DataIndex > -1 && item.DataIndex < adapter.Data.Count)
-                {
-                    item.Show();
-                    item.Name = "[" + item.DataIndex + "]";
-                    adapter.BindData(item);
-                }
-                else
-                {
-                    item.Hide();
-                }
+                //ContentContainer.Remove(item);
+                Utility.Dispose(item);
             }
         }
 
@@ -234,138 +278,116 @@ namespace Tizen.NUI.Components
         /// Adjust scrolling position by own scrolling rules.
         /// Override this function when developer wants to change destination of flicking.(e.g. always snap to center of item)
         /// </summary>
-        /// <param name="position">Scroll position which is calculated by ScrollableBase</param>
+        /// <param name="position">Scroll position which is calculated by ScrollableBase.</param>
         /// <returns>Adjusted scroll destination</returns>
-        /// <since_tizen> 8 </since_tizen>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override float AdjustTargetPositionOfScrollAnimation(float position)
         {
             // Destination is depending on implementation of layout manager.
             // Get destination from layout manager.
-            return layoutManager.CalculateCandidateScrollPosition(position);
+            return InternalItemsLayouter.CalculateCandidateScrollPosition(position);
         }
 
-        private View focusedView;
-        private int prevFocusedDataIndex = 0;
-
-        public override View GetNextFocusableView(View currentFocusedView, View.FocusDirection direction, bool loopEnabled)
+        /// <summary>
+        /// Push the item into the recycle cache. this item will be reused in view update.
+        /// </summary>
+        /// <param name="item"> Target item to push into recycle cache. </param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool PushRecycleCache(RecyclerViewItem item)
         {
-            View nextFocusedView = null;
+            if (item == null) throw new ArgumentNullException(nameof(item));
+            if (RecycleCache.Count >= CacheMax) return false;
+            if (item.Template == null) return false;
+            item.Hide();
+            item.Index = -1;
+            RecycleCache.Add(item);
+            return true;
+        }
 
-            if (!focusedView)
+        /// <summary>
+        /// Pop the item from the recycle cache.
+        /// </summary>
+        /// <param name="Template"> Template of wanted item. </param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual RecyclerViewItem PopRecycleCache(DataTemplate Template)
+        {
+           for (int i = 0; i < RecycleCache.Count; i++)
+           {
+               RecyclerViewItem item = RecycleCache[i];
+               if (item.Template == Template)
+               {
+                   RecycleCache.Remove(item);
+                   item.Show();
+                   return item;
+               }
+           }
+           return null;
+        }
+
+        /// <summary>
+        /// On scroll event callback.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void OnScrolling(object source, ScrollEventArgs args)
+        {
+            if (args == null) throw new ArgumentNullException(nameof(args));
+            if (!disposed && InternalItemsLayouter != null && ItemsSource != null && ItemTemplate != null)
             {
-                // If focusedView is null, find child which has previous data index
-                if (Children.Count > 0 && Adapter.Data.Count > 0)
-                {
-                    for (int i = 0; i < Children.Count; i++)
-                    {
-                        RecycleItem item = Children[i] as RecycleItem;
-                        if (item.DataIndex == prevFocusedDataIndex)
-                        {
-                            nextFocusedView = item;
-                            break;
-                        }
-                    }
-                }
+                //Console.WriteLine("[NUI] On Scrolling! {0} => {1}", ScrollPosition.Y, args.Position.Y);
+                InternalItemsLayouter.RequestLayout(ScrollingDirection == Direction.Horizontal ? args.Position.X : args.Position.Y);
             }
-            else
+        }
+
+        /// <summary>
+        /// Dispose ItemsView and all children on it.
+        /// </summary>
+        /// <param name="type">Dispose type.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
             {
-                // If this is not first focus, request next focus to LayoutManager
-                if (LayoutManager != null)
-                {
-                    nextFocusedView = LayoutManager.RequestNextFocusableView(currentFocusedView, direction, loopEnabled);
-                }
-            }
-
-            if (nextFocusedView != null)
-            {
-                // Check next focused view is inside of visible area.
-                // If it is not, move scroll position to make it visible.
-                Position scrollPosition = ContentContainer.CurrentPosition;
-                float targetPosition = -(ScrollingDirection == Direction.Horizontal ? scrollPosition.X : scrollPosition.Y);
-
-                float left = nextFocusedView.Position.X;
-                float right = nextFocusedView.Position.X + nextFocusedView.Size.Width;
-                float top = nextFocusedView.Position.Y;
-                float bottom = nextFocusedView.Position.Y + nextFocusedView.Size.Height;
-
-                float visibleRectangleLeft = -scrollPosition.X;
-                float visibleRectangleRight = -scrollPosition.X + Size.Width;
-                float visibleRectangleTop = -scrollPosition.Y;
-                float visibleRectangleBottom = -scrollPosition.Y + Size.Height;
-
-                if (ScrollingDirection == Direction.Horizontal)
-                {
-                    if ((direction == View.FocusDirection.Left || direction == View.FocusDirection.Up) && left < visibleRectangleLeft)
-                    {
-                        targetPosition = left;
-                    }
-                    else if ((direction == View.FocusDirection.Right || direction == View.FocusDirection.Down) && right > visibleRectangleRight)
-                    {
-                        targetPosition = right - Size.Width;
-                    }
-                }
-                else
-                {
-                    if ((direction == View.FocusDirection.Up || direction == View.FocusDirection.Left) && top < visibleRectangleTop)
-                    {
-                        targetPosition = top;
-                    }
-                    else if ((direction == View.FocusDirection.Down || direction == View.FocusDirection.Right) && bottom > visibleRectangleBottom)
-                    {
-                        targetPosition = bottom - Size.Height;
-                    }
-                }
-
-                focusedView = nextFocusedView;
-                if ((nextFocusedView as RecycleItem) != null)
-                {
-                    prevFocusedDataIndex = (nextFocusedView as RecycleItem).DataIndex;
-                }
-
-                ScrollTo(targetPosition, true);
-            }
-            else
-            {
-                // If nextView is null, it means that we should move focus to outside of Control.
-                // Return FocusableView depending on direction.
-                switch (direction)
-                {
-                    case View.FocusDirection.Left:
-                        {
-                            nextFocusedView = LeftFocusableView;
-                            break;
-                        }
-                    case View.FocusDirection.Right:
-                        {
-                            nextFocusedView = RightFocusableView;
-                            break;
-                        }
-                    case View.FocusDirection.Up:
-                        {
-                            nextFocusedView = UpFocusableView;
-                            break;
-                        }
-                    case View.FocusDirection.Down:
-                        {
-                            nextFocusedView = DownFocusableView;
-                            break;
-                        }
-                }
-
-                if (nextFocusedView)
-                {
-                    focusedView = null;
-                }
-                else
-                {
-                    //If FocusableView doesn't exist, not move focus.
-                    nextFocusedView = focusedView;
-                }
+                return;
             }
 
-            return nextFocusedView;
+            if (type == DisposeTypes.Explicit)
+            {
+                disposed = true;
+                // call the clear!
+                if (RecycleCache != null)
+                {
+                    foreach (RecyclerViewItem item in RecycleCache)
+                    {
+                        //ContentContainer.Remove(item);
+                        Utility.Dispose(item);
+                    }
+                    RecycleCache.Clear();
+                }
+                InternalItemsLayouter.Clear();
+                InternalItemsLayouter = null;
+                ItemsSource = null;
+                ItemTemplate = null;
+                if (InternalItemSource != null) InternalItemSource.Dispose();
+                //
+            }
+
+            base.Dispose(type);
+        }
+
+        private void OnItemRelayout(object sender, EventArgs e)
+        {
+            //FIXME: we need to skip the first relayout and only call size changed when real size change happen.
+            //InternalItemsLayouter.NotifyItemSizeChanged((sender as ViewItem));
+            //InternalItemsLayouter.RequestLayout(ScrollingDirection == Direction.Horizontal ? ContentContainer.CurrentPosition.X : ContentContainer.CurrentPosition.Y);
+        }
+
+        private void DecorateItem(RecyclerViewItem item, int index, object context)
+        {
+            item.Index = index;
+            item.ParentItemsView = this;
+            item.Template = (ItemTemplate as DataTemplateSelector)?.SelectDataTemplate(InternalItemSource.GetItem(index), this) ?? ItemTemplate;
+            item.BindingContext = context;
+            item.Relayout += OnItemRelayout;
         }
     }
 }
