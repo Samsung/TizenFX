@@ -1,12 +1,15 @@
 using System;
+using System.ComponentModel;
 using System.Collections.Generic;
 
 namespace Tizen.NUI.Binding
 {
-    internal abstract class DataTemplateSelector : DataTemplate
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public abstract class DataTemplateSelector : DataTemplate
     {
         Dictionary<Type, DataTemplate> _dataTemplates = new Dictionary<Type, DataTemplate>();
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public DataTemplate SelectTemplate(object item, BindableObject container)
         {
             DataTemplate dataTemplate = null;
@@ -23,6 +26,7 @@ namespace Tizen.NUI.Binding
             return dataTemplate;
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected abstract DataTemplate OnSelectTemplate(object item, BindableObject container);
     }
 }

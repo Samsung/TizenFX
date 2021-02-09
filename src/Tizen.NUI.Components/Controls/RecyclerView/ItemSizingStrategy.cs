@@ -1,4 +1,4 @@
-/* Copyright (c) 2020 Samsung Electronics Co., Ltd.
+﻿/* Copyright (c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,25 +13,30 @@
  * limitations under the License.
  *
  */
+
 using System.ComponentModel;
 
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// [Draft] This class provides a basic item for RecyclerView.
+    /// Size calculation strategy for CollectionView.
     /// </summary>
-    /// <since_tizen> 8 </since_tizen>
-    /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class RecycleItem : Control
+    public enum ItemSizingStrategy
     {
+
         /// <summary>
-        /// Data index which is binded to item by RecycleAdapter.
-        /// Can access to data of RecycleAdapter using this index.
+        /// Measure all items in advanced.
+        /// Estimate first item size for all, and when scroll reached position,
+        /// measure strictly. Note : This will make scroll bar trembling.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public int DataIndex { get; set; } = 0;
+        MeasureAll,
+        /// <summary>
+        /// Measure first item and deligate size for all items.
+        /// if template is selector, the size of first item from each template will be deligated.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        MeasureFirst,
     }
 }
