@@ -39,7 +39,7 @@ namespace Tizen.NUI
 
         }
 
-        internal KeyFrames(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.KeyFrames.Upcast(cPtr), cMemoryOwn)
+        internal KeyFrames(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

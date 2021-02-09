@@ -149,7 +149,7 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal TableView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.TableView.Upcast(cPtr), cMemoryOwn)
+        internal TableView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

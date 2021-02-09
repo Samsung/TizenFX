@@ -40,7 +40,7 @@ namespace Tizen.NUI
             this.SetResizePolicy(ResizePolicyType.FillToParent, DimensionType.AllDimensions);
         }
 
-        internal Layer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Layer.Upcast(cPtr), cMemoryOwn)
+        internal Layer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

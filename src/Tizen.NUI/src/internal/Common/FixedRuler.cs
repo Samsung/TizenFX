@@ -24,7 +24,7 @@ namespace Tizen.NUI
     public class FixedRuler : Ruler
     {
 
-        internal FixedRuler(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Ruler.FixedRulerUpcast(cPtr), cMemoryOwn)
+        internal FixedRuler(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

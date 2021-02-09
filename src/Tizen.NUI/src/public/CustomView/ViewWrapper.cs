@@ -27,7 +27,7 @@ namespace Tizen.NUI
     {
         internal ViewWrapperImpl viewWrapperImpl;
 
-        internal ViewWrapper(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ViewWrapper.Upcast(cPtr), cMemoryOwn, null)
+        internal ViewWrapper(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn, null)
         {
         }
 
@@ -37,7 +37,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal ViewWrapper(string typeName, ViewWrapperImpl implementation, ViewStyle viewStyle) : base(Interop.ViewWrapper.Upcast(Interop.ViewWrapper.New(typeName, ViewWrapperImpl.getCPtr(implementation))), true, viewStyle)
+        internal ViewWrapper(string typeName, ViewWrapperImpl implementation, ViewStyle viewStyle) : base(Interop.ViewWrapper.New(typeName, ViewWrapperImpl.getCPtr(implementation)), true, viewStyle)
         {
             viewWrapperImpl = implementation;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

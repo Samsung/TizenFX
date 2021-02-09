@@ -20,7 +20,7 @@ namespace Tizen.NUI
     internal class LinearConstrainer : BaseHandle
     {
 
-        internal LinearConstrainer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.LinearConstrainer.Upcast(cPtr), cMemoryOwn)
+        internal LinearConstrainer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

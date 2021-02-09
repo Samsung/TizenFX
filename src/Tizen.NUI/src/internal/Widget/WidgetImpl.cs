@@ -28,7 +28,7 @@ namespace Tizen.NUI
             SwigDirectorConnect();
         }
 
-        internal WidgetImpl(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.WidgetImpl.Upcast(cPtr), cMemoryOwn)
+        internal WidgetImpl(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

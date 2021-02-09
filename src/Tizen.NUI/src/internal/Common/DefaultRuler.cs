@@ -24,7 +24,7 @@ namespace Tizen.NUI
     public class DefaultRuler : Ruler
     {
 
-        internal DefaultRuler(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Ruler.DefaultRulerUpcast(cPtr), cMemoryOwn)
+        internal DefaultRuler(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
