@@ -52,9 +52,6 @@ namespace Tizen.NUI
         public LayoutController(Window window) : this(Interop.LayoutController.New(), true)
         {
             _window = window;
-            _instance = new Callback(Process);
-            Interop.LayoutController.SetCallback(SwigCPtr, _instance);
-
             _layoutTransitionDataQueue = new List<LayoutData>();
         }
 
@@ -106,6 +103,18 @@ namespace Tizen.NUI
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool OverrideCoreAnimation { get; set; } = false;
+
+        /// <summary>
+        /// Create and set process callback
+        /// </summary>
+        internal void CreateProcessCallback()
+        {
+            if (_instance == null)
+            {
+                _instance = new Callback(Process);
+                Interop.LayoutController.SetCallback(SwigCPtr, _instance);
+            }
+        }
 
         /// <summary>
         /// Add transition data for a LayoutItem to the transition stack.
