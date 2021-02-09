@@ -289,7 +289,15 @@ namespace Tizen.NUI.BaseComponents
         /// The mutually exclusive with "backgroundImage" and "background" type Vector4.
         /// </summary>
         /// <remarks>
+        /// <para>
         /// The property cascade chaining set is possible. For example, this (view.BackgroundColor.X = 0.1f;) is possible.
+        /// </para>
+        /// <para>
+        /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// <code>
+        /// animation.AnimateTo(view, "BackgroundColor", new Color(r, g, b, a));
+        /// </code>
+        /// </para>
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Color BackgroundColor
@@ -379,6 +387,16 @@ namespace Tizen.NUI.BaseComponents
         /// <remarks>
         /// The mutually exclusive with "BoxShadow".
         /// </remarks>
+        /// <remarks>
+        /// <para>
+        /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// To animate this property, specify a sub-property with separator ".", for example, "ImageShadow.Offset".
+        /// <code>
+        /// animation.AnimateTo(view, "ImageShadow.Offset", new Vector2(10, 10));
+        /// </code>
+        /// Animatable sub-property : Offset.
+        /// </para>
+        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ImageShadow ImageShadow
         {
@@ -408,6 +426,16 @@ namespace Tizen.NUI.BaseComponents
         /// <remarks>
         /// The mutually exclusive with "ImageShadow".
         /// </remarks>
+        /// <remarks>
+        /// <para>
+        /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// To animate this property, specify a sub-property with separator ".", for example, "BoxShadow.BlurRadius".
+        /// <code>
+        /// animation.AnimateTo(view, "BoxShadow.BlurRadius", 10.0f);
+        /// </code>
+        /// Animatable sub-property : Offset, Color, BlurRadius.
+        /// </para>
+        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Shadow BoxShadow
         {
@@ -432,6 +460,11 @@ namespace Tizen.NUI.BaseComponents
         /// This will rounds background and shadow edges.
         /// Note that, an image background (or shadow) may not have rounded corners if it uses a Border property.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// </para>
+        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float CornerRadius
         {
