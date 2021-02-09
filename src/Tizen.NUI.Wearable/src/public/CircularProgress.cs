@@ -160,7 +160,7 @@ namespace Tizen.NUI.Wearable
 
         static CircularProgress()
         {
-            ThemeManager.AddPackageTheme(new DefaultThemeCreator());
+            ThemeManager.AddPackageTheme(DefaultThemeCreator.Instance);
         }
 
         /// <summary>

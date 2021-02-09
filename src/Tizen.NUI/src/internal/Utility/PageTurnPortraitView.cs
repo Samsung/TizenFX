@@ -20,7 +20,7 @@ namespace Tizen.NUI
     internal class PageTurnPortraitView : PageTurnView
     {
 
-        internal PageTurnPortraitView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.PageTurnPortraitView.Upcast(cPtr), cMemoryOwn)
+        internal PageTurnPortraitView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

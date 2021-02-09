@@ -23,7 +23,7 @@ namespace Tizen.NUI
     internal class ConnectionTrackerInterface : SignalObserver
     {
 
-        internal ConnectionTrackerInterface(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ConnectionTracker.ConnectionTrackerInterfaceUpcast(cPtr), cMemoryOwn)
+        internal ConnectionTrackerInterface(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

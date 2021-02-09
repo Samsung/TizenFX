@@ -50,7 +50,7 @@ namespace Tizen.NUI
             (WidgetApplication.Instance as WidgetApplication)?.AddWidgetInstance(this);
         }
 
-        internal Widget(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Widget.Upcast(cPtr), cMemoryOwn)
+        internal Widget(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

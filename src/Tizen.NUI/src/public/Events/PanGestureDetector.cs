@@ -50,7 +50,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal PanGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.PanGestureDetector.Upcast(cPtr), cMemoryOwn)
+        internal PanGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

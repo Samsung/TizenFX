@@ -55,7 +55,7 @@ namespace Tizen.NUI
         private EventHandler<WebViewScrollEdgeReachedEventArgs> scrollEdgeReachedEventHandler;
         private WebViewScrollEdgeReachedCallbackDelegate scrollEdgeReachedCallback;
 
-        internal WebView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.WebView.Upcast(cPtr), cMemoryOwn)
+        internal WebView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
             pageLoadStartedSignal = new WebViewPageLoadSignal(Interop.WebView.NewWebViewPageLoadSignalPageLoadStarted(SwigCPtr));
             pageLoadFinishedSignal = new WebViewPageLoadSignal(Interop.WebView.NewWebViewPageLoadSignalPageLoadFinished(SwigCPtr));
@@ -168,6 +168,8 @@ namespace Tizen.NUI
             internal static readonly int ScrollPosition = Interop.WebView.ScrollPositionGet();
             internal static readonly int ScrollSize = Interop.WebView.ScrollSizeGet();
             internal static readonly int ContentSize = Interop.WebView.ContentSizeGet();
+            internal static readonly int Title = Interop.WebView.TitleGet();
+            internal static readonly int VideoHoleEnabled = Interop.WebView.VideoHoleEnabledGet();
         }
 
         private static readonly BindableProperty UrlProperty = BindableProperty.Create(nameof(Url), typeof(string), typeof(WebView), string.Empty, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
@@ -213,7 +215,7 @@ namespace Tizen.NUI
         defaultValueCreator: (bindable) =>
         {
             var webview = (WebView)bindable;
-            Vector2 temp = new Vector2(0.0f, 0.0f); ;
+            Vector2 temp = new Vector2(0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.ScrollPosition).Get(temp);
             return temp;
         });
@@ -221,7 +223,7 @@ namespace Tizen.NUI
         private static readonly BindableProperty ScrollSizeProperty = BindableProperty.Create(nameof(ScrollSize), typeof(Vector2), typeof(WebView), null, defaultValueCreator: (bindable) =>
         {
             var webview = (WebView)bindable;
-            Vector2 temp = new Vector2(0.0f, 0.0f); ;
+            Vector2 temp = new Vector2(0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.ScrollSize).Get(temp);
             return temp;
         });
@@ -229,13 +231,37 @@ namespace Tizen.NUI
         private static readonly BindableProperty ContentSizeProperty = BindableProperty.Create(nameof(ContentSize), typeof(Vector2), typeof(WebView), null, defaultValueCreator: (bindable) =>
         {
             var webview = (WebView)bindable;
-            Vector2 temp = new Vector2(0.0f, 0.0f); ;
+            Vector2 temp = new Vector2(0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.ContentSize).Get(temp);
             return temp;
         });
 
+        private static readonly BindableProperty TitleProperty = BindableProperty.Create(nameof(Title), typeof(string), typeof(WebView), null, defaultValueCreator: (bindable) =>
+        {
+            var webview = (WebView)bindable;
+            string title;
+            Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.Title).Get(out title);
+            return title;
+        });
+
+        private static readonly BindableProperty VideoHoleEnabledProperty = BindableProperty.Create(nameof(VideoHoleEnabled), typeof(bool), typeof(WebView), true, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var webview = (WebView)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty(webview.SwigCPtr, WebView.Property.VideoHoleEnabled, new Tizen.NUI.PropertyValue((bool)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var webview = (WebView)bindable;
+            bool temp;
+            Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.VideoHoleEnabled).Get(out temp);
+            return temp;
+        });
+
         /// <summary>
-        /// Creates an uninitialized WebView.
+        /// Creates a WebView.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public WebView() : this(Interop.WebView.New(), true)
@@ -244,12 +270,22 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Creates an uninitialized WebView.
-        /// <param name="locale">The locale of Web</param>
-        /// <param name="timezoneId">The timezoneId of Web</param>
+        /// Creates a WebView with local language and time zone.
+        /// <param name="locale">The locale language of Web</param>
+        /// <param name="timezoneId">The time zone Id of Web</param>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public WebView(string locale, string timezoneId) : this(Interop.WebView.New2(locale, timezoneId), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Creates a WebView with an args list.
+        /// <param name="args">args array. The first value of array must be program's name.</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public WebView(string[] args) : this(Interop.WebView.New3(args?.Length ?? 0, args), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -469,6 +505,23 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Whether video hole is enabled or not.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool VideoHoleEnabled
+        {
+            get
+            {
+                return (bool)GetValue(VideoHoleEnabledProperty);
+            }
+            set
+            {
+                SetValue(VideoHoleEnabledProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// Event for the PageLoadStarted signal which can be used to subscribe or unsubscribe the event handler.<br />
         /// This signal is emitted when page loading has started.<br />
         /// </summary>
@@ -569,6 +622,33 @@ namespace Tizen.NUI
                 {
                     scrollEdgeReachedSignal.Disconnect(scrollEdgeReachedCallback);
                 }
+            }
+        }
+
+        /// <summary>
+        /// Gets title of web page.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string Title
+        {
+            get
+            {
+                return (string)GetValue(TitleProperty);
+            }
+        }
+
+        /// <summary>
+        /// Gets fav icon.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageView Favicon
+        {
+            get
+            {
+                global::System.IntPtr imageView = Interop.WebView.GetFavicon(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending)
+                    return null;
+                return new ImageView(imageView, false);
             }
         }
 
@@ -740,6 +820,16 @@ namespace Tizen.NUI
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(handler);
             Interop.WebView.AddJavaScriptMessageHandler(SwigCPtr, objectName, new System.Runtime.InteropServices.HandleRef(this, ip));
 
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Clears title resources of current WebView.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void ClearAllTilesResources()
+        {
+            Interop.WebView.ClearAllTilesResources(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

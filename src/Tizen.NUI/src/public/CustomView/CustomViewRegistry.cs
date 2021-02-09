@@ -78,6 +78,8 @@ namespace Tizen.NUI
     {
 
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API9, Will be removed in API11, Please use Type")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible instance fields", Justification = "<Pending>")]
         public readonly ScriptableType type;
 
         /// <since_tizen> 3 </since_tizen>

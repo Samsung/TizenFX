@@ -101,7 +101,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal ToggleButton(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ToggleButton.Upcast(cPtr), cMemoryOwn)
+        internal ToggleButton(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

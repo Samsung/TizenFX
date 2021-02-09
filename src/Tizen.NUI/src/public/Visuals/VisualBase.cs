@@ -44,7 +44,7 @@ namespace Tizen.NUI
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        internal VisualBase(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.VisualBase.Upcast(cPtr), cMemoryOwn)
+        internal VisualBase(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

@@ -1,26 +1,45 @@
 using System;
+using System.ComponentModel;
 using System.Collections.Generic;
 
 namespace Tizen.NUI.Binding
 {
-    internal class DataTemplate : ElementTemplate
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class DataTemplate : ElementTemplate
     {
+        /// <summary>
+        /// Base constructor.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public DataTemplate()
         {
         }
 
+        /// <summary>
+        /// Base constructor with specific Type.
+        /// </summary>
+        /// <param name="Type">The Type of content.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public DataTemplate(Type type) : base(type)
         {
         }
 
+        /// <summary>
+        /// Base constructor with loadTemplate function.
+        /// </summary>
+        /// <param name="loadTemplate">The function of loading templated object.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public DataTemplate(Func<object> loadTemplate) : base(loadTemplate)
         {
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public IDictionary<BindableProperty, BindingBase> Bindings { get; } = new Dictionary<BindableProperty, BindingBase>();
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public IDictionary<BindableProperty, object> Values { get; } = new Dictionary<BindableProperty, object>();
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetBinding(BindableProperty property, BindingBase binding)
         {
             if (property == null)
@@ -32,6 +51,7 @@ namespace Tizen.NUI.Binding
             Bindings[property] = binding;
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetValue(BindableProperty property, object value)
         {
             if (property == null)
