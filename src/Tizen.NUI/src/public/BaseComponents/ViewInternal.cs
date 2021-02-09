@@ -109,6 +109,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal void SetLayout(LayoutItem layout)
         {
+            Window.Instance.LayoutController.CreateProcessCallback();
             _layout = layout;
             _layout?.AttachToOwner(this);
             _layout?.RequestLayout();
