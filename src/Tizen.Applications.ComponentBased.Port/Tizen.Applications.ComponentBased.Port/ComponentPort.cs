@@ -38,6 +38,8 @@ namespace Tizen.Applications.ComponentBased
         private Interop.ComponentPort.ComponentPortSyncRequestCallback _syncRequestEventCallback;
         private static Dictionary<int, uint> _watch_map = new Dictionary<int, uint>();
         private static int _requestId = 0;
+        private EventHandler<RequestEventArgs> _requestHandler;
+        private readonly object _eventLock = new object();
 
         /// <summary>
         /// Constructor for this class.
@@ -256,16 +258,29 @@ namespace Tizen.Applications.ComponentBased
         }
 
         /// <summary>
-        /// Overrides this method to handle the behavior when the request is received.
+        /// Occurs whenever the request is received.
         /// </summary>
         /// <remarks>
         /// If the reply is requested, RequestEventArgs.Request should be set.
         /// </remarks>
-        /// <param name="args">The request event argument</param>
         /// <since_tizen> 9 </since_tizen>
-        protected virtual void OnRequestEvent(RequestEventArgs args)
+        public event EventHandler<RequestEventArgs> RequestReceived
         {
+            add
+            {
+                lock (_eventLock)
+                {
+                    _requestHandler += value;
+                }
+            }
+            remove
+            {
+                lock(_eventLock)
+                {
+                    _requestHandler -= value;
+                }
 
+            }
         }
 
         private void OnRequestEvent(string sender, IntPtr request, IntPtr data)
@@ -274,7 +289,10 @@ namespace Tizen.Applications.ComponentBased
             using (var reqParcel = new Parcel(reqSafeHandle))
             {
                 object req = FromParcel(reqParcel);
-                OnRequestEvent(new RequestEventArgs(sender, req, false));
+                lock (_eventLock)
+                {
+                    _requestHandler?.Invoke(this, new RequestEventArgs(sender, req, false));
+                }
             }
         }
 
@@ -289,7 +307,10 @@ namespace Tizen.Applications.ComponentBased
             }
 
             var args = new RequestEventArgs(sender, req, true);
-            OnRequestEvent(args);
+            lock (_eventLock)
+            {
+                _requestHandler?.Invoke(this, args);
+            }
             var result = args.Reply;
             if (result == null)
             {
