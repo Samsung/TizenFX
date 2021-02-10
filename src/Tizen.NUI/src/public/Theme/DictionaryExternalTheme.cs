@@ -14,14 +14,36 @@
  * limitations under the License.
  *
  */
+#if DEBUG
 
 using System.Collections.Generic;
 
 namespace Tizen.NUI
 {
-    internal interface IThemeCreator
+    /// <summary>
+    /// This is a helper class to test external theme applying.
+    /// </summary>
+    internal class DictionaryExternalTheme : IExternalTheme
     {
-        Theme Create();
-        HashSet<ExternalThemeKeyList> GetExternalThemeKeyListSet();
+        private readonly Dictionary<string, string> theme;
+
+        public DictionaryExternalTheme(string id, string version, Dictionary<string, string> theme)
+        {
+            Id = id;
+            Version = version;
+            this.theme = theme;
+        }
+
+        public string Id { get; }
+
+        public string Version { get; }
+
+        public string GetValue(string key)
+        {
+            theme.TryGetValue(key, out string extracted);
+
+            return extracted;
+        }
     }
 }
+#endif

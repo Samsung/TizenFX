@@ -96,7 +96,7 @@ namespace Tizen.NUI
         /// The string key to identify the Theme.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public string Version { get; internal set; } = null;
+        public string Version { get; set; } = null;
 
         /// <summary>
         /// For Xaml use only.
@@ -112,7 +112,7 @@ namespace Tizen.NUI
 
                 if (string.IsNullOrEmpty(baseTheme)) return;
 
-                var baseThemeInstance = ThemeManager.GetBuiltinTheme(baseTheme);
+                var baseThemeInstance = (Theme)ThemeManager.GetBuiltinTheme(baseTheme)?.Clone();
 
                 if (baseThemeInstance != null)
                 {
@@ -192,6 +192,8 @@ namespace Tizen.NUI
 
         internal int Count => map.Count;
 
+        internal int PackageCount { get; set; } = 0;
+
         /// <summary>
         /// Get an enumerator of the theme.
         /// </summary>
@@ -226,10 +228,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ViewStyle GetStyle(string styleName)
         {
-            ViewStyle result;
-
-            map.TryGetValue(styleName, out result);
-
+            map.TryGetValue(styleName, out ViewStyle result);
             return result;
         }
 
@@ -326,7 +325,15 @@ namespace Tizen.NUI
             if (theme == null)
                 throw new ArgumentNullException(nameof(theme));
 
-            if (Id == null) Id = theme.Id;
+            if (Id == null)
+            {
+                Id = theme.Id;
+            }
+
+            if (Version == null)
+            {
+                Version = theme.Version;
+            }
 
             foreach (var item in theme)
             {
@@ -357,6 +364,33 @@ namespace Tizen.NUI
         /// Internal use only.
         /// </summary>
         internal void AddStyleWithoutClone(string styleName, ViewStyle value) => map[styleName] = value;
+
+        internal void ApplyExternalTheme(IExternalTheme externalTheme, HashSet<ExternalThemeKeyList> keyListSet)
+        {
+            Id = externalTheme.Id;
+            Version = externalTheme.Version;
+
+            if (keyListSet == null)
+            {
+                // Nothing to apply
+                return;
+            }
+
+            foreach (var keyList in keyListSet)
+            {
+                keyList?.ApplyKeyActions(externalTheme, this);
+            }
+        }
+
+        internal bool HasSameIdAndVersion(IExternalTheme externalTheme)
+        {
+            if (externalTheme == null)
+            {
+                return false;
+            }
+
+            return string.Equals(Id, externalTheme.Id, StringComparison.OrdinalIgnoreCase) && string.Equals(Version, externalTheme.Version, StringComparison.OrdinalIgnoreCase);
+        }
 
         internal void SetChangedResources(IEnumerable<KeyValuePair<string, string>> changedResources)
         {

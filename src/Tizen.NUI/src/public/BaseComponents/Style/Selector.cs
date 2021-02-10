@@ -351,6 +351,16 @@ namespace Tizen.NUI.BaseComponents
             return SelectorItems.Count > 1;
         }
 
+        internal void AddWithoutDuplicationCheck(ControlState state, T value)
+        {
+            if (state == ControlState.All)
+            {
+                All = value;
+                return;
+            }
+            SelectorItems.Add(new SelectorItem<T>(state, value));
+        }
+
         private T GetOrThrowKeyNotFound(System.Predicate<SelectorItem<T>> match)
         {
             var item = SelectorItems.Find(match);

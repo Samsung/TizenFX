@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,17 +14,16 @@
  * limitations under the License.
  *
  */
-#if PROFILE_WEARABLE
 
 namespace Tizen.NUI
 {
-    internal class DefaultThemeCreator : IThemeCreator
+    /// <summary>
+    /// This is a wrapper to express external theme, such as, tizen-theme-manager's theme.
+    /// </summary>
+    internal interface IExternalTheme
     {
-        public Theme Create()
-        {
-            return new Theme() { Id = "Tizen.NUI.Theme.Wearable" };
-        }
+        string Id { get; }
+        string Version { get; }
+        string GetValue(string key);
     }
 }
-
-#endif
