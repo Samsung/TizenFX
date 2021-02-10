@@ -22,12 +22,6 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-    internal interface IThemeCreator
-    {
-        Theme Create();
-        Theme Create(IEnumerable<KeyValuePair<string, string>> changedResources);
-    }
-
     /// <summary>
     /// This static module provides methods that can manage NUI <seealso cref="Theme"/>.
     /// </summary>
@@ -42,23 +36,15 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public static class ThemeManager
     {
-        private static readonly string[] nuiThemeProjects =
-        {
-            "Tizen.NUI",
-            "Tizen.NUI.Components",
-            "Tizen.NUI.Wearable"
-        };
-
         private static Theme currentTheme;
         private static Theme defaultTheme;
         private static readonly List<Theme> builtinThemes = new List<Theme>(); // Themes provided by framework.
         private static readonly List<Theme> customThemes = new List<Theme>(); // Themes registered by user. (Legacy support)
-        private static readonly List<IThemeCreator> packages = new List<IThemeCreator>();
+        private static readonly List<IThemeCreator> packages = new List<IThemeCreator>();// This is to store default theme creators by packages.
 
         static ThemeManager()
         {
-            defaultTheme = new DefaultThemeCreator().Create();
-            builtinThemes.Add(defaultTheme);
+            AddPackageTheme(new DefaultThemeCreator());
         }
 
         /// <summary>
@@ -87,7 +73,7 @@ namespace Tizen.NUI
         /// </summary>
         internal static Theme DefaultTheme
         {
-            get => defaultTheme;
+            get => defaultTheme ?? (defaultTheme = new Theme());
             set => defaultTheme = (Theme)value?.Clone();
         }
 
