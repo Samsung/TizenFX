@@ -15,26 +15,29 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Security;
+using System.Threading.Tasks;
 
 namespace Tizen.Applications.ComponentBased
 {
     /// <summary>
-    /// Abstract class for creating a component port class.
+    /// The component port API provides functions to send and receive requests between components of component-based-application.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
-    public abstract class ComponentPort : IDisposable
+    public class ComponentPort : IDisposable
     {
         private static string LogTag = "ComponentPort";
-        private readonly string _portName;
         private IntPtr _port = IntPtr.Zero;
         private Interop.ComponentPort.ComponentPortRequestCallback _requestEventCallback;
         private Interop.ComponentPort.ComponentPortSyncRequestCallback _syncRequestEventCallback;
+        private static Dictionary<int, uint> _watch_map = new Dictionary<int, uint>();
+        private static int _requestId = 0;
 
         /// <summary>
         /// Constructor for this class.
@@ -50,7 +53,7 @@ namespace Tizen.Applications.ComponentBased
             if (ret != Interop.ComponentPort.ErrorCode.None)
                 throw ComponentPortErrorFactory.GetException(ret, "ComponentPort(" + portName + ").");
 
-            _portName = portName;
+            PortName = portName;
             _requestEventCallback = new Interop.ComponentPort.ComponentPortRequestCallback(OnRequestEvent);
             _syncRequestEventCallback = new Interop.ComponentPort.ComponentPortSyncRequestCallback(OnSyncRequestEvent);
             Interop.ComponentPort.SetRequestCb(_port, _requestEventCallback, IntPtr.Zero);
@@ -63,10 +66,8 @@ namespace Tizen.Applications.ComponentBased
         /// <since_tizen> 9 </since_tizen>
         public string PortName
         {
-            get
-            {
-                return _portName;
-            }
+            get;
+            private set;
         }
 
         /// <summary>
@@ -86,18 +87,57 @@ namespace Tizen.Applications.ComponentBased
         }
 
         /// <summary>
+        /// Waits for the port is ready.
+        /// </summary>
+        /// <param name="endpoint">The name of the port</param>
+        /// <returns>A task.</returns>
+        public static async Task WaitForPort(string endpoint)
+        {
+            await Task.Run(() =>
+            {
+                bool isRunning = false;
+                Interop.ComponentPort.IsRunning(endpoint, out isRunning);
+                if (isRunning)
+                    return;
+
+                var task = new TaskCompletionSource<bool>();
+                Interop.ComponentPort.ComponentPortAppearedCallback appearedCallback = (string portName, int owner, IntPtr userData) =>
+                {
+                    Log.Info(LogTag, portName + " is appeared");
+                    task.SetResult(true);
+                    lock (_watch_map)
+                    {
+                        Interop.ComponentPort.Unwatch(_watch_map[(int)userData]);
+                        _watch_map.Remove((int)userData);
+                    }
+                };
+
+                Interop.ComponentPort.ComponentPortVanishedCallback vanishedCallback = (string portName, IntPtr userData) =>
+                {
+                    Log.Info(LogTag, portName + " is vanished");
+                };
+
+                lock (_watch_map)
+                {
+                    _requestId++;
+                    Interop.ComponentPort.Watch(endpoint, appearedCallback, vanishedCallback, (IntPtr)_requestId, out uint watcherId); ;
+                    _watch_map[_requestId] = watcherId;
+                }
+            }).ConfigureAwait(false);
+        }
+
+        /// <summary>
         /// Waits for events.
         /// </summary>
         /// <remarks>
         /// This method runs a main loop until Cancel() is called.
         /// The code in the next line will not run until Cancel() is called.
-        /// It is recommended that this method uses in the sub thread.
+        /// To avoid blocking the main thread, it's recommended that ComponentTask class uses.
         /// </remarks>
         /// <example>
         /// <code>
-        /// CommPort port = new CommPort("Comm");
-        /// Thread thread = new Thread(() => port.WaitForEvent());
-        /// thread.Start();
+        /// ComponentTask task = new ComponentTask(new ComponentPort("Comm"));
+        /// task.Start();
         /// </code>
         /// </example>
         /// <since_tizen> 9 </since_tizen>
@@ -150,7 +190,7 @@ namespace Tizen.Applications.ComponentBased
         }
 
         /// <summary>
-        /// Sends the request data synchronously.
+        /// Sends the request data and receives the reply data.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when the argument is invalid.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when the memory is insufficient.</exception>
@@ -161,7 +201,7 @@ namespace Tizen.Applications.ComponentBased
         /// <param name="request">The serializable data to send</param>
         /// <returns>The received serializable data</returns>
         /// /// <since_tizen> 9 </since_tizen>
-        public object SendSync(string endpoint, int timeout, object request)
+        public object SendAndReceive(string endpoint, int timeout, object request)
         {
             if (request == null)
             {
@@ -192,22 +232,41 @@ namespace Tizen.Applications.ComponentBased
         }
 
         /// <summary>
-        /// Abstract method for receiving a request event.
+        /// Sends the request data and receives the reply data asynchronously.
         /// </summary>
-        /// <param name="sender">The name of the sender</param>
-        /// <param name="request">The serializable data</param>
-        /// <since_tizen> 9 </since_tizen>
-        protected abstract void OnRequestEvent(string sender, object request);
+        /// <exception cref="ArgumentException">Thrown when the argument is invalid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when the memory is insufficient.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when because of permission denied.</exception>
+        /// <exception cref="global::System.IO.IOException">Thrown when because of I/O error.</exception>
+        /// <param name="endpoint">The name of the endpoint</param>
+        /// <param name="timeout">The timeout in milliseconds, -1 to use the default timeout</param>
+        /// <param name="request">The serializable data to send</param>
+        /// <returns>The received serializable data</returns>
+        /// /// <since_tizen> 9 </since_tizen>
+        public async Task<object> SendAndReceiveAsync(string endpoint, int timeout, object request)
+        {
+            try
+            {
+                return await Task.Run(() => SendAndReceive(endpoint, timeout, request)).ConfigureAwait(false); ;
+            } 
+            catch
+            {
+                throw;
+            }
+        }
 
         /// <summary>
-        /// Abstract method for receiving a synchronous request event.
+        /// Overrides this method to handle the behavior when the request is received.
         /// </summary>
-        /// <param name="sender">The name of the sender</param>
-        /// <param name="request">The serializable data</param>
-        /// <returns>The serializable data</returns>
+        /// <remarks>
+        /// If the reply is requested, RequestEventArgs.Request should be set.
+        /// </remarks>
+        /// <param name="args">The request event argument</param>
         /// <since_tizen> 9 </since_tizen>
-        protected abstract object OnSyncRequestEvent(string sender, object request);
+        protected virtual void OnRequestEvent(RequestEventArgs args)
+        {
 
+        }
 
         private void OnRequestEvent(string sender, IntPtr request, IntPtr data)
         {
@@ -215,7 +274,7 @@ namespace Tizen.Applications.ComponentBased
             using (var reqParcel = new Parcel(reqSafeHandle))
             {
                 object req = FromParcel(reqParcel);
-                OnRequestEvent(sender, req);
+                OnRequestEvent(new RequestEventArgs(sender, req, false));
             }
         }
 
@@ -229,8 +288,14 @@ namespace Tizen.Applications.ComponentBased
                 req = FromParcel(reqParcel);
             }
 
-            object result = OnSyncRequestEvent(sender, req);
-            if (!result.GetType().IsSerializable)
+            var args = new RequestEventArgs(sender, req, true);
+            OnRequestEvent(args);
+            var result = args.Reply;
+            if (result == null)
+            {
+                Log.Error(LogTag, "result is null");
+            }
+            else if (result.GetType().IsSerializable)
             {
                 Log.Error(LogTag, "result is not serializable");
             }
