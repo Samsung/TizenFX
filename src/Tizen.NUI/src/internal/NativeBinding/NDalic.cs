@@ -218,6 +218,83 @@ namespace Tizen.NUI
             }
         }
 
+        public static Vector4 ALICE_BLUE
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.AliceBlueGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 ANTIQUE_WHITE
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.AntiqueWhiteGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 AQUA
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.AquaGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 AQUA_MARINE
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.AquaMarineGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 AZURE
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.AzureGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 BEIGE
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.BeigeGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 BISQUE
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.BisqueGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
         public static Vector4 BLACK
         {
             get
@@ -229,33 +306,11 @@ namespace Tizen.NUI
             }
         }
 
-        public static Vector4 WHITE
+        public static Vector4 BLANCHE_DALMOND
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.WhiteGet();
-                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        public static Vector4 RED
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.NDalicColor.RedGet();
-                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        public static Vector4 GREEN
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.NDalicColor.GreenGet();
+                global::System.IntPtr cPtr = Interop.NDalicColor.BlancheDalmondGet();
                 Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -273,22 +328,110 @@ namespace Tizen.NUI
             }
         }
 
-        public static Vector4 YELLOW
+        public static Vector4 BLUE_VIOLET
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.YellowGet();
+                global::System.IntPtr cPtr = Interop.NDalicColor.BlueVioletGet();
                 Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
 
-        public static Vector4 MAGENTA
+        public static Vector4 BROWN
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.MagentaGet();
+                global::System.IntPtr cPtr = Interop.NDalicColor.BrownGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 BURLY_WOOD
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.BurlyWoodGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 CADET_BLUE
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.CadetBlueGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 CHARTREUSE
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.ChartreuseGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 CHOCOLATE
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.ChocolateGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 CORAL
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.CoralGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 CORNFLOWER_BLUE
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.CornflowerBlueGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 CORNSILK
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.CornsilkGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 CRIMSON
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.CrimsonGet();
                 Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -306,6 +449,1315 @@ namespace Tizen.NUI
             }
         }
 
+        public static Vector4 DARK_BLUE
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.DarkBlueGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 DARK_CYAN
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.DarkCyanGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 DARK_GOLDENROD
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.DarkGoldenrodGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 DARK_GRAY
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.DarkGrayGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 DARK_GREEN
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.DarkGreenGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 DARK_GREY
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.DarkGreyGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 DARK_KHAKI
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.DarkKhakiGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 DARK_MAGENTA
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.DarkMagentaGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 DARK_OLIVE_GREEN
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.DarkOliveGreenGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 DARK_ORANGE
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.DarkOrangeGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 DARK_ORCHID
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.DarkOrchidGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 DARK_RED
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.DarkRedGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 DARK_SALMON
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.DarkSalmonGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 DARK_SEA_GREEN
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.DarkSeaGreenGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 DARK_SLATE_BLUE
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.DarkSlateBlueGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 DARK_SLATE_GRAY
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.DarkSlateGrayGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 DARK_SLATE_GREY
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.DarkSlateGreyGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 DARK_TURQUOISE
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.DarkTurquoiseGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 DARK_VIOLET
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.DarkVioletGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 DEEP_PINK
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.DeepPinkGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 DEEP_SKY_BLUE
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.DeepSkyBlueGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 DIM_GRAY
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.DimGrayGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 DIM_GREY
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.DimGreyGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 DODGER_BLUE
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.DodgerBlueGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 FIRE_BRICK
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.FireBrickGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 FLORAL_WHITE
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.FloralWhiteGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 FOREST_GREEN
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.ForestGreenGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 FUCHSIA
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.FuchsiaGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 GAINSBORO
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.GainsboroGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 GHOST_WHITE
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.GhostWhiteGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 GOLD
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.GoldGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 GOLDEN_ROD
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.GoldenRodGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 GRAY
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.GrayGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 GREEN
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.GreenGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 GREEN_YELLOW
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.GreenYellowGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 GREY
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.GreyGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 HONEYDEW
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.HoneydewGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 HOT_PINK
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.HotPinkGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 INDIANRED
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.IndianredGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 INDIGO
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.IndigoGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 IVORY
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.IvoryGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 KHAKI
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.KhakiGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 LAVENDER
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.LavenderGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 LAVENDER_BLUSH
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.LavenderBlushGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 LAWN_GREEN
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.LawnGreenGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 LEMON_CHIFFON
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.LemonChiffonGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 LIGHT_BLUE
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.LightBlueGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 LIGHT_CORAL
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.LightCoralGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 LIGHT_CYAN
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.LightCyanGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 LIGHT_GOLDEN_ROD_YELLOW
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.LightGoldenRodYellowGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 LIGHT_GRAY
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.LightGrayGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 LIGHT_GREEN
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.LightGreenGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 LIGHT_GREY
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.LightGreyGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 LIGHT_PINK
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.LightPinkGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 LIGHT_SALMON
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.LightSalmonGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 LIGHT_SEA_GREEN
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.LightSeaGreenGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 LIGHT_SKY_BLUE
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.LightSkyBlueGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 LIGHT_SLATE_GRAY
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.LightSlateGrayGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 LIGHT_SLATE_GREY
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.LightSlateGreyGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 LIGHT_STEEL_BLUE
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.LightSteelBlueGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 LIGHT_YELLOW
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.LightYellowGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 LIME
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.LimeGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 LIME_GREEN
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.LimeGreenGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 LINEN
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.LinenGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 MAGENTA
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.MagentaGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 MAROON
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.MaroonGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 MEDIUM_AQUA_MARINE
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.MediumAquaMarineGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 MEDIUM_BLUE
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.MediumBlueGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 MEDIUM_ORCHID
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.MediumOrchidGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 MEDIUM_PURPLE
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.MediumPurpleGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 MEDIUM_SEA_GREEN
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.MediumSeaGreenGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 MEDIUM_SLATE_BLUE
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.MediumSlateBlueGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 MEDIUM_SPRING_GREEN
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.MediumSpringGreenGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 MEDIUM_TURQUOISE
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.MediumTurquoiseGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 MEDIUM_VIOLETRED
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.MediumVioletredGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 MIDNIGHT_BLUE
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.MidnightBlueGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 MINT_CREAM
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.MintCreamGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 MISTY_ROSE
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.MistyRoseGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 MOCCASIN
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.MoccasinGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 NAVAJO_WHITE
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.NavajoWhiteGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 NAVY
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.NavyGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 OLD_LACE
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.OldLaceGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 OLIVE
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.OliveGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 OLIVE_DRAB
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.OliveDrabGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 ORANGE
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.OrangeGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 ORANGE_RED
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.OrangeRedGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 ORCHID
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.OrchidGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 PALE_GOLDEN_ROD
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.PaleGoldenRodGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 PALE_GREEN
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.PaleGreenGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4  PALE_TURQUOISE
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.PaleTurquoiseGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 PALE_VIOLET_RED
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.PaleVioletRedGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 PAPAYA_WHIP 
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.PapayaWhipGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 PEACH_PUFF
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.PeachPuffGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 PERU
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.PeruGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 PINK
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.PinkGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 PLUM
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.PlumGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 POWDER_BLUE
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.PowderBlueGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 PURPLE
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.PurpleGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 RED
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.RedGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 ROSY_BROWN
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.RosyBrownGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 ROYAL_BLUE
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.RoyalBlueGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 SADDLE_BROWN
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.SaddleBrownGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 SALMON
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.SalmonGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 SANDY_BROWN
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.SandyBrownGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 SEA_GREEN
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.SeaGreenGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 SEA_SHELL
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.SeaShellGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 SIENNA
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.SiennaGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 SILVER
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.SilverGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 SKY_BLUE
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.SkyBlueGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 SLATE_BLUE
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.SlateBlueGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 SLATE_GRAY
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.SlateGrayGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 SLATE_GREY
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.SlateGreyGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 SNOW
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.SnowGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 SPRING_GREEN
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.SpringGreenGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 STEEL_BLUE
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.SteelBlueGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 TAN
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.TanGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 TEAL
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.TealGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 THISTLE
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.ThistleGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 TOMATO
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.TomatoGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
         public static Vector4 TRANSPARENT
         {
             get
@@ -316,6 +1768,84 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+
+        public static Vector4 TURQUOISE
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.TurquoiseGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 VIOLET
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.VioletGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 WHEAT
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.WheatGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 WHITE
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.WhiteGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 WHITE_SMOKE
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.WhiteSmokeGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 YELLOW
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.YellowGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public static Vector4 YELLOW_GREEN
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.NDalicColor.YellowGreenGet();
+                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
 
         internal static float MACHINE_EPSILON_0
         {
