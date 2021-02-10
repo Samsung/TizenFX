@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -91,6 +91,12 @@ namespace Tizen.NUI
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string Id { get; set; }
+
+        /// <summary>
+        /// The string key to identify the Theme.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string Version { get; internal set; } = null;
 
         /// <summary>
         /// For Xaml use only.
@@ -218,7 +224,14 @@ namespace Tizen.NUI
         /// <param name="styleName">The string key to find a ViewStyle.</param>
         /// <returns>Founded style instance.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ViewStyle GetStyle(string styleName) => map.ContainsKey(styleName) ? map[styleName] : null;
+        public ViewStyle GetStyle(string styleName)
+        {
+            ViewStyle result;
+
+            map.TryGetValue(styleName, out result);
+
+            return result;
+        }
 
         /// <summary>
         /// Gets a style of given view type.
