@@ -338,13 +338,13 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PALE_GREEN_get")]
             public static extern global::System.IntPtr PaleGreenGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ PALE_TURQUOISE_get")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PALE_TURQUOISE_get")]
             public static extern global::System.IntPtr PaleTurquoiseGet();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PALE_VIOLET_RED_get")]
             public static extern global::System.IntPtr PaleVioletRedGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PAPAYA_WHIP _get")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PAPAYA_WHIP_get")]
             public static extern global::System.IntPtr PapayaWhipGet();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PEACH_PUFF_get")]

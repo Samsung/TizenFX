@@ -1428,7 +1428,7 @@ namespace Tizen.NUI
             }
         }
 
-        public static Vector4  PALE_TURQUOISE
+        public static Vector4 PALE_TURQUOISE
         {
             get
             {
