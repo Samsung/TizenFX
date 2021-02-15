@@ -59,7 +59,7 @@ namespace Tizen.NUI.Components
         /// This is used to improve theme performance.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        static public void PreLoad()
+        static public void Preload()
         {
             ThemeManager.AddPackageTheme(DefaultThemeCreator.Instance);
         }
