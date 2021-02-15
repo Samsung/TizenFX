@@ -692,7 +692,7 @@ namespace Tizen.NUI
         /// Gets the  Pale_Turquoise colored Color class.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Color PaleTurquoise = NDalic. PALE_TURQUOISE;
+        public static readonly Color PaleTurquoise = NDalic.PALE_TURQUOISE;
 
         /// <summary>
         /// Gets the Pale_Violet_Red colored Color class.
