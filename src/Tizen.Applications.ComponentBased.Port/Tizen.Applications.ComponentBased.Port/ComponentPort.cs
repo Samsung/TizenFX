@@ -22,6 +22,7 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Security;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Tizen.Applications.ComponentBased
@@ -36,7 +37,9 @@ namespace Tizen.Applications.ComponentBased
         private IntPtr _port = IntPtr.Zero;
         private Interop.ComponentPort.ComponentPortRequestCallback _requestEventCallback;
         private Interop.ComponentPort.ComponentPortSyncRequestCallback _syncRequestEventCallback;
-        private static Dictionary<int, uint> _watch_map = new Dictionary<int, uint>();
+        private static Dictionary<int, uint> _watcherIdMap = new Dictionary<int, uint>();
+        private static Dictionary<int, Interop.ComponentPort.ComponentPortAppearedCallback> _appearedNativeCallbackMap = new Dictionary<int, Interop.ComponentPort.ComponentPortAppearedCallback>();
+        private static Dictionary<int, Interop.ComponentPort.ComponentPortVanishedCallback> _vanishedNativeCallbackMap = new Dictionary<int, Interop.ComponentPort.ComponentPortVanishedCallback>();
         private static int _requestId = 0;
         private EventHandler<RequestEventArgs> _requestHandler;
         private readonly object _eventLock = new object();
@@ -95,37 +98,53 @@ namespace Tizen.Applications.ComponentBased
         /// <returns>A task.</returns>
         public static async Task WaitForPort(string endpoint)
         {
-            await Task.Run(() =>
-            {
-                bool isRunning = false;
-                Interop.ComponentPort.IsRunning(endpoint, out isRunning);
-                if (isRunning)
-                    return;
+            Interop.ComponentPort.IsRunning(endpoint, out bool isRunning);
+            if (isRunning)
+                return;
 
-                var task = new TaskCompletionSource<bool>();
-                Interop.ComponentPort.ComponentPortAppearedCallback appearedCallback = (string portName, int owner, IntPtr userData) =>
+            var task = new TaskCompletionSource<bool>();
+            int requestId = _requestId++;
+
+            lock (_appearedNativeCallbackMap)
+            {
+                _appearedNativeCallbackMap[requestId] = (string portName, int owner, IntPtr userData) =>
                 {
+                    int id = (int)userData;
                     Log.Info(LogTag, portName + " is appeared");
                     task.SetResult(true);
-                    lock (_watch_map)
+                    lock (_watcherIdMap)
                     {
-                        Interop.ComponentPort.Unwatch(_watch_map[(int)userData]);
-                        _watch_map.Remove((int)userData);
+                        Interop.ComponentPort.Unwatch(_watcherIdMap[id]);
+                        _watcherIdMap.Remove(id);
+                    }
+
+                    lock (_appearedNativeCallbackMap)
+                    {
+                        _appearedNativeCallbackMap.Remove(id);
+                    }
+
+                    lock (_vanishedNativeCallbackMap)
+                    {
+                        _vanishedNativeCallbackMap.Remove(id);
                     }
                 };
+            }
 
-                Interop.ComponentPort.ComponentPortVanishedCallback vanishedCallback = (string portName, IntPtr userData) =>
+            lock (_vanishedNativeCallbackMap)
+            {
+                _vanishedNativeCallbackMap[requestId] = (string portName, IntPtr userData) =>
                 {
                     Log.Info(LogTag, portName + " is vanished");
                 };
+            }
 
-                lock (_watch_map)
-                {
-                    _requestId++;
-                    Interop.ComponentPort.Watch(endpoint, appearedCallback, vanishedCallback, (IntPtr)_requestId, out uint watcherId); ;
-                    _watch_map[_requestId] = watcherId;
-                }
-            }).ConfigureAwait(false);
+            lock (_watcherIdMap)
+            {
+                Interop.ComponentPort.Watch(endpoint, _appearedNativeCallbackMap[requestId], _vanishedNativeCallbackMap[requestId], (IntPtr)requestId, out uint watcherId);
+                _watcherIdMap[requestId] = watcherId;
+            }
+
+            await task.Task.ConfigureAwait(false);
         }
 
         /// <summary>
@@ -218,7 +237,7 @@ namespace Tizen.Applications.ComponentBased
             SafeParcelHandle resSafeHandle = null;
             Interop.ComponentPort.ErrorCode err;
             using (Parcel reqParcel = ToParcel(request))
-            {             
+            {
                 err = Interop.ComponentPort.SendSync(_port, endpoint, timeout, reqParcel.SafeParcelHandle, out resSafeHandle);
             }
             if (err != Interop.ComponentPort.ErrorCode.None)
@@ -230,7 +249,7 @@ namespace Tizen.Applications.ComponentBased
             {
                 object response = FromParcel(resParcel);
                 return response;
-            }            
+            }
         }
 
         /// <summary>
@@ -249,8 +268,8 @@ namespace Tizen.Applications.ComponentBased
         {
             try
             {
-                return await Task.Run(() => SendAndReceive(endpoint, timeout, request)).ConfigureAwait(false); ;
-            } 
+                return await Task.Run(() => SendAndReceive(endpoint, timeout, request)).ConfigureAwait(false);
+            }
             catch
             {
                 throw;
