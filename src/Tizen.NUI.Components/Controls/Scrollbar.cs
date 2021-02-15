@@ -688,7 +688,7 @@ namespace Tizen.NUI.Components
             public override Vector2 CalculateThumbScrollPosition(Size trackSize, Vector2 thumbPosition, PaddingType trackPadding)
             {
                 float pos = Math.Min(Math.Max(currentPosition, 0.0f), contentLength - visibleLength);
-                return new Vector2(thumbPosition.X, trackPadding.Item1 + trackSize.Height * pos / contentLength);
+                return new Vector2(thumbPosition.X, trackPadding.Item3 + trackSize.Height * pos / contentLength);
             }
         }
 
