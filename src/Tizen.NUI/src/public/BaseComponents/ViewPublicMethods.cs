@@ -73,34 +73,49 @@ namespace Tizen.NUI.BaseComponents
         public Animation AnimateColor(string targetVisual, object destinationColor, int startTime, int endTime, AlphaFunction.BuiltinFunctions? alphaFunction = null, object initialColor = null)
         {
             Animation animation = null;
+            using (PropertyMap animator = new PropertyMap())
+            using (PropertyMap timePeriod = new PropertyMap())
+            using (PropertyValue pvDuration = new PropertyValue((endTime - startTime) / 1000.0f))
+            using (PropertyValue pvDelay = new PropertyValue(startTime / 1000.0f))
+            using (PropertyMap transition = new PropertyMap())
+            using (PropertyValue pvTarget = new PropertyValue(targetVisual))
+            using (PropertyValue pvProperty = new PropertyValue("mixColor"))
+            using (PropertyValue destValue = PropertyValue.CreateFromObject(destinationColor))
             {
-                PropertyMap _animator = new PropertyMap();
                 if (alphaFunction != null)
                 {
-                    _animator.Add("alphaFunction", new PropertyValue(AlphaFunction.BuiltinToPropertyKey(alphaFunction)));
+                    using (PropertyValue pvAlpha = new PropertyValue(AlphaFunction.BuiltinToPropertyKey(alphaFunction)))
+                    {
+                        animator.Add("alphaFunction", pvAlpha);
+                    }
                 }
 
-                PropertyMap _timePeriod = new PropertyMap();
-                _timePeriod.Add("duration", new PropertyValue((endTime - startTime) / 1000.0f));
-                _timePeriod.Add("delay", new PropertyValue(startTime / 1000.0f));
-                _animator.Add("timePeriod", new PropertyValue(_timePeriod));
-
-                PropertyMap _transition = new PropertyMap();
-                _transition.Add("animator", new PropertyValue(_animator));
-                _transition.Add("target", new PropertyValue(targetVisual));
-                _transition.Add("property", new PropertyValue("mixColor"));
+                timePeriod.Add("duration", pvDuration);
+                timePeriod.Add("delay", pvDelay);
+                using (PropertyValue pvTimePeriod = new PropertyValue(timePeriod))
+                {
+                    animator.Add("timePeriod", pvTimePeriod);
+                }
+                using (PropertyValue pvAnimator = new PropertyValue(animator))
+                {
+                    transition.Add("animator", pvAnimator);
+                }
+                transition.Add("target", pvTarget);
+                transition.Add("property", pvProperty);
 
                 if (initialColor != null)
                 {
-                    PropertyValue initValue = PropertyValue.CreateFromObject(initialColor);
-                    _transition.Add("initialValue", initValue);
+                    using (PropertyValue initValue = PropertyValue.CreateFromObject(initialColor))
+                    {
+                        transition.Add("initialValue", initValue);
+                    }
                 }
 
-                PropertyValue destValue = PropertyValue.CreateFromObject(destinationColor);
-                _transition.Add("targetValue", destValue);
-                TransitionData _transitionData = new TransitionData(_transition);
-
-                animation = new Animation(Interop.View.CreateTransition(SwigCPtr, TransitionData.getCPtr(_transitionData)), true);
+                transition.Add("targetValue", destValue);
+                using (TransitionData transitionData = new TransitionData(transition))
+                {
+                    animation = new Animation(Interop.View.CreateTransition(SwigCPtr, TransitionData.getCPtr(transitionData)), true);
+                }
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -166,7 +181,7 @@ namespace Tizen.NUI.BaseComponents
             if (child == null || child.GetParent() == null) // Early out if child null.
                 return;
 
-            if (child.Parent != this)
+            if (child.GetParent() != this)
             {
                 throw new System.InvalidOperationException("You have deleted a view that is not a child of this view.");
             }
@@ -206,6 +221,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <seealso cref="Container.GetChildCount" />
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API9, will be removed in API11. Please use ChildCount property instead!")]
         public override uint GetChildCount()
         {
             return Convert.ToUInt32(Children.Count);
@@ -246,6 +262,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="styleName">A string matching a style described in a stylesheet.</param>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API9, will be removed in API11. Please use StyleName property instead!")]
         public void SetStyleName(string styleName)
         {
             Interop.View.SetStyleName(SwigCPtr, styleName);
@@ -257,6 +274,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <returns>A string matching a style, or an empty string.</returns>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API9, will be removed in API11. Please use StyleName property instead!")]
         public string GetStyleName()
         {
             string ret = Interop.View.GetStyleName(SwigCPtr);
@@ -450,6 +468,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="width">The width to use.</param>
         /// <returns>The height based on the width.</returns>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API9, will be removed in API11. Please use HeightForWidth property instead!")]
         public float GetHeightForWidth(float width)
         {
             float ret = Interop.Actor.GetHeightForWidth(SwigCPtr, width);
@@ -466,6 +485,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="height">The height to use.</param>
         /// <returns>The width based on the height.</returns>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API9, will be removed in API11. Please use WidthForHeight property instead!")]
         public float GetWidthForHeight(float height)
         {
             float ret = Interop.Actor.GetWidthForHeight(SwigCPtr, height);
@@ -493,6 +513,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="padding">Padding for the view.</param>
         /// <since_tizen> 3 </since_tizen>
+        // [Obsolete("Deprecated in API9, will be removed in API11. Please use Padding property instead!")]
         public void SetPadding(PaddingType padding)
         {
             Interop.Actor.SetPadding(SwigCPtr, PaddingType.getCPtr(padding));
@@ -505,6 +526,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="paddingOut">the value of padding for the view</param>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API9, will be removed in API11. Please use Padding property instead!")]
         public void GetPadding(PaddingType paddingOut)
         {
             Interop.Actor.GetPadding(SwigCPtr, PaddingType.getCPtr(paddingOut));

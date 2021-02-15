@@ -22,6 +22,10 @@ namespace Tizen.NUI.Wearable
 {
     internal class DefaultThemeCreator : IThemeCreator
     {
+        private DefaultThemeCreator() { }
+
+        public static IThemeCreator Instance { get; set; } = new DefaultThemeCreator();
+
         public Theme Create() => Create(null);
 
         public Theme Create(IEnumerable<KeyValuePair<string, string>> changedResources)

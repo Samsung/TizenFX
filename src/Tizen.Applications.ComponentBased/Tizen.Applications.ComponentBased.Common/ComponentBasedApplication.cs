@@ -84,6 +84,11 @@ namespace Tizen.Applications.ComponentBased.Common
                 Log.Info(LogTag, "Add service component");
                 _componentFactories.Add(compType, new ServiceComponentStateManager(compType, compId, this));
             }
+            else if (typeof(WidgetComponent).IsAssignableFrom(compType))
+            {
+                Log.Info(LogTag, "Add widget component");
+                _componentFactories.Add(compType, new WidgetComponentStateManager(compType, compId, this));
+            }
             else
             {
                 throw new ArgumentException("compType must be sub type of FrameComponent or ServiceComponent", "compType");

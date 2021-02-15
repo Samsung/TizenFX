@@ -334,7 +334,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal ImageView(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : base(Interop.ImageView.Upcast(cPtr), cMemoryOwn, viewStyle)
+        internal ImageView(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : base(cPtr, cMemoryOwn, viewStyle)
         {
             if (!shown)
             {
@@ -342,7 +342,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal ImageView(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.ImageView.Upcast(cPtr), cMemoryOwn, null)
+        internal ImageView(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(cPtr, cMemoryOwn, null)
         {
             if (!shown)
             {
@@ -1083,10 +1083,8 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Get attribues, it is abstract function and must be override.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override ViewStyle GetViewStyle()
+        protected override ViewStyle CreateViewStyle()
         {
             return new ImageViewStyle();
         }
@@ -1246,9 +1244,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (_resourceUrl != null)
                 {
-                  Size2D originalImageSize = ImageLoading.GetOriginalImageSize(_resourceUrl);
-                  Size2D imageSize = originalImageSize;
-                  originalImageSize?.Dispose();
+                  Size2D imageSize = ImageLoading.GetOriginalImageSize(_resourceUrl);
 
                   int adjustedDesiredWidth, adjustedDesiredHeight;
                   float aspectOfDesiredSize = (float)_desired_height / (float)_desired_width;

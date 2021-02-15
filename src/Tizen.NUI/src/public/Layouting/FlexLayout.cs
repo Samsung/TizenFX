@@ -95,7 +95,6 @@ namespace Tizen.NUI
         private bool swigCMemOwn;
         private bool disposed;
         private bool isDisposeQueued = false;
-        private bool disposedThis = false;
 
         private MeasureSpecification parentMeasureSpecificationWidth;
         private MeasureSpecification parentMeasureSpecificationHeight;
@@ -304,7 +303,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(bool disposing)
         {
-            if (disposedThis)
+            if (disposed)
             {
                 return;
             }
@@ -341,7 +340,6 @@ namespace Tizen.NUI
 
             // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
             // TODO: set large fields to null.
-            disposedThis = true;
             base.Dispose(disposing);
         }
 
@@ -703,12 +701,17 @@ namespace Tizen.NUI
         /// Callback when child is removed from container.<br />
         /// </summary>
         /// <param name="child">The Layout child.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when child is null. </exception>
         /// <since_tizen> 6 </since_tizen>
         protected override void OnChildRemove(LayoutItem child)
         {
+            if (null == child)
+            {
+                throw new ArgumentNullException(nameof(child));
+            }
             // When child View is removed from it's parent View (that is a Layout) then remove it from the layout too.
             // FlexLayout refers to the child as a View not LayoutItem.
-            Interop.FlexLayout.RemoveChild(swigCPtr, child);
+            Interop.FlexLayout.RemoveChild(swigCPtr, child.Owner.SwigCPtr);
         }
 
         /// <summary>
@@ -811,6 +814,7 @@ namespace Tizen.NUI
                     // Get the frame for the child, start, top, end, bottom.
                     Vector4 frame = new Vector4(Interop.FlexLayout.GetNodeFrame(swigCPtr, childIndex), true);
                     childLayout.Layout(new LayoutLength(frame.X), new LayoutLength(frame.Y), new LayoutLength(frame.Z), new LayoutLength(frame.W));
+                    frame.Dispose();
                 }
             }
         }

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-#if !PROFILE_WEARABLE
+#if !PROFILE_WEARABLE && !PROFILE_MOBILE
 
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -26,14 +26,19 @@ namespace Tizen.NUI.Components
     // It is a C# version of res/Tizen.NUI.Components_Tizen.NUI.Theme.Common.xaml
     internal class DefaultThemeCreator : IThemeCreator
     {
+        private DefaultThemeCreator() { }
+
+        public static IThemeCreator Instance { get; set; } = new DefaultThemeCreator();
+
         public ResourceDictionary CreateThemeResource() => new ResourceDictionary()
         {
-            ["ButtonBackgroundColorNormal"] = new Color(0.88f, 0.88f, 0.88f, 1),
-            ["ButtonBackgroundColorPressed"] = new Color(0.77f, 0.77f, 0.77f, 1),
-            ["ButtonBackgroundColorDisabled"] = new Color(0.88f, 0.88f, 0.88f, 1),
-            ["ButtonTextColorNormal"] = new Color(0.22f, 0.22f, 0.22f, 1),
-            ["ButtonTextColorPressed"] = new Color(0.11f, 0.11f, 0.11f, 1),
-            ["ButtonTextColorDisabled"] = new Color(0.66f, 0.66f, 0.66f, 1),
+            ["ButtonBackgroundColorNormal"] = new Color(0.039f, 0.055f, 0.29f, 1),
+            ["ButtonBackgroundColorFocused"] = new Color(0, 0.2f, 0.545f, 1),
+            ["ButtonBackgroundColorPressed"] = new Color(0.106f, 0.412f, 0.792f, 1),
+            ["ButtonBackgroundColorDisabled"] = new Color(0.765f, 0.792f, 0.824f, 1),
+            ["ButtonTextColorNormal"] = Color.White,
+            ["ButtonTextColorPressed"] = Color.White,
+            ["ButtonTextColorDisabled"] = Color.White,
             ["CheckBoxIconBackgroundImagePressed"] = FrameworkInformation.ResourcePath + "nui_component_default_checkbox_bg_p.png",
             ["CheckBoxIconBackgroundImageSelected"] = FrameworkInformation.ResourcePath + "nui_component_default_checkbox_bg_p.png",
             ["CheckBoxIconBackgroundImageOther"] = FrameworkInformation.ResourcePath + "nui_component_default_checkbox_bg_n.png",
@@ -72,6 +77,7 @@ namespace Tizen.NUI.Components
             ["SliderThumbImageResourceUrl"] = FrameworkInformation.ResourcePath + "nui_component_default_slider_thumb_n.png",
             ["SliderThumbBackgroundImageNormal"] = FrameworkInformation.ResourcePath + "nui_component_default_slider_thumb_bg_p.png",
             ["SliderThumbBackgroundImagePressed"] = FrameworkInformation.ResourcePath + "nui_component_default_slider_thumb_bg_p.png",
+            ["SliderValueIndicatorImage"] = FrameworkInformation.ResourcePath + "nui_component_default_slider_value_indicator.png",
             ["SwitchTrackImageResourceUrlNormal"] = FrameworkInformation.ResourcePath + "nui_component_default_switch_track_n.png",
             ["SwitchTrackImageResourceUrlSelected"] = FrameworkInformation.ResourcePath + "nui_component_default_switch_track_s.png",
             ["SwitchTrackImageResourceUrlDisabled"] = FrameworkInformation.ResourcePath + "nui_component_default_switch_track_d.png",
@@ -91,6 +97,11 @@ namespace Tizen.NUI.Components
             ["PaginationIndicatorImageUrlSelected"] = FrameworkInformation.ResourcePath + "nui_component_default_pagination_focus_dot.png",
             ["ScrollbarTrackColor"] = new Color(1, 1, 1, 0.15f),
             ["ScrollbarThumbColor"] = new Color(0.6f, 0.6f, 0.6f, 1.0f),
+            ["RecyclerViewItemBackgroundColorNormal"] = new Color(1, 1, 1, 1),
+            ["RecyclerViewItemBackgroundColorPressed"] = new Color(0.85f, 0.85f, 0.85f, 1),
+            ["RecyclerViewItemBackgroundColorDisabled"] = new Color(0.70f, 0.70f, 0.70f, 1),
+            ["RecyclerViewItemBackgroundColorSelected"] = new Color(0.701f, 0.898f, 0.937f, 1),
+            ["TitleBackgroundColorNormal"] = new Color(0.78f, 0.78f, 0.78f, 1),
         };
 
         public Theme Create() => Create(null);
@@ -106,7 +117,8 @@ namespace Tizen.NUI.Components
 
             theme.AddStyleWithoutClone("Tizen.NUI.Components.Button", new ButtonStyle()
             {
-                Size = new Size(100, 45),
+                Size = new Size(339, 96),
+                CornerRadius = 28,
                 BackgroundColor = new Selector<Color>()
                 {
                     Normal = (Color)theme.Resources["ButtonBackgroundColorNormal"],
@@ -115,7 +127,7 @@ namespace Tizen.NUI.Components
                 },
                 Text = new TextLabelStyle()
                 {
-                    PointSize = 12,
+                    PixelSize = 32,
                     TextColor = new Selector<Color>()
                     {
                         Normal = (Color)theme.Resources["ButtonTextColorNormal"],
@@ -269,6 +281,11 @@ namespace Tizen.NUI.Components
                         Pressed = (string)theme.Resources["SliderThumbBackgroundImagePressed"],
                     }
                 },
+                ValueIndicatorImage = new ImageViewStyle()
+                {
+                    Size = new Size(83, 54),
+                    ResourceUrl = (string)theme.Resources["SliderValueIndicatorImage"],
+                },
             });
 
             theme.AddStyleWithoutClone("Tizen.NUI.Components.Switch", new SwitchStyle()
@@ -358,6 +375,90 @@ namespace Tizen.NUI.Components
                 TrackColor = (Color)theme.Resources["ScrollbarTrackColor"],
                 ThumbColor = (Color)theme.Resources["ScrollbarThumbColor"],
                 TrackPadding = 4
+            });
+
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.RecyclerViewItem", new RecyclerViewItemStyle()
+            {
+                BackgroundColor = new Selector<Color>()
+                {
+                    Normal = (Color)theme.Resources["RecyclerViewItemBackgroundColorNormal"],
+                    Pressed = (Color)theme.Resources["RecyclerViewItemBackgroundColorPressed"],
+                    Disabled = (Color)theme.Resources["RecyclerViewItemBackgroundColorDisabled"],
+                    Selected = (Color)theme.Resources["RecyclerViewItemBackgroundColorSelected"],
+                },
+            });
+            
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.DefaultLinearItem", new DefaultLinearItemStyle()
+            {
+                SizeHeight = 130,
+                Padding = new Extents(20, 20, 5, 5),
+                BackgroundColor = new Selector<Color>()
+                {
+                    Normal = (Color)theme.Resources["RecyclerViewItemBackgroundColorNormal"],
+                    Pressed = (Color)theme.Resources["RecyclerViewItemBackgroundColorPressed"],
+                    Disabled = (Color)theme.Resources["RecyclerViewItemBackgroundColorDisabled"],
+                    Selected = (Color)theme.Resources["RecyclerViewItemBackgroundColorSelected"],
+                },
+                Label = new TextLabelStyle()
+                {
+                    PointSize = 10,
+                    Ellipsis = true,
+                },
+                SubLabel = new TextLabelStyle()
+                {
+                    PointSize = 6,
+                    Ellipsis = true,
+                },
+                Icon = new ViewStyle()
+                {
+                    Margin = new Extents(0, 20, 0, 0)
+                },
+                Extra = new ViewStyle()
+                {
+                    Margin = new Extents(20, 0, 0, 0)
+                },
+                Seperator = new ViewStyle()
+                {
+                    Margin = new Extents(5, 5, 0, 0),
+                    BackgroundColor = new Color(0.78f, 0.78f, 0.78f, 1),
+                },
+            });
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.DefaultGridItem", new DefaultGridItemStyle()
+            {
+                Padding = new Extents(5, 5, 5, 5),
+                Caption = new TextLabelStyle()
+                {
+                    PointSize = 9,
+                    Ellipsis = true,
+                },
+                Badge = new ViewStyle()
+                {
+                    Margin = new Extents(5, 5, 5, 5),
+                },
+            });
+
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.DefaultTitleItem", new DefaultTitleItemStyle()
+            {
+                SizeHeight = 90,
+                Padding = new Extents(10, 10, 5, 5),
+                BackgroundColor = new Selector<Color>()
+                {
+                    Normal = (Color)theme.Resources["TitleBackgroundColorNormal"],
+                },
+                Label = new TextLabelStyle()
+                {
+                    PointSize = 10,
+                    Ellipsis = true,
+                },
+                Icon = new ViewStyle()
+                {
+                    Margin = new Extents(10, 0, 0, 0)
+                },
+                Seperator = new ViewStyle()
+                {
+                    Margin = new Extents(0, 0, 0, 0),
+                    BackgroundColor = new Color(0.85f, 0.85f, 0.85f, 1),
+                },
             });
 
             return theme;

@@ -65,7 +65,7 @@ namespace Tizen.NUI.UIComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal RadioButton(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.RadioButton.Upcast(cPtr), cMemoryOwn)
+        internal RadioButton(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

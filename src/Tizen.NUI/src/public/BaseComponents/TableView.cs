@@ -149,7 +149,7 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal TableView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.TableView.Upcast(cPtr), cMemoryOwn)
+        internal TableView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
@@ -395,6 +395,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="padding">Width and height.</param>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API9, will be removed in API11. Please use CellPadding property instead!")]
         public void SetCellPadding(Size2D padding)
         {
             Interop.TableView.SetCellPadding(SwigCPtr, Size2D.getCPtr(padding));
@@ -406,6 +407,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <returns>The current padding as width and height.</returns>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API9, will be removed in API11. Please use CellPadding property instead!")]
         public Vector2 GetCellPadding()
         {
             Vector2 ret = new Vector2(Interop.TableView.GetCellPadding(SwigCPtr), true);
