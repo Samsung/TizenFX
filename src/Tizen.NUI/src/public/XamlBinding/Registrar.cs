@@ -212,7 +212,6 @@ namespace Tizen.NUI.Binding.Internals
     {
         static Registrar()
         {
-            Registered = new Registrar<IRegisterable>();
         }
 
         internal static Dictionary<string, Type> Effects { get; } = new Dictionary<string, Type>();
@@ -220,9 +219,5 @@ namespace Tizen.NUI.Binding.Internals
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static IEnumerable<Assembly> ExtraAssemblies { get; set; }
-
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static Registrar<IRegisterable> Registered { get; internal set; }
     }
 }
