@@ -1078,15 +1078,15 @@ namespace Tizen.NUI
 
         public static Application NewApplication()
         {
-            return NewApplication("", Application.WindowMode.Opaque);
+            return NewApplication("", NUIApplication.WindowMode.Opaque);
         }
 
         public static Application NewApplication(string stylesheet)
         {
-            return NewApplication(stylesheet, Application.WindowMode.Opaque);
+            return NewApplication(stylesheet, NUIApplication.WindowMode.Opaque);
         }
 
-        public static Application NewApplication(string stylesheet, Application.WindowMode windowMode)
+        public static Application NewApplication(string stylesheet, NUIApplication.WindowMode windowMode)
         {
             // register all Views with the type registry, so that can be created / styled via JSON
             //ViewRegistryHelper.Initialize(); //moved to Application side.
@@ -1103,7 +1103,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public static Application NewApplication(string stylesheet, Application.WindowMode windowMode, Rectangle positionSize)
+        public static Application NewApplication(string stylesheet, NUIApplication.WindowMode windowMode, Rectangle positionSize)
         {
             if (_instance)
             {
@@ -1117,13 +1117,13 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public static Application NewApplication(string[] args, string stylesheet, Application.WindowMode windowMode)
+        public static Application NewApplication(string[] args, string stylesheet, NUIApplication.WindowMode windowMode)
         {
             if (_instance)
             {
                 return _instance;
             }
-            Application ret = New(args, stylesheet, (Application.WindowMode)windowMode);
+            Application ret = New(args, stylesheet, windowMode);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             // set the singleton
@@ -1131,13 +1131,13 @@ namespace Tizen.NUI
             return _instance;
         }
 
-        public static Application NewApplication(string[] args, string stylesheet, Application.WindowMode windowMode, Rectangle positionSize)
+        public static Application NewApplication(string[] args, string stylesheet, NUIApplication.WindowMode windowMode, Rectangle positionSize)
         {
             if (_instance)
             {
                 return _instance;
             }
-            Application ret = New(args, stylesheet, (Application.WindowMode)windowMode, positionSize);
+            Application ret = New(args, stylesheet, windowMode, positionSize);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             // set the singleton
@@ -1185,7 +1185,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public static Application New(int argc, string stylesheet, Application.WindowMode windowMode)
+        public static Application New(int argc, string stylesheet, NUIApplication.WindowMode windowMode)
         {
             Application ret = new Application(Interop.Application.New(argc, stylesheet, (int)windowMode), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1193,7 +1193,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public static Application New(string[] args, string stylesheet, Application.WindowMode windowMode)
+        public static Application New(string[] args, string stylesheet, NUIApplication.WindowMode windowMode)
         {
             Application ret = null;
             int argc = 0;
@@ -1217,14 +1217,14 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public static Application New(int argc, string stylesheet, Application.WindowMode windowMode, Rectangle positionSize)
+        public static Application New(int argc, string stylesheet, NUIApplication.WindowMode windowMode, Rectangle positionSize)
         {
             Application ret = new Application(Interop.Application.New(argc, stylesheet, (int)windowMode, Rectangle.getCPtr(positionSize)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public static Application New(string[] args, string stylesheet, Application.WindowMode windowMode, Rectangle positionSize)
+        public static Application New(string[] args, string stylesheet, NUIApplication.WindowMode windowMode, Rectangle positionSize)
         {
             Application ret = null;
             int argc = 0;
@@ -1410,12 +1410,6 @@ namespace Tizen.NUI
             LowMemorySignalType ret = new LowMemorySignalType(NDalicPINVOKE.ApplicationLowMemorySignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }
-
-        public enum WindowMode
-        {
-            Opaque = 0,
-            Transparent = 1
         }
     }
 }
