@@ -479,40 +479,41 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        //
+        // Accessibility
+        //
+
+        protected bool IsHighlighted
+        {
+            get
+            {
+                return Accessibility.AccessibilityManager.Instance.GetCurrentFocusView() == this;
+            }
+        }
+
+        protected static readonly string AccessibilityActivateAction = "activate";
+        protected static readonly string AccessibilityReadingSkippedAction = "ReadingSkipped";
+        protected static readonly string AccessibilityReadingCancelledAction = "ReadingCancelled";
+        protected static readonly string AccessibilityReadingStoppedAction = "ReadingStopped";
+        protected static readonly string AccessibilityReadingPausedAction = "ReadingPaused";
+        protected static readonly string AccessibilityReadingResumedAction = "ReadingResumed";
+
         public virtual string AccessibilityGetName() { return ""; }
         public virtual string AccessibilityGetDescription() { return ""; }
         public virtual bool AccessibilityDoAction(string name) { return false; }
         public virtual AccessibilityStates AccessibilityCalculateStates()
         {
-            /* TODO:
-                Dali::Accessibility::States s;
-                s[Dali::Accessibility::State::FOCUSABLE] = self.GetProperty<bool>(Actor::Property::KEYBOARD_FOCUSABLE);
-                s[Dali::Accessibility::State::FOCUSED]   = Toolkit::KeyboardFocusManager::Get().GetCurrentFocusActor() == self;
-                if(self.GetProperty(Toolkit::DevelControl::Property::ACCESSIBILITY_HIGHLIGHTABLE).GetType() == Dali::Property::NONE)
-                    s[Dali::Accessibility::State::HIGHLIGHTABLE] = false;
-                else
-                    s[Dali::Accessibility::State::HIGHLIGHTABLE] = self.GetProperty(Toolkit::DevelControl::Property::ACCESSIBILITY_HIGHLIGHTABLE).Get<bool>();
-                s[Dali::Accessibility::State::HIGHLIGHTED] = GetCurrentlyHighlightedActor() == self;
-                s[Dali::Accessibility::State::ENABLED]     = true;
-                s[Dali::Accessibility::State::SENSITIVE]   = true;
-                s[Dali::Accessibility::State::ANIMATED]    = self.GetProperty(Toolkit::DevelControl::Property::ACCESSIBILITY_ANIMATED).Get<bool>();
-                s[Dali::Accessibility::State::VISIBLE]     = true;
-                if(modal)
-                {
-                    s[Dali::Accessibility::State::MODAL] = true;
-                }
-                s[Dali::Accessibility::State::SHOWING] = !self.GetProperty(Dali::DevelActor::Property::CULLED).Get<bool>() && self.GetCurrentProperty<bool>(Actor::Property::VISIBLE);
-
-                s[Dali::Accessibility::State::DEFUNCT] = !self.GetProperty(Dali::DevelActor::Property::CONNECTED_TO_SCENE).Get<bool>();
-                return s;
-            */
-
-            //Tizen.Log.Error("NUI", "XXX: AccessibilityCalculateStates");
-
             var states = new AccessibilityStates();
-            states.Set(AccessibilityState.Highlightable, true);
-            states.Set(AccessibilityState.Enabled, true);
-
+            states.Set(AccessibilityState.Highlightable, this.AccessibilityHighlightable);
+            states.Set(AccessibilityState.Focusable, this.Focusable);
+            states.Set(AccessibilityState.Focused, this.State == States.Focused);
+            states.Set(AccessibilityState.Highlighted, this.IsHighlighted);
+            states.Set(AccessibilityState.Enabled, this.State != States.Disabled);
+            states.Set(AccessibilityState.Sensitive, this.Sensitive);
+            states.Set(AccessibilityState.Animated, this.AccessibilityAnimated);
+            states.Set(AccessibilityState.Visible, true);
+            states.Set(AccessibilityState.Showing, this.Visibility);
+            states.Set(AccessibilityState.Defunct, !this.IsOnWindow);
             return states;
         }
 

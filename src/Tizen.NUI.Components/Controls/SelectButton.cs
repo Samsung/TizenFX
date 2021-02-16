@@ -79,6 +79,13 @@ namespace Tizen.NUI.Components
             Initialize();
         }
 
+        protected override AccessibilityStates AccessibilityCalculateStates()
+        {
+            var states = base.AccessibilityCalculateStates();
+            states.Set(AccessibilityState.Checked, this.IsSelected);
+            return states;
+        }
+
         /// <summary>
         /// An event for the item selected signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
         /// </summary>
@@ -213,6 +220,11 @@ namespace Tizen.NUI.Components
         {
             if (info.PreviousState.Contains(ControlState.Selected) != info.CurrentState.Contains(ControlState.Selected))
             {
+                if (IsHighlighted)
+                {
+                    EmitAccessibilityStateChangedEvent(AccessibilityState.Checked, info.CurrentState.Contains(ControlState.Selected));
+                }
+                
                 // SelectedChanged is invoked when button or key is unpressed.
                 if (invokeSelectedChanged == false)
                 {

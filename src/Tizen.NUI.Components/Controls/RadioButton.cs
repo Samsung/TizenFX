@@ -54,6 +54,12 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public RadioButton(ButtonStyle buttonStyle) : base(buttonStyle) { }
 
+        public override void OnInitialize()
+        {
+            base.OnInitialize();
+            SetAccessibilityConstructor(Role.RadioButton);
+        }
+
         /// <summary>
         /// Get RadioButtonGroup to which this selections belong.
         /// </summary>

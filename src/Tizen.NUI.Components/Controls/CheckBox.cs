@@ -43,6 +43,13 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public CheckBox(ButtonStyle buttonStyle) : base(buttonStyle) { }
 
+
+        public override void OnInitialize()
+        {
+            base.OnInitialize();
+            SetAccessibilityConstructor(Role.CheckBox);
+        }
+
         /// <summary>
         /// Get CheckBoxGroup to which this CheckBox belong.
         /// </summary>
