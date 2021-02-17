@@ -510,9 +510,10 @@ namespace Tizen.WebView
                         _evalCallbacks.Remove(userData);
                     }
                 };
+
+                Interop.ChromiumEwk.ewk_view_script_execute(_realHandle, script, _evalCallbacks[id], id);
             }
 
-            Interop.ChromiumEwk.ewk_view_script_execute(_realHandle, script, _evalCallbacks[id], id);
             return await tcs.Task;
         }
 
