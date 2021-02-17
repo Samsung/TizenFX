@@ -327,10 +327,6 @@ namespace Tizen.MachineLearning.Inference
 
             for (int i = 0; i < this.Count; ++i)
             {
-                // Name
-                if (string.Compare(this.GetTensorName(i), other.GetTensorName(i)) != 0)
-                    return false;
-
                 // Type
                 if (this.GetTensorType(i) != other.GetTensorType(i))
                     return false;
@@ -340,6 +336,23 @@ namespace Tizen.MachineLearning.Inference
                     return false;
             }
             return true;
+        }
+
+        /// <summary>
+        /// Create a new TensorsInfo object cloned from the current tensors information.
+        /// </summary>
+        /// <returns>Hard-copied TensorsInfo object</returns>
+        /// <since_tizen> 9 </since_tizen>
+        internal TensorsInfo Clone()
+        {
+            TensorsInfo retInfo = null;
+            retInfo = new TensorsInfo();
+
+            foreach (TensorInfo t in _infoList) {
+                retInfo.AddTensorInfo(t.Name, t.Type, t.Dimension);
+            }
+
+            return retInfo;
         }
 
         /// <summary>

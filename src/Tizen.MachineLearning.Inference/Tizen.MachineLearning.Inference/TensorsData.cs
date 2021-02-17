@@ -34,7 +34,7 @@ namespace Tizen.MachineLearning.Inference
         /// Creates a TensorsData instance with handle which is given by TensorsInfo.
         /// </summary>
         /// <param name="handle">The handle of tensors data.</param>
-        /// <param name="info">The handle of tensors info. (Default: null)</param>
+        /// <param name="info">The handle of tensors info.</param>
         /// <param name="isFetch">The boolean value for fetching the data (Default: false)</param>
         /// <param name="hasOwnership">The boolean value for automatic disposal (Default: true)</param>
         /// <since_tizen> 6 </since_tizen>
@@ -45,7 +45,8 @@ namespace Tizen.MachineLearning.Inference
 
             /* Set internal object */
             _handle = handle;
-            _tensorsInfo = info;
+            /* Because developers can change the TensorsInfo object, it should be stored as a deep-copied instance. */
+            _tensorsInfo = info.Clone();
 
             /* Set count */
             int count = 0;
@@ -202,6 +203,8 @@ namespace Tizen.MachineLearning.Inference
             if (disposing)
             {
                 // release managed object
+                _tensorsInfo.Dispose();
+                _tensorsInfo = null;
             }
 
             // release unmanaged objects
