@@ -573,7 +573,7 @@ namespace Tizen.NUI.Xaml
             if (!IsVisibleFrom(setter, context.RootElement))
                 return false;
 
-            if (propertyInfo.PropertyType != property.ReturnType)
+            if (property != null && propertyInfo.PropertyType != property.ReturnType)
                 return false;
 
             if (serviceProvider != null && serviceProvider.IProvideValueTarget != null)
