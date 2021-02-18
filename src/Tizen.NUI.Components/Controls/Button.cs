@@ -199,7 +199,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Calculates current states for the button<br />
         /// </summary>
-        public override AccessibilityStates AccessibilityCalculateStates()
+        protected override AccessibilityStates AccessibilityCalculateStates()
         {
             var states = base.AccessibilityCalculateStates();
             states.Set(AccessibilityState.Enabled, this.IsEnabled);

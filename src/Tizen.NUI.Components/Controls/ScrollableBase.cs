@@ -285,6 +285,11 @@ namespace Tizen.NUI.Components
             }
         }
 
+        protected override bool AccessibilityIsScrollable()
+        {
+            return true;
+        }
+
         /// <summary>
         /// Pages mode, enables moving to the next or return to current page depending on pan displacement.
         /// Default is false.

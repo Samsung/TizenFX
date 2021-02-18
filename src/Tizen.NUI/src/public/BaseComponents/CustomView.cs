@@ -487,15 +487,15 @@ namespace Tizen.NUI.BaseComponents
         {
         }
 
-        public override bool AccessibilityDoAction(string name)
+        protected override bool AccessibilityDoAction(string name)
         {
-            if (name == "activate")
+            if (name == AccessibilityActivateAction)
             {
                 if (this.ActivateSignal().Empty() == false)
                 {
                     this.ActivateSignal().Emit();
                     return true;
-                }                    
+                }
                 else
                 {
                     return OnAccessibilityActivated();
@@ -574,8 +574,6 @@ namespace Tizen.NUI.BaseComponents
         /// <returns>True if this control can perform accessibility activation.</returns>
         internal virtual bool OnAccessibilityActivated()
         {
-            //Tizen.Log.Error("NUI", "XXX: CustomView.OnAccessibilityActivated");
-            
             return false;
         }
 

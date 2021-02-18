@@ -313,5 +313,15 @@ namespace Tizen.NUI.BaseComponents
             Role,
             Parent
         }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum TextBoundary
+        {
+            Character,
+            Word,
+            Sentence,
+            Line,
+            Paragraph,
+        }
     }
 }

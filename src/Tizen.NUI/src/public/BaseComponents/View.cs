@@ -498,10 +498,30 @@ namespace Tizen.NUI.BaseComponents
         protected static readonly string AccessibilityReadingPausedAction = "ReadingPaused";
         protected static readonly string AccessibilityReadingResumedAction = "ReadingResumed";
 
-        public virtual string AccessibilityGetName() { return ""; }
-        public virtual string AccessibilityGetDescription() { return ""; }
-        public virtual bool AccessibilityDoAction(string name) { return false; }
-        public virtual AccessibilityStates AccessibilityCalculateStates()
+        private static readonly string[] AccessibilityActions = {
+            AccessibilityActivateAction,
+            AccessibilityReadingSkippedAction,
+            AccessibilityReadingCancelledAction,
+            AccessibilityReadingStoppedAction,
+            AccessibilityReadingPausedAction,
+            AccessibilityReadingResumedAction,
+        };
+        protected virtual string AccessibilityGetName()
+        {
+            return "";
+        }
+
+        protected virtual string AccessibilityGetDescription()
+        {
+            return "";
+        }
+
+        protected virtual bool AccessibilityDoAction(string name)
+        {
+            return false;
+        }
+
+        protected virtual AccessibilityStates AccessibilityCalculateStates()
         {
             var states = new AccessibilityStates();
             states.Set(AccessibilityState.Highlightable, this.AccessibilityHighlightable);
@@ -515,6 +535,104 @@ namespace Tizen.NUI.BaseComponents
             states.Set(AccessibilityState.Showing, this.Visibility);
             states.Set(AccessibilityState.Defunct, !this.IsOnWindow);
             return states;
+        }
+
+        protected virtual int AccessibilityGetActionCount()
+        {
+            return AccessibilityActions.Length;
+        }
+
+        protected virtual string AccessibilityGetActionName(int index)
+        {
+            if (index >= 0 && index < AccessibilityActions.Length)
+                return AccessibilityActions[index];
+            else
+                return "";
+        }
+
+        protected virtual bool AccessibilityShouldReportZeroChildren()
+        {
+            return false;
+        }
+
+        protected virtual double AccessibilityGetMinimum()
+        {
+            return 0.0;
+        }
+
+        protected virtual double AccessibilityGetCurrent()
+        {
+            return 0.0;
+        }
+
+        protected virtual double AccessibilityGetMaximum()
+        {
+            return 0.0;
+        }
+
+        protected virtual bool AccessibilitySetCurrent(double value)
+        {
+            return false;
+        }
+
+        protected virtual double AccessibilityGetMinimumIncrement()
+        {
+            return 0.0;
+        }
+
+        protected virtual bool AccessibilityIsScrollable()
+        {
+            return false;
+        }
+
+        protected virtual string AccessibilityGetText(int startOffset, int endOffset)
+        {
+            return "";
+        }
+
+        protected virtual int AccessibilityGetCharacterCount()
+        {
+            return 0;
+        }
+
+        protected virtual int AccessibilityGetCaretOffset()
+        {
+            return 0;
+        }
+
+        protected virtual bool AccessibilitySetCaretOffset(int offset)
+        {
+            return false;
+        }
+
+        protected virtual AccessibilityRange AccessibilityGetTextAtOffset(int offset, TextBoundary boundary)
+        {
+            return new AccessibilityRange();
+        }
+
+        protected virtual AccessibilityRange AccessibilityGetSelection(int selectionNum)
+        {
+            return new AccessibilityRange();
+        }
+
+        protected virtual bool AccessibilityRemoveSelection(int selectionNum)
+        {
+            return false;
+        }
+
+        protected virtual bool AccessibilitySetSelection(int selectionNum, int startOffset, int endOffset)
+        {
+            return false;
+        }
+
+        protected virtual bool AccessibilityCopyText(int startPosition, int endPosition)
+        {
+            return false;
+        }
+
+        protected virtual bool AccessibilityCutText(int startPosition, int endPosition)
+        {
+            return false;
         }
 
         /// <summary>
