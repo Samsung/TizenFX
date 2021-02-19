@@ -573,10 +573,9 @@ namespace Tizen.NUI
                                                          " right:" + _layoutPositionData.Right +
                                                          " bottom:" + _layoutPositionData.Bottom);
 
-                Container onwerContainer = Owner.GetParent();
-                View onwerView = onwerContainer is Layer ? new View(Layer.getCPtr(onwerContainer).Handle, false) : onwerContainer as View;
+                View ownerView = Owner.GetParent() as View;
 
-                if (onwerView != null && onwerView.Layout != null && onwerView.Layout.LayoutWithTransition)
+                if (ownerView != null && ownerView.Layout != null && ownerView.Layout.LayoutWithTransition)
                 {
                     NUIApplication.GetDefaultWindow().LayoutController.AddTransitionDataEntry(_layoutPositionData);
                 }
