@@ -2525,5 +2525,26 @@ namespace Tizen.NUI.BaseComponents
         {
             get;
         } = new List<Transition>();
+
+        /// <summary>
+        /// Get whether the View is culled or not.
+        /// True means that the View is out of the view frustum.
+        /// </summary>
+        /// <remarks>
+        /// Hidden-API (Inhouse-API).
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Culled
+        {
+            get
+            {
+                bool temp = false;
+                var pValue = GetProperty(View.Property.Culled);
+                pValue.Get(out temp);
+                pValue.Dispose();
+                return temp;
+            }
+        }
+
     }
 }
