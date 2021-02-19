@@ -210,6 +210,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int SHADOW = Interop.ViewProperty.ShadowGet();
             internal static readonly int CaptureAllTouchAfterStart = Interop.ActorProperty.CaptureAllTouchAfterStartGet();
             internal static readonly int BlendEquation = Interop.ActorProperty.BlendEquationGet();
+            internal static readonly int Culled = Interop.ActorProperty.CulledGet();
         }
     }
 }
