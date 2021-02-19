@@ -183,7 +183,8 @@ namespace Tizen.NUI.BaseComponents
 
             if (child.GetParent() != this)
             {
-                throw new System.InvalidOperationException("You have deleted a view that is not a child of this view.");
+                //throw new System.InvalidOperationException("You have deleted a view that is not a child of this view.");
+                Tizen.Log.Error("NUI", "You have deleted a view that is not a child of this view.");
             }
 
             bool hasLayout = (layout != null);

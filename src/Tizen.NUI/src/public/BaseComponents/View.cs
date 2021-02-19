@@ -1942,7 +1942,7 @@ namespace Tizen.NUI.BaseComponents
                 if (basehandle is Layer layer)
                 {
                     ret = new View(Layer.getCPtr(layer).Handle, false);
-                    NUILog.Error("This Parent property is deprecated, shoud do not be used");
+                    NUILog.Error("This Parent property is deprecated, should do not be used");
                 }
                 else
                 {
@@ -2525,5 +2525,26 @@ namespace Tizen.NUI.BaseComponents
         {
             get;
         } = new List<Transition>();
+
+        /// <summary>
+        /// Get whether the View is culled or not.
+        /// True means that the View is out of the view frustum.
+        /// </summary>
+        /// <remarks>
+        /// Hidden-API (Inhouse-API).
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Culled
+        {
+            get
+            {
+                bool temp = false;
+                var pValue = GetProperty(View.Property.Culled);
+                pValue.Get(out temp);
+                pValue.Dispose();
+                return temp;
+            }
+        }
+
     }
 }
