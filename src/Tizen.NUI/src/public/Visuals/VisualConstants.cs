@@ -150,12 +150,12 @@ namespace Tizen.NUI
         /// </summary>
         FitHeight,
         /// <summary>
-        /// Thumbnail gallery grid: Limit loaded image resolution to screen tile using the Center mode.
+        /// Image displayed in its original size (no scaling) using the Center mode.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         Center,
         /// <summary>
-        /// Thumbnail gallery grid: Limit loaded image resolution to screen tile using the ScaleToFill mode.
+        /// Image stretched to fill the desired area (aspect ratio could be changed) using the Fill mode.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         Fill
