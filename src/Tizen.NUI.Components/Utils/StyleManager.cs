@@ -24,6 +24,7 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// StyleManager is a class to manager all style.
     /// </summary>
+    [Obsolete("This will be removed soon. Please use ThemeManager instead.")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public sealed class StyleManager
     {
@@ -38,18 +39,21 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// An event for the theme changed signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
         /// </summary>
+        [Obsolete("This will be removed soon. Please use ThemeManager instead.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<ThemeChangeEventArgs> ThemeChangedEvent;
 
         /// <summary>
         /// StyleManager static instance.
         /// </summary>
+        [Obsolete("This will be removed soon. Please use ThemeManager instead.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static StyleManager Instance { get; } = new StyleManager();
 
         /// <summary>
         /// Style theme.
         /// </summary>
+        [Obsolete("This will be removed soon. Please use ThemeManager instead.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string Theme
         {
@@ -92,6 +96,7 @@ namespace Tizen.NUI.Components
         /// <param name="theme">Theme id.</param>
         /// <param name="styleType">Style type.</param>
         /// <param name="bDefault">Flag to decide if it is default style.</param>
+        [Obsolete("This will be removed soon. Please use ThemeManager instead.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RegisterStyle(string style, string theme, Type styleType, bool bDefault = false)
         {
@@ -136,6 +141,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="style">Style name.</param>
         /// <returns>The style corresponding to style name .</returns>
+        [Obsolete("This will be removed soon. Please use ThemeManager instead.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ViewStyle GetViewStyle(string style)
         {
@@ -153,6 +159,7 @@ namespace Tizen.NUI.Components
         /// <param name="targetTheme">The target theme name to register a component style. It theme should be a known one.</param>
         /// <param name="component">The type of ComponentStyle</param>
         /// <param name="style">The derived class of StyleBase</param>
+        [Obsolete("This will be removed soon. Please use ThemeManager instead.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RegisterComponentStyle(string targetTheme, Type component, Type style)
         {
@@ -180,6 +187,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="component">The type of component</param>
         /// <returns>The style of the component.</returns>
+        [Obsolete("This will be removed soon. Please use ThemeManager instead.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ViewStyle GetComponentStyle(Type component)
         {
@@ -194,6 +202,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// ThemeChangeEventArgs is a class to record theme change event arguments which will sent to user.
         /// </summary>
+        [Obsolete("This will be removed soon. Please use ThemeManager instead.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class ThemeChangeEventArgs : EventArgs
         {
