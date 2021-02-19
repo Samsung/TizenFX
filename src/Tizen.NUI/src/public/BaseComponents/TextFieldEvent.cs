@@ -16,6 +16,7 @@
  */
 
 using System;
+using System.ComponentModel;
 using System.Runtime.InteropServices;
 
 namespace Tizen.NUI.BaseComponents
@@ -30,12 +31,17 @@ namespace Tizen.NUI.BaseComponents
         private TextChangedCallbackDelegate textFieldTextChangedCallbackDelegate;
         private EventHandler<MaxLengthReachedEventArgs> textFieldMaxLengthReachedEventHandler;
         private MaxLengthReachedCallbackDelegate textFieldMaxLengthReachedCallbackDelegate;
+        private EventHandler<AnchorTouchedEventArgs> textFieldAnchorTouchedEventHandler;
+        private AnchorTouchedCallbackDelegate textFieldAnchorTouchedCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void TextChangedCallbackDelegate(IntPtr textField);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void MaxLengthReachedCallbackDelegate(IntPtr textField);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void AnchorTouchedCallbackDelegate(IntPtr textField, IntPtr href, uint hrefLength);
 
         /// <summary>
         /// The TextChanged event.
@@ -87,6 +93,32 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// The AnchorTouched signal is emitted when the anchor is touched.
+        /// </summary>
+        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<AnchorTouchedEventArgs> AnchorTouched
+        {
+            add
+            {
+                if (textFieldAnchorTouchedEventHandler == null)
+                {
+                    textFieldAnchorTouchedCallbackDelegate = (OnAnchorTouched);
+                    AnchorTouchedSignal().Connect(textFieldAnchorTouchedCallbackDelegate);
+                }
+                textFieldAnchorTouchedEventHandler += value;
+            }
+            remove
+            {
+                textFieldAnchorTouchedEventHandler -= value;
+                if (textFieldAnchorTouchedEventHandler == null && AnchorTouchedSignal().Empty() == false)
+                {
+                    AnchorTouchedSignal().Disconnect(textFieldAnchorTouchedCallbackDelegate);
+                }
+            }
+        }
+
         internal TextFieldSignal TextChangedSignal()
         {
             TextFieldSignal ret = new TextFieldSignal(Interop.TextField.TextChangedSignal(SwigCPtr), false);
@@ -97,6 +129,13 @@ namespace Tizen.NUI.BaseComponents
         internal TextFieldSignal MaxLengthReachedSignal()
         {
             TextFieldSignal ret = new TextFieldSignal(Interop.TextField.MaxLengthReachedSignal(SwigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal TextFieldSignal AnchorTouchedSignal()
+        {
+            TextFieldSignal ret = new TextFieldSignal(Interop.TextField.AnchorTouchedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -125,6 +164,18 @@ namespace Tizen.NUI.BaseComponents
                 //here we send all data to user event handlers
                 textFieldMaxLengthReachedEventHandler(this, e);
             }
+        }
+
+        private void OnAnchorTouched(IntPtr textField, IntPtr href, uint hrefLength)
+        {
+            // Note: hrefLength is useful for get the length of a const char* (href) in dali-toolkit.
+            // But NUI can get the length of string (href), so hrefLength is not necessary in NUI.
+            AnchorTouchedEventArgs e = new AnchorTouchedEventArgs();
+
+            // Populate all members of "e" (AnchorTouchedEventArgs) with real data
+            e.Href = Marshal.PtrToStringAnsi(href);
+            //here we send all data to user event handlers
+            textFieldAnchorTouchedEventHandler?.Invoke(this, e);
         }
 
         /// <summary>

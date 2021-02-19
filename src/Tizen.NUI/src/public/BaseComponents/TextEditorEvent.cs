@@ -36,6 +36,9 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler<MaxLengthReachedEventArgs> textEditorMaxLengthReachedEventHandler;
         private MaxLengthReachedCallbackDelegate textEditorMaxLengthReachedCallbackDelegate;
 
+        private EventHandler<AnchorTouchedEventArgs> textEditorAnchorTouchedEventHandler;
+        private AnchorTouchedCallbackDelegate textEditorAnchorTouchedCallbackDelegate;
+
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void TextChangedCallbackDelegate(IntPtr textEditor);
 
@@ -44,6 +47,9 @@ namespace Tizen.NUI.BaseComponents
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void MaxLengthReachedCallbackDelegate(IntPtr textEditor);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void AnchorTouchedCallbackDelegate(IntPtr textEditor, IntPtr href, uint hrefLength);
 
         /// <summary>
         /// An event for the TextChanged signal which can be used to subscribe or unsubscribe the event handler
@@ -123,6 +129,32 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// The AnchorTouched signal is emitted when the anchor is touched.
+        /// </summary>
+        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<AnchorTouchedEventArgs> AnchorTouched
+        {
+            add
+            {
+                if (textEditorAnchorTouchedEventHandler == null)
+                {
+                    textEditorAnchorTouchedCallbackDelegate = (OnAnchorTouched);
+                    AnchorTouchedSignal().Connect(textEditorAnchorTouchedCallbackDelegate);
+                }
+                textEditorAnchorTouchedEventHandler += value;
+            }
+            remove
+            {
+                textEditorAnchorTouchedEventHandler -= value;
+                if (textEditorAnchorTouchedEventHandler == null && AnchorTouchedSignal().Empty() == false)
+                {
+                    AnchorTouchedSignal().Disconnect(textEditorAnchorTouchedCallbackDelegate);
+                }
+            }
+        }
+
         internal TextEditorSignal TextChangedSignal()
         {
             TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.TextChangedSignal(SwigCPtr), false);
@@ -140,6 +172,13 @@ namespace Tizen.NUI.BaseComponents
         internal TextEditorSignal MaxLengthReachedSignal()
         {
             TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.MaxLengthReachedSignal(SwigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal TextEditorSignal AnchorTouchedSignal()
+        {
+            TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.AnchorTouchedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -185,6 +224,18 @@ namespace Tizen.NUI.BaseComponents
                 //here we send all data to user event handlers
                 textEditorMaxLengthReachedEventHandler(this, e);
             }
+        }
+
+        private void OnAnchorTouched(IntPtr textEditor, IntPtr href, uint hrefLength)
+        {
+            // Note: hrefLength is useful for get the length of a const char* (href) in dali-toolkit.
+            // But NUI can get the length of string (href), so hrefLength is not necessary in NUI.
+            AnchorTouchedEventArgs e = new AnchorTouchedEventArgs();
+
+            // Populate all members of "e" (AnchorTouchedEventArgs) with real data
+            e.Href = Marshal.PtrToStringAnsi(href);
+            //here we send all data to user event handlers
+            textEditorAnchorTouchedEventHandler?.Invoke(this, e);
         }
 
         /// <summary>
