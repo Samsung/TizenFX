@@ -453,6 +453,10 @@ namespace Tizen.NUI.Components
             set
             {
                 curValue = value;
+                if (IsHighlighted)
+                {
+                    EmitAccessibilityEvent(ObjectPropertyChangeEvent.Value);
+                }
                 UpdateValue();
             }
         }
@@ -1165,6 +1169,55 @@ namespace Tizen.NUI.Components
             }
 
             EnableControlStatePropagation = true;
+        }
+
+        protected override bool AccessibilityShouldReportZeroChildren()
+        {
+            return true;
+        }
+
+        protected override double AccessibilityGetMinimum()
+        {
+            return (double)MinValue;
+        }
+
+        protected override double AccessibilityGetCurrent()
+        {
+            return (double)CurrentValue;
+        }
+
+        protected override double AccessibilityGetMaximum()
+        {
+            return (double)MaxValue;
+        }
+
+        protected override bool AccessibilitySetCurrent(double value)
+        {
+            var f = (float)value;
+
+            if (f >= MinValue && f <= MaxValue)
+            {
+                CurrentValue = f;
+                if (sliderValueChangedHandler != null)
+                {
+                    sliderValueChangedHandler(this, new SliderValueChangedEventArgs { CurrentValue = f });
+                }
+                return true;
+            }
+
+            return false;
+        }
+
+        protected override double AccessibilityGetMinimumIncrement()
+        {
+            // FIXME
+            return (MaxValue - MinValue) / 20.0;
+        }
+
+        public override void OnInitialize()
+        {
+            base.OnInitialize();
+            SetAccessibilityConstructor(Role.Slider, AccessibilityInterface.Value);
         }
 
         /// <summary>
