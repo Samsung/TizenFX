@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <TizenPreloadFile Include="Tizen.NUI.Components.preload" Sequence="30" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Tizen.Log\Tizen.Log.csproj" />
     <ProjectReference Include="..\Tizen.NUI\Tizen.NUI.csproj" />
     <ProjectReference Include="..\Tizen.System.Feedback\Tizen.System.Feedback.csproj" />

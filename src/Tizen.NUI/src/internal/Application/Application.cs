@@ -648,7 +648,7 @@ namespace Tizen.NUI
             DisposeQueue.Instance.Initialize();
 
             // Notify that the window is displayed to the app core.
-            if (NUIApplication.IsPreLoad)
+            if (NUIApplication.IsPreload)
             {
                 Window.Instance.Show();
             }

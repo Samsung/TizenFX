@@ -45,7 +45,7 @@ namespace Tizen.NUI
         private string appId = null;
         internal static NUIApplication me;
 
-        private static bool isPreLoad = false;
+        private static bool isPreload = false;
 
         // TODO Enable this after tizen-theme-manager is released.
         // private readonly ThemeLoader themeLoader = new ThemeLoader();
@@ -425,10 +425,10 @@ namespace Tizen.NUI
         /// This is used to improve application launch performance.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        static public void PreLoad()
+        static public void Preload()
         {
             Interop.Application.PreInitialize();
-            isPreLoad = true;
+            isPreload = true;
         }
 
         /// <summary>
@@ -482,11 +482,11 @@ namespace Tizen.NUI
         /// <summary>
         /// Check if it is loaded as dotnet-loader-nui.
         /// </summary>
-        static internal bool IsPreLoad
+        static internal bool IsPreload
         {
             get
             {
-                return isPreLoad;
+                return isPreload;
             }
         }
     }
