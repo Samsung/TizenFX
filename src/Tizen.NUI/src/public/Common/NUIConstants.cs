@@ -533,19 +533,23 @@ namespace Tizen.NUI
     /// Types of style change. Enumeration for the StyleChange type.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated in API9, Will be removed in API11.")]
     public enum StyleChangeType
     {
         /// <summary>
         /// Denotes that the default font has changed.
         /// </summary>
+        [Obsolete("Deprecated in API9, Will be removed in API11.")]
         DefaultFontChange,
         /// <summary>
         /// Denotes that the default font size has changed.
         /// </summary>
+        [Obsolete("Deprecated in API9, Will be removed in API11.")]
         DefaultFontSizeChange,
         /// <summary>
         /// Denotes that the theme has changed.
         /// </summary>
+        [Obsolete("Deprecated in API9, Will be removed in API11.")]
         ThemeChange
     }
 
