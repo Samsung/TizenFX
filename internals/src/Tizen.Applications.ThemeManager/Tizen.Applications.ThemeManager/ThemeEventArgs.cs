@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace Tizen.Applications.ThemeManager
@@ -24,6 +25,7 @@ namespace Tizen.Applications.ThemeManager
     /// ThemeEventArgs class. This class is an event arguments of the ThemeLoaderChanged events.
     /// </summary>
     /// <since_tizen> 8 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class ThemeEventArgs : EventArgs
     {
         internal ThemeEventArgs(Theme theme)
@@ -35,6 +37,7 @@ namespace Tizen.Applications.ThemeManager
         /// A Theme
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Theme Theme { get; }
     }
 }
