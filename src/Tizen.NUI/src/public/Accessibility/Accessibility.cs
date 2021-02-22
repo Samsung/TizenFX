@@ -200,7 +200,19 @@ namespace Tizen.NUI.Accessibility
             /// </summary>
             // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
             [EditorBrowsable(EditorBrowsableState.Never)]
-            Skipped = 3
+            Skipped = 3,
+            /// <summary>
+            /// Paused
+            /// </summary>
+            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Paused = 4,
+            /// <summary>
+            /// Resumed
+            /// </summary>
+            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Resumed = 5
         }
 
         /// <summary>
