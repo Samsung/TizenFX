@@ -405,6 +405,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="styleManager">The StyleManager object.</param>
         /// <param name="change">Information denoting what has changed.</param>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API9, Will be removed in API11.")]
         public virtual void OnStyleChange(StyleManager styleManager, StyleChangeType change)
         {
         }
