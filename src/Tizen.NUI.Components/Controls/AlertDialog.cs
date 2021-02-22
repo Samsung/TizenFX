@@ -579,5 +579,17 @@ namespace Tizen.NUI.Components
 
             base.Dispose(type);
         }
+
+        protected override string AccessibilityGetName()
+        {
+            if (!String.IsNullOrEmpty(Title))
+            {
+                return Title;
+            }
+            else
+            {
+                return Message;
+            }
+        }
     }
 }

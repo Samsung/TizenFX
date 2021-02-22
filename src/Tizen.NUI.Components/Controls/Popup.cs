@@ -816,6 +816,20 @@ namespace Tizen.NUI.Components
             btGroup = new ButtonGroup(this);
         }
 
+        public override void OnInitialize()
+        {
+            base.OnInitialize();
+            SetAccessibilityConstructor(Role.Dialog);
+            AppendAccessibilityAttribute("sub-role", "Alert");
+        }
+
+        protected override AccessibilityStates AccessibilityCalculateStates()
+        {
+            var states = base.AccessibilityCalculateStates();
+            states.Set(AccessibilityState.Modal, true);
+            return states;
+        }
+
         private void UpdateView()
         {
             if (popupStyle == null) return;
