@@ -15,8 +15,8 @@
  */
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Runtime.InteropServices;
 
 namespace Tizen.Applications.ThemeManager
@@ -25,6 +25,7 @@ namespace Tizen.Applications.ThemeManager
     /// 
     /// </summary>
     /// <since_tizen> 8 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class Theme : IDisposable
     {
         private bool _disposed = false;
@@ -45,6 +46,7 @@ namespace Tizen.Applications.ThemeManager
         /// <exception cref="InvalidOperationException">Thrown when failed because of system error.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed because of out of memory.</exception>
         /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Theme(Theme theme)
         {
             if (theme == null || theme._handle == IntPtr.Zero)
@@ -111,42 +113,49 @@ namespace Tizen.Applications.ThemeManager
         /// A Theme ID
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string Id { get { return _id; } }
 
         /// <summary>
         /// A Theme Version
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string Version { get { return _version; } }
 
         /// <summary>
         /// A Theme ToolVersion
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string ToolVersion { get { return _toolVersion; } }
 
         /// <summary>
         /// A Theme Title
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string Title { get { return _title; } }
 
         /// <summary>
         /// A Theme Resolution
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string Resolution { get { return _resolution; } }
 
         /// <summary>
         /// A Theme Preview
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string Preview { get { return _preview; } }
 
         /// <summary>
         /// A Theme Description
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string Description { get { return _description; } }
 
 
@@ -158,6 +167,7 @@ namespace Tizen.Applications.ThemeManager
         /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of the system error.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed because of out of memory.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string GetString(string key)
         {
             string str;
@@ -178,6 +188,7 @@ namespace Tizen.Applications.ThemeManager
         /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of the system error.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed because of out of memory.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public IEnumerable<string> GetStrings(string key)
         {
             IntPtr val;
@@ -201,6 +212,7 @@ namespace Tizen.Applications.ThemeManager
         /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of the system error.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed because of out of memory.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int GetInt(string key)
         {
             int val;
@@ -221,6 +233,7 @@ namespace Tizen.Applications.ThemeManager
         /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of the system error.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed because of out of memory.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float GetFloat(string key)
         {
             float val;
@@ -241,6 +254,7 @@ namespace Tizen.Applications.ThemeManager
         /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of the system error.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed because of out of memory.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool GetBool(string key)
         {
             bool val;
@@ -261,6 +275,7 @@ namespace Tizen.Applications.ThemeManager
         /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of the system error.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed because of out of memory.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string GetPath(string key)
         {
             string val;
@@ -281,6 +296,7 @@ namespace Tizen.Applications.ThemeManager
         /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of the system error.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed because of out of memory.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public IEnumerable<string> GetPaths(string key)
         {
             IntPtr val;
@@ -313,6 +329,7 @@ namespace Tizen.Applications.ThemeManager
         /// <param name="key">The string key to find information.</param>
         /// <since_tizen> 9 </since_tizen>
         /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool HasKey(string key)
         {
             bool val;
@@ -329,6 +346,7 @@ namespace Tizen.Applications.ThemeManager
         /// Releases all resources used by the Theme class.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Dispose()
         {
             Dispose(true);

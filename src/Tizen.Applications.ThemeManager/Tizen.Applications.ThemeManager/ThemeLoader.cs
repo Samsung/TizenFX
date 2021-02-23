@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Runtime.InteropServices;
 
 namespace Tizen.Applications.ThemeManager
@@ -24,6 +25,7 @@ namespace Tizen.Applications.ThemeManager
     /// 
     /// </summary>
     /// <since_tizen> 8 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class ThemeLoader : IDisposable
     {
         private const string LogTag = "Tizen.Applications.ThemeManager";
@@ -39,6 +41,7 @@ namespace Tizen.Applications.ThemeManager
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         /// <exception cref="OutOfMemoryException">Failed to create handle.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ThemeLoader()
         {
             Interop.ThemeManager.ErrorCode err = Interop.ThemeManager.LoaderCreate(out _loaderHandle);
@@ -60,6 +63,7 @@ namespace Tizen.Applications.ThemeManager
         /// <since_tizen> 8 </since_tizen>
         /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed because of out of memory.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<ThemeEventArgs> ThemeChanged
         {
             add
@@ -100,6 +104,7 @@ namespace Tizen.Applications.ThemeManager
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Theme CurrentTheme
         {
             get
@@ -138,6 +143,7 @@ namespace Tizen.Applications.ThemeManager
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Theme LoadTheme(string id)
         {
             IntPtr _themeHandle;
@@ -157,6 +163,7 @@ namespace Tizen.Applications.ThemeManager
         /// <since_tizen> 8 </since_tizen>
         /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed because of out of memory.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public IEnumerable<string> QueryIds()
         {
             IntPtr ids;
@@ -188,6 +195,7 @@ namespace Tizen.Applications.ThemeManager
         /// Releases all resources used by the ThemeLoader class.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Dispose()
         {
             Dispose(true);

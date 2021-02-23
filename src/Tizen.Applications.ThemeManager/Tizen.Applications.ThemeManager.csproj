@@ -5,7 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\Tizen\Tizen.csproj" />
+    <ProjectReference Include="..\Tizen\Tizen.csproj" />
+    <ProjectReference Include="..\Tizen.Log\Tizen.Log.csproj" />
   </ItemGroup>
 
 
