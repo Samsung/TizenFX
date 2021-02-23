@@ -1284,13 +1284,6 @@ namespace Tizen.NUI.BaseComponents
                 _backgroundResourceLoadedCallback = null;
             }
 
-            if (_onWindowSendEventCallback != null)
-            {
-                ViewSignal signal = this.OnWindowSignal();
-                signal?.Disconnect(_onWindowSendEventCallback);
-                signal?.Dispose();
-            }
-
             // BaseHandle CPtr is used in Registry and there is danger of deletion if we keep using it here.
             // Restore current CPtr.
             SwigCPtr = currentCPtr;

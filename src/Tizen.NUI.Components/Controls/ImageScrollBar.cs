@@ -18,6 +18,8 @@ using System;
 using Tizen.NUI.BaseComponents;
 using System.ComponentModel;
 using Tizen.NUI.Binding;
+using static Tizen.NUI.BaseComponents.FlexContainer;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.NUI.Components
 {
@@ -453,7 +455,9 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be deprecated
         [Obsolete("Deprecated in API8; Will be removed in API10")]
+#pragma warning disable CS0809 // Obsolete member overrides non-obsolete member, It will be removed in API10
         protected override void Dispose(DisposeTypes type)
+#pragma warning restore CS0809 // Obsolete member overrides non-obsolete member, It will be removed in API10
         {
             if (disposed)
             {
