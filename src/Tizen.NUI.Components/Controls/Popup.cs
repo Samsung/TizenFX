@@ -19,8 +19,6 @@ using System.Collections.Generic;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
 using System.ComponentModel;
-using static Tizen.NUI.BaseComponents.FlexContainer;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.NUI.Components
 {
