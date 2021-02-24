@@ -47,11 +47,23 @@ namespace Tizen.NUI.Samples
             tlog.Debug(tag, $"timer start!");
         }
 
-        private bool onTick(object o, Timer.TickEventArgs e) 
+        private bool onTick(object o, Timer.TickEventArgs e)
         {
             textStatus.Text = $"Culled={text.Culled}";
             tlog.Debug(tag, $"text.Culled={text.Culled}");
             return true;
+        }
+
+        private void OnKeyEvent(object sender, Window.KeyEventArgs e)
+        {
+            if(e.Key.State == Key.StateType.Down)
+            {
+                if(e.Key.KeyPressedName == "Escape" || e.Key.KeyPressedName == "BackSpace")
+                {
+                    // Do Something later
+                }
+
+            }
         }
 
         public void Deactivate()
