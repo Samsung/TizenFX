@@ -39,7 +39,7 @@ namespace Tizen.NUI
             public static extern global::System.IntPtr GetClosestImageSize(string jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GetOriginalImageSize")]
-            public static extern global::System.IntPtr GetOriginalImageSize(string jarg1);
+            public static extern global::System.IntPtr GetOriginalImageSize(string jarg1, bool jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DownloadImageSynchronously__SWIG_0")]
             public static extern global::System.IntPtr DownloadImageSynchronously(string jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, int jarg3, int jarg4, bool jarg5);
