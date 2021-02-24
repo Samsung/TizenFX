@@ -58,8 +58,6 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler<BackgroundResourceLoadedEventArgs> _backgroundResourceLoadedEventHandler;
         private _backgroundResourceLoadedCallbackType _backgroundResourceLoadedCallback;
 
-        private OnWindowEventCallbackType _onWindowSendEventCallback;
-
         private void SendViewAddedEventToWindow(IntPtr data)
         {
             // Unused parameter

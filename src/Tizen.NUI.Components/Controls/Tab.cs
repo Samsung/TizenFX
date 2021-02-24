@@ -96,6 +96,9 @@ namespace Tizen.NUI.Components
             }
         }
 
+        /// <summary>
+        /// Get underline of Tab.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public View Underline
         {
@@ -441,7 +444,9 @@ namespace Tizen.NUI.Components
         /// <param name="type">Dispose type.</param>
         /// <since_tizen> 6 </since_tizen>
         [Obsolete("Deprecated in API8; Will be removed in API10")]
+#pragma warning disable CS0809 // Obsolete member overrides non-obsolete member, It will be removed in API10
         protected override void Dispose(DisposeTypes type)
+#pragma warning restore CS0809 // Obsolete member overrides non-obsolete member, It will be removed in API10
         {
             if (disposed)
             {

@@ -27,8 +27,6 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class ScrollbarBase : Control
     {
-        private bool mScrollEnabled = true;
-
         #region Constructors
 
         /// <summary>

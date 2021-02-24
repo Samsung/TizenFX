@@ -173,7 +173,7 @@ namespace Tizen.NUI.Components
             }
         }
 
-        private new Extents padding;
+        private Extents padding;
         /// <summary>
         /// overwrite the Padding.
         /// </summary>
@@ -523,26 +523,6 @@ namespace Tizen.NUI.Components
             mLayout.OnLayoutChildren(mRecycler);
 
             RemoveAndRecycleScrapInt();
-        }
-
-        /// <summary>
-        /// you can override it to do something for style change.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override void OnStyleChange(NUI.StyleManager styleManager, StyleChangeType change)
-        {
-            if (change == StyleChangeType.DefaultFontSizeChange)
-            {
-                NUI.StyleManager.StyleChangedEventArgs args = new NUI.StyleManager.StyleChangedEventArgs();
-                args.StyleManager = styleManager;
-                args.StyleChange = change;
-
-                styleChangedEventHandlers?.Invoke(this, args);
-
-                RelayoutRequest();
-            }
         }
 
         private void DispatchLayoutStep1()
