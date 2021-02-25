@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2021 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -18,20 +18,17 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using Tizen.Applications;
-using Tizen.Applications.ComponentBased;
 using Tizen.Applications.ComponentBased.Common;
-using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-
     /// <summary>
     /// The class for supporting multi-components application model.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class NUIComponentApplication : CoreApplication
     {
-        private Dictionary<Type, ComponentStateManger> _componentFactories = new Dictionary<Type, ComponentStateManger>();
+        private Dictionary<Type, ComponentStateManger> componentFactories = new Dictionary<Type, ComponentStateManger>();
 
         /// <summary>
         /// Initializes the ComponentApplication class.
@@ -50,7 +47,7 @@ namespace Tizen.NUI
                     RegisterComponent(component.Key, component.Value);
                 }
             }
-            (Backend as NUIComponentCoreBackend).ComponentFactories = _componentFactories;
+            (Backend as NUIComponentCoreBackend).ComponentFactories = componentFactories;
         }
 
         /// <summary>
@@ -62,25 +59,24 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RegisterComponent(Type compType, string compId)
         {
-            if (_componentFactories.ContainsKey(compType))
+            if (componentFactories.ContainsKey(compType))
             {
                 throw new ArgumentException("Already exist type");
             }
 
             if (typeof(FrameComponent).IsAssignableFrom(compType))
             {
-                _componentFactories.Add(compType, new FrameComponentStateManager(compType, compId, null));
+                componentFactories.Add(compType, new FrameComponentStateManager(compType, compId, null));
             }
             else if (typeof(ServiceComponent).IsAssignableFrom(compType))
             {
-                _componentFactories.Add(compType, new ServiceComponentStateManager(compType, compId, null));
+                componentFactories.Add(compType, new ServiceComponentStateManager(compType, compId, null));
             }
             else
             {
                 throw new ArgumentException("compType must be sub type of FrameComponent or ServiceComponent", nameof(compType));
             }
         }
-
 
         /// <summary>
         /// Runs the application's main loop.

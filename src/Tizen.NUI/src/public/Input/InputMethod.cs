@@ -1,4 +1,4 @@
-// Copyright (c) 2017 Samsung Electronics Co., Ltd.
+// Copyright (c) 2021 Samsung Electronics Co., Ltd.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,17 +16,16 @@ using System;
 
 namespace Tizen.NUI
 {
-
     /// <summary>
     /// A class encapsulating the input method map.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class InputMethod
     {
-        private PanelLayoutType? _panelLayout = null;
-        private ActionButtonTitleType? _actionButton = null;
-        private AutoCapitalType? _autoCapital = null;
-        private int? _variation = null;
+        private PanelLayoutType? panelLayout = null;
+        private ActionButtonTitleType? actionButton = null;
+        private AutoCapitalType? autoCapital = null;
+        private int? variation = null;
 
         /// <summary>
         /// The default constructor.
@@ -271,11 +270,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _panelLayout ?? PanelLayoutType.Normal;
+                return panelLayout ?? PanelLayoutType.Normal;
             }
             set
             {
-                _panelLayout = value;
+                panelLayout = value;
             }
         }
 
@@ -287,11 +286,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _actionButton ?? ActionButtonTitleType.Default;
+                return actionButton ?? ActionButtonTitleType.Default;
             }
             set
             {
-                _actionButton = value;
+                actionButton = value;
             }
         }
 
@@ -303,11 +302,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _autoCapital ?? AutoCapitalType.None;
+                return autoCapital ?? AutoCapitalType.None;
             }
             set
             {
-                _autoCapital = value;
+                autoCapital = value;
             }
         }
 
@@ -319,11 +318,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _variation ?? 0;
+                return variation ?? 0;
             }
             set
             {
-                _variation = value;
+                variation = value;
             }
         }
 
@@ -335,11 +334,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return (NormalLayoutType)(_variation ?? 0);
+                return (NormalLayoutType)(variation ?? 0);
             }
             set
             {
-                _variation = (int)value;
+                variation = (int)value;
             }
         }
 
@@ -351,11 +350,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return (NumberOnlyLayoutType)(_variation ?? 0);
+                return (NumberOnlyLayoutType)(variation ?? 0);
             }
             set
             {
-                _variation = (int)value;
+                variation = (int)value;
             }
         }
 
@@ -367,11 +366,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return (PasswordLayoutType)(_variation ?? 0);
+                return (PasswordLayoutType)(variation ?? 0);
             }
             set
             {
-                _variation = (int)value;
+                variation = (int)value;
             }
         }
 
@@ -389,38 +388,38 @@ namespace Tizen.NUI
 
         private PropertyMap ComposingInputMethodMap()
         {
-            PropertyMap _outputMap = new PropertyMap();
+            PropertyMap outputMap = new PropertyMap();
             PropertyValue temp;
-            if (_panelLayout != null)
+            if (panelLayout != null)
             {
-                temp = new PropertyValue((int)_panelLayout);
-                _outputMap.Add("PANEL_LAYOUT", temp);
+                temp = new PropertyValue((int)panelLayout);
+                outputMap.Add("PANEL_LAYOUT", temp);
                 temp.Dispose();
             }
-            if (_actionButton != null)
+            if (actionButton != null)
             {
                 // Temporarily specify the values to match the types of ecore_imf.
-                if (_actionButton == InputMethod.ActionButtonTitleType.Search) _actionButton = (InputMethod.ActionButtonTitleType.Search - 1); // 6
-                else if (_actionButton == InputMethod.ActionButtonTitleType.Send) _actionButton = (InputMethod.ActionButtonTitleType.Send - 1); // 7
-                else if (_actionButton == InputMethod.ActionButtonTitleType.SignIn) _actionButton = (InputMethod.ActionButtonTitleType.SignIn - 1); // 8
-                else if (_actionButton == InputMethod.ActionButtonTitleType.Unspecified || _actionButton == InputMethod.ActionButtonTitleType.None) _actionButton = InputMethod.ActionButtonTitleType.Default;
-                temp = new PropertyValue((int)_actionButton);
-                _outputMap.Add("BUTTON_ACTION", temp);
+                if (actionButton == InputMethod.ActionButtonTitleType.Search) actionButton = (InputMethod.ActionButtonTitleType.Search - 1); // 6
+                else if (actionButton == InputMethod.ActionButtonTitleType.Send) actionButton = (InputMethod.ActionButtonTitleType.Send - 1); // 7
+                else if (actionButton == InputMethod.ActionButtonTitleType.SignIn) actionButton = (InputMethod.ActionButtonTitleType.SignIn - 1); // 8
+                else if (actionButton == InputMethod.ActionButtonTitleType.Unspecified || actionButton == InputMethod.ActionButtonTitleType.None) actionButton = InputMethod.ActionButtonTitleType.Default;
+                temp = new PropertyValue((int)actionButton);
+                outputMap.Add("BUTTON_ACTION", temp);
                 temp.Dispose();
             }
-            if (_autoCapital != null)
+            if (autoCapital != null)
             {
-                temp = new PropertyValue((int)_autoCapital);
-                _outputMap.Add("AUTO_CAPITALIZE", temp);
+                temp = new PropertyValue((int)autoCapital);
+                outputMap.Add("AUTO_CAPITALIZE", temp);
                 temp.Dispose();
             }
-            if (_variation != null)
+            if (variation != null)
             {
-                temp = new PropertyValue((int)_variation);
-                _outputMap.Add("VARIATION", temp);
+                temp = new PropertyValue((int)variation);
+                outputMap.Add("VARIATION", temp);
                 temp.Dispose();
             }
-            return _outputMap;
+            return outputMap;
         }
     }
 }

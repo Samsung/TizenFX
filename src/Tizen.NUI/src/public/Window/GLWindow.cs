@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,12 +16,11 @@
  */
 
 extern alias TizenSystemInformation;
-using TizenSystemInformation.Tizen.System;
-using global::System;
+
+using System;
 using System.ComponentModel;
 using System.Collections.Generic;
-using global::System.Runtime.InteropServices;
-using Tizen.NUI.BaseComponents;
+using System.Runtime.InteropServices;
 
 namespace Tizen.NUI
 {
