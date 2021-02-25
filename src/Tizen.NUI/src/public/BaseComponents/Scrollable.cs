@@ -728,64 +728,111 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Enumeration for the instance of properties belonging to the Scrollable class.
         /// </summary>
-        internal new class Property
+        /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Deprecated in API6; Will be removed in API9.")]
+#pragma warning disable CA1716, CA1052, CA1034 // Identifiers should not match keywords
+        public new class Property
+#pragma warning restore CA1716, CA1052, CA1034 // Identifiers should not match keywords
         {
             /// <summary>
             /// The color of the overshoot effect.
             /// </summary>
-            internal static readonly int OvershootEffectColor = Interop.Scrollable.OvershootEffectColorGet();
+            /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
+            public static readonly int OvershootEffectColor = Interop.Scrollable.OvershootEffectColorGet();
             /// <summary>
             /// The speed of overshoot animation in pixels per second.
             /// </summary>
-            internal static readonly int OvershootAnimationSpeed = Interop.Scrollable.OvershootAnimationSpeedGet();
+            /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
+            public static readonly int OvershootAnimationSpeed = Interop.Scrollable.OvershootAnimationSpeedGet();
             /// <summary>
             /// Whether to enables or disable scroll overshoot.
             /// </summary>
-            internal static readonly int OvershootEnabled = Interop.Scrollable.OvershootEnabledGet();
+            /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
+            public static readonly int OvershootEnabled = Interop.Scrollable.OvershootEnabledGet();
             /// <summary>
             /// The size of the overshoot.
             /// </summary>
-            internal static readonly int OvershootSize = Interop.Scrollable.OvershootSizeGet();
+            /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
+            public static readonly int OvershootSize = Interop.Scrollable.OvershootSizeGet();
             /// <summary>
             /// scrollToAlphaFunction.
             /// </summary>
-            internal static readonly int ScrollToAlphaFunction = Interop.Scrollable.ScrollToAlphaFunctionGet();
+            /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
+            public static readonly int ScrollToAlphaFunction = Interop.Scrollable.ScrollToAlphaFunctionGet();
             /// <summary>
             /// scrollRelativePosition
             /// </summary>
-            internal static readonly int ScrollRelativePosition = Interop.Scrollable.ScrollRelativePositionGet();
+            /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
+            public static readonly int ScrollRelativePosition = Interop.Scrollable.ScrollRelativePositionGet();
             /// <summary>
             /// scrollPositionMin
             /// </summary>
-            internal static readonly int ScrollPositionMin = Interop.Scrollable.ScrollPositionMinGet();
+            /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
+            public static readonly int ScrollPositionMin = Interop.Scrollable.ScrollPositionMinGet();
             /// <summary>
             /// scrollPositionMinX.
             /// </summary>
-            internal static readonly int ScrollPositionMinX = Interop.Scrollable.ScrollPositionMinXGet();
+            /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
+            public static readonly int ScrollPositionMinX = Interop.Scrollable.ScrollPositionMinXGet();
             /// <summary>
             /// scrollPositionMinY.
             /// </summary>
-            internal static readonly int ScrollPositionMinY = Interop.Scrollable.ScrollPositionMinYGet();
+            /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
+            public static readonly int ScrollPositionMinY = Interop.Scrollable.ScrollPositionMinYGet();
             /// <summary>
             /// scrollPositionMax.
             /// </summary>
-            internal static readonly int ScrollPositionMax = Interop.Scrollable.ScrollPositionMaxGet();
+            /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
+            public static readonly int ScrollPositionMax = Interop.Scrollable.ScrollPositionMaxGet();
             /// <summary>
             /// scrollPositionMaxX.
             /// </summary>
-            internal static readonly int ScrollPositionMaxX = Interop.Scrollable.ScrollPositionMaxXGet();
+            /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
+            public static readonly int ScrollPositionMaxX = Interop.Scrollable.ScrollPositionMaxXGet();
             /// <summary>
             /// scrollPositionMaxY.
             /// </summary>
-            internal static readonly int ScrollPositionMaxY = Interop.Scrollable.ScrollPositionMaxYGet();
+            /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
+            public static readonly int ScrollPositionMaxY = Interop.Scrollable.ScrollPositionMaxYGet();
             /// <summary>
             /// canScrollVertical
             /// </summary>
-            internal static readonly int CanScrollVertical = Interop.Scrollable.CanScrollVerticalGet();
+            /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
+            public static readonly int CanScrollVertical = Interop.Scrollable.CanScrollVerticalGet();
             /// <summary>
             /// canScrollHorizontal.
             /// </summary>
-            internal static readonly int CanScrollHorizontal = Interop.Scrollable.CanScrollHorizontalGet();
+            /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
+            public static readonly int CanScrollHorizontal = Interop.Scrollable.CanScrollHorizontalGet();
         }
     }
 }
