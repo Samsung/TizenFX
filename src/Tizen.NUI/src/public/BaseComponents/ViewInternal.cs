@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,11 +17,6 @@
 
 using System;
 using System.ComponentModel;
-using System.Collections.Generic;
-using System.IO;
-using System.Runtime.InteropServices;
-using Tizen.NUI.Binding;
-using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -1190,34 +1185,34 @@ namespace Tizen.NUI.BaseComponents
             // Use BaseHandle CPtr as current might have been deleted already in derived classes.
             SwigCPtr = GetBaseHandleCPtrHandleRef;
 
-            if (_onRelayoutEventCallback != null)
+            if (onRelayoutEventCallback != null)
             {
                 ViewSignal signal = this.OnRelayoutSignal();
-                signal?.Disconnect(_onRelayoutEventCallback);
+                signal?.Disconnect(onRelayoutEventCallback);
                 signal?.Dispose();
-                _onRelayoutEventCallback = null;
+                onRelayoutEventCallback = null;
             }
 
-            if (_offWindowEventCallback != null)
+            if (offWindowEventCallback != null)
             {
                 ViewSignal signal = this.OffWindowSignal();
-                signal?.Disconnect(_offWindowEventCallback);
+                signal?.Disconnect(offWindowEventCallback);
                 signal?.Dispose();
-                _offWindowEventCallback = null;
+                offWindowEventCallback = null;
             }
 
-            if (_onWindowEventCallback != null)
+            if (onWindowEventCallback != null)
             {
                 ViewSignal signal = this.OnWindowSignal();
-                signal?.Disconnect(_onWindowEventCallback);
+                signal?.Disconnect(onWindowEventCallback);
                 signal?.Dispose();
-                _onWindowEventCallback = null;
+                onWindowEventCallback = null;
             }
 
-            if (_wheelEventCallback != null)
+            if (wheelEventCallback != null)
             {
                 WheelSignal signal = this.WheelEventSignal();
-                signal?.Disconnect(_wheelEventCallback);
+                signal?.Disconnect(wheelEventCallback);
                 signal?.Dispose();
             }
 
@@ -1226,62 +1221,62 @@ namespace Tizen.NUI.BaseComponents
                 NUIApplication.GetDefaultWindow().WheelEvent -= OnWindowWheelEvent;
             }
 
-            if (_hoverEventCallback != null)
+            if (hoverEventCallback != null)
             {
                 HoverSignal signal = this.HoveredSignal();
-                signal?.Disconnect(_hoverEventCallback);
+                signal?.Disconnect(hoverEventCallback);
                 signal?.Dispose();
             }
 
-            if (_interceptTouchDataCallback != null)
+            if (interceptTouchDataCallback != null)
             {
                 TouchDataSignal signal = this.InterceptTouchSignal();
-                signal?.Disconnect(_interceptTouchDataCallback);
+                signal?.Disconnect(interceptTouchDataCallback);
                 signal?.Dispose();
             }
 
-            if (_touchDataCallback != null)
+            if (touchDataCallback != null)
             {
                 TouchDataSignal signal = this.TouchSignal();
-                signal?.Disconnect(_touchDataCallback);
+                signal?.Disconnect(touchDataCallback);
                 signal?.Dispose();
             }
 
-            if (_ResourcesLoadedCallback != null)
+            if (ResourcesLoadedCallback != null)
             {
                 ViewSignal signal = this.ResourcesLoadedSignal();
-                signal?.Disconnect(_ResourcesLoadedCallback);
+                signal?.Disconnect(ResourcesLoadedCallback);
                 signal?.Dispose();
-                _ResourcesLoadedCallback = null;
+                ResourcesLoadedCallback = null;
             }
 
-            if (_keyCallback != null)
+            if (keyCallback != null)
             {
                 ControlKeySignal signal = this.KeyEventSignal();
-                signal?.Disconnect(_keyCallback);
+                signal?.Disconnect(keyCallback);
                 signal?.Dispose();
             }
 
-            if (_keyInputFocusLostCallback != null)
+            if (keyInputFocusLostCallback != null)
             {
                 KeyInputFocusSignal signal = this.KeyInputFocusLostSignal();
-                signal?.Disconnect(_keyInputFocusLostCallback);
+                signal?.Disconnect(keyInputFocusLostCallback);
                 signal?.Dispose();
             }
 
-            if (_keyInputFocusGainedCallback != null)
+            if (keyInputFocusGainedCallback != null)
             {
                 KeyInputFocusSignal signal = this.KeyInputFocusGainedSignal();
-                signal?.Disconnect(_keyInputFocusGainedCallback);
+                signal?.Disconnect(keyInputFocusGainedCallback);
                 signal?.Dispose();
             }
 
-            if (_backgroundResourceLoadedCallback != null)
+            if (backgroundResourceLoadedCallback != null)
             {
                 ViewSignal signal = this.ResourcesLoadedSignal();
-                signal?.Disconnect(_backgroundResourceLoadedCallback);
+                signal?.Disconnect(backgroundResourceLoadedCallback);
                 signal?.Dispose();
-                _backgroundResourceLoadedCallback = null;
+                backgroundResourceLoadedCallback = null;
             }
 
             // BaseHandle CPtr is used in Registry and there is danger of deletion if we keep using it here.

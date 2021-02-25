@@ -1,10 +1,25 @@
+/*
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 #define DO_NOT_CHECK_FOR_BINDING_REUSE
 
 using System;
 using System.ComponentModel;
 using System.Globalization;
 using System.Collections.Generic;
-using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Binding.Internals
 {
@@ -13,20 +28,20 @@ namespace Tizen.NUI.Binding.Internals
     [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class TypedBindingBase : BindingBase
     {
-        IValueConverter _converter;
-        object _converterParameter;
-        object _source;
-        string _updateSourceEventName;
+        IValueConverter converter;
+        object converterParameter;
+        object source;
+        string updateSourceEventName;
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public IValueConverter Converter
         {
-            get { return _converter; }
+            get { return converter; }
             set
             {
                 ThrowIfApplied();
-                _converter = value;
+                converter = value;
             }
         }
 
@@ -34,11 +49,11 @@ namespace Tizen.NUI.Binding.Internals
         [EditorBrowsable(EditorBrowsableState.Never)]
         public object ConverterParameter
         {
-            get { return _converterParameter; }
+            get { return converterParameter; }
             set
             {
                 ThrowIfApplied();
-                _converterParameter = value;
+                converterParameter = value;
             }
         }
 
@@ -46,21 +61,21 @@ namespace Tizen.NUI.Binding.Internals
         [EditorBrowsable(EditorBrowsableState.Never)]
         public object Source
         {
-            get { return _source; }
+            get { return source; }
             set
             {
                 ThrowIfApplied();
-                _source = value;
+                source = value;
             }
         }
 
         internal string UpdateSourceEventName
         {
-            get { return _updateSourceEventName; }
+            get { return updateSourceEventName; }
             set
             {
                 ThrowIfApplied();
-                _updateSourceEventName = value;
+                updateSourceEventName = value;
             }
         }
 
@@ -71,29 +86,29 @@ namespace Tizen.NUI.Binding.Internals
 
     internal sealed class TypedBinding<TSource, TProperty> : TypedBindingBase
     {
-        readonly Func<TSource, TProperty> _getter;
-        readonly Action<TSource, TProperty> _setter;
-        readonly PropertyChangedProxy[] _handlers;
+        readonly Func<TSource, TProperty> getter;
+        readonly Action<TSource, TProperty> setter;
+        readonly PropertyChangedProxy[] proxyHandlers;
 
         public TypedBinding(Func<TSource, TProperty> getter, Action<TSource, TProperty> setter, Tuple<Func<TSource, object>, string>[] handlers)
         {
             if (getter == null)
                 throw new ArgumentNullException(nameof(getter));
 
-            _getter = getter;
-            _setter = setter;
+            this.getter = getter;
+            this.setter = setter;
 
             if (handlers == null)
                 return;
 
-            _handlers = new PropertyChangedProxy[handlers.Length];
+            proxyHandlers = new PropertyChangedProxy[handlers.Length];
             for (var i = 0; i < handlers.Length; i++)
-                _handlers[i] = new PropertyChangedProxy(handlers[i].Item1, handlers[i].Item2, this);
+                proxyHandlers[i] = new PropertyChangedProxy(handlers[i].Item1, handlers[i].Item2, this);
         }
 
-        readonly WeakReference<object> _weakSource = new WeakReference<object>(null);
-        readonly WeakReference<BindableObject> _weakTarget = new WeakReference<BindableObject>(null);
-        BindableProperty _targetProperty;
+        readonly WeakReference<object> weakSource = new WeakReference<object>(null);
+        readonly WeakReference<BindableObject> weakTarget = new WeakReference<BindableObject>(null);
+        BindableProperty targetProperty;
 
         // Applies the binding to a previously set source and target.
         internal override void Apply(bool fromTarget = false)
@@ -102,7 +117,7 @@ namespace Tizen.NUI.Binding.Internals
 
             BindableObject target;
 #if DO_NOT_CHECK_FOR_BINDING_REUSE
-            if (!_weakTarget.TryGetTarget(out target))
+            if (!weakTarget.TryGetTarget(out target))
                 throw new InvalidOperationException();
 #else
             if (!_weakTarget.TryGetTarget(out target) || target == null) {
@@ -111,14 +126,14 @@ namespace Tizen.NUI.Binding.Internals
             }
 #endif
             object source;
-            if (_weakSource.TryGetTarget(out source) && source != null)
-                ApplyCore(source, target, _targetProperty, fromTarget);
+            if (weakSource.TryGetTarget(out source) && source != null)
+                ApplyCore(source, target, targetProperty, fromTarget);
         }
 
         // Applies the binding to a new source or target.
         internal override void Apply(object context, BindableObject bindObj, BindableProperty targetProperty, bool fromBindingContextChanged = false)
         {
-            _targetProperty = targetProperty;
+            this.targetProperty = targetProperty;
             var source = Source ?? Context ?? context;
             var isApplied = IsApplied;
 
@@ -136,21 +151,21 @@ namespace Tizen.NUI.Binding.Internals
             if (_weakSource.TryGetTarget(out previousSource) && !ReferenceEquals(previousSource, source))
                 throw new InvalidOperationException("Binding instances can not be reused");
 #endif
-            _weakSource.SetTarget(source);
-            _weakTarget.SetTarget(bindObj);
+            weakSource.SetTarget(source);
+            weakTarget.SetTarget(bindObj);
 
             ApplyCore(source, bindObj, targetProperty);
         }
 
         internal override BindingBase Clone()
         {
-            Tuple<Func<TSource, object>, string>[] handlers = _handlers == null ? null : new Tuple<Func<TSource, object>, string>[_handlers.Length];
+            Tuple<Func<TSource, object>, string>[] handlers = proxyHandlers == null ? null : new Tuple<Func<TSource, object>, string>[proxyHandlers.Length];
             if (handlers != null)
             {
-                for (var i = 0; i < _handlers.Length; i++)
-                    handlers[i] = new Tuple<Func<TSource, object>, string>(_handlers[i].PartGetter, _handlers[i].PropertyName);
+                for (var i = 0; i < proxyHandlers.Length; i++)
+                    handlers[i] = new Tuple<Func<TSource, object>, string>(proxyHandlers[i].PartGetter, proxyHandlers[i].PropertyName);
             }
-            return new TypedBinding<TSource, TProperty>(_getter, _setter, handlers)
+            return new TypedBinding<TSource, TProperty>(getter, setter, handlers)
             {
                 Mode = Mode,
                 Converter = Converter,
@@ -190,7 +205,7 @@ namespace Tizen.NUI.Binding.Internals
 #if (!DO_NOT_CHECK_FOR_BINDING_REUSE)
             base.Unapply(fromBindingContextChanged:fromBindingContextChanged);
 #endif
-            if (_handlers != null)
+            if (proxyHandlers != null)
                 Unsubscribe();
 
 #if (!DO_NOT_CHECK_FOR_BINDING_REUSE)
@@ -211,7 +226,7 @@ namespace Tizen.NUI.Binding.Internals
 
             var needsGetter = (mode == BindingMode.TwoWay && !fromTarget) || mode == BindingMode.OneWay || mode == BindingMode.OneTime;
 
-            if (isTSource && (mode == BindingMode.OneWay || mode == BindingMode.TwoWay) && _handlers != null)
+            if (isTSource && (mode == BindingMode.OneWay || mode == BindingMode.TwoWay) && proxyHandlers != null)
                 Subscribe((TSource)sourceObject);
 
             if (needsGetter)
@@ -221,7 +236,7 @@ namespace Tizen.NUI.Binding.Internals
                 {
                     try
                     {
-                        value = GetSourceValue(_getter((TSource)sourceObject), property.ReturnType);
+                        value = GetSourceValue(getter((TSource)sourceObject), property.ReturnType);
                     }
                     catch (Exception ex) when (ex is NullReferenceException || ex is KeyNotFoundException)
                     {
@@ -237,7 +252,7 @@ namespace Tizen.NUI.Binding.Internals
             }
 
             var needsSetter = (mode == BindingMode.TwoWay && fromTarget) || mode == BindingMode.OneWayToSource;
-            if (needsSetter && _setter != null && isTSource)
+            if (needsSetter && setter != null && isTSource)
             {
                 var value = GetTargetValue(target.GetValue(property), typeof(TProperty));
                 if (!TryConvert(ref value, property, typeof(TProperty), false))
@@ -245,7 +260,7 @@ namespace Tizen.NUI.Binding.Internals
                     // Log.Warning("Binding", "{0} can not be converted to type '{1}'", value, typeof(TProperty));
                     return;
                 }
-                _setter((TSource)sourceObject, (TProperty)value);
+                setter((TSource)sourceObject, (TProperty)value);
             }
         }
 
@@ -274,21 +289,21 @@ namespace Tizen.NUI.Binding.Internals
             public Func<TSource, object> PartGetter { get; }
             public string PropertyName { get; }
             public BindingExpression.WeakPropertyChangedProxy Listener { get; }
-            WeakReference<INotifyPropertyChanged> _weakPart = new WeakReference<INotifyPropertyChanged>(null);
-            readonly BindingBase _binding;
+            WeakReference<INotifyPropertyChanged> weakPart = new WeakReference<INotifyPropertyChanged>(null);
+            readonly BindingBase binding;
 
             public INotifyPropertyChanged Part
             {
                 get
                 {
                     INotifyPropertyChanged target;
-                    if (_weakPart.TryGetTarget(out target))
+                    if (weakPart.TryGetTarget(out target))
                         return target;
                     return null;
                 }
                 set
                 {
-                    _weakPart.SetTarget(value);
+                    weakPart.SetTarget(value);
                     Listener.SubscribeTo(value, OnPropertyChanged);
                 }
             }
@@ -297,7 +312,7 @@ namespace Tizen.NUI.Binding.Internals
             {
                 PartGetter = partGetter;
                 PropertyName = propertyName;
-                _binding = binding;
+                this.binding = binding;
                 Listener = new BindingExpression.WeakPropertyChangedProxy();
             }
 
@@ -305,28 +320,28 @@ namespace Tizen.NUI.Binding.Internals
             {
                 if (!string.IsNullOrEmpty(e.PropertyName) && string.CompareOrdinal(e.PropertyName, PropertyName) != 0)
                     return;
-                Device.BeginInvokeOnMainThread(() => _binding.Apply(false));
+                Device.BeginInvokeOnMainThread(() => binding.Apply(false));
             }
         }
 
         void Subscribe(TSource sourceObject)
         {
-            for (var i = 0; i < _handlers.Length; i++)
+            for (var i = 0; i < proxyHandlers.Length; i++)
             {
-                var part = _handlers[i].PartGetter(sourceObject);
+                var part = proxyHandlers[i].PartGetter(sourceObject);
                 if (part == null)
                     break;
                 var inpc = part as INotifyPropertyChanged;
                 if (inpc == null)
                     continue;
-                _handlers[i].Part = (inpc);
+                proxyHandlers[i].Part = (inpc);
             }
         }
 
         void Unsubscribe()
         {
-            for (var i = 0; i < _handlers.Length; i++)
-                _handlers[i].Listener.Unsubscribe();
+            for (var i = 0; i < proxyHandlers.Length; i++)
+                proxyHandlers[i].Listener.Unsubscribe();
         }
     }
 }

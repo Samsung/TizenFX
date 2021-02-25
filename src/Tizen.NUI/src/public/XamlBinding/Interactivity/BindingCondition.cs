@@ -1,3 +1,20 @@
+/*
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
 using System;
 using System.ComponentModel;
 using Tizen.NUI.Xaml;
@@ -10,30 +27,30 @@ namespace Tizen.NUI.Binding
     [AcceptEmptyServiceProvider]
     public sealed class BindingCondition : Condition, IValueProvider
     {
-        readonly BindableProperty _boundProperty;
+        readonly BindableProperty boundProperty;
 
-        BindingBase _binding;
-        object _triggerValue;
+        BindingBase binding;
+        object triggerValue;
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public BindingCondition()
         {
-            _boundProperty = BindableProperty.CreateAttached("Bound", typeof(object), typeof(BindingCondition), null, propertyChanged: OnBoundPropertyChanged);
+            boundProperty = BindableProperty.CreateAttached("Bound", typeof(object), typeof(BindingCondition), null, propertyChanged: OnBoundPropertyChanged);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public BindingBase Binding
         {
-            get { return _binding; }
+            get { return binding; }
             set
             {
-                if (_binding == value)
+                if (binding == value)
                     return;
                 if (IsSealed)
                     throw new InvalidOperationException("Can not change Binding once the Condition has been applied.");
-                _binding = value;
+                binding = value;
             }
         }
 
@@ -41,14 +58,14 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public object Value
         {
-            get { return _triggerValue; }
+            get { return triggerValue; }
             set
             {
-                if (_triggerValue == value)
+                if (triggerValue == value)
                     return;
                 if (IsSealed)
                     throw new InvalidOperationException("Can not change Value once the Condition has been applied.");
-                _triggerValue = value;
+                triggerValue = value;
             }
         }
 
@@ -60,20 +77,20 @@ namespace Tizen.NUI.Binding
 
         internal override bool GetState(BindableObject bindable)
         {
-            object newValue = bindable.GetValue(_boundProperty);
+            object newValue = bindable.GetValue(boundProperty);
             return EqualsToValue(newValue);
         }
 
         internal override void SetUp(BindableObject bindable)
         {
             if (Binding != null)
-                bindable.SetBinding(_boundProperty, Binding.Clone());
+                bindable.SetBinding(boundProperty, Binding.Clone());
         }
 
         internal override void TearDown(BindableObject bindable)
         {
-            bindable.RemoveBinding(_boundProperty);
-            bindable.ClearValue(_boundProperty);
+            bindable.RemoveBinding(boundProperty);
+            bindable.ClearValue(boundProperty);
         }
 
         static IValueConverterProvider s_valueConverter = DependencyService.Get<IValueConverterProvider>();

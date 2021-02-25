@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,6 @@
 using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
-using Tizen.NUI.Components;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -28,41 +27,40 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public partial class View
     {
-        private EventHandler _offWindowEventHandler;
-        private OffWindowEventCallbackType _offWindowEventCallback;
-        private EventHandlerWithReturnType<object, WheelEventArgs, bool> _wheelEventHandler;
-        private WheelEventCallbackType _wheelEventCallback;
-        private EventHandlerWithReturnType<object, KeyEventArgs, bool> _keyEventHandler;
-        private KeyCallbackType _keyCallback;
-        private EventHandlerWithReturnType<object, TouchEventArgs, bool> _interceptTouchDataEventHandler;
-        private TouchDataCallbackType _interceptTouchDataCallback;
-        private EventHandlerWithReturnType<object, TouchEventArgs, bool> _touchDataEventHandler;
-        private TouchDataCallbackType _touchDataCallback;
-        private EventHandlerWithReturnType<object, HoverEventArgs, bool> _hoverEventHandler;
-        private HoverEventCallbackType _hoverEventCallback;
-        private EventHandler<VisibilityChangedEventArgs> _visibilityChangedEventHandler;
-        private VisibilityChangedEventCallbackType _visibilityChangedEventCallback;
-        private EventHandler _keyInputFocusGainedEventHandler;
-        private KeyInputFocusGainedCallbackType _keyInputFocusGainedCallback;
-        private EventHandler _keyInputFocusLostEventHandler;
-        private KeyInputFocusLostCallbackType _keyInputFocusLostCallback;
-        private EventHandler _onRelayoutEventHandler;
-        private OnRelayoutEventCallbackType _onRelayoutEventCallback;
-        private EventHandler _onWindowEventHandler;
-        private OnWindowEventCallbackType _onWindowEventCallback;
-        private EventHandler<LayoutDirectionChangedEventArgs> _layoutDirectionChangedEventHandler;
-        private LayoutDirectionChangedEventCallbackType _layoutDirectionChangedEventCallback;
+        private EventHandler offWindowEventHandler;
+        private OffWindowEventCallbackType offWindowEventCallback;
+        private EventHandlerWithReturnType<object, WheelEventArgs, bool> wheelEventHandler;
+        private WheelEventCallbackType wheelEventCallback;
+        private EventHandlerWithReturnType<object, KeyEventArgs, bool> keyEventHandler;
+        private KeyCallbackType keyCallback;
+        private EventHandlerWithReturnType<object, TouchEventArgs, bool> interceptTouchDataEventHandler;
+        private TouchDataCallbackType interceptTouchDataCallback;
+        private EventHandlerWithReturnType<object, TouchEventArgs, bool> touchDataEventHandler;
+        private TouchDataCallbackType touchDataCallback;
+        private EventHandlerWithReturnType<object, HoverEventArgs, bool> hoverEventHandler;
+        private HoverEventCallbackType hoverEventCallback;
+        private EventHandler<VisibilityChangedEventArgs> visibilityChangedEventHandler;
+        private VisibilityChangedEventCallbackType visibilityChangedEventCallback;
+        private EventHandler keyInputFocusGainedEventHandler;
+        private KeyInputFocusGainedCallbackType keyInputFocusGainedCallback;
+        private EventHandler keyInputFocusLostEventHandler;
+        private KeyInputFocusLostCallbackType keyInputFocusLostCallback;
+        private EventHandler onRelayoutEventHandler;
+        private OnRelayoutEventCallbackType onRelayoutEventCallback;
+        private EventHandler onWindowEventHandler;
+        private OnWindowEventCallbackType onWindowEventCallback;
+        private EventHandler<LayoutDirectionChangedEventArgs> layoutDirectionChangedEventHandler;
+        private LayoutDirectionChangedEventCallbackType layoutDirectionChangedEventCallback;
         // Resource Ready Signal
-        private EventHandler _resourcesLoadedEventHandler;
-        private ResourcesLoadedCallbackType _ResourcesLoadedCallback;
-        private EventHandler<BackgroundResourceLoadedEventArgs> _backgroundResourceLoadedEventHandler;
-        private _backgroundResourceLoadedCallbackType _backgroundResourceLoadedCallback;
+        private EventHandler resourcesLoadedEventHandler;
+        private ResourcesLoadedCallbackType ResourcesLoadedCallback;
+        private EventHandler<BackgroundResourceLoadedEventArgs> backgroundResourceLoadedEventHandler;
+        private _backgroundResourceLoadedCallbackType backgroundResourceLoadedCallback;
 
         private void SendViewAddedEventToWindow(IntPtr data)
         {
             // Unused parameter
             _ = data;
-
             NUIApplication.GetDefaultWindow()?.SendViewAdded(this);
         }
 
@@ -113,22 +111,22 @@ namespace Tizen.NUI.BaseComponents
         {
             add
             {
-                if (_keyInputFocusGainedEventHandler == null)
+                if (keyInputFocusGainedEventHandler == null)
                 {
-                    _keyInputFocusGainedCallback = OnKeyInputFocusGained;
-                    this.KeyInputFocusGainedSignal().Connect(_keyInputFocusGainedCallback);
+                    keyInputFocusGainedCallback = OnKeyInputFocusGained;
+                    this.KeyInputFocusGainedSignal().Connect(keyInputFocusGainedCallback);
                 }
 
-                _keyInputFocusGainedEventHandler += value;
+                keyInputFocusGainedEventHandler += value;
             }
 
             remove
             {
-                _keyInputFocusGainedEventHandler -= value;
+                keyInputFocusGainedEventHandler -= value;
 
-                if (_keyInputFocusGainedEventHandler == null && KeyInputFocusGainedSignal().Empty() == false)
+                if (keyInputFocusGainedEventHandler == null && KeyInputFocusGainedSignal().Empty() == false)
                 {
-                    this.KeyInputFocusGainedSignal().Disconnect(_keyInputFocusGainedCallback);
+                    this.KeyInputFocusGainedSignal().Disconnect(keyInputFocusGainedCallback);
                 }
             }
         }
@@ -142,22 +140,22 @@ namespace Tizen.NUI.BaseComponents
         {
             add
             {
-                if (_keyInputFocusLostEventHandler == null)
+                if (keyInputFocusLostEventHandler == null)
                 {
-                    _keyInputFocusLostCallback = OnKeyInputFocusLost;
-                    this.KeyInputFocusLostSignal().Connect(_keyInputFocusLostCallback);
+                    keyInputFocusLostCallback = OnKeyInputFocusLost;
+                    this.KeyInputFocusLostSignal().Connect(keyInputFocusLostCallback);
                 }
 
-                _keyInputFocusLostEventHandler += value;
+                keyInputFocusLostEventHandler += value;
             }
 
             remove
             {
-                _keyInputFocusLostEventHandler -= value;
+                keyInputFocusLostEventHandler -= value;
 
-                if (_keyInputFocusLostEventHandler == null && KeyInputFocusLostSignal().Empty() == false)
+                if (keyInputFocusLostEventHandler == null && KeyInputFocusLostSignal().Empty() == false)
                 {
-                    this.KeyInputFocusLostSignal().Disconnect(_keyInputFocusLostCallback);
+                    this.KeyInputFocusLostSignal().Disconnect(keyInputFocusLostCallback);
                 }
             }
         }
@@ -171,22 +169,22 @@ namespace Tizen.NUI.BaseComponents
         {
             add
             {
-                if (_keyEventHandler == null)
+                if (keyEventHandler == null)
                 {
-                    _keyCallback = OnKeyEvent;
-                    this.KeyEventSignal().Connect(_keyCallback);
+                    keyCallback = OnKeyEvent;
+                    this.KeyEventSignal().Connect(keyCallback);
                 }
 
-                _keyEventHandler += value;
+                keyEventHandler += value;
             }
 
             remove
             {
-                _keyEventHandler -= value;
+                keyEventHandler -= value;
 
-                if (_keyEventHandler == null && KeyEventSignal().Empty() == false)
+                if (keyEventHandler == null && KeyEventSignal().Empty() == false)
                 {
-                    this.KeyEventSignal().Disconnect(_keyCallback);
+                    this.KeyEventSignal().Disconnect(keyCallback);
                 }
             }
         }
@@ -200,23 +198,23 @@ namespace Tizen.NUI.BaseComponents
         {
             add
             {
-                if (_onRelayoutEventHandler == null)
+                if (onRelayoutEventHandler == null)
                 {
-                    _onRelayoutEventCallback = OnRelayout;
-                    this.OnRelayoutSignal().Connect(_onRelayoutEventCallback);
+                    onRelayoutEventCallback = OnRelayout;
+                    this.OnRelayoutSignal().Connect(onRelayoutEventCallback);
                 }
 
-                _onRelayoutEventHandler += value;
+                onRelayoutEventHandler += value;
             }
 
             remove
             {
-                _onRelayoutEventHandler -= value;
+                onRelayoutEventHandler -= value;
 
-                if (_onRelayoutEventHandler == null && OnRelayoutSignal().Empty() == false)
+                if (onRelayoutEventHandler == null && OnRelayoutSignal().Empty() == false)
                 {
-                    this.OnRelayoutSignal().Disconnect(_onRelayoutEventCallback);
-                    _onRelayoutEventCallback = null;
+                    this.OnRelayoutSignal().Disconnect(onRelayoutEventCallback);
+                    onRelayoutEventCallback = null;
                 }
 
             }
@@ -233,22 +231,22 @@ namespace Tizen.NUI.BaseComponents
         {
             add
             {
-                if (_interceptTouchDataEventHandler == null)
+                if (interceptTouchDataEventHandler == null)
                 {
-                    _interceptTouchDataCallback = OnInterceptTouch;
-                    this.InterceptTouchSignal().Connect(_interceptTouchDataCallback);
+                    interceptTouchDataCallback = OnInterceptTouch;
+                    this.InterceptTouchSignal().Connect(interceptTouchDataCallback);
                 }
 
-                _interceptTouchDataEventHandler += value;
+                interceptTouchDataEventHandler += value;
             }
 
             remove
             {
-                _interceptTouchDataEventHandler -= value;
+                interceptTouchDataEventHandler -= value;
 
-                if (_interceptTouchDataEventHandler == null && InterceptTouchSignal().Empty() == false)
+                if (interceptTouchDataEventHandler == null && InterceptTouchSignal().Empty() == false)
                 {
-                    this.InterceptTouchSignal().Disconnect(_interceptTouchDataCallback);
+                    this.InterceptTouchSignal().Disconnect(interceptTouchDataCallback);
                 }
             }
         }
@@ -275,22 +273,22 @@ namespace Tizen.NUI.BaseComponents
         {
             add
             {
-                if (_touchDataEventHandler == null)
+                if (touchDataEventHandler == null)
                 {
-                    _touchDataCallback = OnTouch;
-                    this.TouchSignal().Connect(_touchDataCallback);
+                    touchDataCallback = OnTouch;
+                    this.TouchSignal().Connect(touchDataCallback);
                 }
 
-                _touchDataEventHandler += value;
+                touchDataEventHandler += value;
             }
 
             remove
             {
-                _touchDataEventHandler -= value;
+                touchDataEventHandler -= value;
 
-                if (_touchDataEventHandler == null && TouchSignal().Empty() == false)
+                if (touchDataEventHandler == null && TouchSignal().Empty() == false)
                 {
-                    this.TouchSignal().Disconnect(_touchDataCallback);
+                    this.TouchSignal().Disconnect(touchDataCallback);
                 }
             }
         }
@@ -304,22 +302,22 @@ namespace Tizen.NUI.BaseComponents
         {
             add
             {
-                if (_hoverEventHandler == null)
+                if (hoverEventHandler == null)
                 {
-                    _hoverEventCallback = OnHoverEvent;
-                    this.HoveredSignal().Connect(_hoverEventCallback);
+                    hoverEventCallback = OnHoverEvent;
+                    this.HoveredSignal().Connect(hoverEventCallback);
                 }
 
-                _hoverEventHandler += value;
+                hoverEventHandler += value;
             }
 
             remove
             {
-                _hoverEventHandler -= value;
+                hoverEventHandler -= value;
 
-                if (_hoverEventHandler == null && HoveredSignal().Empty() == false)
+                if (hoverEventHandler == null && HoveredSignal().Empty() == false)
                 {
-                    this.HoveredSignal().Disconnect(_hoverEventCallback);
+                    this.HoveredSignal().Disconnect(hoverEventCallback);
                 }
 
             }
@@ -334,12 +332,12 @@ namespace Tizen.NUI.BaseComponents
         {
             add
             {
-                if (_wheelEventHandler == null)
+                if (wheelEventHandler == null)
                 {
-                    _wheelEventCallback = OnWheelEvent;
-                    this.WheelEventSignal().Connect(_wheelEventCallback);
+                    wheelEventCallback = OnWheelEvent;
+                    this.WheelEventSignal().Connect(wheelEventCallback);
                 }
-                _wheelEventHandler += value;
+                wheelEventHandler += value;
 
                 if (WindowWheelEventHandler == null)
                 {
@@ -350,10 +348,10 @@ namespace Tizen.NUI.BaseComponents
 
             remove
             {
-                _wheelEventHandler -= value;
-                if (_wheelEventHandler == null && WheelEventSignal().Empty() == false)
+                wheelEventHandler -= value;
+                if (wheelEventHandler == null && WheelEventSignal().Empty() == false)
                 {
-                    this.WheelEventSignal().Disconnect(_wheelEventCallback);
+                    this.WheelEventSignal().Disconnect(wheelEventCallback);
                 }
 
                 WindowWheelEventHandler -= value;
@@ -373,23 +371,23 @@ namespace Tizen.NUI.BaseComponents
         {
             add
             {
-                if (_onWindowEventHandler == null)
+                if (onWindowEventHandler == null)
                 {
-                    _onWindowEventCallback = OnWindow;
-                    this.OnWindowSignal().Connect(_onWindowEventCallback);
+                    onWindowEventCallback = OnWindow;
+                    this.OnWindowSignal().Connect(onWindowEventCallback);
                 }
 
-                _onWindowEventHandler += value;
+                onWindowEventHandler += value;
             }
 
             remove
             {
-                _onWindowEventHandler -= value;
+                onWindowEventHandler -= value;
 
-                if (_onWindowEventHandler == null && OnWindowSignal().Empty() == false)
+                if (onWindowEventHandler == null && OnWindowSignal().Empty() == false)
                 {
-                    this.OnWindowSignal().Disconnect(_onWindowEventCallback);
-                    _onWindowEventCallback = null;
+                    this.OnWindowSignal().Disconnect(onWindowEventCallback);
+                    onWindowEventCallback = null;
                 }
             }
         }
@@ -403,23 +401,23 @@ namespace Tizen.NUI.BaseComponents
         {
             add
             {
-                if (_offWindowEventHandler == null)
+                if (offWindowEventHandler == null)
                 {
-                    _offWindowEventCallback = OffWindow;
-                    this.OffWindowSignal().Connect(_offWindowEventCallback);
+                    offWindowEventCallback = OffWindow;
+                    this.OffWindowSignal().Connect(offWindowEventCallback);
                 }
 
-                _offWindowEventHandler += value;
+                offWindowEventHandler += value;
             }
 
             remove
             {
-                _offWindowEventHandler -= value;
+                offWindowEventHandler -= value;
 
-                if (_offWindowEventHandler == null && OffWindowSignal().Empty() == false)
+                if (offWindowEventHandler == null && OffWindowSignal().Empty() == false)
                 {
-                    this.OffWindowSignal().Disconnect(_offWindowEventCallback);
-                    _offWindowEventCallback = null;
+                    this.OffWindowSignal().Disconnect(offWindowEventCallback);
+                    offWindowEventCallback = null;
                 }
             }
         }
@@ -433,22 +431,22 @@ namespace Tizen.NUI.BaseComponents
         {
             add
             {
-                if (_visibilityChangedEventHandler == null)
+                if (visibilityChangedEventHandler == null)
                 {
-                    _visibilityChangedEventCallback = OnVisibilityChanged;
-                    VisibilityChangedSignal(this).Connect(_visibilityChangedEventCallback);
+                    visibilityChangedEventCallback = OnVisibilityChanged;
+                    VisibilityChangedSignal(this).Connect(visibilityChangedEventCallback);
                 }
 
-                _visibilityChangedEventHandler += value;
+                visibilityChangedEventHandler += value;
             }
 
             remove
             {
-                _visibilityChangedEventHandler -= value;
+                visibilityChangedEventHandler -= value;
 
-                if (_visibilityChangedEventHandler == null && VisibilityChangedSignal(this).Empty() == false)
+                if (visibilityChangedEventHandler == null && VisibilityChangedSignal(this).Empty() == false)
                 {
-                    VisibilityChangedSignal(this).Disconnect(_visibilityChangedEventCallback);
+                    VisibilityChangedSignal(this).Disconnect(visibilityChangedEventCallback);
                 }
             }
         }
@@ -462,22 +460,22 @@ namespace Tizen.NUI.BaseComponents
         {
             add
             {
-                if (_layoutDirectionChangedEventHandler == null)
+                if (layoutDirectionChangedEventHandler == null)
                 {
-                    _layoutDirectionChangedEventCallback = OnLayoutDirectionChanged;
-                    LayoutDirectionChangedSignal(this).Connect(_layoutDirectionChangedEventCallback);
+                    layoutDirectionChangedEventCallback = OnLayoutDirectionChanged;
+                    LayoutDirectionChangedSignal(this).Connect(layoutDirectionChangedEventCallback);
                 }
 
-                _layoutDirectionChangedEventHandler += value;
+                layoutDirectionChangedEventHandler += value;
             }
 
             remove
             {
-                _layoutDirectionChangedEventHandler -= value;
+                layoutDirectionChangedEventHandler -= value;
 
-                if (_layoutDirectionChangedEventHandler == null && LayoutDirectionChangedSignal(this).Empty() == false)
+                if (layoutDirectionChangedEventHandler == null && LayoutDirectionChangedSignal(this).Empty() == false)
                 {
-                    LayoutDirectionChangedSignal(this).Disconnect(_layoutDirectionChangedEventCallback);
+                    LayoutDirectionChangedSignal(this).Disconnect(layoutDirectionChangedEventCallback);
                 }
             }
         }
@@ -491,23 +489,23 @@ namespace Tizen.NUI.BaseComponents
         {
             add
             {
-                if (_resourcesLoadedEventHandler == null)
+                if (resourcesLoadedEventHandler == null)
                 {
-                    _ResourcesLoadedCallback = OnResourcesLoaded;
-                    this.ResourcesLoadedSignal().Connect(_ResourcesLoadedCallback);
+                    ResourcesLoadedCallback = OnResourcesLoaded;
+                    this.ResourcesLoadedSignal().Connect(ResourcesLoadedCallback);
                 }
 
-                _resourcesLoadedEventHandler += value;
+                resourcesLoadedEventHandler += value;
             }
 
             remove
             {
-                _resourcesLoadedEventHandler -= value;
+                resourcesLoadedEventHandler -= value;
 
-                if (_resourcesLoadedEventHandler == null && ResourcesLoadedSignal().Empty() == false)
+                if (resourcesLoadedEventHandler == null && ResourcesLoadedSignal().Empty() == false)
                 {
-                    this.ResourcesLoadedSignal().Disconnect(_ResourcesLoadedCallback);
-                    _ResourcesLoadedCallback = null;
+                    this.ResourcesLoadedSignal().Disconnect(ResourcesLoadedCallback);
+                    ResourcesLoadedCallback = null;
                 }
             }
         }
@@ -548,22 +546,22 @@ namespace Tizen.NUI.BaseComponents
         {
             add
             {
-                if (_backgroundResourceLoadedEventHandler == null)
+                if (backgroundResourceLoadedEventHandler == null)
                 {
-                    _backgroundResourceLoadedCallback = OnBackgroundResourceLoaded;
-                    this.ResourcesLoadedSignal().Connect(_backgroundResourceLoadedCallback);
+                    backgroundResourceLoadedCallback = OnBackgroundResourceLoaded;
+                    this.ResourcesLoadedSignal().Connect(backgroundResourceLoadedCallback);
                 }
 
-                _backgroundResourceLoadedEventHandler += value;
+                backgroundResourceLoadedEventHandler += value;
             }
             remove
             {
-                _backgroundResourceLoadedEventHandler -= value;
+                backgroundResourceLoadedEventHandler -= value;
 
-                if (_backgroundResourceLoadedEventHandler == null && ResourcesLoadedSignal().Empty() == false)
+                if (backgroundResourceLoadedEventHandler == null && ResourcesLoadedSignal().Empty() == false)
                 {
-                    this.ResourcesLoadedSignal().Disconnect(_backgroundResourceLoadedCallback);
-                    _backgroundResourceLoadedCallback = null;
+                    this.ResourcesLoadedSignal().Disconnect(backgroundResourceLoadedCallback);
+                    backgroundResourceLoadedCallback = null;
                 }
             }
         }
@@ -783,17 +781,17 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnKeyInputFocusGained(IntPtr view)
         {
-            if (_keyInputFocusGainedEventHandler != null)
+            if (keyInputFocusGainedEventHandler != null)
             {
-                _keyInputFocusGainedEventHandler(this, null);
+                keyInputFocusGainedEventHandler(this, null);
             }
         }
 
         private void OnKeyInputFocusLost(IntPtr view)
         {
-            if (_keyInputFocusLostEventHandler != null)
+            if (keyInputFocusLostEventHandler != null)
             {
-                _keyInputFocusLostEventHandler(this, null);
+                keyInputFocusLostEventHandler(this, null);
             }
         }
 
@@ -811,9 +809,9 @@ namespace Tizen.NUI.BaseComponents
 
             e.Key = Tizen.NUI.Key.GetKeyFromPtr(keyEvent);
 
-            if (_keyEventHandler != null)
+            if (keyEventHandler != null)
             {
-                Delegate[] delegateList = _keyEventHandler.GetInvocationList();
+                Delegate[] delegateList = keyEventHandler.GetInvocationList();
 
                 // Oring the result of each callback.
                 foreach (EventHandlerWithReturnType<object, KeyEventArgs, bool> del in delegateList)
@@ -828,9 +826,9 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View OnRelayout signal
         private void OnRelayout(IntPtr data)
         {
-            if (_onRelayoutEventHandler != null)
+            if (onRelayoutEventHandler != null)
             {
-                _onRelayoutEventHandler(this, null);
+                onRelayoutEventHandler(this, null);
             }
         }
 
@@ -855,9 +853,9 @@ namespace Tizen.NUI.BaseComponents
 
             bool consumed = false;
 
-            if (_interceptTouchDataEventHandler != null)
+            if (interceptTouchDataEventHandler != null)
             {
-                consumed = _interceptTouchDataEventHandler(this, e);
+                consumed = interceptTouchDataEventHandler(this, e);
             }
 
             return consumed;
@@ -878,9 +876,9 @@ namespace Tizen.NUI.BaseComponents
 
             bool consumed = false;
 
-            if (_touchDataEventHandler != null)
+            if (touchDataEventHandler != null)
             {
-                consumed = _touchDataEventHandler(this, e);
+                consumed = touchDataEventHandler(this, e);
             }
 
             if (enableControlState && !consumed)
@@ -904,9 +902,9 @@ namespace Tizen.NUI.BaseComponents
 
             e.Hover = Tizen.NUI.Hover.GetHoverFromPtr(hoverEvent);
 
-            if (_hoverEventHandler != null)
+            if (hoverEventHandler != null)
             {
-                return _hoverEventHandler(this, e);
+                return hoverEventHandler(this, e);
             }
             return false;
         }
@@ -924,9 +922,9 @@ namespace Tizen.NUI.BaseComponents
 
             e.Wheel = Tizen.NUI.Wheel.GetWheelFromPtr(wheelEvent);
 
-            if (_wheelEventHandler != null)
+            if (wheelEventHandler != null)
             {
-                return _wheelEventHandler(this, e);
+                return wheelEventHandler(this, e);
             }
             return false;
         }
@@ -934,18 +932,18 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View OnWindow signal
         private void OnWindow(IntPtr data)
         {
-            if (_onWindowEventHandler != null)
+            if (onWindowEventHandler != null)
             {
-                _onWindowEventHandler(this, null);
+                onWindowEventHandler(this, null);
             }
         }
 
         // Callback for View OffWindow signal
         private void OffWindow(IntPtr data)
         {
-            if (_offWindowEventHandler != null)
+            if (offWindowEventHandler != null)
             {
-                _offWindowEventHandler(this, null);
+                offWindowEventHandler(this, null);
             }
         }
 
@@ -960,9 +958,9 @@ namespace Tizen.NUI.BaseComponents
             e.Visibility = visibility;
             e.Type = type;
 
-            if (_visibilityChangedEventHandler != null)
+            if (visibilityChangedEventHandler != null)
             {
-                _visibilityChangedEventHandler(this, e);
+                visibilityChangedEventHandler(this, e);
             }
         }
 
@@ -976,17 +974,17 @@ namespace Tizen.NUI.BaseComponents
             }
             e.Type = type;
 
-            if (_layoutDirectionChangedEventHandler != null)
+            if (layoutDirectionChangedEventHandler != null)
             {
-                _layoutDirectionChangedEventHandler(this, e);
+                layoutDirectionChangedEventHandler(this, e);
             }
         }
 
         private void OnResourcesLoaded(IntPtr view)
         {
-            if (_resourcesLoadedEventHandler != null)
+            if (resourcesLoadedEventHandler != null)
             {
-                _resourcesLoadedEventHandler(this, null);
+                resourcesLoadedEventHandler(this, null);
             }
         }
 
@@ -995,9 +993,9 @@ namespace Tizen.NUI.BaseComponents
             BackgroundResourceLoadedEventArgs e = new BackgroundResourceLoadedEventArgs();
             e.Status = (ResourceLoadingStatusType)Interop.View.GetVisualResourceStatus(this.SwigCPtr, Property.BACKGROUND);
 
-            if (_backgroundResourceLoadedEventHandler != null)
+            if (backgroundResourceLoadedEventHandler != null)
             {
-                _backgroundResourceLoadedEventHandler(this, e);
+                backgroundResourceLoadedEventHandler(this, e);
             }
         }
 

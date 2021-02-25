@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,10 +17,12 @@
 
 extern alias TizenSystemInformation;
 using TizenSystemInformation.Tizen.System;
-using global::System;
+
+using System;
 using System.ComponentModel;
 using System.Collections.Generic;
-using global::System.Runtime.InteropServices;
+using System.Runtime.InteropServices;
+
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
@@ -33,10 +35,11 @@ namespace Tizen.NUI
     public partial class Window : BaseHandle
     {
         private static readonly Window instance = Application.Instance?.GetWindow();
-        private global::System.Runtime.InteropServices.HandleRef stageCPtr;
-        private Layer _rootLayer;
-        private string _windowTitle;
-        private List<Layer> _childLayers = new List<Layer>();
+
+        private HandleRef stageCPtr;
+        private Layer rootLayer;
+        private string windowTitle;
+        private List<Layer> childLayers = new List<Layer>();
         private LayoutController localController;
 
         private bool IsSupportedMultiWindow()
@@ -93,7 +96,7 @@ namespace Tizen.NUI
             {
                 NUILog.Error("This device does not support surfaceless_context. So Window cannot be created. ");
             }
-            this._windowTitle = name;
+            this.windowTitle = name;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -296,12 +299,12 @@ namespace Tizen.NUI
         {
             get
             {
-                return _windowTitle;
+                return windowTitle;
             }
             set
             {
-                _windowTitle = value;
-                SetClass(_windowTitle, "");
+                windowTitle = value;
+                SetClass(windowTitle, "");
             }
         }
 
@@ -458,7 +461,7 @@ namespace Tizen.NUI
         {
             get
             {
-                return _childLayers;
+                return childLayers;
             }
         }
 
@@ -1258,14 +1261,14 @@ namespace Tizen.NUI
         {
             // Window.IsInstalled() is actually true only when called from event thread and
             // Core has been initialized, not when Stage is ready.
-            if (_rootLayer == null && Window.IsInstalled())
+            if (rootLayer == null && Window.IsInstalled())
             {
-                _rootLayer = new Layer(Interop.Window.GetRootLayer(SwigCPtr), true);
+                rootLayer = new Layer(Interop.Window.GetRootLayer(SwigCPtr), true);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                LayersChildren?.Add(_rootLayer);
-                _rootLayer.SetWindow(this);
+                LayersChildren?.Add(rootLayer);
+                rootLayer.SetWindow(this);
             }
-            return _rootLayer;
+            return rootLayer;
         }
 
         internal void SetBackgroundColor(Vector4 color)
@@ -1396,14 +1399,14 @@ namespace Tizen.NUI
                 //Release your own managed resources here.
                 //You should release all of your own disposable objects here.
 
-                if (_rootLayer != null)
+                if (rootLayer != null)
                 {
-                    _rootLayer.Dispose();
+                    rootLayer.Dispose();
                 }
 
                 localController?.Dispose();
 
-                foreach (var layer in _childLayers)
+                foreach (var layer in childLayers)
                 {
                     if (layer != null)
                     {
@@ -1411,7 +1414,7 @@ namespace Tizen.NUI
                     }
                 }
 
-                _childLayers.Clear();
+                childLayers.Clear();
             }
 
             this.DisconnectNativeSignals();

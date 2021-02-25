@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,14 +20,12 @@ using System.ComponentModel;
 
 namespace Tizen.NUI
 {
-
     /// <summary>
     /// The VisualFactory is a singleton object that provides and shares visuals between views.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class VisualFactory : BaseHandle
     {
-
         /// <summary>
         /// Instance of the VisualFactory singleton.
         /// </summary>
@@ -86,7 +84,5 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-
     }
-
 }

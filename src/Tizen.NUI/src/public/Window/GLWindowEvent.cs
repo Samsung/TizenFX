@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,10 +24,10 @@ namespace Tizen.NUI
 {
     public partial class GLWindow
     {
-        private FocusChangedEventCallbackType _focusChangedEventCallback;
-        private GLWindowTouchDataCallbackType _windowTouchDataCallback;
-        private EventCallbackDelegateType1 _windowKeyCallbackDelegate;
-        private WindowResizedEventCallbackType _windowResizedEventCallback;
+        private FocusChangedEventCallbackType focusChangedEventCallback;
+        private GLWindowTouchDataCallbackType windowTouchDataCallback;
+        private EventCallbackDelegateType1 windowKeyCallbackDelegate;
+        private WindowResizedEventCallbackType windowResizedEventCallback;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void FocusChangedEventCallbackType(IntPtr window, bool focusGained);
@@ -44,21 +44,21 @@ namespace Tizen.NUI
         {
             add
             {
-                if (_focusChangedEventCallback == null)
+                if (focusChangedEventCallback == null)
                 {
-                    _focusChangedEventCallback = OnWindowFocusedChanged;
-                    FocusChangedSignal().Connect(_focusChangedEventCallback);
+                    focusChangedEventCallback = OnWindowFocusedChanged;
+                    FocusChangedSignal().Connect(focusChangedEventCallback);
                 }
 
-                _focusChangedEventHandler += value;
+                focusChangedEventHandler += value;
             }
             remove
             {
-                _focusChangedEventHandler -= value;
+                focusChangedEventHandler -= value;
 
-                if (_focusChangedEventHandler == null && FocusChangedSignal().Empty() == false && _focusChangedEventCallback != null)
+                if (focusChangedEventHandler == null && FocusChangedSignal().Empty() == false && focusChangedEventCallback != null)
                 {
-                    FocusChangedSignal().Disconnect(_focusChangedEventCallback);
+                    FocusChangedSignal().Disconnect(focusChangedEventCallback);
                 }
             }
         }
@@ -74,19 +74,19 @@ namespace Tizen.NUI
         {
             add
             {
-                if (_windoTouchDataEventHandler == null)
+                if (windoTouchDataEventHandler == null)
                 {
-                    _windowTouchDataCallback = OnWindowTouch;
-                    this.TouchSignal().Connect(_windowTouchDataCallback);
+                    windowTouchDataCallback = OnWindowTouch;
+                    this.TouchSignal().Connect(windowTouchDataCallback);
                 }
-                _windoTouchDataEventHandler += value;
+                windoTouchDataEventHandler += value;
             }
             remove
             {
-                _windoTouchDataEventHandler -= value;
-                if (_windoTouchDataEventHandler == null && TouchSignal().Empty() == false && _windowTouchDataCallback != null)
+                windoTouchDataEventHandler -= value;
+                if (windoTouchDataEventHandler == null && TouchSignal().Empty() == false && windowTouchDataCallback != null)
                 {
-                    this.TouchSignal().Disconnect(_windowTouchDataCallback);
+                    this.TouchSignal().Disconnect(windowTouchDataCallback);
                 }
             }
         }
@@ -99,19 +99,19 @@ namespace Tizen.NUI
         {
             add
             {
-                if (_stageKeyHandler == null)
+                if (stageKeyHandler == null)
                 {
-                    _windowKeyCallbackDelegate = OnStageKey;
-                    KeyEventSignal().Connect(_windowKeyCallbackDelegate);
+                    windowKeyCallbackDelegate = OnStageKey;
+                    KeyEventSignal().Connect(windowKeyCallbackDelegate);
                 }
-                _stageKeyHandler += value;
+                stageKeyHandler += value;
             }
             remove
             {
-                _stageKeyHandler -= value;
-                if (_stageKeyHandler == null && KeyEventSignal().Empty() == false)
+                stageKeyHandler -= value;
+                if (stageKeyHandler == null && KeyEventSignal().Empty() == false)
                 {
-                    KeyEventSignal().Disconnect(_windowKeyCallbackDelegate);
+                    KeyEventSignal().Disconnect(windowKeyCallbackDelegate);
                 }
             }
         }
@@ -124,29 +124,29 @@ namespace Tizen.NUI
         {
             add
             {
-                if (_windowResizedEventHandler == null)
+                if (windowResizedEventHandler == null)
                 {
-                    _windowResizedEventCallback = OnResized;
-                    GLWindowResizedSignal().Connect(_windowResizedEventCallback);
+                    windowResizedEventCallback = OnResized;
+                    GLWindowResizedSignal().Connect(windowResizedEventCallback);
                 }
 
-                _windowResizedEventHandler += value;
+                windowResizedEventHandler += value;
             }
             remove
             {
-                _windowResizedEventHandler -= value;
+                windowResizedEventHandler -= value;
 
-                if (_windowResizedEventHandler == null && GLWindowResizedSignal().Empty() == false && _windowResizedEventCallback != null)
+                if (windowResizedEventHandler == null && GLWindowResizedSignal().Empty() == false && windowResizedEventCallback != null)
                 {
-                    GLWindowResizedSignal().Disconnect(_windowResizedEventCallback);
+                    GLWindowResizedSignal().Disconnect(windowResizedEventCallback);
                 }
             }
         }
 
-        private event EventHandler<FocusChangedEventArgs> _focusChangedEventHandler;
-        private event EventHandler<TouchEventArgs> _windoTouchDataEventHandler;
-        private event EventHandler<KeyEventArgs> _stageKeyHandler;
-        private event EventHandler<ResizedEventArgs> _windowResizedEventHandler;
+        private event EventHandler<FocusChangedEventArgs> focusChangedEventHandler;
+        private event EventHandler<TouchEventArgs> windoTouchDataEventHandler;
+        private event EventHandler<KeyEventArgs> stageKeyHandler;
+        private event EventHandler<ResizedEventArgs> windowResizedEventHandler;
 
         internal WindowFocusSignalType FocusChangedSignal()
         {
@@ -181,24 +181,24 @@ namespace Tizen.NUI
         /// </summary>
         internal void DisconnectNativeSignals()
         {
-            if (_focusChangedEventCallback != null)
+            if (focusChangedEventCallback != null)
             {
-                FocusChangedSignal().Disconnect(_focusChangedEventCallback);
+                FocusChangedSignal().Disconnect(focusChangedEventCallback);
             }
 
-            if (_windowTouchDataCallback != null)
+            if (windowTouchDataCallback != null)
             {
-                TouchSignal().Disconnect(_windowTouchDataCallback);
+                TouchSignal().Disconnect(windowTouchDataCallback);
             }
 
-            if (_windowKeyCallbackDelegate != null)
+            if (windowKeyCallbackDelegate != null)
             {
-                KeyEventSignal().Disconnect(_windowKeyCallbackDelegate);
+                KeyEventSignal().Disconnect(windowKeyCallbackDelegate);
             }
 
-            if (_windowResizedEventCallback != null)
+            if (windowResizedEventCallback != null)
             {
-                GLWindowResizedSignal().Disconnect(_windowResizedEventCallback);
+                GLWindowResizedSignal().Disconnect(windowResizedEventCallback);
             }
         }
 
@@ -214,9 +214,9 @@ namespace Tizen.NUI
 
             e.FocusGained = focusGained;
 
-            if (_focusChangedEventHandler != null)
+            if (focusChangedEventHandler != null)
             {
-                _focusChangedEventHandler(this, e);
+                focusChangedEventHandler(this, e);
             }
         }
 
@@ -228,13 +228,11 @@ namespace Tizen.NUI
                 return false;
             }
 
-            TouchEventArgs e = new TouchEventArgs();
-
-            e.Touch = Tizen.NUI.Touch.GetTouchFromPtr(touchData);
-
-            if (_windoTouchDataEventHandler != null)
+            if (windoTouchDataEventHandler != null)
             {
-                _windoTouchDataEventHandler(this, e);
+                TouchEventArgs e = new TouchEventArgs();
+                e.Touch = Tizen.NUI.Touch.GetTouchFromPtr(touchData);
+                windoTouchDataEventHandler(this, e);
             }
             return false;
         }
@@ -242,32 +240,29 @@ namespace Tizen.NUI
         // Callback for Stage KeyEventsignal
         private void OnStageKey(IntPtr data)
         {
-            KeyEventArgs e = new KeyEventArgs();
-            e.Key = Tizen.NUI.Key.GetKeyFromPtr(data);
-
-
-            if (_stageKeyHandler != null)
+            if (stageKeyHandler != null)
             {
+                KeyEventArgs e = new KeyEventArgs();
+                e.Key = Tizen.NUI.Key.GetKeyFromPtr(data);
                 //here we send all data to user event handlers
-                _stageKeyHandler(this, e);
+                stageKeyHandler(this, e);
             }
         }
 
         private void OnResized(IntPtr windowSize)
         {
-            ResizedEventArgs e = new ResizedEventArgs();
-            // var val = new Uint16Pair(windowSize, false);
-            // e.WindowSize = new Size2D(val.GetWidth(), val.GetHeight());
-            // val.Dispose();
-
-            // Workaround : windowSize should be valid pointer from dali, 
-            // but currenlty it is fixed and is not Uint16Pair class.
-            // will be fixed later.
-            e.WindowSize = this.WindowSize;
-
-            if (_windowResizedEventHandler != null)
+            if (windowResizedEventHandler != null)
             {
-                _windowResizedEventHandler(this, e);
+                ResizedEventArgs e = new ResizedEventArgs();
+                // var val = new Uint16Pair(windowSize, false);
+                // e.WindowSize = new Size2D(val.GetWidth(), val.GetHeight());
+                // val.Dispose();
+
+                // Workaround : windowSize should be valid pointer from dali, 
+                // but currenlty it is fixed and is not Uint16Pair class.
+                // will be fixed later.
+                e.WindowSize = this.WindowSize;
+                windowResizedEventHandler(this, e);
             }
         }
 
@@ -294,7 +289,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class TouchEventArgs : EventArgs
         {
-            private Touch _touch;
+            private Touch touch;
 
             /// <summary>
             /// Touch.
@@ -304,11 +299,11 @@ namespace Tizen.NUI
             {
                 get
                 {
-                    return _touch;
+                    return touch;
                 }
                 set
                 {
-                    _touch = value;
+                    touch = value;
                 }
             }
         }
@@ -319,7 +314,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class KeyEventArgs : EventArgs
         {
-            private Key _key;
+            private Key key;
 
             /// <summary>
             /// Key.
@@ -329,11 +324,11 @@ namespace Tizen.NUI
             {
                 get
                 {
-                    return _key;
+                    return key;
                 }
                 set
                 {
-                    _key = value;
+                    key = value;
                 }
             }
         }
@@ -345,7 +340,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class ResizedEventArgs : EventArgs
         {
-            Size2D _windowSize;
+            Size2D windowSize;
 
             /// <summary>
             /// This window size.
@@ -355,11 +350,11 @@ namespace Tizen.NUI
             {
                 get
                 {
-                    return _windowSize;
+                    return windowSize;
                 }
                 set
                 {
-                    _windowSize = value;
+                    windowSize = value;
                 }
             }
         }
@@ -370,17 +365,17 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class VisibilityChangedEventArgs : EventArgs
         {
-            private bool _visibility;
+            private bool visibility;
             /// <summary>
             /// Visibility
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public bool Visibility
             {
-                get => _visibility;
+                get => visibility;
                 set
                 {
-                    _visibility = value;
+                    visibility = value;
                 }
             }
         }
@@ -395,17 +390,17 @@ namespace Tizen.NUI
 
             VisibilityChangedEventArgs e = new VisibilityChangedEventArgs();
             e.Visibility = visibility;
-            if (VisibilityChangedEventHandler != null)
+            if (visibilityChangedEventHandler != null)
             {
-                VisibilityChangedEventHandler.Invoke(this, e);
+                visibilityChangedEventHandler.Invoke(this, e);
             }
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void GLVisibilityChangedEventCallbackType(IntPtr window, bool visibility);
-        private GLVisibilityChangedEventCallbackType _GLVisibilityChangedEventCallback;
-        private event EventHandler<VisibilityChangedEventArgs> VisibilityChangedEventHandler;
-        private GLWindowVisibilityChangedEvent _GLVisibilityChangedEventSignal;
+        private GLVisibilityChangedEventCallbackType glVisibilityChangedEventCallback;
+        private event EventHandler<VisibilityChangedEventArgs> visibilityChangedEventHandler;
+        private GLWindowVisibilityChangedEvent glVisibilityChangedEventSignal;
 
         /// <summary>
         /// EffectStart
@@ -415,24 +410,24 @@ namespace Tizen.NUI
         {
             add
             {
-                if (VisibilityChangedEventHandler == null)
+                if (visibilityChangedEventHandler == null)
                 {
-                    _GLVisibilityChangedEventCallback = OnVisibilityChanged;
-                    _GLVisibilityChangedEventSignal = new GLWindowVisibilityChangedEvent(this);
-                    _GLVisibilityChangedEventSignal.Connect(_GLVisibilityChangedEventCallback);
+                    glVisibilityChangedEventCallback = OnVisibilityChanged;
+                    glVisibilityChangedEventSignal = new GLWindowVisibilityChangedEvent(this);
+                    glVisibilityChangedEventSignal.Connect(glVisibilityChangedEventCallback);
                 }
-                VisibilityChangedEventHandler += value;
+                visibilityChangedEventHandler += value;
             }
             remove
             {
-                VisibilityChangedEventHandler -= value;
-                if (VisibilityChangedEventHandler == null)
+                visibilityChangedEventHandler -= value;
+                if (visibilityChangedEventHandler == null)
                 {
-                    if (_GLVisibilityChangedEventSignal != null)
+                    if (glVisibilityChangedEventSignal != null)
                     {
-                        if (_GLVisibilityChangedEventSignal.Empty() == false)
+                        if (glVisibilityChangedEventSignal.Empty() == false)
                         {
-                            _GLVisibilityChangedEventSignal.Disconnect(_GLVisibilityChangedEventCallback);
+                            glVisibilityChangedEventSignal.Disconnect(glVisibilityChangedEventCallback);
                         }
                     }
                 }
@@ -445,11 +440,11 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void VisibiltyChangedSignalEmit(bool visibility)
         {
-            if (_GLVisibilityChangedEventSignal == null)
+            if (glVisibilityChangedEventSignal == null)
             {
-                _GLVisibilityChangedEventSignal = new GLWindowVisibilityChangedEvent(this);
+                glVisibilityChangedEventSignal = new GLWindowVisibilityChangedEvent(this);
             }
-            _GLVisibilityChangedEventSignal.Emit(this, visibility);
+            glVisibilityChangedEventSignal.Emit(this, visibility);
         }
     }
 }

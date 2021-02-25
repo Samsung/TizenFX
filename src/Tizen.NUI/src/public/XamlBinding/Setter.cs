@@ -1,3 +1,20 @@
+/*
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,7 +33,7 @@ namespace Tizen.NUI.Binding
     [ProvideCompiled("Tizen.NUI.Core.XamlC.SetterValueProvider")]
     public sealed class Setter : IValueProvider
     {
-        readonly ConditionalWeakTable<BindableObject, object> _originalValues = new ConditionalWeakTable<BindableObject, object>();
+        readonly ConditionalWeakTable<BindableObject, object> originalValues = new ConditionalWeakTable<BindableObject, object>();
 
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -57,8 +74,8 @@ namespace Tizen.NUI.Binding
             object originalValue = target.GetValue(Property);
             if (!Equals(originalValue, Property.DefaultValue))
             {
-                _originalValues.Remove(target);
-                _originalValues.Add(target, originalValue);
+                originalValues.Remove(target);
+                originalValues.Add(target, originalValue);
             }
 
             var dynamicResource = Value as DynamicResource;
@@ -87,16 +104,16 @@ namespace Tizen.NUI.Binding
             if (!Equals(actual, Value) && !(Value is Tizen.NUI.Binding.Binding) && !(Value is DynamicResource))
             {
                 //Do not reset default value if the value has been changed
-                _originalValues.Remove(target);
+                originalValues.Remove(target);
                 return;
             }
 
             object defaultValue;
-            if (_originalValues.TryGetValue(target, out defaultValue))
+            if (originalValues.TryGetValue(target, out defaultValue))
             {
                 //reset default value, unapply bindings and dynamicResource
                 target.SetValue(Property, defaultValue, fromStyle);
-                _originalValues.Remove(target);
+                originalValues.Remove(target);
             }
             else
                 target.ClearValue(Property);

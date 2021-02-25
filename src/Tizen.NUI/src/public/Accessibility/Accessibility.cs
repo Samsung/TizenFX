@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  *
  */
 
-using global::System;
+using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using Tizen.NUI.BaseComponents;
@@ -59,7 +59,7 @@ namespace Tizen.NUI.Accessibility
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Accessibility Instance
         {
-            get => _accessibility;
+            get => accessibility;
         }
         #endregion Property
 
@@ -87,9 +87,9 @@ namespace Tizen.NUI.Accessibility
         public bool Say(string sentence, bool discardable)
         {
             IntPtr callbackIntPtr = IntPtr.Zero;
-            if (_sayFinishedEventHandler != null)
+            if (sayFinishedEventHandler != null)
             {
-                callback = _sayFinishedEventCallback;
+                callback = SayFinishedEventCallback;
                 callbackIntPtr = Marshal.GetFunctionPointerForDelegate<Delegate>(callback);
             }
             bool ret = Interop.Accessibility.Say(View.getCPtr(dummy), sentence, discardable, callbackIntPtr);
@@ -222,8 +222,8 @@ namespace Tizen.NUI.Accessibility
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<SayFinishedEventArgs> SayFinished
         {
-            add => _sayFinishedEventHandler += value;
-            remove => _sayFinishedEventHandler -= value;
+            add => sayFinishedEventHandler += value;
+            remove => sayFinishedEventHandler -= value;
         }
         #endregion Event, Enum, Struct, ETC
 
@@ -238,9 +238,9 @@ namespace Tizen.NUI.Accessibility
         internal bool Say(View target, string sentence, bool discardable)
         {
             IntPtr callbackIntPtr = IntPtr.Zero;
-            if (_sayFinishedEventHandler != null)
+            if (sayFinishedEventHandler != null)
             {
-                callback = _sayFinishedEventCallback;
+                callback = SayFinishedEventCallback;
                 callbackIntPtr = Marshal.GetFunctionPointerForDelegate<Delegate>(callback);
             }
             bool ret = Interop.Accessibility.Say(View.getCPtr(target), sentence, discardable, callbackIntPtr);
@@ -251,19 +251,19 @@ namespace Tizen.NUI.Accessibility
 
 
         #region Private
-        private static readonly Accessibility _accessibility = new Accessibility();
+        private static readonly Accessibility accessibility = new Accessibility();
 
-        private event EventHandler<SayFinishedEventArgs> _sayFinishedEventHandler;
+        private event EventHandler<SayFinishedEventArgs> sayFinishedEventHandler;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void _sayFinishedEventCallbackType(int result);
+        private delegate void SayFinishedEventCallbackType(int result);
 
-        private _sayFinishedEventCallbackType callback = null;
+        private SayFinishedEventCallbackType callback = null;
 
-        private void _sayFinishedEventCallback(int result)
+        private void SayFinishedEventCallback(int result)
         {
-            tlog.Fatal(tag, $"_sayFinishedEventCallback(res={result}) called!");
-            _sayFinishedEventHandler?.Invoke(this, new SayFinishedEventArgs(result));
+            tlog.Fatal(tag, $"sayFinishedEventCallback(res={result}) called!");
+            sayFinishedEventHandler?.Invoke(this, new SayFinishedEventArgs(result));
         }
 
         private View dummy;

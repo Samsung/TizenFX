@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,12 +15,10 @@
  *
  */
 
-using System;
 using System.ComponentModel;
 
 namespace Tizen.NUI
 {
-
     /// <summary>
     /// A set of key frames for a property that can be animated using DALi animation.<br />
     /// This allows the generation of key frame objects from individual Property::Values.<br />
@@ -28,7 +26,6 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class KeyFrames : BaseHandle
     {
-
         /// <summary>
         /// Creates an initialized KeyFrames handle.
         /// </summary>
@@ -36,7 +33,6 @@ namespace Tizen.NUI
         public KeyFrames() : this(Interop.KeyFrames.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
         }
 
         internal KeyFrames(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)

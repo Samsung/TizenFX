@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,9 +22,7 @@ using System.Threading;
 using System.Reflection;
 using Tizen.Applications;
 using Tizen.Applications.CoreBackend;
-using Tizen.NUI.Binding;
 using Tizen.NUI.Xaml;
-using System.Collections.Generic;
 
 namespace Tizen.NUI
 {
@@ -474,5 +472,4 @@ namespace Tizen.NUI
         internal const string GlesCSharpBinder = NDalicPINVOKE.Lib;
         internal const string VulkanCSharpBinder = "libdali-csharp-binder-vk.so";
     }
-
 }

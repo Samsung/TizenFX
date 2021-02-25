@@ -28,7 +28,7 @@ namespace Tizen.NUI
     public class TTSPlayer : BaseHandle
     {
         private static readonly TTSPlayer instance = TTSPlayer.Get();
-        private StateChangedEventCallbackType _stateChangedEventCallback;
+        private StateChangedEventCallbackType stateChangedEventCallback;
 
         internal TTSPlayer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.TtsPlayer.Upcast(cPtr), cMemoryOwn)
         {
@@ -46,7 +46,7 @@ namespace Tizen.NUI
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void StateChangedEventCallbackType(TTSState prevState, TTSState nextState);
-        private event EventHandler<StateChangedEventArgs> _stateChangedEventHandler;
+        private event EventHandler<StateChangedEventArgs> stateChangedEventHandler;
 
         /// <summary>
         /// State changed event.
@@ -56,21 +56,21 @@ namespace Tizen.NUI
         {
             add
             {
-                if (_stateChangedEventHandler == null)
+                if (stateChangedEventHandler == null)
                 {
-                    _stateChangedEventCallback = OnStateChanged;
-                    StateChangedSignal().Connect(_stateChangedEventCallback);
+                    stateChangedEventCallback = OnStateChanged;
+                    StateChangedSignal().Connect(stateChangedEventCallback);
                 }
 
-                _stateChangedEventHandler += value;
+                stateChangedEventHandler += value;
             }
             remove
             {
-                _stateChangedEventHandler -= value;
+                stateChangedEventHandler -= value;
 
-                if (_stateChangedEventHandler == null && StateChangedSignal().Empty() == false && _stateChangedEventCallback != null)
+                if (stateChangedEventHandler == null && StateChangedSignal().Empty() == false && stateChangedEventCallback != null)
                 {
-                    StateChangedSignal().Disconnect(_stateChangedEventCallback);
+                    StateChangedSignal().Disconnect(stateChangedEventCallback);
                 }
             }
         }
@@ -241,14 +241,13 @@ namespace Tizen.NUI
 
         private void OnStateChanged(TTSState prevState, TTSState nextState)
         {
-            StateChangedEventArgs e = new StateChangedEventArgs();
-
-            e.PrevState = prevState;
-            e.NextState = nextState;
-
-            if (_stateChangedEventHandler != null)
+            if (stateChangedEventHandler != null)
             {
-                _stateChangedEventHandler(this, e);
+                StateChangedEventArgs e = new StateChangedEventArgs();
+
+                e.PrevState = prevState;
+                e.NextState = nextState;
+                stateChangedEventHandler(this, e);
             }
         }
 
@@ -279,5 +278,4 @@ namespace Tizen.NUI
             }
         }
     }
-
 }

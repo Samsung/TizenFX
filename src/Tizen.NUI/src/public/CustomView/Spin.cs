@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,12 +16,9 @@
  */
 
 using System;
-using System.Runtime.InteropServices;
-using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 
 // A spin control (for continously changing values when users can easily predict a set of values)
-
 namespace Tizen.NUI
 {
     ///<summary>
@@ -30,19 +27,19 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class Spin : CustomView
     {
-        private VisualBase _arrowVisual;
-        private TextField _textField;
-        private int _arrowVisualPropertyIndex;
-        private string _arrowImage;
-        private int _currentValue;
-        private int _minValue;
-        private int _maxValue;
-        private int _singleStep;
-        private bool _wrappingEnabled;
-        private int _pointSize;
-        private Color _textColor;
-        private Color _textBackgroundColor;
-        private int _maxTextLength;
+        private VisualBase arrowVisual;
+        private TextField textField;
+        private int arrowVisualPropertyIndex;
+        private string arrowImage;
+        private int currentValue;
+        private int minValue;
+        private int maxValue;
+        private int singleStep;
+        private bool wrappingEnabled;
+        private int pointSize;
+        private Color textColor;
+        private Color textBackgroundColor;
+        private int maxTextLength;
 
         // static constructor registers the control type (only runs once)
         static Spin()
@@ -71,25 +68,25 @@ namespace Tizen.NUI
         {
             get
             {
-                return _currentValue;
+                return currentValue;
             }
             set
             {
                 NUILog.Debug("Value set to " + value);
-                _currentValue = value;
+                currentValue = value;
 
                 // Make sure no invalid value is accepted
-                if (_currentValue < _minValue)
+                if (currentValue < minValue)
                 {
-                    _currentValue = _minValue;
+                    currentValue = minValue;
                 }
 
-                if (_currentValue > _maxValue)
+                if (currentValue > maxValue)
                 {
-                    _currentValue = _maxValue;
+                    currentValue = maxValue;
                 }
 
-                _textField.Text = _currentValue.ToString();
+                textField.Text = currentValue.ToString();
             }
         }
 
@@ -102,11 +99,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _minValue;
+                return minValue;
             }
             set
             {
-                _minValue = value;
+                minValue = value;
             }
         }
 
@@ -119,11 +116,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _maxValue;
+                return maxValue;
             }
             set
             {
-                _maxValue = value;
+                maxValue = value;
             }
         }
 
@@ -136,11 +133,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _singleStep;
+                return singleStep;
             }
             set
             {
-                _singleStep = value;
+                singleStep = value;
             }
         }
 
@@ -153,11 +150,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _wrappingEnabled;
+                return wrappingEnabled;
             }
             set
             {
-                _wrappingEnabled = value;
+                wrappingEnabled = value;
             }
         }
 
@@ -170,12 +167,12 @@ namespace Tizen.NUI
         {
             get
             {
-                return _pointSize;
+                return pointSize;
             }
             set
             {
-                _pointSize = value;
-                _textField.PointSize = _pointSize;
+                pointSize = value;
+                textField.PointSize = pointSize;
             }
         }
 
@@ -188,7 +185,7 @@ namespace Tizen.NUI
         {
             get
             {
-                return _textColor;
+                return textColor;
             }
             set
             {
@@ -197,8 +194,8 @@ namespace Tizen.NUI
                     NUILog.Debug("TextColor set to " + value.R + "," + value.G + "," + value.B);
                 }
 
-                _textColor = value;
-                _textField.TextColor = _textColor;
+                textColor = value;
+                textField.TextColor = textColor;
             }
         }
 
@@ -211,12 +208,12 @@ namespace Tizen.NUI
         {
             get
             {
-                return _maxTextLength;
+                return maxTextLength;
             }
             set
             {
-                _maxTextLength = value;
-                _textField.MaxLength = _maxTextLength;
+                maxTextLength = value;
+                textField.MaxLength = maxTextLength;
             }
         }
 
@@ -228,11 +225,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _textField;
+                return textField;
             }
             set
             {
-                _textField = value;
+                textField = value;
             }
         }
 
@@ -244,17 +241,17 @@ namespace Tizen.NUI
         {
             get
             {
-                return _arrowImage;
+                return arrowImage;
             }
             set
             {
-                _arrowImage = value;
+                arrowImage = value;
                 var ptMap = new PropertyMap();
                 var temp = new PropertyValue((int)Visual.Type.Image);
                 ptMap.Add(Visual.Property.Type, temp);
                 temp.Dispose();
 
-                temp = new PropertyValue(_arrowImage);
+                temp = new PropertyValue(arrowImage);
                 ptMap.Add(ImageVisualProperty.URL, temp);
                 temp.Dispose();
 
@@ -266,10 +263,10 @@ namespace Tizen.NUI
                 ptMap.Add(ImageVisualProperty.DesiredWidth, temp);
                 temp.Dispose();
 
-                _arrowVisual = VisualFactory.Instance.CreateVisual(ptMap);
+                arrowVisual = VisualFactory.Instance.CreateVisual(ptMap);
                 ptMap.Dispose();
 
-                RegisterVisual(_arrowVisualPropertyIndex, _arrowVisual);
+                RegisterVisual(arrowVisualPropertyIndex, arrowVisual);
             }
         }
 
@@ -288,17 +285,17 @@ namespace Tizen.NUI
         public override void OnInitialize()
         {
             // Initialize the propertiesControl
-            _arrowImage = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "picture.png";
-            _textBackgroundColor = new Color(0.6f, 0.6f, 0.6f, 1.0f);
-            _currentValue = 0;
-            _minValue = 0;
-            _maxValue = 0;
-            _singleStep = 1;
-            _maxTextLength = 0;
+            arrowImage = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "picture.png";
+            textBackgroundColor = new Color(0.6f, 0.6f, 0.6f, 1.0f);
+            currentValue = 0;
+            minValue = 0;
+            maxValue = 0;
+            singleStep = 1;
+            maxTextLength = 0;
 
             // Create image visual for the arrow keys
-            var temp = new PropertyValue(_arrowImage);
-            _arrowVisualPropertyIndex = RegisterProperty("ArrowImage", temp, Tizen.NUI.PropertyAccessMode.ReadWrite);
+            var temp = new PropertyValue(arrowImage);
+            arrowVisualPropertyIndex = RegisterProperty("ArrowImage", temp, Tizen.NUI.PropertyAccessMode.ReadWrite);
             temp.Dispose();
 
             var ptMap = new PropertyMap();
@@ -306,7 +303,7 @@ namespace Tizen.NUI
             ptMap.Add(Visual.Property.Type, temp);
             temp.Dispose();
 
-            temp = new PropertyValue(_arrowImage);
+            temp = new PropertyValue(arrowImage);
             ptMap.Add(ImageVisualProperty.URL, temp);
             temp.Dispose();
 
@@ -318,28 +315,28 @@ namespace Tizen.NUI
             ptMap.Add(ImageVisualProperty.DesiredWidth, temp);
             temp.Dispose();
 
-            _arrowVisual = VisualFactory.Instance.CreateVisual(ptMap);
+            arrowVisual = VisualFactory.Instance.CreateVisual(ptMap);
             ptMap.Dispose();
-            RegisterVisual(_arrowVisualPropertyIndex, _arrowVisual);
+            RegisterVisual(arrowVisualPropertyIndex, arrowVisual);
 
             // Create a text field
-            _textField = new TextField();
-            _textField.PivotPoint = Tizen.NUI.PivotPoint.Center;
-            _textField.WidthResizePolicy = ResizePolicyType.SizeRelativeToParent;
-            _textField.HeightResizePolicy = ResizePolicyType.SizeRelativeToParent;
-            _textField.SizeModeFactor = new Vector3(1.0f, 0.45f, 1.0f);
-            _textField.PlaceholderText = "----";
-            _textField.BackgroundColor = _textBackgroundColor;
-            _textField.HorizontalAlignment = HorizontalAlignment.Center;
-            _textField.VerticalAlignment = VerticalAlignment.Center;
-            _textField.Focusable = (true);
-            _textField.Name = "_textField";
-            _textField.Position2D = new Position2D(0, 40);
+            textField = new TextField();
+            textField.PivotPoint = Tizen.NUI.PivotPoint.Center;
+            textField.WidthResizePolicy = ResizePolicyType.SizeRelativeToParent;
+            textField.HeightResizePolicy = ResizePolicyType.SizeRelativeToParent;
+            textField.SizeModeFactor = new Vector3(1.0f, 0.45f, 1.0f);
+            textField.PlaceholderText = "----";
+            textField.BackgroundColor = textBackgroundColor;
+            textField.HorizontalAlignment = HorizontalAlignment.Center;
+            textField.VerticalAlignment = VerticalAlignment.Center;
+            textField.Focusable = (true);
+            textField.Name = "_textField";
+            textField.Position2D = new Position2D(0, 40);
 
-            this.Add(_textField);
+            this.Add(textField);
 
-            _textField.FocusGained += TextFieldKeyInputFocusGained;
-            _textField.FocusLost += TextFieldKeyInputFocusLost;
+            textField.FocusGained += TextFieldKeyInputFocusGained;
+            textField.FocusLost += TextFieldKeyInputFocusLost;
         }
 
         /// <summary>
@@ -363,7 +360,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void TextFieldKeyInputFocusGained(object source, EventArgs e)
         {
-            FocusManager.Instance.SetCurrentFocusView(_textField);
+            FocusManager.Instance.SetCurrentFocusView(textField);
         }
 
         /// <summary>
@@ -374,23 +371,23 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void TextFieldKeyInputFocusLost(object source, EventArgs e)
         {
-            int previousValue = _currentValue;
+            int previousValue = currentValue;
 
             // If the input value is invalid, change it back to the previous valid value
-            if (int.TryParse(_textField.Text, out _currentValue))
+            if (int.TryParse(textField.Text, out currentValue))
             {
-                if (_currentValue < _minValue || _currentValue > _maxValue)
+                if (currentValue < minValue || currentValue > maxValue)
                 {
-                    _currentValue = previousValue;
+                    currentValue = previousValue;
                 }
             }
             else
             {
-                _currentValue = previousValue;
+                currentValue = previousValue;
             }
 
             // Otherwise take the new value
-            this.Value = _currentValue;
+            this.Value = currentValue;
         }
 
         /// <summary>
@@ -410,12 +407,12 @@ namespace Tizen.NUI
             if (direction == View.FocusDirection.Up)
             {
                 this.Value += this.Step;
-                nextFocusedView = _textField;
+                nextFocusedView = textField;
             }
             else if (direction == View.FocusDirection.Down)
             {
                 this.Value -= this.Step;
-                nextFocusedView = _textField;
+                nextFocusedView = textField;
             }
             else
             {

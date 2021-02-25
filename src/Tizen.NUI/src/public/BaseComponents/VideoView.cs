@@ -130,8 +130,8 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         }));
 
-        private FinishedCallbackDelegate _videoViewFinishedCallbackDelegate;
-        private EventHandler<FinishedEventArgs> _videoViewFinishedEventHandler;
+        private FinishedCallbackDelegate videoViewFinishedCallbackDelegate;
+        private EventHandler<FinishedEventArgs> videoViewFinishedEventHandler;
 
         /// <summary>
         /// Creates an initialized VideoView.
@@ -224,19 +224,19 @@ namespace Tizen.NUI.BaseComponents
         {
             add
             {
-                if (_videoViewFinishedEventHandler == null)
+                if (videoViewFinishedEventHandler == null)
                 {
-                    _videoViewFinishedCallbackDelegate = (OnFinished);
-                    FinishedSignal().Connect(_videoViewFinishedCallbackDelegate);
+                    videoViewFinishedCallbackDelegate = (OnFinished);
+                    FinishedSignal().Connect(videoViewFinishedCallbackDelegate);
                 }
-                _videoViewFinishedEventHandler += value;
+                videoViewFinishedEventHandler += value;
             }
             remove
             {
-                _videoViewFinishedEventHandler -= value;
-                if (_videoViewFinishedEventHandler == null && FinishedSignal().Empty() == false)
+                videoViewFinishedEventHandler -= value;
+                if (videoViewFinishedEventHandler == null && FinishedSignal().Empty() == false)
                 {
-                    FinishedSignal().Disconnect(_videoViewFinishedCallbackDelegate);
+                    FinishedSignal().Disconnect(videoViewFinishedCallbackDelegate);
                 }
             }
         }
@@ -424,9 +424,9 @@ namespace Tizen.NUI.BaseComponents
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
-            if (this != null && _videoViewFinishedCallbackDelegate != null)
+            if (this != null && videoViewFinishedCallbackDelegate != null)
             {
-                FinishedSignal().Disconnect(_videoViewFinishedCallbackDelegate);
+                FinishedSignal().Disconnect(videoViewFinishedCallbackDelegate);
             }
 
             base.Dispose(type);
@@ -442,15 +442,14 @@ namespace Tizen.NUI.BaseComponents
         // Callback for VideoView Finished signal
         private void OnFinished(IntPtr data)
         {
-            FinishedEventArgs e = new FinishedEventArgs();
-
-            // Populate all members of "e" (FinishedEventArgs) with real data
-            e.VideoView = Registry.GetManagedBaseHandleFromNativePtr(data) as VideoView;
-
-            if (_videoViewFinishedEventHandler != null)
+            if (videoViewFinishedEventHandler != null)
             {
+                FinishedEventArgs e = new FinishedEventArgs();
+
+                // Populate all members of "e" (FinishedEventArgs) with real data
+                e.VideoView = Registry.GetManagedBaseHandleFromNativePtr(data) as VideoView;
                 //here we send all data to user event handlers
-                _videoViewFinishedEventHandler(this, e);
+                videoViewFinishedEventHandler(this, e);
             }
         }
 
@@ -460,7 +459,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public class FinishedEventArgs : EventArgs
         {
-            private VideoView _videoView;
+            private VideoView videoView;
 
             /// <summary>
             /// The view for video playback and display.
@@ -470,11 +469,11 @@ namespace Tizen.NUI.BaseComponents
             {
                 get
                 {
-                    return _videoView;
+                    return videoView;
                 }
                 set
                 {
-                    _videoView = value;
+                    videoView = value;
                 }
             }
         }

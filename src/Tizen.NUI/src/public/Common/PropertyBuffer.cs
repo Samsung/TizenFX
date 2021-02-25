@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class PropertyBuffer : BaseHandle
     {
-
         /// <summary>
         /// Creates a PropertyBuffer.
         /// </summary>
@@ -36,7 +35,6 @@ namespace Tizen.NUI
         public PropertyBuffer(PropertyMap bufferFormat) : this(Interop.PropertyBuffer.New(PropertyMap.getCPtr(bufferFormat)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
         }
 
         internal PropertyBuffer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)

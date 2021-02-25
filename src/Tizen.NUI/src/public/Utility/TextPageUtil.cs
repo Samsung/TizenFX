@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,13 +20,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 
-
-using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.Utility
 {
-
     /// <summary>
     /// This is a class for stroing the text of a page.
     /// </summary>
@@ -289,7 +286,6 @@ namespace Tizen.NUI.Utility
 
         private int MarkupProcess(int startOffset, int cutOffIndex)
         {
-
             int count = 0;
             int offset = startOffset;
             int character = 0;
@@ -354,6 +350,5 @@ namespace Tizen.NUI.Utility
             if (character == -1) offset = -1;
             return offset;
         }
-
     }
 }

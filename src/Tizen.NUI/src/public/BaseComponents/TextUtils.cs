@@ -19,8 +19,6 @@ extern alias TizenSystemSettings;
 using TizenSystemSettings.Tizen.System;
 using System;
 using System.ComponentModel;
-using System.Collections.Generic;
-using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.BaseComponents
 {

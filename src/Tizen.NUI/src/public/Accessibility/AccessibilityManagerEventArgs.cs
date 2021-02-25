@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,8 +31,8 @@ namespace Tizen.NUI.Accessibility
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class FocusChangedEventArgs : EventArgs
         {
-            private View _viewCurrent;
-            private View _viewNext;
+            private View viewCurrent;
+            private View viewNext;
 
             /// <since_tizen> 6 </since_tizen>
             /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -41,11 +41,11 @@ namespace Tizen.NUI.Accessibility
             {
                 get
                 {
-                    return _viewCurrent;
+                    return viewCurrent;
                 }
                 set
                 {
-                    _viewCurrent = value;
+                    viewCurrent = value;
                 }
             }
 
@@ -56,11 +56,11 @@ namespace Tizen.NUI.Accessibility
             {
                 get
                 {
-                    return _viewNext;
+                    return viewNext;
                 }
                 set
                 {
-                    _viewNext = value;
+                    viewNext = value;
                 }
             }
         }
@@ -73,7 +73,7 @@ namespace Tizen.NUI.Accessibility
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class FocusedViewActivatedEventArgs : EventArgs
         {
-            private View _view;
+            private View view;
 
 
             /// <since_tizen> 6 </since_tizen>
@@ -83,11 +83,11 @@ namespace Tizen.NUI.Accessibility
             {
                 get
                 {
-                    return _view;
+                    return view;
                 }
                 set
                 {
-                    _view = value;
+                    view = value;
                 }
             }
         }
@@ -100,8 +100,8 @@ namespace Tizen.NUI.Accessibility
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class FocusOvershotEventArgs : EventArgs
         {
-            private View _currentFocusedView;
-            private AccessibilityManager.FocusOvershotDirection _focusOvershotDirection;
+            private View currentFocusedView;
+            private AccessibilityManager.FocusOvershotDirection focusOvershotDirection;
 
             /// <since_tizen> 6 </since_tizen>
             /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -110,11 +110,11 @@ namespace Tizen.NUI.Accessibility
             {
                 get
                 {
-                    return _currentFocusedView;
+                    return currentFocusedView;
                 }
                 set
                 {
-                    _currentFocusedView = value;
+                    currentFocusedView = value;
                 }
             }
 
@@ -125,11 +125,11 @@ namespace Tizen.NUI.Accessibility
             {
                 get
                 {
-                    return _focusOvershotDirection;
+                    return focusOvershotDirection;
                 }
                 set
                 {
-                    _focusOvershotDirection = value;
+                    focusOvershotDirection = value;
                 }
             }
         }

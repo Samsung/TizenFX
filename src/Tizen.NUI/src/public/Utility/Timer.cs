@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,10 +36,10 @@ namespace Tizen.NUI
     public class Timer : BaseHandle
     {
         private bool played = false;
-        private EventHandlerWithReturnType<object, TickEventArgs, bool> _timerTickEventHandler;
-        private TickCallbackDelegate _timerTickCallbackDelegate;
+        private EventHandlerWithReturnType<object, TickEventArgs, bool> timerTickEventHandler;
+        private TickCallbackDelegate timerTickCallbackDelegate;
 
-        private System.IntPtr _timerTickCallbackOfNative;
+        private System.IntPtr timerTickCallbackOfNative;
 
         /// <summary>
         /// Creates a tick timer that emits periodic signal.
@@ -60,9 +60,8 @@ namespace Tizen.NUI
 
         internal Timer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-
-            _timerTickCallbackDelegate = OnTick;
-            _timerTickCallbackOfNative = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(_timerTickCallbackDelegate);
+            timerTickCallbackDelegate = OnTick;
+            timerTickCallbackOfNative = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(timerTickCallbackDelegate);
 
             NUILog.Debug($"(0x{SwigCPtr.Handle:X})Timer() contructor!");
         }
@@ -87,18 +86,18 @@ namespace Tizen.NUI
         {
             add
             {
-                if (_timerTickEventHandler == null && disposed == false)
+                if (timerTickEventHandler == null && disposed == false)
                 {
-                    TickSignal().Connect(_timerTickCallbackOfNative);
+                    TickSignal().Connect(timerTickCallbackOfNative);
                 }
-                _timerTickEventHandler += value;
+                timerTickEventHandler += value;
             }
             remove
             {
-                _timerTickEventHandler -= value;
-                if (_timerTickEventHandler == null && TickSignal().Empty() == false)
+                timerTickEventHandler -= value;
+                if (timerTickEventHandler == null && TickSignal().Empty() == false)
                 {
-                    TickSignal().Disconnect(_timerTickCallbackOfNative);
+                    TickSignal().Disconnect(timerTickCallbackOfNative);
                 }
             }
         }
@@ -162,7 +161,6 @@ namespace Tizen.NUI
             if (Thread.CurrentThread.ManagedThreadId != 1)
             {
                 Tizen.Log.Error("NUI", "current threadID : " + Thread.CurrentThread.ManagedThreadId);
-
 
                 StackTrace st = new StackTrace(true);
                 for (int i = 0; i < st.FrameCount; i++)
@@ -268,9 +266,9 @@ namespace Tizen.NUI
         {
             NUILog.Debug($"(0x{SwigCPtr.Handle:X}) Timer.Dispose(type={type}, disposed={disposed})");
 
-            if (this != null && _timerTickCallbackDelegate != null)
+            if (this != null && timerTickCallbackDelegate != null)
             {
-                TickSignal().Disconnect(_timerTickCallbackOfNative);
+                TickSignal().Disconnect(timerTickCallbackOfNative);
             }
 
             if (disposed)
@@ -299,10 +297,10 @@ namespace Tizen.NUI
                 //throw new System.InvalidOperationException($"OnTick() excpetion!");
             }
 
-            if (_timerTickEventHandler != null && played == true)
+            if (timerTickEventHandler != null && played == true)
             {
                 //here we send all data to user event handlers
-                return _timerTickEventHandler(this, e);
+                return timerTickEventHandler(this, e);
             }
             return false;
         }
@@ -315,6 +313,4 @@ namespace Tizen.NUI
         {
         }
     }
-
 }
-

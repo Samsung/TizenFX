@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,6 @@ using System.ComponentModel;
 
 namespace Tizen.NUI
 {
-
     /// <summary>
     /// A long press gesture is emitted when the user holds the screen with the stated number of fingers.<br />
     /// A long press gesture finishes when all touches have been released.<br />
@@ -26,7 +25,6 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class LongPressGesture : Gesture
     {
-
         /// <summary>
         /// The constructor.
         /// </summary>

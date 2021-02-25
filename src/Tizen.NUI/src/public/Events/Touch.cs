@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
  *
  */
 using System.ComponentModel;
-using System.Runtime.InteropServices;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
@@ -28,7 +27,6 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class Touch : BaseHandle
     {
-
         /// <summary>
         /// An uninitialized touch instance.<br />
         /// Calling member functions with an uninitialized touch handle is not allowed.<br />
@@ -274,5 +272,4 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         Tertiary = 2,
     }
-
 }

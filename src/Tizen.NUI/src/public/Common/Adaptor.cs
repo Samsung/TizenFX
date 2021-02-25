@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,6 @@
  */
 using System;
 using System.ComponentModel;
-using System.Runtime.InteropServices;
 
 namespace Tizen.NUI
 {
@@ -120,7 +119,5 @@ namespace Tizen.NUI
         {
             Interop.Adaptor.DeleteAdaptor(swigCPtr);
         }
-
     }
-
 }

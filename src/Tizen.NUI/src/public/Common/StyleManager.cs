@@ -34,8 +34,8 @@ namespace Tizen.NUI
     public class StyleManager : BaseHandle
     {
         private static readonly StyleManager instance = StyleManager.Get();
-        private EventHandler<StyleChangedEventArgs> _styleManagerStyleChangedEventHandler;
-        private StyleChangedCallbackDelegate _styleManagerStyleChangedCallbackDelegate;
+        private EventHandler<StyleChangedEventArgs> styleManagerStyleChangedEventHandler;
+        private StyleChangedCallbackDelegate styleManagerStyleChangedCallbackDelegate;
 
         /// <summary>
         /// Creates a StyleManager handle.<br />
@@ -63,19 +63,19 @@ namespace Tizen.NUI
         {
             add
             {
-                if (_styleManagerStyleChangedEventHandler == null)
+                if (styleManagerStyleChangedEventHandler == null)
                 {
-                    _styleManagerStyleChangedCallbackDelegate = (OnStyleChanged);
-                    StyleChangedSignal().Connect(_styleManagerStyleChangedCallbackDelegate);
+                    styleManagerStyleChangedCallbackDelegate = (OnStyleChanged);
+                    StyleChangedSignal().Connect(styleManagerStyleChangedCallbackDelegate);
                 }
-                _styleManagerStyleChangedEventHandler += value;
+                styleManagerStyleChangedEventHandler += value;
             }
             remove
             {
-                _styleManagerStyleChangedEventHandler -= value;
-                if (_styleManagerStyleChangedEventHandler == null && StyleChangedSignal().Empty() == false)
+                styleManagerStyleChangedEventHandler -= value;
+                if (styleManagerStyleChangedEventHandler == null && StyleChangedSignal().Empty() == false)
                 {
-                    StyleChangedSignal().Disconnect(_styleManagerStyleChangedCallbackDelegate);
+                    StyleChangedSignal().Disconnect(styleManagerStyleChangedCallbackDelegate);
                 }
             }
         }
@@ -194,16 +194,15 @@ namespace Tizen.NUI
         // Callback for StyleManager StyleChangedsignal
         private void OnStyleChanged(IntPtr styleManager, StyleChangeType styleChange)
         {
-            StyleChangedEventArgs e = new StyleChangedEventArgs();
-
-            // Populate all members of "e" (StyleChangedEventArgs) with real data.
-            e.StyleManager = Registry.GetManagedBaseHandleFromNativePtr(styleManager) as StyleManager;
-            e.StyleChange = styleChange;
-
-            if (_styleManagerStyleChangedEventHandler != null)
+            if (styleManagerStyleChangedEventHandler != null)
             {
+                StyleChangedEventArgs e = new StyleChangedEventArgs();
+
+                // Populate all members of "e" (StyleChangedEventArgs) with real data.
+                e.StyleManager = Registry.GetManagedBaseHandleFromNativePtr(styleManager) as StyleManager;
+                e.StyleChange = styleChange;
                 //Here we send all data to user event handlers.
-                _styleManagerStyleChangedEventHandler(this, e);
+                styleManagerStyleChangedEventHandler(this, e);
             }
         }
 
@@ -214,8 +213,8 @@ namespace Tizen.NUI
         [Obsolete("Deprecated in API9, Will be removed in API11. Please use ThemeManager instead.")]
         public class StyleChangedEventArgs : EventArgs
         {
-            private StyleManager _styleManager;
-            private StyleChangeType _styleChange;
+            private StyleManager styleManager;
+            private StyleChangeType styleChange;
 
             /// <summary>
             /// StyleManager.
@@ -226,11 +225,11 @@ namespace Tizen.NUI
             {
                 get
                 {
-                    return _styleManager;
+                    return styleManager;
                 }
                 set
                 {
-                    _styleManager = value;
+                    styleManager = value;
                 }
             }
 
@@ -244,11 +243,11 @@ namespace Tizen.NUI
             {
                 get
                 {
-                    return _styleChange;
+                    return styleChange;
                 }
                 set
                 {
-                    _styleChange = value;
+                    styleChange = value;
                 }
             }
         }
