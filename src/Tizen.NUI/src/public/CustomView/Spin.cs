@@ -18,7 +18,6 @@
 using System;
 using System.Runtime.InteropServices;
 using Tizen.NUI;
-using Tizen.NUI.UIComponents;
 using Tizen.NUI.BaseComponents;
 
 // A spin control (for continously changing values when users can easily predict a set of values)
