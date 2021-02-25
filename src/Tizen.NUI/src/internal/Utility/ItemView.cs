@@ -63,20 +63,95 @@ namespace Tizen.NUI
         /// <summary>
         /// Property for ItemView. This is internal use only, so not recommended to use. Need to use ItemView's properties.
         /// </summary>
-        internal new class Property
+        [Obsolete("Deprecated in API6; Will be removed in API9.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+#pragma warning disable CA1034, CA1052, CA1716 // Identifiers should not match keywords
+        public new class Property
+#pragma warning restore CA1034, CA1052, CA1716 // Identifiers should not match keywords
         {
-            internal static readonly int LAYOUT = Interop.ItemView.LayoutGet();
-            internal static readonly int MinimumSwipeSpeed = Interop.ItemView.MinimumSwipeSpeedGet();
-            internal static readonly int MinimumSwipeDistance = Interop.ItemView.MinimumSwipeDistanceGet();
-            internal static readonly int WheelScrollDistanceStep = Interop.ItemView.WheelScrollDistanceStepGet();
-            internal static readonly int SnapToItemEnabled = Interop.ItemView.SnapToItemEnabledGet();
-            internal static readonly int RefreshInterval = Interop.ItemView.RefreshIntervalGet();
-            internal static readonly int LayoutPosition = Interop.ItemView.LayoutPositionGet();
-            internal static readonly int ScrollSpeed = Interop.ItemView.ScrollSpeedGet();
-            internal static readonly int OVERSHOOT = Interop.ItemView.OvershootGet();
-            internal static readonly int ScrollDirection = Interop.ItemView.ScrollDirectionGet();
-            internal static readonly int LayoutOrientation = Interop.ItemView.LayoutOrientationGet();
-            internal static readonly int ScrollContentSize = Interop.ItemView.ScrollContentSizeGet();
+            /// <summary>
+            /// LAYOUT. This is internal use only, so not recommended to use. Need to use ItemView's properties.
+            /// </summary>
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int LAYOUT = Interop.ItemView.LayoutGet();
+
+            /// <summary>
+            /// MINIMUM_SWIPE_SPEED. This is internal use only, so not recommended to use. Need to use ItemView's properties.
+            /// </summary>
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int MinimumSwipeSpeed = Interop.ItemView.MinimumSwipeSpeedGet();
+
+            /// <summary>
+            /// MINIMUM_SWIPE_DISTANCE. This is internal use only, so not recommended to use. Need to use ItemView's properties.
+            /// </summary>
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int MinimumSwipeDistance = Interop.ItemView.MinimumSwipeDistanceGet();
+
+            /// <summary>
+            /// WHEEL_SCROLL_DISTANCE_STEP. This is internal use only, so not recommended to use. Need to use ItemView's properties.
+            /// </summary>
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int WheelScrollDistanceStep = Interop.ItemView.WheelScrollDistanceStepGet();
+
+            /// <summary>
+            /// SNAP_TO_ITEM_ENABLED. This is internal use only, so not recommended to use. Need to use ItemView's properties.
+            /// </summary>
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int SnapToItemEnabled = Interop.ItemView.SnapToItemEnabledGet();
+
+            /// <summary>
+            /// REFRESH_INTERVAL. This is internal use only, so not recommended to use. Need to use ItemView's properties.
+            /// </summary>
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int RefreshInterval = Interop.ItemView.RefreshIntervalGet();
+
+            /// <summary>
+            /// LAYOUT_POSITION. This is internal use only, so not recommended to use. Need to use ItemView's properties.
+            /// </summary>
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int LayoutPosition = Interop.ItemView.LayoutPositionGet();
+
+            /// <summary>
+            /// SCROLL_SPEED. This is internal use only, so not recommended to use. Need to use ItemView's properties.
+            /// </summary>
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int ScrollSpeed = Interop.ItemView.ScrollSpeedGet();
+
+            /// <summary>
+            /// OVERSHOOT. This is internal use only, so not recommended to use. Need to use ItemView's properties.
+            /// </summary>
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int OVERSHOOT = Interop.ItemView.OvershootGet();
+
+            /// <summary>
+            /// SCROLL_DIRECTION. This is internal use only, so not recommended to use. Need to use ItemView's properties.
+            /// </summary>
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int ScrollDirection = Interop.ItemView.ScrollDirectionGet();
+
+            /// <summary>
+            /// LAYOUT_ORIENTATION. This is internal use only, so not recommended to use. Need to use ItemView's properties.
+            /// </summary>
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int LayoutOrientation = Interop.ItemView.LayoutOrientationGet();
+
+            /// <summary>
+            /// SCROLL_CONTENT_SIZE. This is internal use only, so not recommended to use. Need to use ItemView's properties.
+            /// </summary>
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int ScrollContentSize = Interop.ItemView.ScrollContentSizeGet();
         }
 
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
