@@ -599,10 +599,7 @@ namespace Tizen.NUI
         /// <param name="handle">Handle to an object.</param>
         /// <returns>Handle to an animation object or an uninitialized handle.</returns>
         /// <exception cref="ArgumentNullException"> Thrown when handle is null. </exception>
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, Please use as keyword instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static Animation DownCast(BaseHandle handle)
+        internal static Animation DownCast(BaseHandle handle)
         {
             if (handle == null)
             {
