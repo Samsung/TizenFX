@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2017 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,6 +23,7 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Ruler : RefObject
     {
+
         internal Ruler(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
@@ -226,6 +227,7 @@ namespace Tizen.NUI
         {
             /// <summary>A Fixed ruler.</summary>
             /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+
             Fixed,
 
             /// <summary>A Free ruler.</summary>
