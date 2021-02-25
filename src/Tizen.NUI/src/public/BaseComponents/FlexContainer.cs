@@ -432,7 +432,13 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Enumeration for the instance of child properties belonging to the FlexContainer class.
         /// </summary>
-        internal class ChildProperty
+        /// <since_tizen> 3 </since_tizen>
+        [SuppressMessage("Microsoft.Design", "CA1052:StaticHolderTypesShouldBeStaticOrNotInheritable")]
+        [Obsolete("Deprecated in API6, Will be removed in API9, " +
+            "Please use View.Flex, View.AlignSelf, View.FlexMargin instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
+        public class ChildProperty
         {
             internal static readonly int FLEX = Interop.FlexContainer.ChildPropertyFlexGet();
             internal static readonly int AlignSelf = Interop.FlexContainer.ChildPropertyAlignSelfGet();
