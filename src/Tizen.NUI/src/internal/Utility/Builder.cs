@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +23,6 @@ namespace Tizen.NUI
 {
     internal class Builder : BaseHandle
     {
-
         internal Builder(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
@@ -40,8 +39,8 @@ namespace Tizen.NUI
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void QuitEventCallbackDelegate();
-        private DaliEventHandler<object, QuitEventArgs> _builderQuitEventHandler;
-        private QuitEventCallbackDelegate _builderQuitEventCallbackDelegate;
+        private DaliEventHandler<object, QuitEventArgs> builderQuitEventHandler;
+        private QuitEventCallbackDelegate builderQuitEventCallbackDelegate;
         private VoidSignal quitSignal;
 
         public event DaliEventHandler<object, QuitEventArgs> Quit
@@ -49,24 +48,24 @@ namespace Tizen.NUI
             add
             {
                 // Restricted to only one listener
-                if (_builderQuitEventHandler == null)
+                if (builderQuitEventHandler == null)
                 {
-                    _builderQuitEventHandler += value;
+                    builderQuitEventHandler += value;
 
-                    _builderQuitEventCallbackDelegate = new QuitEventCallbackDelegate(OnQuit);
+                    builderQuitEventCallbackDelegate = new QuitEventCallbackDelegate(OnQuit);
                     quitSignal = this.QuitSignal();
-                    quitSignal?.Connect(_builderQuitEventCallbackDelegate);
+                    quitSignal?.Connect(builderQuitEventCallbackDelegate);
                 }
             }
 
             remove
             {
-                if (_builderQuitEventHandler != null)
+                if (builderQuitEventHandler != null)
                 {
-                    quitSignal?.Disconnect(_builderQuitEventCallbackDelegate);
+                    quitSignal?.Disconnect(builderQuitEventCallbackDelegate);
                 }
 
-                _builderQuitEventHandler -= value;
+                builderQuitEventHandler -= value;
             }
         }
 
@@ -75,10 +74,10 @@ namespace Tizen.NUI
         {
             QuitEventArgs e = new QuitEventArgs();
 
-            if (_builderQuitEventHandler != null)
+            if (builderQuitEventHandler != null)
             {
                 //here we send all data to user event handlers
-                _builderQuitEventHandler(this, e);
+                builderQuitEventHandler(this, e);
             }
         }
 
