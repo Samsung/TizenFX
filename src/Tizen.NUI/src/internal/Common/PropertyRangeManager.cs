@@ -1,22 +1,8 @@
-/*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- */
+
 
 using System.Reflection;
 using System;
+using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using Tizen.NUI.BaseComponents;
 
@@ -27,14 +13,14 @@ namespace Tizen.NUI
     /// </summary>
     internal class PropertyRangeManager
     {
-        private Dictionary<String, PropertyRange> propertyRange;
+        private Dictionary<String, PropertyRange> _propertyRange;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Tizen.NUI.PropertyRangeManager"/> class.
         /// </summary>
         public PropertyRangeManager()
         {
-            propertyRange = new Dictionary<String, PropertyRange>();
+            _propertyRange = new Dictionary<String, PropertyRange>();
         }
 
         /// <summary>
@@ -44,7 +30,7 @@ namespace Tizen.NUI
         {
             PropertyRange range;
 
-            if (propertyRange.TryGetValue(viewName, out range))
+            if (_propertyRange.TryGetValue(viewName, out range))
             {
                 // already registered
                 return range;
@@ -56,7 +42,7 @@ namespace Tizen.NUI
             GetPropertyStartRange(viewType, ref range);
 
             // add it to our dictionary
-            propertyRange.Add(viewName, range);
+            _propertyRange.Add(viewName, range);
 
             return range;
 
@@ -75,7 +61,7 @@ namespace Tizen.NUI
 
             PropertyRange range;
 
-            if (!propertyRange.TryGetValue(viewName, out range))
+            if (!_propertyRange.TryGetValue(viewName, out range))
             {
                 // view not found, register it now
                 range = RegisterView(viewName, viewType);
@@ -84,7 +70,7 @@ namespace Tizen.NUI
             int index = range.GetNextFreePropertyIndex(type);
 
             // update the dictionary
-            propertyRange[viewName] = range;
+            _propertyRange[viewName] = range;
 
             return index;
 
