@@ -1,19 +1,3 @@
-/*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- */
 using System;
 using System.Globalization;
 
@@ -22,11 +6,11 @@ namespace Tizen.NUI.Binding
     internal class TemplateBinding : BindingBase
     {
         internal const string SelfPath = ".";
-        private IValueConverter converter;
-        private object converterParameter;
+        IValueConverter _converter;
+        object _converterParameter;
 
-        private BindingExpression expression;
-        private string path;
+        BindingExpression _expression;
+        string _path;
 
         public TemplateBinding()
         {
@@ -49,35 +33,35 @@ namespace Tizen.NUI.Binding
 
         public IValueConverter Converter
         {
-            get { return converter; }
+            get { return _converter; }
             set
             {
                 ThrowIfApplied();
 
-                converter = value;
+                _converter = value;
             }
         }
 
         public object ConverterParameter
         {
-            get { return converterParameter; }
+            get { return _converterParameter; }
             set
             {
                 ThrowIfApplied();
 
-                converterParameter = value;
+                _converterParameter = value;
             }
         }
 
         public string Path
         {
-            get { return path; }
+            get { return _path; }
             set
             {
                 ThrowIfApplied();
 
-                path = value;
-                expression = GetBindingExpression(value);
+                _path = value;
+                _expression = GetBindingExpression(value);
             }
         }
 
@@ -85,10 +69,10 @@ namespace Tizen.NUI.Binding
         {
             base.Apply(fromTarget);
 
-            if (expression == null)
-                expression = new BindingExpression(this, SelfPath);
+            if (_expression == null)
+                _expression = new BindingExpression(this, SelfPath);
 
-            expression.Apply(fromTarget);
+            _expression.Apply(fromTarget);
         }
 
         internal override async void Apply(object newContext, BindableObject bindObj, BindableProperty targetProperty, bool fromBindingContextChanged = false)
@@ -128,16 +112,16 @@ namespace Tizen.NUI.Binding
         {
             base.Unapply(fromBindingContextChanged: fromBindingContextChanged);
 
-            if (expression != null)
-                expression.Unapply();
+            if (_expression != null)
+                _expression.Unapply();
         }
 
         void ApplyInner(Element templatedParent, BindableObject bindableObject, BindableProperty targetProperty)
         {
-            if (expression == null && templatedParent != null)
-                expression = new BindingExpression(this, SelfPath);
+            if (_expression == null && templatedParent != null)
+                _expression = new BindingExpression(this, SelfPath);
 
-            expression?.Apply(templatedParent, bindableObject, targetProperty);
+            _expression?.Apply(templatedParent, bindableObject, targetProperty);
         }
 
         BindingExpression GetBindingExpression(string path)
