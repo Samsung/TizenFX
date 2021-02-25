@@ -20,7 +20,7 @@ namespace Tizen.NUI
     internal class CustomActor : Animatable
     {
 
-        internal CustomActor(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.CustomActorImpl.CustomActorUpcast(cPtr), cMemoryOwn)
+        internal CustomActor(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

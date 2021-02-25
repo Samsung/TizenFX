@@ -22,7 +22,7 @@ namespace Tizen.NUI
     internal class KeyInputFocusManager : BaseHandle
     {
 
-        internal KeyInputFocusManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.KeyInputFocusManager.Upcast(cPtr), cMemoryOwn)
+        internal KeyInputFocusManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

@@ -427,7 +427,7 @@ namespace Tizen.NUI
         }
 
 
-        internal Application(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.ApplicationUpcast(cPtr), cMemoryOwn)
+        internal Application(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
             SetCurrentApplication(this);
 

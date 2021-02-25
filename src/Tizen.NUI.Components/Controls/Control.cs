@@ -52,7 +52,16 @@ namespace Tizen.NUI.Components
 
         static Control()
         {
-            ThemeManager.AddPackageTheme(new DefaultThemeCreator());
+            ThemeManager.AddPackageTheme(DefaultThemeCreator.Instance);
+        }
+
+        /// <summary>
+        /// This is used to improve theme performance.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        static public void Preload()
+        {
+            ThemeManager.AddPackageTheme(DefaultThemeCreator.Instance);
         }
 
         /// <summary>

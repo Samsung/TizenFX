@@ -208,7 +208,7 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal VideoView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.VideoView.Upcast(cPtr), cMemoryOwn)
+        internal VideoView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

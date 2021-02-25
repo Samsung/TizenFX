@@ -34,7 +34,7 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public partial class GLWindow : BaseHandle
     {
-        internal GLWindow(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.GLWindow.GlWindowUpcast(cPtr), cMemoryOwn)
+        internal GLWindow(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
 
         }

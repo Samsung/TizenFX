@@ -33,7 +33,7 @@ namespace Tizen.NUI
         /// </summary>
         private static VisualFactory instance;
 
-        internal VisualFactory(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.VisualFactory.Upcast(cPtr), cMemoryOwn)
+        internal VisualFactory(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

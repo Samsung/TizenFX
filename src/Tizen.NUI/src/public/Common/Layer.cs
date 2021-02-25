@@ -40,7 +40,7 @@ namespace Tizen.NUI
             this.SetResizePolicy(ResizePolicyType.FillToParent, DimensionType.AllDimensions);
         }
 
-        internal Layer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Layer.Upcast(cPtr), cMemoryOwn)
+        internal Layer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
@@ -62,14 +62,6 @@ namespace Tizen.NUI
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             LayerUI,
-
-            /// <summary>
-            /// Deprecated in API6; Will be removed in API9. Please use LayerUI instead.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            [Obsolete("Deprecated in API6; Will be removed in API9. Please use LayerUI instead.")]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            Layer2D = LayerUI,
 
             /// <summary>
             /// Layer will use depth test.
@@ -355,7 +347,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>The child count of the layer.</returns>
         /// <since_tizen> 4 </since_tizen>
-        // [Obsolete("Deprecated in API9, will be removed in API11. Please use ChildCount property instead!")]
+        [Obsolete("Deprecated in API9, will be removed in API11. Please use ChildCount property instead!")]
         public override uint GetChildCount()
         {
             return Convert.ToUInt32(Children.Count);

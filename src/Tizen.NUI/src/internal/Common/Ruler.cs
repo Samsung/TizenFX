@@ -24,7 +24,7 @@ namespace Tizen.NUI
     public class Ruler : RefObject
     {
 
-        internal Ruler(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Ruler.Upcast(cPtr), cMemoryOwn)
+        internal Ruler(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

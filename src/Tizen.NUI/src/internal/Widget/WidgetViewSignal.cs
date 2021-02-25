@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,11 +23,7 @@ namespace Tizen.NUI
     /// <summary>
     /// WidgetViewSignal
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
-    [Obsolete("Deprecated in API6, Will be removed in API9, " +
-        "Please use WidgetView.WidgetAdded, WidgetDeleted events instead!")]
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public class WidgetViewSignal : Disposable
+    internal class WidgetViewSignal : Disposable
     {
 
         internal WidgetViewSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
@@ -46,11 +42,7 @@ namespace Tizen.NUI
         /// Queries whether there are any connected slots.
         /// </summary>
         /// <returns>True if there are any slots connected to the signal</returns>
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, " +
-            "Please use WidgetView.WidgetAdded, WidgetDeleted events instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool Empty()
+        internal bool Empty()
         {
             bool ret = Interop.WidgetView.WidgetViewSignalEmpty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -61,11 +53,7 @@ namespace Tizen.NUI
         /// Queries the number of slots.
         /// </summary>
         /// <returns>The number of slots connected to this signal</returns>
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, " +
-            "Please use WidgetView.WidgetAdded, WidgetDeleted events instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint GetConnectionCount()
+        internal uint GetConnectionCount()
         {
             uint ret = Interop.WidgetView.WidgetViewSignalGetConnectionCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -76,11 +64,7 @@ namespace Tizen.NUI
         /// Connects a function.
         /// </summary>
         /// <param name="func">The function to connect</param>
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, " +
-            "Please use WidgetView.WidgetAdded, WidgetDeleted events instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Connect(System.Delegate func)
+        internal void Connect(System.Delegate func)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
@@ -93,11 +77,7 @@ namespace Tizen.NUI
         /// Disconnects a function.
         /// </summary>
         /// <param name="func">The function to disconnect</param>
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, " +
-            "Please use WidgetView.WidgetAdded, WidgetDeleted events instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Disconnect(System.Delegate func)
+        internal void Disconnect(System.Delegate func)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
@@ -110,11 +90,7 @@ namespace Tizen.NUI
         /// Connects a member function.
         /// </summary>
         /// <param name="arg">The member function to connect</param>
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, " +
-            "Please use WidgetView.WidgetAdded, WidgetDeleted events instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Emit(WidgetView arg)
+        internal void Emit(WidgetView arg)
         {
             Interop.WidgetView.WidgetViewSignalEmit(SwigCPtr, WidgetView.getCPtr(arg));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -123,11 +99,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The contructor.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, " +
-            "Please use WidgetView.WidgetAdded, WidgetDeleted events instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public WidgetViewSignal() : this(Interop.WidgetView.NewWidgetViewSignal(), true)
+        internal WidgetViewSignal() : this(Interop.WidgetView.NewWidgetViewSignal(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
