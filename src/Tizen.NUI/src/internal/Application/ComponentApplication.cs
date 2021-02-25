@@ -1,21 +1,6 @@
-﻿/*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- */
-
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using System.Runtime.InteropServices;
 
 namespace Tizen.NUI
@@ -60,7 +45,7 @@ namespace Tizen.NUI
         {
             ComponentApplication ret = New(args, stylesheet);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            instance = ret;
+            _instance = ret;
             return ret;
         }
 
@@ -90,12 +75,14 @@ namespace Tizen.NUI
             return ret;
         }
 
+
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate IntPtr NUIComponentApplicationCreatenativeEventCallbackDelegate();
 
         public delegate IntPtr CreateNativeEventHandler();
-        private CreateNativeEventHandler applicationCreateNativeEventHandler;
-        private NUIComponentApplicationCreatenativeEventCallbackDelegate applicationCreateNativeEventCallbackDelegate;
+        private CreateNativeEventHandler _applicationCreateNativeEventHandler;
+        private NUIComponentApplicationCreatenativeEventCallbackDelegate _applicationCreateNativeEventCallbackDelegate;
+
 
         /**
           * @brief Event for Initialized signal which can be used to subscribe/unsubscribe the event handler
@@ -106,23 +93,23 @@ namespace Tizen.NUI
             add
             {
                 // Restricted to only one listener
-                if (applicationCreateNativeEventHandler == null)
+                if (_applicationCreateNativeEventHandler == null)
                 {
-                    applicationCreateNativeEventHandler += value;
+                    _applicationCreateNativeEventHandler += value;
 
-                    applicationCreateNativeEventCallbackDelegate = new NUIComponentApplicationCreatenativeEventCallbackDelegate(OnApplicationCreateNative);
-                    Connect(applicationCreateNativeEventCallbackDelegate);
+                    _applicationCreateNativeEventCallbackDelegate = new NUIComponentApplicationCreatenativeEventCallbackDelegate(OnApplicationCreateNative);
+                    Connect(_applicationCreateNativeEventCallbackDelegate);
                 }
             }
 
             remove
             {
-                if (applicationCreateNativeEventHandler != null)
+                if (_applicationCreateNativeEventHandler != null)
                 {
-                    Disconnect(applicationCreateNativeEventCallbackDelegate);
+                    Disconnect(_applicationCreateNativeEventCallbackDelegate);
                 }
 
-                applicationCreateNativeEventHandler -= value;
+                _applicationCreateNativeEventHandler -= value;
             }
         }
 
@@ -161,7 +148,17 @@ namespace Tizen.NUI
         // Callback for Application InitSignal
         private IntPtr OnApplicationCreateNative()
         {
-            return applicationCreateNativeEventHandler?.Invoke() ?? IntPtr.Zero;
+            IntPtr handle = IntPtr.Zero;
+
+            if (_applicationCreateNativeEventHandler != null)
+            {
+                handle = _applicationCreateNativeEventHandler.Invoke();
+            }
+
+            return handle;
         }
+
     }
+
+
 }

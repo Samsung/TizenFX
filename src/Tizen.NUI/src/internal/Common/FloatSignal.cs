@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,16 +14,17 @@
  * limitations under the License.
  *
  */
-
 using System.ComponentModel;
 
 namespace Tizen.NUI
 {
     internal class FloatSignal : Disposable
     {
+
         internal FloatSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
+
 
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -31,6 +32,7 @@ namespace Tizen.NUI
         {
             Interop.FloatSignal.DeleteFloatSignal(swigCPtr);
         }
+
 
         public bool Empty()
         {

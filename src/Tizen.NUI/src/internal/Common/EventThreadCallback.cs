@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,6 @@
  * limitations under the License.
  *
  */
-
 using System.ComponentModel;
 
 namespace Tizen.NUI
@@ -27,6 +26,7 @@ namespace Tizen.NUI
         {
         }
 
+
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
@@ -36,7 +36,8 @@ namespace Tizen.NUI
 
         public EventThreadCallback(CallbackDelegate func) : this(Interop.EventThreadCallback.NewEventThreadCallback(func), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Trigger()
@@ -46,7 +47,8 @@ namespace Tizen.NUI
                 Interop.EventThreadCallback.Trigger(SwigCPtr);
             }
 
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
     }
 }

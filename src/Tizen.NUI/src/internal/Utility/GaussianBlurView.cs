@@ -79,9 +79,9 @@ namespace Tizen.NUI
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
-            if (finishedCallback != null)
+            if (_finishedCallback != null)
             {
-                FinishedSignal().Disconnect(finishedCallback);
+                FinishedSignal().Disconnect(_finishedCallback);
             }
 
             base.Dispose(type);
@@ -89,8 +89,8 @@ namespace Tizen.NUI
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void FinishedCallbackType(IntPtr application);
-        private DaliEventHandler<object, EventArgs> finishedEventHandler;
-        private FinishedCallbackType finishedCallback;
+        private DaliEventHandler<object, EventArgs> _finishedEventHandler;
+        private FinishedCallbackType _finishedCallback;
 
         /// <summary>
         /// If ActivateOnce has been called, then connect to this signal to be notified when the target actor has been rendered.
@@ -102,21 +102,21 @@ namespace Tizen.NUI
             add
             {
                 // Restricted to only one listener
-                if (finishedEventHandler == null)
+                if (_finishedEventHandler == null)
                 {
-                    finishedCallback = new FinishedCallbackType(OnFinished);
-                    FinishedSignal().Connect(finishedCallback);
+                    _finishedCallback = new FinishedCallbackType(OnFinished);
+                    FinishedSignal().Connect(_finishedCallback);
                 }
-                finishedEventHandler += value;
+                _finishedEventHandler += value;
             }
 
             remove
             {
-                finishedEventHandler -= value;
+                _finishedEventHandler -= value;
 
-                if (finishedEventHandler == null && FinishedSignal().Empty() == false)
+                if (_finishedEventHandler == null && FinishedSignal().Empty() == false)
                 {
-                    FinishedSignal().Disconnect(finishedCallback);
+                    FinishedSignal().Disconnect(_finishedCallback);
                 }
             }
         }
@@ -126,10 +126,10 @@ namespace Tizen.NUI
         {
             EventArgs e = new EventArgs();
 
-            if (finishedEventHandler != null)
+            if (_finishedEventHandler != null)
             {
                 //here we send all data to user event handlers
-                finishedEventHandler(this, e);
+                _finishedEventHandler(this, e);
             }
         }
 

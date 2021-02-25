@@ -39,53 +39,53 @@ namespace Tizen.NUI
 
         public class PagePanStartedEventArgs : EventArgs
         {
-            private PageTurnView pageTurnView;
+            private PageTurnView _pageTurnView;
 
             public PageTurnView PageTurnView
             {
                 get
                 {
-                    return pageTurnView;
+                    return _pageTurnView;
                 }
                 set
                 {
-                    pageTurnView = value;
+                    _pageTurnView = value;
                 }
             }
         }
 
         public class PagePanFinishedEventArgs : EventArgs
         {
-            private PageTurnView pageTurnView;
+            private PageTurnView _pageTurnView;
 
             public PageTurnView PageTurnView
             {
                 get
                 {
-                    return pageTurnView;
+                    return _pageTurnView;
                 }
                 set
                 {
-                    pageTurnView = value;
+                    _pageTurnView = value;
                 }
             }
         }
 
         public class PageTurnStartedEventArgs : EventArgs
         {
-            private PageTurnView pageTurnView;
-            private uint pageIndex;
-            private bool isTurningForward;
+            private PageTurnView _pageTurnView;
+            private uint _pageIndex;
+            private bool _isTurningForward;
 
             public PageTurnView PageTurnView
             {
                 get
                 {
-                    return pageTurnView;
+                    return _pageTurnView;
                 }
                 set
                 {
-                    pageTurnView = value;
+                    _pageTurnView = value;
                 }
             }
 
@@ -93,11 +93,11 @@ namespace Tizen.NUI
             {
                 get
                 {
-                    return pageIndex;
+                    return _pageIndex;
                 }
                 set
                 {
-                    pageIndex = value;
+                    _pageIndex = value;
                 }
             }
 
@@ -105,11 +105,11 @@ namespace Tizen.NUI
             {
                 get
                 {
-                    return isTurningForward;
+                    return _isTurningForward;
                 }
                 set
                 {
-                    isTurningForward = value;
+                    _isTurningForward = value;
                 }
             }
 
@@ -117,19 +117,19 @@ namespace Tizen.NUI
 
         public class PageTurnFinishedEventArgs : EventArgs
         {
-            private PageTurnView pageTurnView;
-            private uint pageIndex;
-            private bool isTurningForward;
+            private PageTurnView _pageTurnView;
+            private uint _pageIndex;
+            private bool _isTurningForward;
 
             public PageTurnView PageTurnView
             {
                 get
                 {
-                    return pageTurnView;
+                    return _pageTurnView;
                 }
                 set
                 {
-                    pageTurnView = value;
+                    _pageTurnView = value;
                 }
             }
 
@@ -137,11 +137,11 @@ namespace Tizen.NUI
             {
                 get
                 {
-                    return pageIndex;
+                    return _pageIndex;
                 }
                 set
                 {
-                    pageIndex = value;
+                    _pageIndex = value;
                 }
             }
 
@@ -149,11 +149,11 @@ namespace Tizen.NUI
             {
                 get
                 {
-                    return isTurningForward;
+                    return _isTurningForward;
                 }
                 set
                 {
-                    isTurningForward = value;
+                    _isTurningForward = value;
                 }
             }
 
@@ -161,46 +161,46 @@ namespace Tizen.NUI
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void PagePanStartedCallbackDelegate(IntPtr page);
-        private DaliEventHandler<object, PagePanStartedEventArgs> pageTurnViewPagePanStartedEventHandler;
-        private PagePanStartedCallbackDelegate pageTurnViewPagePanStartedCallbackDelegate;
+        private DaliEventHandler<object, PagePanStartedEventArgs> _pageTurnViewPagePanStartedEventHandler;
+        private PagePanStartedCallbackDelegate _pageTurnViewPagePanStartedCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void PagePanFinishedCallbackDelegate(IntPtr page);
-        private DaliEventHandler<object, PagePanFinishedEventArgs> pageTurnViewPagePanFinishedEventHandler;
-        private PagePanFinishedCallbackDelegate pageTurnViewPagePanFinishedCallbackDelegate;
+        private DaliEventHandler<object, PagePanFinishedEventArgs> _pageTurnViewPagePanFinishedEventHandler;
+        private PagePanFinishedCallbackDelegate _pageTurnViewPagePanFinishedCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void PageTurnStartedCallbackDelegate(IntPtr page, uint pageIndex, bool isTurningForward);
-        private DaliEventHandler<object, PageTurnStartedEventArgs> pageTurnViewPageTurnStartedEventHandler;
-        private PageTurnStartedCallbackDelegate pageTurnViewPageTurnStartedCallbackDelegate;
+        private DaliEventHandler<object, PageTurnStartedEventArgs> _pageTurnViewPageTurnStartedEventHandler;
+        private PageTurnStartedCallbackDelegate _pageTurnViewPageTurnStartedCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void PageTurnFinishedCallbackDelegate(IntPtr page, uint pageIndex, bool isTurningForward);
-        private DaliEventHandler<object, PageTurnFinishedEventArgs> pageTurnViewPageTurnFinishedEventHandler;
-        private PageTurnFinishedCallbackDelegate pageTurnViewPageTurnFinishedCallbackDelegate;
+        private DaliEventHandler<object, PageTurnFinishedEventArgs> _pageTurnViewPageTurnFinishedEventHandler;
+        private PageTurnFinishedCallbackDelegate _pageTurnViewPageTurnFinishedCallbackDelegate;
 
         public event DaliEventHandler<object, PagePanStartedEventArgs> PagePanStarted
         {
             add
             {
                 // Restricted to only one listener
-                if (pageTurnViewPagePanStartedEventHandler == null)
+                if (_pageTurnViewPagePanStartedEventHandler == null)
                 {
-                    pageTurnViewPagePanStartedEventHandler += value;
+                    _pageTurnViewPagePanStartedEventHandler += value;
 
-                    pageTurnViewPagePanStartedCallbackDelegate = new PagePanStartedCallbackDelegate(OnPagePanStarted);
-                    this.PagePanStartedSignal().Connect(pageTurnViewPagePanStartedCallbackDelegate);
+                    _pageTurnViewPagePanStartedCallbackDelegate = new PagePanStartedCallbackDelegate(OnPagePanStarted);
+                    this.PagePanStartedSignal().Connect(_pageTurnViewPagePanStartedCallbackDelegate);
                 }
             }
 
             remove
             {
-                if (pageTurnViewPagePanStartedEventHandler != null)
+                if (_pageTurnViewPagePanStartedEventHandler != null)
                 {
-                    this.PagePanStartedSignal().Disconnect(pageTurnViewPagePanStartedCallbackDelegate);
+                    this.PagePanStartedSignal().Disconnect(_pageTurnViewPagePanStartedCallbackDelegate);
                 }
 
-                pageTurnViewPagePanStartedEventHandler -= value;
+                _pageTurnViewPagePanStartedEventHandler -= value;
             }
         }
 
@@ -212,10 +212,10 @@ namespace Tizen.NUI
             // Populate all members of "e" (PagePanStartedEventArgs) with real page
             e.PageTurnView = PageTurnView.GetPageTurnViewFromPtr(page);
 
-            if (pageTurnViewPagePanStartedEventHandler != null)
+            if (_pageTurnViewPagePanStartedEventHandler != null)
             {
                 //here we send all page to user event handlers
-                pageTurnViewPagePanStartedEventHandler(this, e);
+                _pageTurnViewPagePanStartedEventHandler(this, e);
             }
         }
 
@@ -224,23 +224,23 @@ namespace Tizen.NUI
             add
             {
                 // Restricted to only one listener
-                if (pageTurnViewPagePanFinishedEventHandler == null)
+                if (_pageTurnViewPagePanFinishedEventHandler == null)
                 {
-                    pageTurnViewPagePanFinishedEventHandler += value;
+                    _pageTurnViewPagePanFinishedEventHandler += value;
 
-                    pageTurnViewPagePanFinishedCallbackDelegate = new PagePanFinishedCallbackDelegate(OnPagePanFinished);
-                    this.PagePanFinishedSignal().Connect(pageTurnViewPagePanFinishedCallbackDelegate);
+                    _pageTurnViewPagePanFinishedCallbackDelegate = new PagePanFinishedCallbackDelegate(OnPagePanFinished);
+                    this.PagePanFinishedSignal().Connect(_pageTurnViewPagePanFinishedCallbackDelegate);
                 }
             }
 
             remove
             {
-                if (pageTurnViewPagePanFinishedEventHandler != null)
+                if (_pageTurnViewPagePanFinishedEventHandler != null)
                 {
-                    this.PagePanFinishedSignal().Disconnect(pageTurnViewPagePanFinishedCallbackDelegate);
+                    this.PagePanFinishedSignal().Disconnect(_pageTurnViewPagePanFinishedCallbackDelegate);
                 }
 
-                pageTurnViewPagePanFinishedEventHandler -= value;
+                _pageTurnViewPagePanFinishedEventHandler -= value;
             }
         }
 
@@ -252,10 +252,10 @@ namespace Tizen.NUI
             // Populate all members of "e" (PagePanFinishedEventArgs) with real page
             e.PageTurnView = PageTurnView.GetPageTurnViewFromPtr(page);
 
-            if (pageTurnViewPagePanFinishedEventHandler != null)
+            if (_pageTurnViewPagePanFinishedEventHandler != null)
             {
                 //here we send all page to user event handlers
-                pageTurnViewPagePanFinishedEventHandler(this, e);
+                _pageTurnViewPagePanFinishedEventHandler(this, e);
             }
         }
 
@@ -265,23 +265,23 @@ namespace Tizen.NUI
             add
             {
                 // Restricted to only one listener
-                if (pageTurnViewPageTurnStartedEventHandler == null)
+                if (_pageTurnViewPageTurnStartedEventHandler == null)
                 {
-                    pageTurnViewPageTurnStartedEventHandler += value;
+                    _pageTurnViewPageTurnStartedEventHandler += value;
 
-                    pageTurnViewPageTurnStartedCallbackDelegate = new PageTurnStartedCallbackDelegate(OnPageTurnStarted);
-                    this.PageTurnStartedSignal().Connect(pageTurnViewPageTurnStartedCallbackDelegate);
+                    _pageTurnViewPageTurnStartedCallbackDelegate = new PageTurnStartedCallbackDelegate(OnPageTurnStarted);
+                    this.PageTurnStartedSignal().Connect(_pageTurnViewPageTurnStartedCallbackDelegate);
                 }
             }
 
             remove
             {
-                if (pageTurnViewPageTurnStartedEventHandler != null)
+                if (_pageTurnViewPageTurnStartedEventHandler != null)
                 {
-                    this.PageTurnStartedSignal().Disconnect(pageTurnViewPageTurnStartedCallbackDelegate);
+                    this.PageTurnStartedSignal().Disconnect(_pageTurnViewPageTurnStartedCallbackDelegate);
                 }
 
-                pageTurnViewPageTurnStartedEventHandler -= value;
+                _pageTurnViewPageTurnStartedEventHandler -= value;
             }
         }
 
@@ -296,10 +296,10 @@ namespace Tizen.NUI
             e.IsTurningForward = isTurningForward;
 
 
-            if (pageTurnViewPageTurnStartedEventHandler != null)
+            if (_pageTurnViewPageTurnStartedEventHandler != null)
             {
                 //here we send all page to user event handlers
-                pageTurnViewPageTurnStartedEventHandler(this, e);
+                _pageTurnViewPageTurnStartedEventHandler(this, e);
             }
         }
 
@@ -309,23 +309,23 @@ namespace Tizen.NUI
             add
             {
                 // Restricted to only one listener
-                if (pageTurnViewPageTurnFinishedEventHandler == null)
+                if (_pageTurnViewPageTurnFinishedEventHandler == null)
                 {
-                    pageTurnViewPageTurnFinishedEventHandler += value;
+                    _pageTurnViewPageTurnFinishedEventHandler += value;
 
-                    pageTurnViewPageTurnFinishedCallbackDelegate = new PageTurnFinishedCallbackDelegate(OnPageTurnFinished);
-                    this.PageTurnFinishedSignal().Connect(pageTurnViewPageTurnFinishedCallbackDelegate);
+                    _pageTurnViewPageTurnFinishedCallbackDelegate = new PageTurnFinishedCallbackDelegate(OnPageTurnFinished);
+                    this.PageTurnFinishedSignal().Connect(_pageTurnViewPageTurnFinishedCallbackDelegate);
                 }
             }
 
             remove
             {
-                if (pageTurnViewPageTurnFinishedEventHandler != null)
+                if (_pageTurnViewPageTurnFinishedEventHandler != null)
                 {
-                    this.PageTurnFinishedSignal().Disconnect(pageTurnViewPageTurnFinishedCallbackDelegate);
+                    this.PageTurnFinishedSignal().Disconnect(_pageTurnViewPageTurnFinishedCallbackDelegate);
                 }
 
-                pageTurnViewPageTurnFinishedEventHandler -= value;
+                _pageTurnViewPageTurnFinishedEventHandler -= value;
             }
         }
 
@@ -340,10 +340,10 @@ namespace Tizen.NUI
             e.IsTurningForward = isTurningForward;
 
 
-            if (pageTurnViewPageTurnFinishedEventHandler != null)
+            if (_pageTurnViewPageTurnFinishedEventHandler != null)
             {
                 //here we send all page to user event handlers
-                pageTurnViewPageTurnFinishedEventHandler(this, e);
+                _pageTurnViewPageTurnFinishedEventHandler(this, e);
             }
         }
 

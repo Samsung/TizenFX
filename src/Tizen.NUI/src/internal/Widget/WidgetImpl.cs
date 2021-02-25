@@ -15,6 +15,8 @@
  *
  */
 using System;
+using System.ComponentModel;
+using System.Runtime.InteropServices;
 
 namespace Tizen.NUI
 {
@@ -42,18 +44,18 @@ namespace Tizen.NUI
 
         public class WIdgetInstanceOnCreateArgs : EventArgs
         {
-            private string contentInfo;
-            private Window window;
+            private string _contentInfo;
+            private Window _window;
 
             public string ContentInfo
             {
                 get
                 {
-                    return contentInfo;
+                    return _contentInfo;
                 }
                 set
                 {
-                    contentInfo = value;
+                    _contentInfo = value;
                 }
             }
 
@@ -61,42 +63,42 @@ namespace Tizen.NUI
             {
                 get
                 {
-                    return window;
+                    return _window;
                 }
                 set
                 {
-                    window = value;
+                    _window = value;
                 }
             }
         }
 
-        private EventHandler<WIdgetInstanceOnCreateArgs> widgetInstanceOnCreateEventHandler;
+        private EventHandler<WIdgetInstanceOnCreateArgs> _widgetInstanceOnCreateEventHandler;
         public event EventHandler<WIdgetInstanceOnCreateArgs> WidgetInstanceCreated
         {
             add
             {
-                widgetInstanceOnCreateEventHandler += value;
+                _widgetInstanceOnCreateEventHandler += value;
             }
             remove
             {
-                widgetInstanceOnCreateEventHandler -= value;
+                _widgetInstanceOnCreateEventHandler -= value;
             }
         }
 
         public class WIdgetInstanceOnDestroyArgs : EventArgs
         {
-            private string contentInfo;
-            private Widget.TerminationType terminateType;
+            private string _contentInfo;
+            private Widget.TerminationType _terminateType;
 
             public string ContentInfo
             {
                 get
                 {
-                    return contentInfo;
+                    return _contentInfo;
                 }
                 set
                 {
-                    contentInfo = value;
+                    _contentInfo = value;
                 }
             }
 
@@ -104,98 +106,98 @@ namespace Tizen.NUI
             {
                 get
                 {
-                    return terminateType;
+                    return _terminateType;
                 }
                 set
                 {
-                    terminateType = value;
+                    _terminateType = value;
                 }
             }
         }
 
-        private EventHandler<WIdgetInstanceOnDestroyArgs> widgetInstanceOnDestroyEventHandler;
+        private EventHandler<WIdgetInstanceOnDestroyArgs> _widgetInstanceOnDestroyEventHandler;
         public event EventHandler<WIdgetInstanceOnDestroyArgs> WidgetInstanceDestroyed
         {
             add
             {
-                widgetInstanceOnDestroyEventHandler += value;
+                _widgetInstanceOnDestroyEventHandler += value;
             }
             remove
             {
-                widgetInstanceOnDestroyEventHandler -= value;
+                _widgetInstanceOnDestroyEventHandler -= value;
             }
         }
 
         public class WidgetInstanceOnResizeArgs : EventArgs
         {
-            private Window window;
+            private Window _window;
 
             public Window Window
             {
                 get
                 {
-                    return window;
+                    return _window;
                 }
                 set
                 {
-                    window = value;
+                    _window = value;
                 }
             }
         }
 
-        private EventHandler<WidgetInstanceOnResizeArgs> widgetInstanceOnResizeEventHandler;
+        private EventHandler<WidgetInstanceOnResizeArgs> _widgetInstanceOnResizeEventHandler;
         public event EventHandler<WidgetInstanceOnResizeArgs> WidgetInstanceResized
         {
             add
             {
-                widgetInstanceOnResizeEventHandler += value;
+                _widgetInstanceOnResizeEventHandler += value;
             }
             remove
             {
-                widgetInstanceOnResizeEventHandler -= value;
+                _widgetInstanceOnResizeEventHandler -= value;
             }
         }
 
-        private EventHandler widgetInstanceOnPauseEventHandler;
+        private EventHandler _widgetInstanceOnPauseEventHandler;
         public event EventHandler WidgetInstancePaused
         {
             add
             {
-                widgetInstanceOnPauseEventHandler += value;
+                _widgetInstanceOnPauseEventHandler += value;
             }
             remove
             {
-                widgetInstanceOnPauseEventHandler -= value;
+                _widgetInstanceOnPauseEventHandler -= value;
             }
         }
 
-        private EventHandler widgetInstanceOnResumeEventHandler;
+        private EventHandler _widgetInstanceOnResumeEventHandler;
         public event EventHandler WidgetInstanceResumed
         {
             add
             {
-                widgetInstanceOnResumeEventHandler += value;
+                _widgetInstanceOnResumeEventHandler += value;
             }
             remove
             {
-                widgetInstanceOnResumeEventHandler -= value;
+                _widgetInstanceOnResumeEventHandler -= value;
             }
         }
 
         public class WidgetInstanceOnUpdateArgs : EventArgs
         {
-            private string contentInfo;
-            private int force;
+            private string _contentInfo;
+            private int _force;
 
             public string ContentInfo
             {
                 get
                 {
-                    return contentInfo;
+                    return _contentInfo;
                 }
                 set
                 {
-                    contentInfo = value;
+                    _contentInfo = value;
                 }
             }
 
@@ -203,25 +205,25 @@ namespace Tizen.NUI
             {
                 get
                 {
-                    return force;
+                    return _force;
                 }
                 set
                 {
-                    force = value;
+                    _force = value;
                 }
             }
         }
 
-        private EventHandler<WidgetInstanceOnUpdateArgs> widgetInstanceOnUpdateEventHandler;
+        private EventHandler<WidgetInstanceOnUpdateArgs> _widgetInstanceOnUpdateEventHandler;
         public event EventHandler<WidgetInstanceOnUpdateArgs> WidgetInstanceUpdated
         {
             add
             {
-                widgetInstanceOnUpdateEventHandler += value;
+                _widgetInstanceOnUpdateEventHandler += value;
             }
             remove
             {
-                widgetInstanceOnUpdateEventHandler -= value;
+                _widgetInstanceOnUpdateEventHandler -= value;
             }
         }
 
@@ -230,7 +232,7 @@ namespace Tizen.NUI
             WIdgetInstanceOnCreateArgs args = new WIdgetInstanceOnCreateArgs();
             args.ContentInfo = contentInfo;
             args.Window = window;
-            widgetInstanceOnCreateEventHandler?.Invoke(this, args);
+            _widgetInstanceOnCreateEventHandler?.Invoke(this, args);
         }
 
         public virtual void OnTerminate(string contentInfo, Widget.TerminationType type)
@@ -238,24 +240,24 @@ namespace Tizen.NUI
             WIdgetInstanceOnDestroyArgs args = new WIdgetInstanceOnDestroyArgs();
             args.ContentInfo = contentInfo;
             args.TerminateType = type;
-            widgetInstanceOnDestroyEventHandler?.Invoke(this, args);
+            _widgetInstanceOnDestroyEventHandler?.Invoke(this, args);
         }
 
         public virtual void OnPause()
         {
-            widgetInstanceOnPauseEventHandler?.Invoke(this, new EventArgs());
+            _widgetInstanceOnPauseEventHandler?.Invoke(this, new EventArgs());
         }
 
         public virtual void OnResume()
         {
-            widgetInstanceOnResumeEventHandler?.Invoke(this, new EventArgs());
+            _widgetInstanceOnResumeEventHandler?.Invoke(this, new EventArgs());
         }
 
         public virtual void OnResize(Window window)
         {
             WidgetInstanceOnResizeArgs args = new WidgetInstanceOnResizeArgs();
             args.Window = window;
-            widgetInstanceOnResizeEventHandler?.Invoke(this, args);
+            _widgetInstanceOnResizeEventHandler?.Invoke(this, args);
         }
 
         public virtual void OnUpdate(string contentInfo, int force)
@@ -263,7 +265,7 @@ namespace Tizen.NUI
             WidgetInstanceOnUpdateArgs args = new WidgetInstanceOnUpdateArgs();
             args.ContentInfo = contentInfo;
             args.Force = force;
-            widgetInstanceOnUpdateEventHandler?.Invoke(this, args);
+            _widgetInstanceOnUpdateEventHandler?.Invoke(this, args);
         }
 
         internal virtual void SignalConnected(SlotObserver slotObserver, SWIGTYPE_p_Dali__CallbackBase callback)

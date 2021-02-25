@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2017 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,14 +27,14 @@ namespace Tizen.NUI
         /// <summary>
         /// Application instance to connect event.
         /// </summary>
-        protected WidgetApplication application;
-        private string stylesheet = "";
-        private Dictionary<System.Type, string> widgetInfo;
+        protected WidgetApplication _application;
+        private string _stylesheet = "";
+        Dictionary<System.Type, string> _widgetInfo;
 
         /// <summary>
         /// Dictionary to contain each type of event callback.
         /// </summary>
-        protected IDictionary<EventType, object> handlers = new Dictionary<EventType, object>();
+        protected IDictionary<EventType, object> Handlers = new Dictionary<EventType, object>();
 
         /// <summary>
         /// The default Constructor.
@@ -48,7 +48,7 @@ namespace Tizen.NUI
         /// </summary>
         public NUIWidgetCoreBackend(string stylesheet)
         {
-            this.stylesheet = stylesheet;
+            _stylesheet = stylesheet;
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace Tizen.NUI
         /// <param name="handler">Event callback</param>
         public void AddEventHandler(EventType evType, Action handler)
         {
-            handlers.Add(evType, handler);
+            Handlers.Add(evType, handler);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace Tizen.NUI
         /// <param name="handler">Event callback</param>
         public void AddEventHandler<TEventArgs>(EventType evType, Action<TEventArgs> handler) where TEventArgs : EventArgs
         {
-            handlers.Add(evType, handler);
+            Handlers.Add(evType, handler);
         }
 
 
@@ -80,7 +80,10 @@ namespace Tizen.NUI
         /// </summary>
         public void Dispose()
         {
-            application?.Dispose();
+            if (_application != null)
+            {
+                _application.Dispose();
+            }
         }
 
         /// <summary>
@@ -88,17 +91,23 @@ namespace Tizen.NUI
         /// </summary>
         public void Exit()
         {
-            application?.Quit();
+            if (_application != null)
+            {
+                _application.Quit();
+            }
         }
 
         public void RegisterWidgetInfo(Dictionary<System.Type, string> widgetInfo)
         {
-            this.widgetInfo = widgetInfo;
+            _widgetInfo = widgetInfo;
         }
 
         public void AddWidgetInfo(Dictionary<System.Type, string> widgetInfo)
         {
-            application?.AddWidgetInfo(widgetInfo);
+            if (_application != null)
+            {
+                _application.AddWidgetInfo(widgetInfo);
+            }
         }
 
         /// <summary>
@@ -110,17 +119,17 @@ namespace Tizen.NUI
             TizenSynchronizationContext.Initialize();
 
             args[0] = Tizen.Applications.Application.Current.ApplicationInfo.ExecutablePath;
-            application = WidgetApplication.NewWidgetApplication(args, stylesheet);
-            application.RegisterWidgetInfo(widgetInfo);
+            _application = WidgetApplication.NewWidgetApplication(args, _stylesheet);
+            _application.RegisterWidgetInfo(_widgetInfo);
 
-            application.BatteryLow += OnBatteryLow;
-            application.LanguageChanged += OnLanguageChanged;
-            application.MemoryLow += OnMemoryLow;
-            application.RegionChanged += OnRegionChanged; ;
-            application.Initialized += OnInitialized;
-            application.Terminating += OnTerminated;
+            _application.BatteryLow += OnBatteryLow;
+            _application.LanguageChanged += OnLanguageChanged;
+            _application.MemoryLow += OnMemoryLow;
+            _application.RegionChanged += OnRegionChanged; ;
+            _application.Initialized += OnInitialized;
+            _application.Terminating += OnTerminated;
 
-            application.MainLoop();
+            _application.MainLoop();
         }
 
         /// <summary>
@@ -130,12 +139,12 @@ namespace Tizen.NUI
         /// <param name="e">The event argument for Initialized.</param>
         private void OnInitialized(object source, NUIApplicationInitEventArgs e)
         {
-            var preCreateHandler = handlers[EventType.PreCreated] as Action;
+            var preCreateHandler = Handlers[EventType.PreCreated] as Action;
             preCreateHandler?.Invoke();
 
-            var createHandler = handlers[EventType.Created] as Action;
+            var createHandler = Handlers[EventType.Created] as Action;
             createHandler?.Invoke();
-            application.RegisterWidgetCreatingFunction();
+            _application.RegisterWidgetCreatingFunction();
         }
 
         /// <summary>
@@ -145,7 +154,7 @@ namespace Tizen.NUI
         /// <param name="e">The event argument for Terminated.</param>
         private void OnTerminated(object source, NUIApplicationTerminatingEventArgs e)
         {
-            var handler = handlers[EventType.Terminated] as Action;
+            var handler = Handlers[EventType.Terminated] as Action;
             handler?.Invoke();
         }
 
@@ -156,7 +165,7 @@ namespace Tizen.NUI
         /// <param name="e">The event argument for RegionChanged.</param>
         private void OnRegionChanged(object source, NUIApplicationRegionChangedEventArgs e)
         {
-            var handler = handlers[EventType.RegionFormatChanged] as Action<RegionFormatChangedEventArgs>;
+            var handler = Handlers[EventType.RegionFormatChanged] as Action<RegionFormatChangedEventArgs>;
             handler?.Invoke(new RegionFormatChangedEventArgs(e.Application.GetRegion()));
         }
 
@@ -167,7 +176,7 @@ namespace Tizen.NUI
         /// <param name="e">The event argument for LanguageChanged.</param>
         private void OnLanguageChanged(object source, NUIApplicationLanguageChangedEventArgs e)
         {
-            var handler = handlers[EventType.LocaleChanged] as Action<LocaleChangedEventArgs>;
+            var handler = Handlers[EventType.LocaleChanged] as Action<LocaleChangedEventArgs>;
             handler?.Invoke(new LocaleChangedEventArgs(e.Application.GetLanguage()));
         }
 
@@ -178,7 +187,7 @@ namespace Tizen.NUI
         /// <param name="e">The event argument for MemoryLow.</param>
         private void OnMemoryLow(object source, NUIApplicationMemoryLowEventArgs e)
         {
-            var handler = handlers[EventType.LowMemory] as Action<LowMemoryEventArgs>;
+            var handler = Handlers[EventType.LowMemory] as Action<LowMemoryEventArgs>;
 
             switch (e.MemoryStatus)
             {
@@ -207,7 +216,7 @@ namespace Tizen.NUI
         /// <param name="e">The event argument for BatteryLow.</param>
         private void OnBatteryLow(object source, NUIApplicationBatteryLowEventArgs e)
         {
-            var handler = handlers[EventType.LowBattery] as Action<LowBatteryEventArgs>;
+            var handler = Handlers[EventType.LowBattery] as Action<LowBatteryEventArgs>;
             switch (e.BatteryStatus)
             {
                 case Application.BatteryStatus.Normal:
@@ -232,7 +241,7 @@ namespace Tizen.NUI
         {
             get
             {
-                return application;
+                return _application;
             }
         }
     }

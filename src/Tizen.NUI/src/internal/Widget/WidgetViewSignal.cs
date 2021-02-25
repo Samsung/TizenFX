@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,8 @@ namespace Tizen.NUI
     /// WidgetViewSignal
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    [Obsolete("Deprecated in API6, Will be removed in API9, Please use WidgetView.WidgetAdded, WidgetDeleted events instead!")]
+    [Obsolete("Deprecated in API6, Will be removed in API9, " +
+        "Please use WidgetView.WidgetAdded, WidgetDeleted events instead!")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class WidgetViewSignal : Disposable
     {
@@ -46,7 +47,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>True if there are any slots connected to the signal</returns>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, Please use WidgetView.WidgetAdded, WidgetDeleted events instead!")]
+        [Obsolete("Deprecated in API6, Will be removed in API9, " +
+            "Please use WidgetView.WidgetAdded, WidgetDeleted events instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Empty()
         {
@@ -60,7 +62,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>The number of slots connected to this signal</returns>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, Please use WidgetView.WidgetAdded, WidgetDeleted events instead!")]
+        [Obsolete("Deprecated in API6, Will be removed in API9, " +
+            "Please use WidgetView.WidgetAdded, WidgetDeleted events instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetConnectionCount()
         {
@@ -74,7 +77,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="func">The function to connect</param>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, Please use WidgetView.WidgetAdded, WidgetDeleted events instead!")]
+        [Obsolete("Deprecated in API6, Will be removed in API9, " +
+            "Please use WidgetView.WidgetAdded, WidgetDeleted events instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Connect(System.Delegate func)
         {
@@ -90,7 +94,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="func">The function to disconnect</param>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, Please use WidgetView.WidgetAdded, WidgetDeleted events instead!")]
+        [Obsolete("Deprecated in API6, Will be removed in API9, " +
+            "Please use WidgetView.WidgetAdded, WidgetDeleted events instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Disconnect(System.Delegate func)
         {
@@ -106,7 +111,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="arg">The member function to connect</param>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, Please use WidgetView.WidgetAdded, WidgetDeleted events instead!")]
+        [Obsolete("Deprecated in API6, Will be removed in API9, " +
+            "Please use WidgetView.WidgetAdded, WidgetDeleted events instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Emit(WidgetView arg)
         {
@@ -118,7 +124,8 @@ namespace Tizen.NUI
         /// The contructor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, Please use WidgetView.WidgetAdded, WidgetDeleted events instead!")]
+        [Obsolete("Deprecated in API6, Will be removed in API9, " +
+            "Please use WidgetView.WidgetAdded, WidgetDeleted events instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public WidgetViewSignal() : this(Interop.WidgetView.NewWidgetViewSignal(), true)
         {

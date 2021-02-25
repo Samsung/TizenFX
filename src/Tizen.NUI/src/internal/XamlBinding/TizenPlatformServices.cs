@@ -1,20 +1,3 @@
-/*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- */
-
 // using ElmSharp;
 using System;
 using System.Collections.Generic;
@@ -127,7 +110,7 @@ namespace Tizen.NUI.Binding
         {
             public static AppDomain CurrentDomain { get; private set; }
 
-            List<Assembly> assemblies;
+            List<Assembly> _assemblies;
 
             public static bool IsTizenSpecificAvailable { get; private set; }
 
@@ -138,18 +121,18 @@ namespace Tizen.NUI.Binding
 
             AppDomain()
             {
-                assemblies = new List<Assembly>();
+                _assemblies = new List<Assembly>();
 
                 // Add this renderer assembly to the list
-                assemblies.Add(GetType().GetTypeInfo().Assembly);
+                _assemblies.Add(GetType().GetTypeInfo().Assembly);
             }
 
             internal void RegisterAssemblyRecursively(Assembly asm)
             {
-                if (assemblies.Contains(asm))
+                if (_assemblies.Contains(asm))
                     return;
 
-                assemblies.Add(asm);
+                _assemblies.Add(asm);
 
                 foreach (var refName in asm.GetReferencedAssemblies())
                 {
@@ -180,7 +163,7 @@ namespace Tizen.NUI.Binding
 
             public Assembly[] GetAssemblies()
             {
-                return assemblies.ToArray();
+                return _assemblies.ToArray();
             }
         }
     }

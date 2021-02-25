@@ -1,21 +1,4 @@
-﻿/*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- */
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -24,45 +7,45 @@ namespace Tizen.NUI.Binding
 {
     internal class SynchronizedList<T> : IList<T>, IReadOnlyList<T>
     {
-        readonly List<T> list = new List<T>();
-        ReadOnlyCollection<T> snapshot;
+        readonly List<T> _list = new List<T>();
+        ReadOnlyCollection<T> _snapshot;
 
         public void Add(T item)
         {
-            lock (list)
+            lock (_list)
             {
-                list.Add(item);
-                snapshot = null;
+                _list.Add(item);
+                _snapshot = null;
             }
         }
 
         public void Clear()
         {
-            lock (list)
+            lock (_list)
             {
-                list.Clear();
-                snapshot = null;
+                _list.Clear();
+                _snapshot = null;
             }
         }
 
         public bool Contains(T item)
         {
-            lock (list)
-                return list.Contains(item);
+            lock (_list)
+                return _list.Contains(item);
         }
 
         public void CopyTo(T[] array, int arrayIndex)
         {
-            lock (list)
-                list.CopyTo(array, arrayIndex);
+            lock (_list)
+                _list.CopyTo(array, arrayIndex);
         }
 
         public int Count
         {
             get
             {
-                lock (list)
-                    return list.Count;
+                lock (_list)
+                    return _list.Count;
             }
         }
 
@@ -73,11 +56,11 @@ namespace Tizen.NUI.Binding
 
         public bool Remove(T item)
         {
-            lock (list)
+            lock (_list)
             {
-                if (list.Remove(item))
+                if (_list.Remove(item))
                 {
-                    snapshot = null;
+                    _snapshot = null;
                     return true;
                 }
 
@@ -92,28 +75,28 @@ namespace Tizen.NUI.Binding
 
         public IEnumerator<T> GetEnumerator()
         {
-            lock (list)
+            lock (_list)
             {
-                if (snapshot == null)
+                if (_snapshot == null)
                 {
-                    snapshot = new ReadOnlyCollection<T>(list.ToList());
+                    _snapshot = new ReadOnlyCollection<T>(_list.ToList());
                 }
-                return snapshot.GetEnumerator();
+                return _snapshot.GetEnumerator();
             }
         }
 
         public int IndexOf(T item)
         {
-            lock (list)
-                return list.IndexOf(item);
+            lock (_list)
+                return _list.IndexOf(item);
         }
 
         public void Insert(int index, T item)
         {
-            lock (list)
+            lock (_list)
             {
-                list.Insert(index, item);
-                snapshot = null;
+                _list.Insert(index, item);
+                _snapshot = null;
             }
         }
 
@@ -121,32 +104,32 @@ namespace Tizen.NUI.Binding
         {
             get
             {
-                lock (list)
+                lock (_list)
                 {
-                    ReadOnlyCollection<T> snap = snapshot;
+                    ReadOnlyCollection<T> snap = _snapshot;
                     if (snap != null)
                         return snap[index];
 
-                    return list[index];
+                    return _list[index];
                 }
             }
 
             set
             {
-                lock (list)
+                lock (_list)
                 {
-                    list[index] = value;
-                    snapshot = null;
+                    _list[index] = value;
+                    _snapshot = null;
                 }
             }
         }
 
         public void RemoveAt(int index)
         {
-            lock (list)
+            lock (_list)
             {
-                list.RemoveAt(index);
-                snapshot = null;
+                _list.RemoveAt(index);
+                _snapshot = null;
             }
         }
     }

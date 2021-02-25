@@ -1,21 +1,5 @@
-/*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- */
-
 using System;
+using Tizen.NUI;
 using Tizen.Applications.ComponentBased.Common;
 
 namespace Tizen.NUI
@@ -25,10 +9,10 @@ namespace Tizen.NUI
     /// </summary>
     internal class NUIWindowInfo : IWindowInfo
     {
-        private const string logTag = "Tizen.NUI";
-        private Window window;
-        private int resourceId;
-        private bool disposed = false;
+        private const string LogTag = "Tizen.NUI";
+        private Window _win;
+        private int _resId;
+        private bool _disposed = false;
 
         /// <summary>
         /// Initializes the NUI Window class.
@@ -36,7 +20,7 @@ namespace Tizen.NUI
         /// <param name="win">The window object of component.</param>
         internal NUIWindowInfo(Window win)
         {
-            window = win;
+            _win = win;
         }
 
         /// <summary>
@@ -47,14 +31,14 @@ namespace Tizen.NUI
         {
             get
             {
-                if (resourceId == 0)
+                if (_resId == 0)
                 {
-                    resourceId = window.GetNativeId();
-                    if (resourceId != 0)
-                        Log.Info(logTag, "Fail to get resource ID");
+                    _resId = _win.GetNativeId();
+                    if (_resId != 0)
+                        Log.Info(LogTag, "Fail to get resource ID");
                 }
 
-                return resourceId;
+                return _resId;
             }
         }
 
@@ -64,15 +48,15 @@ namespace Tizen.NUI
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
         protected virtual void Dispose(bool disposing)
         {
-            if (disposed)
+            if (_disposed)
                 return;
 
             if (disposing)
             {
-                window.Dispose();
-                window = null;
+                _win.Dispose();
+                _win = null;
             }
-            disposed = true;
+            _disposed = true;
         }
 
         /// <summary>
@@ -85,5 +69,6 @@ namespace Tizen.NUI
             GC.SuppressFinalize(this);
         }
     }
+
 }
 
