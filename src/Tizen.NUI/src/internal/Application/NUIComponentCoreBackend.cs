@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2017 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,29 +25,29 @@ namespace Tizen.NUI
 {
     class NUIComponentCoreBackend : ICoreBackend
     {
-        private Dictionary<Type, ComponentStateManger> componentFactories;
+        private Dictionary<Type, ComponentStateManger> _componentFactories;
         public Dictionary<Type, ComponentStateManger> ComponentFactories
         {
             set
             {
-                componentFactories = value;
+                _componentFactories = value;
             }
             get
             {
-                return componentFactories;
+                return _componentFactories;
             }
         }
 
         /// <summary>
         /// Application instance to connect event.
         /// </summary>
-        protected ComponentApplication application;
-        private string stylesheet = "";
+        protected ComponentApplication _application;
+        private string _stylesheet = "";
 
         /// <summary>
         /// Dictionary to contain each type of event callback.
         /// </summary>
-        protected IDictionary<EventType, object> handlers = new Dictionary<EventType, object>();
+        protected IDictionary<EventType, object> Handlers = new Dictionary<EventType, object>();
 
         /// <summary>
         /// Adds NUIApplication event to Application.
@@ -57,7 +57,7 @@ namespace Tizen.NUI
         /// <param name="handler">The event callback.</param>
         public void AddEventHandler(EventType evType, Action handler)
         {
-            handlers.Add(evType, handler);
+            Handlers.Add(evType, handler);
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace Tizen.NUI
         /// <param name="handler">The event callback.</param>
         public void AddEventHandler<TEventArgs>(EventType evType, Action<TEventArgs> handler) where TEventArgs : EventArgs
         {
-            handlers.Add(evType, handler);
+            Handlers.Add(evType, handler);
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace Tizen.NUI
         /// </summary>
         public NUIComponentCoreBackend(string stylesheet)
         {
-            this.stylesheet = stylesheet;
+            _stylesheet = stylesheet;
         }
 
         /// <summary>
@@ -92,9 +92,9 @@ namespace Tizen.NUI
         /// </summary>
         public void Dispose()
         {
-            if (application != null)
+            if (_application != null)
             {
-                application.Dispose();
+                _application.Dispose();
             }
         }
 
@@ -103,9 +103,9 @@ namespace Tizen.NUI
         /// </summary>
         public void Exit()
         {
-            if (application != null)
+            if (_application != null)
             {
-                application.Quit();
+                _application.Quit();
             }
         }
 
@@ -118,13 +118,13 @@ namespace Tizen.NUI
             TizenSynchronizationContext.Initialize();
 
             args[0] = Tizen.Applications.Application.Current.ApplicationInfo.ExecutablePath;
-            application = ComponentApplication.NewComponentApplication(args, stylesheet);
+            _application = ComponentApplication.NewComponentApplication(args, _stylesheet);
 
-            application.Initialized += OnInitialized;
-            application.CreateNative += OnCreateNative;
-            application.Terminating += OnTerminated;
+            _application.Initialized += OnInitialized;
+            _application.CreateNative += OnCreateNative;
+            _application.Terminating += OnTerminated;
 
-            application.MainLoop();
+            _application.MainLoop();
         }
 
 
@@ -135,7 +135,7 @@ namespace Tizen.NUI
         {
             IntPtr nativeComponentFactoryMap = IntPtr.Zero;
             int n = 0;
-            foreach (KeyValuePair<Type, ComponentStateManger> entry in componentFactories)
+            foreach (KeyValuePair<Type, ComponentStateManger> entry in _componentFactories)
             {
                 nativeComponentFactoryMap = entry.Value.Bind(nativeComponentFactoryMap);
                 n++;
@@ -150,7 +150,8 @@ namespace Tizen.NUI
         /// <param name="e">The event argument for Initialized.</param>
         private void OnInitialized(object source, NUIApplicationInitEventArgs e)
         {
-            (handlers[EventType.Created] as Action)?.Invoke();
+            var createHandler = Handlers[EventType.Created] as Action;
+            createHandler?.Invoke();
         }
 
         /// <summary>
@@ -160,7 +161,8 @@ namespace Tizen.NUI
         /// <param name="e">The event argument for Terminated.</param>
         private void OnTerminated(object source, NUIApplicationTerminatingEventArgs e)
         {
-            (handlers[EventType.Terminated] as Action)?.Invoke();
+            var handler = Handlers[EventType.Terminated] as Action;
+            handler?.Invoke();
         }
 
     }

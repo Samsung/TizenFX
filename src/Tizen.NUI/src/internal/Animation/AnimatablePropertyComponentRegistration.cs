@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,16 +17,20 @@
 
 namespace Tizen.NUI
 {
+
     internal class AnimatablePropertyComponentRegistration : Disposable
     {
+
         internal AnimatablePropertyComponentRegistration(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
+
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.NDalic.DeleteAnimatablePropertyComponentRegistration(swigCPtr);
         }
+
 
         public AnimatablePropertyComponentRegistration(TypeRegistration registered, string name, int index, int baseIndex, uint componentIndex) : this(Interop.NDalic.NewAnimatablePropertyComponentRegistration(TypeRegistration.getCPtr(registered), name, index, baseIndex, componentIndex), true)
         {
