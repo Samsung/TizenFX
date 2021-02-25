@@ -20,18 +20,13 @@ namespace Tizen.NUI
     using System;
     using System.ComponentModel;
     using System.Runtime.InteropServices;
-    using Tizen.NUI.BaseComponents;
-
-    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
-    using System.Xml;
-    using Tizen.NUI.Binding.Internals;
-    using Tizen.NUI.Binding;
     using System.Globalization;
-    using Tizen.NUI.Xaml.Internals;
     using System.Diagnostics.CodeAnalysis;
+
+    using Tizen.NUI.BaseComponents;
 
     /// <summary>
     /// Animation can be used to animate the properties of any number of objects, typically view.<br />
@@ -45,16 +40,15 @@ namespace Tizen.NUI
     {
         private static bool? disableAnimation = null;
 
+        private AnimationFinishedEventCallbackType animationFinishedEventCallback;
+        private System.IntPtr finishedCallbackOfNative;
 
-        private AnimationFinishedEventCallbackType _animationFinishedEventCallback;
-        private System.IntPtr _finishedCallbackOfNative;
+        private AnimationProgressReachedEventCallbackType animationProgressReachedEventCallback;
 
-        private AnimationProgressReachedEventCallbackType _animationProgressReachedEventCallback;
-
-        private string[] _properties = null;
-        private string[] _destValue = null;
-        private int[] _startTime = null;
-        private int[] _endTime = null;
+        private string[] properties = null;
+        private string[] destValue = null;
+        private int[] startTime = null;
+        private int[] endTime = null;
 
         private List<string> propertyList = null;
         private List<string> destValueList = null;
@@ -77,9 +71,8 @@ namespace Tizen.NUI
 
         internal Animation(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-
-            _animationFinishedEventCallback = OnFinished;
-            _finishedCallbackOfNative = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(_animationFinishedEventCallback);
+            animationFinishedEventCallback = OnFinished;
+            finishedCallbackOfNative = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(animationFinishedEventCallback);
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -88,7 +81,7 @@ namespace Tizen.NUI
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void AnimationProgressReachedEventCallbackType(IntPtr data);
 
-        private event EventHandler _animationFinishedEventHandler;
+        private event EventHandler animationFinishedEventHandler;
 
         /**
         * @brief Event for the finished signal which can be used to subscribe or unsubscribe the event handler.
@@ -99,28 +92,28 @@ namespace Tizen.NUI
         {
             add
             {
-                if (_animationFinishedEventHandler == null && disposed == false)
+                if (animationFinishedEventHandler == null && disposed == false)
                 {
                     AnimationSignal finishedSignal = FinishedSignal();
-                    finishedSignal.Connect(_finishedCallbackOfNative);
+                    finishedSignal.Connect(finishedCallbackOfNative);
                     finishedSignal.Dispose();
                 }
-                _animationFinishedEventHandler += value;
+                animationFinishedEventHandler += value;
             }
             remove
             {
-                _animationFinishedEventHandler -= value;
+                animationFinishedEventHandler -= value;
 
                 AnimationSignal finishedSignal = FinishedSignal();
-                if (_animationFinishedEventHandler == null && finishedSignal.Empty() == false)
+                if (animationFinishedEventHandler == null && finishedSignal.Empty() == false)
                 {
-                    finishedSignal.Disconnect(_finishedCallbackOfNative);
+                    finishedSignal.Disconnect(finishedCallbackOfNative);
                 }
                 finishedSignal.Dispose();
             }
         }
 
-        private event EventHandler _animationProgressReachedEventHandler;
+        private event EventHandler animationProgressReachedEventHandler;
 
         /**
        * @brief Event for the ProgressReached signal, which can be used to subscribe or unsubscribe the event handler.
@@ -131,24 +124,24 @@ namespace Tizen.NUI
         {
             add
             {
-                if (_animationProgressReachedEventHandler == null)
+                if (animationProgressReachedEventHandler == null)
                 {
-                    _animationProgressReachedEventCallback = OnProgressReached;
+                    animationProgressReachedEventCallback = OnProgressReached;
                     AnimationSignal progressReachedSignal = ProgressReachedSignal();
-                    progressReachedSignal?.Connect(_animationProgressReachedEventCallback);
+                    progressReachedSignal?.Connect(animationProgressReachedEventCallback);
                     progressReachedSignal?.Dispose();
                 }
 
-                _animationProgressReachedEventHandler += value;
+                animationProgressReachedEventHandler += value;
             }
             remove
             {
-                _animationProgressReachedEventHandler -= value;
+                animationProgressReachedEventHandler -= value;
 
                 AnimationSignal progressReachedSignal = ProgressReachedSignal();
-                if (_animationProgressReachedEventHandler == null && progressReachedSignal?.Empty() == false)
+                if (animationProgressReachedEventHandler == null && progressReachedSignal?.Empty() == false)
                 {
-                    progressReachedSignal?.Disconnect(_animationProgressReachedEventCallback);
+                    progressReachedSignal?.Disconnect(animationProgressReachedEventCallback);
                 }
                 progressReachedSignal.Dispose();
             }
@@ -448,11 +441,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _properties;
+                return properties;
             }
             set
             {
-                _properties = value;
+                properties = value;
             }
         }
 
@@ -465,11 +458,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _destValue;
+                return destValue;
             }
             set
             {
-                _destValue = value;
+                destValue = value;
             }
         }
 
@@ -482,11 +475,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _startTime;
+                return startTime;
             }
             set
             {
-                _startTime = value;
+                startTime = value;
             }
         }
 
@@ -499,11 +492,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _endTime;
+                return endTime;
             }
             set
             {
-                _endTime = value;
+                endTime = value;
             }
         }
 
@@ -797,22 +790,22 @@ namespace Tizen.NUI
             }
             else
             {
-                if (_properties.Length == _destValue.Length && _startTime.Length == _endTime.Length && _properties.Length == _startTime.Length)
+                if (properties.Length == destValue.Length && startTime.Length == endTime.Length && properties.Length == startTime.Length)
                 {
-                    int length = _properties.Length;
+                    int length = properties.Length;
                     for (int index = 0; index < length; index++)
                     {
                         //object destinationValue = _destValue[index];
                         var elementType = target.GetType();
-                        PropertyInfo propertyInfo = elementType.GetProperties().FirstOrDefault(fi => fi.Name == _properties[index]);
+                        PropertyInfo propertyInfo = elementType.GetProperties().FirstOrDefault(fi => fi.Name == properties[index]);
                         //var propertyInfo = elementType.GetRuntimeProperties().FirstOrDefault(p => p.Name == localName);
                         if (propertyInfo != null)
                         {
-                            object destinationValue = ConvertTo(_destValue[index], propertyInfo.PropertyType);
+                            object destinationValue = ConvertTo(destValue[index], propertyInfo.PropertyType);
 
                             if (destinationValue != null)
                             {
-                                AnimateTo(target, _properties[index], destinationValue, _startTime[index], _endTime[index]);
+                                AnimateTo(target, properties[index], destinationValue, startTime[index], endTime[index]);
                             }
                         }
                     }
@@ -1535,20 +1528,20 @@ namespace Tizen.NUI
                 return;
             }
 
-            if (_animationFinishedEventHandler != null)
+            if (animationFinishedEventHandler != null)
             {
                 AnimationSignal finishedSignal = FinishedSignal();
-                finishedSignal?.Disconnect(_finishedCallbackOfNative);
+                finishedSignal?.Disconnect(finishedCallbackOfNative);
                 finishedSignal?.Dispose();
-                _animationFinishedEventHandler = null;
+                animationFinishedEventHandler = null;
             }
 
-            if (_animationProgressReachedEventCallback != null)
+            if (animationProgressReachedEventCallback != null)
             {
                 AnimationSignal progressReachedSignal = ProgressReachedSignal();
-                progressReachedSignal?.Disconnect(_animationProgressReachedEventCallback);
+                progressReachedSignal?.Disconnect(animationProgressReachedEventCallback);
                 progressReachedSignal?.Dispose();
-                _animationProgressReachedEventCallback = null;
+                animationProgressReachedEventCallback = null;
             }
 
             base.Dispose(type);
@@ -1568,19 +1561,19 @@ namespace Tizen.NUI
 
         private void OnFinished(IntPtr data)
         {
-            if (_animationFinishedEventHandler != null)
+            if (animationFinishedEventHandler != null)
             {
                 //here we send all data to user event handlers
-                _animationFinishedEventHandler(this, null);
+                animationFinishedEventHandler(this, null);
             }
         }
 
         private void OnProgressReached(IntPtr data)
         {
-            if (_animationProgressReachedEventHandler != null)
+            if (animationProgressReachedEventHandler != null)
             {
                 //here we send all data to user event handlers
-                _animationProgressReachedEventHandler(this, null);
+                animationProgressReachedEventHandler(this, null);
             }
         }
 

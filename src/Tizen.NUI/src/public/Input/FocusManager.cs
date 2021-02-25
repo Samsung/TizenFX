@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,22 +31,22 @@ namespace Tizen.NUI
     public class FocusManager : BaseHandle
     {
         private static readonly FocusManager instance = FocusManager.Get();
-        private CustomAlgorithmInterfaceWrapper _customAlgorithmInterfaceWrapper;
+        private CustomAlgorithmInterfaceWrapper customAlgorithmInterfaceWrapper;
 
-        private EventHandlerWithReturnType<object, PreFocusChangeEventArgs, View> _preFocusChangeEventHandler;
-        private PreFocusChangeEventCallback _preFocusChangeCallback;
+        private EventHandlerWithReturnType<object, PreFocusChangeEventArgs, View> preFocusChangeEventHandler;
+        private PreFocusChangeEventCallback preFocusChangeCallback;
 
-        private EventHandler<FocusChangedEventArgs> _focusChangedEventHandler;
-        private FocusChangedEventCallback _focusChangedEventCallback;
+        private EventHandler<FocusChangedEventArgs> focusChangedEventHandler;
+        private FocusChangedEventCallback focusChangedEventCallback;
 
-        private EventHandler<FocusGroupChangedEventArgs> _focusGroupChangedEventHandler;
-        private FocusGroupChangedEventCallback _focusGroupChangedEventCallback;
+        private EventHandler<FocusGroupChangedEventArgs> focusGroupChangedEventHandler;
+        private FocusGroupChangedEventCallback focusGroupChangedEventCallback;
 
-        private EventHandler<FocusedViewActivatedEventArgs> _focusedViewEnterKeyEventHandler;
-        private FocusedViewEnterKeyEventCallback _focusedViewEnterKeyEventCallback;
+        private EventHandler<FocusedViewActivatedEventArgs> focusedViewEnterKeyEventHandler;
+        private FocusedViewEnterKeyEventCallback focusedViewEnterKeyEventCallback;
 
-        private EventHandler<FocusedViewActivatedEventArgs> _focusedViewEnterKeyEventHandler2;
-        private FocusedViewEnterKeyEventCallback2 _focusedViewEnterKeyEventCallback2;
+        private EventHandler<FocusedViewActivatedEventArgs> focusedViewEnterKeyEventHandler2;
+        private FocusedViewEnterKeyEventCallback2 focusedViewEnterKeyEventCallback2;
 
         internal FocusManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
@@ -84,19 +84,19 @@ namespace Tizen.NUI
         {
             add
             {
-                if (_preFocusChangeEventHandler == null)
+                if (preFocusChangeEventHandler == null)
                 {
-                    _preFocusChangeCallback = OnPreFocusChange;
-                    PreFocusChangeSignal().Connect(_preFocusChangeCallback);
+                    preFocusChangeCallback = OnPreFocusChange;
+                    PreFocusChangeSignal().Connect(preFocusChangeCallback);
                 }
-                _preFocusChangeEventHandler += value;
+                preFocusChangeEventHandler += value;
             }
             remove
             {
-                _preFocusChangeEventHandler -= value;
-                if (_preFocusChangeEventHandler == null && PreFocusChangeSignal().Empty() == false)
+                preFocusChangeEventHandler -= value;
+                if (preFocusChangeEventHandler == null && PreFocusChangeSignal().Empty() == false)
                 {
-                    PreFocusChangeSignal().Disconnect(_preFocusChangeCallback);
+                    PreFocusChangeSignal().Disconnect(preFocusChangeCallback);
                 }
             }
         }
@@ -109,20 +109,20 @@ namespace Tizen.NUI
         {
             add
             {
-                if (_focusChangedEventCallback == null)
+                if (focusChangedEventCallback == null)
                 {
-                    _focusChangedEventCallback = OnFocusChanged;
-                    FocusChangedSignal().Connect(_focusChangedEventCallback);
+                    focusChangedEventCallback = OnFocusChanged;
+                    FocusChangedSignal().Connect(focusChangedEventCallback);
                 }
-                _focusChangedEventHandler += value;
+                focusChangedEventHandler += value;
             }
             remove
             {
-                _focusChangedEventHandler -= value;
+                focusChangedEventHandler -= value;
 
-                if (_focusChangedEventCallback == null && FocusChangedSignal().Empty() == false)
+                if (focusChangedEventCallback == null && FocusChangedSignal().Empty() == false)
                 {
-                    FocusChangedSignal().Disconnect(_focusChangedEventCallback);
+                    FocusChangedSignal().Disconnect(focusChangedEventCallback);
                 }
             }
         }
@@ -137,20 +137,20 @@ namespace Tizen.NUI
         {
             add
             {
-                if (_focusGroupChangedEventCallback == null)
+                if (focusGroupChangedEventCallback == null)
                 {
-                    _focusGroupChangedEventCallback = OnFocusGroupChanged;
-                    FocusGroupChangedSignal().Connect(_focusGroupChangedEventCallback);
+                    focusGroupChangedEventCallback = OnFocusGroupChanged;
+                    FocusGroupChangedSignal().Connect(focusGroupChangedEventCallback);
                 }
-                _focusGroupChangedEventHandler += value;
+                focusGroupChangedEventHandler += value;
             }
             remove
             {
-                _focusGroupChangedEventHandler -= value;
+                focusGroupChangedEventHandler -= value;
 
-                if (_focusGroupChangedEventCallback == null && FocusGroupChangedSignal().Empty() == false)
+                if (focusGroupChangedEventCallback == null && FocusGroupChangedSignal().Empty() == false)
                 {
-                    FocusGroupChangedSignal().Disconnect(_focusGroupChangedEventCallback);
+                    FocusGroupChangedSignal().Disconnect(focusGroupChangedEventCallback);
                 }
             }
         }
@@ -163,20 +163,20 @@ namespace Tizen.NUI
         {
             add
             {
-                if (_focusedViewEnterKeyEventCallback == null)
+                if (focusedViewEnterKeyEventCallback == null)
                 {
-                    _focusedViewEnterKeyEventCallback = OnFocusedViewEnterKey;
-                    FocusedViewEnterKeySignal().Connect(_focusedViewEnterKeyEventCallback);
+                    focusedViewEnterKeyEventCallback = OnFocusedViewEnterKey;
+                    FocusedViewEnterKeySignal().Connect(focusedViewEnterKeyEventCallback);
                 }
-                _focusedViewEnterKeyEventHandler += value;
+                focusedViewEnterKeyEventHandler += value;
             }
             remove
             {
-                _focusedViewEnterKeyEventHandler -= value;
+                focusedViewEnterKeyEventHandler -= value;
 
-                if (_focusedViewEnterKeyEventCallback != null && FocusedViewEnterKeySignal().Empty() == false)
+                if (focusedViewEnterKeyEventCallback != null && FocusedViewEnterKeySignal().Empty() == false)
                 {
-                    FocusedViewEnterKeySignal().Disconnect(_focusedViewEnterKeyEventCallback);
+                    FocusedViewEnterKeySignal().Disconnect(focusedViewEnterKeyEventCallback);
                 }
             }
         }
@@ -196,20 +196,20 @@ namespace Tizen.NUI
         {
             add
             {
-                if (_focusedViewEnterKeyEventCallback2 == null)
+                if (focusedViewEnterKeyEventCallback2 == null)
                 {
-                    _focusedViewEnterKeyEventCallback2 = OnFocusedViewEnterKey2;
-                    FocusedViewEnterKeySignal().Connect(_focusedViewEnterKeyEventCallback2);
+                    focusedViewEnterKeyEventCallback2 = OnFocusedViewEnterKey2;
+                    FocusedViewEnterKeySignal().Connect(focusedViewEnterKeyEventCallback2);
                 }
-                _focusedViewEnterKeyEventHandler2 += value;
+                focusedViewEnterKeyEventHandler2 += value;
             }
             remove
             {
-                _focusedViewEnterKeyEventHandler2 -= value;
+                focusedViewEnterKeyEventHandler2 -= value;
 
-                if (_focusedViewEnterKeyEventCallback2 != null && FocusedViewEnterKeySignal().Empty() == false)
+                if (focusedViewEnterKeyEventCallback2 != null && FocusedViewEnterKeySignal().Empty() == false)
                 {
-                    FocusedViewEnterKeySignal().Disconnect(_focusedViewEnterKeyEventCallback2);
+                    FocusedViewEnterKeySignal().Disconnect(focusedViewEnterKeyEventCallback2);
                 }
             }
         }
@@ -397,10 +397,10 @@ namespace Tizen.NUI
         {
             if (arg0 != null)
             {
-                _customAlgorithmInterfaceWrapper = new CustomAlgorithmInterfaceWrapper();
-                _customAlgorithmInterfaceWrapper.SetFocusAlgorithm(arg0);
+                customAlgorithmInterfaceWrapper = new CustomAlgorithmInterfaceWrapper();
+                customAlgorithmInterfaceWrapper.SetFocusAlgorithm(arg0);
 
-                Interop.NDalic.SetCustomAlgorithm(SwigCPtr, CustomAlgorithmInterface.getCPtr(_customAlgorithmInterfaceWrapper));
+                Interop.NDalic.SetCustomAlgorithm(SwigCPtr, CustomAlgorithmInterface.getCPtr(customAlgorithmInterfaceWrapper));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             else
@@ -487,9 +487,9 @@ namespace Tizen.NUI
             }
             e.Direction = direction;
 
-            if (_preFocusChangeEventHandler != null)
+            if (preFocusChangeEventHandler != null)
             {
-                view = _preFocusChangeEventHandler(this, e);
+                view = preFocusChangeEventHandler(this, e);
             }
 
             if (view != null)
@@ -505,39 +505,35 @@ namespace Tizen.NUI
 
         private void OnFocusChanged(IntPtr current, IntPtr next)
         {
-            FocusChangedEventArgs e = new FocusChangedEventArgs();
-
-            e.CurrentView = Registry.GetManagedBaseHandleFromNativePtr(current) as View;
-            e.NextView = Registry.GetManagedBaseHandleFromNativePtr(next) as View;
-
-            if (_focusChangedEventHandler != null)
+            if (focusChangedEventHandler != null)
             {
-                _focusChangedEventHandler(this, e);
+                FocusChangedEventArgs e = new FocusChangedEventArgs();
+
+                e.CurrentView = Registry.GetManagedBaseHandleFromNativePtr(current) as View;
+                e.NextView = Registry.GetManagedBaseHandleFromNativePtr(next) as View;
+                focusChangedEventHandler(this, e);
             }
         }
 
         private void OnFocusGroupChanged(IntPtr current, bool forwardDirection)
         {
-            FocusGroupChangedEventArgs e = new FocusGroupChangedEventArgs();
-
-            e.CurrentView = Registry.GetManagedBaseHandleFromNativePtr(current) as View;
-            e.ForwardDirection = forwardDirection;
-
-            if (_focusGroupChangedEventHandler != null)
+            if (focusGroupChangedEventHandler != null)
             {
-                _focusGroupChangedEventHandler(this, e);
+                FocusGroupChangedEventArgs e = new FocusGroupChangedEventArgs();
+
+                e.CurrentView = Registry.GetManagedBaseHandleFromNativePtr(current) as View;
+                e.ForwardDirection = forwardDirection;
+                focusGroupChangedEventHandler(this, e);
             }
         }
 
         private void OnFocusedViewEnterKey(IntPtr view)
         {
-            FocusedViewActivatedEventArgs e = new FocusedViewActivatedEventArgs();
-
-            e.View = Registry.GetManagedBaseHandleFromNativePtr(view) as View;
-
-            if (_focusedViewEnterKeyEventHandler != null)
+            if (focusedViewEnterKeyEventHandler != null)
             {
-                _focusedViewEnterKeyEventHandler(this, e);
+                FocusedViewActivatedEventArgs e = new FocusedViewActivatedEventArgs();
+                e.View = Registry.GetManagedBaseHandleFromNativePtr(view) as View;
+                focusedViewEnterKeyEventHandler(this, e);
             }
         }
 
@@ -550,13 +546,11 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         private void OnFocusedViewEnterKey2(IntPtr view)
         {
-            FocusedViewActivatedEventArgs e = new FocusedViewActivatedEventArgs();
-
-            e.View = Registry.GetManagedBaseHandleFromNativePtr(view) as View;
-
-            if (_focusedViewEnterKeyEventHandler != null)
+            if (focusedViewEnterKeyEventHandler != null)
             {
-                _focusedViewEnterKeyEventHandler(this, e);
+                FocusedViewActivatedEventArgs e = new FocusedViewActivatedEventArgs();
+                e.View = Registry.GetManagedBaseHandleFromNativePtr(view) as View;
+                focusedViewEnterKeyEventHandler(this, e);
             }
         }
 
@@ -566,9 +560,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public class PreFocusChangeEventArgs : EventArgs
         {
-            private View _current;
-            private View _proposed;
-            private View.FocusDirection _direction;
+            private View current;
+            private View proposed;
+            private View.FocusDirection direction;
 
             /// <summary>
             /// The current focus view.
@@ -578,11 +572,11 @@ namespace Tizen.NUI
             {
                 get
                 {
-                    return _current;
+                    return current;
                 }
                 set
                 {
-                    _current = value;
+                    current = value;
                 }
             }
 
@@ -594,11 +588,11 @@ namespace Tizen.NUI
             {
                 get
                 {
-                    return _proposed;
+                    return proposed;
                 }
                 set
                 {
-                    _proposed = value;
+                    proposed = value;
                 }
             }
 
@@ -610,11 +604,11 @@ namespace Tizen.NUI
             {
                 get
                 {
-                    return _direction;
+                    return direction;
                 }
                 set
                 {
-                    _direction = value;
+                    direction = value;
                 }
             }
         }
@@ -625,8 +619,8 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public class FocusChangedEventArgs : EventArgs
         {
-            private View _current;
-            private View _next;
+            private View current;
+            private View next;
 
             /// <summary>
             /// The current focus view.
@@ -636,11 +630,11 @@ namespace Tizen.NUI
             {
                 get
                 {
-                    return _current;
+                    return current;
                 }
                 set
                 {
-                    _current = value;
+                    current = value;
                 }
             }
             /// <summary>
@@ -651,11 +645,11 @@ namespace Tizen.NUI
             {
                 get
                 {
-                    return _next;
+                    return next;
                 }
                 set
                 {
-                    _next = value;
+                    next = value;
                 }
             }
         }
@@ -666,8 +660,8 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public class FocusGroupChangedEventArgs : EventArgs
         {
-            private View _current;
-            private bool _forwardDirection;
+            private View current;
+            private bool forwardDirection;
 
             /// <summary>
             /// The current focus view.
@@ -677,11 +671,11 @@ namespace Tizen.NUI
             {
                 get
                 {
-                    return _current;
+                    return current;
                 }
                 set
                 {
-                    _current = value;
+                    current = value;
                 }
             }
 
@@ -693,11 +687,11 @@ namespace Tizen.NUI
             {
                 get
                 {
-                    return _forwardDirection;
+                    return forwardDirection;
                 }
                 set
                 {
-                    _forwardDirection = value;
+                    forwardDirection = value;
                 }
             }
         }
@@ -708,7 +702,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public class FocusedViewActivatedEventArgs : EventArgs
         {
-            private View _view;
+            private View view;
 
             /// <summary>
             /// View.
@@ -718,11 +712,11 @@ namespace Tizen.NUI
             {
                 get
                 {
-                    return _view;
+                    return view;
                 }
                 set
                 {
-                    _view = value;
+                    view = value;
                 }
             }
         }
@@ -742,7 +736,7 @@ namespace Tizen.NUI
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
         public class FocusedViewEnterKeyEventArgs : EventArgs
         {
-            private View _view;
+            private View view;
 
             /// <summary>
             /// View.
@@ -752,18 +746,18 @@ namespace Tizen.NUI
             {
                 get
                 {
-                    return _view;
+                    return view;
                 }
                 set
                 {
-                    _view = value;
+                    view = value;
                 }
             }
         }
 
         private class CustomAlgorithmInterfaceWrapper : CustomAlgorithmInterface
         {
-            private FocusManager.ICustomFocusAlgorithm _customFocusAlgorithm;
+            private FocusManager.ICustomFocusAlgorithm customFocusAlgorithm;
 
             public CustomAlgorithmInterfaceWrapper()
             {
@@ -771,20 +765,18 @@ namespace Tizen.NUI
 
             public void SetFocusAlgorithm(FocusManager.ICustomFocusAlgorithm customFocusAlgorithm)
             {
-                _customFocusAlgorithm = customFocusAlgorithm;
+                this.customFocusAlgorithm = customFocusAlgorithm;
             }
 
             public override View GetNextFocusableView(View current, View proposed, View.FocusDirection direction)
             {
-                if (_customFocusAlgorithm == null)
+                if (customFocusAlgorithm == null)
                 {
                     Tizen.Log.Error("NUI", $"[ERROR] User defined ICustomFocusAlgorithm interface class becomes unreachable. Null will be proposed for next focusing!");
                     return null;
                 }
-                return _customFocusAlgorithm.GetNextFocusableView(current, proposed, direction);
+                return customFocusAlgorithm.GetNextFocusableView(current, proposed, direction);
             }
         }
-
-
     }
 }

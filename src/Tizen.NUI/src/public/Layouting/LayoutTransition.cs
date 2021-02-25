@@ -292,7 +292,6 @@ namespace Tizen.NUI
         /// Target value to animate to.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-
         public object TargetValue { get; set; }
     }
 
@@ -394,8 +393,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="sourceTransitionList">The source transition list.</param>
         /// <param name="targetTransitionList">The target transition list to copy to.</param>
-        static public void CopyTransitions(TransitionList sourceTransitionList,
-                                            TransitionList targetTransitionList)
+        static public void CopyTransitions(TransitionList sourceTransitionList, TransitionList targetTransitionList)
         {
             targetTransitionList.Clear();
             foreach (LayoutTransition transitionToApply in sourceTransitionList)
@@ -403,8 +401,6 @@ namespace Tizen.NUI
                 // Overwite existing transitions
                 targetTransitionList.Add(transitionToApply);
             }
-
         }
     }
-
 } // namespace Tizen.NUI

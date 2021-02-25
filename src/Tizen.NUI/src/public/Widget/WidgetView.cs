@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,18 +29,18 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class WidgetView : View
     {
-        private EventHandler<WidgetViewEventArgs> _widgetAddedEventHandler;
-        private WidgetAddedEventCallbackType _widgetAddedEventCallback;
-        private EventHandler<WidgetViewEventArgs> _widgetContentUpdatedEventHandler;
-        private WidgetContentUpdatedEventCallbackType _widgetContentUpdatedEventCallback;
-        private EventHandler<WidgetViewEventArgs> _widgetDeletedEventHandler;
-        private WidgetDeletedEventCallbackType _widgetDeletedEventCallback;
-        private EventHandler<WidgetViewEventArgs> _widgetCreationAbortedEventHandler;
-        private WidgetCreationAbortedEventCallbackType _widgetCreationAbortedEventCallback;
-        private EventHandler<WidgetViewEventArgs> _widgetUpdatePeriodChangedEventHandler;
-        private WidgetUpdatePeriodChangedEventCallbackType _widgetUpdatePeriodChangedEventCallback;
-        private EventHandler<WidgetViewEventArgs> _widgetFaultedEventHandler;
-        private WidgetFaultedEventCallbackType _widgetFaultedEventCallback;
+        private EventHandler<WidgetViewEventArgs> widgetAddedEventHandler;
+        private WidgetAddedEventCallbackType widgetAddedEventCallback;
+        private EventHandler<WidgetViewEventArgs> widgetContentUpdatedEventHandler;
+        private WidgetContentUpdatedEventCallbackType widgetContentUpdatedEventCallback;
+        private EventHandler<WidgetViewEventArgs> widgetDeletedEventHandler;
+        private WidgetDeletedEventCallbackType widgetDeletedEventCallback;
+        private EventHandler<WidgetViewEventArgs> widgetCreationAbortedEventHandler;
+        private WidgetCreationAbortedEventCallbackType widgetCreationAbortedEventCallback;
+        private EventHandler<WidgetViewEventArgs> widgetUpdatePeriodChangedEventHandler;
+        private WidgetUpdatePeriodChangedEventCallbackType widgetUpdatePeriodChangedEventCallback;
+        private EventHandler<WidgetViewEventArgs> widgetFaultedEventHandler;
+        private WidgetFaultedEventCallbackType widgetFaultedEventCallback;
         /// <summary>
         /// Creates a new WidgetView.
         /// </summary>
@@ -82,25 +82,25 @@ namespace Tizen.NUI
         {
             add
             {
-                if (_widgetAddedEventHandler == null)
+                if (widgetAddedEventHandler == null)
                 {
-                    _widgetAddedEventCallback = OnWidgetAdded;
+                    widgetAddedEventCallback = OnWidgetAdded;
                     WidgetViewSignal widgetAdded = WidgetAddedSignal();
-                    widgetAdded?.Connect(_widgetAddedEventCallback);
+                    widgetAdded?.Connect(widgetAddedEventCallback);
                     widgetAdded?.Dispose();
                 }
 
-                _widgetAddedEventHandler += value;
+                widgetAddedEventHandler += value;
             }
 
             remove
             {
-                _widgetAddedEventHandler -= value;
+                widgetAddedEventHandler -= value;
 
                 WidgetViewSignal widgetAdded = WidgetAddedSignal();
-                if (_widgetAddedEventHandler == null && widgetAdded?.Empty() == false)
+                if (widgetAddedEventHandler == null && widgetAdded?.Empty() == false)
                 {
-                    widgetAdded?.Disconnect(_widgetAddedEventCallback);
+                    widgetAdded?.Disconnect(widgetAddedEventCallback);
                 }
                 widgetAdded?.Dispose();
             }
@@ -116,25 +116,25 @@ namespace Tizen.NUI
         {
             add
             {
-                if (_widgetContentUpdatedEventHandler == null)
+                if (widgetContentUpdatedEventHandler == null)
                 {
-                    _widgetContentUpdatedEventCallback = OnWidgetContentUpdated;
+                    widgetContentUpdatedEventCallback = OnWidgetContentUpdated;
                     WidgetViewSignal widgetContentUpdated = WidgetContentUpdatedSignal();
-                    widgetContentUpdated?.Connect(_widgetContentUpdatedEventCallback);
+                    widgetContentUpdated?.Connect(widgetContentUpdatedEventCallback);
                     widgetContentUpdated?.Dispose();
                 }
 
-                _widgetContentUpdatedEventHandler += value;
+                widgetContentUpdatedEventHandler += value;
             }
 
             remove
             {
-                _widgetContentUpdatedEventHandler -= value;
+                widgetContentUpdatedEventHandler -= value;
 
                 WidgetViewSignal widgetContentUpdated = WidgetContentUpdatedSignal();
-                if (_widgetContentUpdatedEventHandler == null && widgetContentUpdated?.Empty() == false)
+                if (widgetContentUpdatedEventHandler == null && widgetContentUpdated?.Empty() == false)
                 {
-                    widgetContentUpdated?.Disconnect(_widgetContentUpdatedEventCallback);
+                    widgetContentUpdated?.Disconnect(widgetContentUpdatedEventCallback);
                 }
                 widgetContentUpdated?.Dispose();
             }
@@ -150,25 +150,25 @@ namespace Tizen.NUI
         {
             add
             {
-                if (_widgetDeletedEventHandler == null)
+                if (widgetDeletedEventHandler == null)
                 {
-                    _widgetDeletedEventCallback = OnWidgetDeleted;
+                    widgetDeletedEventCallback = OnWidgetDeleted;
                     WidgetViewSignal widgetDeleted = WidgetDeletedSignal();
-                    widgetDeleted?.Connect(_widgetDeletedEventCallback);
+                    widgetDeleted?.Connect(widgetDeletedEventCallback);
                     widgetDeleted?.Dispose();
                 }
 
-                _widgetDeletedEventHandler += value;
+                widgetDeletedEventHandler += value;
             }
 
             remove
             {
-                _widgetDeletedEventHandler -= value;
+                widgetDeletedEventHandler -= value;
 
                 WidgetViewSignal widgetDeleted = WidgetDeletedSignal();
-                if (_widgetDeletedEventHandler == null && widgetDeleted?.Empty() == false)
+                if (widgetDeletedEventHandler == null && widgetDeleted?.Empty() == false)
                 {
-                    widgetDeleted?.Disconnect(_widgetDeletedEventCallback);
+                    widgetDeleted?.Disconnect(widgetDeletedEventCallback);
                 }
                 widgetDeleted?.Dispose();
             }
@@ -184,25 +184,25 @@ namespace Tizen.NUI
         {
             add
             {
-                if (_widgetCreationAbortedEventHandler == null)
+                if (widgetCreationAbortedEventHandler == null)
                 {
-                    _widgetCreationAbortedEventCallback = OnWidgetCreationAborted;
+                    widgetCreationAbortedEventCallback = OnWidgetCreationAborted;
                     WidgetViewSignal widgetCreationAborted = WidgetCreationAbortedSignal();
-                    widgetCreationAborted?.Connect(_widgetCreationAbortedEventCallback);
+                    widgetCreationAborted?.Connect(widgetCreationAbortedEventCallback);
                     widgetCreationAborted?.Dispose();
                 }
 
-                _widgetCreationAbortedEventHandler += value;
+                widgetCreationAbortedEventHandler += value;
             }
 
             remove
             {
-                _widgetCreationAbortedEventHandler -= value;
+                widgetCreationAbortedEventHandler -= value;
 
                 WidgetViewSignal widgetCreationAborted = WidgetCreationAbortedSignal();
-                if (_widgetCreationAbortedEventHandler == null && widgetCreationAborted?.Empty() == false)
+                if (widgetCreationAbortedEventHandler == null && widgetCreationAborted?.Empty() == false)
                 {
-                    widgetCreationAborted?.Disconnect(_widgetCreationAbortedEventCallback);
+                    widgetCreationAborted?.Disconnect(widgetCreationAbortedEventCallback);
                 }
                 widgetCreationAborted?.Dispose();
             }
@@ -218,25 +218,25 @@ namespace Tizen.NUI
         {
             add
             {
-                if (_widgetUpdatePeriodChangedEventHandler == null)
+                if (widgetUpdatePeriodChangedEventHandler == null)
                 {
-                    _widgetUpdatePeriodChangedEventCallback = OnWidgetUpdatePeriodChanged;
+                    widgetUpdatePeriodChangedEventCallback = OnWidgetUpdatePeriodChanged;
                     WidgetViewSignal widgetUpdatePeriodChanged = WidgetUpdatePeriodChangedSignal();
-                    widgetUpdatePeriodChanged?.Connect(_widgetUpdatePeriodChangedEventCallback);
+                    widgetUpdatePeriodChanged?.Connect(widgetUpdatePeriodChangedEventCallback);
                     widgetUpdatePeriodChanged?.Dispose();
                 }
 
-                _widgetUpdatePeriodChangedEventHandler += value;
+                widgetUpdatePeriodChangedEventHandler += value;
             }
 
             remove
             {
-                _widgetUpdatePeriodChangedEventHandler -= value;
+                widgetUpdatePeriodChangedEventHandler -= value;
 
                 WidgetViewSignal widgetUpdatePeriodChanged = WidgetUpdatePeriodChangedSignal();
-                if (_widgetUpdatePeriodChangedEventHandler == null && widgetUpdatePeriodChanged?.Empty() == false)
+                if (widgetUpdatePeriodChangedEventHandler == null && widgetUpdatePeriodChanged?.Empty() == false)
                 {
-                    widgetUpdatePeriodChanged?.Disconnect(_widgetUpdatePeriodChangedEventCallback);
+                    widgetUpdatePeriodChanged?.Disconnect(widgetUpdatePeriodChangedEventCallback);
                 }
                 widgetUpdatePeriodChanged?.Dispose();
             }
@@ -252,25 +252,25 @@ namespace Tizen.NUI
         {
             add
             {
-                if (_widgetFaultedEventHandler == null)
+                if (widgetFaultedEventHandler == null)
                 {
-                    _widgetFaultedEventCallback = OnWidgetFaulted;
+                    widgetFaultedEventCallback = OnWidgetFaulted;
                     WidgetViewSignal widgetFaulted = WidgetFaultedSignal();
-                    widgetFaulted?.Connect(_widgetFaultedEventCallback);
+                    widgetFaulted?.Connect(widgetFaultedEventCallback);
                     widgetFaulted?.Dispose();
                 }
 
-                _widgetFaultedEventHandler += value;
+                widgetFaultedEventHandler += value;
             }
 
             remove
             {
-                _widgetFaultedEventHandler -= value;
+                widgetFaultedEventHandler -= value;
 
                 WidgetViewSignal widgetFaulted = WidgetFaultedSignal();
-                if (_widgetFaultedEventHandler == null && widgetFaulted?.Empty() == false)
+                if (widgetFaultedEventHandler == null && widgetFaulted?.Empty() == false)
                 {
-                    widgetFaulted?.Disconnect(_widgetFaultedEventCallback);
+                    widgetFaulted?.Disconnect(widgetFaultedEventCallback);
                 }
                 widgetFaulted?.Dispose();
             }
@@ -632,45 +632,45 @@ namespace Tizen.NUI
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
-            if (_widgetAddedEventCallback != null)
+            if (widgetAddedEventCallback != null)
             {
                 WidgetViewSignal widgetAdded = this.WidgetAddedSignal();
-                widgetAdded?.Disconnect(_widgetAddedEventCallback);
+                widgetAdded?.Disconnect(widgetAddedEventCallback);
                 widgetAdded?.Dispose();
             }
 
-            if (_widgetContentUpdatedEventCallback != null)
+            if (widgetContentUpdatedEventCallback != null)
             {
                 WidgetViewSignal widgetContentUpdated = this.WidgetContentUpdatedSignal();
-                widgetContentUpdated?.Disconnect(_widgetContentUpdatedEventCallback);
+                widgetContentUpdated?.Disconnect(widgetContentUpdatedEventCallback);
                 widgetContentUpdated?.Dispose();
             }
 
-            if (_widgetCreationAbortedEventCallback != null)
+            if (widgetCreationAbortedEventCallback != null)
             {
                 WidgetViewSignal widgetCreationAborted = this.WidgetCreationAbortedSignal();
-                widgetCreationAborted?.Disconnect(_widgetCreationAbortedEventCallback);
+                widgetCreationAborted?.Disconnect(widgetCreationAbortedEventCallback);
                 widgetCreationAborted?.Dispose();
             }
 
-            if (_widgetDeletedEventCallback != null)
+            if (widgetDeletedEventCallback != null)
             {
                 WidgetViewSignal widgetDeleted = this.WidgetDeletedSignal();
-                widgetDeleted?.Disconnect(_widgetDeletedEventCallback);
+                widgetDeleted?.Disconnect(widgetDeletedEventCallback);
                 widgetDeleted?.Dispose();
             }
 
-            if (_widgetFaultedEventCallback != null)
+            if (widgetFaultedEventCallback != null)
             {
                 WidgetViewSignal widgetFaulted = this.WidgetFaultedSignal();
-                widgetFaulted?.Disconnect(_widgetFaultedEventCallback);
+                widgetFaulted?.Disconnect(widgetFaultedEventCallback);
                 widgetFaulted?.Dispose();
             }
 
-            if (_widgetUpdatePeriodChangedEventCallback != null)
+            if (widgetUpdatePeriodChangedEventCallback != null)
             {
                 WidgetViewSignal widgetUpdatePeriodChanged = this.WidgetUpdatePeriodChangedSignal();
-                widgetUpdatePeriodChanged?.Disconnect(_widgetUpdatePeriodChangedEventCallback);
+                widgetUpdatePeriodChanged?.Disconnect(widgetUpdatePeriodChangedEventCallback);
                 widgetUpdatePeriodChanged?.Dispose();
             }
 
@@ -693,9 +693,9 @@ namespace Tizen.NUI
                 e.WidgetView = WidgetView.GetWidgetViewFromPtr(data);
             }
 
-            if (_widgetAddedEventHandler != null)
+            if (widgetAddedEventHandler != null)
             {
-                _widgetAddedEventHandler(this, e);
+                widgetAddedEventHandler(this, e);
             }
         }
 
@@ -708,9 +708,9 @@ namespace Tizen.NUI
                 e.WidgetView = WidgetView.GetWidgetViewFromPtr(data);
             }
 
-            if (_widgetDeletedEventHandler != null)
+            if (widgetDeletedEventHandler != null)
             {
-                _widgetDeletedEventHandler(this, e);
+                widgetDeletedEventHandler(this, e);
             }
         }
 
@@ -723,9 +723,9 @@ namespace Tizen.NUI
                 e.WidgetView = WidgetView.GetWidgetViewFromPtr(data);
             }
 
-            if (_widgetCreationAbortedEventHandler != null)
+            if (widgetCreationAbortedEventHandler != null)
             {
-                _widgetCreationAbortedEventHandler(this, e);
+                widgetCreationAbortedEventHandler(this, e);
             }
         }
 
@@ -740,9 +740,9 @@ namespace Tizen.NUI
                 e.WidgetView = WidgetView.GetWidgetViewFromPtr(data);
             }
 
-            if (_widgetContentUpdatedEventHandler != null)
+            if (widgetContentUpdatedEventHandler != null)
             {
-                _widgetContentUpdatedEventHandler(this, e);
+                widgetContentUpdatedEventHandler(this, e);
             }
         }
 
@@ -755,9 +755,9 @@ namespace Tizen.NUI
                 e.WidgetView = WidgetView.GetWidgetViewFromPtr(data);
             }
 
-            if (_widgetUpdatePeriodChangedEventHandler != null)
+            if (widgetUpdatePeriodChangedEventHandler != null)
             {
-                _widgetUpdatePeriodChangedEventHandler(this, e);
+                widgetUpdatePeriodChangedEventHandler(this, e);
             }
         }
 
@@ -770,9 +770,9 @@ namespace Tizen.NUI
                 e.WidgetView = WidgetView.GetWidgetViewFromPtr(data);
             }
 
-            if (_widgetFaultedEventHandler != null)
+            if (widgetFaultedEventHandler != null)
             {
-                _widgetFaultedEventHandler(this, e);
+                widgetFaultedEventHandler(this, e);
             }
         }
 
