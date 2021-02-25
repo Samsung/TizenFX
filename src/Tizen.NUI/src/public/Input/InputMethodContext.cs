@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,14 +27,13 @@ namespace Tizen.NUI
     /// <since_tizen> 5 </since_tizen>
     public class InputMethodContext : BaseHandle
     {
-
-        private ActivatedEventCallbackType _activatedEventCallback;
-        private EventReceivedEventCallbackType _eventReceivedEventCallback;
-        private StatusChangedEventCallbackType _statusChangedEventCallback;
-        private ResizedEventCallbackType _resizedEventCallback;
-        private LanguageChangedEventCallbackType _languageChangedEventCallback;
-        private KeyboardTypeChangedEventCallbackType _keyboardTypeChangedEventCallback;
-        private ContentReceivedCallbackType _contentReceivedEventCallback;
+        private ActivatedEventCallbackType activatedEventCallback;
+        private EventReceivedEventCallbackType eventReceivedEventCallback;
+        private StatusChangedEventCallbackType statusChangedEventCallback;
+        private ResizedEventCallbackType resizedEventCallback;
+        private LanguageChangedEventCallbackType languageChangedEventCallback;
+        private KeyboardTypeChangedEventCallbackType keyboardTypeChangedEventCallback;
+        private ContentReceivedCallbackType contentReceivedEventCallback;
 
         /// <summary>
         /// Constructor.<br/>
@@ -45,7 +44,6 @@ namespace Tizen.NUI
         public InputMethodContext() : this(Interop.InputMethodContext.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
         }
 
         internal InputMethodContext(IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
@@ -61,13 +59,13 @@ namespace Tizen.NUI
         private delegate void KeyboardTypeChangedEventCallbackType(KeyboardType type);
         private delegate void ContentReceivedCallbackType(string content, string description, string mimeType);
 
-        private event EventHandler<ActivatedEventArgs> _activatedEventHandler;
-        private event EventHandlerWithReturnType<object, EventReceivedEventArgs, CallbackData> _eventReceivedEventHandler;
-        private event EventHandler<StatusChangedEventArgs> _statusChangedEventHandler;
-        private event EventHandler<ResizedEventArgs> _resizedEventHandler;
-        private event EventHandler<LanguageChangedEventArgs> _languageChangedEventHandler;
-        private event EventHandler<KeyboardTypeChangedEventArgs> _keyboardTypeChangedEventHandler;
-        private event EventHandler<ContentReceivedEventArgs> _contentReceivedEventHandler;
+        private event EventHandler<ActivatedEventArgs> activatedEventHandler;
+        private event EventHandlerWithReturnType<object, EventReceivedEventArgs, CallbackData> eventReceivedEventHandler;
+        private event EventHandler<StatusChangedEventArgs> statusChangedEventHandler;
+        private event EventHandler<ResizedEventArgs> resizedEventHandler;
+        private event EventHandler<LanguageChangedEventArgs> languageChangedEventHandler;
+        private event EventHandler<KeyboardTypeChangedEventArgs> keyboardTypeChangedEventHandler;
+        private event EventHandler<ContentReceivedEventArgs> contentReceivedEventHandler;
 
         /// <summary>
         /// InputMethodContext activated.
@@ -77,21 +75,21 @@ namespace Tizen.NUI
         {
             add
             {
-                if (_activatedEventHandler == null)
+                if (activatedEventHandler == null)
                 {
-                    _activatedEventCallback = OnActivated;
-                    ActivatedSignal().Connect(_activatedEventCallback);
+                    activatedEventCallback = OnActivated;
+                    ActivatedSignal().Connect(activatedEventCallback);
                 }
 
-                _activatedEventHandler += value;
+                activatedEventHandler += value;
             }
             remove
             {
-                _activatedEventHandler -= value;
+                activatedEventHandler -= value;
 
-                if (_activatedEventHandler == null && _activatedEventCallback != null)
+                if (activatedEventHandler == null && activatedEventCallback != null)
                 {
-                    ActivatedSignal().Disconnect(_activatedEventCallback);
+                    ActivatedSignal().Disconnect(activatedEventCallback);
                 }
             }
         }
@@ -104,21 +102,21 @@ namespace Tizen.NUI
         {
             add
             {
-                if (_eventReceivedEventHandler == null)
+                if (eventReceivedEventHandler == null)
                 {
-                    _eventReceivedEventCallback = OnEventReceived;
-                    EventReceivedSignal().Connect(_eventReceivedEventCallback);
+                    eventReceivedEventCallback = OnEventReceived;
+                    EventReceivedSignal().Connect(eventReceivedEventCallback);
                 }
 
-                _eventReceivedEventHandler += value;
+                eventReceivedEventHandler += value;
             }
             remove
             {
-                _eventReceivedEventHandler -= value;
+                eventReceivedEventHandler -= value;
 
-                if (_eventReceivedEventHandler == null && _eventReceivedEventCallback != null)
+                if (eventReceivedEventHandler == null && eventReceivedEventCallback != null)
                 {
-                    EventReceivedSignal().Disconnect(_eventReceivedEventCallback);
+                    EventReceivedSignal().Disconnect(eventReceivedEventCallback);
                 }
             }
         }
@@ -131,21 +129,21 @@ namespace Tizen.NUI
         {
             add
             {
-                if (_statusChangedEventHandler == null)
+                if (statusChangedEventHandler == null)
                 {
-                    _statusChangedEventCallback = OnStatusChanged;
-                    StatusChangedSignal().Connect(_statusChangedEventCallback);
+                    statusChangedEventCallback = OnStatusChanged;
+                    StatusChangedSignal().Connect(statusChangedEventCallback);
                 }
 
-                _statusChangedEventHandler += value;
+                statusChangedEventHandler += value;
             }
             remove
             {
-                _statusChangedEventHandler -= value;
+                statusChangedEventHandler -= value;
 
-                if (_statusChangedEventHandler == null && _statusChangedEventCallback != null)
+                if (statusChangedEventHandler == null && statusChangedEventCallback != null)
                 {
-                    StatusChangedSignal().Disconnect(_statusChangedEventCallback);
+                    StatusChangedSignal().Disconnect(statusChangedEventCallback);
                 }
             }
         }
@@ -158,21 +156,21 @@ namespace Tizen.NUI
         {
             add
             {
-                if (_resizedEventHandler == null)
+                if (resizedEventHandler == null)
                 {
-                    _resizedEventCallback = OnResized;
-                    ResizedSignal().Connect(_resizedEventCallback);
+                    resizedEventCallback = OnResized;
+                    ResizedSignal().Connect(resizedEventCallback);
                 }
 
-                _resizedEventHandler += value;
+                resizedEventHandler += value;
             }
             remove
             {
-                _resizedEventHandler -= value;
+                resizedEventHandler -= value;
 
-                if (_resizedEventHandler == null && _resizedEventCallback != null)
+                if (resizedEventHandler == null && resizedEventCallback != null)
                 {
-                    ResizedSignal().Disconnect(_resizedEventCallback);
+                    ResizedSignal().Disconnect(resizedEventCallback);
                 }
             }
         }
@@ -185,21 +183,21 @@ namespace Tizen.NUI
         {
             add
             {
-                if (_languageChangedEventHandler == null)
+                if (languageChangedEventHandler == null)
                 {
-                    _languageChangedEventCallback = OnLanguageChanged;
-                    LanguageChangedSignal().Connect(_languageChangedEventCallback);
+                    languageChangedEventCallback = OnLanguageChanged;
+                    LanguageChangedSignal().Connect(languageChangedEventCallback);
                 }
 
-                _languageChangedEventHandler += value;
+                languageChangedEventHandler += value;
             }
             remove
             {
-                _languageChangedEventHandler -= value;
+                languageChangedEventHandler -= value;
 
-                if (_languageChangedEventHandler == null && _languageChangedEventCallback != null)
+                if (languageChangedEventHandler == null && languageChangedEventCallback != null)
                 {
-                    LanguageChangedSignal().Disconnect(_languageChangedEventCallback);
+                    LanguageChangedSignal().Disconnect(languageChangedEventCallback);
                 }
             }
         }
@@ -212,21 +210,21 @@ namespace Tizen.NUI
         {
             add
             {
-                if (_keyboardTypeChangedEventHandler == null)
+                if (keyboardTypeChangedEventHandler == null)
                 {
-                    _keyboardTypeChangedEventCallback = OnKeyboardTypeChanged;
-                    KeyboardTypeChangedSignal().Connect(_keyboardTypeChangedEventCallback);
+                    keyboardTypeChangedEventCallback = OnKeyboardTypeChanged;
+                    KeyboardTypeChangedSignal().Connect(keyboardTypeChangedEventCallback);
                 }
 
-                _keyboardTypeChangedEventHandler += value;
+                keyboardTypeChangedEventHandler += value;
             }
             remove
             {
-                _keyboardTypeChangedEventHandler -= value;
+                keyboardTypeChangedEventHandler -= value;
 
-                if (_keyboardTypeChangedEventHandler == null && _keyboardTypeChangedEventCallback != null)
+                if (keyboardTypeChangedEventHandler == null && keyboardTypeChangedEventCallback != null)
                 {
-                    KeyboardTypeChangedSignal().Disconnect(_keyboardTypeChangedEventCallback);
+                    KeyboardTypeChangedSignal().Disconnect(keyboardTypeChangedEventCallback);
                 }
             }
         }
@@ -240,21 +238,21 @@ namespace Tizen.NUI
         {
             add
             {
-                if (_contentReceivedEventHandler == null)
+                if (contentReceivedEventHandler == null)
                 {
-                    _contentReceivedEventCallback = OnContentReceived;
-                    ContentReceivedSignal().Connect(_contentReceivedEventCallback);
+                    contentReceivedEventCallback = OnContentReceived;
+                    ContentReceivedSignal().Connect(contentReceivedEventCallback);
                 }
 
-                _contentReceivedEventHandler += value;
+                contentReceivedEventHandler += value;
             }
             remove
             {
-                _contentReceivedEventHandler -= value;
+                contentReceivedEventHandler -= value;
 
-                if (_contentReceivedEventHandler == null && _contentReceivedEventCallback != null)
+                if (contentReceivedEventHandler == null && contentReceivedEventCallback != null)
                 {
-                    ContentReceivedSignal().Disconnect(_contentReceivedEventCallback);
+                    ContentReceivedSignal().Disconnect(contentReceivedEventCallback);
                 }
             }
         }
@@ -816,9 +814,9 @@ namespace Tizen.NUI
             //You should not access any managed member here except static instance
             //because the execution order of Finalizes is non-deterministic.
 
-            if (_keyboardTypeChangedEventCallback != null)
+            if (keyboardTypeChangedEventCallback != null)
             {
-                KeyboardTypeChangedSignal().Disconnect(_keyboardTypeChangedEventCallback);
+                KeyboardTypeChangedSignal().Disconnect(keyboardTypeChangedEventCallback);
             }
 
             base.Dispose(type);
@@ -840,9 +838,9 @@ namespace Tizen.NUI
                 e.InputMethodContext = Registry.GetManagedBaseHandleFromNativePtr(data) as InputMethodContext;
             }
 
-            if (_activatedEventHandler != null)
+            if (activatedEventHandler != null)
             {
-                _activatedEventHandler(this, e);
+                activatedEventHandler(this, e);
             }
         }
 
@@ -861,9 +859,9 @@ namespace Tizen.NUI
                 e.EventData = EventData.GetEventDataFromPtr(eventData);
             }
 
-            if (_eventReceivedEventHandler != null)
+            if (eventReceivedEventHandler != null)
             {
-                callbackData = _eventReceivedEventHandler(this, e);
+                callbackData = eventReceivedEventHandler(this, e);
             }
             if (callbackData != null)
             {
@@ -881,9 +879,9 @@ namespace Tizen.NUI
 
             e.StatusChanged = statusChanged;
 
-            if (_statusChangedEventHandler != null)
+            if (statusChangedEventHandler != null)
             {
-                _statusChangedEventHandler(this, e);
+                statusChangedEventHandler(this, e);
             }
         }
 
@@ -892,9 +890,9 @@ namespace Tizen.NUI
             ResizedEventArgs e = new ResizedEventArgs();
             e.Resized = resized;
 
-            if (_resizedEventHandler != null)
+            if (resizedEventHandler != null)
             {
-                _resizedEventHandler(this, e);
+                resizedEventHandler(this, e);
             }
         }
 
@@ -903,9 +901,9 @@ namespace Tizen.NUI
             LanguageChangedEventArgs e = new LanguageChangedEventArgs();
             e.LanguageChanged = languageChanged;
 
-            if (_languageChangedEventHandler != null)
+            if (languageChangedEventHandler != null)
             {
-                _languageChangedEventHandler(this, e);
+                languageChangedEventHandler(this, e);
             }
         }
 
@@ -915,9 +913,9 @@ namespace Tizen.NUI
 
             e.KeyboardType = type;
 
-            if (_keyboardTypeChangedEventHandler != null)
+            if (keyboardTypeChangedEventHandler != null)
             {
-                _keyboardTypeChangedEventHandler(this, e);
+                keyboardTypeChangedEventHandler(this, e);
             }
         }
 
@@ -928,9 +926,9 @@ namespace Tizen.NUI
             e.Description = description;
             e.MimeType = mimeType;
 
-            if (_contentReceivedEventHandler != null)
+            if (contentReceivedEventHandler != null)
             {
-                _contentReceivedEventHandler(this, e);
+                contentReceivedEventHandler(this, e);
             }
         }
 

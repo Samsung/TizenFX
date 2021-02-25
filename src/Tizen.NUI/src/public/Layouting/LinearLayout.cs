@@ -98,11 +98,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _linearOrientation;
+                return linearOrientation;
             }
             set
             {
-                _linearOrientation = value;
+                linearOrientation = value;
                 RequestLayout();
             }
         }
@@ -115,11 +115,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _cellPadding;
+                return cellPadding;
             }
             set
             {
-                _cellPadding = value;
+                cellPadding = value;
                 RequestLayout();
             }
         }
@@ -131,9 +131,9 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public LinearLayout.Alignment LinearAlignment { get; set; } = Alignment.Top;
 
-        private float _totalLength = 0.0f;
-        private Size2D _cellPadding = new Size2D(0, 0);
-        private Orientation _linearOrientation = Orientation.Horizontal;
+        private float totalLength = 0.0f;
+        private Size2D cellPadding = new Size2D(0, 0);
+        private Orientation linearOrientation = Orientation.Horizontal;
 
         /// <summary>
         /// [Draft] Constructor
@@ -151,7 +151,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
         {
-            if (_linearOrientation == Orientation.Horizontal)
+            if (linearOrientation == Orientation.Horizontal)
             {
                 MeasureHorizontal(widthMeasureSpec, heightMeasureSpec);
             }
@@ -172,7 +172,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         protected override void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
         {
-            if (_linearOrientation == Orientation.Horizontal)
+            if (linearOrientation == Orientation.Horizontal)
             {
                 LayoutHorizontal(left, top, right, bottom);
             }
@@ -277,7 +277,7 @@ namespace Tizen.NUI
             int childrenCount = IterateLayoutChildren().Count();
 
             // Reset measure variables
-            _totalLength = 0.0f;
+            totalLength = 0.0f;
             float usedExcessSpace = 0.0f;
             HeightAndWidthState childState = new HeightAndWidthState(MeasuredSize.StateType.MeasuredSizeOK,
                                                                      MeasuredSize.StateType.MeasuredSizeOK);
@@ -299,7 +299,7 @@ namespace Tizen.NUI
                 if (isExactly && useExcessSpace)
                 {
                     // Children to be laid out with excess space can be measured later
-                    _totalLength = Math.Max(_totalLength, (_totalLength + childMargin.Start + childMargin.End));
+                    totalLength = Math.Max(totalLength, (totalLength + childMargin.Start + childMargin.End));
                 }
                 else
                 {
@@ -335,7 +335,7 @@ namespace Tizen.NUI
                     LayoutLength childWidth = childLayout.MeasuredWidth.Size;
                     LayoutLength length = childWidth + childMargin.Start + childMargin.End;
 
-                    _totalLength = Math.Max(_totalLength, _totalLength + length.AsDecimal());
+                    totalLength = Math.Max(totalLength, totalLength + length.AsDecimal());
                 }
 
                 bool matchHeightLocally = false;
@@ -373,8 +373,8 @@ namespace Tizen.NUI
                 }
             } // foreach
 
-            _totalLength = Math.Max(_totalLength, _totalLength + CellPadding.Width * (childrenCount - 1));
-            float widthSize = _totalLength;
+            totalLength = Math.Max(totalLength, totalLength + CellPadding.Width * (childrenCount - 1));
+            float widthSize = totalLength;
             widthSize = Math.Max(widthSize, SuggestedMinimumWidth.AsDecimal());
             MeasuredSize widthSizeAndState = ResolveSizeAndState(new LayoutLength(widthSize + Padding.Start + Padding.End), widthMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK);
             widthSize = widthSizeAndState.Size.AsDecimal();
@@ -384,12 +384,12 @@ namespace Tizen.NUI
             // We cycle through weighted children now (children with weight > 0).
             // The children are measured with exact size equal to their share of the available space based on their weights.
             // _totalLength is updated to include weighted children measured sizes.
-            float remainingExcess = widthSize - _totalLength + usedExcessSpace - (Padding.Start + Padding.End);
+            float remainingExcess = widthSize - totalLength + usedExcessSpace - (Padding.Start + Padding.End);
             if (remainingExcess != 0 && totalWeight > 0)
             {
                 float remainingWeight = totalWeight;
                 maxHeight = 0;
-                _totalLength = 0;
+                totalLength = 0;
 
                 foreach (LayoutItem childLayout in IterateLayoutChildren())
                 {
@@ -406,7 +406,7 @@ namespace Tizen.NUI
                     }
 
                     float length = childLayout.MeasuredWidth.Size.AsDecimal() + childMargin.Start + childMargin.End;
-                    _totalLength += length;
+                    totalLength += length;
 
                     bool matchHeightLocally = (heightMode != MeasureSpecification.ModeType.Exactly) && (desiredChildHeight == LayoutParamPolicies.MatchParent);
                     float marginHeight = childMargin.Top + childMargin.Bottom;
@@ -416,7 +416,7 @@ namespace Tizen.NUI
                     alternativeMaxHeight = Math.Max(alternativeMaxHeight, matchHeightLocally ? marginHeight : childHeight);
                     allFillParent = (allFillParent && desiredChildHeight == LayoutParamPolicies.MatchParent);
                 } // for loop
-                _totalLength = Math.Max(_totalLength, _totalLength + CellPadding.Width * (childrenCount - 1));
+                totalLength = Math.Max(totalLength, totalLength + CellPadding.Width * (childrenCount - 1));
             }
             else
             {
@@ -460,7 +460,7 @@ namespace Tizen.NUI
             int childrenCount = IterateLayoutChildren().Count();
 
             // Reset total length
-            _totalLength = 0.0f;
+            totalLength = 0.0f;
             float usedExcessSpace = 0.0f;
             HeightAndWidthState childState = new HeightAndWidthState(MeasuredSize.StateType.MeasuredSizeOK,
                                                                      MeasuredSize.StateType.MeasuredSizeOK);
@@ -484,7 +484,7 @@ namespace Tizen.NUI
                 bool useExcessSpace = (childLayout.Owner.HeightSpecification == 0) && (childWeight > 0);
                 if (isExactly && useExcessSpace)
                 {
-                    _totalLength = Math.Max(_totalLength, (_totalLength + childMargin.Top + childMargin.Bottom));
+                    totalLength = Math.Max(totalLength, (totalLength + childMargin.Top + childMargin.Bottom));
                 }
                 else
                 {
@@ -520,7 +520,7 @@ namespace Tizen.NUI
                     LayoutLength childHeight = childLayout.MeasuredHeight.Size;
                     LayoutLength length = childHeight + childMargin.Top + childMargin.Bottom;
 
-                    _totalLength = Math.Max(_totalLength, _totalLength + length.AsDecimal());
+                    totalLength = Math.Max(totalLength, totalLength + length.AsDecimal());
                 }
 
                 bool matchWidthLocally = false;
@@ -557,8 +557,8 @@ namespace Tizen.NUI
                 }
             } // foreach
 
-            _totalLength = Math.Max(_totalLength, _totalLength + CellPadding.Height * (childrenCount - 1));
-            float heightSize = _totalLength;
+            totalLength = Math.Max(totalLength, totalLength + CellPadding.Height * (childrenCount - 1));
+            float heightSize = totalLength;
             heightSize = Math.Max(heightSize, SuggestedMinimumHeight.AsDecimal());
             MeasuredSize heightSizeAndState = ResolveSizeAndState(new LayoutLength(heightSize + Padding.Top + Padding.Bottom), heightMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK);
             heightSize = heightSizeAndState.Size.AsDecimal();
@@ -567,12 +567,12 @@ namespace Tizen.NUI
             // We cycle through weighted children now (children with weight > 0).
             // The children are measured with exact size equal to their share of the available space based on their weights.
             // _totalLength is updated to include weighted children measured sizes.
-            float remainingExcess = heightSize - _totalLength + usedExcessSpace - (Padding.Top + Padding.Bottom);
+            float remainingExcess = heightSize - totalLength + usedExcessSpace - (Padding.Top + Padding.Bottom);
             if (remainingExcess != 0 && totalWeight > 0.0f)
             {
                 float remainingWeight = totalWeight;
                 maxWidth = 0;
-                _totalLength = 0;
+                totalLength = 0;
 
                 foreach (LayoutItem childLayout in IterateLayoutChildren())
                 {
@@ -589,7 +589,7 @@ namespace Tizen.NUI
                     }
 
                     float length = childLayout.MeasuredHeight.Size.AsDecimal() + childMargin.Top + childMargin.Bottom;
-                    _totalLength += length;
+                    totalLength += length;
 
                     bool matchWidthLocally = (widthMode != MeasureSpecification.ModeType.Exactly) && (desiredChildWidth == LayoutParamPolicies.MatchParent);
                     float marginWidth = childMargin.Start + childMargin.End;
@@ -599,7 +599,7 @@ namespace Tizen.NUI
                     alternativeMaxWidth = Math.Max(alternativeMaxWidth, matchWidthLocally ? marginWidth : childWidth);
                     allFillParent = (allFillParent && desiredChildWidth == LayoutParamPolicies.MatchParent);
                 } // for loop
-                _totalLength = Math.Max(_totalLength, _totalLength + CellPadding.Height * (childrenCount - 1));
+                totalLength = Math.Max(totalLength, totalLength + CellPadding.Height * (childrenCount - 1));
             }
             else
             {
@@ -652,13 +652,13 @@ namespace Tizen.NUI
                     }
                     else
                     {
-                        childLeft = new LayoutLength(Padding.Start + right.AsDecimal() - left.AsDecimal() - _totalLength);
+                        childLeft = new LayoutLength(Padding.Start + right.AsDecimal() - left.AsDecimal() - totalLength);
                     }
                     break;
                 case Alignment.CenterHorizontal: // FALL THROUGH
                 case Alignment.Center:
                     // totalLength contains the padding already
-                    childLeft = new LayoutLength(Padding.Start + (right.AsDecimal() - left.AsDecimal() - _totalLength) / 2.0f);
+                    childLeft = new LayoutLength(Padding.Start + (right.AsDecimal() - left.AsDecimal() - totalLength) / 2.0f);
                     break;
                 case Alignment.Begin: // FALL THROUGH (default)
                 default:
@@ -666,7 +666,7 @@ namespace Tizen.NUI
                     // In case of RTL map BEGIN alignment to the right edge
                     if (isLayoutRtl)
                     {
-                        childLeft = new LayoutLength(Padding.Start + right.AsDecimal() - left.AsDecimal() - _totalLength);
+                        childLeft = new LayoutLength(Padding.Start + right.AsDecimal() - left.AsDecimal() - totalLength);
                     }
                     else
                     {
@@ -733,12 +733,12 @@ namespace Tizen.NUI
             {
                 case Alignment.Bottom:
                     // totalLength contains the padding already
-                    childTop = new LayoutLength(Padding.Top + bottom.AsDecimal() - top.AsDecimal() - _totalLength);
+                    childTop = new LayoutLength(Padding.Top + bottom.AsDecimal() - top.AsDecimal() - totalLength);
                     break;
                 case Alignment.CenterVertical: // FALL THROUGH
                 case Alignment.Center:
                     // totalLength contains the padding already
-                    childTop = new LayoutLength(Padding.Top + (bottom.AsDecimal() - top.AsDecimal() - _totalLength) / 2.0f);
+                    childTop = new LayoutLength(Padding.Top + (bottom.AsDecimal() - top.AsDecimal() - totalLength) / 2.0f);
                     break;
                 case Alignment.Top:  // FALL THROUGH (default)
                 default:

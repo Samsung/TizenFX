@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -54,10 +54,10 @@ namespace Tizen.NUI
         {
         }
 
-        private DaliEventHandler<object, DetectedEventArgs> _detectedEventHandler;
+        private DaliEventHandler<object, DetectedEventArgs> detectedEventHandler;
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void DetectedCallbackType(IntPtr actor, IntPtr panGesture);
-        private DetectedCallbackType _detectedCallback;
+        private DetectedCallbackType detectedCallback;
 
         /// <summary>
         /// This signal is emitted when the specified pan is detected on the attached view.
@@ -68,22 +68,22 @@ namespace Tizen.NUI
         {
             add
             {
-                if (_detectedEventHandler == null)
+                if (detectedEventHandler == null)
                 {
-                    _detectedCallback = OnPanGestureDetected;
-                    DetectedSignal().Connect(_detectedCallback);
+                    detectedCallback = OnPanGestureDetected;
+                    DetectedSignal().Connect(detectedCallback);
                 }
 
-                _detectedEventHandler += value;
+                detectedEventHandler += value;
             }
 
             remove
             {
-                _detectedEventHandler -= value;
+                detectedEventHandler -= value;
 
-                if (_detectedEventHandler == null && DetectedSignal().Empty() == false)
+                if (detectedEventHandler == null && DetectedSignal().Empty() == false)
                 {
-                    DetectedSignal().Disconnect(_detectedCallback);
+                    DetectedSignal().Disconnect(detectedCallback);
                 }
             }
         }
@@ -529,9 +529,9 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (_detectedCallback != null)
+            if (detectedCallback != null)
             {
-                DetectedSignal().Disconnect(_detectedCallback);
+                DetectedSignal().Disconnect(detectedCallback);
             }
 
             Interop.PanGestureDetector.DeletePanGestureDetector(swigCPtr);
@@ -539,20 +539,19 @@ namespace Tizen.NUI
 
         private void OnPanGestureDetected(IntPtr actor, IntPtr panGesture)
         {
-            DetectedEventArgs e = new DetectedEventArgs();
-
-            // Populate all members of "e" (PanGestureEventArgs) with real data
-            e.View = Registry.GetManagedBaseHandleFromNativePtr(actor) as View;
-            if (null == e.View)
+            if (detectedEventHandler != null)
             {
-                e.View = Registry.GetManagedBaseHandleFromRefObject(actor) as View;
-            }
+                DetectedEventArgs e = new DetectedEventArgs();
 
-            e.PanGesture = Tizen.NUI.PanGesture.GetPanGestureFromPtr(panGesture);
+                // Populate all members of "e" (PanGestureEventArgs) with real data
+                e.View = Registry.GetManagedBaseHandleFromNativePtr(actor) as View;
+                if (null == e.View)
+                {
+                    e.View = Registry.GetManagedBaseHandleFromRefObject(actor) as View;
+                }
 
-            if (_detectedEventHandler != null)
-            {
-                _detectedEventHandler(this, e);
+                e.PanGesture = Tizen.NUI.PanGesture.GetPanGestureFromPtr(panGesture);
+                detectedEventHandler(this, e);
             }
         }
 
@@ -564,8 +563,8 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class DetectedEventArgs : EventArgs
         {
-            private View _view;
-            private PanGesture _panGesture;
+            private View view;
+            private PanGesture panGesture;
 
             /// <summary>
             /// The attached view.
@@ -577,11 +576,11 @@ namespace Tizen.NUI
             {
                 get
                 {
-                    return _view;
+                    return view;
                 }
                 set
                 {
-                    _view = value;
+                    view = value;
                 }
             }
 
@@ -595,11 +594,11 @@ namespace Tizen.NUI
             {
                 get
                 {
-                    return _panGesture;
+                    return panGesture;
                 }
                 set
                 {
-                    _panGesture = value;
+                    panGesture = value;
                 }
             }
         }
