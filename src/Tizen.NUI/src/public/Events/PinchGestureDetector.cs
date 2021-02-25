@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -54,10 +54,10 @@ namespace Tizen.NUI
         {
         }
 
-        private DaliEventHandler<object, DetectedEventArgs> _detectedEventHandler;
+        private DaliEventHandler<object, DetectedEventArgs> detectedEventHandler;
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void DetectedCallbackType(IntPtr actor, IntPtr pinchGesture);
-        private DetectedCallbackType _detectedCallback;
+        private DetectedCallbackType detectedCallback;
 
         /// <summary>
         /// This signal is emitted when the specified pinch is detected on the attached view.
@@ -68,22 +68,22 @@ namespace Tizen.NUI
         {
             add
             {
-                if (_detectedEventHandler == null)
+                if (detectedEventHandler == null)
                 {
-                    _detectedCallback = OnPinchGestureDetected;
-                    DetectedSignal().Connect(_detectedCallback);
+                    detectedCallback = OnPinchGestureDetected;
+                    DetectedSignal().Connect(detectedCallback);
                 }
 
-                _detectedEventHandler += value;
+                detectedEventHandler += value;
             }
 
             remove
             {
-                _detectedEventHandler -= value;
+                detectedEventHandler -= value;
 
-                if (_detectedEventHandler == null && DetectedSignal().Empty() == false)
+                if (detectedEventHandler == null && DetectedSignal().Empty() == false)
                 {
-                    DetectedSignal().Disconnect(_detectedCallback);
+                    DetectedSignal().Disconnect(detectedCallback);
                 }
             }
         }
@@ -126,9 +126,9 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (_detectedCallback != null)
+            if (detectedCallback != null)
             {
-                DetectedSignal().Disconnect(_detectedCallback);
+                DetectedSignal().Disconnect(detectedCallback);
             }
 
             Interop.PinchGesture.DeletePinchGestureDetector(swigCPtr);
@@ -136,21 +136,20 @@ namespace Tizen.NUI
 
         private void OnPinchGestureDetected(IntPtr actor, IntPtr pinchGesture)
         {
-            DetectedEventArgs e = new DetectedEventArgs();
-
-            // Populate all members of "e" (DetectedEventArgs) with real data.
-            e.View = Registry.GetManagedBaseHandleFromNativePtr(actor) as View;
-            if (null == e.View)
+            if (detectedEventHandler != null)
             {
-                e.View = Registry.GetManagedBaseHandleFromRefObject(actor) as View;
-            }
+                DetectedEventArgs e = new DetectedEventArgs();
 
-            e.PinchGesture = Tizen.NUI.PinchGesture.GetPinchGestureFromPtr(pinchGesture);
+                // Populate all members of "e" (DetectedEventArgs) with real data.
+                e.View = Registry.GetManagedBaseHandleFromNativePtr(actor) as View;
+                if (null == e.View)
+                {
+                    e.View = Registry.GetManagedBaseHandleFromRefObject(actor) as View;
+                }
 
-            if (_detectedEventHandler != null)
-            {
+                e.PinchGesture = Tizen.NUI.PinchGesture.GetPinchGestureFromPtr(pinchGesture);
                 //Here we send all data to user event handlers.
-                _detectedEventHandler(this, e);
+                detectedEventHandler(this, e);
             }
         }
 
@@ -162,8 +161,8 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class DetectedEventArgs : EventArgs
         {
-            private View _view;
-            private PinchGesture _pinchGesture;
+            private View view;
+            private PinchGesture pinchGesture;
 
             /// <summary>
             /// The attached view.
@@ -175,11 +174,11 @@ namespace Tizen.NUI
             {
                 get
                 {
-                    return _view;
+                    return view;
                 }
                 set
                 {
-                    _view = value;
+                    view = value;
                 }
             }
 
@@ -193,11 +192,11 @@ namespace Tizen.NUI
             {
                 get
                 {
-                    return _pinchGesture;
+                    return pinchGesture;
                 }
                 set
                 {
-                    _pinchGesture = value;
+                    pinchGesture = value;
                 }
             }
         }

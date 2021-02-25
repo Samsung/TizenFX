@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,7 +19,6 @@ using System.ComponentModel;
 
 namespace Tizen.NUI
 {
-
     /// <summary>
     /// GraphicsTypeManager class to manage various types.
     /// </summary>
@@ -27,13 +26,15 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class GraphicsTypeManager
     {
+        private volatile static GraphicsTypeManager graphicsTypeManager;
+        private GraphicsTypeConverter typeConverter;
 
         /// <summary>
         /// Creates private GraphicsTypeManager object.
         /// </summary>
         private GraphicsTypeManager()
         {
-            _typeConverter = new GraphicsTypeConverter();
+            typeConverter = new GraphicsTypeConverter();
         }
 
         /// <summary>
@@ -46,12 +47,12 @@ namespace Tizen.NUI
         {
             get
             {
-                if (_graphicsTypeManager == null)
+                if (graphicsTypeManager == null)
                 {
-                    _graphicsTypeManager = new GraphicsTypeManager();
+                    graphicsTypeManager = new GraphicsTypeManager();
                 }
 
-                return _graphicsTypeManager;
+                return graphicsTypeManager;
             }
 
         }
@@ -63,7 +64,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetTypeConverter(GraphicsTypeConverter typeConverter)
         {
-            _typeConverter = typeConverter;
+            this.typeConverter = typeConverter;
         }
 
         /// <summary>
@@ -74,7 +75,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float ConvertScriptToPixel(string scriptValue)
         {
-            return _typeConverter.ConvertScriptToPixel(scriptValue);
+            return typeConverter.ConvertScriptToPixel(scriptValue);
         }
 
         /// <summary>
@@ -85,7 +86,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual float ConvertToPixel(float value)
         {
-            return _typeConverter.ConvertToPixel(value);
+            return typeConverter.ConvertToPixel(value);
         }
 
         /// <summary>
@@ -96,7 +97,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual float ConvertFromPixel(float value)
         {
-            return _typeConverter.ConvertFromPixel(value);
+            return typeConverter.ConvertFromPixel(value);
         }
 
         internal void RegisterCustomConverterForDynamicResourceBinding(global::System.Type type, Tizen.NUI.Binding.TypeConverter userConverter)
@@ -107,8 +108,5 @@ namespace Tizen.NUI
             }
             //NUILog.Error($"user custom converter ditionary count={Tizen.NUI.Binding.BindableProperty.UserCustomConvertTypes.Count}");
         }
-
-        private volatile static GraphicsTypeManager _graphicsTypeManager;
-        private GraphicsTypeConverter _typeConverter;
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,9 +15,7 @@
  *
  */
 
-using System;
 using System.ComponentModel;
-using System.Runtime.InteropServices;
 
 namespace Tizen.NUI
 {
@@ -26,6 +24,7 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class NativeImageSource : NativeImageInterface
     {
+        private IntPtr handle;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public NativeImageSource(uint width, uint height, ColorDepth depth) : this(Interop.NativeImageSource.NewHandle(width, height, (int)depth), true)
@@ -33,12 +32,10 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        private IntPtr Handle;
         internal NativeImageSource(IntPtr cPtr, bool cMemoryOwn) : base(Interop.NativeImageSource.New(cPtr), cMemoryOwn)
         {
-            Handle = cPtr;
+            handle = cPtr;
         }
-
 
         /// <summary>
         /// Get URI from native image source.
@@ -58,7 +55,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.NativeImageSource.Delete(Handle);
+            Interop.NativeImageSource.Delete(handle);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

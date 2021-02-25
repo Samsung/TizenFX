@@ -29,8 +29,8 @@ namespace Tizen.NUI
     public class PropertyNotification : BaseHandle
     {
 
-        private DaliEventHandler<object, NotifyEventArgs> _propertyNotificationNotifyEventHandler;
-        private NotifyEventCallbackDelegate _propertyNotificationNotifyEventCallbackDelegate;
+        private DaliEventHandler<object, NotifyEventArgs> propertyNotificationNotifyEventHandler;
+        private NotifyEventCallbackDelegate propertyNotificationNotifyEventCallbackDelegate;
 
         /// <summary>
         /// Create a instance of PropertyNotification.
@@ -67,23 +67,23 @@ namespace Tizen.NUI
             add
             {
                 // Restricted to only one listener
-                if (_propertyNotificationNotifyEventHandler == null)
+                if (propertyNotificationNotifyEventHandler == null)
                 {
-                    _propertyNotificationNotifyEventHandler += value;
+                    propertyNotificationNotifyEventHandler += value;
 
-                    _propertyNotificationNotifyEventCallbackDelegate = new NotifyEventCallbackDelegate(OnPropertyNotificationNotify);
-                    this.NotifySignal().Connect(_propertyNotificationNotifyEventCallbackDelegate);
+                    propertyNotificationNotifyEventCallbackDelegate = new NotifyEventCallbackDelegate(OnPropertyNotificationNotify);
+                    this.NotifySignal().Connect(propertyNotificationNotifyEventCallbackDelegate);
                 }
             }
 
             remove
             {
-                if (_propertyNotificationNotifyEventHandler != null)
+                if (propertyNotificationNotifyEventHandler != null)
                 {
-                    this.NotifySignal().Disconnect(_propertyNotificationNotifyEventCallbackDelegate);
+                    this.NotifySignal().Disconnect(propertyNotificationNotifyEventCallbackDelegate);
                 }
 
-                _propertyNotificationNotifyEventHandler -= value;
+                propertyNotificationNotifyEventHandler -= value;
             }
         }
 
@@ -257,10 +257,10 @@ namespace Tizen.NUI
             NotifyEventArgs e = new NotifyEventArgs();
             e.PropertyNotification = GetPropertyNotificationFromPtr(propertyNotification);
 
-            if (_propertyNotificationNotifyEventHandler != null)
+            if (propertyNotificationNotifyEventHandler != null)
             {
                 //here we send all data to user event handlers
-                _propertyNotificationNotifyEventHandler(this, e);
+                propertyNotificationNotifyEventHandler(this, e);
             }
         }
 
@@ -270,7 +270,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public class NotifyEventArgs : EventArgs
         {
-            private PropertyNotification _propertyNotification;
+            private PropertyNotification propertyNotification;
 
             ///<summary>
             /// PropertyNotification - is the PropertyNotification handle that has the notification properties.
@@ -280,11 +280,11 @@ namespace Tizen.NUI
             {
                 get
                 {
-                    return _propertyNotification;
+                    return propertyNotification;
                 }
                 set
                 {
-                    _propertyNotification = value;
+                    propertyNotification = value;
                 }
             }
         }
