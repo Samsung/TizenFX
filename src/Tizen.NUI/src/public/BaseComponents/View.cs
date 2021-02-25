@@ -94,7 +94,7 @@ namespace Tizen.NUI.BaseComponents
             InitializeStyle(viewStyle);
         }
 
-        internal View(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.View.Upcast(cPtr), cMemoryOwn)
+        internal View(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(cPtr, cMemoryOwn)
         {
             if (HasBody())
             {
@@ -289,7 +289,15 @@ namespace Tizen.NUI.BaseComponents
         /// The mutually exclusive with "backgroundImage" and "background" type Vector4.
         /// </summary>
         /// <remarks>
+        /// <para>
         /// The property cascade chaining set is possible. For example, this (view.BackgroundColor.X = 0.1f;) is possible.
+        /// </para>
+        /// <para>
+        /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// <code>
+        /// animation.AnimateTo(view, "BackgroundColor", new Color(r, g, b, a));
+        /// </code>
+        /// </para>
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Color BackgroundColor
@@ -379,6 +387,16 @@ namespace Tizen.NUI.BaseComponents
         /// <remarks>
         /// The mutually exclusive with "BoxShadow".
         /// </remarks>
+        /// <remarks>
+        /// <para>
+        /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// To animate this property, specify a sub-property with separator ".", for example, "ImageShadow.Offset".
+        /// <code>
+        /// animation.AnimateTo(view, "ImageShadow.Offset", new Vector2(10, 10));
+        /// </code>
+        /// Animatable sub-property : Offset.
+        /// </para>
+        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ImageShadow ImageShadow
         {
@@ -408,6 +426,16 @@ namespace Tizen.NUI.BaseComponents
         /// <remarks>
         /// The mutually exclusive with "ImageShadow".
         /// </remarks>
+        /// <remarks>
+        /// <para>
+        /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// To animate this property, specify a sub-property with separator ".", for example, "BoxShadow.BlurRadius".
+        /// <code>
+        /// animation.AnimateTo(view, "BoxShadow.BlurRadius", 10.0f);
+        /// </code>
+        /// Animatable sub-property : Offset, Color, BlurRadius.
+        /// </para>
+        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Shadow BoxShadow
         {
@@ -432,6 +460,11 @@ namespace Tizen.NUI.BaseComponents
         /// This will rounds background and shadow edges.
         /// Note that, an image background (or shadow) may not have rounded corners if it uses a Border property.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// </para>
+        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float CornerRadius
         {
@@ -1909,7 +1942,7 @@ namespace Tizen.NUI.BaseComponents
                 if (basehandle is Layer layer)
                 {
                     ret = new View(Layer.getCPtr(layer).Handle, false);
-                    NUILog.Error("This Parent property is deprecated, shoud do not be used");
+                    NUILog.Error("This Parent property is deprecated, should do not be used");
                 }
                 else
                 {
@@ -2229,20 +2262,24 @@ namespace Tizen.NUI.BaseComponents
                     // Do not try to set Margins or Padding on a null Layout (when a layout is being removed from a View)
                     if (value != null)
                     {
-                        if (Margin.Top != 0 || Margin.Bottom != 0 || Margin.Start != 0 || Margin.End != 0)
+                        if (false == (this is TextLabel))
                         {
-                            // If View already has a margin set then store it in Layout instead.
-                            value.Margin = Margin;
-                            SetValue(MarginProperty, new Extents(0, 0, 0, 0));
-                            NotifyPropertyChanged();
-                        }
+                            if (Margin.Top != 0 || Margin.Bottom != 0 || Margin.Start != 0 || Margin.End != 0)
+                            {
+                                // If View already has a margin set then store it in Layout instead.
+                                value.Margin = Margin;
+                                SetValue(MarginProperty, new Extents(0, 0, 0, 0));
+                                NotifyPropertyChanged();
+                            }
 
-                        if (Padding.Top != 0 || Padding.Bottom != 0 || Padding.Start != 0 || Padding.End != 0)
-                        {
-                            // If View already has a padding set then store it in Layout instead.
-                            value.Padding = Padding;
-                            SetValue(PaddingProperty, new Extents(0, 0, 0, 0));
-                            NotifyPropertyChanged();
+                            if (Padding.Top != 0 || Padding.Bottom != 0 || Padding.Start != 0 || Padding.End != 0)
+                            {
+                                // If View already has a padding set then store it in Layout instead.
+                                value.Padding = Padding;
+                                SetValue(PaddingProperty, new Extents(0, 0, 0, 0));
+                                NotifyPropertyChanged();
+                            }
+
                         }
                     }
                 }
@@ -2492,5 +2529,26 @@ namespace Tizen.NUI.BaseComponents
         {
             get;
         } = new List<Transition>();
+
+        /// <summary>
+        /// Get whether the View is culled or not.
+        /// True means that the View is out of the view frustum.
+        /// </summary>
+        /// <remarks>
+        /// Hidden-API (Inhouse-API).
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Culled
+        {
+            get
+            {
+                bool temp = false;
+                var pValue = GetProperty(View.Property.Culled);
+                pValue.Get(out temp);
+                pValue.Dispose();
+                return temp;
+            }
+        }
+
     }
 }

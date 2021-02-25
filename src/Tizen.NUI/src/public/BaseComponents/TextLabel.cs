@@ -89,14 +89,12 @@ namespace Tizen.NUI.BaseComponents
         public TextLabel() : this(Interop.TextLabel.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            Layout = new TextLayout();
         }
 
         /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TextLabel(TextLabelStyle viewStyle) : this(Interop.TextLabel.New(), true, viewStyle)
         {
-            Layout = new TextLayout();
         }
 
         /// <summary>
@@ -108,7 +106,6 @@ namespace Tizen.NUI.BaseComponents
         public TextLabel(bool shown) : this(Interop.TextLabel.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            Layout = new TextLayout();
             SetVisible(shown);
         }
 
@@ -120,7 +117,6 @@ namespace Tizen.NUI.BaseComponents
         public TextLabel(string text) : this(Interop.TextLabel.New(text), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            Layout = new TextLayout();
         }
 
         /// <summary>
@@ -133,7 +129,6 @@ namespace Tizen.NUI.BaseComponents
         public TextLabel(string text, bool shown) : this(Interop.TextLabel.New(text), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            Layout = new TextLayout();
             SetVisible(shown);
         }
 
@@ -147,7 +142,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal TextLabel(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : base(Interop.TextLabel.Upcast(cPtr), cMemoryOwn, viewStyle)
+        internal TextLabel(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : base(cPtr, cMemoryOwn, viewStyle)
         {
             if (!shown)
             {
@@ -155,12 +150,20 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal TextLabel(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.TextLabel.Upcast(cPtr), cMemoryOwn, null)
+        internal TextLabel(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(cPtr, cMemoryOwn, null)
         {
             if (!shown)
             {
                 SetVisible(false);
             }
+        }
+
+        /// <summary>
+        /// Create internal layout of TextLabel
+        /// </summary>
+        internal LayoutItem CreateTextLayout()
+        {
+            return new TextLayout();
         }
 
         /// <summary>

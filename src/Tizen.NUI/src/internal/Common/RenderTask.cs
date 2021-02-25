@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,8 +24,7 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class RenderTask : Animatable
     {
-
-        internal RenderTask(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.RenderTask.Upcast(cPtr), cMemoryOwn)
+        internal RenderTask(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
@@ -297,14 +296,14 @@ namespace Tizen.NUI
             return ret;
         }
 
-        // [Obsolete("Deprecated in API9, will be removed in API11. Please use ClearColor property instead!")]
+        [Obsolete("Deprecated in API9, will be removed in API11. Please use ClearColor property instead!")]
         public void SetClearColor(Vector4 color)
         {
             Interop.RenderTask.SetClearColor(SwigCPtr, Vector4.getCPtr(color));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        // [Obsolete("Deprecated in API9, will be removed in API11. Please use ClearColor property instead!")]
+        [Obsolete("Deprecated in API9, will be removed in API11. Please use ClearColor property instead!")]
         public Vector4 GetClearColor()
         {
             Vector4 ret = new Vector4(Interop.RenderTask.GetClearColor(SwigCPtr), true);

@@ -745,7 +745,9 @@ namespace Tizen.NUI.Components
         /// <returns>True if the event should be consumed.</returns>
         /// <since_tizen> 8 </since_tizen>
         [Obsolete("Deprecated in API8; Will be removed in API10. Please use OnClicked instead.")]
+#pragma warning disable CS0809 // Obsolete member overrides non-obsolete member, It will be removed in API10
         public override bool OnTouch(Touch touch)
+#pragma warning restore CS0809 // Obsolete member overrides non-obsolete member, It will be removed in API10
         {
             return base.OnTouch(touch);
         }

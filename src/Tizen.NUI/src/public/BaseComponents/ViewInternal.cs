@@ -123,6 +123,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal void SetLayout(LayoutItem layout)
         {
+            Window.Instance.LayoutController.CreateProcessCallback();
             this.layout = layout;
             this.layout?.AttachToOwner(this);
             this.layout?.RequestLayout();
@@ -1281,13 +1282,6 @@ namespace Tizen.NUI.BaseComponents
                 signal?.Disconnect(_backgroundResourceLoadedCallback);
                 signal?.Dispose();
                 _backgroundResourceLoadedCallback = null;
-            }
-
-            if (_onWindowSendEventCallback != null)
-            {
-                ViewSignal signal = this.OnWindowSignal();
-                signal?.Disconnect(_onWindowSendEventCallback);
-                signal?.Dispose();
             }
 
             // BaseHandle CPtr is used in Registry and there is danger of deletion if we keep using it here.

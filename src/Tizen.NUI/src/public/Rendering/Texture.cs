@@ -52,7 +52,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Texture(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Texture.Upcast(cPtr), cMemoryOwn)
+        internal Texture(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

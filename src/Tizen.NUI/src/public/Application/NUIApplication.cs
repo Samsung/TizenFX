@@ -24,6 +24,7 @@ using Tizen.Applications;
 using Tizen.Applications.CoreBackend;
 using Tizen.NUI.Binding;
 using Tizen.NUI.Xaml;
+using System.Collections.Generic;
 
 namespace Tizen.NUI
 {
@@ -38,22 +39,24 @@ namespace Tizen.NUI
         /// The instance of ResourceManager.
         /// </summary>
         private static System.Resources.ResourceManager resourceManager = null;
-        private Size2D _windowSize2D = null;
-        private Position2D _windowPosition2D = null;
-        private TransitionOptions transitionOptions;
-        private string appId = null;
-        internal static NUIApplication me;
 
-        private static bool isPreLoad = false;
+        // TODO Enable this after tizen-theme-manager is released.
+        // private readonly ThemeLoader themeLoader = new ThemeLoader();
+
+        static NUIApplication()
+        {
+            Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
+            // TODO Enable this after tizen-theme-manager is released.
+            // themeLoader.ThemeChanged += TizenThemeChanged;
+        }
 
         /// <summary>
         /// The default constructor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "NUICoreBackend is disposed in the base class when the application is terminated")]
         public NUIApplication() : base(new NUICoreBackend())
         {
-            Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
-            me = this;
         }
 
         /// <summary>
@@ -63,13 +66,10 @@ namespace Tizen.NUI
         /// <param name="windowPosition">The window position.</param>
         /// <since_tizen> 5 </since_tizen>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "NUICoreBackend is disposed in the base class when the application is terminated")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public NUIApplication(Size2D windowSize, Position2D windowPosition) : base(new NUICoreBackend("", WindowMode.Opaque, windowSize, windowPosition))
+        public NUIApplication(Size2D windowSize, Position2D windowPosition) : base(new NUICoreBackend("", NUIApplication.WindowMode.Opaque, windowSize, windowPosition))
         {
-            Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
-            _windowSize2D = windowSize;
-            _windowPosition2D = windowPosition;
-            me = this;
         }
 
         /// <summary>
@@ -77,10 +77,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="styleSheet">The styleSheet url.</param>
         /// <since_tizen> 3 </since_tizen>
+        [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "NUICoreBackend is disposed in the base class when the application is terminated")]
         public NUIApplication(string styleSheet) : base(new NUICoreBackend(styleSheet))
         {
-            Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
-            me = this;
         }
 
         /// <summary>
@@ -91,13 +90,10 @@ namespace Tizen.NUI
         /// <param name="windowPosition">The window position.</param>
         /// <since_tizen> 5 </since_tizen>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "NUICoreBackend is disposed in the base class when the application is terminated")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public NUIApplication(string styleSheet, Size2D windowSize, Position2D windowPosition) : base(new NUICoreBackend(styleSheet, WindowMode.Opaque, windowSize, windowPosition))
         {
-            Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
-            _windowSize2D = windowSize;
-            _windowPosition2D = windowPosition;
-            me = this;
         }
 
         /// <summary>
@@ -106,10 +102,9 @@ namespace Tizen.NUI
         /// <param name="styleSheet">The styleSheet url.</param>
         /// <param name="windowMode">The windowMode.</param>
         /// <since_tizen> 3 </since_tizen>
+        [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "NUICoreBackend is disposed in the base class when the application is terminated")]
         public NUIApplication(string styleSheet, WindowMode windowMode) : base(new NUICoreBackend(styleSheet, windowMode))
         {
-            Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
-            me = this;
         }
 
         /// <summary>
@@ -121,13 +116,10 @@ namespace Tizen.NUI
         /// <param name="windowPosition">The window position.</param>
         /// <since_tizen> 5 </since_tizen>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "NUICoreBackend is disposed in the base class when the application is terminated")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public NUIApplication(string styleSheet, WindowMode windowMode, Size2D windowSize, Position2D windowPosition) : base(new NUICoreBackend(styleSheet, windowMode, windowSize, windowPosition))
         {
-            Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
-            _windowSize2D = windowSize;
-            _windowPosition2D = windowPosition;
-            me = this;
         }
 
         /// <summary>
@@ -146,11 +138,6 @@ namespace Tizen.NUI
             //windowMode and styleSheet will be added later. currenlty it's not working as expected.
             Graphics.Backend = backend;
             Tizen.Log.Error("NUI", "Plaese DO NOT set graphical backend type with this constructor! This will give no effect!");
-
-            if (windowSize != null) { _windowSize2D = windowSize; }
-            if (windowPosition != null) { _windowPosition2D = windowPosition; }
-            Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
-            me = this;
         }
 
         /// <summary>
@@ -222,7 +209,7 @@ namespace Tizen.NUI
         {
             get
             {
-                return appId;
+                return Tizen.Applications.Application.Current.ApplicationInfo.ApplicationId;
             }
         }
 
@@ -399,17 +386,16 @@ namespace Tizen.NUI
         protected override void OnCreate()
         {
             base.OnCreate();
-            appId = Tizen.Applications.Application.Current.ApplicationInfo.ApplicationId;
         }
 
         /// <summary>
         /// This is used to improve application launch performance.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        static public void PreLoad()
+        static public void Preload()
         {
             Interop.Application.PreInitialize();
-            isPreLoad = true;
+            IsPreload = true;
         }
 
         /// <summary>
@@ -418,35 +404,42 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SendLaunchRequest(AppControl appControl)
         {
-            transitionOptions.SendLaunchRequest(appControl);
+            TransitionOptions?.SendLaunchRequest(appControl);
         }
 
         /// <summary>
         /// This is used to improve application launch performance.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TransitionOptions TransitionOptions
-        {
-            get
-            {
-                return transitionOptions;
-            }
-            set
-            {
-                transitionOptions = value;
-            }
-        }
+        public TransitionOptions TransitionOptions { get; set; }
+
+        // TODO Enable this after tizen-theme-manager is released.
+        // private void TizenThemeChanged(object sender, ThemeEventArgs e)
+        // {
+        //     string prefix = "/theme/";
+
+        //     Dictionary<string, string> changedResources = new Dictionary<string, string>();
+        //     foreach (string key in ThemeManager.DefaultTheme.Resources.Keys)
+        //     {
+        //         // NOTE Need improve this code by checking HasKey
+        //         string newValue = null;
+        //         try
+        //         {
+        //             newValue = e.Theme.GetString(prefix + key);
+        //         }
+        //         catch { }
+        //         if (newValue != null)
+        //         {
+        //             changedResources[key] = newValue;
+        //         }
+        //     }
+        //     ThemeManager.UpdateCurrentThemeResources(changedResources);
+        // }
 
         /// <summary>
         /// Check if it is loaded as dotnet-loader-nui.
         /// </summary>
-        static internal bool IsPreLoad
-        {
-            get
-            {
-                return isPreLoad;
-            }
-        }
+        static internal bool IsPreload { get; set; }
     }
 
     /// <summary>

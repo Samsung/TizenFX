@@ -27,11 +27,10 @@ namespace Tizen.NUI
         /// <summary>
         /// The Application instance to connect event.
         /// </summary>
-        protected Application _application;
-        private string _stylesheet = "";
-        private NUIApplication.WindowMode _windowMode = NUIApplication.WindowMode.Opaque;
-        private Size2D _windowSize = null;
-        private Position2D _windowPosition = null;
+        protected Application application;
+        private string stylesheet = "";
+        private NUIApplication.WindowMode windowMode = NUIApplication.WindowMode.Opaque;
+        private Rectangle windowRectangle = null;
 
         /// <summary>
         /// The Dictionary to contain each type of event callback.
@@ -50,7 +49,7 @@ namespace Tizen.NUI
         /// </summary>
         public NUICoreBackend(string stylesheet)
         {
-            _stylesheet = stylesheet;
+            this.stylesheet = stylesheet;
         }
 
         /// <summary>
@@ -58,8 +57,8 @@ namespace Tizen.NUI
         /// </summary>
         public NUICoreBackend(string stylesheet, NUIApplication.WindowMode windowMode)
         {
-            _stylesheet = stylesheet;
-            _windowMode = windowMode;
+            this.stylesheet = stylesheet;
+            this.windowMode = windowMode;
         }
 
         /// <summary>
@@ -67,10 +66,12 @@ namespace Tizen.NUI
         /// </summary>
         public NUICoreBackend(string stylesheet, NUIApplication.WindowMode windowMode, Size2D windowSize, Position2D windowPosition)
         {
-            _stylesheet = stylesheet;
-            _windowMode = windowMode;
-            _windowSize = windowSize;
-            _windowPosition = windowPosition;
+            this.stylesheet = stylesheet;
+            this.windowMode = windowMode;
+            if (windowSize != null && windowPosition != null)
+            {
+                this.windowRectangle = new Rectangle(windowPosition.X, windowPosition.Y, windowSize.Width, windowSize.Height);
+            }
         }
 
         /// <summary>
@@ -101,17 +102,13 @@ namespace Tizen.NUI
         /// </summary>
         public void Dispose()
         {
-            if (_application != null)
+            if (application != null)
             {
-                _application.Dispose();
+                application.Dispose();
             }
-            if (_windowSize != null)
+            if (windowRectangle != null)
             {
-                _windowSize.Dispose();
-            }
-            if (_windowPosition != null)
-            {
-                _windowPosition.Dispose();
+                windowRectangle.Dispose();
             }
         }
 
@@ -120,9 +117,9 @@ namespace Tizen.NUI
         /// </summary>
         public void Exit()
         {
-            if (_application != null)
+            if (application != null)
             {
-                _application.Quit();
+                application.Quit();
             }
         }
 
@@ -133,7 +130,7 @@ namespace Tizen.NUI
         /// <returns>true if added successfully, false otherwise</returns>
         public bool AddIdle(System.Delegate func)
         {
-            return _application.AddIdle(func);
+            return application.AddIdle(func);
         }
 
         /// <summary>
@@ -150,42 +147,28 @@ namespace Tizen.NUI
                 args[0] = this.GetType().Assembly.FullName;
             }
 
-            if (args.Length == 1)
+            if (windowRectangle != null)
             {
-                if (_windowSize != null)
-                {
-                    _application = Application.NewApplication(_stylesheet, (Application.WindowMode)_windowMode, new Rectangle(_windowPosition.X, _windowPosition.Y, _windowSize.Width, _windowSize.Height));
-                }
-                else
-                {
-                    _application = Application.NewApplication(_stylesheet, (Application.WindowMode)_windowMode);
-                }
+                application = Application.NewApplication(args, stylesheet, windowMode, windowRectangle);
             }
-            else if (args.Length > 1)
+            else
             {
-                if (_windowSize != null)
-                {
-                    _application = Application.NewApplication(args, _stylesheet, (Application.WindowMode)_windowMode, new Rectangle(_windowPosition.X, _windowPosition.Y, _windowSize.Width, _windowSize.Height));
-                }
-                else
-                {
-                    _application = Application.NewApplication(args, _stylesheet, (Application.WindowMode)_windowMode);
-                }
+                application = Application.NewApplication(args, stylesheet, windowMode);
             }
 
-            _application.BatteryLow += OnBatteryLow;
-            _application.LanguageChanged += OnLanguageChanged;
-            _application.MemoryLow += OnMemoryLow;
-            _application.RegionChanged += OnRegionChanged;
+            application.BatteryLow += OnBatteryLow;
+            application.LanguageChanged += OnLanguageChanged;
+            application.MemoryLow += OnMemoryLow;
+            application.RegionChanged += OnRegionChanged;
 
-            _application.Initialized += OnInitialized;
-            _application.Resumed += OnResumed;
-            _application.Terminating += OnTerminated;
-            _application.Paused += OnPaused;
-            _application.AppControl += OnAppControl;
+            application.Initialized += OnInitialized;
+            application.Resumed += OnResumed;
+            application.Terminating += OnTerminated;
+            application.Paused += OnPaused;
+            application.AppControl += OnAppControl;
 
-            _application.MainLoop();
-            _application.Dispose();
+            application.MainLoop();
+            application.Dispose();
         }
 
         /// <summary>
@@ -340,7 +323,7 @@ namespace Tizen.NUI
         {
             get
             {
-                return _application;
+                return application;
             }
         }
     }

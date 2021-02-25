@@ -411,16 +411,17 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get the size of an original image
+        /// Get the size of an original image consider rotation
         /// </summary>
         /// <param name="filename">The name of the image.</param>
+        /// <param name="orientationCorrection">Reorient the image to respect any orientation metadata in its header.</param>
         /// <returns>Dimension of the original image.</returns>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be released at Tizen.NET API Level 9. Therefore, currently this would be used as an in-house API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static Size2D GetOriginalImageSize(string filename)
+        public static Size2D GetOriginalImageSize(string filename, bool orientationCorrection = true)
         {
-            var val = new Uint16Pair(Interop.ImageLoading.GetOriginalImageSize(filename), true);
+            var val = new Uint16Pair(Interop.ImageLoading.GetOriginalImageSize(filename, orientationCorrection), true);
             Size2D ret = new Size2D(val.GetWidth(), val.GetHeight());
             val.Dispose();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

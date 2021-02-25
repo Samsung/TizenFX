@@ -37,7 +37,7 @@ namespace Tizen.NUI
 
         }
 
-        internal Animatable(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Handle.Upcast(cPtr), cMemoryOwn)
+        internal Animatable(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
