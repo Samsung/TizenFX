@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+
 using System;
 using System.Runtime.InteropServices;
 
@@ -21,7 +22,6 @@ namespace Tizen.NUI
 {
     internal class ObjectRegistry : BaseHandle
     {
-
         internal ObjectRegistry(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
@@ -38,70 +38,70 @@ namespace Tizen.NUI
 
         public class ObjectCreatedEventArgs : EventArgs
         {
-            private BaseHandle _baseHandle;
+            private BaseHandle baseHandle;
 
             public BaseHandle BaseHandle
             {
                 get
                 {
-                    return _baseHandle;
+                    return baseHandle;
                 }
                 set
                 {
-                    _baseHandle = value;
+                    baseHandle = value;
                 }
             }
         }
 
         public class ObjectDestroyedEventArgs : EventArgs
         {
-            private RefObject _refObject;
+            private RefObject refObject;
 
             public RefObject RefObject
             {
                 get
                 {
-                    return _refObject;
+                    return refObject;
                 }
                 set
                 {
-                    _refObject = value;
+                    refObject = value;
                 }
             }
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void ObjectCreatedEventCallbackDelegate(IntPtr baseHandle);
-        private DaliEventHandler<object, ObjectCreatedEventArgs> _objectRegistryObjectCreatedEventHandler;
-        private ObjectCreatedEventCallbackDelegate _objectRegistryObjectCreatedEventCallbackDelegate;
+        private DaliEventHandler<object, ObjectCreatedEventArgs> objectRegistryObjectCreatedEventHandler;
+        private ObjectCreatedEventCallbackDelegate objectRegistryObjectCreatedEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void ObjectDestroyedEventCallbackDelegate(IntPtr fefObject);
-        private DaliEventHandler<object, ObjectDestroyedEventArgs> _objectRegistryObjectDestroyedEventHandler;
-        private ObjectDestroyedEventCallbackDelegate _objectRegistryObjectDestroyedEventCallbackDelegate;
+        private DaliEventHandler<object, ObjectDestroyedEventArgs> objectRegistryObjectDestroyedEventHandler;
+        private ObjectDestroyedEventCallbackDelegate objectRegistryObjectDestroyedEventCallbackDelegate;
 
         public event DaliEventHandler<object, ObjectCreatedEventArgs> ObjectCreated
         {
             add
             {
                 // Restricted to only one listener
-                if (_objectRegistryObjectCreatedEventHandler == null)
+                if (objectRegistryObjectCreatedEventHandler == null)
                 {
-                    _objectRegistryObjectCreatedEventHandler += value;
+                    objectRegistryObjectCreatedEventHandler += value;
 
-                    _objectRegistryObjectCreatedEventCallbackDelegate = new ObjectCreatedEventCallbackDelegate(OnObjectCreated);
-                    this.ObjectCreatedSignal().Connect(_objectRegistryObjectCreatedEventCallbackDelegate);
+                    objectRegistryObjectCreatedEventCallbackDelegate = new ObjectCreatedEventCallbackDelegate(OnObjectCreated);
+                    this.ObjectCreatedSignal().Connect(objectRegistryObjectCreatedEventCallbackDelegate);
                 }
             }
 
             remove
             {
-                if (_objectRegistryObjectCreatedEventHandler != null)
+                if (objectRegistryObjectCreatedEventHandler != null)
                 {
-                    this.ObjectCreatedSignal().Disconnect(_objectRegistryObjectCreatedEventCallbackDelegate);
+                    this.ObjectCreatedSignal().Disconnect(objectRegistryObjectCreatedEventCallbackDelegate);
                 }
 
-                _objectRegistryObjectCreatedEventHandler -= value;
+                objectRegistryObjectCreatedEventHandler -= value;
             }
         }
 
@@ -113,10 +113,10 @@ namespace Tizen.NUI
             // Populate all members of "e" (ObjectCreatedEventArgs) with real data
             //e.BaseHandle = BaseHandle.GetBaseHandleFromPtr(baseHandle); //GetBaseHandleFromPtr() is not present in BaseHandle.cs. Not sure what is the reason?
 
-            if (_objectRegistryObjectCreatedEventHandler != null)
+            if (objectRegistryObjectCreatedEventHandler != null)
             {
                 //here we send all data to user event handlers
-                _objectRegistryObjectCreatedEventHandler(this, e);
+                objectRegistryObjectCreatedEventHandler(this, e);
             }
         }
 
@@ -125,23 +125,23 @@ namespace Tizen.NUI
             add
             {
                 // Restricted to only one listener
-                if (_objectRegistryObjectDestroyedEventHandler == null)
+                if (objectRegistryObjectDestroyedEventHandler == null)
                 {
-                    _objectRegistryObjectDestroyedEventHandler += value;
+                    objectRegistryObjectDestroyedEventHandler += value;
 
-                    _objectRegistryObjectDestroyedEventCallbackDelegate = new ObjectDestroyedEventCallbackDelegate(OnObjectDestroyed);
-                    this.ObjectDestroyedSignal().Connect(_objectRegistryObjectDestroyedEventCallbackDelegate);
+                    objectRegistryObjectDestroyedEventCallbackDelegate = new ObjectDestroyedEventCallbackDelegate(OnObjectDestroyed);
+                    this.ObjectDestroyedSignal().Connect(objectRegistryObjectDestroyedEventCallbackDelegate);
                 }
             }
 
             remove
             {
-                if (_objectRegistryObjectDestroyedEventHandler != null)
+                if (objectRegistryObjectDestroyedEventHandler != null)
                 {
-                    this.ObjectDestroyedSignal().Disconnect(_objectRegistryObjectDestroyedEventCallbackDelegate);
+                    this.ObjectDestroyedSignal().Disconnect(objectRegistryObjectDestroyedEventCallbackDelegate);
                 }
 
-                _objectRegistryObjectDestroyedEventHandler -= value;
+                objectRegistryObjectDestroyedEventHandler -= value;
             }
         }
 
@@ -153,10 +153,10 @@ namespace Tizen.NUI
             // Populate all members of "e" (ObjectDestroyedEventArgs) with real data
             e.RefObject = RefObject.GetRefObjectFromPtr(refObject);
 
-            if (_objectRegistryObjectDestroyedEventHandler != null)
+            if (objectRegistryObjectDestroyedEventHandler != null)
             {
                 //here we send all data to user event handlers
-                _objectRegistryObjectDestroyedEventHandler(this, e);
+                objectRegistryObjectDestroyedEventHandler(this, e);
             }
         }
 
