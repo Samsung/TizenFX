@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,27 +15,29 @@
  *
  */
 
+using System.Collections;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
+
 namespace Tizen.NUI
 {
-    internal class TouchPointContainer : Disposable, global::System.Collections.IEnumerable,
-        global::System.Collections.Generic.IEnumerable<TouchPoint>
+    internal class TouchPointContainer : Disposable, IEnumerable, IEnumerable<TouchPoint>
     {
-
         internal TouchPointContainer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TouchPointContainer obj)
+        internal static HandleRef getCPtr(TouchPointContainer obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
-        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        protected override void ReleaseSwigCPtr(HandleRef swigCPtr)
         {
             Interop.TouchPointContainer.DeleteTouchPointContainer(swigCPtr);
         }
 
-        public TouchPointContainer(global::System.Collections.ICollection c) : this()
+        public TouchPointContainer(ICollection c) : this()
         {
             if (c == null)
                 throw new global::System.ArgumentNullException(nameof(c));
@@ -131,12 +133,12 @@ namespace Tizen.NUI
                 array.SetValue(getitemcopy(index + i), arrayIndex + i);
         }
 
-        global::System.Collections.Generic.IEnumerator<TouchPoint> global::System.Collections.Generic.IEnumerable<TouchPoint>.GetEnumerator()
+        IEnumerator<TouchPoint> IEnumerable<TouchPoint>.GetEnumerator()
         {
             return new TouchPointContainerEnumerator(this);
         }
 
-        global::System.Collections.IEnumerator global::System.Collections.IEnumerable.GetEnumerator()
+        IEnumerator IEnumerable.GetEnumerator()
         {
             return new TouchPointContainerEnumerator(this);
         }
@@ -151,8 +153,7 @@ namespace Tizen.NUI
         /// whenever the collection is modified. This has been done for changes in the size of the
         /// collection, but not when one of the elements of the collection is modified as it is a bit
         /// tricky to detect unmanaged code that modifies the collection under our feet.
-        public sealed class TouchPointContainerEnumerator : global::System.Collections.IEnumerator
-          , global::System.Collections.Generic.IEnumerator<TouchPoint>
+        public sealed class TouchPointContainerEnumerator : IEnumerator, IEnumerator<TouchPoint>
         {
             private TouchPointContainer collectionRef;
             private int currentIndex;

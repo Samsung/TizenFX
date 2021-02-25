@@ -1,3 +1,19 @@
+/*
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -7,8 +23,7 @@ namespace Tizen.NUI.Binding
 {
     internal class WeakEventManager
     {
-        readonly Dictionary<string, List<Subscription>> _eventHandlers =
-            new Dictionary<string, List<Subscription>>();
+        readonly Dictionary<string, List<Subscription>> eventHandlers = new Dictionary<string, List<Subscription>>();
 
         public void AddEventHandler<TEventArgs>(string eventName, EventHandler<TEventArgs> handler)
             where TEventArgs : EventArgs
@@ -47,7 +62,7 @@ namespace Tizen.NUI.Binding
             var toRemove = new List<Subscription>();
 
             List<Subscription> target;
-            if (_eventHandlers.TryGetValue(eventName, out target))
+            if (eventHandlers.TryGetValue(eventName, out target))
             {
                 foreach (Subscription subscription in target)
                 {
@@ -118,10 +133,10 @@ namespace Tizen.NUI.Binding
         void AddEventHandler(string eventName, object handlerTarget, MethodInfo methodInfo)
         {
             List<Subscription> targets;
-            if (!_eventHandlers.TryGetValue(eventName, out targets))
+            if (!eventHandlers.TryGetValue(eventName, out targets))
             {
                 targets = new List<Subscription>();
-                _eventHandlers.Add(eventName, targets);
+                eventHandlers.Add(eventName, targets);
             }
 
             if (handlerTarget == null)
@@ -137,7 +152,7 @@ namespace Tizen.NUI.Binding
         void RemoveEventHandler(string eventName, object handlerTarget, MemberInfo methodInfo)
         {
             List<Subscription> subscriptions;
-            if (!_eventHandlers.TryGetValue(eventName, out subscriptions))
+            if (!eventHandlers.TryGetValue(eventName, out subscriptions))
             {
                 return;
             }
