@@ -18,7 +18,7 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// Base constructor with specific Type.
         /// </summary>
-        /// <param name="Type">The Type of content.</param>
+        /// <param name="type">The Type of content.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public DataTemplate(Type type) : base(type)
         {

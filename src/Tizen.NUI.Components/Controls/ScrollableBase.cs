@@ -528,7 +528,7 @@ namespace Tizen.NUI.Components
         /// Padding for the ScrollableBase
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Extents Padding
+        public new Extents Padding
         {
             get
             {
