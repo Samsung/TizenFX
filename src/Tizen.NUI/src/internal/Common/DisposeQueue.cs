@@ -1,11 +1,19 @@
-// Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
-// PROPRIETARY/CONFIDENTIAL
-// This software is the confidential and proprietary
-// information of SAMSUNG ELECTRONICS ("Confidential Information"). You shall
-// not disclose such Confidential Information and shall use it only in
-// accordance with the terms of the license agreement you entered into with
-// SAMSUNG ELECTRONICS.
-//
+/*
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 
 using System;
 using System.Collections.Generic;
@@ -16,11 +24,13 @@ namespace Tizen.NUI
     [SuppressMessage("Microsoft.Design", "CA1001:Types that own disposable fields should be disposable", Justification = "This is a singleton class and is not disposed")]
     internal class DisposeQueue
     {
-        private static readonly DisposeQueue _disposableQueue = new DisposeQueue();
-        private List<IDisposable> _disposables = new List<IDisposable>();
-        private System.Object _listLock = new object();
-        private EventThreadCallback _eventThreadCallback;
-        private EventThreadCallback.CallbackDelegate _disposeQueueProcessDisposablesDelegate;
+        private static readonly DisposeQueue disposableQueue = new DisposeQueue();
+        private List<IDisposable> disposables = new List<IDisposable>();
+        private System.Object listLock = new object();
+        private EventThreadCallback eventThreadCallback;
+        private EventThreadCallback.CallbackDelegate disposeQueueProcessDisposablesDelegate;
+
+        private bool isCalled = false;
 
         private DisposeQueue()
         {
@@ -33,42 +43,41 @@ namespace Tizen.NUI
 
         public static DisposeQueue Instance
         {
-            get { return _disposableQueue; }
+            get { return disposableQueue; }
         }
 
-        private bool _isCalled = false;
         public void Initialize()
         {
-            if (_isCalled == false)
+            if (isCalled == false)
             {
-                _disposeQueueProcessDisposablesDelegate = new EventThreadCallback.CallbackDelegate(ProcessDisposables);
-                _eventThreadCallback = new EventThreadCallback(_disposeQueueProcessDisposablesDelegate);
-                _isCalled = true;
+                disposeQueueProcessDisposablesDelegate = new EventThreadCallback.CallbackDelegate(ProcessDisposables);
+                eventThreadCallback = new EventThreadCallback(disposeQueueProcessDisposablesDelegate);
+                isCalled = true;
             }
         }
 
         public void Add(IDisposable disposable)
         {
-            lock (_listLock)
+            lock (listLock)
             {
-                _disposables.Add(disposable);
+                disposables.Add(disposable);
             }
 
-            if (_eventThreadCallback != null)
+            if (eventThreadCallback != null)
             {
-                _eventThreadCallback.Trigger();
+                eventThreadCallback.Trigger();
             }
         }
 
         public void ProcessDisposables()
         {
-            lock (_listLock)
+            lock (listLock)
             {
-                foreach (IDisposable disposable in _disposables)
+                foreach (IDisposable disposable in disposables)
                 {
                     disposable.Dispose();
                 }
-                _disposables.Clear();
+                disposables.Clear();
             }
         }
     }
