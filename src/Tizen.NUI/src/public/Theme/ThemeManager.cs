@@ -18,16 +18,11 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-    internal interface IThemeCreator
-    {
-        Theme Create();
-        Theme Create(IEnumerable<KeyValuePair<string, string>> changedResources);
-    }
-
     /// <summary>
     /// This static module provides methods that can manage NUI <seealso cref="Theme"/>.
     /// </summary>
@@ -42,23 +37,14 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public static class ThemeManager
     {
-        private static readonly string[] nuiThemeProjects =
-        {
-            "Tizen.NUI",
-            "Tizen.NUI.Components",
-            "Tizen.NUI.Wearable"
-        };
-
-        private static Theme currentTheme;
         private static Theme defaultTheme;
+        private static Theme currentTheme;
         private static readonly List<Theme> builtinThemes = new List<Theme>(); // Themes provided by framework.
-        private static readonly List<Theme> customThemes = new List<Theme>(); // Themes registered by user. (Legacy support)
-        private static readonly List<IThemeCreator> packages = new List<IThemeCreator>();
+        private static readonly List<IThemeCreator> packages = new List<IThemeCreator>();// This is to store default theme creators by packages.
 
         static ThemeManager()
         {
-            defaultTheme = new DefaultThemeCreator().Create();
-            builtinThemes.Add(defaultTheme);
+            AddPackageTheme(DefaultThemeCreator.Instance);
         }
 
         /// <summary>
@@ -72,9 +58,16 @@ namespace Tizen.NUI
         /// </summary>
         internal static WeakEvent<EventHandler<ThemeChangedEventArgs>> ThemeChangedInternal = new WeakEvent<EventHandler<ThemeChangedEventArgs>>();
 
+        /// NOTE that, please remove this after remove Tizen.NUI.Components.StyleManager
+        internal static Theme DefaultTheme
+        {
+            get => defaultTheme;
+            set => defaultTheme = value;
+        }
+
         internal static Theme CurrentTheme
         {
-            get => currentTheme;
+            get => currentTheme ?? defaultTheme;
             set
             {
                 currentTheme = value;
@@ -82,28 +75,7 @@ namespace Tizen.NUI
             }
         }
 
-        /// <summary>
-        /// The fallback theme that depends on the device profile.
-        /// </summary>
-        internal static Theme DefaultTheme
-        {
-            get => defaultTheme;
-            set => defaultTheme = (Theme)value?.Clone();
-        }
-
-        internal static bool ThemeApplied => DefaultTheme.Count > 0 || (currentTheme != null && currentTheme.Count > 0);
-
-        /// <summary>
-        /// Set a theme to be used as fallback.
-        /// The fallback theme is set to profile specified theme by default.
-        /// </summary>
-        /// <param name="fallbackTheme">The theme instance to be applied as a fallback.</param>
-        /// <exception cref="ArgumentNullException">The given theme is null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static void ApplyFallbackTheme(Theme fallbackTheme)
-        {
-            DefaultTheme = fallbackTheme ?? throw new ArgumentNullException(nameof(fallbackTheme));
-        }
+        internal static bool ThemeApplied => defaultTheme.Count > 0 || (currentTheme != null && currentTheme.Count > 0);
 
         /// <summary>
         /// Apply theme to the NUI.
@@ -126,65 +98,29 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// <para>
-        /// Note that this API is to support legacy Tizen.NUI.Components.StyleManager.
-        /// Please use <seealso cref="ApplyTheme(Theme)"/> instead.
-        /// </para>
-        /// <para>
-        /// Apply theme to the NUI using theme id.
-        /// The id of theme should be either a registered custom theme or a built-in theme.
-        /// You can register custom theme using <seealso cref="RegisterTheme(Theme)"/>.
-        /// This will change the appreance of the existing components with property <seealso cref="View.ThemeChangeSensitive"/> on.
-        /// This also affects all components created afterwards.
-        /// </para>
+        /// Change base theme.
+        /// Originally base theme is a platform profile specific theme.
+        /// User may change this to one of platform installed one.
         /// </summary>
-        /// <param name="themeId">The theme Id.</param>
+        /// <param name="themeId">The installed theme Id.</param>
+        /// <returns>true on success, false when it failed to find installed theme with given themeId.</returns>
         /// <exception cref="ArgumentNullException">Thrown when the given themeId is null.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static void ApplyTheme(string themeId)
+        public static bool ApplyBaseTheme(string themeId)
         {
             if (themeId == null) throw new ArgumentNullException(nameof(themeId));
 
-            int index = customThemes.FindIndex(x => x.Id.Equals(themeId, StringComparison.OrdinalIgnoreCase));
-            if (index >= 0)
+            var theme = GetBuiltinTheme(themeId);
+
+            if (theme != null)
             {
-                CurrentTheme = customThemes[index];
-                return;
+                CurrentTheme = theme;
+                return true;
             }
 
-            index = builtinThemes.FindIndex(x => string.Equals(x.Id, themeId, StringComparison.OrdinalIgnoreCase));
-            if (index >= 0)
-            {
-                CurrentTheme = builtinThemes[index];
-            }
-            else
-            {
-                Tizen.Log.Info("NUI", $"No Theme found with given id : {themeId}");
-            }
-        }
+            Tizen.Log.Info("NUI", $"No Theme found with given id : {themeId}");
 
-        /// <summary>
-        /// <para> Note that this API is to support legacy Tizen.NUI.Components.StyleManager. </para>
-        /// <para> Register a custom theme that can be used as an id when calling <seealso cref="ApplyTheme(string)"/>. </para>
-        /// </summary>
-        /// <param name="theme">The theme instance.</param>
-        /// <exception cref="ArgumentNullException">Thrown when the given theme is null.</exception>
-        /// <exception cref="ArgumentException">Thrown when the given theme id is invalid.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static void RegisterTheme(Theme theme)
-        {
-            if (theme == null) throw new ArgumentNullException(nameof(theme));
-            if (string.IsNullOrEmpty(theme.Id)) throw new ArgumentException("Invalid theme id.");
-
-            int index = customThemes.FindIndex(x => x.Id.Equals(theme.Id, StringComparison.OrdinalIgnoreCase));
-            if (index >= 0)
-            {
-                customThemes[index] = (Theme)theme.Clone();
-            }
-            else
-            {
-                customThemes.Add((Theme)theme.Clone());
-            }
+            return false;
         }
 
         /// <summary>
@@ -200,7 +136,7 @@ namespace Tizen.NUI
 
             if (!ThemeApplied) return null;
 
-            return (CurrentTheme?.GetStyle(styleName) ?? DefaultTheme.GetStyle(styleName))?.Clone();
+            return (currentTheme?.GetStyle(styleName) ?? defaultTheme.GetStyle(styleName))?.Clone();
         }
 
         /// <summary>
@@ -215,18 +151,17 @@ namespace Tizen.NUI
 
             if (!ThemeApplied) return null;
 
-            return (CurrentTheme?.GetStyle(viewType) ?? DefaultTheme.GetStyle(viewType))?.Clone();
+            return (currentTheme?.GetStyle(viewType) ?? defaultTheme.GetStyle(viewType))?.Clone();
         }
 
         /// <summary>
-        /// Get a cloned built-in theme.
+        /// Get a built-in theme.
         /// </summary>
         /// <param name="themeId">The built-in theme id.</param>
-        /// <exception cref="ArgumentNullException">Thrown when the given themeId is null.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static Theme GetBuiltinTheme(string themeId)
+        internal static Theme GetBuiltinTheme(string themeId)
         {
-            if (themeId == null) throw new ArgumentNullException(nameof(themeId));
+            Debug.Assert(themeId != null);
 
             Theme result = null;
             int index = builtinThemes.FindIndex(x => string.Equals(x.Id, themeId, StringComparison.OrdinalIgnoreCase));
@@ -236,29 +171,64 @@ namespace Tizen.NUI
             }
             else
             {
-                var theme = LoadBuiltinTheme(themeId);
-                builtinThemes.Add(theme);
-                result = theme;
+                result = LoadBuiltinTheme(themeId);
             }
-            return (Theme)result?.Clone();
+            return result;
         }
 
         /// <summary>
-        /// Update current theme resources.
+        /// !!! This is for internal use in fhub-nui. Please do not open it.
+        /// Set a theme to be used as fallback.
+        /// The fallback theme is set to profile specified theme by default.
         /// </summary>
-        /// <param name="changedResources"> An enumerable collection of the changed resources </param>
+        /// <param name="fallbackTheme">The theme instance to be applied as a fallback.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static void UpdateCurrentThemeResources(IEnumerable<KeyValuePair<string, string>> changedResources)
+        internal static void ApplyFallbackTheme(Theme fallbackTheme)
         {
-            if (CurrentTheme == null) // if current theme is default theme,
+            Debug.Assert(fallbackTheme != null);
+            defaultTheme = (Theme)fallbackTheme?.Clone();
+        }
+
+        /// <summary>
+        /// Set an external theme as a base theme.
+        /// </summary>
+        /// <param name="externalTheme">The external theme instance to be applied as base.</param>
+        internal static void ApplyExternalTheme(IExternalTheme externalTheme)
+        {
+            Debug.Assert(defaultTheme != null);
+
+            if (defaultTheme.HasSameIdAndVersion(externalTheme))
             {
-                DefaultTheme.Clear();
-                foreach (IThemeCreator themeCreator in packages)
-                {
-                    DefaultTheme.MergeWithoutClone(themeCreator.Create(changedResources));
-                }
-                NotifyThemeChanged();
+                return;
             }
+
+            int index = builtinThemes.FindIndex(x => x.HasSameIdAndVersion(externalTheme));
+            if (index >= 0 && builtinThemes[index].PackageCount == packages.Count)
+            {
+                defaultTheme = builtinThemes[index];
+                NotifyThemeChanged();
+                return;
+            }
+
+            var newTheme = new Theme()
+            {
+                Id = externalTheme.Id,
+                Version = externalTheme.Version
+            };
+
+            AddToBuiltinThemes(newTheme);
+
+            foreach (IThemeCreator themeCreator in packages)
+            {
+                var packageTheme = themeCreator.Create();
+                Debug.Assert(packageTheme != null);
+
+                packageTheme.ApplyExternalTheme(externalTheme, themeCreator.GetExternalThemeKeyListSet());
+                newTheme.MergeWithoutClone(packageTheme);
+            }
+
+            defaultTheme = newTheme;
+            NotifyThemeChanged();
         }
 
         internal static void AddPackageTheme(IThemeCreator themeCreator)
@@ -268,27 +238,81 @@ namespace Tizen.NUI
                 return;
             }
             packages.Add(themeCreator);
-            DefaultTheme.MergeWithoutClone(themeCreator.Create());
+
+            var packageTheme = themeCreator.Create();
+            Debug.Assert(packageTheme != null);
+
+            var externalTheme = ExternalThemeManager.GetCurrentTheme();
+            if (externalTheme != null && !packageTheme.HasSameIdAndVersion(externalTheme))
+            {
+                packageTheme.ApplyExternalTheme(externalTheme, themeCreator.GetExternalThemeKeyListSet());
+            }
+
+            if (defaultTheme == null)
+            {
+                defaultTheme = new Theme()
+                {
+                    Id = packageTheme.Id,
+                    Version = packageTheme.Version
+                };
+                AddToBuiltinThemes(defaultTheme);
+            }
+
+            defaultTheme.MergeWithoutClone(packageTheme);
+            defaultTheme.PackageCount++;
+        }
+
+        private static void AddToBuiltinThemes(Theme theme)
+        {
+            int index = builtinThemes.FindIndex(x => x.Id.Equals(theme.Id, StringComparison.OrdinalIgnoreCase));
+            if (index >= 0)
+            {
+                builtinThemes[index] = theme;
+            }
+            else
+            {
+                builtinThemes.Add(theme);
+            }
         }
 
         private static Theme LoadBuiltinTheme(string id)
         {
-            var loaded = new Theme()
+            Debug.Assert(id != null);
+            // Load from tizen-theme-manager
+            var externalTheme = ExternalThemeManager.GetTheme(id);
+
+            if (externalTheme == null)
             {
-                Id = id,
+                return null;
+            }
+
+            var newTheme = new Theme()
+            {
+                Id = externalTheme.Id,
+                Version = externalTheme.Version
             };
 
-            if (string.IsNullOrEmpty(id)) return loaded;
+            AddToBuiltinThemes(newTheme);
 
-            // TODO
+            foreach (IThemeCreator themeCreator in packages)
+            {
+                var packageTheme = themeCreator.Create();
+                Debug.Assert(packageTheme != null);
 
-            return loaded;
+                packageTheme.ApplyExternalTheme(externalTheme, themeCreator.GetExternalThemeKeyListSet());
+                newTheme.MergeWithoutClone(packageTheme);
+            }
+
+            return newTheme;
         }
 
         private static void NotifyThemeChanged()
         {
-            ThemeChangedInternal.Invoke(null, new ThemeChangedEventArgs(CurrentTheme?.Id));
-            ThemeChanged?.Invoke(null, new ThemeChangedEventArgs(CurrentTheme?.Id));
+            Debug.Assert(defaultTheme != null);
+
+            var id = currentTheme?.Id ?? defaultTheme.Id;
+            ThemeChangedInternal.Invoke(null, new ThemeChangedEventArgs(id));
+            ThemeChanged?.Invoke(null, new ThemeChangedEventArgs(id));
         }
     }
 }

@@ -93,7 +93,8 @@ namespace Tizen.NUI.BaseComponents
 
                 map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Color))
                    .Add(ColorVisualProperty.MixColor, new PropertyValue((Color)newValue))
-                   .Add(Visual.Property.CornerRadius, new PropertyValue(view.backgroundExtraData.CornerRadius));
+                   .Add(Visual.Property.CornerRadius, new PropertyValue(view.backgroundExtraData.CornerRadius))
+                   .Add(Visual.Property.CornerRadiusPolicy, new PropertyValue((int)(view.backgroundExtraData.CornerRadiusPolicy)));
 
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.BACKGROUND, new PropertyValue(map));
             }
@@ -160,6 +161,7 @@ namespace Tizen.NUI.BaseComponents
 
             map.Add(ImageVisualProperty.URL, new PropertyValue(url))
                .Add(Visual.Property.CornerRadius, new PropertyValue(view.backgroundExtraData.CornerRadius))
+               .Add(Visual.Property.CornerRadiusPolicy, new PropertyValue((int)(view.backgroundExtraData.CornerRadiusPolicy)))
                .Add(ImageVisualProperty.SynchronousLoading, new PropertyValue(view.backgroundImageSynchronosLoading));
 
             if (view.backgroundExtraData.BackgroundImageBorder != null)
