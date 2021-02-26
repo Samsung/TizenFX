@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 
 namespace Tizen.NUI.Samples
 {
@@ -143,11 +143,6 @@ namespace Tizen.NUI.Samples
             //// The logo should appear on top of everything.
             mRootActor.Add(logo);
 
-            // Show version in a popup when log is tapped
-            //mLogoTapDetector = new TapGestureDetector();
-            //mLogoTapDetector.Attach(logo);
-            //mLogoTapDetector.Detected += OnLogoTapped;
-
             // Scrollview occupying the majority of the screen
             mScrollView = new ScrollView();
             mScrollView.PositionUsesPivotPoint = true;
@@ -255,58 +250,6 @@ namespace Tizen.NUI.Samples
             // move focus to 1st item of new page
             mScrolling = false;
             mCurPage = mScrollView.GetCurrentPage();
-        }
-
-        private void OnLogoTapped(object source, TapGestureDetector.DetectedEventArgs e)
-        {
-            // Only show if currently fully hidden. If transitioning-out, the transition will not be interrupted.
-            if (!mVersionPopup || (mVersionPopup.DisplayState == Popup.DisplayStateType.Hidden))
-            {
-                if (!mVersionPopup)
-                {
-                    string stream = "";
-                    stream += "DALi Core: " + CORE_MAJOR_VERSION + "." + CORE_MINOR_VERSION + "." + CORE_MICRO_VERSION + "\n";
-                    stream += "DALi Adaptor: " + ADAPTOR_MAJOR_VERSION + "." + ADAPTOR_MINOR_VERSION + "." + ADAPTOR_MICRO_VERSION + "\n";
-                    stream += "DALi Toolkit: " + TOOLKIT_MAJOR_VERSION + "." + TOOLKIT_MINOR_VERSION + "." + TOOLKIT_MICRO_VERSION + "\n";
-
-                    mVersionPopup = new Popup();
-
-                    TextLabel titleActor = new TextLabel("Version information");
-                    titleActor.Name = "titleActor";
-                    titleActor.HorizontalAlignment = HorizontalAlignment.Center;
-
-                    TextLabel contentActor = new TextLabel(stream);
-                    contentActor.Name = "contentActor";
-                    contentActor.MultiLine = true;
-                    contentActor.HorizontalAlignment = HorizontalAlignment.Center;
-                    contentActor.SetPadding(new PaddingType(0, 0, 20, 0));
-
-                    mVersionPopup.SetTitle(titleActor);
-                    mVersionPopup.SetContent(contentActor);
-
-                    mVersionPopup.WidthResizePolicy = ResizePolicyType.SizeRelativeToParent;
-                    mVersionPopup.SetSizeModeFactor(new Vector3(0.75f, 1.0f, 1.0f));
-                    mVersionPopup.HeightResizePolicy = ResizePolicyType.FitToChildren;
-
-                    mVersionPopup.TouchedOutside += HideVersionPopup;
-                    mVersionPopup.PositionUsesPivotPoint = true;
-                    mVersionPopup.PivotPoint = PivotPoint.Center;
-                    mVersionPopup.ParentOrigin = ParentOrigin.Center;
-
-                    NUIApplication.GetDefaultWindow().Add(mVersionPopup);
-                }
-
-                mVersionPopup.SetDisplayState(Popup.DisplayStateType.Shown);
-            }
-        }
-
-        private void HideVersionPopup(object sender, Popup.TouchedOutsideEventArgs e)
-        {
-            // Only hide if currently fully shown. If transitioning-in, the transition will not be interrupted.
-            if (null != mVersionPopup && (mVersionPopup.DisplayState == Popup.DisplayStateType.Shown))
-            {
-                mVersionPopup.SetDisplayState(Popup.DisplayStateType.Hidden);
-            }
         }
 
         // Creates the background image
@@ -795,7 +738,6 @@ namespace Tizen.NUI.Samples
         private View mPressedActor;             //  The currently pressed actor.
         private Timer mAnimationTimer;           //  Timer used to turn off animation after a specific time period
         private TapGestureDetector mLogoTapDetector;          //  To detect taps on the logo
-        private Popup mVersionPopup;             //  Displays DALi library version information
 
         // This struct encapsulates all data relevant to each of the elements used within the custom keyboard focus effect.
         private struct FocusEffect

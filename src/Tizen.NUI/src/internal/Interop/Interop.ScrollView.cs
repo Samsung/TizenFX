@@ -288,12 +288,6 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetMaxFlickSpeed")]
             public static extern void SetMaxFlickSpeed(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_GetWheelScrollDistanceStep")]
-            public static extern global::System.IntPtr GetWheelScrollDistanceStep(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetWheelScrollDistanceStep")]
-            public static extern void SetWheelScrollDistanceStep(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_GetCurrentScrollPosition")]
             public static extern global::System.IntPtr GetCurrentScrollPosition(global::System.Runtime.InteropServices.HandleRef jarg1);
 

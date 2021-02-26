@@ -49,7 +49,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="data">A pointer to the data that will be copied to the buffer.</param>
         /// <param name="size">Number of elements to expand or contract the buffer.</param>
-        internal void SetData(System.IntPtr data, uint size)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetData(System.IntPtr data, uint size)
         {
             Interop.PropertyBuffer.SetData(SwigCPtr, data, size);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
