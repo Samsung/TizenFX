@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -93,6 +93,12 @@ namespace Tizen.NUI
         public string Id { get; set; }
 
         /// <summary>
+        /// The string key to identify the Theme.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string Version { get; set; } = null;
+
+        /// <summary>
         /// For Xaml use only.
         /// The bulit-in theme id that will be used as base of this.
         /// View styles with same key are merged.
@@ -106,7 +112,7 @@ namespace Tizen.NUI
 
                 if (string.IsNullOrEmpty(baseTheme)) return;
 
-                var baseThemeInstance = ThemeManager.GetBuiltinTheme(baseTheme);
+                var baseThemeInstance = (Theme)ThemeManager.GetBuiltinTheme(baseTheme)?.Clone();
 
                 if (baseThemeInstance != null)
                 {
@@ -186,6 +192,8 @@ namespace Tizen.NUI
 
         internal int Count => map.Count;
 
+        internal int PackageCount { get; set; } = 0;
+
         /// <summary>
         /// Get an enumerator of the theme.
         /// </summary>
@@ -218,7 +226,11 @@ namespace Tizen.NUI
         /// <param name="styleName">The string key to find a ViewStyle.</param>
         /// <returns>Founded style instance.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ViewStyle GetStyle(string styleName) => map.ContainsKey(styleName) ? map[styleName] : null;
+        public ViewStyle GetStyle(string styleName)
+        {
+            map.TryGetValue(styleName, out ViewStyle result);
+            return result;
+        }
 
         /// <summary>
         /// Gets a style of given view type.
@@ -313,7 +325,15 @@ namespace Tizen.NUI
             if (theme == null)
                 throw new ArgumentNullException(nameof(theme));
 
-            if (Id == null) Id = theme.Id;
+            if (Id == null)
+            {
+                Id = theme.Id;
+            }
+
+            if (Version == null)
+            {
+                Version = theme.Version;
+            }
 
             foreach (var item in theme)
             {
@@ -344,6 +364,33 @@ namespace Tizen.NUI
         /// Internal use only.
         /// </summary>
         internal void AddStyleWithoutClone(string styleName, ViewStyle value) => map[styleName] = value;
+
+        internal void ApplyExternalTheme(IExternalTheme externalTheme, HashSet<ExternalThemeKeyList> keyListSet)
+        {
+            Id = externalTheme.Id;
+            Version = externalTheme.Version;
+
+            if (keyListSet == null)
+            {
+                // Nothing to apply
+                return;
+            }
+
+            foreach (var keyList in keyListSet)
+            {
+                keyList?.ApplyKeyActions(externalTheme, this);
+            }
+        }
+
+        internal bool HasSameIdAndVersion(IExternalTheme externalTheme)
+        {
+            if (externalTheme == null)
+            {
+                return false;
+            }
+
+            return string.Equals(Id, externalTheme.Id, StringComparison.OrdinalIgnoreCase) && string.Equals(Version, externalTheme.Version, StringComparison.OrdinalIgnoreCase);
+        }
 
         internal void SetChangedResources(IEnumerable<KeyValuePair<string, string>> changedResources)
         {

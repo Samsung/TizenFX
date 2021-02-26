@@ -23,11 +23,15 @@ using Tizen.NUI.Components.Extension;
 namespace Tizen.NUI.Components
 {
     // It is a C# version of res/Tizen.NUI.Components_Tizen.NUI.Theme.Wearable.xaml
-    internal class DefaultThemeCreator : IThemeCreator
+    internal partial class DefaultThemeCreator : IThemeCreator
     {
         public Theme Create()
         {
-            var theme = new Theme() { Id = "Tizen.NUI.Theme.Wearable" };
+            var theme = new Theme()
+            {
+                Id = Tizen.NUI.DefaultThemeCreator.DefaultId,
+                Version = Tizen.NUI.DefaultThemeCreator.DefaultVersion
+            };
 
             theme.AddStyleWithoutClone("Tizen.NUI.Components.Popup", new PopupStyle()
             {

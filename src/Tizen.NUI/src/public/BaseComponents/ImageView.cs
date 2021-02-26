@@ -1229,9 +1229,12 @@ namespace Tizen.NUI.BaseComponents
 
             if (backgroundExtraData != null && backgroundExtraData.CornerRadius > 0)
             {
-                PropertyValue cornerRadius = new PropertyValue(backgroundExtraData.CornerRadius);
-                imageMap?.Insert(Visual.Property.CornerRadius, cornerRadius);
-                cornerRadius?.Dispose();
+                using (var cornerRadius = new PropertyValue(backgroundExtraData.CornerRadius))
+                using (var cornerRadiusPolicy = new PropertyValue((int)backgroundExtraData.CornerRadiusPolicy))
+                {
+                    imageMap.Insert(Visual.Property.CornerRadius, cornerRadius);
+                    imageMap.Insert(Visual.Property.CornerRadiusPolicy, new PropertyValue((int)(backgroundExtraData.CornerRadiusPolicy)));
+                }
             }
 
             if (value != null)
