@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+using System;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
 using System.ComponentModel;
@@ -191,6 +192,7 @@ namespace Tizen.NUI.Components
         /// Get style of progress.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
+        [Obsolete("Deprecated in API9; Will be removed in API11.")]
         public new ProgressStyle Style
         {
             get

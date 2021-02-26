@@ -113,24 +113,6 @@ namespace Tizen.NUI.Components
         private bool isEnabled = true;
         private RecyclerViewItemStyle ItemStyle => ViewStyle as RecyclerViewItemStyle;
 
-        /// <summary>
-        /// Return a copied Style instance of Toast
-        /// </summary>
-        /// <remarks>
-        /// It returns copied Style instance and changing it does not effect to the Toast.
-        /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
-        /// </remarks>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public new RecyclerViewItemStyle Style
-        {
-            get
-            {
-                var result = new RecyclerViewItemStyle(ItemStyle);
-                result.CopyPropertiesFromView(this);
-                return result;
-            }
-        }
-
         static RecyclerViewItem() {}
 
         /// <summary>

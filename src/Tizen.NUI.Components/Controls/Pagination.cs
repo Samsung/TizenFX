@@ -75,6 +75,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         /// <since_tizen> 8 </since_tizen>
+        [Obsolete("Deprecated in API9; Will be removed in API11.")]
         public new PaginationStyle Style
         {
             get

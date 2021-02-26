@@ -91,24 +91,6 @@ namespace Tizen.NUI.Components
         private readonly uint duration = 3000;
         private ToastStyle toastStyle => ViewStyle as ToastStyle;
 
-        /// <summary>
-        /// Return a copied Style instance of Toast
-        /// </summary>
-        /// <remarks>
-        /// It returns copied Style instance and changing it does not effect to the Toast.
-        /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
-        /// </remarks>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public new ToastStyle Style
-        {
-            get
-            {
-                var result = new ToastStyle(toastStyle);
-                result.CopyPropertiesFromView(this);
-                result.Text.CopyPropertiesFromView(textLabel);
-                return result;
-            }
-        }
         static Toast() { }
 
         /// <summary>

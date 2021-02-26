@@ -333,21 +333,6 @@ namespace Tizen.NUI.Components
         public event EventHandler<ButtonClickEventArgs> PopupButtonClickEvent;
 
         /// <summary>
-        /// Get style of popup.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public new PopupStyle Style
-        {
-            get
-            {
-                var result = new PopupStyle(popupStyle);
-                result.CopyPropertiesFromView(this);
-                result.Title.CopyPropertiesFromView(titleText);
-                return result;
-            }
-        }
-
-        /// <summary>
         /// Popup Title.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]

@@ -348,6 +348,7 @@ namespace Tizen.NUI.Components
         /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
         /// </remarks>
         /// <since_tizen> 8 </since_tizen>
+        [Obsolete("Deprecated in API9; Will be removed in API11.")]
         public new ButtonStyle Style
         {
             get
@@ -667,7 +668,7 @@ namespace Tizen.NUI.Components
             set => SetValue(TextPaddingProperty, value);
         }
 
-        private ButtonStyle buttonStyle => ViewStyle as ButtonStyle;
+        internal ButtonStyle buttonStyle => ViewStyle as ButtonStyle;
 
         /// <summary>
         /// Called after a key event is received by the view that has had its focus set.

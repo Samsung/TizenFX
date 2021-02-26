@@ -149,6 +149,7 @@ namespace Tizen.NUI.Components
         /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
         /// </remarks>>
         /// <since_tizen> 8 </since_tizen>
+        [Obsolete("Deprecated in API9; Will be removed in API11.")]
         public new LoadingStyle Style
         {
             get

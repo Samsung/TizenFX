@@ -66,12 +66,12 @@ namespace Tizen.NUI.Components.Extension
 
         internal static void InitializeLottieView(Button button, LottieAnimationView lottieView)
         {
-            if (button.Style as ILottieButtonStyle == null)
+            if (button.buttonStyle as ILottieButtonStyle == null)
             {
                 throw new Exception("LottieButtonExtension must be used within a ILottieButtonStyle or derived class.");
             }
 
-            var lottieStyle = (ILottieButtonStyle)button.Style;
+            var lottieStyle = (ILottieButtonStyle)button.buttonStyle;
             lottieView.URL = lottieStyle.LottieUrl;
             lottieView.StopBehavior = LottieAnimationView.StopBehaviorType.MaximumFrame;
             if (lottieStyle.PlayRange != null && lottieStyle.PlayRange.GetValue(ControlState.Normal, out var result))
@@ -82,7 +82,7 @@ namespace Tizen.NUI.Components.Extension
 
         internal static void UpdateLottieView(Button button, ControlState previousState, LottieAnimationView lottieView)
         {
-            var lottieStyle = ((ILottieButtonStyle)button.Style);
+            var lottieStyle = ((ILottieButtonStyle)button.buttonStyle);
             if (lottieStyle.PlayRange != null && lottieStyle.PlayRange.GetValue(button.ControlState, out var result))
             {
                 result.Show(lottieView, !previousState.Contains(ControlState.Pressed));
