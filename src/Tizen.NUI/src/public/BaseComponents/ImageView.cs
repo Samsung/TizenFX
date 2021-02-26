@@ -241,7 +241,7 @@ namespace Tizen.NUI.BaseComponents
         defaultValueCreator: (bindable) =>
         {
             var imageView = (ImageView)bindable;
-            return imageView.resourceUrlSelector.Get(imageView);
+            return imageView.GetSelector<string>(imageView.resourceUrlSelector, ImageView.ResourceUrlProperty);
         });
 
         internal static readonly BindableProperty BorderSelectorProperty = BindableProperty.Create("BorderSelector", typeof(Selector<Rectangle>), typeof(ImageView), null, propertyChanged: (bindable, oldValue, newValue) =>
@@ -252,7 +252,7 @@ namespace Tizen.NUI.BaseComponents
         defaultValueCreator: (bindable) =>
         {
             var imageView = (ImageView)bindable;
-            return imageView.borderSelector.Get(imageView);
+            return imageView.GetSelector<Rectangle>(imageView.borderSelector, ImageView.BorderProperty);
         });
 
         private EventHandler<ResourceReadyEventArgs> _resourceReadyEventHandler;
@@ -453,7 +453,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(ResourceUrlProperty, value);
-                resourceUrlSelector.UpdateIfNeeds(this, value);
+                resourceUrlSelector.Reset(this);
                 NotifyPropertyChanged();
             }
         }
@@ -588,7 +588,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(BorderProperty, value);
-                borderSelector.UpdateIfNeeds(this, value);
+                borderSelector.Reset(this);
                 NotifyPropertyChanged();
             }
         }

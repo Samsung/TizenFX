@@ -312,8 +312,8 @@ namespace Tizen.NUI.BaseComponents
                 SetValue(BackgroundColorProperty, value);
                 if (selectorData != null)
                 {
-                    selectorData.BackgroundImage.Reset(this);
-                    selectorData.BackgroundColor.UpdateIfNeeds(this, value);
+                    selectorData.BackgroundImage?.Reset(this);
+                    selectorData.BackgroundColor?.Reset(this);
                 }
                 NotifyPropertyChanged();
             }
@@ -334,8 +334,8 @@ namespace Tizen.NUI.BaseComponents
                 SetValue(BackgroundImageProperty, value);
                 if (selectorData != null)
                 {
-                    selectorData.BackgroundColor.Reset(this);
-                    selectorData.BackgroundImage.UpdateIfNeeds(this, value);
+                    selectorData.BackgroundColor?.Reset(this);
+                    selectorData.BackgroundImage?.Reset(this);
                 }
                 NotifyPropertyChanged();
             }
@@ -355,7 +355,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(BackgroundImageBorderProperty, value);
-                selectorData?.BackgroundImageBorder.UpdateIfNeeds(this, value);
+                selectorData?.BackgroundImageBorder?.Reset(this);
                 NotifyPropertyChanged();
             }
         }
@@ -409,8 +409,8 @@ namespace Tizen.NUI.BaseComponents
                 SetValue(ImageShadowProperty, value);
                 if (selectorData != null)
                 {
-                    selectorData.BoxShadow.Reset(this);
-                    selectorData.ImageShadow.UpdateIfNeeds(this, value);
+                    selectorData.BoxShadow?.Reset(this);
+                    selectorData.ImageShadow?.Reset(this);
                 }
                 NotifyPropertyChanged();
             }
@@ -448,8 +448,8 @@ namespace Tizen.NUI.BaseComponents
                 SetValue(BoxShadowProperty, value);
                 if (selectorData != null)
                 {
-                    selectorData.ImageShadow.Reset(this);
-                    selectorData.BoxShadow.UpdateIfNeeds(this, value);
+                    selectorData.ImageShadow?.Reset(this);
+                    selectorData.BoxShadow?.Reset(this);
                 }
                 NotifyPropertyChanged();
             }
@@ -891,7 +891,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(OpacityProperty, value);
-                selectorData?.Opacity.UpdateIfNeeds(this, value);
+                selectorData?.Opacity?.Reset(this);
                 NotifyPropertyChanged();
             }
         }
@@ -2194,7 +2194,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(ColorProperty, value);
-                selectorData?.Color.UpdateIfNeeds(this, value);
+                selectorData?.Color?.Reset(this);
                 NotifyPropertyChanged();
             }
         }
