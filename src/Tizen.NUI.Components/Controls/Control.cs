@@ -61,7 +61,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         static public void Preload()
         {
-            ThemeManager.AddPackageTheme(DefaultThemeCreator.Instance);
+            DefaultThemeCreator.Preload();
         }
 
         /// <summary>
