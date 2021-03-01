@@ -112,6 +112,10 @@ namespace Tizen.NUI.Wearable
             }
 
             RecycleItem prevItem = centerItem;
+            if (prevItem == null)
+            {
+                return;
+            }
 
             // Front of center item
             for (int i = FocusedIndex - 1; i > -1; i--)
