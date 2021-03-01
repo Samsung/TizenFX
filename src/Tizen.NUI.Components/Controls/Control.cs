@@ -207,6 +207,9 @@ namespace Tizen.NUI.Components
             base.Dispose(type);
         }
 
+        /// <summary>
+        /// OnInitialize
+        /// </summary>
         public override void OnInitialize()
         {
             base.OnInitialize();

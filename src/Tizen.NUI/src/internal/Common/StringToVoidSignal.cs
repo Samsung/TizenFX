@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019-2021 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,73 +26,73 @@ namespace Tizen.NUI
     using global::System.Runtime.InteropServices;
     using Tizen.NUI.BaseComponents;
 
-    public class AccessibilityDoGestureSignal : Disposable
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class StringToVoidSignal : Disposable
     {
-        internal AccessibilityDoGestureSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn) {
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal StringToVoidSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        {
         }
 
-        static internal uint GetSizeOfGestureInfo() {
-            uint ret = Interop.DoGestureSignal.GetSizeOfGestureInfo();
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        static internal string ConvertParam1(global::System.IntPtr data) {
+            string result = Interop.StringToVoidSignal.ConvertParam1(data);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            return result;
         }
 
-        static internal int GetResult(global::System.IntPtr data) {
-            int ret = Interop.DoGestureSignal.GetResult(data);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        static internal void SetResult(global::System.IntPtr data, int res) {
-            Interop.DoGestureSignal.SetResult(data, res);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.DoGestureSignal.Delete(swigCPtr);
+            Interop.StringToVoidSignal.Delete(swigCPtr);
         }
 
-        public AccessibilityDoGestureSignal() : this(Interop.DoGestureSignal.New(), true)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public StringToVoidSignal() : this(Interop.StringToVoidSignal.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Empty()
         {
-            bool ret = Interop.DoGestureSignal.Empty(SwigCPtr);
+            bool ret = Interop.StringToVoidSignal.Empty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetConnectionCount()
         {
-            uint ret = Interop.DoGestureSignal.GetConnectionCount(SwigCPtr);
+            uint ret = Interop.StringToVoidSignal.GetConnectionCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Connect(System.Delegate func)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.DoGestureSignal.Connect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.StringToVoidSignal.Connect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Disconnect(System.Delegate func)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.DoGestureSignal.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.StringToVoidSignal.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Emit()
         {
-            Interop.DoGestureSignal.Emit(SwigCPtr);
+            Interop.StringToVoidSignal.Emit(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
     }

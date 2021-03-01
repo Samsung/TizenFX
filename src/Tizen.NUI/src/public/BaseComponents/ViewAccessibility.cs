@@ -357,6 +357,7 @@ namespace Tizen.NUI.BaseComponents
         private Interop.ControlDevel.AccessibilityDelegate _accessibilityDelegate = null;
         private IntPtr _accessibilityDelegatePtr;
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public enum AccessibilityInterface
         {
             None = 0,
@@ -409,6 +410,7 @@ namespace Tizen.NUI.BaseComponents
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);

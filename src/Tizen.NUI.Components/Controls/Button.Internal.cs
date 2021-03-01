@@ -17,11 +17,19 @@ namespace Tizen.NUI.Components
         private bool isPressed = false;
         private bool styleApplied = false;
 
+        /// <summary>
+        /// Get accessibility name.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override string AccessibilityGetName()
         {
             return Text;
         }
 
+        /// <summary>
+        /// Prevents from showing child widgets in AT-SPI tree.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override bool AccessibilityShouldReportZeroChildren()
         {
             return true;
@@ -394,6 +402,10 @@ namespace Tizen.NUI.Components
             base.Dispose(type);
         }
 
+        /// <summary>
+        /// Initilizes AT-SPI object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnInitialize()
         {
             base.OnInitialize();

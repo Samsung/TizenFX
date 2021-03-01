@@ -1171,26 +1171,46 @@ namespace Tizen.NUI.Components
             EnableControlStatePropagation = true;
         }
 
+        /// <summary>
+        /// Prevents from showing child widgets in AT-SPI tree.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override bool AccessibilityShouldReportZeroChildren()
         {
             return true;
         }
 
+        /// <summary>
+        /// Minimum value.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override double AccessibilityGetMinimum()
         {
             return (double)MinValue;
         }
 
+        /// <summary>
+        /// Current value.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override double AccessibilityGetCurrent()
         {
             return (double)CurrentValue;
         }
 
+        /// <summary>
+        /// Maximum value.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override double AccessibilityGetMaximum()
         {
             return (double)MaxValue;
         }
 
+        /// <summary>
+        /// Current value.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override bool AccessibilitySetCurrent(double value)
         {
             var f = (float)value;
@@ -1208,12 +1228,20 @@ namespace Tizen.NUI.Components
             return false;
         }
 
+        /// <summary>
+        /// Minimum increment.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override double AccessibilityGetMinimumIncrement()
         {
             // FIXME
             return (MaxValue - MinValue) / 20.0;
         }
 
+        /// <summary>
+        /// Initliaze AT-SPI object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnInitialize()
         {
             base.OnInitialize();

@@ -285,6 +285,10 @@ namespace Tizen.NUI.Components
             }
         }
 
+        /// <summary>
+        /// Gets scrollable status.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override bool AccessibilityIsScrollable()
         {
             return true;

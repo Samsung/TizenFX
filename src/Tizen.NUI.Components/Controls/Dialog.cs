@@ -237,6 +237,10 @@ namespace Tizen.NUI.Components
             base.Dispose(type);
         }
 
+        /// <summary>
+        /// Initialize AT-SPI object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnInitialize()
         {
             base.OnInitialize();
@@ -245,6 +249,10 @@ namespace Tizen.NUI.Components
             Show(); // calls AddPopup()
         }
 
+        /// <summary>
+        /// Informs AT-SPI bridge about the set of AT-SPI states associated with this object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override AccessibilityStates AccessibilityCalculateStates()
         {
             var states = base.AccessibilityCalculateStates();

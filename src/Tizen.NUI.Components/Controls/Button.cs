@@ -199,6 +199,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Calculates current states for the button<br />
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override AccessibilityStates AccessibilityCalculateStates()
         {
             var states = base.AccessibilityCalculateStates();

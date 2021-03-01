@@ -54,6 +54,10 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public RadioButton(ButtonStyle buttonStyle) : base(buttonStyle) { }
 
+        /// <summary>
+        /// Initialize AT-SPI object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnInitialize()
         {
             base.OnInitialize();

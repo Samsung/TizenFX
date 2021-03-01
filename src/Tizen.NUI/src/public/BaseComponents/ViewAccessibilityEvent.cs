@@ -108,10 +108,10 @@ namespace Tizen.NUI.BaseComponents
 
         private delegate void GestureInfoHandlerType(IntPtr data);
         private GestureInfoHandlerType gestureInfoCallback;
-        private EventHandler<GestureInfoArgs> gestureInfoHandler;
+        private EventHandler<GestureInfoEventArgs> gestureInfoHandler;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public class GestureInfoArgs : EventArgs
+        public class GestureInfoEventArgs : EventArgs
         {
             public GestureInfoType gestureInfo { get; internal set; }
             public int boolValue { get; set; }
@@ -125,7 +125,7 @@ namespace Tizen.NUI.BaseComponents
                 throw new global::System.ApplicationException("ABI mismatch SizeOf(C# GestureInfo) != SizeOf(c++ GestureInfo)");
             }
 
-            var arg = new GestureInfoArgs();
+            var arg = new GestureInfoEventArgs();
 
             arg.boolValue = AccessibilityDoGestureSignal.GetResult(data);
             arg.gestureInfo = (GestureInfoType)Marshal.PtrToStructure(data, typeof(GestureInfoType));
@@ -137,7 +137,7 @@ namespace Tizen.NUI.BaseComponents
 
         // This uses DoGestureInfo signal from C++ API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<GestureInfoArgs> GestureInfoReceived {
+        public event EventHandler<GestureInfoEventArgs> GestureInfoReceived {
             add {
                 if (gestureInfoHandler == null) {
                     gestureInfoCallback = OnGestureInfoEvent;
@@ -165,10 +165,10 @@ namespace Tizen.NUI.BaseComponents
 
         private delegate void GetDescriptionHandlerType(IntPtr data);
         private GetDescriptionHandlerType getDescriptionCallback;
-        private EventHandler<GetDescriptionArgs> getDescriptionHandler;
+        private EventHandler<GetDescriptionEventArgs> getDescriptionHandler;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public class GetDescriptionArgs : EventArgs
+        public class GetDescriptionEventArgs : EventArgs
         {
             public string description { get; internal set; }
         }
@@ -177,7 +177,7 @@ namespace Tizen.NUI.BaseComponents
             if (data == IntPtr.Zero)
                 return;
 
-            var arg = new GetDescriptionArgs();
+            var arg = new GetDescriptionEventArgs();
             arg.description = StringToVoidSignal.ConvertParam1(data);
 
             getDescriptionHandler?.Invoke(this, arg);
@@ -185,7 +185,7 @@ namespace Tizen.NUI.BaseComponents
 
         // This uses GetDescription signal from C++ API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<GetDescriptionArgs> DescriptionRequested {
+        public event EventHandler<GetDescriptionEventArgs> DescriptionRequested {
             add {
                 if (getDescriptionHandler == null) {
                     getDescriptionCallback = OnGetDescriptionEvent;
@@ -213,10 +213,10 @@ namespace Tizen.NUI.BaseComponents
 
         private delegate void GetNameHandlerType(IntPtr data);
         private GetNameHandlerType getNameCallback;
-        private EventHandler<GetNameArgs> getNameHandler;
+        private EventHandler<GetNameEventArgs> getNameHandler;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public class GetNameArgs : EventArgs
+        public class GetNameEventArgs : EventArgs
         {
             public string description { get; internal set; }
         }
@@ -225,7 +225,7 @@ namespace Tizen.NUI.BaseComponents
             if (data == IntPtr.Zero)
                 return;
 
-            var arg = new GetNameArgs();
+            var arg = new GetNameEventArgs();
             arg.description = StringToVoidSignal.ConvertParam1(data);
 
             getNameHandler?.Invoke(this, arg);
@@ -233,7 +233,7 @@ namespace Tizen.NUI.BaseComponents
 
         // This uses GetName signal from C++ API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<GetNameArgs> NameRequested {
+        public event EventHandler<GetNameEventArgs> NameRequested {
             add {
                 if (getNameHandler == null) {
                     getNameCallback = OnGetNameEvent;

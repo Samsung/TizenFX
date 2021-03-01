@@ -487,6 +487,7 @@ namespace Tizen.NUI.BaseComponents
         {
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override bool AccessibilityDoAction(string name)
         {
             if (name == AccessibilityActivateAction)
@@ -578,47 +579,42 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// This method is called when the control accessibility is activated.<br />
-        /// Derived classes should override this to perform custom accessibility ReadingSkipped handling.<br />
+        /// This method is called when reading is skipped.
         /// </summary>
-        /// <returns>True if this control can perform accessibility  ReadingSkipped handling.</returns>
+        /// <returns>True if information was served.</returns>
         internal virtual bool OnAccessibilityReadingSkipped()
         {
             return false;
         }
 
         /// <summary>
-        /// This method is called when the control accessibility is activated.<br />
-        /// Derived classes should override this to perform custom accessibility ReadingCancelled handling.<br />
+        /// This method is called when reading is cancelled.
         /// </summary>
-        /// <returns>True if this control can perform accessibility ReadingCancelled handling.</returns>
+        /// <returns>True if information was served.</returns>
         internal virtual bool OnAccessibilityReadingCancelled()
         {
             return false;
         }
         /// <summary>
-        /// This method is called when the control accessibility is activated.<br />
-        /// Derived classes should override this to perform custom accessibility ReadingStopped handling.<br />
+        /// This method is called when reading is stopped.
         /// </summary>
-        /// <returns>True if this control can perform accessibility ReadingStopped handling.</returns>
+        /// <returns>True if information was served.</returns>
         internal virtual bool OnAccessibilityReadingStopped()
         {
             return false;
         }
         /// <summary>
-        /// This method is called when the control accessibility is activated.<br />
-        /// Derived classes should override this to perform custom accessibility ReadingPaused handling.<br />
+        /// This method is called when reading was paused.
         /// </summary>
-        /// <returns>True if this control can perform accessibility ReadingPaused handling.</returns>
+        /// <returns>True if information was served.</returns>
         internal virtual bool OnAccessibilityReadingPaused()
         {
             return false;
         }
         /// <summary>
-        /// This method is called when the control accessibility is activated.<br />
-        /// Derived classes should override this to perform custom accessibility ReadingResumed handling.<br />
+        /// This method is called when reading is resumed.
         /// </summary>
-        /// <returns>True if this control can perform accessibility ReadingResumed handling.</returns>
+        /// <returns>True if information was served.</returns>
         internal virtual bool OnAccessibilityReadingResumed()
         {
             return false;
