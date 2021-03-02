@@ -1009,6 +1009,8 @@ namespace Tizen.NUI.Components
 
         private void PageSnap(float velocity)
         {
+            float destination;
+
             Debug.WriteLineIf(LayoutDebugScrollableBase, "PageSnap with pan candidate totalDisplacement:" + totalDisplacementForPan +
                 " currentPage[" + CurrentPage + "]");
 
@@ -1037,9 +1039,12 @@ namespace Tizen.NUI.Components
             }
 
             // Animate to new page or reposition to current page
-            float destinationX = -(Children[CurrentPage].Position.X + Children[CurrentPage].CurrentSize.Width / 2 - CurrentSize.Width / 2); // set to middle of current page
-            Debug.WriteLineIf(LayoutDebugScrollableBase, "Snapping to page[" + CurrentPage + "] to:" + destinationX + " from:" + ContentContainer.PositionX);
-            AnimateChildTo(ScrollDuration, destinationX);
+            if (ScrollingDirection == Direction.Horizontal)
+                destination = -(Children[CurrentPage].Position.X + Children[CurrentPage].CurrentSize.Width / 2 - CurrentSize.Width / 2); // set to middle of current page
+            else
+                destination = -(Children[CurrentPage].Position.Y + Children[CurrentPage].CurrentSize.Height / 2 - CurrentSize.Height / 2);
+
+            AnimateChildTo(ScrollDuration, destination);
         }
 
         /// <summary>
