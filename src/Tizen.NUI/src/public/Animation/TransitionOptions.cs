@@ -22,8 +22,10 @@ using Tizen.NUI.BaseComponents;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// Setting screen transition options.
-    /// This is used to describe the transition of NUIApplication.
+    /// This TransitionOptions class is a class to control Transition motion.
+    /// This class includes multiple options for the Transition.
+    /// NUI supports a kind of Transitions such as App transition, Page transition, and so on.
+    /// Some of options could be used only for the App transition or Page transition, but others could be used for multiple purpose.
     /// </summary>
     /// <seealso cref="NUIApplication.TransitionOptions" />
     [EditorBrowsable(EditorBrowsableState.Never)]
@@ -32,11 +34,9 @@ namespace Tizen.NUI
         private bool disposed = false;
         private FrameProvider frameProvider;
         private DefaultFrameBroker frameBroker;
-
         private bool enableTransition = false;
         private Window mainWindow;
         private View animatedTarget;
-        private string sharedId;
 
         /// <summary>
         /// Initializes the TransitionOptions class.
@@ -46,6 +46,14 @@ namespace Tizen.NUI
         public TransitionOptions(Window window)
         {
             mainWindow = window;
+        }
+
+        /// <summary>
+        /// Initializes the TransitionOptions class.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TransitionOptions()
+        {
         }
 
         /// <summary>
@@ -97,20 +105,19 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets the Shared object Id
+        /// During the Page transition, if two Views each of on the old top Page
+        /// and new top Page have same TransitionTag, the View on the old top Page
+        /// will be transition to the one of new top Page.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public String SharedId
-        {
-            set
-            {
-                sharedId = value;
-            }
-            get
-            {
-                return sharedId;
-            }
-        }
+        public string TransitionTag { set; get; } = null;
+
+        /// <summary>
+        /// A View could be transition with its child Views or without them.
+        /// Default value is false
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool TransitionWithChild { set; get; } = false;
 
         /// <summary>
         /// Gets or sets the forward animation of launching

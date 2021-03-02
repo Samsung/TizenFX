@@ -15,9 +15,13 @@
  *
  */
 
+using global::System;
+using global::System.ComponentModel;
+
 namespace Tizen.NUI
 {
-    internal class TimePeriod : Disposable
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class TimePeriod : Disposable
     {
         internal TimePeriod(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
@@ -33,16 +37,19 @@ namespace Tizen.NUI
             Interop.TimePeriod.DeleteTimePeriod(swigCPtr);
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public TimePeriod(float durationSeconds) : this(Interop.TimePeriod.NewTimePeriod(durationSeconds), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public TimePeriod(float delaySeconds, float durationSeconds) : this(Interop.TimePeriod.NewTimePeriod(delaySeconds, durationSeconds), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float DelaySeconds
         {
             set
@@ -58,6 +65,7 @@ namespace Tizen.NUI
             }
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float DurationSeconds
         {
             set

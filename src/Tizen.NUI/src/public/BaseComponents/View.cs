@@ -46,6 +46,7 @@ namespace Tizen.NUI.BaseComponents
         private bool excludeLayouting = false;
         private LayoutTransition layoutTransition;
         private ControlState controlStates = ControlState.Normal;
+        private TransitionOptions transitionOptions = null;
 
         static View() { }
 
@@ -2776,5 +2777,23 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// Set or Get TransitionOptions for the page transition.
+        /// </summary>
+        /// <remarks>
+        /// Hidden-API (Inhouse-API).
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TransitionOptions TransitionOptions
+        {
+            set
+            {
+                transitionOptions = value;
+            }
+            get
+            {
+                return transitionOptions;
+            }
+        }
     }
 }
