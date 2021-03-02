@@ -25,6 +25,16 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class WebSettings : Disposable
     {
+        private bool allowMixedContents;
+        private bool enableSpatialNavigation;
+        private bool enableWebSecurity;
+        private bool allowFileAccessFromExternalUrl;
+        private bool allowScriptsOpenWindows;
+
+        internal WebSettings(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        {
+        }
+
         /// <summary>
         /// Allow Mixed Contents
         /// </summary>
@@ -174,41 +184,9 @@ namespace Tizen.NUI
             }
         }
 
-        internal WebSettings(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
-        {
-        }
-
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(WebSettings obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
-
-        /// <summary>
-        /// Dispose for IDisposable pattern
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-            }
-
-            base.Dispose(type);
-        }
-
-        // private.
-        private bool allowMixedContents;
-        private bool enableSpatialNavigation;
-        private bool enableWebSecurity;
-        private bool allowFileAccessFromExternalUrl;
-        private bool allowScriptsOpenWindows;
     }
 }
