@@ -419,7 +419,7 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-            selector = otherSelector.Clone();
+            selector = otherSelector;
 
             if (otherSelector.HasMultiValue())
             {
@@ -443,7 +443,6 @@ namespace Tizen.NUI.BaseComponents
             {
                 view.ControlStateChangeEventInternal -= OnViewControlState;
             }
-            selector?.Clear();
             selector = null;
         }
 
