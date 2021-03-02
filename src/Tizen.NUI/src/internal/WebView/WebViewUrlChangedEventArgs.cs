@@ -21,39 +21,20 @@ using System.ComponentModel;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// Event arguments that passed via the WebView.ScrollEdgeReached.
+    /// Event arguments that passed via the WebView.UrlChanged.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class WebViewScrollEdgeReachedEventArgs : EventArgs
+    public class WebViewUrlChangedEventArgs : EventArgs
     {
-        internal WebViewScrollEdgeReachedEventArgs(Edge e)
+        internal WebViewUrlChangedEventArgs(string url)
         {
-            ScrollEdge = e;
+            NewPageUri = new Uri(url);
         }
 
         /// <summary>
-        /// The enumeration for edge.
+        /// The uri of new web page.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public enum Edge
-        {
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            Left,
-
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            Right,
-
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            Top,
-
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            Bottom,
-        }
-
-        /// <summary>
-        /// The edge, e.g. left, right, etc.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Edge ScrollEdge { get; }
+        public Uri NewPageUri { get; }
     }
 }

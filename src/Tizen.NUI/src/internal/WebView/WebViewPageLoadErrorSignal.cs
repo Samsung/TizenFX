@@ -19,7 +19,9 @@ namespace Tizen.NUI
 {
     internal class WebViewPageLoadErrorSignal : Disposable
     {
-
+        public WebViewPageLoadErrorSignal(global::System.IntPtr cPtr) : base(cPtr, true)
+        {
+        }
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
@@ -48,10 +50,6 @@ namespace Tizen.NUI
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
             }
-        }
-
-        public WebViewPageLoadErrorSignal(global::System.IntPtr cPtr) : base(cPtr, true)
-        {
         }
     }
 }

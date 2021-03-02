@@ -26,6 +26,10 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class WebViewPageLoadErrorEventArgs : EventArgs
     {
+        private WebView _webView;
+        private string _pageUrl;
+        private LoadErrorCode _errorCode;
+
         /// <summary>
         /// Enumeration for the load error code
         /// </summary>
@@ -94,7 +98,6 @@ namespace Tizen.NUI
             InternalServer,
         }
 
-        private WebView _webView;
         /// <summary>
         /// The view for displaying webpages.
         /// </summary>
@@ -111,7 +114,6 @@ namespace Tizen.NUI
             }
         }
 
-        private string _pageUrl;
         /// <summary>
         /// The url string of current webpage.
         /// </summary>
@@ -128,7 +130,6 @@ namespace Tizen.NUI
             }
         }
 
-        private LoadErrorCode _errorCode;
         /// <summary>
         /// The code for the current error.
         /// </summary>

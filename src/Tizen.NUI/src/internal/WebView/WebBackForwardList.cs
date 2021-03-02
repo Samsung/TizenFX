@@ -26,6 +26,10 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class WebBackForwardListItem : Disposable
     {
+        internal WebBackForwardListItem(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        {
+        }
+
         /// <summary>
         /// Get uri.
         /// </summary>
@@ -62,34 +66,9 @@ namespace Tizen.NUI
             }
         }
 
-        internal WebBackForwardListItem(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
-        {
-        }
-
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(WebBackForwardListItem obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
-        }
-
-        /// <summary>
-        /// Dispose for IDisposable pattern
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-            }
-
-            base.Dispose(type);
         }
     }
 
@@ -99,6 +78,10 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class WebBackForwardList : Disposable
     {
+        internal WebBackForwardList(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        {
+        }
+
         /// <summary>
         /// Get item count.
         /// </summary>
@@ -131,34 +114,9 @@ namespace Tizen.NUI
             return new WebBackForwardListItem(itemPtr, false);
         }
 
-        internal WebBackForwardList(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
-        {
-        }
-
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(WebBackForwardList obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
-        }
-
-        /// <summary>
-        /// Dispose for IDisposable pattern
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-            }
-
-            base.Dispose(type);
         }
     }
 }

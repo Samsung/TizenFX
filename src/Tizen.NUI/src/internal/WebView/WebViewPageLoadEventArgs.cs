@@ -26,8 +26,9 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class WebViewPageLoadEventArgs : EventArgs
     {
-
         private WebView _webView;
+        private string _pageUrl;
+
         /// <summary>
         /// The view for displaying webpages.
         /// </summary>
@@ -44,7 +45,6 @@ namespace Tizen.NUI
             }
         }
 
-        private string _pageUrl;
         /// <summary>
         /// The url string of current webpage.
         /// </summary>
