@@ -22,6 +22,7 @@
     <Compile Remove="Samples\DropDownSample.cs" />
     <Compile Remove="Samples\PopupSample.cs" />
     <Compile Remove="Samples\RadioButtonSample.cs" />
+    <Compile Remove="Samples\ThemeResourceSample.cs" />
   </ItemGroup>
 
   <ItemGroup>
