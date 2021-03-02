@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class CubeTransitionEffect : View
     {
-        private EventHandler<TransitionCompletedEventArgs> _transitionCompletedEventHandler;
+        private EventHandler<TransitionCompletedEventArgs> transitionCompletedEventHandler;
         private TransitionCompletedCallbackDelegate _transitionCompletedCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -170,17 +170,17 @@ namespace Tizen.NUI
         {
             add
             {
-                if (_transitionCompletedEventHandler == null)
+                if (transitionCompletedEventHandler == null)
                 {
                     _transitionCompletedCallbackDelegate = (OnTransitionCompleted);
                     TransitionCompletedSignal().Connect(_transitionCompletedCallbackDelegate);
                 }
-                _transitionCompletedEventHandler += value;
+                transitionCompletedEventHandler += value;
             }
             remove
             {
-                _transitionCompletedEventHandler -= value;
-                if (_transitionCompletedEventHandler == null && TransitionCompletedSignal().Empty() == false)
+                transitionCompletedEventHandler -= value;
+                if (transitionCompletedEventHandler == null && TransitionCompletedSignal().Empty() == false)
                 {
                     TransitionCompletedSignal().Disconnect(_transitionCompletedCallbackDelegate);
                 }
@@ -194,10 +194,10 @@ namespace Tizen.NUI
             // Populate all members of "e" (TransitionCompletedEventArgs) with real data
             //e.CubeTransitionEffect = Registry.GetManagedBaseHandleFromNativePtr(cubeTransition) as CubeTransitionEffect;
 
-            if (_transitionCompletedEventHandler != null)
+            if (transitionCompletedEventHandler != null)
             {
                 //here we send all data to user event handlers
-                _transitionCompletedEventHandler(this, e);
+                transitionCompletedEventHandler(this, e);
             }
         }
 
@@ -212,8 +212,8 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class TransitionCompletedEventArgs : EventArgs
         {
-            private CubeTransitionEffect _cubeTransitionEffect;
-            private Texture _cubeTransitonTexture;
+            private CubeTransitionEffect cubeTransitionEffect;
+            private Texture cubeTransitonTexture;
 
             /// <summary>
             /// CubeTransitionEffect.
@@ -224,11 +224,11 @@ namespace Tizen.NUI
             {
                 get
                 {
-                    return _cubeTransitionEffect;
+                    return cubeTransitionEffect;
                 }
                 set
                 {
-                    _cubeTransitionEffect = value;
+                    cubeTransitionEffect = value;
                 }
             }
 
@@ -238,11 +238,11 @@ namespace Tizen.NUI
             {
                 get
                 {
-                    return _cubeTransitonTexture;
+                    return cubeTransitonTexture;
                 }
                 set
                 {
-                    _cubeTransitonTexture = value;
+                    cubeTransitonTexture = value;
                 }
             }
         }

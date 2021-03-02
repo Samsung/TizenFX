@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,12 +28,11 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class AutofillContainer : BaseHandle
     {
+        private AuthenticationEventCallbackType authenticationCallback;
+        private ListEventCallbackType listCallback;
 
-        private AuthenticationEventCallbackType _authenticationCallback;
-        private ListEventCallbackType _listCallback;
-
-        private event EventHandler<AuthenticationEventArgs> _authenticationEventHandler;
-        private event EventHandler<ListEventArgs> _listEventHandler;
+        private event EventHandler<AuthenticationEventArgs> authenticationEventHandler;
+        private event EventHandler<ListEventArgs> listEventHandler;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void AuthenticationEventCallbackType(IntPtr autofillContainer);
@@ -48,21 +47,21 @@ namespace Tizen.NUI
         {
             add
             {
-                if (_authenticationEventHandler == null)
+                if (authenticationEventHandler == null)
                 {
-                    _authenticationCallback = OnServiceEvent;
-                    AutofillServiceEventSignal().Connect(_authenticationCallback);
+                    authenticationCallback = OnServiceEvent;
+                    AutofillServiceEventSignal().Connect(authenticationCallback);
                 }
 
-                _authenticationEventHandler += value;
+                authenticationEventHandler += value;
             }
             remove
             {
-                _authenticationEventHandler -= value;
+                authenticationEventHandler -= value;
 
-                if (_authenticationEventHandler == null && _authenticationCallback != null)
+                if (authenticationEventHandler == null && authenticationCallback != null)
                 {
-                    AutofillServiceEventSignal().Disconnect(_authenticationCallback);
+                    AutofillServiceEventSignal().Disconnect(authenticationCallback);
                 }
             }
         }
@@ -76,21 +75,21 @@ namespace Tizen.NUI
         {
             add
             {
-                if (_listEventHandler == null)
+                if (listEventHandler == null)
                 {
-                    _listCallback = OnListEvent;
-                    AutofillListEventSignal().Connect(_listCallback);
+                    listCallback = OnListEvent;
+                    AutofillListEventSignal().Connect(listCallback);
                 }
 
-                _listEventHandler += value;
+                listEventHandler += value;
             }
             remove
             {
-                _listEventHandler -= value;
+                listEventHandler -= value;
 
-                if (_listEventHandler == null && _listCallback != null)
+                if (listEventHandler == null && listCallback != null)
                 {
-                    AutofillListEventSignal().Disconnect(_listCallback);
+                    AutofillListEventSignal().Disconnect(listCallback);
                 }
             }
         }
@@ -104,7 +103,6 @@ namespace Tizen.NUI
         public AutofillContainer(string name) : this(Interop.AutofillContainer.New(name), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
         }
 
         internal AutofillContainer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
@@ -294,17 +292,16 @@ namespace Tizen.NUI
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
-
             if (this != null)
             {
-                if (_authenticationCallback != null)
+                if (authenticationCallback != null)
                 {
-                    AutofillServiceEventSignal().Disconnect(_authenticationCallback);
+                    AutofillServiceEventSignal().Disconnect(authenticationCallback);
                 }
 
-                if (_listCallback != null)
+                if (listCallback != null)
                 {
-                    AutofillListEventSignal().Disconnect(_listCallback);
+                    AutofillListEventSignal().Disconnect(listCallback);
                 }
             }
 
@@ -323,9 +320,9 @@ namespace Tizen.NUI
             AuthenticationEventArgs e = new AuthenticationEventArgs();
             e.AutofillContainer = Registry.GetManagedBaseHandleFromNativePtr(autofillContainer) as AutofillContainer;
 
-            if (_authenticationEventHandler != null)
+            if (authenticationEventHandler != null)
             {
-                _authenticationEventHandler(this, e);
+                authenticationEventHandler(this, e);
             }
         }
 
@@ -334,9 +331,9 @@ namespace Tizen.NUI
             ListEventArgs e = new ListEventArgs();
             e.Control = Registry.GetManagedBaseHandleFromNativePtr(control) as BaseComponents.View;
 
-            if (_listEventHandler != null)
+            if (listEventHandler != null)
             {
-                _listEventHandler(this, e);
+                listEventHandler(this, e);
             }
         }
 
@@ -466,5 +463,4 @@ namespace Tizen.NUI
             CreditCardSecurityCode
         }
     }
-
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,17 +14,27 @@
  * limitations under the License.
  *
  */
-#if PROFILE_WEARABLE
+
+using System;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
-    internal class DefaultThemeCreator : IThemeCreator
+    /// <summary>
+    /// Event arguments that passed via the WebView.UrlChanged.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class WebViewUrlChangedEventArgs : EventArgs
     {
-        public Theme Create()
+        internal WebViewUrlChangedEventArgs(string url)
         {
-            return new Theme() { Id = "Tizen.NUI.Theme.Wearable" };
+            NewPageUri = new Uri(url);
         }
+
+        /// <summary>
+        /// The uri of new web page.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Uri NewPageUri { get; }
     }
 }
-
-#endif

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,9 +17,9 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
-using Tizen.NUI.BaseComponents;
 using System.Linq;
+
+using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding.Internals;
 using static Tizen.NUI.Binding.BindableObject;
 
@@ -691,7 +691,6 @@ namespace Tizen.NUI
 
         internal static Binding.BindableProperty.ValidateValueDelegate ValidateEnum(int enumMin, int enumMax)
         {
-
             return (Binding.BindableObject bindable, object value) =>
             {
                 int @enum = (int)value;

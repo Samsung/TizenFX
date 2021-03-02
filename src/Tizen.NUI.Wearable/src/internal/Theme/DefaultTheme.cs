@@ -26,12 +26,13 @@ namespace Tizen.NUI.Wearable
 
         public static IThemeCreator Instance { get; set; } = new DefaultThemeCreator();
 
-        public Theme Create() => Create(null);
-
-        public Theme Create(IEnumerable<KeyValuePair<string, string>> changedResources)
+        public Theme Create()
         {
-            _ = changedResources;
-            var theme = new Theme() { Id = "Tizen.NUI.Theme.Common" };
+            var theme = new Theme()
+            {
+                Id = Tizen.NUI.DefaultThemeCreator.DefaultId,
+                Version = Tizen.NUI.DefaultThemeCreator.DefaultVersion
+            };
 
             theme.AddStyleWithoutClone("Tizen.NUI.Wearable.CircularPagination", new CircularPaginationStyle()
             {
@@ -80,5 +81,7 @@ namespace Tizen.NUI.Wearable
 
             return theme;
         }
+
+        public HashSet<ExternalThemeKeyList> GetExternalThemeKeyListSet() => null;
     }
 }

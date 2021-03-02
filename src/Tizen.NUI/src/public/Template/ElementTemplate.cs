@@ -1,7 +1,23 @@
+/*
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI.Binding
 {
@@ -11,9 +27,9 @@ namespace Tizen.NUI.Binding
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class ElementTemplate : IElement, IDataTemplate
     {
-        List<Action<object, ResourcesChangedEventArgs>> _changeHandlers;
-        Element _parent;
-        bool _canRecycle; // aka IsDeclarative
+        List<Action<object, ResourcesChangedEventArgs>> changeHandlers;
+        Element parent;
+        bool canRecycle; // aka IsDeclarative
 
         internal ElementTemplate()
         {
@@ -24,7 +40,7 @@ namespace Tizen.NUI.Binding
             if (type == null)
                 throw new ArgumentNullException(nameof(type));
 
-            _canRecycle = true;
+            canRecycle = true;
 
             LoadTemplate = () => Activator.CreateInstance(type);
         }
@@ -49,31 +65,31 @@ namespace Tizen.NUI.Binding
 
         void IElement.AddResourcesChangedListener(Action<object, ResourcesChangedEventArgs> onchanged)
         {
-            _changeHandlers = _changeHandlers ?? new List<Action<object, ResourcesChangedEventArgs>>(1);
-            _changeHandlers.Add(onchanged);
+            changeHandlers = changeHandlers ?? new List<Action<object, ResourcesChangedEventArgs>>(1);
+            changeHandlers.Add(onchanged);
         }
 
-        internal bool CanRecycle => _canRecycle;
+        internal bool CanRecycle => canRecycle;
         Element IElement.Parent
         {
-            get { return _parent; }
+            get { return parent; }
             set
             {
-                if (_parent == value)
+                if (parent == value)
                     return;
-                if (_parent != null)
-                    ((IElement)_parent).RemoveResourcesChangedListener(OnResourcesChanged);
-                _parent = value;
-                if (_parent != null)
-                    ((IElement)_parent).AddResourcesChangedListener(OnResourcesChanged);
+                if (parent != null)
+                    ((IElement)parent).RemoveResourcesChangedListener(OnResourcesChanged);
+                parent = value;
+                if (parent != null)
+                    ((IElement)parent).AddResourcesChangedListener(OnResourcesChanged);
             }
         }
 
         void IElement.RemoveResourcesChangedListener(Action<object, ResourcesChangedEventArgs> onchanged)
         {
-            if (_changeHandlers == null)
+            if (changeHandlers == null)
                 return;
-            _changeHandlers.Remove(onchanged);
+            changeHandlers.Remove(onchanged);
         }
 
         /// <summary>
@@ -100,9 +116,9 @@ namespace Tizen.NUI.Binding
 
         void OnResourcesChanged(object sender, ResourcesChangedEventArgs e)
         {
-            if (_changeHandlers == null)
+            if (changeHandlers == null)
                 return;
-            foreach (Action<object, ResourcesChangedEventArgs> handler in _changeHandlers)
+            foreach (Action<object, ResourcesChangedEventArgs> handler in changeHandlers)
                 handler(this, e);
         }
     }

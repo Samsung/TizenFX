@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,9 +22,7 @@ using System.Threading;
 using System.Reflection;
 using Tizen.Applications;
 using Tizen.Applications.CoreBackend;
-using Tizen.NUI.Binding;
 using Tizen.NUI.Xaml;
-using System.Collections.Generic;
 
 namespace Tizen.NUI
 {
@@ -40,14 +38,9 @@ namespace Tizen.NUI
         /// </summary>
         private static System.Resources.ResourceManager resourceManager = null;
 
-        // TODO Enable this after tizen-theme-manager is released.
-        // private readonly ThemeLoader themeLoader = new ThemeLoader();
-
         static NUIApplication()
         {
             Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
-            // TODO Enable this after tizen-theme-manager is released.
-            // themeLoader.ThemeChanged += TizenThemeChanged;
         }
 
         /// <summary>
@@ -57,6 +50,7 @@ namespace Tizen.NUI
         [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "NUICoreBackend is disposed in the base class when the application is terminated")]
         public NUIApplication() : base(new NUICoreBackend())
         {
+            ExternalThemeManager.Initialize();
         }
 
         /// <summary>
@@ -70,6 +64,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public NUIApplication(Size2D windowSize, Position2D windowPosition) : base(new NUICoreBackend("", NUIApplication.WindowMode.Opaque, windowSize, windowPosition))
         {
+            ExternalThemeManager.Initialize();
         }
 
         /// <summary>
@@ -80,6 +75,7 @@ namespace Tizen.NUI
         [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "NUICoreBackend is disposed in the base class when the application is terminated")]
         public NUIApplication(string styleSheet) : base(new NUICoreBackend(styleSheet))
         {
+            ExternalThemeManager.Initialize();
         }
 
         /// <summary>
@@ -94,6 +90,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public NUIApplication(string styleSheet, Size2D windowSize, Position2D windowPosition) : base(new NUICoreBackend(styleSheet, WindowMode.Opaque, windowSize, windowPosition))
         {
+            ExternalThemeManager.Initialize();
         }
 
         /// <summary>
@@ -105,6 +102,7 @@ namespace Tizen.NUI
         [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "NUICoreBackend is disposed in the base class when the application is terminated")]
         public NUIApplication(string styleSheet, WindowMode windowMode) : base(new NUICoreBackend(styleSheet, windowMode))
         {
+            ExternalThemeManager.Initialize();
         }
 
         /// <summary>
@@ -120,6 +118,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public NUIApplication(string styleSheet, WindowMode windowMode, Size2D windowSize, Position2D windowPosition) : base(new NUICoreBackend(styleSheet, windowMode, windowSize, windowPosition))
         {
+            ExternalThemeManager.Initialize();
         }
 
         /// <summary>
@@ -138,6 +137,7 @@ namespace Tizen.NUI
             //windowMode and styleSheet will be added later. currenlty it's not working as expected.
             Graphics.Backend = backend;
             Tizen.Log.Error("NUI", "Plaese DO NOT set graphical backend type with this constructor! This will give no effect!");
+            ExternalThemeManager.Initialize();
         }
 
         /// <summary>
@@ -395,6 +395,7 @@ namespace Tizen.NUI
         static public void Preload()
         {
             Interop.Application.PreInitialize();
+            ThemeManager.AddPackageTheme(DefaultThemeCreator.Instance);
             IsPreload = true;
         }
 
@@ -412,29 +413,6 @@ namespace Tizen.NUI
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TransitionOptions TransitionOptions { get; set; }
-
-        // TODO Enable this after tizen-theme-manager is released.
-        // private void TizenThemeChanged(object sender, ThemeEventArgs e)
-        // {
-        //     string prefix = "/theme/";
-
-        //     Dictionary<string, string> changedResources = new Dictionary<string, string>();
-        //     foreach (string key in ThemeManager.DefaultTheme.Resources.Keys)
-        //     {
-        //         // NOTE Need improve this code by checking HasKey
-        //         string newValue = null;
-        //         try
-        //         {
-        //             newValue = e.Theme.GetString(prefix + key);
-        //         }
-        //         catch { }
-        //         if (newValue != null)
-        //         {
-        //             changedResources[key] = newValue;
-        //         }
-        //     }
-        //     ThemeManager.UpdateCurrentThemeResources(changedResources);
-        // }
 
         /// <summary>
         /// Check if it is loaded as dotnet-loader-nui.
@@ -474,5 +452,4 @@ namespace Tizen.NUI
         internal const string GlesCSharpBinder = NDalicPINVOKE.Lib;
         internal const string VulkanCSharpBinder = "libdali-csharp-binder-vk.so";
     }
-
 }
