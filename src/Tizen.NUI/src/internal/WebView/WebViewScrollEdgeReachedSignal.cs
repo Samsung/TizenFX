@@ -23,6 +23,11 @@ namespace Tizen.NUI
         {
         }
 
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.WebView.DeleteWebViewScrollEdgeReachedSignal(swigCPtr);
+        }
+
         public void Connect(System.Delegate func)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
@@ -45,11 +50,6 @@ namespace Tizen.NUI
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
             }
-        }
-
-        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
-        {
-            Interop.WebView.DeleteWebViewScrollEdgeReachedSignal(swigCPtr);
         }
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,22 +17,22 @@
 
 namespace Tizen.NUI
 {
-    internal class WebViewPageLoadSignal : Disposable
+    internal class WebViewUrlChangedSignal : Disposable
     {
-        public WebViewPageLoadSignal(global::System.IntPtr cPtr) : base(cPtr, true)
+        public WebViewUrlChangedSignal(global::System.IntPtr cPtr) : base(cPtr, true)
         {
         }
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.WebView.DeleteWebViewPageLoadSignal(swigCPtr);
+            Interop.WebView.DeleteWebViewUrlChangedSignal(swigCPtr);
         }
 
         public void Connect(System.Delegate func)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
             {
-                Interop.WebView.WebViewPageLoadSignalConnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.WebView.WebViewUrlChangedSignalConnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                 {
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -44,7 +44,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.WebView.WebViewPageLoadSignalDisconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.WebView.WebViewUrlChangedSignalDisconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                 {
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
