@@ -121,6 +121,8 @@ cmd_report() {
   report $1
 }
 
+update_coverage_tools
+
 cmd=$1; [ $# -gt 0 ] && shift;
 case "$cmd" in
   instrument|--instrument|-i) cmd_instrument $@ ;;
