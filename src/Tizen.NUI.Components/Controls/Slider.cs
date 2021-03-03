@@ -574,9 +574,9 @@ namespace Tizen.NUI.Components
             {
                 if (null != thumbImage)
                 {
-                    thumbImage.Color = value;
+                    thumbImage.BackgroundColor = value;
                     thumbColor = value;
-                    sliderStyle.Thumb.Color = value;
+                    sliderStyle.Thumb.BackgroundColor = value;
                 }
             }
         }
