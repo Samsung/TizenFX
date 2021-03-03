@@ -1740,21 +1740,6 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             return view.SelectorData.BoxShadow.Get(view);
         });
-
-        /// <summary>
-        /// CornerRadius Selector Property
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CornerRadiusSelectorProperty = BindableProperty.Create("CornerRadiusSelector", typeof(Selector<float?>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var view = (View)bindable;
-            view.SelectorData.CornerRadius.Update(view, (Selector<float?>)newValue, true);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var view = (View)bindable;
-            return view.SelectorData.CornerRadius.Get(view);
-        });
         #endregion
     }
 }

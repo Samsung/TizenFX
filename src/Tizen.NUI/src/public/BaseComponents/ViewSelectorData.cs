@@ -55,7 +55,6 @@ namespace Tizen.NUI.BaseComponents
         public TriggerableSelector<float?> Opacity { get; } = new TriggerableSelector<float?>(View.OpacityProperty);
         public TriggerableSelector<ImageShadow> ImageShadow { get; } = new TriggerableSelector<ImageShadow>(View.ImageShadowProperty);
         public TriggerableSelector<Shadow> BoxShadow { get; } = new TriggerableSelector<Shadow>(View.BoxShadowProperty);
-        public TriggerableSelector<float?> CornerRadius { get; } = new TriggerableSelector<float?>(View.CornerRadiusProperty);
 
         public void Reset(View view)
         {
@@ -66,7 +65,6 @@ namespace Tizen.NUI.BaseComponents
             Opacity.Reset(view);
             ImageShadow.Reset(view);
             BoxShadow.Reset(view);
-            CornerRadius.Reset(view);
         }
     }
 }

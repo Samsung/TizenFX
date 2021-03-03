@@ -29,18 +29,6 @@ namespace Tizen.NUI.BaseComponents
     {
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TranslatableTextSelectorProperty = BindableProperty.Create("TranslatableTextSelector", typeof(Selector<string>), typeof(TextFieldStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var textFieldStyle = (TextFieldStyle)bindable;
-            textFieldStyle.translatableTextSelector = ((Selector<string>)newValue)?.Clone();
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var textFieldStyle = (TextFieldStyle)bindable;
-            return textFieldStyle.translatableTextSelector;
-        });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TranslatablePlaceholderTextSelectorProperty = BindableProperty.Create("TranslatablePlaceholderTextSelector", typeof(Selector<string>), typeof(TextFieldStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textFieldStyle = (TextFieldStyle)bindable;
@@ -50,18 +38,6 @@ namespace Tizen.NUI.BaseComponents
         {
             var textFieldStyle = (TextFieldStyle)bindable;
             return textFieldStyle.translatablePlaceholderTextSelector;
-        });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TextSelectorProperty = BindableProperty.Create("TextSelector", typeof(Selector<string>), typeof(TextFieldStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var textFieldStyle = (TextFieldStyle)bindable;
-            textFieldStyle.textSelector = ((Selector<string>)newValue)?.Clone();
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var textFieldStyle = (TextFieldStyle)bindable;
-            return textFieldStyle.textSelector;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -515,9 +491,7 @@ namespace Tizen.NUI.BaseComponents
         private bool? enableSelection;
         private bool? ellipsis;
         private bool? matchSystemLanguageDirection;
-        private Selector<string> translatableTextSelector;
         private Selector<string> translatablePlaceholderTextSelector;
-        private Selector<string> textSelector;
         private Selector<string> fontFamilySelector;
         private Selector<Color> textColorSelector;
         private Selector<float?> pointSizeSelector;
@@ -536,18 +510,6 @@ namespace Tizen.NUI.BaseComponents
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Selector<string> TranslatableText
-        {
-            get
-            {
-                Selector<string> tmp = (Selector<string>)GetValue(TranslatableTextSelectorProperty);
-                return (null != tmp) ? tmp : translatableTextSelector = new Selector<string>();
-            }
-            set => SetValue(TranslatableTextSelectorProperty, value);
-        }
-
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<string> TranslatablePlaceholderText
         {
             get
@@ -556,18 +518,6 @@ namespace Tizen.NUI.BaseComponents
                 return (null != tmp) ? tmp : translatablePlaceholderTextSelector = new Selector<string>();
             }
             set => SetValue(TranslatablePlaceholderTextSelectorProperty, value);
-        }
-
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Selector<string> Text
-        {
-            get
-            {
-                Selector<string> tmp = (Selector<string>)GetValue(TextSelectorProperty);
-                return (null != tmp) ? tmp : textSelector = new Selector<string>();
-            }
-            set => SetValue(TextSelectorProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
