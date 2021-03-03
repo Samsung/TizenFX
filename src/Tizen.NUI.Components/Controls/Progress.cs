@@ -152,6 +152,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public Progress() : base()
         {
+            Initialize();
         }
 
         /// <summary>
@@ -161,6 +162,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Progress(string style) : base(style)
         {
+            Initialize();
         }
 
         /// <summary>
@@ -170,6 +172,49 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Progress(ProgressStyle progressStyle) : base(progressStyle)
         {
+            Initialize();
+        }
+
+        /// <summary>
+        /// Prevents from showing child widgets in AT-SPI tree.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override bool AccessibilityShouldReportZeroChildren()
+        {
+            return true;
+        }
+
+        /// <summary>
+        /// Minimum value.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override double AccessibilityGetMinimum()
+        {
+            if (this.ProgressState == Components.Progress.ProgressStatusType.Determinate)
+                return (double)MinValue;
+            else return 0.0;
+        }
+
+        /// <summary>
+        /// Current value.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override double AccessibilityGetCurrent()
+        {
+            if (this.ProgressState == Components.Progress.ProgressStatusType.Determinate)
+                return (double)CurrentValue;
+            else return 0.0;
+        }
+
+        /// <summary>
+        /// Maximum value.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override double AccessibilityGetMaximum()
+        {
+            if (this.ProgressState == Components.Progress.ProgressStatusType.Determinate)
+                return (double)MaxValue;
+            else return 0.0;
         }
 
         /// <summary>
@@ -342,6 +387,10 @@ namespace Tizen.NUI.Components
             set
             {
                 SetValue(CurrentValueProperty, value);
+                if (IsHighlighted)
+                {
+                    EmitAccessibilityEvent(ObjectPropertyChangeEvent.Value);
+                }
             }
         }
 
@@ -382,6 +431,7 @@ namespace Tizen.NUI.Components
         public override void OnInitialize()
         {
             base.OnInitialize();
+            SetAccessibilityConstructor(Role.ProgressBar, AccessibilityInterface.Value);
             // create necessary components
             InitializeTrack();
             InitializeBuffer();
@@ -561,6 +611,11 @@ namespace Tizen.NUI.Components
 
                 UpdateIndeterminateAnimation();
             }
+        }
+
+        private void Initialize()
+        {
+            AccessibilityHighlightable = true;
         }
 
         private void InitializeTrack()
