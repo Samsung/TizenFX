@@ -475,7 +475,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(CornerRadiusProperty, value);
-                selectorData?.CornerRadius.UpdateIfNeeds(this, value);
                 NotifyPropertyChanged();
             }
         }
