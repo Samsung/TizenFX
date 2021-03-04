@@ -28,6 +28,7 @@ namespace Tizen.NUI.BaseComponents
         public TriggerableSelector<Color> TextColor { get; } = new TriggerableSelector<Color>(TextField.TextColorProperty, GetTextColor);
         public TriggerableSelector<float?> PointSize { get; } = new TriggerableSelector<float?>(TextField.PointSizeProperty);
         public TriggerableSelector<string> TranslatablePlaceholderText { get; } = new TriggerableSelector<string>(TextField.TranslatablePlaceholderTextProperty);
+        public TriggerableSelector<string> TranslatablePlaceholderTextFocused { get; } = new TriggerableSelector<string>(TextField.TranslatablePlaceholderTextFocusedProperty);
         public TriggerableSelector<Vector4> PlaceholderTextColor { get; } = new TriggerableSelector<Vector4>(TextField.PlaceholderTextColorProperty, delegate (View view)
         {
             Vector4 color = new Vector4();
@@ -56,6 +57,7 @@ namespace Tizen.NUI.BaseComponents
             TextColor.Reset(view);
             PointSize.Reset(view);
             TranslatablePlaceholderText.Reset(view);
+            TranslatablePlaceholderTextFocused.Reset(view);
             PlaceholderTextColor.Reset(view);
             PrimaryCursorColor.Reset(view);
         }

@@ -51,6 +51,18 @@ namespace Tizen.NUI.BaseComponents
             var textFieldStyle = (TextFieldStyle)bindable;
             return textFieldStyle.translatablePlaceholderTextSelector;
         });
+        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty TranslatablePlaceholderTextFocusedSelectorProperty = BindableProperty.Create("TranslatablePlaceholderTextFocusedSelector", typeof(Selector<string>), typeof(TextFieldStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textFieldStyle = (TextFieldStyle)bindable;
+            textFieldStyle.translatablePlaceholderTextFocusedSelector = ((Selector<string>)newValue)?.Clone();
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textFieldStyle = (TextFieldStyle)bindable;
+            return textFieldStyle.translatablePlaceholderTextFocusedSelector;
+        });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TextSelectorProperty = BindableProperty.Create("TextSelector", typeof(Selector<string>), typeof(TextFieldStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
@@ -517,6 +529,7 @@ namespace Tizen.NUI.BaseComponents
         private bool? matchSystemLanguageDirection;
         private Selector<string> translatableTextSelector;
         private Selector<string> translatablePlaceholderTextSelector;
+        private Selector<string> translatablePlaceholderTextFocusedSelector;
         private Selector<string> textSelector;
         private Selector<string> fontFamilySelector;
         private Selector<Color> textColorSelector;
@@ -565,6 +578,18 @@ namespace Tizen.NUI.BaseComponents
                 return (null != tmp) ? tmp : translatablePlaceholderTextSelector = new Selector<string>();
             }
             set => SetValue(TranslatablePlaceholderTextSelectorProperty, value);
+        }
+
+        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Selector<string> TranslatablePlaceholderTextFocused
+        {
+            get
+            {
+                Selector<string> tmp = (Selector<string>)GetValue(TranslatablePlaceholderTextFocusedSelectorProperty);
+                return (null != tmp) ? tmp : translatablePlaceholderTextFocusedSelector = new Selector<string>();
+            }
+            set => SetValue(TranslatablePlaceholderTextFocusedSelectorProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
