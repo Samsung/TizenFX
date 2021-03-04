@@ -60,6 +60,23 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             return textField.translatablePlaceholderText;
         });
+        /// <summary>
+        /// TranslatablePlaceholderTextFocused property
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty TranslatablePlaceholderTextFocusedProperty = BindableProperty.Create(nameof(TranslatablePlaceholderTextFocused), typeof(string), typeof(TextField), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textField = (TextField)bindable;
+            if (newValue != null)
+            {
+                textField.translatablePlaceholderTextFocused = (string)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textField = (TextField)bindable;
+            return textField.translatablePlaceholderTextFocused;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(TextField), string.Empty, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
@@ -1010,6 +1027,16 @@ namespace Tizen.NUI.BaseComponents
         {
             var textField = (TextField)bindable;
             return textField.GetSelector<string>(textField.selectorData?.TranslatablePlaceholderText, TextField.TranslatablePlaceholderTextProperty);
+        });
+        internal static readonly BindableProperty TranslatablePlaceholderTextFocusedSelectorProperty = BindableProperty.Create("TranslatablePlaceholderTextFocusedSelector", typeof(Selector<string>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textField = (TextField)bindable;
+            textField.EnsureSelectorData().EnsureTranslatablePlaceholderTextFocused().Update(textField, (Selector<string>)newValue, true);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textField = (TextField)bindable;
+            return textField.GetSelector<string>(textField.selectorData?.TranslatablePlaceholderTextFocused, TextField.TranslatablePlaceholderTextFocusedProperty);
         });
         internal static readonly BindableProperty TextSelectorProperty = BindableProperty.Create("TextSelector", typeof(Selector<string>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
         {

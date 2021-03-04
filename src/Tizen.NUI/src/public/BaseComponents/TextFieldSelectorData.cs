@@ -29,6 +29,7 @@ namespace Tizen.NUI.BaseComponents
         public TriggerableSelector<float?> PointSize { get; private set; }
         public TriggerableSelector<float?> PixelSize { get; private set; }
         public TriggerableSelector<string> TranslatablePlaceholderText { get; private set; }
+        public TriggerableSelector<string> TranslatablePlaceholderTextFocused { get; private set; }
         public TriggerableSelector<Vector4> PlaceholderTextColor { get; private set; }
         public TriggerableSelector<Vector4> PrimaryCursorColor { get; private set; }
 
@@ -39,6 +40,7 @@ namespace Tizen.NUI.BaseComponents
         public TriggerableSelector<float?> EnsurePointSize() => PointSize ?? (PointSize = new TriggerableSelector<float?>(TextField.PointSizeProperty));
         public TriggerableSelector<float?> EnsurePixelSize() => PixelSize ?? (PixelSize = new TriggerableSelector<float?>(TextField.PixelSizeProperty));
         public TriggerableSelector<string> EnsureTranslatablePlaceholderText() => TranslatablePlaceholderText ?? (TranslatablePlaceholderText = new TriggerableSelector<string>(TextField.TranslatablePlaceholderTextProperty));
+        public TriggerableSelector<string> EnsureTranslatablePlaceholderTextFocused() => TranslatablePlaceholderTextFocused ?? (TranslatablePlaceholderTextFocused = new TriggerableSelector<string>(TextField.TranslatablePlaceholderTextFocusedProperty));
         public TriggerableSelector<Vector4> EnsurePlaceholderTextColor() =>  PlaceholderTextColor ?? (PlaceholderTextColor = new TriggerableSelector<Vector4>(TextField.PlaceholderTextColorProperty));
         public TriggerableSelector<Vector4> EnsurePrimaryCursorColor() => PrimaryCursorColor ?? (PrimaryCursorColor = new TriggerableSelector<Vector4>(TextField.PrimaryCursorColorProperty));
 
@@ -51,6 +53,7 @@ namespace Tizen.NUI.BaseComponents
             PointSize?.Reset(view);
             PixelSize?.Reset(view);
             TranslatablePlaceholderText?.Reset(view);
+            TranslatablePlaceholderTextFocused?.Reset(view);
             PlaceholderTextColor?.Reset(view);
             PrimaryCursorColor?.Reset(view);
         }

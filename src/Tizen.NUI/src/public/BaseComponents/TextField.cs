@@ -32,6 +32,7 @@ namespace Tizen.NUI.BaseComponents
     {
         private string textFieldTextSid = null;
         private string textFieldPlaceHolderTextSid = null;
+        private string textFieldPlaceHolderTextFocusedSid = null;
         private bool systemlangTextFlag = false;
         private InputMethodContext inputMethodCotext = null;
         private TextFieldSelectorData selectorData;
@@ -174,6 +175,45 @@ namespace Tizen.NUI.BaseComponents
                 }
                 textFieldPlaceHolderTextSid = value;
                 PlaceholderText = SetTranslatable(textFieldPlaceHolderTextSid);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The TranslatablePlaceholderTextFocused property.<br />
+        /// The text can set the SID value.<br />
+        /// </summary>
+        /// <exception cref='ArgumentNullException'>
+        /// ResourceManager about multilingual is null.
+        /// </exception>
+        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string TranslatablePlaceholderTextFocused
+        {
+            get
+            {
+                return (string)GetValue(TranslatablePlaceholderTextFocusedProperty);
+            }
+            set
+            {
+                SetValue(TranslatablePlaceholderTextFocusedProperty, value);
+                selectorData?.TranslatablePlaceholderTextFocused?.Reset(this);
+            }
+        }
+        private string translatablePlaceholderTextFocused
+        {
+            get
+            {
+                return textFieldPlaceHolderTextFocusedSid;
+            }
+            set
+            {
+                if (NUIApplication.MultilingualResourceManager == null)
+                {
+                    throw new ArgumentNullException(null, "ResourceManager about multilingual is null");
+                }
+                textFieldPlaceHolderTextFocusedSid = value;
+                PlaceholderTextFocused = SetTranslatable(textFieldPlaceHolderTextFocusedSid);
                 NotifyPropertyChanged();
             }
         }
@@ -1510,6 +1550,10 @@ namespace Tizen.NUI.BaseComponents
             if (textFieldPlaceHolderTextSid != null)
             {
                 PlaceholderText = NUIApplication.MultilingualResourceManager?.GetString(textFieldPlaceHolderTextSid, new CultureInfo(e.Value.Replace("_", "-")));
+            }
+            if (textFieldPlaceHolderTextFocusedSid != null)
+            {
+                PlaceholderTextFocused = NUIApplication.MultilingualResourceManager?.GetString(textFieldPlaceHolderTextFocusedSid, new CultureInfo(e.Value.Replace("_", "-")));
             }
         }
 
