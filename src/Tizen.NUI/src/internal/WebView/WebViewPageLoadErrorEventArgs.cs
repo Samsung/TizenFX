@@ -23,7 +23,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Event arguments that passed via the WebView.PageLoadError.
     /// </summary>
-    /// <since_tizen> 9 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class WebViewPageLoadErrorEventArgs : EventArgs
     {
         internal WebViewPageLoadErrorEventArgs(WebPageLoadError error)
