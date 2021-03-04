@@ -25,7 +25,8 @@ namespace Tizen.NUI.BaseComponents
 {
     [EditorBrowsable(EditorBrowsableState.Never)]
     [StructLayout(LayoutKind.Sequential)]
-    public struct GestureInfoType {
+    public struct GestureInfoType : IEquatable<GestureInfoType>
+    {
         [EditorBrowsable(EditorBrowsableState.Never)]
         public AccessibilityGesture type { get; set; }
 
@@ -50,10 +51,19 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool Equals(System.Object obj)
         {
-            if ((obj == null) || !this.GetType().Equals(obj.GetType()))
+            if(obj is GestureInfoType)
+            {
+                return this.Equals((GestureInfoType)obj);
+            }
+            return false;
+        }
+
+        public bool Equals(GestureInfoType other)
+        {
+            if ((other == null) || !this.GetType().Equals(other.GetType()))
                 return false;
 
-            GestureInfoType sec = (GestureInfoType)obj;
+            GestureInfoType sec = (GestureInfoType)other;
             return
               type == sec.type &&
               xBeg == sec.xBeg &&
@@ -65,10 +75,44 @@ namespace Tizen.NUI.BaseComponents
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool operator ==(GestureInfoType arg1, GestureInfoType arg2)
+        {
+            return arg1.Equals(arg2);
+        }
+
+        /// <summary>
+        /// The != operator.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool operator !=(GestureInfoType arg1, GestureInfoType arg2)
+        {
+            return !arg1.Equals(arg2);
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode()
         {
             return Tuple.Create((int)type, xBeg, xEnd, yBeg, yEnd, (int)state, eventTime).GetHashCode();
         }
+    }
+
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class GestureInfoEventArgs : EventArgs
+    {
+        public GestureInfoType gestureInfo { get; internal set; }
+        public int boolValue { get; set; }
+    }
+
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class GetDescriptionEventArgs : EventArgs
+    {
+        public string description { get; internal set; }
+    }
+
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class GetNameEventArgs : EventArgs
+    {
+        public string description { get; internal set; }
     }
 
     /// <summary>
@@ -109,13 +153,6 @@ namespace Tizen.NUI.BaseComponents
         private delegate void GestureInfoHandlerType(IntPtr data);
         private GestureInfoHandlerType gestureInfoCallback;
         private EventHandler<GestureInfoEventArgs> gestureInfoHandler;
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public class GestureInfoEventArgs : EventArgs
-        {
-            public GestureInfoType gestureInfo { get; internal set; }
-            public int boolValue { get; set; }
-        }
 
         private void OnGestureInfoEvent(IntPtr data) {
             if (data == IntPtr.Zero)
@@ -167,12 +204,6 @@ namespace Tizen.NUI.BaseComponents
         private GetDescriptionHandlerType getDescriptionCallback;
         private EventHandler<GetDescriptionEventArgs> getDescriptionHandler;
 
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public class GetDescriptionEventArgs : EventArgs
-        {
-            public string description { get; internal set; }
-        }
-
         private void OnGetDescriptionEvent(IntPtr data) {
             if (data == IntPtr.Zero)
                 return;
@@ -214,12 +245,6 @@ namespace Tizen.NUI.BaseComponents
         private delegate void GetNameHandlerType(IntPtr data);
         private GetNameHandlerType getNameCallback;
         private EventHandler<GetNameEventArgs> getNameHandler;
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public class GetNameEventArgs : EventArgs
-        {
-            public string description { get; internal set; }
-        }
 
         private void OnGetNameEvent(IntPtr data) {
             if (data == IntPtr.Zero)
