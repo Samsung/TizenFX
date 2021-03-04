@@ -197,6 +197,17 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Calculates current states for the button<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override AccessibilityStates AccessibilityCalculateStates()
+        {
+            var states = base.AccessibilityCalculateStates();
+            states.Set(AccessibilityState.Enabled, this.IsEnabled);
+            return states;
+        }
+
+        /// <summary>
         /// An event for the button clicked signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
@@ -374,6 +385,11 @@ namespace Tizen.NUI.Components
             set
             {
                 TextLabel.Text = value;
+
+                if (IsHighlighted && String.IsNullOrEmpty(AccessibilityName) && GetNameSignal().Empty())
+                {
+                    EmitAccessibilityEvent(ObjectPropertyChangeEvent.Name);
+                }
             }
         }
 

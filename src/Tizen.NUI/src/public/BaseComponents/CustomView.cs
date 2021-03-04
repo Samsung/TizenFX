@@ -144,6 +144,8 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public virtual void OnInitialize()
         {
+            SetAccessibilityConstructor(Role.Unknown);
+            AppendAccessibilityAttribute("t", this.GetType().Name);
         }
 
         /// <summary>
@@ -485,12 +487,135 @@ namespace Tizen.NUI.BaseComponents
         {
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override bool AccessibilityDoAction(string name)
+        {
+            if (name == AccessibilityActivateAction)
+            {
+                if (this.ActivateSignal().Empty() == false)
+                {
+                    this.ActivateSignal().Emit();
+                    return true;
+                }
+                else
+                {
+                    return OnAccessibilityActivated();
+                }
+            }
+            else if (name == AccessibilityReadingSkippedAction)
+            {
+                if (this.ReadingSkippedSignal().Empty() == false)
+                {
+                    this.ReadingSkippedSignal().Emit();
+                    return true;
+                }
+                else
+                {
+                    return OnAccessibilityReadingSkipped();
+                }
+            }
+            else if (name == AccessibilityReadingCancelledAction)
+            {
+                if (this.ReadingCancelledSignal().Empty() == false)
+                {
+                    this.ReadingCancelledSignal().Emit();
+                    return true;
+                }
+                else
+                {
+                    return OnAccessibilityReadingCancelled();
+                }
+            }
+            else if (name == AccessibilityReadingStoppedAction)
+            {
+                if (this.ReadingStoppedSignal().Empty() == false)
+                {
+                    this.ReadingStoppedSignal().Emit();
+                    return true;
+                }
+                else
+                {
+                    return OnAccessibilityReadingStopped();
+                }
+            }
+            else if (name == AccessibilityReadingPausedAction)
+            {
+                if (this.ReadingPausedSignal().Empty() == false)
+                {
+                    this.ReadingPausedSignal().Emit();
+                    return true;
+                }
+                else
+                {
+                    return OnAccessibilityReadingPaused();
+                }
+            }
+            else if (name == AccessibilityReadingResumedAction)
+            {
+                if (this.ReadingResumedSignal().Empty() == false)
+                {
+                    this.ReadingResumedSignal().Emit();
+                    return true;
+                }
+                else
+                {
+                    return OnAccessibilityReadingResumed();
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         /// <summary>
         /// This method is called when the control accessibility is activated.<br />
         /// Derived classes should override this to perform custom accessibility activation.<br />
         /// </summary>
         /// <returns>True if this control can perform accessibility activation.</returns>
         internal virtual bool OnAccessibilityActivated()
+        {
+            return false;
+        }
+
+        /// <summary>
+        /// This method is called when reading is skipped.
+        /// </summary>
+        /// <returns>True if information was served.</returns>
+        internal virtual bool OnAccessibilityReadingSkipped()
+        {
+            return false;
+        }
+
+        /// <summary>
+        /// This method is called when reading is cancelled.
+        /// </summary>
+        /// <returns>True if information was served.</returns>
+        internal virtual bool OnAccessibilityReadingCancelled()
+        {
+            return false;
+        }
+        /// <summary>
+        /// This method is called when reading is stopped.
+        /// </summary>
+        /// <returns>True if information was served.</returns>
+        internal virtual bool OnAccessibilityReadingStopped()
+        {
+            return false;
+        }
+        /// <summary>
+        /// This method is called when reading was paused.
+        /// </summary>
+        /// <returns>True if information was served.</returns>
+        internal virtual bool OnAccessibilityReadingPaused()
+        {
+            return false;
+        }
+        /// <summary>
+        /// This method is called when reading is resumed.
+        /// </summary>
+        /// <returns>True if information was served.</returns>
+        internal virtual bool OnAccessibilityReadingResumed()
         {
             return false;
         }

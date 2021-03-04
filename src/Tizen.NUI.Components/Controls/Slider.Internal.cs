@@ -81,6 +81,8 @@ namespace Tizen.NUI.Components
 
         private void Initialize()
         {
+            AccessibilityHighlightable = true;
+
             currentSlidedOffset = 0;
             isFocused = false;
             isPressed = false;

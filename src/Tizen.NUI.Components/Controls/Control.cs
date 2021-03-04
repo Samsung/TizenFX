@@ -208,6 +208,14 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// OnInitialize
+        /// </summary>
+        public override void OnInitialize()
+        {
+            base.OnInitialize();
+        }
+
+        /// <summary>
         /// Called after a key event is received by the view that has had its focus set.
         /// </summary>
         /// <param name="key">The key event.</param>

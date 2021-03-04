@@ -103,6 +103,8 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public override void OnInitialize()
         {
+            base.OnInitialize();
+
             //Initialize empty
             visualDictionary = new Dictionary<int, VisualBase>();
             tranformDictionary = new Dictionary<int, PropertyMap>();
