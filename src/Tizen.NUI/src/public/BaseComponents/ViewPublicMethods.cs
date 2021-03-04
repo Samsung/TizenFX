@@ -302,6 +302,9 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void Show()
         {
+            if (AccessibilityCalculateStates().Get(AccessibilityState.Modal))
+                AddPopup();
+
             SetVisible(true);
         }
 
@@ -317,6 +320,9 @@ namespace Tizen.NUI.BaseComponents
         public void Hide()
         {
             SetVisible(false);
+
+            if (AccessibilityCalculateStates().Get(AccessibilityState.Modal))
+                RemovePopup();
         }
 
         /// <summary>

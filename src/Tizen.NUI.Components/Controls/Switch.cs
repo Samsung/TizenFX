@@ -63,6 +63,27 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Initilize AT-SPI object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnInitialize()
+        {
+            base.OnInitialize();
+            SetAccessibilityConstructor(Role.ToggleButton);
+        }
+
+        /// <summary>
+        /// Informs AT-SPI bridge about the set of AT-SPI states associated with this object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override AccessibilityStates AccessibilityCalculateStates()
+        {
+            var states = base.AccessibilityCalculateStates();
+            states.Set(AccessibilityState.Checked, this.IsSelected);
+            return states;
+        }
+
+        /// <summary>
         /// An event for the item selected signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
@@ -324,6 +345,11 @@ namespace Tizen.NUI.Components
 
         private void OnSelect()
         {
+            if (IsHighlighted)
+            {
+                EmitAccessibilityStateChangedEvent(AccessibilityState.Checked, IsSelected);
+            }
+
             ((SwitchExtension)Extension)?.OnSelectedChanged(this);
 
             if (SelectedEvent != null)

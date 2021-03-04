@@ -18,6 +18,24 @@ namespace Tizen.NUI.Components
         private bool styleApplied = false;
 
         /// <summary>
+        /// Get accessibility name.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override string AccessibilityGetName()
+        {
+            return Text;
+        }
+
+        /// <summary>
+        /// Prevents from showing child widgets in AT-SPI tree.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override bool AccessibilityShouldReportZeroChildren()
+        {
+            return true;
+        }
+
+        /// <summary>
         /// The ButtonExtension instance that is injected by ButtonStyle.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -38,7 +56,8 @@ namespace Tizen.NUI.Components
                 WidthResizePolicy = ResizePolicyType.FillToParent,
                 HeightResizePolicy = ResizePolicyType.FillToParent,
                 HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Center
+                VerticalAlignment = VerticalAlignment.Center,
+                AccessibilityHighlightable = false
             };
         }
 
@@ -53,7 +72,8 @@ namespace Tizen.NUI.Components
             {
                 PositionUsesPivotPoint = true,
                 ParentOrigin = NUI.ParentOrigin.Center,
-                PivotPoint = NUI.PivotPoint.Center
+                PivotPoint = NUI.PivotPoint.Center,
+                AccessibilityHighlightable = false
             };
         }
 
@@ -70,7 +90,8 @@ namespace Tizen.NUI.Components
                 ParentOrigin = NUI.ParentOrigin.Center,
                 PivotPoint = NUI.PivotPoint.Center,
                 WidthResizePolicy = ResizePolicyType.FillToParent,
-                HeightResizePolicy = ResizePolicyType.FillToParent
+                HeightResizePolicy = ResizePolicyType.FillToParent,
+                AccessibilityHighlightable = false
             };
         }
 
@@ -381,6 +402,16 @@ namespace Tizen.NUI.Components
             base.Dispose(type);
         }
 
+        /// <summary>
+        /// Initilizes AT-SPI object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnInitialize()
+        {
+            base.OnInitialize();
+            SetAccessibilityConstructor(Role.PushButton);
+        }
+
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnControlStateChanged(ControlStateChangedEventArgs controlStateChangedInfo)
@@ -408,12 +439,13 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         private void Initialize()
         {
+            AccessibilityHighlightable = true;
             EnableControlStatePropagation = true;
             UpdateState();
             LayoutDirectionChanged += OnLayoutDirectionChanged;
 
             AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "Button");
-            
+
             #if PROFILE_MOBILE
                 Feedback = true;
             #endif
