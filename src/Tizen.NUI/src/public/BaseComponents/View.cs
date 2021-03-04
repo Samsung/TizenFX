@@ -479,6 +479,194 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        //
+        // Accessibility
+        //
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected bool IsHighlighted
+        {
+            get
+            {
+                return Accessibility.AccessibilityManager.Instance.GetCurrentFocusView() == this;
+            }
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected static readonly string AccessibilityActivateAction = "activate";
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected static readonly string AccessibilityReadingSkippedAction = "ReadingSkipped";
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected static readonly string AccessibilityReadingCancelledAction = "ReadingCancelled";
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected static readonly string AccessibilityReadingStoppedAction = "ReadingStopped";
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected static readonly string AccessibilityReadingPausedAction = "ReadingPaused";
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected static readonly string AccessibilityReadingResumedAction = "ReadingResumed";
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        private static readonly string[] AccessibilityActions = {
+            AccessibilityActivateAction,
+            AccessibilityReadingSkippedAction,
+            AccessibilityReadingCancelledAction,
+            AccessibilityReadingStoppedAction,
+            AccessibilityReadingPausedAction,
+            AccessibilityReadingResumedAction,
+        };
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual string AccessibilityGetName()
+        {
+            return "";
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual string AccessibilityGetDescription()
+        {
+            return "";
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool AccessibilityDoAction(string name)
+        {
+            return false;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual AccessibilityStates AccessibilityCalculateStates()
+        {
+            var states = new AccessibilityStates();
+            states.Set(AccessibilityState.Highlightable, this.AccessibilityHighlightable);
+            states.Set(AccessibilityState.Focusable, this.Focusable);
+            states.Set(AccessibilityState.Focused, this.State == States.Focused);
+            states.Set(AccessibilityState.Highlighted, this.IsHighlighted);
+            states.Set(AccessibilityState.Enabled, this.State != States.Disabled);
+            states.Set(AccessibilityState.Sensitive, this.Sensitive);
+            states.Set(AccessibilityState.Animated, this.AccessibilityAnimated);
+            states.Set(AccessibilityState.Visible, true);
+            states.Set(AccessibilityState.Showing, this.Visibility);
+            states.Set(AccessibilityState.Defunct, !this.IsOnWindow);
+            return states;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual int AccessibilityGetActionCount()
+        {
+            return AccessibilityActions.Length;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual string AccessibilityGetActionName(int index)
+        {
+            if (index >= 0 && index < AccessibilityActions.Length)
+                return AccessibilityActions[index];
+            else
+                return "";
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool AccessibilityShouldReportZeroChildren()
+        {
+            return false;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual double AccessibilityGetMinimum()
+        {
+            return 0.0;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual double AccessibilityGetCurrent()
+        {
+            return 0.0;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual double AccessibilityGetMaximum()
+        {
+            return 0.0;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool AccessibilitySetCurrent(double value)
+        {
+            return false;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual double AccessibilityGetMinimumIncrement()
+        {
+            return 0.0;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool AccessibilityIsScrollable()
+        {
+            return false;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual string AccessibilityGetText(int startOffset, int endOffset)
+        {
+            return "";
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual int AccessibilityGetCharacterCount()
+        {
+            return 0;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual int AccessibilityGetCaretOffset()
+        {
+            return 0;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool AccessibilitySetCaretOffset(int offset)
+        {
+            return false;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual AccessibilityRange AccessibilityGetTextAtOffset(int offset, TextBoundary boundary)
+        {
+            return new AccessibilityRange();
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual AccessibilityRange AccessibilityGetSelection(int selectionNum)
+        {
+            return new AccessibilityRange();
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool AccessibilityRemoveSelection(int selectionNum)
+        {
+            return false;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool AccessibilitySetSelection(int selectionNum, int startOffset, int endOffset)
+        {
+            return false;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool AccessibilityCopyText(int startPosition, int endPosition)
+        {
+            return false;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool AccessibilityCutText(int startPosition, int endPosition)
+        {
+            return false;
+        }
+
         /// <summary>
         /// Whether the CornerRadius property value is relative (percentage [0.0f to 1.0f] of the view size) or absolute (in world units).
         /// It is absolute by default.

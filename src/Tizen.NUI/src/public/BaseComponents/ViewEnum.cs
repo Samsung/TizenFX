@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019-2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -211,6 +211,13 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int CaptureAllTouchAfterStart = Interop.ActorProperty.CaptureAllTouchAfterStartGet();
             internal static readonly int BlendEquation = Interop.ActorProperty.BlendEquationGet();
             internal static readonly int Culled = Interop.ActorProperty.CulledGet();
+            internal static readonly int AccessibilityName = Interop.ViewProperty.AccessibilityNameGet();
+            internal static readonly int AccessibilityDescription = Interop.ViewProperty.AccessibilityDescriptionGet();
+            internal static readonly int AccessibilityTranslationDomain = Interop.ViewProperty.AccessibilityTranslationDomainGet();
+            internal static readonly int AccessibilityRole = Interop.ViewProperty.AccessibilityRoleGet();
+            internal static readonly int AccessibilityHighlightable = Interop.ViewProperty.AccessibilityHighlightableGet();
+            internal static readonly int AccessibilityAttributes = Interop.ViewProperty.AccessibilityAttributesGet();
+            internal static readonly int AccessibilityAnimated = Interop.ViewProperty.AccessibilityAnimatedGet();
         }
     }
 }
