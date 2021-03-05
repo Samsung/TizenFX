@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <TizenPreloadFile Include="Tizen.NUI.Components.preload" Sequence="30" />
+    <TizenPreloadFile Include="Tizen.NUI.Components.preload" Sequence="31" />
   </ItemGroup>
 
   <ItemGroup>
