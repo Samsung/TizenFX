@@ -99,20 +99,20 @@ namespace Tizen.NUI.BaseComponents
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class GestureInfoEventArgs : EventArgs
     {
-        public GestureInfoType gestureInfo { get; internal set; }
-        public int boolValue { get; set; }
+        public GestureInfoType GestureInfo { get; internal set; }
+        public int Consumed { get; set; }
     }
 
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class GetDescriptionEventArgs : EventArgs
     {
-        public string description { get; internal set; }
+        public string Description { get; internal set; }
     }
 
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class GetNameEventArgs : EventArgs
     {
-        public string description { get; internal set; }
+        public string Description { get; internal set; }
     }
 
     /// <summary>
@@ -164,12 +164,12 @@ namespace Tizen.NUI.BaseComponents
 
             var arg = new GestureInfoEventArgs();
 
-            arg.boolValue = AccessibilityDoGestureSignal.GetResult(data);
-            arg.gestureInfo = (GestureInfoType)Marshal.PtrToStructure(data, typeof(GestureInfoType));
+            arg.Consumed = AccessibilityDoGestureSignal.GetResult(data);
+            arg.GestureInfo = (GestureInfoType)Marshal.PtrToStructure(data, typeof(GestureInfoType));
 
             gestureInfoHandler?.Invoke(this, arg);
 
-            AccessibilityDoGestureSignal.SetResult(data, Convert.ToInt32(arg.boolValue));
+            AccessibilityDoGestureSignal.SetResult(data, Convert.ToInt32(arg.Consumed));
         }
 
         // This uses DoGestureInfo signal from C++ API.
@@ -209,7 +209,7 @@ namespace Tizen.NUI.BaseComponents
                 return;
 
             var arg = new GetDescriptionEventArgs();
-            arg.description = StringToVoidSignal.ConvertParam1(data);
+            arg.Description = StringToVoidSignal.ConvertParam1(data);
 
             getDescriptionHandler?.Invoke(this, arg);
         }
@@ -251,7 +251,7 @@ namespace Tizen.NUI.BaseComponents
                 return;
 
             var arg = new GetNameEventArgs();
-            arg.description = StringToVoidSignal.ConvertParam1(data);
+            arg.Description = StringToVoidSignal.ConvertParam1(data);
 
             getNameHandler?.Invoke(this, arg);
         }
