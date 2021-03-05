@@ -484,33 +484,19 @@ namespace Tizen.NUI.Components
 
         internal override bool OnAccessibilityActivated()
         {
-            if (!IsEnabled)
+            using (var key = new Key())
             {
-                return false;
+                key.State = Key.StateType.Down;
+                key.KeyPressedName = "Return";
+
+                // Touch Down
+                OnKey(key);
+
+                // Touch Up
+                key.State = Key.StateType.Up;
+                OnKey(key);
             }
 
-            // Touch Down
-            isPressed = true;
-            UpdateState();
-
-            // Touch Up
-            bool clicked = isPressed && IsEnabled;
-            isPressed = false;
-
-            if (IsSelectable)
-            {
-                IsSelected = !IsSelected;
-            }
-            else
-            {
-                UpdateState();
-            }
-
-            if (clicked)
-            {
-                ClickedEventArgs eventArgs = new ClickedEventArgs();
-                OnClickedInternal(eventArgs);
-            }
             return true;
         }
 
