@@ -101,9 +101,8 @@ namespace Tizen.NUI.BaseComponents
                 PositionUsesPivotPoint = false;
             }
 
-            //ToDo: this has memory leak and this is not used currently. will be fixed soon by using Event subscribing pattern.
-            //_onWindowSendEventCallback = SendViewAddedEventToWindow;
-            //this.OnWindowSignal().Connect(_onWindowSendEventCallback);
+            onWindowSendEventCallback = SendViewAddedEventToWindow;
+            this.OnWindowSignal().Connect(onWindowSendEventCallback);
 
             if (!shown)
             {
