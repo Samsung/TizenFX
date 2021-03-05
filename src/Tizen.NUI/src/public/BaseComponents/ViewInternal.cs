@@ -1218,6 +1218,7 @@ namespace Tizen.NUI.BaseComponents
             if (_onWindowSendEventCallback != null)
             {
                 this.OnWindowSignal().Disconnect(_onWindowSendEventCallback);
+                _onWindowSendEventCallback = null;
             }
 
             // BaseHandle CPtr is used in Registry and there is danger of deletion if we keep using it here.
