@@ -30,6 +30,9 @@ namespace Tizen.System
     {
         private int[] Pids;
         private Interop.RuntimeInfo.ProcessMemoryInfo[] Usages;
+        private int[] Swaps;
+        private int[] Gpus;
+        private int[] Gems;
 
         /// <summary>
         /// The constructor of ProcessMemoryInformation class.
@@ -179,6 +182,60 @@ namespace Tizen.System
         }
 
         /// <summary>
+        /// Gets the GPU memory size of a process.
+        /// </summary>
+        /// <since_tizen> 6.5 </since_tizen>
+        /// <param name="pid">The process id.</param>
+        /// <returns>The GPU memory size <paramref name="pid"/> is using (KiB).</returns>
+        /// <exception cref="ArgumentException">Thrown when the <paramref name="pid"/> is invalid.</exception>
+        public int GetGPU(int pid)
+        {
+            for (int i = 0; i < Count; i++)
+                if (pid == Pids[i])
+                    return Gpus[i];
+
+            Log.Error(InformationErrorFactory.LogTag, "Invalid pid");
+            InformationErrorFactory.ThrowException(InformationError.InvalidParameter);
+            return 0;
+        }
+
+        /// <summary>
+        /// Gets the resident set size in graphic execution manager of a process.
+        /// </summary>
+        /// <since_tizen> 6.5 </since_tizen>
+        /// <param name="pid">The process id.</param>
+        /// <returns>The resident set size <paramref name="pid"/> is using (KiB).</returns>
+        /// <exception cref="ArgumentException">Thrown when the <paramref name="pid"/> is invalid.</exception>
+        public int GetGemRss(int pid)
+        {
+            for (int i = 0; i < Count; i++)
+                if (pid == Pids[i])
+                    return Gems[i];
+
+            Log.Error(InformationErrorFactory.LogTag, "Invalid pid");
+            InformationErrorFactory.ThrowException(InformationError.InvalidParameter);
+            return 0;
+        }
+
+        /// <summary>
+        /// Gets the SWAP memory size of a process.
+        /// </summary>
+        /// <since_tizen> 6.5 </since_tizen>
+        /// <param name="pid">The process id.</param>
+        /// <returns>The SWAP memory size <paramref name="pid"/> is using (KiB).</returns>
+        /// <exception cref="ArgumentException">Thrown when the <paramref name="pid"/> is invalid.</exception>
+        public int GetSwap(int pid)
+        {
+            for (int i = 0; i < Count; i++)
+                if (pid == Pids[i])
+                    return Swaps[i];
+
+            Log.Error(InformationErrorFactory.LogTag, "Invalid pid");
+            InformationErrorFactory.ThrowException(InformationError.InvalidParameter);
+            return 0;
+        }
+
+        /// <summary>
         /// Update the process memory information to the latest.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
@@ -208,6 +265,45 @@ namespace Tizen.System
             {
                 Usages[i] = Marshal.PtrToStructure<Interop.RuntimeInfo.ProcessMemoryInfo>(ptr);
                 ptr += Marshal.SizeOf<Interop.RuntimeInfo.ProcessCpuUsage>();
+            }
+
+            ret = Interop.RuntimeInfo.GetProcessMemoryValueInt(Pids, Count, Interop.RuntimeInfo.ProcessMemoryInfoKey.Swap, out ptr);
+            if (ret != InformationError.None)
+            {
+                Log.Error(InformationErrorFactory.LogTag, "Interop failed to get Process memory swap");
+                InformationErrorFactory.ThrowException(ret);
+            }
+            Swaps = new int[Count];
+            for (int i = 0; i < Count; i++)
+            {
+                Swaps[i] = ptr.ToInt32();
+                ptr += sizeof(int);
+            }
+
+            ret = Interop.RuntimeInfo.GetProcessMemoryValueInt(Pids, Count, Interop.RuntimeInfo.ProcessMemoryInfoKey.Gpu, out ptr);
+            if (ret != InformationError.None)
+            {
+                Log.Error(InformationErrorFactory.LogTag, "Interop failed to get Process memory swap");
+                InformationErrorFactory.ThrowException(ret);
+            }
+            Gpus = new int[Count];
+            for (int i = 0; i < Count; i++)
+            {
+                Gpus[i] = ptr.ToInt32();
+                ptr += sizeof(int);
+            }
+
+            ret = Interop.RuntimeInfo.GetProcessMemoryValueInt(Pids, Count, Interop.RuntimeInfo.ProcessMemoryInfoKey.GemRss, out ptr);
+            if (ret != InformationError.None)
+            {
+                Log.Error(InformationErrorFactory.LogTag, "Interop failed to get Process memory swap");
+                InformationErrorFactory.ThrowException(ret);
+            }
+            Gems = new int[Count];
+            for (int i = 0; i < Count; i++)
+            {
+                Gems[i] = ptr.ToInt32();
+                ptr += sizeof(int);
             }
         }
     }
