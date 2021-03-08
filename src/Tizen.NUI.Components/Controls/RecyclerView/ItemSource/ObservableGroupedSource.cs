@@ -218,7 +218,7 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-           disposed = true;
+            disposed = true;
 
             if (disposing)
             {
@@ -263,7 +263,7 @@ namespace Tizen.NUI.Components
             else
             {
                 */
-                CollectionChanged(args);
+            CollectionChanged(args);
             //}
         }
 

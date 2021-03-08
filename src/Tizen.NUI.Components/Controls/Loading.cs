@@ -87,7 +87,7 @@ namespace Tizen.NUI.Components
               {
                   int frameRate = (int)newValue;
                   if (0 != frameRate) //It will crash if 0
-                {
+                  {
                       instance.loadingStyle.FrameRate = frameRate;
                       instance.imageVisual.FrameDelay = 1000.0f / frameRate;
                   }

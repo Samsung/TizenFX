@@ -23,9 +23,11 @@ using Tizen.NUI;
 namespace Tizen.NUI.BaseComponents
 {
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class Address {
+    public class Address
+    {
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Address(string xbus, string xpath) {
+        public Address(string xbus, string xpath)
+        {
             bus = xbus;
             path = xpath;
         }
@@ -37,15 +39,17 @@ namespace Tizen.NUI.BaseComponents
     }
 
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class AddressCollection : SafeHandle {
+    public class AddressCollection : SafeHandle
+    {
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public AddressCollection(IntPtr collection) : base(collection, true) {}
+        public AddressCollection(IntPtr collection) : base(collection, true) { }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool IsInvalid { get { return this.handle == IntPtr.Zero; }}
+        public override bool IsInvalid { get { return this.handle == IntPtr.Zero; } }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint RelationSize(View.RelationType relation) {
+        public uint RelationSize(View.RelationType relation)
+        {
             uint result = Interop.ControlDevel.DaliToolkitDevelControlAccessibilityRelationsRelationSize(this, Convert.ToInt32(relation));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -53,7 +57,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Address At(View.RelationType relation, int position) {
+        public Address At(View.RelationType relation, int position)
+        {
             var bus = Interop.ControlDevel.DaliToolkitDevelControlAccessibilityRelationsAt(this, Convert.ToInt32(relation), position, 0);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -66,7 +71,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override bool ReleaseHandle() {
+        protected override bool ReleaseHandle()
+        {
             Interop.ControlDevel.DaliToolkitDevelControlDeleteAccessibilityRelations(handle);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -76,9 +82,11 @@ namespace Tizen.NUI.BaseComponents
     }
 
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public partial class ReadingInfoTypes : SafeHandle {
+    public partial class ReadingInfoTypes : SafeHandle
+    {
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ReadingInfoTypes() : base (IntPtr.Zero, true) {
+        public ReadingInfoTypes() : base(IntPtr.Zero, true)
+        {
             var obj = Interop.ControlDevel.DaliToolkitDevelControlNewReadingInfoType();
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -86,20 +94,22 @@ namespace Tizen.NUI.BaseComponents
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ReadingInfoTypes(IntPtr ptr) : base(ptr, true) {}
+        public ReadingInfoTypes(IntPtr ptr) : base(ptr, true) { }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool IsInvalid { get { return this.handle == IntPtr.Zero; }}
+        public override bool IsInvalid { get { return this.handle == IntPtr.Zero; } }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Set(ReadingInfoType type, bool v) {
+        public void Set(ReadingInfoType type, bool v)
+        {
             Interop.ControlDevel.DaliToolkitDevelControlReadingInfoTypesSet(this, (int)type, Convert.ToInt32(v));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool Get(ReadingInfoType type) {
+        public bool Get(ReadingInfoType type)
+        {
             bool result = Interop.ControlDevel.DaliToolkitDevelControlReadingInfoTypesGet(this, (int)type);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -107,7 +117,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override bool ReleaseHandle() {
+        protected override bool ReleaseHandle()
+        {
             Interop.ControlDevel.DaliToolkitDevelControlDeleteReadingInfoType(handle);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -117,9 +128,11 @@ namespace Tizen.NUI.BaseComponents
     }
 
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public partial class AccessibilityStates : SafeHandle {
+    public partial class AccessibilityStates : SafeHandle
+    {
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public AccessibilityStates() : base (IntPtr.Zero, true) {
+        public AccessibilityStates() : base(IntPtr.Zero, true)
+        {
             var obj = Interop.ControlDevel.DaliToolkitDevelControlNewStates();
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -127,20 +140,22 @@ namespace Tizen.NUI.BaseComponents
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public AccessibilityStates(IntPtr states) : base(states, true) {}
+        public AccessibilityStates(IntPtr states) : base(states, true) { }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool IsInvalid { get { return this.handle == IntPtr.Zero; }}
+        public override bool IsInvalid { get { return this.handle == IntPtr.Zero; } }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Set(AccessibilityState type, bool v) {
+        public void Set(AccessibilityState type, bool v)
+        {
             Interop.ControlDevel.DaliToolkitDevelControlStatesSet(this, (int)type, Convert.ToInt32(v));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool Get(AccessibilityState type) {
+        public bool Get(AccessibilityState type)
+        {
             bool result = Interop.ControlDevel.DaliToolkitDevelControlStatesGet(this, (int)type);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -148,7 +163,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override bool ReleaseHandle() {
+        protected override bool ReleaseHandle()
+        {
             Interop.ControlDevel.DaliToolkitDevelControlDeleteStates(handle);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -158,7 +174,8 @@ namespace Tizen.NUI.BaseComponents
     }
 
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class AccessibilityRange {
+    public class AccessibilityRange
+    {
         public int StartOffset { get; set; } = 0;
         public int EndOffset { get; set; } = 0;
         public string Content { get; set; } = "";
@@ -175,21 +192,24 @@ namespace Tizen.NUI.BaseComponents
         ///////////////////////////////////////////////////////////////////
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void AppendAccessibilityAttribute(string key, string val) {
+        public void AppendAccessibilityAttribute(string key, string val)
+        {
             Interop.ControlDevel.DaliToolkitDevelControlAppendAccessibilityAttribute(SwigCPtr, key, val);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void RemoveAccessibilityAttribute(string key) {
+        public void RemoveAccessibilityAttribute(string key)
+        {
             Interop.ControlDevel.DaliToolkitDevelControlRemoveAccessibilityAttribute(SwigCPtr, key);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void ClearAccessibilityAttributes() {
+        public void ClearAccessibilityAttributes()
+        {
             Interop.ControlDevel.DaliToolkitDevelControlClearAccessibilityAttributes(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -200,7 +220,8 @@ namespace Tizen.NUI.BaseComponents
         ///////////////////////////////////////////////////////////////////
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool ClearAccessibilityHighlight() {
+        public bool ClearAccessibilityHighlight()
+        {
             bool result = Interop.ControlDevel.DaliToolkitDevelControlClearAccessibilityHighlight(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -208,7 +229,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool GrabAccessibilityHighlight() {
+        public bool GrabAccessibilityHighlight()
+        {
             bool result = Interop.ControlDevel.DaliToolkitDevelControlGrabAccessibilityHighlight(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -220,28 +242,32 @@ namespace Tizen.NUI.BaseComponents
         ///////////////////////////////////////////////////////////////////
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void AppendAccessibilityRelation(View second, RelationType relation) {
+        public void AppendAccessibilityRelation(View second, RelationType relation)
+        {
             Interop.ControlDevel.DaliToolkitDevelControlAppendAccessibilityRelation(SwigCPtr, second.SwigCPtr, (int)relation);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void RemoveAccessibilityRelation(View second, RelationType relation) {
+        public void RemoveAccessibilityRelation(View second, RelationType relation)
+        {
             Interop.ControlDevel.DaliToolkitDevelControlRemoveAccessibilityRelation(SwigCPtr, second.SwigCPtr, (int)relation);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void ClearAccessibilityRelations() {
+        public void ClearAccessibilityRelations()
+        {
             Interop.ControlDevel.DaliToolkitDevelControlClearAccessibilityRelations(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public AddressCollection GetAccessibilityRelations() {
+        public AddressCollection GetAccessibilityRelations()
+        {
             var result = new AddressCollection(Interop.ControlDevel.DaliToolkitDevelControlNewGetAccessibilityRelations(SwigCPtr));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -249,14 +275,16 @@ namespace Tizen.NUI.BaseComponents
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetAccessibilityReadingInfoType(ReadingInfoTypes types) {
+        public void SetAccessibilityReadingInfoType(ReadingInfoTypes types)
+        {
             Interop.ControlDevel.DaliToolkitDevelControlSetAccessibilityReadingInfoType(SwigCPtr, types);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ReadingInfoTypes GetAccessibilityReadingInfoType() {
+        public ReadingInfoTypes GetAccessibilityReadingInfoType()
+        {
             var result = new ReadingInfoTypes(Interop.ControlDevel.DaliToolkitDevelControlNewGetAccessibilityReadingInfoType(SwigCPtr));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -268,14 +296,16 @@ namespace Tizen.NUI.BaseComponents
         ///////////////////////////////////////////////////////////////////
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void NotifyAccessibilityStateChange(AccessibilityStates states, bool recursive) {
+        public void NotifyAccessibilityStateChange(AccessibilityStates states, bool recursive)
+        {
             Interop.ControlDevel.DaliToolkitDevelControlNotifyAccessibilityStateChange(SwigCPtr, states, Convert.ToInt32(recursive));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public AccessibilityStates GetAccessibilityStates() {
+        public AccessibilityStates GetAccessibilityStates()
+        {
             var result = new AccessibilityStates(Interop.ControlDevel.DaliToolkitDevelControlNewGetAccessibilityStates(SwigCPtr));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -287,35 +317,40 @@ namespace Tizen.NUI.BaseComponents
         ///////////////////////////////////////////////////////////////////
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void EmitAccessibilityEvent(ObjectPropertyChangeEvent e) {
+        public void EmitAccessibilityEvent(ObjectPropertyChangeEvent e)
+        {
             Interop.ControlDevel.DaliAccessibilityEmitAccessibilityEvent(SwigCPtr, Convert.ToInt32(e));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void EmitAccessibilityStateChangedEvent(AccessibilityState e, bool b) {
+        public void EmitAccessibilityStateChangedEvent(AccessibilityState e, bool b)
+        {
             Interop.ControlDevel.DaliAccessibilityEmitAccessibilityStateChangedEvent(SwigCPtr, Convert.ToInt32(e), Convert.ToInt32(b));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void EmitTextInsertedEvent(int position, int length, string content) {
+        public void EmitTextInsertedEvent(int position, int length, string content)
+        {
             Interop.ControlDevel.DaliAccessibilityEmitTextInsertedEvent(SwigCPtr, position, length, content);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void EmitTextDeletedEvent(int position, int length, string content) {
+        public void EmitTextDeletedEvent(int position, int length, string content)
+        {
             Interop.ControlDevel.DaliAccessibilityEmitTextDeletedEvent(SwigCPtr, position, length, content);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void EmitTextCaretMovedEvent(int position) {
+        public void EmitTextCaretMovedEvent(int position)
+        {
             Interop.ControlDevel.DaliAccessibilityEmitTextCaretMovedEvent(SwigCPtr, position);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -326,14 +361,16 @@ namespace Tizen.NUI.BaseComponents
         ///////////////////////////////////////////////////////////////////
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void AddPopup() {
+        public void AddPopup()
+        {
             Interop.ControlDevel.DaliAccessibilityBridgeAddPopup(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void RemovePopup() {
+        public void RemovePopup()
+        {
             Interop.ControlDevel.DaliAccessibilityBridgeRemovePopup(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();

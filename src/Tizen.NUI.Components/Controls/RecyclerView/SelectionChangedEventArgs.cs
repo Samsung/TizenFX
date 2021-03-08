@@ -31,7 +31,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Previous selection list.
         /// </summary>
-       [EditorBrowsable(EditorBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public IReadOnlyList<object> PreviousSelection { get; }
 
         /// <summary>

@@ -732,7 +732,7 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                 if (value == null || thumbImage == null)
+                if (value == null || thumbImage == null)
                 {
                     throw new NullReferenceException("Slider.WarningThumbImageUri is null");
                 }

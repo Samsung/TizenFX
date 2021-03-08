@@ -104,7 +104,7 @@ namespace Tizen.NUI
         {
             get
             {
-                string retVal = "" ;
+                string retVal = "";
                 PropertyValue material = GetProperty(Model3dView.Property.MaterialUrl);
                 material?.Get(out retVal);
                 material?.Dispose();

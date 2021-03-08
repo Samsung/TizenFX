@@ -272,7 +272,7 @@ namespace Tizen.NUI.Components
                     Selected = new Color(0.701f, 0.898f, 0.937f, 1),
                 },
             });
-            
+
             theme.AddStyleWithoutClone("Tizen.NUI.Components.DefaultLinearItem", new DefaultLinearItemStyle()
             {
                 SizeHeight = 130,

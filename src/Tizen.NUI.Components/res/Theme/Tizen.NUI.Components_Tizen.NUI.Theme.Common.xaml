@@ -5,229 +5,234 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
   Id="Tizen.NUI.Theme.Common" >
 
-  <!--Button-->
-  <c:ButtonStyle x:Key="Tizen.NUI.Components.Button" Size="100, 45">
-    <c:ButtonStyle.BackgroundColor>
-      <Selector x:TypeArguments="Color" Normal="0.88, 0.88, 0.88, 1" Pressed="0.77, 0.77, 0.77, 1" Disabled="0.88, 0.88, 0.88, 1"/>
-    </c:ButtonStyle.BackgroundColor>
-    <c:ButtonStyle.Text>  <!--Button Text-->
-      <TextLabelStyle PointSize="12">
-        <TextLabelStyle.TextColor>
-          <Selector x:TypeArguments="Color" Normal="0.22, 0.22, 0.22, 1" Pressed="0.11, 0.11, 0.11, 1" Disabled="0.66, 0.66, 0.66, 1"/>
-        </TextLabelStyle.TextColor>
-      </TextLabelStyle>
-    </c:ButtonStyle.Text>
-  </c:ButtonStyle>
-
-  <!--CheckBox-->
-  <c:ButtonStyle x:Key="Tizen.NUI.Components.CheckBox" Size="30, 30">
-    <c:ButtonStyle.Icon> <!--CheckBox Icon-->
-      <ImageViewStyle>
-        <ImageViewStyle.Opacity>
-          <Selector x:TypeArguments="x:Single?" Normal="1.0" Selected="1.0" Disabled="0.4" DisabledSelected="0.4"/>
-        </ImageViewStyle.Opacity>
-        <ImageViewStyle.BackgroundImage>
-          <Selector x:TypeArguments="x:String" Pressed="{NUIResourcePath nui_component_default_checkbox_bg_p.png}" Selected="{NUIResourcePath nui_component_default_checkbox_bg_p.png}" Other="{NUIResourcePath nui_component_default_checkbox_bg_n.png}"/>
-        </ImageViewStyle.BackgroundImage>
-        <ImageViewStyle.ResourceUrl>
-          <Selector x:TypeArguments="x:String" Selected="{NUIResourcePath nui_component_default_checkbox_s.png}" Other=""/>
-        </ImageViewStyle.ResourceUrl>
-      </ImageViewStyle>
-    </c:ButtonStyle.Icon>
-    <c:ButtonStyle.Text>  <!--CheckBox Text-->
-      <TextLabelStyle PointSize="12">
-        <TextLabelStyle.TextColor>
-          <Selector x:TypeArguments="Color" Normal="0.22, 0.22, 0.22, 1" Pressed="0.11, 0.11, 0.11, 1" Disabled="0.66, 0.66, 0.66, 1"/>
-        </TextLabelStyle.TextColor>
-      </TextLabelStyle>
-    </c:ButtonStyle.Text>
-  </c:ButtonStyle>
-
-  <!--DropDown-->
-  <c:DropDownStyle x:Key="Tizen.NUI.Components.DropDown" SpaceBetweenButtonTextAndIcon="10" ListPadding="5">
-    <c:DropDownStyle.Button> <!--DropDown Button-->
-      <c:ButtonStyle BackgroundImageBorder="6, 6, 6, 6" IconPadding="6">
-        <c:ButtonStyle.BackgroundImage>
-          <Selector x:TypeArguments="x:String" Pressed="{NUIResourcePath nui_component_default_checkbox_bg_p.png}" Other="{NUIResourcePath nui_component_default_checkbox_bg_n.png}"/>
-        </c:ButtonStyle.BackgroundImage>
-        <c:ButtonStyle.Text>
-          <TextLabelStyle Text="Select an item" PointSize="12"/>
-        </c:ButtonStyle.Text>
-        <c:ButtonStyle.Icon>
-          <ImageViewStyle Size="28, 28" ResourceUrl="{NUIResourcePath nui_component_default_dropdown_button_icon.png}"/>
-        </c:ButtonStyle.Icon>
-      </c:ButtonStyle>
-    </c:DropDownStyle.Button>
-    <c:DropDownStyle.ListBackgroundImage> <!--DropDown ListBackgroundImage-->
-      <ImageViewStyle ResourceUrl="{NUIResourcePath nui_component_default_dropdown_list_bg.png}" Border="6, 6, 6, 6" Size="280, 360"/>
-    </c:DropDownStyle.ListBackgroundImage>
-  </c:DropDownStyle>
-
-  <!--DropDownDataItem-->
-  <c:DropDownItemStyle x:Key="Tizen.NUI.Components.DropDown.DropDownDataItem" Size="360, 50">
-    <c:DropDownItemStyle.BackgroundColor>
-      <Selector x:TypeArguments="Color" Pressed="0.05, 0.63, 0.9, 1" Selected="0.8, 0.8, 0.8, 1" Normal="1, 1, 1, 1"/>
-    </c:DropDownItemStyle.BackgroundColor>
-    <c:DropDownItemStyle.Text>
-      <TextLabelStyle PointSize="12" Position="28, 0"/>
-    </c:DropDownItemStyle.Text>
-  </c:DropDownItemStyle>
-
-  <!--DropDownDataItem (for legacy FH)-->
-  <c:DropDownItemStyle x:Key="Tizen.FH.NUI.Components.DropDownDataItem" Size="360, 50">
-    <c:DropDownItemStyle.BackgroundColor>
-      <Selector x:TypeArguments="Color" Pressed="0.05, 0.63, 0.9, 1" Selected="0.8, 0.8, 0.8, 1" Normal="1, 1, 1, 1"/>
-    </c:DropDownItemStyle.BackgroundColor>
-    <c:DropDownItemStyle.Text>
-      <TextLabelStyle PointSize="12" Position="28, 0"/>
-    </c:DropDownItemStyle.Text>
-  </c:DropDownItemStyle>
-
-  <!--DropDownDataItem (for legacy FH)-->
-  <c:DropDownItemStyle x:Key="DropDownDataItem" Size="360, 50">
-    <c:DropDownItemStyle.BackgroundColor>
-      <Selector x:TypeArguments="Color" Pressed="0.05, 0.63, 0.9, 1" Selected="0.8, 0.8, 0.8, 1" Normal="1, 1, 1, 1"/>
-    </c:DropDownItemStyle.BackgroundColor>
-    <c:DropDownItemStyle.Text>
-      <TextLabelStyle PointSize="12" Position="28, 0"/>
-    </c:DropDownItemStyle.Text>
-  </c:DropDownItemStyle>
-
-  <!--Popup-->
-  <c:PopupStyle x:Key="Tizen.NUI.Components.Popup" Size="500, 280" BackgroundColor="0.9, 0.9, 0.9, 1">
-    <c:PopupStyle.ImageShadow>
-      <ImageShadow Url="{NUIResourcePath nui_component_default_popup_shadow.png}" Border="24, 24, 24, 24" Extents="48, 48"/>
-    </c:PopupStyle.ImageShadow>
-    <c:PopupStyle.Title>
-      <TextLabelStyle PointSize="16" Padding="20" />
-    </c:PopupStyle.Title>
-    <c:PopupStyle.Buttons>
-      <c:ButtonStyle Size="0, 80">
+    <!--Button-->
+    <c:ButtonStyle x:Key="Tizen.NUI.Components.Button" Size="100, 45">
         <c:ButtonStyle.BackgroundColor>
-          <Selector x:TypeArguments="Color" Normal="1, 1, 1, 1" Pressed="1, 1, 1, 0.5"/>
+            <Selector x:TypeArguments="Color" Normal="0.88, 0.88, 0.88, 1" Pressed="0.77, 0.77, 0.77, 1" Disabled="0.88, 0.88, 0.88, 1"/>
         </c:ButtonStyle.BackgroundColor>
-        <c:ButtonStyle.Overlay>
-          <ImageViewStyle>
-            <ImageViewStyle.BackgroundColor>
-              <Selector x:TypeArguments="Color" Normal="1, 1, 1, 1" Pressed="0, 0, 0, 0.1" Selected="1, 1, 1, 1"/>
-            </ImageViewStyle.BackgroundColor>
-          </ImageViewStyle>
-        </c:ButtonStyle.Overlay>
         <c:ButtonStyle.Text>
-          <TextLabelStyle TextColor="0.05, 0.63, 0.9, 1" />
+            <!--Button Text-->
+            <TextLabelStyle PointSize="12">
+                <TextLabelStyle.TextColor>
+                    <Selector x:TypeArguments="Color" Normal="0.22, 0.22, 0.22, 1" Pressed="0.11, 0.11, 0.11, 1" Disabled="0.66, 0.66, 0.66, 1"/>
+                </TextLabelStyle.TextColor>
+            </TextLabelStyle>
         </c:ButtonStyle.Text>
-      </c:ButtonStyle>
-    </c:PopupStyle.Buttons>
-  </c:PopupStyle>
+    </c:ButtonStyle>
 
-  <!--Progress-->
-  <c:ProgressStyle x:Key="Tizen.NUI.Components.Progress" Size="200, 5">
-    <c:ProgressStyle.Track>
-      <ImageViewStyle BackgroundColor="0, 0, 0, 0.1" />
-    </c:ProgressStyle.Track>
-    <c:ProgressStyle.Buffer>
-      <ImageViewStyle BackgroundColor="0.05, 0.63, 0.9, 0.3" />
-    </c:ProgressStyle.Buffer>
-    <c:ProgressStyle.Progress>
-      <ImageViewStyle BackgroundColor="0.05, 0.63, 0.9, 1" />
-    </c:ProgressStyle.Progress>
-  </c:ProgressStyle>
+    <!--CheckBox-->
+    <c:ButtonStyle x:Key="Tizen.NUI.Components.CheckBox" Size="30, 30">
+        <c:ButtonStyle.Icon>
+            <!--CheckBox Icon-->
+            <ImageViewStyle>
+                <ImageViewStyle.Opacity>
+                    <Selector x:TypeArguments="x:Single?" Normal="1.0" Selected="1.0" Disabled="0.4" DisabledSelected="0.4"/>
+                </ImageViewStyle.Opacity>
+                <ImageViewStyle.BackgroundImage>
+                    <Selector x:TypeArguments="x:String" Pressed="{NUIResourcePath nui_component_default_checkbox_bg_p.png}" Selected="{NUIResourcePath nui_component_default_checkbox_bg_p.png}" Other="{NUIResourcePath nui_component_default_checkbox_bg_n.png}"/>
+                </ImageViewStyle.BackgroundImage>
+                <ImageViewStyle.ResourceUrl>
+                    <Selector x:TypeArguments="x:String" Selected="{NUIResourcePath nui_component_default_checkbox_s.png}" Other=""/>
+                </ImageViewStyle.ResourceUrl>
+            </ImageViewStyle>
+        </c:ButtonStyle.Icon>
+        <c:ButtonStyle.Text>
+            <!--CheckBox Text-->
+            <TextLabelStyle PointSize="12">
+                <TextLabelStyle.TextColor>
+                    <Selector x:TypeArguments="Color" Normal="0.22, 0.22, 0.22, 1" Pressed="0.11, 0.11, 0.11, 1" Disabled="0.66, 0.66, 0.66, 1"/>
+                </TextLabelStyle.TextColor>
+            </TextLabelStyle>
+        </c:ButtonStyle.Text>
+    </c:ButtonStyle>
 
-  <!--RadioButton-->
-  <c:ButtonStyle x:Key="Tizen.NUI.Components.RadioButton" Size="30, 30">
-    <c:ButtonStyle.Icon>
-      <ImageViewStyle>
-        <ImageViewStyle.Opacity>
-          <Selector x:TypeArguments="x:Single?" Normal="1" Selected="1" Disabled="0.4" DisabledSelected="0.4"/>
-        </ImageViewStyle.Opacity>
-        <ImageViewStyle.BackgroundImage>
-          <Selector x:TypeArguments="x:String" Pressed="{NUIResourcePath nui_component_default_radiobutton_p.png}" Selected="{NUIResourcePath nui_component_default_radiobutton_s.png}" Other="{NUIResourcePath nui_component_default_radiobutton_n.png}" />
-        </ImageViewStyle.BackgroundImage>
-      </ImageViewStyle>
-    </c:ButtonStyle.Icon>
-    <c:ButtonStyle.Text>
-      <TextLabelStyle PointSize="12">
-        <TextLabelStyle.TextColor>
-          <Selector x:TypeArguments="Color" Normal="0.22, 0.22, 0.22, 1" Pressed="0.11, 0.11, 0.11, 1" Disabled="0.66, 0.66, 0.66, 1" />
-        </TextLabelStyle.TextColor>
-      </TextLabelStyle>
-    </c:ButtonStyle.Text>
-  </c:ButtonStyle>
+    <!--DropDown-->
+    <c:DropDownStyle x:Key="Tizen.NUI.Components.DropDown" SpaceBetweenButtonTextAndIcon="10" ListPadding="5">
+        <c:DropDownStyle.Button>
+            <!--DropDown Button-->
+            <c:ButtonStyle BackgroundImageBorder="6, 6, 6, 6" IconPadding="6">
+                <c:ButtonStyle.BackgroundImage>
+                    <Selector x:TypeArguments="x:String" Pressed="{NUIResourcePath nui_component_default_checkbox_bg_p.png}" Other="{NUIResourcePath nui_component_default_checkbox_bg_n.png}"/>
+                </c:ButtonStyle.BackgroundImage>
+                <c:ButtonStyle.Text>
+                    <TextLabelStyle Text="Select an item" PointSize="12"/>
+                </c:ButtonStyle.Text>
+                <c:ButtonStyle.Icon>
+                    <ImageViewStyle Size="28, 28" ResourceUrl="{NUIResourcePath nui_component_default_dropdown_button_icon.png}"/>
+                </c:ButtonStyle.Icon>
+            </c:ButtonStyle>
+        </c:DropDownStyle.Button>
+        <c:DropDownStyle.ListBackgroundImage>
+            <!--DropDown ListBackgroundImage-->
+            <ImageViewStyle ResourceUrl="{NUIResourcePath nui_component_default_dropdown_list_bg.png}" Border="6, 6, 6, 6" Size="280, 360"/>
+        </c:DropDownStyle.ListBackgroundImage>
+    </c:DropDownStyle>
 
-  <!--Slider-->
-  <c:SliderStyle x:Key="Tizen.NUI.Components.Slider" Size="200, 50" TrackThickness="5">
-    <c:SliderStyle.Track>
-      <ImageViewStyle BackgroundColor="0, 0, 0, 0.1" />
-    </c:SliderStyle.Track>
-    <c:SliderStyle.Progress>
-      <ImageViewStyle BackgroundColor="0.5, 0.63, 0.9, 1" />
-    </c:SliderStyle.Progress>
-    <c:SliderStyle.Thumb>
-      <ImageViewStyle Size="50, 50" ResourceUrl="{NUIResourcePath nui_component_default_slider_thumb_n.png}">
-        <ImageViewStyle.BackgroundImage>
-          <Selector x:TypeArguments="x:String" Normal="" Pressed="{NUIResourcePath nui_component_default_slider_thumb_bg_p.png}" />
-        </ImageViewStyle.BackgroundImage>
-      </ImageViewStyle>
-    </c:SliderStyle.Thumb>
-  </c:SliderStyle>
+    <!--DropDownDataItem-->
+    <c:DropDownItemStyle x:Key="Tizen.NUI.Components.DropDown.DropDownDataItem" Size="360, 50">
+        <c:DropDownItemStyle.BackgroundColor>
+            <Selector x:TypeArguments="Color" Pressed="0.05, 0.63, 0.9, 1" Selected="0.8, 0.8, 0.8, 1" Normal="1, 1, 1, 1"/>
+        </c:DropDownItemStyle.BackgroundColor>
+        <c:DropDownItemStyle.Text>
+            <TextLabelStyle PointSize="12" Position="28, 0"/>
+        </c:DropDownItemStyle.Text>
+    </c:DropDownItemStyle>
 
-  <!--Switch-->
-  <c:SwitchStyle x:Key="Tizen.NUI.Components.Switch" Size="96, 60">
-    <c:Switch.Track>
-      <ImageViewStyle Size="96, 60">
-        <ImageViewStyle.ResourceUrl>
-          <Selector x:TypeArguments="x:String" Normal="{NUIResourcePath nui_component_default_switch_track_n.png}" Selected="{NUIResourcePath nui_component_default_switch_track_s.png}" Disabled="{NUIResourcePath nui_component_default_switch_track_d.png}" DisabledSelected="{NUIResourcePath nui_component_default_switch_track_ds.png}" />
-        </ImageViewStyle.ResourceUrl>
-      </ImageViewStyle>
-    </c:Switch.Track>
-    <c:Switch.Thumb>
-      <ImageViewStyle Size="60, 60">
-        <ImageViewStyle.ResourceUrl>
-          <Selector x:TypeArguments="x:String" Normal="{NUIResourcePath nui_component_default_switch_thumb_n.png}" Disabled="{NUIResourcePath nui_component_default_switch_thumb_d.png}" Selected="{NUIResourcePath nui_component_default_switch_thumb_n.png}" />
-        </ImageViewStyle.ResourceUrl>
-      </ImageViewStyle>
-    </c:Switch.Thumb>
-    <c:Switch.Text>
-      <TextLabelStyle PointSize="12">
-        <TextLabelStyle.TextColor>
-          <Selector x:TypeArguments="Color" Normal="0.22, 0.22, 0.22, 1" Pressed="0.11, 0.11, 0.11, 1" Disabled="0.66, 0.66, 0.66, 1" />
-        </TextLabelStyle.TextColor>
-      </TextLabelStyle>
-    </c:Switch.Text>
-  </c:SwitchStyle>
+    <!--DropDownDataItem (for legacy FH)-->
+    <c:DropDownItemStyle x:Key="Tizen.FH.NUI.Components.DropDownDataItem" Size="360, 50">
+        <c:DropDownItemStyle.BackgroundColor>
+            <Selector x:TypeArguments="Color" Pressed="0.05, 0.63, 0.9, 1" Selected="0.8, 0.8, 0.8, 1" Normal="1, 1, 1, 1"/>
+        </c:DropDownItemStyle.BackgroundColor>
+        <c:DropDownItemStyle.Text>
+            <TextLabelStyle PointSize="12" Position="28, 0"/>
+        </c:DropDownItemStyle.Text>
+    </c:DropDownItemStyle>
 
-  <!--Tab-->
-  <c:TabStyle x:Key="Tizen.NUI.Components.Tab" Size="480, 80" BackgroundColor="Yellow">
-    <c:TabStyle.UnderLine>
-      <ViewStyle Size="0, 6" BackgroundColor="0.05, 0.63, 0.9, 1.0" />
-    </c:TabStyle.UnderLine>
-    <c:TabStyle.Text>
-      <TextLabelStyle PointSize="16">
-        <TextLabelStyle.TextColor>
-          <Selector x:TypeArguments="Color" Normal="Black" Selected="0.05, 0.63, 0.9, 1" />
-        </TextLabelStyle.TextColor>
-      </TextLabelStyle>
-    </c:TabStyle.Text>
-  </c:TabStyle>
+    <!--DropDownDataItem (for legacy FH)-->
+    <c:DropDownItemStyle x:Key="DropDownDataItem" Size="360, 50">
+        <c:DropDownItemStyle.BackgroundColor>
+            <Selector x:TypeArguments="Color" Pressed="0.05, 0.63, 0.9, 1" Selected="0.8, 0.8, 0.8, 1" Normal="1, 1, 1, 1"/>
+        </c:DropDownItemStyle.BackgroundColor>
+        <c:DropDownItemStyle.Text>
+            <TextLabelStyle PointSize="12" Position="28, 0"/>
+        </c:DropDownItemStyle.Text>
+    </c:DropDownItemStyle>
 
-  <!--Toast-->
-  <c:ToastStyle x:Key="Tizen.NUI.Components.Toast" BackgroundColor="0, 0, 0, 0.8">
-    <c:ToastStyle.Text>
-      <TextLabelStyle Padding="12, 12, 8, 8" />
-    </c:ToastStyle.Text>
-  </c:ToastStyle>
+    <!--Popup-->
+    <c:PopupStyle x:Key="Tizen.NUI.Components.Popup" Size="500, 280" BackgroundColor="0.9, 0.9, 0.9, 1">
+        <c:PopupStyle.ImageShadow>
+            <ImageShadow Url="{NUIResourcePath nui_component_default_popup_shadow.png}" Border="24, 24, 24, 24" Extents="48, 48"/>
+        </c:PopupStyle.ImageShadow>
+        <c:PopupStyle.Title>
+            <TextLabelStyle PointSize="16" Padding="20" />
+        </c:PopupStyle.Title>
+        <c:PopupStyle.Buttons>
+            <c:ButtonStyle Size="0, 80">
+                <c:ButtonStyle.BackgroundColor>
+                    <Selector x:TypeArguments="Color" Normal="1, 1, 1, 1" Pressed="1, 1, 1, 0.5"/>
+                </c:ButtonStyle.BackgroundColor>
+                <c:ButtonStyle.Overlay>
+                    <ImageViewStyle>
+                        <ImageViewStyle.BackgroundColor>
+                            <Selector x:TypeArguments="Color" Normal="1, 1, 1, 1" Pressed="0, 0, 0, 0.1" Selected="1, 1, 1, 1"/>
+                        </ImageViewStyle.BackgroundColor>
+                    </ImageViewStyle>
+                </c:ButtonStyle.Overlay>
+                <c:ButtonStyle.Text>
+                    <TextLabelStyle TextColor="0.05, 0.63, 0.9, 1" />
+                </c:ButtonStyle.Text>
+            </c:ButtonStyle>
+        </c:PopupStyle.Buttons>
+    </c:PopupStyle>
 
-  <!--Loading-->
-  <c:LoadingStyle x:Key="Tizen.NUI.Components.Loading" LoadingSize="100, 100" />
-  
-  <!--Pagination-->
-  <c:PaginationStyle x:Key="Tizen.NUI.Components.Pagination">
-    <c:PaginationStyle.IndicatorImageUrl>
-      <Selector x:TypeArguments="x:String" Normal="{NUIResourcePath nui_component_default_pagination_normal_dot.png}" Selected="{NUIResourcePath nui_component_default_pagination_focus_dot.png}" />
-    </c:PaginationStyle.IndicatorImageUrl>
-  </c:PaginationStyle>
+    <!--Progress-->
+    <c:ProgressStyle x:Key="Tizen.NUI.Components.Progress" Size="200, 5">
+        <c:ProgressStyle.Track>
+            <ImageViewStyle BackgroundColor="0, 0, 0, 0.1" />
+        </c:ProgressStyle.Track>
+        <c:ProgressStyle.Buffer>
+            <ImageViewStyle BackgroundColor="0.05, 0.63, 0.9, 0.3" />
+        </c:ProgressStyle.Buffer>
+        <c:ProgressStyle.Progress>
+            <ImageViewStyle BackgroundColor="0.05, 0.63, 0.9, 1" />
+        </c:ProgressStyle.Progress>
+    </c:ProgressStyle>
 
-  <!--Scrollbar-->
-  <c:ScrollbarStyle x:Key="Tizen.NUI.Components.Scrollbar" TrackThickness="8" ThumbThickness="8" TrackColor="0.435, 0.435, 0.435, 0.1" ThumbColor="0, 0, 0, 0.2" TrackPadding="8" />
+    <!--RadioButton-->
+    <c:ButtonStyle x:Key="Tizen.NUI.Components.RadioButton" Size="30, 30">
+        <c:ButtonStyle.Icon>
+            <ImageViewStyle>
+                <ImageViewStyle.Opacity>
+                    <Selector x:TypeArguments="x:Single?" Normal="1" Selected="1" Disabled="0.4" DisabledSelected="0.4"/>
+                </ImageViewStyle.Opacity>
+                <ImageViewStyle.BackgroundImage>
+                    <Selector x:TypeArguments="x:String" Pressed="{NUIResourcePath nui_component_default_radiobutton_p.png}" Selected="{NUIResourcePath nui_component_default_radiobutton_s.png}" Other="{NUIResourcePath nui_component_default_radiobutton_n.png}" />
+                </ImageViewStyle.BackgroundImage>
+            </ImageViewStyle>
+        </c:ButtonStyle.Icon>
+        <c:ButtonStyle.Text>
+            <TextLabelStyle PointSize="12">
+                <TextLabelStyle.TextColor>
+                    <Selector x:TypeArguments="Color" Normal="0.22, 0.22, 0.22, 1" Pressed="0.11, 0.11, 0.11, 1" Disabled="0.66, 0.66, 0.66, 1" />
+                </TextLabelStyle.TextColor>
+            </TextLabelStyle>
+        </c:ButtonStyle.Text>
+    </c:ButtonStyle>
+
+    <!--Slider-->
+    <c:SliderStyle x:Key="Tizen.NUI.Components.Slider" Size="200, 50" TrackThickness="5">
+        <c:SliderStyle.Track>
+            <ImageViewStyle BackgroundColor="0, 0, 0, 0.1" />
+        </c:SliderStyle.Track>
+        <c:SliderStyle.Progress>
+            <ImageViewStyle BackgroundColor="0.5, 0.63, 0.9, 1" />
+        </c:SliderStyle.Progress>
+        <c:SliderStyle.Thumb>
+            <ImageViewStyle Size="50, 50" ResourceUrl="{NUIResourcePath nui_component_default_slider_thumb_n.png}">
+                <ImageViewStyle.BackgroundImage>
+                    <Selector x:TypeArguments="x:String" Normal="" Pressed="{NUIResourcePath nui_component_default_slider_thumb_bg_p.png}" />
+                </ImageViewStyle.BackgroundImage>
+            </ImageViewStyle>
+        </c:SliderStyle.Thumb>
+    </c:SliderStyle>
+
+    <!--Switch-->
+    <c:SwitchStyle x:Key="Tizen.NUI.Components.Switch" Size="96, 60">
+        <c:Switch.Track>
+            <ImageViewStyle Size="96, 60">
+                <ImageViewStyle.ResourceUrl>
+                    <Selector x:TypeArguments="x:String" Normal="{NUIResourcePath nui_component_default_switch_track_n.png}" Selected="{NUIResourcePath nui_component_default_switch_track_s.png}" Disabled="{NUIResourcePath nui_component_default_switch_track_d.png}" DisabledSelected="{NUIResourcePath nui_component_default_switch_track_ds.png}" />
+                </ImageViewStyle.ResourceUrl>
+            </ImageViewStyle>
+        </c:Switch.Track>
+        <c:Switch.Thumb>
+            <ImageViewStyle Size="60, 60">
+                <ImageViewStyle.ResourceUrl>
+                    <Selector x:TypeArguments="x:String" Normal="{NUIResourcePath nui_component_default_switch_thumb_n.png}" Disabled="{NUIResourcePath nui_component_default_switch_thumb_d.png}" Selected="{NUIResourcePath nui_component_default_switch_thumb_n.png}" />
+                </ImageViewStyle.ResourceUrl>
+            </ImageViewStyle>
+        </c:Switch.Thumb>
+        <c:Switch.Text>
+            <TextLabelStyle PointSize="12">
+                <TextLabelStyle.TextColor>
+                    <Selector x:TypeArguments="Color" Normal="0.22, 0.22, 0.22, 1" Pressed="0.11, 0.11, 0.11, 1" Disabled="0.66, 0.66, 0.66, 1" />
+                </TextLabelStyle.TextColor>
+            </TextLabelStyle>
+        </c:Switch.Text>
+    </c:SwitchStyle>
+
+    <!--Tab-->
+    <c:TabStyle x:Key="Tizen.NUI.Components.Tab" Size="480, 80" BackgroundColor="Yellow">
+        <c:TabStyle.UnderLine>
+            <ViewStyle Size="0, 6" BackgroundColor="0.05, 0.63, 0.9, 1.0" />
+        </c:TabStyle.UnderLine>
+        <c:TabStyle.Text>
+            <TextLabelStyle PointSize="16">
+                <TextLabelStyle.TextColor>
+                    <Selector x:TypeArguments="Color" Normal="Black" Selected="0.05, 0.63, 0.9, 1" />
+                </TextLabelStyle.TextColor>
+            </TextLabelStyle>
+        </c:TabStyle.Text>
+    </c:TabStyle>
+
+    <!--Toast-->
+    <c:ToastStyle x:Key="Tizen.NUI.Components.Toast" BackgroundColor="0, 0, 0, 0.8">
+        <c:ToastStyle.Text>
+            <TextLabelStyle Padding="12, 12, 8, 8" />
+        </c:ToastStyle.Text>
+    </c:ToastStyle>
+
+    <!--Loading-->
+    <c:LoadingStyle x:Key="Tizen.NUI.Components.Loading" LoadingSize="100, 100" />
+
+    <!--Pagination-->
+    <c:PaginationStyle x:Key="Tizen.NUI.Components.Pagination">
+        <c:PaginationStyle.IndicatorImageUrl>
+            <Selector x:TypeArguments="x:String" Normal="{NUIResourcePath nui_component_default_pagination_normal_dot.png}" Selected="{NUIResourcePath nui_component_default_pagination_focus_dot.png}" />
+        </c:PaginationStyle.IndicatorImageUrl>
+    </c:PaginationStyle>
+
+    <!--Scrollbar-->
+    <c:ScrollbarStyle x:Key="Tizen.NUI.Components.Scrollbar" TrackThickness="8" ThumbThickness="8" TrackColor="0.435, 0.435, 0.435, 0.1" ThumbColor="0, 0, 0, 0.2" TrackPadding="8" />
 
 </Theme>

@@ -34,13 +34,13 @@ namespace Tizen.NUI.Components
         /// Container which contains ViewItems.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected View Container{ get ; set; }
+        protected View Container { get; set; }
 
         /// <summary>
         /// Parent ItemsView.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected RecyclerView ItemsView{ get; set; }
+        protected RecyclerView ItemsView { get; set; }
 
         /// <summary>
         /// The last scrolled position which is calculated by ScrollableBase. The value should be updated in the Recycle() method.
@@ -114,7 +114,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void RequestLayout(float scrollPosition, bool force = false)
         {
-           // Layouting Items in scrollPosition.
+            // Layouting Items in scrollPosition.
         }
 
         /// <summary>
@@ -139,9 +139,9 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual (float X, float Y) GetItemPosition(object item)
         {
-           if (item == null) throw new ArgumentNullException(nameof(item));
-           // Layouting Items in scrollPosition.
-           return (0, 0);
+            if (item == null) throw new ArgumentNullException(nameof(item));
+            // Layouting Items in scrollPosition.
+            return (0, 0);
         }
 
         /// <summary>
@@ -151,9 +151,9 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual (float X, float Y) GetItemSize(object item)
         {
-           if (item == null) throw new ArgumentNullException(nameof(item));
-           // Layouting Items in scrollPosition.
-           return (0, 0);
+            if (item == null) throw new ArgumentNullException(nameof(item));
+            // Layouting Items in scrollPosition.
+            return (0, 0);
         }
 
         /// <summary>

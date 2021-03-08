@@ -558,7 +558,7 @@ namespace Tizen.NUI
 
             if (windowFocusChangedEventCallback2 != null)
             {
-                windowFocusChangedSignal2?.Disconnect(windowFocusChangedEventCallback2); 
+                windowFocusChangedSignal2?.Disconnect(windowFocusChangedEventCallback2);
             }
 
             if (transitionEffectSignal != null)

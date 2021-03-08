@@ -45,7 +45,7 @@ namespace Tizen.NUI
             { "shadow.CornerRadius",    new VisualPropertyData(View.Property.SHADOW, Visual.Property.CornerRadius, ObjectIntToFloat) },
         };
 
-        static PropertyHelper() {}
+        static PropertyHelper() { }
 
         ///<summary>
         /// Returns a Property if stringProperty is a valid index
@@ -74,7 +74,7 @@ namespace Tizen.NUI
         private static SearchResult SearchProperty(View view, string lowercasePropertyString)
         {
             Property property = new Property(view, lowercasePropertyString);
-            
+
             if (property.propertyIndex == Property.InvalidIndex)
             {
                 property.Dispose();
@@ -137,7 +137,7 @@ namespace Tizen.NUI
                 var colorValue = value as Vector4;
                 return new Vector3(colorValue.R, colorValue.G, colorValue.B);
             }
-            
+
             if (value is Color)
             {
                 var colorValue = value as Color;

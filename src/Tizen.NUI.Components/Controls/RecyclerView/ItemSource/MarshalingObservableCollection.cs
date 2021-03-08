@@ -72,16 +72,16 @@ namespace Tizen.NUI.Components
 
                 args = new ResetNotifyCollectionChangedEventArgs(items);
             }
-/*
-            if (Device.IsInvokeRequired)
-            {
-                Device.BeginInvokeOnMainThread(() => HandleCollectionChange(args));
-            }
-            else
-            {
-                HandleCollectionChange(args);
-            }
-*/
+            /*
+                        if (Device.IsInvokeRequired)
+                        {
+                            Device.BeginInvokeOnMainThread(() => HandleCollectionChange(args));
+                        }
+                        else
+                        {
+                            HandleCollectionChange(args);
+                        }
+            */
 
             HandleCollectionChange(args);
         }

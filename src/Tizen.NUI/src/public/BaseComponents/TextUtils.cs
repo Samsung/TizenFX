@@ -1127,10 +1127,12 @@ namespace Tizen.NUI.BaseComponents
         /// <returns> A float value for FontSizeScale property. </returns>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static float GetFontSizeScale(SystemSettingsFontSize systemSettingsFontSize) {
+        public static float GetFontSizeScale(SystemSettingsFontSize systemSettingsFontSize)
+        {
             float ret = FontSizeScaleNormal;
 
-            switch (systemSettingsFontSize) {
+            switch (systemSettingsFontSize)
+            {
                 case SystemSettingsFontSize.Small:
                     ret = FontSizeScaleSmall;
                     break;

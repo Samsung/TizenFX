@@ -361,7 +361,7 @@ namespace Tizen.NUI
                 }
             }
 
-            (float childrenWidth, float childrenHeight) =  CalculateChildrenSize(widthMeasureSpec.Size.AsDecimal(), heightMeasureSpec.Size.AsDecimal());
+            (float childrenWidth, float childrenHeight) = CalculateChildrenSize(widthMeasureSpec.Size.AsDecimal(), heightMeasureSpec.Size.AsDecimal());
             SetMeasuredDimensions(ResolveSizeAndState(new LayoutLength(childrenWidth), widthMeasureSpec, childWidthState),
                                   ResolveSizeAndState(new LayoutLength(childrenHeight), heightMeasureSpec, childHeightState));
         }

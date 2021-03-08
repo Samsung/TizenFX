@@ -113,7 +113,7 @@ namespace Tizen.NUI.Components
             Instance.GetExternalThemeKeyListSet();
         }
 
-        private static void SetBackgroundColor(ViewStyle style, Selector<Color> value) => style.BackgroundColor = value; 
+        private static void SetBackgroundColor(ViewStyle style, Selector<Color> value) => style.BackgroundColor = value;
 
         private static void SetBackgroundImage(ViewStyle style, Selector<string> value) => style.BackgroundImage = value;
 

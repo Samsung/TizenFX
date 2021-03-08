@@ -28,31 +28,31 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Count of data source.
         /// </summary>
-       [EditorBrowsable(EditorBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         int Count { get; }
 
         /// <summary>
         /// Position integer value of data object.
         /// </summary>
-       [EditorBrowsable(EditorBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         int GetPosition(object item);
 
         /// <summary>
         /// Item object in position.
         /// </summary>
-       [EditorBrowsable(EditorBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         object GetItem(int position);
 
         /// <summary>
         /// Flag of header existence.
         /// </summary>
-       [EditorBrowsable(EditorBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         bool HasHeader { get; set; }
 
         /// <summary>
         /// Flag of Footer existence.
         /// </summary>
-       [EditorBrowsable(EditorBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         bool HasFooter { get; set; }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Tizen.NUI.Components
         /// warning: if header exist, all item index will be increased.
         /// </summary>
         /// <param name="position">The position for checking header.</param>
-       [EditorBrowsable(EditorBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         bool IsHeader(int position);
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace Tizen.NUI.Components
         /// warning: footer will be place original data count or data count + 1.
         /// </summary>
         /// <param name="position">The position for checking footer.</param>
-       [EditorBrowsable(EditorBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         bool IsFooter(int position);
     }
 
@@ -84,21 +84,21 @@ namespace Tizen.NUI.Components
         /// Boolean checker for position is group header or not
         /// </summary>
         /// <param name="position">The position for checking group header.</param>
-       [EditorBrowsable(EditorBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         bool IsGroupHeader(int position);
 
         /// <summary>
         /// Boolean checker for position is group footer or not
         /// </summary>
         /// <param name="position">The position for checking group footer.</param>
-       [EditorBrowsable(EditorBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         bool IsGroupFooter(int position);
 
         /// <summary>
         /// Boolean checker for position is group footer or not
         /// </summary>
         /// <param name="position">The position for checking group footer.</param>
-       [EditorBrowsable(EditorBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         object GetGroupParent(int position);
 
     }

@@ -62,7 +62,7 @@ namespace Tizen.NUI.Components
             }
         }
 
-        static DefaultLinearItem() {}
+        static DefaultLinearItem() { }
 
         /// <summary>
         /// Creates a new instance of DefaultLinearItem.
@@ -171,7 +171,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// The text of DefaultLinearItem.
         /// </summary>
-       [EditorBrowsable(EditorBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string Text
         {
             get
@@ -213,7 +213,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// The text of DefaultLinearItem.
         /// </summary>
-       [EditorBrowsable(EditorBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string SubText
         {
             get
@@ -316,7 +316,7 @@ namespace Tizen.NUI.Components
                     var margin = itemSeperator.Margin;
                     itemSeperator.SizeWidth = SizeWidth - margin.Start - margin.End;
                     itemSeperator.SizeHeight = itemSeperator.HeightSpecification;
-                    itemSeperator.Position = new Position(margin.Start, SizeHeight - margin.Bottom -itemSeperator.SizeHeight);
+                    itemSeperator.Position = new Position(margin.Start, SizeHeight - margin.Bottom - itemSeperator.SizeHeight);
                 }
             }
         }
@@ -479,7 +479,7 @@ namespace Tizen.NUI.Components
                     var margin = itemSeperator.Margin;
                     itemSeperator.SizeWidth = SizeWidth - margin.Start - margin.End;
                     itemSeperator.SizeHeight = itemSeperator.HeightSpecification;
-                    itemSeperator.Position = new Position(margin.Start, SizeHeight - margin.Bottom -itemSeperator.SizeHeight);
+                    itemSeperator.Position = new Position(margin.Start, SizeHeight - margin.Bottom - itemSeperator.SizeHeight);
                 }
             }
         }
@@ -560,6 +560,6 @@ namespace Tizen.NUI.Components
         {
             MeasureChild();
             LayoutChild();
-        }        
+        }
     }
 }

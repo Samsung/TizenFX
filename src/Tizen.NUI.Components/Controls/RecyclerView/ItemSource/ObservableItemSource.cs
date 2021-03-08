@@ -111,7 +111,7 @@ namespace Tizen.NUI.Components
             }
             else
             {*/
-                CollectionChanged(args);
+            CollectionChanged(args);
             //}
 
         }

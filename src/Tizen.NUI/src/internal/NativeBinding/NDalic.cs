@@ -1450,7 +1450,7 @@ namespace Tizen.NUI
             }
         }
 
-        public static Vector4 PAPAYA_WHIP 
+        public static Vector4 PAPAYA_WHIP
         {
             get
             {

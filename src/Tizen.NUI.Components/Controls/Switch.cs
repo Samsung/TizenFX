@@ -338,9 +338,9 @@ namespace Tizen.NUI.Components
         private void Initialize()
         {
             IsSelectable = true;
-            #if PROFILE_MOBILE
+#if PROFILE_MOBILE
                 Feedback = true;
-            #endif
+#endif
         }
 
         private void OnSelect()

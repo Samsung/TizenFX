@@ -30,25 +30,29 @@ namespace Tizen.NUI
     public class AccessibilityDoGestureSignal : Disposable
     {
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal AccessibilityDoGestureSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn) {
+        internal AccessibilityDoGestureSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        {
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        static internal uint GetSizeOfGestureInfo() {
+        static internal uint GetSizeOfGestureInfo()
+        {
             uint ret = Interop.DoGestureSignal.GetSizeOfGestureInfo();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        static internal int GetResult(global::System.IntPtr data) {
+        static internal int GetResult(global::System.IntPtr data)
+        {
             int ret = Interop.DoGestureSignal.GetResult(data);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        static internal void SetResult(global::System.IntPtr data, int res) {
+        static internal void SetResult(global::System.IntPtr data, int res)
+        {
             Interop.DoGestureSignal.SetResult(data, res);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
- 
+
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;

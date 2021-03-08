@@ -446,9 +446,9 @@ namespace Tizen.NUI.Components
 
             AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "Button");
 
-            #if PROFILE_MOBILE
+#if PROFILE_MOBILE
                 Feedback = true;
-            #endif
+#endif
         }
 
         private void UpdateUIContent()

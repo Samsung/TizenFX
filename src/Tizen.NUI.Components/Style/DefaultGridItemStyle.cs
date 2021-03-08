@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
- 
+
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
@@ -28,7 +28,7 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class DefaultGridItemStyle : RecyclerViewItemStyle
     {
-    
+
         static DefaultGridItemStyle() { }
 
         /// <summary>
