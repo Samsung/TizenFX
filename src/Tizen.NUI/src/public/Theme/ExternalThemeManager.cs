@@ -208,7 +208,7 @@ namespace Tizen.NUI
             {
                 return new Tizen.Applications.ThemeManager.ThemeLoader();
             }
-            catch (DllNotFoundException e)
+            catch (Exception e)
             {
                 Tizen.Log.Info("NUI", $"[Ignorable] {e.GetType().Name} occured while setting Tizen.Applications.ThemeManager: {e.Message}");
             }
