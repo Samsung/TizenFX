@@ -66,7 +66,7 @@ namespace Tizen.NUI
         private bool disposed = false;
         private ImageViewStyle defaultImageStyle;
         private List<TransitionAnimationData> animationDataList;
-        
+
 
         /// <summary>
         /// Create an instance of Transition.

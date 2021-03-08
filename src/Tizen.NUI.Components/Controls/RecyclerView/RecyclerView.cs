@@ -32,7 +32,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Base Constructor
         /// </summary>
-       [EditorBrowsable(EditorBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public RecyclerView() : base()
         {
             Scrolling += OnScrolling;
@@ -53,7 +53,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Internal encapsulated items data source.
         /// </summary>
-        internal IItemSource InternalItemSource { get; set;}
+        internal IItemSource InternalItemSource { get; set; }
 
         /// <summary>
         /// RecycleCache of ViewItem.
@@ -65,7 +65,7 @@ namespace Tizen.NUI.Components
         /// Internal Items Layouter.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected ItemsLayouter InternalItemsLayouter {get; set; }
+        protected ItemsLayouter InternalItemsLayouter { get; set; }
 
         /// <summary>
         /// Max size of RecycleCache. Default is 50.
@@ -79,7 +79,7 @@ namespace Tizen.NUI.Components
         {
             //Console.WriteLine("[NUI] On ReLayout [{0} {0}]", size.X, size.Y);
             base.OnRelayout(size, container);
-            if (InternalItemsLayouter != null && ItemsSource != null && ItemTemplate != null) 
+            if (InternalItemsLayouter != null && ItemsSource != null && ItemTemplate != null)
             {
                 InternalItemsLayouter.Initialize(this);
                 InternalItemsLayouter.RequestLayout(ScrollingDirection == Direction.Horizontal ? ContentContainer.CurrentPosition.X : ContentContainer.CurrentPosition.Y, true);
@@ -225,13 +225,13 @@ namespace Tizen.NUI.Components
             }
             else
             {
-               // pop item
-               RecyclerViewItem item = PopRecycleCache(ItemTemplate);
-               if (item != null)
-               {
+                // pop item
+                RecyclerViewItem item = PopRecycleCache(ItemTemplate);
+                if (item != null)
+                {
                     DecorateItem(item, index, context);
                     return item;
-               }
+                }
             }
 
             object content = DataTemplateExtensions.CreateContent(ItemTemplate, context, (BindableObject)this) ?? throw new Exception("Template return null object.");
@@ -311,17 +311,17 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual RecyclerViewItem PopRecycleCache(DataTemplate Template)
         {
-           for (int i = 0; i < RecycleCache.Count; i++)
-           {
-               RecyclerViewItem item = RecycleCache[i];
-               if (item.Template == Template)
-               {
-                   RecycleCache.Remove(item);
-                   item.Show();
-                   return item;
-               }
-           }
-           return null;
+            for (int i = 0; i < RecycleCache.Count; i++)
+            {
+                RecyclerViewItem item = RecycleCache[i];
+                if (item.Template == Template)
+                {
+                    RecycleCache.Remove(item);
+                    item.Show();
+                    return item;
+                }
+            }
+            return null;
         }
 
         /// <summary>

@@ -131,7 +131,7 @@ namespace Tizen.NUI.Components
             }
         }
 
-        static RecyclerViewItem() {}
+        static RecyclerViewItem() { }
 
         /// <summary>
         /// Creates a new instance of RecyclerViewItem.
@@ -194,8 +194,8 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsEnabled
         {
-            get =>  (bool)GetValue(IsEnabledProperty);
-            set =>  SetValue(IsEnabledProperty, value);
+            get => (bool)GetValue(IsEnabledProperty);
+            set => SetValue(IsEnabledProperty, value);
         }
 
         /// <summary>
@@ -218,7 +218,7 @@ namespace Tizen.NUI.Components
         public bool IsRealized { get; internal set; }
         internal bool IsHeader { get; set; }
         internal bool IsFooter { get; set; }
-        internal bool IsPressed  { get; set; } = false;
+        internal bool IsPressed { get; set; } = false;
 
         /// <summary>
         /// Called after a key event is received by the view that has had its focus set.
@@ -257,15 +257,15 @@ namespace Tizen.NUI.Components
                             CollectionView colView = ParentItemsView as CollectionView;
                             switch (colView.SelectionMode)
                             {
-                                case ItemSelectionMode.SingleSelection :
+                                case ItemSelectionMode.SingleSelection:
                                     colView.SelectedItem = IsSelected ? null : BindingContext;
                                     break;
-                                case ItemSelectionMode.MultipleSelections :
+                                case ItemSelectionMode.MultipleSelections:
                                     var selectedItems = colView.SelectedItems;
                                     if (selectedItems.Contains(BindingContext)) selectedItems.Remove(BindingContext);
                                     else selectedItems.Add(BindingContext);
                                     break;
-                                case ItemSelectionMode.None :
+                                case ItemSelectionMode.None:
                                     break;
                             }
                         }

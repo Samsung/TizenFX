@@ -51,7 +51,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool Equals(System.Object obj)
         {
-            if(obj is GestureInfoType)
+            if (obj is GestureInfoType)
             {
                 return this.Equals((GestureInfoType)obj);
             }
@@ -121,10 +121,11 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public partial class View
     {
-        internal class ControlHandle : SafeHandle {
-            public ControlHandle() : base (IntPtr.Zero, true) {}
+        internal class ControlHandle : SafeHandle
+        {
+            public ControlHandle() : base(IntPtr.Zero, true) { }
 
-            public ControlHandle(IntPtr ptr) : base(ptr, true) {}
+            public ControlHandle(IntPtr ptr) : base(ptr, true) { }
 
             public override bool IsInvalid
             {
@@ -344,7 +345,8 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal VoidSignal ActivatedSignal() {
+        internal VoidSignal ActivatedSignal() 
+        {
             var handle = GetControl();
             VoidSignal ret = new VoidSignal(Interop.ControlDevel.DaliToolkitDevelControlAccessibilityActivateSignal(handle), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

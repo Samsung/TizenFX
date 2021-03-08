@@ -555,7 +555,7 @@ namespace Tizen.NUI.Components
             }
         }
 
-        private PaddingType EnsurePadding(Extents padding) => padding == null ? new PaddingType(0, 0, 0 ,0) : new PaddingType(padding.Start, padding.End, padding.Top, padding.Bottom);
+        private PaddingType EnsurePadding(Extents padding) => padding == null ? new PaddingType(0, 0, 0, 0) : new PaddingType(padding.Start, padding.End, padding.Top, padding.Bottom);
 
         #endregion Methods
 
