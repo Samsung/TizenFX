@@ -126,13 +126,16 @@ namespace Tizen.NUI.BaseComponents
 
             public ControlHandle(IntPtr ptr) : base(ptr, true) {}
 
-            public override bool IsInvalid {
-                get {
+            public override bool IsInvalid
+            {
+                get
+                {
                     return this.handle == IntPtr.Zero;
                 }
             }
 
-            protected override bool ReleaseHandle() {
+            protected override bool ReleaseHandle()
+            {
                 Interop.View.DeleteControlHandleView(handle);
                 this.SetHandle(IntPtr.Zero);
                 return true;
@@ -140,7 +143,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        ControlHandle GetControl() {
+        ControlHandle GetControl()
+        {
             var ret = new ControlHandle(Interop.View.DownCast(SwigCPtr));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -154,11 +158,13 @@ namespace Tizen.NUI.BaseComponents
         private GestureInfoHandlerType gestureInfoCallback;
         private EventHandler<GestureInfoEventArgs> gestureInfoHandler;
 
-        private void OnGestureInfoEvent(IntPtr data) {
+        private void OnGestureInfoEvent(IntPtr data)
+        {
             if (data == IntPtr.Zero)
                 return;
 
-            if (Marshal.SizeOf<GestureInfoType>() != AccessibilityDoGestureSignal.GetSizeOfGestureInfo()) {
+            if (Marshal.SizeOf<GestureInfoType>() != AccessibilityDoGestureSignal.GetSizeOfGestureInfo())
+            {
                 throw new global::System.ApplicationException("ABI mismatch SizeOf(C# GestureInfo) != SizeOf(c++ GestureInfo)");
             }
 
@@ -174,22 +180,29 @@ namespace Tizen.NUI.BaseComponents
 
         // This uses DoGestureInfo signal from C++ API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<GestureInfoEventArgs> GestureInfoReceived {
-            add {
-                if (gestureInfoHandler == null) {
+        public event EventHandler<GestureInfoEventArgs> GestureInfoReceived
+        {
+            add
+            {
+                if (gestureInfoHandler == null)
+                {
                     gestureInfoCallback = OnGestureInfoEvent;
                     GestureInfoSignal().Connect(gestureInfoCallback);
                 }
                 gestureInfoHandler += value;
             }
-            remove {
+            remove
+            {
                 gestureInfoHandler -= value;
                 if (gestureInfoHandler == null && GestureInfoSignal().Empty() == false)
+                {
                     GestureInfoSignal().Disconnect(gestureInfoCallback);
+                }
             }
         }
 
-        internal AccessibilityDoGestureSignal GestureInfoSignal() {
+        internal AccessibilityDoGestureSignal GestureInfoSignal()
+        {
             var handle = GetControl();
             AccessibilityDoGestureSignal ret = new AccessibilityDoGestureSignal(Interop.ControlDevel.DaliToolkitDevelControlAccessibilityDoGestureSignal(handle), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -204,7 +217,8 @@ namespace Tizen.NUI.BaseComponents
         private GetDescriptionHandlerType getDescriptionCallback;
         private EventHandler<GetDescriptionEventArgs> getDescriptionHandler;
 
-        private void OnGetDescriptionEvent(IntPtr data) {
+        private void OnGetDescriptionEvent(IntPtr data)
+        {
             if (data == IntPtr.Zero)
                 return;
 
@@ -216,22 +230,29 @@ namespace Tizen.NUI.BaseComponents
 
         // This uses GetDescription signal from C++ API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<GetDescriptionEventArgs> DescriptionRequested {
-            add {
-                if (getDescriptionHandler == null) {
+        public event EventHandler<GetDescriptionEventArgs> DescriptionRequested
+        {
+            add
+            {
+                if (getDescriptionHandler == null)
+                {
                     getDescriptionCallback = OnGetDescriptionEvent;
                     GetDescriptionSignal().Connect(getDescriptionCallback);
                 }
                 getDescriptionHandler += value;
             }
-            remove {
+            remove
+            {
                 getDescriptionHandler -= value;
                 if (getDescriptionHandler == null && GetDescriptionSignal().Empty() == false)
+                {
                     GetDescriptionSignal().Disconnect(getDescriptionCallback);
+                }
             }
         }
 
-        internal StringToVoidSignal GetDescriptionSignal() {
+        internal StringToVoidSignal GetDescriptionSignal()
+        {
             var handle = GetControl();
             StringToVoidSignal ret = new StringToVoidSignal(Interop.ControlDevel.DaliToolkitDevelControlAccessibilityGetDescriptionSignal(handle), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -246,7 +267,8 @@ namespace Tizen.NUI.BaseComponents
         private GetNameHandlerType getNameCallback;
         private EventHandler<GetNameEventArgs> getNameHandler;
 
-        private void OnGetNameEvent(IntPtr data) {
+        private void OnGetNameEvent(IntPtr data)
+        {
             if (data == IntPtr.Zero)
                 return;
 
@@ -258,22 +280,29 @@ namespace Tizen.NUI.BaseComponents
 
         // This uses GetName signal from C++ API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<GetNameEventArgs> NameRequested {
-            add {
-                if (getNameHandler == null) {
+        public event EventHandler<GetNameEventArgs> NameRequested
+        {
+            add
+            {
+                if (getNameHandler == null)
+                {
                     getNameCallback = OnGetNameEvent;
                     GetNameSignal().Connect(getNameCallback);
                 }
                 getNameHandler += value;
             }
-            remove {
+            remove
+            {
                 getNameHandler -= value;
                 if (getNameHandler == null && GetNameSignal().Empty() == false)
+                {
                     GetNameSignal().Disconnect(getNameCallback);
+                }
             }
         }
 
-        internal StringToVoidSignal GetNameSignal() {
+        internal StringToVoidSignal GetNameSignal()
+        {
             var handle = GetControl();
             StringToVoidSignal ret = new StringToVoidSignal(Interop.ControlDevel.DaliToolkitDevelControlAccessibilityGetNameSignal(handle), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -288,27 +317,34 @@ namespace Tizen.NUI.BaseComponents
         private VoidHandlerType activateCallback;
         private EventHandler activateHandler;
 
-        private void OnActivateEvent() {
+        private void OnActivatedEvent()
+        {
             activateHandler?.Invoke(this, null);
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler Activate {
-            add {
-                if (activateHandler == null) {
-                    activateCallback = OnActivateEvent;
-                    ActivateSignal().Connect(activateCallback);
+        public event EventHandler Activated
+        {
+            add
+            {
+                if (activateHandler == null)
+                {
+                    activateCallback = OnActivatedEvent;
+                    ActivatedSignal().Connect(activateCallback);
                 }
                 activateHandler += value;
             }
-            remove {
+            remove
+            {
                 activateHandler -= value;
-                if (activateHandler == null && ActivateSignal().Empty() == false)
-                    ActivateSignal().Disconnect(activateCallback);
+                if (activateHandler == null && ActivatedSignal().Empty() == false)
+                {
+                    ActivatedSignal().Disconnect(activateCallback);
+                }
             }
         }
 
-        internal VoidSignal ActivateSignal() {
+        internal VoidSignal ActivatedSignal() {
             var handle = GetControl();
             VoidSignal ret = new VoidSignal(Interop.ControlDevel.DaliToolkitDevelControlAccessibilityActivateSignal(handle), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -322,27 +358,35 @@ namespace Tizen.NUI.BaseComponents
         private VoidHandlerType readingSkippedCallback;
         private EventHandler readingSkippedHandler;
 
-        private void OnReadingSkippedEvent() {
+        private void OnReadingSkippedEvent()
+        {
             readingSkippedHandler?.Invoke(this, null);
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler ReadingSkipped {
-            add {
-                if (readingSkippedHandler == null) {
+        public event EventHandler ReadingSkipped
+        {
+            add
+            {
+                if (readingSkippedHandler == null)
+                {
                     readingSkippedCallback = OnReadingSkippedEvent;
                     ReadingSkippedSignal().Connect(readingSkippedCallback);
                 }
                 readingSkippedHandler += value;
             }
-            remove {
+            remove
+            {
                 readingSkippedHandler -= value;
                 if (readingSkippedHandler == null && ReadingSkippedSignal().Empty() == false)
+                {
                     ReadingSkippedSignal().Disconnect(readingSkippedCallback);
+                }
             }
         }
 
-        internal VoidSignal ReadingSkippedSignal() {
+        internal VoidSignal ReadingSkippedSignal()
+        {
             var handle = GetControl();
             VoidSignal ret = new VoidSignal(Interop.ControlDevel.DaliToolkitDevelControlAccessibilityReadingSkippedSignal(handle), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -356,27 +400,35 @@ namespace Tizen.NUI.BaseComponents
         private VoidHandlerType readingPausedCallback;
         private EventHandler readingPausedHandler;
 
-        private void OnReadingPausedEvent() {
+        private void OnReadingPausedEvent()
+        {
             readingPausedHandler?.Invoke(this, null);
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler ReadingPaused {
-            add {
-                if (readingPausedHandler == null) {
+        public event EventHandler ReadingPaused
+        {
+            add
+            {
+                if (readingPausedHandler == null)
+                {
                     readingPausedCallback = OnReadingPausedEvent;
                     ReadingPausedSignal().Connect(readingPausedCallback);
                 }
                 readingPausedHandler += value;
             }
-            remove {
+            remove
+            {
                 readingPausedHandler -= value;
                 if (readingPausedHandler == null && ReadingPausedSignal().Empty() == false)
+                {
                     ReadingPausedSignal().Disconnect(readingPausedCallback);
+                }
             }
         }
 
-        internal VoidSignal ReadingPausedSignal() {
+        internal VoidSignal ReadingPausedSignal()
+        {
             var handle = GetControl();
             VoidSignal ret = new VoidSignal(Interop.ControlDevel.DaliToolkitDevelControlAccessibilityReadingPausedSignal(handle), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -390,27 +442,35 @@ namespace Tizen.NUI.BaseComponents
         private VoidHandlerType readingResumedCallback;
         private EventHandler readingResumedHandler;
 
-        private void OnReadingResumedEvent() {
+        private void OnReadingResumedEvent()
+        {
             readingResumedHandler?.Invoke(this, null);
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler ReadingResumed  {
-            add {
-                if (readingResumedHandler == null) {
+        public event EventHandler ReadingResumed
+        {
+            add
+            {
+                if (readingResumedHandler == null)
+                {
                     readingResumedCallback = OnReadingResumedEvent;
                     ReadingResumedSignal().Connect(readingResumedCallback);
                 }
                 readingResumedHandler += value;
             }
-            remove {
+            remove
+            {
                 readingResumedHandler -= value;
                 if (readingResumedHandler == null && ReadingResumedSignal().Empty() == false)
+                {
                     ReadingResumedSignal().Disconnect(readingResumedCallback);
+                }
             }
         }
 
-        internal VoidSignal ReadingResumedSignal() {
+        internal VoidSignal ReadingResumedSignal()
+        {
             var handle = GetControl();
             VoidSignal ret = new VoidSignal(Interop.ControlDevel.DaliToolkitDevelControlAccessibilityReadingResumedSignal(handle), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -424,27 +484,35 @@ namespace Tizen.NUI.BaseComponents
         private VoidHandlerType readingCancelledCallback;
         private EventHandler readingCancelledHandler;
 
-        private void OnReadingCancelledEvent() {
+        private void OnReadingCancelledEvent()
+        {
             readingCancelledHandler?.Invoke(this, null);
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler ReadingCancelled  {
-            add {
-                if (readingCancelledHandler == null) {
+        public event EventHandler ReadingCancelled
+        {
+            add
+            {
+                if (readingCancelledHandler == null)
+                {
                     readingCancelledCallback = OnReadingCancelledEvent;
                     ReadingCancelledSignal().Connect(readingCancelledCallback);
                 }
                 readingCancelledHandler += value;
             }
-            remove {
+            remove
+            {
                 readingCancelledHandler -= value;
                 if (readingCancelledHandler == null && ReadingCancelledSignal().Empty() == false)
+                {
                     ReadingCancelledSignal().Disconnect(readingCancelledCallback);
+                }
             }
         }
 
-        internal VoidSignal ReadingCancelledSignal() {
+        internal VoidSignal ReadingCancelledSignal()
+        {
             var handle = GetControl();
             VoidSignal ret = new VoidSignal(Interop.ControlDevel.DaliToolkitDevelControlAccessibilityReadingCancelledSignal(handle), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -458,27 +526,35 @@ namespace Tizen.NUI.BaseComponents
         private VoidHandlerType readingStoppedCallback;
         private EventHandler readingStoppedHandler;
 
-        private void OnReadingStoppedEvent() {
+        private void OnReadingStoppedEvent()
+        {
             readingStoppedHandler?.Invoke(this, null);
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler ReadingStopped  {
-            add {
-                if (readingStoppedHandler == null) {
+        public event EventHandler ReadingStopped
+        {
+            add
+            {
+                if (readingStoppedHandler == null)
+                {
                     readingStoppedCallback = OnReadingStoppedEvent;
                     ReadingStoppedSignal().Connect(readingStoppedCallback);
                 }
                 readingStoppedHandler += value;
             }
-            remove {
+            remove
+            {
                 readingStoppedHandler -= value;
                 if (readingStoppedHandler == null && ReadingStoppedSignal().Empty() == false)
+                {
                     ReadingStoppedSignal().Disconnect(readingStoppedCallback);
+                }
             }
         }
 
-        internal VoidSignal ReadingStoppedSignal() {
+        internal VoidSignal ReadingStoppedSignal()
+        {
             var handle = GetControl();
             VoidSignal ret = new VoidSignal(Interop.ControlDevel.DaliToolkitDevelControlAccessibilityReadingStoppedSignal(handle), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

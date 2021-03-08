@@ -492,9 +492,9 @@ namespace Tizen.NUI.BaseComponents
         {
             if (name == AccessibilityActivateAction)
             {
-                if (this.ActivateSignal().Empty() == false)
+                if (this.ActivatedSignal().Empty() == false)
                 {
-                    this.ActivateSignal().Emit();
+                    this.ActivatedSignal().Emit();
                     return true;
                 }
                 else
