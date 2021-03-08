@@ -59,7 +59,7 @@ namespace Tizen.NUI.Components
             }
         }
 
-        static DefaultGridItem() {}
+        static DefaultGridItem() { }
 
         /// <summary>
         /// Creates a new instance of DefaultGridItem.
@@ -126,7 +126,7 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                if ( itemImage == null)
+                if (itemImage == null)
                 {
                     itemImage = CreateImage(ItemStyle.Image);
                     if (itemImage != null)
@@ -173,23 +173,23 @@ namespace Tizen.NUI.Components
             }
         }
 
-/* open when ImageView using Uri not string
-        /// <summary>
-        /// Image image's resource url in DefaultGridItem.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string ImageUrl
-        {
-            get
-            {
-                return Image.ResourceUrl;
-            }
-            set
-            {
-                Image.ResourceUrl = value;
-            }
-        }
-*/
+        /* open when ImageView using Uri not string
+                /// <summary>
+                /// Image image's resource url in DefaultGridItem.
+                /// </summary>
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public string ImageUrl
+                {
+                    get
+                    {
+                        return Image.ResourceUrl;
+                    }
+                    set
+                    {
+                        Image.ResourceUrl = value;
+                    }
+                }
+        */
 
         /// <summary>
         /// DefaultGridItem's text part.
@@ -295,7 +295,7 @@ namespace Tizen.NUI.Components
             return new ImageView(imageStyle);
         }
 
-         /// <inheritdoc/>
+        /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void MeasureChild()
         {

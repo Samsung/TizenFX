@@ -46,7 +46,7 @@ namespace Tizen.NUI.Accessibility
         /// </summary>
         ~Accessibility()
         {
-            Tizen.Log.Debug("NUI",$"Accessibility is destroyed\n");
+            Tizen.Log.Debug("NUI", $"Accessibility is destroyed\n");
         }
         #endregion Constructor, Distructor, Dispose
 
