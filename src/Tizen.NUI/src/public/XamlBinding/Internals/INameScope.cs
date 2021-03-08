@@ -40,6 +40,6 @@ namespace Tizen.NUI.Binding.Internals
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         [ObsoleteAttribute(" ", false)]
-         void RegisterName(string name, object scopedElement, IXmlLineInfo xmlLineInfo);
+        void RegisterName(string name, object scopedElement, IXmlLineInfo xmlLineInfo);
     }
 }

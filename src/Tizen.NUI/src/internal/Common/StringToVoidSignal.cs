@@ -35,7 +35,8 @@ namespace Tizen.NUI
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        static internal string ConvertParam1(global::System.IntPtr data) {
+        static internal string ConvertParam1(global::System.IntPtr data)
+        {
             string result = Interop.StringToVoidSignal.ConvertParam1(data);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return result;

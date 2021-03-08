@@ -522,7 +522,7 @@ namespace Tizen.NUI.BaseComponents
         /// The default constructor.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public SelectorItem() {}
+        public SelectorItem() { }
 
         /// <summary>
         /// The constructor with the specified state and value.
