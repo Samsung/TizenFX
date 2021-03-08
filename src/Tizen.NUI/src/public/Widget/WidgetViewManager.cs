@@ -60,7 +60,6 @@ namespace Tizen.NUI
                 if (!instance)
                 {
                     instance = new WidgetViewManager();
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
                 return instance;
             }
