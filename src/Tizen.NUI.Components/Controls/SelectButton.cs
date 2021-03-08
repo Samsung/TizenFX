@@ -228,7 +228,7 @@ namespace Tizen.NUI.Components
                 {
                     EmitAccessibilityStateChangedEvent(AccessibilityState.Checked, info.CurrentState.Contains(ControlState.Selected));
                 }
-                
+
                 // SelectedChanged is invoked when button or key is unpressed.
                 if (invokeSelectedChanged == false)
                 {

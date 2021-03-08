@@ -284,7 +284,7 @@ namespace Tizen.NUI
                 {
                     child.InternalParent = this;
                 }
-                Interop.Actor.Add( SwigCPtr , View.getCPtr(child));
+                Interop.Actor.Add(SwigCPtr, View.getCPtr(child));
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 Children.Add(child);
@@ -305,7 +305,7 @@ namespace Tizen.NUI
             {
                 throw new ArgumentNullException(nameof(child));
             }
-            Interop.Actor.Remove( SwigCPtr, View.getCPtr(child));
+            Interop.Actor.Remove(SwigCPtr, View.getCPtr(child));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 

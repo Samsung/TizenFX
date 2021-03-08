@@ -54,14 +54,14 @@ namespace Tizen.NUI.Xaml
         [EditorBrowsable(EditorBrowsableState.Never)]
         public XamlParseException(string message) : base(message)
         {
-           unformattedMessage = message;
+            unformattedMessage = message;
         }
 
         /// <summary> Initializes a new instance with message and inner exception. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public XamlParseException(string message, Exception innerException = null) : base(message, innerException)
         {
-           unformattedMessage = message;
+            unformattedMessage = message;
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
