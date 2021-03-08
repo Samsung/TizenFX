@@ -75,7 +75,7 @@ namespace Tizen.NUI
             /// The properties used for a Tooltip.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-	    [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1716: Identifiers should not match keywords")]
+            [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1716: Identifiers should not match keywords")]
             public struct Property
             {
                 /// <summary>

@@ -153,7 +153,7 @@ namespace Tizen.NUI.Binding
                 {
                     if ((needsGetter && part.LastGetter == null) || (needsSetter && part.NextPart == null && part.LastSetter == null))
                     {
-			Console.WriteLine($"Binding, {PropertyNotFoundErrorMessage}, {part.Content}, {current}, {target.GetType()}, {property.PropertyName}");
+                        Console.WriteLine($"Binding, {PropertyNotFoundErrorMessage}, {part.Content}, {current}, {target.GetType()}, {property.PropertyName}");
                         break;
                     }
                 }
