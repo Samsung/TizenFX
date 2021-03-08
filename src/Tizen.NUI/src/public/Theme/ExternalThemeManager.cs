@@ -25,7 +25,8 @@ namespace Tizen.NUI
     [SuppressMessage("Microsoft.Design", "CA1031: Do not catch general exception types", Justification = "This method is to handle external resources that may throw an exception but ignorable. This method should not interupt the main stream.")]
     internal static class ExternalThemeManager
     {
-        private static readonly Tizen.Applications.ThemeManager.ThemeLoader themeLoader = new Tizen.Applications.ThemeManager.ThemeLoader();
+        private static Tizen.Applications.ThemeManager.ThemeLoader themeLoader = InitializeThemeLoader();
+
         private static string sharedResourcePath;
 #if DEBUG
         private static IExternalTheme theme;
@@ -36,6 +37,10 @@ namespace Tizen.NUI
         {
             get
             {
+                if (themeLoader == null)
+                {
+                    return string.Empty;
+                }
 #if DEBUG
                 if (theme != null)
                 {
@@ -63,12 +68,12 @@ namespace Tizen.NUI
                     catch (ArgumentException e)
                     {
                         Tizen.Log.Error("NUI", $"{e.GetType().Name} occured while getting theme application info.");
-                        throw e;
+                        throw;
                     }
                     catch (InvalidOperationException e)
                     {
                         Tizen.Log.Error("NUI", $"{e.GetType().Name} occured while getting theme application info.");
-                        throw e;
+                        throw;
                     }
 
                     if (themePkgInfo == null)
@@ -87,11 +92,21 @@ namespace Tizen.NUI
 
         public static void Initialize()
         {
+            if (themeLoader == null)
+            {
+                return;
+            }
+
             themeLoader.ThemeChanged += OnTizenThemeChanged;
         }
 
         public static IExternalTheme GetCurrentTheme()
         {
+            if (themeLoader == null)
+            {
+                return null;
+            }
+
 #if DEBUG
             if (theme != null)
             {
@@ -121,6 +136,11 @@ namespace Tizen.NUI
 
         public static IExternalTheme GetTheme(string id)
         {
+            if (themeLoader == null)
+            {
+                return null;
+            }
+
             Tizen.Applications.ThemeManager.Theme tizenTheme = null;
 
             try
@@ -180,6 +200,20 @@ namespace Tizen.NUI
             Tizen.Log.Info("NUI", $"TizenTheme: Id({e.Theme.Id}), Version({e.Theme.Version}), Title({e.Theme.Title})");
             sharedResourcePath = null;
             ThemeManager.ApplyExternalTheme(new TizenExternalTheme(e.Theme));
+        }
+
+        private static Tizen.Applications.ThemeManager.ThemeLoader InitializeThemeLoader()
+        {
+            try
+            {
+                return new Tizen.Applications.ThemeManager.ThemeLoader();
+            }
+            catch (DllNotFoundException e)
+            {
+                Tizen.Log.Info("NUI", $"[Ignorable] {e.GetType().Name} occured while setting Tizen.Applications.ThemeManager: {e.Message}");
+            }
+
+            return null;
         }
     }
 }
