@@ -52,12 +52,6 @@ namespace Tizen.NUI
         /// </summary>
         internal VisualTransformPolicyType CornerRadiusPolicy { get; set; } = VisualTransformPolicyType.Absolute;
 
-        internal bool Empty()
-        {
-            return CornerRadius == 0 && Rectangle.IsNullOrZero(BackgroundImageBorder);
-        }
-
-
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void Dispose(bool disposing)
         {

@@ -994,92 +994,125 @@ namespace Tizen.NUI.BaseComponents
         internal static readonly BindableProperty TranslatableTextSelectorProperty = BindableProperty.Create("TranslatableTextSelector", typeof(Selector<string>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
-            textField.SelectorData.TranslatableText.Update(textField, (Selector<string>)newValue, true);
+            textField.EnsureSelectorData().EnsureTranslatableText().Update(textField, (Selector<string>)newValue, true);
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
-            return textField.SelectorData.TranslatableText.Get(textField);
+            return textField.GetSelector<string>(textField.selectorData?.TranslatableText, TextField.TranslatableTextProperty);
         });
         internal static readonly BindableProperty TranslatablePlaceholderTextSelectorProperty = BindableProperty.Create("TranslatablePlaceholderTextSelector", typeof(Selector<string>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
-            textField.SelectorData.TranslatablePlaceholderText.Update(textField, (Selector<string>)newValue, true);
+            textField.EnsureSelectorData().EnsureTranslatablePlaceholderText().Update(textField, (Selector<string>)newValue, true);
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
-            return textField.SelectorData.TranslatablePlaceholderText.Get(textField);
+            return textField.GetSelector<string>(textField.selectorData?.TranslatablePlaceholderText, TextField.TranslatablePlaceholderTextProperty);
         });
         internal static readonly BindableProperty TextSelectorProperty = BindableProperty.Create("TextSelector", typeof(Selector<string>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
-            textField.SelectorData.Text.Update(textField, (Selector<string>)newValue, true);
+            textField.EnsureSelectorData().EnsureText().Update(textField, (Selector<string>)newValue, true);
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
-            return textField.SelectorData.Text.Get(textField);
+            return textField.GetSelector<string>(textField.selectorData?.Text, TextField.TextProperty);
         });
         internal static readonly BindableProperty FontFamilySelectorProperty = BindableProperty.Create("FontFamilySelector", typeof(Selector<string>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
-            textField.SelectorData.FontFamily.Update(textField, (Selector<string>)newValue, true);
+            textField.EnsureSelectorData().EnsureFontFamily().Update(textField, (Selector<string>)newValue, true);
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
-            return textField.SelectorData.FontFamily.Get(textField);
+            return textField.GetSelector<string>(textField.selectorData?.FontFamily, TextField.FontFamilyProperty);
         });
         internal static readonly BindableProperty PointSizeSelectorProperty = BindableProperty.Create("PointSizeSelector", typeof(Selector<float?>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
-            textField.SelectorData.PointSize.Update(textField, (Selector<float?>)newValue, true);
+            textField.EnsureSelectorData().EnsurePointSize().Update(textField, (Selector<float?>)newValue, true);
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
-            return textField.SelectorData.PointSize.Get(textField);
+            return textField.GetSelector<float?>(textField.selectorData?.PointSize, TextField.PointSizeProperty);
         });
         internal static readonly BindableProperty PixelSizeSelectorProperty = BindableProperty.Create("PixelSizeSelector", typeof(Selector<float?>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
-            textField.SelectorData.PixelSize.Update(textField, (Selector<float?>)newValue, true);
+            textField.EnsureSelectorData().EnsurePixelSize().Update(textField, (Selector<float?>)newValue, true);
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
-            return textField.SelectorData.PixelSize.Get(textField);
+            return textField.GetSelector<float?>(textField.selectorData?.PixelSize, TextField.PixelSizeProperty);
         });
         internal static readonly BindableProperty TextColorSelectorProperty = BindableProperty.Create("TextColorSelector", typeof(Selector<Color>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
-            textField.SelectorData.TextColor.Update(textField, (Selector<Color>)newValue, true);
+            textField.EnsureSelectorData().EnsureTextColor().Update(textField, (Selector<Color>)newValue, true);
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
-            return textField.SelectorData.TextColor.Get(textField);
+            var selector =  textField.selectorData?.TextColor?.Get();
+            if (selector != null)
+            {
+                return selector;
+            }
+
+            Color color = new Color();
+            if (!textField.GetProperty(TextField.Property.TextColor).Get(color))
+            {
+                return null;
+            }
+            return new Selector<Color>(color);
         });
         internal static readonly BindableProperty PlaceholderTextColorSelectorProperty = BindableProperty.Create("PlaceholderTextColorSelector", typeof(Selector<Vector4>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
-            textField.SelectorData.PlaceholderTextColor.Update(textField, (Selector<Vector4>)newValue, true);
+            textField.EnsureSelectorData().EnsurePlaceholderTextColor().Update(textField, (Selector<Vector4>)newValue, true);
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
-            return textField.SelectorData.PlaceholderTextColor.Get(textField);
+            var selector =  textField.selectorData?.PlaceholderTextColor?.Get();
+            if (selector != null)
+            {
+                return selector;
+            }
+
+            Color color = new Color();
+            if (!textField.GetProperty(TextField.Property.PlaceholderTextColor).Get(color))
+            {
+                return null;
+            }
+            return new Selector<Color>(color);
         });
         internal static readonly BindableProperty PrimaryCursorColorSelectorProperty = BindableProperty.Create("PrimaryCursorColorSelector", typeof(Selector<Vector4>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
-            textField.SelectorData.PrimaryCursorColor.Update(textField, (Selector<Vector4>)newValue, true);
+            textField.EnsureSelectorData().EnsurePrimaryCursorColor().Update(textField, (Selector<Vector4>)newValue, true);
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
-            return textField.SelectorData.PrimaryCursorColor.Get(textField);
+            var selector =  textField.selectorData?.PrimaryCursorColor?.Get();
+            if (selector != null)
+            {
+                return selector;
+            }
+
+            Color color = new Color();
+            if (!textField.GetProperty(TextField.Property.PrimaryCursorColor).Get(color))
+            {
+                return null;
+            }
+            return new Selector<Color>(color);
         });
         #endregion
     }

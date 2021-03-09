@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,53 +18,39 @@
 namespace Tizen.NUI.BaseComponents
 {
     /// <summary>
-    /// The class storing extra data for a View to optimize size of it.
+    /// The class storing extra selector properties of view that is rared used.
     /// </summary>
     internal class ViewSelectorData
     {
-        public TriggerableSelector<Color> BackgroundColor { get; } = new TriggerableSelector<Color>(View.BackgroundColorProperty, delegate (View view)
-        {
-            var background = view.Background;
-            int visualType = 0;
-            background.Find(Visual.Property.Type)?.Get(out visualType);
+        internal ViewSelectorData() { }
 
-            if (visualType == (int)Visual.Type.Color)
-            {
-                Color backgroundColor = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-                background.Find(ColorVisualProperty.MixColor)?.Get(backgroundColor);
-                return backgroundColor;
-            }
-            return null;
-        });
-        public TriggerableSelector<string> BackgroundImage { get; } = new TriggerableSelector<string>(View.BackgroundImageProperty, delegate (View view)
-        {
-            string backgroundImage = null;
-            view.Background.Find(ImageVisualProperty.URL)?.Get(out backgroundImage);
-            return backgroundImage;
-        });
-        public TriggerableSelector<Rectangle> BackgroundImageBorder { get; } = new TriggerableSelector<Rectangle>(View.BackgroundImageBorderProperty);
-        public TriggerableSelector<Color> Color { get; } = new TriggerableSelector<Color>(View.ColorProperty, delegate (View view)
-        {
-            Color color = new Color();
-            if (view.GetProperty(Interop.ActorProperty.ColorGet()).Get(color))
-            {
-                return color;
-            }
-            return null;
-        });
-        public TriggerableSelector<float?> Opacity { get; } = new TriggerableSelector<float?>(View.OpacityProperty);
-        public TriggerableSelector<ImageShadow> ImageShadow { get; } = new TriggerableSelector<ImageShadow>(View.ImageShadowProperty);
-        public TriggerableSelector<Shadow> BoxShadow { get; } = new TriggerableSelector<Shadow>(View.BoxShadowProperty);
+        public TriggerableSelector<Color> BackgroundColor { get;  private set; }
+        public TriggerableSelector<string> BackgroundImage { get;  private set; }
+        public TriggerableSelector<Rectangle> BackgroundImageBorder { get;  private set; }
+        public TriggerableSelector<Color> Color { get;  private set; }
+        public TriggerableSelector<float?> Opacity { get;  private set; }
+        public TriggerableSelector<ImageShadow> ImageShadow { get;  private set; }
+        public TriggerableSelector<Shadow> BoxShadow { get;  private set; }
+
+        public TriggerableSelector<Color> EnsureBackgroundColor() => BackgroundColor ?? (BackgroundColor = new TriggerableSelector<Color>(View.BackgroundColorProperty));
+        public TriggerableSelector<string> EnsureBackgroundImage() => BackgroundImage ?? (BackgroundImage = new TriggerableSelector<string>(View.BackgroundImageProperty));
+        public TriggerableSelector<Rectangle> EnsureBackgroundImageBorder() => BackgroundImageBorder ?? (BackgroundImageBorder = new TriggerableSelector<Rectangle>(View.BackgroundImageBorderProperty));      
+        public TriggerableSelector<Color> EnsureColor() => Color ?? (Color = new TriggerableSelector<Color>(View.ColorProperty));
+        public TriggerableSelector<float?> EnsureOpacity() => Opacity ?? (Opacity = new TriggerableSelector<float?>(View.OpacityProperty));
+        public TriggerableSelector<ImageShadow> EnsureImageShadow() => ImageShadow ?? (ImageShadow = new TriggerableSelector<ImageShadow>(View.ImageShadowProperty));
+        public TriggerableSelector<Shadow> EnsureBoxShadow() => BoxShadow ?? (BoxShadow = new TriggerableSelector<Shadow>(View.BoxShadowProperty));
 
         public void Reset(View view)
         {
-            BackgroundColor.Reset(view);
-            BackgroundImage.Reset(view);
-            BackgroundImageBorder.Reset(view);
-            Color.Reset(view);
-            Opacity.Reset(view);
-            ImageShadow.Reset(view);
-            BoxShadow.Reset(view);
+            BackgroundColor?.Reset(view);
+            BackgroundImage?.Reset(view);
+            BackgroundImageBorder?.Reset(view);
+            Color?.Reset(view);
+            Opacity?.Reset(view);
+            ImageShadow?.Reset(view);
+            BoxShadow?.Reset(view);
         }
     }
 }
+
+

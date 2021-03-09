@@ -566,74 +566,85 @@ namespace Tizen.NUI.BaseComponents
         internal static readonly BindableProperty TranslatableTextSelectorProperty = BindableProperty.Create("TranslatableTextSelector", typeof(Selector<string>), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textLabel = (TextLabel)bindable;
-            textLabel.SelectorData.TranslatableText.Update(textLabel, (Selector<string>)newValue, true);
+            textLabel.EnsureSelectorData().EnsureTranslatableText().Update(textLabel, (Selector<string>)newValue, true);
         },
         defaultValueCreator: (bindable) =>
         {
             var textLabel = (TextLabel)bindable;
-            return textLabel.SelectorData.TranslatableText.Get(textLabel);
+            return textLabel.GetSelector<string>(textLabel.selectorData?.TranslatableText, TextLabel.TranslatableTextProperty);
         });
         internal static readonly BindableProperty TextSelectorProperty = BindableProperty.Create("TextSelector", typeof(Selector<string>), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textLabel = (TextLabel)bindable;
-            textLabel.SelectorData.Text.Update(textLabel, (Selector<string>)newValue, true);
+            textLabel.EnsureSelectorData().EnsureText().Update(textLabel, (Selector<string>)newValue, true);
         },
         defaultValueCreator: (bindable) =>
         {
             var textLabel = (TextLabel)bindable;
-            return textLabel.SelectorData.Text.Get(textLabel);
+            return textLabel.GetSelector<string>(textLabel.selectorData?.Text, TextLabel.TextProperty);
         });
         internal static readonly BindableProperty FontFamilySelectorProperty = BindableProperty.Create("FontFamilySelector", typeof(Selector<string>), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textLabel = (TextLabel)bindable;
-            textLabel.SelectorData.FontFamily.Update(textLabel, (Selector<string>)newValue, true);
+            textLabel.EnsureSelectorData().EnsureFontFamily().Update(textLabel, (Selector<string>)newValue, true);
         },
         defaultValueCreator: (bindable) =>
         {
             var textLabel = (TextLabel)bindable;
-            return textLabel.SelectorData.FontFamily.Get(textLabel);
+            return textLabel.GetSelector<string>(textLabel.selectorData?.FontFamily, TextLabel.FontFamilyProperty);
         });
         internal static readonly BindableProperty PointSizeSelectorProperty = BindableProperty.Create("PointSizeSelector", typeof(Selector<float?>), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textLabel = (TextLabel)bindable;
-            textLabel.SelectorData.PointSize.Update(textLabel, (Selector<float?>)newValue, true);
+            textLabel.EnsureSelectorData().EnsurePointSize().Update(textLabel, (Selector<float?>)newValue, true);
         },
         defaultValueCreator: (bindable) =>
         {
             var textLabel = (TextLabel)bindable;
-            return textLabel.SelectorData.PointSize.Get(textLabel);
+            return textLabel.GetSelector<float?>(textLabel.selectorData?.PointSize, TextLabel.PointSizeProperty);
         });
         internal static readonly BindableProperty TextColorSelectorProperty = BindableProperty.Create("TextColorSelector", typeof(Selector<Color>), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textLabel = (TextLabel)bindable;
-            textLabel.SelectorData.TextColor.Update(textLabel, (Selector<Color>)newValue, true);
+            textLabel.EnsureSelectorData().EnsureTextColor().Update(textLabel, (Selector<Color>)newValue, true);
         },
         defaultValueCreator: (bindable) =>
         {
             var textLabel = (TextLabel)bindable;
-            return textLabel.SelectorData.TextColor.Get(textLabel);
+            var selector =  textLabel.selectorData?.TextColor?.Get();
+            if (selector != null)
+            {
+                return selector;
+            }
+
+            Color color = new Color();
+            if (!textLabel.GetProperty(TextLabel.Property.TextColor).Get(color))
+            {
+                return null;
+            }
+            return new Selector<Color>(color);
         });
 
         internal static readonly BindableProperty TextShadowSelectorProperty = BindableProperty.Create("TextShadowSelector", typeof(Selector<TextShadow>), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textLabel = (TextLabel)bindable;
-            textLabel.SelectorData.TextShadow.Update(textLabel, (Selector<TextShadow>)newValue, true);
+            textLabel.EnsureSelectorData().EnsureTextShadow().Update(textLabel, (Selector<TextShadow>)newValue, true);
         },
         defaultValueCreator: (bindable) =>
         {
             var textLabel = (TextLabel)bindable;
-            return textLabel.SelectorData.TextShadow.Get(textLabel);
+            return textLabel.GetSelector<TextShadow>(textLabel.selectorData?.TextShadow, TextLabel.TextShadowProperty);
         });
 
         internal static readonly BindableProperty PixelSizeSelectorProperty = BindableProperty.Create("PixelSizeSelector", typeof(Selector<float?>), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textLabel = (TextLabel)bindable;
-            ((TextLabel)bindable).SelectorData.PixelSize.Update(textLabel, (Selector<float?>)newValue, true);
+            ((TextLabel)bindable).EnsureSelectorData().EnsurePixelSize().Update(textLabel, (Selector<float?>)newValue, true);
         },
         defaultValueCreator: (bindable) =>
         {
             var textLabel = (TextLabel)bindable;
-            return textLabel.SelectorData.PixelSize.Get(textLabel);
+            return textLabel.GetSelector<float?>(textLabel.selectorData?.PixelSize, TextLabel.PixelSizeProperty);
         });
         #endregion
 

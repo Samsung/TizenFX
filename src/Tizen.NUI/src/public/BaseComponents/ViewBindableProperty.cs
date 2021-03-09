@@ -1779,58 +1779,93 @@ namespace Tizen.NUI.BaseComponents
         internal static readonly BindableProperty BackgroundImageSelectorProperty = BindableProperty.Create("BackgroundImageSelector", typeof(Selector<string>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
-            view.SelectorData.BackgroundImage.Update(view, (Selector<string>)newValue, true);
-            if (newValue != null) view.SelectorData.BackgroundColor.Reset(view);
+            view.EnsureSelectorData().EnsureBackgroundImage().Update(view, (Selector<string>)newValue, true);
+            if (newValue != null) view.EnsureSelectorData().BackgroundColor?.Reset(view);
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
-            return view.SelectorData.BackgroundImage.Get(view);
+            var selector = view.selectorData?.BackgroundImage?.Get();
+            if (selector != null)
+            {
+                return selector;
+            }
+
+            string backgroundImage = null;
+            view.Background.Find(ImageVisualProperty.URL)?.Get(out backgroundImage);
+            return backgroundImage == null ? null : new Selector<string>(backgroundImage);
         });
 
         internal static readonly BindableProperty BackgroundColorSelectorProperty = BindableProperty.Create("BackgroundColorSelector", typeof(Selector<Color>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
-            view.SelectorData.BackgroundColor.Update(view, (Selector<Color>)newValue, true);
-            if (newValue != null) view.SelectorData.BackgroundImage.Reset(view);
+            view.EnsureSelectorData().EnsureBackgroundColor().Update(view, (Selector<Color>)newValue, true);
+            if (newValue != null) view.EnsureSelectorData().BackgroundImage?.Reset(view);
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
-            return view.SelectorData.BackgroundColor.Get(view);
+            var selector = view.selectorData?.BackgroundColor?.Get();
+            if (selector != null)
+            {
+                return selector;
+            }
+
+            var background = view.Background;
+            int visualType = 0;
+            background.Find(Visual.Property.Type)?.Get(out visualType);
+            if (visualType != (int)Visual.Type.Color)
+            {
+                return null;
+            }
+
+            Color backgroundColor = new Color();
+            background.Find(ColorVisualProperty.MixColor)?.Get(backgroundColor);
+            return new Selector<Color>(backgroundColor);
         });
 
         internal static readonly BindableProperty BackgroundImageBorderSelectorProperty = BindableProperty.Create("BackgroundImageBorderSelector", typeof(Selector<Rectangle>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
-            view.SelectorData.BackgroundImageBorder.Update(view, (Selector<Rectangle>)newValue, true);
+            view.EnsureSelectorData().EnsureBackgroundImageBorder().Update(view, (Selector<Rectangle>)newValue, true);
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
-            return view.SelectorData.BackgroundImageBorder.Get(view);
+            return view.GetSelector<Rectangle>(view.selectorData?.BackgroundImageBorder, View.BackgroundImageBorderProperty);
         });
 
         internal static readonly BindableProperty ColorSelectorProperty = BindableProperty.Create("ColorSelector", typeof(Selector<Color>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
-            view.SelectorData.Color.Update(view, (Selector<Color>)newValue, true);
+            view.EnsureSelectorData().EnsureColor().Update(view, (Selector<Color>)newValue, true);
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
-            return view.SelectorData.Color.Get(view);
+            var selector = view.selectorData?.Color?.Get();
+            if (selector != null)
+            {
+                return selector;
+            }
+
+            Color color = new Color();
+            if (!view.GetProperty(Interop.ActorProperty.ColorGet()).Get(color))
+            {
+                return null;
+            }
+            return new Selector<Color>(color);
         });
 
         internal static readonly BindableProperty OpacitySelectorProperty = BindableProperty.Create("OpacitySelector", typeof(Selector<float?>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
-            view.SelectorData.Opacity.Update(view, (Selector<float?>)newValue, true);
+            view.EnsureSelectorData().EnsureOpacity().Update(view, (Selector<float?>)newValue, true);
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
-            return view.SelectorData.Opacity.Get(view);
+            return view.GetSelector<float?>(view.selectorData?.Opacity, View.OpacityProperty);
         });
 
         /// <summary>
@@ -1840,13 +1875,13 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty ImageShadowSelectorProperty = BindableProperty.Create("ImageShadowSelector", typeof(Selector<ImageShadow>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
-            view.SelectorData.ImageShadow.Update(view, (Selector<ImageShadow>)newValue, true);
-            if (newValue != null) view.SelectorData.BoxShadow.Reset(view);
+            view.EnsureSelectorData().EnsureImageShadow().Update(view, (Selector<ImageShadow>)newValue, true);
+            if (newValue != null) view.EnsureSelectorData().BoxShadow?.Reset(view);
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
-            return view.SelectorData.ImageShadow.Get(view);
+            return view.GetSelector<ImageShadow>(view.selectorData?.ImageShadow, View.ImageShadowProperty);
         });
 
         /// <summary>
@@ -1856,13 +1891,13 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty BoxShadowSelectorProperty = BindableProperty.Create("BoxShadowSelector", typeof(Selector<Shadow>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
-            view.SelectorData.BoxShadow.Update(view, (Selector<Shadow>)newValue, true);
-            if (newValue != null) view.SelectorData.ImageShadow.Reset(view);
+            view.EnsureSelectorData().EnsureBoxShadow().Update(view, (Selector<Shadow>)newValue, true);
+            if (newValue != null) view.EnsureSelectorData().ImageShadow?.Reset(view);
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
-            return view.SelectorData.BoxShadow.Get(view);
+            return view.GetSelector<Shadow>(view.selectorData?.BoxShadow, View.BoxShadowProperty);
         });
         #endregion
     }
