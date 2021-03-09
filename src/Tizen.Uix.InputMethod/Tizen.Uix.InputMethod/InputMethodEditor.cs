@@ -1508,9 +1508,9 @@ namespace Tizen.Uix.InputMethod
         {
             _imeLanguageRequestedDelegate = (IntPtr userData, out IntPtr langCode) =>
             {
-                string langauage;
-                _languageRequestedDelegate(out langauage);
-                langCode = (IntPtr)Marshal.StringToHGlobalAnsi(langauage);
+                string language;
+                _languageRequestedDelegate(out language);
+                langCode = (IntPtr)Marshal.StringToHGlobalAnsi(language);
             };
             ErrorCode error = ImeEventSetLanguageRequestedCallbackCb(_imeLanguageRequestedDelegate, IntPtr.Zero);
             if (error != ErrorCode.None)
