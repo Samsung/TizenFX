@@ -33,7 +33,7 @@ namespace Tizen.NUI.BaseComponents
             }
             else
             {
-                viewStyle.backgroundImageSelector = ((Selector<string>)newValue).Clone();
+                viewStyle.backgroundImageSelector = (Selector<string>)newValue;
                 viewStyle.backgroundColorSelector = null;
             }
         },
@@ -65,7 +65,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary> Bindable property of Opacity. Please do not open it. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty OpacitySelectorProperty = BindableProperty.Create("OpacitySelector", typeof(Selector<float?>), typeof(ViewStyle), null,
-            propertyChanged: (bindable, oldValue, newValue) => ((ViewStyle)bindable).opacitySelector = ((Selector<float?>)newValue)?.Clone(),
+            propertyChanged: (bindable, oldValue, newValue) => ((ViewStyle)bindable).opacitySelector = (Selector<float?>)newValue,
             defaultValueCreator: (bindable) => ((ViewStyle)bindable).opacitySelector
         );
 
@@ -248,7 +248,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary> Bindable property of Padding. Please do not open it. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty PaddingProperty = BindableProperty.Create(nameof(Padding), typeof(Extents), typeof(ViewStyle), null,
-            propertyChanged: (bindable, oldValue, newValue) => ((ViewStyle)bindable).padding = (Extents)((Extents)newValue)?.Clone(),
+            propertyChanged: (bindable, oldValue, newValue) => ((ViewStyle)bindable).padding = (Extents)newValue,
             defaultValueCreator: (bindable) => ((ViewStyle)bindable).padding
         );
 
@@ -293,7 +293,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary> Bindable property of Margin. Please do not open it. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty MarginProperty = BindableProperty.Create(nameof(Margin), typeof(Extents), typeof(ViewStyle), null,
-            propertyChanged: (bindable, oldValue, newValue) => ((ViewStyle)bindable).margin = (Extents)((Extents)newValue)?.Clone(),
+            propertyChanged: (bindable, oldValue, newValue) => ((ViewStyle)bindable).margin = (Extents)newValue,
             defaultValueCreator: (bindable) => ((ViewStyle)bindable).margin
         );
 
@@ -309,7 +309,7 @@ namespace Tizen.NUI.BaseComponents
             }
             else
             {
-                viewStyle.backgroundColorSelector = ((Selector<Color>)newValue).Clone();
+                viewStyle.backgroundColorSelector = (Selector<Color>)newValue;
                 viewStyle.backgroundImageSelector = null;
             }
 
@@ -322,14 +322,14 @@ namespace Tizen.NUI.BaseComponents
         /// <summary> Bindable property of ColorSelector. Please do not open it. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ColorSelectorProperty = BindableProperty.Create("ColorSelector", typeof(Selector<Color>), typeof(ViewStyle), null,
-            propertyChanged: (bindable, oldValue, newValue) => ((ViewStyle)bindable).colorSelector = ((Selector<Color>)newValue)?.Clone(),
+            propertyChanged: (bindable, oldValue, newValue) => ((ViewStyle)bindable).colorSelector = (Selector<Color>)newValue,
             defaultValueCreator: (bindable) => ((ViewStyle)bindable).colorSelector
         );
 
         /// <summary> Bindable property of BackgroundImageBorder. Please do not open it. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty BackgroundImageBorderSelectorProperty = BindableProperty.Create("BackgroundImageBorderSelector", typeof(Selector<Rectangle>), typeof(ViewStyle), null,
-            propertyChanged: (bindable, oldValue, newValue) => ((ViewStyle)bindable).backgroundImageBorderSelector = ((Selector<Rectangle>)newValue)?.Clone(),
+            propertyChanged: (bindable, oldValue, newValue) => ((ViewStyle)bindable).backgroundImageBorderSelector = (Selector<Rectangle>)newValue,
             defaultValueCreator: (bindable) => ((ViewStyle)bindable).backgroundImageBorderSelector
         );
 
@@ -339,7 +339,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var viewStyle = (ViewStyle)bindable;
 
-            viewStyle.imageShadow = ((Selector<ImageShadow>)newValue)?.Clone();
+            viewStyle.imageShadow = (Selector<ImageShadow>)newValue;
 
             if (viewStyle.imageShadow != null)
             {
@@ -358,7 +358,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var viewStyle = (ViewStyle)bindable;
 
-            viewStyle.boxShadow = ((Selector<Shadow>)newValue)?.Clone();
+            viewStyle.boxShadow = (Selector<Shadow>)newValue;
 
             if (viewStyle.boxShadow != null)
             {
