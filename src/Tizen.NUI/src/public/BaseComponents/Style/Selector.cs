@@ -378,58 +378,24 @@ namespace Tizen.NUI.BaseComponents
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class TriggerableSelector<T>
     {
-        /// <summary>
-        /// Create an TriggerableSelector.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public delegate T ValueGetter(View view);
-
         private readonly BindableProperty targetBindableProperty;
-        private readonly ValueGetter propertyGetter;
-        private bool dirty = true;
         private Selector<T> selector;
 
         /// <summary>
         /// Create an TriggerableSelector.
         /// </summary>
         /// <param name="targetBindableProperty">The TriggerableSelector will change this bindable property value when the view's ControlState has changed.</param>
-        /// <param name="propertyGetter">It is optional value in case the target bindable property getter is not proper to use.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TriggerableSelector(BindableProperty targetBindableProperty, ValueGetter propertyGetter = null)
+        public TriggerableSelector(BindableProperty targetBindableProperty)
         {
             this.targetBindableProperty = targetBindableProperty;
-            this.propertyGetter = propertyGetter;
         }
 
         /// <summary>
         /// Return the containing selector. It can be null.
         /// </summary>
-        /// <exception cref="ArgumentNullException"> Thrown when view is null. </exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Selector<T> Get(View view)
-        {
-            if (!dirty) return selector;
-            if (null == view)
-            {
-                throw new ArgumentNullException(nameof(view));
-            }
-
-            T value = default;
-
-            if (propertyGetter != null)
-            {
-                value = propertyGetter(view);
-            }
-            else
-            {
-                value = (T)view.GetValue(targetBindableProperty);
-            }
-
-            Selector<T> converted = value == null ? null : new Selector<T>(value);
-            Update(view, converted);
-
-            return selector;
-        }
+        public Selector<T> Get() => selector;
 
         /// <summary>
         /// Update containing selector from the other selector.
@@ -453,7 +419,7 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-            selector = otherSelector.Clone();
+            selector = otherSelector;
 
             if (otherSelector.HasMultiValue())
             {
@@ -467,26 +433,6 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Update containing selector value from a single value.
-        /// Note that, it updates lazily if possible.
-        /// If you need to udpate directly, please use <seealso cref="Update" />.
-        /// </summary>
-        /// <param name="view">The View that is affected by this TriggerableSelector.</param>
-        /// <param name="value">The copy target.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void UpdateIfNeeds(View view, T value)
-        {
-            if (selector != null && selector.HasMultiValue())
-            {
-                Selector<T> converted = value == null ? null : new Selector<T>(value);
-                Update(view, converted);
-                return;
-            }
-
-            dirty = true;
-        }
-
-        /// <summary>
         /// Reset selector and listeners.
         /// </summary>
         /// <param name="view">The View that is affected by this TriggerableSelector.</param>
@@ -497,9 +443,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 view.ControlStateChangeEventInternal -= OnViewControlState;
             }
-            selector?.Clear();
             selector = null;
-            dirty = false;
         }
 
         private void OnViewControlState(object obj, View.ControlStateChangedEventArgs controlStateChangedInfo)
