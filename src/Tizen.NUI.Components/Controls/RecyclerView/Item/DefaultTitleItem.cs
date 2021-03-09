@@ -58,7 +58,7 @@ namespace Tizen.NUI.Components
             }
         }
 
-        static DefaultTitleItem() {}
+        static DefaultTitleItem() { }
 
         /// <summary>
         /// Creates a new instance of DefaultTitleItem.
@@ -167,7 +167,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// The text of DefaultTitleItem.
         /// </summary>
-       [EditorBrowsable(EditorBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string Text
         {
             get
@@ -238,7 +238,7 @@ namespace Tizen.NUI.Components
                     var margin = itemSeperator.Margin;
                     itemSeperator.SizeWidth = SizeWidth - margin.Start - margin.End;
                     itemSeperator.SizeHeight = itemSeperator.HeightSpecification;
-                    itemSeperator.Position = new Position(margin.Start, SizeHeight - margin.Bottom -itemSeperator.SizeHeight);
+                    itemSeperator.Position = new Position(margin.Start, SizeHeight - margin.Bottom - itemSeperator.SizeHeight);
                 }
             }
         }
@@ -331,7 +331,7 @@ namespace Tizen.NUI.Components
                     var margin = itemSeperator.Margin;
                     itemSeperator.SizeWidth = SizeWidth - margin.Start - margin.End;
                     itemSeperator.SizeHeight = itemSeperator.HeightSpecification;
-                    itemSeperator.Position = new Position(margin.Start, SizeHeight - margin.Bottom -itemSeperator.SizeHeight);
+                    itemSeperator.Position = new Position(margin.Start, SizeHeight - margin.Bottom - itemSeperator.SizeHeight);
                 }
             }
         }
@@ -404,6 +404,6 @@ namespace Tizen.NUI.Components
         {
             MeasureChild();
             LayoutChild();
-        }        
+        }
     }
 }

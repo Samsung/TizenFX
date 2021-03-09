@@ -703,7 +703,7 @@ namespace Tizen.NUI
         /// Gets the Papaya_whip  colored Color class.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Color PapayaWhip = NDalic.PAPAYA_WHIP ;
+        public static readonly Color PapayaWhip = NDalic.PAPAYA_WHIP;
 
         /// <summary>
         /// Gets the Peach_puff colored Color class.
@@ -973,7 +973,7 @@ namespace Tizen.NUI
                 textColor = textColor.ToUpperInvariant();
                 textColor = textColor.Replace(" ", "");
 
-                if ( textColor.Length > 0 && textColor[0] == '#')
+                if (textColor.Length > 0 && textColor[0] == '#')
                 {
                     textColor = textColor.Replace("#", "");
                     int textColorLength = textColor.Length;
@@ -1002,29 +1002,29 @@ namespace Tizen.NUI
                     bool isRGBA = textColor.StartsWith("RGBA(");
                     bool isRGB = textColor.StartsWith("RGB(");
 
-                    if(!isRGBA && !isRGB)
+                    if (!isRGBA && !isRGB)
                     {
                         throw new global::System.ArgumentException("Please check your color text code");
                     }
 
-                    if(isRGBA)
+                    if (isRGBA)
                         textColor = textColor.Substring(4);
-                    if(isRGB)
+                    if (isRGB)
                         textColor = textColor.Substring(3);
 
-                    textColor = textColor.Replace(")","");
-                    textColor = textColor.Replace("(","");
+                    textColor = textColor.Replace(")", "");
+                    textColor = textColor.Replace("(", "");
 
                     string[] components = textColor.Split(',');
 
-                    if(components.Length == 3 && isRGB)
+                    if (components.Length == 3 && isRGB)
                     {
                         R = Math.Min(1.0f, ((float)Convert.ToInt32(components[0], 10)) / 255.0f);
                         G = Math.Min(1.0f, ((float)Convert.ToInt32(components[1], 10)) / 255.0f);
                         B = Math.Min(1.0f, ((float)Convert.ToInt32(components[2], 10)) / 255.0f);
                         A = 1.0f;
                     }
-                    else if(components.Length == 4 && isRGBA)
+                    else if (components.Length == 4 && isRGBA)
                     {
                         R = Math.Min(1.0f, ((float)Convert.ToInt32(components[0], 10)) / 255.0f);
                         G = Math.Min(1.0f, ((float)Convert.ToInt32(components[1], 10)) / 255.0f);
