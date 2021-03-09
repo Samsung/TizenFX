@@ -183,7 +183,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(TranslatableTextProperty, value);
-                selectorData?.TranslatableText.UpdateIfNeeds(this, value);
+                selectorData?.TranslatableText?.Reset(this);
             }
         }
         private string translatableText
@@ -232,7 +232,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(TextProperty, value);
-                selectorData?.Text.UpdateIfNeeds(this, value);
+                selectorData?.Text?.Reset(this);
                 NotifyPropertyChangedAndRequestLayout();
             }
         }
@@ -251,7 +251,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(FontFamilyProperty, value);
-                selectorData?.FontFamily.UpdateIfNeeds(this, value);
+                selectorData?.FontFamily?.Reset(this);
                 NotifyPropertyChangedAndRequestLayout();
             }
         }
@@ -288,7 +288,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(PointSizeProperty, value);
-                selectorData?.PointSize.UpdateIfNeeds(this, value);
+                selectorData?.PointSize?.Reset(this);
                 NotifyPropertyChangedAndRequestLayout();
             }
         }
@@ -367,7 +367,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(TextColorProperty, value);
-                selectorData?.TextColor.UpdateIfNeeds(this, value);
+                selectorData?.TextColor?.Reset(this);
                 NotifyPropertyChanged();
             }
         }
@@ -684,7 +684,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(TextShadowProperty, value);
-                selectorData?.TextShadow.UpdateIfNeeds(this, value);
+                selectorData?.TextShadow?.Reset(this);
                 NotifyPropertyChanged();
             }
         }
@@ -739,7 +739,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(PixelSizeProperty, value);
-                selectorData?.PixelSize.UpdateIfNeeds(this, value);
+                selectorData?.PixelSize?.Reset(this);
                 NotifyPropertyChangedAndRequestLayout();
             }
         }
@@ -970,17 +970,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        private TextLabelSelectorData SelectorData
-        {
-            get
-            {
-                if (selectorData == null)
-                {
-                    selectorData = new TextLabelSelectorData();
-                }
-                return selectorData;
-            }
-        }
+        private TextLabelSelectorData EnsureSelectorData() => selectorData ?? (selectorData = new TextLabelSelectorData());
 
         /// <summary>
         /// Downcasts a handle to textLabel handle
