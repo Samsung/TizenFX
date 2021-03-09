@@ -91,12 +91,7 @@ namespace Tizen.Applications.ComponentBased
             Interop.ComponentPort.AddPrivilege(_port, privilege);
         }
 
-        /// <summary>
-        /// Waits for the port is ready.
-        /// </summary>
-        /// <param name="endpoint">The name of the port</param>
-        /// <returns>A task.</returns>
-        public static async Task WaitForPort(string endpoint)
+        private static async Task WaitForPortCore(string endpoint)
         {
             Interop.ComponentPort.IsRunning(endpoint, out bool isRunning);
             if (isRunning)
@@ -118,15 +113,12 @@ namespace Tizen.Applications.ComponentBased
                         _watcherIdMap.Remove(id);
                     }
 
-                    lock (_appearedNativeCallbackMap)
-                    {
-                        _appearedNativeCallbackMap.Remove(id);
-                    }
-
                     lock (_vanishedNativeCallbackMap)
                     {
                         _vanishedNativeCallbackMap.Remove(id);
                     }
+
+                    _appearedNativeCallbackMap.Remove(id);
                 };
             }
 
@@ -148,12 +140,22 @@ namespace Tizen.Applications.ComponentBased
         }
 
         /// <summary>
+        /// Waits until the port is ready.
+        /// </summary>
+        /// <param name="endpoint">The name of the port</param>
+        /// <returns>A task.</returns>
+        public static Task WaitForPort(string endpoint)
+        {
+            return WaitForPortCore(endpoint);
+        }
+
+        /// <summary>
         /// Waits for events.
         /// </summary>
         /// <remarks>
         /// This method runs a main loop until Cancel() is called.
         /// The code in the next line will not run until Cancel() is called.
-        /// To avoid blocking the main thread, it's recommended that ComponentTask class uses.
+        /// To avoid blocking the main thread, it's recommended to use the ComponentTask class.
         /// </remarks>
         /// <example>
         /// <code>
@@ -221,7 +223,7 @@ namespace Tizen.Applications.ComponentBased
         /// <param name="timeout">The timeout in milliseconds, -1 to use the default timeout</param>
         /// <param name="request">The serializable data to send</param>
         /// <returns>The received serializable data</returns>
-        /// /// <since_tizen> 9 </since_tizen>
+        /// <since_tizen> 9 </since_tizen>
         public object SendAndReceive(string endpoint, int timeout, object request)
         {
             if (request == null)

@@ -78,9 +78,9 @@ namespace Tizen.Applications.ComponentBased
         }
 
         /// <summary>
-        /// Checks whether the component task is running or not.
+        /// Checks whether the component task is running.
         /// </summary>
-        /// <return>true, if the task is running</return>
+        /// <return>If the task is running, true; otherwise, false</return>
         /// <since_tizen> 9 </since_tizen>
         public bool IsRunning
         {
