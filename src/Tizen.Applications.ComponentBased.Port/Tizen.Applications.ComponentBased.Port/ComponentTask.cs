@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+using System.Collections.Generic;
 using System.Threading;
 
 namespace Tizen.Applications.ComponentBased
@@ -25,6 +26,8 @@ namespace Tizen.Applications.ComponentBased
     public class ComponentTask
     {
         private Thread _thread;
+        private object _threadLock = new object();
+        private static List<ComponentTask> _holder = new List<ComponentTask>();
 
         /// <summary>
         /// Initializes the instance of the ComponentTask class.
@@ -38,9 +41,19 @@ namespace Tizen.Applications.ComponentBased
 
         private void OnThread()
         {
+            lock (_holder)
+            {
+                _holder.Add(this);
+            }
+
             IsRunning = true;
             Port?.WaitForEvent();
             IsRunning = false;
+
+            lock (_holder)
+            {
+                _holder.Remove(this);
+            }
         }
 
         /// <summary>
@@ -52,11 +65,14 @@ namespace Tizen.Applications.ComponentBased
         /// <since_tizen> 9 </since_tizen>
         public void Start()
         {
-            if (_thread == null)
+            lock (_threadLock)
             {
-                _thread = new Thread(new ThreadStart(OnThread));
-                _thread.Start();
-                IsRunning = true;
+                if (_thread == null)
+                {
+                    _thread = new Thread(new ThreadStart(OnThread));
+                    _thread.Start();
+                    IsRunning = true;
+                }
             }
         }
 
@@ -69,18 +85,21 @@ namespace Tizen.Applications.ComponentBased
         /// <since_tizen> 9 </since_tizen>
         public void Stop()
         {
-            if (_thread != null)
+            lock (_threadLock)
             {
-                Port?.Cancel();
-                _thread.Join();
-                _thread = null;
+                if (_thread != null)
+                {
+                    Port?.Cancel();
+                    _thread.Join();
+                    _thread = null;
+                }
             }
         }
 
         /// <summary>
         /// Checks whether the component task is running.
         /// </summary>
-        /// <return>If the task is running, true; otherwise, false</return>
+        /// <value>If the task is running, true; otherwise, false</value>
         /// <since_tizen> 9 </since_tizen>
         public bool IsRunning
         {
@@ -91,7 +110,7 @@ namespace Tizen.Applications.ComponentBased
         /// <summary>
         /// Gets the component port.
         /// </summary>
-        /// <return>The instance of the component port</return>
+        /// <value>The instance of the component port</value>
         /// <since_tizen> 9 </since_tizen>
         public ComponentPort Port
         {

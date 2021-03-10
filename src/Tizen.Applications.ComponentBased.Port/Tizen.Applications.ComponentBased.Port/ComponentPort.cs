@@ -41,8 +41,6 @@ namespace Tizen.Applications.ComponentBased
         private static Dictionary<int, Interop.ComponentPort.ComponentPortAppearedCallback> _appearedNativeCallbackMap = new Dictionary<int, Interop.ComponentPort.ComponentPortAppearedCallback>();
         private static Dictionary<int, Interop.ComponentPort.ComponentPortVanishedCallback> _vanishedNativeCallbackMap = new Dictionary<int, Interop.ComponentPort.ComponentPortVanishedCallback>();
         private static int _requestId = 0;
-        private EventHandler<RequestEventArgs> _requestHandler;
-        private readonly object _eventLock = new object();
 
         /// <summary>
         /// Constructor for this class.
@@ -91,17 +89,20 @@ namespace Tizen.Applications.ComponentBased
             Interop.ComponentPort.AddPrivilege(_port, privilege);
         }
 
-        private static async Task WaitForPortCore(string endpoint)
+        private static Task<bool> WaitForPortCore(string endpoint)
         {
+            var task = new TaskCompletionSource<bool>();
             Interop.ComponentPort.IsRunning(endpoint, out bool isRunning);
             if (isRunning)
-                return;
-
-            var task = new TaskCompletionSource<bool>();
-            int requestId = _requestId++;
-
+            {
+                task.SetResult(true);
+                return task.Task;
+            }
+                        
+            int requestId;
             lock (_appearedNativeCallbackMap)
             {
+                requestId = _requestId++;
                 _appearedNativeCallbackMap[requestId] = (string portName, int owner, IntPtr userData) =>
                 {
                     int id = (int)userData;
@@ -118,7 +119,10 @@ namespace Tizen.Applications.ComponentBased
                         _vanishedNativeCallbackMap.Remove(id);
                     }
 
-                    _appearedNativeCallbackMap.Remove(id);
+                    lock (_appearedNativeCallbackMap)
+                    {
+                        _appearedNativeCallbackMap.Remove(id);
+                    }
                 };
             }
 
@@ -136,7 +140,7 @@ namespace Tizen.Applications.ComponentBased
                 _watcherIdMap[requestId] = watcherId;
             }
 
-            await task.Task.ConfigureAwait(false);
+            return task.Task;
         }
 
         /// <summary>
@@ -270,7 +274,7 @@ namespace Tizen.Applications.ComponentBased
         {
             try
             {
-                return await Task.Run(() => SendAndReceive(endpoint, timeout, request)).ConfigureAwait(false);
+                return Task.Run(() => SendAndReceive(endpoint, timeout, request));
             }
             catch
             {
@@ -285,24 +289,7 @@ namespace Tizen.Applications.ComponentBased
         /// If the reply is requested, RequestEventArgs.Request should be set.
         /// </remarks>
         /// <since_tizen> 9 </since_tizen>
-        public event EventHandler<RequestEventArgs> RequestReceived
-        {
-            add
-            {
-                lock (_eventLock)
-                {
-                    _requestHandler += value;
-                }
-            }
-            remove
-            {
-                lock(_eventLock)
-                {
-                    _requestHandler -= value;
-                }
-
-            }
-        }
+        public event EventHandler<RequestEventArgs> RequestReceived;
 
         private void OnRequestEvent(string sender, IntPtr request, IntPtr data)
         {
@@ -310,10 +297,7 @@ namespace Tizen.Applications.ComponentBased
             using (var reqParcel = new Parcel(reqSafeHandle))
             {
                 object req = FromParcel(reqParcel);
-                lock (_eventLock)
-                {
-                    _requestHandler?.Invoke(this, new RequestEventArgs(sender, req, false));
-                }
+                RequestReceived?.Invoke(this, new RequestEventArgs(sender, req, false));
             }
         }
 
@@ -328,16 +312,14 @@ namespace Tizen.Applications.ComponentBased
             }
 
             var args = new RequestEventArgs(sender, req, true);
-            lock (_eventLock)
-            {
-                _requestHandler?.Invoke(this, args);
-            }
+            RequestReceived?.Invoke(this, args);
+
             var result = args.Reply;
             if (result == null)
             {
                 Log.Error(LogTag, "result is null");
             }
-            else if (result.GetType().IsSerializable)
+            else if (!result.GetType().IsSerializable)
             {
                 Log.Error(LogTag, "result is not serializable");
             }
