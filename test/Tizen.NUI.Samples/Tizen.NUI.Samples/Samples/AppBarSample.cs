@@ -27,10 +27,12 @@ namespace Tizen.NUI.Samples
                 CreateSecondPage();
             };
 
-            firstAppBar = new AppBar("First Page", firstActionButton)
+            firstAppBar = new AppBar()
             {
                 AutoNavigationContent = false
             };
+            firstAppBar.SetTitle("First Page");
+            firstAppBar.AddActions(firstActionButton);
 
             firstButton = new Button()
             {
@@ -60,7 +62,9 @@ namespace Tizen.NUI.Samples
                 NUIApplication.GetDefaultWindow().GetDefaultNavigator().Pop();
             };
 
-            secondAppBar = new AppBar("Second Page", secondActionButton);
+            secondAppBar = new AppBar();
+            secondAppBar.SetTitle("Second Page");
+            secondAppBar.AddActions(secondActionButton);
 
             secondButton = new Button()
             {

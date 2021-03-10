@@ -438,9 +438,9 @@ namespace Tizen.NUI.Accessibility
         [EditorBrowsable(EditorBrowsableState.Never)]
         public View GetViewByFocusOrder(uint order)
         {
-            View ret = new View(Interop.AccessibilityManager.GetActorByFocusOrder(SwigCPtr, order), true);
+            var ptr = Interop.AccessibilityManager.GetActorByFocusOrder(SwigCPtr, order);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            return this.GetInstanceSafely<View>(ptr);
         }
 
         /// <summary>
@@ -469,9 +469,9 @@ namespace Tizen.NUI.Accessibility
         [EditorBrowsable(EditorBrowsableState.Never)]
         public View GetCurrentFocusView()
         {
-            View ret = new View(Interop.AccessibilityManager.GetCurrentFocusActor(SwigCPtr), true);
+            var ptr = Interop.AccessibilityManager.GetCurrentFocusActor(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            return this.GetInstanceSafely<View>(ptr);
         }
 
         /// <summary>
@@ -483,9 +483,9 @@ namespace Tizen.NUI.Accessibility
         [EditorBrowsable(EditorBrowsableState.Never)]
         public View GetCurrentFocusGroup()
         {
-            View ret = new View(Interop.AccessibilityManager.GetCurrentFocusGroup(SwigCPtr), true);
+            var ptr = Interop.AccessibilityManager.GetCurrentFocusGroup(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            return this.GetInstanceSafely<View>(ptr);
         }
 
         /// <summary>
@@ -669,9 +669,9 @@ namespace Tizen.NUI.Accessibility
         [EditorBrowsable(EditorBrowsableState.Never)]
         public View GetFocusIndicatorView()
         {
-            View ret = new View(Interop.AccessibilityManager.GetFocusIndicatorActor(SwigCPtr), true);
+            var ptr = Interop.AccessibilityManager.GetFocusIndicatorActor(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            return this.GetInstanceSafely<View>(ptr);
         }
 
         /// <summary>
@@ -684,9 +684,9 @@ namespace Tizen.NUI.Accessibility
         [EditorBrowsable(EditorBrowsableState.Never)]
         public View GetFocusGroup(View view)
         {
-            View ret = new View(Interop.AccessibilityManager.GetFocusGroup(SwigCPtr, View.getCPtr(view)), true);
+            var ptr = Interop.AccessibilityManager.GetFocusGroup(SwigCPtr, View.getCPtr(view));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            return this.GetInstanceSafely<View>(ptr);
         }
 
         /// <summary>

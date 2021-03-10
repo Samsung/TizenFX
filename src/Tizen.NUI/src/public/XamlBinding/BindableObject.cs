@@ -67,10 +67,6 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event PropertyChangedEventHandler PropertyChanged;
 
-        /// <summary>Whether to allow null value when <seealso cref="CopyFrom"/>.</summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected static bool AllowNullCopy { get; set; } = false;
-
         /// <summary>Copy properties of other ViewStyle to this.</summary>
         /// <param name="other">The other BindableProperty merge to this.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -94,7 +90,7 @@ namespace Tizen.NUI.Binding
                     {
                         object value = other.GetValue(bindableProperty);
 
-                        if (AllowNullCopy || null != value)
+                        if (null != value)
                         {
                             SetValue(keyValuePair.Value, value);
                         }
@@ -244,6 +240,7 @@ namespace Tizen.NUI.Binding
                 property.PropertyChanged?.Invoke(this, null, value);
 
                 OnPropertyChanged(property.PropertyName);
+                OnPropertyChangedWithData(property);
             }
         }
 
@@ -358,6 +355,12 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnPropertyChanging([CallerMemberName] string propertyName = null)
             => PropertyChanging?.Invoke(this, new PropertyChangingEventArgs(propertyName));
+        
+        /// <summary>
+        /// Method that is called when a bound property is changed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void OnPropertyChangedWithData(BindableProperty property) { }
 
         /// <summary>
         /// Unapplies all previously set bindings.
@@ -744,6 +747,7 @@ namespace Tizen.NUI.Binding
             if (!same)
             {
                 OnPropertyChanged(property.PropertyName);
+                OnPropertyChangedWithData(property);
                 property.PropertyChanged?.Invoke(this, original, newValue);
             }
         }
@@ -881,6 +885,8 @@ namespace Tizen.NUI.Binding
 
                     OnPropertyChanged(property.PropertyName);
                 }
+
+                OnPropertyChangedWithData(property);
             }
         }
 
