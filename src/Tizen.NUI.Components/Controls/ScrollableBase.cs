@@ -286,6 +286,15 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Gets scrollable status.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override bool AccessibilityIsScrollable()
+        {
+            return true;
+        }
+
+        /// <summary>
         /// Pages mode, enables moving to the next or return to current page depending on pan displacement.
         /// Default is false.
         /// </summary>
@@ -372,7 +381,7 @@ namespace Tizen.NUI.Components
             {
                 if (scrollBar)
                 {
-                    scrollBar.Unparent();
+                    base.Remove(scrollBar);
                 }
                 scrollBar = value;
 
@@ -528,7 +537,7 @@ namespace Tizen.NUI.Components
         /// Padding for the ScrollableBase
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Extents Padding
+        public new Extents Padding
         {
             get
             {
@@ -608,6 +617,7 @@ namespace Tizen.NUI.Components
             mPanGestureDetector = new PanGestureDetector();
             mPanGestureDetector.Attach(this);
             mPanGestureDetector.AddDirection(PanGestureDetector.DirectionVertical);
+            if (mPanGestureDetector.GetMaximumTouchesRequired() < 2) mPanGestureDetector.SetMaximumTouchesRequired(2);
             mPanGestureDetector.Detected += OnPanGestureDetected;
 
             ClippingMode = ClippingModeType.ClipToBoundingBox;
@@ -1009,6 +1019,8 @@ namespace Tizen.NUI.Components
 
         private void PageSnap(float velocity)
         {
+            float destination;
+
             Debug.WriteLineIf(LayoutDebugScrollableBase, "PageSnap with pan candidate totalDisplacement:" + totalDisplacementForPan +
                 " currentPage[" + CurrentPage + "]");
 
@@ -1037,9 +1049,12 @@ namespace Tizen.NUI.Components
             }
 
             // Animate to new page or reposition to current page
-            float destinationX = -(Children[CurrentPage].Position.X + Children[CurrentPage].CurrentSize.Width / 2 - CurrentSize.Width / 2); // set to middle of current page
-            Debug.WriteLineIf(LayoutDebugScrollableBase, "Snapping to page[" + CurrentPage + "] to:" + destinationX + " from:" + ContentContainer.PositionX);
-            AnimateChildTo(ScrollDuration, destinationX);
+            if (ScrollingDirection == Direction.Horizontal)
+                destination = -(Children[CurrentPage].Position.X + Children[CurrentPage].CurrentSize.Width / 2 - CurrentSize.Width / 2); // set to middle of current page
+            else
+                destination = -(Children[CurrentPage].Position.Y + Children[CurrentPage].CurrentSize.Height / 2 - CurrentSize.Height / 2);
+
+            AnimateChildTo(ScrollDuration, destination);
         }
 
         /// <summary>

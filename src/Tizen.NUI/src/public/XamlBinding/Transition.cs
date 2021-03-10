@@ -1,114 +1,156 @@
+/*
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.IO;
 using System.Linq;
 using System.Reflection;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Binding;
 using Tizen.NUI.Xaml;
-using static Tizen.NUI.Animation;
 
 namespace Tizen.NUI
 {
     /// <since_tizen> 5 </since_tizen>
-    /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class AnimationBehavior
     {
-        private string _key = null;
+        private string key = null;
         /// <since_tizen> 5 </since_tizen>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string Key
         {
             get
             {
-                return _key;
+                return key;
             }
             set
             {
-                _key = value;
+                key = value;
             }
         }
 
-        private string _property = null;
+        private string property = null;
 
         /// <since_tizen> 5 </since_tizen>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string Property
         {
             get
             {
-                return _property;
+                return property;
             }
             set
             {
-                _property = value;
+                property = value;
             }
         }
 
-        private string _destValue = null;
+        private string destValue = null;
 
         /// <since_tizen> 5 </since_tizen>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string DestValue
         {
             get
             {
-                return _destValue;
+                return destValue;
             }
             set
             {
-                _destValue = value;
+                destValue = value;
             }
         }
 
-        private int _startTime = -1;
+        private int startTime = -1;
 
         /// <since_tizen> 5 </since_tizen>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int StartTime
         {
             get
             {
-                return _startTime;
+                return startTime;
             }
             set
             {
-                _startTime = value;
+                startTime = value;
             }
         }
 
-        private int _endTime = -1;
+        private int endTime = -1;
 
         /// <since_tizen> 5 </since_tizen>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int EndTime
         {
             get
             {
-                return _endTime;
+                return endTime;
             }
             set
             {
-                _endTime = value;
+                endTime = value;
             }
         }
     }
 
+
+    /// <summary>
+    /// It is the container to contain the behaviors of Transition.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class BehaviorContainer : List<AnimationBehavior>
+    {
+        private Dictionary<string, AnimationBehavior> behaviors = new Dictionary<string, AnimationBehavior>();
+
+        /// <summary>
+        /// The method for user to add behavior.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Add(object obj)
+        {
+            var behavior = obj as AnimationBehavior;
+
+            if (null != behavior)
+            {
+                behaviors.Add(behavior.Key, behavior);
+            }
+        }
+
+        /// <summary>
+        /// The method for user to get the behavior by the key.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public AnimationBehavior GetAnimationBehavior(string key)
+        {
+            AnimationBehavior behavior = null;
+            behaviors.TryGetValue(key, out behavior);
+
+            return behavior;
+        }
+    }
+
     /// <since_tizen> 5 </since_tizen>
-    /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Transition : Animation
     {
         private string name;
 
         /// <since_tizen> 5 </since_tizen>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string Name
         {
@@ -122,32 +164,11 @@ namespace Tizen.NUI
             }
         }
 
-        private Dictionary<string, AnimationBehavior> behaviors = new Dictionary<string, AnimationBehavior>();
-
-        /// <summary>
-        /// Hidden-API (Inhouse-API).
-        /// Convert previous "public AnimationBehavior[] Behaviors" property to method.
-        /// </summary>
-        /// <param name="Behaviors">Array of AnimationBehavior type</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetBehaviors(AnimationBehavior[] Behaviors)
-        {
-            if (null != Behaviors)
-            {
-                foreach (AnimationBehavior behavior in Behaviors)
-                {
-                    behaviors.Add(behavior.Key, behavior);
-                }
-            }
-        }
-
         /// <since_tizen> 5 </since_tizen>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AnimateTo(View instance, string behaviorKey)
         {
-            AnimationBehavior behavior = null;
-            behaviors.TryGetValue(behaviorKey, out behavior);
+            AnimationBehavior behavior = Behaviors?.GetAnimationBehavior(behaviorKey);
 
             if (null != instance && null != behavior)
             {
@@ -178,12 +199,10 @@ namespace Tizen.NUI
         }
 
         /// <since_tizen> 5 </since_tizen>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AnimateBy(View instance, string behaviorKey)
         {
-            AnimationBehavior behavior = null;
-            behaviors.TryGetValue(behaviorKey, out behavior);
+            AnimationBehavior behavior = Behaviors?.GetAnimationBehavior(behaviorKey);
 
             if (null != instance && null != behavior)
             {
@@ -212,5 +231,12 @@ namespace Tizen.NUI
                 throw new XamlParseException(string.Format("Behaviors don't have key {0}", behaviorKey), new XmlLineInfo());
             }
         }
+
+        /// <since_tizen> 5 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public BehaviorContainer Behaviors
+        {
+            get;
+        } = new BehaviorContainer();
     }
 }

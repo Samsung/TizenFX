@@ -215,7 +215,7 @@ namespace Tizen.NUI.Wearable
 
         static CircularSlider()
         {
-            ThemeManager.AddPackageTheme(new DefaultThemeCreator());
+            ThemeManager.AddPackageTheme(DefaultThemeCreator.Instance);
         }
 
         /// <summary>

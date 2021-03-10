@@ -39,19 +39,20 @@ namespace Tizen.NUI
     /// </summary>
     public class LayoutItem : IDisposable
     {
-        private bool disposed = false;
         static bool LayoutDebugFrameData = false; // Debug flag
-        private MeasureSpecification OldWidthMeasureSpec; // Store measure specification to compare against later
-        private MeasureSpecification OldHeightMeasureSpec; // Store measure specification to compare against later
 
-        private LayoutFlags Flags = LayoutFlags.None;
+        private bool disposed = false;
+        private MeasureSpecification oldWidthMeasureSpec; // Store measure specification to compare against later
+        private MeasureSpecification oldHeightMeasureSpec; // Store measure specification to compare against later
 
-        private ILayoutParent Parent;
+        private LayoutFlags flags = LayoutFlags.None;
 
-        LayoutData _layoutPositionData;
+        private ILayoutParent parent;
 
-        private Extents _padding;
-        private Extents _margin;
+        LayoutData layoutPositionData;
+
+        private Extents padding;
+        private Extents margin;
 
         private bool parentReplacement = false;
         private bool setPositionByLayout = true;
@@ -103,11 +104,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _margin;
+                return margin;
             }
             set
             {
-                _margin = value;
+                margin = value;
                 RequestLayout();
             }
         }
@@ -120,11 +121,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _padding;
+                return padding;
             }
             set
             {
-                _padding = value;
+                padding = value;
                 RequestLayout();
             }
         }
@@ -144,7 +145,7 @@ namespace Tizen.NUI
         /// <param name="parent">Parent to set on this Layout.</param>
         internal void SetParent(ILayoutParent parent)
         {
-            Parent = parent as LayoutGroup;
+            this.parent = parent as LayoutGroup;
         }
 
         /// <summary>
@@ -156,10 +157,10 @@ namespace Tizen.NUI
             OnUnparent();
 
             // Remove myself from parent
-            Parent?.Remove(this);
+            parent?.Remove(this);
 
             // Remove parent reference
-            Parent = null;
+            parent = null;
 
             // Lastly, clear layout from owning View.
             Owner?.ResetLayout();
@@ -168,9 +169,9 @@ namespace Tizen.NUI
         private void Initialize()
         {
             LayoutWithTransition = false;
-            _layoutPositionData = new LayoutData(this, TransitionCondition.Unspecified, 0, 0, 0, 0);
-            _padding = new Extents(0, 0, 0, 0);
-            _margin = new Extents(0, 0, 0, 0);
+            layoutPositionData = new LayoutData(this, TransitionCondition.Unspecified, 0, 0, 0, 0);
+            padding = new Extents(0, 0, 0, 0);
+            margin = new Extents(0, 0, 0, 0);
         }
 
         /// <summary>
@@ -205,10 +206,10 @@ namespace Tizen.NUI
         public void Measure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
         {
             // Check if relayouting is required.
-            bool specChanged = (widthMeasureSpec.Size != OldWidthMeasureSpec.Size) ||
-                (heightMeasureSpec.Size != OldHeightMeasureSpec.Size) ||
-                (widthMeasureSpec.Mode != OldWidthMeasureSpec.Mode) ||
-                (heightMeasureSpec.Mode != OldHeightMeasureSpec.Mode);
+            bool specChanged = (widthMeasureSpec.Size != oldWidthMeasureSpec.Size) ||
+                (heightMeasureSpec.Size != oldHeightMeasureSpec.Size) ||
+                (widthMeasureSpec.Mode != oldWidthMeasureSpec.Mode) ||
+                (heightMeasureSpec.Mode != oldHeightMeasureSpec.Mode);
 
             bool isSpecExactly = (widthMeasureSpec.Mode == MeasureSpecification.ModeType.Exactly) &&
                 (heightMeasureSpec.Mode == MeasureSpecification.ModeType.Exactly);
@@ -217,17 +218,17 @@ namespace Tizen.NUI
                 (MeasuredHeight.Size == heightMeasureSpec.Size);
 
             bool needsLayout = specChanged && (!isSpecExactly || !matchesSpecSize);
-            needsLayout = needsLayout || ((Flags & LayoutFlags.ForceLayout) == LayoutFlags.ForceLayout);
+            needsLayout = needsLayout || ((flags & LayoutFlags.ForceLayout) == LayoutFlags.ForceLayout);
 
             if (needsLayout)
             {
                 OnMeasure(widthMeasureSpec, heightMeasureSpec);
                 OnMeasureIndependentChildren(widthMeasureSpec, heightMeasureSpec);
-                Flags = Flags | LayoutFlags.LayoutRequired;
-                Flags &= ~LayoutFlags.ForceLayout;
+                flags = flags | LayoutFlags.LayoutRequired;
+                flags &= ~LayoutFlags.ForceLayout;
             }
-            OldWidthMeasureSpec = widthMeasureSpec;
-            OldHeightMeasureSpec = heightMeasureSpec;
+            oldWidthMeasureSpec = widthMeasureSpec;
+            oldHeightMeasureSpec = heightMeasureSpec;
         }
 
         /// <summary>
@@ -266,12 +267,12 @@ namespace Tizen.NUI
                     bottom.AsRoundedValue(), independent);
 
             // Check if Measure needed before Layouting
-            if (changed || ((Flags & LayoutFlags.LayoutRequired) == LayoutFlags.LayoutRequired))
+            if (changed || ((flags & LayoutFlags.LayoutRequired) == LayoutFlags.LayoutRequired))
             {
                 OnLayout(changed, left, top, right, bottom);
                 OnLayoutIndependentChildren(changed, left, top, right, bottom);
                 // Clear flag
-                Flags &= ~LayoutFlags.LayoutRequired;
+                flags &= ~LayoutFlags.LayoutRequired;
             }
         }
 
@@ -330,7 +331,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public ILayoutParent GetParent()
         {
-            return Parent;
+            return parent;
         }
 
         /// <summary>
@@ -340,10 +341,10 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public void RequestLayout()
         {
-            Flags = Flags | LayoutFlags.ForceLayout;
-            if (Parent != null)
+            flags = flags | LayoutFlags.ForceLayout;
+            if (parent != null)
             {
-                LayoutGroup layoutGroup = Parent as LayoutGroup;
+                LayoutGroup layoutGroup = parent as LayoutGroup;
                 if (layoutGroup != null && !layoutGroup.LayoutRequested)
                 {
                     layoutGroup.RequestLayout();
@@ -360,7 +361,7 @@ namespace Tizen.NUI
         {
             get
             {
-                return (Flags & LayoutFlags.ForceLayout) == LayoutFlags.ForceLayout;
+                return (flags & LayoutFlags.ForceLayout) == LayoutFlags.ForceLayout;
             }
         }
 
@@ -402,16 +403,7 @@ namespace Tizen.NUI
         {
             get
             {
-                float maximumWidth = Owner.MaximumSize.Width;
-                float minimumWidth = Owner.MinimumSize.Width;
-
-                float baseHeight = Owner.MaximumSize.Height > 0 ? Math.Min(Owner.MaximumSize.Height, Owner.NaturalSize.Height) : Owner.NaturalSize.Height;
-                float baseWidth = Owner.GetWidthForHeight(baseHeight);
-
-                float result = minimumWidth > 0 ? Math.Max(baseWidth, minimumWidth) : baseWidth;
-                result = maximumWidth > 0 ? Math.Min(result, maximumWidth) : result;
-
-                return new LayoutLength(result);
+                return Owner.SuggestedMinimumWidth;
             }
         }
 
@@ -424,16 +416,7 @@ namespace Tizen.NUI
         {
             get
             {
-                float maximumHeight = Owner.MaximumSize.Height;
-                float minimumHeight = Owner.MinimumSize.Height;
-
-                float baseWidth = Owner.MaximumSize.Width > 0 ? Math.Min(Owner.MaximumSize.Width, Owner.NaturalSize.Width) : Owner.NaturalSize.Width;
-                float baseHeight = Owner.GetHeightForWidth(baseWidth);
-
-                float result = minimumHeight > 0 ? Math.Max(baseHeight, minimumHeight) : baseHeight;
-                result = maximumHeight > 0 ? Math.Min(result, maximumHeight) : result;
-
-                return new LayoutLength(result);
+                return Owner.SuggestedMinimumHeight;
             }
         }
 
@@ -507,7 +490,7 @@ namespace Tizen.NUI
         {
             MeasuredWidth = measuredWidth;
             MeasuredHeight = measuredHeight;
-            Flags = Flags | LayoutFlags.MeasuredDimensionSet;
+            flags = flags | LayoutFlags.MeasuredDimensionSet;
         }
 
         /// <summary>
@@ -563,15 +546,15 @@ namespace Tizen.NUI
         {
             bool changed = false;
 
-            if (_layoutPositionData.Left != left ||
-                 _layoutPositionData.Right != right ||
-                 _layoutPositionData.Top != top ||
-                 _layoutPositionData.Bottom != bottom)
+            if (layoutPositionData.Left != left ||
+                 layoutPositionData.Right != right ||
+                 layoutPositionData.Top != top ||
+                 layoutPositionData.Bottom != bottom)
             {
                 changed = true;
 
-                float oldWidth = _layoutPositionData.Right - _layoutPositionData.Left;
-                float oldHeight = _layoutPositionData.Bottom - _layoutPositionData.Top;
+                float oldWidth = layoutPositionData.Right - layoutPositionData.Left;
+                float oldHeight = layoutPositionData.Bottom - layoutPositionData.Top;
                 float newWidth = right - left;
                 float newHeight = bottom - top;
                 bool sizeChanged = (newWidth != oldWidth) || (newHeight != oldHeight);
@@ -583,20 +566,19 @@ namespace Tizen.NUI
                 }
 
                 // Store new layout position data
-                _layoutPositionData = new LayoutData(this, ConditionForAnimation, left, top, right, bottom);
+                layoutPositionData = new LayoutData(this, ConditionForAnimation, left, top, right, bottom);
 
-                Debug.WriteLineIf(LayoutDebugFrameData, "LayoutItem FramePositionData View:" + _layoutPositionData.Item.Owner.Name +
-                                                         " left:" + _layoutPositionData.Left +
-                                                         " top:" + _layoutPositionData.Top +
-                                                         " right:" + _layoutPositionData.Right +
-                                                         " bottom:" + _layoutPositionData.Bottom);
+                Debug.WriteLineIf(LayoutDebugFrameData, "LayoutItem FramePositionData View:" + layoutPositionData.Item.Owner.Name +
+                                                         " left:" + layoutPositionData.Left +
+                                                         " top:" + layoutPositionData.Top +
+                                                         " right:" + layoutPositionData.Right +
+                                                         " bottom:" + layoutPositionData.Bottom);
 
-                Container onwerContainer = Owner.GetParent();
-                View onwerView = onwerContainer is Layer ? new View(Layer.getCPtr(onwerContainer).Handle, false) : onwerContainer as View;
+                View ownerView = Owner.GetParent() as View;
 
-                if (onwerView != null && onwerView.Layout != null && onwerView.Layout.LayoutWithTransition)
+                if (ownerView != null && ownerView.Layout != null && ownerView.Layout.LayoutWithTransition)
                 {
-                    NUIApplication.GetDefaultWindow().LayoutController.AddTransitionDataEntry(_layoutPositionData);
+                    NUIApplication.GetDefaultWindow().LayoutController.AddTransitionDataEntry(layoutPositionData);
                 }
                 else
                 {
@@ -627,15 +609,15 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void Dispose(bool disposing)
         {
-            if(disposed)
+            if (disposed)
             {
                 return;
             }
 
             if (disposing)
             {
-                _margin?.Dispose();
-                _padding?.Dispose();
+                margin?.Dispose();
+                padding?.Dispose();
             }
             disposed = true;
         }

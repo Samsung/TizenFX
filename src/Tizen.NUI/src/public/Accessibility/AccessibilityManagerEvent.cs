@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,128 +25,128 @@ namespace Tizen.NUI.Accessibility
     {
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool StatusChangedEventCallbackDelegate(IntPtr accessibilityManager);
-        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerStatusChangedEventHandler;
-        private StatusChangedEventCallbackDelegate _accessibilityManagerStatusChangedEventCallbackDelegate;
+        private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerStatusChangedEventHandler;
+        private StatusChangedEventCallbackDelegate accessibilityManagerStatusChangedEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionNextEventCallbackDelegate(IntPtr accessibilityManager);
-        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionNextEventHandler;
-        private ActionNextEventCallbackDelegate _accessibilityManagerActionNextEventCallbackDelegate;
+        private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionNextEventHandler;
+        private ActionNextEventCallbackDelegate accessibilityManagerActionNextEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionPreviousEventCallbackDelegate(IntPtr accessibilityManager);
-        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionPreviousEventHandler;
-        private ActionPreviousEventCallbackDelegate _accessibilityManagerActionPreviousEventCallbackDelegate;
+        private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionPreviousEventHandler;
+        private ActionPreviousEventCallbackDelegate accessibilityManagerActionPreviousEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionActivateEventCallbackDelegate(IntPtr accessibilityManager);
-        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionActivateEventHandler;
-        private ActionActivateEventCallbackDelegate _accessibilityManagerActionActivateEventCallbackDelegate;
+        private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionActivateEventHandler;
+        private ActionActivateEventCallbackDelegate accessibilityManagerActionActivateEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionReadEventCallbackDelegate(IntPtr accessibilityManager);
-        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionReadEventHandler;
-        private ActionReadEventCallbackDelegate _accessibilityManagerActionReadEventCallbackDelegate;
+        private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionReadEventHandler;
+        private ActionReadEventCallbackDelegate accessibilityManagerActionReadEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionOverEventCallbackDelegate(IntPtr accessibilityManager);
-        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionOverEventHandler;
-        private ActionOverEventCallbackDelegate _accessibilityManagerActionOverEventCallbackDelegate;
+        private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionOverEventHandler;
+        private ActionOverEventCallbackDelegate accessibilityManagerActionOverEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionReadNextEventCallbackDelegate(IntPtr accessibilityManager);
-        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionReadNextEventHandler;
-        private ActionReadNextEventCallbackDelegate _accessibilityManagerActionReadNextEventCallbackDelegate;
+        private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionReadNextEventHandler;
+        private ActionReadNextEventCallbackDelegate accessibilityManagerActionReadNextEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionReadPreviousEventCallbackDelegate(IntPtr accessibilityManager);
-        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionReadPreviousEventHandler;
-        private ActionReadPreviousEventCallbackDelegate _accessibilityManagerActionReadPreviousEventCallbackDelegate;
+        private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionReadPreviousEventHandler;
+        private ActionReadPreviousEventCallbackDelegate accessibilityManagerActionReadPreviousEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionUpEventCallbackDelegate(IntPtr accessibilityManager);
-        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionUpEventHandler;
-        private ActionUpEventCallbackDelegate _accessibilityManagerActionUpEventCallbackDelegate;
+        private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionUpEventHandler;
+        private ActionUpEventCallbackDelegate accessibilityManagerActionUpEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionDownEventCallbackDelegate(IntPtr accessibilityManager);
-        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionDownEventHandler;
-        private ActionDownEventCallbackDelegate _accessibilityManagerActionDownEventCallbackDelegate;
+        private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionDownEventHandler;
+        private ActionDownEventCallbackDelegate accessibilityManagerActionDownEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionClearFocusEventCallbackDelegate(IntPtr accessibilityManager);
-        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionClearFocusEventHandler;
-        private ActionClearFocusEventCallbackDelegate _accessibilityManagerActionClearFocusEventCallbackDelegate;
+        private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionClearFocusEventHandler;
+        private ActionClearFocusEventCallbackDelegate accessibilityManagerActionClearFocusEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionBackEventCallbackDelegate(IntPtr accessibilityManager);
-        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionBackEventHandler;
-        private ActionBackEventCallbackDelegate _accessibilityManagerActionBackEventCallbackDelegate;
+        private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionBackEventHandler;
+        private ActionBackEventCallbackDelegate accessibilityManagerActionBackEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionScrollUpEventCallbackDelegate(IntPtr accessibilityManager);
-        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionScrollUpEventHandler;
-        private ActionScrollUpEventCallbackDelegate _accessibilityManagerActionScrollUpEventCallbackDelegate;
+        private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionScrollUpEventHandler;
+        private ActionScrollUpEventCallbackDelegate accessibilityManagerActionScrollUpEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionScrollDownEventCallbackDelegate(IntPtr accessibilityManager);
-        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionScrollDownEventHandler;
-        private ActionScrollDownEventCallbackDelegate _accessibilityManagerActionScrollDownEventCallbackDelegate;
+        private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionScrollDownEventHandler;
+        private ActionScrollDownEventCallbackDelegate accessibilityManagerActionScrollDownEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionPageLeftEventCallbackDelegate(IntPtr accessibilityManager);
-        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionPageLeftEventHandler;
-        private ActionPageLeftEventCallbackDelegate _accessibilityManagerActionPageLeftEventCallbackDelegate;
+        private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionPageLeftEventHandler;
+        private ActionPageLeftEventCallbackDelegate accessibilityManagerActionPageLeftEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionPageRightEventCallbackDelegate(IntPtr accessibilityManager);
-        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionPageRightEventHandler;
-        private ActionPageRightEventCallbackDelegate _accessibilityManagerActionPageRightEventCallbackDelegate;
+        private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionPageRightEventHandler;
+        private ActionPageRightEventCallbackDelegate accessibilityManagerActionPageRightEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionPageUpEventCallbackDelegate(IntPtr accessibilityManager);
-        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionPageUpEventHandler;
-        private ActionPageUpEventCallbackDelegate _accessibilityManagerActionPageUpEventCallbackDelegate;
+        private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionPageUpEventHandler;
+        private ActionPageUpEventCallbackDelegate accessibilityManagerActionPageUpEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionPageDownEventCallbackDelegate(IntPtr accessibilityManager);
-        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionPageDownEventHandler;
-        private ActionPageDownEventCallbackDelegate _accessibilityManagerActionPageDownEventCallbackDelegate;
+        private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionPageDownEventHandler;
+        private ActionPageDownEventCallbackDelegate accessibilityManagerActionPageDownEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionMoveToFirstEventCallbackDelegate(IntPtr accessibilityManager);
-        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionMoveToFirstEventHandler;
-        private ActionMoveToFirstEventCallbackDelegate _accessibilityManagerActionMoveToFirstEventCallbackDelegate;
+        private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionMoveToFirstEventHandler;
+        private ActionMoveToFirstEventCallbackDelegate accessibilityManagerActionMoveToFirstEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionMoveToLastEventCallbackDelegate(IntPtr accessibilityManager);
-        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionMoveToLastEventHandler;
-        private ActionMoveToLastEventCallbackDelegate _accessibilityManagerActionMoveToLastEventCallbackDelegate;
+        private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionMoveToLastEventHandler;
+        private ActionMoveToLastEventCallbackDelegate accessibilityManagerActionMoveToLastEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionReadFromTopEventCallbackDelegate(IntPtr accessibilityManager);
-        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionReadFromTopEventHandler;
-        private ActionReadFromTopEventCallbackDelegate _accessibilityManagerActionReadFromTopEventCallbackDelegate;
+        private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionReadFromTopEventHandler;
+        private ActionReadFromTopEventCallbackDelegate accessibilityManagerActionReadFromTopEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionReadFromNextEventCallbackDelegate(IntPtr accessibilityManager);
-        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionReadFromNextEventHandler;
-        private ActionReadFromNextEventCallbackDelegate _accessibilityManagerActionReadFromNextEventCallbackDelegate;
+        private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionReadFromNextEventHandler;
+        private ActionReadFromNextEventCallbackDelegate accessibilityManagerActionReadFromNextEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionZoomEventCallbackDelegate(IntPtr accessibilityManager);
-        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionZoomEventHandler;
-        private ActionZoomEventCallbackDelegate _accessibilityManagerActionZoomEventCallbackDelegate;
+        private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionZoomEventHandler;
+        private ActionZoomEventCallbackDelegate accessibilityManagerActionZoomEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionReadPauseResumeEventCallbackDelegate(IntPtr accessibilityManager);
-        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionReadPauseResumeEventHandler;
-        private ActionReadPauseResumeEventCallbackDelegate _accessibilityManagerActionReadPauseResumeEventCallbackDelegate;
+        private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionReadPauseResumeEventHandler;
+        private ActionReadPauseResumeEventCallbackDelegate accessibilityManagerActionReadPauseResumeEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionStartStopEventCallbackDelegate(IntPtr accessibilityManager);
-        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionStartStopEventHandler;
-        private ActionStartStopEventCallbackDelegate _accessibilityManagerActionStartStopEventCallbackDelegate;
+        private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionStartStopEventHandler;
+        private ActionStartStopEventCallbackDelegate accessibilityManagerActionStartStopEventCallbackDelegate;
 
         /*
             // To be replaced by a new event that takes Touch
@@ -158,18 +158,18 @@ namespace Tizen.NUI.Accessibility
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void FocusChangedEventCallbackDelegate(IntPtr view1, IntPtr view2);
-        private EventHandler<FocusChangedEventArgs> _accessibilityManagerFocusChangedEventHandler;
-        private FocusChangedEventCallbackDelegate _accessibilityManagerFocusChangedEventCallbackDelegate;
+        private EventHandler<FocusChangedEventArgs> accessibilityManagerFocusChangedEventHandler;
+        private FocusChangedEventCallbackDelegate accessibilityManagerFocusChangedEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void FocusedViewActivatedEventCallbackDelegate(IntPtr view);
-        private EventHandler<FocusedViewActivatedEventArgs> _accessibilityManagerFocusedViewActivatedEventHandler;
-        private FocusedViewActivatedEventCallbackDelegate _accessibilityManagerFocusedViewActivatedEventCallbackDelegate;
+        private EventHandler<FocusedViewActivatedEventArgs> accessibilityManagerFocusedViewActivatedEventHandler;
+        private FocusedViewActivatedEventCallbackDelegate accessibilityManagerFocusedViewActivatedEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void FocusOvershotEventCallbackDelegate(IntPtr currentFocusedView, AccessibilityManager.FocusOvershotDirection direction);
-        private EventHandler<FocusOvershotEventArgs> _accessibilityManagerFocusOvershotEventHandler;
-        private FocusOvershotEventCallbackDelegate _accessibilityManagerFocusOvershotEventCallbackDelegate;
+        private EventHandler<FocusOvershotEventArgs> accessibilityManagerFocusOvershotEventHandler;
+        private FocusOvershotEventCallbackDelegate accessibilityManagerFocusOvershotEventCallbackDelegate;
 
         // Accessibility action signals
 
@@ -185,24 +185,23 @@ namespace Tizen.NUI.Accessibility
             add
             {
                 // Restricted to only one listener
-                if (_accessibilityManagerStatusChangedEventHandler == null)
+                if (accessibilityManagerStatusChangedEventHandler == null)
                 {
-                    _accessibilityManagerStatusChangedEventHandler += value;
-
-                    _accessibilityManagerStatusChangedEventCallbackDelegate = new StatusChangedEventCallbackDelegate(OnStatusChanged);
-                    this.StatusChangedSignal().Connect(_accessibilityManagerStatusChangedEventCallbackDelegate);
+                    accessibilityManagerStatusChangedEventCallbackDelegate = new StatusChangedEventCallbackDelegate(OnStatusChanged);
+                    this.StatusChangedSignal().Connect(accessibilityManagerStatusChangedEventCallbackDelegate);
                 }
+
+                accessibilityManagerStatusChangedEventHandler += value;
             }
 
             remove
             {
+                accessibilityManagerStatusChangedEventHandler -= value;
 
-                if (_accessibilityManagerStatusChangedEventHandler != null)
+                if (accessibilityManagerStatusChangedEventHandler == null && StatusChangedSignal().Empty() == false)
                 {
-                    this.StatusChangedSignal().Disconnect(_accessibilityManagerStatusChangedEventCallbackDelegate);
+                    this.StatusChangedSignal().Disconnect(accessibilityManagerStatusChangedEventCallbackDelegate);
                 }
-
-                _accessibilityManagerStatusChangedEventHandler -= value;
 
             }
         }
@@ -219,23 +218,23 @@ namespace Tizen.NUI.Accessibility
             add
             {
                 // Restricted to only one listener
-                if (_accessibilityManagerActionNextEventHandler == null)
+                if (accessibilityManagerActionNextEventHandler == null)
                 {
-                    _accessibilityManagerActionNextEventHandler += value;
-
-                    _accessibilityManagerActionNextEventCallbackDelegate = new ActionNextEventCallbackDelegate(OnActionNext);
-                    this.ActionNextSignal().Connect(_accessibilityManagerActionNextEventCallbackDelegate);
+                    accessibilityManagerActionNextEventCallbackDelegate = new ActionNextEventCallbackDelegate(OnActionNext);
+                    this.ActionNextSignal().Connect(accessibilityManagerActionNextEventCallbackDelegate);
                 }
+
+                accessibilityManagerActionNextEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerActionNextEventHandler != null)
-                {
-                    this.ActionNextSignal().Disconnect(_accessibilityManagerActionNextEventCallbackDelegate);
-                }
+                accessibilityManagerActionNextEventHandler -= value;
 
-                _accessibilityManagerActionNextEventHandler -= value;
+                if (accessibilityManagerActionNextEventHandler == null && ActionNextSignal().Empty() == false)
+                {
+                    this.ActionNextSignal().Disconnect(accessibilityManagerActionNextEventCallbackDelegate);
+                }
             }
         }
 
@@ -251,23 +250,23 @@ namespace Tizen.NUI.Accessibility
             add
             {
                 // Restricted to only one listener
-                if (_accessibilityManagerActionPreviousEventHandler == null)
+                if (accessibilityManagerActionPreviousEventHandler == null)
                 {
-                    _accessibilityManagerActionPreviousEventHandler += value;
-
-                    _accessibilityManagerActionPreviousEventCallbackDelegate = new ActionPreviousEventCallbackDelegate(OnActionPrevious);
-                    this.ActionPreviousSignal().Connect(_accessibilityManagerActionPreviousEventCallbackDelegate);
+                    accessibilityManagerActionPreviousEventCallbackDelegate = new ActionPreviousEventCallbackDelegate(OnActionPrevious);
+                    this.ActionPreviousSignal().Connect(accessibilityManagerActionPreviousEventCallbackDelegate);
                 }
+
+                accessibilityManagerActionPreviousEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerActionPreviousEventHandler != null)
-                {
-                    this.ActionPreviousSignal().Disconnect(_accessibilityManagerActionPreviousEventCallbackDelegate);
-                }
+                accessibilityManagerActionPreviousEventHandler -= value;
 
-                _accessibilityManagerActionPreviousEventHandler -= value;
+                if (accessibilityManagerActionPreviousEventHandler == null && ActionPreviousSignal().Empty() == false)
+                {
+                    this.ActionPreviousSignal().Disconnect(accessibilityManagerActionPreviousEventCallbackDelegate);
+                }
             }
         }
 
@@ -283,23 +282,23 @@ namespace Tizen.NUI.Accessibility
             add
             {
                 // Restricted to only one listener
-                if (_accessibilityManagerActionActivateEventHandler == null)
+                if (accessibilityManagerActionActivateEventHandler == null)
                 {
-                    _accessibilityManagerActionActivateEventHandler += value;
-
-                    _accessibilityManagerActionActivateEventCallbackDelegate = new ActionActivateEventCallbackDelegate(OnActionActivate);
-                    this.ActionActivateSignal().Connect(_accessibilityManagerActionActivateEventCallbackDelegate);
+                    accessibilityManagerActionActivateEventCallbackDelegate = new ActionActivateEventCallbackDelegate(OnActionActivate);
+                    this.ActionActivateSignal().Connect(accessibilityManagerActionActivateEventCallbackDelegate);
                 }
+
+                accessibilityManagerActionActivateEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerActionActivateEventHandler != null)
-                {
-                    this.ActionActivateSignal().Disconnect(_accessibilityManagerActionActivateEventCallbackDelegate);
-                }
+                accessibilityManagerActionActivateEventHandler -= value;
 
-                _accessibilityManagerActionActivateEventHandler -= value;
+                if (accessibilityManagerActionActivateEventHandler == null && ActionActivateSignal().Empty() == false)
+                {
+                    this.ActionActivateSignal().Disconnect(accessibilityManagerActionActivateEventCallbackDelegate);
+                }
             }
         }
 
@@ -315,23 +314,23 @@ namespace Tizen.NUI.Accessibility
             add
             {
                 // Restricted to only one listener
-                if (_accessibilityManagerActionReadEventHandler == null)
+                if (accessibilityManagerActionReadEventHandler == null)
                 {
-                    _accessibilityManagerActionReadEventHandler += value;
-
-                    _accessibilityManagerActionReadEventCallbackDelegate = new ActionReadEventCallbackDelegate(OnActionRead);
-                    this.ActionReadSignal().Connect(_accessibilityManagerActionReadEventCallbackDelegate);
+                    accessibilityManagerActionReadEventCallbackDelegate = new ActionReadEventCallbackDelegate(OnActionRead);
+                    this.ActionReadSignal().Connect(accessibilityManagerActionReadEventCallbackDelegate);
                 }
+
+                accessibilityManagerActionReadEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerActionReadEventHandler != null)
-                {
-                    this.ActionReadSignal().Disconnect(_accessibilityManagerActionReadEventCallbackDelegate);
-                }
+                accessibilityManagerActionReadEventHandler -= value;
 
-                _accessibilityManagerActionReadEventHandler -= value;
+                if (accessibilityManagerActionReadEventHandler == null && ActionReadSignal().Empty() == false)
+                {
+                    this.ActionReadSignal().Disconnect(accessibilityManagerActionReadEventCallbackDelegate);
+                }
             }
         }
 
@@ -347,23 +346,24 @@ namespace Tizen.NUI.Accessibility
             add
             {
                 // Restricted to only one listener
-                if (_accessibilityManagerActionOverEventHandler == null)
+                if (accessibilityManagerActionOverEventHandler == null)
                 {
-                    _accessibilityManagerActionOverEventHandler += value;
-
-                    _accessibilityManagerActionOverEventCallbackDelegate = new ActionOverEventCallbackDelegate(OnActionOver);
-                    this.ActionOverSignal().Connect(_accessibilityManagerActionOverEventCallbackDelegate);
+                    accessibilityManagerActionOverEventCallbackDelegate = new ActionOverEventCallbackDelegate(OnActionOver);
+                    this.ActionOverSignal().Connect(accessibilityManagerActionOverEventCallbackDelegate);
                 }
+
+                accessibilityManagerActionOverEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerActionOverEventHandler != null)
+                accessibilityManagerActionOverEventHandler -= value;
+
+                if (accessibilityManagerActionOverEventHandler == null && ActionOverSignal().Empty() == false)
                 {
-                    this.ActionOverSignal().Disconnect(_accessibilityManagerActionOverEventCallbackDelegate);
+                    this.ActionOverSignal().Disconnect(accessibilityManagerActionOverEventCallbackDelegate);
                 }
 
-                _accessibilityManagerActionOverEventHandler -= value;
             }
         }
 
@@ -379,23 +379,23 @@ namespace Tizen.NUI.Accessibility
             add
             {
                 // Restricted to only one listener
-                if (_accessibilityManagerActionReadNextEventHandler == null)
+                if (accessibilityManagerActionReadNextEventHandler == null)
                 {
-                    _accessibilityManagerActionReadNextEventHandler += value;
-
-                    _accessibilityManagerActionReadNextEventCallbackDelegate = new ActionReadNextEventCallbackDelegate(OnActionReadNext);
-                    this.ActionReadNextSignal().Connect(_accessibilityManagerActionReadNextEventCallbackDelegate);
+                    accessibilityManagerActionReadNextEventCallbackDelegate = new ActionReadNextEventCallbackDelegate(OnActionReadNext);
+                    this.ActionReadNextSignal().Connect(accessibilityManagerActionReadNextEventCallbackDelegate);
                 }
+
+                accessibilityManagerActionReadNextEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerActionReadNextEventHandler != null)
-                {
-                    this.ActionReadNextSignal().Disconnect(_accessibilityManagerActionReadNextEventCallbackDelegate);
-                }
+                accessibilityManagerActionReadNextEventHandler -= value;
 
-                _accessibilityManagerActionReadNextEventHandler -= value;
+                if (accessibilityManagerActionReadNextEventHandler == null && ActionReadNextSignal().Empty() == false)
+                {
+                    this.ActionReadNextSignal().Disconnect(accessibilityManagerActionReadNextEventCallbackDelegate);
+                }
             }
         }
 
@@ -411,23 +411,23 @@ namespace Tizen.NUI.Accessibility
             add
             {
                 // Restricted to only one listener
-                if (_accessibilityManagerActionReadPreviousEventHandler == null)
+                if (accessibilityManagerActionReadPreviousEventHandler == null)
                 {
-                    _accessibilityManagerActionReadPreviousEventHandler += value;
-
-                    _accessibilityManagerActionReadPreviousEventCallbackDelegate = new ActionReadPreviousEventCallbackDelegate(OnActionReadPrevious);
-                    this.ActionReadPreviousSignal().Connect(_accessibilityManagerActionReadPreviousEventCallbackDelegate);
+                    accessibilityManagerActionReadPreviousEventCallbackDelegate = new ActionReadPreviousEventCallbackDelegate(OnActionReadPrevious);
+                    this.ActionReadPreviousSignal().Connect(accessibilityManagerActionReadPreviousEventCallbackDelegate);
                 }
+
+                accessibilityManagerActionReadPreviousEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerActionReadPreviousEventHandler != null)
-                {
-                    this.ActionReadPreviousSignal().Disconnect(_accessibilityManagerActionReadPreviousEventCallbackDelegate);
-                }
+                accessibilityManagerActionReadPreviousEventHandler -= value;
 
-                _accessibilityManagerActionReadPreviousEventHandler -= value;
+                if (accessibilityManagerActionReadPreviousEventHandler == null && ActionReadPreviousSignal().Empty() == false)
+                {
+                    this.ActionReadPreviousSignal().Disconnect(accessibilityManagerActionReadPreviousEventCallbackDelegate);
+                }
             }
         }
 
@@ -444,23 +444,23 @@ namespace Tizen.NUI.Accessibility
             add
             {
                 // Restricted to only one listener
-                if (_accessibilityManagerActionUpEventHandler == null)
+                if (accessibilityManagerActionUpEventHandler == null)
                 {
-                    _accessibilityManagerActionUpEventHandler += value;
-
-                    _accessibilityManagerActionUpEventCallbackDelegate = new ActionUpEventCallbackDelegate(OnActionUp);
-                    this.ActionUpSignal().Connect(_accessibilityManagerActionUpEventCallbackDelegate);
+                    accessibilityManagerActionUpEventCallbackDelegate = new ActionUpEventCallbackDelegate(OnActionUp);
+                    this.ActionUpSignal().Connect(accessibilityManagerActionUpEventCallbackDelegate);
                 }
+
+                accessibilityManagerActionUpEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerActionUpEventHandler != null)
-                {
-                    this.ActionUpSignal().Disconnect(_accessibilityManagerActionUpEventCallbackDelegate);
-                }
+                accessibilityManagerActionUpEventHandler -= value;
 
-                _accessibilityManagerActionUpEventHandler -= value;
+                if (accessibilityManagerActionUpEventHandler == null && ActionUpSignal().Empty() == false)
+                {
+                    this.ActionUpSignal().Disconnect(accessibilityManagerActionUpEventCallbackDelegate);
+                }
             }
         }
 
@@ -477,23 +477,23 @@ namespace Tizen.NUI.Accessibility
             add
             {
                 // Restricted to only one listener
-                if (_accessibilityManagerActionDownEventHandler == null)
+                if (accessibilityManagerActionDownEventHandler == null)
                 {
-                    _accessibilityManagerActionDownEventHandler += value;
-
-                    _accessibilityManagerActionDownEventCallbackDelegate = new ActionDownEventCallbackDelegate(OnActionDown);
-                    this.ActionDownSignal().Connect(_accessibilityManagerActionDownEventCallbackDelegate);
+                    accessibilityManagerActionDownEventCallbackDelegate = new ActionDownEventCallbackDelegate(OnActionDown);
+                    this.ActionDownSignal().Connect(accessibilityManagerActionDownEventCallbackDelegate);
                 }
+
+                accessibilityManagerActionDownEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerActionDownEventHandler != null)
-                {
-                    this.ActionDownSignal().Disconnect(_accessibilityManagerActionDownEventCallbackDelegate);
-                }
+                accessibilityManagerActionDownEventHandler -= value;
 
-                _accessibilityManagerActionDownEventHandler -= value;
+                if (accessibilityManagerActionDownEventHandler == null && ActionDownSignal().Empty() == false)
+                {
+                    this.ActionDownSignal().Disconnect(accessibilityManagerActionDownEventCallbackDelegate);
+                }
             }
         }
 
@@ -510,23 +510,23 @@ namespace Tizen.NUI.Accessibility
             add
             {
                 // Restricted to only one listener
-                if (_accessibilityManagerActionClearFocusEventHandler == null)
+                if (accessibilityManagerActionClearFocusEventHandler == null)
                 {
-                    _accessibilityManagerActionClearFocusEventHandler += value;
-
-                    _accessibilityManagerActionClearFocusEventCallbackDelegate = new ActionClearFocusEventCallbackDelegate(OnActionClearFocus);
-                    this.ActionClearFocusSignal().Connect(_accessibilityManagerActionClearFocusEventCallbackDelegate);
+                    accessibilityManagerActionClearFocusEventCallbackDelegate = new ActionClearFocusEventCallbackDelegate(OnActionClearFocus);
+                    this.ActionClearFocusSignal().Connect(accessibilityManagerActionClearFocusEventCallbackDelegate);
                 }
+
+                accessibilityManagerActionClearFocusEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerActionClearFocusEventHandler != null)
-                {
-                    this.ActionClearFocusSignal().Disconnect(_accessibilityManagerActionClearFocusEventCallbackDelegate);
-                }
+                accessibilityManagerActionClearFocusEventHandler -= value;
 
-                _accessibilityManagerActionClearFocusEventHandler -= value;
+                if (accessibilityManagerActionClearFocusEventHandler == null && ActionClearFocusSignal().Empty() == false)
+                {
+                    this.ActionClearFocusSignal().Disconnect(accessibilityManagerActionClearFocusEventCallbackDelegate);
+                }
             }
         }
 
@@ -542,24 +542,23 @@ namespace Tizen.NUI.Accessibility
             add
             {
                 // Restricted to only one listener
-                if (_accessibilityManagerActionBackEventHandler == null)
+                if (accessibilityManagerActionBackEventHandler == null)
                 {
-                    _accessibilityManagerActionBackEventHandler += value;
-
-                    _accessibilityManagerActionBackEventCallbackDelegate = new ActionBackEventCallbackDelegate(OnActionBack);
-                    this.ActionBackSignal().Connect(_accessibilityManagerActionBackEventCallbackDelegate);
+                    accessibilityManagerActionBackEventCallbackDelegate = new ActionBackEventCallbackDelegate(OnActionBack);
+                    this.ActionBackSignal().Connect(accessibilityManagerActionBackEventCallbackDelegate);
                 }
+
+                accessibilityManagerActionBackEventHandler += value;
             }
 
             remove
             {
+                accessibilityManagerActionBackEventHandler -= value;
 
-                if (_accessibilityManagerActionBackEventHandler != null)
+                if (accessibilityManagerActionBackEventHandler == null && ActionBackSignal().Empty() == false)
                 {
-                    this.ActionBackSignal().Disconnect(_accessibilityManagerActionBackEventCallbackDelegate);
+                    this.ActionBackSignal().Disconnect(accessibilityManagerActionBackEventCallbackDelegate);
                 }
-
-                _accessibilityManagerActionBackEventHandler -= value;
             }
         }
 
@@ -575,23 +574,23 @@ namespace Tizen.NUI.Accessibility
             add
             {
                 // Restricted to only one listener
-                if (_accessibilityManagerActionScrollUpEventHandler == null)
+                if (accessibilityManagerActionScrollUpEventHandler == null)
                 {
-                    _accessibilityManagerActionScrollUpEventHandler += value;
-
-                    _accessibilityManagerActionScrollUpEventCallbackDelegate = new ActionScrollUpEventCallbackDelegate(OnActionScrollUp);
-                    this.ActionScrollUpSignal().Connect(_accessibilityManagerActionScrollUpEventCallbackDelegate);
+                    accessibilityManagerActionScrollUpEventCallbackDelegate = new ActionScrollUpEventCallbackDelegate(OnActionScrollUp);
+                    this.ActionScrollUpSignal().Connect(accessibilityManagerActionScrollUpEventCallbackDelegate);
                 }
+
+                accessibilityManagerActionScrollUpEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerActionScrollUpEventHandler != null)
-                {
-                    this.ActionScrollUpSignal().Disconnect(_accessibilityManagerActionScrollUpEventCallbackDelegate);
-                }
+                accessibilityManagerActionScrollUpEventHandler -= value;
 
-                _accessibilityManagerActionScrollUpEventHandler -= value;
+                if (accessibilityManagerActionScrollUpEventHandler == null && ActionScrollUpSignal().Empty() == false)
+                {
+                    this.ActionScrollUpSignal().Disconnect(accessibilityManagerActionScrollUpEventCallbackDelegate);
+                }
             }
         }
 
@@ -607,24 +606,23 @@ namespace Tizen.NUI.Accessibility
             add
             {
                 // Restricted to only one listener
-                if (_accessibilityManagerActionScrollDownEventHandler == null)
+                if (accessibilityManagerActionScrollDownEventHandler == null)
                 {
-                    _accessibilityManagerActionScrollDownEventHandler += value;
-
-                    _accessibilityManagerActionScrollDownEventCallbackDelegate = new ActionScrollDownEventCallbackDelegate(OnActionScrollDown);
-                    this.ActionScrollDownSignal().Connect(_accessibilityManagerActionScrollDownEventCallbackDelegate);
+                    accessibilityManagerActionScrollDownEventCallbackDelegate = new ActionScrollDownEventCallbackDelegate(OnActionScrollDown);
+                    this.ActionScrollDownSignal().Connect(accessibilityManagerActionScrollDownEventCallbackDelegate);
                 }
+
+                accessibilityManagerActionScrollDownEventHandler += value;
             }
 
             remove
             {
+                accessibilityManagerActionScrollDownEventHandler -= value;
 
-                if (_accessibilityManagerActionScrollDownEventHandler != null)
+                if (accessibilityManagerActionScrollDownEventHandler == null && ActionScrollDownSignal().Empty() == false)
                 {
-                    this.ActionScrollDownSignal().Disconnect(_accessibilityManagerActionScrollDownEventCallbackDelegate);
+                    this.ActionScrollDownSignal().Disconnect(accessibilityManagerActionScrollDownEventCallbackDelegate);
                 }
-
-                _accessibilityManagerActionScrollDownEventHandler -= value;
             }
         }
 
@@ -640,23 +638,23 @@ namespace Tizen.NUI.Accessibility
             add
             {
                 // Restricted to only one listener
-                if (_accessibilityManagerActionPageLeftEventHandler == null)
+                if (accessibilityManagerActionPageLeftEventHandler == null)
                 {
-                    _accessibilityManagerActionPageLeftEventHandler += value;
-
-                    _accessibilityManagerActionPageLeftEventCallbackDelegate = new ActionPageLeftEventCallbackDelegate(OnActionPageLeft);
-                    this.ActionPageLeftSignal().Connect(_accessibilityManagerActionPageLeftEventCallbackDelegate);
+                    accessibilityManagerActionPageLeftEventCallbackDelegate = new ActionPageLeftEventCallbackDelegate(OnActionPageLeft);
+                    this.ActionPageLeftSignal().Connect(accessibilityManagerActionPageLeftEventCallbackDelegate);
                 }
+
+                accessibilityManagerActionPageLeftEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerActionPageLeftEventHandler != null)
-                {
-                    this.ActionPageLeftSignal().Disconnect(_accessibilityManagerActionPageLeftEventCallbackDelegate);
-                }
+                accessibilityManagerActionPageLeftEventHandler -= value;
 
-                _accessibilityManagerActionPageLeftEventHandler -= value;
+                if (accessibilityManagerActionPageLeftEventHandler == null && ActionPageLeftSignal().Empty() == false)
+                {
+                    this.ActionPageLeftSignal().Disconnect(accessibilityManagerActionPageLeftEventCallbackDelegate);
+                }
             }
         }
 
@@ -672,23 +670,23 @@ namespace Tizen.NUI.Accessibility
             add
             {
                 // Restricted to only one listener
-                if (_accessibilityManagerActionPageRightEventHandler == null)
+                if (accessibilityManagerActionPageRightEventHandler == null)
                 {
-                    _accessibilityManagerActionPageRightEventHandler += value;
-
-                    _accessibilityManagerActionPageRightEventCallbackDelegate = new ActionPageRightEventCallbackDelegate(OnActionPageRight);
-                    this.ActionPageRightSignal().Connect(_accessibilityManagerActionPageRightEventCallbackDelegate);
+                    accessibilityManagerActionPageRightEventCallbackDelegate = new ActionPageRightEventCallbackDelegate(OnActionPageRight);
+                    this.ActionPageRightSignal().Connect(accessibilityManagerActionPageRightEventCallbackDelegate);
                 }
+
+                accessibilityManagerActionPageRightEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerActionPageRightEventHandler != null)
-                {
-                    this.ActionPageRightSignal().Disconnect(_accessibilityManagerActionPageRightEventCallbackDelegate);
-                }
+                accessibilityManagerActionPageRightEventHandler -= value;
 
-                _accessibilityManagerActionPageRightEventHandler -= value;
+                if (accessibilityManagerActionPageRightEventHandler == null && ActionPageRightSignal().Empty() == false)
+                {
+                    this.ActionPageRightSignal().Disconnect(accessibilityManagerActionPageRightEventCallbackDelegate);
+                }
             }
         }
 
@@ -704,23 +702,23 @@ namespace Tizen.NUI.Accessibility
             add
             {
                 // Restricted to only one listener
-                if (_accessibilityManagerActionPageUpEventHandler == null)
+                if (accessibilityManagerActionPageUpEventHandler == null)
                 {
-                    _accessibilityManagerActionPageUpEventHandler += value;
-
-                    _accessibilityManagerActionPageUpEventCallbackDelegate = new ActionPageUpEventCallbackDelegate(OnActionPageUp);
-                    this.ActionPageUpSignal().Connect(_accessibilityManagerActionPageUpEventCallbackDelegate);
+                    accessibilityManagerActionPageUpEventCallbackDelegate = new ActionPageUpEventCallbackDelegate(OnActionPageUp);
+                    this.ActionPageUpSignal().Connect(accessibilityManagerActionPageUpEventCallbackDelegate);
                 }
+
+                accessibilityManagerActionPageUpEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerActionPageUpEventHandler != null)
-                {
-                    this.ActionPageUpSignal().Disconnect(_accessibilityManagerActionPageUpEventCallbackDelegate);
-                }
+                accessibilityManagerActionPageUpEventHandler -= value;
 
-                _accessibilityManagerActionPageUpEventHandler -= value;
+                if (accessibilityManagerActionPageUpEventHandler == null && ActionPageUpSignal().Empty() == false)
+                {
+                    this.ActionPageUpSignal().Disconnect(accessibilityManagerActionPageUpEventCallbackDelegate);
+                }
             }
         }
 
@@ -736,23 +734,23 @@ namespace Tizen.NUI.Accessibility
             add
             {
                 // Restricted to only one listener
-                if (_accessibilityManagerActionPageDownEventHandler == null)
+                if (accessibilityManagerActionPageDownEventHandler == null)
                 {
-                    _accessibilityManagerActionPageDownEventHandler += value;
-
-                    _accessibilityManagerActionPageDownEventCallbackDelegate = new ActionPageDownEventCallbackDelegate(OnActionPageDown);
-                    this.ActionPageDownSignal().Connect(_accessibilityManagerActionPageDownEventCallbackDelegate);
+                    accessibilityManagerActionPageDownEventCallbackDelegate = new ActionPageDownEventCallbackDelegate(OnActionPageDown);
+                    this.ActionPageDownSignal().Connect(accessibilityManagerActionPageDownEventCallbackDelegate);
                 }
+
+                accessibilityManagerActionPageDownEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerActionPageDownEventHandler != null)
-                {
-                    this.ActionPageDownSignal().Disconnect(_accessibilityManagerActionPageDownEventCallbackDelegate);
-                }
+                accessibilityManagerActionPageDownEventHandler -= value;
 
-                _accessibilityManagerActionPageDownEventHandler -= value;
+                if (accessibilityManagerActionPageDownEventHandler == null && ActionPageDownSignal().Empty() == false)
+                {
+                    this.ActionPageDownSignal().Disconnect(accessibilityManagerActionPageDownEventCallbackDelegate);
+                }
             }
         }
 
@@ -769,23 +767,23 @@ namespace Tizen.NUI.Accessibility
             add
             {
                 // Restricted to only one listener
-                if (_accessibilityManagerActionMoveToFirstEventHandler == null)
+                if (accessibilityManagerActionMoveToFirstEventHandler == null)
                 {
-                    _accessibilityManagerActionMoveToFirstEventHandler += value;
-
-                    _accessibilityManagerActionMoveToFirstEventCallbackDelegate = new ActionMoveToFirstEventCallbackDelegate(OnActionMoveToFirst);
-                    this.ActionMoveToFirstSignal().Connect(_accessibilityManagerActionMoveToFirstEventCallbackDelegate);
+                    accessibilityManagerActionMoveToFirstEventCallbackDelegate = new ActionMoveToFirstEventCallbackDelegate(OnActionMoveToFirst);
+                    this.ActionMoveToFirstSignal().Connect(accessibilityManagerActionMoveToFirstEventCallbackDelegate);
                 }
+
+                accessibilityManagerActionMoveToFirstEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerActionMoveToFirstEventHandler != null)
-                {
-                    this.ActionMoveToFirstSignal().Disconnect(_accessibilityManagerActionMoveToFirstEventCallbackDelegate);
-                }
+                accessibilityManagerActionMoveToFirstEventHandler -= value;
 
-                _accessibilityManagerActionMoveToFirstEventHandler -= value;
+                if (accessibilityManagerActionMoveToFirstEventHandler == null && ActionMoveToFirstSignal().Empty() == false)
+                {
+                    this.ActionMoveToFirstSignal().Disconnect(accessibilityManagerActionMoveToFirstEventCallbackDelegate);
+                }
             }
         }
 
@@ -802,23 +800,23 @@ namespace Tizen.NUI.Accessibility
             add
             {
                 // Restricted to only one listener
-                if (_accessibilityManagerActionMoveToLastEventHandler == null)
+                if (accessibilityManagerActionMoveToLastEventHandler == null)
                 {
-                    _accessibilityManagerActionMoveToLastEventHandler += value;
-
-                    _accessibilityManagerActionMoveToLastEventCallbackDelegate = new ActionMoveToLastEventCallbackDelegate(OnActionMoveToLast);
-                    this.ActionMoveToLastSignal().Connect(_accessibilityManagerActionMoveToLastEventCallbackDelegate);
+                    accessibilityManagerActionMoveToLastEventCallbackDelegate = new ActionMoveToLastEventCallbackDelegate(OnActionMoveToLast);
+                    this.ActionMoveToLastSignal().Connect(accessibilityManagerActionMoveToLastEventCallbackDelegate);
                 }
+
+                accessibilityManagerActionMoveToLastEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerActionMoveToLastEventHandler != null)
-                {
-                    this.ActionMoveToLastSignal().Disconnect(_accessibilityManagerActionMoveToLastEventCallbackDelegate);
-                }
+                accessibilityManagerActionMoveToLastEventHandler -= value;
 
-                _accessibilityManagerActionMoveToLastEventHandler -= value;
+                if (accessibilityManagerActionMoveToLastEventHandler == null && ActionMoveToLastSignal().Empty() == false)
+                {
+                    this.ActionMoveToLastSignal().Disconnect(accessibilityManagerActionMoveToLastEventCallbackDelegate);
+                }
             }
         }
 
@@ -835,23 +833,23 @@ namespace Tizen.NUI.Accessibility
             add
             {
                 // Restricted to only one listener
-                if (_accessibilityManagerActionReadFromTopEventHandler == null)
+                if (accessibilityManagerActionReadFromTopEventHandler == null)
                 {
-                    _accessibilityManagerActionReadFromTopEventHandler += value;
-
-                    _accessibilityManagerActionReadFromTopEventCallbackDelegate = new ActionReadFromTopEventCallbackDelegate(OnActionReadFromTop);
-                    this.ActionReadFromTopSignal().Connect(_accessibilityManagerActionReadFromTopEventCallbackDelegate);
+                    accessibilityManagerActionReadFromTopEventCallbackDelegate = new ActionReadFromTopEventCallbackDelegate(OnActionReadFromTop);
+                    this.ActionReadFromTopSignal().Connect(accessibilityManagerActionReadFromTopEventCallbackDelegate);
                 }
+
+                accessibilityManagerActionReadFromTopEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerActionReadFromTopEventHandler != null)
-                {
-                    this.ActionReadFromTopSignal().Disconnect(_accessibilityManagerActionReadFromTopEventCallbackDelegate);
-                }
+                accessibilityManagerActionReadFromTopEventHandler -= value;
 
-                _accessibilityManagerActionReadFromTopEventHandler -= value;
+                if (accessibilityManagerActionReadFromTopEventHandler == null && ActionReadFromTopSignal().Empty() == false)
+                {
+                    this.ActionReadFromTopSignal().Disconnect(accessibilityManagerActionReadFromTopEventCallbackDelegate);
+                }
             }
         }
 
@@ -868,23 +866,23 @@ namespace Tizen.NUI.Accessibility
             add
             {
                 // Restricted to only one listener
-                if (_accessibilityManagerActionReadFromNextEventHandler == null)
+                if (accessibilityManagerActionReadFromNextEventHandler == null)
                 {
-                    _accessibilityManagerActionReadFromNextEventHandler += value;
-
-                    _accessibilityManagerActionReadFromNextEventCallbackDelegate = new ActionReadFromNextEventCallbackDelegate(OnActionReadFromNext);
-                    this.ActionReadFromNextSignal().Connect(_accessibilityManagerActionReadFromNextEventCallbackDelegate);
+                    accessibilityManagerActionReadFromNextEventCallbackDelegate = new ActionReadFromNextEventCallbackDelegate(OnActionReadFromNext);
+                    this.ActionReadFromNextSignal().Connect(accessibilityManagerActionReadFromNextEventCallbackDelegate);
                 }
+
+                accessibilityManagerActionReadFromNextEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerActionReadFromNextEventHandler != null)
-                {
-                    this.ActionReadFromNextSignal().Disconnect(_accessibilityManagerActionReadFromNextEventCallbackDelegate);
-                }
+                accessibilityManagerActionReadFromNextEventHandler -= value;
 
-                _accessibilityManagerActionReadFromNextEventHandler -= value;
+                if (accessibilityManagerActionReadFromNextEventHandler == null && ActionReadFromNextSignal().Empty() == false)
+                {
+                    this.ActionReadFromNextSignal().Disconnect(accessibilityManagerActionReadFromNextEventCallbackDelegate);
+                }
             }
         }
 
@@ -900,23 +898,23 @@ namespace Tizen.NUI.Accessibility
             add
             {
                 // Restricted to only one listener
-                if (_accessibilityManagerActionZoomEventHandler == null)
+                if (accessibilityManagerActionZoomEventHandler == null)
                 {
-                    _accessibilityManagerActionZoomEventHandler += value;
-
-                    _accessibilityManagerActionZoomEventCallbackDelegate = new ActionZoomEventCallbackDelegate(OnActionZoom);
-                    this.ActionZoomSignal().Connect(_accessibilityManagerActionZoomEventCallbackDelegate);
+                    accessibilityManagerActionZoomEventCallbackDelegate = new ActionZoomEventCallbackDelegate(OnActionZoom);
+                    this.ActionZoomSignal().Connect(accessibilityManagerActionZoomEventCallbackDelegate);
                 }
+
+                accessibilityManagerActionZoomEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerActionZoomEventHandler != null)
-                {
-                    this.ActionZoomSignal().Disconnect(_accessibilityManagerActionZoomEventCallbackDelegate);
-                }
+                accessibilityManagerActionZoomEventHandler -= value;
 
-                _accessibilityManagerActionZoomEventHandler -= value;
+                if (accessibilityManagerActionZoomEventHandler == null && ActionZoomSignal().Empty() == false)
+                {
+                    this.ActionZoomSignal().Disconnect(accessibilityManagerActionZoomEventCallbackDelegate);
+                }
             }
         }
 
@@ -932,23 +930,23 @@ namespace Tizen.NUI.Accessibility
             add
             {
                 // Restricted to only one listener
-                if (_accessibilityManagerActionReadPauseResumeEventHandler == null)
+                if (accessibilityManagerActionReadPauseResumeEventHandler == null)
                 {
-                    _accessibilityManagerActionReadPauseResumeEventHandler += value;
-
-                    _accessibilityManagerActionReadPauseResumeEventCallbackDelegate = new ActionReadPauseResumeEventCallbackDelegate(OnActionReadPauseResume);
-                    this.ActionReadPauseResumeSignal().Connect(_accessibilityManagerActionReadPauseResumeEventCallbackDelegate);
+                    accessibilityManagerActionReadPauseResumeEventCallbackDelegate = new ActionReadPauseResumeEventCallbackDelegate(OnActionReadPauseResume);
+                    this.ActionReadPauseResumeSignal().Connect(accessibilityManagerActionReadPauseResumeEventCallbackDelegate);
                 }
+
+                accessibilityManagerActionReadPauseResumeEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerActionReadPauseResumeEventHandler != null)
-                {
-                    this.ActionReadPauseResumeSignal().Disconnect(_accessibilityManagerActionReadPauseResumeEventCallbackDelegate);
-                }
+                accessibilityManagerActionReadPauseResumeEventHandler -= value;
 
-                _accessibilityManagerActionReadPauseResumeEventHandler -= value;
+                if (accessibilityManagerActionReadPauseResumeEventHandler == null && ActionReadPauseResumeSignal().Empty() == false)
+                {
+                    this.ActionReadPauseResumeSignal().Disconnect(accessibilityManagerActionReadPauseResumeEventCallbackDelegate);
+                }
             }
         }
 
@@ -964,23 +962,23 @@ namespace Tizen.NUI.Accessibility
             add
             {
                 // Restricted to only one listener
-                if (_accessibilityManagerActionStartStopEventHandler == null)
+                if (accessibilityManagerActionStartStopEventHandler == null)
                 {
-                    _accessibilityManagerActionStartStopEventHandler += value;
-
-                    _accessibilityManagerActionStartStopEventCallbackDelegate = new ActionStartStopEventCallbackDelegate(OnActionStartStop);
-                    this.ActionStartStopSignal().Connect(_accessibilityManagerActionStartStopEventCallbackDelegate);
+                    accessibilityManagerActionStartStopEventCallbackDelegate = new ActionStartStopEventCallbackDelegate(OnActionStartStop);
+                    this.ActionStartStopSignal().Connect(accessibilityManagerActionStartStopEventCallbackDelegate);
                 }
+
+                accessibilityManagerActionStartStopEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerActionStartStopEventHandler != null)
-                {
-                    this.ActionStartStopSignal().Disconnect(_accessibilityManagerActionStartStopEventCallbackDelegate);
-                }
+                accessibilityManagerActionStartStopEventHandler -= value;
 
-                _accessibilityManagerActionStartStopEventHandler -= value;
+                if (accessibilityManagerActionStartStopEventHandler == null && ActionStartStopSignal().Empty() == false)
+                {
+                    this.ActionStartStopSignal().Disconnect(accessibilityManagerActionStartStopEventCallbackDelegate);
+                }
             }
         }
 
@@ -1049,23 +1047,23 @@ namespace Tizen.NUI.Accessibility
             add
             {
                 // Restricted to only one listener
-                if (_accessibilityManagerFocusChangedEventHandler == null)
+                if (accessibilityManagerFocusChangedEventHandler == null)
                 {
-                    _accessibilityManagerFocusChangedEventHandler += value;
-
-                    _accessibilityManagerFocusChangedEventCallbackDelegate = new FocusChangedEventCallbackDelegate(OnFocusChanged);
-                    this.FocusChangedSignal().Connect(_accessibilityManagerFocusChangedEventCallbackDelegate);
+                    accessibilityManagerFocusChangedEventCallbackDelegate = new FocusChangedEventCallbackDelegate(OnFocusChanged);
+                    this.FocusChangedSignal().Connect(accessibilityManagerFocusChangedEventCallbackDelegate);
                 }
+
+                accessibilityManagerFocusChangedEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerFocusChangedEventHandler != null)
-                {
-                    this.FocusChangedSignal().Disconnect(_accessibilityManagerFocusChangedEventCallbackDelegate);
-                }
+                accessibilityManagerFocusChangedEventHandler -= value;
 
-                _accessibilityManagerFocusChangedEventHandler -= value;
+                if (accessibilityManagerFocusChangedEventHandler == null && FocusChangedSignal().Empty() == false)
+                {
+                    this.FocusChangedSignal().Disconnect(accessibilityManagerFocusChangedEventCallbackDelegate);
+                }
             }
         }
 
@@ -1081,23 +1079,23 @@ namespace Tizen.NUI.Accessibility
             add
             {
                 // Restricted to only one listener
-                if (_accessibilityManagerFocusedViewActivatedEventHandler == null)
+                if (accessibilityManagerFocusedViewActivatedEventHandler == null)
                 {
-                    _accessibilityManagerFocusedViewActivatedEventHandler += value;
-
-                    _accessibilityManagerFocusedViewActivatedEventCallbackDelegate = new FocusedViewActivatedEventCallbackDelegate(OnFocusedViewActivated);
-                    this.FocusedViewActivatedSignal().Connect(_accessibilityManagerFocusedViewActivatedEventCallbackDelegate);
+                    accessibilityManagerFocusedViewActivatedEventCallbackDelegate = new FocusedViewActivatedEventCallbackDelegate(OnFocusedViewActivated);
+                    this.FocusedViewActivatedSignal().Connect(accessibilityManagerFocusedViewActivatedEventCallbackDelegate);
                 }
+
+                accessibilityManagerFocusedViewActivatedEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerFocusedViewActivatedEventHandler != null)
-                {
-                    this.FocusedViewActivatedSignal().Disconnect(_accessibilityManagerFocusedViewActivatedEventCallbackDelegate);
-                }
+                accessibilityManagerFocusedViewActivatedEventHandler -= value;
 
-                _accessibilityManagerFocusedViewActivatedEventHandler -= value;
+                if (accessibilityManagerFocusedViewActivatedEventHandler == null && FocusedViewActivatedSignal().Empty() == false)
+                {
+                    this.FocusedViewActivatedSignal().Disconnect(accessibilityManagerFocusedViewActivatedEventCallbackDelegate);
+                }
             }
         }
 
@@ -1113,23 +1111,23 @@ namespace Tizen.NUI.Accessibility
             add
             {
                 // Restricted to only one listener
-                if (_accessibilityManagerFocusOvershotEventHandler == null)
+                if (accessibilityManagerFocusOvershotEventHandler == null)
                 {
-                    _accessibilityManagerFocusOvershotEventHandler += value;
-
-                    _accessibilityManagerFocusOvershotEventCallbackDelegate = new FocusOvershotEventCallbackDelegate(OnFocusOvershot);
-                    this.FocusOvershotSignal().Connect(_accessibilityManagerFocusOvershotEventCallbackDelegate);
+                    accessibilityManagerFocusOvershotEventCallbackDelegate = new FocusOvershotEventCallbackDelegate(OnFocusOvershot);
+                    this.FocusOvershotSignal().Connect(accessibilityManagerFocusOvershotEventCallbackDelegate);
                 }
+
+                accessibilityManagerFocusOvershotEventHandler += value;
             }
 
             remove
             {
-                if (_accessibilityManagerFocusOvershotEventHandler != null)
-                {
-                    this.FocusOvershotSignal().Disconnect(_accessibilityManagerFocusOvershotEventCallbackDelegate);
-                }
+                accessibilityManagerFocusOvershotEventHandler -= value;
 
-                _accessibilityManagerFocusOvershotEventHandler -= value;
+                if (accessibilityManagerFocusOvershotEventHandler == null && FocusOvershotSignal().Empty() == false)
+                {
+                    this.FocusOvershotSignal().Disconnect(accessibilityManagerFocusOvershotEventCallbackDelegate);
+                }
             }
         }
     }

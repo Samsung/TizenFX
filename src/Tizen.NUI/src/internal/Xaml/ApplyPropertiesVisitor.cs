@@ -1,3 +1,20 @@
+/*
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -375,7 +392,7 @@ namespace Tizen.NUI.Xaml
 
             //Call TrySetProperty first and then TrySetValue to keep the code logic consistent whether it is through xaml or code.
             //If we can assign that value to a normal property, let's do it
-            if (xpe == null && TrySetProperty(xamlelement, localName, value, serviceProvider, context, out xpe))
+            if (xpe == null && TrySetProperty(xamlelement, property, localName, value, serviceProvider, context, out xpe))
                 return;
 
             //If it's a BindableProberty, SetValue
@@ -560,7 +577,7 @@ namespace Tizen.NUI.Xaml
             return true;
         }
 
-        static bool TrySetProperty(object element, string localName, object value, XamlServiceProvider serviceProvider, HydrationContext context, out Exception exception)
+        static bool TrySetProperty(object element, BindableProperty property, string localName, object value, XamlServiceProvider serviceProvider, HydrationContext context, out Exception exception)
         {
             exception = null;
 
@@ -571,6 +588,9 @@ namespace Tizen.NUI.Xaml
                 return false;
 
             if (!IsVisibleFrom(setter, context.RootElement))
+                return false;
+
+            if (property != null && propertyInfo.PropertyType != property.ReturnType)
                 return false;
 
             if (serviceProvider != null && serviceProvider.IProvideValueTarget != null)

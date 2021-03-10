@@ -16,7 +16,6 @@
  */
 
 extern alias TizenSystemSettings;
-using TizenSystemSettings.Tizen.System;
 using System.ComponentModel;
 using Tizen.NUI.Binding;
 
@@ -543,6 +542,25 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         }));
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty FontSizeScaleProperty = BindableProperty.Create(nameof(FontSizeScale), typeof(float), typeof(TextLabel), default(float), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            if (newValue != null)
+            {
+                using (var property = new Tizen.NUI.PropertyValue((float)newValue))
+                {
+                    Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.FontSizeScale, property);
+                }
+            }
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            float temp;
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.FontSizeScale).Get(out temp);
+            return temp;
+        }));
 
         #region Selectors
         internal static readonly BindableProperty TranslatableTextSelectorProperty = BindableProperty.Create("TranslatableTextSelector", typeof(Selector<string>), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
@@ -605,6 +623,17 @@ namespace Tizen.NUI.BaseComponents
         {
             var textLabel = (TextLabel)bindable;
             return textLabel.SelectorData.TextShadow.Get(textLabel);
+        });
+
+        internal static readonly BindableProperty PixelSizeSelectorProperty = BindableProperty.Create("PixelSizeSelector", typeof(Selector<float?>), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            ((TextLabel)bindable).SelectorData.PixelSize.Update(textLabel, (Selector<float?>)newValue, true);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            return textLabel.SelectorData.PixelSize.Get(textLabel);
         });
         #endregion
 

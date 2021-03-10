@@ -291,7 +291,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Sets the relative offset for bottom target.
-        /// When <paramref name="value"/> is 0 the bottom edge of the <paramref name="view"/> is aligned to the top edge of the right target.<br/>
+        /// When <paramref name="value"/> is 0 the bottom edge of the <paramref name="view"/> is aligned to the top edge of the bottom target.<br/>
         /// When <paramref name="value"/> is 1 the bottom edges of the bottom target and <paramref name="view"/> are aligned.
         /// </summary>
         /// <param name="view">The child view whose size and position is being changed.</param>
@@ -361,7 +361,7 @@ namespace Tizen.NUI
                 }
             }
 
-            (float childrenWidth, float childrenHeight) =  CalculateChildrenSize(widthMeasureSpec.Size.AsDecimal(), heightMeasureSpec.Size.AsDecimal());
+            (float childrenWidth, float childrenHeight) = CalculateChildrenSize(widthMeasureSpec.Size.AsDecimal(), heightMeasureSpec.Size.AsDecimal());
             SetMeasuredDimensions(ResolveSizeAndState(new LayoutLength(childrenWidth), widthMeasureSpec, childWidthState),
                                   ResolveSizeAndState(new LayoutLength(childrenHeight), heightMeasureSpec, childHeightState));
         }
@@ -378,11 +378,10 @@ namespace Tizen.NUI
                     Geometry horizontalGeometry = GetHorizontalLayout(childLayout.Owner);
                     Geometry verticalGeometry = GetVerticalLayout(childLayout.Owner);
 
-                    LayoutLength childLeft =  new LayoutLength(horizontalGeometry.Position);
-                    LayoutLength childRight = new LayoutLength(horizontalGeometry.Position + horizontalGeometry.Size);
-                    LayoutLength childTop = new LayoutLength(verticalGeometry.Position);
-                    LayoutLength childBottom = new LayoutLength(verticalGeometry.Position + verticalGeometry.Size);
-
+                    LayoutLength childLeft = new LayoutLength(horizontalGeometry.Position + Padding.Start + childLayout.Margin.Start);
+                    LayoutLength childRight = new LayoutLength(horizontalGeometry.Position + horizontalGeometry.Size + Padding.Start - childLayout.Margin.End);
+                    LayoutLength childTop = new LayoutLength(verticalGeometry.Position + Padding.Top + childLayout.Margin.Top);
+                    LayoutLength childBottom = new LayoutLength(verticalGeometry.Position + verticalGeometry.Size + Padding.Top - childLayout.Margin.Bottom);
                     childLayout.Layout(childLeft, childTop, childRight, childBottom);
                 }
             }

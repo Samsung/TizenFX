@@ -63,6 +63,27 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Initilize AT-SPI object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnInitialize()
+        {
+            base.OnInitialize();
+            SetAccessibilityConstructor(Role.ToggleButton);
+        }
+
+        /// <summary>
+        /// Informs AT-SPI bridge about the set of AT-SPI states associated with this object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override AccessibilityStates AccessibilityCalculateStates()
+        {
+            var states = base.AccessibilityCalculateStates();
+            states.Set(AccessibilityState.Checked, this.IsSelected);
+            return states;
+        }
+
+        /// <summary>
         /// An event for the item selected signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
@@ -278,7 +299,9 @@ namespace Tizen.NUI.Components
         /// <returns>True if the event should be consumed.</returns>
         /// <since_tizen> 8 </since_tizen>
         [Obsolete("Deprecated in API8; Will be removed in API10. Please use OnClicked instead.")]
+#pragma warning disable CS0809 // Obsolete member overrides non-obsolete member, It will be removed in API10
         public override bool OnTouch(Touch touch)
+#pragma warning restore CS0809 // Obsolete member overrides non-obsolete member, It will be removed in API10
         {
             return base.OnTouch(touch);
         }
@@ -315,10 +338,18 @@ namespace Tizen.NUI.Components
         private void Initialize()
         {
             IsSelectable = true;
+#if PROFILE_MOBILE
+                Feedback = true;
+#endif
         }
 
         private void OnSelect()
         {
+            if (IsHighlighted)
+            {
+                EmitAccessibilityStateChangedEvent(AccessibilityState.Checked, IsSelected);
+            }
+
             ((SwitchExtension)Extension)?.OnSelectedChanged(this);
 
             if (SelectedEvent != null)

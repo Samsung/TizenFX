@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
  *
  */
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using Tizen.NUI.Binding;
@@ -200,12 +199,12 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         }));
 
-        private DaliEventHandler<object, StartedEventArgs> _scrollableStartedEventHandler;
-        private StartedCallbackDelegate _scrollableStartedCallbackDelegate;
-        private DaliEventHandler<object, UpdatedEventArgs> _scrollableUpdatedEventHandler;
-        private UpdatedCallbackDelegate _scrollableUpdatedCallbackDelegate;
-        private DaliEventHandler<object, CompletedEventArgs> _scrollableCompletedEventHandler;
-        private CompletedCallbackDelegate _scrollableCompletedCallbackDelegate;
+        private DaliEventHandler<object, StartedEventArgs> scrollableStartedEventHandler;
+        private StartedCallbackDelegate scrollableStartedCallbackDelegate;
+        private DaliEventHandler<object, UpdatedEventArgs> scrollableUpdatedEventHandler;
+        private UpdatedCallbackDelegate scrollableUpdatedCallbackDelegate;
+        private DaliEventHandler<object, CompletedEventArgs> scrollableCompletedEventHandler;
+        private CompletedCallbackDelegate scrollableCompletedCallbackDelegate;
 
         /// <summary>
         /// Create an instance of scrollable.
@@ -216,7 +215,7 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Scrollable(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Scrollable.Upcast(cPtr), cMemoryOwn)
+        internal Scrollable(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
@@ -238,23 +237,23 @@ namespace Tizen.NUI.BaseComponents
             add
             {
                 // Restricted to only one listener
-                if (_scrollableStartedEventHandler == null)
+                if (scrollableStartedEventHandler == null)
                 {
-                    _scrollableStartedEventHandler += value;
+                    scrollableStartedEventHandler += value;
 
-                    _scrollableStartedCallbackDelegate = new StartedCallbackDelegate(OnStarted);
-                    this.ScrollStartedSignal().Connect(_scrollableStartedCallbackDelegate);
+                    scrollableStartedCallbackDelegate = new StartedCallbackDelegate(OnStarted);
+                    this.ScrollStartedSignal().Connect(scrollableStartedCallbackDelegate);
                 }
             }
 
             remove
             {
-                if (_scrollableStartedEventHandler != null)
+                if (scrollableStartedEventHandler != null)
                 {
-                    this.ScrollStartedSignal().Disconnect(_scrollableStartedCallbackDelegate);
+                    this.ScrollStartedSignal().Disconnect(scrollableStartedCallbackDelegate);
                 }
 
-                _scrollableStartedEventHandler -= value;
+                scrollableStartedEventHandler -= value;
             }
         }
 
@@ -267,23 +266,23 @@ namespace Tizen.NUI.BaseComponents
             add
             {
                 // Restricted to only one listener
-                if (_scrollableUpdatedEventHandler == null)
+                if (scrollableUpdatedEventHandler == null)
                 {
-                    _scrollableUpdatedEventHandler += value;
+                    scrollableUpdatedEventHandler += value;
 
-                    _scrollableUpdatedCallbackDelegate = new UpdatedCallbackDelegate(OnUpdated);
-                    this.ScrollUpdatedSignal().Connect(_scrollableUpdatedCallbackDelegate);
+                    scrollableUpdatedCallbackDelegate = new UpdatedCallbackDelegate(OnUpdated);
+                    this.ScrollUpdatedSignal().Connect(scrollableUpdatedCallbackDelegate);
                 }
             }
 
             remove
             {
-                if (_scrollableUpdatedEventHandler != null)
+                if (scrollableUpdatedEventHandler != null)
                 {
-                    this.ScrollUpdatedSignal().Disconnect(_scrollableUpdatedCallbackDelegate);
+                    this.ScrollUpdatedSignal().Disconnect(scrollableUpdatedCallbackDelegate);
                 }
 
-                _scrollableUpdatedEventHandler -= value;
+                scrollableUpdatedEventHandler -= value;
             }
         }
 
@@ -297,23 +296,23 @@ namespace Tizen.NUI.BaseComponents
             add
             {
                 // Restricted to only one listener
-                if (_scrollableCompletedEventHandler == null)
+                if (scrollableCompletedEventHandler == null)
                 {
-                    _scrollableCompletedEventHandler += value;
+                    scrollableCompletedEventHandler += value;
 
-                    _scrollableCompletedCallbackDelegate = new CompletedCallbackDelegate(OnCompleted);
-                    this.ScrollCompletedSignal().Connect(_scrollableCompletedCallbackDelegate);
+                    scrollableCompletedCallbackDelegate = new CompletedCallbackDelegate(OnCompleted);
+                    this.ScrollCompletedSignal().Connect(scrollableCompletedCallbackDelegate);
                 }
             }
 
             remove
             {
-                if (_scrollableCompletedEventHandler != null)
+                if (scrollableCompletedEventHandler != null)
                 {
-                    this.ScrollCompletedSignal().Disconnect(_scrollableCompletedCallbackDelegate);
+                    this.ScrollCompletedSignal().Disconnect(scrollableCompletedCallbackDelegate);
                 }
 
-                _scrollableCompletedEventHandler -= value;
+                scrollableCompletedEventHandler -= value;
             }
         }
 
@@ -546,19 +545,19 @@ namespace Tizen.NUI.BaseComponents
             // Use BaseHandle CPtr as current might have been deleted already in derived classes.
             SwigCPtr = GetBaseHandleCPtrHandleRef;
 
-            if (_scrollableCompletedCallbackDelegate != null)
+            if (scrollableCompletedCallbackDelegate != null)
             {
-                this.ScrollCompletedSignal().Disconnect(_scrollableCompletedCallbackDelegate);
+                this.ScrollCompletedSignal().Disconnect(scrollableCompletedCallbackDelegate);
             }
 
-            if (_scrollableUpdatedCallbackDelegate != null)
+            if (scrollableUpdatedCallbackDelegate != null)
             {
-                this.ScrollUpdatedSignal().Disconnect(_scrollableUpdatedCallbackDelegate);
+                this.ScrollUpdatedSignal().Disconnect(scrollableUpdatedCallbackDelegate);
             }
 
-            if (_scrollableStartedCallbackDelegate != null)
+            if (scrollableStartedCallbackDelegate != null)
             {
-                this.ScrollStartedSignal().Disconnect(_scrollableStartedCallbackDelegate);
+                this.ScrollStartedSignal().Disconnect(scrollableStartedCallbackDelegate);
             }
 
             // BaseHandle CPtr is used in Registry and there is danger of deletion if we keep using it here.
@@ -568,45 +567,42 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnStarted(IntPtr vector2)
         {
-            StartedEventArgs e = new StartedEventArgs();
-
-            // Populate all members of "e" (StartedEventArgs) with real data
-            e.Vector2 = Tizen.NUI.Vector2.GetVector2FromPtr(vector2);
-
-            if (_scrollableStartedEventHandler != null)
+            if (scrollableStartedEventHandler != null)
             {
+                StartedEventArgs e = new StartedEventArgs();
+
+                // Populate all members of "e" (StartedEventArgs) with real data
+                e.Vector2 = Tizen.NUI.Vector2.GetVector2FromPtr(vector2);
                 //here we send all data to user event handlers
-                _scrollableStartedEventHandler(this, e);
+                scrollableStartedEventHandler(this, e);
             }
 
         }
 
         private void OnUpdated(IntPtr vector2)
         {
-            UpdatedEventArgs e = new UpdatedEventArgs();
-
-            // Populate all members of "e" (UpdatedEventArgs) with real data
-            e.Vector2 = Tizen.NUI.Vector2.GetVector2FromPtr(vector2);
-
-            if (_scrollableUpdatedEventHandler != null)
+            if (scrollableUpdatedEventHandler != null)
             {
+                UpdatedEventArgs e = new UpdatedEventArgs();
+
+                // Populate all members of "e" (UpdatedEventArgs) with real data
+                e.Vector2 = Tizen.NUI.Vector2.GetVector2FromPtr(vector2);
                 //here we send all data to user event handlers
-                _scrollableUpdatedEventHandler(this, e);
+                scrollableUpdatedEventHandler(this, e);
             }
 
         }
 
         private void OnCompleted(IntPtr vector2)
         {
-            CompletedEventArgs e = new CompletedEventArgs();
-
-            // Populate all members of "e" (CompletedEventArgs) with real data
-            e.Vector2 = Tizen.NUI.Vector2.GetVector2FromPtr(vector2);
-
-            if (_scrollableCompletedEventHandler != null)
+            if (scrollableCompletedEventHandler != null)
             {
+                CompletedEventArgs e = new CompletedEventArgs();
+
+                // Populate all members of "e" (CompletedEventArgs) with real data
+                e.Vector2 = Tizen.NUI.Vector2.GetVector2FromPtr(vector2);
                 //here we send all data to user event handlers
-                _scrollableCompletedEventHandler(this, e);
+                scrollableCompletedEventHandler(this, e);
             }
 
         }
@@ -656,7 +652,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public class StartedEventArgs : EventArgs
         {
-            private Vector2 _vector2;
+            private Vector2 vector2;
 
             /// <summary>
             /// Vector2.
@@ -666,11 +662,11 @@ namespace Tizen.NUI.BaseComponents
             {
                 get
                 {
-                    return _vector2;
+                    return vector2;
                 }
                 set
                 {
-                    _vector2 = value;
+                    vector2 = value;
                 }
             }
         }
@@ -681,7 +677,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public class UpdatedEventArgs : EventArgs
         {
-            private Vector2 _vector2;
+            private Vector2 vector2;
 
             /// <summary>
             /// Vector2.
@@ -691,11 +687,11 @@ namespace Tizen.NUI.BaseComponents
             {
                 get
                 {
-                    return _vector2;
+                    return vector2;
                 }
                 set
                 {
-                    _vector2 = value;
+                    vector2 = value;
                 }
             }
         }
@@ -706,7 +702,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public class CompletedEventArgs : EventArgs
         {
-            private Vector2 _vector2;
+            private Vector2 vector2;
 
             /// <summary>
             /// Vector2.
@@ -716,11 +712,11 @@ namespace Tizen.NUI.BaseComponents
             {
                 get
                 {
-                    return _vector2;
+                    return vector2;
                 }
                 set
                 {
-                    _vector2 = value;
+                    vector2 = value;
                 }
             }
         }
@@ -728,111 +724,64 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Enumeration for the instance of properties belonging to the Scrollable class.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        [Obsolete("Deprecated in API6; Will be removed in API9.")]
-#pragma warning disable CA1716, CA1052, CA1034 // Identifiers should not match keywords
-        public new class Property
-#pragma warning restore CA1716, CA1052, CA1034 // Identifiers should not match keywords
+        internal new class Property
         {
             /// <summary>
             /// The color of the overshoot effect.
             /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int OvershootEffectColor = Interop.Scrollable.OvershootEffectColorGet();
+            internal static readonly int OvershootEffectColor = Interop.Scrollable.OvershootEffectColorGet();
             /// <summary>
             /// The speed of overshoot animation in pixels per second.
             /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int OvershootAnimationSpeed = Interop.Scrollable.OvershootAnimationSpeedGet();
+            internal static readonly int OvershootAnimationSpeed = Interop.Scrollable.OvershootAnimationSpeedGet();
             /// <summary>
             /// Whether to enables or disable scroll overshoot.
             /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int OvershootEnabled = Interop.Scrollable.OvershootEnabledGet();
+            internal static readonly int OvershootEnabled = Interop.Scrollable.OvershootEnabledGet();
             /// <summary>
             /// The size of the overshoot.
             /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int OvershootSize = Interop.Scrollable.OvershootSizeGet();
+            internal static readonly int OvershootSize = Interop.Scrollable.OvershootSizeGet();
             /// <summary>
             /// scrollToAlphaFunction.
             /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int ScrollToAlphaFunction = Interop.Scrollable.ScrollToAlphaFunctionGet();
+            internal static readonly int ScrollToAlphaFunction = Interop.Scrollable.ScrollToAlphaFunctionGet();
             /// <summary>
             /// scrollRelativePosition
             /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int ScrollRelativePosition = Interop.Scrollable.ScrollRelativePositionGet();
+            internal static readonly int ScrollRelativePosition = Interop.Scrollable.ScrollRelativePositionGet();
             /// <summary>
             /// scrollPositionMin
             /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int ScrollPositionMin = Interop.Scrollable.ScrollPositionMinGet();
+            internal static readonly int ScrollPositionMin = Interop.Scrollable.ScrollPositionMinGet();
             /// <summary>
             /// scrollPositionMinX.
             /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int ScrollPositionMinX = Interop.Scrollable.ScrollPositionMinXGet();
+            internal static readonly int ScrollPositionMinX = Interop.Scrollable.ScrollPositionMinXGet();
             /// <summary>
             /// scrollPositionMinY.
             /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int ScrollPositionMinY = Interop.Scrollable.ScrollPositionMinYGet();
+            internal static readonly int ScrollPositionMinY = Interop.Scrollable.ScrollPositionMinYGet();
             /// <summary>
             /// scrollPositionMax.
             /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int ScrollPositionMax = Interop.Scrollable.ScrollPositionMaxGet();
+            internal static readonly int ScrollPositionMax = Interop.Scrollable.ScrollPositionMaxGet();
             /// <summary>
             /// scrollPositionMaxX.
             /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int ScrollPositionMaxX = Interop.Scrollable.ScrollPositionMaxXGet();
+            internal static readonly int ScrollPositionMaxX = Interop.Scrollable.ScrollPositionMaxXGet();
             /// <summary>
             /// scrollPositionMaxY.
             /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int ScrollPositionMaxY = Interop.Scrollable.ScrollPositionMaxYGet();
+            internal static readonly int ScrollPositionMaxY = Interop.Scrollable.ScrollPositionMaxYGet();
             /// <summary>
             /// canScrollVertical
             /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int CanScrollVertical = Interop.Scrollable.CanScrollVerticalGet();
+            internal static readonly int CanScrollVertical = Interop.Scrollable.CanScrollVerticalGet();
             /// <summary>
             /// canScrollHorizontal.
             /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int CanScrollHorizontal = Interop.Scrollable.CanScrollHorizontalGet();
+            internal static readonly int CanScrollHorizontal = Interop.Scrollable.CanScrollHorizontalGet();
         }
     }
 }

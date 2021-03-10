@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2021 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,9 +15,6 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
@@ -108,18 +105,14 @@ namespace Tizen.NUI
 
                 providerImage.Show();
                 int propertyCount = transition.AnimationDataList.Count;
-                animation = new Animation(transition.DurationMilliSeconds+80);
-                animation.Properties = new string[propertyCount];
-                animation.DestValue = new string[propertyCount];
-                animation.StartTime = new int[propertyCount];
-                animation.EndTime = new int[propertyCount];
+                animation = new Animation(transition.DurationMilliSeconds + 80);
 
                 for (int i = 0; i < propertyCount; i++)
                 {
-                    animation.Properties[i] = transition.AnimationDataList[i].Property;
-                    animation.DestValue[i] = transition.AnimationDataList[i].DestinationValue;
-                    animation.StartTime[i] = 80+transition.AnimationDataList[i].StartTime;
-                    animation.EndTime[i] = 80+transition.AnimationDataList[i].EndTime;
+                    animation.PropertyList.Add(transition.AnimationDataList[i].Property);
+                    animation.DestValueList.Add(transition.AnimationDataList[i].DestinationValue);
+                    animation.StartTimeList.Add(80 + transition.AnimationDataList[i].StartTime);
+                    animation.EndTimeList.Add(80 + transition.AnimationDataList[i].EndTime);
                 }
                 animation.PlayAnimateTo(providerImage);
                 animation.Finished += Ani_Finished;

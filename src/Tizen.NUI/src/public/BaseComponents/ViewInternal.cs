@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,11 +17,6 @@
 
 using System;
 using System.ComponentModel;
-using System.Collections.Generic;
-using System.IO;
-using System.Runtime.InteropServices;
-using Tizen.NUI.Binding;
-using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -48,6 +43,28 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 return GetColorMode();
+            }
+        }
+
+        internal LayoutLength SuggestedMinimumWidth
+        {
+            get
+            {
+                float result = Interop.Actor.GetSuggestedMinimumWidth(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending)
+                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return new LayoutLength(result);
+            }
+        }
+
+        internal LayoutLength SuggestedMinimumHeight
+        {
+            get
+            {
+                float result = Interop.Actor.GetSuggestedMinimumHeight(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending)
+                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return new LayoutLength(result);
             }
         }
 
@@ -101,41 +118,10 @@ namespace Tizen.NUI.BaseComponents
 
         internal void SetLayout(LayoutItem layout)
         {
+            Window.Instance.LayoutController.CreateProcessCallback();
             this.layout = layout;
             this.layout?.AttachToOwner(this);
             this.layout?.RequestLayout();
-        }
-
-        /// <summary>
-        /// Stores the calculated width value and its ModeType. Width component.
-        /// </summary>
-        internal MeasureSpecification MeasureSpecificationWidth
-        {
-            set
-            {
-                measureSpecificationWidth = value;
-                layout?.RequestLayout();
-            }
-            get
-            {
-                return measureSpecificationWidth;
-            }
-        }
-
-        /// <summary>
-        /// Stores the calculated width value and its ModeType. Height component.
-        /// </summary>
-        internal MeasureSpecification MeasureSpecificationHeight
-        {
-            set
-            {
-                measureSpecificationHeight = value;
-                layout?.RequestLayout();
-            }
-            get
-            {
-                return measureSpecificationHeight;
-            }
         }
 
         internal void AttachTransitionsToChildren(LayoutTransition transition)
@@ -1080,7 +1066,9 @@ namespace Tizen.NUI.BaseComponents
             {
                 backgroundMap[Visual.Property.CornerRadius] = new PropertyValue(backgroundExtraData.CornerRadius);
                 backgroundMap[Visual.Property.CornerRadiusPolicy] = new PropertyValue((int)backgroundExtraData.CornerRadiusPolicy);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, View.Property.BACKGROUND, new PropertyValue(backgroundMap));
+                var temp = new PropertyValue(backgroundMap);
+                Tizen.NUI.Object.SetProperty(SwigCPtr, View.Property.BACKGROUND, temp);
+                temp.Dispose();
             }
             backgroundMap.Dispose();
             background.Dispose();
@@ -1092,7 +1080,9 @@ namespace Tizen.NUI.BaseComponents
             {
                 shadowMap[Visual.Property.CornerRadius] = new PropertyValue(backgroundExtraData.CornerRadius);
                 shadowMap[Visual.Property.CornerRadiusPolicy] = new PropertyValue((int)backgroundExtraData.CornerRadiusPolicy);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, View.Property.SHADOW, new PropertyValue(shadowMap));
+                var temp = new PropertyValue(shadowMap);
+                Tizen.NUI.Object.SetProperty(SwigCPtr, View.Property.SHADOW, temp);
+                temp.Dispose();
             }
             shadowMap.Dispose();
             shadow.Dispose();
@@ -1195,34 +1185,34 @@ namespace Tizen.NUI.BaseComponents
             // Use BaseHandle CPtr as current might have been deleted already in derived classes.
             SwigCPtr = GetBaseHandleCPtrHandleRef;
 
-            if (_onRelayoutEventCallback != null)
+            if (onRelayoutEventCallback != null)
             {
                 ViewSignal signal = this.OnRelayoutSignal();
-                signal?.Disconnect(_onRelayoutEventCallback);
+                signal?.Disconnect(onRelayoutEventCallback);
                 signal?.Dispose();
-                _onRelayoutEventCallback = null;
+                onRelayoutEventCallback = null;
             }
 
-            if (_offWindowEventCallback != null)
+            if (offWindowEventCallback != null)
             {
                 ViewSignal signal = this.OffWindowSignal();
-                signal?.Disconnect(_offWindowEventCallback);
+                signal?.Disconnect(offWindowEventCallback);
                 signal?.Dispose();
-                _offWindowEventCallback = null;
+                offWindowEventCallback = null;
             }
 
-            if (_onWindowEventCallback != null)
+            if (onWindowEventCallback != null)
             {
                 ViewSignal signal = this.OnWindowSignal();
-                signal?.Disconnect(_onWindowEventCallback);
+                signal?.Disconnect(onWindowEventCallback);
                 signal?.Dispose();
-                _onWindowEventCallback = null;
+                onWindowEventCallback = null;
             }
 
-            if (_wheelEventCallback != null)
+            if (wheelEventCallback != null)
             {
                 WheelSignal signal = this.WheelEventSignal();
-                signal?.Disconnect(_wheelEventCallback);
+                signal?.Disconnect(wheelEventCallback);
                 signal?.Dispose();
             }
 
@@ -1231,69 +1221,70 @@ namespace Tizen.NUI.BaseComponents
                 NUIApplication.GetDefaultWindow().WheelEvent -= OnWindowWheelEvent;
             }
 
-            if (_hoverEventCallback != null)
+            if (hoverEventCallback != null)
             {
                 HoverSignal signal = this.HoveredSignal();
-                signal?.Disconnect(_hoverEventCallback);
+                signal?.Disconnect(hoverEventCallback);
                 signal?.Dispose();
             }
 
-            if (_interceptTouchDataCallback != null)
+            if (interceptTouchDataCallback != null)
             {
                 TouchDataSignal signal = this.InterceptTouchSignal();
-                signal?.Disconnect(_interceptTouchDataCallback);
+                signal?.Disconnect(interceptTouchDataCallback);
                 signal?.Dispose();
             }
 
-            if (_touchDataCallback != null)
+            if (touchDataCallback != null)
             {
                 TouchDataSignal signal = this.TouchSignal();
-                signal?.Disconnect(_touchDataCallback);
+                signal?.Disconnect(touchDataCallback);
                 signal?.Dispose();
             }
 
-            if (_ResourcesLoadedCallback != null)
+            if (ResourcesLoadedCallback != null)
             {
                 ViewSignal signal = this.ResourcesLoadedSignal();
-                signal?.Disconnect(_ResourcesLoadedCallback);
+                signal?.Disconnect(ResourcesLoadedCallback);
                 signal?.Dispose();
-                _ResourcesLoadedCallback = null;
+                ResourcesLoadedCallback = null;
             }
 
-            if (_keyCallback != null)
+            if (keyCallback != null)
             {
                 ControlKeySignal signal = this.KeyEventSignal();
-                signal?.Disconnect(_keyCallback);
+                signal?.Disconnect(keyCallback);
                 signal?.Dispose();
             }
 
-            if (_keyInputFocusLostCallback != null)
+            if (keyInputFocusLostCallback != null)
             {
                 KeyInputFocusSignal signal = this.KeyInputFocusLostSignal();
-                signal?.Disconnect(_keyInputFocusLostCallback);
+                signal?.Disconnect(keyInputFocusLostCallback);
                 signal?.Dispose();
             }
 
-            if (_keyInputFocusGainedCallback != null)
+            if (keyInputFocusGainedCallback != null)
             {
                 KeyInputFocusSignal signal = this.KeyInputFocusGainedSignal();
-                signal?.Disconnect(_keyInputFocusGainedCallback);
+                signal?.Disconnect(keyInputFocusGainedCallback);
                 signal?.Dispose();
             }
 
-            if (_backgroundResourceLoadedCallback != null)
+            if (backgroundResourceLoadedCallback != null)
             {
                 ViewSignal signal = this.ResourcesLoadedSignal();
-                signal?.Disconnect(_backgroundResourceLoadedCallback);
+                signal?.Disconnect(backgroundResourceLoadedCallback);
                 signal?.Dispose();
-                _backgroundResourceLoadedCallback = null;
+                backgroundResourceLoadedCallback = null;
             }
 
-            if (_onWindowSendEventCallback != null)
+            if (onWindowSendEventCallback != null)
             {
                 ViewSignal signal = this.OnWindowSignal();
-                signal?.Disconnect(_onWindowSendEventCallback);
+                signal?.Disconnect(onWindowSendEventCallback);
                 signal?.Dispose();
+                onWindowSendEventCallback = null;
             }
 
             // BaseHandle CPtr is used in Registry and there is danger of deletion if we keep using it here.
@@ -1321,28 +1312,6 @@ namespace Tizen.NUI.BaseComponents
             }
 
             return view;
-        }
-
-        private void LoadTransitions()
-        {
-            foreach (string str in transitionNames)
-            {
-                string resourceName = str + ".xaml";
-                Transition trans = null;
-
-                string resource = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
-
-                string likelyResourcePath = resource + "animation/" + resourceName;
-
-                if (File.Exists(likelyResourcePath))
-                {
-                    trans = Xaml.Extensions.LoadObject<Transition>(likelyResourcePath);
-                }
-                if (trans != null)
-                {
-                    transDictionary.Add(trans.Name, trans);
-                }
-            }
         }
 
         private void OnScaleChanged(float x, float y, float z)
@@ -1402,10 +1371,8 @@ namespace Tizen.NUI.BaseComponents
 
         private void InitializeStyle(ViewStyle style)
         {
-            if (!ThemeManager.ThemeApplied) return;
-
-            if (style == null) UpdateStyle(); // Use style in the current theme
-            else ApplyStyle(style.Clone());   // Use given style
+            if (style != null) ApplyStyle(style.Clone());   // Use given style
+            else if (ThemeManager.ThemeApplied) UpdateStyle(); // Use style in the current theme
         }
     }
 }

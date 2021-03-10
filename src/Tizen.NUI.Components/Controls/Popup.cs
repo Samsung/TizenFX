@@ -686,7 +686,9 @@ namespace Tizen.NUI.Components
         /// <param name="type">Dispose type.</param>
         /// <since_tizen> 6 </since_tizen>
         [Obsolete("Deprecated in API8; Will be removed in API10")]
+#pragma warning disable CS0809 // Obsolete member overrides non-obsolete member, It will be removed in API10
         protected override void Dispose(DisposeTypes type)
+#pragma warning restore CS0809 // Obsolete member overrides non-obsolete member, It will be removed in API10
         {
             if (disposed)
             {
@@ -812,6 +814,28 @@ namespace Tizen.NUI.Components
 
             // Button
             btGroup = new ButtonGroup(this);
+        }
+
+        /// <summary>
+        /// Initialize AT-SPI object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnInitialize()
+        {
+            base.OnInitialize();
+            SetAccessibilityConstructor(Role.Dialog);
+            AppendAccessibilityAttribute("sub-role", "Alert");
+        }
+
+        /// <summary>
+        /// Informs AT-SPI bridge about the set of AT-SPI states associated with this object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override AccessibilityStates AccessibilityCalculateStates()
+        {
+            var states = base.AccessibilityCalculateStates();
+            states.Set(AccessibilityState.Modal, true);
+            return states;
         }
 
         private void UpdateView()
