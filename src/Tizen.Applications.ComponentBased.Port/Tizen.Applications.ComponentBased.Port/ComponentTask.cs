@@ -21,6 +21,7 @@ namespace Tizen.Applications.ComponentBased
 {
     /// <summary>
     /// Provides a task class for the ComponentPort class.
+    /// This is a convenience class to manage ComponentPort communication in a separate thread.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
     public class ComponentTask
