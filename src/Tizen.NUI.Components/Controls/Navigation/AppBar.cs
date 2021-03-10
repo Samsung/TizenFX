@@ -29,9 +29,6 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class AppBar : Control
     {
-        //TODO: This app bar height should be implemented in AppBar style.
-        private float appBarHeight = 72.0f;
-
         private bool autoNavigationContent = true;
 
         private View defaultNavigationContent = null;
@@ -42,11 +39,35 @@ namespace Tizen.NUI.Components
         private View appBarTitle = null;
         private View appBarAction = null;
 
+        private AppBarStyle appBarStyle => ViewStyle as AppBarStyle;
+
+        private bool styleApplied = false;
+
         /// <summary>
         /// Creates a new instance of AppBar.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public AppBar() : base()
+        {
+            Initialize();
+        }
+
+        /// <summary>
+        /// Creates a new instance of AppBar.
+        /// </summary>
+        /// <param name="style">Creates AppBar by special style defined in UX.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public AppBar(string style) : base(style)
+        {
+            Initialize();
+        }
+
+        /// <summary>
+        /// Creates a new instance of AppBar.
+        /// </summary>
+        /// <param name="appBarStyle">Creates AppBar by style customized by user.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public AppBar(AppBarStyle appBarStyle) : base(appBarStyle)
         {
             Initialize();
         }
@@ -200,6 +221,7 @@ namespace Tizen.NUI.Components
         /// Action content of AppBar. ActionContent is added to Children automatically.
         /// Action content can contain action views and action buttons by AddActions.
         /// If ActionContent is set by user, then AddActions does not add actions to the replaced ActionContent.
+        /// The Action and ActionButton styles of AppBarStyle are applied to actions only by AddActions.
         /// If ActionContent is set by user, then RemoveActions does not remove actions from the replaced ActionContent.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -326,6 +348,57 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Applies style to AppBar.
+        /// </summary>
+        /// <param name="viewStyle">The style to apply.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void ApplyStyle(ViewStyle viewStyle)
+        {
+            styleApplied = false;
+
+            base.ApplyStyle(viewStyle);
+
+            //Apply Back Button style.
+            if ((appBarStyle?.BackButton != null) && (DefaultNavigationContent is Button))
+            {
+                ((Button)DefaultNavigationContent)?.ApplyStyle(appBarStyle.BackButton);
+            }
+
+            //Apply Title style.
+            if ((appBarStyle?.TitleTextLabel != null) && (DefaultTitleContent is TextLabel))
+            {
+                ((TextLabel)DefaultTitleContent)?.ApplyStyle(appBarStyle.TitleTextLabel);
+            }
+
+            //Apply ActionCellPadding style.
+            if (DefaultActionContent?.Layout is LinearLayout)
+            {
+                ((LinearLayout)DefaultActionContent?.Layout).CellPadding = new Size2D(appBarStyle?.ActionCellPadding?.Width ?? 0, appBarStyle?.ActionCellPadding?.Height ?? 0);
+            }
+
+            //Apply Action and ActionButton styles.
+            if (DefaultActionContent?.ChildCount > 0)
+            {
+                foreach (var action in DefaultActionContent?.Children)
+                {
+                    if ((action is Button) && (appBarStyle?.ActionButton != null))
+                    {
+                        ((Button)action)?.ApplyStyle(appBarStyle.ActionButton);
+                    }
+                    else if (appBarStyle?.ActionView != null)
+                    {
+                        action?.ApplyStyle(appBarStyle.ActionView);
+                    }
+                }
+            }
+
+            styleApplied = true;
+
+            //Calculate children's positions based on padding sizes.
+            CalculatePosition();
+        }
+
+        /// <summary>
         /// Sets title text of AppBar.
         /// SetTitle sets title text to the default title content.
         /// Therefore, if TitleContent is set by user, then SetTitle does not set title text of the replaced TitleContent.
@@ -342,6 +415,7 @@ namespace Tizen.NUI.Components
 
         /// <summary>
         /// Adds actions to ActionContent of AppBar.
+        /// The Action and ActionButton styles of AppBarStyle are applied to the added actions.
         /// AddActions adds action views to the default action content.
         /// Therefore, if ActionContent is set by user, then AddActions does not add actions to the replaced ActionContent.
         /// </summary>
@@ -357,6 +431,16 @@ namespace Tizen.NUI.Components
 
             foreach (var action in actions)
             {
+                //Apply Action and ActionButton styles.
+                if ((action is Button) && (appBarStyle?.ActionButton != null))
+                {
+                    ((Button)action)?.ApplyStyle(appBarStyle.ActionButton);
+                }
+                else if (appBarStyle?.ActionView != null)
+                {
+                    action?.ApplyStyle(appBarStyle.ActionView);
+                }
+
                 DefaultActionContent.Add(action);
             }
         }
@@ -395,9 +479,6 @@ namespace Tizen.NUI.Components
 
             WidthSpecification = LayoutParamPolicies.MatchParent;
 
-            //TODO: This app bar height should be implemented in AppBar style.
-            SizeHeight = appBarHeight;
-
             if (AutoNavigationContent == true)
             {
                 NavigationContent = DefaultNavigationContent;
@@ -410,13 +491,7 @@ namespace Tizen.NUI.Components
 
         private View CreateDefaultNavigationContent()
         {
-            var backButton = new Button()
-            {
-                //FIXME: When back icon resource is added, replace this text to the icon resource.
-                Text = "<",
-                //TODO: This app bar height should be implemented in Appbar style.
-                Size = new Size(72.0f, 72.0f),
-            };
+            var backButton = new Button(appBarStyle?.BackButton ?? null);
 
             backButton.Clicked += (object sender, ClickedEventArgs args) =>
             {
@@ -437,7 +512,7 @@ namespace Tizen.NUI.Components
 
         private View CreateDefaultTitleContent()
         {
-            return new TextLabel()
+            return new TextLabel(appBarStyle?.TitleTextLabel ?? null)
             {
                 HeightSpecification = LayoutParamPolicies.MatchParent,
                 Weight = 1.0f,
@@ -451,6 +526,9 @@ namespace Tizen.NUI.Components
                 Layout = new LinearLayout()
                 {
                     LinearOrientation = LinearLayout.Orientation.Horizontal,
+
+                    //Apply ActionCellPadding style.
+                    CellPadding = new Size2D(appBarStyle?.ActionCellPadding?.Width ?? 0, appBarStyle?.ActionCellPadding?.Height ?? 0),
                 },
                 Weight = 0.0f,
             };
@@ -489,6 +567,45 @@ namespace Tizen.NUI.Components
             {
                 Add(appBarAction);
             }
+
+            //Calculate children's positions based on padding sizes.
+            CalculatePosition();
+        }
+
+        private void CalculatePosition()
+        {
+            if (styleApplied == false)
+            {
+                return;
+            }
+
+            //Apply NavigationPadding style.
+            if ((NavigationContent != null) && (appBarStyle?.NavigationPadding != null))
+            {
+                if (NavigationContent.Margin.NotEqualTo(appBarStyle.NavigationPadding))
+                {
+                    NavigationContent.Margin.CopyFrom(appBarStyle.NavigationPadding);
+                }
+            }
+
+            //Apply ActionPadding style.
+            if ((ActionContent != null) && (appBarStyle?.ActionPadding != null))
+            {
+                if (ActionContent.Margin.NotEqualTo(appBarStyle.ActionPadding))
+                {
+                    ActionContent.Margin.CopyFrom(appBarStyle.ActionPadding);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets AppBar style.
+        /// </summary>
+        /// <returns>The default AppBar style.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override ViewStyle CreateViewStyle()
+        {
+            return new AppBarStyle();
         }
     }
 }
