@@ -91,14 +91,13 @@ namespace Tizen.Applications.ComponentBased
 
         private static Task<bool> WaitForPortCore(string endpoint)
         {
-            var task = new TaskCompletionSource<bool>();
             Interop.ComponentPort.IsRunning(endpoint, out bool isRunning);
             if (isRunning)
             {
-                task.SetResult(true);
-                return task.Task;
+                return Task.FromResult(true);
             }
-                        
+
+            var task = new TaskCompletionSource<bool>();
             int requestId;
             lock (_appearedNativeCallbackMap)
             {
