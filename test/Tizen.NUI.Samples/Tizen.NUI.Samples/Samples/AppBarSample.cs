@@ -19,8 +19,7 @@ namespace Tizen.NUI.Samples
         {
             firstActionButton = new Button()
             {
-                Text = "2",
-                Size = new Size(72.0f, 72.0f)
+                Text = "Page 2",
             };
             firstActionButton.Clicked += (object sender, ClickedEventArgs e) =>
             {
@@ -54,8 +53,7 @@ namespace Tizen.NUI.Samples
         {
             secondActionButton = new Button()
             {
-                Text = "1",
-                Size = new Size(72.0f, 72.0f)
+                Text = "Page 1",
             };
             secondActionButton.Clicked += (object sender, ClickedEventArgs e) =>
             {

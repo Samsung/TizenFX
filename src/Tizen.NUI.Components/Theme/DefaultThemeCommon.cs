@@ -346,6 +346,77 @@ namespace Tizen.NUI.Components
                 },
             });
 
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.AppBar", new AppBarStyle()
+            {
+                Size = new Size(-1, 120),
+                BackgroundColor = new Color("#EEEFF1FF"),
+                BackButton = new ButtonStyle()
+                {
+                    Size = new Size(48, 48),
+                    CornerRadius = 0,
+                    BackgroundColor = new Color(0, 0, 0, 0),
+                    Icon = new ImageViewStyle()
+                    {
+                        Size = new Size(48, 48),
+                        ResourceUrl = FrameworkInformation.ResourcePath + "nui_component_default_back_button.png",
+                        Color = new Selector<Color>()
+                        {
+                            Normal = new Color("#0A0E4AFF"),
+                            Focused = new Color("#00338BFF"),
+                            Pressed = new Color("#1B69CAFF"),
+                            Disabled = new Color("#C3CAD2FF"),
+                        },
+                    },
+                },
+                TitleTextLabel = new TextLabelStyle()
+                {
+                    PixelSize = 40,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    TextColor = new Selector<Color>()
+                    {
+                        Normal = new Color("#000C2BFF"),
+                    }
+                },
+                ActionView = new ViewStyle()
+                {
+                    Size = new Size(-1, 48),
+                    CornerRadius = 0,
+                    BackgroundColor = new Color(0, 0, 0, 0),
+                },
+                ActionButton = new ButtonStyle()
+                {
+                    Size = new Size(-1, 48),
+                    CornerRadius = 0,
+                    BackgroundColor = new Color(0, 0, 0, 0),
+                    Text = new TextLabelStyle()
+                    {
+                        PixelSize = 26,
+                        TextColor = new Selector<Color>()
+                        {
+                            Normal = new Color("#0A0E4AFF"),
+                            Focused = new Color("#00338BFF"),
+                            Pressed = new Color("#1B69CAFF"),
+                            Disabled = new Color("#C3CAD2FF"),
+                        },
+                    },
+                    Icon = new ImageViewStyle()
+                    {
+                        Size = new Size(-1, 48),
+                        Color = new Selector<Color>()
+                        {
+                            Normal = new Color("#0A0E4AFF"),
+                            Focused = new Color("#00338BFF"),
+                            Pressed = new Color("#1B69CAFF"),
+                            Disabled = new Color("#C3CAD2FF"),
+                        },
+                    },
+                },
+                Padding = new Extents(64, 64, 0, 0),
+                NavigationPadding = new Extents(0, 24, 0, 0),
+                ActionPadding = new Extents(40, 0, 0, 0),
+                ActionCellPadding = new Size2D(40, 0),
+            });
+
             return theme;
         }
     }
