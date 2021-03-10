@@ -118,7 +118,7 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                selectorData?.TranslatableText.UpdateIfNeeds(this, value);
+                selectorData?.TranslatableText?.Reset(this);
                 SetValue(TranslatableTextProperty, value);
             }
         }
@@ -157,7 +157,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(TranslatablePlaceholderTextProperty, value);
-                selectorData?.TranslatablePlaceholderText.UpdateIfNeeds(this, value);
+                selectorData?.TranslatablePlaceholderText?.Reset(this);
             }
         }
         private string translatablePlaceholderText
@@ -191,7 +191,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValueAndForceSendChangeSignal(TextProperty, value);
-                selectorData?.Text.UpdateIfNeeds(this, value);
+                selectorData?.Text?.Reset(this);
                 NotifyPropertyChanged();
             }
         }
@@ -243,7 +243,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(FontFamilyProperty, value);
-                selectorData?.FontFamily.UpdateIfNeeds(this, value);
+                selectorData?.FontFamily?.Reset(this);
                 NotifyPropertyChanged();
             }
         }
@@ -278,7 +278,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(PointSizeProperty, value);
-                selectorData?.PointSize.UpdateIfNeeds(this, value);
+                selectorData?.PointSize?.Reset(this);
                 NotifyPropertyChanged();
             }
         }
@@ -369,7 +369,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(TextColorProperty, value);
-                selectorData?.TextColor.UpdateIfNeeds(this, value);
+                selectorData?.TextColor?.Reset(this);
                 NotifyPropertyChanged();
             }
         }
@@ -391,7 +391,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(PlaceholderTextColorProperty, value);
-                selectorData?.PlaceholderTextColor.UpdateIfNeeds(this, value);
+                selectorData?.PlaceholderTextColor?.Reset(this);
                 NotifyPropertyChanged();
             }
         }
@@ -469,7 +469,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(PrimaryCursorColorProperty, value);
-                selectorData?.PrimaryCursorColor.UpdateIfNeeds(this, value);
+                selectorData?.PrimaryCursorColor?.Reset(this);
                 NotifyPropertyChanged();
             }
         }
@@ -1047,7 +1047,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(PixelSizeProperty, value);
-                selectorData?.PixelSize.UpdateIfNeeds(this, value);
+                selectorData?.PixelSize?.Reset(this);
                 NotifyPropertyChanged();
             }
         }
@@ -1372,17 +1372,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        private TextFieldSelectorData SelectorData
-        {
-            get
-            {
-                if (selectorData == null)
-                {
-                    selectorData = new TextFieldSelectorData();
-                }
-                return selectorData;
-            }
-        }
+        private TextFieldSelectorData EnsureSelectorData() => selectorData ?? (selectorData = new TextFieldSelectorData());
 
         /// <summary>
         /// Get the InputMethodContext instance.
