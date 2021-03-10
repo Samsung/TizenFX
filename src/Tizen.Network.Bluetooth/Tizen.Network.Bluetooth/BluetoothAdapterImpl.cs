@@ -492,6 +492,7 @@ namespace Tizen.Network.Bluetooth
         internal BluetoothDevice GetBondedDevice(string address)
         {
             IntPtr deviceInfo;
+            BluetoothDevice btDevice;
             int ret = Interop.Bluetooth.GetBondedDeviceByAddress(address, out deviceInfo);
             if(ret != (int)BluetoothError.None)
             {
@@ -499,9 +500,9 @@ namespace Tizen.Network.Bluetooth
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
             BluetoothDeviceStruct device = (BluetoothDeviceStruct)Marshal.PtrToStructure(deviceInfo, typeof(BluetoothDeviceStruct));
-
+            btDevice = BluetoothUtils.ConvertStructToDeviceClass(device);
             Interop.Bluetooth.FreeDeviceInfo(deviceInfo);
-            return BluetoothUtils.ConvertStructToDeviceClass(device);
+            return btDevice;
         }
 
         internal bool IsServiceUsed(string serviceUuid)
