@@ -66,6 +66,8 @@ namespace Tizen.NUI.Components
         private Selector<string> warningThumbImageUrlSelector = null;
         // To store the thumb color of warning state
         private Color warningThumbColor = null;
+        // the discrete value
+        private float discreteValue = 0;
 
         private PanGestureDetector panGestureDetector = null;
         private float currentSlidedOffset;
