@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+using System;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
 using System.ComponentModel;
@@ -126,10 +127,12 @@ namespace Tizen.NUI.Components
         private ImageView trackImage = null;
         private ImageView progressImage = null;
         private ImageView bufferImage = null;
+        private ImageVisual indeterminateImage = null;
         private float maxValue = 100;
         private float minValue = 0;
         private float currentValue = 0;
         private float bufferValue = 0;
+        private Animation indeterminateAnimation = null;
         private ProgressStyle progressStyle => ViewStyle as ProgressStyle;
 
         static Progress() { }
@@ -258,6 +261,38 @@ namespace Tizen.NUI.Components
                 {
                     progressStyle.Buffer.ResourceUrl = value;
                     RelayoutRequest();
+                }
+            }
+        }
+
+        /// <summary>
+        /// The property to get/set the indeterminate image.
+        /// </summary>
+        /// <exception cref="NullReferenceException">Thrown when setting null value.</exception>
+        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string IndeterminateImage
+        {
+            get
+            {
+                if (indeterminateImage == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    return indeterminateImage?.URL;
+                }
+            }
+            set
+            {
+                if (value == null || indeterminateImage == null)
+                {
+                    throw new NullReferenceException("Progress.IndeterminateImage is null");
+                }
+                else
+                {
+                    indeterminateImage.URL = value;
                 }
             }
         }
@@ -419,6 +454,7 @@ namespace Tizen.NUI.Components
                 Utility.Dispose(trackImage);
                 Utility.Dispose(progressImage);
                 Utility.Dispose(bufferImage);
+                indeterminateImage = null;
             }
 
             //You must call base.Dispose(type) just before exit.
@@ -473,6 +509,20 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Update Animation for Indeterminate mode.
+        /// </summary>
+        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        private void UpdateIndeterminateAnimation()
+        {
+            indeterminateAnimation?.Stop();
+
+            indeterminateAnimation = AnimateVisual(indeterminateImage, "pixelArea", new Vector4(-1.0f, 0.0f, 10.0f, 1.0f), 0, 1000,  AlphaFunction.BuiltinFunctions.Default, new Vector4(0.0f, 0.0f, 10.0f, 1.0f));
+            indeterminateAnimation.Looping = true;
+            indeterminateAnimation.Play();
+        }
+
+        /// <summary>
         /// Get Progress style.
         /// </summary>
         /// <returns>The default progress style.</returns>
@@ -489,21 +539,33 @@ namespace Tizen.NUI.Components
         /// <param name="statusType">New status type</param>
         protected void ChangeImageState(ProgressStatusType statusType)
         {
-            if (state == ProgressStatusType.Buffering)
+            if (statusType == ProgressStatusType.Buffering)
             {
-                bufferImage.Show();
+                indeterminateAnimation?.Stop();
+                indeterminateAnimation = null;
+
+                indeterminateImage.Opacity = 0.0f;
                 progressImage.Hide();
+                bufferImage.Show();
             }
-            else if (state == ProgressStatusType.Determinate)
+            else if (statusType == ProgressStatusType.Determinate)
             {
+                indeterminateAnimation?.Stop();
+                indeterminateAnimation = null;
+
+                indeterminateImage.Opacity = 0.0f;
                 bufferImage.Show();
                 progressImage.Show();
+
                 UpdateValue();
             }
-            else
+            else if (statusType == ProgressStatusType.Indeterminate)
             {
                 bufferImage.Hide();
                 progressImage.Hide();
+                indeterminateImage.Opacity = 1.0f;
+
+                UpdateIndeterminateAnimation();
             }
         }
 
@@ -513,6 +575,10 @@ namespace Tizen.NUI.Components
             InitializeTrack();
             InitializeBuffer();
             InitializeProgress();
+            InitializeIndeterminate();
+
+            indeterminateAnimation?.Stop();
+            indeterminateAnimation = null;
         }
 
         private void InitializeTrack()
@@ -564,6 +630,24 @@ namespace Tizen.NUI.Components
                 Add(bufferImage);
                 bufferImage.ApplyStyle(progressStyle.Buffer);
             }
+        }
+
+        private void InitializeIndeterminate()
+        {
+            indeterminateImage = new ImageVisual
+            {
+                PixelArea = new Vector4(0.0f, 0.0f, 10.0f, 1.0f),
+                WrapModeU = WrapModeType.Repeat,
+                SizePolicy = VisualTransformPolicyType.Relative,
+                Origin = Visual.AlignType.Center,
+                AnchorPoint = Visual.AlignType.Center,
+                Opacity = 1.0f,
+                Size = new Size2D(1, 1),
+                URL = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "nui_component_default_progress_indeterminate.png"
+            };
+            AddVisual("Indeterminate", indeterminateImage);
+
+            // TODO : Need to update Style for indeterminate state.
         }
     }
 }
