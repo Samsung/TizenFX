@@ -102,6 +102,9 @@ namespace Tizen.NUI.Components
                 (new ExternalThemeKeyList(typeof(DefaultTitleItem), typeof(DefaultTitleItemStyle)))
                     .AddBackgroundSelector("/Background", SetBackgroundColor, SetBackgroundImage)
                     .Add<Rectangle>("/BackgroundImageBorder", SetBackgroundBorder),
+
+                // AppBar
+                (new ExternalThemeKeyList(typeof(AppBar), typeof(AppBarStyle))),
             };
 
             return actionSet;
