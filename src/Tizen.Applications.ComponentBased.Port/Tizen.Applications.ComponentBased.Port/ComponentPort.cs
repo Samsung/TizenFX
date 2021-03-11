@@ -186,7 +186,7 @@ namespace Tizen.Applications.ComponentBased
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when the argument is invalid.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when the memory is insufficient.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when because of permission denied.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
         /// <exception cref="global::System.IO.IOException">Thrown when because of I/O error.</exception>
         /// <param name="endpoint">The name of the endpoint</param>
         /// <param name="timeout">The timeout in milliseconds, -1 to use the default timeout</param>
@@ -220,7 +220,7 @@ namespace Tizen.Applications.ComponentBased
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when the argument is invalid.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when the memory is insufficient.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when because of permission denied.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
         /// <exception cref="global::System.IO.IOException">Thrown when because of I/O error.</exception>
         /// <param name="endpoint">The name of the endpoint</param>
         /// <param name="timeout">The timeout in milliseconds, -1 to use the default timeout</param>
@@ -262,7 +262,7 @@ namespace Tizen.Applications.ComponentBased
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when the argument is invalid.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when the memory is insufficient.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when because of permission denied.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
         /// <exception cref="global::System.IO.IOException">Thrown when because of I/O error.</exception>
         /// <param name="endpoint">The name of the endpoint</param>
         /// <param name="timeout">The timeout in milliseconds, -1 to use the default timeout</param>
