@@ -1130,10 +1130,7 @@ namespace Tizen.NUI.BaseComponents
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
-            if (this != null)
-            {
-                DisConnectFromSignals();
-            }
+            DisConnectFromSignals();
 
             foreach (View view in Children)
             {
@@ -1191,33 +1188,34 @@ namespace Tizen.NUI.BaseComponents
 
             if (onRelayoutEventCallback != null)
             {
-                ViewSignal signal = this.OnRelayoutSignal();
-                signal?.Disconnect(onRelayoutEventCallback);
-                signal?.Dispose();
+                onRelayoutSignal?.Disconnect(onRelayoutEventCallback);
+                onRelayoutSignal?.Dispose();
+                onRelayoutSignal = null;
                 onRelayoutEventCallback = null;
             }
 
             if (offWindowEventCallback != null)
             {
-                ViewSignal signal = this.OffWindowSignal();
-                signal?.Disconnect(offWindowEventCallback);
-                signal?.Dispose();
+                offWindowSignal?.Disconnect(offWindowEventCallback);
+                offWindowSignal?.Dispose();
+                offWindowSignal = null;
                 offWindowEventCallback = null;
             }
 
             if (onWindowEventCallback != null)
             {
-                ViewSignal signal = this.OnWindowSignal();
-                signal?.Disconnect(onWindowEventCallback);
-                signal?.Dispose();
+                onWindowSignal?.Disconnect(onWindowEventCallback);
+                onWindowSignal?.Dispose();
+                onWindowSignal = null;
                 onWindowEventCallback = null;
             }
 
             if (wheelEventCallback != null)
             {
-                WheelSignal signal = this.WheelEventSignal();
-                signal?.Disconnect(wheelEventCallback);
-                signal?.Dispose();
+                wheelEventSignal?.Disconnect(wheelEventCallback);
+                wheelEventSignal?.Dispose();
+                wheelEventSignal = null;
+                wheelEventCallback = null;
             }
 
             if (WindowWheelEventHandler != null)
@@ -1227,68 +1225,90 @@ namespace Tizen.NUI.BaseComponents
 
             if (hoverEventCallback != null)
             {
-                HoverSignal signal = this.HoveredSignal();
-                signal?.Disconnect(hoverEventCallback);
-                signal?.Dispose();
+                hoveredSignal?.Disconnect(hoverEventCallback);
+                hoveredSignal?.Dispose();
+                hoveredSignal = null;
+                hoverEventCallback = null;
             }
 
             if (interceptTouchDataCallback != null)
             {
-                TouchDataSignal signal = this.InterceptTouchSignal();
-                signal?.Disconnect(interceptTouchDataCallback);
-                signal?.Dispose();
+                interceptTouchSignal?.Disconnect(interceptTouchDataCallback);
+                interceptTouchSignal?.Dispose();
+                interceptTouchSignal = null;
+                interceptTouchDataCallback = null;
             }
 
             if (touchDataCallback != null)
             {
-                TouchDataSignal signal = this.TouchSignal();
-                signal?.Disconnect(touchDataCallback);
-                signal?.Dispose();
+                touchSignal?.Disconnect(touchDataCallback);
+                touchSignal?.Dispose();
+                touchSignal = null;
+                touchDataCallback = null;
             }
 
             if (ResourcesLoadedCallback != null)
             {
-                ViewSignal signal = this.ResourcesLoadedSignal();
-                signal?.Disconnect(ResourcesLoadedCallback);
-                signal?.Dispose();
+                resourcesLoadedSignal?.Disconnect(ResourcesLoadedCallback);
+                resourcesLoadedSignal?.Dispose();
+                resourcesLoadedSignal = null;
                 ResourcesLoadedCallback = null;
             }
 
             if (keyCallback != null)
             {
-                ControlKeySignal signal = this.KeyEventSignal();
-                signal?.Disconnect(keyCallback);
-                signal?.Dispose();
+                keyEventSignal?.Disconnect(keyCallback);
+                keyEventSignal?.Dispose();
+                keyEventSignal = null;
+                keyCallback = null;
             }
 
             if (keyInputFocusLostCallback != null)
             {
-                KeyInputFocusSignal signal = this.KeyInputFocusLostSignal();
-                signal?.Disconnect(keyInputFocusLostCallback);
-                signal?.Dispose();
+                keyInputFocusLostSignal?.Disconnect(keyInputFocusLostCallback);
+                keyInputFocusLostSignal?.Dispose();
+                keyInputFocusLostSignal = null;
+                keyInputFocusLostCallback = null;
             }
 
             if (keyInputFocusGainedCallback != null)
             {
-                KeyInputFocusSignal signal = this.KeyInputFocusGainedSignal();
-                signal?.Disconnect(keyInputFocusGainedCallback);
-                signal?.Dispose();
+                keyInputFocusGainedSignal?.Disconnect(keyInputFocusGainedCallback);
+                keyInputFocusGainedSignal?.Dispose();
+                keyInputFocusGainedSignal = null;
+                keyInputFocusGainedCallback = null;
             }
 
             if (backgroundResourceLoadedCallback != null)
             {
-                ViewSignal signal = this.ResourcesLoadedSignal();
-                signal?.Disconnect(backgroundResourceLoadedCallback);
-                signal?.Dispose();
+                backgroundResourcesLoadedSignal?.Disconnect(backgroundResourceLoadedCallback);
+                backgroundResourcesLoadedSignal?.Dispose();
+                backgroundResourcesLoadedSignal = null;
                 backgroundResourceLoadedCallback = null;
             }
 
             if (onWindowSendEventCallback != null)
             {
-                ViewSignal signal = this.OnWindowSignal();
-                signal?.Disconnect(onWindowSendEventCallback);
-                signal?.Dispose();
+                onWindowSendSignal?.Disconnect(onWindowSendEventCallback);
+                onWindowSendSignal?.Dispose();
+                onWindowSendSignal = null;
                 onWindowSendEventCallback = null;
+            }
+
+            if (visibilityChangedEventCallback != null)
+            {
+                visibilityChangedSignal?.Disconnect(visibilityChangedEventCallback);
+                visibilityChangedSignal?.Dispose();
+                visibilityChangedSignal = null;
+                visibilityChangedEventCallback = null;
+            }
+
+            if (layoutDirectionChangedEventCallback != null)
+            {
+                layoutDirectionChangedSignal?.Disconnect(layoutDirectionChangedEventCallback);
+                layoutDirectionChangedSignal?.Dispose();
+                layoutDirectionChangedSignal = null;
+                layoutDirectionChangedEventCallback = null;
             }
 
             // BaseHandle CPtr is used in Registry and there is danger of deletion if we keep using it here.
