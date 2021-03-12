@@ -218,7 +218,9 @@ namespace Tizen.NUI.Components
                 //Called by User
                 //Release your own managed resources here.
                 //You should release all of your own disposable objects here.
+#if (PROFILE_MOBILE)
                 AccessibilityManager.Instance.DeleteAccessibilityAttribute(this);
+#endif
                 RemoveVisual("loadingImageVisual");
             }
 
@@ -244,7 +246,9 @@ namespace Tizen.NUI.Components
 
             this.AddVisual("loadingImageVisual", imageVisual);
 
+#if (PROFILE_MOBILE)
             AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "Loading");
+#endif
         }
 
         private void UpdateVisual()

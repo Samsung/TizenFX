@@ -336,7 +336,9 @@ namespace Tizen.NUI.Components
             internal set
             {
                 buttonText = value;
+#if (PROFILE_MOBILE)
                 AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Label, buttonText.Text);
+#endif
             }
         }
 

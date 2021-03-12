@@ -362,7 +362,9 @@ namespace Tizen.NUI.Components
 
             if (type == DisposeTypes.Explicit)
             {
+#if (PROFILE_MOBILE)
                 AccessibilityManager.Instance.DeleteAccessibilityAttribute(this);
+#endif
                 Extension?.OnDispose(this);
 
                 if (buttonIcon != null)
@@ -412,10 +414,10 @@ namespace Tizen.NUI.Components
             EnableControlStatePropagation = true;
             UpdateState();
             LayoutDirectionChanged += OnLayoutDirectionChanged;
-
+#if (PROFILE_MOBILE)
             AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "Button");
-            
             Feedback = true;
+#endif
         }
 
         private void UpdateUIContent()
