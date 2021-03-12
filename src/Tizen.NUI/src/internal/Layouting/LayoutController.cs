@@ -190,59 +190,20 @@ namespace Tizen.NUI
             {
                 // Get parent MeasureSpecification, this could be the Window or View with an exact size.
                 Container parentNode = root.GetParent();
-                Size2D rootSize;
-                Position2D rootPosition = root.Position2D;
+                Position rootPosition = root.Position2D;
+
+                // Get parent View's Size.  If using Legacy size negotiation then should have been set already.
+                // Parent not a View so assume it's a Layer which is the size of the window.
                 View parentView = parentNode as View;
-                if (parentView != null)
-                {
-                    // Get parent View's Size.  If using Legacy size negotiation then should have been set already.
-                    rootSize = new Size2D(parentView.Size2D.Width, parentView.Size2D.Height);
-                }
-                else
-                {
-                    // Parent not a View so assume it's a Layer which is the size of the window.
-                    rootSize = new Size2D(window.Size.Width, window.Size.Height);
-                }
+                Size rootSize = parentView ? new Size(parentView.Size2D) : new Size(window.Size);
 
                 // Determine measure specification for root.
                 // The root layout policy could be an exact size, be match parent or wrap children.
                 // If wrap children then at most it can be the root parent size.
                 // If match parent then should be root parent size.
                 // If exact then should be that size limited by the root parent size.
-
-                LayoutLength width = new LayoutLength(rootSize.Width);
-                LayoutLength height = new LayoutLength(rootSize.Height);
-                MeasureSpecification.ModeType widthMode = MeasureSpecification.ModeType.Unspecified;
-                MeasureSpecification.ModeType heightMode = MeasureSpecification.ModeType.Unspecified;
-
-                if (root.WidthSpecification >= 0)
-                {
-                    // exact size provided so match width exactly
-                    width = new LayoutLength(root.WidthSpecification);
-                    widthMode = MeasureSpecification.ModeType.Exactly;
-                }
-                else if (root.WidthSpecification == LayoutParamPolicies.MatchParent)
-                {
-
-                    widthMode = MeasureSpecification.ModeType.Exactly;
-                }
-
-                if (root.HeightSpecification >= 0)
-                {
-                    // exact size provided so match height exactly
-                    height = new LayoutLength(root.HeightSpecification);
-                    heightMode = MeasureSpecification.ModeType.Exactly;
-                }
-                else if (root.HeightSpecification == LayoutParamPolicies.MatchParent)
-                {
-                    heightMode = MeasureSpecification.ModeType.Exactly;
-                }
-
-                MeasureSpecification parentWidthSpecification =
-                    new MeasureSpecification(width, widthMode);
-
-                MeasureSpecification parentHeightSpecification =
-                    new MeasureSpecification(height, heightMode);
+                MeasureSpecification parentWidthSpecification = CreateMeasureSpecification(rootSize.Width, root.WidthSpecification);
+                MeasureSpecification parentHeightSpecification = CreateMeasureSpecification(rootSize.Height, root.HeightSpecification);
 
                 // Start at root with it's parent's widthSpecification and heightSpecification
                 MeasureHierarchy(root, parentWidthSpecification, parentHeightSpecification);
@@ -253,13 +214,29 @@ namespace Tizen.NUI
                                      new LayoutLength(rootPosition.X) + root.Layout.MeasuredWidth.Size,
                                      new LayoutLength(rootPosition.Y) + root.Layout.MeasuredHeight.Size);
 
-                bool readyToPlay = SetupCoreAnimation();
-
-                if (readyToPlay && OverrideCoreAnimation == false)
+                if (SetupCoreAnimation() && OverrideCoreAnimation == false)
                 {
                     PlayAnimation();
                 }
             }
+        }
+
+        private MeasureSpecification CreateMeasureSpecification(float size, int specification)
+        {
+            LayoutLength length = new LayoutLength(size);
+            MeasureSpecification.ModeType mode = MeasureSpecification.ModeType.Unspecified;
+
+            if (specification >= 0)
+            {
+                // exact size provided so match width exactly
+                length = new LayoutLength(specification);
+                mode = MeasureSpecification.ModeType.Exactly;
+            }
+            else if (specification == LayoutParamPolicies.MatchParent)
+            {
+                mode = MeasureSpecification.ModeType.Exactly;
+            }
+            return new MeasureSpecification(length, mode);
         }
 
         /// <summary>
