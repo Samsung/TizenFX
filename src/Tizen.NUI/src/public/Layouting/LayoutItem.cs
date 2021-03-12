@@ -553,12 +553,6 @@ namespace Tizen.NUI
             {
                 changed = true;
 
-                float oldWidth = layoutPositionData.Right - layoutPositionData.Left;
-                float oldHeight = layoutPositionData.Bottom - layoutPositionData.Top;
-                float newWidth = right - left;
-                float newHeight = bottom - top;
-                bool sizeChanged = (newWidth != oldWidth) || (newHeight != oldHeight);
-
                 // Set condition to layout changed as currently unspecified. Add, Remove would have specified a condition.
                 if (ConditionForAnimation.Equals(TransitionCondition.Unspecified))
                 {
@@ -576,7 +570,7 @@ namespace Tizen.NUI
 
                 View ownerView = Owner.GetParent() as View;
 
-                if (ownerView != null && ownerView.Layout != null && ownerView.Layout.LayoutWithTransition)
+                if (ownerView?.Layout?.LayoutWithTransition ?? false)
                 {
                     NUIApplication.GetDefaultWindow().LayoutController.AddTransitionDataEntry(layoutPositionData);
                 }
