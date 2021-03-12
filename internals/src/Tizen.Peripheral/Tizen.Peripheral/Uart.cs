@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright (c) 2020 Samsung Electronics Co., Ltd All Rights Reserved
+* Copyright (c) 2020 - 2021 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
 * you may not use this file except in compliance with the License.
@@ -168,7 +168,7 @@ namespace Tizen.Peripheral.Uart
         /// <summary>
         /// Native handle to I2c.
         /// </summary>
-        private IntPtr _handle;
+        private IntPtr _handle = IntPtr.Zero;
 
         /// <summary>
         /// Opens the UART slave device.
@@ -176,11 +176,9 @@ namespace Tizen.Peripheral.Uart
         /// <param name="port">The UART port number that the slave device is connected.</param>
         public SerialPort(int port)
         {
-            var ret = NativeUart.Open(port, out IntPtr handle);
+            var ret = NativeUart.Open(port, out _handle);
             if (ret != Internals.Errors.ErrorCode.None)
                 throw ExceptionFactory.CreateException(ret);
-
-            _handle = handle;
         }
 
         /// <summary>
@@ -216,6 +214,7 @@ namespace Tizen.Peripheral.Uart
             }
 
             NativeUart.Close(_handle);
+            _handle = IntPtr.Zero;
             _disposed = true;
         }
 

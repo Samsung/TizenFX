@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright (c) 2020 Samsung Electronics Co., Ltd All Rights Reserved
+* Copyright (c) 2020 - 2021 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
 * you may not use this file except in compliance with the License.
@@ -80,7 +80,7 @@ namespace Tizen.Peripheral.Spi
         /// <summary>
         /// Native handle to Spi.
         /// </summary>
-        private IntPtr _handle;
+        private IntPtr _handle = IntPtr.Zero;
         private bool _disposed = false;
 
         /// <summary>
@@ -90,11 +90,9 @@ namespace Tizen.Peripheral.Spi
         /// <param name="chip">The SPI chip select number.</param>
         public SpiDevice(int bus, int chip)
         {
-            var ret = NativeSpi.Open(bus, chip, out IntPtr handle);
+            var ret = NativeSpi.Open(bus, chip, out _handle);
             if (ret != Internals.Errors.ErrorCode.None)
                 throw ExceptionFactory.CreateException(ret);
-
-            _handle = handle;
         }
 
         /// <summary>
@@ -130,6 +128,7 @@ namespace Tizen.Peripheral.Spi
             }
 
             NativeSpi.Close(_handle);
+            _handle = IntPtr.Zero;
             _disposed = true;
         }
 
