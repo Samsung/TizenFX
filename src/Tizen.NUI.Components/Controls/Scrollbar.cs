@@ -485,7 +485,7 @@ namespace Tizen.NUI.Components
         /// <param name="trackPadding">The padding of the track.</param>
         protected virtual void UpdateTrackPadding(Extents trackPadding)
         {
-            if (calculator == null)
+            if (calculator == null || trackVisual == null || thumbVisual == null)
             {
                 return;
             }
