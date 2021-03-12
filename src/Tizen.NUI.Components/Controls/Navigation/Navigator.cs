@@ -49,6 +49,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Navigator() : base()
         {
+            Layout = new AbsoluteLayout();
         }
 
         /// <summary>
