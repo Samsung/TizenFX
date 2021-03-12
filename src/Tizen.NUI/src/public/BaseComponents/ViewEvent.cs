@@ -1364,5 +1364,25 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// TouchArea can reset the view's touchable area.<br/>
+        /// If you set the TouchArea on an view, when you touch the view, the touch area is used rather than the size of the view.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Size2D TouchArea
+        {
+            get
+            {
+                Size2D value = new Size2D(0, 0);
+                GetProperty(View.Property.TouchArea).Get(value);
+                return value;
+            }
+            set
+            {
+                SetProperty(View.Property.TouchArea, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
+            }
+        }
+
     }
 }
