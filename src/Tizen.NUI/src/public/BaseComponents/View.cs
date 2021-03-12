@@ -738,6 +738,43 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Whether the children of this view can be focusable by keyboard navigation. If user sets this to false, the children of this actor view will not be focused.
+        /// Note : Default value is true.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool FocusableChildren
+        {
+            set
+            {
+                SetValue(FocusableChildrenProperty, value);
+                NotifyPropertyChanged();
+            }
+            get
+            {
+                return (bool)GetValue(FocusableChildrenProperty);
+            }
+        }
+
+        /// <summary>
+        /// Whether this view can focus by touch.
+        /// If Focusable is false, FocusableInTouch is disabled.
+        /// If you want to have focus on touch, you need to set both Focusable and FocusableInTouch settings to true.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool FocusableInTouch
+        {
+            set
+            {
+                SetValue(FocusableInTouchProperty, value);
+                NotifyPropertyChanged();
+            }
+            get
+            {
+                return (bool)GetValue(FocusableInTouchProperty);
+            }
+        }
+
+        /// <summary>
         ///  Retrieves the position of the view.<br />
         ///  The coordinates are relative to the view's parent.<br />
         /// </summary>

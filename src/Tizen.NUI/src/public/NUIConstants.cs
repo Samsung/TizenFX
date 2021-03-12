@@ -1806,6 +1806,55 @@ namespace Tizen.NUI
         NoThirdParty
     }
 
+
+    /// <summary>
+    /// Offset has left, right, bottom, top value.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public struct Offset
+    {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="left">left offset</param>
+        /// <param name="right">right offset</param>
+        /// <param name="bottom">bottom offset</param>
+        /// <param name="top">top offset</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Offset(int left, int right, int bottom, int top)
+        {
+            Left = left;
+            Right = right;
+            Bottom = bottom;
+            Top = top;
+        }
+
+        /// <summary>
+        /// Left
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int Left {get; set;}
+
+        /// <summary>
+        /// Right
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int Right {get; set;}
+
+        /// <summary>
+        /// Bottom
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int Bottom {get; set;}
+
+        /// <summary>
+        /// Top
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int Top {get; set;}
+
+    }
+
     /// <summary>
     /// TODO This is to get TizenFX resource path. It needs to be fixed to use application framework API in the future.
     /// Internal use only. Do not open this API.

@@ -15,7 +15,7 @@ namespace Tizen.NUI
             public static extern global::System.IntPtr new_Touch__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_GetMouseButton")]
-            public static extern int Touch_GetMouseButton(global::System.Runtime.InteropServices.HandleRef jarg1, ulong jarg2);
+            public static extern int Touch_GetMouseButton(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_Assign")]
             public static extern global::System.IntPtr Touch_Assign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);

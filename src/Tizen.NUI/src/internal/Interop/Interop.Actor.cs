@@ -121,6 +121,9 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_RemoveRenderer__SWIG_1")]
             public static extern void Actor_RemoveRenderer__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetNeedGesturePropagation")]
+            public static extern float SetNeedGesturePropagation(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
         }
     }
 }
