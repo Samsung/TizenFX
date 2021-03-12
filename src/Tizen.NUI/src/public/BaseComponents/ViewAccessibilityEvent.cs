@@ -158,8 +158,9 @@ namespace Tizen.NUI.BaseComponents
         private delegate void GestureInfoHandlerType(IntPtr data);
         private GestureInfoHandlerType gestureInfoCallback;
         private EventHandler<GestureInfoEventArgs> gestureInfoHandler;
+        private AccessibilityDoGestureSignal gestureInfoSignal;
 
-        private void OnGestureInfoEvent(IntPtr data)
+        private void OnAccessibilityGestureInfoEvent(IntPtr data)
         {
             if (data == IntPtr.Zero)
                 return;
@@ -181,26 +182,31 @@ namespace Tizen.NUI.BaseComponents
 
         // This uses DoGestureInfo signal from C++ API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<GestureInfoEventArgs> GestureInfoReceived
+        public event EventHandler<GestureInfoEventArgs> AccessibilityGestureInfoReceived
         {
             add
             {
                 if (gestureInfoHandler == null)
                 {
-                    gestureInfoCallback = OnGestureInfoEvent;
-                    GestureInfoSignal().Connect(gestureInfoCallback);
+                    gestureInfoCallback = OnAccessibilityGestureInfoEvent;
+                    gestureInfoSignal = this.AccessibilityGestureInfoSignal();
+                    gestureInfoSignal?.Connect(gestureInfoCallback);
                 }
                 gestureInfoHandler += value;
             }
             remove
             {
                 gestureInfoHandler -= value;
-                if (gestureInfoHandler == null && GestureInfoSignal().Empty() == false)
-                    GestureInfoSignal().Disconnect(gestureInfoCallback);
+                if (gestureInfoHandler == null && gestureInfoCallback != null)
+                {
+                    gestureInfoSignal?.Disconnect(gestureInfoCallback);
+                    gestureInfoSignal?.Dispose();
+                    gestureInfoSignal = null;
+                }
             }
         }
 
-        internal AccessibilityDoGestureSignal GestureInfoSignal()
+        internal AccessibilityDoGestureSignal AccessibilityGestureInfoSignal()
         {
             var handle = GetControl();
             AccessibilityDoGestureSignal ret = new AccessibilityDoGestureSignal(Interop.ControlDevel.DaliToolkitDevelControlAccessibilityDoGestureSignal(handle), false);
@@ -215,8 +221,9 @@ namespace Tizen.NUI.BaseComponents
         private delegate void GetDescriptionHandlerType(IntPtr data);
         private GetDescriptionHandlerType getDescriptionCallback;
         private EventHandler<GetDescriptionEventArgs> getDescriptionHandler;
+        private StringToVoidSignal getDescriptionSignal;
 
-        private void OnGetDescriptionEvent(IntPtr data)
+        private void OnGetAccessibilityDescriptionEvent(IntPtr data)
         {
             if (data == IntPtr.Zero)
                 return;
@@ -229,26 +236,31 @@ namespace Tizen.NUI.BaseComponents
 
         // This uses GetDescription signal from C++ API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<GetDescriptionEventArgs> DescriptionRequested
+        public event EventHandler<GetDescriptionEventArgs> AccessibilityDescriptionRequested
         {
             add
             {
                 if (getDescriptionHandler == null)
                 {
-                    getDescriptionCallback = OnGetDescriptionEvent;
-                    GetDescriptionSignal().Connect(getDescriptionCallback);
+                    getDescriptionCallback = OnGetAccessibilityDescriptionEvent;
+                    getDescriptionSignal = this.GetAccessibilityDescriptionSignal();
+                    getDescriptionSignal?.Connect(getDescriptionCallback);
                 }
                 getDescriptionHandler += value;
             }
             remove
             {
                 getDescriptionHandler -= value;
-                if (getDescriptionHandler == null && GetDescriptionSignal().Empty() == false)
-                    GetDescriptionSignal().Disconnect(getDescriptionCallback);
+                if (getDescriptionHandler == null && getDescriptionCallback != null)
+                {
+                    getDescriptionSignal?.Disconnect(getDescriptionCallback);
+                    getDescriptionSignal?.Dispose();
+                    getDescriptionSignal = null;
+                }
             }
         }
 
-        internal StringToVoidSignal GetDescriptionSignal()
+        internal StringToVoidSignal GetAccessibilityDescriptionSignal()
         {
             var handle = GetControl();
             StringToVoidSignal ret = new StringToVoidSignal(Interop.ControlDevel.DaliToolkitDevelControlAccessibilityGetDescriptionSignal(handle), false);
@@ -263,8 +275,9 @@ namespace Tizen.NUI.BaseComponents
         private delegate void GetNameHandlerType(IntPtr data);
         private GetNameHandlerType getNameCallback;
         private EventHandler<GetNameEventArgs> getNameHandler;
+        private StringToVoidSignal getNameSignal;
 
-        private void OnGetNameEvent(IntPtr data)
+        private void OnGetAccessibilityNameEvent(IntPtr data)
         {
             if (data == IntPtr.Zero)
                 return;
@@ -277,26 +290,31 @@ namespace Tizen.NUI.BaseComponents
 
         // This uses GetName signal from C++ API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<GetNameEventArgs> NameRequested
+        public event EventHandler<GetNameEventArgs> AccessibilityNameRequested
         {
             add
             {
                 if (getNameHandler == null)
                 {
-                    getNameCallback = OnGetNameEvent;
-                    GetNameSignal().Connect(getNameCallback);
+                    getNameCallback = OnGetAccessibilityNameEvent;
+                    getNameSignal = this.GetAccessibilityNameSignal();
+                    getNameSignal?.Connect(getNameCallback);
                 }
                 getNameHandler += value;
             }
             remove
             {
                 getNameHandler -= value;
-                if (getNameHandler == null && GetNameSignal().Empty() == false)
-                    GetNameSignal().Disconnect(getNameCallback);
+                if (getNameHandler == null && getNameCallback != null)
+                {
+                    getNameSignal?.Disconnect(getNameCallback);
+                    getNameSignal?.Dispose();
+                    getNameSignal = null;
+                }
             }
         }
 
-        internal StringToVoidSignal GetNameSignal()
+        internal StringToVoidSignal GetAccessibilityNameSignal()
         {
             var handle = GetControl();
             StringToVoidSignal ret = new StringToVoidSignal(Interop.ControlDevel.DaliToolkitDevelControlAccessibilityGetNameSignal(handle), false);
@@ -305,39 +323,45 @@ namespace Tizen.NUI.BaseComponents
         }
 
         ///////////////////////////////////////////////////////////////////
-        // **************** AccessibilityActivateSignal **************** //
+        // **************** AccessibilityActivatedSignal **************** //
         ///////////////////////////////////////////////////////////////////
 
         private delegate void VoidHandlerType();
         private VoidHandlerType activateCallback;
         private EventHandler activateHandler;
+        internal VoidSignal ActivateSignal;
 
-        private void OnActivateEvent()
+        private void OnAccessibilityActivatedEvent()
         {
             activateHandler?.Invoke(this, null);
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler Activate
+        public event EventHandler AccessibilityActivated
         {
             add
             {
                 if (activateHandler == null)
                 {
-                    activateCallback = OnActivateEvent;
-                    ActivateSignal().Connect(activateCallback);
+                    activateCallback = OnAccessibilityActivatedEvent;
+                    ActivateSignal = this.AccessibilityActivatedSignal();
+                    ActivateSignal?.Connect(activateCallback);
                 }
                 activateHandler += value;
             }
             remove
             {
                 activateHandler -= value;
-                if (activateHandler == null && ActivateSignal().Empty() == false)
-                    ActivateSignal().Disconnect(activateCallback);
+                if (activateHandler == null && activateCallback != null)
+                {
+                    ActivateSignal?.Disconnect(activateCallback);
+                    ActivateSignal?.Dispose();
+                    ActivateSignal = null;
+                }
             }
         }
 
-        internal VoidSignal ActivateSignal()
+        internal VoidSignal AccessibilityActivatedSignal()
         {
             var handle = GetControl();
             VoidSignal ret = new VoidSignal(Interop.ControlDevel.DaliToolkitDevelControlAccessibilityActivateSignal(handle), false);
@@ -351,33 +375,39 @@ namespace Tizen.NUI.BaseComponents
 
         private VoidHandlerType readingSkippedCallback;
         private EventHandler readingSkippedHandler;
+        internal VoidSignal ReadingSkippedSignal;
 
-        private void OnReadingSkippedEvent()
+        private void OnAccessibilityReadingSkippedEvent()
         {
             readingSkippedHandler?.Invoke(this, null);
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler ReadingSkipped
+        public event EventHandler AccessibilityReadingSkipped
         {
             add
             {
                 if (readingSkippedHandler == null)
                 {
-                    readingSkippedCallback = OnReadingSkippedEvent;
-                    ReadingSkippedSignal().Connect(readingSkippedCallback);
+                    readingSkippedCallback = OnAccessibilityReadingSkippedEvent;
+                    ReadingSkippedSignal = this.AccessibilityReadingSkippedSignal();
+                    ReadingSkippedSignal?.Connect(readingSkippedCallback);
                 }
                 readingSkippedHandler += value;
             }
             remove
             {
                 readingSkippedHandler -= value;
-                if (readingSkippedHandler == null && ReadingSkippedSignal().Empty() == false)
-                    ReadingSkippedSignal().Disconnect(readingSkippedCallback);
+                if (readingSkippedHandler == null && readingSkippedCallback != null)
+                {
+                    ReadingSkippedSignal?.Disconnect(readingSkippedCallback);
+                    ReadingSkippedSignal?.Dispose();
+                    ReadingSkippedSignal = null;
+                }
             }
         }
 
-        internal VoidSignal ReadingSkippedSignal()
+        internal VoidSignal AccessibilityReadingSkippedSignal()
         {
             var handle = GetControl();
             VoidSignal ret = new VoidSignal(Interop.ControlDevel.DaliToolkitDevelControlAccessibilityReadingSkippedSignal(handle), false);
@@ -391,33 +421,39 @@ namespace Tizen.NUI.BaseComponents
 
         private VoidHandlerType readingPausedCallback;
         private EventHandler readingPausedHandler;
+        internal VoidSignal ReadingPausedSignal;
 
-        private void OnReadingPausedEvent()
+        private void OnAccessibilityReadingPausedEvent()
         {
             readingPausedHandler?.Invoke(this, null);
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler ReadingPaused
+        public event EventHandler AccessibilityReadingPaused
         {
             add
             {
                 if (readingPausedHandler == null)
                 {
-                    readingPausedCallback = OnReadingPausedEvent;
-                    ReadingPausedSignal().Connect(readingPausedCallback);
+                    readingPausedCallback = OnAccessibilityReadingPausedEvent;
+                    ReadingPausedSignal = this.AccessibilityReadingPausedSignal();
+                    ReadingPausedSignal?.Connect(readingPausedCallback);
                 }
                 readingPausedHandler += value;
             }
             remove
             {
                 readingPausedHandler -= value;
-                if (readingPausedHandler == null && ReadingPausedSignal().Empty() == false)
-                    ReadingPausedSignal().Disconnect(readingPausedCallback);
+                if (readingPausedHandler == null && readingPausedCallback != null)
+                {
+                    ReadingPausedSignal?.Disconnect(readingPausedCallback);
+                    ReadingPausedSignal?.Dispose();
+                    ReadingPausedSignal = null;
+                }
             }
         }
 
-        internal VoidSignal ReadingPausedSignal()
+        internal VoidSignal AccessibilityReadingPausedSignal()
         {
             var handle = GetControl();
             VoidSignal ret = new VoidSignal(Interop.ControlDevel.DaliToolkitDevelControlAccessibilityReadingPausedSignal(handle), false);
@@ -431,33 +467,39 @@ namespace Tizen.NUI.BaseComponents
 
         private VoidHandlerType readingResumedCallback;
         private EventHandler readingResumedHandler;
+        internal VoidSignal ReadingResumedSignal;
 
-        private void OnReadingResumedEvent()
+        private void OnAccessibilityReadingResumedEvent()
         {
             readingResumedHandler?.Invoke(this, null);
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler ReadingResumed
+        public event EventHandler AccessibilityReadingResumed
         {
             add
             {
                 if (readingResumedHandler == null)
                 {
-                    readingResumedCallback = OnReadingResumedEvent;
-                    ReadingResumedSignal().Connect(readingResumedCallback);
+                    readingResumedCallback = OnAccessibilityReadingResumedEvent;
+                    ReadingResumedSignal = this.AccessibilityReadingResumedSignal();
+                    ReadingResumedSignal?.Connect(readingResumedCallback);
                 }
                 readingResumedHandler += value;
             }
             remove
             {
                 readingResumedHandler -= value;
-                if (readingResumedHandler == null && ReadingResumedSignal().Empty() == false)
-                    ReadingResumedSignal().Disconnect(readingResumedCallback);
+                if (readingResumedHandler == null && readingResumedCallback != null)
+                {
+                    ReadingResumedSignal?.Disconnect(readingResumedCallback);
+                    ReadingResumedSignal?.Dispose();
+                    ReadingResumedSignal = null;
+                }
             }
         }
 
-        internal VoidSignal ReadingResumedSignal()
+        internal VoidSignal AccessibilityReadingResumedSignal()
         {
             var handle = GetControl();
             VoidSignal ret = new VoidSignal(Interop.ControlDevel.DaliToolkitDevelControlAccessibilityReadingResumedSignal(handle), false);
@@ -471,33 +513,39 @@ namespace Tizen.NUI.BaseComponents
 
         private VoidHandlerType readingCancelledCallback;
         private EventHandler readingCancelledHandler;
+        internal VoidSignal ReadingCancelledSignal;
 
-        private void OnReadingCancelledEvent()
+        private void OnAccessibilityReadingCancelledEvent()
         {
             readingCancelledHandler?.Invoke(this, null);
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler ReadingCancelled
+        public event EventHandler AccessibilityReadingCancelled
         {
             add
             {
                 if (readingCancelledHandler == null)
                 {
-                    readingCancelledCallback = OnReadingCancelledEvent;
-                    ReadingCancelledSignal().Connect(readingCancelledCallback);
+                    readingCancelledCallback = OnAccessibilityReadingCancelledEvent;
+                    ReadingCancelledSignal = this.AccessibilityReadingCancelledSignal();
+                    ReadingCancelledSignal?.Connect(readingCancelledCallback);
                 }
                 readingCancelledHandler += value;
             }
             remove
             {
                 readingCancelledHandler -= value;
-                if (readingCancelledHandler == null && ReadingCancelledSignal().Empty() == false)
-                    ReadingCancelledSignal().Disconnect(readingCancelledCallback);
+                if (readingCancelledHandler == null && readingCancelledCallback != null)
+                {
+                    ReadingCancelledSignal?.Disconnect(readingCancelledCallback);
+                    ReadingCancelledSignal?.Dispose();
+                    ReadingCancelledSignal = null;
+                }
             }
         }
 
-        internal VoidSignal ReadingCancelledSignal()
+        internal VoidSignal AccessibilityReadingCancelledSignal()
         {
             var handle = GetControl();
             VoidSignal ret = new VoidSignal(Interop.ControlDevel.DaliToolkitDevelControlAccessibilityReadingCancelledSignal(handle), false);
@@ -511,33 +559,39 @@ namespace Tizen.NUI.BaseComponents
 
         private VoidHandlerType readingStoppedCallback;
         private EventHandler readingStoppedHandler;
+        internal VoidSignal ReadingStoppedSignal;
 
-        private void OnReadingStoppedEvent()
+        private void OnAccessibilityReadingStoppedEvent()
         {
             readingStoppedHandler?.Invoke(this, null);
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler ReadingStopped
+        public event EventHandler AccessibilityReadingStopped
         {
             add
             {
                 if (readingStoppedHandler == null)
                 {
-                    readingStoppedCallback = OnReadingStoppedEvent;
-                    ReadingStoppedSignal().Connect(readingStoppedCallback);
+                    readingStoppedCallback = OnAccessibilityReadingStoppedEvent;
+                    ReadingStoppedSignal = this.AccessibilityReadingStoppedSignal();
+                    ReadingStoppedSignal?.Connect(readingStoppedCallback);
                 }
                 readingStoppedHandler += value;
             }
             remove
             {
                 readingStoppedHandler -= value;
-                if (readingStoppedHandler == null && ReadingStoppedSignal().Empty() == false)
-                    ReadingStoppedSignal().Disconnect(readingStoppedCallback);
+                if (readingStoppedHandler == null && readingStoppedCallback != null)
+                {
+                    ReadingStoppedSignal?.Disconnect(readingStoppedCallback);
+                    ReadingStoppedSignal?.Dispose();
+                    ReadingStoppedSignal = null;
+                }
             }
         }
 
-        internal VoidSignal ReadingStoppedSignal()
+        internal VoidSignal AccessibilityReadingStoppedSignal()
         {
             var handle = GetControl();
             VoidSignal ret = new VoidSignal(Interop.ControlDevel.DaliToolkitDevelControlAccessibilityReadingStoppedSignal(handle), false);
