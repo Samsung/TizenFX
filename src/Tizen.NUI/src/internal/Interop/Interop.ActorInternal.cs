@@ -182,6 +182,19 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_IsKeyboardFocusable")]
             public static extern bool Actor_IsKeyboardFocusable(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetKeyboardFocusableChildren")]
+            public static extern void SetKeyboardFocusableChildren(global::System.Runtime.InteropServices.HandleRef manager, bool focusable);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_AreChildrenKeyBoardFocusable")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
+            public static extern bool AreChildrenKeyBoardFocusable(global::System.Runtime.InteropServices.HandleRef manager);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetTouchFocusable")]
+            public static extern void SetFocusableInTouch(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_IsTouchFocusable")]
+            public static extern bool IsFocusableInTouch(global::System.Runtime.InteropServices.HandleRef jarg1);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetSizeScalePolicy")]
             public static extern void Actor_SetSizeScalePolicy(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
@@ -199,6 +212,12 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_GetMaximumSize")]
             public static extern global::System.IntPtr Actor_GetMaximumSize(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_DevelActor_Property_SetTouchAreaOffset")]
+            public static extern void SetTouchAreaOffset(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3, int jarg4, int jarg5);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_DevelActor_Property_GetTouchAreaOffset")]
+            public static extern void GetTouchAreaOffset(global::System.Runtime.InteropServices.HandleRef jarg1, out int jarg2, out int jarg3, out int jarg4, out int jarg5);
         }
     }
 }

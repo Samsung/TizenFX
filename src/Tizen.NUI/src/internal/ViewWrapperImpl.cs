@@ -520,7 +520,7 @@ namespace Tizen.NUI
             }
             else
             {
-                return currentFocusedActor;
+                return global::System.IntPtr.Zero;
             }
         }
 

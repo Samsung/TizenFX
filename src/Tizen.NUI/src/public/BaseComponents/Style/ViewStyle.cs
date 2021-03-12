@@ -44,6 +44,8 @@ namespace Tizen.NUI.BaseComponents
         private View upFocusableView;
         private View downFocusableView;
         private bool? focusable;
+        private bool? focusableChildren;
+        private bool? focusableInTouch;
         private bool? positionUsesPivotPoint;
         private int? siblingOrder;
         private Position parentOrigin;
@@ -246,6 +248,29 @@ namespace Tizen.NUI.BaseComponents
         {
             get => (bool?)GetValue(FocusableProperty);
             set => SetValue(FocusableProperty, value);
+        }
+
+        /// <summary>
+        /// Whether the children of this view can be focusable by keyboard navigation. If user sets this to false, the children of this view will not be focused.
+        /// Note : Default value is true.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool? FocusableChildren
+        {
+            get => (bool?)GetValue(FocusableChildrenProperty);
+            set => SetValue(FocusableChildrenProperty, value);
+        }
+
+        /// <summary>
+        /// Whether this view can focus by touch.
+        /// If Focusable is false, FocusableInTouch is disabled.
+        /// If you want to have focus on touch, you need to set both Focusable and FocusableInTouch settings to true.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool? FocusableInTouch
+        {
+            get => (bool?)GetValue(FocusableInTouchProperty);
+            set => SetValue(FocusableInTouchProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.

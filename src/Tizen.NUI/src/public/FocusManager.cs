@@ -410,6 +410,30 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Sets to use the automatic focus moveing algorithm. <br />
+        /// It moves the focus to the view closest to the keyboard movement direction.
+        /// </summary>
+        /// <param name="enable">Whether using default focus algorithm or not</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void EnableDefaultAlgorithm(bool enable)
+        {
+            Interop.FocusManager.EnableDefaultAlgorithm(SwigCPtr, enable);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        ///  Checks default focus moveing algorithm is enabled or not
+        /// </summary>
+        /// <returns>Whether default focus algorithm is enabled</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsDefaultAlgorithmEnabled()
+        {
+            bool ret = Interop.FocusManager.IsDefaultAlgorithmEnabled(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         internal static FocusManager Get()
         {
             FocusManager ret = new FocusManager(Interop.FocusManager.FocusManager_Get(), true);

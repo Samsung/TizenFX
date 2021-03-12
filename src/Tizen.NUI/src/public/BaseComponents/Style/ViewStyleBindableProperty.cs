@@ -222,6 +222,22 @@ namespace Tizen.NUI.BaseComponents
             var viewStyle = (ViewStyle)bindable;
             return viewStyle.downFocusableView;
         });
+
+        /// <summary> Bindable property of FocusableChildren. Please do not open it. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty FocusableChildrenProperty = BindableProperty.Create(nameof(FocusableChildren), typeof(bool?), typeof(ViewStyle), true,
+            propertyChanged: (bindable, oldValue, newValue) => ((ViewStyle)bindable).focusableChildren = (bool?)newValue,
+            defaultValueCreator: (bindable) => ((ViewStyle)bindable).focusableChildren
+        );
+
+
+        /// <summary> Bindable property of FocusableInTouch. Please do not open it. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty FocusableInTouchProperty = BindableProperty.Create(nameof(FocusableInTouch), typeof(bool?), typeof(ViewStyle), null,
+            propertyChanged: (bindable, oldValue, newValue) => ((ViewStyle)bindable).focusableInTouch = (bool?)newValue,
+            defaultValueCreator: (bindable) => ((ViewStyle)bindable).focusableInTouch
+        );
+        
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty FocusableProperty = BindableProperty.Create(nameof(Focusable), typeof(bool?), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>

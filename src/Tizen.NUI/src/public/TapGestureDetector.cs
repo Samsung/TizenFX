@@ -214,6 +214,7 @@ namespace Tizen.NUI
 
             if (_detectedEventHandler != null)
             {
+                e.Handled = true;
                 //here we send all data to user event handlers
                 _detectedEventHandler(this, e);
             }
@@ -229,6 +230,7 @@ namespace Tizen.NUI
         {
             private View _view;
             private TapGesture _tapGesture;
+            private bool handled = true;
 
             /// <summary>
             /// The attached view.
@@ -263,6 +265,22 @@ namespace Tizen.NUI
                 set
                 {
                     _tapGesture = value;
+                }
+            }
+
+            /// <summary>
+            /// Gets or sets a value that indicates whether the event handler has completely handled the event or whether the system should continue its own processing.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public bool Handled
+            {
+                get => handled;
+                set
+                {
+                    handled = value;
+                    Interop.Actor.SetNeedGesturePropagation(View.getCPtr(_view), !value);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending)
+                        throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
             }
         }
