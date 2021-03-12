@@ -286,6 +286,15 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Gets scrollable status.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override bool AccessibilityIsScrollable()
+        {
+            return true;
+        }
+
+        /// <summary>
         /// Pages mode, enables moving to the next or return to current page depending on pan displacement.
         /// Default is false.
         /// </summary>
@@ -608,6 +617,7 @@ namespace Tizen.NUI.Components
             mPanGestureDetector = new PanGestureDetector();
             mPanGestureDetector.Attach(this);
             mPanGestureDetector.AddDirection(PanGestureDetector.DirectionVertical);
+            if (mPanGestureDetector.GetMaximumTouchesRequired() < 2) mPanGestureDetector.SetMaximumTouchesRequired(2);
             mPanGestureDetector.Detected += OnPanGestureDetected;
 
             ClippingMode = ClippingModeType.ClipToBoundingBox;

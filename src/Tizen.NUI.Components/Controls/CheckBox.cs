@@ -44,6 +44,16 @@ namespace Tizen.NUI.Components
         public CheckBox(ButtonStyle buttonStyle) : base(buttonStyle) { }
 
         /// <summary>
+        /// Initialize AT-SPI object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnInitialize()
+        {
+            base.OnInitialize();
+            SetAccessibilityConstructor(Role.CheckBox);
+        }
+
+        /// <summary>
         /// Get CheckBoxGroup to which this CheckBox belong.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>

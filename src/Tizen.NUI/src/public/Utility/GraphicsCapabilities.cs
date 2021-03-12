@@ -14,19 +14,19 @@
  * limitations under the License.
  *
  */
- 
+
 using System.ComponentModel;
 
 namespace Tizen.NUI
 {
     /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable (EditorBrowsableState.Never)]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public static class GraphicsCapabilities
     {
-        [EditorBrowsable (EditorBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static bool IsBlendEquationSupported(BlendEquationType blendEquation)
         {
-          return Interop.GraphicsCapabilities.IsBlendEquationSupported((int)blendEquation);
+            return Interop.GraphicsCapabilities.IsBlendEquationSupported((int)blendEquation);
         }
     }
 }

@@ -36,7 +36,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty SelectedItemProperty =
             BindableProperty.Create(nameof(SelectedItem), typeof(object), typeof(CollectionView), null,
-                propertyChanged: (bindable, oldValue, newValue)=>
+                propertyChanged: (bindable, oldValue, newValue) =>
                 {
                     var colView = (CollectionView)bindable;
                     oldValue = colView.selectedItem;
@@ -52,7 +52,7 @@ namespace Tizen.NUI.Components
 
                     SelectionPropertyChanged(colView, args);
                 },
-                defaultValueCreator: (bindable)=>
+                defaultValueCreator: (bindable) =>
                 {
                     var colView = (CollectionView)bindable;
                     return colView.selectedItem;
@@ -64,7 +64,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty SelectedItemsProperty =
             BindableProperty.Create(nameof(SelectedItems), typeof(IList<object>), typeof(CollectionView), null,
-                propertyChanged: (bindable, oldValue, newValue)=>
+                propertyChanged: (bindable, oldValue, newValue) =>
                 {
                     var colView = (CollectionView)bindable;
                     var oldSelection = colView.selectedItems ?? selectEmpty;
@@ -86,7 +86,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty SelectionModeProperty =
             BindableProperty.Create(nameof(SelectionMode), typeof(ItemSelectionMode), typeof(CollectionView), ItemSelectionMode.None,
-                propertyChanged: (bindable, oldValue, newValue)=>
+                propertyChanged: (bindable, oldValue, newValue) =>
                 {
                     var colView = (CollectionView)bindable;
                     oldValue = colView.selectionMode;
@@ -134,7 +134,7 @@ namespace Tizen.NUI.Components
         /// Base constructor with ItemsSource
         /// </summary>
         /// <param name="itemsSource">item's data source</param>
-       [EditorBrowsable(EditorBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public CollectionView(IEnumerable itemsSource) : this()
         {
             ItemsSource = itemsSource;
@@ -146,7 +146,7 @@ namespace Tizen.NUI.Components
         /// <param name="itemsSource">item's data source</param>
         /// <param name="layouter">item's layout manager</param>
         /// <param name="template">item's view template with data bindings</param>
-       [EditorBrowsable(EditorBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public CollectionView(IEnumerable itemsSource, ItemsLayouter layouter, DataTemplate template) : this()
         {
             ItemsSource = itemsSource;
@@ -164,7 +164,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Align item in the viewport when ScrollTo() calls.
         /// </summary>
-       [EditorBrowsable(EditorBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public enum ItemScrollTo
         {
             /// <summary>
@@ -400,8 +400,8 @@ namespace Tizen.NUI.Components
         /// Boolean flag of group feature existence.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool IsGrouped 
-        { 
+        public bool IsGrouped
+        {
             get => isGrouped;
             set
             {
@@ -560,28 +560,28 @@ namespace Tizen.NUI.Components
                 switch (direction)
                 {
                     case View.FocusDirection.Left:
-                    {
-                        nextFocusedView = LeftFocusableView;
-                        break;
-                    }
+                        {
+                            nextFocusedView = LeftFocusableView;
+                            break;
+                        }
                     case View.FocusDirection.Right:
-                    {
-                        nextFocusedView = RightFocusableView;
-                        break;
-                    }
+                        {
+                            nextFocusedView = RightFocusableView;
+                            break;
+                        }
                     case View.FocusDirection.Up:
-                    {
-                        nextFocusedView = UpFocusableView;
-                        break;
-                    }
+                        {
+                            nextFocusedView = UpFocusableView;
+                            break;
+                        }
                     case View.FocusDirection.Down:
-                    {
-                        nextFocusedView = DownFocusableView;
-                        break;
-                    }
+                        {
+                            nextFocusedView = DownFocusableView;
+                            break;
+                        }
                 }
 
-                if(nextFocusedView != null)
+                if (nextFocusedView != null)
                 {
                     focusedView = null;
                 }
@@ -669,13 +669,13 @@ namespace Tizen.NUI.Components
             {
                 case ItemScrollTo.Start:
                     //nothing necessary.
-                break;
+                    break;
                 case ItemScrollTo.Center:
                     scrollPos = scrollPos - (curSize / 2) + (curItemSize / 2);
-                break;
+                    break;
                 case ItemScrollTo.End:
                     scrollPos = scrollPos - curSize + curItemSize;
-                break;
+                    break;
                 case ItemScrollTo.Nearest:
                     if (scrollPos < curPos - curItemSize)
                     {
@@ -691,7 +691,7 @@ namespace Tizen.NUI.Components
                         // item is in the scroller. ScrollTo() is ignored.
                         return;
                     }
-                break;
+                    break;
             }
 
             //Console.WriteLine("[NUI] ScrollTo [{0}]-------------------", scrollPos);

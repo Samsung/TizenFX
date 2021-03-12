@@ -694,13 +694,13 @@ namespace Tizen.NUI
 
                 var current = result;
                 using (var time = new TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime)))
-                while (current != null)
-                {
-                    var targetValue = current.RefineValue(relativeValue) ?? throw new ArgumentException("Invalid " + nameof(relativeValue));
-                    AnimateBy(current.Property, targetValue, alphaFunction, time);
-                    targetValue.Dispose();
-                    current = current.NextResult;
-                }
+                    while (current != null)
+                    {
+                        var targetValue = current.RefineValue(relativeValue) ?? throw new ArgumentException("Invalid " + nameof(relativeValue));
+                        AnimateBy(current.Property, targetValue, alphaFunction, time);
+                        targetValue.Dispose();
+                        current = current.NextResult;
+                    }
             }
         }
 
@@ -850,13 +850,13 @@ namespace Tizen.NUI
 
                 var current = result;
                 using (var time = new TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime)))
-                while (current != null)
-                {
-                    var targetValue = current.RefineValue(destinationValue) ?? throw new ArgumentException("Invalid " + nameof(destinationValue));
-                    AnimateTo(current.Property, targetValue, alphaFunction, time);
-                    targetValue.Dispose();
-                    current = current.NextResult;
-                }
+                    while (current != null)
+                    {
+                        var targetValue = current.RefineValue(destinationValue) ?? throw new ArgumentException("Invalid " + nameof(destinationValue));
+                        AnimateTo(current.Property, targetValue, alphaFunction, time);
+                        targetValue.Dispose();
+                        current = current.NextResult;
+                    }
             }
         }
 
@@ -897,7 +897,7 @@ namespace Tizen.NUI
                 while (current != null)
                 {
                     // NOTE Do not dispose keyFrames object returned by GetRefinedKeyFrames() here.
-                    AnimateBetween(current.Property, current.RefineKeyFrames(keyFrames) ?? throw new ArgumentException("Invalid " + nameof(keyFrames)), alphaFunction, interpolation);   
+                    AnimateBetween(current.Property, current.RefineKeyFrames(keyFrames) ?? throw new ArgumentException("Invalid " + nameof(keyFrames)), alphaFunction, interpolation);
                     current = current.NextResult;
                 }
             }
@@ -940,12 +940,12 @@ namespace Tizen.NUI
 
                 var current = result;
                 using (var time = new TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime)))
-                while (current != null)
-                {
-                    // NOTE Do not dispose keyFrames object returned by GetRefinedKeyFrames() here.
-                    AnimateBetween(current.Property, current.RefineKeyFrames(keyFrames) ?? throw new ArgumentException("Invalid " + nameof(keyFrames)), alphaFunction, time, interpolation);   
-                    current = current.NextResult;
-                }
+                    while (current != null)
+                    {
+                        // NOTE Do not dispose keyFrames object returned by GetRefinedKeyFrames() here.
+                        AnimateBetween(current.Property, current.RefineKeyFrames(keyFrames) ?? throw new ArgumentException("Invalid " + nameof(keyFrames)), alphaFunction, time, interpolation);
+                        current = current.NextResult;
+                    }
             }
         }
 

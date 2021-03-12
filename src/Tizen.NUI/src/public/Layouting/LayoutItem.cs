@@ -609,7 +609,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void Dispose(bool disposing)
         {
-            if(disposed)
+            if (disposed)
             {
                 return;
             }
