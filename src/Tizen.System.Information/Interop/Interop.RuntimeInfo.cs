@@ -86,33 +86,33 @@ internal static partial class Interop
             /// </summary>
             Pss = 300,
             /// <summary>
-            /// GPU memory size (KiB)
-            /// </summary>
-            Gpu = 400,
-            /// <summary>
-            /// Resident set size in graphic execution manager (KiB)
-            /// </summary>
-            GemRss = 500,
-            /// <summary>
-            /// SWAP memory size (KiB)
-            /// </summary>
-            Swap = 600,
-            /// <summary>
             /// Not modified and mapped by other processes (KiB)
             /// </summary>
-            SharedClean = 700,
+            SharedClean = 400,
             /// <summary>
             /// Modified and mapped by other processes (KiB)
             /// </summary>
-            SharedDirty = 800,
+            SharedDirty = 500,
             /// <summary>
             /// Not modified and available only to that process (KiB)
             /// </summary>
-            PrivateClean = 900,
+            PrivateClean = 600,
             /// <summary>
             /// Modified and available only to that process (KiB)
             /// </summary>
-            PrivateDirty = 1000
+            PrivateDirty = 700,
+            /// <summary>
+            /// SWAP memory size (KiB)
+            /// </summary>
+            Swap = 800,
+            /// <summary>
+            /// GPU memory size (KiB)
+            /// </summary>
+            Gpu = 900,
+            /// <summary>
+            /// Resident set size in graphic execution manager (KiB)
+            /// </summary>
+            GemRss = 1000
         }
 
         [DllImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_get_value_int")]
