@@ -492,9 +492,9 @@ namespace Tizen.NUI.BaseComponents
         {
             if (name == AccessibilityActivateAction)
             {
-                if (this.ActivateSignal().Empty() == false)
+                if (ActivateSignal?.Empty() == false)
                 {
-                    this.ActivateSignal().Emit();
+                    ActivateSignal?.Emit();
                     return true;
                 }
                 else
@@ -504,9 +504,9 @@ namespace Tizen.NUI.BaseComponents
             }
             else if (name == AccessibilityReadingSkippedAction)
             {
-                if (this.ReadingSkippedSignal().Empty() == false)
+                if (ReadingSkippedSignal?.Empty() == false)
                 {
-                    this.ReadingSkippedSignal().Emit();
+                    ReadingSkippedSignal?.Emit();
                     return true;
                 }
                 else
@@ -516,9 +516,9 @@ namespace Tizen.NUI.BaseComponents
             }
             else if (name == AccessibilityReadingCancelledAction)
             {
-                if (this.ReadingCancelledSignal().Empty() == false)
+                if (ReadingCancelledSignal?.Empty() == false)
                 {
-                    this.ReadingCancelledSignal().Emit();
+                    ReadingCancelledSignal?.Emit();
                     return true;
                 }
                 else
@@ -528,9 +528,9 @@ namespace Tizen.NUI.BaseComponents
             }
             else if (name == AccessibilityReadingStoppedAction)
             {
-                if (this.ReadingStoppedSignal().Empty() == false)
+                if (ReadingStoppedSignal?.Empty() == false)
                 {
-                    this.ReadingStoppedSignal().Emit();
+                    ReadingStoppedSignal?.Emit();
                     return true;
                 }
                 else
@@ -540,9 +540,9 @@ namespace Tizen.NUI.BaseComponents
             }
             else if (name == AccessibilityReadingPausedAction)
             {
-                if (this.ReadingPausedSignal().Empty() == false)
+                if (ReadingPausedSignal?.Empty() == false)
                 {
-                    this.ReadingPausedSignal().Emit();
+                    ReadingPausedSignal?.Emit();
                     return true;
                 }
                 else
@@ -552,9 +552,9 @@ namespace Tizen.NUI.BaseComponents
             }
             else if (name == AccessibilityReadingResumedAction)
             {
-                if (this.ReadingResumedSignal().Empty() == false)
+                if (ReadingResumedSignal?.Empty() == false)
                 {
-                    this.ReadingResumedSignal().Emit();
+                    ReadingResumedSignal?.Emit();
                     return true;
                 }
                 else
