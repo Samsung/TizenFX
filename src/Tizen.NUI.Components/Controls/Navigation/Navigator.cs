@@ -18,6 +18,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
@@ -377,6 +378,9 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="content">The content of Dialog.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [SuppressMessage("Microsoft.Reliability",
+                         "CA2000:DisposeObjectsBeforeLosingScope",
+                         Justification = "The pushed views are added to NavigationPages and are disposed in Navigator.Dispose().")]
         public static void ShowDialog(View content = null)
         {
             var window = NUIApplication.GetDefaultWindow();
@@ -397,6 +401,9 @@ namespace Tizen.NUI.Components
         /// <param name="content">The content of AlertDialog.</param>
         /// <param name="actionContent">The action content of AlertDialog.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [SuppressMessage("Microsoft.Reliability",
+                         "CA2000:DisposeObjectsBeforeLosingScope",
+                         Justification = "The pushed views are added to NavigationPages and are disposed in Navigator.Dispose().")]
         public static void ShowAlertDialog(View titleContent, View content, View actionContent)
         {
             var window = NUIApplication.GetDefaultWindow();
@@ -420,6 +427,9 @@ namespace Tizen.NUI.Components
         /// <param name="negativeButtonText">The negative button text in the action content of AlertDialog.</param>
         /// <param name="negativeButtonClickedHandler">The clicked callback of the negative button in the action content of AlertDialog.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [SuppressMessage("Microsoft.Reliability",
+                         "CA2000:DisposeObjectsBeforeLosingScope",
+                         Justification = "The pushed views are added to NavigationPages and are disposed in Navigator.Dispose().")]
         public static void ShowAlertDialog(string title = null, string message = null, string positiveButtonText = null, EventHandler<ClickedEventArgs> positiveButtonClickedHandler = null, string negativeButtonText = null, EventHandler<ClickedEventArgs> negativeButtonClickedHandler = null)
         {
             var window = NUIApplication.GetDefaultWindow();
