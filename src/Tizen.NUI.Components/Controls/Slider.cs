@@ -104,7 +104,7 @@ namespace Tizen.NUI.Components
 
         /// <summary>
         /// TrackThicknessProperty
-        /// </summary>       
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TrackThicknessProperty = BindableProperty.Create(nameof(TrackThickness), typeof(uint), typeof(Slider), (uint)0, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -122,7 +122,7 @@ namespace Tizen.NUI.Components
 
         /// <summary>
         /// IsValueShownProperty
-        /// </summary> 
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty IsValueShownProperty = BindableProperty.Create(nameof(IsValueShown), typeof(bool), typeof(Slider), true, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -144,7 +144,7 @@ namespace Tizen.NUI.Components
 
         /// <summary>
         /// ValueIndicatorTextProperty
-        /// </summary> 
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ValueIndicatorTextProperty = BindableProperty.Create(nameof(ValueIndicatorText), typeof(string), typeof(Slider), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -968,6 +968,38 @@ namespace Tizen.NUI.Components
             }
         }
 
+        /// <summary>
+        /// Flag to decide whether the thumb snap to the nearest discrete value when the user drags the thumb or taps.
+        ///
+        /// The default value is false.
+        /// </summary>
+        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsDiscrete { get; set; } = false;
+
+        /// <summary>
+        /// Gets or sets the discrete value of slider.
+        ///
+        /// The discrete value is evenly spaced between MinValue and MaxValue.
+        /// For example, MinValue is 0, MaxValue is 100, and DiscreteValue is 20.
+        /// Then, the thumb can only go to 0, 20, 40, 60, 80, and 100.
+        /// The default is 0.
+        /// </summary>
+        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float DiscreteValue
+        {
+            get
+            {
+                return discreteValue;
+            }
+            set
+            {
+                discreteValue = value;
+                UpdateValue();
+            }
+        }
+
         private Extents spaceBetweenTrackAndIndicator
         {
             get
@@ -1342,6 +1374,12 @@ namespace Tizen.NUI.Components
                     curValue = ((currentSlidedOffset / (float)bgTrackLength) * (float)(maxValue - minValue)) + minValue;
                 }
             }
+
+            if (IsDiscrete)
+            {
+                curValue = CalculateDiscreteValue(curValue);
+            }
+
             if (valueChangedHandler != null)
             {
                 ValueChangedArgs args = new ValueChangedArgs();
@@ -1423,6 +1461,12 @@ namespace Tizen.NUI.Components
             if (bgTrackLength != 0)
             {
                 curValue = ((currentSlidedOffset / (float)bgTrackLength) * (maxValue - minValue)) + minValue;
+
+                if (IsDiscrete)
+                {
+                    curValue = CalculateDiscreteValue(curValue);
+                }
+
                 if (null != valueChangedHandler)
                 {
                     ValueChangedArgs args = new ValueChangedArgs();
@@ -1437,6 +1481,11 @@ namespace Tizen.NUI.Components
                     sliderValueChangedHandler(this, args);
                 }
             }
+        }
+
+        private float CalculateDiscreteValue(float value)
+        {
+            return ((float)Math.Round((value / discreteValue)) * discreteValue);
         }
 
         private void UpdateState(bool isFocusedNew, bool isPressedNew)
