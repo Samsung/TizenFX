@@ -315,9 +315,10 @@ namespace Tizen.NUI.Components
         private void Initialize()
         {
             IsSelectable = true;
-#if (PROFILE_MOBILE)
-            Feedback = true;
-#endif
+            if (ThemeManager.CurrentProfile == ThemeManager.Profile.Mobile)
+            {
+                Feedback = true;
+            }
         }
 
         private void OnSelect()

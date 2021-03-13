@@ -713,9 +713,10 @@ namespace Tizen.NUI.Components
                 ParentOrigin = NUI.ParentOrigin.BottomCenter,
                 PivotPoint = NUI.PivotPoint.BottomCenter,
             };
-#if (PROFILE_MOBILE)
-            AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "ScrollableBase");
-#endif
+            if (ThemeManager.CurrentProfile == ThemeManager.Profile.Mobile)
+            {
+                AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "ScrollableBase");
+            }
         }
 
         private bool OnIterruptTouchingChildTouched(object source, View.TouchEventArgs args)
@@ -1010,9 +1011,10 @@ namespace Tizen.NUI.Components
 
             if (type == DisposeTypes.Explicit)
             {
-#if (PROFILE_MOBILE)
-                AccessibilityManager.Instance.DeleteAccessibilityAttribute(this);
-#endif
+                if (ThemeManager.CurrentProfile == ThemeManager.Profile.Mobile)
+                {
+                    AccessibilityManager.Instance.DeleteAccessibilityAttribute(this);
+                }
                 StopVerticalShadowAnimation();
                 StopScroll();
 
