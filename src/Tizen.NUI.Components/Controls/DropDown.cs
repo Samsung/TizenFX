@@ -141,9 +141,10 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public DropDown() : base()
         {
-#if (PROFILE_MOBILE)
-            AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "DropDown");
-#endif
+            if (ThemeManager.CurrentProfile == ThemeManager.Profile.Mobile)
+            {
+                AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "DropDown");
+            }
         }
 
         /// <summary>
@@ -155,9 +156,10 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public DropDown(string style) : base(style)
         {
-#if (PROFILE_MOBILE)
-            AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "DropDown");
-#endif
+            if (ThemeManager.CurrentProfile == ThemeManager.Profile.Mobile)
+            {
+                AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "DropDown");
+            }
         }
 
         /// <summary>
@@ -169,9 +171,10 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public DropDown(DropDownStyle dropDownStyle) : base(dropDownStyle)
         {
-#if (PROFILE_MOBILE)
-            AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "DropDown");
-#endif
+            if (ThemeManager.CurrentProfile == ThemeManager.Profile.Mobile)
+            {
+                AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "DropDown");
+            }
         }
 
         /// <summary>

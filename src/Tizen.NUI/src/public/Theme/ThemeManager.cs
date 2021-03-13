@@ -29,7 +29,10 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public static class ThemeManager
     {
-        private enum Profile
+
+        /// <summary></summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum Profile
         {
             Common = 0,
             Mobile = 1,
@@ -104,7 +107,9 @@ namespace Tizen.NUI
 
         internal static bool ThemeApplied => (CurrentTheme.Count > 0 || DefaultTheme.Count > 0);
 
-        private static Profile CurrentProfile
+        /// <summary></summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Profile CurrentProfile
         {
             get
             {
