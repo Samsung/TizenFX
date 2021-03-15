@@ -207,7 +207,6 @@ namespace Tizen.System
         /// <summary>
         /// Gets the resident set size in graphic execution manager of a process.
         /// </summary>
-        /// <since_tizen> 6.5 </since_tizen>
         /// <param name="pid">The process id.</param>
         /// <returns>The resident set size <paramref name="pid"/> is using (KiB).</returns>
         /// <exception cref="ArgumentException">Thrown when the <paramref name="pid"/> is invalid.</exception>
