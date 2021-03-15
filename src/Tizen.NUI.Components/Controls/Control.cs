@@ -46,10 +46,6 @@ namespace Tizen.NUI.Components
 
         private Feedback feedback = null;
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ControlStyle Style => (ControlStyle)ViewStyle.Clone();
-
         static Control()
         {
             ThemeManager.AddPackageTheme(DefaultThemeCreator.Instance);
@@ -83,7 +79,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Control(ControlStyle style) : base(style)
         {
-            Initialize();
         }
 
         /// <summary>
@@ -93,15 +88,14 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Control(string styleName) : this(ThemeManager.GetStyle(styleName) as ControlStyle)
+        public Control(string styleName) : this(new ControlStyle() /* Apply empty style */)
         {
             if (ThemeManager.GetStyle(styleName) == null)
             {
                 throw new InvalidOperationException($"There is no style {styleName}");
             }
 
-            this.styleName = styleName;
-            ThemeChangeSensitive = true;
+            StyleName = styleName;
         }
 
         /// <summary>
@@ -207,12 +201,14 @@ namespace Tizen.NUI.Components
             base.Dispose(type);
         }
 
-        /// <summary>
-        /// OnInitialize
-        /// </summary>
+        /// <inheritdoc/>
         public override void OnInitialize()
         {
             base.OnInitialize();
+
+            LeaveRequired = true;
+            StateFocusableOnTouchMode = false;
+            EnableControlState = true;
         }
 
         /// <summary>
@@ -311,15 +307,6 @@ namespace Tizen.NUI.Components
 
             // If the OnThemeChangedEvent is not implemented, ApplyStyle()
             base.OnThemeChanged(sender, e);
-        }
-
-        private void Initialize()
-        {
-            LeaveRequired = true;
-
-            StateFocusableOnTouchMode = false;
-
-            EnableControlState = true;
         }
     }
 }

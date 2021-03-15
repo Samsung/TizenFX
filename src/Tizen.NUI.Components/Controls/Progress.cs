@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
 using System.ComponentModel;
+using System.Diagnostics;
 
 namespace Tizen.NUI.Components
 {
@@ -130,7 +131,6 @@ namespace Tizen.NUI.Components
         private float minValue = 0;
         private float currentValue = 0;
         private float bufferValue = 0;
-        private ProgressStyle progressStyle => ViewStyle as ProgressStyle;
 
         static Progress() { }
         /// <summary>
@@ -139,7 +139,6 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public Progress() : base()
         {
-            Initialize();
         }
 
         /// <summary>
@@ -149,7 +148,6 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Progress(string style) : base(style)
         {
-            Initialize();
         }
 
         /// <summary>
@@ -159,7 +157,6 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Progress(ProgressStyle progressStyle) : base(progressStyle)
         {
-            Initialize();
         }
 
         /// <summary>
@@ -188,21 +185,13 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Get style of progress.
+        /// Return currently applied style.
         /// </summary>
+        /// <remarks>
+        /// Modifying contents in style may cause unexpected behaviour.
+        /// </remarks>
         /// <since_tizen> 8 </since_tizen>
-        public new ProgressStyle Style
-        {
-            get
-            {
-                var result = new ProgressStyle(progressStyle);
-                result.CopyPropertiesFromView(this);
-                result.Track.CopyPropertiesFromView(trackImage);
-                result.Progress.CopyPropertiesFromView(progressImage);
-                result.Buffer.CopyPropertiesFromView(bufferImage);
-                return result;
-            }
-        }
+        public ProgressStyle Style => (ProgressStyle)(ViewStyle as ProgressStyle)?.Clone();
 
         /// <summary>
         /// The property to get/set Track image object URL of the Progress.
@@ -210,17 +199,8 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public string TrackImageURL
         {
-            get
-            {
-                return progressStyle?.Track?.ResourceUrl?.All;
-            }
-            set
-            {
-                if (null != progressStyle?.Track)
-                {
-                    progressStyle.Track.ResourceUrl = value;
-                }
-            }
+            get => trackImage.ResourceUrl;
+            set => trackImage.ResourceUrl = value;
         }
 
         /// <summary>
@@ -229,17 +209,8 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public string ProgressImageURL
         {
-            get
-            {
-                return progressStyle?.Progress?.ResourceUrl?.All;
-            }
-            set
-            {
-                if (null != progressStyle?.Progress)
-                {
-                    progressStyle.Progress.ResourceUrl = value;
-                }
-            }
+            get => progressImage.ResourceUrl;
+            set => progressImage.ResourceUrl = value;
         }
 
         /// <summary>
@@ -248,18 +219,8 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public string BufferImageURL
         {
-            get
-            {
-                return progressStyle?.Buffer?.ResourceUrl?.All;
-            }
-            set
-            {
-                if (null != progressStyle?.Buffer)
-                {
-                    progressStyle.Buffer.ResourceUrl = value;
-                    RelayoutRequest();
-                }
-            }
+            get => bufferImage.ResourceUrl;
+            set => bufferImage.ResourceUrl = value;
         }
 
         /// <summary>
@@ -268,17 +229,8 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public Color TrackColor
         {
-            get
-            {
-                return progressStyle?.Track?.BackgroundColor?.All;
-            }
-            set
-            {
-                if (null != progressStyle?.Track)
-                {
-                    progressStyle.Track.BackgroundColor = value;
-                }
-            }
+            get => trackImage.BackgroundColor;
+            set => trackImage.BackgroundColor = value;
         }
 
         /// <summary>
@@ -287,17 +239,8 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public Color ProgressColor
         {
-            get
-            {
-                return progressStyle?.Progress?.BackgroundColor?.All;
-            }
-            set
-            {
-                if (null != progressStyle?.Progress)
-                {
-                    progressStyle.Progress.BackgroundColor = value;
-                }
-            }
+            get => progressImage.BackgroundColor;
+            set => progressImage.BackgroundColor = value;
         }
 
         /// <summary>
@@ -306,17 +249,8 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public Color BufferColor
         {
-            get
-            {
-                return progressStyle?.Buffer?.BackgroundColor?.All;
-            }
-            set
-            {
-                if (null != progressStyle?.Buffer)
-                {
-                    progressStyle.Buffer.BackgroundColor = value;
-                }
-            }
+            get => bufferImage.BackgroundColor;
+            set => bufferImage.BackgroundColor = value;
         }
 
         /// <summary>
@@ -396,6 +330,35 @@ namespace Tizen.NUI.Components
             set
             {
                 SetValue(ProgressStateProperty, value);
+            }
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnInitialize()
+        {
+            base.OnInitialize();
+            // create necessary components
+            InitializeTrack();
+            InitializeBuffer();
+            InitializeProgress();
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void ApplyStyle(ViewStyle style)
+        {
+            base.ApplyStyle(style);
+
+            if (style is ProgressStyle progressStyle)
+            {
+                Debug.Assert(trackImage != null);
+                Debug.Assert(progressImage != null);
+                Debug.Assert(bufferImage != null);
+
+                trackImage.ApplyStyle(progressStyle.Track);
+                progressImage.ApplyStyle(progressStyle.Progress);
+                bufferImage.ApplyStyle(progressStyle.Buffer);
             }
         }
 
@@ -507,14 +470,6 @@ namespace Tizen.NUI.Components
             }
         }
 
-        private void Initialize()
-        {
-            // create necessary components
-            InitializeTrack();
-            InitializeBuffer();
-            InitializeProgress();
-        }
-
         private void InitializeTrack()
         {
             if (null == trackImage)
@@ -528,7 +483,6 @@ namespace Tizen.NUI.Components
                     PivotPoint = NUI.PivotPoint.TopLeft
                 };
                 Add(trackImage);
-                trackImage.ApplyStyle(progressStyle.Track);
             }
         }
 
@@ -545,7 +499,6 @@ namespace Tizen.NUI.Components
                     PivotPoint = Tizen.NUI.PivotPoint.TopLeft
                 };
                 Add(progressImage);
-                progressImage.ApplyStyle(progressStyle.Progress);
             }
         }
 
@@ -562,7 +515,6 @@ namespace Tizen.NUI.Components
                     PivotPoint = Tizen.NUI.PivotPoint.TopLeft
                 };
                 Add(bufferImage);
-                bufferImage.ApplyStyle(progressStyle.Buffer);
             }
         }
     }

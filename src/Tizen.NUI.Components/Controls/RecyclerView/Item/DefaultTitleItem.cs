@@ -36,28 +36,6 @@ namespace Tizen.NUI.Components
         private Size prevSize;
         private DefaultTitleItemStyle ItemStyle => ViewStyle as DefaultTitleItemStyle;
 
-        /// <summary>
-        /// Return a copied Style instance of DefaultTitleItem
-        /// </summary>
-        /// <remarks>
-        /// It returns copied Style instance and changing it does not effect to the DefaultTitleItem.
-        /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
-        /// </remarks>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public new DefaultTitleItemStyle Style
-        {
-            get
-            {
-                var result = new DefaultTitleItemStyle(ItemStyle);
-                result.CopyPropertiesFromView(this);
-                if (itemLabel) result.Label.CopyPropertiesFromView(itemLabel);
-                if (itemIcon) result.Icon.CopyPropertiesFromView(itemIcon);
-                if (itemSeperator) result.Seperator.CopyPropertiesFromView(itemSeperator);
-
-                return result;
-            }
-        }
-
         static DefaultTitleItem() { }
 
         /// <summary>

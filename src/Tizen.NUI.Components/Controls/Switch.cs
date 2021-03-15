@@ -39,7 +39,6 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public Switch() : base()
         {
-            Initialize();
         }
 
         /// <summary>
@@ -49,7 +48,6 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Switch(string style) : base(style)
         {
-            Initialize();
         }
 
         /// <summary>
@@ -59,7 +57,6 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Switch(SwitchStyle switchStyle) : base(switchStyle)
         {
-            Initialize();
         }
 
         /// <summary>
@@ -70,6 +67,10 @@ namespace Tizen.NUI.Components
         {
             base.OnInitialize();
             SetAccessibilityConstructor(Role.ToggleButton);
+            IsSelectable = true;
+#if PROFILE_MOBILE
+            Feedback = true;
+#endif
         }
 
         /// <summary>
@@ -97,24 +98,13 @@ namespace Tizen.NUI.Components
         public event EventHandler<SelectedChangedEventArgs> SelectedChanged;
 
         /// <summary>
-        /// Return a copied Style instance of Switch
+        /// Return currently applied style.
         /// </summary>
         /// <remarks>
-        /// It returns copied Style instance and changing it does not effect to the Switch.
-        /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
+        /// Modifying contents in style may cause unexpected behaviour.
         /// </remarks>
         /// <since_tizen> 8 </since_tizen>
-        public new SwitchStyle Style
-        {
-            get
-            {
-                var result = new SwitchStyle(ViewStyle as SwitchStyle);
-                result.CopyPropertiesFromView(this);
-                result.Track.CopyPropertiesFromView(Track);
-                result.Thumb.CopyPropertiesFromView(Thumb);
-                return result;
-            }
-        }
+        public new SwitchStyle Style => (SwitchStyle)(ViewStyle as SwitchStyle)?.Clone();
 
         /// <summary>
         /// Apply style to switch.
@@ -123,8 +113,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void ApplyStyle(ViewStyle viewStyle)
         {
-            base.ApplyStyle(viewStyle);
-
             SwitchStyle swStyle = viewStyle as SwitchStyle;
 
             if (null != swStyle)
@@ -139,6 +127,8 @@ namespace Tizen.NUI.Components
                     Thumb.ApplyStyle(swStyle.Thumb);
                 }
             }
+
+            base.ApplyStyle(viewStyle);
         }
 
         /// <summary>
@@ -333,14 +323,6 @@ namespace Tizen.NUI.Components
             {
                 OnSelect();
             }
-        }
-
-        private void Initialize()
-        {
-            IsSelectable = true;
-#if PROFILE_MOBILE
-                Feedback = true;
-#endif
         }
 
         private void OnSelect()
