@@ -70,7 +70,6 @@ internal static partial class Interop
         /// <summary>
         /// Enumeration for the process memory information key.
         /// </summary>
-        /// <since_tizen> 6.5 </since_tizen>
         public enum ProcessMemoryInfoKey
         {
             /// <summary>
