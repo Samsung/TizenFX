@@ -70,6 +70,7 @@ internal static partial class Interop
         /// <summary>
         /// Enumeration for the process memory information key.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public enum ProcessMemoryInfoKey
         {
             /// <summary>
