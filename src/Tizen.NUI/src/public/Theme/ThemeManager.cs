@@ -75,7 +75,7 @@ namespace Tizen.NUI
             }
         }
 
-        internal static bool ThemeApplied => defaultTheme.Count > 0 || (currentTheme != null && currentTheme.Count > 0);
+        private static bool ThemeApplied => defaultTheme.Count > 0 || (currentTheme != null && currentTheme.Count > 0);
 
         /// <summary>
         /// Apply theme to the NUI.
@@ -114,7 +114,8 @@ namespace Tizen.NUI
 
             if (theme != null)
             {
-                CurrentTheme = theme;
+                defaultTheme = theme;
+                NotifyThemeChanged();
                 return true;
             }
 
@@ -133,10 +134,7 @@ namespace Tizen.NUI
         public static ViewStyle GetStyle(string styleName)
         {
             if (styleName == null) throw new ArgumentNullException(nameof(styleName));
-
-            if (!ThemeApplied) return null;
-
-            return (currentTheme?.GetStyle(styleName) ?? defaultTheme.GetStyle(styleName))?.Clone();
+            return GetStyleWithoutClone(styleName)?.Clone();
         }
 
         /// <summary>
@@ -148,10 +146,31 @@ namespace Tizen.NUI
         public static ViewStyle GetStyle(Type viewType)
         {
             if (viewType == null) throw new ArgumentNullException(nameof(viewType));
+            return GetStyleWithoutClone(viewType)?.Clone();
+        }
 
+        /// <summary>
+        /// Load a style with style name in the current theme.
+        /// </summary>
+        /// <param name="styleName">The style name.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static ViewStyle GetStyleWithoutClone(string styleName)
+        {
             if (!ThemeApplied) return null;
 
-            return (currentTheme?.GetStyle(viewType) ?? defaultTheme.GetStyle(viewType))?.Clone();
+            return currentTheme?.GetStyle(styleName) ?? defaultTheme.GetStyle(styleName);
+        }
+
+        /// <summary>
+        /// Load a style with View type in the current theme.
+        /// </summary>
+        /// <param name="viewType">The type of View.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static ViewStyle GetStyleWithoutClone(Type viewType)
+        {
+            if (!ThemeApplied) return null;
+
+            return currentTheme?.GetStyle(viewType) ?? defaultTheme.GetStyle(viewType);
         }
 
         /// <summary>

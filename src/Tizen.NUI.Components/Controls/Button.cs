@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -75,12 +75,6 @@ namespace Tizen.NUI.Components
                 if (instance.isEnabled != newEnabled)
                 {
                     instance.isEnabled = newEnabled;
-
-                    if (instance.buttonStyle != null)
-                    {
-                        instance.buttonStyle.IsEnabled = newEnabled;
-                    }
-
                     instance.UpdateState();
                 }
             }
@@ -97,11 +91,6 @@ namespace Tizen.NUI.Components
                 if (instance.isSelected != newSelected)
                 {
                     instance.isSelected = newSelected;
-
-                    if (instance.buttonStyle != null)
-                    {
-                        instance.buttonStyle.IsSelected = newSelected;
-                    }
 
                     if (instance.isSelectable)
                     {
@@ -126,12 +115,6 @@ namespace Tizen.NUI.Components
                 if (instance.isSelectable != newSelectable)
                 {
                     instance.isSelectable = newSelectable;
-
-                    if (instance.buttonStyle != null)
-                    {
-                        instance.buttonStyle.IsSelectable = newSelectable;
-                    }
-
                     instance.UpdateState();
                 }
             }
@@ -173,7 +156,6 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public Button() : base()
         {
-            Initialize();
         }
 
         /// <summary>
@@ -183,7 +165,6 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Button(string style) : base(style)
         {
-            Initialize();
         }
 
         /// <summary>
@@ -193,7 +174,6 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Button(ButtonStyle buttonStyle) : base(buttonStyle)
         {
-            Initialize();
         }
 
         /// <summary>
@@ -352,25 +332,13 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Return a copied Style instance of Button
+        /// Return currently applied style.
         /// </summary>
         /// <remarks>
-        /// It returns copied Style instance and changing it does not effect to the Button.
-        /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
+        /// Modifying contents in style may cause unexpected behaviour.
         /// </remarks>
         /// <since_tizen> 8 </since_tizen>
-        public new ButtonStyle Style
-        {
-            get
-            {
-                var result = (ButtonStyle)ViewStyle.Clone();
-                result.CopyPropertiesFromView(this);
-                result.Text.CopyPropertiesFromView(TextLabel);
-                result.Icon.CopyPropertiesFromView(Icon);
-                result.Overlay.CopyPropertiesFromView(OverlayImage);
-                return result;
-            }
-        }
+        public ButtonStyle Style => (ButtonStyle)(ViewStyle as ButtonStyle)?.Clone();
 
         /// <summary>
         /// The text of Button.
@@ -683,8 +651,6 @@ namespace Tizen.NUI.Components
             set => SetValue(TextPaddingProperty, value);
         }
 
-        private ButtonStyle buttonStyle => ViewStyle as ButtonStyle;
-
         /// <summary>
         /// Called after a key event is received by the view that has had its focus set.
         /// </summary>
@@ -779,7 +745,7 @@ namespace Tizen.NUI.Components
 
             base.ApplyStyle(viewStyle);
 
-            if (null != buttonStyle)
+            if (viewStyle is ButtonStyle buttonStyle)
             {
                 Extension = buttonStyle.CreateExtension();
                 if (buttonStyle.Overlay != null)
@@ -799,6 +765,7 @@ namespace Tizen.NUI.Components
             }
 
             styleApplied = true;
+            UpdateState();
         }
 
         /// <summary>

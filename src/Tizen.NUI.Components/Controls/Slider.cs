@@ -153,10 +153,6 @@ namespace Tizen.NUI.Components
             {
                 string newText = (string)newValue;
                 instance.valueIndicatorText.Text = newText;
-                if (instance.sliderStyle != null)
-                {
-                    instance.sliderStyle.ValueIndicatorText.Text = newText;
-                }
             }
         },
         defaultValueCreator: (bindable) =>
@@ -334,36 +330,13 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Return a copied Style instance of Slider
+        /// Return currently applied style.
         /// </summary>
         /// <remarks>
-        /// It returns copied Style instance and changing it does not effect to the Slider.
-        /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
+        /// Modifying contents in style may cause unexpected behaviour.
         /// </remarks>
         /// <since_tizen> 8 </since_tizen>
-        public new SliderStyle Style
-        {
-            get
-            {
-                var result = new SliderStyle(sliderStyle);
-                result.CopyPropertiesFromView(this);
-                result.Track.CopyPropertiesFromView(bgTrackImage);
-                result.Progress.CopyPropertiesFromView(slidedTrackImage);
-                result.Thumb.CopyPropertiesFromView(thumbImage);
-                result.LowIndicatorImage.CopyPropertiesFromView(lowIndicatorImage);
-                result.HighIndicatorImage.CopyPropertiesFromView(highIndicatorImage);
-                result.LowIndicator.CopyPropertiesFromView(lowIndicatorText);
-                result.HighIndicator.CopyPropertiesFromView(highIndicatorText);
-                result.ValueIndicatorText.CopyPropertiesFromView(valueIndicatorText);
-                result.ValueIndicatorImage.CopyPropertiesFromView(valueIndicatorImage);
-                return result;
-            }
-        }
-
-        /// <summary>
-        /// Return a copied Style instance of Slider
-        /// </summary>
-        private SliderStyle sliderStyle => ViewStyle as SliderStyle;
+        public SliderStyle Style => (SliderStyle)(ViewStyle as SliderStyle)?.Clone();
 
         /// <summary>
         /// Gets or sets the direction type of slider.
@@ -477,7 +450,6 @@ namespace Tizen.NUI.Components
                 {
                     thumbImage.Size = value;
                     thumbSize = value;
-                    sliderStyle.Thumb.Size = value;
                 }
             }
         }
@@ -500,7 +472,6 @@ namespace Tizen.NUI.Components
                 {
                     thumbImage.ResourceUrl = value;
                     thumbImageUrl = value;
-                    sliderStyle.Thumb.ResourceUrl = value;
                 }
             }
         }
@@ -580,7 +551,6 @@ namespace Tizen.NUI.Components
                 {
                     thumbImage.BackgroundColor = value;
                     thumbColor = value;
-                    sliderStyle.Thumb.BackgroundColor = value;
                 }
             }
         }
@@ -600,7 +570,6 @@ namespace Tizen.NUI.Components
                 if (null != bgTrackImage)
                 {
                     bgTrackImage.BackgroundColor = value;
-                    sliderStyle.Track.BackgroundColor = value;
                 }
             }
         }
@@ -620,7 +589,6 @@ namespace Tizen.NUI.Components
                 if (null != slidedTrackImage)
                 {
                     slidedTrackImage.BackgroundColor = value;
-                    sliderStyle.Progress.BackgroundColor = value;
                 }
             }
         }
@@ -675,7 +643,6 @@ namespace Tizen.NUI.Components
                 if (null != warningTrackImage)
                 {
                     warningTrackImage.BackgroundColor = value;
-                    sliderStyle.WarningTrack.BackgroundColor = value;
                 }
             }
         }
@@ -696,7 +663,6 @@ namespace Tizen.NUI.Components
                 if (null != warningSlidedTrackImage)
                 {
                     warningSlidedTrackImage.BackgroundColor = value;
-                    sliderStyle.WarningProgress.BackgroundColor = value;
                 }
             }
         }
@@ -774,7 +740,6 @@ namespace Tizen.NUI.Components
             {
                 if (null == lowIndicatorImage) lowIndicatorImage = new ImageView();
                 lowIndicatorImage.ResourceUrl = value;
-                sliderStyle.LowIndicatorImage.ResourceUrl = value;
             }
         }
 
@@ -792,7 +757,6 @@ namespace Tizen.NUI.Components
             {
                 if (null == highIndicatorImage) highIndicatorImage = new ImageView();
                 highIndicatorImage.ResourceUrl = value;
-                sliderStyle.HighIndicatorImage.ResourceUrl = value;
             }
         }
 
@@ -811,7 +775,6 @@ namespace Tizen.NUI.Components
                 if (null != lowIndicatorText)
                 {
                     lowIndicatorText.Text = value;
-                    sliderStyle.LowIndicator.Text = value;
                 }
             }
         }
@@ -831,7 +794,6 @@ namespace Tizen.NUI.Components
                 if (null != highIndicatorText)
                 {
                     highIndicatorText.Text = value;
-                    sliderStyle.HighIndicator.Text = value;
                 }
             }
         }
@@ -871,7 +833,6 @@ namespace Tizen.NUI.Components
                 if (null != highIndicatorText)
                 {
                     highIndicatorText.Size = value;
-                    sliderStyle.HighIndicator.Size = value;
                 }
             }
         }
@@ -942,7 +903,6 @@ namespace Tizen.NUI.Components
                 if (null != valueIndicatorImage)
                 {
                     valueIndicatorImage.Size = value;
-                    sliderStyle.ValueIndicatorImage.Size = value;
                 }
             }
         }
@@ -963,7 +923,6 @@ namespace Tizen.NUI.Components
                 if (null != valueIndicatorImage)
                 {
                     valueIndicatorImage.ResourceUrl = value;
-                    sliderStyle.ValueIndicatorImage.ResourceUrl = value;
                 }
             }
         }

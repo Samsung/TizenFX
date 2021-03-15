@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,9 +14,10 @@
  * limitations under the License.
  *
  */
-using System;
+
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
 using Tizen.NUI.Accessibility;
@@ -29,50 +30,31 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 6 </since_tizen>
     public class Loading : Control
     {
-        /// <summary>The ImageArray bindable property.</summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ImageArrayProperty = BindableProperty.Create(nameof(ImageArray), typeof(string[]), typeof(Loading), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var instance = (Loading)bindable;
-            if (newValue != null)
-            {
-                instance.loadingStyle.Images = (string[])newValue;
-                instance.imageVisual.URLS = instance.loadingStyle.ImageList as List<string>;
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var instance = (Loading)bindable;
-            return instance.loadingStyle.Images;
-        });
         /// <summary>The ImageList bindable property.</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ImageListProperty = BindableProperty.Create(nameof(ImageList), typeof(IList<string>), typeof(Loading), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            var instance = (Loading)bindable;
-            if (newValue != null)
-            {
-                var newValueList = newValue as List<string>;
-                instance.loadingStyle.ImageList = newValueList;
-                if (instance.imageVisual != null) instance.imageVisual.URLS = newValueList;
-            }
+            Debug.Assert(((Loading)bindable).imageVisual != null);
+
+            var newList = newValue as List<string>;
+            ((Loading)bindable).imageVisual.URLS = newList == null ? new List<string>() : newList;
         },
         defaultValueCreator: (bindable) =>
         {
-            return ((Loading)bindable).loadingStyle.ImageList;
+            Debug.Assert(((Loading)bindable).imageVisual != null);
+            return ((Loading)bindable).imageVisual.URLS;
         });
         /// <summary>The Size bindable property.</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new static readonly BindableProperty SizeProperty = BindableProperty.Create(nameof(Size), typeof(Size), typeof(Loading), new Size(0, 0), propertyChanged: (bindable, oldValue, newValue) =>
-         {
-             var instance = (Loading)bindable;
-             if (newValue != null)
-             {
-                 Size size = (Size)newValue;
-                 ((View)bindable).Size = size;
-                 instance.loadingStyle.LoadingSize = size;
-             }
-         },
+        {
+            var instance = (Loading)bindable;
+            if (newValue != null)
+            {
+                Size size = (Size)newValue;
+                ((View)bindable).Size = size;
+            }
+        },
         defaultValueCreator: (bindable) =>
         {
             var instance = (View)bindable;
@@ -81,26 +63,22 @@ namespace Tizen.NUI.Components
         /// <summary>The FrameRate bindable property.</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty FrameRateProperty = BindableProperty.Create(nameof(FrameRate), typeof(int), typeof(Loading), (int)(1000 / 16.6f), propertyChanged: (bindable, oldValue, newValue) =>
-          {
-              var instance = (Loading)bindable;
-              if (newValue != null)
-              {
-                  int frameRate = (int)newValue;
-                  if (0 != frameRate) //It will crash if 0
-                  {
-                      instance.loadingStyle.FrameRate = frameRate;
-                      instance.imageVisual.FrameDelay = 1000.0f / frameRate;
-                  }
-              }
-          },
+        {
+            Debug.Assert(((Loading)bindable).imageVisual != null);
+
+            int frameRate = (int)newValue;
+            if (0 != frameRate) //It will crash if 0
+            {
+                ((Loading)bindable).imageVisual.FrameDelay = 1000.0f / frameRate;
+            }
+        },
         defaultValueCreator: (bindable) =>
         {
-            var instance = (Loading)bindable;
-            return instance.loadingStyle.FrameRate?.All ?? (int)(1000 / 16.6f);
+            Debug.Assert(((Loading)bindable).imageVisual != null);
+            return ((Loading)bindable).imageVisual.FrameDelay * 1000.0f;
         });
 
         private AnimatedImageVisual imageVisual = null;
-        private LoadingStyle loadingStyle => ViewStyle as LoadingStyle;
 
         internal new class Property
         {
@@ -117,7 +95,6 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public Loading() : base()
         {
-            Initialize();
         }
 
         /// <summary>
@@ -127,7 +104,6 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Loading(string style) : base(style)
         {
-            Initialize();
         }
 
         /// <summary>
@@ -137,27 +113,16 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Loading(LoadingStyle loadingStyle) : base(loadingStyle)
         {
-            Initialize();
         }
 
         /// <summary>
-        /// Get style of loading.
-        /// Return a copied Style instance of Loading
+        /// Return currently applied style.
         /// </summary>
         /// <remarks>
-        /// It returns copied Style instance and changing it does not effect to the Loading.
-        /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
-        /// </remarks>>
+        /// Modifying contents in style may cause unexpected behaviour.
+        /// </remarks>
         /// <since_tizen> 8 </since_tizen>
-        public new LoadingStyle Style
-        {
-            get
-            {
-                var result = new LoadingStyle(loadingStyle);
-                result.CopyPropertiesFromView(this);
-                return result;
-            }
-        }
+        public LoadingStyle Style => (LoadingStyle)(ViewStyle as LoadingStyle)?.Clone();
 
         /// <summary>
         /// Gets or sets loading image resource array.
@@ -165,14 +130,8 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public string[] ImageArray
         {
-            get
-            {
-                return (string[])GetValue(ImageArrayProperty);
-            }
-            set
-            {
-                SetValue(ImageArrayProperty, value);
-            }
+            get => (GetValue(ImageListProperty) as List<string>).ToArray();
+            set => SetValue(ImageListProperty, value == null ? new List<string>() : new List<string>((string[])value));
         }
 
         /// <summary>
@@ -219,6 +178,51 @@ namespace Tizen.NUI.Components
             }
         }
 
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnInitialize()
+        {
+            base.OnInitialize();
+
+            imageVisual = new AnimatedImageVisual()
+            {
+                URLS = new List<string>(),
+                FrameDelay = 16.6f,
+                LoopCount = -1,
+                Position = new Vector2(0, 0),
+                Origin = Visual.AlignType.Center,
+                AnchorPoint = Visual.AlignType.Center,
+                SizePolicy = VisualTransformPolicyType.Relative,
+                Size = new Size2D(1, 1)
+            };
+
+            this.AddVisual("loadingImageVisual", imageVisual);
+
+            AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "Loading");
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void ApplyStyle(ViewStyle viewStyle)
+        {
+            base.ApplyStyle(viewStyle);
+
+            Debug.Assert(imageVisual != null);
+
+            if (viewStyle is LoadingStyle loadingStyle)
+            {
+                if (loadingStyle.Images != null)
+                {
+                    imageVisual.URLS = loadingStyle.ImageList as List<string>;
+                }
+
+                if (loadingStyle.LoadingSize != null)
+                {
+                    Size = loadingStyle.LoadingSize;
+                }
+            }
+        }
+
         /// <summary>
         /// Get Loading style.
         /// </summary>
@@ -251,40 +255,6 @@ namespace Tizen.NUI.Components
 
             //You must call base.Dispose(type) just before exit.
             base.Dispose(type);
-        }
-
-        private void Initialize()
-        {
-            imageVisual = new AnimatedImageVisual()
-            {
-                URLS = new List<string>(),
-                FrameDelay = 16.6f,
-                LoopCount = -1,
-                Position = new Vector2(0, 0),
-                Origin = Visual.AlignType.Center,
-                AnchorPoint = Visual.AlignType.Center,
-                SizePolicy = VisualTransformPolicyType.Relative,
-                Size = new Size2D(1, 1)
-            };
-
-            UpdateVisual();
-
-            this.AddVisual("loadingImageVisual", imageVisual);
-
-            AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "Loading");
-        }
-
-        private void UpdateVisual()
-        {
-            if (null != loadingStyle.Images)
-            {
-                loadingStyle.ImageList = new List<string>(loadingStyle.Images);
-                imageVisual.URLS = loadingStyle.ImageList as List<string>;
-            }
-            if (null != loadingStyle.FrameRate?.All && 0 != loadingStyle.FrameRate.All.Value)
-            {
-                imageVisual.FrameDelay = 1000.0f / (float)loadingStyle.FrameRate.All.Value;
-            }
         }
 
         /// <summary>
