@@ -254,15 +254,18 @@ namespace Tizen.System
             return 0;
         }
 
-        private void GetProcessMemoryValueInt(Interop.RuntimeInfo.ProcessMemoryInfoKey key, out int[] array)
+        private int[] GetProcessMemoryValueInt(Interop.RuntimeInfo.ProcessMemoryInfoKey key, IEnumerable<int> pids)
         {
             InformationError ret;
             IntPtr ptr = new IntPtr();
+            int[] array;
 
-            ret = Interop.RuntimeInfo.GetProcessMemoryValueInt(Pids, Count, key, out ptr);
+            ret = Interop.RuntimeInfo.GetProcessMemoryValueInt(pids.ToArray<int>(), pids.ToArray<int>().Length, key, out ptr);
             if (ret != InformationError.None)
             {
                 Log.Error(InformationErrorFactory.LogTag, "Interop failed to get process memory info: " + key.ToString());
+                if (ret == InformationError.NoData)
+                    return null;
                 InformationErrorFactory.ThrowException(ret);
             }
 
@@ -272,6 +275,7 @@ namespace Tizen.System
                 for (int i = 0; i < Count; i++)
                     array[i] = *((int*)ptr.ToPointer() + (i * sizeof(int)));
             }
+            return array;
         }
 
         /// <summary>
@@ -290,7 +294,7 @@ namespace Tizen.System
 
             Pids = pid.ToArray<int>();
             IntPtr ptr = new IntPtr();
-            Count = Pids.Count<int>();
+            Count = Pids.Length;
 
             ret = Interop.RuntimeInfo.GetProcessMemoryInfo(Pids, Count, ref ptr);
             if (ret != InformationError.None)
@@ -306,29 +310,9 @@ namespace Tizen.System
                 ptr += Marshal.SizeOf<Interop.RuntimeInfo.ProcessCpuUsage>();
             }
 
-            try
-            {
-                GetProcessMemoryValueInt(Interop.RuntimeInfo.ProcessMemoryInfoKey.Gpu, out Gpus);
-            }
-            catch (NotSupportedException)
-            {
-            }
-
-            try
-            {
-                GetProcessMemoryValueInt(Interop.RuntimeInfo.ProcessMemoryInfoKey.GemRss, out Gems); ;
-            }
-            catch (NotSupportedException)
-            {
-            }
-
-            try
-            {
-                GetProcessMemoryValueInt(Interop.RuntimeInfo.ProcessMemoryInfoKey.Swap, out Swaps); ;
-            }
-            catch (NotSupportedException)
-            {
-            }
+            Gpus = GetProcessMemoryValueInt(Interop.RuntimeInfo.ProcessMemoryInfoKey.Gpu, pid);
+            Gems = GetProcessMemoryValueInt(Interop.RuntimeInfo.ProcessMemoryInfoKey.GemRss, pid);
+            Swaps = GetProcessMemoryValueInt(Interop.RuntimeInfo.ProcessMemoryInfoKey.Swap, pid);
         }
     }
 }
