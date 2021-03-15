@@ -284,6 +284,14 @@ namespace Tizen.NUI.Wearable
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void Update(float contentLength, float viewportLength, float position, uint durationMs = 0, AlphaFunction alphaFunction = null)
+        {
+            this.visibleLength = viewportLength;
+            Update(contentLength, position, durationMs, alphaFunction);
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void Update(float contentLength, float position, uint durationMs = 0, AlphaFunction alphaFunction = null)
         {
             this.previousPosition = this.currentPosition;
