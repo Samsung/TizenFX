@@ -309,27 +309,24 @@ namespace Tizen.System
             {
                 GetProcessMemoryValueInt(Interop.RuntimeInfo.ProcessMemoryInfoKey.Gpu, out Gpus);
             }
-            catch (NotSupportedException e)
+            catch (NotSupportedException)
             {
-                //Log.Error(InformationErrorFactory.LogTag, "Gpu: " + e.ToString() + e.Message);
             }
 
             try
             {
                 GetProcessMemoryValueInt(Interop.RuntimeInfo.ProcessMemoryInfoKey.GemRss, out Gems); ;
             }
-            catch (NotSupportedException e)
+            catch (NotSupportedException)
             {
-                //Log.Error(InformationErrorFactory.LogTag, "GetRss: " + e.ToString() + e.Message);
             }
 
             try
             {
                 GetProcessMemoryValueInt(Interop.RuntimeInfo.ProcessMemoryInfoKey.Swap, out Swaps); ;
             }
-            catch (NotSupportedException e)
+            catch (NotSupportedException)
             {
-                //Log.Error(InformationErrorFactory.LogTag, "Swap: " + e.ToString() + e.Message);
             }
         }
     }
