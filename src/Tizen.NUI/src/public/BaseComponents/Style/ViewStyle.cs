@@ -16,6 +16,7 @@
  */
 using System;
 using System.ComponentModel;
+using System.Collections.Generic;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.BaseComponents
@@ -394,6 +395,11 @@ namespace Tizen.NUI.BaseComponents
         public bool SolidNull { get; set; } = false;
 
         /// <summary>
+        /// HashSet of dirty properties. Internal use only.
+        /// </summary>
+        internal HashSet<BindableProperty> DirtyProperties { get; private set; }
+
+        /// <summary>
         /// Set style's bindable properties from the view.
         /// </summary>
         /// <param name="view">The view that includes property data.</param>
@@ -432,9 +438,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Merge(ViewStyle other)
         {
-            AllowNullCopy = other?.SolidNull ?? false;
             CopyFrom(other);
-            AllowNullCopy = false;
         }
 
         /// <summary>
@@ -445,6 +449,43 @@ namespace Tizen.NUI.BaseComponents
         {
             Dispose(true);
             global::System.GC.SuppressFinalize(this);
+        }
+
+        /// <summary>Copy properties of other ViewStyle to this.</summary>
+        /// <param name="other">The other BindableProperty merge to this.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void CopyFrom(BindableObject other)
+        {
+            var source = other as ViewStyle;
+
+            if (source == null || source.DirtyProperties == null || source.DirtyProperties.Count == 0)
+            {
+                return;
+            }
+
+            BindableProperty.GetBindablePropertysOfType(GetType(), out var thisBindableProperties);
+
+            if (thisBindableProperties == null)
+            {
+                return;
+            }
+
+            foreach (var sourceProperty in source.DirtyProperties)
+            {
+                var sourceValue = source.GetValue(sourceProperty);
+
+                if (sourceValue == null)
+                {
+                    continue;
+                }
+
+                thisBindableProperties.TryGetValue(sourceProperty.PropertyName, out var destinationProperty);
+
+                if (destinationProperty != null)
+                {
+                    SetValue(destinationProperty, sourceValue);
+                }
+            }
         }
 
         /// <summary>
@@ -474,6 +515,20 @@ namespace Tizen.NUI.BaseComponents
             }
 
             disposed = true;
+        }
+
+        /// <summary>
+        /// Method that is called when a bound property is changed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void OnPropertyChangedWithData(BindableProperty property)
+        {
+            base.OnPropertyChangedWithData(property);
+
+            if (property != null)
+            {
+                (DirtyProperties ?? (DirtyProperties = new HashSet<BindableProperty>())).Add(property);
+            }
         }
 
         internal ViewStyle CreateInstance()

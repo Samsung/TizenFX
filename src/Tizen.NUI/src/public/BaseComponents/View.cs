@@ -101,9 +101,8 @@ namespace Tizen.NUI.BaseComponents
                 PositionUsesPivotPoint = false;
             }
 
-            //ToDo: this has memory leak and this is not used currently. will be fixed soon by using Event subscribing pattern.
-            //_onWindowSendEventCallback = SendViewAddedEventToWindow;
-            //this.OnWindowSignal().Connect(_onWindowSendEventCallback);
+            onWindowSendEventCallback = SendViewAddedEventToWindow;
+            this.OnWindowSignal().Connect(onWindowSendEventCallback);
 
             if (!shown)
             {
@@ -169,6 +168,9 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Get/Set the control state.
+        /// Note that the ControlState only available for the classes derived from Control.
+        /// If the classes that are not derived from Control (such as View, ImageView and TextLabel) want to use this system,
+        /// please set <see cref="EnableControlState"/> to true.
         /// </summary>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -312,8 +314,8 @@ namespace Tizen.NUI.BaseComponents
                 SetValue(BackgroundColorProperty, value);
                 if (selectorData != null)
                 {
-                    selectorData.BackgroundImage.Reset(this);
-                    selectorData.BackgroundColor.UpdateIfNeeds(this, value);
+                    selectorData.BackgroundImage?.Reset(this);
+                    selectorData.BackgroundColor?.Reset(this);
                 }
                 NotifyPropertyChanged();
             }
@@ -334,8 +336,8 @@ namespace Tizen.NUI.BaseComponents
                 SetValue(BackgroundImageProperty, value);
                 if (selectorData != null)
                 {
-                    selectorData.BackgroundColor.Reset(this);
-                    selectorData.BackgroundImage.UpdateIfNeeds(this, value);
+                    selectorData.BackgroundColor?.Reset(this);
+                    selectorData.BackgroundImage?.Reset(this);
                 }
                 NotifyPropertyChanged();
             }
@@ -355,7 +357,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(BackgroundImageBorderProperty, value);
-                selectorData?.BackgroundImageBorder.UpdateIfNeeds(this, value);
+                selectorData?.BackgroundImageBorder?.Reset(this);
                 NotifyPropertyChanged();
             }
         }
@@ -409,8 +411,8 @@ namespace Tizen.NUI.BaseComponents
                 SetValue(ImageShadowProperty, value);
                 if (selectorData != null)
                 {
-                    selectorData.BoxShadow.Reset(this);
-                    selectorData.ImageShadow.UpdateIfNeeds(this, value);
+                    selectorData.BoxShadow?.Reset(this);
+                    selectorData.ImageShadow?.Reset(this);
                 }
                 NotifyPropertyChanged();
             }
@@ -448,8 +450,8 @@ namespace Tizen.NUI.BaseComponents
                 SetValue(BoxShadowProperty, value);
                 if (selectorData != null)
                 {
-                    selectorData.ImageShadow.Reset(this);
-                    selectorData.BoxShadow.UpdateIfNeeds(this, value);
+                    selectorData.ImageShadow?.Reset(this);
+                    selectorData.BoxShadow?.Reset(this);
                 }
                 NotifyPropertyChanged();
             }
@@ -477,6 +479,194 @@ namespace Tizen.NUI.BaseComponents
                 SetValue(CornerRadiusProperty, value);
                 NotifyPropertyChanged();
             }
+        }
+
+        //
+        // Accessibility
+        //
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected bool IsHighlighted
+        {
+            get
+            {
+                return Accessibility.AccessibilityManager.Instance.GetCurrentFocusView() == this;
+            }
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected static readonly string AccessibilityActivateAction = "activate";
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected static readonly string AccessibilityReadingSkippedAction = "ReadingSkipped";
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected static readonly string AccessibilityReadingCancelledAction = "ReadingCancelled";
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected static readonly string AccessibilityReadingStoppedAction = "ReadingStopped";
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected static readonly string AccessibilityReadingPausedAction = "ReadingPaused";
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected static readonly string AccessibilityReadingResumedAction = "ReadingResumed";
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        private static readonly string[] AccessibilityActions = {
+            AccessibilityActivateAction,
+            AccessibilityReadingSkippedAction,
+            AccessibilityReadingCancelledAction,
+            AccessibilityReadingStoppedAction,
+            AccessibilityReadingPausedAction,
+            AccessibilityReadingResumedAction,
+        };
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual string AccessibilityGetName()
+        {
+            return "";
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual string AccessibilityGetDescription()
+        {
+            return "";
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool AccessibilityDoAction(string name)
+        {
+            return false;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual AccessibilityStates AccessibilityCalculateStates()
+        {
+            var states = new AccessibilityStates();
+            states.Set(AccessibilityState.Highlightable, this.AccessibilityHighlightable);
+            states.Set(AccessibilityState.Focusable, this.Focusable);
+            states.Set(AccessibilityState.Focused, this.State == States.Focused);
+            states.Set(AccessibilityState.Highlighted, this.IsHighlighted);
+            states.Set(AccessibilityState.Enabled, this.State != States.Disabled);
+            states.Set(AccessibilityState.Sensitive, this.Sensitive);
+            states.Set(AccessibilityState.Animated, this.AccessibilityAnimated);
+            states.Set(AccessibilityState.Visible, true);
+            states.Set(AccessibilityState.Showing, this.Visibility);
+            states.Set(AccessibilityState.Defunct, !this.IsOnWindow);
+            return states;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual int AccessibilityGetActionCount()
+        {
+            return AccessibilityActions.Length;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual string AccessibilityGetActionName(int index)
+        {
+            if (index >= 0 && index < AccessibilityActions.Length)
+                return AccessibilityActions[index];
+            else
+                return "";
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool AccessibilityShouldReportZeroChildren()
+        {
+            return false;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual double AccessibilityGetMinimum()
+        {
+            return 0.0;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual double AccessibilityGetCurrent()
+        {
+            return 0.0;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual double AccessibilityGetMaximum()
+        {
+            return 0.0;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool AccessibilitySetCurrent(double value)
+        {
+            return false;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual double AccessibilityGetMinimumIncrement()
+        {
+            return 0.0;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool AccessibilityIsScrollable()
+        {
+            return false;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual string AccessibilityGetText(int startOffset, int endOffset)
+        {
+            return "";
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual int AccessibilityGetCharacterCount()
+        {
+            return 0;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual int AccessibilityGetCaretOffset()
+        {
+            return 0;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool AccessibilitySetCaretOffset(int offset)
+        {
+            return false;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual AccessibilityRange AccessibilityGetTextAtOffset(int offset, TextBoundary boundary)
+        {
+            return new AccessibilityRange();
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual AccessibilityRange AccessibilityGetSelection(int selectionNum)
+        {
+            return new AccessibilityRange();
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool AccessibilityRemoveSelection(int selectionNum)
+        {
+            return false;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool AccessibilitySetSelection(int selectionNum, int startOffset, int endOffset)
+        {
+            return false;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool AccessibilityCopyText(int startPosition, int endPosition)
+        {
+            return false;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool AccessibilityCutText(int startPosition, int endPosition)
+        {
+            return false;
         }
 
         /// <summary>
@@ -891,7 +1081,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(OpacityProperty, value);
-                selectorData?.Opacity.UpdateIfNeeds(this, value);
+                selectorData?.Opacity?.Reset(this);
                 NotifyPropertyChanged();
             }
         }
@@ -2194,7 +2384,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(ColorProperty, value);
-                selectorData?.Color.UpdateIfNeeds(this, value);
+                selectorData?.Color?.Reset(this);
                 NotifyPropertyChanged();
             }
         }
@@ -2380,7 +2570,6 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// If this property is set to true, the View can have a touch related ControlState (such as Pressed) when touch.
         /// By default, it is false in View, true in Control.
         /// Note that if the value is true, the View will be a touch receptor.
         /// </summary>
@@ -2491,31 +2680,36 @@ namespace Tizen.NUI.BaseComponents
 
             this.viewStyle = viewStyle;
 
-            Dictionary<string, BindableProperty> bindablePropertyOfView;
-            Type viewType = GetType();
-
-            Dictionary<string, BindableProperty> bindablePropertyOfStyle;
-            Type styleType = viewStyle.GetType();
-
-            BindableProperty.GetBindablePropertysOfType(viewType, out bindablePropertyOfView);
-            BindableProperty.GetBindablePropertysOfType(styleType, out bindablePropertyOfStyle);
-
-            if (null != bindablePropertyOfView && null != bindablePropertyOfStyle)
+            if (viewStyle.DirtyProperties == null || viewStyle.DirtyProperties.Count == 0)
             {
-                foreach (KeyValuePair<string, BindableProperty> keyValuePair in bindablePropertyOfStyle)
+                // Nothing to apply
+                return;
+            }
+
+            BindableProperty.GetBindablePropertysOfType(GetType(), out var bindablePropertyOfView);
+
+            if (bindablePropertyOfView == null)
+            {
+                return;
+            }
+
+            var dirtyProperties = new BindableProperty[viewStyle.DirtyProperties.Count];
+            viewStyle.DirtyProperties.CopyTo(dirtyProperties);
+
+            foreach (var sourceProperty in dirtyProperties)
+            {
+                var sourceValue = viewStyle.GetValue(sourceProperty);
+
+                if (sourceValue == null)
                 {
-                    BindableProperty viewProperty;
-                    bindablePropertyOfView.TryGetValue(keyValuePair.Key, out viewProperty);
+                    continue;
+                }
 
-                    if (null != viewProperty && viewProperty != StyleNameProperty)
-                    {
-                        object value = viewStyle.GetValue(keyValuePair.Value);
+                bindablePropertyOfView.TryGetValue(sourceProperty.PropertyName, out var destinationProperty);
 
-                        if (null != value)
-                        {
-                            SetValue(viewProperty, value);
-                        }
-                    }
+                if (destinationProperty != null)
+                {
+                    SetValue(destinationProperty, sourceValue);
                 }
             }
         }

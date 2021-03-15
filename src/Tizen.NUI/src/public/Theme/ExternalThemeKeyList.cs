@@ -173,7 +173,8 @@ namespace Tizen.NUI
 
         private Action<ViewStyle, string> GenSelectorAction<T>(ControlState state)
         {
-            return (ViewStyle viewStyle, string stringInput) => {
+            return (ViewStyle viewStyle, string stringInput) =>
+            {
                 if (ParseXamlStringToObject<T>(stringInput) is T tValue)
                 {
                     if (selectorData == null)
@@ -187,7 +188,8 @@ namespace Tizen.NUI
 
         private Action<ViewStyle, string> GenBackgroundSelectorAction(ControlState state)
         {
-            return (ViewStyle viewStyle, string stringInput) => {
+            return (ViewStyle viewStyle, string stringInput) =>
+            {
                 var imageUrl = TryConvertToResourcePath(stringInput);
 
                 if (imageUrl != null)
@@ -211,7 +213,8 @@ namespace Tizen.NUI
 
         private Action<ViewStyle, string> GenSelectorFinalizer<T>(Action<ViewStyle, Selector<T>> setter)
         {
-            return (ViewStyle viewStyle, string value) => {
+            return (ViewStyle viewStyle, string value) =>
+            {
                 if (selectorData == null || viewStyle == null)
                 {
                     return;
@@ -223,7 +226,8 @@ namespace Tizen.NUI
 
         private Action<ViewStyle, string> GenColorOrImageSelectorFinalizer(Action<ViewStyle, Selector<Color>> colorSetter, Action<ViewStyle, Selector<string>> imageSetter)
         {
-            return (ViewStyle viewStyle, string value) => {
+            return (ViewStyle viewStyle, string value) =>
+            {
                 if (viewStyle == null)
                 {
                     return;

@@ -27,6 +27,7 @@ namespace Tizen.NUI.BaseComponents
     public partial class View
     {
         private ViewSelectorData selectorData;
+
         internal string styleName;
 
         /// <summary>
@@ -332,18 +333,6 @@ namespace Tizen.NUI.BaseComponents
                 PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
                 SetProperty(View.Property.DownFocusableViewId, setValue);
                 setValue.Dispose();
-            }
-        }
-
-        private ViewSelectorData SelectorData
-        {
-            get
-            {
-                if (selectorData == null)
-                {
-                    selectorData = new ViewSelectorData();
-                }
-                return selectorData;
             }
         }
 
@@ -1098,6 +1087,21 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Get selector value from the triggerable selector or related property.
+        /// </summary>
+        internal Selector<T> GetSelector<T>(TriggerableSelector<T> triggerableSelector, NUI.Binding.BindableProperty relatedProperty)
+        {
+            var selector = triggerableSelector?.Get();
+            if (selector != null)
+            {
+                return selector;
+            }
+
+            var value = (T)GetValue(relatedProperty);
+            return value == null ? null : new Selector<T>(value);
+        }
+
+        /// <summary>
         /// you can override it to clean-up your own resources.
         /// </summary>
         /// <param name="type">DisposeTypes</param>
@@ -1279,6 +1283,14 @@ namespace Tizen.NUI.BaseComponents
                 backgroundResourceLoadedCallback = null;
             }
 
+            if (onWindowSendEventCallback != null)
+            {
+                ViewSignal signal = this.OnWindowSignal();
+                signal?.Disconnect(onWindowSendEventCallback);
+                signal?.Dispose();
+                onWindowSendEventCallback = null;
+            }
+
             // BaseHandle CPtr is used in Registry and there is danger of deletion if we keep using it here.
             // Restore current CPtr.
             SwigCPtr = currentCPtr;
@@ -1366,5 +1378,7 @@ namespace Tizen.NUI.BaseComponents
             if (style != null) ApplyStyle(style.Clone());   // Use given style
             else if (ThemeManager.ThemeApplied) UpdateStyle(); // Use style in the current theme
         }
+
+        private ViewSelectorData EnsureSelectorData() => selectorData ?? (selectorData = new ViewSelectorData());
     }
 }
