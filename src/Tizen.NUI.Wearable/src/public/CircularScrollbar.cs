@@ -146,24 +146,6 @@ namespace Tizen.NUI.Wearable
         #region Properties
 
         /// <summary>
-        /// Return a copied Style instance of CircularScrollbar
-        /// </summary>
-        /// <remarks>
-        /// It returns copied Style instance and changing it does not effect to the CircularScrollbar.
-        /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
-        /// </remarks>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public CircularScrollbarStyle Style
-        {
-            get
-            {
-                var result = new CircularScrollbarStyle(ViewStyle as CircularScrollbarStyle);
-                result.CopyPropertiesFromView(this);
-                return result;
-            }
-        }
-
-        /// <summary>
         /// The thickness of the scrollbar and track.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
