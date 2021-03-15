@@ -15,6 +15,7 @@
 */
 
 using System;
+using System.ComponentModel;
 using System.Runtime.InteropServices;
 using Tizen.Internals;
 using Tizen.System;
