@@ -211,6 +211,7 @@ namespace Tizen.System
         /// <param name="pid">The process id.</param>
         /// <returns>The resident set size <paramref name="pid"/> is using (KiB).</returns>
         /// <exception cref="ArgumentException">Thrown when the <paramref name="pid"/> is invalid.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int GetGemRss(int pid)
         {
             if (Gems == null)
