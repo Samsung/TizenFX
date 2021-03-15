@@ -434,13 +434,6 @@ namespace Tizen.NUI.BaseComponents
             return cloned;
         }
 
-        /// <summary>Create a cloned ViewStyle.</summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Merge(ViewStyle other)
-        {
-            CopyFrom(other);
-        }
-
         /// <summary>
         /// Release instance.
         /// </summary>
@@ -534,6 +527,30 @@ namespace Tizen.NUI.BaseComponents
         internal ViewStyle CreateInstance()
         {
             return (ViewStyle)Activator.CreateInstance(GetType());
+        }
+
+        /// <summary>Merge other style into the current style without creating new one.</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal void MergeDirectly(ViewStyle other)
+        {
+            CopyFrom(other);
+        }
+    }
+
+    /// <summary> Extension methods for ViewStyle class.</summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public static class ViewStyleExtension
+    {
+        /// <summary>Merge two styles into the new one.</summary>
+        /// <exception cref="ArgumentException">Thrown when failed because of an invalid parameter.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static TOut Merge<TOut>(this TOut value, TOut other) where TOut : Tizen.NUI.BaseComponents.ViewStyle
+        {
+            var newStyle = value.Clone() as TOut;
+
+            newStyle.CopyFrom(other);
+
+            return newStyle;
         }
     }
 }

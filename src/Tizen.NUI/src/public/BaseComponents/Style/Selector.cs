@@ -346,6 +346,62 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        private bool EqualsItem(T a, T b)
+        {
+            return Object.ReferenceEquals(a, b) || (a != null && a.Equals(b));
+        }
+
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(System.Object other)
+        {
+            var x = other as Selector<T>;
+
+            if (x == null || x.SelectorItems.Count != SelectorItems.Count)
+            {
+                return false;
+            }
+
+            if (!EqualsItem(All, x.All))
+            {
+                return false;
+            }
+
+            foreach (var item in SelectorItems)
+            {
+                var found = SelectorItems.Find(i => i.State == item.State);
+
+                if (found == null || !EqualsItem(item.Value, found.Value))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Serves as the default hash function.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode()
+        {
+            int hash = 17;
+            hash = (hash * 23) + (All == null ? 0 : All.GetHashCode());
+            hash = (hash * 23) + SelectorItems.Count;
+            
+            // Order of items should not effect to the result value.
+            int itemSum = 0;
+            foreach (var item in SelectorItems)
+            {
+                itemSum += item.State.GetHashCode() + (item.Value == null ? 0 : item.Value.GetHashCode());
+            }
+
+            return (hash * 23) + itemSum;
+        }
+
         internal bool HasMultiValue()
         {
             return SelectorItems.Count > 1;

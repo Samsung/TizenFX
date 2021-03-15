@@ -410,6 +410,16 @@ namespace Tizen.NUI.Components
         {
             base.OnInitialize();
             SetAccessibilityConstructor(Role.PushButton);
+
+            AccessibilityHighlightable = true;
+            EnableControlStatePropagation = true;
+            LayoutDirectionChanged += OnLayoutDirectionChanged;
+
+            AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "Button");
+
+#if PROFILE_MOBILE
+            Feedback = true;
+#endif
         }
 
         /// <inheritdoc/>
@@ -431,24 +441,6 @@ namespace Tizen.NUI.Components
             {
                 isPressed = statePressed;
             }
-        }
-
-        /// <summary>
-        /// It is hijack by using protected, style copy problem when class inherited from Button.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        private void Initialize()
-        {
-            AccessibilityHighlightable = true;
-            EnableControlStatePropagation = true;
-            UpdateState();
-            LayoutDirectionChanged += OnLayoutDirectionChanged;
-
-            AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "Button");
-
-#if PROFILE_MOBILE
-                Feedback = true;
-#endif
         }
 
         private void UpdateUIContent()

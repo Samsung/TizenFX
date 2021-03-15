@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -152,9 +152,13 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static bool LayoutingDisabled { get; set; } = true;
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <summary>
+        /// The style instance applied to this view.
+        /// Note that please do not modify the ViewStyle.
+        /// Modifying ViewStyle will affect other views with same ViewStyle.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ViewStyle ViewStyle
+        protected ViewStyle ViewStyle
         {
             get
             {
@@ -2673,11 +2677,29 @@ namespace Tizen.NUI.BaseComponents
             UpdateStyle();
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        private bool IsViewPropertyDirty(BindableProperty styleProperty)
+        {
+            if (dirtyPropertySet.Count == 0)
+            {
+                return false;
+            }
+
+            if (styleProperty.ReturnType.IsGenericType && styleProperty.ReturnType.GetGenericTypeDefinition() == typeof(Selector<>))
+            {
+                return dirtyPropertySet.Contains(styleProperty.PropertyName.Substring(0, styleProperty.PropertyName.Length - 8));
+            }
+
+            return dirtyPropertySet.Contains(styleProperty.PropertyName);
+        }
+
+        /// <summary>
+        /// Apply style instance to the view.
+        /// Basically it sets the bindable property to the value of the bindable property with same name in the style.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void ApplyStyle(ViewStyle viewStyle)
         {
-            if (null == viewStyle || this.viewStyle == viewStyle) return;
+            if (viewStyle == null || this.viewStyle == viewStyle) return;
 
             this.viewStyle = viewStyle;
 
@@ -2687,6 +2709,11 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
+            if (dirtyPropertySet == null)
+            {
+                dirtyPropertySet = new HashSet<string>();
+            }
+
             BindableProperty.GetBindablePropertysOfType(GetType(), out var bindablePropertyOfView);
 
             if (bindablePropertyOfView == null)
@@ -2694,11 +2721,17 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-            var dirtyProperties = new BindableProperty[viewStyle.DirtyProperties.Count];
-            viewStyle.DirtyProperties.CopyTo(dirtyProperties);
+            var dirtyStyleProperties = new BindableProperty[viewStyle.DirtyProperties.Count];
+            viewStyle.DirtyProperties.CopyTo(dirtyStyleProperties);
 
-            foreach (var sourceProperty in dirtyProperties)
+            foreach (var sourceProperty in dirtyStyleProperties)
             {
+                if (blockSetDirty && IsViewPropertyDirty(sourceProperty))
+                {
+                    // Skip applying theme style for a property set by user.
+                    continue;
+                }
+
                 var sourceValue = viewStyle.GetValue(sourceProperty);
 
                 if (sourceValue == null)

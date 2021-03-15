@@ -16,6 +16,7 @@
  */
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
 
@@ -34,78 +35,38 @@ namespace Tizen.NUI.Components
 
         /// <summary>Bindable property of TrackThickness</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TrackThicknessProperty = BindableProperty.Create(nameof(TrackThickness), typeof(float), typeof(Scrollbar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var instance = ((Scrollbar)bindable);
-            var thickness = (float?)newValue;
-
-            instance.scrollbarStyle.TrackThickness = thickness;
-            instance.UpdateTrackThickness(thickness ?? 0);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            return ((Scrollbar)bindable).scrollbarStyle.TrackThickness ?? 0;
-        });
+        public static readonly BindableProperty TrackThicknessProperty = BindableProperty.Create(nameof(TrackThickness), typeof(float), typeof(Scrollbar), default(float),
+            propertyChanged: (bindable, oldValue, newValue) => ((Scrollbar)bindable).UpdateTrackThickness((float?)newValue ?? 0),
+            defaultValueCreator: (bindable) => ((Scrollbar)bindable).trackThickness
+        );
 
         /// <summary>Bindable property of ThumbThickness</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ThumbThicknessProperty = BindableProperty.Create(nameof(ThumbThickness), typeof(float), typeof(Scrollbar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var instance = ((Scrollbar)bindable);
-            var thickness = (float?)newValue;
-
-            instance.scrollbarStyle.ThumbThickness = thickness;
-            instance.UpdateThumbThickness(thickness ?? 0);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            return ((Scrollbar)bindable).scrollbarStyle.ThumbThickness ?? 0;
-        });
+        public static readonly BindableProperty ThumbThicknessProperty = BindableProperty.Create(nameof(ThumbThickness), typeof(float), typeof(Scrollbar), default(float),
+            propertyChanged: (bindable, oldValue, newValue) => ((Scrollbar)bindable).UpdateThumbThickness((float?)newValue ?? 0),
+            defaultValueCreator: (bindable) => ((Scrollbar)bindable).thumbThickness
+        );
 
         /// <summary>Bindable property of TrackColor</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TrackColorProperty = BindableProperty.Create(nameof(TrackColor), typeof(Color), typeof(Scrollbar), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var instance = ((Scrollbar)bindable);
-            var color = (Color)newValue;
-
-            instance.scrollbarStyle.TrackColor = color;
-            instance.UpdateTrackColor(color);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            return ((Scrollbar)bindable).scrollbarStyle.TrackColor;
-        });
+        public static readonly BindableProperty TrackColorProperty = BindableProperty.Create(nameof(TrackColor), typeof(Color), typeof(Scrollbar), null,
+            propertyChanged: (bindable, oldValue, newValue) => ((Scrollbar)bindable).UpdateTrackColor((Color)newValue),
+            defaultValueCreator: (bindable) => ((Scrollbar)bindable).trackVisual.MixColor
+        );
 
         /// <summary>Bindable property of ThumbColor</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ThumbColorProperty = BindableProperty.Create(nameof(ThumbColor), typeof(Color), typeof(Scrollbar), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var instance = ((Scrollbar)bindable);
-            var color = (Color)newValue;
-
-            instance.scrollbarStyle.ThumbColor = color;
-            instance.UpdateThumbColor(color);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            return ((Scrollbar)bindable).scrollbarStyle.ThumbColor;
-        });
+        public static readonly BindableProperty ThumbColorProperty = BindableProperty.Create(nameof(ThumbColor), typeof(Color), typeof(Scrollbar), null,
+            propertyChanged: (bindable, oldValue, newValue) => ((Scrollbar)bindable).UpdateThumbColor((Color)newValue),
+            defaultValueCreator: (bindable) => ((Scrollbar)bindable).thumbVisual.MixColor
+        );
 
         /// <summary>Bindable property of TrackPadding</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TrackPaddingProperty = BindableProperty.Create(nameof(TrackPadding), typeof(Extents), typeof(Scrollbar), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var instance = ((Scrollbar)bindable);
-            var trackPadding = (Extents)newValue;
-
-            instance.scrollbarStyle.TrackPadding = trackPadding;
-            instance.UpdateTrackPadding(trackPadding);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            return ((Scrollbar)bindable).scrollbarStyle.TrackPadding;
-        });
+        public static readonly BindableProperty TrackPaddingProperty = BindableProperty.Create(nameof(TrackPadding), typeof(Extents), typeof(Scrollbar), null,
+            propertyChanged: (bindable, oldValue, newValue) => ((Scrollbar)bindable).UpdateTrackPadding((Extents)newValue),
+            defaultValueCreator: (bindable) => ((Scrollbar)bindable).trackPadding
+        );
 
         private ColorVisual trackVisual;
         private ColorVisual thumbVisual;
@@ -113,9 +74,11 @@ namespace Tizen.NUI.Components
         private Animation thumbSizeAnimation;
         private Calculator calculator;
         private Size containerSize = new Size(0, 0);
-        private ScrollbarStyle scrollbarStyle => ViewStyle as ScrollbarStyle;
         private bool mScrollEnabled = true;
         private float previousPosition;
+        private float trackThickness;
+        private float thumbThickness;
+        private PaddingType trackPadding;
 
         #endregion Fields
 
@@ -221,6 +184,29 @@ namespace Tizen.NUI.Components
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnInitialize()
+        {
+            base.OnInitialize();
+
+            trackVisual = new ColorVisual
+            {
+                SuppressUpdateVisual = true,
+                SizePolicy = VisualTransformPolicyType.Absolute,
+                MixColor = Color.Transparent,
+            };
+            AddVisual("Track", trackVisual);
+
+            thumbVisual = new ColorVisual
+            {
+                SuppressUpdateVisual = true,
+                SizePolicy = VisualTransformPolicyType.Absolute,
+                MixColor = Color.Transparent,
+            };
+            AddVisual("Thumb", thumbVisual);
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void Initialize(float contentLength, float viewportLength, float currentPosition, bool isHorizontal = false)
         {
             if (isHorizontal)
@@ -238,38 +224,27 @@ namespace Tizen.NUI.Components
             thumbSizeAnimation?.Stop();
             thumbSizeAnimation = null;
 
-            PaddingType ensuredPadding = EnsurePadding(TrackPadding);
-            Size trackSize = calculator.CalculateTrackSize(TrackThickness, containerSize, ensuredPadding);
-            Vector2 trackPosition = calculator.CalculateTrackPosition(ensuredPadding);
+            Size trackSize = calculator.CalculateTrackSize(TrackThickness, containerSize, trackPadding);
+            Vector2 trackPosition = calculator.CalculateTrackPosition(trackPadding);
             Size thumbSize = calculator.CalculateThumbSize(ThumbThickness, trackSize);
-            Vector2 thumbPosition = calculator.CalculateThumbPosition(trackSize, thumbSize, ensuredPadding);
+            Vector2 thumbPosition = calculator.CalculateThumbPosition(trackSize, thumbSize, trackPadding);
 
-            trackVisual = new ColorVisual
-            {
-                SuppressUpdateVisual = true,
-                MixColor = TrackColor,
-                SizePolicy = VisualTransformPolicyType.Absolute,
-                Origin = calculator.CalculatorTrackAlign(),
-                AnchorPoint = calculator.CalculatorTrackAlign(),
-                Size = trackSize,
-                Position = trackPosition,
-            };
+            Debug.Assert(trackVisual != null && thumbVisual != null);
 
-            AddVisual("Track", trackVisual);
+            trackVisual.MixColor = TrackColor;
+            trackVisual.Origin = calculator.CalculatorTrackAlign();
+            trackVisual.AnchorPoint = calculator.CalculatorTrackAlign();
+            trackVisual.Size = trackSize;
+            trackVisual.Position = trackPosition;
+            trackVisual.UpdateVisual(true);
 
-            thumbVisual = new ColorVisual
-            {
-                SuppressUpdateVisual = true,
-                MixColor = ThumbColor,
-                SizePolicy = VisualTransformPolicyType.Absolute,
-                Origin = calculator.CalculatorThumbAlign(),
-                AnchorPoint = calculator.CalculatorThumbAlign(),
-                Opacity = calculator.CalculateThumbVisibility() ? 1.0f : 0.0f,
-                Size = thumbSize,
-                Position = thumbPosition,
-            };
-
-            AddVisual("Thumb", thumbVisual);
+            thumbVisual.MixColor = ThumbColor;
+            thumbVisual.Origin = calculator.CalculatorThumbAlign();
+            thumbVisual.AnchorPoint = calculator.CalculatorThumbAlign();
+            thumbVisual.Opacity = calculator.CalculateThumbVisibility() ? 1.0f : 0.0f;
+            thumbVisual.Size = thumbSize;
+            thumbVisual.Position = thumbPosition;
+            thumbVisual.UpdateVisual(true);
         }
 
         /// <inheritdoc/>
@@ -287,7 +262,7 @@ namespace Tizen.NUI.Components
             calculator.currentPosition = position;
 
             thumbVisual.Size = calculator.CalculateThumbSize(ThumbThickness, trackVisual.Size);
-            thumbVisual.Position = calculator.CalculateThumbScrollPosition(trackVisual.Size, thumbVisual.Position, EnsurePadding(TrackPadding));
+            thumbVisual.Position = calculator.CalculateThumbScrollPosition(trackVisual.Size, thumbVisual.Position, trackPadding);
             thumbVisual.Opacity = calculator.CalculateThumbVisibility() ? 1.0f : 0.0f;
 
             if (durationMs == 0)
@@ -326,7 +301,7 @@ namespace Tizen.NUI.Components
 
             previousPosition = calculator.currentPosition;
             calculator.currentPosition = position;
-            thumbVisual.Position = calculator.CalculateThumbScrollPosition(trackVisual.Size, thumbVisual.Position, EnsurePadding(TrackPadding));
+            thumbVisual.Position = calculator.CalculateThumbScrollPosition(trackVisual.Size, thumbVisual.Position, trackPadding);
 
             if (durationMs == 0)
             {
@@ -361,11 +336,10 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            PaddingType ensuredPadding = EnsurePadding(TrackPadding);
-            trackVisual.Size = calculator.CalculateTrackSize(TrackThickness, containerSize, ensuredPadding);
-            trackVisual.Position = calculator.CalculateTrackPosition(ensuredPadding);
+            trackVisual.Size = calculator.CalculateTrackSize(TrackThickness, containerSize, trackPadding);
+            trackVisual.Position = calculator.CalculateTrackPosition(trackPadding);
             thumbVisual.Size = calculator.CalculateThumbSize(ThumbThickness, trackVisual.Size);
-            thumbVisual.Position = calculator.CalculateThumbPosition(trackVisual.Size, thumbVisual.Size, ensuredPadding);
+            thumbVisual.Position = calculator.CalculateThumbPosition(trackVisual.Size, thumbVisual.Size, trackPadding);
 
             trackVisual.UpdateVisual(true);
             thumbVisual.UpdateVisual(true);
@@ -404,12 +378,14 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void UpdateTrackThickness(float thickness)
         {
-            if (trackVisual == null)
+            trackThickness = thickness;
+
+            if (calculator == null)
             {
                 return;
             }
 
-            trackVisual.Size = calculator.CalculateTrackSize(thickness, containerSize, EnsurePadding(TrackPadding));
+            trackVisual.Size = calculator.CalculateTrackSize(thickness, containerSize, trackPadding);
             trackVisual.UpdateVisual(true);
         }
 
@@ -420,7 +396,9 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void UpdateThumbThickness(float thickness)
         {
-            if (thumbVisual == null)
+            thumbThickness = thickness;
+
+            if (calculator == null)
             {
                 return;
             }
@@ -464,19 +442,20 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Update TrackPadding property of the scrollbar.
         /// </summary>
-        /// <param name="trackPadding">The padding of the track.</param>
-        protected virtual void UpdateTrackPadding(Extents trackPadding)
+        /// <param name="padding">The padding of the track.</param>
+        protected virtual void UpdateTrackPadding(Extents padding)
         {
+            trackPadding = padding == null ? new PaddingType(0, 0, 0, 0) : new PaddingType(padding.Start, padding.End, padding.Top, padding.Bottom);
+
             if (calculator == null)
             {
                 return;
             }
 
-            PaddingType ensuredPadding = EnsurePadding(trackPadding);
-            trackVisual.Size = calculator.CalculateTrackSize(TrackThickness, containerSize, ensuredPadding);
-            trackVisual.Position = calculator.CalculateTrackPosition(ensuredPadding);
+            trackVisual.Size = calculator.CalculateTrackSize(TrackThickness, containerSize, trackPadding);
+            trackVisual.Position = calculator.CalculateTrackPosition(trackPadding);
             thumbVisual.Size = calculator.CalculateThumbSize(ThumbThickness, trackVisual.Size);
-            thumbVisual.Position = calculator.CalculateThumbPaddingPosition(trackVisual.Size, thumbVisual.Size, thumbVisual.Position, ensuredPadding);
+            thumbVisual.Position = calculator.CalculateThumbPaddingPosition(trackVisual.Size, thumbVisual.Size, thumbVisual.Position, trackPadding);
 
             trackVisual.UpdateVisual(true);
             thumbVisual.UpdateVisual(true);
@@ -555,7 +534,7 @@ namespace Tizen.NUI.Components
             }
         }
 
-        private PaddingType EnsurePadding(Extents padding) => padding == null ? new PaddingType(0, 0, 0, 0) : new PaddingType(padding.Start, padding.End, padding.Top, padding.Bottom);
+        // private PaddingType EnsurePadding(Extents padding) => padding == null ? new PaddingType(0, 0, 0, 0) : new PaddingType(padding.Start, padding.End, padding.Top, padding.Bottom);
 
         #endregion Methods
 

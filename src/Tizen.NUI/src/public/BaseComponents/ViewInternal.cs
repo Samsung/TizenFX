@@ -16,7 +16,9 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -26,7 +28,9 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public partial class View
     {
+        private static bool blockSetDirty = false;
         private ViewSelectorData selectorData;
+        private HashSet<string> dirtyPropertySet;
 
         internal string styleName;
 
@@ -1077,15 +1081,6 @@ namespace Tizen.NUI.BaseComponents
             shadow.Dispose();
         }
 
-        internal void UpdateStyle()
-        {
-            ViewStyle newStyle;
-            if (styleName == null) newStyle = ThemeManager.GetStyle(GetType());
-            else newStyle = ThemeManager.GetStyle(styleName);
-
-            if (newStyle != null && (viewStyle == null || viewStyle.GetType() == newStyle.GetType())) ApplyStyle(newStyle);
-        }
-
         /// <summary>
         /// Get selector value from the triggerable selector or related property.
         /// </summary>
@@ -1176,6 +1171,21 @@ namespace Tizen.NUI.BaseComponents
                     break;
             }
             return false;
+        }
+
+        /// <summary>
+        /// Call this method from a child class to notify that a change happened on a property.
+        /// </summary>
+        /// <param name="propertyName">The name of the property that changed.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            base.OnPropertyChanged(propertyName);
+
+            if (!blockSetDirty)
+            {
+                dirtyPropertySet?.Add(propertyName);
+            }
         }
 
         private void DisConnectFromSignals()
@@ -1316,6 +1326,16 @@ namespace Tizen.NUI.BaseComponents
             SwigCPtr = currentCPtr;
         }
 
+        /// <summary>
+        /// Apply initial style to the view.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected void InitializeStyle(ViewStyle style = null)
+        {
+            if (style != null) ApplyStyle(style); // Use given style
+            else UpdateStyle(); // Use style in the current theme
+        }
+
         private View ConvertIdToView(uint id)
         {
             View view = GetParent()?.FindCurrentChildById(id);
@@ -1393,10 +1413,18 @@ namespace Tizen.NUI.BaseComponents
             return false;
         }
 
-        private void InitializeStyle(ViewStyle style)
+        private void UpdateStyle()
         {
-            if (style != null) ApplyStyle(style.Clone());   // Use given style
-            else if (ThemeManager.ThemeApplied) UpdateStyle(); // Use style in the current theme
+            ViewStyle newStyle;
+            if (string.IsNullOrEmpty(styleName)) newStyle = ThemeManager.GetStyleWithoutClone(GetType());
+            else newStyle = ThemeManager.GetStyleWithoutClone(styleName);
+
+            if (newStyle != null)
+            {
+                blockSetDirty = true;
+                ApplyStyle(newStyle);
+                blockSetDirty = false;
+            }
         }
 
         private ViewSelectorData EnsureSelectorData() => selectorData ?? (selectorData = new ViewSelectorData());

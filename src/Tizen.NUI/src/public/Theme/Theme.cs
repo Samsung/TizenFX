@@ -121,7 +121,7 @@ namespace Tizen.NUI
                         var baseStyle = item.Value?.Clone();
                         if (map.ContainsKey(item.Key))
                         {
-                            baseStyle.Merge(map[item.Key]);
+                            baseStyle.MergeDirectly(map[item.Key]);
                         }
                         map[item.Key] = baseStyle;
                     }
@@ -181,7 +181,7 @@ namespace Tizen.NUI
 
                 if (map.TryGetValue(styleName, out ViewStyle style) && style != null && style.GetType() == value.GetType())
                 {
-                    style.Merge(value);
+                    style.MergeDirectly(value);
                 }
                 else
                 {
@@ -311,7 +311,7 @@ namespace Tizen.NUI
                 }
                 else if (map.ContainsKey(item.Key) && !item.Value.SolidNull)
                 {
-                    map[item.Key].Merge(item.Value);
+                    map[item.Key].MergeDirectly(item.Value);
                 }
                 else
                 {
@@ -343,7 +343,7 @@ namespace Tizen.NUI
                 }
                 else if (map.ContainsKey(item.Key) && !item.Value.SolidNull)
                 {
-                    map[item.Key].Merge(item.Value);
+                    map[item.Key].MergeDirectly(item.Value);
                 }
                 else
                 {

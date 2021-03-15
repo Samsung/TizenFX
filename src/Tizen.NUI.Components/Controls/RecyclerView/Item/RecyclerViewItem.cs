@@ -41,10 +41,6 @@ namespace Tizen.NUI.Components
                 if (instance.isEnabled != newEnabled)
                 {
                     instance.isEnabled = newEnabled;
-                    if (instance.ItemStyle != null)
-                    {
-                        instance.ItemStyle.IsEnabled = newEnabled;
-                    }
                     instance.UpdateState();
                 }
             }
@@ -64,11 +60,6 @@ namespace Tizen.NUI.Components
                 if (instance.isSelected != newSelected)
                 {
                     instance.isSelected = newSelected;
-
-                    if (instance.ItemStyle != null)
-                    {
-                        instance.ItemStyle.IsSelected = newSelected;
-                    }
 
                     if (instance.isSelectable)
                     {
@@ -96,12 +87,6 @@ namespace Tizen.NUI.Components
                 if (instance.isSelectable != newSelectable)
                 {
                     instance.isSelectable = newSelectable;
-
-                    if (instance.ItemStyle != null)
-                    {
-                        instance.ItemStyle.IsSelectable = newSelectable;
-                    }
-
                     instance.UpdateState();
                 }
             }
@@ -112,24 +97,6 @@ namespace Tizen.NUI.Components
         private bool isSelectable = true;
         private bool isEnabled = true;
         private RecyclerViewItemStyle ItemStyle => ViewStyle as RecyclerViewItemStyle;
-
-        /// <summary>
-        /// Return a copied Style instance of Toast
-        /// </summary>
-        /// <remarks>
-        /// It returns copied Style instance and changing it does not effect to the Toast.
-        /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
-        /// </remarks>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public new RecyclerViewItemStyle Style
-        {
-            get
-            {
-                var result = new RecyclerViewItemStyle(ItemStyle);
-                result.CopyPropertiesFromView(this);
-                return result;
-            }
-        }
 
         static RecyclerViewItem() { }
 

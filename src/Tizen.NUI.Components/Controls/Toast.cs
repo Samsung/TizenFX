@@ -58,7 +58,6 @@ namespace Tizen.NUI.Components
             var instance = (Toast)bindable;
             if (newValue != null)
             {
-                instance.toastStyle.Duration = (uint)newValue;
                 if (instance.timer == null)
                 {
                     instance.timer = new Timer(instance.duration);
@@ -69,7 +68,7 @@ namespace Tizen.NUI.Components
         defaultValueCreator: (bindable) =>
         {
             var instance = (Toast)bindable;
-            return instance.toastStyle.Duration ?? instance.duration;
+            return instance.timer == null ? instance.duration : instance.timer.Interval;
         });
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -89,26 +88,7 @@ namespace Tizen.NUI.Components
         private string strText = null;
         private Timer timer = null;
         private readonly uint duration = 3000;
-        private ToastStyle toastStyle => ViewStyle as ToastStyle;
 
-        /// <summary>
-        /// Return a copied Style instance of Toast
-        /// </summary>
-        /// <remarks>
-        /// It returns copied Style instance and changing it does not effect to the Toast.
-        /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
-        /// </remarks>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public new ToastStyle Style
-        {
-            get
-            {
-                var result = new ToastStyle(toastStyle);
-                result.CopyPropertiesFromView(this);
-                result.Text.CopyPropertiesFromView(textLabel);
-                return result;
-            }
-        }
         static Toast() { }
 
         /// <summary>
@@ -118,7 +98,6 @@ namespace Tizen.NUI.Components
         [Obsolete("Deprecated in API8; Will be removed in API10")]
         public Toast() : base()
         {
-            Initialize();
         }
 
         /// <summary>
@@ -128,7 +107,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Toast(ToastStyle toastStyle) : base(toastStyle)
         {
-            Initialize();
         }
 
         /// <summary>
@@ -138,7 +116,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Toast(string style) : base(style)
         {
-            Initialize();
         }
 
         /// <summary>
@@ -314,6 +291,33 @@ namespace Tizen.NUI.Components
             }
         }
 
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnInitialize()
+        {
+            base.OnInitialize();
+
+            WidthResizePolicy = ResizePolicyType.FitToChildren;
+            HeightResizePolicy = ResizePolicyType.FitToChildren;
+
+            textLabel = new TextLabel()
+            {
+                PositionUsesPivotPoint = true,
+                ParentOrigin = Tizen.NUI.ParentOrigin.Center,
+                PivotPoint = Tizen.NUI.PivotPoint.Center,
+                WidthResizePolicy = ResizePolicyType.UseNaturalSize,
+                HeightResizePolicy = ResizePolicyType.UseNaturalSize,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                TextColor = Color.White,
+            };
+            this.Add(textLabel);
+
+            this.VisibilityChanged += OnVisibilityChanged;
+            timer = new Timer(duration);
+            timer.Tick += OnTick;
+        }
+
         /// <summary>
         /// Apply style to toast.
         /// </summary>
@@ -321,30 +325,10 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void ApplyStyle(ViewStyle viewStyle)
         {
-            WidthResizePolicy = ResizePolicyType.FitToChildren;
-            HeightResizePolicy = ResizePolicyType.FitToChildren;
-
             base.ApplyStyle(viewStyle);
 
-            ToastStyle toastStyle = viewStyle as ToastStyle;
-
-            if (null != toastStyle)
+            if (viewStyle is ToastStyle toastStyle)
             {
-                if (null == textLabel)
-                {
-                    textLabel = new TextLabel()
-                    {
-                        PositionUsesPivotPoint = true,
-                        ParentOrigin = Tizen.NUI.ParentOrigin.Center,
-                        PivotPoint = Tizen.NUI.PivotPoint.Center,
-                        WidthResizePolicy = ResizePolicyType.UseNaturalSize,
-                        HeightResizePolicy = ResizePolicyType.UseNaturalSize,
-                        HorizontalAlignment = HorizontalAlignment.Center,
-                        VerticalAlignment = VerticalAlignment.Center,
-                        TextColor = Color.White,
-                    };
-                    this.Add(textLabel);
-                }
                 textLabel.ApplyStyle(toastStyle.Text);
             }
         }
@@ -391,29 +375,6 @@ namespace Tizen.NUI.Components
         protected override ViewStyle CreateViewStyle()
         {
             return new ToastStyle();
-        }
-
-        private void Initialize()
-        {
-            if (null == textLabel)
-            {
-                textLabel = new TextLabel()
-                {
-                    PositionUsesPivotPoint = true,
-                    ParentOrigin = Tizen.NUI.ParentOrigin.Center,
-                    PivotPoint = Tizen.NUI.PivotPoint.Center,
-                    WidthResizePolicy = ResizePolicyType.UseNaturalSize,
-                    HeightResizePolicy = ResizePolicyType.UseNaturalSize,
-                    HorizontalAlignment = HorizontalAlignment.Center,
-                    VerticalAlignment = VerticalAlignment.Center,
-                    TextColor = Color.White,
-                };
-                this.Add(textLabel);
-            }
-
-            this.VisibilityChanged += OnVisibilityChanged;
-            timer = new Timer(toastStyle.Duration ?? duration);
-            timer.Tick += OnTick;
         }
 
         private bool OnTick(object sender, EventArgs e)

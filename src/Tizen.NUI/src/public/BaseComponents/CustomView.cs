@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -65,9 +65,9 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="behaviour">CustomView Behaviour</param>
         /// <param name="viewStyle">CustomView ViewStyle</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public CustomView(string typeName, CustomViewBehaviour behaviour, ViewStyle viewStyle) : base(typeName, new ViewWrapperImpl(behaviour), viewStyle)
+        public CustomView(string typeName, CustomViewBehaviour behaviour, ViewStyle viewStyle) : this(typeName, behaviour)
         {
-            Initialize();
+            InitializeStyle(viewStyle);
         }
 
         /// <summary>
@@ -138,7 +138,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// This method is called after the control has been initialized.<br />
+        /// This method is called after the CustomView has been initialized.<br />
+        /// After OnInitialize, the view will apply the style if it exists in the theme or it was given from constructor.<br />
         /// Derived classes should do any second phase initialization by overriding this method.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -916,13 +917,12 @@ namespace Tizen.NUI.BaseComponents
             viewWrapperImpl.OnTap = new ViewWrapperImpl.OnTapDelegate(OnTap);
             viewWrapperImpl.OnLongPress = new ViewWrapperImpl.OnLongPressDelegate(OnLongPress);
 
-            // Make sure CustomView is initialized.
-            OnInitialize();
-
             // Set the StyleName the name of the View
             // We have to do this because the StyleManager on Native side can't workout it out
             // This will also ensure that the style of views/visuals initialized above are applied by the style manager.
             SetStyleName(this.GetType().Name);
+
+            OnInitialize();
         }
     }
 }
