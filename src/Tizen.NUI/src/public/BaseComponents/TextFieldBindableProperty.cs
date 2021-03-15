@@ -1007,6 +1007,24 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         }));
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty IsPreEditProperty = BindableProperty.Create(nameof(TextField.IsPreEdit), typeof(bool), typeof(TextField), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        {
+            var textField = (TextField)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.IsPreEdit, new Tizen.NUI.PropertyValue((bool)newValue));
+            }
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        {
+            var textField = (TextField)bindable;
+            bool temp = false;
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.IsPreEdit).Get(out temp);
+            return (bool)temp;
+        }));
+
+
         #region Selectors
         internal static readonly BindableProperty TranslatableTextSelectorProperty = BindableProperty.Create("TranslatableTextSelector", typeof(Selector<string>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
         {

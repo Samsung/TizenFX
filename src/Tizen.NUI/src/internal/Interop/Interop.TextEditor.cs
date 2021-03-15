@@ -285,6 +285,9 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_Property_FONT_SIZE_SCALE_get")]
             public static extern int FontSizeScaleGet();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_Property_PRE_EDIT_get")]
+            public static extern int PreEditGet();
         }
     }
 }

@@ -1390,6 +1390,23 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// It is possible to know whether the state of TextField is in PreEdit state.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsPreEdit
+        {
+            get
+            {
+                return (bool)GetValue(IsPreEditProperty);
+            }
+            set
+            {
+                SetValue(IsPreEditProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
         /// Only used by the IL of xaml, will never changed to not hidden.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool IsCreateByXaml
@@ -1659,6 +1676,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int EnableEditing = Interop.TextField.EnableEditingGet();
             internal static readonly int PrimaryCursorPosition = Interop.TextField.PrimaryCursorPositionGet();
             internal static readonly int FontSizeScale = Interop.TextField.FontSizeScaleGet();
+            internal static readonly int IsPreEdit = Interop.TextField.PreEditGet();
         }
 
         internal class InputStyle

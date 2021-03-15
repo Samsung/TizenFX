@@ -1316,6 +1316,23 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// It is possible to know whether the state of TextEditor is in PreEdit state.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsPreEdit
+        {
+            get
+            {
+                return (bool)GetValue(IsPreEditProperty);
+            }
+            set
+            {
+                SetValue(IsPreEditProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// Scroll the text control by specific amount..
         /// </summary>
         /// <param name="scroll">The amount (in pixels) of scrolling in horizontal &amp; vertical directions.</param>
@@ -1558,6 +1575,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int VerticalScrollPosition = Interop.TextEditor.VerticalScrollPositionGet();
             internal static readonly int PrimaryCursorPosition = Interop.TextEditor.PrimaryCursorPositionGet();
             internal static readonly int FontSizeScale = Interop.TextEditor.FontSizeScaleGet();
+            internal static readonly int IsPreEdit = Interop.TextEditor.PreEditGet();
         }
 
         internal class InputStyle

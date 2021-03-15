@@ -955,5 +955,22 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.FontSizeScale).Get(out temp);
             return temp;
         }));
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty IsPreEditProperty = BindableProperty.Create(nameof(TextEditor.IsPreEdit), typeof(bool), typeof(TextEditor), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        {
+            var textEditor = (TextEditor)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.IsPreEdit, new Tizen.NUI.PropertyValue((bool)newValue));
+            }
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        {
+            var textEditor = (TextEditor)bindable;
+            bool temp = false;
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.IsPreEdit).Get(out temp);
+            return (bool)temp;
+        }));
     }
 }
