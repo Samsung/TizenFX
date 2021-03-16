@@ -54,7 +54,7 @@ namespace Tizen.System
         /// The number of usage entries.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        public int Count { get; internal set; }
+        public int Count => Pids.Length;
 
         /// <summary>
         /// Gets the virtual memory size of a process.
@@ -188,6 +188,7 @@ namespace Tizen.System
         /// <param name="pid">The process id.</param>
         /// <returns>The GPU memory size <paramref name="pid"/> is using (KiB).</returns>
         /// <exception cref="ArgumentException">Thrown when the <paramref name="pid"/> is invalid.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the data is empty.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int GetGPU(int pid)
         {
@@ -212,6 +213,7 @@ namespace Tizen.System
         /// <param name="pid">The process id.</param>
         /// <returns>The resident set size <paramref name="pid"/> is using (KiB).</returns>
         /// <exception cref="ArgumentException">Thrown when the <paramref name="pid"/> is invalid.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the data is empty.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int GetGemRss(int pid)
         {
@@ -236,6 +238,7 @@ namespace Tizen.System
         /// <param name="pid">The process id.</param>
         /// <returns>The SWAP memory size <paramref name="pid"/> is using (KiB).</returns>
         /// <exception cref="ArgumentException">Thrown when the <paramref name="pid"/> is invalid.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the data is empty.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int GetSwap(int pid)
         {
@@ -256,11 +259,7 @@ namespace Tizen.System
 
         private int[] GetProcessMemoryValueInt(Interop.RuntimeInfo.ProcessMemoryInfoKey key, IEnumerable<int> pids)
         {
-            InformationError ret;
-            IntPtr ptr = new IntPtr();
-            int[] array;
-
-            ret = Interop.RuntimeInfo.GetProcessMemoryValueInt(pids.ToArray<int>(), pids.ToArray<int>().Length, key, out ptr);
+            var ret = Interop.RuntimeInfo.GetProcessMemoryValueInt(pids.ToArray<int>(), pids.ToArray<int>().Length, key, out IntPtr ptr);
             if (ret != InformationError.None)
             {
                 Log.Error(InformationErrorFactory.LogTag, "Interop failed to get process memory info: " + key.ToString());
@@ -269,7 +268,7 @@ namespace Tizen.System
                 InformationErrorFactory.ThrowException(ret);
             }
 
-            array = new int[Count];
+            var array = new int[Count];
             unsafe
             {
                 for (int i = 0; i < Count; i++)
