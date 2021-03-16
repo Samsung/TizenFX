@@ -97,12 +97,14 @@ namespace Tizen.NUI.BaseComponents
         public TextLabel() : this(Interop.TextLabel.TextLabel_New__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Layout = new TextLayout();
         }
 
         /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TextLabel(TextLabelStyle viewStyle) : this(Interop.TextLabel.TextLabel_New__SWIG_0(), true, viewStyle)
         {
+            Layout = new TextLayout();
         }
 
         /// <summary>
@@ -114,6 +116,7 @@ namespace Tizen.NUI.BaseComponents
         public TextLabel(bool shown) : this(Interop.TextLabel.TextLabel_New__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Layout = new TextLayout();
             SetVisible(shown);
         }
 
@@ -125,6 +128,7 @@ namespace Tizen.NUI.BaseComponents
         public TextLabel(string text) : this(Interop.TextLabel.TextLabel_New__SWIG_1(text), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Layout = new TextLayout();
         }
 
         /// <summary>
@@ -137,6 +141,7 @@ namespace Tizen.NUI.BaseComponents
         public TextLabel(string text, bool shown) : this(Interop.TextLabel.TextLabel_New__SWIG_1(text), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Layout = new TextLayout();
             SetVisible(shown);
         }
 
@@ -164,14 +169,6 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetVisible(false);
             }
-        }
-
-        /// <summary>
-        /// Create internal layout of TextLabel
-        /// </summary>
-        internal LayoutItem CreateTextLayout()
-        {
-            return new TextLayout();
         }
 
         /// <summary>
