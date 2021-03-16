@@ -15,6 +15,7 @@
 */
 
 using System;
+using System.ComponentModel;
 using System.Runtime.InteropServices;
 using Tizen.Internals;
 using Tizen.System;
@@ -67,6 +68,54 @@ internal static partial class Interop
             public readonly uint STime;
         }
 
+        /// <summary>
+        /// Enumeration for the process memory information key.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum ProcessMemoryInfoKey
+        {
+            /// <summary>
+            /// Virtual memory size (KiB)
+            /// </summary>
+            Vsz = 100,
+            /// <summary>
+            /// Resident set size (KiB)
+            /// </summary>
+            Rss = 200,
+            /// <summary>
+            /// Proportional set size (KiB)
+            /// </summary>
+            Pss = 300,
+            /// <summary>
+            /// Not modified and mapped by other processes (KiB)
+            /// </summary>
+            SharedClean = 400,
+            /// <summary>
+            /// Modified and mapped by other processes (KiB)
+            /// </summary>
+            SharedDirty = 500,
+            /// <summary>
+            /// Not modified and available only to that process (KiB)
+            /// </summary>
+            PrivateClean = 600,
+            /// <summary>
+            /// Modified and available only to that process (KiB)
+            /// </summary>
+            PrivateDirty = 700,
+            /// <summary>
+            /// SWAP memory size (KiB)
+            /// </summary>
+            Swap = 800,
+            /// <summary>
+            /// GPU memory size (KiB)
+            /// </summary>
+            Gpu = 900,
+            /// <summary>
+            /// Resident set size in graphic execution manager (KiB)
+            /// </summary>
+            GemRss = 1000
+        }
+
         [DllImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_get_value_int")]
         public static extern InformationError GetValue(RuntimeInfoKey key, out int status);
 
@@ -105,5 +154,8 @@ internal static partial class Interop
 
         [DllImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_unset_changed_cb")]
         public static extern InformationError UnsetRuntimeInfoChangedCallback(RuntimeInfoKey runtimeInfoKey);
+
+        [DllImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_get_process_memory_value_int")]
+        public static extern InformationError GetProcessMemoryValueInt(int[] pid, int size, ProcessMemoryInfoKey memoryInfoKey, out IntPtr array);
     }
 }

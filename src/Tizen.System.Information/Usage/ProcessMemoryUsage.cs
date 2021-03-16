@@ -15,6 +15,7 @@
 */
 
 using System;
+using System.ComponentModel;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -30,6 +31,9 @@ namespace Tizen.System
     {
         private int[] Pids;
         private Interop.RuntimeInfo.ProcessMemoryInfo[] Usages;
+        private int[] Swaps;
+        private int[] Gpus;
+        private int[] Gems;
 
         /// <summary>
         /// The constructor of ProcessMemoryInformation class.
@@ -50,7 +54,7 @@ namespace Tizen.System
         /// The number of usage entries.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        public int Count { get; internal set; }
+        public int Count => Pids.Length;
 
         /// <summary>
         /// Gets the virtual memory size of a process.
@@ -179,6 +183,108 @@ namespace Tizen.System
         }
 
         /// <summary>
+        /// Gets the GPU memory size of a process.
+        /// </summary>
+        /// <param name="pid">The process id.</param>
+        /// <returns>The GPU memory size <paramref name="pid"/> is using (KiB).</returns>
+        /// <exception cref="ArgumentException">Thrown when the <paramref name="pid"/> is invalid.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the data is empty.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int GetGPU(int pid)
+        {
+            if (Gpus == null)
+            {
+                Log.Error(InformationErrorFactory.LogTag, "No data");
+                InformationErrorFactory.ThrowException(InformationError.NoData);
+            }
+
+            for (int i = 0; i < Count; i++)
+                if (pid == Pids[i])
+                    return Gpus[i];
+
+            Log.Error(InformationErrorFactory.LogTag, "Invalid pid");
+            InformationErrorFactory.ThrowException(InformationError.InvalidParameter);
+            return 0;
+        }
+
+        /// <summary>
+        /// Gets the resident set size in graphic execution manager of a process.
+        /// </summary>
+        /// <param name="pid">The process id.</param>
+        /// <returns>The resident set size <paramref name="pid"/> is using (KiB).</returns>
+        /// <exception cref="ArgumentException">Thrown when the <paramref name="pid"/> is invalid.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the data is empty.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int GetGemRss(int pid)
+        {
+            if (Gems == null)
+            {
+                Log.Error(InformationErrorFactory.LogTag, "No data");
+                InformationErrorFactory.ThrowException(InformationError.NoData);
+            }
+
+            for (int i = 0; i < Count; i++)
+                if (pid == Pids[i])
+                    return Gems[i];
+
+            Log.Error(InformationErrorFactory.LogTag, "Invalid pid");
+            InformationErrorFactory.ThrowException(InformationError.InvalidParameter);
+            return 0;
+        }
+
+        /// <summary>
+        /// Gets the SWAP memory size of a process.
+        /// </summary>
+        /// <param name="pid">The process id.</param>
+        /// <returns>The SWAP memory size <paramref name="pid"/> is using (KiB).</returns>
+        /// <exception cref="ArgumentException">Thrown when the <paramref name="pid"/> is invalid.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the data is empty.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int GetSwap(int pid)
+        {
+            if (Swaps == null)
+            {
+                Log.Error(InformationErrorFactory.LogTag, "No data");
+                InformationErrorFactory.ThrowException(InformationError.NoData);
+            }
+
+            for (int i = 0; i < Count; i++)
+                if (pid == Pids[i])
+                    return Swaps[i];
+
+            Log.Error(InformationErrorFactory.LogTag, "Invalid pid");
+            InformationErrorFactory.ThrowException(InformationError.InvalidParameter);
+            return 0;
+        }
+
+        private int[] GetProcessMemoryValueInt(Interop.RuntimeInfo.ProcessMemoryInfoKey key, IEnumerable<int> pids)
+        {
+            var ret = Interop.RuntimeInfo.GetProcessMemoryValueInt(pids.ToArray<int>(), pids.ToArray<int>().Length, key, out IntPtr ptr);
+            if (ret != InformationError.None)
+            {
+                Log.Error(InformationErrorFactory.LogTag, "Interop failed to get process memory info: " + key.ToString());
+                if (ret == InformationError.NoData)
+                    return null;
+                InformationErrorFactory.ThrowException(ret);
+            }
+
+            try
+            {
+                var array = new int[Count];
+                unsafe
+                {
+                    for (int i = 0; i < Count; i++)
+                        array[i] = *((int*)ptr.ToPointer() + (i * sizeof(int)));
+                }
+                return array;
+            }
+            finally
+            {
+                Interop.Libc.Free(ptr);
+            }
+        }
+
+        /// <summary>
         /// Update the process memory information to the latest.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
@@ -194,21 +300,31 @@ namespace Tizen.System
 
             Pids = pid.ToArray<int>();
             IntPtr ptr = new IntPtr();
-            Count = Pids.Count<int>();
 
             ret = Interop.RuntimeInfo.GetProcessMemoryInfo(Pids, Count, ref ptr);
             if (ret != InformationError.None)
             {
-                Log.Error(InformationErrorFactory.LogTag, "Interop failed to get Process cpu usage");
+                Log.Error(InformationErrorFactory.LogTag, "Interop failed to get Process cpu usage.");
                 InformationErrorFactory.ThrowException(ret);
             }
-
-            Usages = new Interop.RuntimeInfo.ProcessMemoryInfo[Count];
-            for (int i = 0; i < Count; i++)
+            try
             {
-                Usages[i] = Marshal.PtrToStructure<Interop.RuntimeInfo.ProcessMemoryInfo>(ptr);
-                ptr += Marshal.SizeOf<Interop.RuntimeInfo.ProcessCpuUsage>();
+                var data = ptr;
+                Usages = new Interop.RuntimeInfo.ProcessMemoryInfo[Count];
+                for (int i = 0; i < Count; i++)
+                {
+                    Usages[i] = Marshal.PtrToStructure<Interop.RuntimeInfo.ProcessMemoryInfo>(data);
+                    data += Marshal.SizeOf<Interop.RuntimeInfo.ProcessCpuUsage>();
+                }
             }
+            finally
+            {
+               Interop.Libc.Free(ptr);
+            }
+
+            Gpus = GetProcessMemoryValueInt(Interop.RuntimeInfo.ProcessMemoryInfoKey.Gpu, pid);
+            Gems = GetProcessMemoryValueInt(Interop.RuntimeInfo.ProcessMemoryInfoKey.GemRss, pid);
+            Swaps = GetProcessMemoryValueInt(Interop.RuntimeInfo.ProcessMemoryInfoKey.Swap, pid);
         }
     }
 }
