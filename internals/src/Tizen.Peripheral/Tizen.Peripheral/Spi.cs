@@ -138,6 +138,8 @@ namespace Tizen.Peripheral.Spi
         /// <param name="buffer">The Data buffer.</param>
         public void Read(byte[] buffer)
         {
+            if (buffer == null)
+                throw new ArgumentNullException(nameof(buffer));
             var length = Convert.ToUInt32(buffer.Length);
             var ret = NativeSpi.Read(_handle, buffer, length);
             if (ret != Internals.Errors.ErrorCode.None)
@@ -150,6 +152,8 @@ namespace Tizen.Peripheral.Spi
         /// <param name="data">The data buffer to write.</param>
         public void Write(byte[] data)
         {
+            if (data == null)
+                throw new ArgumentNullException(nameof(data));
             var length = Convert.ToUInt32(data.Length);
             var ret = NativeSpi.Write(_handle, data, length);
             if (ret != Internals.Errors.ErrorCode.None)
@@ -164,6 +168,10 @@ namespace Tizen.Peripheral.Spi
         /// <param name="readBuffer">Array containing data read from the dievice.</param>
         public void TransferSequential(byte[] writeBuffer, byte[] readBuffer)
         {
+            if (readBuffer == null)
+                throw new ArgumentNullException(nameof(readBuffer));
+            if (writeBuffer == null)
+                throw new ArgumentNullException(nameof(writeBuffer));
             if (writeBuffer.Length != readBuffer.Length)
                 throw new Exception("writeBuffer.Length is not equal to readBuffer.Length");
 

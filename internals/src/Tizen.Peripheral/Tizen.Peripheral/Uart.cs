@@ -227,6 +227,8 @@ namespace Tizen.Peripheral.Uart
         /// <returns>The number of bytes read.</returns>
         public int Read(byte[] buffer, int offset, int count)
         {
+            if (buffer == null)
+                throw new ArgumentNullException(nameof(buffer));
             if (count > buffer.Length - offset)
                 throw new Exception("Can not read more bytes than the buffer can hold.");
             byte[] tmpBuffer = new byte[count];
@@ -246,6 +248,8 @@ namespace Tizen.Peripheral.Uart
         /// <param name="count">The number of bytes to write</param>
         public int Write(byte[] buffer, int offset, int count)
         {
+            if (buffer == null)
+                throw new ArgumentNullException(nameof(buffer));
             if (count > buffer.Length - offset)
                 throw new Exception("Can not write more bytes than the buffer holds.");
             byte[] tmpBuffer = new byte[count];

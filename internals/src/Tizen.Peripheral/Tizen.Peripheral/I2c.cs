@@ -86,6 +86,8 @@ namespace Tizen.Peripheral.I2c
         /// <param name="dataOut">The output byte array.</param>
         public void Read(byte[] dataOut)
         {
+            if (dataOut == null)
+                throw new ArgumentNullException(nameof(dataOut));
             var length = Convert.ToUInt32(dataOut.Length);
             var ret = NativeI2c.Read(_handle, dataOut, length);
             if (ret != Internals.Errors.ErrorCode.None)
@@ -98,6 +100,8 @@ namespace Tizen.Peripheral.I2c
         /// <param name="data"></param>
         public void Write(byte[] data)
         {
+            if (data == null)
+                throw new ArgumentNullException(nameof(data));
             var length = Convert.ToUInt32(data.Length);
             var ret = NativeI2c.Write(_handle, data, length);
             if (ret != Internals.Errors.ErrorCode.None)

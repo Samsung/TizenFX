@@ -112,32 +112,40 @@ namespace Tizen.Peripheral.Gpio
         public GpioPin(int pinNumber, GpioPinDriveMode mode)
         {
             var ret = NativeGpio.Open(pinNumber, out _handle);
-            if (ret != ErrorCode.None)
-                throw ExceptionFactory.CreateException(ret);
-
-            PinNumber = pinNumber;
-            switch (mode)
+            try
             {
-                case GpioPinDriveMode.Input:
-                    ret = NativeGpio.SetEdgeMode(_handle, NativeGpio.EdgeType.Both);
-                    if (ret != ErrorCode.None)
-                        throw ExceptionFactory.CreateException(ret);
+                if (ret != ErrorCode.None)
+                    throw ExceptionFactory.CreateException(ret);
 
-                    ret = NativeGpio.SetDirection(_handle, NativeGpio.Direction.In);
-                    if (ret != ErrorCode.None)
-                        throw ExceptionFactory.CreateException(ret);
-                    SetIntteruptedCallback();
-                    break;
-                case GpioPinDriveMode.OutputInitiallyLow:
-                    ret = NativeGpio.SetDirection(_handle, NativeGpio.Direction.OutLow);
-                    if (ret != ErrorCode.None)
-                        throw ExceptionFactory.CreateException(ret);
-                    break;
-                case GpioPinDriveMode.OutputInitiallyHigh:
-                    ret = NativeGpio.SetDirection(_handle, NativeGpio.Direction.OutHigh);
-                    if (ret != ErrorCode.None)
-                        throw ExceptionFactory.CreateException(ret);
-                    break;
+                PinNumber = pinNumber;
+                switch (mode)
+                {
+                    case GpioPinDriveMode.Input:
+                        ret = NativeGpio.SetEdgeMode(_handle, NativeGpio.EdgeType.Both);
+                        if (ret != ErrorCode.None)
+                            throw ExceptionFactory.CreateException(ret);
+
+                        ret = NativeGpio.SetDirection(_handle, NativeGpio.Direction.In);
+                        if (ret != ErrorCode.None)
+                            throw ExceptionFactory.CreateException(ret);
+                        SetIntteruptedCallback();
+                        break;
+                    case GpioPinDriveMode.OutputInitiallyLow:
+                        ret = NativeGpio.SetDirection(_handle, NativeGpio.Direction.OutLow);
+                        if (ret != ErrorCode.None)
+                            throw ExceptionFactory.CreateException(ret);
+                        break;
+                    case GpioPinDriveMode.OutputInitiallyHigh:
+                        ret = NativeGpio.SetDirection(_handle, NativeGpio.Direction.OutHigh);
+                        if (ret != ErrorCode.None)
+                            throw ExceptionFactory.CreateException(ret);
+                        break;
+                }
+            }
+            catch (Exception err)
+            {
+                Dispose();
+                throw;
             }
         }
 
