@@ -31,15 +31,17 @@ namespace Tizen.NUI.Components
     public class ScrollEventArgs : EventArgs
     {
         private Position position;
+        private Position scrollPosition;
 
         /// <summary>
         /// Default constructor.
         /// </summary>
-        /// <param name="position">Current scroll position</param>
+        /// <param name="position">Current contianer position</param>
         /// <since_tizen> 8 </since_tizen>
         public ScrollEventArgs(Position position)
         {
             this.position = position;
+            this.scrollPosition = new Position(-position);
         }
 
         /// <summary>
@@ -51,6 +53,18 @@ namespace Tizen.NUI.Components
             get
             {
                 return position;
+            }
+        }
+        /// <summary>
+        /// Current scroll position of scrollableBase pan.
+        /// This is the position in the opposite direction to the current position of ContentContainer.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Position ScrollPosition
+        {
+            get
+            {
+                return scrollPosition;
             }
         }
     }
