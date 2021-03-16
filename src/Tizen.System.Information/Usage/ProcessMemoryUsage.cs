@@ -293,7 +293,6 @@ namespace Tizen.System
 
             Pids = pid.ToArray<int>();
             IntPtr ptr = new IntPtr();
-            Count = Pids.Length;
 
             ret = Interop.RuntimeInfo.GetProcessMemoryInfo(Pids, Count, ref ptr);
             if (ret != InformationError.None)
