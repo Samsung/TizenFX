@@ -268,13 +268,20 @@ namespace Tizen.System
                 InformationErrorFactory.ThrowException(ret);
             }
 
-            var array = new int[Count];
-            unsafe
+            try
             {
-                for (int i = 0; i < Count; i++)
-                    array[i] = *((int*)ptr.ToPointer() + (i * sizeof(int)));
+                var array = new int[Count];
+                unsafe
+                {
+                    for (int i = 0; i < Count; i++)
+                        array[i] = *((int*)ptr.ToPointer() + (i * sizeof(int)));
+                }
+                return array;
             }
-            return array;
+            finally
+            {
+                Interop.Libc.Free(ptr);
+            }
         }
 
         /// <summary>
@@ -300,12 +307,19 @@ namespace Tizen.System
                 Log.Error(InformationErrorFactory.LogTag, "Interop failed to get Process cpu usage.");
                 InformationErrorFactory.ThrowException(ret);
             }
-
-            Usages = new Interop.RuntimeInfo.ProcessMemoryInfo[Count];
-            for (int i = 0; i < Count; i++)
+            try
             {
-                Usages[i] = Marshal.PtrToStructure<Interop.RuntimeInfo.ProcessMemoryInfo>(ptr);
-                ptr += Marshal.SizeOf<Interop.RuntimeInfo.ProcessCpuUsage>();
+                var data = ptr;
+                Usages = new Interop.RuntimeInfo.ProcessMemoryInfo[Count];
+                for (int i = 0; i < Count; i++)
+                {
+                    Usages[i] = Marshal.PtrToStructure<Interop.RuntimeInfo.ProcessMemoryInfo>(data);
+                    data += Marshal.SizeOf<Interop.RuntimeInfo.ProcessCpuUsage>();
+                }
+            }
+            finally
+            {
+               Interop.Libc.Free(ptr);
             }
 
             Gpus = GetProcessMemoryValueInt(Interop.RuntimeInfo.ProcessMemoryInfoKey.Gpu, pid);

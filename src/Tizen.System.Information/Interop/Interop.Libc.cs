@@ -14,12 +14,14 @@
 * limitations under the License.
 */
 
+using System;
+using System.Runtime.InteropServices;
+
 internal static partial class Interop
 {
-    internal static partial class Libraries
+    internal static partial class Libc
     {
-        internal const string RuntimeInfo = "libcapi-system-runtime-info.so.0";
-        internal const string SystemInfo = "libcapi-system-info.so.0";
-        internal const string Libc = "libc.so.6";
+        [DllImport(Libraries.Libc, EntryPoint = "free")]
+        public static extern void Free(IntPtr ptr);
     }
 }
