@@ -39,8 +39,6 @@ namespace Tizen.NUI
     /// </summary>
     public class LayoutItem : IDisposable
     {
-        static bool LayoutDebugFrameData = false; // Debug flag
-
         private bool disposed = false;
         private MeasureSpecification oldWidthMeasureSpec; // Store measure specification to compare against later
         private MeasureSpecification oldHeightMeasureSpec; // Store measure specification to compare against later
@@ -562,7 +560,7 @@ namespace Tizen.NUI
                 // Store new layout position data
                 layoutPositionData = new LayoutData(this, ConditionForAnimation, left, top, right, bottom);
 
-                Debug.WriteLineIf(LayoutDebugFrameData, "LayoutItem FramePositionData View:" + layoutPositionData.Item.Owner.Name +
+                NUILog.Debug("LayoutItem FramePositionData View:" + layoutPositionData.Item.Owner.Name +
                                                          " left:" + layoutPositionData.Left +
                                                          " top:" + layoutPositionData.Top +
                                                          " right:" + layoutPositionData.Right +
