@@ -161,61 +161,56 @@ namespace Tizen.NUI
 
         // Traverse the tree looking for a root node that is a layout.
         // Once found, it's children can be assigned Layouts and the Measure process started.
-        private void FindRootLayouts(View rootNode)
+        private void FindRootLayouts(View rootNode, float parentWidth, float parentHeight)
         {
             if (rootNode.Layout != null)
             {
                 NUILog.Debug("LayoutController Root found:" + rootNode.Name);
                 // rootNode has a layout, start measuring and layouting from here.
-                MeasureAndLayout(rootNode);
+                MeasureAndLayout(rootNode, parentWidth, parentHeight);
             }
             else
             {
+                float rootWidth = rootNode.SizeWidth;
+                float rootHeight = rootNode.SizeHeight;
                 // Search children of supplied node for a layout.
                 for (uint i = 0; i < rootNode.ChildCount; i++)
                 {
                     View view = rootNode.GetChildAt(i);
-                    FindRootLayouts(view);
+                    FindRootLayouts(view, rootWidth, rootHeight);
                 }
             }
         }
 
         // Starts of the actual measuring and layouting from the given root node.
         // Can be called from multiple starting roots but in series.
-        void MeasureAndLayout(View root)
+        // Get parent View's Size.  If using Legacy size negotiation then should have been set already.
+        // Parent not a View so assume it's a Layer which is the size of the window.
+        void MeasureAndLayout(View root, float parentWidth, float parentHeight)
         {
-            if (root != null)
+            float positionX = root.PositionX;
+            float positionY = root.PositionY;
+
+            // Determine measure specification for root.
+            // The root layout policy could be an exact size, be match parent or wrap children.
+            // If wrap children then at most it can be the root parent size.
+            // If match parent then should be root parent size.
+            // If exact then should be that size limited by the root parent size.
+            MeasureSpecification parentWidthSpecification = CreateMeasureSpecification(parentWidth, root.WidthSpecification);
+            MeasureSpecification parentHeightSpecification = CreateMeasureSpecification(parentHeight, root.HeightSpecification);
+
+            // Start at root with it's parent's widthSpecification and heightSpecification
+            MeasureHierarchy(root, parentWidthSpecification, parentHeightSpecification);
+
+            // Start at root which was just measured.
+            PerformLayout(root, new LayoutLength(positionX),
+                                 new LayoutLength(positionY),
+                                 new LayoutLength(positionX) + root.Layout.MeasuredWidth.Size,
+                                 new LayoutLength(positionY) + root.Layout.MeasuredHeight.Size);
+
+            if (SetupCoreAnimation() && OverrideCoreAnimation == false)
             {
-                // Get parent MeasureSpecification, this could be the Window or View with an exact size.
-                Container parentNode = root.GetParent();
-                Position rootPosition = root.Position2D;
-
-                // Get parent View's Size.  If using Legacy size negotiation then should have been set already.
-                // Parent not a View so assume it's a Layer which is the size of the window.
-                View parentView = parentNode as View;
-                Size rootSize = parentView ? new Size(parentView.Size2D) : new Size(window.Size);
-
-                // Determine measure specification for root.
-                // The root layout policy could be an exact size, be match parent or wrap children.
-                // If wrap children then at most it can be the root parent size.
-                // If match parent then should be root parent size.
-                // If exact then should be that size limited by the root parent size.
-                MeasureSpecification parentWidthSpecification = CreateMeasureSpecification(rootSize.Width, root.WidthSpecification);
-                MeasureSpecification parentHeightSpecification = CreateMeasureSpecification(rootSize.Height, root.HeightSpecification);
-
-                // Start at root with it's parent's widthSpecification and heightSpecification
-                MeasureHierarchy(root, parentWidthSpecification, parentHeightSpecification);
-
-                // Start at root which was just measured.
-                PerformLayout(root, new LayoutLength(rootPosition.X),
-                                     new LayoutLength(rootPosition.Y),
-                                     new LayoutLength(rootPosition.X) + root.Layout.MeasuredWidth.Size,
-                                     new LayoutLength(rootPosition.Y) + root.Layout.MeasuredHeight.Size);
-
-                if (SetupCoreAnimation() && OverrideCoreAnimation == false)
-                {
-                    PlayAnimation();
-                }
+                PlayAnimation();
             }
         }
 
@@ -242,21 +237,19 @@ namespace Tizen.NUI
         /// </summary>
         private void Process(int id)
         {
+            Vector2 windowSize = window.GetSize();
+            float width = windowSize.Width;
+            float height = windowSize.Height;
             // First layer in the Window should be the default layer (index 0 )
-            uint numberOfLayers = window.LayerCount;
-            for (uint layerIndex = 0; layerIndex < numberOfLayers; layerIndex++)
+            foreach (Layer layer in window.LayersChildren)
             {
-                Layer layer = window.GetLayer(layerIndex);
-                if (layer != null)
+                foreach (View view in layer.Children)
                 {
-                    for (uint i = 0; i < layer.ChildCount; i++)
-                    {
-                        View view = layer.GetChildAt(i);
-                        FindRootLayouts(view);
-                    }
+                    FindRootLayouts(view, width, height);
                 }
             }
-
+            windowSize.Dispose();
+            windowSize = null;
         }
 
         /// <summary>
@@ -269,11 +262,7 @@ namespace Tizen.NUI
             // No -  reached leaf or no layouts set
             //
             // If in a leaf View with no layout, it's natural size is bubbled back up.
-
-            if (root.Layout != null)
-            {
-                root.Layout.Measure(widthSpec, heightSpec);
-            }
+            root.Layout?.Measure(widthSpec, heightSpec);
         }
 
         /// <summary>
@@ -281,10 +270,7 @@ namespace Tizen.NUI
         /// </summary>
         private void PerformLayout(View root, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
         {
-            if (root.Layout != null)
-            {
-                root.Layout.Layout(left, top, right, bottom);
-            }
+            root.Layout?.Layout(left, top, right, bottom);
         }
 
         /// <summary>
