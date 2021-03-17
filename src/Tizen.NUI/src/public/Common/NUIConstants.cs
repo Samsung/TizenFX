@@ -807,7 +807,20 @@ namespace Tizen.NUI
         /// character will move character by character to the next line.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        Character
+        Character,
+
+        /// <summary>
+        /// Hyphenation mode will move part of the word (at possible hyphen locations)
+        /// to the next line and draw a hyphen at the end of the line.
+        /// </summary>
+        /// <since_tizen> ? </since_tizen>
+        Hyphenation,
+
+        /// <summary>
+        /// Mixed mode will try word mode, if failed hyphenation mode, if failed character mode.
+        /// </summary>
+        /// <since_tizen> ? </since_tizen>
+        Mixed,
     }
 
     /// <summary>
