@@ -32,7 +32,7 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 7 </since_tizen>
     public class LottieAnimationView : ImageView
     {
-        #region Constructor, Distructor, Dispose
+        #region Constructor, Destructor, Dispose
         /// <summary>
         /// LottieAnimationView constructor
         /// </summary>
@@ -96,7 +96,7 @@ namespace Tizen.NUI.BaseComponents
             base.Dispose(type);
             tlog.Fatal(tag, $"[{GetId()}]>");
         }
-        #endregion Constructor, Distructor, Dispose
+        #endregion Constructor, Destructor, Dispose
 
 
         #region Property

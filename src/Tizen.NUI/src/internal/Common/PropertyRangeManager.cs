@@ -95,8 +95,8 @@ namespace Tizen.NUI
         /// </summary>
         private void GetPropertyStartRange(System.Type viewType, ref PropertyRange range)
         {
-            const int maxCountPerDerivation = 1000; // For child and animtable properties we use a gap of 1000 between each
-                                                    // views property range in the heirachy
+            const int maxCountPerDerivation = 1000; // For child and animatable properties we use a gap of 1000 between each
+                                                    // views property range in the hierarchy
 
             // custom views start there property index, at view_PROPERTY_END_INDEX
             // we add 1000, just incase View class (our C# custom view base) starts using scriptable properties

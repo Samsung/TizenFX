@@ -147,7 +147,7 @@ namespace Tizen.NUI.Binding
         }
 
         /// <summary>
-        /// Returns a Boolean indicating if the Command can be exectued with the given parameter.
+        /// Returns a Boolean indicating if the Command can be executed with the given parameter.
         /// </summary>
         /// <param name="parameter">An Object used as parameter to determine if the Command can be executed.</param>
         /// <returns>true if the Command can be executed, false otherwise.</returns>

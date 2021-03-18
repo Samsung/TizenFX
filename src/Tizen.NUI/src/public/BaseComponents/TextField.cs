@@ -63,7 +63,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Get attribues, it is abstract function and must be override.
+        /// Get attributes, it is abstract function and must be override.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override ViewStyle CreateViewStyle()

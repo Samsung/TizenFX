@@ -26,7 +26,7 @@ using Tizen.System;
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// The control component is base class of tv nui components. It's abstract class, so cann't instantiate and can only be inherited.
+    /// The control component is base class of tv nui components. It's abstract class, so can't instantiate and can only be inherited.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.

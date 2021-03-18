@@ -493,7 +493,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The postion of scroll.
+        /// The position of scroll.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Position ScrollPosition
@@ -571,7 +571,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets fav icon.
+        /// Gets favicon.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ImageView Favicon
@@ -909,7 +909,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Reply for promp popup.
+        /// Reply for prompt popup.
         /// <param name="result">text in prompt input field.</param>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]

@@ -31,7 +31,7 @@ namespace Tizen.NUI.BaseComponents
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class AnimatedImageView : ImageView
     {
-        #region Constructor, Distructor, Dispose
+        #region Constructor, Destructor, Dispose
         /// <summary>
         /// Construct AnimatedImageView
         /// </summary>
@@ -60,7 +60,7 @@ namespace Tizen.NUI.BaseComponents
             //because the execution order of Finalizes is non-deterministic.
             base.Dispose(type);
         }
-        #endregion Constructor, Distructor, Dispose
+        #endregion Constructor, Destructor, Dispose
 
         #region Property
         /// <summary>

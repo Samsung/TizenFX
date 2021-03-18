@@ -307,7 +307,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the the hash code of this Size.
+        /// Gets the hash code of this Size.
         /// </summary>
         /// <returns>The Hash Code.</returns>
         /// <since_tizen> 6 </since_tizen>

@@ -118,7 +118,7 @@ namespace Tizen.NUI
                 width = region.Width; height = region.Height; i = region.X; j = region.Y;
             }
 
-            Tizen.Log.Info("Palette", "Get pixels rawdata from (" + i + " " + j + " " + width + " " + height + ")" + "\n");
+            Tizen.Log.Info("Palette", "Get pixels raw data from (" + i + " " + j + " " + width + " " + height + ")" + "\n");
 
             pixels = new int[width * height];
             PixelFormat format = pixelBuffer.GetPixelFormat();

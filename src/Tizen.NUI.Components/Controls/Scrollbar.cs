@@ -272,7 +272,7 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            // TODO Support non built-in alpha function for visual trainsition in DALi.
+            // TODO Support non built-in alpha function for visual transition in DALi.
             AlphaFunction.BuiltinFunctions builtinAlphaFunction = alphaFunction?.GetBuiltinFunction() ?? AlphaFunction.BuiltinFunctions.Default;
 
             thumbPositionAnimation?.Stop();
@@ -310,7 +310,7 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            // TODO Support non built-in alpha function for visual trainsition in DALi.
+            // TODO Support non built-in alpha function for visual transition in DALi.
             AlphaFunction.BuiltinFunctions builtinAlphaFunction = alphaFunction?.GetBuiltinFunction() ?? AlphaFunction.BuiltinFunctions.Default;
 
             thumbPositionAnimation?.Stop();

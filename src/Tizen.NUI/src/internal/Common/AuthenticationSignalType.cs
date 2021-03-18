@@ -102,7 +102,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The contructor.
+        /// The constructor.
         /// </summary>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]

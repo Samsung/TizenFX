@@ -97,7 +97,7 @@ namespace Tizen.NUI
         private MeasureSpecification parentMeasureSpecificationWidth;
         private MeasureSpecification parentMeasureSpecificationHeight;
 
-        private IntPtr _rootFlex;  // Pointer to the unmanged flex layout class.
+        private IntPtr _rootFlex;  // Pointer to the unmanaged flex layout class.
 
         internal const float FlexUndefined = 10E20F; // Auto setting which is equivalent to WrapContent.
 
@@ -311,7 +311,7 @@ namespace Tizen.NUI
                 // TODO: dispose managed state (managed objects).
                 // Explicit call. user calls Dispose()
 
-                //Throw excpetion if Dispose() is called in separate thread.
+                //Throw exception if Dispose() is called in separate thread.
                 if (!Window.IsInstalled())
                 {
                     throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");

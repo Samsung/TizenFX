@@ -155,7 +155,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Hidden API (Inhouse API).
-        /// Using Uri class to provide safe sevice and secure API.
+        /// Using Uri class to provide safe service and secure API.
         /// Creates an initialized VideoView.
         /// If the string is empty, VideoView will not display anything.
         /// </summary>
@@ -191,7 +191,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Hidden API (Inhouse API).
-        /// Using Uri class to provide safe sevice and secure API.
+        /// Using Uri class to provide safe service and secure API.
         /// Creates an initialized VideoView.
         /// If the string is empty, VideoView will not display anything.
         /// </summary>
@@ -502,7 +502,7 @@ namespace Tizen.NUI.BaseComponents
     public class SafeNativePlayerHandle : SafeHandle
     {
         /// <summary>
-        /// Contructor, null handle is set.
+        /// Constructor, null handle is set.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public SafeNativePlayerHandle() : base(global::System.IntPtr.Zero, false)
@@ -510,7 +510,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Contructor, Native player handle is set to handle.
+        /// Constructor, Native player handle is set to handle.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public SafeNativePlayerHandle(VideoView videoView) : base(global::System.IntPtr.Zero, false)

@@ -51,7 +51,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Hidden API (Inhouse API).
         /// Constructor.
-        /// Using Uri class to provide safe sevice and secure API.
+        /// Using Uri class to provide safe service and secure API.
         /// </summary>
         /// <param name="uri">uri.</param>
         /// <param name="border">border.</param>

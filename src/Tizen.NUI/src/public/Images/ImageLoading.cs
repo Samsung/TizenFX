@@ -56,7 +56,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Hidden API (Inhouse API).
-        /// Using Uri class to provide safe sevice and secure API.
+        /// Using Uri class to provide safe service and secure API.
         /// Load an image synchronously from local file.
         /// </summary>
         /// <param name="uri">The URI of the image file to load.</param>
@@ -115,7 +115,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Hidden API (Inhouse API).
-        /// Using Uri class to provide safe sevice and secure API.
+        /// Using Uri class to provide safe service and secure API.
         /// Load an image synchronously from local file.
         /// </summary>
         /// <param name="uri">The URI of the image file to load.</param>
@@ -171,7 +171,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Hidden API (Inhouse API).
-        /// Using Uri class to provide safe sevice and secure API.
+        /// Using Uri class to provide safe service and secure API.
         /// Load an image synchronously from local file.
         /// </summary>
         /// <param name="uri">The URI of the image file to load.</param>
@@ -224,7 +224,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Hidden API (Inhouse API).
-        /// Using Uri class to provide safe sevice and secure API.
+        /// Using Uri class to provide safe service and secure API.
         /// Load an image synchronously from local file.
         /// </summary>
         /// <param name="uri">The URI of the image file to load.</param>
@@ -268,7 +268,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Hidden API (Inhouse API).
-        /// Using Uri class to provide safe sevice and secure API.
+        /// Using Uri class to provide safe service and secure API.
         /// Load an image synchronously from local file.
         /// </summary>
         /// <param name="uri">The URI of the image file to load.</param>
@@ -456,7 +456,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Hidden API (Inhouse API).
-        /// Using Uri class to provide safe sevice and secure API.
+        /// Using Uri class to provide safe service and secure API.
         /// Load an image synchronously from a remote resource.
         /// </summary>
         /// <param name="uri">The URI of the image file to load.</param>
@@ -514,7 +514,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Hidden API (Inhouse API).
-        /// Using Uri class to provide safe sevice and secure API.
+        /// Using Uri class to provide safe service and secure API.
         /// Load an image synchronously from a remote resource.
         /// </summary>
         /// <param name="uri">The URI of the image file to load.</param>
@@ -569,7 +569,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Hidden API (Inhouse API).
-        /// Using Uri class to provide safe sevice and secure API.
+        /// Using Uri class to provide safe service and secure API.
         /// Load an image synchronously from a remote resource.
         /// </summary>
         /// <param name="uri">The URI of the image file to load.</param>
@@ -622,7 +622,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Hidden API (Inhouse API).
-        /// Using Uri class to provide safe sevice and secure API.
+        /// Using Uri class to provide safe service and secure API.
         /// Load an image synchronously from a remote resource.
         /// </summary>
         /// <param name="uri">The URI of the image file to load.</param>
@@ -666,7 +666,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Hidden API (Inhouse API).
-        /// Using Uri class to provide safe sevice and secure API.
+        /// Using Uri class to provide safe service and secure API.
         /// Load an image synchronously from a remote resource.
         /// </summary>
         /// <param name="uri">The URI of the image file to load.</param>

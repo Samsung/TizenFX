@@ -38,7 +38,7 @@ namespace Tizen.NUI
         /// <exception cref="ArgumentException">Thrown when failed because of an invalid parameter.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when the memory is insufficient.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed to create the frame broker handle.</exception>
-        /// <remarks>This class is only avaliable for platform level signed applications.</remarks>
+        /// <remarks>This class is only available for platform level signed applications.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal FrameProvider(Window window)
         {

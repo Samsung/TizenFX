@@ -95,7 +95,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The contructor.
+        /// The constructor.
         /// </summary>
         public ContentReceivedSignalType() : this(Interop.ContentReceivedSignalType.NewContentReceivedSignalType(), true)
         {

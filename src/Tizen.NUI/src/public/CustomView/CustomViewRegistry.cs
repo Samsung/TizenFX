@@ -104,7 +104,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Rhe enum of ScriptableType
+        /// The enum of ScriptableType
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public enum ScriptableType
@@ -242,7 +242,7 @@ namespace Tizen.NUI
         /// Example of a Spin view registering itself:
         ///   static Spin()
         /// {
-        ///   ViewRegistry registers control type with DALi type registery
+        ///   ViewRegistry registers control type with DALi type registry
         ///   also uses introspection to find any properties that need to be registered with type registry
         ///   ViewRegistry.Instance.Register(CreateInstance, typeof(Spin) );
         /// }
@@ -282,7 +282,7 @@ namespace Tizen.NUI
                             // first get the attribute type, ( default, or animatable)
                             ScriptableProperty scriptableProp = attr as ScriptableProperty;
 
-                            // we get the start property index, based on the type and it's heirachy, e.g. DateView (70,000)-> Spin (60,000) -> View (50,000)
+                            // we get the start property index, based on the type and it's hierarchy, e.g. DateView (70,000)-> Spin (60,000) -> View (50,000)
                             int propertyIndex = propertyRangeManager.GetPropertyIndex(viewType.ToString(), viewType, scriptableProp.type);
 
                             // get the enum for the property type... E.g. registering a string property returns Tizen.NUI.PropertyType.String
@@ -327,7 +327,7 @@ namespace Tizen.NUI
             }
             else
             {
-                throw new global::System.InvalidOperationException("C# View not registererd with ViewRegistry" + controlName);
+                throw new global::System.InvalidOperationException("C# View not registered with ViewRegistry" + controlName);
             }
         }
 

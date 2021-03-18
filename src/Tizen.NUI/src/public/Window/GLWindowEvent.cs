@@ -259,7 +259,7 @@ namespace Tizen.NUI
                 // val.Dispose();
 
                 // Workaround : windowSize should be valid pointer from dali, 
-                // but currenlty it is fixed and is not Uint16Pair class.
+                // but currently it is fixed and is not Uint16Pair class.
                 // will be fixed later.
                 e.WindowSize = this.WindowSize;
                 windowResizedEventHandler(this, e);

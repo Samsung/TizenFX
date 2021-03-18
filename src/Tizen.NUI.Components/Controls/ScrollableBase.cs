@@ -36,7 +36,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Default constructor.
         /// </summary>
-        /// <param name="position">Current contianer position</param>
+        /// <param name="position">Current container position</param>
         /// <since_tizen> 8 </since_tizen>
         public ScrollEventArgs(Position position)
         {
@@ -500,7 +500,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Threashold not to go infinit at the end of scrolling animation.
+        /// Threshold not to go infinite at the end of scrolling animation.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float DecelerationThreshold { get; set; } = 0.1f;
@@ -532,7 +532,7 @@ namespace Tizen.NUI.Components
 
         /// <summary>
         /// Page will be changed when velocity of panning is over threshold.
-        /// The unit of threshold is pixel per milisec.
+        /// The unit of threshold is pixel per millisecond.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         public float PageFlickThreshold
@@ -954,7 +954,7 @@ namespace Tizen.NUI.Components
 
             if (animate)
             {
-                // Calculate scroll animaton duration
+                // Calculate scroll animation duration
                 float scrollDistance = Math.Abs(displacement);
                 readyToNotice = true;
 
@@ -1426,7 +1426,7 @@ namespace Tizen.NUI.Components
         {
             // Decelerating using deceleration equation ===========
             //
-            // V   : velocity (pixel per milisecond)
+            // V   : velocity (pixel per millisecond)
             // V0  : initial velocity
             // d   : deceleration rate,
             // t   : time
@@ -1435,9 +1435,9 @@ namespace Tizen.NUI.Components
             //
             // V(t) = V0 * d pow t;
             // X(t) = V0 * (d pow t - 1) / log d;  <-- Integrate the velocity function
-            // X(∞) = V0 * d / (1 - d); <-- Result using inifit T can be final position because T is tending to infinity.
+            // X(∞) = V0 * d / (1 - d); <-- Result using infinite T can be final position because T is tending to infinity.
             //
-            // Because of final T is tending to inifity, we should use threshold value to finish.
+            // Because of final T is tending to infinity, we should use threshold value to finish.
             // Final T = log(-threshold * log d / |V0| ) / log d;
 
             velocityOfLastPan = Math.Abs(velocity);

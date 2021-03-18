@@ -56,7 +56,7 @@ namespace Tizen.NUI
         /// Gets the image at position "index".
         /// </summary>
         /// <param name="index">The position in the texture set of the image.</param>
-        /// <returns>A handle to the image at the the specified position.</returns>
+        /// <returns>A handle to the image at the specified position.</returns>
         /// <since_tizen> 3 </since_tizen>
         public Texture GetTexture(uint index)
         {

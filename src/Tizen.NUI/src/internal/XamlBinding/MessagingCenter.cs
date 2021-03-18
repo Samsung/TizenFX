@@ -61,7 +61,7 @@ namespace Tizen.NUI.Binding
             {
                 if (subscriber.Equals(delegateSource))
                 {
-                    // The target is the subscriber; we can use a weakreference
+                    // The target is the subscriber; we can use a weak reference
                     DelegateWeakReference = new WeakReference(delegateSource);
                     isStrongReference = false;
                 }

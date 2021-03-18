@@ -579,7 +579,7 @@ namespace Tizen.NUI
 
         /**
           * @brief Event for Initialized signal which can be used to subscribe/unsubscribe the event handler
-          *  provided by the user. Initialized signal is emitted when application is initialised
+          *  provided by the user. Initialized signal is emitted when application is initialized
           */
         public event DaliEventHandler<object, NUIApplicationInitEventArgs> Initialized
         {
@@ -1172,7 +1172,7 @@ namespace Tizen.NUI
             }
             catch (Exception exception)
             {
-                Tizen.Log.Fatal("NUI", "[Error] got exception during Application New(), this should not occur, msg : " + exception.Message);
+                Tizen.Log.Fatal("NUI", "[Error] got exception during Application New(), this should not occur, message : " + exception.Message);
                 Tizen.Log.Fatal("NUI", "[Error] error line number : " + new StackTrace(exception, true).GetFrame(0).GetFileLineNumber());
                 Tizen.Log.Fatal("NUI", "[Error] Stack Trace : " + exception.StackTrace);
                 throw;
@@ -1203,7 +1203,7 @@ namespace Tizen.NUI
             }
             catch (Exception exception)
             {
-                Tizen.Log.Fatal("NUI", "[Error] got exception during Application New(), this should not occur, msg : " + exception.Message);
+                Tizen.Log.Fatal("NUI", "[Error] got exception during Application New(), this should not occur, message : " + exception.Message);
                 Tizen.Log.Fatal("NUI", "[Error] error line number : " + new StackTrace(exception, true).GetFrame(0).GetFileLineNumber());
                 Tizen.Log.Fatal("NUI", "[Error] Stack Trace : " + exception.StackTrace);
                 throw;

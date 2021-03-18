@@ -292,7 +292,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Measure the size of chlid ViewItem manually.
+        /// Measure the size of child ViewItem manually.
         /// </summary>
         /// <param name="parent">Parent ItemsView.</param>
         /// <param name="child">Child ViewItem to Measure()</param>

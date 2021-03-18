@@ -159,7 +159,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Seperator devider of DefaultTitleItem. it will place at the end of item.
+        /// Seperator divider of DefaultTitleItem. it will place at the end of item.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public View Seperator

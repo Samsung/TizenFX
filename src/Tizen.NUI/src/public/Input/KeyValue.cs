@@ -31,7 +31,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Int key.
         /// </summary>
-        /// When deleting the field, change it to prperty.
+        /// When deleting the field, change it to property.
         [Obsolete("Deprecated in API9, Will be removed in API11. Please use IntegerKey instead.")]
         [SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
         public int? KeyInt = null;
@@ -39,7 +39,7 @@ namespace Tizen.NUI
         /// <summary>
         /// String key.
         /// </summary>
-        /// When deleting the field, change it to prperty.
+        /// When deleting the field, change it to property.
         [Obsolete("Deprecated in API9, Will be removed in API11. Please use StringKey instead.")]
         [SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
         public string KeyString = null;
@@ -47,7 +47,7 @@ namespace Tizen.NUI
         /// <summary>
         /// True value.
         /// </summary>
-        /// When deleting the field, change it to prperty.
+        /// When deleting the field, change it to property.
         [Obsolete("Deprecated in API9, Will be removed in API11. Please use PropertyValue instead.")]
         [SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
         public PropertyValue TrueValue = null;
@@ -134,7 +134,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Int key.
         /// </summary>
-        /// When deleting the field, change it to prperty.
+        /// When deleting the field, change it to property.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int? IntegerKey
         {

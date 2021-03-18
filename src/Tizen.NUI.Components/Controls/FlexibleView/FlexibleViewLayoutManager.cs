@@ -622,7 +622,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// ecycles children between given indices..
+        /// Recycles children between given indices..
         /// </summary>
         /// <param name="recycler">Recycler to recycle views into</param>
         /// <param name="startIndex">inclusive</param>

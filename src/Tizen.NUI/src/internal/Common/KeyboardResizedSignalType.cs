@@ -90,7 +90,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The contructor.
+        /// The constructor.
         /// </summary>
         public KeyboardResizedSignalType() : this(Interop.KeyboardResizedSignalType.NewKeyboardResizedSignalType(), true)
         {

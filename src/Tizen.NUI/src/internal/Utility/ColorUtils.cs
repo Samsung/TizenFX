@@ -330,13 +330,13 @@ namespace Tizen.NUI
                     return 4;
                 }
                 default:
-                    Tizen.Log.Error("Palette", "Invalied PixelFormat(" + pixelFormat + ") has been givien \n");
+                    Tizen.Log.Error("Palette", "Invalided PixelFormat(" + pixelFormat + ") has been given \n");
                     return 0;
             }
         }
 
         /// <summary>
-        /// return luma value according to to XYZ color space in the range 0.0 - 1.0
+        /// return luma value according to XYZ color space in the range 0.0 - 1.0
         /// </summary>
         private static int CompositeAlpha(int foregroundAlpha, int backgroundAlpha)
         {

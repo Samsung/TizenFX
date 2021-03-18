@@ -88,7 +88,7 @@ namespace Tizen.NUI
         {
             IntPtr refObjectPtr = Interop.BaseHandle.GetObjectPtr(baseHandle.GetBaseHandleCPtrHandleRef);
 
-            // we store a dictionary of ref-obects (C++ land) to managed obects (C# land)
+            // we store a dictionary of ref-objects (C++ land) to managed objects (C# land)
             return GetManagedBaseHandleFromRefObject(refObjectPtr);
         }
 
@@ -96,7 +96,7 @@ namespace Tizen.NUI
         {
             IntPtr refObjectPtr = Interop.RefObject.GetRefObjectPtr(cPtr);
 
-            // we store a dictionary of ref-obects (C++ land) to managed obects (C# land)
+            // we store a dictionary of ref-objects (C++ land) to managed objects (C# land)
             return GetManagedBaseHandleFromRefObject(refObjectPtr);
         }
 
@@ -114,7 +114,7 @@ namespace Tizen.NUI
 
             RegistryCurrentThreadCheck();
 
-            // we store a dictionary of ref-obects (C++ land) to managed obects (C# land)
+            // we store a dictionary of ref-objects (C++ land) to managed objects (C# land)
             WeakReference weakReference;
 
             if (Instance._controlMap.TryGetValue(refObjectPtr, out weakReference))

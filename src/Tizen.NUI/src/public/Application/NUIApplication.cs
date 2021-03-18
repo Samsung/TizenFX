@@ -129,12 +129,12 @@ namespace Tizen.NUI
         /// <param name="windowSize"></param>
         /// <param name="windowPosition"></param>
         /// <param name="styleSheet"></param>
-        /// InhouseAPI, this could be opend in NextTizen
+        /// InhouseAPI, this could be opened in NextTizen
         [Obsolete("Please do not use! This will be deprecated!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public NUIApplication(Graphics.BackendType backend, WindowMode windowMode = WindowMode.Opaque, Size2D windowSize = null, Position2D windowPosition = null, string styleSheet = "") : base(new NUICoreBackend(styleSheet, windowMode, windowSize, windowPosition))
         {
-            //windowMode and styleSheet will be added later. currenlty it's not working as expected.
+            //windowMode and styleSheet will be added later. currently it's not working as expected.
             Graphics.Backend = backend;
             Tizen.Log.Error("NUI", "Plaese DO NOT set graphical backend type with this constructor! This will give no effect!");
             ExternalThemeManager.Initialize();

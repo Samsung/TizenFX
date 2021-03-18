@@ -33,7 +33,7 @@ namespace Tizen.NUI
         /// The constructor.<br />
         /// Creates an alpha function object with the user-defined alpha function.<br />
         /// </summary>
-        /// <param name="func">User defined fuction. It must be a method formatted as float alphafunction(float progress)</param>
+        /// <param name="func">User defined function. It must be a method formatted as float alphafunction(float progress)</param>
         /// <since_tizen> 3 </since_tizen>
         public AlphaFunction(global::System.Delegate func) : this(Interop.AlphaFunction.NewAlphaFunction(SWIGTYPE_p_f_float__float.getCPtr(new SWIGTYPE_p_f_float__float(System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func)))), true)
         {
@@ -189,7 +189,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Retrives the control points of the alpha function.<br />
+        /// Retrieves the control points of the alpha function.<br />
         /// </summary>
         /// <param name="controlPoint0">A Vector2 which will be used as the first control point of the curve.</param>
         /// <param name="controlPoint1">A Vector2 which will be used as the second control point of the curve.</param>

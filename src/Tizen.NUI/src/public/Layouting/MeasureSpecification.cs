@@ -31,7 +31,7 @@ namespace Tizen.NUI
         /// MeasureSpecification Size value.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// When deleting the field, change it to prperty.
+        /// When deleting the field, change it to property.
         [Obsolete("Deprecated in API9, Will be removed in API11. Please use GetSize,SetSize instead!")]
         [SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
         public LayoutLength Size;
@@ -40,7 +40,7 @@ namespace Tizen.NUI
         /// MeasureSpecification Mode.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// When deleting the field, change it to prperty.
+        /// When deleting the field, change it to property.
         [Obsolete("Deprecated in API9, Will be removed in API11. Please use GetMode,SetMode instead!")]
         [SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
         public MeasureSpecification.ModeType Mode;

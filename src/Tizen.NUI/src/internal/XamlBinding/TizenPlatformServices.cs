@@ -69,7 +69,7 @@ namespace Tizen.NUI.Binding
                 }
             };
             timer = new System.Threading.Timer(onTimeout, null, Timeout.Infinite, Timeout.Infinite);
-            // set interval separarately to prevent calling onTimeout before `timer' is assigned
+            // set interval separately to prevent calling onTimeout before `timer' is assigned
             timer.Change(interval, interval);
         }
 

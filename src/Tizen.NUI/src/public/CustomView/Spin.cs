@@ -18,7 +18,7 @@
 using System;
 using Tizen.NUI.BaseComponents;
 
-// A spin control (for continously changing values when users can easily predict a set of values)
+// A spin control (for continuously changing values when users can easily predict a set of values)
 namespace Tizen.NUI
 {
     ///<summary>
@@ -44,7 +44,7 @@ namespace Tizen.NUI
         // static constructor registers the control type (only runs once)
         static Spin()
         {
-            // ViewRegistry registers control type with DALi type registery
+            // ViewRegistry registers control type with DALi type registry
             // also uses introspection to find any properties that need to be registered with type registry
             CustomViewRegistry.Instance.Register(CreateInstance, typeof(Spin));
         }
@@ -200,7 +200,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Maximum text lengh of the spin value.
+        /// Maximum text length of the spin value.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         [ScriptableProperty()]

@@ -292,7 +292,7 @@ namespace Tizen.NUI.BaseComponents
         ///    parent.InterceptTouchEvent += OnInterceptTouchEvent;
         ///    View view = child.GetParent() as View;
         ///    view.DisallowInterceptTouchEvent = true;
-        ///  This prevents the parent from interceping touch.
+        ///  This prevents the parent from intercepting touch.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool DisallowInterceptTouchEvent { get; set; }

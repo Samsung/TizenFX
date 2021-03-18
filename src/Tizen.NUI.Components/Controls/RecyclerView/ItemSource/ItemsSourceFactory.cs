@@ -17,7 +17,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-//using AndroidX.RecyclerView.Widget; ??? need to find whot it needs? adapter?
 
 namespace Tizen.NUI.Components
 {

@@ -614,7 +614,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Gets or sets whether to synchronos loading the resourceurl of image.<br />
+        /// Gets or sets whether to synchronous loading the resourceurl of image.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public bool SynchronosLoading
@@ -1081,7 +1081,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Get attribues, it is abstract function and must be override.
+        /// Get attributes, it is abstract function and must be override.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override ViewStyle CreateViewStyle()

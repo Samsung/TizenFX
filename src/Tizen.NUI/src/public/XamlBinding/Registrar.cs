@@ -102,7 +102,7 @@ namespace Tizen.NUI.Binding.Internals
         /// <summary>
         /// For internal use. Return the handler of the object.
         /// </summary>
-        /// <typeparam name="TOut">Thetype</typeparam>
+        /// <typeparam name="TOut">The type</typeparam>
         /// <param name="obj">The object instance.</param>
         /// <returns>The handle of the obj.</returns>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -119,7 +119,7 @@ namespace Tizen.NUI.Binding.Internals
         }
 
         /// <summary>
-        /// For inetrnal use. Return the handler of the object.
+        /// For internal use. Return the handler of the object.
         /// </summary>
         /// <typeparam name="TOut">The type</typeparam>
         /// <param name="obj">The object instance</param>
@@ -175,7 +175,7 @@ namespace Tizen.NUI.Binding.Internals
                 }
             }
 
-            Register(viewType, type); // Register this so we don't have to look for the RenderWith Attibute again in the future
+            Register(viewType, type); // Register this so we don't have to look for the RenderWith Attribute again in the future
 
             return type;
         }

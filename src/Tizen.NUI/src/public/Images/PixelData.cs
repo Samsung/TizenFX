@@ -27,7 +27,7 @@ namespace Tizen.NUI
     ///  the PixelData object will release it automatically when the reference count falls to zero.
     /// </summary>
     /// Please DO NOT use! This will be deprecated!
-    /// PixelData class requires externally allocated pixel memory buffer and this buffer loses its ownershop by native DALi.
+    /// PixelData class requires externally allocated pixel memory buffer and this buffer loses its ownership by native DALi.
     /// And this would make some problem, because dotnet runtime would change the address of memory allocated.
     /// So this is required to be removed.
     /// currently no use. will be added later

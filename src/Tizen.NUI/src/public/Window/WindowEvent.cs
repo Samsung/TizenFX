@@ -711,7 +711,7 @@ namespace Tizen.NUI
                 // val.Dispose();
 
                 // Workaround : windowSize should be valid pointer from dali,
-                // but currenlty it is fixed and is not Uint16Pair class.
+                // but currently it is fixed and is not Uint16Pair class.
                 // will be fixed later.
                 e.WindowSize = this.WindowSize;
                 windowResizeEventHandler(this, e);
@@ -905,7 +905,7 @@ namespace Tizen.NUI
         public class SafeNativeWindowHandle : SafeHandle
         {
             /// <summary>
-            /// Contructor, Native window handle is set to handle.
+            ///Constructor, Native window handle is set to handle.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             public SafeNativeWindowHandle() : base(IntPtr.Zero, false)

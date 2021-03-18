@@ -90,7 +90,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The contructor.
+        /// The constructor.
         /// </summary>
         public ActivatedSignalType() : this(Interop.ActivatedSignalType.NewActivatedSignalType(), true)
         {

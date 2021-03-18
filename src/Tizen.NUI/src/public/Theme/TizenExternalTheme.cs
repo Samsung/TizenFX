@@ -43,7 +43,7 @@ namespace Tizen.NUI
             get => theme.Version;
         }
 
-        [SuppressMessage("Microsoft.Design", "CA1031: Do not catch general exception types", Justification = "This method is to handle external resources that may throw an exception but ignorable. This method should not interupt the main stream.")]
+        [SuppressMessage("Microsoft.Design", "CA1031: Do not catch general exception types", Justification = "This method is to handle external resources that may throw an exception but ignorable. This method should not interrupt the main stream.")]
         public string GetValue(string key)
         {
             string themeKey = prefix + key;
@@ -58,7 +58,7 @@ namespace Tizen.NUI
             }
             catch (Exception e)
             {
-                Tizen.Log.Error("NUI", $"{e.GetType().Name} occured while getting value from {theme.GetType().FullName}: {e.Message}");
+                Tizen.Log.Error("NUI", $"{e.GetType().Name} occurred while getting value from {theme.GetType().FullName}: {e.Message}");
             }
 
             return extracted;

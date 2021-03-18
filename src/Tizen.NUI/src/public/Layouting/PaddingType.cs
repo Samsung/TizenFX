@@ -272,7 +272,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the the hash code of this baseHandle.
+        /// Gets the hash code of this baseHandle.
         /// </summary>
         /// <returns>The Hash Code.</returns>
         /// <since_tizen> 4 </since_tizen>

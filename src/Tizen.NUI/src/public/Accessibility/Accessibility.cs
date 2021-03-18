@@ -27,7 +27,7 @@ using tlog = Tizen.Log;
 namespace Tizen.NUI.Accessibility
 {
     /// <summary>
-    /// Accessibility provides Dali-ATSPI interface which has funtionality of Screen-Reader and general accessibility
+    /// Accessibility provides Dali-ATSPI interface which has functionality of Screen-Reader and general accessibility
     /// </summary>
     // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
     [SuppressMessage("Microsoft.Design", "CA1724: Type names should not match namespaces")]
@@ -35,7 +35,7 @@ namespace Tizen.NUI.Accessibility
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Accessibility
     {
-        #region Constructor, Distructor, Dispose
+        #region Constructor, Destructor, Dispose
         private Accessibility()
         {
             dummy = new View();
@@ -48,7 +48,7 @@ namespace Tizen.NUI.Accessibility
         {
             Tizen.Log.Debug("NUI", $"Accessibility is destroyed\n");
         }
-        #endregion Constructor, Distructor, Dispose
+        #endregion Constructor, Destructor, Dispose
 
 
         #region Property

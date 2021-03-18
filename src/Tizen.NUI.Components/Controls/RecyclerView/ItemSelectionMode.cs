@@ -30,7 +30,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         None,
         /// <summary>
-        /// Single selection. select item exculsively so previous selected item will be unselected.
+        /// Single selection. select item exclusively so previous selected item will be unselected.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         SingleSelection,

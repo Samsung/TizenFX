@@ -136,7 +136,7 @@ namespace Tizen.NUI
         /// Get, Set the time transition should execute for . Milliseconds.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// When deleting the field, change it to prperty.
+        /// When deleting the field, change it to property.
         [Obsolete("Deprecated in API9, Will be removed in API11. Please use GetDuration, SetDuration instead!")]
         [SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
         public int Duration;
@@ -145,7 +145,7 @@ namespace Tizen.NUI
         /// Get, Set the delay before the transition executes. Milliseconds.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// When deleting the field, change it to prperty.
+        /// When deleting the field, change it to property.
         [Obsolete("Deprecated in API9, Will be removed in API11. Please use GetDelay, SetDelay instead!")]
         [SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
         public int Delay;
@@ -154,7 +154,6 @@ namespace Tizen.NUI
         /// Get, Set the function to alter the transition path over time.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// When deleting the field, change it to prperty.
         [Obsolete("Deprecated in API9, Will be removed in API11. Please use GetAlphaFunction, SetAlphaFunction instead!")]
         [SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
         public AlphaFunction AlphaFunction;
@@ -236,7 +235,7 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// LayoutTransition stores the animation setting for a transition conidition.
+    /// LayoutTransition stores the animation setting for a transition condition.
     /// </summary>
     public class LayoutTransition
     {
@@ -360,7 +359,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Retreive the transition list for the given condition.
+        /// Retrieve the transition list for the given condition.
         /// </summary>
         /// <param name="sourceTransitionCollection">The source collection of transition lists to retrieve.</param>
         /// <param name="condition">Condition for the transition.</param>
@@ -398,7 +397,7 @@ namespace Tizen.NUI
             targetTransitionList.Clear();
             foreach (LayoutTransition transitionToApply in sourceTransitionList)
             {
-                // Overwite existing transitions
+                // Overwrite existing transitions
                 targetTransitionList.Add(transitionToApply);
             }
         }

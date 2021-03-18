@@ -253,7 +253,7 @@ namespace Tizen.NUI.BaseComponents
             }
             else
             {
-                Tizen.Log.Error("NUI", "swigCPtr of view is aleady disposed.");
+                Tizen.Log.Error("NUI", "swigCPtr of view is already disposed.");
             }
             return ret;
         }
