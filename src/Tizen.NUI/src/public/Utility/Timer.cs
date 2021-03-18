@@ -63,7 +63,7 @@ namespace Tizen.NUI
             timerTickCallbackDelegate = OnTick;
             timerTickCallbackOfNative = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(timerTickCallbackDelegate);
 
-            NUILog.Debug($"(0x{SwigCPtr.Handle:X})Timer() contructor!");
+            NUILog.Debug($"(0x{SwigCPtr.Handle:X})Timer() constructor!");
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace Tizen.NUI
         /// </summary>
         ~Timer()
         {
-            Tizen.Log.Debug("NUI", $"(0x{SwigCPtr.Handle:X})Timer() distructor!, disposed={disposed}");
+            Tizen.Log.Debug("NUI", $"(0x{SwigCPtr.Handle:X})Timer() destructor!, disposed={disposed}");
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -294,7 +294,7 @@ namespace Tizen.NUI
             if (played == false)
             {
                 Tizen.Log.Fatal("NUI", $"(0x{SwigCPtr.Handle:X}) OnTick() is called even played is false!");
-                //throw new System.InvalidOperationException($"OnTick() excpetion!");
+                //throw new System.InvalidOperationException($"OnTick() exception!");
             }
 
             if (timerTickEventHandler != null && played == true)

@@ -68,13 +68,13 @@ namespace Tizen.NUI.BaseComponents
             return new Selector<T>(value);
         }
 
-        /// Default Contructor
+        /// Default constructor
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector()
         {
         }
 
-        /// Contructor with T
+        /// Constructor with T
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector(T value) : this()
         {

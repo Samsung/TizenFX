@@ -60,7 +60,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Initilize AT-SPI object.
+        /// Initialize AT-SPI object.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnInitialize()

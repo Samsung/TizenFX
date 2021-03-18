@@ -496,7 +496,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Translateable text string selector in Button.
+        /// Translatable text string selector in Button.
         /// Getter returns copied selector value if exist, null otherwise.
         /// </summary>
         /// <exception cref="NullReferenceException">Thrown when setting null value.</exception>
