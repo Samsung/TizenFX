@@ -440,7 +440,7 @@ namespace Tizen.NUI
         public enum StretchFlags
         {
             /// <summary>
-            /// Respect mesured size of the child.
+            /// Respect measured size of the child.
             /// </summary>
             /// <since_tizen> 8 </since_tizen>
             None = 0,

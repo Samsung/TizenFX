@@ -305,7 +305,7 @@ namespace Tizen.NUI
                 {
                     if (useExcessSpace)
                     {
-                        // Parent is not defiend!!!
+                        // Parent is not defined!!!
                         // The widthMode is either Unspecified or AtMost, and
                         // this child is only laid out using excess space. Measure
                         // using WrapContent so that we can find out the view's

@@ -113,7 +113,7 @@ namespace Tizen.NUI
             float minExpandedSize = 0;
             float newChildrenSize = locations[maxIndex] - locations[0] - space;
 
-            // No available sapce
+            // No available space
             if (newChildrenSize > parentDecimalSize)
                 return;
 
@@ -260,7 +260,7 @@ namespace Tizen.NUI
             }
         }
 
-        /// <summary> Initialize the edge list sorted by start vetex. </summary>
+        /// <summary> Initialize the edge list sorted by start vertex. </summary>
         private void InitEdgeList(ref Node[] edgeList)
         {
             bool isHorizontal = (edgeList == hEdgeList);
@@ -279,7 +279,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Locations are longest path from zero-vertex. that means 'locations[MAX] - locations[0]' is maximun size of children.
+        /// Locations are longest path from zero-vertex. that means 'locations[MAX] - locations[0]' is maximum size of children.
         /// Since GridLayout is Directed Acyclic Graph(DAG) which have no negative cycles, longest path can be found in linear time.
         /// </summary>
         private void InitLocations(ref float[] locations)

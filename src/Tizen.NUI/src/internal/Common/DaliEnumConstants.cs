@@ -66,7 +66,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// ToolTip
+        /// Tooltip
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public struct Tooltip

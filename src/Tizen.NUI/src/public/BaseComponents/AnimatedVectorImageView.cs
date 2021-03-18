@@ -30,14 +30,14 @@ namespace Tizen.NUI.BaseComponents
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class AnimatedVectorImageView : LottieAnimationView
     {
-        #region Constructor, Distructor, Dispose
+        #region Constructor, Destructor, Dispose
         /// <summary>
         /// Construct VectorAnimationView.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public AnimatedVectorImageView() : base()
         {
-            tlog.Fatal(tag, $"[AnimatedVectorImageView START[ constuctor objId={GetId()} ] END]");
+            tlog.Fatal(tag, $"[AnimatedVectorImageView START[ constructor objId={GetId()} ] END]");
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public AnimatedVectorImageView(float scale) : base(scale)
         {
-            tlog.Fatal(tag, $"[AnimatedVectorImageView START[ constuctor scale={scale}) objId={GetId()} ] END]");
+            tlog.Fatal(tag, $"[AnimatedVectorImageView START[ constructor scale={scale}) objId={GetId()} ] END]");
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace Tizen.NUI.BaseComponents
 
             tlog.Fatal(tag, $"]AnimatedVectorImageView END]");
         }
-        #endregion Constructor, Distructor, Dispose
+        #endregion Constructor, Destructor, Dispose
 
 
         #region Property

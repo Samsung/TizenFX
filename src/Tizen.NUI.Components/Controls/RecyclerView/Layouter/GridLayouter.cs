@@ -117,7 +117,7 @@ namespace Tizen.NUI.Components
 
                         if (groupHeader == null) throw new Exception("[" + firstIndex + "] Group Header failed to realize!");
 
-                        // Need to Set proper hieght or width on scroll direciton.
+                        // Need to Set proper height or width on scroll direction.
                         if (groupHeader.Layout == null)
                         {
                             width = groupHeader.WidthSpecification;
@@ -151,7 +151,7 @@ namespace Tizen.NUI.Components
                         RecyclerViewItem groupFooter = colView.RealizeItem(firstFooter);
 
                         if (groupFooter == null) throw new Exception("[" + firstFooter + "] Group Footer failed to realize!");
-                        // Need to Set proper hieght or width on scroll direciton.
+                        // Need to Set proper height or width on scroll direction.
                         if (groupFooter.Layout == null)
                         {
                             width = groupFooter.WidthSpecification;
@@ -203,7 +203,7 @@ namespace Tizen.NUI.Components
                 }
                 sizeDeligate.BindingContext = colView.InternalItemSource.GetItem(firstIndex);
 
-                // Need to Set proper hieght or width on scroll direciton.
+                // Need to Set proper height or width on scroll direction.
                 if (sizeDeligate.Layout == null)
                 {
                     width = sizeDeligate.WidthSpecification;

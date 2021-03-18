@@ -97,7 +97,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The contructor.
+        /// The constructor.
         /// </summary>
         internal WidgetViewSignal() : this(Interop.WidgetView.NewWidgetViewSignal(), true)
         {

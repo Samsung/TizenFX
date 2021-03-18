@@ -275,7 +275,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the the hash code of this baseHandle.
+        /// Gets the hash code of this baseHandle.
         /// </summary>
         /// <returns>The hash code.</returns>
         /// <since_tizen> 5 </since_tizen>
@@ -317,7 +317,7 @@ namespace Tizen.NUI
                 // TODO: dispose managed state (managed objects).
                 // Explicit call. user calls Dispose()
 
-                //Throw excpetion if Dispose() is called in separate thread.
+                //Throw exception if Dispose() is called in separate thread.
                 if (!Window.IsInstalled())
                 {
                     throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
