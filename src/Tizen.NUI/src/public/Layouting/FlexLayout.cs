@@ -89,8 +89,6 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty FlexGrowProperty = BindableProperty.CreateAttached("FlexGrow", typeof(float), typeof(FlexLayout), FlexUndefined, validateValue: (bindable, value) => (float)value >= 0, propertyChanged: OnChildPropertyChanged);
 
-        private static bool LayoutDebugFlex = false; // Debug flag
-
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private bool swigCMemOwn;
         private bool disposed;
@@ -780,8 +778,7 @@ namespace Tizen.NUI
             LayoutLength flexLayoutWidth = new LayoutLength(Interop.FlexLayout.GetWidth(swigCPtr));
             LayoutLength flexLayoutHeight = new LayoutLength(Interop.FlexLayout.GetHeight(swigCPtr));
 
-            Debug.WriteLineIf(LayoutDebugFlex, "FlexLayout OnMeasure width:" + flexLayoutWidth.AsRoundedValue()
-                                                + " height:" + flexLayoutHeight.AsRoundedValue());
+            NUILog.Debug("FlexLayout OnMeasure width:" + flexLayoutWidth.AsRoundedValue() + " height:" + flexLayoutHeight.AsRoundedValue());
 
             SetMeasuredDimensions(GetDefaultSize(flexLayoutWidth, widthMeasureSpec),
                                    GetDefaultSize(flexLayoutHeight, heightMeasureSpec));
