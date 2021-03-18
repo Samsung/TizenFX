@@ -428,7 +428,7 @@ namespace Tizen.NUI.BaseComponents
         /// It is null by default.
         /// </summary>
         /// <remarks>
-        /// Gettter returns copied instance of current shadow.
+        /// Getter returns copied instance of current shadow.
         /// </remarks>
         /// <remarks>
         /// The mutually exclusive with "ImageShadow".
@@ -786,7 +786,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The Child property of FlexContainer.<br />
-        /// The alignment of the flex item along the cross axis, which, if set, overides the default alignment for all items in the container.<br />
+        /// The alignment of the flex item along the cross axis, which, if set, overrides the default alignment for all items in the container.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         [Obsolete("Deprecated in API8, will be removed in API10.")]
@@ -1116,7 +1116,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Retrieves the screen postion of the view.<br />
+        /// Retrieves the screen position of the view.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Vector2 ScreenPosition
@@ -1690,7 +1690,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Gets the view's ID.
-        /// Readonly
+        /// Read-only
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public uint ID
