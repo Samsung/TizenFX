@@ -137,7 +137,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Dispose Explict or Implicit
+        /// Dispose Explicit or Implicit
         /// </summary>
         protected override void Dispose(DisposeTypes type)
         {
@@ -490,7 +490,7 @@ namespace Tizen.NUI
             // Note, Transitions set on View rather than LayoutItem so if the Layout changes the transition persist.
 
             // Check if item to animate has it's own Transitions for this condition.
-            // If a key exists then a List of atleast 1 transition exists.
+            // If a key exists then a List of at least 1 transition exists.
             if (layoutPositionData.Item.Owner.LayoutTransitions.ContainsKey(conditionForAnimators))
             {
                 // Child has transitions for the condition

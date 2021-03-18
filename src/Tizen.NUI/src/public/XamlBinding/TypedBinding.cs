@@ -23,7 +23,7 @@ using System.Collections.Generic;
 
 namespace Tizen.NUI.Binding.Internals
 {
-    //FIXME: need a better name for this, and share with Binding, so we can share more unittests
+    //FIXME: need a better name for this, and share with Binding, so we can share more unit tests
     /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class TypedBindingBase : BindingBase

@@ -173,7 +173,7 @@ namespace Tizen.NUI.Binding
                     if (_isReadOnly == value)
                         return;
                     if (!value)
-                        throw new InvalidOperationException("Can't change this back to non readonly");
+                        throw new InvalidOperationException("Can't change this back to non read-only");
                     _isReadOnly = value;
                 }
             }

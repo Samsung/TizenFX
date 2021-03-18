@@ -65,7 +65,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Page(AppBar appBar, View content = null) : base()
         {
-            //AppBar and Content are located verically.
+            //AppBar and Content are located vertically.
             var linearLayout = new LinearLayout();
             linearLayout.LinearOrientation = LinearLayout.Orientation.Vertical;
             Layout = linearLayout;

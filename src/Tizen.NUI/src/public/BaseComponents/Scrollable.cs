@@ -22,7 +22,7 @@ using Tizen.NUI.Binding;
 namespace Tizen.NUI.BaseComponents
 {
     /// <summary>
-    /// Base class for derived Scrollables that contains actors that can be scrolled manually
+    /// Base class for derived Scrollable that contains actors that can be scrolled manually
     /// (via touch) or automatically.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>

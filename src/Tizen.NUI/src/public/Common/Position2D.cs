@@ -187,7 +187,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Constructor a Position2D from a stirng.
+        /// Constructor a Position2D from a string.
         /// </summary>
         public static implicit operator Position2D(System.String value)
         {
@@ -294,7 +294,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the the hash code of this Position2D.
+        /// Gets the hash code of this Position2D.
         /// </summary>
         /// <returns>The Hash Code.</returns>
         /// <since_tizen> 6 </since_tizen>

@@ -188,7 +188,7 @@ namespace Tizen.NUI.BaseComponents
     public partial class View
     {
         ///////////////////////////////////////////////////////////////////
-        // ****************** Accessiblity Attributes ****************** //
+        // ****************** Accessibility Attributes ****************** //
         ///////////////////////////////////////////////////////////////////
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -238,7 +238,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         ///////////////////////////////////////////////////////////////////
-        // ****************** Accessiblity Relations ******************* //
+        // ****************** Accessibility Relations ******************* //
         ///////////////////////////////////////////////////////////////////
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -292,7 +292,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         ///////////////////////////////////////////////////////////////////
-        // ****************** Accessiblity Relations ******************* //
+        // ****************** Accessibility Relations ******************* //
         ///////////////////////////////////////////////////////////////////
 
         [EditorBrowsable(EditorBrowsableState.Never)]
