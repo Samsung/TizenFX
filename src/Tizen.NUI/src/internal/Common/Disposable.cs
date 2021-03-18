@@ -94,7 +94,7 @@ namespace Tizen.NUI
                 // TODO: dispose managed state (managed objects).
                 // Explicit call. user calls Dispose()
 
-                //Throw excpetion if Dispose() is called in separate thread.
+                //Throw exception if Dispose() is called in separate thread.
                 if (!Window.IsInstalled())
                 {
                     throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");

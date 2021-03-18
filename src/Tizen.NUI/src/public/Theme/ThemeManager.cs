@@ -79,7 +79,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Apply theme to the NUI.
-        /// This will change the appreance of the existing components with property <seealso cref="View.ThemeChangeSensitive"/> on.
+        /// This will change the appearance of the existing components with property <seealso cref="View.ThemeChangeSensitive"/> on.
         /// This also affects all components created afterwards.
         /// </summary>
         /// <param name="theme">The theme instance to be applied.</param>

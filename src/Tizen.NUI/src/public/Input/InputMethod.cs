@@ -213,7 +213,7 @@ namespace Tizen.NUI
             /// </summary>
             Normal,
             /// <summary>
-            /// Filename layout. sysbols such as '/' should be disabled.
+            /// Filename layout. symbols such as '/' should be disabled.
             /// </summary>
             WithFilename,
             /// <summary>

@@ -89,7 +89,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The contructor.
+        /// The constructor.
         /// </summary>
         public LanguageChangedSignalType() : this(Interop.LanguageChangedSignalType.NewLanguageChangedSignalType(), true)
         {

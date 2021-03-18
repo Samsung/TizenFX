@@ -1230,7 +1230,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Initliaze AT-SPI object.
+        /// Initialize AT-SPI object.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnInitialize()
@@ -1569,7 +1569,7 @@ namespace Tizen.NUI.Components
         public class ValueChangedArgs : EventArgs
         {
             /// <summary>
-            /// Curren value
+            /// Current value
             /// </summary>
             /// <since_tizen> 6 </since_tizen>
             /// It will be removed in API10
@@ -1587,7 +1587,7 @@ namespace Tizen.NUI.Components
         public class SlidingFinishedArgs : EventArgs
         {
             /// <summary>
-            /// Curren value
+            /// Current value
             /// </summary>
             /// <since_tizen> 6 </since_tizen>
             /// It will be removed in API10
@@ -1605,7 +1605,7 @@ namespace Tizen.NUI.Components
         public class StateChangedArgs : EventArgs
         {
             /// <summary>
-            /// Curent state
+            /// Current state
             /// </summary>
             /// <since_tizen> 6 </since_tizen>
             /// It will be removed in API10
