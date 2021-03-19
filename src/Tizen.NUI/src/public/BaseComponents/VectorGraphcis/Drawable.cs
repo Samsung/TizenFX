@@ -1,5 +1,5 @@
 /*
-* Copyright(c) 2019 Samsung Electronics Co., Ltd.
+* Copyright(c) 2021 Samsung Electronics Co., Ltd.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -18,22 +18,32 @@ using System.ComponentModel;
 
 namespace Tizen.NUI.BaseComponents
 {
-
     namespace VectorGraphics
     {
         /// <summary>
-        /// Paint is a object class for drawing a vector primitive.<br />
+        /// Drawable is a object class for drawing a vector primitive.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public class Paint : BaseHandle
+        public class Drawable : BaseHandle
         {
-            private Paint()
-            {
+            /// <summary>
+            /// Creates an initialized drawable.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            private Drawable() {}
 
+            internal Drawable(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+            {
             }
 
-            internal Paint(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
-            {
+            /// <summary>
+            /// Get the transparency value
+            /// </summary>
+            /// <returns>The transparency level</returns>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public float GetOpacity()
+            {   
+                return Interop.Drawable.GetOpacity(BaseHandle.getCPtr(this));
             }
 
             /// <summary>
@@ -44,44 +54,7 @@ namespace Tizen.NUI.BaseComponents
             [EditorBrowsable(EditorBrowsableState.Never)]
             public bool SetOpacity(float opacity)
             {   
-                if (Interop.Paint.SetOpacity(BaseHandle.getCPtr(this), opacity))
-                    return true;
-                return false;
-            }
-
-            /// <summary>
-            /// Get the transparency value
-            /// </summary>
-            /// <returns>The transparency level</returns>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public float GetOpacity()
-            {   
-                return Interop.Paint.GetOpacity(BaseHandle.getCPtr(this));
-            }
-
-            /// <summary>
-            /// Set the x, y movement value of translate transformation.
-            /// </summary>
-            /// <param name="x">The x-axis movement value.</param>
-            /// <param name="y">The y-axis movement value.</param>
-            /// <returns>True when it's successful. False otherwise.</returns>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public bool Translate(float x, float y)
-            {   
-                if (Interop.Paint.Translate(BaseHandle.getCPtr(this), x, y))
-                    return true;
-                return false;
-            }
-            
-            /// <summary>
-            /// Set the scale value of scale transformation.
-            /// </summary>
-            /// <param name="factor">The scale factor value.</param>
-            /// <returns>True when it's successful. False otherwise.</returns>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public bool Scale(float factor)
-            {   
-                if (Interop.Paint.Scale(BaseHandle.getCPtr(this), factor))
+                if (Interop.Drawable.SetOpacity(BaseHandle.getCPtr(this), opacity))
                     return true;
                 return false;
             }
@@ -94,7 +67,20 @@ namespace Tizen.NUI.BaseComponents
             [EditorBrowsable(EditorBrowsableState.Never)]
             public bool Rotate(float degree)
             {   
-                if (Interop.Paint.Rotate(BaseHandle.getCPtr(this), degree))
+                if (Interop.Drawable.Rotate(BaseHandle.getCPtr(this), degree))
+                    return true;
+                return false;
+            }
+
+            /// <summary>
+            /// Set the scale value of scale transformation.
+            /// </summary>
+            /// <param name="factor">The scale factor value.</param>
+            /// <returns>True when it's successful. False otherwise.</returns>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public bool Scale(float factor)
+            {   
+                if (Interop.Drawable.Scale(BaseHandle.getCPtr(this), factor))
                     return true;
                 return false;
             }
@@ -107,12 +93,24 @@ namespace Tizen.NUI.BaseComponents
             [EditorBrowsable(EditorBrowsableState.Never)]
             public bool Transform(float[] matrix)
             {   
-                if (Interop.Paint.Transform(BaseHandle.getCPtr(this), matrix))
+                if (Interop.Drawable.Transform(BaseHandle.getCPtr(this), matrix))
+                    return true;
+                return false;
+            }
+
+            /// <summary>
+            /// Set the x, y movement value of translate transformation.
+            /// </summary>
+            /// <param name="x">The x-axis movement value.</param>
+            /// <param name="y">The y-axis movement value.</param>
+            /// <returns>True when it's successful. False otherwise.</returns>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public bool Translate(float x, float y)
+            {   
+                if (Interop.Drawable.Translate(BaseHandle.getCPtr(this), x, y))
                     return true;
                 return false;
             }
         }
-        
-
     }
 }
