@@ -47,7 +47,6 @@ namespace Tizen.Network.Nsd
     {
         private uint _serviceHandle;
         private string _serviceType;
-        private ushort _dnsRecordtype = 16;
         private Interop.Nsd.Dnssd.ServiceRegisteredCallback _serviceRegisteredCallback;
 
         /// <summary>
@@ -218,43 +217,6 @@ namespace Tizen.Network.Nsd
                 IPAddressInformation IPAddressInstance = new IPAddressInformation(IPv4, IPv6);
                 return IPAddressInstance;
             }
-        }
-
-        /// <summary>
-        /// Returns TXT records in the form of key and value.
-        /// </summary>
-        /// <remarks>
-        /// After adding the TXT record call for get TXT record.
-        /// </remarks>
-        /// <returns>returns empty dictionary in case of empty txt record else returns the key and value dictionary</returns>
-        /// <since_tizen> 9 </since_tizen>
-        /// <feature>http://tizen.org/feature/network.service_discovery.dnssd</feature>
-        /// <exception cref="NotSupportedException">Thrown when DNS-SD is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when any other error occurred.</exception>
-        public IDictionary<string, string> GetTxtRecord()
-        {
-            var map = new Dictionary<string, string>();
-
-            byte[] data = GetRawTxtRecord();
-            if (data.Length > 0)
-            {
-                var index = 0;
-                while (index < data.Length)
-                {
-                    var txtLen = data[index++];
-                    if (txtLen + index > data.Length)
-                    {
-                        Log.Error(Globals.LogTag, "Invalid data");
-                        NsdErrorFactory.ThrowDnssdException((int)DnssdError.InvalidOperation);
-                    }
-
-                    string record = Encoding.UTF8.GetString(data, index, txtLen);
-                    string[] list = record.Split('=');
-                    map.Add(list[0], list[1]);
-                    index += txtLen;
-                }
-            }
-            return map;
         }
 
         /// <summary>
