@@ -1,4 +1,3 @@
-using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.BaseComponents.VectorGraphics;
 using System.Collections.Generic;
@@ -9,14 +8,13 @@ namespace Tizen.NUI.Samples
 
     public class CanvasViewSample : IExample
     {
+        const string tag = "NUITEST";
+
         private View root;
         private CanvasView canvasView ;
-        private Shape mShape;
-
-        private int mCount = 0;
-
-        const string tag = "NUITEST";
+        private Shape shape;
         private Timer timer;
+        private int count = 0;
 
         public void Activate()
         {
@@ -49,7 +47,7 @@ namespace Tizen.NUI.Samples
             shape1.Scale(1.2f);
             shape1.Rotate(45.0f);
            
-            canvasView.AddPaint(shape1);
+            canvasView.AddDrawable(shape1);
 
             Shape shape2 = new Shape();
             shape2.AddCircle(0.0f, 0.0f, 150.0f, 100.0f);
@@ -61,7 +59,7 @@ namespace Tizen.NUI.Samples
 
             shape2.Transform(new float[] {0.6f, 0.0f, 350.0f, 0.0f, 0.6f, 100.0f, 0.0f, 0.0f, 1.0f});
 
-            canvasView.AddPaint(shape2);
+            canvasView.AddDrawable(shape2);
 
             Shape shape3 = new Shape();
             shape3.AddArc(0.0f, 0.0f, 80.0f, 10.0f, 120.0f, true);
@@ -69,7 +67,7 @@ namespace Tizen.NUI.Samples
             shape3.SetStrokeWidth(10.0f);
             shape3.Translate(100.0f, 300.0f);
             shape3.SetStrokeJoin(Shape.StrokeJoin.Miter);
-            canvasView.AddPaint(shape3);
+            canvasView.AddDrawable(shape3);
 
             Shape shape4 = new Shape();
             shape4.AddMoveTo(0.0f, -160.0f);
@@ -87,31 +85,31 @@ namespace Tizen.NUI.Samples
             shape4.SetStrokeJoin(Shape.StrokeJoin.Round);
             shape4.SetOpacity(0.5f);
             
-            canvasView.AddPaint(shape4);
+            canvasView.AddDrawable(shape4);
 
-            mShape = new Shape();
-            mShape.AddMoveTo(-1.0f, -165.0f);
-            mShape.AddLineTo(53.0f, -56.0f);
-            mShape.AddLineTo(174.0f, -39.0f);
-            mShape.AddLineTo(87.0f, 45.0f);
-            mShape.AddLineTo(107.0f, 166.0f);
-            mShape.AddLineTo(-1.0f, 110.0f);
-            mShape.AddLineTo(-103.0f, 166.0f);
-            mShape.AddLineTo(-88.0f, 46.0f);
-            mShape.AddLineTo(-174.0f, -38.0f);
-            mShape.AddLineTo(-54.0f, -56.0f);
+            shape = new Shape();
+            shape.AddMoveTo(-1.0f, -165.0f);
+            shape.AddLineTo(53.0f, -56.0f);
+            shape.AddLineTo(174.0f, -39.0f);
+            shape.AddLineTo(87.0f, 45.0f);
+            shape.AddLineTo(107.0f, 166.0f);
+            shape.AddLineTo(-1.0f, 110.0f);
+            shape.AddLineTo(-103.0f, 166.0f);
+            shape.AddLineTo(-88.0f, 46.0f);
+            shape.AddLineTo(-174.0f, -38.0f);
+            shape.AddLineTo(-54.0f, -56.0f);
 
-            mShape.Close();
+            shape.Close();
 
-            mShape.SetFillColor(new Color(0.0f, 1.0f, 1.0f, 1.0f));
-            mShape.SetStrokeColor(new Color(0.5f, 1.0f, 0.5f, 1.0f));
-            mShape.SetStrokeWidth(30.0f);
-            mShape.SetStrokeCap(Shape.StrokeCap.Round);
-            mShape.Scale(0.6f);
-            mShape.Translate(250.0f, 550.0f);
-            mShape.SetOpacity(0.5f);
+            shape.SetFillColor(new Color(0.0f, 1.0f, 1.0f, 1.0f));
+            shape.SetStrokeColor(new Color(0.5f, 1.0f, 0.5f, 1.0f));
+            shape.SetStrokeWidth(30.0f);
+            shape.SetStrokeCap(Shape.StrokeCap.Round);
+            shape.Scale(0.6f);
+            shape.Translate(250.0f, 550.0f);
+            shape.SetOpacity(0.5f);
 
-            canvasView.AddPaint(mShape);
+            canvasView.AddDrawable(shape);
 
             timer = new Timer(1000 / 32);
             timer.Tick += onTick;
@@ -133,21 +131,12 @@ namespace Tizen.NUI.Samples
             log.Debug(tag, "Shape4 Opacity : " + shape4.GetOpacity() + "\n");
 
             List<float> pattern = shape2.GetStrokeDash();
-            for(int i = 0; i < pattern.Count; i++)
+            for (int i = 0; i < pattern.Count; i++)
             {
                 log.Debug(tag, "Shape4 StrokeDash : " + pattern[i] + "\n");
             }
             
             root.Add(canvasView);
-        }
-
-        private bool onTick(object o, Timer.TickEventArgs e)
-        {
-            mShape.Rotate((float)(mCount * 2.0f));
-            mShape.Scale((float)(mCount % 100) * 0.01f + 0.6f);
-            mCount++;
-
-            return true;
         }
 
         public void Deactivate()
@@ -158,6 +147,15 @@ namespace Tizen.NUI.Samples
                 canvasView.Dispose();
                 root.Dispose();
             }
+        }
+
+        private bool onTick(object o, Timer.TickEventArgs e)
+        {
+            shape.Rotate((float)(count * 2.0f));
+            shape.Scale((float)(count % 100) * 0.01f + 0.6f);
+            count++;
+
+            return true;
         }
     }
 }
