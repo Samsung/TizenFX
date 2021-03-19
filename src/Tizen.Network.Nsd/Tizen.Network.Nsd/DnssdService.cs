@@ -47,6 +47,7 @@ namespace Tizen.Network.Nsd
     {
         private uint _serviceHandle;
         private string _serviceType;
+        private ushort _dnsRecordtype = 16;
         private Interop.Nsd.Dnssd.ServiceRegisteredCallback _serviceRegisteredCallback;
 
         /// <summary>
@@ -270,7 +271,15 @@ namespace Tizen.Network.Nsd
             {
                 Log.Error(Globals.LogTag, "Failed to add the TXT record, Error: " + (DnssdError)ret);
                 NsdErrorFactory.ThrowDnssdException(ret);
-            }            
+            }
+            byte[] txtValue;
+            txtValue = GetTXTRecords();
+            ret = Interop.Nsd.Dnssd.SetRecord(_serviceHandle, _dnsRecordtype, (ushort)txtValue.Length, txtValue);
+            if (ret != (int)DnssdError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to set the DNS resource record, Error: " + (DnssdError)ret);
+                NsdErrorFactory.ThrowDnssdException(ret);
+            }
         }
 
         /// <summary>
