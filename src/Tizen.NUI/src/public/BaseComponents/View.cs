@@ -40,13 +40,11 @@ namespace Tizen.NUI.BaseComponents
         private int heightPolicy = LayoutParamPolicies.WrapContent; // Layout height policy
         private float weight = 0.0f; // Weighting of child View in a Layout
         private bool backgroundImageSynchronosLoading = false;
-        private Dictionary<string, Transition> transDictionary = new Dictionary<string, Transition>();
         private bool controlStatePropagation = false;
         private ViewStyle viewStyle;
         private bool themeChangeSensitive = false;
         private bool excludeLayouting = false;
         private LayoutTransition layoutTransition;
-
         private ControlState controlStates = ControlState.Normal;
 
         static View() { }
@@ -2748,15 +2746,6 @@ namespace Tizen.NUI.BaseComponents
                 }
             }
         }
-
-        /// <summary>
-        /// Used to restore the transition.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public IList<Transition> TransitionList
-        {
-            get;
-        } = new List<Transition>();
 
         /// <summary>
         /// Get whether the View is culled or not.
