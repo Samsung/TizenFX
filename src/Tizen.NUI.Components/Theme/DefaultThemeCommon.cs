@@ -252,7 +252,6 @@ namespace Tizen.NUI.Components
                     Selected = FrameworkInformation.ResourcePath + "nui_component_default_pagination_focus_dot.png",
                 },
                 IndicatorSize = new Size(10, 10),
-                IndicatorSpacing = 10,
             });
 
             theme.AddStyleWithoutClone("Tizen.NUI.Components.Scrollbar", new ScrollbarStyle()
