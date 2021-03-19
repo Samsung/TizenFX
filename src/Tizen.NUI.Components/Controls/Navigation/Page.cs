@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,11 +15,8 @@
  *
  */
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Binding;
-using System.Windows.Input;
 
 namespace Tizen.NUI.Components
 {
@@ -45,8 +42,8 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Page : Control
     {
-        private AppBar _appBar = null;
-        private View _content = null;
+        private AppBar appBar = null;
+        private View content = null;
 
         /// <summary>
         /// Creates a new instance of a Page.
@@ -99,14 +96,14 @@ namespace Tizen.NUI.Components
 
             if (type == DisposeTypes.Explicit)
             {
-                if (_appBar != null)
+                if (appBar != null)
                 {
-                    Utility.Dispose(_appBar);
+                    Utility.Dispose(appBar);
                 }
 
-                if (_content != null)
+                if (content != null)
                 {
-                    Utility.Dispose(_content);
+                    Utility.Dispose(content);
                 }
             }
 
@@ -121,27 +118,27 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return _appBar;
+                return appBar;
             }
             set
             {
-                if (_appBar == value)
+                if (appBar == value)
                 {
                     return;
                 }
 
-                if (_appBar != null)
+                if (appBar != null)
                 {
-                    Remove(_appBar);
+                    Remove(appBar);
                 }
 
-                _appBar = value;
-                if (_appBar == null)
+                appBar = value;
+                if (appBar == null)
                 {
                     return;
                 }
 
-                _appBar.Weight = 0.0f;
+                appBar.Weight = 0.0f;
 
                 ResetContent();
             }
@@ -155,27 +152,27 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return _content;
+                return content;
             }
             set
             {
-                if (_content == value)
+                if (content == value)
                 {
                     return;
                 }
 
-                if (_content != null)
+                if (content != null)
                 {
-                    Remove(_content);
+                    Remove(content);
                 }
 
-                _content = value;
-                if (_content == null)
+                content = value;
+                if (content == null)
                 {
                     return;
                 }
 
-                _content.Weight = 1.0f;
+                content.Weight = 1.0f;
 
                 ResetContent();
             }
@@ -185,24 +182,24 @@ namespace Tizen.NUI.Components
         {
             //To keep the order of AppBar and Content, the existing contents are
             //removed and added again.
-            if ((_appBar != null) && Children.Contains(_appBar))
+            if ((appBar != null) && Children.Contains(appBar))
             {
-                Remove(_appBar);
+                Remove(appBar);
             }
 
-            if ((_content != null) && Children.Contains(_content))
+            if ((content != null) && Children.Contains(content))
             {
-                Remove(_content);
+                Remove(content);
             }
 
-            if (_appBar != null)
+            if (appBar != null)
             {
-                Add(_appBar);
+                Add(appBar);
             }
 
-            if (_content != null)
+            if (content != null)
             {
-                Add(_content);
+                Add(content);
             }
         }
 
