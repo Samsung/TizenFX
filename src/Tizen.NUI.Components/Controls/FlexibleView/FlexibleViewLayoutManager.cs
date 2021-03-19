@@ -1,4 +1,21 @@
-﻿using System;
+﻿/*
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
@@ -38,15 +55,13 @@ namespace Tizen.NUI.Components
             /// </summary>
             Down
         }
-
         private readonly int SCROLL_ANIMATION_DURATION = 500;
 
-        private FlexibleView mFlexibleView;
-        private FlexibleView.ChildHelper mChildHelper;
+        private FlexibleView flexibleView;
+        private FlexibleView.ChildHelper childHelper;
+        private List<FlexibleViewViewHolder> pendingRecycleViews = new List<FlexibleViewViewHolder>();
 
-        private List<FlexibleViewViewHolder> mPendingRecycleViews = new List<FlexibleViewViewHolder>();
-
-        private Animation mScrollAni;
+        private Animation scrollAnimation;
 
         /// <summary>
         /// Layout all relevant child views from the given adapter.
@@ -74,7 +89,7 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return mFlexibleView.FocusedItemIndex;
+                return flexibleView.FocusedItemIndex;
             }
         }
 
@@ -87,8 +102,7 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                FlexibleViewAdapter b = mFlexibleView != null ? mFlexibleView.GetAdapter() : null;
-
+                FlexibleViewAdapter b = flexibleView != null ? flexibleView.GetAdapter() : null;
                 return b != null ? b.GetItemCount() : 0;
             }
         }
@@ -209,7 +223,7 @@ namespace Tizen.NUI.Components
 
             if (nextFocusChild != null)
             {
-                GetRectOfVisibleChild(mFlexibleView, nextFocusChild, recycler, false);
+                GetRectOfVisibleChild(flexibleView, nextFocusChild, recycler, false);
 
                 ChangeFocus(nextFocusPosition);
             }
@@ -243,9 +257,9 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RelayoutRequest()
         {
-            if (mFlexibleView != null)
+            if (flexibleView != null)
             {
-                mFlexibleView.LayoutManagerRelayoutRequest();
+                flexibleView.LayoutManagerRelayoutRequest();
             }
         }
 
@@ -277,10 +291,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ChangeFocus(int focusPosition)
         {
-            if (mFlexibleView != null)
-            {
-                mFlexibleView.DispatchFocusChanged(focusPosition);
-            }
+            flexibleView?.DispatchFocusChanged(focusPosition);
         }
 
         /// <summary>
@@ -292,7 +303,7 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return mChildHelper != null ? mChildHelper.GetChildCount() : 0;
+                return childHelper != null ? childHelper.GetChildCount() : 0;
             }
         }
 
@@ -304,7 +315,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public FlexibleViewViewHolder GetChildAt(int index)
         {
-            return mChildHelper != null ? mChildHelper.GetChildAt(index) : null;
+            return childHelper != null ? childHelper.GetChildAt(index) : null;
         }
 
         /// <summary>
@@ -315,7 +326,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public FlexibleViewViewHolder FindItemViewByPosition(int position)
         {
-            return mFlexibleView.FindViewHolderForLayoutPosition(position);
+            return flexibleView.FindViewHolderForLayoutPosition(position);
         }
 
         /// <summary>
@@ -327,7 +338,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void OffsetChildrenHorizontal(float dx, bool immediate)
         {
-            if (mChildHelper == null)
+            if (childHelper == null)
             {
                 return;
             }
@@ -337,29 +348,29 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            int childCount = mChildHelper.GetChildCount();
+            int childCount = childHelper.GetChildCount();
             if (immediate == true)
             {
                 for (int i = childCount - 1; i >= 0; i--)
                 {
-                    FlexibleViewViewHolder v = mChildHelper.GetChildAt(i);
+                    FlexibleViewViewHolder v = childHelper.GetChildAt(i);
                     v.ItemView.PositionX += dx;
                 }
             }
             else
             {
-                if (mScrollAni == null)
+                if (scrollAnimation == null)
                 {
-                    mScrollAni = new Animation();
-                    mScrollAni.Duration = SCROLL_ANIMATION_DURATION;
-                    mScrollAni.DefaultAlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOutSquare);
+                    scrollAnimation = new Animation();
+                    scrollAnimation.Duration = SCROLL_ANIMATION_DURATION;
+                    scrollAnimation.DefaultAlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOutSquare);
                 }
 
                 // avoid out of boundary of flexibleview. delta value might be used for shadow.
                 // this must be done before animation clear.
                 if (childCount > 0)
                 {
-                    FlexibleViewViewHolder vh = mChildHelper.GetChildAt(0);
+                    FlexibleViewViewHolder vh = childHelper.GetChildAt(0);
                     if (vh.LayoutPosition == 0)
                     {
                         if ((int)(vh.Left + dx) > 0)
@@ -368,7 +379,7 @@ namespace Tizen.NUI.Components
                         }
                     }
 
-                    vh = mChildHelper.GetChildAt(childCount - 1);
+                    vh = childHelper.GetChildAt(childCount - 1);
                     if (vh.LayoutPosition == ItemCount - 1)
                     {
                         if ((int)(vh.Right + dx) < (int)Width + PaddingRight)
@@ -382,21 +393,21 @@ namespace Tizen.NUI.Components
                 float[] childrenPosition = new float[childCount];
                 for (int i = childCount - 1; i >= 0; i--)
                 {
-                    FlexibleViewViewHolder v = mChildHelper.GetChildAt(i);
+                    FlexibleViewViewHolder v = childHelper.GetChildAt(i);
                     childrenPosition[i] = v.ItemView.PositionX;
                 }
 
-                mScrollAni.Clear();
-                mScrollAni.Finished += OnScrollAnimationFinished;
+                scrollAnimation.Clear();
+                scrollAnimation.Finished += OnScrollAnimationFinished;
 
                 for (int i = childCount - 1; i >= 0; i--)
                 {
-                    FlexibleViewViewHolder v = mChildHelper.GetChildAt(i);
+                    FlexibleViewViewHolder v = childHelper.GetChildAt(i);
                     // set position again because position might be changed after animation clear.
                     v.ItemView.PositionX = childrenPosition[i];
-                    mScrollAni.AnimateTo(v.ItemView, "PositionX", v.ItemView.PositionX + dx);
+                    scrollAnimation.AnimateTo(v.ItemView, "PositionX", v.ItemView.PositionX + dx);
                 }
-                mScrollAni.Play();
+                scrollAnimation.Play();
             }
         }
 
@@ -409,7 +420,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void OffsetChildrenVertical(float dy, bool immediate)
         {
-            if (mChildHelper == null)
+            if (childHelper == null)
             {
                 return;
             }
@@ -419,29 +430,29 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            int childCount = mChildHelper.GetChildCount();
+            int childCount = childHelper.GetChildCount();
             if (immediate == true)
             {
                 for (int i = childCount - 1; i >= 0; i--)
                 {
-                    FlexibleViewViewHolder v = mChildHelper.GetChildAt(i);
+                    FlexibleViewViewHolder v = childHelper.GetChildAt(i);
                     v.ItemView.PositionY += dy;
                 }
             }
             else
             {
-                if (mScrollAni == null)
+                if (scrollAnimation == null)
                 {
-                    mScrollAni = new Animation();
-                    mScrollAni.Duration = SCROLL_ANIMATION_DURATION;
-                    mScrollAni.DefaultAlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOutSquare);
+                    scrollAnimation = new Animation();
+                    scrollAnimation.Duration = SCROLL_ANIMATION_DURATION;
+                    scrollAnimation.DefaultAlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOutSquare);
                 }
 
                 // avoid out of boundary of flexibleview. delta value might be used for shadow.
                 // this must be done before animation clear.
                 if (childCount > 0)
                 {
-                    FlexibleViewViewHolder vh = mChildHelper.GetChildAt(0);
+                    FlexibleViewViewHolder vh = childHelper.GetChildAt(0);
                     if (vh.LayoutPosition == 0)
                     {
                         if ((int)(vh.Top + dy) > 0)
@@ -450,7 +461,7 @@ namespace Tizen.NUI.Components
                         }
                     }
 
-                    vh = mChildHelper.GetChildAt(childCount - 1);
+                    vh = childHelper.GetChildAt(childCount - 1);
                     if (vh.LayoutPosition == ItemCount - 1)
                     {
                         if ((int)(vh.Bottom + dy) < (int)Height + PaddingBottom)
@@ -464,21 +475,21 @@ namespace Tizen.NUI.Components
                 float[] childPosition = new float[childCount];
                 for (int i = childCount - 1; i >= 0; i--)
                 {
-                    FlexibleViewViewHolder v = mChildHelper.GetChildAt(i);
+                    FlexibleViewViewHolder v = childHelper.GetChildAt(i);
                     childPosition[i] = v.ItemView.PositionY;
                 }
 
-                mScrollAni.Clear();
-                mScrollAni.Finished += OnScrollAnimationFinished;
+                scrollAnimation.Clear();
+                scrollAnimation.Finished += OnScrollAnimationFinished;
 
                 for (int i = childCount - 1; i >= 0; i--)
                 {
-                    FlexibleViewViewHolder v = mChildHelper.GetChildAt(i);
+                    FlexibleViewViewHolder v = childHelper.GetChildAt(i);
                     // set position again because position might be changed after animation clear.
                     v.ItemView.PositionY = childPosition[i];
-                    mScrollAni.AnimateTo(v.ItemView, "PositionY", v.ItemView.PositionY + dy);
+                    scrollAnimation.AnimateTo(v.ItemView, "PositionY", v.ItemView.PositionY + dy);
                 }
-                mScrollAni.Play();
+                scrollAnimation.Play();
             }
         }
 
@@ -491,7 +502,7 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return mFlexibleView != null ? mFlexibleView.SizeWidth : 0;
+                return flexibleView != null ? flexibleView.SizeWidth : 0;
             }
         }
 
@@ -504,7 +515,7 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return mFlexibleView != null ? mFlexibleView.SizeHeight : 0;
+                return flexibleView != null ? flexibleView.SizeHeight : 0;
             }
         }
 
@@ -517,7 +528,7 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return mFlexibleView?.Padding?.Start ?? 0;
+                return flexibleView?.Padding?.Start ?? 0;
             }
         }
 
@@ -530,7 +541,7 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return mFlexibleView?.Padding?.Top ?? 0;
+                return flexibleView?.Padding?.Top ?? 0;
             }
         }
 
@@ -543,7 +554,7 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return mFlexibleView?.Padding?.End ?? 0;
+                return flexibleView?.Padding?.End ?? 0;
             }
         }
 
@@ -556,7 +567,7 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return mFlexibleView?.Padding?.Bottom ?? 0;
+                return flexibleView?.Padding?.Bottom ?? 0;
             }
         }
 
@@ -595,14 +606,14 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ScrapAttachedViews(FlexibleViewRecycler recycler)
         {
-            if (null == mChildHelper || null == recycler)
+            if (null == childHelper || null == recycler)
             {
                 return;
             }
 
             recycler.Clear();
 
-            mChildHelper.ScrapViews(recycler);
+            childHelper.ScrapViews(recycler);
         }
 
         /**
@@ -616,8 +627,8 @@ namespace Tizen.NUI.Components
         public void RemoveAndRecycleViewAt(int index, FlexibleViewRecycler recycler)
         {
             if (null == recycler) return;
-            FlexibleViewViewHolder v = mChildHelper.GetChildAt(index);
-            mChildHelper.RemoveViewAt(index);
+            FlexibleViewViewHolder v = childHelper.GetChildAt(index);
+            childHelper.RemoveViewAt(index);
             recycler.RecycleView(v);
         }
 
@@ -640,11 +651,11 @@ namespace Tizen.NUI.Components
             {
                 for (int i = startIndex; i < endIndex; i++)
                 {
-                    FlexibleViewViewHolder v = mChildHelper.GetChildAt(i);
+                    FlexibleViewViewHolder v = childHelper.GetChildAt(i);
                     if (v.PendingRecycle == false)
                     {
                         v.PendingRecycle = true;
-                        mPendingRecycleViews.Add(v);
+                        pendingRecycleViews.Add(v);
                     }
                 }
             }
@@ -652,11 +663,11 @@ namespace Tizen.NUI.Components
             {
                 for (int i = startIndex; i > endIndex; i--)
                 {
-                    FlexibleViewViewHolder v = mChildHelper.GetChildAt(i);
+                    FlexibleViewViewHolder v = childHelper.GetChildAt(i);
                     if (v.PendingRecycle == false)
                     {
                         v.PendingRecycle = true;
-                        mPendingRecycleViews.Add(v);
+                        pendingRecycleViews.Add(v);
                     }
                 }
             }
@@ -709,7 +720,7 @@ namespace Tizen.NUI.Components
 
             if (type == DisposeTypes.Explicit)
             {
-                mScrollAni?.Dispose();
+                scrollAnimation?.Dispose();
             }
 
             base.Dispose(type);
@@ -722,26 +733,26 @@ namespace Tizen.NUI.Components
 
         internal void SetRecyclerView(FlexibleView recyclerView)
         {
-            mFlexibleView = recyclerView;
-            mChildHelper = recyclerView.GetChildHelper();
+            flexibleView = recyclerView;
+            childHelper = recyclerView.GetChildHelper();
         }
 
         internal void ClearRecyclerView()
         {
-            mFlexibleView = null;
-            mChildHelper = null;
+            flexibleView = null;
+            childHelper = null;
         }
 
         internal void StopScroll(bool doSomethingAfterAnimationStopped)
         {
-            if (mScrollAni != null && mScrollAni.State == Animation.States.Playing)
+            if (scrollAnimation != null && scrollAnimation.State == Animation.States.Playing)
             {
-                mScrollAni.Finished -= OnScrollAnimationFinished;
-                mScrollAni.Stop();
+                scrollAnimation.Finished -= OnScrollAnimationFinished;
+                scrollAnimation.Stop();
 
                 if (doSomethingAfterAnimationStopped)
                 {
-                    OnScrollAnimationFinished(mScrollAni, null);
+                    OnScrollAnimationFinished(scrollAnimation, null);
                 }
             }
         }
@@ -782,11 +793,11 @@ namespace Tizen.NUI.Components
 
         private void OnScrollAnimationFinished(object sender, EventArgs e)
         {
-            foreach (FlexibleViewViewHolder holder in mPendingRecycleViews)
+            foreach (FlexibleViewViewHolder holder in pendingRecycleViews)
             {
                 holder.PendingRecycle = false;
             }
-            mPendingRecycleViews.Clear();
+            pendingRecycleViews.Clear();
 
             int start = FlexibleView.NO_POSITION;
             FlexibleViewViewHolder firstItemView = FindFirstVisibleItemView();
@@ -820,8 +831,8 @@ namespace Tizen.NUI.Components
             {
                 FlexibleViewViewHolder v = removedViewList[i];
                 v.PendingRecycle = false;
-                mFlexibleView.GetRecycler().RecycleView(v);
-                mChildHelper.RemoveView(v);
+                flexibleView.GetRecycler().RecycleView(v);
+                childHelper.RemoveView(v);
             }
 
             // relayout
@@ -833,24 +844,24 @@ namespace Tizen.NUI.Components
             if (holder.IsScrap())
             {
                 holder.Unscrap();
-                mChildHelper.AttachView(holder, index);
+                childHelper.AttachView(holder, index);
             }
             else
             {
-                mChildHelper.AddView(holder, index);
+                childHelper.AddView(holder, index);
             }
         }
 
         private void RecycleChildrenInt(FlexibleViewRecycler recycler)
         {
             if (null == recycler) return;
-            foreach (FlexibleViewViewHolder holder in mPendingRecycleViews)
+            foreach (FlexibleViewViewHolder holder in pendingRecycleViews)
             {
                 holder.PendingRecycle = false;
                 recycler.RecycleView(holder);
-                mChildHelper.RemoveView(holder);
+                childHelper.RemoveView(holder);
             }
-            mPendingRecycleViews.Clear();
+            pendingRecycleViews.Clear();
         }
 
         private void ScrapOrRecycleView(FlexibleViewRecycler recycler, FlexibleViewViewHolder itemView)
