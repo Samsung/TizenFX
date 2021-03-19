@@ -30,8 +30,6 @@ namespace Tizen.NUI
     /// </summary>
     internal class LayoutController : Disposable
     {
-        static bool LayoutDebugController = false; // Debug flag
-
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         internal delegate void Callback(int id);
 
@@ -139,7 +137,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Dispose Explict or Implicit
+        /// Dispose Explicit or Implicit
         /// </summary>
         protected override void Dispose(DisposeTypes type)
         {
@@ -167,7 +165,7 @@ namespace Tizen.NUI
         {
             if (rootNode.Layout != null)
             {
-                Debug.WriteLineIf(LayoutDebugController, "LayoutController Root found:" + rootNode.Name);
+                NUILog.Debug("LayoutController Root found:" + rootNode.Name);
                 // rootNode has a layout, start measuring and layouting from here.
                 MeasureAndLayout(rootNode);
             }
@@ -294,7 +292,7 @@ namespace Tizen.NUI
         /// </summary>
         private void PlayAnimation()
         {
-            Debug.WriteLineIf(LayoutDebugController, "LayoutController Playing, Core Duration:" + coreAnimation.Duration);
+            NUILog.Debug("LayoutController Playing, Core Duration:" + coreAnimation.Duration);
             coreAnimation.Play();
         }
 
@@ -328,7 +326,7 @@ namespace Tizen.NUI
                 // of the other stack.  Then the main removal stack iterated when AnimationFinished
                 // occurs again.
             }
-            Debug.WriteLineIf(LayoutDebugController, "LayoutController AnimationFinished");
+            NUILog.Debug("LayoutController AnimationFinished");
             coreAnimation?.Clear();
         }
 
@@ -341,8 +339,7 @@ namespace Tizen.NUI
             // Initialize animation for this layout run.
             bool animationPending = false;
 
-            Debug.WriteLineIf(LayoutDebugController,
-                               "LayoutController SetupCoreAnimation for:" + layoutTransitionDataQueue.Count);
+            NUILog.Debug("LayoutController SetupCoreAnimation for:" + layoutTransitionDataQueue.Count);
 
             if (layoutTransitionDataQueue.Count > 0) // Something to animate
             {
@@ -381,8 +378,7 @@ namespace Tizen.NUI
                             positionTransitionComponents.Duration,
                             positionTransitionComponents.AlphaFunction);
 
-                Debug.WriteLineIf(LayoutDebugController,
-                                   "LayoutController SetupAnimationForPosition View:" + layoutPositionData.Item.Owner.Name +
+                NUILog.Debug("LayoutController SetupAnimationForPosition View:" + layoutPositionData.Item.Owner.Name +
                                    " left:" + layoutPositionData.Left +
                                    " top:" + layoutPositionData.Top +
                                    " delay:" + positionTransitionComponents.Delay +
@@ -411,8 +407,7 @@ namespace Tizen.NUI
                                          sizeTransitionComponents.Duration,
                                          sizeTransitionComponents.AlphaFunction);
 
-                Debug.WriteLineIf(LayoutDebugController,
-                                  "LayoutController SetupAnimationForSize View:" + layoutPositionData.Item.Owner.Name +
+                NUILog.Debug("LayoutController SetupAnimationForSize View:" + layoutPositionData.Item.Owner.Name +
                                    " width:" + (layoutPositionData.Right - layoutPositionData.Left) +
                                    " height:" + (layoutPositionData.Bottom - layoutPositionData.Top) +
                                    " delay:" + sizeTransitionComponents.Delay +
@@ -436,8 +431,7 @@ namespace Tizen.NUI
                                                  transition.Animator.Duration,
                                                  transition.Animator.AlphaFunction);
 
-                        Debug.WriteLineIf(LayoutDebugController,
-                                           "LayoutController SetupAnimationForCustomTransitions View:" + view.Name +
+                        NUILog.Debug("LayoutController SetupAnimationForCustomTransitions View:" + view.Name +
                                            " Property:" + transition.AnimatableProperty.ToString() +
                                            " delay:" + transition.Animator.Delay +
                                            " duration:" + transition.Animator.Duration);
@@ -496,7 +490,7 @@ namespace Tizen.NUI
             // Note, Transitions set on View rather than LayoutItem so if the Layout changes the transition persist.
 
             // Check if item to animate has it's own Transitions for this condition.
-            // If a key exists then a List of atleast 1 transition exists.
+            // If a key exists then a List of at least 1 transition exists.
             if (layoutPositionData.Item.Owner.LayoutTransitions.ContainsKey(conditionForAnimators))
             {
                 // Child has transitions for the condition

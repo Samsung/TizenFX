@@ -102,8 +102,7 @@ namespace Tizen.NUI.BaseComponents
             }
 
             onWindowSendEventCallback = SendViewAddedEventToWindow;
-            onWindowSendSignal = this.OnWindowSignal();
-            onWindowSendSignal?.Connect(onWindowSendEventCallback);
+            this.OnWindowSignal().Connect(onWindowSendEventCallback);
 
             if (!shown)
             {
@@ -428,7 +427,7 @@ namespace Tizen.NUI.BaseComponents
         /// It is null by default.
         /// </summary>
         /// <remarks>
-        /// Gettter returns copied instance of current shadow.
+        /// Getter returns copied instance of current shadow.
         /// </remarks>
         /// <remarks>
         /// The mutually exclusive with "ImageShadow".
@@ -786,7 +785,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The Child property of FlexContainer.<br />
-        /// The alignment of the flex item along the cross axis, which, if set, overides the default alignment for all items in the container.<br />
+        /// The alignment of the flex item along the cross axis, which, if set, overrides the default alignment for all items in the container.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         [Obsolete("Deprecated in API8, will be removed in API10.")]
@@ -1116,7 +1115,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Retrieves the screen postion of the view.<br />
+        /// Retrieves the screen position of the view.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Vector2 ScreenPosition
@@ -1690,7 +1689,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Gets the view's ID.
-        /// Readonly
+        /// Read-only
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public uint ID
@@ -2456,24 +2455,26 @@ namespace Tizen.NUI.BaseComponents
                     // Do not try to set Margins or Padding on a null Layout (when a layout is being removed from a View)
                     if (value != null)
                     {
-                        if (false == (this is TextLabel))
+                        if (Margin.Top != 0 || Margin.Bottom != 0 || Margin.Start != 0 || Margin.End != 0)
                         {
-                            if (Margin.Top != 0 || Margin.Bottom != 0 || Margin.Start != 0 || Margin.End != 0)
-                            {
-                                // If View already has a margin set then store it in Layout instead.
-                                value.Margin = Margin;
-                                SetValue(MarginProperty, new Extents(0, 0, 0, 0));
-                                NotifyPropertyChanged();
-                            }
+                            // If View already has a margin set then store it in Layout instead.
+                            value.Margin = Margin;
+                            SetValue(MarginProperty, new Extents(0, 0, 0, 0));
+                            NotifyPropertyChanged();
+                        }
 
-                            if (Padding.Top != 0 || Padding.Bottom != 0 || Padding.Start != 0 || Padding.End != 0)
+                        if (Padding.Top != 0 || Padding.Bottom != 0 || Padding.Start != 0 || Padding.End != 0)
+                        {
+                            // If View already has a padding set then store it in Layout instead.
+                            value.Padding = Padding;
+
+                            // If Layout is a LayoutItem then it could be a View that handles it's own padding.
+                            // Let the View keeps it's padding.  Still store Padding in Layout to reduce code paths.
+                            if (typeof(LayoutGroup).IsAssignableFrom(Layout.GetType()))
                             {
-                                // If View already has a padding set then store it in Layout instead.
-                                value.Padding = Padding;
                                 SetValue(PaddingProperty, new Extents(0, 0, 0, 0));
                                 NotifyPropertyChanged();
                             }
-
                         }
                     }
                 }

@@ -368,7 +368,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets specificifications of a speed factor for the animation.<br />
+        /// Gets or sets specifications of a speed factor for the animation.<br />
         /// The speed factor is a multiplier of the normal velocity of the animation.<br />
         /// Values between [0, 1] will slow down the animation and values above one will speed up the animation.<br />
         /// It is also possible to specify a negative multiplier to play the animation in reverse.<br />
