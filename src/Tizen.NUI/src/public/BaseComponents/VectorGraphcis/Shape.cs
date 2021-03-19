@@ -1,5 +1,5 @@
 /*
-* Copyright(c) 2019 Samsung Electronics Co., Ltd.
+* Copyright(c) 2021 Samsung Electronics Co., Ltd.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -19,15 +19,27 @@ using System.Collections.Generic;
 
 namespace Tizen.NUI.BaseComponents
 {
-
     namespace VectorGraphics
     {
         /// <summary>
-        /// Shape is a command list for drawing one shape groups It has own path data & properties for sync/asynchronous drawing
+        /// Shape is a command list for drawing one shape groups It has own path data and properties for sync/asynchronous drawing
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public class Shape : Paint
+        public class Shape : Drawable
         {
+            /// <summary>
+            /// Creates an initialized Shape.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public Shape() : this(Interop.Shape.New(), true)
+            {
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+
+            internal Shape(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+            {
+            }
+
             /// <summary>
             /// Enumeration for The cap style to be used for stroking the path.
             /// </summary>
@@ -84,15 +96,6 @@ namespace Tizen.NUI.BaseComponents
                 EvenOdd
             }
 
-            public Shape() : this(Interop.Shape.New(), true)
-            {
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-
-            internal Shape(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
-            {
-            }
-
             /// <summary>
             /// Append the given rectangle with rounded corner to the path.
             /// The roundedCorner arguments specify the radii of the ellipses defining the
@@ -103,7 +106,7 @@ namespace Tizen.NUI.BaseComponents
             /// If roundedCorner's values are 0, then it will draw a rectangle without rounded corner.
             /// </summary>
             /// <param name="x">X co-ordinate of the rectangle.</param>
-            /// <param name="Y">Y co-ordinate of the rectangle.</param>
+            /// <param name="y">Y co-ordinate of the rectangle.</param>
             /// <param name="width">Width of the rectangle.</param>
             /// <param name="height">Height of the rectangle.</param>
             /// <param name="roundedCornerX">The x radius of the rounded corner and should be in range [ 0 to w/2 ].</param>
@@ -318,7 +321,7 @@ namespace Tizen.NUI.BaseComponents
             /// <summary>
             /// Sets the stroke dash pattern. The dash pattern is specified dash pattern.
             /// </summary>
-            /// <param name="dashPattern">Lenght and a gap list.</param>
+            /// <param name="dashPattern">Length and a gap list.</param>
             /// <param name="count">Pattern list length</param>
             /// <returns>True when it's successful. False otherwise.</returns>
             [EditorBrowsable(EditorBrowsableState.Never)]
@@ -339,7 +342,7 @@ namespace Tizen.NUI.BaseComponents
                 List<float> pattern = new List<float>();
 
                 int patternCount = Interop.Shape.GetStrokeDashCount(BaseHandle.getCPtr(this));
-                for(int i = 0; i < patternCount; i++)
+                for (int i = 0; i < patternCount; i++)
                 {
                     pattern.Add(Interop.Shape.GetStrokeDashIndexOf(BaseHandle.getCPtr(this), i));
                 }
