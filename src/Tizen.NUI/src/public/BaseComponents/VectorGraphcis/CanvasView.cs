@@ -1,5 +1,5 @@
 /*
-* Copyright(c) 2019 Samsung Electronics Co., Ltd.
+* Copyright(c) 2021 Samsung Electronics Co., Ltd.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 */
 using System;
 using System.ComponentModel;
-
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -27,8 +27,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class CanvasView : View
-        {
-            
+        {            
             static CanvasView() { }
 
             /// <summary>
@@ -36,7 +35,8 @@ namespace Tizen.NUI.BaseComponents
             /// </summary>
             /// <param name="viewBox">The size of viewbox.</param>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public CanvasView(Size2D viewBox) : this(Interop.CanvasView.New(Uint16Pair.getCPtr( new Uint16Pair((uint)viewBox.Width, (uint)viewBox.Height))), true)
+            [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "It does not have dispose ownership.")]
+            public CanvasView(Size2D viewBox) : this(viewBox == null ? throw new ArgumentNullException(nameof(viewBox)) : Interop.CanvasView.New(Uint16Pair.getCPtr(new Uint16Pair((uint)viewBox.Width, (uint)viewBox.Height))), true)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -47,35 +47,6 @@ namespace Tizen.NUI.BaseComponents
                 {
                     SetVisible(false);
                 }
-            }
-
-            /// <summary>
-            /// Downcasts a handle to CanvasView handle.
-            /// </summary>
-            /// <exception cref="ArgumentNullException"> Thrown when handle is null. </exception>
-            /// Please do not use! this will be deprecated!
-            /// Instead please use as keyword.
-            [Obsolete("Please do not use! This will be deprecated! Please use as keyword instead! " +
-            "Like: " +
-            "BaseHandle handle = new CanvasView(viewBox); " +
-            "CanvasView canvasView = handle as CanvasView")]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public static CanvasView DownCast(BaseHandle handle)
-            {
-                if (null == handle)
-                {
-                    throw new ArgumentNullException(nameof(handle));
-                }
-                CanvasView ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as CanvasView;
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-
-            /// This will not be public opened.
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
-            {
-                Interop.CanvasView.DeleteCanvasView(swigCPtr);
             }
 
             /// <summary>
@@ -93,17 +64,23 @@ namespace Tizen.NUI.BaseComponents
                 base.Dispose(type);
             }
 
+            /// This will not be public opened.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+            {
+                Interop.CanvasView.DeleteCanvasView(swigCPtr);
+            }
+            
             /// <summary>
-            /// Add paint object to the CanvasView.
+            /// Add drawable object to the CanvasView.
             /// This method is similar to registration. The added shape is drawn on the inner canvas.
             /// </summary>
-            /// <param name="paint">Paint object</param>
+            /// <param name="drawable">Drawable object</param>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public void AddPaint(Paint paint)
+            public void AddDrawable(Drawable drawable)
             {   
-                Interop.CanvasView.AddPaint(View.getCPtr(this), BaseHandle.getCPtr(paint));
+                Interop.CanvasView.AddDrawable(View.getCPtr(this), BaseHandle.getCPtr(drawable));
             }
-
         }
     }
 }
