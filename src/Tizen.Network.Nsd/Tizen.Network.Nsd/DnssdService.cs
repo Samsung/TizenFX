@@ -230,7 +230,7 @@ namespace Tizen.Network.Nsd
         /// <feature>http://tizen.org/feature/network.service_discovery.dnssd</feature>
         /// <exception cref="NotSupportedException">Thrown when DNS-SD is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when any other error occurred.</exception>
-        public byte[] GetRawTxtRecord()
+        public byte[] GetTXTRecords()
         {
             int ret = Interop.Nsd.Dnssd.GetAllTxtRecord(_serviceHandle, out ushort length, out IntPtr data);
             if (ret != (int)DnssdError.None)
