@@ -97,7 +97,6 @@ namespace Tizen.NUI.Wearable
         private Size containerSize = new Size(0, 0);
         private Animation thumbStartAngleAnimation;
         private Animation thumbSweepAngleAnimation;
-        private bool mScrollEnabled = true;
 
         #endregion Fields
 
@@ -267,6 +266,14 @@ namespace Tizen.NUI.Wearable
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void Update(float contentLength, float viewportLength, float position, uint durationMs = 0, AlphaFunction alphaFunction = null)
+        {
+            this.visibleLength = viewportLength;
+            Update(contentLength, position, durationMs, alphaFunction);
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void Update(float contentLength, float position, uint durationMs = 0, AlphaFunction alphaFunction = null)
         {
             this.previousPosition = this.currentPosition;
@@ -308,7 +315,7 @@ namespace Tizen.NUI.Wearable
             previousPosition = currentPosition;
             currentPosition = position;
 
-            if (mScrollEnabled == false)
+            if (ControlState == ControlState.Disabled)
             {
                 return;
             }
@@ -464,41 +471,17 @@ namespace Tizen.NUI.Wearable
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool ScrollEnabled
+        public override float ScrollPosition
         {
-            get
-            {
-                return mScrollEnabled;
-            }
-            set
-            {
-                if (value != mScrollEnabled)
-                {
-                    mScrollEnabled = value;
-                }
-            }
+            get => Math.Min(Math.Max(currentPosition, 0.0f), contentLength - visibleLength);
         }
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override Position ScrollPosition
+        public override float ScrollCurrentPosition
         {
             get
             {
-                bool isHorizontal = (directionAlpha == 270.0f) ? true : false;
-                float length = Math.Min(Math.Max(currentPosition, 0.0f), contentLength - visibleLength);
-
-                return (isHorizontal ? new Position(length, 0.0f) : new Position(0.0f, length));
-            }
-        }
-
-        /// <inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override Position ScrollCurrentPosition
-        {
-            get
-            {
-                bool isHorizontal = (directionAlpha == 270.0f) ? true : false;
                 float length = Math.Min(Math.Max(currentPosition, 0.0f), contentLength - visibleLength);
 
                 if (thumbStartAngleAnimation != null)
@@ -509,7 +492,7 @@ namespace Tizen.NUI.Wearable
                     length = ((1.0f - progress) * previousLength) + (progress * length);
                 }
 
-                return (isHorizontal ? new Position(length, 0.0f) : new Position(0.0f, length));
+                return length;
             }
         }
 
