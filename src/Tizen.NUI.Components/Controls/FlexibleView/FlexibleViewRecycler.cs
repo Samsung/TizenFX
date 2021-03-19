@@ -1,4 +1,21 @@
-﻿using System.Collections.Generic;
+﻿/*
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace Tizen.NUI.Components
@@ -11,16 +28,13 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class FlexibleViewRecycler
     {
-        private FlexibleView mFlexibleView;
-        private FlexibleView.RecycledViewPool mRecyclerPool;
+        private FlexibleView flexibleView;
+        private FlexibleView.RecycledViewPool recyclerPool;
 
-        private List<FlexibleViewViewHolder> mAttachedScrap = new List<FlexibleViewViewHolder>();
-        private List<FlexibleViewViewHolder> mChangedScrap = null;
-        //private List<ItemView> mCachedViews = new List<ItemView>();
+        private List<FlexibleViewViewHolder> attachedScrap = new List<FlexibleViewViewHolder>();
+        private List<FlexibleViewViewHolder> changedScrap = null;
 
-        //private List<FlexibleViewViewHolder> mUnmodifiableAttachedScrap;
-
-        private int mCacheSizeMax = 2;
+        private int cacheSizeMax = 2;
 
         /// <summary>
         /// FlexibleViewRecycler constructor.
@@ -29,14 +43,14 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public FlexibleViewRecycler(FlexibleView recyclerView)
         {
-            mFlexibleView = recyclerView;
+            flexibleView = recyclerView;
         }
 
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetViewCacheSize(int viewCount)
         {
-            mCacheSizeMax = viewCount;
+            cacheSizeMax = viewCount;
         }
 
         /// <summary>
@@ -47,7 +61,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public FlexibleViewViewHolder GetViewForPosition(int position)
         {
-            FlexibleViewAdapter b = mFlexibleView != null ? mFlexibleView.GetAdapter() : null;
+            FlexibleViewAdapter b = flexibleView != null ? flexibleView.GetAdapter() : null;
             if (b == null)
             {
                 return null;
@@ -59,17 +73,17 @@ namespace Tizen.NUI.Components
 
             int type = b.GetItemViewType(position);
             FlexibleViewViewHolder itemView = null;
-            for (int i = 0; i < mAttachedScrap.Count; i++)
+            for (int i = 0; i < attachedScrap.Count; i++)
             {
-                if (mAttachedScrap[i].LayoutPosition == position && mAttachedScrap[i].ItemViewType == type)
+                if (attachedScrap[i].LayoutPosition == position && attachedScrap[i].ItemViewType == type)
                 {
-                    itemView = mAttachedScrap[i];
+                    itemView = attachedScrap[i];
                     break;
                 }
             }
             if (itemView == null)
             {
-                itemView = mRecyclerPool.GetRecycledView(type);
+                itemView = recyclerPool.GetRecycledView(type);
                 if (itemView == null)
                 {
                     itemView = b.OnCreateViewHolder(type);
@@ -98,7 +112,7 @@ namespace Tizen.NUI.Components
         {
             if (null == itemView) return;
             itemView.ScrapContainer = null;
-            mRecyclerPool.PutRecycledView(itemView);
+            recyclerPool.PutRecycledView(itemView);
         }
 
         /// <summary>
@@ -108,7 +122,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int GetScrapCount()
         {
-            return mAttachedScrap.Count;
+            return attachedScrap.Count;
         }
 
         /// <summary>
@@ -119,7 +133,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public FlexibleViewViewHolder GetScrapViewAt(int index)
         {
-            return mAttachedScrap[index];
+            return attachedScrap[index];
         }
 
         /// <summary>
@@ -129,28 +143,28 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Clear()
         {
-            mAttachedScrap.Clear();
-            if (mChangedScrap != null)
+            attachedScrap.Clear();
+            if (changedScrap != null)
             {
-                mChangedScrap.Clear();
+                changedScrap.Clear();
             }
         }
 
         internal void ScrapView(FlexibleViewViewHolder itemView)
         {
-            mAttachedScrap.Add(itemView);
+            attachedScrap.Add(itemView);
             itemView.ScrapContainer = this;
         }
 
         internal void UnscrapView(FlexibleViewViewHolder itemView)
         {
-            mAttachedScrap.Remove(itemView);
+            attachedScrap.Remove(itemView);
             itemView.ScrapContainer = null;
         }
 
         internal void SetRecycledViewPool(FlexibleView.RecycledViewPool pool)
         {
-            mRecyclerPool = pool;
+            recyclerPool = pool;
         }
     }
 }

@@ -15,7 +15,6 @@
  *
  */
 using System.ComponentModel;
-using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.Components
 {
