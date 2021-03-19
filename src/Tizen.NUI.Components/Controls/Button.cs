@@ -18,7 +18,6 @@ using System;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
-using Tizen.NUI.Components.Extension;
 using Tizen.NUI.Accessibility;
 
 namespace Tizen.NUI.Components

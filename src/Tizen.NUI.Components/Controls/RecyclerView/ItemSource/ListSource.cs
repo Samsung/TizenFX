@@ -22,7 +22,7 @@ namespace Tizen.NUI.Components
 {
     sealed class ListSource : IItemSource, IList
     {
-        IList _itemsSource;
+        IList itemsSource;
 
         public ListSource()
         {
@@ -30,36 +30,36 @@ namespace Tizen.NUI.Components
 
         public ListSource(IEnumerable<object> enumerable)
         {
-            _itemsSource = new List<object>(enumerable);
+            itemsSource = new List<object>(enumerable);
         }
 
         public ListSource(IEnumerable enumerable)
         {
-            _itemsSource = new List<object>();
+            itemsSource = new List<object>();
 
             if (enumerable == null)
                 return;
 
             foreach (object item in enumerable)
             {
-                _itemsSource.Add(item);
+                itemsSource.Add(item);
             }
         }
 
-        public int Count => _itemsSource.Count + (HasHeader ? 1 : 0) + (HasFooter ? 1 : 0);
+        public int Count => itemsSource.Count + (HasHeader ? 1 : 0) + (HasFooter ? 1 : 0);
 
         public bool HasHeader { get; set; }
         public bool HasFooter { get; set; }
 
-        public bool IsReadOnly => _itemsSource.IsReadOnly;
+        public bool IsReadOnly => itemsSource.IsReadOnly;
 
-        public bool IsFixedSize => _itemsSource.IsFixedSize;
+        public bool IsFixedSize => itemsSource.IsFixedSize;
 
-        public object SyncRoot => _itemsSource.SyncRoot;
+        public object SyncRoot => itemsSource.SyncRoot;
 
-        public bool IsSynchronized => _itemsSource.IsSynchronized;
+        public bool IsSynchronized => itemsSource.IsSynchronized;
 
-        object IList.this[int index] { get => _itemsSource[index]; set => _itemsSource[index] = value; }
+        object IList.this[int index] { get => itemsSource[index]; set => itemsSource[index] = value; }
 
         public void Dispose()
         {
@@ -78,9 +78,9 @@ namespace Tizen.NUI.Components
 
         public int GetPosition(object item)
         {
-            for (int n = 0; n < _itemsSource.Count; n++)
+            for (int n = 0; n < itemsSource.Count; n++)
             {
-                var elementByIndex = _itemsSource[n];
+                var elementByIndex = itemsSource[n];
                 var isEqual = elementByIndex == item || (elementByIndex != null && item != null && elementByIndex.Equals(item));
 
                 if (isEqual)
@@ -94,7 +94,7 @@ namespace Tizen.NUI.Components
 
         public object GetItem(int position)
         {
-            return _itemsSource[AdjustIndexRequest(position)];
+            return itemsSource[AdjustIndexRequest(position)];
         }
 
         int AdjustIndexRequest(int index)
@@ -108,47 +108,47 @@ namespace Tizen.NUI.Components
         }
         public int Add(object value)
         {
-            return _itemsSource.Add(value);
+            return itemsSource.Add(value);
         }
 
         public bool Contains(object value)
         {
-            return _itemsSource.Contains(value);
+            return itemsSource.Contains(value);
         }
 
         public void Clear()
         {
-            _itemsSource.Clear();
+            itemsSource.Clear();
         }
 
         public int IndexOf(object value)
         {
-            return _itemsSource.IndexOf(value);
+            return itemsSource.IndexOf(value);
         }
 
         public void Insert(int index, object value)
         {
-            _itemsSource.Insert(index, value);
+            itemsSource.Insert(index, value);
         }
 
         public void Remove(object value)
         {
-            _itemsSource.Remove(value);
+            itemsSource.Remove(value);
         }
 
         public void RemoveAt(int index)
         {
-            _itemsSource.RemoveAt(index);
+            itemsSource.RemoveAt(index);
         }
 
         public void CopyTo(Array array, int index)
         {
-            _itemsSource.CopyTo(array, index);
+            itemsSource.CopyTo(array, index);
         }
 
         public IEnumerator GetEnumerator()
         {
-            return _itemsSource.GetEnumerator();
+            return itemsSource.GetEnumerator();
         }
     }
 }

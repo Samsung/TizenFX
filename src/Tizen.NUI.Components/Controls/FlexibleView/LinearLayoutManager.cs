@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
  */
 using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.NUI.Components
 {
@@ -46,6 +47,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [SuppressMessage("Naming", "CA1707:Identifiers should not contain underscores", Justification = "<Pending>")]
         public static readonly int NO_POSITION = FlexibleView.NO_POSITION;
         /// <summary>
         /// Constant value: -2^31.
@@ -53,11 +55,12 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [SuppressMessage("Naming", "CA1707:Identifiers should not contain underscores", Justification = "<Pending>")]
         public static readonly int INVALID_OFFSET = -2147483648;
 
         private const float MAX_SCROLL_FACTOR = 1 / 3f;
 
-        internal OrientationHelper mOrientationHelper;
+        internal OrientationHelper orientationHelper;
 
         private LayoutState mLayoutState;
         private AnchorInfo mAnchorInfo = new AnchorInfo();
@@ -85,10 +88,10 @@ namespace Tizen.NUI.Components
         public LinearLayoutManager(int orientation)
         {
             Orientation = orientation;
-            mOrientationHelper = OrientationHelper.CreateOrientationHelper(this, Orientation);
+            orientationHelper = OrientationHelper.CreateOrientationHelper(this, Orientation);
 
             mLayoutState = new LayoutState();
-            mLayoutState.Offset = mOrientationHelper.GetStartAfterPadding();
+            mLayoutState.Offset = orientationHelper.GetStartAfterPadding();
         }
 
         /// <summary>
@@ -293,13 +296,13 @@ namespace Tizen.NUI.Components
                     ? Math.Max(0, ItemCount - maxPosition - 1)
                     : Math.Max(0, minPosition);
 
-            float laidOutArea = Math.Abs(mOrientationHelper.GetViewHolderEnd(endChild)
-                   - mOrientationHelper.GetViewHolderStart(startChild));
+            float laidOutArea = Math.Abs(orientationHelper.GetViewHolderEnd(endChild)
+                   - orientationHelper.GetViewHolderStart(startChild));
             int itemRange = Math.Abs(startChild.LayoutPosition - endChild.LayoutPosition) + 1;
             float avgSizePerRow = laidOutArea / itemRange;
 
-            return (float)Math.Round(itemsBefore * avgSizePerRow + (mOrientationHelper.GetStartAfterPadding()
-                    - mOrientationHelper.GetViewHolderStart(startChild)));
+            return (float)Math.Round(itemsBefore * avgSizePerRow + (orientationHelper.GetStartAfterPadding()
+                    - orientationHelper.GetViewHolderStart(startChild)));
         }
 
         /// <summary>
@@ -316,9 +319,9 @@ namespace Tizen.NUI.Components
             {
                 return 0;
             }
-            float extend = mOrientationHelper.GetViewHolderEnd(endChild)
-                - mOrientationHelper.GetViewHolderStart(startChild);
-            return Math.Min(mOrientationHelper.GetTotalSpace(), extend);
+            float extend = orientationHelper.GetViewHolderEnd(endChild)
+                - orientationHelper.GetViewHolderStart(startChild);
+            return Math.Min(orientationHelper.GetTotalSpace(), extend);
         }
 
         /// <summary>
@@ -335,8 +338,8 @@ namespace Tizen.NUI.Components
             {
                 return 0;
             }
-            float laidOutArea = mOrientationHelper.GetViewHolderEnd(endChild)
-                    - mOrientationHelper.GetViewHolderStart(startChild);
+            float laidOutArea = orientationHelper.GetViewHolderEnd(endChild)
+                    - orientationHelper.GetViewHolderStart(startChild);
             int laidOutRange = Math.Abs(startChild.LayoutPosition - endChild.LayoutPosition) + 1;
             // estimate a size for full list.
             return laidOutArea / laidOutRange * ItemCount;
@@ -459,8 +462,8 @@ namespace Tizen.NUI.Components
                 for (int i = 0; i < childCount; i++)
                 {
                     FlexibleViewViewHolder child = GetChildAt(i);
-                    int end = (int)mOrientationHelper.GetViewHolderEnd(child);
-                    if (end >= 0 && end < (int)mOrientationHelper.GetEnd())
+                    int end = (int)orientationHelper.GetViewHolderEnd(child);
+                    if (end >= 0 && end < (int)orientationHelper.GetEnd())
                     {
                         return child;
                     }
@@ -471,8 +474,8 @@ namespace Tizen.NUI.Components
                 for (int i = childCount - 1; i >= 0; i--)
                 {
                     FlexibleViewViewHolder child = GetChildAt(i);
-                    int end = (int)mOrientationHelper.GetViewHolderEnd(child);
-                    if (end >= 0 && end < (int)mOrientationHelper.GetEnd())
+                    int end = (int)orientationHelper.GetViewHolderEnd(child);
+                    if (end >= 0 && end < (int)orientationHelper.GetEnd())
                     {
                         return child;
                     }
@@ -494,8 +497,8 @@ namespace Tizen.NUI.Components
                 for (int i = childCount - 1; i >= 0; i--)
                 {
                     FlexibleViewViewHolder child = GetChildAt(i);
-                    int start = (int)mOrientationHelper.GetViewHolderStart(child);
-                    if (start > 0 && start < (int)mOrientationHelper.GetEnd())
+                    int start = (int)orientationHelper.GetViewHolderStart(child);
+                    if (start > 0 && start < (int)orientationHelper.GetEnd())
                     {
                         return child;
                     }
@@ -506,8 +509,8 @@ namespace Tizen.NUI.Components
                 for (int i = 0; i < childCount; i++)
                 {
                     FlexibleViewViewHolder child = GetChildAt(i);
-                    int start = (int)mOrientationHelper.GetViewHolderStart(child);
-                    if (start > 0 && start < (int)mOrientationHelper.GetEnd())
+                    int start = (int)orientationHelper.GetViewHolderStart(child);
+                    if (start > 0 && start < (int)orientationHelper.GetEnd())
                     {
                         return child;
                     }

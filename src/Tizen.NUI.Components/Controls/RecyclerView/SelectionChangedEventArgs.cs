@@ -40,7 +40,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public IReadOnlyList<object> CurrentSelection { get; }
 
-
         internal SelectionChangedEventArgs(object previousSelection, object currentSelection)
         {
             PreviousSelection = previousSelection != null ? new List<object>(1) { previousSelection } : selectEmpty;

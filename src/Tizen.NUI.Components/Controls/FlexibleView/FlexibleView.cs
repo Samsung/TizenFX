@@ -16,7 +16,7 @@
  */
 using System;
 using System.ComponentModel;
-using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.Components
@@ -65,6 +65,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [SuppressMessage("Naming", "CA1707:Identifiers should not contain underscores", Justification = "<Pending>")]
         public static readonly int NO_POSITION = -1;
         /// <summary>
         /// Constant value: -1.
@@ -72,22 +73,23 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [SuppressMessage("Naming", "CA1707:Identifiers should not contain underscores", Justification = "<Pending>")]
         public static readonly int INVALID_TYPE = -1;
 
-        private FlexibleViewAdapter mAdapter;
-        private FlexibleViewLayoutManager mLayout;
-        private FlexibleViewRecycler mRecycler;
-        private RecycledViewPool mRecyclerPool;
-        private ChildHelper mChildHelper;
+        private FlexibleViewAdapter adapter;
+        private FlexibleViewLayoutManager layout;
+        private FlexibleViewRecycler recycler;
+        private RecycledViewPool recyclerPool;
+        private ChildHelper childHelper;
 
-        private PanGestureDetector mPanGestureDetector;
+        private PanGestureDetector panGestureDetector;
 
-        private int mFocusedItemIndex = NO_POSITION;
+        private int focusedItemIndex = NO_POSITION;
 
-        private AdapterHelper mAdapteHelper;
+        private AdapterHelper adapteHelper;
 
-        private ScrollBar mScrollBar = null;
-        private Timer mScrollBarShowTimer = null;
+        private ScrollBar scrollBar = null;
+        private Timer scrollBarShowTimer = null;
 
         private EventHandler<FlexibleViewItemClickedEventArgs> clickEventHandlers;
         private EventHandler<FlexibleViewItemTouchEventArgs> touchEventHandlers;
@@ -101,18 +103,18 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public FlexibleView()
         {
-            mRecyclerPool = new RecycledViewPool(this);
+            recyclerPool = new RecycledViewPool(this);
 
-            mRecycler = new FlexibleViewRecycler(this);
-            mRecycler.SetRecycledViewPool(mRecyclerPool);
+            recycler = new FlexibleViewRecycler(this);
+            recycler.SetRecycledViewPool(recyclerPool);
 
-            mChildHelper = new ChildHelper(this);
+            childHelper = new ChildHelper(this);
 
-            mPanGestureDetector = new PanGestureDetector();
-            mPanGestureDetector.Attach(this);
-            mPanGestureDetector.Detected += OnPanGestureDetected;
+            panGestureDetector = new PanGestureDetector();
+            panGestureDetector.Attach(this);
+            panGestureDetector.Detected += OnPanGestureDetected;
 
-            mAdapteHelper = new AdapterHelper(this);
+            adapteHelper = new AdapterHelper(this);
 
             ClippingMode = ClippingModeType.ClipToBoundingBox;
         }
@@ -224,21 +226,21 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return mFocusedItemIndex;
+                return focusedItemIndex;
             }
             set
             {
-                if (value == mFocusedItemIndex)
+                if (value == focusedItemIndex)
                 {
                     return;
                 }
 
-                if (mAdapter == null)
+                if (adapter == null)
                 {
                     return;
                 }
 
-                if (mLayout == null)
+                if (layout == null)
                 {
                     return;
                 }
@@ -246,11 +248,11 @@ namespace Tizen.NUI.Components
                 FlexibleViewViewHolder nextFocusView = FindViewHolderForAdapterPosition(value);
                 if (nextFocusView == null)
                 {
-                    mLayout.ScrollToPosition(value);
+                    layout.ScrollToPosition(value);
                 }
                 else
                 {
-                    mLayout.GetRectOfVisibleChild(this, nextFocusView, mRecycler, true);
+                    layout.GetRectOfVisibleChild(this, nextFocusView, recycler, true);
                     DispatchFocusChanged(value);
                 }
             }
@@ -267,9 +269,9 @@ namespace Tizen.NUI.Components
             {
                 return;
             }
-            mAdapter = adapter;
+            this.adapter = adapter;
 
-            mAdapter.ItemEvent += OnItemEvent;
+            this.adapter.ItemEvent += OnItemEvent;
         }
 
         /// <summary>
@@ -279,7 +281,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public FlexibleViewAdapter GetAdapter()
         {
-            return mAdapter;
+            return adapter;
         }
 
         /// <summary>
@@ -290,17 +292,17 @@ namespace Tizen.NUI.Components
         public void SetLayoutManager(FlexibleViewLayoutManager layoutManager)
         {
             if (null == layoutManager) return;
-            mLayout = layoutManager;
+            layout = layoutManager;
 
-            mLayout.SetRecyclerView(this);
+            layout.SetRecyclerView(this);
 
-            if (mLayout.CanScrollHorizontally())
+            if (layout.CanScrollHorizontally())
             {
-                mPanGestureDetector.AddDirection(PanGestureDetector.DirectionHorizontal);
+                panGestureDetector.AddDirection(PanGestureDetector.DirectionHorizontal);
             }
-            else if (mLayout.CanScrollVertically())
+            else if (layout.CanScrollVertically())
             {
-                mPanGestureDetector.AddDirection(PanGestureDetector.DirectionVertical);
+                panGestureDetector.AddDirection(PanGestureDetector.DirectionVertical);
             }
         }
 
@@ -311,7 +313,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public FlexibleViewLayoutManager GetLayoutManager()
         {
-            return mLayout;
+            return layout;
         }
 
 
@@ -325,7 +327,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ScrollToPositionWithOffset(int position, int offset)
         {
-            mLayout.ScrollToPositionWithOffset(position, offset);
+            layout.ScrollToPositionWithOffset(position, offset);
         }
 
         /// <summary>
@@ -336,7 +338,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void MoveFocus(FlexibleViewLayoutManager.Direction direction)
         {
-            mLayout.MoveFocus(direction, mRecycler);
+            layout.MoveFocus(direction, recycler);
         }
 
         /// <summary>
@@ -352,8 +354,8 @@ namespace Tizen.NUI.Components
             {
                 return;
             }
-            mScrollBar = scrollBar;
-            Add(mScrollBar);
+            this.scrollBar = scrollBar;
+            base.Add(this.scrollBar);
         }
 
         /// <summary>
@@ -364,12 +366,12 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void DetachScrollBar()
         {
-            if (mScrollBar == null)
+            if (scrollBar == null)
             {
                 return;
             }
-            Remove(mScrollBar);
-            mScrollBar = null;
+            Remove(scrollBar);
+            scrollBar = null;
         }
 
         /// <summary>
@@ -381,10 +383,10 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public FlexibleViewViewHolder FindViewHolderForLayoutPosition(int position)
         {
-            int childCount = mChildHelper.GetChildCount();
+            int childCount = childHelper.GetChildCount();
             for (int i = 0; i < childCount; i++)
             {
-                if (mChildHelper.GetChildAt(i) is FlexibleViewViewHolder holder)
+                if (childHelper.GetChildAt(i) is FlexibleViewViewHolder holder)
                 {
                     if (holder.LayoutPosition == position)
                     {
@@ -405,10 +407,10 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public FlexibleViewViewHolder FindViewHolderForAdapterPosition(int position)
         {
-            int childCount = mChildHelper.GetChildCount();
+            int childCount = childHelper.GetChildCount();
             for (int i = 0; i < childCount; i++)
             {
-                if (mChildHelper.GetChildAt(i) is FlexibleViewViewHolder holder)
+                if (childHelper.GetChildAt(i) is FlexibleViewViewHolder holder)
                 {
                     if (holder.AdapterPosition == position)
                     {
@@ -427,7 +429,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public FlexibleViewRecycler GetRecycler()
         {
-            return mRecycler;
+            return recycler;
         }
 
         /// <summary>
@@ -446,44 +448,44 @@ namespace Tizen.NUI.Components
 
             if (type == DisposeTypes.Explicit)
             {
-                if (mLayout != null)
+                if (layout != null)
                 {
-                    mLayout.StopScroll(false);
-                    mLayout.ClearRecyclerView();
-                    mLayout = null;
+                    layout.StopScroll(false);
+                    layout.ClearRecyclerView();
+                    layout = null;
                 }
 
-                if (mAdapter != null)
+                if (adapter != null)
                 {
-                    mAdapter.ItemEvent -= OnItemEvent;
+                    adapter.ItemEvent -= OnItemEvent;
                 }
 
-                if (mPanGestureDetector != null)
+                if (panGestureDetector != null)
                 {
-                    mPanGestureDetector.Detected -= OnPanGestureDetected;
-                    mPanGestureDetector.Dispose();
-                    mPanGestureDetector = null;
+                    panGestureDetector.Detected -= OnPanGestureDetected;
+                    panGestureDetector.Dispose();
+                    panGestureDetector = null;
                 }
 
-                if (mScrollBarShowTimer != null)
+                if (scrollBarShowTimer != null)
                 {
-                    mScrollBarShowTimer.Tick -= OnShowTimerTick;
-                    mScrollBarShowTimer.Stop();
-                    mScrollBarShowTimer.Dispose();
-                    mScrollBarShowTimer = null;
+                    scrollBarShowTimer.Tick -= OnShowTimerTick;
+                    scrollBarShowTimer.Stop();
+                    scrollBarShowTimer.Dispose();
+                    scrollBarShowTimer = null;
                 }
 
-                if (mRecyclerPool != null)
+                if (recyclerPool != null)
                 {
-                    mRecyclerPool.Clear();
-                    mRecyclerPool = null;
+                    recyclerPool.Clear();
+                    recyclerPool = null;
                 }
 
-                if (mChildHelper != null)
+                if (childHelper != null)
                 {
-                    mChildHelper.Clear();
-                    mChildHelper.Dispose();
-                    mChildHelper = null;
+                    childHelper.Clear();
+                    childHelper.Dispose();
+                    childHelper = null;
                 }
             }
             base.Dispose(type);
@@ -508,19 +510,19 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnRelayout(Vector2 size, RelayoutContainer container)
         {
-            if (mAdapter == null)
+            if (adapter == null)
             {
                 return;
             }
 
-            if (mLayout == null)
+            if (layout == null)
             {
                 return;
             }
 
             DispatchLayoutStep1();
 
-            mLayout.OnLayoutChildren(mRecycler);
+            layout.OnLayoutChildren(recycler);
 
             RemoveAndRecycleScrapInt();
         }
@@ -534,34 +536,34 @@ namespace Tizen.NUI.Components
 
         private void ProcessAdapterUpdates()
         {
-            mAdapteHelper.PreProcess();
+            adapteHelper.PreProcess();
         }
 
         private void OffsetPositionRecordsForInsert(int positionStart, int itemCount)
         {
-            int childCount = mChildHelper.GetChildCount();
+            int childCount = childHelper.GetChildCount();
             for (int i = 0; i < childCount; i++)
             {
-                FlexibleViewViewHolder holder = mChildHelper.GetChildAt(i);
+                FlexibleViewViewHolder holder = childHelper.GetChildAt(i);
                 if (holder != null && holder.AdapterPosition >= positionStart)
                 {
                     holder.OffsetPosition(itemCount, false);
                 }
             }
 
-            if (positionStart <= mFocusedItemIndex)
+            if (positionStart <= focusedItemIndex)
             {
-                mFocusedItemIndex += itemCount;
+                focusedItemIndex += itemCount;
             }
         }
 
         private void OffsetPositionRecordsForRemove(int positionStart, int itemCount, bool applyToPreLayout)
         {
             int positionEnd = positionStart + itemCount;
-            int childCount = mChildHelper.GetChildCount();
+            int childCount = childHelper.GetChildCount();
             for (int i = 0; i < childCount; i++)
             {
-                FlexibleViewViewHolder holder = mChildHelper.GetChildAt(i);
+                FlexibleViewViewHolder holder = childHelper.GetChildAt(i);
                 if (holder != null)
                 {
                     if (holder.AdapterPosition >= positionEnd)
@@ -575,69 +577,69 @@ namespace Tizen.NUI.Components
                 }
             }
 
-            if (positionEnd <= mFocusedItemIndex)
+            if (positionEnd <= focusedItemIndex)
             {
-                mFocusedItemIndex -= itemCount;
+                focusedItemIndex -= itemCount;
             }
-            else if (positionStart <= mFocusedItemIndex)
+            else if (positionStart <= focusedItemIndex)
             {
-                mFocusedItemIndex = positionStart;
-                if (mFocusedItemIndex >= mAdapter.GetItemCount())
+                focusedItemIndex = positionStart;
+                if (focusedItemIndex >= adapter.GetItemCount())
                 {
-                    mFocusedItemIndex = mAdapter.GetItemCount() - 1;
+                    focusedItemIndex = adapter.GetItemCount() - 1;
                 }
             }
         }
 
         private void SaveOldPositions()
         {
-            int childCount = mChildHelper.GetChildCount();
+            int childCount = childHelper.GetChildCount();
             for (int i = 0; i < childCount; i++)
             {
-                FlexibleViewViewHolder holder = mChildHelper.GetChildAt(i);
+                FlexibleViewViewHolder holder = childHelper.GetChildAt(i);
                 holder.SaveOldPosition();
             }
         }
 
         private void ClearOldPositions()
         {
-            int childCount = mChildHelper.GetChildCount();
+            int childCount = childHelper.GetChildCount();
             for (int i = 0; i < childCount; i++)
             {
-                FlexibleViewViewHolder holder = mChildHelper.GetChildAt(i);
+                FlexibleViewViewHolder holder = childHelper.GetChildAt(i);
                 holder.ClearOldPosition();
             }
         }
 
         private void RemoveAndRecycleScrapInt()
         {
-            int scrapCount = mRecycler.GetScrapCount();
+            int scrapCount = recycler.GetScrapCount();
             for (int i = 0; i < scrapCount; i++)
             {
-                FlexibleViewViewHolder scrap = mRecycler.GetScrapViewAt(i);
-                mChildHelper.RemoveView(scrap);
-                mRecycler.RecycleView(scrap);
+                FlexibleViewViewHolder scrap = recycler.GetScrapViewAt(i);
+                childHelper.RemoveView(scrap);
+                recycler.RecycleView(scrap);
             }
-            mRecycler.Clear();
+            recycler.Clear();
         }
 
         private void ShowScrollBar(uint millisecond = 700, bool flagAni = false)
         {
-            if (mScrollBar == null || mLayout == null)
+            if (scrollBar == null || layout == null)
             {
                 return;
             }
 
-            float extent = mLayout.ComputeScrollExtent();
-            float range = mLayout.ComputeScrollRange();
+            float extent = layout.ComputeScrollExtent();
+            float range = layout.ComputeScrollRange();
             if (range == 0)
             {
                 return;
             }
-            float offset = mLayout.ComputeScrollOffset();
+            float offset = layout.ComputeScrollOffset();
 
-            float size = mScrollBar.Direction == ScrollBar.DirectionType.Vertical ? mScrollBar.SizeHeight : mScrollBar.SizeWidth;
-            float thickness = mScrollBar.Direction == ScrollBar.DirectionType.Vertical ? mScrollBar.SizeWidth : mScrollBar.SizeHeight;
+            float size = scrollBar.Direction == ScrollBar.DirectionType.Vertical ? scrollBar.SizeHeight : scrollBar.SizeWidth;
+            float thickness = scrollBar.Direction == ScrollBar.DirectionType.Vertical ? scrollBar.SizeWidth : scrollBar.SizeHeight;
             float length = (float)Math.Round(size * extent / range);
 
             // avoid the tiny thumb
@@ -655,35 +657,35 @@ namespace Tizen.NUI.Components
             {
                 offset = 0;
             }
-            if (mScrollBar.Direction == ScrollBar.DirectionType.Vertical)
+            if (scrollBar.Direction == ScrollBar.DirectionType.Vertical)
             {
-                mScrollBar.ThumbSize = new Size(thickness, length);
+                scrollBar.ThumbSize = new Size(thickness, length);
             }
             else
             {
-                mScrollBar.ThumbSize = new Size(length, thickness);
+                scrollBar.ThumbSize = new Size(length, thickness);
             }
-            mScrollBar.MinValue = 0;
-            mScrollBar.MaxValue = (int)(range - extent);
-            mScrollBar.SetCurrentValue((int)offset, flagAni);
-            mScrollBar.Show();
-            if (mScrollBarShowTimer == null)
+            scrollBar.MinValue = 0;
+            scrollBar.MaxValue = (int)(range - extent);
+            scrollBar.SetCurrentValue((int)offset, flagAni);
+            scrollBar.Show();
+            if (scrollBarShowTimer == null)
             {
-                mScrollBarShowTimer = new Timer(millisecond);
-                mScrollBarShowTimer.Tick += OnShowTimerTick;
+                scrollBarShowTimer = new Timer(millisecond);
+                scrollBarShowTimer.Tick += OnShowTimerTick;
             }
             else
             {
-                mScrollBarShowTimer.Interval = millisecond;
+                scrollBarShowTimer.Interval = millisecond;
             }
-            mScrollBarShowTimer.Start();
+            scrollBarShowTimer.Start();
         }
 
         private bool OnShowTimerTick(object source, EventArgs e)
         {
-            if (mScrollBar != null)
+            if (scrollBar != null)
             {
-                mScrollBar.Hide();
+                scrollBar.Hide();
             }
 
             return false;
@@ -691,34 +693,34 @@ namespace Tizen.NUI.Components
 
         internal void DispatchFocusChanged(int nextFocusPosition)
         {
-            mAdapter.OnFocusChange(this, mFocusedItemIndex, nextFocusPosition);
+            adapter.OnFocusChange(this, focusedItemIndex, nextFocusPosition);
 
-            mFocusedItemIndex = nextFocusPosition;
+            focusedItemIndex = nextFocusPosition;
 
             ShowScrollBar();
         }
 
         private void DispatchChildAttached(FlexibleViewViewHolder holder)
         {
-            if (mAdapter != null && holder != null)
+            if (adapter != null && holder != null)
             {
-                mAdapter.OnViewAttachedToWindow(holder);
+                adapter.OnViewAttachedToWindow(holder);
             }
         }
 
         private void DispatchChildDetached(FlexibleViewViewHolder holder)
         {
-            if (mAdapter != null && holder != null)
+            if (adapter != null && holder != null)
             {
-                mAdapter.OnViewDetachedFromWindow(holder);
+                adapter.OnViewDetachedFromWindow(holder);
             }
         }
 
         private void DispatchChildDestroyed(FlexibleViewViewHolder holder)
         {
-            if (mAdapter != null && holder != null)
+            if (adapter != null && holder != null)
             {
-                mAdapter.OnDestroyViewHolder(holder);
+                adapter.OnDestroyViewHolder(holder);
             }
         }
 
@@ -741,30 +743,30 @@ namespace Tizen.NUI.Components
         {
             if (e.PanGesture.State == Gesture.StateType.Started)
             {
-                mLayout.StopScroll(true);
+                layout.StopScroll(true);
             }
             else if (e.PanGesture.State == Gesture.StateType.Continuing)
             {
-                if (mLayout.CanScrollVertically())
+                if (layout.CanScrollVertically())
                 {
-                    mLayout.ScrollVerticallyBy(e.PanGesture.Displacement.Y, mRecycler, true);
+                    layout.ScrollVerticallyBy(e.PanGesture.Displacement.Y, recycler, true);
                 }
-                else if (mLayout.CanScrollHorizontally())
+                else if (layout.CanScrollHorizontally())
                 {
-                    mLayout.ScrollHorizontallyBy(e.PanGesture.Displacement.X, mRecycler, true);
+                    layout.ScrollHorizontallyBy(e.PanGesture.Displacement.X, recycler, true);
                 }
 
                 ShowScrollBar();
             }
             else if (e.PanGesture.State == Gesture.StateType.Finished)
             {
-                if (mLayout.CanScrollVertically())
+                if (layout.CanScrollVertically())
                 {
-                    mLayout.ScrollVerticallyBy(e.PanGesture.Velocity.Y * 600, mRecycler, false);
+                    layout.ScrollVerticallyBy(e.PanGesture.Velocity.Y * 600, recycler, false);
                 }
-                else if (mLayout.CanScrollHorizontally())
+                else if (layout.CanScrollHorizontally())
                 {
-                    mLayout.ScrollHorizontallyBy(e.PanGesture.Velocity.X * 600, mRecycler, false);
+                    layout.ScrollHorizontallyBy(e.PanGesture.Velocity.X * 600, recycler, false);
                 }
                 ShowScrollBar(1200, true);
             }
@@ -775,11 +777,11 @@ namespace Tizen.NUI.Components
             switch (e.EventType)
             {
                 case FlexibleViewAdapter.ItemEventType.Insert:
-                    mAdapteHelper.OnItemRangeInserted(e.param[0], e.param[1]);
+                    adapteHelper.OnItemRangeInserted(e.param[0], e.param[1]);
                     ShowScrollBar();
                     break;
                 case FlexibleViewAdapter.ItemEventType.Remove:
-                    mAdapteHelper.OnItemRangeRemoved(e.param[0], e.param[1]);
+                    adapteHelper.OnItemRangeRemoved(e.param[0], e.param[1]);
                     ShowScrollBar();
                     break;
                 case FlexibleViewAdapter.ItemEventType.Move:
@@ -810,7 +812,7 @@ namespace Tizen.NUI.Components
 
         internal ChildHelper GetChildHelper()
         {
-            return mChildHelper;
+            return childHelper;
         }
     }
 }

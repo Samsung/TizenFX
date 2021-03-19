@@ -963,16 +963,16 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                if (null == _spaceBetweenTrackAndIndicator)
+                if (null == spaceTrackIndicator)
                 {
-                    _spaceBetweenTrackAndIndicator = new Extents((ushort start, ushort end, ushort top, ushort bottom) =>
+                    spaceTrackIndicator = new Extents((ushort start, ushort end, ushort top, ushort bottom) =>
                     {
                         Extents extents = new Extents(start, end, top, bottom);
-                        _spaceBetweenTrackAndIndicator.CopyFrom(extents);
+                        spaceTrackIndicator.CopyFrom(extents);
                     }, 0, 0, 0, 0);
                 }
 
-                return _spaceBetweenTrackAndIndicator;
+                return spaceTrackIndicator;
             }
         }
 

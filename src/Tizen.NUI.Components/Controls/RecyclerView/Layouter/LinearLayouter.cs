@@ -14,17 +14,12 @@
  *
  */
 using System;
-using System.Linq;
 using Tizen.NUI.BaseComponents;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
-
-
     /// <summary>
     /// [Draft] This class implements a linear box layout.
     /// </summary>

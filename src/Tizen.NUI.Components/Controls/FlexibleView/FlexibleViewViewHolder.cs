@@ -1,4 +1,21 @@
-﻿using System;
+﻿/*
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+using System;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 
@@ -11,40 +28,8 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class FlexibleViewViewHolder
     {
-        // This FlexibleViewViewHolder has been bound to a position; AdapterPosition, mItemId and mItemViewType
-        // are all valid.
-        //static readonly int FLAG_BOUND = 1 << 0;
-
-        // The data this FlexibleViewViewHolder's view reflects is stale and needs to be rebound
-        // by the adapter. AdapterPosition and mItemId are consistent.
-        //static readonly int FLAG_UPDATE = 1 << 1;
-
-        // This FlexibleViewViewHolder's data is invalid. The identity implied by AdapterPosition and mItemId
-        // are not to be trusted and may no longer match the item view type.
-        // This FlexibleViewViewHolder must be fully rebound to different data.
-        //static readonly int FLAG_INVALID = 1 << 2;
-
-        // This FlexibleViewViewHolder points at data that represents an item previously removed from the
-        // data set. Its view may still be used for things like outgoing animations.
-        //static readonly int FLAG_REMOVED = 1 << 3;
-
-        // This FlexibleViewViewHolder should not be recycled. This flag is set via setIsRecyclable()
-        // and is intended to keep views around during animations.
-        //static readonly int FLAG_NOT_RECYCLABLE = 1 << 4;
-
-        // This FlexibleViewViewHolder is returned from scrap which means we are expecting an addView call
-        // for this itemView. When returned from scrap, FlexibleViewViewHolder stays in the scrap list until
-        // the end of the layout pass and then recycled by FlexibleViewRecyclerView if it is not added back to
-        // the FlexibleViewRecyclerView.
-        //static readonly int FLAG_RETURNED_FROM_SCRAP = 1 << 5;
-
-        // This FlexibleViewViewHolder is fully managed by the FlexibleViewLayoutManager. We do not scrap, recycle or remove
-        // it unless FlexibleViewLayoutManager is replaced.
-        // It is still fully visible to the FlexibleViewLayoutManager.
-        //static readonly int FLAG_IGNORE = 1 << 7;
-
-        private int mFlags;
-        private int mPreLayoutPosition = FlexibleView.NO_POSITION;
+        private int flags;
+        private int preLayoutPosition = FlexibleView.NO_POSITION;
 
         /// <summary>
         /// FlexibleViewViewHolder constructor.
@@ -129,7 +114,7 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return mPreLayoutPosition == FlexibleView.NO_POSITION ? AdapterPosition : mPreLayoutPosition;
+                return preLayoutPosition == FlexibleView.NO_POSITION ? AdapterPosition : preLayoutPosition;
             }
         }
 
@@ -193,13 +178,13 @@ namespace Tizen.NUI.Components
             {
                 OldPosition = AdapterPosition;
             }
-            if (mPreLayoutPosition == FlexibleView.NO_POSITION)
+            if (preLayoutPosition == FlexibleView.NO_POSITION)
             {
-                mPreLayoutPosition = AdapterPosition;
+                preLayoutPosition = AdapterPosition;
             }
             if (applyToPreLayout)
             {
-                mPreLayoutPosition += offset;
+                preLayoutPosition += offset;
             }
             AdapterPosition += offset;
         }
@@ -207,7 +192,7 @@ namespace Tizen.NUI.Components
         internal void ClearOldPosition()
         {
             OldPosition = FlexibleView.NO_POSITION;
-            mPreLayoutPosition = FlexibleView.NO_POSITION;
+            preLayoutPosition = FlexibleView.NO_POSITION;
         }
 
         internal void SaveOldPosition()
@@ -220,12 +205,12 @@ namespace Tizen.NUI.Components
 
         private void SetFlags(int flags, int mask)
         {
-            mFlags = (mFlags & ~mask) | (flags & mask);
+            this.flags = (this.flags & ~mask) | (flags & mask);
         }
 
         private void AddFlags(int flags)
         {
-            mFlags |= flags;
+            this.flags |= flags;
         }
     }
 }

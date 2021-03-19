@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,13 +32,13 @@ namespace Tizen.NUI.Components
 
         private const int INVALID_SIZE = -1;
 
-        protected FlexibleViewLayoutManager mLayoutManager;
+        protected FlexibleViewLayoutManager layoutManager;
 
-        private float mLastTotalSpace = INVALID_SIZE;
+        private float lastTotalSpace = INVALID_SIZE;
 
         public OrientationHelper(FlexibleViewLayoutManager layoutManager)
         {
-            mLayoutManager = layoutManager;
+            this.layoutManager = layoutManager;
         }
 
         // Call this method after onLayout method is complete if state is NOT pre-layout.
@@ -46,7 +46,7 @@ namespace Tizen.NUI.Components
         // calculations.
         public void OnLayoutComplete()
         {
-            mLastTotalSpace = GetTotalSpace();
+            lastTotalSpace = GetTotalSpace();
         }
 
         // Returns the layout space change between the previous layout pass and current layout pass.
@@ -58,7 +58,7 @@ namespace Tizen.NUI.Components
         // @see #onLayoutComplete()
         public float GetTotalSpaceChange()
         {
-            return INVALID_SIZE == mLastTotalSpace ? 0 : GetTotalSpace() - mLastTotalSpace;
+            return INVALID_SIZE == lastTotalSpace ? 0 : GetTotalSpace() - lastTotalSpace;
         }
 
         // Returns the start of the view including its decoration and margin.
@@ -185,23 +185,23 @@ namespace Tizen.NUI.Components
 
         public override float GetEndAfterPadding()
         {
-            return mLayoutManager.Width - mLayoutManager.PaddingRight;
+            return layoutManager.Width - layoutManager.PaddingRight;
         }
 
         public override float GetEnd()
         {
-            return mLayoutManager.Width;
+            return layoutManager.Width;
         }
 
         public override void OffsetChildren(float amount, bool immediate)
         {
-            mLayoutManager.OffsetChildrenHorizontal(amount, immediate);
+            layoutManager.OffsetChildrenHorizontal(amount, immediate);
         }
 
 
         public override float GetStartAfterPadding()
         {
-            return mLayoutManager.PaddingLeft;
+            return layoutManager.PaddingLeft;
         }
 
         public override float GetViewHolderMeasurement(FlexibleViewViewHolder holder)
@@ -226,8 +226,7 @@ namespace Tizen.NUI.Components
 
         public override float GetTotalSpace()
         {
-            return mLayoutManager.Width - mLayoutManager.PaddingLeft
-                    - mLayoutManager.PaddingRight;
+            return layoutManager.Width - layoutManager.PaddingLeft - layoutManager.PaddingRight;
         }
 
         internal override void OffsetChild(FlexibleViewViewHolder holder, int offset)
@@ -237,7 +236,7 @@ namespace Tizen.NUI.Components
 
         public override float GetEndPadding()
         {
-            return mLayoutManager.PaddingRight;
+            return layoutManager.PaddingRight;
         }
 
     }
@@ -251,22 +250,22 @@ namespace Tizen.NUI.Components
 
         public override float GetEndAfterPadding()
         {
-            return mLayoutManager.Height - mLayoutManager.PaddingBottom;
+            return layoutManager.Height - layoutManager.PaddingBottom;
         }
 
         public override float GetEnd()
         {
-            return mLayoutManager.Height;
+            return layoutManager.Height;
         }
 
         public override void OffsetChildren(float amount, bool immediate)
         {
-            mLayoutManager.OffsetChildrenVertical(amount, immediate);
+            layoutManager.OffsetChildrenVertical(amount, immediate);
         }
 
         public override float GetStartAfterPadding()
         {
-            return mLayoutManager.PaddingTop;
+            return layoutManager.PaddingTop;
         }
 
         public override float GetViewHolderMeasurement(FlexibleViewViewHolder holder)
@@ -291,8 +290,7 @@ namespace Tizen.NUI.Components
 
         public override float GetTotalSpace()
         {
-            return mLayoutManager.Height - mLayoutManager.PaddingTop
-                    - mLayoutManager.PaddingBottom;
+            return layoutManager.Height - layoutManager.PaddingTop - layoutManager.PaddingBottom;
         }
 
         internal override void OffsetChild(FlexibleViewViewHolder holder, int offset)
@@ -302,7 +300,7 @@ namespace Tizen.NUI.Components
 
         public override float GetEndPadding()
         {
-            return mLayoutManager.PaddingBottom;
+            return layoutManager.PaddingBottom;
         }
 
     }
