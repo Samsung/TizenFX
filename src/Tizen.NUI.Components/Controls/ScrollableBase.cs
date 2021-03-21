@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2020 Samsung Electronics Co., Ltd.
+﻿/* Copyright (c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,6 @@
  *
  */
 using System;
-using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -268,6 +267,7 @@ namespace Tizen.NUI.Components
 
                     ContentContainer.WidthSpecification = ScrollingDirection == Direction.Vertical ? LayoutParamPolicies.MatchParent : LayoutParamPolicies.WrapContent;
                     ContentContainer.HeightSpecification = ScrollingDirection == Direction.Vertical ? LayoutParamPolicies.WrapContent : LayoutParamPolicies.MatchParent;
+                    SetScrollbar();
                 }
             }
         }
@@ -753,11 +753,31 @@ namespace Tizen.NUI.Components
             if (isSizeChanged)
             {
                 maxScrollDistance = CalculateMaximumScrollDistance();
-                SetScrollbar();
+                if (!ReviseContainerPositionIfNeed())
+                {
+                    UpdateScrollbar();
+                }
             }
 
             previousContainerSize = ContentContainer.Size;
             previousSize = Size;
+        }
+
+        private bool ReviseContainerPositionIfNeed()
+        {
+            bool isHorizontal = ScrollingDirection == Direction.Horizontal;
+            float currentPosition = isHorizontal ? ContentContainer.CurrentPosition.X : ContentContainer.CurrentPosition.Y;
+
+            if (Math.Abs(currentPosition) > maxScrollDistance)
+            {
+                StopScroll();
+                var targetPosition = BoundScrollPosition(-maxScrollDistance);
+                if (isHorizontal) ContentContainer.PositionX = targetPosition;
+                else ContentContainer.PositionY = targetPosition;
+                return true;
+            }
+
+            return false;
         }
 
         /// <summary>
@@ -774,7 +794,21 @@ namespace Tizen.NUI.Components
                 float contentLength = isHorizontal ? ContentContainer.Size.Width : ContentContainer.Size.Height;
                 float viewportLength = isHorizontal ? Size.Width : Size.Height;
                 float currentPosition = isHorizontal ? ContentContainer.CurrentPosition.X : ContentContainer.CurrentPosition.Y;
-                Scrollbar.Initialize(contentLength, viewportLength, currentPosition, isHorizontal);
+                Scrollbar.Initialize(contentLength, viewportLength, -currentPosition, isHorizontal);
+            }
+        }
+
+        /// Update scrollbar position and size.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void UpdateScrollbar()
+        {
+            if (Scrollbar)
+            {
+                bool isHorizontal = ScrollingDirection == Direction.Horizontal;
+                float contentLength = isHorizontal ? ContentContainer.Size.Width : ContentContainer.Size.Height;
+                float viewportLength = isHorizontal ? Size.Width : Size.Height;
+                float currentPosition = isHorizontal ? ContentContainer.CurrentPosition.X : ContentContainer.CurrentPosition.Y;
+                Scrollbar.Update(contentLength, viewportLength, -currentPosition);
             }
         }
 

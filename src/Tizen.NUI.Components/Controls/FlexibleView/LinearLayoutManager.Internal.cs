@@ -1,4 +1,21 @@
-﻿using System;
+﻿/*
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -23,7 +40,7 @@ namespace Tizen.NUI.Components
             else
                 AddView(holder, 0);
 
-            result.Consumed = mOrientationHelper.GetViewHolderMeasurement(holder);
+            result.Consumed = orientationHelper.GetViewHolderMeasurement(holder);
 
             float left, top, width, height;
             if (Orientation == VERTICAL)
@@ -71,7 +88,7 @@ namespace Tizen.NUI.Components
             {
                 return null;
             }
-            int maxScroll = (int)(MAX_SCROLL_FACTOR * mOrientationHelper.GetTotalSpace());
+            int maxScroll = (int)(MAX_SCROLL_FACTOR * orientationHelper.GetTotalSpace());
             UpdateLayout(layoutDir, maxScroll, false);
             mLayoutState.ScrollingOffset = LayoutState.SCROLLING_OFFSET_NaN;
             mLayoutState.Recycle = false;
@@ -102,7 +119,7 @@ namespace Tizen.NUI.Components
             }
 
             anchorInfo.Position = FocusPosition != NO_POSITION ? FocusPosition : 0;
-            anchorInfo.Coordinate = anchorInfo.LayoutFromEnd ? mOrientationHelper.GetEndAfterPadding() : mOrientationHelper.GetStartAfterPadding();
+            anchorInfo.Coordinate = anchorInfo.LayoutFromEnd ? orientationHelper.GetEndAfterPadding() : orientationHelper.GetStartAfterPadding();
         }
 
 
@@ -126,18 +143,18 @@ namespace Tizen.NUI.Components
 
             if (mPendingScrollPositionOffset == INVALID_OFFSET)
             {
-                anchorInfo.Coordinate = anchorInfo.LayoutFromEnd ? mOrientationHelper.GetEndAfterPadding() : mOrientationHelper.GetStartAfterPadding();
+                anchorInfo.Coordinate = anchorInfo.LayoutFromEnd ? orientationHelper.GetEndAfterPadding() : orientationHelper.GetStartAfterPadding();
             }
             else
             {
                 if (mShouldReverseLayout)
                 {
-                    anchorInfo.Coordinate = mOrientationHelper.GetEndAfterPadding()
+                    anchorInfo.Coordinate = orientationHelper.GetEndAfterPadding()
                             - mPendingScrollPositionOffset;
                 }
                 else
                 {
-                    anchorInfo.Coordinate = mOrientationHelper.GetStartAfterPadding()
+                    anchorInfo.Coordinate = orientationHelper.GetStartAfterPadding()
                             + mPendingScrollPositionOffset;
                 }
             }
@@ -162,7 +179,7 @@ namespace Tizen.NUI.Components
                 anchorChild = GetChildAt(0);
             }
             anchorInfo.Position = anchorChild.LayoutPosition;
-            anchorInfo.Coordinate = mOrientationHelper.GetViewHolderStart(anchorChild);
+            anchorInfo.Coordinate = orientationHelper.GetViewHolderStart(anchorChild);
 
             return true;
         }
@@ -270,9 +287,9 @@ namespace Tizen.NUI.Components
                 FlexibleViewViewHolder child = GetChildClosestToEnd();
                 if (child != null)
                 {
-                    if (child.ItemView.Focusable == false || mOrientationHelper.GetViewHolderEnd(child) + scrolled < mOrientationHelper.GetEnd())
+                    if (child.ItemView.Focusable == false || orientationHelper.GetViewHolderEnd(child) + scrolled < orientationHelper.GetEnd())
                     {
-                        layoutState.Available = MAX_SCROLL_FACTOR * mOrientationHelper.GetTotalSpace();
+                        layoutState.Available = MAX_SCROLL_FACTOR * orientationHelper.GetTotalSpace();
                         layoutState.Extra = 0;
                         layoutState.ScrollingOffset = LayoutState.SCROLLING_OFFSET_NaN;
                         layoutState.Recycle = false;
@@ -285,9 +302,9 @@ namespace Tizen.NUI.Components
                 FlexibleViewViewHolder child = GetChildClosestToStart();
                 if (child != null)
                 {
-                    if (child.ItemView.Focusable == false || mOrientationHelper.GetViewHolderStart(child) + scrolled > 0)
+                    if (child.ItemView.Focusable == false || orientationHelper.GetViewHolderStart(child) + scrolled > 0)
                     {
-                        layoutState.Available = MAX_SCROLL_FACTOR * mOrientationHelper.GetTotalSpace();
+                        layoutState.Available = MAX_SCROLL_FACTOR * orientationHelper.GetTotalSpace();
                         layoutState.Extra = 0;
                         layoutState.ScrollingOffset = LayoutState.SCROLLING_OFFSET_NaN;
                         layoutState.Recycle = false;
@@ -327,7 +344,7 @@ namespace Tizen.NUI.Components
                 for (int i = childCount - 1; i >= 0; i--)
                 {
                     FlexibleViewViewHolder child = GetChildAt(i);
-                    if (mOrientationHelper.GetViewHolderEnd(child) > limit)
+                    if (orientationHelper.GetViewHolderEnd(child) > limit)
                     {
                         // stop here
                         RecycleChildren(recycler, childCount - 1, i, immediate);
@@ -340,7 +357,7 @@ namespace Tizen.NUI.Components
                 for (int i = 0; i < childCount; i++)
                 {
                     FlexibleViewViewHolder child = GetChildAt(i);
-                    if (mOrientationHelper.GetViewHolderEnd(child) > limit)
+                    if (orientationHelper.GetViewHolderEnd(child) > limit)
                     {
                         // stop here
                         RecycleChildren(recycler, 0, i, immediate);
@@ -357,13 +374,13 @@ namespace Tizen.NUI.Components
                 return;
             }
             int childCount = ChildCount;
-            float limit = mOrientationHelper.GetEnd() - dt;
+            float limit = orientationHelper.GetEnd() - dt;
             if (mShouldReverseLayout)
             {
                 for (int i = 0; i < childCount; i++)
                 {
                     FlexibleViewViewHolder child = GetChildAt(i);
-                    if (mOrientationHelper.GetViewHolderStart(child) < limit)
+                    if (orientationHelper.GetViewHolderStart(child) < limit)
                     {
                         // stop here
                         RecycleChildren(recycler, 0, i, immediate);
@@ -376,7 +393,7 @@ namespace Tizen.NUI.Components
                 for (int i = childCount - 1; i >= 0; i--)
                 {
                     FlexibleViewViewHolder child = GetChildAt(i);
-                    if (mOrientationHelper.GetViewHolderStart(child) < limit)
+                    if (orientationHelper.GetViewHolderStart(child) < limit)
                     {
                         // stop here
                         RecycleChildren(recycler, childCount - 1, i, immediate);
@@ -409,14 +426,14 @@ namespace Tizen.NUI.Components
             float scrolled = absDy > consumed ? -layoutDirection * consumed : dy;
             Cache(recycler, mLayoutState, immediate, scrolled);
 
-            mOrientationHelper.OffsetChildren(scrolled, immediate);
+            orientationHelper.OffsetChildren(scrolled, immediate);
 
             return scrolled;
         }
 
         private void UpdateLayout(int direction, float space, bool canUseExistingSpace)
         {
-            mLayoutState.ResetLayout(direction, canUseExistingSpace, space, mOrientationHelper, this);
+            mLayoutState.ResetLayout(direction, canUseExistingSpace, space, orientationHelper, this);
         }
 
         // Convenience method to find the child closes to start. Caller should check it has enough
@@ -439,27 +456,27 @@ namespace Tizen.NUI.Components
 
         private void UpdateLayoutStateToFillEnd(int itemPosition, float offset)
         {
-            mLayoutState.Available = mOrientationHelper.GetEndAfterPadding() - offset;
+            mLayoutState.Available = orientationHelper.GetEndAfterPadding() - offset;
             mLayoutState.ItemDirection = mShouldReverseLayout ? LayoutState.ITEM_DIRECTION_HEAD :
                     LayoutState.ITEM_DIRECTION_TAIL;
             mLayoutState.CurrentPosition = itemPosition;
             mLayoutState.LayoutDirection = LayoutState.LAYOUT_END;
             mLayoutState.Offset = offset;
             mLayoutState.ScrollingOffset = LayoutState.SCROLLING_OFFSET_NaN;
-            mLayoutState.Extra = mOrientationHelper.GetEndPadding();
+            mLayoutState.Extra = orientationHelper.GetEndPadding();
 
         }
 
         private void UpdateLayoutStateToFillStart(int itemPosition, float offset)
         {
-            mLayoutState.Available = offset - mOrientationHelper.GetStartAfterPadding();
+            mLayoutState.Available = offset - orientationHelper.GetStartAfterPadding();
             mLayoutState.CurrentPosition = itemPosition;
             mLayoutState.ItemDirection = mShouldReverseLayout ? LayoutState.ITEM_DIRECTION_TAIL :
                     LayoutState.ITEM_DIRECTION_HEAD;
             mLayoutState.LayoutDirection = LayoutState.LAYOUT_START;
             mLayoutState.Offset = offset;
             mLayoutState.ScrollingOffset = LayoutState.SCROLLING_OFFSET_NaN;
-            mLayoutState.Extra = mOrientationHelper.GetStartAfterPadding();
+            mLayoutState.Extra = orientationHelper.GetStartAfterPadding();
         }
 
         private FlexibleViewViewHolder FindFirstCompleteVisibleItemView()
@@ -470,8 +487,8 @@ namespace Tizen.NUI.Components
                 for (int i = 0; i < childCount; i++)
                 {
                     FlexibleViewViewHolder child = GetChildAt(i);
-                    int start = (int)mOrientationHelper.GetViewHolderStart(child);
-                    if (start > 0 && start < (int)mOrientationHelper.GetEnd())
+                    int start = (int)orientationHelper.GetViewHolderStart(child);
+                    if (start > 0 && start < (int)orientationHelper.GetEnd())
                     {
                         return child;
                     }
@@ -482,8 +499,8 @@ namespace Tizen.NUI.Components
                 for (int i = childCount - 1; i >= 0; i--)
                 {
                     FlexibleViewViewHolder child = GetChildAt(i);
-                    int start = (int)mOrientationHelper.GetViewHolderStart(child);
-                    if (start > 0 && start < (int)mOrientationHelper.GetEnd())
+                    int start = (int)orientationHelper.GetViewHolderStart(child);
+                    if (start > 0 && start < (int)orientationHelper.GetEnd())
                     {
                         return child;
                     }
@@ -500,7 +517,7 @@ namespace Tizen.NUI.Components
                 for (int i = childCount - 1; i >= 0; i--)
                 {
                     FlexibleViewViewHolder child = GetChildAt(i);
-                    if ((int)mOrientationHelper.GetViewHolderEnd(child) < (int)mOrientationHelper.GetEnd())
+                    if ((int)orientationHelper.GetViewHolderEnd(child) < (int)orientationHelper.GetEnd())
                     {
                         return child;
                     }
@@ -511,7 +528,7 @@ namespace Tizen.NUI.Components
                 for (int i = 0; i < childCount; i++)
                 {
                     FlexibleViewViewHolder child = GetChildAt(i);
-                    if ((int)mOrientationHelper.GetViewHolderEnd(child) < (int)mOrientationHelper.GetEnd())
+                    if ((int)orientationHelper.GetViewHolderEnd(child) < (int)orientationHelper.GetEnd())
                     {
                         return child;
                     }

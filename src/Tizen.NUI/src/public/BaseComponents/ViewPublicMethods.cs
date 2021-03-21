@@ -633,17 +633,6 @@ namespace Tizen.NUI.BaseComponents
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-
-
-        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Transition GetTransition(string transitionName)
-        {
-            Transition trans = null;
-            transDictionary.TryGetValue(transitionName, out trans);
-            return trans;
-        }
-
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ObjectDump()
