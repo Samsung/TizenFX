@@ -341,7 +341,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the update peroid.
+        /// Gets the update period.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public float UpdatePeriod
@@ -785,7 +785,7 @@ namespace Tizen.NUI
             private WidgetView _widgetView;
 
             /// <summary>
-            /// The widet view.
+            /// The widget view.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             public WidgetView WidgetView

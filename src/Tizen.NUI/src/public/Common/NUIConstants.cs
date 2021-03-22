@@ -715,7 +715,7 @@ namespace Tizen.NUI
         /// </summary>
         None = -1,
         /// <summary>
-        /// The base nofitication level.
+        /// The base notification level.
         /// </summary>
         Base = 10,
         /// <summary>
@@ -775,7 +775,7 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// An enum of the scroll state of the text eidtor.
+    /// An enum of the scroll state of the text editor.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum ScrollState

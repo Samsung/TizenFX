@@ -16,8 +16,6 @@
 using System;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Binding;
-using Tizen.NUI.Components.Extension;
 using Tizen.NUI.Accessibility;
 
 namespace Tizen.NUI.Components
@@ -37,30 +35,6 @@ namespace Tizen.NUI.Components
         private bool layoutChanged;
         private Size prevSize;
         private DefaultLinearItemStyle ItemStyle => ViewStyle as DefaultLinearItemStyle;
-
-        /// <summary>
-        /// Return a copied Style instance of DefaultLinearItem
-        /// </summary>
-        /// <remarks>
-        /// It returns copied Style instance and changing it does not effect to the DefaultLinearItem.
-        /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
-        /// </remarks>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public new DefaultLinearItemStyle Style
-        {
-            get
-            {
-                var result = new DefaultLinearItemStyle(ItemStyle);
-                result.CopyPropertiesFromView(this);
-                if (itemLabel) result.Label.CopyPropertiesFromView(itemLabel);
-                if (itemSubLabel) result.SubLabel.CopyPropertiesFromView(itemSubLabel);
-                if (itemIcon) result.Icon.CopyPropertiesFromView(itemIcon);
-                if (itemExtra) result.Extra.CopyPropertiesFromView(itemExtra);
-                if (itemSeperator) result.Seperator.CopyPropertiesFromView(itemSeperator);
-
-                return result;
-            }
-        }
 
         static DefaultLinearItem() { }
 
@@ -255,7 +229,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Seperator devider of DefaultLinearItem. it will place at the end of item.
+        /// Seperator divider of DefaultLinearItem. it will place at the end of item.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public View Seperator

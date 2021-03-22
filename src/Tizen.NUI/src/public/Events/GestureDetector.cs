@@ -20,7 +20,7 @@ using System.ComponentModel;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// GestureDetectors analyse a stream of touch events and attempt to determine the intention of the user.<br />
+    /// GestureDetectors analyses a stream of touch events and attempt to determine the intention of the user.<br />
     /// An view is attached to a gesture detector and if the detector recognises a pattern in its analysis, it will
     /// trigger a detected event to the application.<br />
     /// This is the base class for different gesture detectors available and provides functionality that is common to all the gesture detectors.<br />

@@ -258,7 +258,7 @@ namespace Tizen.NUI.BaseComponents
         ///    parent.InterceptTouchEvent += OnInterceptTouchEvent;
         ///    View view = child.GetParent() as View;
         ///    view.DisallowInterceptTouchEvent = true;
-        ///  This prevents the parent from interceping touch.
+        ///  This prevents the parent from intercepting touch.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool DisallowInterceptTouchEvent { get; set; }
@@ -1286,6 +1286,26 @@ namespace Tizen.NUI.BaseComponents
                     };
                     WindowWheelEventHandler?.Invoke(this, arg);
                 }
+            }
+        }
+
+        /// <summary>
+        /// TouchArea can reset the view's touchable area.<br/>
+        /// If you set the TouchArea on an view, when you touch the view, the touch area is used rather than the size of the view.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Size TouchArea
+        {
+            get
+            {
+                Size value = new Size(0, 0, 0);
+                GetProperty(View.Property.TouchArea).Get(value);
+                return value;
+            }
+            set
+            {
+                SetProperty(View.Property.TouchArea, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 

@@ -39,8 +39,6 @@ namespace Tizen.NUI
     /// </summary>
     public class LayoutItem : IDisposable
     {
-        static bool LayoutDebugFrameData = false; // Debug flag
-
         private bool disposed = false;
         private MeasureSpecification oldWidthMeasureSpec; // Store measure specification to compare against later
         private MeasureSpecification oldHeightMeasureSpec; // Store measure specification to compare against later
@@ -553,12 +551,6 @@ namespace Tizen.NUI
             {
                 changed = true;
 
-                float oldWidth = layoutPositionData.Right - layoutPositionData.Left;
-                float oldHeight = layoutPositionData.Bottom - layoutPositionData.Top;
-                float newWidth = right - left;
-                float newHeight = bottom - top;
-                bool sizeChanged = (newWidth != oldWidth) || (newHeight != oldHeight);
-
                 // Set condition to layout changed as currently unspecified. Add, Remove would have specified a condition.
                 if (ConditionForAnimation.Equals(TransitionCondition.Unspecified))
                 {
@@ -568,7 +560,7 @@ namespace Tizen.NUI
                 // Store new layout position data
                 layoutPositionData = new LayoutData(this, ConditionForAnimation, left, top, right, bottom);
 
-                Debug.WriteLineIf(LayoutDebugFrameData, "LayoutItem FramePositionData View:" + layoutPositionData.Item.Owner.Name +
+                NUILog.Debug("LayoutItem FramePositionData View:" + layoutPositionData.Item.Owner.Name +
                                                          " left:" + layoutPositionData.Left +
                                                          " top:" + layoutPositionData.Top +
                                                          " right:" + layoutPositionData.Right +
@@ -576,7 +568,7 @@ namespace Tizen.NUI
 
                 View ownerView = Owner.GetParent() as View;
 
-                if (ownerView != null && ownerView.Layout != null && ownerView.Layout.LayoutWithTransition)
+                if (ownerView?.Layout?.LayoutWithTransition ?? false)
                 {
                     NUIApplication.GetDefaultWindow().LayoutController.AddTransitionDataEntry(layoutPositionData);
                 }

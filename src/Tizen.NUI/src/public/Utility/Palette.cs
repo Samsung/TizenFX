@@ -101,7 +101,7 @@ namespace Tizen.NUI
             // Now try and generate any missing colors
             GenerateEmptyswatches();
 
-            // To get swatch infomation as string.
+            // To get swatch information as string.
             String[] swatchInfo = new String[6];
 
             if (vibrantSwatch != null) swatchInfo[0] = vibrantSwatch.ToString();
@@ -482,7 +482,7 @@ namespace Tizen.NUI
         }
 
         // This is nested class for use by other internal classes(Color*), but is declared public.
-        // Futher confirmantion need of this architect.
+        // Further confirmation need of this architect.
 
         /// <summary>
         /// Represents a color swatch generated from an image's palette. The RGB color can be retrieved calling getRgb()

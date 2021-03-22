@@ -251,7 +251,7 @@ namespace Tizen.Applications.CoreBackend
             ErrorCode err = Interop.AppCommon.AppEventGetDeviceOrientation(infoHandle, out orientation);
             if (err != ErrorCode.None)
             {
-                Log.Error(LogTag, "Failed to get deivce orientation. Err = " + err);
+                Log.Error(LogTag, "Failed to get device orientation. Err = " + err);
             }
             if (Handlers.ContainsKey(EventType.DeviceOrientationChanged))
             {
@@ -273,7 +273,7 @@ namespace Tizen.Applications.CoreBackend
             ErrorCode err = Interop.AppCommon.AppEventGetSuspendedState(infoHandle, out state);
             if (err != ErrorCode.None)
             {
-                Log.Error(LogTag, "Failed to get deivce orientation. Err = " + err);
+                Log.Error(LogTag, "Failed to get device orientation. Err = " + err);
             }
             if (Handlers.ContainsKey(EventType.SuspendedStateChanged))
             {

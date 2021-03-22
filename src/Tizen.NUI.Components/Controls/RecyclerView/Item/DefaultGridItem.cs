@@ -16,8 +16,6 @@
 using System;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Binding;
-using Tizen.NUI.Components.Extension;
 using Tizen.NUI.Accessibility;
 
 namespace Tizen.NUI.Components
@@ -36,28 +34,6 @@ namespace Tizen.NUI.Components
         private bool layoutChanged;
 
         private DefaultGridItemStyle ItemStyle => ViewStyle as DefaultGridItemStyle;
-
-        /// <summary>
-        /// Return a copied Style instance of DefaultLinearItem
-        /// </summary>
-        /// <remarks>
-        /// It returns copied Style instance and changing it does not effect to the DefaultLinearItem.
-        /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
-        /// </remarks>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public new DefaultGridItemStyle Style
-        {
-            get
-            {
-                var result = new DefaultGridItemStyle(ItemStyle);
-                result.CopyPropertiesFromView(this);
-                if (itemCaption) result.Caption.CopyPropertiesFromView(itemCaption);
-                if (itemImage) result.Image.CopyPropertiesFromView(itemImage);
-                if (itemBadge) result.Badge.CopyPropertiesFromView(itemBadge);
-
-                return result;
-            }
-        }
 
         static DefaultGridItem() { }
 

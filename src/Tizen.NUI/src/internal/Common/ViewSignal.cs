@@ -66,7 +66,7 @@ namespace Tizen.NUI
             }
             catch (global::System.Exception ex)
             {
-                Tizen.Log.Fatal("NUI", $"[ERROR] excpetion! {ex}: {ex.Message}");
+                Tizen.Log.Fatal("NUI", $"[ERROR] exception! {ex}: {ex.Message}");
                 Tizen.Log.Fatal("NUI", $"[ERROR] current threadID : {Thread.CurrentThread.ManagedThreadId}");
                 Tizen.Log.Fatal("NUI", $"[ERROR] back trace!");
                 global::System.Diagnostics.StackTrace st = new global::System.Diagnostics.StackTrace(true);

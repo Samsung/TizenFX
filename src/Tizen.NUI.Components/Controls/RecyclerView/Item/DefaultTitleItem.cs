@@ -16,8 +16,6 @@
 using System;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Binding;
-using Tizen.NUI.Components.Extension;
 using Tizen.NUI.Accessibility;
 
 namespace Tizen.NUI.Components
@@ -35,28 +33,6 @@ namespace Tizen.NUI.Components
         private bool layoutChanged;
         private Size prevSize;
         private DefaultTitleItemStyle ItemStyle => ViewStyle as DefaultTitleItemStyle;
-
-        /// <summary>
-        /// Return a copied Style instance of DefaultTitleItem
-        /// </summary>
-        /// <remarks>
-        /// It returns copied Style instance and changing it does not effect to the DefaultTitleItem.
-        /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
-        /// </remarks>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public new DefaultTitleItemStyle Style
-        {
-            get
-            {
-                var result = new DefaultTitleItemStyle(ItemStyle);
-                result.CopyPropertiesFromView(this);
-                if (itemLabel) result.Label.CopyPropertiesFromView(itemLabel);
-                if (itemIcon) result.Icon.CopyPropertiesFromView(itemIcon);
-                if (itemSeperator) result.Seperator.CopyPropertiesFromView(itemSeperator);
-
-                return result;
-            }
-        }
 
         static DefaultTitleItem() { }
 
@@ -181,7 +157,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Seperator devider of DefaultTitleItem. it will place at the end of item.
+        /// Seperator divider of DefaultTitleItem. it will place at the end of item.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public View Seperator
