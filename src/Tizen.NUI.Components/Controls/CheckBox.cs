@@ -52,6 +52,8 @@ namespace Tizen.NUI.Components
             base.OnInitialize();
 
             SetAccessibilityConstructor(Role.CheckBox);
+            WidthSpecification = LayoutParamPolicies.WrapContent;
+            HeightSpecification = LayoutParamPolicies.WrapContent;
         }
 
         /// <summary>
@@ -70,21 +72,6 @@ namespace Tizen.NUI.Components
             {
                 base.ItemGroup = value;
             }
-        }
-
-        /// <inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override ImageView CreateIcon()
-        {
-            return new ImageView
-            {
-                PositionUsesPivotPoint = true,
-                ParentOrigin = NUI.ParentOrigin.Center,
-                PivotPoint = NUI.PivotPoint.Center,
-                WidthResizePolicy = ResizePolicyType.DimensionDependency,
-                HeightResizePolicy = ResizePolicyType.SizeRelativeToParent,
-                SizeModeFactor = new Vector3(1, 1, 1),
-            };
         }
     }
 }
