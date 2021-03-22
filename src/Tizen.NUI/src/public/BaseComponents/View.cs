@@ -2453,18 +2453,20 @@ namespace Tizen.NUI.BaseComponents
                     // Do not try to set Margins or Padding on a null Layout (when a layout is being removed from a View)
                     if (value != null)
                     {
-                        if (Margin.Top != 0 || Margin.Bottom != 0 || Margin.Start != 0 || Margin.End != 0)
+                        Extents margin = Margin;
+                        Extents padding = Padding;
+                        if (margin.Top != 0 || margin.Bottom != 0 || margin.Start != 0 || margin.End != 0)
                         {
                             // If View already has a margin set then store it in Layout instead.
-                            value.Margin = Margin;
+                            value.Margin = margin;
                             SetValue(MarginProperty, new Extents(0, 0, 0, 0));
                             NotifyPropertyChanged();
                         }
 
-                        if (Padding.Top != 0 || Padding.Bottom != 0 || Padding.Start != 0 || Padding.End != 0)
+                        if (padding.Top != 0 || padding.Bottom != 0 || padding.Start != 0 || padding.End != 0)
                         {
                             // If View already has a padding set then store it in Layout instead.
-                            value.Padding = Padding;
+                            value.Padding = padding;
 
                             // If Layout is a LayoutItem then it could be a View that handles it's own padding.
                             // Let the View keeps it's padding.  Still store Padding in Layout to reduce code paths.

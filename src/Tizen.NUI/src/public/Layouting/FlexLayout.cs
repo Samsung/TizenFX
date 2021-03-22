@@ -650,17 +650,18 @@ namespace Tizen.NUI
             }
 
             LayoutItem childLayout = child.Layout;
+            Extents margin = child.Margin;
 
             MeasureSpecification childWidthMeasureSpec = GetChildMeasureSpecification(
                                     new MeasureSpecification(
-                                        new LayoutLength(parentMeasureSpecificationWidth.Size - (child.Margin.Start + child.Margin.End)),
+                                        new LayoutLength(parentMeasureSpecificationWidth.Size - (margin.Start + margin.End)),
                                         parentMeasureSpecificationWidth.Mode),
                                     new LayoutLength(Padding.Start + Padding.End),
                                     new LayoutLength(child.WidthSpecification));
 
             MeasureSpecification childHeightMeasureSpec = GetChildMeasureSpecification(
                                     new MeasureSpecification(
-                                        new LayoutLength(parentMeasureSpecificationHeight.Size - (child.Margin.Top + child.Margin.Bottom)),
+                                        new LayoutLength(parentMeasureSpecificationHeight.Size - (margin.Top + margin.Bottom)),
                                         parentMeasureSpecificationHeight.Mode),
                                     new LayoutLength(Padding.Top + Padding.Bottom),
                                     new LayoutLength(child.HeightSpecification));
