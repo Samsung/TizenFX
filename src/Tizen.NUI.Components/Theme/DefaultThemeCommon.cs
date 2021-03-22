@@ -54,9 +54,10 @@ namespace Tizen.NUI.Components
 
             theme.AddStyleWithoutClone("Tizen.NUI.Components.CheckBox", new ButtonStyle()
             {
-                Size = new Size(30, 30),
+                IconPadding = 5,
                 Icon = new ImageViewStyle()
                 {
+                    Size = new Size(30, 30),
                     Opacity = new Selector<float?>()
                     {
                         Normal = 1.0f,
@@ -115,9 +116,8 @@ namespace Tizen.NUI.Components
                     {
                         BackgroundColor = new Selector<Color>()
                         {
-                            Normal = new Color(1, 1, 1, 1),
                             Pressed = new Color(0, 0, 0, 0.1f),
-                            Other = new Color(1, 1, 1, 1),
+                            Other = new Color(1, 1, 1, 0.1f),
                         },
                     },
                     Text = new TextLabelStyle()
@@ -146,9 +146,10 @@ namespace Tizen.NUI.Components
 
             theme.AddStyleWithoutClone("Tizen.NUI.Components.RadioButton", new ButtonStyle()
             {
-                Size = new Size(30, 30),
+                IconPadding = 5,
                 Icon = new ImageViewStyle()
                 {
+                    Size = new Size(30, 30),
                     Opacity = new Selector<float?>()
                     {
                         Normal = 1.0f,
@@ -205,7 +206,7 @@ namespace Tizen.NUI.Components
 
             theme.AddStyleWithoutClone("Tizen.NUI.Components.Switch", new SwitchStyle()
             {
-                Size = new Size(96, 60),
+                IconPadding = 5,
                 Track = new ImageViewStyle()
                 {
                     Size = new Size(96, 60),
