@@ -303,7 +303,7 @@ namespace Tizen.Network.Nsd
                 Log.Error(Globals.LogTag, "Invalid data");
                 NsdErrorFactory.ThrowDnssdException((int)DnssdError.InvalidParameter);
             }
-            int ret = Interop.Nsd.Dnssd.SetRecord(_serviceHandle, type, (ushort)txtValue.Length, record);
+            int ret = Interop.Nsd.Dnssd.SetRecord(_serviceHandle, type, (ushort)record.Length, record);
             if (ret != (int)DnssdError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to set the DNS resource record, Error: " + (DnssdError)ret);
