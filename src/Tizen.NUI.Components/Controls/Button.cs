@@ -184,6 +184,7 @@ namespace Tizen.NUI.Components
         protected override AccessibilityStates AccessibilityCalculateStates()
         {
             var states = base.AccessibilityCalculateStates();
+            states.Set(AccessibilityState.Checked, this.IsSelected);
             states.Set(AccessibilityState.Enabled, this.IsEnabled);
             return states;
         }
