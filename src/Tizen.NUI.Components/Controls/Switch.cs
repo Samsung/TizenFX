@@ -65,8 +65,13 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnInitialize()
         {
+            track = new ImageView();
+            thumb = new ImageView();
+            track.Add(thumb);
+
             base.OnInitialize();
             SetAccessibilityConstructor(Role.ToggleButton);
+
             IsSelectable = true;
 #if PROFILE_MOBILE
             Feedback = true;
@@ -113,18 +118,25 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void ApplyStyle(ViewStyle viewStyle)
         {
-            SwitchStyle swStyle = viewStyle as SwitchStyle;
-
-            if (null != swStyle)
+            if (viewStyle is SwitchStyle switchStyle)
             {
-                if (swStyle.Track != null)
+                if (Extension is SwitchExtension extension)
                 {
-                    Track.ApplyStyle(swStyle.Track);
+                    track.Unparent();
+                    thumb.Unparent();
+                    track = extension.OnCreateTrack(this, track);
+                    thumb = extension.OnCreateThumb(this, thumb);
+                    track.Add(thumb);
                 }
 
-                if (swStyle.Thumb != null)
+                if (switchStyle.Track != null)
                 {
-                    Thumb.ApplyStyle(swStyle.Thumb);
+                    Track.ApplyStyle(switchStyle.Track);
+                }
+
+                if (switchStyle.Thumb != null)
+                {
+                    Thumb.ApplyStyle(switchStyle.Thumb);
                 }
             }
 
@@ -137,28 +149,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public ImageView Track
         {
-            get
-            {
-                if (track == null)
-                {
-                    track = new ImageView()
-                    {
-                        PositionUsesPivotPoint = true,
-                        ParentOrigin = Tizen.NUI.ParentOrigin.CenterLeft,
-                        PivotPoint = Tizen.NUI.PivotPoint.CenterLeft,
-                        WidthResizePolicy = ResizePolicyType.FillToParent,
-                        HeightResizePolicy = ResizePolicyType.FillToParent
-                    };
-
-                    var extension = (SwitchExtension)Extension;
-                    if (extension != null)
-                    {
-                        track = extension.OnCreateTrack(this, track);
-                    }
-                    Add(track);
-                }
-                return track;
-            }
+            get => track;
             internal set
             {
                 track = value;
@@ -171,28 +162,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public ImageView Thumb
         {
-            get
-            {
-                if (thumb == null)
-                {
-                    thumb = new ImageView()
-                    {
-                        PositionUsesPivotPoint = true,
-                        ParentOrigin = Tizen.NUI.ParentOrigin.CenterLeft,
-                        PivotPoint = Tizen.NUI.PivotPoint.CenterLeft,
-                        WidthResizePolicy = ResizePolicyType.Fixed,
-                        HeightResizePolicy = ResizePolicyType.Fixed
-                    };
-
-                    var extension = (SwitchExtension)Extension;
-                    if (extension != null)
-                    {
-                        thumb = extension.OnCreateThumb(this, thumb);
-                    }
-                    Add(thumb);
-                }
-                return thumb;
-            }
+            get => thumb;
             internal set
             {
                 thumb = value;
@@ -323,6 +293,16 @@ namespace Tizen.NUI.Components
             {
                 OnSelect();
             }
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void LayoutItems()
+        {
+            base.LayoutItems();
+            track.Unparent();
+            Add(track);
+            track.LowerToBottom();
         }
 
         private void OnSelect()
