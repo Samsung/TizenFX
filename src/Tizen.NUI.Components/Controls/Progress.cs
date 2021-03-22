@@ -472,6 +472,9 @@ namespace Tizen.NUI.Components
             }
         }
 
+        private Vector4 destinationValue = new Vector4(-1.0f, 0.0f, 10.0f, 1.0f);
+        private Vector4 initialValue = new Vector4(0.0f, 0.0f, 10.0f, 1.0f);
+
         /// <summary>
         /// Update Animation for Indeterminate mode.
         /// </summary>
@@ -481,7 +484,7 @@ namespace Tizen.NUI.Components
         {
             indeterminateAnimation?.Stop();
 
-            indeterminateAnimation = AnimateVisual(indeterminateImage, "pixelArea", new Vector4(-1.0f, 0.0f, 10.0f, 1.0f), 0, 1000,  AlphaFunction.BuiltinFunctions.Default, new Vector4(0.0f, 0.0f, 10.0f, 1.0f));
+            indeterminateAnimation = AnimateVisual(indeterminateImage, "pixelArea", destinationValue, 0, 1000,  AlphaFunction.BuiltinFunctions.Default, initialValue);
             indeterminateAnimation.Looping = true;
             indeterminateAnimation.Play();
         }
