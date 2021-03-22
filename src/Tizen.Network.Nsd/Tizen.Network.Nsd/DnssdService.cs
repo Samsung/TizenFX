@@ -291,19 +291,19 @@ namespace Tizen.Network.Nsd
         /// <returns>on success returns zero else returns error number.</returns>
         /// <since_tizen> 9 </since_tizen>
         /// <param name="type">type of the record to set</param>
-        /// <param name="txtValue">The value of the TXT record</param>
+        /// <param name="record">The value of the TXT record</param>
         /// <feature>http://tizen.org/feature/network.service_discovery.dnssd</feature>
         /// <exception cref="NotSupportedException">Thrown when DNS-SD is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown when the value of the key is null.</exception>
         /// <exception cref="InvalidOperationException">Thrown when any other error occurred.</exception>
-        public int SetRecord(ushort type, byte[] txtValue)
+        public int SetRecord(ushort type, byte[] record)
         {
-            if (txtValue == null)
+            if (record == null)
             {
                 Log.Error(Globals.LogTag, "Invalid data");
                 NsdErrorFactory.ThrowDnssdException((int)DnssdError.InvalidParameter);
             }
-            int ret = Interop.Nsd.Dnssd.SetRecord(_serviceHandle, type, (ushort)txtValue.Length, txtValue);
+            int ret = Interop.Nsd.Dnssd.SetRecord(_serviceHandle, type, (ushort)txtValue.Length, record);
             if (ret != (int)DnssdError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to set the DNS resource record, Error: " + (DnssdError)ret);
