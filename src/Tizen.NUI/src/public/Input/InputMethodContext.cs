@@ -369,7 +369,8 @@ namespace Tizen.NUI
             /// <since_tizen> 8 </since_tizen>
             Automatic,
             /// <summary>
-            /// Latin alphabet at all times.
+            /// Latin alphabet. (default)
+            /// This value can be changed according to OSD(On Screen Display) language.
             /// </summary>
             /// <since_tizen> 8 </since_tizen>
             Alphabet
