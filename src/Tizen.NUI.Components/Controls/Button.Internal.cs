@@ -128,6 +128,7 @@ namespace Tizen.NUI.Components
         protected override void OnUpdate()
         {
             base.OnUpdate();
+            OnTextOrIconChanged();
             Extension?.OnRelayout(this);
         }
 
@@ -299,6 +300,31 @@ namespace Tizen.NUI.Components
             if (isPressed != statePressed)
             {
                 isPressed = statePressed;
+            }
+        }
+
+        /// <summary>
+        /// Called when size of Text or Icon is changed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void OnTextOrIconChanged()
+        {
+            if (String.IsNullOrEmpty(buttonText.Text) || textPadding == null)
+            {
+                buttonText.Margin = new Extents(0);
+            }
+            else
+            {
+                buttonText.Margin = textPadding;
+            }
+
+            if (String.IsNullOrEmpty(buttonIcon.ResourceUrl) || iconPadding == null)
+            {
+                buttonIcon.Margin = new Extents(0);
+            }
+            else
+            {
+                buttonIcon.Margin = iconPadding;
             }
         }
 

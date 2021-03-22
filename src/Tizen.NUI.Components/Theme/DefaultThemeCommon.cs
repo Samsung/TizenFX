@@ -47,6 +47,8 @@ namespace Tizen.NUI.Components
                 },
                 Text = new TextLabelStyle()
                 {
+                    WidthResizePolicy = ResizePolicyType.FillToParent,
+                    HeightResizePolicy = ResizePolicyType.FillToParent,
                     PixelSize = 32,
                     TextColor = Color.White,
                 }

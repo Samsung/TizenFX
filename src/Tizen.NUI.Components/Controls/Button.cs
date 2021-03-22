@@ -128,10 +128,7 @@ namespace Tizen.NUI.Components
         {
             var instance = (Button)bindable;
             instance.iconPadding = (Extents)((Extents)newValue).Clone();
-            if (instance.buttonIcon != null)
-            {
-                instance.buttonIcon.Margin = instance.iconPadding;
-            }
+            instance.OnTextOrIconChanged();
         },
         defaultValueCreator: (bindable) => ((Button)bindable).iconPadding);
 
@@ -141,10 +138,7 @@ namespace Tizen.NUI.Components
         {
             var instance = (Button)bindable;
             instance.textPadding = (Extents)((Extents)newValue).Clone();
-            if (instance.buttonText != null)
-            {
-                instance.buttonText.Margin = instance.textPadding;
-            }
+            instance.OnTextOrIconChanged();
         },
         defaultValueCreator: (bindable) => ((Button)bindable).textPadding);
 
