@@ -40,10 +40,26 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         }
 
         /// <summary>
+        /// Enumeration for The fill rule of shape.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum FillRuleType
+        {
+            /// <summary>
+            /// Draw a horizontal line from the point to a location outside the shape. Determine whether the direction of the line at each intersection point is up or down. The winding number is determined by summing the direction of each intersection. If the number is non zero, the point is inside the shape.
+            /// </summary>
+            Winding = 0,
+            /// <summary>
+            /// Draw a horizontal line from the point to a location outside the shape, and count the number of intersections. If the number of intersections is an odd number, the point is inside the shape.
+            /// </summary>
+            EvenOdd
+        }
+
+        /// <summary>
         /// Enumeration for The cap style to be used for stroking the path.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public enum StrokeCap
+        public enum StrokeCapType
         {
             /// <summary>
             /// The end of lines is rendered as a square around the last point.
@@ -63,7 +79,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// numeration for The join style to be used for stroking the path.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public enum StrokeJoin
+        public enum StrokeJoinType
         {
             /// <summary>
             /// Used to render beveled line joins. The outer corner of the joined lines is filled by enclosing the triangular region of the corner with a straight line between the outer corners of each stroke.
@@ -80,19 +96,136 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         }
 
         /// <summary>
-        /// Enumeration for The fill rule of shape.
+        /// The color to use for filling the path.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public enum FillRule
+        public Color FillColor
+        {   
+            get {
+                global::System.IntPtr cPtr = Interop.Shape.GetFillColor(BaseHandle.getCPtr(this));
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Color ret = Vector4.GetVector4FromPtr(cPtr);
+                return ret;    
+            }
+            set {
+                Interop.Shape.SetFillColor(BaseHandle.getCPtr(this), Vector4.getCPtr(value));
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+        /// <summary>
+        /// The current fill rule of the shape.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public FillRuleType FillRule
         {
-            /// <summary>
-            /// Draw a horizontal line from the point to a location outside the shape. Determine whether the direction of the line at each intersection point is up or down. The winding number is determined by summing the direction of each intersection. If the number is non zero, the point is inside the shape.
-            /// </summary>
-            Winding = 0,
-            /// <summary>
-            /// Draw a horizontal line from the point to a location outside the shape, and count the number of intersections. If the number of intersections is an odd number, the point is inside the shape.
-            /// </summary>
-            EvenOdd
+            get {
+                FillRuleType ret = (FillRuleType)Interop.Shape.GetFillRule(BaseHandle.getCPtr(this));
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+            set {
+                Interop.Shape.SetFillRule(BaseHandle.getCPtr(this), (int)value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+        /// <summary>
+        /// The stroke width to use for stroking the path.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float StrokeWidth
+        {
+            get {
+                float ret = Interop.Shape.GetStrokeWidth(BaseHandle.getCPtr(this));
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+            set {
+                Interop.Shape.SetStrokeWidth(BaseHandle.getCPtr(this), value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+        /// <summary>
+        /// The color to use for stroking the path.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color StrokeColor
+        {
+            get {
+                global::System.IntPtr cPtr = Interop.Shape.GetStrokeColor(BaseHandle.getCPtr(this));
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Color ret = Vector4.GetVector4FromPtr(cPtr);
+                return ret;
+            }
+            set {
+                Interop.Shape.SetStrokeColor(BaseHandle.getCPtr(this), Vector4.getCPtr(value));
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+        /// <summary>
+        /// The cap style to use for stroking the path. The cap will be used for capping the end point of a open subpath.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public StrokeCapType StrokeCap
+        {
+            get {
+                StrokeCapType ret = (StrokeCapType)Interop.Shape.GetStrokeCap(BaseHandle.getCPtr(this));
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+            set {
+                Interop.Shape.SetStrokeCap(BaseHandle.getCPtr(this), (int)value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+        /// <summary>
+        /// The join style to use for stroking the path.
+        /// The join style will be used for joining the two line segment while stroking the path.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public StrokeJoinType StrokeJoin
+        {
+            get {
+                StrokeJoinType ret = (StrokeJoinType)Interop.Shape.GetStrokeJoin(BaseHandle.getCPtr(this));
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+            set {
+                Interop.Shape.SetStrokeJoin(BaseHandle.getCPtr(this), (int)value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }   
+        }
+
+        /// <summary>
+        /// The stroke dash pattern. The dash pattern is specified dash pattern.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public List<float> StrokeDash
+        {
+            get {
+                List<float> ret = new List<float>();
+                int patternCount = Interop.Shape.GetStrokeDashCount(BaseHandle.getCPtr(this));
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                for (int i = 0; i < patternCount; i++)
+                {
+                    ret.Add(Interop.Shape.GetStrokeDashIndexOf(BaseHandle.getCPtr(this), i));
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+                return ret;
+            }
+            set {
+                float[] pattern = new float[value.Count];
+                for (int i = 0; i < value.Count; i++)
+                {
+                    pattern[i] = value[i];
+                }
+                Interop.Shape.SetStrokeDash(BaseHandle.getCPtr(this), pattern, value.Count);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }    
         }
 
         /// <summary>
@@ -217,192 +350,6 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         public bool Close()
         {
             bool ret = Interop.Shape.Close(BaseHandle.getCPtr(this));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Set the color to use for filling the path.
-        /// </summary>
-        /// <param name="color">The color value.</param>
-        /// <returns>True when it's successful. False otherwise.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool SetFillColor(Color color)
-        {   
-            bool ret = Interop.Shape.SetFillColor(BaseHandle.getCPtr(this), Vector4.getCPtr(color));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Get the color to use for filling the path.
-        /// </summary>
-        /// <returns>Returns the color value.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Color GetFillColor()
-        {   
-            global::System.IntPtr cPtr = Interop.Shape.GetFillColor(BaseHandle.getCPtr(this));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            Color ret = Vector4.GetVector4FromPtr(cPtr);
-            return ret;
-        }
-
-        /// <summary>
-        /// Set the fill rule.
-        /// </summary>
-        /// <param name="rule">The current fill rule of the shape.</param>
-        /// <returns>True when it's successful. False otherwise.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool SetFillRule(FillRule rule)
-        {
-            bool ret = Interop.Shape.SetFillRule(BaseHandle.getCPtr(this), (int)rule);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Get the fill rule.
-        /// </summary>
-        /// <returns>Returns the current fill rule of the shape.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public FillRule GetFillRule()
-        {
-            FillRule ret = (FillRule)Interop.Shape.GetFillRule(BaseHandle.getCPtr(this));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Set the stroke width to use for stroking the path.
-        /// </summary>
-        /// <param name="width">Stroke width to be used.</param>
-        /// <returns>True when it's successful. False otherwise.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool SetStrokeWidth(float width)
-        {
-            bool ret = Interop.Shape.SetStrokeWidth(BaseHandle.getCPtr(this), width);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Get the stroke width to use for stroking the path.
-        /// </summary>
-        /// <returns>Returns stroke width to be used.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public float GetStrokeWidth()
-        {
-            float ret = Interop.Shape.GetStrokeWidth(BaseHandle.getCPtr(this));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-        
-        /// <summary>
-        /// Set the color to use for stroking the path.
-        /// </summary>
-        /// <param name="color">The stroking color.</param>
-        /// <returns>True when it's successful. False otherwise.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool SetStrokeColor(Color color)
-        {
-            bool ret = Interop.Shape.SetStrokeColor(BaseHandle.getCPtr(this), Vector4.getCPtr(color));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Get the color to use for stroking the path.
-        /// </summary>
-        /// <returns>Returns the stroking color.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Color GetStrokeColor()
-        {
-            global::System.IntPtr cPtr = Interop.Shape.GetStrokeColor(BaseHandle.getCPtr(this));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            Color ret = Vector4.GetVector4FromPtr(cPtr);
-            return ret;
-        }
-
-        /// <summary>
-        /// Sets the stroke dash pattern. The dash pattern is specified dash pattern.
-        /// </summary>
-        /// <param name="dashPattern">Length and a gap list.</param>
-        /// <param name="count">Pattern list length</param>
-        /// <returns>True when it's successful. False otherwise.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool SetStrokeDash(float[] dashPattern, int count)
-        {
-            bool ret = Interop.Shape.SetStrokeDash(BaseHandle.getCPtr(this), dashPattern, count);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Gets the stroke dash pattern.
-        /// </summary>
-        /// <returns>Returns the stroke dash pattern. The dash pattern is specified dash pattern.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public List<float> GetStrokeDash()
-        {
-            List<float> ret = new List<float>();
-
-            int patternCount = Interop.Shape.GetStrokeDashCount(BaseHandle.getCPtr(this));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            for (int i = 0; i < patternCount; i++)
-            {
-                ret.Add(Interop.Shape.GetStrokeDashIndexOf(BaseHandle.getCPtr(this), i));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-            return ret;
-        }
-
-        /// <summary>
-        /// Set the cap style to use for stroking the path. The cap will be used for capping the end point of a open subpath.
-        /// </summary>
-        /// <param name="cap">Cap style to use.</param>
-        /// <returns>True when it's successful. False otherwise.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool SetStrokeCap(StrokeCap cap)
-        {
-            bool ret = Interop.Shape.SetStrokeCap(BaseHandle.getCPtr(this), (int)cap);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Get the cap style to use for stroking the path.
-        /// </summary>
-        /// <returns>Returns the cap style.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public StrokeCap GetStrokeCap()
-        {
-            StrokeCap ret = (StrokeCap)Interop.Shape.GetStrokeCap(BaseHandle.getCPtr(this));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Set the join style to use for stroking the path.
-        /// The join style will be used for joining the two line segment while stroking the path.
-        /// </summary>
-        /// <param name="join">Join style to use.</param>
-        /// <returns>True when it's successful. False otherwise.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool SetStrokeJoin(StrokeJoin join)
-        {
-            bool ret = Interop.Shape.SetStrokeJoin(BaseHandle.getCPtr(this), (int)join);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Get the join style to use for stroking the path.
-        /// </summary>
-        /// <returns>Returns join style to use.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public StrokeJoin GetStrokeJoin()
-        {
-            StrokeJoin ret = (StrokeJoin)Interop.Shape.GetStrokeJoin(BaseHandle.getCPtr(this));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
