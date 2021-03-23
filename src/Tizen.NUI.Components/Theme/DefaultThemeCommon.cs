@@ -54,7 +54,7 @@ namespace Tizen.NUI.Components
 
             theme.AddStyleWithoutClone("Tizen.NUI.Components.CheckBox", new ButtonStyle()
             {
-                IconPadding = 5,
+                TextPadding = 5,
                 Icon = new ImageViewStyle()
                 {
                     Size = new Size(30, 30),
