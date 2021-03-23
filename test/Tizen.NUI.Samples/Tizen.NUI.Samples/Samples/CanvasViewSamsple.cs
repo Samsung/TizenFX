@@ -157,5 +157,6 @@ namespace Tizen.NUI.Samples
 
             return true;
         }
+        
     }
 }
