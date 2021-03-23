@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+using System;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
 using System.ComponentModel;
@@ -127,10 +128,12 @@ namespace Tizen.NUI.Components
         private ImageView trackImage = null;
         private ImageView progressImage = null;
         private ImageView bufferImage = null;
+        private ImageVisual indeterminateImage = null;
         private float maxValue = 100;
         private float minValue = 0;
         private float currentValue = 0;
         private float bufferValue = 0;
+        private Animation indeterminateAnimation = null;
 
         static Progress() { }
         /// <summary>
@@ -221,6 +224,38 @@ namespace Tizen.NUI.Components
         {
             get => bufferImage.ResourceUrl;
             set => bufferImage.ResourceUrl = value;
+        }
+
+        /// <summary>
+        /// The property to get/set the indeterminate image.
+        /// </summary>
+        /// <exception cref="NullReferenceException">Thrown when setting null value.</exception>
+        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string IndeterminateImageUrl
+        {
+            get
+            {
+                if (indeterminateImage == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    return indeterminateImage?.URL;
+                }
+            }
+            set
+            {
+                if (value == null || indeterminateImage == null)
+                {
+                    throw new NullReferenceException("Progress.IndeterminateImage is null");
+                }
+                else
+                {
+                    indeterminateImage.URL = value;
+                }
+            }
         }
 
         /// <summary>
@@ -382,6 +417,7 @@ namespace Tizen.NUI.Components
                 Utility.Dispose(trackImage);
                 Utility.Dispose(progressImage);
                 Utility.Dispose(bufferImage);
+                indeterminateImage = null;
             }
 
             //You must call base.Dispose(type) just before exit.
@@ -435,6 +471,23 @@ namespace Tizen.NUI.Components
             }
         }
 
+        private Vector4 destinationValue = new Vector4(-1.0f, 0.0f, 10.0f, 1.0f);
+        private Vector4 initialValue = new Vector4(0.0f, 0.0f, 10.0f, 1.0f);
+
+        /// <summary>
+        /// Update Animation for Indeterminate mode.
+        /// </summary>
+        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        private void UpdateIndeterminateAnimation()
+        {
+            indeterminateAnimation?.Stop();
+
+            indeterminateAnimation = AnimateVisual(indeterminateImage, "pixelArea", destinationValue, 0, 1000,  AlphaFunction.BuiltinFunctions.Default, initialValue);
+            indeterminateAnimation.Looping = true;
+            indeterminateAnimation.Play();
+        }
+
         /// <summary>
         /// Get Progress style.
         /// </summary>
@@ -452,22 +505,46 @@ namespace Tizen.NUI.Components
         /// <param name="statusType">New status type</param>
         protected void ChangeImageState(ProgressStatusType statusType)
         {
-            if (state == ProgressStatusType.Buffering)
+            if (statusType == ProgressStatusType.Buffering)
             {
-                bufferImage.Show();
+                indeterminateAnimation?.Stop();
+                indeterminateAnimation = null;
+
+                indeterminateImage.Opacity = 0.0f;
                 progressImage.Hide();
+                bufferImage.Show();
             }
-            else if (state == ProgressStatusType.Determinate)
+            else if (statusType == ProgressStatusType.Determinate)
             {
+                indeterminateAnimation?.Stop();
+                indeterminateAnimation = null;
+
+                indeterminateImage.Opacity = 0.0f;
                 bufferImage.Show();
                 progressImage.Show();
+
                 UpdateValue();
             }
-            else
+            else if (statusType == ProgressStatusType.Indeterminate)
             {
                 bufferImage.Hide();
                 progressImage.Hide();
+                indeterminateImage.Opacity = 1.0f;
+
+                UpdateIndeterminateAnimation();
             }
+        }
+
+        private void Initialize()
+        {
+            // create necessary components
+            InitializeTrack();
+            InitializeBuffer();
+            InitializeProgress();
+            InitializeIndeterminate();
+
+            indeterminateAnimation?.Stop();
+            indeterminateAnimation = null;
         }
 
         private void InitializeTrack()
@@ -516,6 +593,24 @@ namespace Tizen.NUI.Components
                 };
                 Add(bufferImage);
             }
+        }
+
+        private void InitializeIndeterminate()
+        {
+            indeterminateImage = new ImageVisual
+            {
+                PixelArea = new Vector4(0.0f, 0.0f, 10.0f, 1.0f),
+                WrapModeU = WrapModeType.Repeat,
+                SizePolicy = VisualTransformPolicyType.Relative,
+                Origin = Visual.AlignType.Center,
+                AnchorPoint = Visual.AlignType.Center,
+                Opacity = 1.0f,
+                Size = new Size2D(1, 1),
+                URL = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "nui_component_default_progress_indeterminate.png"
+            };
+            AddVisual("Indeterminate", indeterminateImage);
+
+            // TODO : Need to update Style for indeterminate state.
         }
     }
 }
