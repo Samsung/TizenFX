@@ -35,28 +35,20 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         }
 
         /// <summary>
-        /// Get the transparency value
+        /// The transparency level [0 ~ 1.0], 0 means totally transparent, while 1 means opaque.
         /// </summary>
-        /// <returns>The transparency level</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public float GetOpacity()
+        public float Opacity
         {   
-            float ret = Interop.Drawable.GetOpacity(BaseHandle.getCPtr(this));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Set the transparency value
-        /// </summary>
-        /// <param name="opacity">The transparency level [0 ~ 1.0], 0 means totally transparent, while 1 means opaque.</param>
-        /// <returns>True when it's successful. False otherwise.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool SetOpacity(float opacity)
-        {   
-            bool ret = Interop.Drawable.SetOpacity(BaseHandle.getCPtr(this), opacity);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            get {
+                float ret = Interop.Drawable.GetOpacity(BaseHandle.getCPtr(this));
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;    
+            }
+            set {
+                Interop.Drawable.SetOpacity(BaseHandle.getCPtr(this), value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }   
         }
 
         /// <summary>
