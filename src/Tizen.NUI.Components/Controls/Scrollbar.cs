@@ -57,8 +57,8 @@ namespace Tizen.NUI.Components
         /// <summary>Bindable property of ThumbColor</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ThumbColorProperty = BindableProperty.Create(nameof(ThumbColor), typeof(Color), typeof(Scrollbar), null,
-            propertyChanged: (bindable, oldValue, newValue) => ((Scrollbar)bindable).thumbView.BackgroundColor = (Color)newValue,
-            defaultValueCreator: (bindable) => ((Scrollbar)bindable).thumbView.BackgroundColor
+            propertyChanged: (bindable, oldValue, newValue) => ((Scrollbar)bindable).UpdateThumbColor((Color)newValue),
+            defaultValueCreator: (bindable) => ((Scrollbar)bindable).thumbColor
         );
 
         /// <summary>Bindable property of TrackPadding</summary>
@@ -68,8 +68,23 @@ namespace Tizen.NUI.Components
             defaultValueCreator: (bindable) => ((Scrollbar)bindable).trackPadding
         );
 
+        /// <summary>Bindable property of ThumbVerticalImageUrl</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ThumbVerticalImageUrlProperty = BindableProperty.Create(nameof(ThumbVerticalImageUrl), typeof(string), typeof(Scrollbar), null,
+            propertyChanged: (bindable, oldValue, newValue) => ((Scrollbar)bindable).UpdateThumbImage((string)newValue, false),
+            defaultValueCreator: (bindable) => ((Scrollbar)bindable).thumbVerticalImageUrl
+        );
+
+        /// <summary>Bindable property of ThumbHorizontalImageUrl</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ThumbHorizontalImageUrlProperty = BindableProperty.Create(nameof(ThumbHorizontalImageUrl), typeof(string), typeof(Scrollbar), null,
+            propertyChanged: (bindable, oldValue, newValue) => ((Scrollbar)bindable).UpdateThumbImage((string)newValue, true),
+            defaultValueCreator: (bindable) => ((Scrollbar)bindable).thumbHorizontalImageUrl
+        );
+
+
         private View trackView;
-        private View thumbView;
+        private ImageView thumbView;
         private Animation thumbPositionAnimation;
         private Animation thumbSizeAnimation;
         private Animation opacityAnimation;
@@ -78,7 +93,11 @@ namespace Tizen.NUI.Components
         private float previousPosition;
         private float trackThickness = 6.0f;
         private float thumbThickness = 6.0f;
+        private string thumbVerticalImageUrl;
+        private string thumbHorizontalImageUrl;
+        private Color thumbColor;
         private PaddingType trackPadding = new PaddingType(4, 4, 4, 4);
+        private bool isHorizontal;
 
         #endregion Fields
 
@@ -177,6 +196,26 @@ namespace Tizen.NUI.Components
             set => SetValue(TrackPaddingProperty, value);
         }
 
+        /// <summary>
+        /// The image url of the vertical thumb.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string ThumbVerticalImageUrl
+        {
+            get => (string)GetValue(ThumbVerticalImageUrlProperty);
+            set => SetValue(ThumbVerticalImageUrlProperty, value);
+        }
+
+        /// <summary>
+        /// The image url of the horizontal thumb.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string ThumbHorizontalImageUrl
+        {
+            get => (string)GetValue(ThumbHorizontalImageUrlProperty);
+            set => SetValue(ThumbHorizontalImageUrlProperty, value);
+        }
+
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override float ScrollPosition
@@ -235,7 +274,7 @@ namespace Tizen.NUI.Components
             };
             Add(trackView);
 
-            thumbView = new View()
+            thumbView = new ImageView()
             {
                 PositionUsesPivotPoint = true,
                 BackgroundColor = new Color(0.6f, 0.6f, 0.6f, 1.0f)
@@ -250,6 +289,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void Initialize(float contentLength, float viewportLength, float currentPosition, bool isHorizontal = false)
         {
+            this.isHorizontal = isHorizontal;
             if (isHorizontal)
             {
                 calculator = new HorizontalCalculator(contentLength > 0.0f ? contentLength : 0.0f, viewportLength, currentPosition);
@@ -474,6 +514,43 @@ namespace Tizen.NUI.Components
             trackView.Position = calculator.CalculateTrackPosition(trackPadding);
             thumbView.Size = calculator.CalculateThumbSize(ThumbThickness, trackView.Size);
             thumbView.Position = calculator.CalculateThumbPaddingPosition(trackView.Size, thumbView.Size, thumbView.Position, trackPadding);
+        }
+        private void UpdateThumbColor(Color color)
+        {
+            thumbColor = color;
+            if (thumbView.ResourceUrl != "")
+            {
+                thumbView.Color = color;
+                thumbView.BackgroundColor = Color.Transparent;
+            }
+            else
+            {
+                thumbView.BackgroundColor = color;
+            }
+        }
+
+        private void UpdateThumbImage(string url, bool isHorizontal)
+        {
+            if (isHorizontal)
+            {
+                thumbHorizontalImageUrl = url;
+                if (this.isHorizontal)
+                {
+                    thumbView.ResourceUrl = url;
+                    thumbView.Color = thumbColor;
+                    thumbView.BackgroundColor = Color.Transparent;
+                }
+            }
+            else
+            {
+                thumbVerticalImageUrl = url;
+                if (!this.isHorizontal)
+                {
+                    thumbView.ResourceUrl = url;
+                    thumbView.Color = thumbColor;
+                    thumbView.BackgroundColor = Color.Transparent;
+                }
+            }
         }
 
         private Animation EnsureThumbPositionAnimation()
