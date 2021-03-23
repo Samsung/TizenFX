@@ -18,69 +18,67 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Tizen.NUI.BaseComponents
+namespace Tizen.NUI.BaseComponents.VectorGraphics
 {
-    namespace VectorGraphics
-    {
+    /// <summary>
+    /// CanvasView is a class for displaying vector primitives.<br />
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class CanvasView : View
+    {            
+        static CanvasView() { }
+
         /// <summary>
-        /// CanvasView is a class for displaying vector primitives.<br />
+        /// Creates an initialized CanvasView.
         /// </summary>
+        /// <param name="viewBox">The size of viewbox.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public class CanvasView : View
-        {            
-            static CanvasView() { }
+        [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "It does not have dispose ownership.")]
+        public CanvasView(Size2D viewBox) : this(viewBox == null ? throw new ArgumentNullException(nameof(viewBox)) : Interop.CanvasView.New(Uint16Pair.getCPtr(new Uint16Pair((uint)viewBox.Width, (uint)viewBox.Height))), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
 
-            /// <summary>
-            /// Creates an initialized CanvasView.
-            /// </summary>
-            /// <param name="viewBox">The size of viewbox.</param>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "It does not have dispose ownership.")]
-            public CanvasView(Size2D viewBox) : this(viewBox == null ? throw new ArgumentNullException(nameof(viewBox)) : Interop.CanvasView.New(Uint16Pair.getCPtr(new Uint16Pair((uint)viewBox.Width, (uint)viewBox.Height))), true)
+        internal CanvasView(global::System.IntPtr cPtr, bool shown = true) : base(cPtr, shown)
+        {
+            if (!shown)
             {
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                SetVisible(false);
             }
+        }
 
-            internal CanvasView(global::System.IntPtr cPtr, bool shown = true) : base(cPtr, shown)
+        /// <summary>
+        /// you can override it to clean-up your own resources.
+        /// </summary>
+        /// <param name="type">DisposeTypes</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
             {
-                if (!shown)
-                {
-                    SetVisible(false);
-                }
+                return;
             }
+            base.Dispose(type);
+        }
 
-            /// <summary>
-            /// you can override it to clean-up your own resources.
-            /// </summary>
-            /// <param name="type">DisposeTypes</param>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            protected override void Dispose(DisposeTypes type)
-            {
-                if (disposed)
-                {
-                    return;
-                }
-
-                base.Dispose(type);
-            }
-
-            /// This will not be public opened.
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
-            {
-                Interop.CanvasView.DeleteCanvasView(swigCPtr);
-            }
-            
-            /// <summary>
-            /// Add drawable object to the CanvasView.
-            /// This method is similar to registration. The added shape is drawn on the inner canvas.
-            /// </summary>
-            /// <param name="drawable">Drawable object</param>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public void AddDrawable(Drawable drawable)
-            {   
-                Interop.CanvasView.AddDrawable(View.getCPtr(this), BaseHandle.getCPtr(drawable));
-            }
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.CanvasView.DeleteCanvasView(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+        
+        /// <summary>
+        /// Add drawable object to the CanvasView.
+        /// This method is similar to registration. The added shape is drawn on the inner canvas.
+        /// </summary>
+        /// <param name="drawable">Drawable object</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void AddDrawable(Drawable drawable)
+        {   
+            Interop.CanvasView.AddDrawable(View.getCPtr(this), BaseHandle.getCPtr(drawable));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
     }
 }
