@@ -130,7 +130,6 @@ namespace Tizen.NUI.Components
             if (SelectedIndex == -1)
             {
                 tabButton.IsSelected = true;
-                tabButton.SetTabButtonState(ControlState.Pressed);
                 SelectedIndex = 0;
 
                 if (TabButtonSelected != null)
@@ -184,7 +183,6 @@ namespace Tizen.NUI.Components
             if ((SelectedIndex != -1) && (selectedTabButton != tabButtons[SelectedIndex]))
             {
                 tabButtons[SelectedIndex].IsSelected = true;
-                tabButtons[SelectedIndex].SetTabButtonState(ControlState.Pressed);
             }
 
             //TODO: To support non-unified tab button size.
