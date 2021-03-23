@@ -203,7 +203,12 @@ namespace Tizen.Uix.Tts
         private event EventHandler<DefaultVoiceChangedEventArgs> _defaultVoiceChanged;
         private event EventHandler<EngineChangedEventArgs> _engineChanged;
         private bool disposedValue = false;
-        private Object thisLock = new Object();
+        private readonly Object _stateChangedLock = new Object();
+        private readonly Object _utteranceStartedLock = new Object();
+        private readonly Object _utteranceCompletedLock = new Object();
+        private readonly Object _errorOccurredLock = new Object();
+        private readonly Object _defaultVoiceChangedLock = new Object();
+        private readonly Object _engineChangedLock = new Object();
         private TtsStateChangedCB _stateDelegate;
         private TtsUtteranceStartedCB _utteranceStartedResultDelegate;
         private TtsUtteranceCompletedCB _utteranceCompletedResultDelegate;
@@ -255,14 +260,18 @@ namespace Tizen.Uix.Tts
         {
             add
             {
-                lock (thisLock)
+                lock (_stateChangedLock)
                 {
                     if (_stateChanged == null)
                     {
                         _stateDelegate = (IntPtr handle, State previous, State current, IntPtr userData) =>
                         {
                             StateChangedEventArgs args = new StateChangedEventArgs(previous, current);
-                            _stateChanged?.Invoke(this, args);
+
+                            lock(_stateChangedLock)
+                            {
+                                _stateChanged?.Invoke(this, args);
+                            }
                         };
 
                         TtsError error = TtsSetStateChangedCB(_handle, _stateDelegate, IntPtr.Zero);
@@ -278,7 +287,7 @@ namespace Tizen.Uix.Tts
 
             remove
             {
-                lock (thisLock)
+                lock (_stateChangedLock)
                 {
                     _stateChanged -= value;
                     if (_stateChanged == null)
@@ -302,14 +311,18 @@ namespace Tizen.Uix.Tts
         {
             add
             {
-                lock (thisLock)
+                lock (_utteranceStartedLock)
                 {
                     if (_utteranceStarted == null)
                     {
                         _utteranceStartedResultDelegate = (IntPtr handle, int uttId, IntPtr userData) =>
                         {
                             UtteranceEventArgs args = new UtteranceEventArgs(uttId);
-                            _utteranceStarted?.Invoke(this, args);
+
+                            lock (_utteranceStartedLock)
+                            {
+                                _utteranceStarted?.Invoke(this, args);
+                            }
                         };
 
                         TtsError error = TtsSetUtteranceStartedCB(_handle, _utteranceStartedResultDelegate, IntPtr.Zero);
@@ -324,7 +337,7 @@ namespace Tizen.Uix.Tts
 
             remove
             {
-                lock (thisLock)
+                lock (_utteranceStartedLock)
                 {
                     _utteranceStarted -= value;
                     if (_utteranceStarted == null)
@@ -347,14 +360,18 @@ namespace Tizen.Uix.Tts
         {
             add
             {
-                lock (thisLock)
+                lock (_utteranceCompletedLock)
                 {
                     if (_utteranceCompleted == null)
                     {
                         _utteranceCompletedResultDelegate = (IntPtr handle, int uttId, IntPtr userData) =>
                         {
                             UtteranceEventArgs args = new UtteranceEventArgs(uttId);
-                            _utteranceCompleted?.Invoke(this, args);
+
+                            lock (_utteranceCompletedLock)
+                            {
+                                _utteranceCompleted?.Invoke(this, args);
+                            }
                         };
 
                         TtsError error = TtsSetUtteranceCompletedCB(_handle, _utteranceCompletedResultDelegate, IntPtr.Zero);
@@ -369,7 +386,7 @@ namespace Tizen.Uix.Tts
 
             remove
             {
-                lock (thisLock)
+                lock (_utteranceCompletedLock)
                 {
                     _utteranceCompleted -= value;
                     if (_utteranceCompleted == null)
@@ -392,14 +409,18 @@ namespace Tizen.Uix.Tts
         {
             add
             {
-                lock (thisLock)
+                lock (_errorOccurredLock)
                 {
                     if (_errorOccurred == null)
                     {
                         _errorDelegate = (IntPtr handle, int uttId, TtsError reason, IntPtr userData) =>
                         {
                             ErrorOccurredEventArgs args = new ErrorOccurredEventArgs(handle, uttId, reason);
-                            _errorOccurred?.Invoke(this, args);
+
+                            lock (_errorOccurredLock)
+                            {
+                                _errorOccurred?.Invoke(this, args);
+                            }
                         };
 
                         TtsError error = TtsSetErrorCB(_handle, _errorDelegate, IntPtr.Zero);
@@ -414,7 +435,7 @@ namespace Tizen.Uix.Tts
 
             remove
             {
-                lock (thisLock)
+                lock (_errorOccurredLock)
                 {
                     _errorOccurred -= value;
                     if (_errorOccurred == null)
@@ -437,7 +458,7 @@ namespace Tizen.Uix.Tts
         {
             add
             {
-                lock (thisLock)
+                lock (_defaultVoiceChangedLock)
                 {
                     if (_defaultVoiceChanged == null)
                     {
@@ -446,7 +467,11 @@ namespace Tizen.Uix.Tts
                             string previousLanguageString = Marshal.PtrToStringAnsi(previousLanguage);
                             string currentLanguageString = Marshal.PtrToStringAnsi(currentLanguage);
                             DefaultVoiceChangedEventArgs args = new DefaultVoiceChangedEventArgs(previousLanguageString, previousVoiceType, currentLanguageString, currentVoiceType);
-                            _defaultVoiceChanged?.Invoke(this, args);
+
+                            lock (_defaultVoiceChangedLock)
+                            {
+                                _defaultVoiceChanged?.Invoke(this, args);
+                            }
                         };
 
                         TtsError error = TtsSetDefaultVoiceChangedCB(_handle, _voiceChangedDelegate, IntPtr.Zero);
@@ -457,16 +482,15 @@ namespace Tizen.Uix.Tts
                     }
                     _defaultVoiceChanged += value;
                 }
-
             }
 
             remove
             {
-                lock (thisLock)
+                lock (_defaultVoiceChangedLock)
                 {
                     _defaultVoiceChanged -= value;
                     if (_defaultVoiceChanged == null)
-					{
+                    {
                         TtsError error = TtsUnsetDefaultVoiceChangedCB(_handle);
                         if (error != TtsError.None)
                         {
@@ -485,7 +509,7 @@ namespace Tizen.Uix.Tts
         {
             add
             {
-                lock (thisLock)
+                lock (_engineChangedLock)
                 {
                     if (_engineChanged == null)
                     {
@@ -494,7 +518,11 @@ namespace Tizen.Uix.Tts
                             string engineIdString = Marshal.PtrToStringAnsi(engineId);
                             string languageString = Marshal.PtrToStringAnsi(language);
                             EngineChangedEventArgs args = new EngineChangedEventArgs(engineIdString, languageString, voiceType, needCredential);
-                            _engineChanged?.Invoke(this, args);
+
+                            lock (_engineChangedLock)
+                            {
+                                _engineChanged?.Invoke(this, args);
+                            }
                         };
                         TtsError error = TtsSetEngineChangedCB(_handle, _engineDelegate, IntPtr.Zero);
                         if (error != TtsError.None)
@@ -508,7 +536,7 @@ namespace Tizen.Uix.Tts
 
             remove
             {
-                lock (thisLock)
+                lock (_engineChangedLock)
                 {
                     _engineChanged -= value;
                     if (_engineChanged == null)
@@ -537,19 +565,16 @@ namespace Tizen.Uix.Tts
         {
             get
             {
-                lock (thisLock)
+                string language;
+                int voiceType;
+                TtsError error = TtsGetDefaultVoice(_handle, out language, out voiceType);
+                if (error != TtsError.None)
                 {
-                    string language;
-                    int voiceType;
-                    TtsError error = TtsGetDefaultVoice(_handle, out language, out voiceType);
-                    if (error != TtsError.None)
-                    {
-                        Log.Error(LogTag, "DefaultVoice Failed with error " + error);
-                        return new SupportedVoice();
-                    }
-
-                    return new SupportedVoice(language, voiceType);
+                    Log.Error(LogTag, "DefaultVoice Failed with error " + error);
+                    return new SupportedVoice();
                 }
+
+                return new SupportedVoice(language, voiceType);
             }
         }
 
@@ -571,14 +596,11 @@ namespace Tizen.Uix.Tts
             get
             {
                 uint maxTextSize;
-                lock (thisLock)
+                TtsError error = TtsGetMaxTextSize(_handle, out maxTextSize);
+                if (error != TtsError.None)
                 {
-                    TtsError error = TtsGetMaxTextSize(_handle, out maxTextSize);
-                    if (error != TtsError.None)
-                    {
-                        Log.Error(LogTag, "MaxTextSize Failed with error " + error);
-                        return 0;
-                    }
+                    Log.Error(LogTag, "MaxTextSize Failed with error " + error);
+                    return 0;
                 }
 
                 return maxTextSize;
@@ -601,14 +623,11 @@ namespace Tizen.Uix.Tts
             get
             {
                 State state;
-                lock (thisLock)
+                TtsError error = TtsGetState(_handle, out state);
+                if (error != TtsError.None)
                 {
-                    TtsError error = TtsGetState(_handle, out state);
-                    if (error != TtsError.None)
-                    {
-                        Log.Error(LogTag, "CurrentState Failed with error " + error);
-                        return State.Unavailable;
-                    }
+                    Log.Error(LogTag, "CurrentState Failed with error " + error);
+                    return State.Unavailable;
                 }
 
                 return state;
@@ -641,14 +660,11 @@ namespace Tizen.Uix.Tts
             get
             {
                 Mode mode = Mode.Default;
-                lock (thisLock)
+                TtsError error = TtsGetMode(_handle, out mode);
+                if (error != TtsError.None)
                 {
-                    TtsError error = TtsGetMode(_handle, out mode);
-                    if (error != TtsError.None)
-                    {
-                        Log.Error(LogTag, "Get Mode Failed with error " + error);
-                        return Mode.Default;
-                    }
+                    Log.Error(LogTag, "Get Mode Failed with error " + error);
+                    return Mode.Default;
                 }
 
                 return mode;
@@ -656,10 +672,7 @@ namespace Tizen.Uix.Tts
             set
             {
                 TtsError error;
-                lock (thisLock)
-                {
-                    error = TtsSetMode(_handle, value);
-                }
+                error = TtsSetMode(_handle, value);
 
                 if (error != TtsError.None)
                 {
@@ -687,14 +700,11 @@ namespace Tizen.Uix.Tts
         /// </pre>
         public void SetCredential(string credential)
         {
-            lock (thisLock)
+            TtsError error = TtsSetCredential(_handle, credential);
+            if (error != TtsError.None)
             {
-                TtsError error = TtsSetCredential(_handle, credential);
-                if (error != TtsError.None)
-                {
-                    Tizen.Log.Error(LogTag, "SetCredential Failed with error " + error);
-                    throw ExceptionFactory.CreateException(error);
-                }
+                Tizen.Log.Error(LogTag, "SetCredential Failed with error " + error);
+                throw ExceptionFactory.CreateException(error);
             }
         }
 
@@ -716,14 +726,11 @@ namespace Tizen.Uix.Tts
         /// </post>
         public void Prepare()
         {
-            lock (thisLock)
+            TtsError error = TtsPrepare(_handle);
+            if (error != TtsError.None)
             {
-                TtsError error = TtsPrepare(_handle);
-                if (error != TtsError.None)
-                {
-                    Log.Error(LogTag, "Prepare Failed with error " + error);
-                    throw ExceptionFactory.CreateException(error);
-                }
+                Log.Error(LogTag, "Prepare Failed with error " + error);
+                throw ExceptionFactory.CreateException(error);
             }
         }
 
@@ -744,14 +751,11 @@ namespace Tizen.Uix.Tts
         /// </post>
         public void Unprepare()
         {
-            lock (thisLock)
+            TtsError error = TtsUnprepare(_handle);
+            if (error != TtsError.None)
             {
-                TtsError error = TtsUnprepare(_handle);
-                if (error != TtsError.None)
-                {
-                    Log.Error(LogTag, "Unprepare Failed with error " + error);
-                    throw ExceptionFactory.CreateException(error);
-                }
+                Log.Error(LogTag, "Unprepare Failed with error " + error);
+                throw ExceptionFactory.CreateException(error);
             }
         }
 
@@ -774,21 +778,19 @@ namespace Tizen.Uix.Tts
         public IEnumerable<SupportedVoice> GetSupportedVoices()
         {
             List<SupportedVoice> voicesList = new List<SupportedVoice>();
-            lock (thisLock)
+
+            _supportedvoiceDelegate = (IntPtr handle, IntPtr language, int voiceType, IntPtr userData) =>
             {
-               _supportedvoiceDelegate = (IntPtr handle, IntPtr language, int voiceType, IntPtr userData) =>
-                {
-                    string lang = Marshal.PtrToStringAnsi(language);
-                    SupportedVoice voice = new SupportedVoice(lang, voiceType);
-                    voicesList.Add(voice);
-                    return true;
-                };
-                TtsError error = TtsForeachSupportedVoices(_handle, _supportedvoiceDelegate, IntPtr.Zero);
-                if (error != TtsError.None)
-                {
-                    Log.Error(LogTag, "GetSupportedVoices Failed with error " + error);
-                    throw ExceptionFactory.CreateException(error);
-                }
+                string lang = Marshal.PtrToStringAnsi(language);
+                SupportedVoice voice = new SupportedVoice(lang, voiceType);
+                voicesList.Add(voice);
+                return true;
+            };
+            TtsError error = TtsForeachSupportedVoices(_handle, _supportedvoiceDelegate, IntPtr.Zero);
+            if (error != TtsError.None)
+            {
+                Log.Error(LogTag, "GetSupportedVoices Failed with error " + error);
+                throw ExceptionFactory.CreateException(error);
             }
 
             return voicesList;
@@ -820,14 +822,11 @@ namespace Tizen.Uix.Tts
         public string GetPrivateData(string key)
         {
             string data;
-            lock (thisLock)
+            TtsError error = TtsGetPrivateData(_handle, key, out data);
+            if (error != TtsError.None)
             {
-                TtsError error = TtsGetPrivateData(_handle, key, out data);
-                if (error != TtsError.None)
-                {
-                    Log.Error(LogTag, "GetPrivateData Failed with error " + error);
-                    throw ExceptionFactory.CreateException(error);
-                }
+                Log.Error(LogTag, "GetPrivateData Failed with error " + error);
+                throw ExceptionFactory.CreateException(error);
             }
 
             return data;
@@ -859,14 +858,11 @@ namespace Tizen.Uix.Tts
         /// </pre>
         public void SetPrivateData(string key, string data)
         {
-            lock (thisLock)
+            TtsError error = TtsSetPrivateData(_handle, key, data);
+            if (error != TtsError.None)
             {
-                TtsError error = TtsSetPrivateData(_handle, key, data);
-                if (error != TtsError.None)
-                {
-                    Log.Error(LogTag, "SetPrivateData Failed with error " + error);
-                    throw ExceptionFactory.CreateException(error);
-                }
+                Log.Error(LogTag, "SetPrivateData Failed with error " + error);
+                throw ExceptionFactory.CreateException(error);
             }
         }
 
@@ -892,14 +888,11 @@ namespace Tizen.Uix.Tts
         public SpeedRange GetSpeedRange()
         {
             int min = 0, max = 0, normal = 0;
-            lock (thisLock)
+            TtsError error = TtsGetSpeedRange(_handle, out min, out normal, out max);
+            if (error != TtsError.None)
             {
-                TtsError error = TtsGetSpeedRange(_handle, out min, out normal, out max);
-                if (error != TtsError.None)
-                {
-                    Log.Error(LogTag, "GetSpeedRange Failed with error " + error);
-                    throw ExceptionFactory.CreateException(error);
-                }
+                Log.Error(LogTag, "GetSpeedRange Failed with error " + error);
+                throw ExceptionFactory.CreateException(error);
             }
 
             return new SpeedRange(min, normal, max);
@@ -945,14 +938,11 @@ namespace Tizen.Uix.Tts
         public int AddText(string text, string language, int voiceType, int speed)
         {
             int id;
-            lock (thisLock)
+            TtsError error = TtsAddText(_handle, text, language, voiceType, speed, out id);
+            if (error != TtsError.None)
             {
-                TtsError error = TtsAddText(_handle, text, language, voiceType, speed, out id);
-                if (error != TtsError.None)
-                {
-                    Log.Error(LogTag, "AddText Failed with error " + error);
-                    throw ExceptionFactory.CreateException(error);
-                }
+                Log.Error(LogTag, "AddText Failed with error " + error);
+                throw ExceptionFactory.CreateException(error);
             }
 
             return id;
@@ -981,14 +971,11 @@ namespace Tizen.Uix.Tts
         /// </post>
         public void Play()
         {
-            lock (thisLock)
+            TtsError error = TtsPlay(_handle);
+            if (error != TtsError.None)
             {
-                TtsError error = TtsPlay(_handle);
-                if (error != TtsError.None)
-                {
-                    Log.Error(LogTag, "Play Failed with error " + error);
-                    throw ExceptionFactory.CreateException(error);
-                }
+                Log.Error(LogTag, "Play Failed with error " + error);
+                throw ExceptionFactory.CreateException(error);
             }
         }
 
@@ -1014,14 +1001,11 @@ namespace Tizen.Uix.Tts
         /// </post>
         public void Stop()
         {
-            lock (thisLock)
+            TtsError error = TtsStop(_handle);
+            if (error != TtsError.None)
             {
-                TtsError error = TtsStop(_handle);
-                if (error != TtsError.None)
-                {
-                    Log.Error(LogTag, "Stop Failed with error " + error);
-                    throw ExceptionFactory.CreateException(error);
-                }
+                Log.Error(LogTag, "Stop Failed with error " + error);
+                throw ExceptionFactory.CreateException(error);
             }
         }
 
@@ -1046,14 +1030,11 @@ namespace Tizen.Uix.Tts
         /// </post>
         public void Pause()
         {
-            lock (thisLock)
+            TtsError error = TtsPause(_handle);
+            if (error != TtsError.None)
             {
-                TtsError error = TtsPause(_handle);
-                if (error != TtsError.None)
-                {
-                    Log.Error(LogTag, "Pause Failed with error " + error);
-                    throw ExceptionFactory.CreateException(error);
-                }
+                Log.Error(LogTag, "Pause Failed with error " + error);
+                throw ExceptionFactory.CreateException(error);
             }
         }
 
@@ -1077,21 +1058,18 @@ namespace Tizen.Uix.Tts
         protected virtual void Dispose(bool disposing)
         {
             if (!disposedValue)
-			{
-				lock (thisLock)
-				{
-					if (_handle != IntPtr.Zero)
-					{
-						TtsError error = TtsDestroy(_handle);
-						if (error != TtsError.None)
-						{
-							Log.Error(LogTag, "Destroy Failed with error " + error);
-						}
-						_handle = IntPtr.Zero;
-					}
-				}
+            {
+                if (_handle != IntPtr.Zero)
+                {
+                    TtsError error = TtsDestroy(_handle);
+                    if (error != TtsError.None)
+                    {
+                        Log.Error(LogTag, "Destroy Failed with error " + error);
+                    }
+                    _handle = IntPtr.Zero;
+                }
 
-				disposedValue = true;
+                disposedValue = true;
             }
         }
     }
