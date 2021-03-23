@@ -244,11 +244,13 @@ namespace Tizen.NUI.Components
 
             theme.AddStyleWithoutClone("Tizen.NUI.Components.Scrollbar", new ScrollbarStyle()
             {
-                TrackThickness = 6,
-                ThumbThickness = 6,
-                TrackColor = new Color(1, 1, 1, 0.15f),
-                ThumbColor = new Color(0.6f, 0.6f, 0.6f, 1.0f),
-                TrackPadding = 4
+                TrackThickness = 14,
+                ThumbThickness = 14,
+                TrackColor = new Color(0f, 0f, 0f, 0f),
+                ThumbColor = new Color("#0A0E4AFF"),
+                TrackPadding = 4,
+                ThumbVerticalImageUrl = FrameworkInformation.ResourcePath + "nui_component_default_scroll_vbar.#.png",
+                ThumbHorizontalImageUrl = FrameworkInformation.ResourcePath + "nui_component_default_scroll_hbar.#.png",
             });
 
             theme.AddStyleWithoutClone("Tizen.NUI.Components.RecyclerViewItem", new RecyclerViewItemStyle()
