@@ -134,7 +134,6 @@ namespace Tizen.NUI.Components
         private float currentValue = 0;
         private float bufferValue = 0;
         private Animation indeterminateAnimation = null;
-        private ProgressStyle progressStyle => ViewStyle as ProgressStyle;
 
         static Progress() { }
         /// <summary>
@@ -233,7 +232,7 @@ namespace Tizen.NUI.Components
         /// <exception cref="NullReferenceException">Thrown when setting null value.</exception>
         /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public string IndeterminateImage
+        public string IndeterminateImageUrl
         {
             get
             {
