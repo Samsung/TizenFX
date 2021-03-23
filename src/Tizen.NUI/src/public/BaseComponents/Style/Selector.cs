@@ -197,6 +197,17 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// SelectedPressed State.
+        /// </summary>
+        /// <exception cref="KeyNotFoundException">Thrown when the selector does not contain the this value.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public T SelectedPressed
+        {
+            get => GetOrThrowKeyNotFound(x => x.State == ControlState.SelectedPressed);
+            set => Add(ControlState.SelectedPressed, value);
+        }
+
+        /// <summary>
         /// Other State.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
