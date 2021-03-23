@@ -49,17 +49,20 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
+                    var minSize = Owner.MinimumSize;
+                    var maxSize = Owner.MaximumSize;
+                    var naturalSize = Owner.GetNaturalSize();
+
                     if (heightMeasureSpec.Mode == MeasureSpecification.ModeType.Exactly)
                     {
                         // GetWidthForHeight is not implemented.
-                        totalWidth = Owner.GetNaturalSize().Width;
+                        totalWidth = Math.Min(Math.Max(naturalSize.Width, minSize.Width), (maxSize.Width < 0 ? Int32.MaxValue : maxSize.Width));
                         widthMeasureSpec = new MeasureSpecification(new LayoutLength(totalWidth), MeasureSpecification.ModeType.Exactly);
                     }
                     else
                     {
-                        Vector3 naturalSize = Owner.GetNaturalSize();
-                        totalWidth = naturalSize.Width;
-                        totalHeight = naturalSize.Height;
+                        totalWidth = Math.Min(Math.Max(naturalSize.Width, minSize.Width), (maxSize.Width < 0 ? Int32.MaxValue : maxSize.Width));
+                        totalHeight = Math.Min(Math.Max(naturalSize.Height, minSize.Height), (maxSize.Height < 0 ? Int32.MaxValue : maxSize.Height));
 
                         heightMeasureSpec = new MeasureSpecification(new LayoutLength(totalHeight), MeasureSpecification.ModeType.Exactly);
                         widthMeasureSpec = new MeasureSpecification(new LayoutLength(totalWidth), MeasureSpecification.ModeType.Exactly);
