@@ -1508,9 +1508,9 @@ namespace Tizen.Uix.InputMethod
         {
             _imeLanguageRequestedDelegate = (IntPtr userData, out IntPtr langCode) =>
             {
-                string langauage;
-                _languageRequestedDelegate(out langauage);
-                langCode = (IntPtr)Marshal.StringToHGlobalAnsi(langauage);
+                string language;
+                _languageRequestedDelegate(out language);
+                langCode = (IntPtr)Marshal.StringToHGlobalAnsi(language);
             };
             ErrorCode error = ImeEventSetLanguageRequestedCallbackCb(_imeLanguageRequestedDelegate, IntPtr.Zero);
             if (error != ErrorCode.None)
@@ -1758,23 +1758,20 @@ namespace Tizen.Uix.InputMethod
         public static void UpdatePreEditString(string str, IEnumerable<PreEditAttribute> attrs)
         {
             IntPtr einaList = IntPtr.Zero;
-            List<GCHandle> attributeHandleList = new List<GCHandle>();
             foreach (PreEditAttribute attribute in attrs)
             {
+                IntPtr attr = IntPtr.Zero;
                 ImePreEditAttributeStruct imePreEditAttribute = new ImePreEditAttributeStruct();
                 imePreEditAttribute.start = attribute.Start;
                 imePreEditAttribute.length = attribute.Length;
                 imePreEditAttribute.type = (int)attribute.Type;
                 imePreEditAttribute.value = attribute.Value;
-                GCHandle attributeHandle = GCHandle.Alloc(imePreEditAttribute, GCHandleType.Pinned);
-                attributeHandleList.Add(attributeHandle);
-                einaList = Interop.EinaList.EinaListAppend(einaList, attributeHandle.AddrOfPinnedObject());
+                attr = Marshal.AllocHGlobal(Marshal.SizeOf(imePreEditAttribute));
+                Marshal.WriteIntPtr(attr, IntPtr.Zero);
+                Marshal.StructureToPtr(imePreEditAttribute, attr, false);
+                einaList = Interop.EinaList.EinaListAppend(einaList, attr);
             }
             ErrorCode error = ImeUpdatePreeditString(str, einaList);
-            foreach (GCHandle handle in attributeHandleList)
-            {
-                handle.Free();
-            }
             if (error != ErrorCode.None)
             {
                 Log.Error(LogTag, "UpdatePreEditString Failed with error " + error);

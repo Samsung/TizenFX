@@ -24,8 +24,7 @@ namespace Tizen.NUI
 {
     internal class ViewImpl : CustomActorImpl
     {
-
-        internal ViewImpl(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ViewImpl.Upcast(cPtr), cMemoryOwn)
+        internal ViewImpl(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
@@ -86,6 +85,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
+
         public void SetBackground(PropertyMap map)
         {
             Interop.ViewImpl.SetBackground(SwigCPtr, PropertyMap.getCPtr(map));

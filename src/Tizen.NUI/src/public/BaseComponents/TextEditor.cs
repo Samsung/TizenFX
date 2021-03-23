@@ -68,7 +68,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal TextEditor(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.TextEditor.Upcast(cPtr), cMemoryOwn)
+        internal TextEditor(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(cPtr, cMemoryOwn)
         {
             if (!shown)
             {
@@ -1275,8 +1275,6 @@ namespace Tizen.NUI.BaseComponents
         /// If FontSizeScale.UseSystemSetting, will use the SystemSettings.FontSize internally. <br />
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public float FontSizeScale
         {
             get
@@ -1400,14 +1398,14 @@ namespace Tizen.NUI.BaseComponents
 
             if (this.HasBody())
             {
-                if (_textEditorTextChangedCallbackDelegate != null)
+                if (textEditorTextChangedCallbackDelegate != null)
                 {
-                    TextChangedSignal().Disconnect(_textEditorTextChangedCallbackDelegate);
+                    TextChangedSignal().Disconnect(textEditorTextChangedCallbackDelegate);
                 }
 
-                if (_textEditorMaxLengthReachedCallbackDelegate != null)
+                if (textEditorMaxLengthReachedCallbackDelegate != null)
                 {
-                    this.MaxLengthReachedSignal().Disconnect(_textEditorMaxLengthReachedCallbackDelegate);
+                    this.MaxLengthReachedSignal().Disconnect(textEditorMaxLengthReachedCallbackDelegate);
                 }
             }
 

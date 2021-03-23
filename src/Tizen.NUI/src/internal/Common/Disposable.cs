@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+using System;
 using System.ComponentModel;
 
 namespace Tizen.NUI
@@ -28,6 +29,8 @@ namespace Tizen.NUI
         /// A Flag to check if it is already disposed.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API9, Will be removed in API11, Please use Disposed")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible instance fields", Justification = "<Pending>")]
         protected bool disposed = false;
 
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -91,7 +94,7 @@ namespace Tizen.NUI
                 // TODO: dispose managed state (managed objects).
                 // Explicit call. user calls Dispose()
 
-                //Throw excpetion if Dispose() is called in separate thread.
+                //Throw exception if Dispose() is called in separate thread.
                 if (!Window.IsInstalled())
                 {
                     throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");

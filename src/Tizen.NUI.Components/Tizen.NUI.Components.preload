@@ -1,0 +1,6 @@
+###########################################
+## AssemblyName.dll TypeName             ##
+## AssemblyName.dll TypeName.Preload()   ##
+## The methods must not have parameters. ##
+###########################################
+Tizen.NUI.Components.dll Tizen.NUI.Components.Control.Preload()

@@ -15,7 +15,6 @@
  *
  */
 using System.ComponentModel;
-using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.Components
 {
@@ -27,8 +26,6 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class ScrollbarBase : Control
     {
-        private bool mScrollEnabled = true;
-
         #region Constructors
 
         /// <summary>
@@ -70,6 +67,17 @@ namespace Tizen.NUI.Components
         /// Update content length and position at once.
         /// </summary>
         /// <param name="contentLength">The total length of the content.</param>
+        /// <param name="viewportLength">The length of the viewport representing the amount of visible content.</param>
+        /// <param name="position">The destination position of the View in content length. This is the View's top position if the scroller is vertical, otherwise, View's left position.</param>
+        /// <param name="durationMs">The time it takes to scroll in milliseconds.</param>
+        /// <param name="alphaFunction">The timing function used in animation. It describes the rate of change of the animation parameter over time. (e.g. EaseOut)</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public abstract void Update(float contentLength, float viewportLength, float position, uint durationMs = 0, AlphaFunction alphaFunction = null);
+
+        /// <summary>
+        /// Update content length and position at once.
+        /// </summary>
+        /// <param name="contentLength">The total length of the content.</param>
         /// <param name="position">The destination position of the View in content length. This is the View's top position if the scroller is vertical, otherwise, View's left position.</param>
         /// <param name="durationMs">The time it takes to scroll in milliseconds.</param>
         /// <param name="alphaFunction">The timing function used in animation. It describes the rate of change of the animation parameter over time. (e.g. EaseOut)</param>
@@ -96,22 +104,16 @@ namespace Tizen.NUI.Components
         public abstract void Initialize(float contentLength, float viewportLength, float currentPosition, bool isHorizontal = false);
 
         /// <summary>
-        /// Enable or disable scrolling.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public abstract bool ScrollEnabled { get; set; }
-
-        /// <summary>
         /// Scroll position given to ScrollTo or Update.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public abstract Position ScrollPosition { get; }
+        public abstract float ScrollPosition { get; }
 
         /// <summary>
         /// Current scroll position in the middle of ScrollTo or Update animation.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public abstract Position ScrollCurrentPosition { get; }
+        public abstract float ScrollCurrentPosition { get; }
 
         #endregion Methods
     }

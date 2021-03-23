@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,10 +21,10 @@ namespace Tizen.NUI
 {
     internal class WidgetApplication : Application
     {
-        private Dictionary<System.Type, string> _widgetInfo;
-        private List<Widget> _widgetList = new List<Widget>();
+        private Dictionary<System.Type, string> widgetInfo;
+        private List<Widget> widgetList = new List<Widget>();
         private delegate System.IntPtr CreateWidgetFunctionDelegate(ref string widgetName);
-        private List<CreateWidgetFunctionDelegate> _createWidgetFunctionDelegateList = new List<CreateWidgetFunctionDelegate>();
+        private List<CreateWidgetFunctionDelegate> createWidgetFunctionDelegateList = new List<CreateWidgetFunctionDelegate>();
 
         internal WidgetApplication(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
@@ -44,7 +44,7 @@ namespace Tizen.NUI
         {
             WidgetApplication ret = New(args, stylesheet);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            _instance = ret;
+            instance = ret;
             return ret;
         }
 
@@ -76,7 +76,7 @@ namespace Tizen.NUI
 
         public void RegisterWidgetCreatingFunction()
         {
-            foreach (KeyValuePair<System.Type, string> widgetInfo in _widgetInfo)
+            foreach (KeyValuePair<System.Type, string> widgetInfo in widgetInfo)
             {
                 string widgetName = widgetInfo.Value;
                 RegisterWidgetCreatingFunction(ref widgetName);
@@ -88,7 +88,7 @@ namespace Tizen.NUI
             CreateWidgetFunctionDelegate newDelegate = new CreateWidgetFunctionDelegate(WidgetCreateFunction);
 
             // Keep this delegate until WidgetApplication is terminated
-            _createWidgetFunctionDelegateList.Add(newDelegate);
+            createWidgetFunctionDelegateList.Add(newDelegate);
 
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(newDelegate);
             CreateWidgetFunction createWidgetFunction = new CreateWidgetFunction(ip);
@@ -99,21 +99,21 @@ namespace Tizen.NUI
 
         public void AddWidgetInstance(Widget widget)
         {
-            _widgetList.Add(widget);
+            widgetList.Add(widget);
         }
 
         public void RegisterWidgetInfo(Dictionary<System.Type, string> widgetInfo)
         {
-            _widgetInfo = widgetInfo;
+            this.widgetInfo = widgetInfo;
         }
 
         public void AddWidgetInfo(Dictionary<Type, string> newWidgetInfo)
         {
             foreach (KeyValuePair<Type, string> widgetInfo in newWidgetInfo)
             {
-                if (_widgetInfo.ContainsKey(widgetInfo.Key) == false)
+                if (this.widgetInfo.ContainsKey(widgetInfo.Key) == false)
                 {
-                    _widgetInfo.Add(widgetInfo.Key, widgetInfo.Value);
+                    this.widgetInfo.Add(widgetInfo.Key, widgetInfo.Value);
                     string widgetName = widgetInfo.Value;
                     RegisterWidgetCreatingFunction(ref widgetName);
                 }
@@ -148,7 +148,7 @@ namespace Tizen.NUI
         {
             get
             {
-                return _widgetInfo;
+                return widgetInfo;
             }
         }
     }

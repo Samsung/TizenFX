@@ -1,3 +1,19 @@
+/*
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 
 using System.Reflection;
 using System;
@@ -76,8 +92,9 @@ namespace Tizen.NUI
     [AttributeUsage(AttributeTargets.Property)]
     public class ScriptableProperty : System.Attribute
     {
-
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API9, Will be removed in API11, Please use Type")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible instance fields", Justification = "<Pending>")]
         public readonly ScriptableType type;
 
         /// <since_tizen> 3 </since_tizen>
@@ -87,7 +104,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Rhe enum of ScriptableType
+        /// The enum of ScriptableType
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public enum ScriptableType
@@ -148,7 +165,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Lookup table to match C# types to DALi types, used for the automatic property registration.
         /// </summary>
-        private static readonly Dictionary<string, Tizen.NUI.PropertyType> _daliPropertyTypeLookup
+        private static readonly Dictionary<string, Tizen.NUI.PropertyType> daliPropertyTypeLookup
         = new Dictionary<string, Tizen.NUI.PropertyType>
         {
       { "float",   PropertyType.Float },
@@ -173,25 +190,25 @@ namespace Tizen.NUI
         /// </summary>
         private static CustomViewRegistry instance = null;
 
-        private CreateControlDelegate _createCallback;
-        private SetPropertyDelegate _setPropertyCallback;
-        private GetPropertyDelegate _getPropertyCallback;
-        private PropertyRangeManager _propertyRangeManager;
+        private CreateControlDelegate createCallback;
+        private SetPropertyDelegate setPropertyCallback;
+        private GetPropertyDelegate getPropertyCallback;
+        private PropertyRangeManager propertyRangeManager;
 
         ///<summary>
         /// Maps the name of a custom view to a create instance function
         /// For example, given a string "Spin", we can get a function used to create the Spin View.
         ///</summary>
-        private Dictionary<String, Func<CustomView>> _constructorMap;
+        private Dictionary<String, Func<CustomView>> constructorMap;
 
         private CustomViewRegistry()
         {
-            _createCallback = new CreateControlDelegate(CreateControl);
-            _getPropertyCallback = new GetPropertyDelegate(GetProperty);
-            _setPropertyCallback = new SetPropertyDelegate(SetProperty);
+            createCallback = new CreateControlDelegate(CreateControl);
+            getPropertyCallback = new GetPropertyDelegate(GetProperty);
+            setPropertyCallback = new SetPropertyDelegate(SetProperty);
 
-            _constructorMap = new Dictionary<string, Func<CustomView>>();
-            _propertyRangeManager = new PropertyRangeManager();
+            constructorMap = new Dictionary<string, Func<CustomView>>();
+            propertyRangeManager = new PropertyRangeManager();
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -225,7 +242,7 @@ namespace Tizen.NUI
         /// Example of a Spin view registering itself:
         ///   static Spin()
         /// {
-        ///   ViewRegistry registers control type with DALi type registery
+        ///   ViewRegistry registers control type with DALi type registry
         ///   also uses introspection to find any properties that need to be registered with type registry
         ///   ViewRegistry.Instance.Register(CreateInstance, typeof(Spin) );
         /// }
@@ -241,10 +258,10 @@ namespace Tizen.NUI
             }
 
             // add the mapping between the view name and it's create function
-            _constructorMap.Add(viewType.ToString(), createFunction);
+            constructorMap.Add(viewType.ToString(), createFunction);
 
             // Call into DALi C++ to register the control with the type registry
-            TypeRegistration.RegisterControl(viewType.ToString(), _createCallback);
+            TypeRegistration.RegisterControl(viewType.ToString(), createCallback);
 
             // Cycle through each property in the class
             foreach (System.Reflection.PropertyInfo propertyInfo in viewType.GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public))
@@ -265,15 +282,15 @@ namespace Tizen.NUI
                             // first get the attribute type, ( default, or animatable)
                             ScriptableProperty scriptableProp = attr as ScriptableProperty;
 
-                            // we get the start property index, based on the type and it's heirachy, e.g. DateView (70,000)-> Spin (60,000) -> View (50,000)
-                            int propertyIndex = _propertyRangeManager.GetPropertyIndex(viewType.ToString(), viewType, scriptableProp.type);
+                            // we get the start property index, based on the type and it's hierarchy, e.g. DateView (70,000)-> Spin (60,000) -> View (50,000)
+                            int propertyIndex = propertyRangeManager.GetPropertyIndex(viewType.ToString(), viewType, scriptableProp.type);
 
                             // get the enum for the property type... E.g. registering a string property returns Tizen.NUI.PropertyType.String
                             Tizen.NUI.PropertyType propertyType = GetDaliPropertyType(propertyInfo.PropertyType.Name);
 
                             // Example   RegisterProperty("spin","maxValue", 50001, FLOAT, set, get );
                             // Native call to register the property
-                            TypeRegistration.RegisterProperty(viewType.ToString(), propertyInfo.Name, propertyIndex, propertyType, _setPropertyCallback, _getPropertyCallback);
+                            TypeRegistration.RegisterProperty(viewType.ToString(), propertyInfo.Name, propertyIndex, propertyType, setPropertyCallback, getPropertyCallback);
                         }
                     }
                     NUILog.Debug("property name = " + propertyInfo.Name);
@@ -295,7 +312,7 @@ namespace Tizen.NUI
             Func<CustomView> controlConstructor;
 
             // find the control constructor
-            if (Instance._constructorMap.TryGetValue(controlName, out controlConstructor))
+            if (Instance.constructorMap.TryGetValue(controlName, out controlConstructor))
             {
                 // Create the control
                 CustomView newControl = controlConstructor();
@@ -310,7 +327,7 @@ namespace Tizen.NUI
             }
             else
             {
-                throw new global::System.InvalidOperationException("C# View not registererd with ViewRegistry" + controlName);
+                throw new global::System.InvalidOperationException("C# View not registered with ViewRegistry" + controlName);
             }
         }
 
@@ -332,7 +349,7 @@ namespace Tizen.NUI
         private Tizen.NUI.PropertyType GetDaliPropertyType(string cSharpTypeName)
         {
             Tizen.NUI.PropertyType daliType;
-            if (_daliPropertyTypeLookup.TryGetValue(cSharpTypeName, out daliType))
+            if (daliPropertyTypeLookup.TryGetValue(cSharpTypeName, out daliType))
             {
                 NUILog.Debug("mapped " + cSharpTypeName + " to dAli type " + daliType);
 

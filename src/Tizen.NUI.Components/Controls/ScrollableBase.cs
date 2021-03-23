@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2020 Samsung Electronics Co., Ltd.
+﻿/* Copyright (c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,6 @@
  *
  */
 using System;
-using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,15 +30,17 @@ namespace Tizen.NUI.Components
     public class ScrollEventArgs : EventArgs
     {
         private Position position;
+        private Position scrollPosition;
 
         /// <summary>
         /// Default constructor.
         /// </summary>
-        /// <param name="position">Current scroll position</param>
+        /// <param name="position">Current container position</param>
         /// <since_tizen> 8 </since_tizen>
         public ScrollEventArgs(Position position)
         {
             this.position = position;
+            this.scrollPosition = new Position(-position);
         }
 
         /// <summary>
@@ -51,6 +52,18 @@ namespace Tizen.NUI.Components
             get
             {
                 return position;
+            }
+        }
+        /// <summary>
+        /// Current scroll position of scrollableBase pan.
+        /// This is the position in the opposite direction to the current position of ContentContainer.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Position ScrollPosition
+        {
+            get
+            {
+                return scrollPosition;
             }
         }
     }
@@ -254,6 +267,7 @@ namespace Tizen.NUI.Components
 
                     ContentContainer.WidthSpecification = ScrollingDirection == Direction.Vertical ? LayoutParamPolicies.MatchParent : LayoutParamPolicies.WrapContent;
                     ContentContainer.HeightSpecification = ScrollingDirection == Direction.Vertical ? LayoutParamPolicies.WrapContent : LayoutParamPolicies.MatchParent;
+                    SetScrollbar();
                 }
             }
         }
@@ -283,6 +297,15 @@ namespace Tizen.NUI.Components
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Gets scrollable status.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override bool AccessibilityIsScrollable()
+        {
+            return true;
         }
 
         /// <summary>
@@ -372,7 +395,7 @@ namespace Tizen.NUI.Components
             {
                 if (scrollBar)
                 {
-                    scrollBar.Unparent();
+                    base.Remove(scrollBar);
                 }
                 scrollBar = value;
 
@@ -477,7 +500,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Threashold not to go infinit at the end of scrolling animation.
+        /// Threshold not to go infinite at the end of scrolling animation.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float DecelerationThreshold { get; set; } = 0.1f;
@@ -509,7 +532,7 @@ namespace Tizen.NUI.Components
 
         /// <summary>
         /// Page will be changed when velocity of panning is over threshold.
-        /// The unit of threshold is pixel per milisec.
+        /// The unit of threshold is pixel per millisecond.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         public float PageFlickThreshold
@@ -528,7 +551,7 @@ namespace Tizen.NUI.Components
         /// Padding for the ScrollableBase
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Extents Padding
+        public new Extents Padding
         {
             get
             {
@@ -608,6 +631,7 @@ namespace Tizen.NUI.Components
             mPanGestureDetector = new PanGestureDetector();
             mPanGestureDetector.Attach(this);
             mPanGestureDetector.AddDirection(PanGestureDetector.DirectionVertical);
+            if (mPanGestureDetector.GetMaximumTouchesRequired() < 2) mPanGestureDetector.SetMaximumTouchesRequired(2);
             mPanGestureDetector.Detected += OnPanGestureDetected;
 
             ClippingMode = ClippingModeType.ClipToBoundingBox;
@@ -729,11 +753,31 @@ namespace Tizen.NUI.Components
             if (isSizeChanged)
             {
                 maxScrollDistance = CalculateMaximumScrollDistance();
-                SetScrollbar();
+                if (!ReviseContainerPositionIfNeed())
+                {
+                    UpdateScrollbar();
+                }
             }
 
             previousContainerSize = ContentContainer.Size;
             previousSize = Size;
+        }
+
+        private bool ReviseContainerPositionIfNeed()
+        {
+            bool isHorizontal = ScrollingDirection == Direction.Horizontal;
+            float currentPosition = isHorizontal ? ContentContainer.CurrentPosition.X : ContentContainer.CurrentPosition.Y;
+
+            if (Math.Abs(currentPosition) > maxScrollDistance)
+            {
+                StopScroll();
+                var targetPosition = BoundScrollPosition(-maxScrollDistance);
+                if (isHorizontal) ContentContainer.PositionX = targetPosition;
+                else ContentContainer.PositionY = targetPosition;
+                return true;
+            }
+
+            return false;
         }
 
         /// <summary>
@@ -750,7 +794,21 @@ namespace Tizen.NUI.Components
                 float contentLength = isHorizontal ? ContentContainer.Size.Width : ContentContainer.Size.Height;
                 float viewportLength = isHorizontal ? Size.Width : Size.Height;
                 float currentPosition = isHorizontal ? ContentContainer.CurrentPosition.X : ContentContainer.CurrentPosition.Y;
-                Scrollbar.Initialize(contentLength, viewportLength, currentPosition, isHorizontal);
+                Scrollbar.Initialize(contentLength, viewportLength, -currentPosition, isHorizontal);
+            }
+        }
+
+        /// Update scrollbar position and size.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void UpdateScrollbar()
+        {
+            if (Scrollbar)
+            {
+                bool isHorizontal = ScrollingDirection == Direction.Horizontal;
+                float contentLength = isHorizontal ? ContentContainer.Size.Width : ContentContainer.Size.Height;
+                float viewportLength = isHorizontal ? Size.Width : Size.Height;
+                float currentPosition = isHorizontal ? ContentContainer.CurrentPosition.X : ContentContainer.CurrentPosition.Y;
+                Scrollbar.Update(contentLength, viewportLength, -currentPosition);
             }
         }
 
@@ -930,7 +988,7 @@ namespace Tizen.NUI.Components
 
             if (animate)
             {
-                // Calculate scroll animaton duration
+                // Calculate scroll animation duration
                 float scrollDistance = Math.Abs(displacement);
                 readyToNotice = true;
 
@@ -1009,6 +1067,8 @@ namespace Tizen.NUI.Components
 
         private void PageSnap(float velocity)
         {
+            float destination;
+
             Debug.WriteLineIf(LayoutDebugScrollableBase, "PageSnap with pan candidate totalDisplacement:" + totalDisplacementForPan +
                 " currentPage[" + CurrentPage + "]");
 
@@ -1037,9 +1097,12 @@ namespace Tizen.NUI.Components
             }
 
             // Animate to new page or reposition to current page
-            float destinationX = -(Children[CurrentPage].Position.X + Children[CurrentPage].CurrentSize.Width / 2 - CurrentSize.Width / 2); // set to middle of current page
-            Debug.WriteLineIf(LayoutDebugScrollableBase, "Snapping to page[" + CurrentPage + "] to:" + destinationX + " from:" + ContentContainer.PositionX);
-            AnimateChildTo(ScrollDuration, destinationX);
+            if (ScrollingDirection == Direction.Horizontal)
+                destination = -(Children[CurrentPage].Position.X + Children[CurrentPage].CurrentSize.Width / 2 - CurrentSize.Width / 2); // set to middle of current page
+            else
+                destination = -(Children[CurrentPage].Position.Y + Children[CurrentPage].CurrentSize.Height / 2 - CurrentSize.Height / 2);
+
+            AnimateChildTo(ScrollDuration, destination);
         }
 
         /// <summary>
@@ -1397,7 +1460,7 @@ namespace Tizen.NUI.Components
         {
             // Decelerating using deceleration equation ===========
             //
-            // V   : velocity (pixel per milisecond)
+            // V   : velocity (pixel per millisecond)
             // V0  : initial velocity
             // d   : deceleration rate,
             // t   : time
@@ -1406,9 +1469,9 @@ namespace Tizen.NUI.Components
             //
             // V(t) = V0 * d pow t;
             // X(t) = V0 * (d pow t - 1) / log d;  <-- Integrate the velocity function
-            // X(∞) = V0 * d / (1 - d); <-- Result using inifit T can be final position because T is tending to infinity.
+            // X(∞) = V0 * d / (1 - d); <-- Result using infinite T can be final position because T is tending to infinity.
             //
-            // Because of final T is tending to inifity, we should use threshold value to finish.
+            // Because of final T is tending to infinity, we should use threshold value to finish.
             // Final T = log(-threshold * log d / |V0| ) / log d;
 
             velocityOfLastPan = Math.Abs(velocity);

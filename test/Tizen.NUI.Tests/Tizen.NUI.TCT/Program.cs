@@ -40,11 +40,17 @@ namespace Tizen.NUI.Devel.Tests
         float textSize = 30.0f;
         Window window;
         Layer layer;
+        public static int mainPid;
+        public static int mainTid;
+
         protected override void OnCreate()
         {
             base.OnCreate();
 
             tlog.Debug(tag, "OnCreate() START!");
+
+            mainPid = Process.GetCurrentProcess().Id;
+            mainTid = Thread.CurrentThread.ManagedThreadId;
 
             window = NUIApplication.GetDefaultWindow();
             window.BackgroundColor = Color.Green;

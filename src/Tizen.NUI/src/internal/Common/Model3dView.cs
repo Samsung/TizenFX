@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,8 +21,7 @@ namespace Tizen.NUI
 {
     internal class Model3dView : View
     {
-
-        internal Model3dView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Model3DView.Model3dViewUpcast(cPtr), cMemoryOwn)
+        internal Model3dView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
@@ -105,7 +104,7 @@ namespace Tizen.NUI
         {
             get
             {
-                string retVal = "" ;
+                string retVal = "";
                 PropertyValue material = GetProperty(Model3dView.Property.MaterialUrl);
                 material?.Get(out retVal);
                 material?.Dispose();

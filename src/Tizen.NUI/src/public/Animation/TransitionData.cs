@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,7 +25,6 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class TransitionData : BaseHandle
     {
-
         /// <summary>
         /// Create an instance of TransitionData.
         /// </summary>
@@ -34,7 +33,6 @@ namespace Tizen.NUI
         public TransitionData(PropertyMap transition) : this(Interop.TransitionData.NewByMap(PropertyMap.getCPtr(transition)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
         }
 
         /// <summary>
@@ -58,14 +56,14 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal TransitionData(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.TransitionData.Upcast(cPtr), cMemoryOwn)
+        internal TransitionData(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
         /// <summary>
         /// returns the count of the individual property transitions stored within this handle.
         /// </summary>
-        /// <returns>A handle to the image at the the specified position.</returns>
+        /// <returns>A handle to the image at the specified position.</returns>
         /// <since_tizen> 3 </since_tizen>
         public uint Count()
         {

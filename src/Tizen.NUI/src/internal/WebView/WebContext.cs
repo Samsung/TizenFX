@@ -26,6 +26,14 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class WebContext : Disposable
     {
+        private string proxyUri;
+        private string certificateFilePath;
+        private bool disableCache;
+
+        internal WebContext(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        {
+        }
+
         /// <summary>
         /// Cache model
         /// </summary>
@@ -171,39 +179,9 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal WebContext(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
-        {
-        }
-
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(WebContext obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
-
-        /// <summary>
-        /// Dispose for IDisposable pattern
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-            }
-
-            base.Dispose(type);
-        }
-
-        // private
-        private string proxyUri;
-        private string certificateFilePath;
-        private bool disableCache;
     }
 }

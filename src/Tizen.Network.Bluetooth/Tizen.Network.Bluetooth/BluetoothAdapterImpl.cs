@@ -492,6 +492,7 @@ namespace Tizen.Network.Bluetooth
         internal BluetoothDevice GetBondedDevice(string address)
         {
             IntPtr deviceInfo;
+            BluetoothDevice btDevice;
             int ret = Interop.Bluetooth.GetBondedDeviceByAddress(address, out deviceInfo);
             if(ret != (int)BluetoothError.None)
             {
@@ -499,9 +500,9 @@ namespace Tizen.Network.Bluetooth
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
             BluetoothDeviceStruct device = (BluetoothDeviceStruct)Marshal.PtrToStructure(deviceInfo, typeof(BluetoothDeviceStruct));
-
+            btDevice = BluetoothUtils.ConvertStructToDeviceClass(device);
             Interop.Bluetooth.FreeDeviceInfo(deviceInfo);
-            return BluetoothUtils.ConvertStructToDeviceClass(device);
+            return btDevice;
         }
 
         internal bool IsServiceUsed(string serviceUuid)
@@ -529,13 +530,20 @@ namespace Tizen.Network.Bluetooth
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
 
-            byte[] hashArr = new byte[hashLength];
-            Marshal.Copy(hash, hashArr, 0, hashLength);
-            byte[] randomizerArr = new byte[randomizerLength];
-            Marshal.Copy(randomizer, randomizerArr, 0, randomizerLength);
+            if (hashLength > 0) {
+                byte[] hashArr = new byte[hashLength];
+                Marshal.Copy(hash, hashArr, 0, hashLength);
+                oobData.HashValue = hashArr;
+                Interop.Libc.Free(hash);
+            }
 
-            oobData.HashValue = hashArr;
-            oobData.RandomizerValue = randomizerArr;
+            if (randomizerLength > 0) {
+                byte[] randomizerArr = new byte[randomizerLength];
+                Marshal.Copy(randomizer, randomizerArr, 0, randomizerLength);
+                oobData.RandomizerValue = randomizerArr;
+                Interop.Libc.Free(randomizer);
+            }
+
             return oobData;
         }
 

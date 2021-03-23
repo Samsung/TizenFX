@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,10 +26,10 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public partial class TextField
     {
-        private EventHandler<TextChangedEventArgs> _textFieldTextChangedEventHandler;
-        private TextChangedCallbackDelegate _textFieldTextChangedCallbackDelegate;
-        private EventHandler<MaxLengthReachedEventArgs> _textFieldMaxLengthReachedEventHandler;
-        private MaxLengthReachedCallbackDelegate _textFieldMaxLengthReachedCallbackDelegate;
+        private EventHandler<TextChangedEventArgs> textFieldTextChangedEventHandler;
+        private TextChangedCallbackDelegate textFieldTextChangedCallbackDelegate;
+        private EventHandler<MaxLengthReachedEventArgs> textFieldMaxLengthReachedEventHandler;
+        private MaxLengthReachedCallbackDelegate textFieldMaxLengthReachedCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void TextChangedCallbackDelegate(IntPtr textField);
@@ -45,19 +45,19 @@ namespace Tizen.NUI.BaseComponents
         {
             add
             {
-                if (_textFieldTextChangedEventHandler == null)
+                if (textFieldTextChangedEventHandler == null)
                 {
-                    _textFieldTextChangedCallbackDelegate = (OnTextChanged);
-                    TextChangedSignal().Connect(_textFieldTextChangedCallbackDelegate);
+                    textFieldTextChangedCallbackDelegate = (OnTextChanged);
+                    TextChangedSignal().Connect(textFieldTextChangedCallbackDelegate);
                 }
-                _textFieldTextChangedEventHandler += value;
+                textFieldTextChangedEventHandler += value;
             }
             remove
             {
-                _textFieldTextChangedEventHandler -= value;
-                if (_textFieldTextChangedEventHandler == null && TextChangedSignal().Empty() == false)
+                textFieldTextChangedEventHandler -= value;
+                if (textFieldTextChangedEventHandler == null && TextChangedSignal().Empty() == false)
                 {
-                    TextChangedSignal().Disconnect(_textFieldTextChangedCallbackDelegate);
+                    TextChangedSignal().Disconnect(textFieldTextChangedCallbackDelegate);
                 }
             }
         }
@@ -70,20 +70,20 @@ namespace Tizen.NUI.BaseComponents
         {
             add
             {
-                if (_textFieldMaxLengthReachedEventHandler == null)
+                if (textFieldMaxLengthReachedEventHandler == null)
                 {
-                    _textFieldMaxLengthReachedCallbackDelegate = (OnMaxLengthReached);
-                    MaxLengthReachedSignal().Connect(_textFieldMaxLengthReachedCallbackDelegate);
+                    textFieldMaxLengthReachedCallbackDelegate = (OnMaxLengthReached);
+                    MaxLengthReachedSignal().Connect(textFieldMaxLengthReachedCallbackDelegate);
                 }
-                _textFieldMaxLengthReachedEventHandler += value;
+                textFieldMaxLengthReachedEventHandler += value;
             }
             remove
             {
-                if (_textFieldMaxLengthReachedEventHandler == null && MaxLengthReachedSignal().Empty() == false)
+                if (textFieldMaxLengthReachedEventHandler == null && MaxLengthReachedSignal().Empty() == false)
                 {
-                    this.MaxLengthReachedSignal().Disconnect(_textFieldMaxLengthReachedCallbackDelegate);
+                    this.MaxLengthReachedSignal().Disconnect(textFieldMaxLengthReachedCallbackDelegate);
                 }
-                _textFieldMaxLengthReachedEventHandler -= value;
+                textFieldMaxLengthReachedEventHandler -= value;
             }
         }
 
@@ -103,29 +103,27 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnTextChanged(IntPtr textField)
         {
-            TextChangedEventArgs e = new TextChangedEventArgs();
-
-            // Populate all members of "e" (TextChangedEventArgs) with real data
-            e.TextField = Registry.GetManagedBaseHandleFromNativePtr(textField) as TextField;
-
-            if (_textFieldTextChangedEventHandler != null)
+            if (textFieldTextChangedEventHandler != null)
             {
+                TextChangedEventArgs e = new TextChangedEventArgs();
+
+                // Populate all members of "e" (TextChangedEventArgs) with real data
+                e.TextField = Registry.GetManagedBaseHandleFromNativePtr(textField) as TextField;
                 //here we send all data to user event handlers
-                _textFieldTextChangedEventHandler(this, e);
+                textFieldTextChangedEventHandler(this, e);
             }
         }
 
         private void OnMaxLengthReached(IntPtr textField)
         {
-            MaxLengthReachedEventArgs e = new MaxLengthReachedEventArgs();
-
-            // Populate all members of "e" (MaxLengthReachedEventArgs) with real data
-            e.TextField = Registry.GetManagedBaseHandleFromNativePtr(textField) as TextField;
-
-            if (_textFieldMaxLengthReachedEventHandler != null)
+            if (textFieldMaxLengthReachedEventHandler != null)
             {
+                MaxLengthReachedEventArgs e = new MaxLengthReachedEventArgs();
+
+                // Populate all members of "e" (MaxLengthReachedEventArgs) with real data
+                e.TextField = Registry.GetManagedBaseHandleFromNativePtr(textField) as TextField;
                 //here we send all data to user event handlers
-                _textFieldMaxLengthReachedEventHandler(this, e);
+                textFieldMaxLengthReachedEventHandler(this, e);
             }
         }
 
@@ -135,7 +133,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public class TextChangedEventArgs : EventArgs
         {
-            private TextField _textField;
+            private TextField textField;
 
             /// <summary>
             /// TextField.
@@ -145,11 +143,11 @@ namespace Tizen.NUI.BaseComponents
             {
                 get
                 {
-                    return _textField;
+                    return textField;
                 }
                 set
                 {
-                    _textField = value;
+                    textField = value;
                 }
             }
         }
@@ -160,7 +158,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public class MaxLengthReachedEventArgs : EventArgs
         {
-            private TextField _textField;
+            private TextField textField;
 
             /// <summary>
             /// TextField.
@@ -170,11 +168,11 @@ namespace Tizen.NUI.BaseComponents
             {
                 get
                 {
-                    return _textField;
+                    return textField;
                 }
                 set
                 {
-                    _textField = value;
+                    textField = value;
                 }
             }
         }

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019-2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -93,7 +93,8 @@ namespace Tizen.NUI.BaseComponents
 
                 map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Color))
                    .Add(ColorVisualProperty.MixColor, new PropertyValue((Color)newValue))
-                   .Add(Visual.Property.CornerRadius, new PropertyValue(view.backgroundExtraData.CornerRadius));
+                   .Add(Visual.Property.CornerRadius, new PropertyValue(view.backgroundExtraData.CornerRadius))
+                   .Add(Visual.Property.CornerRadiusPolicy, new PropertyValue((int)(view.backgroundExtraData.CornerRadiusPolicy)));
 
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.BACKGROUND, new PropertyValue(map));
             }
@@ -160,6 +161,7 @@ namespace Tizen.NUI.BaseComponents
 
             map.Add(ImageVisualProperty.URL, new PropertyValue(url))
                .Add(Visual.Property.CornerRadius, new PropertyValue(view.backgroundExtraData.CornerRadius))
+               .Add(Visual.Property.CornerRadiusPolicy, new PropertyValue((int)(view.backgroundExtraData.CornerRadiusPolicy)))
                .Add(ImageVisualProperty.SynchronousLoading, new PropertyValue(view.backgroundImageSynchronosLoading));
 
             if (view.backgroundExtraData.BackgroundImageBorder != null)
@@ -1649,62 +1651,221 @@ namespace Tizen.NUI.BaseComponents
             return ((View)bindable).themeChangeSensitive;
         });
 
-        #region Selectors
-        internal static readonly BindableProperty BackgroundImageSelectorProperty = BindableProperty.Create("BackgroundImageSelector", typeof(Selector<string>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        /// <summary>
+        /// AccessibilityNameProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty AccessibilityNameProperty = BindableProperty.Create(nameof(AccessibilityName), typeof(string), typeof(View), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
-            view.SelectorData.BackgroundImage.Update(view, (Selector<string>)newValue, true);
-            if (newValue != null) view.SelectorData.BackgroundColor.Reset(view);
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.AccessibilityName, new Tizen.NUI.PropertyValue((string)newValue));
+            }
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
-            return view.SelectorData.BackgroundImage.Get(view);
+
+            string temp;
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.AccessibilityName).Get(out temp);
+            return temp;
+        });
+
+        /// <summary>
+        /// AccessibilityDescriptionProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty AccessibilityDescriptionProperty = BindableProperty.Create(nameof(AccessibilityDescription), typeof(string), typeof(View), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.AccessibilityDescription, new Tizen.NUI.PropertyValue((string)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+
+            string temp;
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.AccessibilityDescription).Get(out temp);
+            return temp;
+        });
+
+        /// <summary>
+        /// AccessibilityTranslationDomainProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty AccessibilityTranslationDomainProperty = BindableProperty.Create(nameof(AccessibilityTranslationDomain), typeof(string), typeof(View), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.AccessibilityTranslationDomain, new Tizen.NUI.PropertyValue((string)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+
+            string temp;
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.AccessibilityTranslationDomain).Get(out temp);
+            return temp;
+        });
+
+        /// <summary>
+        /// AccessibilityRoleProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty AccessibilityRoleProperty = BindableProperty.Create(nameof(AccessibilityRole), typeof(int), typeof(View), default(int), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.AccessibilityRole, new Tizen.NUI.PropertyValue((int)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+
+            int temp = 0;
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.AccessibilityRole).Get(out temp);
+            return temp;
+        });
+
+        /// <summary>
+        /// AccessibilityHighlightableProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty AccessibilityHighlightableProperty = BindableProperty.Create(nameof(AccessibilityHighlightable), typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.AccessibilityHighlightable, new Tizen.NUI.PropertyValue((bool)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            bool temp = false;
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.AccessibilityHighlightable).Get(out temp);
+            return temp;
+        });
+
+        /// <summary>
+        /// AccessibilityAnimatedProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty AccessibilityAnimatedProperty = BindableProperty.Create(nameof(AccessibilityAnimated), typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.AccessibilityAnimated, new Tizen.NUI.PropertyValue((bool)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            bool temp = false;
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.AccessibilityAnimated).Get(out temp);
+            return temp;
+        });
+
+        #region Selectors
+        internal static readonly BindableProperty BackgroundImageSelectorProperty = BindableProperty.Create("BackgroundImageSelector", typeof(Selector<string>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            view.EnsureSelectorData().EnsureBackgroundImage().Update(view, (Selector<string>)newValue, true);
+            if (newValue != null) view.EnsureSelectorData().BackgroundColor?.Reset(view);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            var selector = view.selectorData?.BackgroundImage?.Get();
+            if (selector != null)
+            {
+                return selector;
+            }
+
+            string backgroundImage = null;
+            view.Background.Find(ImageVisualProperty.URL)?.Get(out backgroundImage);
+            return backgroundImage == null ? null : new Selector<string>(backgroundImage);
         });
 
         internal static readonly BindableProperty BackgroundColorSelectorProperty = BindableProperty.Create("BackgroundColorSelector", typeof(Selector<Color>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
-            view.SelectorData.BackgroundColor.Update(view, (Selector<Color>)newValue, true);
-            if (newValue != null) view.SelectorData.BackgroundImage.Reset(view);
+            view.EnsureSelectorData().EnsureBackgroundColor().Update(view, (Selector<Color>)newValue, true);
+            if (newValue != null) view.EnsureSelectorData().BackgroundImage?.Reset(view);
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
-            return view.SelectorData.BackgroundColor.Get(view);
+            var selector = view.selectorData?.BackgroundColor?.Get();
+            if (selector != null)
+            {
+                return selector;
+            }
+
+            var background = view.Background;
+            int visualType = 0;
+            background.Find(Visual.Property.Type)?.Get(out visualType);
+            if (visualType != (int)Visual.Type.Color)
+            {
+                return null;
+            }
+
+            Color backgroundColor = new Color();
+            background.Find(ColorVisualProperty.MixColor)?.Get(backgroundColor);
+            return new Selector<Color>(backgroundColor);
         });
 
         internal static readonly BindableProperty BackgroundImageBorderSelectorProperty = BindableProperty.Create("BackgroundImageBorderSelector", typeof(Selector<Rectangle>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
-            view.SelectorData.BackgroundImageBorder.Update(view, (Selector<Rectangle>)newValue, true);
+            view.EnsureSelectorData().EnsureBackgroundImageBorder().Update(view, (Selector<Rectangle>)newValue, true);
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
-            return view.SelectorData.BackgroundImageBorder.Get(view);
+            return view.GetSelector<Rectangle>(view.selectorData?.BackgroundImageBorder, View.BackgroundImageBorderProperty);
         });
 
         internal static readonly BindableProperty ColorSelectorProperty = BindableProperty.Create("ColorSelector", typeof(Selector<Color>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
-            view.SelectorData.Color.Update(view, (Selector<Color>)newValue, true);
+            view.EnsureSelectorData().EnsureColor().Update(view, (Selector<Color>)newValue, true);
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
-            return view.SelectorData.Color.Get(view);
+            var selector = view.selectorData?.Color?.Get();
+            if (selector != null)
+            {
+                return selector;
+            }
+
+            Color color = new Color();
+            if (!view.GetProperty(Interop.ActorProperty.ColorGet()).Get(color))
+            {
+                return null;
+            }
+            return new Selector<Color>(color);
         });
 
         internal static readonly BindableProperty OpacitySelectorProperty = BindableProperty.Create("OpacitySelector", typeof(Selector<float?>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
-            view.SelectorData.Opacity.Update(view, (Selector<float?>)newValue, true);
+            view.EnsureSelectorData().EnsureOpacity().Update(view, (Selector<float?>)newValue, true);
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
-            return view.SelectorData.Opacity.Get(view);
+            return view.GetSelector<float?>(view.selectorData?.Opacity, View.OpacityProperty);
         });
 
         /// <summary>
@@ -1714,13 +1875,13 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty ImageShadowSelectorProperty = BindableProperty.Create("ImageShadowSelector", typeof(Selector<ImageShadow>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
-            view.SelectorData.ImageShadow.Update(view, (Selector<ImageShadow>)newValue, true);
-            if (newValue != null) view.SelectorData.BoxShadow.Reset(view);
+            view.EnsureSelectorData().EnsureImageShadow().Update(view, (Selector<ImageShadow>)newValue, true);
+            if (newValue != null) view.EnsureSelectorData().BoxShadow?.Reset(view);
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
-            return view.SelectorData.ImageShadow.Get(view);
+            return view.GetSelector<ImageShadow>(view.selectorData?.ImageShadow, View.ImageShadowProperty);
         });
 
         /// <summary>
@@ -1730,28 +1891,13 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty BoxShadowSelectorProperty = BindableProperty.Create("BoxShadowSelector", typeof(Selector<Shadow>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
-            view.SelectorData.BoxShadow.Update(view, (Selector<Shadow>)newValue, true);
-            if (newValue != null) view.SelectorData.ImageShadow.Reset(view);
+            view.EnsureSelectorData().EnsureBoxShadow().Update(view, (Selector<Shadow>)newValue, true);
+            if (newValue != null) view.EnsureSelectorData().ImageShadow?.Reset(view);
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
-            return view.SelectorData.BoxShadow.Get(view);
-        });
-
-        /// <summary>
-        /// CornerRadius Selector Property
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CornerRadiusSelectorProperty = BindableProperty.Create("CornerRadiusSelector", typeof(Selector<float?>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var view = (View)bindable;
-            view.SelectorData.CornerRadius.Update(view, (Selector<float?>)newValue, true);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var view = (View)bindable;
-            return view.SelectorData.CornerRadius.Get(view);
+            return view.GetSelector<Shadow>(view.selectorData?.BoxShadow, View.BoxShadowProperty);
         });
         #endregion
     }

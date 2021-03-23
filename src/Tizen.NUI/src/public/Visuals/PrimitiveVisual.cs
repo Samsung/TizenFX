@@ -18,7 +18,7 @@
 namespace Tizen.NUI
 {
     /// <summary>
-    /// A class encapsulating the property map of the primetive visual.
+    /// A class encapsulating the property map of the primitive visual.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class PrimitiveVisual : VisualMap

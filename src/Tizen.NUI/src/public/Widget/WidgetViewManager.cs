@@ -40,11 +40,11 @@ namespace Tizen.NUI
         /// Creates a new widgetView manager object.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        internal WidgetViewManager() : this(Interop.WidgetViewManager.New(Application.getCPtr(NUIApplication.me?.ApplicationHandle), NUIApplication.me?.AppId), true)
+        internal WidgetViewManager() : this(Interop.WidgetViewManager.New(Application.Instance.SwigCPtr, Applications.Application.Current.ApplicationInfo.ApplicationId), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        internal WidgetViewManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.WidgetViewManager.Upcast(cPtr), cMemoryOwn)
+        internal WidgetViewManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
@@ -57,10 +57,9 @@ namespace Tizen.NUI
         {
             get
             {
-                if(!instance)
+                if (!instance)
                 {
-                    instance  = new WidgetViewManager();
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    instance = new WidgetViewManager();
                 }
                 return instance;
             }

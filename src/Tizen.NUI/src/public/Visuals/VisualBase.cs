@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,8 +15,6 @@
  *
  */
 
-using System;
-using System.Runtime.InteropServices;
 using System.ComponentModel;
 
 namespace Tizen.NUI
@@ -44,7 +42,7 @@ namespace Tizen.NUI
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        internal VisualBase(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.VisualBase.Upcast(cPtr), cMemoryOwn)
+        internal VisualBase(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 

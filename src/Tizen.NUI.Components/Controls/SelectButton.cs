@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -52,7 +52,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public SelectButton() : base()
         {
-            Initialize();
         }
 
         /// <summary>
@@ -64,7 +63,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public SelectButton(string style) : base(style)
         {
-            Initialize();
         }
 
         /// <summary>
@@ -76,7 +74,17 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public SelectButton(ButtonStyle buttonStyle) : base(buttonStyle)
         {
-            Initialize();
+        }
+
+        /// <summary>
+        /// Informs AT-SPI bridge about the set of AT-SPI states associated with this object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override AccessibilityStates AccessibilityCalculateStates()
+        {
+            var states = base.AccessibilityCalculateStates();
+            states.Set(AccessibilityState.Checked, this.IsSelected);
+            return states;
         }
 
         /// <summary>
@@ -103,6 +111,14 @@ namespace Tizen.NUI.Components
 
                 return -1;
             }
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnInitialize()
+        {
+            base.OnInitialize();
+            IsSelectable = true;
         }
 
         /// <summary>
@@ -202,17 +218,17 @@ namespace Tizen.NUI.Components
         {
         }
 
-        private void Initialize()
-        {
-            IsSelectable = true;
-        }
-
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnControlStateChanged(ControlStateChangedEventArgs info)
         {
             if (info.PreviousState.Contains(ControlState.Selected) != info.CurrentState.Contains(ControlState.Selected))
             {
+                if (IsHighlighted)
+                {
+                    EmitAccessibilityStateChangedEvent(AccessibilityState.Checked, info.CurrentState.Contains(ControlState.Selected));
+                }
+
                 // SelectedChanged is invoked when button or key is unpressed.
                 if (invokeSelectedChanged == false)
                 {

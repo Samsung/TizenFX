@@ -27,7 +27,7 @@ namespace Tizen.NUI
     public class TypeRegistry : BaseHandle
     {
 
-        internal TypeRegistry(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.TypeRegistry.Upcast(cPtr), cMemoryOwn)
+        internal TypeRegistry(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
@@ -102,7 +102,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets type name count.
         /// </summary>
-        /// <returns>The counte.</returns>
+        /// <returns>The count.</returns>
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetTypeNameCount()

@@ -1,4 +1,21 @@
-﻿using System;
+﻿/*
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+using System;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Components.Extension;
@@ -16,6 +33,24 @@ namespace Tizen.NUI.Components
 
         private bool isPressed = false;
         private bool styleApplied = false;
+
+        /// <summary>
+        /// Get accessibility name.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override string AccessibilityGetName()
+        {
+            return Text;
+        }
+
+        /// <summary>
+        /// Prevents from showing child widgets in AT-SPI tree.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override bool AccessibilityShouldReportZeroChildren()
+        {
+            return true;
+        }
 
         /// <summary>
         /// The ButtonExtension instance that is injected by ButtonStyle.
@@ -38,7 +73,8 @@ namespace Tizen.NUI.Components
                 WidthResizePolicy = ResizePolicyType.FillToParent,
                 HeightResizePolicy = ResizePolicyType.FillToParent,
                 HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Center
+                VerticalAlignment = VerticalAlignment.Center,
+                AccessibilityHighlightable = false
             };
         }
 
@@ -53,7 +89,8 @@ namespace Tizen.NUI.Components
             {
                 PositionUsesPivotPoint = true,
                 ParentOrigin = NUI.ParentOrigin.Center,
-                PivotPoint = NUI.PivotPoint.Center
+                PivotPoint = NUI.PivotPoint.Center,
+                AccessibilityHighlightable = false
             };
         }
 
@@ -70,7 +107,8 @@ namespace Tizen.NUI.Components
                 ParentOrigin = NUI.ParentOrigin.Center,
                 PivotPoint = NUI.PivotPoint.Center,
                 WidthResizePolicy = ResizePolicyType.FillToParent,
-                HeightResizePolicy = ResizePolicyType.FillToParent
+                HeightResizePolicy = ResizePolicyType.FillToParent,
+                AccessibilityHighlightable = false
             };
         }
 
@@ -381,6 +419,26 @@ namespace Tizen.NUI.Components
             base.Dispose(type);
         }
 
+        /// <summary>
+        /// Initializes AT-SPI object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnInitialize()
+        {
+            base.OnInitialize();
+            SetAccessibilityConstructor(Role.PushButton);
+
+            AccessibilityHighlightable = true;
+            EnableControlStatePropagation = true;
+            LayoutDirectionChanged += OnLayoutDirectionChanged;
+
+            AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "Button");
+
+#if PROFILE_MOBILE
+            Feedback = true;
+#endif
+        }
+
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnControlStateChanged(ControlStateChangedEventArgs controlStateChangedInfo)
@@ -400,23 +458,6 @@ namespace Tizen.NUI.Components
             {
                 isPressed = statePressed;
             }
-        }
-
-        /// <summary>
-        /// It is hijack by using protected, style copy problem when class inherited from Button.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        private void Initialize()
-        {
-            EnableControlStatePropagation = true;
-            UpdateState();
-            LayoutDirectionChanged += OnLayoutDirectionChanged;
-
-            AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "Button");
-            
-            #if PROFILE_MOBILE
-                Feedback = true;
-            #endif
         }
 
         private void UpdateUIContent()
@@ -452,35 +493,20 @@ namespace Tizen.NUI.Components
 
         internal override bool OnAccessibilityActivated()
         {
-            if (!IsEnabled)
+            using (var key = new Key())
             {
-                return false;
+                key.State = Key.StateType.Down;
+                key.KeyPressedName = "Return";
+
+                // Touch Down
+                OnKey(key);
+
+                // Touch Up
+                key.State = Key.StateType.Up;
+                OnKey(key);
             }
 
-            // Touch Down
-            isPressed = true;
-            UpdateState();
-
-            // Touch Up
-            bool clicked = isPressed && IsEnabled;
-            isPressed = false;
-
-            if (IsSelectable)
-            {
-                IsSelected = !IsSelected;
-            }
-            else
-            {
-                UpdateState();
-            }
-
-            if (clicked)
-            {
-                ClickedEventArgs eventArgs = new ClickedEventArgs();
-                OnClickedInternal(eventArgs);
-            }
             return true;
         }
-
     }
 }

@@ -22,7 +22,7 @@ internal static partial class Interop
 {
     internal static partial class Libraries
     {
-        public const string Nnstreamer = "libcapi-nnstreamer.so.0";
+        public const string Nnstreamer = "libcapi-nnstreamer.so.1";
     }
 
     internal static partial class Pipeline

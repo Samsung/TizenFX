@@ -29,8 +29,8 @@ namespace Tizen.NUI
     public class PropertyNotification : BaseHandle
     {
 
-        private DaliEventHandler<object, NotifyEventArgs> _propertyNotificationNotifyEventHandler;
-        private NotifyEventCallbackDelegate _propertyNotificationNotifyEventCallbackDelegate;
+        private DaliEventHandler<object, NotifyEventArgs> propertyNotificationNotifyEventHandler;
+        private NotifyEventCallbackDelegate propertyNotificationNotifyEventCallbackDelegate;
 
         /// <summary>
         /// Create a instance of PropertyNotification.
@@ -50,7 +50,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal PropertyNotification(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.PropertyNotification.Upcast(cPtr), cMemoryOwn)
+        internal PropertyNotification(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
@@ -67,23 +67,23 @@ namespace Tizen.NUI
             add
             {
                 // Restricted to only one listener
-                if (_propertyNotificationNotifyEventHandler == null)
+                if (propertyNotificationNotifyEventHandler == null)
                 {
-                    _propertyNotificationNotifyEventHandler += value;
+                    propertyNotificationNotifyEventHandler += value;
 
-                    _propertyNotificationNotifyEventCallbackDelegate = new NotifyEventCallbackDelegate(OnPropertyNotificationNotify);
-                    this.NotifySignal().Connect(_propertyNotificationNotifyEventCallbackDelegate);
+                    propertyNotificationNotifyEventCallbackDelegate = new NotifyEventCallbackDelegate(OnPropertyNotificationNotify);
+                    this.NotifySignal().Connect(propertyNotificationNotifyEventCallbackDelegate);
                 }
             }
 
             remove
             {
-                if (_propertyNotificationNotifyEventHandler != null)
+                if (propertyNotificationNotifyEventHandler != null)
                 {
-                    this.NotifySignal().Disconnect(_propertyNotificationNotifyEventCallbackDelegate);
+                    this.NotifySignal().Disconnect(propertyNotificationNotifyEventCallbackDelegate);
                 }
 
-                _propertyNotificationNotifyEventHandler -= value;
+                propertyNotificationNotifyEventHandler -= value;
             }
         }
 
@@ -121,12 +121,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="cPtr">An object of IntPtr type.</param>
         /// <returns>An object of the PropertyNotification type.</returns>
-        /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, " +
-            "Please use Notified event instead!" +
-            "IntPtr(native integer pointer) is supposed to be not used in Application!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static PropertyNotification GetPropertyNotificationFromPtr(global::System.IntPtr cPtr)
+        internal static PropertyNotification GetPropertyNotificationFromPtr(global::System.IntPtr cPtr)
         {
             PropertyNotification ret = new PropertyNotification(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -156,11 +151,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="rhs">A reference to the copied handle.</param>
         /// <returns>A reference to this.</returns>
-        /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, " +
-            "Please use PropertyNotification() constructor instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public PropertyNotification Assign(PropertyNotification rhs)
+        internal PropertyNotification Assign(PropertyNotification rhs)
         {
             PropertyNotification ret = new PropertyNotification(Interop.PropertyNotification.Assign(SwigCPtr, PropertyNotification.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -241,11 +232,7 @@ namespace Tizen.NUI
         /// Connects to this signal to be notified when the notification has occurred.
         /// </summary>
         /// <returns>A signal object to Connect() with</returns>
-        /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, " +
-            "Please use Notified event instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public PropertyNotifySignal NotifySignal()
+        internal PropertyNotifySignal NotifySignal()
         {
             PropertyNotifySignal ret = new PropertyNotifySignal(Interop.PropertyNotification.NotifySignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -270,10 +257,10 @@ namespace Tizen.NUI
             NotifyEventArgs e = new NotifyEventArgs();
             e.PropertyNotification = GetPropertyNotificationFromPtr(propertyNotification);
 
-            if (_propertyNotificationNotifyEventHandler != null)
+            if (propertyNotificationNotifyEventHandler != null)
             {
                 //here we send all data to user event handlers
-                _propertyNotificationNotifyEventHandler(this, e);
+                propertyNotificationNotifyEventHandler(this, e);
             }
         }
 
@@ -283,7 +270,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public class NotifyEventArgs : EventArgs
         {
-            private PropertyNotification _propertyNotification;
+            private PropertyNotification propertyNotification;
 
             ///<summary>
             /// PropertyNotification - is the PropertyNotification handle that has the notification properties.
@@ -293,11 +280,11 @@ namespace Tizen.NUI
             {
                 get
                 {
-                    return _propertyNotification;
+                    return propertyNotification;
                 }
                 set
                 {
-                    _propertyNotification = value;
+                    propertyNotification = value;
                 }
             }
         }

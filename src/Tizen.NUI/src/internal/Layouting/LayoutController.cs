@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,20 +30,18 @@ namespace Tizen.NUI
     /// </summary>
     internal class LayoutController : Disposable
     {
-        static bool LayoutDebugController = false; // Debug flag
-
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         internal delegate void Callback(int id);
 
-        event Callback _instance;
+        event Callback instance;
 
-        private Window _window;
+        private Window window;
 
-        Animation _coreAnimation;
+        Animation coreAnimation;
 
-        private List<LayoutData> _layoutTransitionDataQueue;
+        private List<LayoutData> layoutTransitionDataQueue;
 
-        private List<LayoutItem> _itemRemovalQueue;
+        private List<LayoutItem> itemRemovalQueue;
 
         /// <summary>
         /// Constructs a LayoutController which controls the measuring and layouting.<br />
@@ -51,11 +49,8 @@ namespace Tizen.NUI
         /// </summary>
         public LayoutController(Window window) : this(Interop.LayoutController.New(), true)
         {
-            _window = window;
-            _instance = new Callback(Process);
-            Interop.LayoutController.SetCallback(SwigCPtr, _instance);
-
-            _layoutTransitionDataQueue = new List<LayoutData>();
+            this.window = window;
+            layoutTransitionDataQueue = new List<LayoutData>();
         }
 
         internal LayoutController(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
@@ -96,7 +91,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Animation GetCoreAnimation()
         {
-            return _coreAnimation;
+            return coreAnimation;
         }
 
         /// <summary>
@@ -108,12 +103,24 @@ namespace Tizen.NUI
         public bool OverrideCoreAnimation { get; set; } = false;
 
         /// <summary>
+        /// Create and set process callback
+        /// </summary>
+        internal void CreateProcessCallback()
+        {
+            if (instance == null)
+            {
+                instance = new Callback(Process);
+                Interop.LayoutController.SetCallback(SwigCPtr, instance);
+            }
+        }
+
+        /// <summary>
         /// Add transition data for a LayoutItem to the transition stack.
         /// </summary>
         /// <param name="transitionDataEntry">Transition data for a LayoutItem.</param>
         internal void AddTransitionDataEntry(LayoutData transitionDataEntry)
         {
-            _layoutTransitionDataQueue.Add(transitionDataEntry);
+            layoutTransitionDataQueue.Add(transitionDataEntry);
         }
 
         /// <summary>
@@ -122,15 +129,15 @@ namespace Tizen.NUI
         /// <param name="itemToRemove">LayoutItem to remove.</param>
         internal void AddToRemovalStack(LayoutItem itemToRemove)
         {
-            if (_itemRemovalQueue == null)
+            if (itemRemovalQueue == null)
             {
-                _itemRemovalQueue = new List<LayoutItem>();
+                itemRemovalQueue = new List<LayoutItem>();
             }
-            _itemRemovalQueue.Add(itemToRemove);
+            itemRemovalQueue.Add(itemToRemove);
         }
 
         /// <summary>
-        /// Dispose Explict or Implicit
+        /// Dispose Explicit or Implicit
         /// </summary>
         protected override void Dispose(DisposeTypes type)
         {
@@ -158,7 +165,7 @@ namespace Tizen.NUI
         {
             if (rootNode.Layout != null)
             {
-                Debug.WriteLineIf(LayoutDebugController, "LayoutController Root found:" + rootNode.Name);
+                NUILog.Debug("LayoutController Root found:" + rootNode.Name);
                 // rootNode has a layout, start measuring and layouting from here.
                 MeasureAndLayout(rootNode);
             }
@@ -181,59 +188,20 @@ namespace Tizen.NUI
             {
                 // Get parent MeasureSpecification, this could be the Window or View with an exact size.
                 Container parentNode = root.GetParent();
-                Size2D rootSize;
-                Position2D rootPosition = root.Position2D;
+                Position rootPosition = root.Position2D;
+
+                // Get parent View's Size.  If using Legacy size negotiation then should have been set already.
+                // Parent not a View so assume it's a Layer which is the size of the window.
                 View parentView = parentNode as View;
-                if (parentView != null)
-                {
-                    // Get parent View's Size.  If using Legacy size negotiation then should have been set already.
-                    rootSize = new Size2D(parentView.Size2D.Width, parentView.Size2D.Height);
-                }
-                else
-                {
-                    // Parent not a View so assume it's a Layer which is the size of the window.
-                    rootSize = new Size2D(_window.Size.Width, _window.Size.Height);
-                }
+                Size rootSize = parentView ? new Size(parentView.Size2D) : new Size(window.Size);
 
                 // Determine measure specification for root.
                 // The root layout policy could be an exact size, be match parent or wrap children.
                 // If wrap children then at most it can be the root parent size.
                 // If match parent then should be root parent size.
                 // If exact then should be that size limited by the root parent size.
-
-                LayoutLength width = new LayoutLength(rootSize.Width);
-                LayoutLength height = new LayoutLength(rootSize.Height);
-                MeasureSpecification.ModeType widthMode = MeasureSpecification.ModeType.Unspecified;
-                MeasureSpecification.ModeType heightMode = MeasureSpecification.ModeType.Unspecified;
-
-                if (root.WidthSpecification >= 0)
-                {
-                    // exact size provided so match width exactly
-                    width = new LayoutLength(root.WidthSpecification);
-                    widthMode = MeasureSpecification.ModeType.Exactly;
-                }
-                else if (root.WidthSpecification == LayoutParamPolicies.MatchParent)
-                {
-
-                    widthMode = MeasureSpecification.ModeType.Exactly;
-                }
-
-                if (root.HeightSpecification >= 0)
-                {
-                    // exact size provided so match height exactly
-                    height = new LayoutLength(root.HeightSpecification);
-                    heightMode = MeasureSpecification.ModeType.Exactly;
-                }
-                else if (root.HeightSpecification == LayoutParamPolicies.MatchParent)
-                {
-                    heightMode = MeasureSpecification.ModeType.Exactly;
-                }
-
-                MeasureSpecification parentWidthSpecification =
-                    new MeasureSpecification(width, widthMode);
-
-                MeasureSpecification parentHeightSpecification =
-                    new MeasureSpecification(height, heightMode);
+                MeasureSpecification parentWidthSpecification = CreateMeasureSpecification(rootSize.Width, root.WidthSpecification);
+                MeasureSpecification parentHeightSpecification = CreateMeasureSpecification(rootSize.Height, root.HeightSpecification);
 
                 // Start at root with it's parent's widthSpecification and heightSpecification
                 MeasureHierarchy(root, parentWidthSpecification, parentHeightSpecification);
@@ -244,13 +212,29 @@ namespace Tizen.NUI
                                      new LayoutLength(rootPosition.X) + root.Layout.MeasuredWidth.Size,
                                      new LayoutLength(rootPosition.Y) + root.Layout.MeasuredHeight.Size);
 
-                bool readyToPlay = SetupCoreAnimation();
-
-                if (readyToPlay && OverrideCoreAnimation == false)
+                if (SetupCoreAnimation() && OverrideCoreAnimation == false)
                 {
                     PlayAnimation();
                 }
             }
+        }
+
+        private MeasureSpecification CreateMeasureSpecification(float size, int specification)
+        {
+            LayoutLength length = new LayoutLength(size);
+            MeasureSpecification.ModeType mode = MeasureSpecification.ModeType.Unspecified;
+
+            if (specification >= 0)
+            {
+                // exact size provided so match width exactly
+                length = new LayoutLength(specification);
+                mode = MeasureSpecification.ModeType.Exactly;
+            }
+            else if (specification == LayoutParamPolicies.MatchParent)
+            {
+                mode = MeasureSpecification.ModeType.Exactly;
+            }
+            return new MeasureSpecification(length, mode);
         }
 
         /// <summary>
@@ -259,10 +243,10 @@ namespace Tizen.NUI
         private void Process(int id)
         {
             // First layer in the Window should be the default layer (index 0 )
-            uint numberOfLayers = _window.LayerCount;
+            uint numberOfLayers = window.LayerCount;
             for (uint layerIndex = 0; layerIndex < numberOfLayers; layerIndex++)
             {
-                Layer layer = _window.GetLayer(layerIndex);
+                Layer layer = window.GetLayer(layerIndex);
                 if (layer != null)
                 {
                     for (uint i = 0; i < layer.ChildCount; i++)
@@ -308,17 +292,17 @@ namespace Tizen.NUI
         /// </summary>
         private void PlayAnimation()
         {
-            Debug.WriteLineIf(LayoutDebugController, "LayoutController Playing, Core Duration:" + _coreAnimation.Duration);
-            _coreAnimation.Play();
+            NUILog.Debug("LayoutController Playing, Core Duration:" + coreAnimation.Duration);
+            coreAnimation.Play();
         }
 
         private void AnimationFinished(object sender, EventArgs e)
         {
             // Iterate list of LayoutItem that were set for removal.
             // Now the core animation has finished their Views can be removed.
-            if (_itemRemovalQueue != null)
+            if (itemRemovalQueue != null)
             {
-                foreach (LayoutItem item in _itemRemovalQueue)
+                foreach (LayoutItem item in itemRemovalQueue)
                 {
                     // Check incase the parent was already removed and the Owner was
                     // removed already.
@@ -334,7 +318,7 @@ namespace Tizen.NUI
 
                     }
                 }
-                _itemRemovalQueue.Clear();
+                itemRemovalQueue.Clear();
                 // If LayoutItems added to stack whilst the core animation is playing
                 // they would have been cleared here.
                 // Could have another stack to be added to whilst the animation is running.
@@ -342,8 +326,8 @@ namespace Tizen.NUI
                 // of the other stack.  Then the main removal stack iterated when AnimationFinished
                 // occurs again.
             }
-            Debug.WriteLineIf(LayoutDebugController, "LayoutController AnimationFinished");
-            _coreAnimation?.Clear();
+            NUILog.Debug("LayoutController AnimationFinished");
+            coreAnimation?.Clear();
         }
 
         /// <summary>
@@ -355,20 +339,19 @@ namespace Tizen.NUI
             // Initialize animation for this layout run.
             bool animationPending = false;
 
-            Debug.WriteLineIf(LayoutDebugController,
-                               "LayoutController SetupCoreAnimation for:" + _layoutTransitionDataQueue.Count);
+            NUILog.Debug("LayoutController SetupCoreAnimation for:" + layoutTransitionDataQueue.Count);
 
-            if (_layoutTransitionDataQueue.Count > 0) // Something to animate
+            if (layoutTransitionDataQueue.Count > 0) // Something to animate
             {
-                if (!_coreAnimation)
+                if (!coreAnimation)
                 {
-                    _coreAnimation = new Animation();
+                    coreAnimation = new Animation();
                 }
-                _coreAnimation.EndAction = Animation.EndActions.StopFinal;
-                _coreAnimation.Finished += AnimationFinished;
+                coreAnimation.EndAction = Animation.EndActions.StopFinal;
+                coreAnimation.Finished += AnimationFinished;
 
                 // Iterate all items that have been queued for repositioning.
-                foreach (LayoutData layoutPositionData in _layoutTransitionDataQueue)
+                foreach (LayoutData layoutPositionData in layoutTransitionDataQueue)
                 {
                     AddAnimatorsToAnimation(layoutPositionData);
                 }
@@ -377,7 +360,7 @@ namespace Tizen.NUI
 
                 // transitions have now been applied, clear stack, ready for new transitions on
                 // next layout traversal.
-                _layoutTransitionDataQueue.Clear();
+                layoutTransitionDataQueue.Clear();
             }
             return animationPending;
         }
@@ -387,7 +370,7 @@ namespace Tizen.NUI
             // A removed item does not have a valid target position within the layout so don't try to position.
             if (layoutPositionData.ConditionForAnimation != TransitionCondition.Remove)
             {
-                _coreAnimation.AnimateTo(layoutPositionData.Item.Owner, "Position",
+                coreAnimation.AnimateTo(layoutPositionData.Item.Owner, "Position",
                             new Vector3(layoutPositionData.Left,
                                         layoutPositionData.Top,
                                         layoutPositionData.Item.Owner.Position.Z),
@@ -395,8 +378,7 @@ namespace Tizen.NUI
                             positionTransitionComponents.Duration,
                             positionTransitionComponents.AlphaFunction);
 
-                Debug.WriteLineIf(LayoutDebugController,
-                                   "LayoutController SetupAnimationForPosition View:" + layoutPositionData.Item.Owner.Name +
+                NUILog.Debug("LayoutController SetupAnimationForPosition View:" + layoutPositionData.Item.Owner.Name +
                                    " left:" + layoutPositionData.Left +
                                    " top:" + layoutPositionData.Top +
                                    " delay:" + positionTransitionComponents.Delay +
@@ -417,7 +399,7 @@ namespace Tizen.NUI
             }
             else
             {
-                _coreAnimation.AnimateTo(layoutPositionData.Item.Owner, "Size",
+                coreAnimation.AnimateTo(layoutPositionData.Item.Owner, "Size",
                                          new Vector3(layoutPositionData.Right - layoutPositionData.Left,
                                                      layoutPositionData.Bottom - layoutPositionData.Top,
                                                      layoutPositionData.Item.Owner.Position.Z),
@@ -425,8 +407,7 @@ namespace Tizen.NUI
                                          sizeTransitionComponents.Duration,
                                          sizeTransitionComponents.AlphaFunction);
 
-                Debug.WriteLineIf(LayoutDebugController,
-                                  "LayoutController SetupAnimationForSize View:" + layoutPositionData.Item.Owner.Name +
+                NUILog.Debug("LayoutController SetupAnimationForSize View:" + layoutPositionData.Item.Owner.Name +
                                    " width:" + (layoutPositionData.Right - layoutPositionData.Left) +
                                    " height:" + (layoutPositionData.Bottom - layoutPositionData.Top) +
                                    " delay:" + sizeTransitionComponents.Delay +
@@ -443,15 +424,14 @@ namespace Tizen.NUI
                     if (transition.AnimatableProperty != AnimatableProperties.Position &&
                         transition.AnimatableProperty != AnimatableProperties.Size)
                     {
-                        _coreAnimation.AnimateTo(view,
+                        coreAnimation.AnimateTo(view,
                                                  transition.AnimatableProperty.ToString(),
                                                  transition.TargetValue,
                                                  transition.Animator.Delay,
                                                  transition.Animator.Duration,
                                                  transition.Animator.AlphaFunction);
 
-                        Debug.WriteLineIf(LayoutDebugController,
-                                           "LayoutController SetupAnimationForCustomTransitions View:" + view.Name +
+                        NUILog.Debug("LayoutController SetupAnimationForCustomTransitions View:" + view.Name +
                                            " Property:" + transition.AnimatableProperty.ToString() +
                                            " delay:" + transition.Animator.Delay +
                                            " duration:" + transition.Animator.Duration);
@@ -510,7 +490,7 @@ namespace Tizen.NUI
             // Note, Transitions set on View rather than LayoutItem so if the Layout changes the transition persist.
 
             // Check if item to animate has it's own Transitions for this condition.
-            // If a key exists then a List of atleast 1 transition exists.
+            // If a key exists then a List of at least 1 transition exists.
             if (layoutPositionData.Item.Owner.LayoutTransitions.ContainsKey(conditionForAnimators))
             {
                 // Child has transitions for the condition

@@ -150,12 +150,12 @@ namespace Tizen.NUI
         /// </summary>
         FitHeight,
         /// <summary>
-        /// Thumbnail gallery grid: Limit loaded image resolution to screen tile using the Center mode.
+        /// Image displayed in its original size (no scaling) using the Center mode.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         Center,
         /// <summary>
-        /// Thumbnail gallery grid: Limit loaded image resolution to screen tile using the ScaleToFill mode.
+        /// Image stretched to fill the desired area (aspect ratio could be changed) using the Fill mode.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         Fill
@@ -310,12 +310,12 @@ namespace Tizen.NUI
         /// </summary>
         Fill,
         /// <summary>
-        /// The visual should be scaled to fit, preserving aspect ratio. The visual will be fillled without empty area, and outside is cropped away.
+        /// The visual should be scaled to fit, preserving aspect ratio. The visual will be filled without empty area, and outside is cropped away.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         OverFitKeepAspectRatio,
         /// <summary>
-        /// The visual should keep original size of image. it is not scaled and not strecthed.
+        /// The visual should keep original size of image. it is not scaled and not stretched.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         Center,
@@ -451,7 +451,7 @@ namespace Tizen.NUI
         /// This specifies visual properties.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-	[System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1716: Identifiers should not match keywords")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1716: Identifiers should not match keywords")]
         public struct Property
         {
             /// <summary>
@@ -536,7 +536,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// This specifies visaul align types.
+        /// This specifies visual align types.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public enum AlignType

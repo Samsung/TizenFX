@@ -388,7 +388,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Sets action button in the action content of AlertDialog.
         /// </summary>
-        /// <param name="type">The type of action buttion.</param>
+        /// <param name="type">The type of action button.</param>
         /// <param name="text">The text of action button in the action content of AlertDialog.</param>
         /// <param name="clickedHandler">The clicked callback of the action button in the action content of AlertDialog.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -578,6 +578,22 @@ namespace Tizen.NUI.Components
             }
 
             base.Dispose(type);
+        }
+
+        /// <summary>
+        /// AccessibilityGetName.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override string AccessibilityGetName()
+        {
+            if (!String.IsNullOrEmpty(Title))
+            {
+                return Title;
+            }
+            else
+            {
+                return Message;
+            }
         }
     }
 }
