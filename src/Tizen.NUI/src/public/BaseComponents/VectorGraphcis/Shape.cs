@@ -15,6 +15,7 @@
 *
 */
 
+using System;
 using System.ComponentModel;
 using System.Collections.Generic;
 
@@ -103,9 +104,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         {   
             get {
                 global::System.IntPtr cPtr = Interop.Shape.GetFillColor(BaseHandle.getCPtr(this));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                Color ret = Vector4.GetVector4FromPtr(cPtr);
-                return ret;    
+                return Vector4.GetVector4FromPtr(cPtr);
             }
             set {
                 Interop.Shape.SetFillColor(BaseHandle.getCPtr(this), Vector4.getCPtr(value));
@@ -120,9 +119,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         public FillRuleType FillRule
         {
             get {
-                FillRuleType ret = (FillRuleType)Interop.Shape.GetFillRule(BaseHandle.getCPtr(this));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                return (FillRuleType)Interop.Shape.GetFillRule(BaseHandle.getCPtr(this));
             }
             set {
                 Interop.Shape.SetFillRule(BaseHandle.getCPtr(this), (int)value);
@@ -137,9 +134,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         public float StrokeWidth
         {
             get {
-                float ret = Interop.Shape.GetStrokeWidth(BaseHandle.getCPtr(this));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                return Interop.Shape.GetStrokeWidth(BaseHandle.getCPtr(this));
             }
             set {
                 Interop.Shape.SetStrokeWidth(BaseHandle.getCPtr(this), value);
@@ -155,9 +150,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         {
             get {
                 global::System.IntPtr cPtr = Interop.Shape.GetStrokeColor(BaseHandle.getCPtr(this));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                Color ret = Vector4.GetVector4FromPtr(cPtr);
-                return ret;
+                return Vector4.GetVector4FromPtr(cPtr);
             }
             set {
                 Interop.Shape.SetStrokeColor(BaseHandle.getCPtr(this), Vector4.getCPtr(value));
@@ -172,9 +165,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         public StrokeCapType StrokeCap
         {
             get {
-                StrokeCapType ret = (StrokeCapType)Interop.Shape.GetStrokeCap(BaseHandle.getCPtr(this));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                return (StrokeCapType)Interop.Shape.GetStrokeCap(BaseHandle.getCPtr(this));
             }
             set {
                 Interop.Shape.SetStrokeCap(BaseHandle.getCPtr(this), (int)value);
@@ -190,9 +181,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         public StrokeJoinType StrokeJoin
         {
             get {
-                StrokeJoinType ret = (StrokeJoinType)Interop.Shape.GetStrokeJoin(BaseHandle.getCPtr(this));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                return (StrokeJoinType)Interop.Shape.GetStrokeJoin(BaseHandle.getCPtr(this));
             }
             set {
                 Interop.Shape.SetStrokeJoin(BaseHandle.getCPtr(this), (int)value);
@@ -203,21 +192,24 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// <summary>
         /// The stroke dash pattern. The dash pattern is specified dash pattern.
         /// </summary>
+        /// <exception cref="ArgumentNullException"> Thrown when value is null. </exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public List<float> StrokeDash
         {
             get {
                 List<float> ret = new List<float>();
                 int patternCount = Interop.Shape.GetStrokeDashCount(BaseHandle.getCPtr(this));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 for (int i = 0; i < patternCount; i++)
                 {
                     ret.Add(Interop.Shape.GetStrokeDashIndexOf(BaseHandle.getCPtr(this), i));
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
                 return ret;
             }
             set {
+                if (value == null)
+                {
+                    throw new ArgumentNullException(nameof(value));
+                }
                 float[] pattern = new float[value.Count];
                 for (int i = 0; i < value.Count; i++)
                 {

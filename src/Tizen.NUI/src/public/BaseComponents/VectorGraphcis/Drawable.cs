@@ -41,9 +41,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         public float Opacity
         {   
             get {
-                float ret = Interop.Drawable.GetOpacity(BaseHandle.getCPtr(this));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;    
+                return Interop.Drawable.GetOpacity(BaseHandle.getCPtr(this));
             }
             set {
                 Interop.Drawable.SetOpacity(BaseHandle.getCPtr(this), value);
