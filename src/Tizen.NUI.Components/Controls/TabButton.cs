@@ -15,6 +15,7 @@
  *
  */
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.Components
@@ -25,6 +26,8 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class TabButton : SelectButton
     {
+        private bool selectedAgain = false;
+
         /// <summary>
         /// Creates a new instance of TabButton.
         /// </summary>
@@ -34,28 +37,88 @@ namespace Tizen.NUI.Components
             GridLayout.SetHorizontalStretch(this, GridLayout.StretchFlags.ExpandAndFill);
         }
 
-        /// <summary>
-        /// Sets the control state of a TabButton.
-        /// TabButton needs to support this API since 'View.ControlState' is protected
-        /// and cannot be reached by TabButtonGroup.
-        /// </summary>
+        /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal void SetTabButtonState(ControlState controlState)
+        public override bool OnKey(Key key)
         {
-            base.ControlState = controlState;
-        }
+            if ((IsEnabled == false) || (key == null))
+            {
+                return false;
+            }
 
-        /// <summary>
-        /// Sets Button.IsSelected to true after selecting TabButton since it is
-        /// set to false when re-selected according to Button's logic.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void OnSelectedChanged()
-        {
-            ControlState = ControlState.Pressed;
-            if (!IsSelected)
+            if (key.State == Key.StateType.Up)
+            {
+                if (key.KeyPressedName == "Return")
+                {
+                    if (IsSelected == true)
+                    {
+                        selectedAgain = true;
+                    }
+                }
+            }
+
+            bool ret = base.OnKey(key);
+
+            if (selectedAgain == true)
             {
                 IsSelected = true;
+                selectedAgain = false;
+            }
+
+            return ret;
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override bool HandleControlStateOnTouch(Touch touch)
+        {
+            if ((IsEnabled == false) || (touch == null))
+            {
+                return false;
+            }
+
+            PointStateType state = touch.GetState(0);
+            switch (state)
+            {
+                case PointStateType.Up:
+                    if (IsSelected == true)
+                    {
+                        selectedAgain = true;
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+            bool ret = base.HandleControlStateOnTouch(touch);
+
+            if (selectedAgain == true)
+            {
+                IsSelected = true;
+                selectedAgain = false;
+            }
+
+            return ret;
+        }
+
+        /// <inheritdoc/>
+        [SuppressMessage("Microsoft.Design",
+                         "CA1062: Validate arguments of public methods",
+                         MessageId = "controlStateChangedInfo",
+                         Justification = "OnControlStateChanged is called when controlState is changed so controlStateChangedInfo cannot be null.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void OnControlStateChanged(ControlStateChangedEventArgs controlStateChangedInfo)
+        {
+            if (controlStateChangedInfo.PreviousState.Contains(ControlState.Selected) != controlStateChangedInfo.CurrentState.Contains(ControlState.Selected))
+            {
+                // TabButton does not invoke SelectedChanged if button or key is
+                // unpressed while its state is selected.
+                if (selectedAgain == true)
+                {
+                    return;
+                }
+
+                base.OnControlStateChanged(controlStateChangedInfo);
             }
         }
     }
