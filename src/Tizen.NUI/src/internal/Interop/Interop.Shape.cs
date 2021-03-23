@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
- 
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
@@ -46,31 +46,31 @@ namespace Tizen.NUI
             public static extern bool Close(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Shape_SetFillColor")]
-            public static extern bool SetFillColor(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            public static extern void SetFillColor(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Shape_GetFillColor")]
             public static extern global::System.IntPtr GetFillColor(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Shape_SetFillRule")]
-            public static extern bool SetFillRule(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            public static extern void SetFillRule(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Shape_GetFillRule")]
             public static extern int GetFillRule(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Shape_SetStrokeWidth")]
-            public static extern bool SetStrokeWidth(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            public static extern void SetStrokeWidth(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Shape_GetStrokeWidth")]
             public static extern float GetStrokeWidth(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Shape_SetStrokeColor")]
-            public static extern bool SetStrokeColor(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            public static extern void SetStrokeColor(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Shape_GetStrokeColor")]
             public static extern global::System.IntPtr GetStrokeColor(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Shape_SetStrokeDash")]
-            public static extern bool SetStrokeDash(global::System.Runtime.InteropServices.HandleRef jarg1, [global::System.Runtime.InteropServices.In, global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.LPArray)] float[] jarg2, int jarg3);
+            public static extern void SetStrokeDash(global::System.Runtime.InteropServices.HandleRef jarg1, [global::System.Runtime.InteropServices.In, global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.LPArray)] float[] jarg2, int jarg3);
             
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Shape_GetStrokeDashIndexOf")]
             public static extern float GetStrokeDashIndexOf(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
@@ -79,13 +79,13 @@ namespace Tizen.NUI
             public static extern int GetStrokeDashCount(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Shape_SetStrokeCap")]
-            public static extern bool SetStrokeCap(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            public static extern void SetStrokeCap(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Shape_GetStrokeCap")]
             public static extern int GetStrokeCap(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Shape_SetStrokeJoin")]
-            public static extern bool SetStrokeJoin(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            public static extern void SetStrokeJoin(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Shape_GetStrokeJoin")]
             public static extern int GetStrokeJoin(global::System.Runtime.InteropServices.HandleRef jarg1);
