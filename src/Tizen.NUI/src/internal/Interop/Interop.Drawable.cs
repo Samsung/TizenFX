@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
- 
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
@@ -25,7 +25,7 @@ namespace Tizen.NUI
             public static extern bool Translate(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Drawable_SetOpacity")]
-            public static extern bool SetOpacity(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            public static extern void SetOpacity(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Drawable_GetOpacity")]
             public static extern float GetOpacity(global::System.Runtime.InteropServices.HandleRef jarg1);
