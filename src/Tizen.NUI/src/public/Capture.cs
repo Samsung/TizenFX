@@ -292,13 +292,26 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Get Url of captured image that can be used as the resource path for the ImageView.
+        /// </summary>
+        /// <returns>Url of captured image.</returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1056:Uri properties should not be strings", Justification = "<Pending>")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string Url
+        {
+            get
+            {
+                return Interop.Capture.GenerateUrl(SwigCPtr);
+            }
+        }
+
+        /// <summary>
         /// Get NativeImageSource that is saved captured image.
         /// </summary>
         /// <returns>NativeImageSource that is saved captured image.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public NativeImageSource GetNativeImageSource()
         {
-            Tizen.Log.Debug("NUI", $"GetNativeImageSource()");
             return new NativeImageSource(Interop.Capture.GetNativeImageSourcePtr(swigCPtr), true);
         }
 
@@ -310,7 +323,7 @@ namespace Tizen.NUI
         public string GenerateUrl()
         {
             string url = "";
-            url = Interop.Capture.GenerageUrl(swigCPtr);
+            url = Interop.Capture.GenerateUrl(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return url;
         }
