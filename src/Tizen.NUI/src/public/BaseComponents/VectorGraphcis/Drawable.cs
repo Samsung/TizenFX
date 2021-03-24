@@ -14,6 +14,7 @@
 * limitations under the License.
 *
 */
+using System;
 using System.ComponentModel;
 
 namespace Tizen.NUI.BaseComponents.VectorGraphics
@@ -80,9 +81,19 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// </summary>
         /// <param name="matrix">The float type array of 3x3 matrix.</param>
         /// <returns>True when it's successful. False otherwise.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when matrix is null. </exception>
+        /// <exception cref="ArgumentException"> Thrown when matrix array length is not 9. </exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Transform(float[] matrix)
         {   
+            if (matrix == null)
+            {
+                throw new ArgumentNullException(nameof(matrix));
+            }
+            if (matrix.Length != 9)
+            {
+                throw new ArgumentException("matrix array length is not 9.", nameof(matrix));
+            }
             bool ret = Interop.Drawable.Transform(BaseHandle.getCPtr(this), matrix);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
