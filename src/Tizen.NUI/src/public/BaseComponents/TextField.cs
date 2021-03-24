@@ -1252,6 +1252,27 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The GrabHandleColor property.
+        /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (textField.GrabHandleColor.X = 0.1f;) is possible.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color GrabHandleColor
+        {
+            get
+            {
+                Color temp = (Color)GetValue(GrabHandleColorProperty);
+                return new Color(OnGrabHandleColorChanged, temp.R, temp.G, temp.B, temp.A);
+            }
+            set
+            {
+                SetValue(GrabHandleColorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// The Placeholder property.
         /// Gets or sets the placeholder: text, color, font family, font style, point size, and pixel size.
         /// </summary>
@@ -1659,6 +1680,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int EnableEditing = Interop.TextField.EnableEditingGet();
             internal static readonly int PrimaryCursorPosition = Interop.TextField.PrimaryCursorPositionGet();
             internal static readonly int FontSizeScale = Interop.TextField.FontSizeScaleGet();
+            internal static readonly int GrabHandleColor = Interop.TextField.GrabHandleColorGet();
         }
 
         internal class InputStyle
@@ -1712,6 +1734,10 @@ namespace Tizen.NUI.BaseComponents
         private void OnTextColorChanged(float r, float g, float b, float a)
         {
             TextColor = new Color(r, g, b, a);
+        }
+        private void OnGrabHandleColorChanged(float r, float g, float b, float a)
+        {
+            GrabHandleColor = new Color(r, g, b, a);
         }
     }
 }
