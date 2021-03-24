@@ -1,8 +1,7 @@
+using System;
+using System.Collections.Generic;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.BaseComponents.VectorGraphics;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-
 
 namespace Tizen.NUI.Samples
 {
@@ -61,7 +60,7 @@ namespace Tizen.NUI.Samples
                 StrokeDash = new List<float>(){15.0f, 30.0f}.AsReadOnly(),
             };
             shape2.AddCircle(0.0f, 0.0f, 150.0f, 100.0f);
-            shape2.Transform(new float[] {0.6f, 0.0f, 350.0f, 0.0f, 0.6f, 100.0f, 0.0f, 0.0f, 1.0f});
+            shape2.Transform(new float[] {0.6f, 0.0f, 350.0f, 0.0f, 0.6f, 100.0f, 0.0f, 0.0f, 1.0f});        
 
             canvasView.AddDrawable(shape2);
 
@@ -134,6 +133,32 @@ namespace Tizen.NUI.Samples
             for (int i = 0; i < shape2.StrokeDash.Count; i++)
             {
                 log.Debug(tag, "Shape4 StrokeDash : " + shape2.StrokeDash[i] + "\n");
+            }
+
+            // Exception test.
+            try
+            {
+                shape2.Transform(new float[] {0.6f, 0.0f});
+            }
+            catch (ArgumentException e)
+            {
+                log.Debug(tag, "Transform : " + e.Message + "\n");
+            }
+            try
+            {
+                shape2.Transform(null);
+            }
+            catch (ArgumentException e)
+            {
+                log.Debug(tag, "Transform : " + e.Message + "\n");
+            }
+            try
+            {
+                shape2.StrokeDash = null;
+            }
+            catch (ArgumentException e)
+            {
+                log.Debug(tag, "StrokeDash setter : " + e.Message + "\n");
             }
             
             root.Add(canvasView);
