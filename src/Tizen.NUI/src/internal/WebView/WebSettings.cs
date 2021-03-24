@@ -28,8 +28,11 @@ namespace Tizen.NUI
         private bool allowMixedContents;
         private bool enableSpatialNavigation;
         private bool enableWebSecurity;
+        private bool enableCacheBuilder;
+        private bool enableDoNotTrack;
         private bool allowFileAccessFromExternalUrl;
         private bool allowScriptsOpenWindows;
+        private bool useScrollbarThumbFocusNotifications;
 
         internal WebSettings(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
@@ -103,6 +106,56 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Enable cache builer
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool CacheBuilderEnabled
+        {
+            get 
+            {
+                return enableCacheBuilder;
+            }
+            set 
+            {
+                enableCacheBuilder = value;
+                Interop.WebSettings.EnableCacheBuilder(SwigCPtr, value);
+            }
+        }
+
+        /// <summary>
+        /// Enable do not track, to protect user privacy security.
+        /// </summary>
+        public bool DoNotTrackEnabled
+        {
+            get
+            {
+                return enableDoNotTrack;
+            }
+            set
+            {
+                enableDoNotTrack = value;
+                Interop.WebSettings.EnableDoNotTrack(SwigCPtr, value);
+            }
+        }
+
+        /// <summary>
+        /// Use scrollbar thumb focus notifications
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ScrollbarThumbFocusNotificationsUsed
+        {
+            get
+            {
+                return useScrollbarThumbFocusNotifications;
+            }
+            set
+            {
+                useScrollbarThumbFocusNotifications = value;
+                Interop.WebSettings.UseScrollbarThumbFocusNotifications(SwigCPtr, value);
+            }
+        }
+
+        /// <summary>
         /// Allow File Access From External Url.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -132,6 +185,198 @@ namespace Tizen.NUI
             set
             {
                 Interop.WebSettings.EnableJavaScript(SwigCPtr, value);
+            }
+        }
+
+        /// <summary>
+        /// Enable auto fitting
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool AutoFittingEnabled
+        {
+            get
+            {
+                return Interop.WebSettings.IsAutoFittingEnabled(SwigCPtr);
+            }
+            set
+            {
+                Interop.WebSettings.EnableAutoFitting(SwigCPtr, value);
+            }
+        }
+
+        /// <summary>
+        /// Enable plugins
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool PluginsEnabled
+        {
+            get
+            {
+                return Interop.WebSettings.ArePluginsEnabled(SwigCPtr);
+            }
+            set 
+            {
+                Interop.WebSettings.EnablePlugins(SwigCPtr, value);
+            }
+        }
+
+        /// <summary>
+        /// Enable private browsing
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool PrivateBrowsingEnabled
+        {
+            get
+            {
+                return Interop.WebSettings.IsPrivateBrowsingEnabled(SwigCPtr);
+            }
+            set
+            {
+                Interop.WebSettings.EnablePrivateBrowsing(SwigCPtr, value);
+            }
+        }
+
+        /// <summary>
+        /// Enable link magnifier
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool LinkMagnifierEnabled
+        {
+            get
+            {
+                return Interop.WebSettings.IsLinkMagnifierEnabled(SwigCPtr);
+            }
+            set
+            {
+                Interop.WebSettings.EnableLinkMagnifier(SwigCPtr, value);
+            }
+        }
+
+        /// <summary>
+        /// Use keypad without user action
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool KeypadWithoutUserActionUsed
+        {
+            get
+            {
+                return Interop.WebSettings.IsKeypadWithoutUserActionUsed(SwigCPtr);
+            }
+            set
+            {
+                Interop.WebSettings.UseKeypadWithoutUserAction(SwigCPtr, value);
+            }
+        }
+
+        /// <summary>
+        /// Enable autofill password form
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool AutofillPasswordFormEnabled
+        {
+            get
+            {
+                return Interop.WebSettings.IsAutofillPasswordFormEnabled(SwigCPtr);
+            }
+            set
+            {
+                Interop.WebSettings.EnableAutofillPasswordForm(SwigCPtr, value);
+            }
+        }
+
+        /// <summary>
+        /// Enable form candidate data
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool FormCandidateDataEnabled
+        {
+            get
+            {
+                return Interop.WebSettings.IsFormCandidateDataEnabled(SwigCPtr);
+            }
+            set
+            {
+                Interop.WebSettings.EnableFormCandidateData(SwigCPtr, value);
+            }
+        }
+
+        /// <summary>
+        /// Enable text selection
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool TextSelectionEnabled
+        {
+            get
+            {
+                return Interop.WebSettings.IsTextSelectionEnabled(SwigCPtr);
+            }
+            set
+            {
+                Interop.WebSettings.EnableTextSelection(SwigCPtr, value);
+            }
+        }
+
+        /// <summary>
+        /// Enable text autosizing
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool TextAutosizingEnabled
+        {
+            get
+            {
+                return Interop.WebSettings.IsTextAutosizingEnabled(SwigCPtr);
+            }
+            set
+            {
+                Interop.WebSettings.EnableTextAutosizing(SwigCPtr, value);
+            }
+        }
+
+        /// <summary>
+        /// Enable arrow scroll
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ArrowScrollEnabled
+        {
+            get
+            {
+                return Interop.WebSettings.IsArrowScrollEnabled(SwigCPtr);
+            }
+            set
+            {
+                Interop.WebSettings.EnableArrowScroll(SwigCPtr, value);
+            }
+        }
+
+        /// <summary>
+        /// Enable clipboard
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ClipboardEnabled
+        {
+            get
+            {
+                return Interop.WebSettings.IsClipboardEnabled(SwigCPtr);
+            }
+            set
+            {
+                Interop.WebSettings.EnableClipboard(SwigCPtr, value);
+            }
+        }
+
+        /// <summary>
+        /// Enable ime panel
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ImePanelEnabled
+        {
+            get
+            {
+                return Interop.WebSettings.IsImePanelEnabled(SwigCPtr);
+            }
+            set
+            {
+                Interop.WebSettings.EnableImePanel(SwigCPtr, value);
             }
         }
 
