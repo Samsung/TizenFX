@@ -393,11 +393,7 @@ namespace Tizen.Uix.Stt
                             if (data != null && msg != null)
                             {
                                 RecognitionResultEventArgs args = new RecognitionResultEventArgs(e, data, dataCount, Marshal.PtrToStringAnsi(msg));
-
-                                lock (_recognitionResultLock)
-                                {
-                                    _recognitionResult?.Invoke(this, args);
-                                }
+                                _recognitionResult?.Invoke(this, args);
                             }
                             else
                             {
@@ -448,11 +444,7 @@ namespace Tizen.Uix.Stt
                         _stateDelegate = (IntPtr handle, State previous, State current, IntPtr userData) =>
                         {
                             StateChangedEventArgs args = new StateChangedEventArgs(previous, current);
-
-                            lock (_stateChangedLock)
-                            {
-                                _stateChanged?.Invoke(obj, args);
-                            }
+                            _stateChanged?.Invoke(obj, args);
                         };
 
                         SttError error = SttSetStateChangedCB(_handle, _stateDelegate, IntPtr.Zero);
@@ -497,11 +489,7 @@ namespace Tizen.Uix.Stt
                         _errorDelegate = (IntPtr handle, SttError reason, IntPtr userData) =>
                         {
                             ErrorOccurredEventArgs args = new ErrorOccurredEventArgs(handle, reason);
-
-                            lock (_errorOccurredLock)
-                            {
-                                _errorOccurred?.Invoke(this, args);
-                            }
+                            _errorOccurred?.Invoke(this, args);
                         };
 
                         SttError error = SttSetErrorCB(_handle, _errorDelegate, IntPtr.Zero);
@@ -548,11 +536,7 @@ namespace Tizen.Uix.Stt
                             string previousLanguageString = Marshal.PtrToStringAnsi(previousLanguage);
                             string currentLanguageString = Marshal.PtrToStringAnsi(currentLanguage);
                             DefaultLanguageChangedEventArgs args = new DefaultLanguageChangedEventArgs(previousLanguageString, currentLanguageString);
-
-                            lock (_defaultLanguageChangedLock)
-                            {
-                                _defaultLanguageChanged?.Invoke(this, args);
-                            }
+                            _defaultLanguageChanged?.Invoke(this, args);
                         };
 
                         SttError error = SttSetDefaultLanguageChangedCB(_handle, _languageDelegate, IntPtr.Zero);
@@ -600,11 +584,7 @@ namespace Tizen.Uix.Stt
                             string engineIdString = Marshal.PtrToStringAnsi(engineId);
                             string languageString = Marshal.PtrToStringAnsi(language);
                             EngineChangedEventArgs args = new EngineChangedEventArgs(engineIdString, languageString, supportSilence, needCredential);
-
-                            lock (_engineChangedLock)
-                            {
-                                _engineChanged?.Invoke(this, args);
-                            }
+                            _engineChanged?.Invoke(this, args);
                         };
 
                         SttError error = SttSetEngineChangedCB(_handle, _engineDelegate, IntPtr.Zero);

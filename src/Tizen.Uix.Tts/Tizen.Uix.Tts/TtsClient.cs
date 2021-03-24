@@ -267,11 +267,7 @@ namespace Tizen.Uix.Tts
                         _stateDelegate = (IntPtr handle, State previous, State current, IntPtr userData) =>
                         {
                             StateChangedEventArgs args = new StateChangedEventArgs(previous, current);
-
-                            lock(_stateChangedLock)
-                            {
-                                _stateChanged?.Invoke(this, args);
-                            }
+                            _stateChanged?.Invoke(this, args);
                         };
 
                         TtsError error = TtsSetStateChangedCB(_handle, _stateDelegate, IntPtr.Zero);
@@ -318,11 +314,7 @@ namespace Tizen.Uix.Tts
                         _utteranceStartedResultDelegate = (IntPtr handle, int uttId, IntPtr userData) =>
                         {
                             UtteranceEventArgs args = new UtteranceEventArgs(uttId);
-
-                            lock (_utteranceStartedLock)
-                            {
-                                _utteranceStarted?.Invoke(this, args);
-                            }
+                            _utteranceStarted?.Invoke(this, args);
                         };
 
                         TtsError error = TtsSetUtteranceStartedCB(_handle, _utteranceStartedResultDelegate, IntPtr.Zero);
@@ -367,11 +359,7 @@ namespace Tizen.Uix.Tts
                         _utteranceCompletedResultDelegate = (IntPtr handle, int uttId, IntPtr userData) =>
                         {
                             UtteranceEventArgs args = new UtteranceEventArgs(uttId);
-
-                            lock (_utteranceCompletedLock)
-                            {
-                                _utteranceCompleted?.Invoke(this, args);
-                            }
+                            _utteranceCompleted?.Invoke(this, args);
                         };
 
                         TtsError error = TtsSetUtteranceCompletedCB(_handle, _utteranceCompletedResultDelegate, IntPtr.Zero);
@@ -416,11 +404,7 @@ namespace Tizen.Uix.Tts
                         _errorDelegate = (IntPtr handle, int uttId, TtsError reason, IntPtr userData) =>
                         {
                             ErrorOccurredEventArgs args = new ErrorOccurredEventArgs(handle, uttId, reason);
-
-                            lock (_errorOccurredLock)
-                            {
-                                _errorOccurred?.Invoke(this, args);
-                            }
+                            _errorOccurred?.Invoke(this, args);
                         };
 
                         TtsError error = TtsSetErrorCB(_handle, _errorDelegate, IntPtr.Zero);
@@ -467,11 +451,7 @@ namespace Tizen.Uix.Tts
                             string previousLanguageString = Marshal.PtrToStringAnsi(previousLanguage);
                             string currentLanguageString = Marshal.PtrToStringAnsi(currentLanguage);
                             DefaultVoiceChangedEventArgs args = new DefaultVoiceChangedEventArgs(previousLanguageString, previousVoiceType, currentLanguageString, currentVoiceType);
-
-                            lock (_defaultVoiceChangedLock)
-                            {
-                                _defaultVoiceChanged?.Invoke(this, args);
-                            }
+                            _defaultVoiceChanged?.Invoke(this, args);
                         };
 
                         TtsError error = TtsSetDefaultVoiceChangedCB(_handle, _voiceChangedDelegate, IntPtr.Zero);
@@ -518,11 +498,7 @@ namespace Tizen.Uix.Tts
                             string engineIdString = Marshal.PtrToStringAnsi(engineId);
                             string languageString = Marshal.PtrToStringAnsi(language);
                             EngineChangedEventArgs args = new EngineChangedEventArgs(engineIdString, languageString, voiceType, needCredential);
-
-                            lock (_engineChangedLock)
-                            {
-                                _engineChanged?.Invoke(this, args);
-                            }
+                            _engineChanged?.Invoke(this, args);
                         };
                         TtsError error = TtsSetEngineChangedCB(_handle, _engineDelegate, IntPtr.Zero);
                         if (error != TtsError.None)
