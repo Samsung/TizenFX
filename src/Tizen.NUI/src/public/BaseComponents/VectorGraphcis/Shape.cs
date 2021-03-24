@@ -17,6 +17,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Collections.ObjectModel;
 using System.Collections.Generic;
 
 namespace Tizen.NUI.BaseComponents.VectorGraphics
@@ -194,15 +195,17 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// </summary>
         /// <exception cref="ArgumentNullException"> Thrown when value is null. </exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public List<float> StrokeDash
+        public ReadOnlyCollection<float> StrokeDash
         {
             get {
-                List<float> ret = new List<float>();
+                List<float> retList = new List<float>();
                 int patternCount = Interop.Shape.GetStrokeDashCount(BaseHandle.getCPtr(this));
                 for (int i = 0; i < patternCount; i++)
                 {
-                    ret.Add(Interop.Shape.GetStrokeDashIndexOf(BaseHandle.getCPtr(this), i));
+                    retList.Add(Interop.Shape.GetStrokeDashIndexOf(BaseHandle.getCPtr(this), i));
                 }
+                
+                ReadOnlyCollection<float> ret = new ReadOnlyCollection<float>(retList);
                 return ret;
             }
             set {
