@@ -1,6 +1,8 @@
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.BaseComponents.VectorGraphics;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+
 
 namespace Tizen.NUI.Samples
 {
@@ -56,7 +58,7 @@ namespace Tizen.NUI.Samples
                 FillColor = new Color(0.0f, 0.0f, 1.0f, 1.0f),
                 StrokeColor = new Color(1.0f, 1.0f, 0.0f, 1.0f),
                 StrokeWidth = 10.0f,
-                StrokeDash = new List<float>() {15.0f, 30.0f},
+                StrokeDash = new List<float>(){15.0f, 30.0f}.AsReadOnly(),
             };
             shape2.AddCircle(0.0f, 0.0f, 150.0f, 100.0f);
             shape2.Transform(new float[] {0.6f, 0.0f, 350.0f, 0.0f, 0.6f, 100.0f, 0.0f, 0.0f, 1.0f});
@@ -118,11 +120,6 @@ namespace Tizen.NUI.Samples
 
             canvasView.AddDrawable(shape);
 
-            timer = new Timer(1000 / 32);
-            timer.Tick += onTick;
-            timer.Start();
-
-
             // Test Getter
             log.Debug(tag, "Shape2 Color : " + shape2.FillColor.R + " " + shape2.FillColor.G + " " + shape2.FillColor.B + " " + shape2.FillColor.A + "\n");
             log.Debug(tag, "Shape2 StrokeColor : " + shape2.StrokeColor.R + " " + shape2.StrokeColor.G + " " + shape2.StrokeColor.B + " " + shape2.StrokeColor.A + "\n");
@@ -140,6 +137,10 @@ namespace Tizen.NUI.Samples
             }
             
             root.Add(canvasView);
+
+            timer = new Timer(1000 / 32);
+            timer.Tick += onTick;
+            timer.Start();
         }
 
         public void Deactivate()
