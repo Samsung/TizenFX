@@ -195,7 +195,7 @@ namespace Tizen.Uix.VoiceControl
     };
 
     /// <summary>
-    /// A main function of the voice control API registers the command and gets a notification for the recognition result. 
+    /// A main function of the voice control API registers the command and gets a notification for the recognition result.
     /// Applications can add their own commands and provide results when their command is recognized by the user voice input.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
@@ -238,7 +238,6 @@ namespace Tizen.Uix.VoiceControl
             get
             {
                 string currentLanguage;
-
                 ErrorCode error = VcGetCurrentLanguage(out currentLanguage);
                 if (error != ErrorCode.None)
                 {
@@ -268,7 +267,6 @@ namespace Tizen.Uix.VoiceControl
             get
             {
                 State state;
-
                 ErrorCode error = VcGetState(out state);
                 if (error != ErrorCode.None)
                 {
@@ -509,6 +507,7 @@ namespace Tizen.Uix.VoiceControl
                 s_supportedLanguages.Add(languageStr);
                 return true;
             };
+
             ErrorCode error = VcForeachSupportedLanguages(s_supportedLanguagesCb, IntPtr.Zero);
             if (error != ErrorCode.None)
             {
@@ -683,6 +682,7 @@ namespace Tizen.Uix.VoiceControl
                 VoiceCommandType commandType = VoiceCommandType.Foreground;
                 if (type == CommandType.Background)
                     commandType = VoiceCommandType.BackGround;
+
                 ErrorCode error = VcUnsetCommandList(commandType);
                 if (error != ErrorCode.None)
                 {
@@ -690,7 +690,6 @@ namespace Tizen.Uix.VoiceControl
                     throw ExceptionFactory.CreateException(error);
                 }
             }
-
             else
             {
                 throw ExceptionFactory.CreateException(ErrorCode.InvalidParameter);
@@ -725,6 +724,7 @@ namespace Tizen.Uix.VoiceControl
             {
                 s_recognitionResult = new RecognitionResult(evt, cmdList, result);
             };
+
             ErrorCode error = VcGetResult(s_resultCb, IntPtr.Zero);
             if (error != ErrorCode.None)
             {
@@ -746,39 +746,42 @@ namespace Tizen.Uix.VoiceControl
         {
             add
             {
-                s_resultDelegate = (ResultEvent evt, IntPtr cmdList, IntPtr result, IntPtr userData) =>
+                if (_recognitionResult == null)
                 {
-                    Log.Info(LogTag, "Recognition Result Event Triggered");
-                    if ((cmdList != null) && (result != null))
+                    s_resultDelegate = (ResultEvent evt, IntPtr cmdList, IntPtr result, IntPtr userData) =>
                     {
-                        RecognitionResultEventArgs args = new RecognitionResultEventArgs(new RecognitionResult( evt, cmdList, result));
-                        _recognitionResult?.Invoke(null, args);
-                    }
-                    else
+                        Log.Info(LogTag, "Recognition Result Event Triggered");
+                        if ((cmdList != null) && (result != null))
+                        {
+                            RecognitionResultEventArgs args = new RecognitionResultEventArgs(new RecognitionResult(evt, cmdList, result));
+                            _recognitionResult?.Invoke(null, args);
+                        }
+                        else
+                        {
+                            Log.Info(LogTag, "Recognition Result Event null received");
+                        }
+                    };
+
+                    ErrorCode error = VcSetResultCb(s_resultDelegate, IntPtr.Zero);
+                    if (error != ErrorCode.None)
                     {
-                        Log.Info(LogTag, "Recognition Result Event null received");
+                        Log.Error(LogTag, "Add RecognitionResult Failed with error " + error);
                     }
-                };
-                ErrorCode error = VcSetResultCb(s_resultDelegate, IntPtr.Zero);
-                if (error != ErrorCode.None)
-                {
-                    Log.Error(LogTag, "Add RecognitionResult Failed with error " + error);
                 }
-                else
-                {
-                    _recognitionResult += value;
-                }
+                _recognitionResult += value;
             }
 
             remove
             {
-                ErrorCode error = VcUnsetResultCb();
-                if (error != ErrorCode.None)
-                {
-                    Log.Error(LogTag, "Remove RecognitionResult Failed with error " + error);
-                }
-
                 _recognitionResult -= value;
+                if (_recognitionResult == null)
+                {
+                    ErrorCode error = VcUnsetResultCb();
+                    if (error != ErrorCode.None)
+                    {
+                        Log.Error(LogTag, "Remove RecognitionResult Failed with error " + error);
+                    }
+                }
             }
         }
 
@@ -793,31 +796,34 @@ namespace Tizen.Uix.VoiceControl
         {
             add
             {
-                s_serviceStateDelegate = (ServiceState previous, ServiceState current, IntPtr userData) =>
+                if (_serviceStateChanged == null)
                 {
-                    ServiceStateChangedEventArgs args = new ServiceStateChangedEventArgs(previous, current);
-                    _serviceStateChanged?.Invoke(null, args);
-                };
-                ErrorCode error = VcSetServiceStateChangedCb(s_serviceStateDelegate, IntPtr.Zero);
-                if (error != ErrorCode.None)
-                {
-                    Log.Error(LogTag, "Add ServiceStateChanged Failed with error " + error);
+                    s_serviceStateDelegate = (ServiceState previous, ServiceState current, IntPtr userData) =>
+                    {
+                        ServiceStateChangedEventArgs args = new ServiceStateChangedEventArgs(previous, current);
+                        _serviceStateChanged?.Invoke(null, args);
+                    };
+
+                    ErrorCode error = VcSetServiceStateChangedCb(s_serviceStateDelegate, IntPtr.Zero);
+                    if (error != ErrorCode.None)
+                    {
+                        Log.Error(LogTag, "Add ServiceStateChanged Failed with error " + error);
+                    }
                 }
-                else
-                {
-                    _serviceStateChanged += value;
-                }
+                _serviceStateChanged += value;
             }
 
             remove
             {
-                ErrorCode error = VcUnsetServiceStateChangedCb();
-                if (error != ErrorCode.None)
-                {
-                    Log.Error(LogTag, "Remove ServiceStateChanged Failed with error " + error);
-                }
-
                 _serviceStateChanged -= value;
+                if (_serviceStateChanged == null)
+                {
+                    ErrorCode error = VcUnsetServiceStateChangedCb();
+                    if (error != ErrorCode.None)
+                    {
+                        Log.Error(LogTag, "Remove ServiceStateChanged Failed with error " + error);
+                    }
+                }
             }
         }
 
@@ -832,31 +838,34 @@ namespace Tizen.Uix.VoiceControl
         {
             add
             {
-                s_stateDelegate = (State previous, State current, IntPtr userData) =>
+                if (_stateChanged == null)
                 {
-                    StateChangedEventArgs args = new StateChangedEventArgs(previous, current);
-                    _stateChanged?.Invoke(null, args);
-                };
-                ErrorCode error = VcSetStateChangedCb(s_stateDelegate, IntPtr.Zero);
-                if (error != ErrorCode.None)
-                {
-                    Log.Error(LogTag, "Add StateChanged Failed with error " + error);
+                    s_stateDelegate = (State previous, State current, IntPtr userData) =>
+                    {
+                        StateChangedEventArgs args = new StateChangedEventArgs(previous, current);
+                        _stateChanged?.Invoke(null, args);
+                    };
+
+                    ErrorCode error = VcSetStateChangedCb(s_stateDelegate, IntPtr.Zero);
+                    if (error != ErrorCode.None)
+                    {
+                        Log.Error(LogTag, "Add StateChanged Failed with error " + error);
+                    }
                 }
-                else
-                {
-                    _stateChanged += value;
-                }
+                _stateChanged += value;
             }
 
             remove
             {
-                ErrorCode error = VcUnsetStateChangedCb();
-                if (error != ErrorCode.None)
-                {
-                    Log.Error(LogTag, "Remove StateChanged Failed with error " + error);
-                }
-
                 _stateChanged -= value;
+                if (_stateChanged == null)
+                {
+                    ErrorCode error = VcUnsetStateChangedCb();
+                    if (error != ErrorCode.None)
+                    {
+                        Log.Error(LogTag, "Remove StateChanged Failed with error " + error);
+                    }
+                }
             }
         }
 
@@ -871,33 +880,34 @@ namespace Tizen.Uix.VoiceControl
         {
             add
             {
-                s_errorDelegate = (ErrorCode reason, IntPtr userData) =>
-            {
-                ErrorOccuredEventArgs args = new ErrorOccuredEventArgs(reason);
-                _errorOccured?.Invoke(null, args);
-            };
-                ErrorCode error = VcSetErrorCb(s_errorDelegate, IntPtr.Zero);
-                if (error != ErrorCode.None)
+                if (_errorOccured == null)
                 {
-                    Log.Error(LogTag, "Add ErrorOccured Failed with error " + error);
-                }
+                    s_errorDelegate = (ErrorCode reason, IntPtr userData) =>
+                    {
+                        ErrorOccuredEventArgs args = new ErrorOccuredEventArgs(reason);
+                        _errorOccured?.Invoke(null, args);
+                    };
 
-                else
-                {
-                    _errorOccured += value;
+                    ErrorCode error = VcSetErrorCb(s_errorDelegate, IntPtr.Zero);
+                    if (error != ErrorCode.None)
+                    {
+                        Log.Error(LogTag, "Add ErrorOccured Failed with error " + error);
+                    }
                 }
+                _errorOccured += value;
             }
-
 
             remove
             {
-                ErrorCode error = VcUnsetErrorCb();
-                if (error != ErrorCode.None)
-                {
-                    Log.Error(LogTag, "Remove ErrorOccured Failed with error " + error);
-                }
-
                 _errorOccured -= value;
+                if (_errorOccured == null)
+                {
+                    ErrorCode error = VcUnsetErrorCb();
+                    if (error != ErrorCode.None)
+                    {
+                        Log.Error(LogTag, "Remove ErrorOccured Failed with error " + error);
+                    }
+                }
             }
         }
 
@@ -912,34 +922,36 @@ namespace Tizen.Uix.VoiceControl
         {
             add
             {
-                s_languageDelegate = (IntPtr previousLanguage, IntPtr currentLanguage, IntPtr userData) =>
-            {
-                string previousLanguageString = Marshal.PtrToStringAnsi(previousLanguage);
-                string currentLanguageString = Marshal.PtrToStringAnsi(currentLanguage);
-                CurrentLanguageChangedEventArgs args = new CurrentLanguageChangedEventArgs(previousLanguageString, currentLanguageString);
-                _currentLanguageChanged?.Invoke(null, args);
-            };
-                ErrorCode error = VcSetCurrentLanguageChangedCb(s_languageDelegate, IntPtr.Zero);
-                if (error != ErrorCode.None)
+                if (_currentLanguageChanged == null)
                 {
-                    Log.Error(LogTag, "Add CurrentLanguageChanged Failed with error " + error);
-                }
+                    s_languageDelegate = (IntPtr previousLanguage, IntPtr currentLanguage, IntPtr userData) =>
+                    {
+                        string previousLanguageString = Marshal.PtrToStringAnsi(previousLanguage);
+                        string currentLanguageString = Marshal.PtrToStringAnsi(currentLanguage);
+                        CurrentLanguageChangedEventArgs args = new CurrentLanguageChangedEventArgs(previousLanguageString, currentLanguageString);
+                        _currentLanguageChanged?.Invoke(null, args);
+                    };
 
-                else
-                {
-                    _currentLanguageChanged += value;
+                    ErrorCode error = VcSetCurrentLanguageChangedCb(s_languageDelegate, IntPtr.Zero);
+                    if (error != ErrorCode.None)
+                    {
+                        Log.Error(LogTag, "Add CurrentLanguageChanged Failed with error " + error);
+                    }
                 }
+                _currentLanguageChanged += value;
             }
 
             remove
             {
-                ErrorCode error = VcUnsetCurrentLanguageChangedCb();
-                if (error != ErrorCode.None)
-                {
-                    Log.Error(LogTag, "Remove CurrentLanguageChanged Failed with error " + error);
-                }
-
                 _currentLanguageChanged -= value;
+                if (_currentLanguageChanged == null)
+                {
+                    ErrorCode error = VcUnsetCurrentLanguageChangedCb();
+                    if (error != ErrorCode.None)
+                    {
+                        Log.Error(LogTag, "Remove CurrentLanguageChanged Failed with error " + error);
+                    }
+                }
             }
         }
     }
