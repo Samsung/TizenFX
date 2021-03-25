@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -266,6 +267,12 @@ namespace Tizen.Network.Bluetooth
             _impl = new BluetoothGattClientImpl(remoteAddress);
             _remoteAddress = remoteAddress;
             StaticConnectionStateChanged += OnConnectionStateChanged;
+            _impl.AttMtuChanged += OnAttMtuChanged;
+        }
+
+        private void OnAttMtuChanged(object s, AttMtuChangedEventArgs e)
+        {
+            AttMtuChanged?.Invoke(this, e);
         }
 
         /// <summary>
@@ -516,6 +523,41 @@ namespace Tizen.Network.Bluetooth
         {
             return await _impl.WriteValueAsyncTask(descriptor.GetHandle());
         }
+
+        /// <summary>
+        /// Gets the value of the ATT MTU(Maximum Transmission Unit) for the connection.
+        /// </summary>
+        /// <returns>The MTU value</returns>
+        /// <exception cref="NotSupportedException">Thrown when the BT/BLE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the BT/BLE is not enabled
+        /// or when the remote device is disconnected, or when other specific error occurs.</exception>
+        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int GetAttMtu()
+        {
+            return _impl.GetAttMtu();
+        }
+
+        /// <summary>
+        /// Sets the value of the ATT MTU(Maximum Transmission Unit) for the connection.
+        /// </summary>
+        /// <param name="mtu">The MTU value</param>
+        /// <exception cref="NotSupportedException">Thrown when the BT/BLE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the BT/BLE is not enabled
+        /// or when the remote device is disconnected, or when other specific error occurs.</exception>
+        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetAttMtu(int mtu)
+        {
+            _impl.SetAttMtu(mtu);
+        }
+
+        /// <summary>
+        /// The AttMtuChanged event is raised when the MTU value changed.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<AttMtuChangedEventArgs> AttMtuChanged;
 
         internal bool Isvalid()
         {

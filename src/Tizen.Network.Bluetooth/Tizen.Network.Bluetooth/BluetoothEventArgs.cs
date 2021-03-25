@@ -1215,6 +1215,32 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
+    /// An extended EventArgs class contains the changed MTU value.
+    /// </summary>
+    /// <since_tizen> 8 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class AttMtuChangedEventArgs : EventArgs
+    {
+        internal AttMtuChangedEventArgs(string remoteAddress, int mtu)
+        {
+            RemoteAddress = remoteAddress;
+            Mtu = mtu;
+        }
+
+        /// <summary>
+        /// The remote address.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public string RemoteAddress { get; }
+
+        /// <summary>
+        /// The MTU value
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public int Mtu { get; }
+    }
+
+    /// <summary>
     /// An extended EventArgs class contains the changed attribute value.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
