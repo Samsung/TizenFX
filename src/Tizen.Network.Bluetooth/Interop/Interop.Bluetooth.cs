@@ -630,6 +630,9 @@ internal static partial class Interop
         [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
         internal delegate void BtGattClientRequestCompletedCallback(int result, IntPtr requestHandle, IntPtr userData);
 
+        [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
+        internal delegate void BtGattClientAttMtuChangedCallback(IntPtr clientHandle, ref AttMtuInfoStruct mtuInfo, IntPtr userData);
+
         // Gatt Attribute
 
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_gatt_destroy")]
@@ -744,6 +747,18 @@ internal static partial class Interop
 
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_gatt_client_write_value")]
         internal static extern int BtGattClientWriteValue(BluetoothGattAttributeHandle gattHandle, BtGattClientRequestCompletedCallback callback, IntPtr userData);
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_gatt_client_get_att_mtu")]
+        internal static extern int BtGattClientGetAttMtu(BluetoothGattClientHandle clientHandle, out int mtu);
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_gatt_client_request_att_mtu_change")]
+        internal static extern int BtGattClientSetAttMtu(BluetoothGattClientHandle clientHandle, int mtu);
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_gatt_client_set_att_mtu_changed_cb")]
+        internal static extern int BtGattClientSetMtuChangedCallback(BluetoothGattClientHandle clientHandle, BtGattClientAttMtuChangedCallback callback, IntPtr userData);
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_gatt_client_unset_att_mtu_changed_cb")]
+        internal static extern int BtGattClientUnsetMtuChangedCallback(BluetoothGattClientHandle clientHandle);
 
         // GATT Server
 
