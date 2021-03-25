@@ -41,8 +41,8 @@ namespace Tizen.NUI.Components
                 BackgroundColor = new Selector<Color>()
                 {
                     Normal = new Color(0.039f, 0.055f, 0.29f, 1),
-                    Focused = new Color(0, 0.2f, 0.545f, 1),
                     Pressed = new Color(0.106f, 0.412f, 0.792f, 1),
+                    Focused = new Color(0, 0.2f, 0.545f, 1),
                     Disabled = new Color(0.765f, 0.792f, 0.824f, 1),
                 },
                 Text = new TextLabelStyle()
