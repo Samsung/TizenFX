@@ -206,6 +206,11 @@ namespace Tizen.Uix.VoiceControl
         private static event EventHandler<ServiceStateChangedEventArgs> _serviceStateChanged;
         private static event EventHandler<ErrorOccuredEventArgs> _errorOccured;
         private static event EventHandler<CurrentLanguageChangedEventArgs> _currentLanguageChanged;
+        private static readonly Object _recognitionResultLock = new Object();
+        private static readonly Object _stateChangedLock = new Object();
+        private static readonly Object _serviceStateChangedLock = new Object();
+        private static readonly Object _errorOccuredLock = new Object();
+        private static readonly Object _currentLanguageChangedLock = new Object();
         private static VcResultCb s_resultDelegate;
         private static VcStateChangedCb s_stateDelegate;
         private static VcServiceStateChangedCb s_serviceStateDelegate;
@@ -746,40 +751,46 @@ namespace Tizen.Uix.VoiceControl
         {
             add
             {
-                if (_recognitionResult == null)
+                lock (_recognitionResultLock)
                 {
-                    s_resultDelegate = (ResultEvent evt, IntPtr cmdList, IntPtr result, IntPtr userData) =>
+                    if (_recognitionResult == null)
                     {
-                        Log.Info(LogTag, "Recognition Result Event Triggered");
-                        if ((cmdList != null) && (result != null))
+                        s_resultDelegate = (ResultEvent evt, IntPtr cmdList, IntPtr result, IntPtr userData) =>
                         {
-                            RecognitionResultEventArgs args = new RecognitionResultEventArgs(new RecognitionResult(evt, cmdList, result));
-                            _recognitionResult?.Invoke(null, args);
-                        }
-                        else
-                        {
-                            Log.Info(LogTag, "Recognition Result Event null received");
-                        }
-                    };
+                            Log.Info(LogTag, "Recognition Result Event Triggered");
+                            if ((cmdList != null) && (result != null))
+                            {
+                                RecognitionResultEventArgs args = new RecognitionResultEventArgs(new RecognitionResult(evt, cmdList, result));
+                                _recognitionResult?.Invoke(null, args);
+                            }
+                            else
+                            {
+                                Log.Info(LogTag, "Recognition Result Event null received");
+                            }
+                        };
 
-                    ErrorCode error = VcSetResultCb(s_resultDelegate, IntPtr.Zero);
-                    if (error != ErrorCode.None)
-                    {
-                        Log.Error(LogTag, "Add RecognitionResult Failed with error " + error);
+                        ErrorCode error = VcSetResultCb(s_resultDelegate, IntPtr.Zero);
+                        if (error != ErrorCode.None)
+                        {
+                            Log.Error(LogTag, "Add RecognitionResult Failed with error " + error);
+                        }
                     }
+                    _recognitionResult += value;
                 }
-                _recognitionResult += value;
             }
 
             remove
             {
-                _recognitionResult -= value;
-                if (_recognitionResult == null)
+                lock (_recognitionResultLock)
                 {
-                    ErrorCode error = VcUnsetResultCb();
-                    if (error != ErrorCode.None)
+                    _recognitionResult -= value;
+                    if (_recognitionResult == null)
                     {
-                        Log.Error(LogTag, "Remove RecognitionResult Failed with error " + error);
+                        ErrorCode error = VcUnsetResultCb();
+                        if (error != ErrorCode.None)
+                        {
+                            Log.Error(LogTag, "Remove RecognitionResult Failed with error " + error);
+                        }
                     }
                 }
             }
@@ -796,32 +807,38 @@ namespace Tizen.Uix.VoiceControl
         {
             add
             {
-                if (_serviceStateChanged == null)
+                lock (_serviceStateChangedLock)
                 {
-                    s_serviceStateDelegate = (ServiceState previous, ServiceState current, IntPtr userData) =>
+                    if (_serviceStateChanged == null)
                     {
-                        ServiceStateChangedEventArgs args = new ServiceStateChangedEventArgs(previous, current);
-                        _serviceStateChanged?.Invoke(null, args);
-                    };
+                        s_serviceStateDelegate = (ServiceState previous, ServiceState current, IntPtr userData) =>
+                        {
+                            ServiceStateChangedEventArgs args = new ServiceStateChangedEventArgs(previous, current);
+                            _serviceStateChanged?.Invoke(null, args);
+                        };
 
-                    ErrorCode error = VcSetServiceStateChangedCb(s_serviceStateDelegate, IntPtr.Zero);
-                    if (error != ErrorCode.None)
-                    {
-                        Log.Error(LogTag, "Add ServiceStateChanged Failed with error " + error);
+                        ErrorCode error = VcSetServiceStateChangedCb(s_serviceStateDelegate, IntPtr.Zero);
+                        if (error != ErrorCode.None)
+                        {
+                            Log.Error(LogTag, "Add ServiceStateChanged Failed with error " + error);
+                        }
                     }
+                    _serviceStateChanged += value;
                 }
-                _serviceStateChanged += value;
             }
 
             remove
             {
-                _serviceStateChanged -= value;
-                if (_serviceStateChanged == null)
+                lock (_serviceStateChangedLock)
                 {
-                    ErrorCode error = VcUnsetServiceStateChangedCb();
-                    if (error != ErrorCode.None)
+                    _serviceStateChanged -= value;
+                    if (_serviceStateChanged == null)
                     {
-                        Log.Error(LogTag, "Remove ServiceStateChanged Failed with error " + error);
+                        ErrorCode error = VcUnsetServiceStateChangedCb();
+                        if (error != ErrorCode.None)
+                        {
+                            Log.Error(LogTag, "Remove ServiceStateChanged Failed with error " + error);
+                        }
                     }
                 }
             }
@@ -838,32 +855,38 @@ namespace Tizen.Uix.VoiceControl
         {
             add
             {
-                if (_stateChanged == null)
+                lock (_stateChangedLock)
                 {
-                    s_stateDelegate = (State previous, State current, IntPtr userData) =>
+                    if (_stateChanged == null)
                     {
-                        StateChangedEventArgs args = new StateChangedEventArgs(previous, current);
-                        _stateChanged?.Invoke(null, args);
-                    };
+                        s_stateDelegate = (State previous, State current, IntPtr userData) =>
+                        {
+                            StateChangedEventArgs args = new StateChangedEventArgs(previous, current);
+                            _stateChanged?.Invoke(null, args);
+                        };
 
-                    ErrorCode error = VcSetStateChangedCb(s_stateDelegate, IntPtr.Zero);
-                    if (error != ErrorCode.None)
-                    {
-                        Log.Error(LogTag, "Add StateChanged Failed with error " + error);
+                        ErrorCode error = VcSetStateChangedCb(s_stateDelegate, IntPtr.Zero);
+                        if (error != ErrorCode.None)
+                        {
+                            Log.Error(LogTag, "Add StateChanged Failed with error " + error);
+                        }
                     }
+                    _stateChanged += value;
                 }
-                _stateChanged += value;
             }
 
             remove
             {
-                _stateChanged -= value;
-                if (_stateChanged == null)
+                lock (_stateChangedLock)
                 {
-                    ErrorCode error = VcUnsetStateChangedCb();
-                    if (error != ErrorCode.None)
+                    _stateChanged -= value;
+                    if (_stateChanged == null)
                     {
-                        Log.Error(LogTag, "Remove StateChanged Failed with error " + error);
+                        ErrorCode error = VcUnsetStateChangedCb();
+                        if (error != ErrorCode.None)
+                        {
+                            Log.Error(LogTag, "Remove StateChanged Failed with error " + error);
+                        }
                     }
                 }
             }
@@ -880,32 +903,38 @@ namespace Tizen.Uix.VoiceControl
         {
             add
             {
-                if (_errorOccured == null)
+                lock (_errorOccuredLock)
                 {
-                    s_errorDelegate = (ErrorCode reason, IntPtr userData) =>
+                    if (_errorOccured == null)
                     {
-                        ErrorOccuredEventArgs args = new ErrorOccuredEventArgs(reason);
-                        _errorOccured?.Invoke(null, args);
-                    };
+                        s_errorDelegate = (ErrorCode reason, IntPtr userData) =>
+                        {
+                            ErrorOccuredEventArgs args = new ErrorOccuredEventArgs(reason);
+                            _errorOccured?.Invoke(null, args);
+                        };
 
-                    ErrorCode error = VcSetErrorCb(s_errorDelegate, IntPtr.Zero);
-                    if (error != ErrorCode.None)
-                    {
-                        Log.Error(LogTag, "Add ErrorOccured Failed with error " + error);
+                        ErrorCode error = VcSetErrorCb(s_errorDelegate, IntPtr.Zero);
+                        if (error != ErrorCode.None)
+                        {
+                            Log.Error(LogTag, "Add ErrorOccured Failed with error " + error);
+                        }
                     }
+                    _errorOccured += value;
                 }
-                _errorOccured += value;
             }
 
             remove
             {
-                _errorOccured -= value;
-                if (_errorOccured == null)
+                lock (_errorOccuredLock)
                 {
-                    ErrorCode error = VcUnsetErrorCb();
-                    if (error != ErrorCode.None)
+                    _errorOccured -= value;
+                    if (_errorOccured == null)
                     {
-                        Log.Error(LogTag, "Remove ErrorOccured Failed with error " + error);
+                        ErrorCode error = VcUnsetErrorCb();
+                        if (error != ErrorCode.None)
+                        {
+                            Log.Error(LogTag, "Remove ErrorOccured Failed with error " + error);
+                        }
                     }
                 }
             }
@@ -922,34 +951,40 @@ namespace Tizen.Uix.VoiceControl
         {
             add
             {
-                if (_currentLanguageChanged == null)
+                lock (_currentLanguageChangedLock)
                 {
-                    s_languageDelegate = (IntPtr previousLanguage, IntPtr currentLanguage, IntPtr userData) =>
+                    if (_currentLanguageChanged == null)
                     {
-                        string previousLanguageString = Marshal.PtrToStringAnsi(previousLanguage);
-                        string currentLanguageString = Marshal.PtrToStringAnsi(currentLanguage);
-                        CurrentLanguageChangedEventArgs args = new CurrentLanguageChangedEventArgs(previousLanguageString, currentLanguageString);
-                        _currentLanguageChanged?.Invoke(null, args);
-                    };
+                        s_languageDelegate = (IntPtr previousLanguage, IntPtr currentLanguage, IntPtr userData) =>
+                        {
+                            string previousLanguageString = Marshal.PtrToStringAnsi(previousLanguage);
+                            string currentLanguageString = Marshal.PtrToStringAnsi(currentLanguage);
+                            CurrentLanguageChangedEventArgs args = new CurrentLanguageChangedEventArgs(previousLanguageString, currentLanguageString);
+                            _currentLanguageChanged?.Invoke(null, args);
+                        };
 
-                    ErrorCode error = VcSetCurrentLanguageChangedCb(s_languageDelegate, IntPtr.Zero);
-                    if (error != ErrorCode.None)
-                    {
-                        Log.Error(LogTag, "Add CurrentLanguageChanged Failed with error " + error);
+                        ErrorCode error = VcSetCurrentLanguageChangedCb(s_languageDelegate, IntPtr.Zero);
+                        if (error != ErrorCode.None)
+                        {
+                            Log.Error(LogTag, "Add CurrentLanguageChanged Failed with error " + error);
+                        }
                     }
+                    _currentLanguageChanged += value;
                 }
-                _currentLanguageChanged += value;
             }
 
             remove
             {
-                _currentLanguageChanged -= value;
-                if (_currentLanguageChanged == null)
+                lock (_currentLanguageChangedLock)
                 {
-                    ErrorCode error = VcUnsetCurrentLanguageChangedCb();
-                    if (error != ErrorCode.None)
+                    _currentLanguageChanged -= value;
+                    if (_currentLanguageChanged == null)
                     {
-                        Log.Error(LogTag, "Remove CurrentLanguageChanged Failed with error " + error);
+                        ErrorCode error = VcUnsetCurrentLanguageChangedCb();
+                        if (error != ErrorCode.None)
+                        {
+                            Log.Error(LogTag, "Remove CurrentLanguageChanged Failed with error " + error);
+                        }
                     }
                 }
             }
