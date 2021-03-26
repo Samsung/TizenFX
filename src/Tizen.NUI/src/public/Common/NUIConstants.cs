@@ -758,6 +758,29 @@ namespace Tizen.NUI
         Dialog
     }
 
+    /// <summary>
+    /// Enumeration of rendering mode for GL application<br />
+    /// It is used with GLWindow.
+    /// This Enumeration is used to choose the rendering mode.
+    /// It has two options.
+    /// One of them is continuous mode. It is rendered continuously.
+    /// The other is on demand mode. It is rendered by calling RenderOnce().
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum GLRenderingMode
+    {
+        /// <summary>
+        /// A default Rendering Mode<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Continuous,
+        /// <summary>
+        /// on demand by application
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        OnDemand
+    }
+
     /// <since_tizen> 3 </since_tizen>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1717:Only FlagsAttribute enums should have plural names")]
     public enum DisposeTypes

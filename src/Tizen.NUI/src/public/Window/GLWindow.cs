@@ -435,6 +435,32 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Gets rendering mode of GLWindow application
+        /// </summary>
+        /// <returns>The rendering mode of the GLWindow.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public GLRenderingMode GetRenderingMode()
+        {
+            NativeGLRendeingMode ret = (NativeGLRendeingMode)Interop.GLWindow.GlWindowGetRenderingMode(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Sets rendering mode of GLWindow application
+        /// If the rendering mode is Continuous, GLWindow's rendering callback funciton is called continuously.
+        /// If the rendering mode is OnDemand, GLWindow's rendering callback funciton is called by calling RenderOnce().
+        /// The default is Continuous mode.
+        /// </summary>
+        /// <param name="renderingMode">the rendering mode for GlWindow.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetRenderingMode(GLRenderingMode renderingMode)
+        {
+            Interop.GLWindow.GlWindowSetRenderingMode(SwigCPtr, (int)renderingMode);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// Type of callback to initialize native GL code.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
