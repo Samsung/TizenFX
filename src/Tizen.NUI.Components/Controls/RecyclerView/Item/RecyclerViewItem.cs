@@ -104,7 +104,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public RecyclerViewItem() : base()
         {
-            Initialize();
         }
 
         /// <summary>
@@ -114,7 +113,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public RecyclerViewItem(string style) : base(style)
         {
-            Initialize();
         }
 
         /// <summary>
@@ -124,7 +122,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public RecyclerViewItem(RecyclerViewItemStyle itemStyle) : base(itemStyle)
         {
-            Initialize();
         }
 
         /// <summary>

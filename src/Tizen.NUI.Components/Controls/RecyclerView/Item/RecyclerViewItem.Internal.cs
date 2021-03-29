@@ -247,11 +247,12 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// It is hijack by using protected, style copy problem when class inherited from Button.
+        /// Initializes AT-SPI object.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        private void Initialize()
+        public override void OnInitialize()
         {
+            base.OnInitialize();
             //FIXME!
             IsCreateByXaml = true;
             Layout = new AbsoluteLayout();
