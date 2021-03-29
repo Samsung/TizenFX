@@ -62,6 +62,11 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly ControlState Selected = Create("Selected");
         /// <summary>
+        /// SelectedPressed State.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly ControlState SelectedPressed = Selected + Pressed;
+        /// <summary>
         /// DisabledSelected State.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]

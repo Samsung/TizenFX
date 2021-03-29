@@ -2470,7 +2470,7 @@ namespace Tizen.NUI.BaseComponents
 
                             // If Layout is a LayoutItem then it could be a View that handles it's own padding.
                             // Let the View keeps it's padding.  Still store Padding in Layout to reduce code paths.
-                            if (typeof(LayoutGroup).IsAssignableFrom(Layout.GetType()))
+                            if (typeof(LayoutGroup).IsAssignableFrom(value.GetType()))
                             {
                                 SetValue(PaddingProperty, new Extents(0, 0, 0, 0));
                                 NotifyPropertyChanged();
