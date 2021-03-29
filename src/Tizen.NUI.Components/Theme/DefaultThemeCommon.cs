@@ -244,8 +244,8 @@ namespace Tizen.NUI.Components
 
             theme.AddStyleWithoutClone("Tizen.NUI.Components.Scrollbar", new ScrollbarStyle()
             {
-                TrackThickness = 14,
-                ThumbThickness = 14,
+                TrackThickness = 12,
+                ThumbThickness = 12,
                 TrackColor = new Color(0f, 0f, 0f, 0f),
                 ThumbColor = new Color("#0A0E4AFF"),
                 TrackPadding = 4,
