@@ -269,7 +269,7 @@ namespace Tizen.Applications.ComponentBased
         /// <param name="request">The serializable data to send</param>
         /// <returns>The received serializable data</returns>
         /// /// <since_tizen> 9 </since_tizen>
-        public async Task<object> SendAndReceiveAsync(string endpoint, int timeout, object request)
+        public Task<object> SendAndReceiveAsync(string endpoint, int timeout, object request)
         {
             try
             {
