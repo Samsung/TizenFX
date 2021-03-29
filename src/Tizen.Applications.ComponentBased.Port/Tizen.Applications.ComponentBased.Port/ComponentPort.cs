@@ -329,7 +329,14 @@ namespace Tizen.Applications.ComponentBased
                 {
                     using (Parcel resultParcel = ToParcel(result))
                     {
-                        resParcel.UnMarshall(resultParcel.Marshall());
+                        if (resultParcel != null)
+                        {
+                            resParcel.UnMarshall(resultParcel.Marshall());
+                        }
+                        else
+                        {
+                            Log.Error(LogTag, "Result parcel is null");
+                        }
                     }
                 }
             }
