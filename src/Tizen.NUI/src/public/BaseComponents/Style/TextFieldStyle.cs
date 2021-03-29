@@ -219,6 +219,18 @@ namespace Tizen.NUI.BaseComponents
             var textFieldStyle = (TextFieldStyle)bindable;
             return textFieldStyle.cursorWidth;
         });
+        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty GrabHandleColorProperty = BindableProperty.Create(nameof(GrabHandleColor), typeof(Color), typeof(TextFieldStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textFieldStyle = (TextFieldStyle)bindable;
+            textFieldStyle.grabHandleColor = (Color)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textFieldStyle = (TextFieldStyle)bindable;
+            return textFieldStyle.grabHandleColor;
+        });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty GrabHandleImageProperty = BindableProperty.Create(nameof(GrabHandleImage), typeof(string), typeof(TextFieldStyle), String.Empty, propertyChanged: (bindable, oldValue, newValue) =>
@@ -242,6 +254,30 @@ namespace Tizen.NUI.BaseComponents
         {
             var textFieldStyle = (TextFieldStyle)bindable;
             return textFieldStyle.grabHandlePressedImage;
+        });
+        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty SelectionHandleImageLeftProperty = BindableProperty.Create(nameof(SelectionHandleImageLeft), typeof(PropertyMap), typeof(TextFieldStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textFieldStyle = (TextFieldStyle)bindable;
+            textFieldStyle.selectionHandleImageLeft = (PropertyMap)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textFieldStyle = (TextFieldStyle)bindable;
+            return textFieldStyle.selectionHandleImageLeft;
+        });
+        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty SelectionHandleImageRightProperty = BindableProperty.Create(nameof(SelectionHandleImageRight), typeof(PropertyMap), typeof(TextFieldStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textFieldStyle = (TextFieldStyle)bindable;
+            textFieldStyle.selectionHandleImageRight = (PropertyMap)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textFieldStyle = (TextFieldStyle)bindable;
+            return textFieldStyle.selectionHandleImageRight;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -447,6 +483,18 @@ namespace Tizen.NUI.BaseComponents
             var textFieldStyle = (TextFieldStyle)bindable;
             return textFieldStyle.matchSystemLanguageDirection;
         });
+        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty FontStyleProperty = BindableProperty.Create(nameof(FontStyle), typeof(PropertyMap), typeof(TextFieldStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textFieldStyle = (TextFieldStyle)bindable;
+            textFieldStyle.fontStyle = (PropertyMap)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textFieldStyle = (TextFieldStyle)bindable;
+            return textFieldStyle.fontStyle;
+        });
 
         private string placeholderText;
         private string placeholderTextFocused;
@@ -459,8 +507,11 @@ namespace Tizen.NUI.BaseComponents
         private float? cursorBlinkInterval;
         private float? cursorBlinkDuration;
         private int? cursorWidth;
+        private Color grabHandleColor;
         private string grabHandleImage;
         private string grabHandlePressedImage;
+        private PropertyMap selectionHandleImageLeft;
+        private PropertyMap selectionHandleImageRight;
         private float? scrollThreshold;
         private float? scrollSpeed;
         private Vector4 selectionHighlightColor;
@@ -483,6 +534,7 @@ namespace Tizen.NUI.BaseComponents
         private Selector<float?> pointSizeSelector;
         private Selector<Vector4> placeholderTextColorSelector;
         private Selector<Vector4> primaryCursorColorSelector;
+        private PropertyMap fontStyle;
 
         static TextFieldStyle() { }
 
@@ -594,6 +646,14 @@ namespace Tizen.NUI.BaseComponents
             set => SetValue(CursorWidthProperty, value);
         }
 
+        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color GrabHandleColor
+        {
+            get => (Color)GetValue(GrabHandleColorProperty);
+            set => SetValue(GrabHandleColorProperty, value);
+        }
+
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string GrabHandleImage
@@ -609,7 +669,20 @@ namespace Tizen.NUI.BaseComponents
             get => (string)GetValue(GrabHandlePressedImageProperty);
             set => SetValue(GrabHandlePressedImageProperty, value);
         }
-
+        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyMap SelectionHandleImageLeft
+        {
+            get => (PropertyMap)GetValue(SelectionHandleImageLeftProperty);
+            set => SetValue(SelectionHandleImageLeftProperty, value);
+        }
+        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyMap SelectionHandleImageRight
+        {
+            get => (PropertyMap)GetValue(SelectionHandleImageRightProperty);
+            set => SetValue(SelectionHandleImageRightProperty, value);
+        }
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float? ScrollThreshold
@@ -796,6 +869,14 @@ namespace Tizen.NUI.BaseComponents
                 return (null != tmp) ? tmp : primaryCursorColorSelector = new Selector<Vector4>();
             }
             set => SetValue(PrimaryCursorColorSelectorProperty, value);
+        }
+
+        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyMap FontStyle
+        {
+            get => (PropertyMap)GetValue(FontStyleProperty);
+            set => SetValue(FontStyleProperty, value);
         }
     }
 }
