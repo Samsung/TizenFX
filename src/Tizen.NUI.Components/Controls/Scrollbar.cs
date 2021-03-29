@@ -292,10 +292,22 @@ namespace Tizen.NUI.Components
             this.isHorizontal = isHorizontal;
             if (isHorizontal)
             {
+                if (thumbHorizontalImageUrl != null)
+                {
+                    thumbView.ResourceUrl = thumbHorizontalImageUrl;
+                    thumbView.Color = thumbColor;
+                    thumbView.BackgroundColor = Color.Transparent;
+                }
                 calculator = new HorizontalCalculator(contentLength > 0.0f ? contentLength : 0.0f, viewportLength, currentPosition);
             }
             else
             {
+                if (thumbVerticalImageUrl != null)
+                {
+                    thumbView.ResourceUrl = thumbVerticalImageUrl;
+                    thumbView.Color = thumbColor;
+                    thumbView.BackgroundColor = Color.Transparent;
+                }
                 calculator = new VerticalCalculator(contentLength > 0.0f ? contentLength : 0.0f, viewportLength, currentPosition);
             }
 
