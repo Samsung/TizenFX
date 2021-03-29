@@ -32,32 +32,36 @@ namespace Tizen.NUI.Samples
                 ItemTemplate = new DataTemplate(() =>
                 {
                     var rand = new Random();
-                    RecyclerViewItem item = new RecyclerViewItem();
-                    item.WidthSpecification = LayoutParamPolicies.MatchParent;
-                    item.HeightSpecification = 100;
-                    item.BackgroundColor = new Color((float)rand.NextDouble(), (float)rand.NextDouble(), (float)rand.NextDouble(), 1);
-                    /*
                     DefaultLinearItem item = new DefaultLinearItem();
                     //Set Width Specification as MatchParent to fit the Item width with parent View.
                     item.WidthSpecification = LayoutParamPolicies.MatchParent;
+
                     //Decorate Label
                     item.Label.SetBinding(TextLabel.TextProperty, "ViewLabel");
                     item.Label.HorizontalAlignment = HorizontalAlignment.Begin;
+
+                    //Decorate SubLabel
+                    if ((rand.Next() % 2) == 0)
+                    {
+                        item.SubLabel.SetBinding(TextLabel.TextProperty, "Name");
+                        item.SubLabel.HorizontalAlignment = HorizontalAlignment.Begin;
+                    }
+
                     //Decorate Icon
                     item.Icon.SetBinding(ImageView.ResourceUrlProperty, "ImageUrl");
-                    item.Icon.WidthSpecification = 80;
-                    item.Icon.HeightSpecification = 80;
+                    item.Icon.WidthSpecification = 48;
+                    item.Icon.HeightSpecification = 48;
+
                     //Decorate Extra RadioButton.
                     //[NOTE] This is sample of RadioButton usage in CollectionView.
                     // RadioButton change their selection by IsSelectedProperty bindings with
                     // SelectionChanged event with SingleSelection ItemSelectionMode of CollectionView.
-                    // be aware of there are no RadioButtonGroup. 
+                    // be aware of there are no RadioButtonGroup.
                     item.Extra = new RadioButton();
                     //FIXME : SetBinding in RadioButton crashed as Sensitive Property is disposed.
                     //item.Extra.SetBinding(RadioButton.IsSelectedProperty, "Selected");
-                    item.Extra.WidthSpecification = 80;
-                    item.Extra.HeightSpecification = 80;
-                    */
+                    item.Extra.WidthSpecification = 48;
+                    item.Extra.HeightSpecification = 48;
 
                     return item;
                 }),
