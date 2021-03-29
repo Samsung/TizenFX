@@ -64,21 +64,22 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty FrameRateProperty = BindableProperty.Create(nameof(FrameRate), typeof(int), typeof(Loading), (int)(1000 / 16.6f), propertyChanged: (bindable, oldValue, newValue) =>
         {
-            Debug.Assert(((Loading)bindable).imageVisual != null);
+            var instance = (Loading)bindable;
+            Debug.Assert(instance.imageVisual != null);
 
-            int frameRate = (int)newValue;
-            if (0 != frameRate) //It will crash if 0
+            instance.frameRate = (int)newValue;
+            if (0 != instance.frameRate) //It will crash if 0
             {
-                ((Loading)bindable).imageVisual.FrameDelay = 1000.0f / frameRate;
+                instance.imageVisual.FrameDelay = instance.frameRate;
             }
         },
         defaultValueCreator: (bindable) =>
         {
-            Debug.Assert(((Loading)bindable).imageVisual != null);
-            return ((Loading)bindable).imageVisual.FrameDelay * 1000.0f;
+            return ((Loading)bindable).frameRate;
         });
 
         private AnimatedImageVisual imageVisual = null;
+        private int frameRate = (int)(1000 / 16.6f);
 
         internal new class Property
         {

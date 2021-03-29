@@ -68,13 +68,13 @@ namespace Tizen.NUI.BaseComponents
             return new Selector<T>(value);
         }
 
-        /// Default Contructor
+        /// Default constructor
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector()
         {
         }
 
-        /// Contructor with T
+        /// Constructor with T
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector(T value) : this()
         {
@@ -194,6 +194,17 @@ namespace Tizen.NUI.BaseComponents
         {
             get => GetOrThrowKeyNotFound(x => x.State == ControlState.DisabledSelected);
             set => Add(ControlState.DisabledSelected, value);
+        }
+
+        /// <summary>
+        /// SelectedPressed State.
+        /// </summary>
+        /// <exception cref="KeyNotFoundException">Thrown when the selector does not contain the this value.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public T SelectedPressed
+        {
+            get => GetOrThrowKeyNotFound(x => x.State == ControlState.SelectedPressed);
+            set => Add(ControlState.SelectedPressed, value);
         }
 
         /// <summary>

@@ -17,7 +17,6 @@ using System;
 using Tizen.NUI.BaseComponents;
 using System.Collections.Generic;
 using System.ComponentModel;
-using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
@@ -292,7 +291,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Measure the size of chlid ViewItem manually.
+        /// Measure the size of child ViewItem manually.
         /// </summary>
         /// <param name="parent">Parent ItemsView.</param>
         /// <param name="child">Child ViewItem to Measure()</param>

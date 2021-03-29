@@ -963,16 +963,16 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                if (null == _spaceBetweenTrackAndIndicator)
+                if (null == spaceTrackIndicator)
                 {
-                    _spaceBetweenTrackAndIndicator = new Extents((ushort start, ushort end, ushort top, ushort bottom) =>
+                    spaceTrackIndicator = new Extents((ushort start, ushort end, ushort top, ushort bottom) =>
                     {
                         Extents extents = new Extents(start, end, top, bottom);
-                        _spaceBetweenTrackAndIndicator.CopyFrom(extents);
+                        spaceTrackIndicator.CopyFrom(extents);
                     }, 0, 0, 0, 0);
                 }
 
-                return _spaceBetweenTrackAndIndicator;
+                return spaceTrackIndicator;
             }
         }
 
@@ -1230,7 +1230,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Initliaze AT-SPI object.
+        /// Initialize AT-SPI object.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnInitialize()
@@ -1569,7 +1569,7 @@ namespace Tizen.NUI.Components
         public class ValueChangedArgs : EventArgs
         {
             /// <summary>
-            /// Curren value
+            /// Current value
             /// </summary>
             /// <since_tizen> 6 </since_tizen>
             /// It will be removed in API10
@@ -1587,7 +1587,7 @@ namespace Tizen.NUI.Components
         public class SlidingFinishedArgs : EventArgs
         {
             /// <summary>
-            /// Curren value
+            /// Current value
             /// </summary>
             /// <since_tizen> 6 </since_tizen>
             /// It will be removed in API10
@@ -1605,7 +1605,7 @@ namespace Tizen.NUI.Components
         public class StateChangedArgs : EventArgs
         {
             /// <summary>
-            /// Curent state
+            /// Current state
             /// </summary>
             /// <since_tizen> 6 </since_tizen>
             /// It will be removed in API10

@@ -310,12 +310,12 @@ namespace Tizen.NUI
         /// </summary>
         Fill,
         /// <summary>
-        /// The visual should be scaled to fit, preserving aspect ratio. The visual will be fillled without empty area, and outside is cropped away.
+        /// The visual should be scaled to fit, preserving aspect ratio. The visual will be filled without empty area, and outside is cropped away.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         OverFitKeepAspectRatio,
         /// <summary>
-        /// The visual should keep original size of image. it is not scaled and not strecthed.
+        /// The visual should keep original size of image. it is not scaled and not stretched.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         Center,
@@ -536,7 +536,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// This specifies visaul align types.
+        /// This specifies visual align types.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public enum AlignType
