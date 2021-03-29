@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,9 +17,9 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
-using Tizen.NUI.BaseComponents;
 using System.Linq;
+
+using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding.Internals;
 using static Tizen.NUI.Binding.BindableObject;
 
@@ -188,7 +188,7 @@ namespace Tizen.NUI
                 {
                     // If child of this layout is a pure View then assign it a LayoutGroup
                     // If the child is derived from a View then it may be a legacy or existing container hence will do layouting itself.
-                    child.Layout = new AbsoluteLayout();
+                    child.Layout = (child as TextLabel)?.CreateTextLayout() ?? new AbsoluteLayout();
                 }
             }
             else
@@ -444,8 +444,8 @@ namespace Tizen.NUI
                 if (childLayout != null)
                 {
                     // Use position if explicitly set to child otherwise will be top left.
-                    var childLeft = new LayoutLength(childLayout.Owner.Position2D.X);
-                    var childTop = new LayoutLength(childLayout.Owner.Position2D.Y);
+                    var childLeft = new LayoutLength(childLayout.Owner.PositionX);
+                    var childTop = new LayoutLength(childLayout.Owner.PositionY);
 
                     View owner = Owner;
 
@@ -474,10 +474,8 @@ namespace Tizen.NUI
                 LayoutLength childWidth = childLayout.MeasuredWidth.Size;
                 LayoutLength childHeight = childLayout.MeasuredHeight.Size;
 
-                Position2D childPosition = childLayout.Owner.Position2D;
-
-                LayoutLength childPositionX = new LayoutLength(childPosition.X);
-                LayoutLength childPositionY = new LayoutLength(childPosition.Y);
+                LayoutLength childPositionX = new LayoutLength(childLayout.Owner.PositionX);
+                LayoutLength childPositionY = new LayoutLength(childLayout.Owner.PositionY);
 
                 childLayout.Layout(childPositionX, childPositionY, childPositionX + childWidth, childPositionY + childHeight, true);
             }
@@ -492,6 +490,10 @@ namespace Tizen.NUI
             // Layout takes ownership of it's owner's children.
             foreach (View view in Owner.Children)
             {
+                if (view is TextLabel)
+                {
+                    view.Layout = (view as TextLabel)?.CreateTextLayout();
+                }
                 AddChildToLayoutGroup(view);
             }
 
@@ -601,17 +603,18 @@ namespace Tizen.NUI
             }
 
             View childOwner = child.Owner;
+            Extents margin = childOwner.Margin;
 
             MeasureSpecification childWidthMeasureSpec = GetChildMeasureSpecification(
                         new MeasureSpecification(
-                            new LayoutLength(parentWidthMeasureSpec.Size + widthUsed - (childOwner.Margin.Start + childOwner.Margin.End)),
+                            new LayoutLength(parentWidthMeasureSpec.Size + widthUsed - (margin.Start + margin.End)),
                             parentWidthMeasureSpec.Mode),
                         new LayoutLength(Padding.Start + Padding.End),
                         new LayoutLength(childOwner.WidthSpecification));
 
             MeasureSpecification childHeightMeasureSpec = GetChildMeasureSpecification(
                         new MeasureSpecification(
-                            new LayoutLength(parentHeightMeasureSpec.Size + heightUsed - (childOwner.Margin.Top + childOwner.Margin.Bottom)),
+                            new LayoutLength(parentHeightMeasureSpec.Size + heightUsed - (margin.Top + margin.Bottom)),
                             parentHeightMeasureSpec.Mode),
                         new LayoutLength(Padding.Top + Padding.Bottom),
                         new LayoutLength(childOwner.HeightSpecification));
@@ -687,7 +690,6 @@ namespace Tizen.NUI
 
         internal static Binding.BindableProperty.ValidateValueDelegate ValidateEnum(int enumMin, int enumMax)
         {
-
             return (Binding.BindableObject bindable, object value) =>
             {
                 int @enum = (int)value;

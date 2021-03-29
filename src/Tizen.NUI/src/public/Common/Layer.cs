@@ -64,14 +64,6 @@ namespace Tizen.NUI
             LayerUI,
 
             /// <summary>
-            /// Deprecated in API6; Will be removed in API9. Please use LayerUI instead.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            [Obsolete("Deprecated in API6; Will be removed in API9. Please use LayerUI instead.")]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            Layer2D = LayerUI,
-
-            /// <summary>
             /// Layer will use depth test.
             /// This mode is designed for a 3 dimensional scene where actors in front
             /// of other actors will obscure them, i.e. the actors are sorted by the
@@ -292,7 +284,7 @@ namespace Tizen.NUI
                 {
                     child.InternalParent = this;
                 }
-                Interop.Actor.Add( SwigCPtr , View.getCPtr(child));
+                Interop.Actor.Add(SwigCPtr, View.getCPtr(child));
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 Children.Add(child);
@@ -313,7 +305,7 @@ namespace Tizen.NUI
             {
                 throw new ArgumentNullException(nameof(child));
             }
-            Interop.Actor.Remove( SwigCPtr, View.getCPtr(child));
+            Interop.Actor.Remove(SwigCPtr, View.getCPtr(child));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -355,7 +347,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>The child count of the layer.</returns>
         /// <since_tizen> 4 </since_tizen>
-        // [Obsolete("Deprecated in API9, will be removed in API11. Please use ChildCount property instead!")]
+        [Obsolete("Deprecated in API9, will be removed in API11. Please use ChildCount property instead!")]
         public override uint GetChildCount()
         {
             return Convert.ToUInt32(Children.Count);

@@ -14,7 +14,6 @@
  * limitations under the License.
  *
  */
-#if !PROFILE_WEARABLE
 
 using System.Collections.Generic;
 
@@ -22,14 +21,24 @@ namespace Tizen.NUI
 {
     internal class DefaultThemeCreator : IThemeCreator
     {
-        public Theme Create() => Create(null);
-        public Theme Create(IEnumerable<KeyValuePair<string, string>> changedResources)
+        private DefaultThemeCreator() { }
+
+        internal const string DefaultId = "Tizen.NUI.Theme.Common";
+        internal const string DefaultVersion = "1.0.0";
+
+        internal static IThemeCreator Instance { get; set; } = new DefaultThemeCreator();
+
+        public Theme Create()
         {
-            Theme theme = new Theme() { Id = "Tizen.NUI.Theme.Common" };
-            theme.SetChangedResources(changedResources);
+            Theme theme = new Theme()
+            {
+                Id = DefaultId,
+                Version = DefaultVersion,
+            };
             return theme;
         }
+
+        public HashSet<ExternalThemeKeyList> GetExternalThemeKeyListSet() => null;
     }
 }
 
-#endif

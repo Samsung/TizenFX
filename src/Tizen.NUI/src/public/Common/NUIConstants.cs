@@ -533,19 +533,23 @@ namespace Tizen.NUI
     /// Types of style change. Enumeration for the StyleChange type.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated in API9, Will be removed in API11.")]
     public enum StyleChangeType
     {
         /// <summary>
         /// Denotes that the default font has changed.
         /// </summary>
+        [Obsolete("Deprecated in API9, Will be removed in API11.")]
         DefaultFontChange,
         /// <summary>
         /// Denotes that the default font size has changed.
         /// </summary>
+        [Obsolete("Deprecated in API9, Will be removed in API11.")]
         DefaultFontSizeChange,
         /// <summary>
         /// Denotes that the theme has changed.
         /// </summary>
+        [Obsolete("Deprecated in API9, Will be removed in API11.")]
         ThemeChange
     }
 
@@ -711,7 +715,7 @@ namespace Tizen.NUI
         /// </summary>
         None = -1,
         /// <summary>
-        /// The base nofitication level.
+        /// The base notification level.
         /// </summary>
         Base = 10,
         /// <summary>
@@ -771,7 +775,7 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// An enum of the scroll state of the text eidtor.
+    /// An enum of the scroll state of the text editor.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum ScrollState
@@ -1816,8 +1820,6 @@ namespace Tizen.NUI
     /// FontSizeScale constant.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
-    /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
     public struct FontSizeScale
     {
         /// <summary>

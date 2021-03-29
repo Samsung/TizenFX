@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -55,12 +55,22 @@ namespace Tizen.NUI.Components
         public RadioButton(ButtonStyle buttonStyle) : base(buttonStyle) { }
 
         /// <summary>
+        /// Initialize AT-SPI object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnInitialize()
+        {
+            base.OnInitialize();
+            SetAccessibilityConstructor(Role.RadioButton);
+        }
+
+        /// <summary>
         /// Get RadioButtonGroup to which this selections belong.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public RadioButtonGroup ItemGroup
+        public new RadioButtonGroup ItemGroup
         {
             get
             {
@@ -70,36 +80,6 @@ namespace Tizen.NUI.Components
             {
                 base.ItemGroup = value;
             }
-        }
-
-        /// <inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override void ApplyStyle(ViewStyle viewStyle)
-        {
-            if (viewStyle is ButtonStyle buttonStyle)
-            {
-                if (buttonStyle.IsSelectable == null)
-                {
-                    buttonStyle.IsSelectable = true;
-                }
-
-                base.ApplyStyle(buttonStyle);
-            }
-        }
-
-        /// <inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override ImageView CreateIcon()
-        {
-            return new ImageView
-            {
-                PositionUsesPivotPoint = true,
-                ParentOrigin = NUI.ParentOrigin.Center,
-                PivotPoint = NUI.PivotPoint.Center,
-                WidthResizePolicy = ResizePolicyType.DimensionDependency,
-                HeightResizePolicy = ResizePolicyType.SizeRelativeToParent,
-                SizeModeFactor = new Vector3(1, 1, 1),
-            };
         }
 
         /// <inheritdoc/>

@@ -80,7 +80,7 @@ namespace Tizen.NUI.BaseComponents
         // static constructor registers the control type (for user can add kinds of visuals to it)
         static VisualView()
         {
-            // ViewRegistry registers control type with DALi type registery
+            // ViewRegistry registers control type with DALi type registry
             // also uses introspection to find any properties that need to be registered with type registry
             CustomViewRegistry.Instance.Register(CreateInstance, typeof(VisualView));
         }
@@ -103,6 +103,8 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public override void OnInitialize()
         {
+            base.OnInitialize();
+
             //Initialize empty
             visualDictionary = new Dictionary<int, VisualBase>();
             tranformDictionary = new Dictionary<int, PropertyMap>();

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,14 +27,14 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public partial class TextEditor
     {
-        private EventHandler<TextChangedEventArgs> _textEditorTextChangedEventHandler;
-        private TextChangedCallbackDelegate _textEditorTextChangedCallbackDelegate;
+        private EventHandler<TextChangedEventArgs> textEditorTextChangedEventHandler;
+        private TextChangedCallbackDelegate textEditorTextChangedCallbackDelegate;
 
-        private EventHandler<ScrollStateChangedEventArgs> _textEditorScrollStateChangedEventHandler;
-        private ScrollStateChangedCallbackDelegate _textEditorScrollStateChangedCallbackDelegate;
+        private EventHandler<ScrollStateChangedEventArgs> textEditorScrollStateChangedEventHandler;
+        private ScrollStateChangedCallbackDelegate textEditorScrollStateChangedCallbackDelegate;
 
-        private EventHandler<MaxLengthReachedEventArgs> _textEditorMaxLengthReachedEventHandler;
-        private MaxLengthReachedCallbackDelegate _textEditorMaxLengthReachedCallbackDelegate;
+        private EventHandler<MaxLengthReachedEventArgs> textEditorMaxLengthReachedEventHandler;
+        private MaxLengthReachedCallbackDelegate textEditorMaxLengthReachedCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void TextChangedCallbackDelegate(IntPtr textEditor);
@@ -54,19 +54,19 @@ namespace Tizen.NUI.BaseComponents
         {
             add
             {
-                if (_textEditorTextChangedEventHandler == null)
+                if (textEditorTextChangedEventHandler == null)
                 {
-                    _textEditorTextChangedCallbackDelegate = (OnTextChanged);
-                    TextChangedSignal().Connect(_textEditorTextChangedCallbackDelegate);
+                    textEditorTextChangedCallbackDelegate = (OnTextChanged);
+                    TextChangedSignal().Connect(textEditorTextChangedCallbackDelegate);
                 }
-                _textEditorTextChangedEventHandler += value;
+                textEditorTextChangedEventHandler += value;
             }
             remove
             {
-                _textEditorTextChangedEventHandler -= value;
-                if (_textEditorTextChangedEventHandler == null && TextChangedSignal().Empty() == false)
+                textEditorTextChangedEventHandler -= value;
+                if (textEditorTextChangedEventHandler == null && TextChangedSignal().Empty() == false)
                 {
-                    TextChangedSignal().Disconnect(_textEditorTextChangedCallbackDelegate);
+                    TextChangedSignal().Disconnect(textEditorTextChangedCallbackDelegate);
                 }
             }
         }
@@ -80,19 +80,19 @@ namespace Tizen.NUI.BaseComponents
         {
             add
             {
-                if (_textEditorScrollStateChangedEventHandler == null)
+                if (textEditorScrollStateChangedEventHandler == null)
                 {
-                    _textEditorScrollStateChangedCallbackDelegate = OnScrollStateChanged;
-                    ScrollStateChangedSignal(this).Connect(_textEditorScrollStateChangedCallbackDelegate);
+                    textEditorScrollStateChangedCallbackDelegate = OnScrollStateChanged;
+                    ScrollStateChangedSignal(this).Connect(textEditorScrollStateChangedCallbackDelegate);
                 }
-                _textEditorScrollStateChangedEventHandler += value;
+                textEditorScrollStateChangedEventHandler += value;
             }
             remove
             {
-                _textEditorScrollStateChangedEventHandler -= value;
-                if (_textEditorScrollStateChangedEventHandler == null && ScrollStateChangedSignal(this).Empty() == false)
+                textEditorScrollStateChangedEventHandler -= value;
+                if (textEditorScrollStateChangedEventHandler == null && ScrollStateChangedSignal(this).Empty() == false)
                 {
-                    ScrollStateChangedSignal(this).Disconnect(_textEditorScrollStateChangedCallbackDelegate);
+                    ScrollStateChangedSignal(this).Disconnect(textEditorScrollStateChangedCallbackDelegate);
                 }
             }
         }
@@ -106,20 +106,20 @@ namespace Tizen.NUI.BaseComponents
         {
             add
             {
-                if (_textEditorMaxLengthReachedEventHandler == null)
+                if (textEditorMaxLengthReachedEventHandler == null)
                 {
-                    _textEditorMaxLengthReachedCallbackDelegate = (OnMaxLengthReached);
-                    MaxLengthReachedSignal().Connect(_textEditorMaxLengthReachedCallbackDelegate);
+                    textEditorMaxLengthReachedCallbackDelegate = (OnMaxLengthReached);
+                    MaxLengthReachedSignal().Connect(textEditorMaxLengthReachedCallbackDelegate);
                 }
-                _textEditorMaxLengthReachedEventHandler += value;
+                textEditorMaxLengthReachedEventHandler += value;
             }
             remove
             {
-                if (_textEditorMaxLengthReachedEventHandler == null && MaxLengthReachedSignal().Empty() == false)
+                if (textEditorMaxLengthReachedEventHandler == null && MaxLengthReachedSignal().Empty() == false)
                 {
-                    this.MaxLengthReachedSignal().Disconnect(_textEditorMaxLengthReachedCallbackDelegate);
+                    this.MaxLengthReachedSignal().Disconnect(textEditorMaxLengthReachedCallbackDelegate);
                 }
-                _textEditorMaxLengthReachedEventHandler -= value;
+                textEditorMaxLengthReachedEventHandler -= value;
             }
         }
 
@@ -146,47 +146,44 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnTextChanged(IntPtr textEditor)
         {
-            TextChangedEventArgs e = new TextChangedEventArgs();
-
-            // Populate all members of "e" (TextChangedEventArgs) with real data
-            e.TextEditor = Registry.GetManagedBaseHandleFromNativePtr(textEditor) as TextEditor;
-
-            if (_textEditorTextChangedEventHandler != null)
+            if (textEditorTextChangedEventHandler != null)
             {
+                TextChangedEventArgs e = new TextChangedEventArgs();
+
+                // Populate all members of "e" (TextChangedEventArgs) with real data
+                e.TextEditor = Registry.GetManagedBaseHandleFromNativePtr(textEditor) as TextEditor;
                 //here we send all data to user event handlers
-                _textEditorTextChangedEventHandler(this, e);
+                textEditorTextChangedEventHandler(this, e);
             }
         }
 
         private void OnScrollStateChanged(IntPtr textEditor, ScrollState state)
         {
-            ScrollStateChangedEventArgs e = new ScrollStateChangedEventArgs();
-
-            if (textEditor != global::System.IntPtr.Zero)
+            if (textEditorScrollStateChangedEventHandler != null)
             {
-                // Populate all members of "e" (ScrollStateChangedEventArgs) with real data
-                e.TextEditor = Registry.GetManagedBaseHandleFromNativePtr(textEditor) as TextEditor;
-                e.ScrollState = state;
-            }
+                ScrollStateChangedEventArgs e = new ScrollStateChangedEventArgs();
 
-            if (_textEditorScrollStateChangedEventHandler != null)
-            {
+                if (textEditor != global::System.IntPtr.Zero)
+                {
+                    // Populate all members of "e" (ScrollStateChangedEventArgs) with real data
+                    e.TextEditor = Registry.GetManagedBaseHandleFromNativePtr(textEditor) as TextEditor;
+                    e.ScrollState = state;
+                }
                 //here we send all data to user event handlers
-                _textEditorScrollStateChangedEventHandler(this, e);
+                textEditorScrollStateChangedEventHandler(this, e);
             }
         }
 
         private void OnMaxLengthReached(IntPtr textEditor)
         {
-            MaxLengthReachedEventArgs e = new MaxLengthReachedEventArgs();
-
-            // Populate all members of "e" (MaxLengthReachedEventArgs) with real data
-            e.TextEditor = Registry.GetManagedBaseHandleFromNativePtr(textEditor) as TextEditor;
-
-            if (_textEditorMaxLengthReachedEventHandler != null)
+            if (textEditorMaxLengthReachedEventHandler != null)
             {
+                MaxLengthReachedEventArgs e = new MaxLengthReachedEventArgs();
+
+                // Populate all members of "e" (MaxLengthReachedEventArgs) with real data
+                e.TextEditor = Registry.GetManagedBaseHandleFromNativePtr(textEditor) as TextEditor;
                 //here we send all data to user event handlers
-                _textEditorMaxLengthReachedEventHandler(this, e);
+                textEditorMaxLengthReachedEventHandler(this, e);
             }
         }
 
@@ -196,7 +193,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public class TextChangedEventArgs : EventArgs
         {
-            private TextEditor _textEditor;
+            private TextEditor textEditor;
 
             /// <summary>
             /// TextEditor - is the texteditor control which has the text contents changed.
@@ -206,11 +203,11 @@ namespace Tizen.NUI.BaseComponents
             {
                 get
                 {
-                    return _textEditor;
+                    return textEditor;
                 }
                 set
                 {
-                    _textEditor = value;
+                    textEditor = value;
                 }
             }
         }
@@ -221,8 +218,8 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public class ScrollStateChangedEventArgs : EventArgs
         {
-            private TextEditor _textEditor;
-            private ScrollState _scrollState;
+            private TextEditor textEditor;
+            private ScrollState scrollState;
 
             /// <summary>
             /// TextEditor - is the texteditor control which has the scroll state changed.
@@ -232,11 +229,11 @@ namespace Tizen.NUI.BaseComponents
             {
                 get
                 {
-                    return _textEditor;
+                    return textEditor;
                 }
                 set
                 {
-                    _textEditor = value;
+                    textEditor = value;
                 }
             }
 
@@ -248,11 +245,11 @@ namespace Tizen.NUI.BaseComponents
             {
                 get
                 {
-                    return _scrollState;
+                    return scrollState;
                 }
                 set
                 {
-                    _scrollState = value;
+                    scrollState = value;
                 }
             }
         }
@@ -264,7 +261,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class MaxLengthReachedEventArgs : EventArgs
         {
-            private TextEditor _textEditor;
+            private TextEditor textEditor;
 
             /// <summary>
             /// TextEditor.
@@ -275,11 +272,11 @@ namespace Tizen.NUI.BaseComponents
             {
                 get
                 {
-                    return _textEditor;
+                    return textEditor;
                 }
                 set
                 {
-                    _textEditor = value;
+                    textEditor = value;
                 }
             }
         }

@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,19 +14,15 @@
  * limitations under the License.
  *
  */
-using System;
-using System.Runtime.InteropServices;
 using System.ComponentModel;
 
 namespace Tizen.NUI
 {
     internal class AuthenticationSignalType : Disposable
     {
-
         internal AuthenticationSignalType(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
-
 
         /// <summary>
         /// Dispose
@@ -106,7 +102,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The contructor.
+        /// The constructor.
         /// </summary>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]

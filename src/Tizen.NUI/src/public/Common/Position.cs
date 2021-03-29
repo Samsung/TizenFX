@@ -339,7 +339,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// PivotPoint constants: 0.0.
+        /// PivotPoint constants: 0.5.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static float PivotPointMiddle
@@ -830,7 +830,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the the hash code of this Position.
+        /// Gets the hash code of this Position.
         /// </summary>
         /// <returns>The Hash Code.</returns>
         /// <since_tizen> 6 </since_tizen>

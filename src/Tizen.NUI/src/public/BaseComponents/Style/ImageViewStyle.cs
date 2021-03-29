@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,6 @@
  * limitations under the License.
  *
  */
-using System;
 using System.ComponentModel;
 using Tizen.NUI.Binding;
 
@@ -38,30 +37,6 @@ namespace Tizen.NUI.BaseComponents
         {
             var imageViewStyle = (ImageViewStyle)bindable;
             return imageViewStyle.resourceUrlSelector;
-        });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PreMultipliedAlphaProperty = BindableProperty.Create(nameof(PreMultipliedAlpha), typeof(bool?), typeof(ImageViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var imageViewStyle = (ImageViewStyle)bindable;
-            imageViewStyle.preMultipliedAlpha = (bool?)newValue;
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var imageViewStyle = (ImageViewStyle)bindable;
-            return imageViewStyle.preMultipliedAlpha;
-        });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PixelAreaProperty = BindableProperty.Create(nameof(PixelArea), typeof(RelativeVector4), typeof(ImageViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var imageViewStyle = (ImageViewStyle)bindable;
-            imageViewStyle.pixelArea = (RelativeVector4)newValue;
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var imageViewStyle = (ImageViewStyle)bindable;
-            return imageViewStyle.pixelArea;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -112,8 +87,6 @@ namespace Tizen.NUI.BaseComponents
             return imageViewStyle.orientationCorrection;
         });
 
-        private bool? preMultipliedAlpha;
-        private RelativeVector4 pixelArea;
         private bool? borderOnly;
         private bool? synchronosLoading;
         private bool? orientationCorrection;
@@ -128,22 +101,6 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ImageViewStyle() : base()
         {
-        }
-
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool? PreMultipliedAlpha
-        {
-            get => (bool?)GetValue(PreMultipliedAlphaProperty);
-            set => SetValue(PreMultipliedAlphaProperty, value);
-        }
-
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public RelativeVector4 PixelArea
-        {
-            get => (RelativeVector4)GetValue(PixelAreaProperty);
-            set => SetValue(PixelAreaProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.

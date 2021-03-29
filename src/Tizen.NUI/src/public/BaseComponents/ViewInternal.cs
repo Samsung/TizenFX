@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,12 +16,9 @@
  */
 
 using System;
-using System.ComponentModel;
 using System.Collections.Generic;
-using System.IO;
-using System.Runtime.InteropServices;
-using Tizen.NUI.Binding;
-using Tizen.NUI.Xaml;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -31,7 +28,10 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public partial class View
     {
+        private static bool blockSetDirty = false;
         private ViewSelectorData selectorData;
+        private HashSet<string> dirtyPropertySet;
+
         internal string styleName;
 
         /// <summary>
@@ -123,6 +123,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal void SetLayout(LayoutItem layout)
         {
+            Window.Instance.LayoutController.CreateProcessCallback();
             this.layout = layout;
             this.layout?.AttachToOwner(this);
             this.layout?.RequestLayout();
@@ -336,18 +337,6 @@ namespace Tizen.NUI.BaseComponents
                 PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
                 SetProperty(View.Property.DownFocusableViewId, setValue);
                 setValue.Dispose();
-            }
-        }
-
-        private ViewSelectorData SelectorData
-        {
-            get
-            {
-                if (selectorData == null)
-                {
-                    selectorData = new ViewSelectorData();
-                }
-                return selectorData;
             }
         }
 
@@ -1092,13 +1081,19 @@ namespace Tizen.NUI.BaseComponents
             shadow.Dispose();
         }
 
-        internal void UpdateStyle()
+        /// <summary>
+        /// Get selector value from the triggerable selector or related property.
+        /// </summary>
+        internal Selector<T> GetSelector<T>(TriggerableSelector<T> triggerableSelector, NUI.Binding.BindableProperty relatedProperty)
         {
-            ViewStyle newStyle;
-            if (styleName == null) newStyle = ThemeManager.GetStyle(GetType());
-            else newStyle = ThemeManager.GetStyle(styleName);
+            var selector = triggerableSelector?.Get();
+            if (selector != null)
+            {
+                return selector;
+            }
 
-            if (newStyle != null && (viewStyle == null || viewStyle.GetType() == newStyle.GetType())) ApplyStyle(newStyle);
+            var value = (T)GetValue(relatedProperty);
+            return value == null ? null : new Selector<T>(value);
         }
 
         /// <summary>
@@ -1181,6 +1176,21 @@ namespace Tizen.NUI.BaseComponents
             return false;
         }
 
+        /// <summary>
+        /// Call this method from a child class to notify that a change happened on a property.
+        /// </summary>
+        /// <param name="propertyName">The name of the property that changed.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            base.OnPropertyChanged(propertyName);
+
+            if (!blockSetDirty)
+            {
+                dirtyPropertySet?.Add(propertyName);
+            }
+        }
+
         private void DisConnectFromSignals()
         {
             // Save current CPtr.
@@ -1189,34 +1199,34 @@ namespace Tizen.NUI.BaseComponents
             // Use BaseHandle CPtr as current might have been deleted already in derived classes.
             SwigCPtr = GetBaseHandleCPtrHandleRef;
 
-            if (_onRelayoutEventCallback != null)
+            if (onRelayoutEventCallback != null)
             {
                 ViewSignal signal = this.OnRelayoutSignal();
-                signal?.Disconnect(_onRelayoutEventCallback);
+                signal?.Disconnect(onRelayoutEventCallback);
                 signal?.Dispose();
-                _onRelayoutEventCallback = null;
+                onRelayoutEventCallback = null;
             }
 
-            if (_offWindowEventCallback != null)
+            if (offWindowEventCallback != null)
             {
                 ViewSignal signal = this.OffWindowSignal();
-                signal?.Disconnect(_offWindowEventCallback);
+                signal?.Disconnect(offWindowEventCallback);
                 signal?.Dispose();
-                _offWindowEventCallback = null;
+                offWindowEventCallback = null;
             }
 
-            if (_onWindowEventCallback != null)
+            if (onWindowEventCallback != null)
             {
                 ViewSignal signal = this.OnWindowSignal();
-                signal?.Disconnect(_onWindowEventCallback);
+                signal?.Disconnect(onWindowEventCallback);
                 signal?.Dispose();
-                _onWindowEventCallback = null;
+                onWindowEventCallback = null;
             }
 
-            if (_wheelEventCallback != null)
+            if (wheelEventCallback != null)
             {
                 WheelSignal signal = this.WheelEventSignal();
-                signal?.Disconnect(_wheelEventCallback);
+                signal?.Disconnect(wheelEventCallback);
                 signal?.Dispose();
             }
 
@@ -1225,74 +1235,85 @@ namespace Tizen.NUI.BaseComponents
                 NUIApplication.GetDefaultWindow().WheelEvent -= OnWindowWheelEvent;
             }
 
-            if (_hoverEventCallback != null)
+            if (hoverEventCallback != null)
             {
                 HoverSignal signal = this.HoveredSignal();
-                signal?.Disconnect(_hoverEventCallback);
+                signal?.Disconnect(hoverEventCallback);
                 signal?.Dispose();
             }
 
-            if (_interceptTouchDataCallback != null)
+            if (interceptTouchDataCallback != null)
             {
                 TouchDataSignal signal = this.InterceptTouchSignal();
-                signal?.Disconnect(_interceptTouchDataCallback);
+                signal?.Disconnect(interceptTouchDataCallback);
                 signal?.Dispose();
             }
 
-            if (_touchDataCallback != null)
+            if (touchDataCallback != null)
             {
                 TouchDataSignal signal = this.TouchSignal();
-                signal?.Disconnect(_touchDataCallback);
+                signal?.Disconnect(touchDataCallback);
                 signal?.Dispose();
             }
 
-            if (_ResourcesLoadedCallback != null)
+            if (ResourcesLoadedCallback != null)
             {
                 ViewSignal signal = this.ResourcesLoadedSignal();
-                signal?.Disconnect(_ResourcesLoadedCallback);
+                signal?.Disconnect(ResourcesLoadedCallback);
                 signal?.Dispose();
-                _ResourcesLoadedCallback = null;
+                ResourcesLoadedCallback = null;
             }
 
-            if (_keyCallback != null)
+            if (keyCallback != null)
             {
                 ControlKeySignal signal = this.KeyEventSignal();
-                signal?.Disconnect(_keyCallback);
+                signal?.Disconnect(keyCallback);
                 signal?.Dispose();
             }
 
-            if (_keyInputFocusLostCallback != null)
+            if (keyInputFocusLostCallback != null)
             {
                 KeyInputFocusSignal signal = this.KeyInputFocusLostSignal();
-                signal?.Disconnect(_keyInputFocusLostCallback);
+                signal?.Disconnect(keyInputFocusLostCallback);
                 signal?.Dispose();
             }
 
-            if (_keyInputFocusGainedCallback != null)
+            if (keyInputFocusGainedCallback != null)
             {
                 KeyInputFocusSignal signal = this.KeyInputFocusGainedSignal();
-                signal?.Disconnect(_keyInputFocusGainedCallback);
+                signal?.Disconnect(keyInputFocusGainedCallback);
                 signal?.Dispose();
             }
 
-            if (_backgroundResourceLoadedCallback != null)
+            if (backgroundResourceLoadedCallback != null)
             {
                 ViewSignal signal = this.ResourcesLoadedSignal();
-                signal?.Disconnect(_backgroundResourceLoadedCallback);
+                signal?.Disconnect(backgroundResourceLoadedCallback);
                 signal?.Dispose();
-                _backgroundResourceLoadedCallback = null;
+                backgroundResourceLoadedCallback = null;
             }
 
-            if (_onWindowSendEventCallback != null)
+            if (onWindowSendEventCallback != null)
             {
                 ViewSignal signal = this.OnWindowSignal();
-                signal?.Disconnect(_onWindowSendEventCallback);
+                signal?.Disconnect(onWindowSendEventCallback);
                 signal?.Dispose();
+                onWindowSendEventCallback = null;
             }
 
             // BaseHandle CPtr is used in Registry and there is danger of deletion if we keep using it here.
             // Restore current CPtr.
             SwigCPtr = currentCPtr;
+        }
+
+        /// <summary>
+        /// Apply initial style to the view.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected void InitializeStyle(ViewStyle style = null)
+        {
+            if (style != null) ApplyStyle(style); // Use given style
+            else UpdateStyle(); // Use style in the current theme
         }
 
         private View ConvertIdToView(uint id)
@@ -1372,10 +1393,20 @@ namespace Tizen.NUI.BaseComponents
             return false;
         }
 
-        private void InitializeStyle(ViewStyle style)
+        private void UpdateStyle()
         {
-            if (style != null) ApplyStyle(style.Clone());   // Use given style
-            else if (ThemeManager.ThemeApplied) UpdateStyle(); // Use style in the current theme
+            ViewStyle newStyle;
+            if (string.IsNullOrEmpty(styleName)) newStyle = ThemeManager.GetStyleWithoutClone(GetType());
+            else newStyle = ThemeManager.GetStyleWithoutClone(styleName);
+
+            if (newStyle != null)
+            {
+                blockSetDirty = true;
+                ApplyStyle(newStyle);
+                blockSetDirty = false;
+            }
         }
+
+        private ViewSelectorData EnsureSelectorData() => selectorData ?? (selectorData = new ViewSelectorData());
     }
 }

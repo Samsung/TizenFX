@@ -78,24 +78,17 @@ namespace Tizen.NUI.Components
         public event EventHandler<ItemChangedEventArgs> ItemChangedEvent;
 
         /// <summary>
-        /// Return a copied Style instance of Tab
+        /// Return currently applied style.
         /// </summary>
         /// <remarks>
-        /// It returns copied Style instance and changing it does not effect to the Tab.
-        /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
+        /// Modifying contents in style may cause unexpected behaviour.
         /// </remarks>
         /// <since_tizen> 8 </since_tizen>
-        public new TabStyle Style
-        {
-            get
-            {
-                var result = new TabStyle(tabStyle);
-                result.CopyPropertiesFromView(this);
-                result.UnderLine.CopyPropertiesFromView(underline);
-                return result;
-            }
-        }
+        public TabStyle Style => (TabStyle)(ViewStyle as TabStyle)?.Clone();
 
+        /// <summary>
+        /// Get underline of Tab.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public View Underline
         {
@@ -441,7 +434,9 @@ namespace Tizen.NUI.Components
         /// <param name="type">Dispose type.</param>
         /// <since_tizen> 6 </since_tizen>
         [Obsolete("Deprecated in API8; Will be removed in API10")]
+#pragma warning disable CS0809 // Obsolete member overrides non-obsolete member, It will be removed in API10
         protected override void Dispose(DisposeTypes type)
+#pragma warning restore CS0809 // Obsolete member overrides non-obsolete member, It will be removed in API10
         {
             if (disposed)
             {

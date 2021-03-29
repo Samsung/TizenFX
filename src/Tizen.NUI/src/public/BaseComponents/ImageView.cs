@@ -241,7 +241,7 @@ namespace Tizen.NUI.BaseComponents
         defaultValueCreator: (bindable) =>
         {
             var imageView = (ImageView)bindable;
-            return imageView.resourceUrlSelector.Get(imageView);
+            return imageView.GetSelector<string>(imageView.resourceUrlSelector, ImageView.ResourceUrlProperty);
         });
 
         internal static readonly BindableProperty BorderSelectorProperty = BindableProperty.Create("BorderSelector", typeof(Selector<Rectangle>), typeof(ImageView), null, propertyChanged: (bindable, oldValue, newValue) =>
@@ -252,7 +252,7 @@ namespace Tizen.NUI.BaseComponents
         defaultValueCreator: (bindable) =>
         {
             var imageView = (ImageView)bindable;
-            return imageView.borderSelector.Get(imageView);
+            return imageView.GetSelector<Rectangle>(imageView.borderSelector, ImageView.BorderProperty);
         });
 
         private EventHandler<ResourceReadyEventArgs> _resourceReadyEventHandler;
@@ -453,7 +453,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(ResourceUrlProperty, value);
-                resourceUrlSelector.UpdateIfNeeds(this, value);
+                resourceUrlSelector.Reset(this);
                 NotifyPropertyChanged();
             }
         }
@@ -588,7 +588,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(BorderProperty, value);
-                borderSelector.UpdateIfNeeds(this, value);
+                borderSelector.Reset(this);
                 NotifyPropertyChanged();
             }
         }
@@ -614,7 +614,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Gets or sets whether to synchronos loading the resourceurl of image.<br />
+        /// Gets or sets whether to synchronous loading the resourceurl of image.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public bool SynchronosLoading
@@ -1081,7 +1081,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Get attribues, it is abstract function and must be override.
+        /// Get attributes, it is abstract function and must be override.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override ViewStyle CreateViewStyle()
@@ -1229,9 +1229,12 @@ namespace Tizen.NUI.BaseComponents
 
             if (backgroundExtraData != null && backgroundExtraData.CornerRadius > 0)
             {
-                PropertyValue cornerRadius = new PropertyValue(backgroundExtraData.CornerRadius);
-                imageMap?.Insert(Visual.Property.CornerRadius, cornerRadius);
-                cornerRadius?.Dispose();
+                using (var cornerRadius = new PropertyValue(backgroundExtraData.CornerRadius))
+                using (var cornerRadiusPolicy = new PropertyValue((int)backgroundExtraData.CornerRadiusPolicy))
+                {
+                    imageMap.Insert(Visual.Property.CornerRadius, cornerRadius);
+                    imageMap.Insert(Visual.Property.CornerRadiusPolicy, new PropertyValue((int)(backgroundExtraData.CornerRadiusPolicy)));
+                }
             }
 
             if (value != null)
@@ -1244,33 +1247,31 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (_resourceUrl != null)
                 {
-                  Size2D originalImageSize = ImageLoading.GetOriginalImageSize(_resourceUrl);
-                  Size2D imageSize = originalImageSize;
-                  originalImageSize?.Dispose();
+                    Size2D imageSize = ImageLoading.GetOriginalImageSize(_resourceUrl, true);
 
-                  int adjustedDesiredWidth, adjustedDesiredHeight;
-                  float aspectOfDesiredSize = (float)_desired_height / (float)_desired_width;
-                  float aspectOfImageSize = (float)imageSize.Height / (float)imageSize.Width;
-                  if( aspectOfImageSize > aspectOfDesiredSize)
-                  {
-                      adjustedDesiredWidth = _desired_width;
-                      adjustedDesiredHeight = imageSize.Height * _desired_width / imageSize.Width;
-                  }
-                  else
-                  {
-                      adjustedDesiredWidth = imageSize.Width * _desired_height/ imageSize.Height;
-                      adjustedDesiredHeight = _desired_height;
-                  }
+                    int adjustedDesiredWidth, adjustedDesiredHeight;
+                    float aspectOfDesiredSize = (float)_desired_height / (float)_desired_width;
+                    float aspectOfImageSize = (float)imageSize.Height / (float)imageSize.Width;
+                    if (aspectOfImageSize > aspectOfDesiredSize)
+                    {
+                        adjustedDesiredWidth = _desired_width;
+                        adjustedDesiredHeight = imageSize.Height * _desired_width / imageSize.Width;
+                    }
+                    else
+                    {
+                        adjustedDesiredWidth = imageSize.Width * _desired_height / imageSize.Height;
+                        adjustedDesiredHeight = _desired_height;
+                    }
 
-                  PropertyValue returnWidth = new PropertyValue(adjustedDesiredWidth);
-                  imageMap?.Insert(ImageVisualProperty.DesiredWidth, returnWidth);
-                  returnWidth?.Dispose();
-                  PropertyValue returnHeight = new PropertyValue(adjustedDesiredHeight);
-                  imageMap?.Insert(ImageVisualProperty.DesiredHeight, returnHeight);
-                  returnHeight?.Dispose();
-                  PropertyValue scaleToFit = new PropertyValue((int)FittingModeType.ScaleToFill);
-                  imageMap?.Insert(ImageVisualProperty.FittingMode, scaleToFit);
-                  scaleToFit?.Dispose();
+                    PropertyValue returnWidth = new PropertyValue(adjustedDesiredWidth);
+                    imageMap?.Insert(ImageVisualProperty.DesiredWidth, returnWidth);
+                    returnWidth?.Dispose();
+                    PropertyValue returnHeight = new PropertyValue(adjustedDesiredHeight);
+                    imageMap?.Insert(ImageVisualProperty.DesiredHeight, returnHeight);
+                    returnHeight?.Dispose();
+                    PropertyValue scaleToFit = new PropertyValue((int)FittingModeType.ScaleToFill);
+                    imageMap?.Insert(ImageVisualProperty.FittingMode, scaleToFit);
+                    scaleToFit?.Dispose();
                 }
             }
 

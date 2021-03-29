@@ -66,6 +66,9 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 6 </since_tizen>
     public partial class Slider : Control
     {
+        /// <summary>
+        /// IndicatorTypeProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty IndicatorTypeProperty = BindableProperty.Create("IndicatorType", typeof(IndicatorType), typeof(Slider), IndicatorType.None, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -80,6 +83,10 @@ namespace Tizen.NUI.Components
             var instance = (Slider)bindable;
             return instance.privateIndicatorType;
         });
+
+        /// <summary>
+        /// SpaceBetweenTrackAndIndicatorProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty SpaceBetweenTrackAndIndicatorProperty = BindableProperty.Create(nameof(SpaceBetweenTrackAndIndicator), typeof(uint), typeof(Slider), (uint)0, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -94,6 +101,10 @@ namespace Tizen.NUI.Components
             var instance = (Slider)bindable;
             return instance.privateSpaceBetweenTrackAndIndicator;
         });
+
+        /// <summary>
+        /// TrackThicknessProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TrackThicknessProperty = BindableProperty.Create(nameof(TrackThickness), typeof(uint), typeof(Slider), (uint)0, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -108,6 +119,10 @@ namespace Tizen.NUI.Components
             var instance = (Slider)bindable;
             return instance.privateTrackThickness;
         });
+
+        /// <summary>
+        /// IsValueShownProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty IsValueShownProperty = BindableProperty.Create(nameof(IsValueShown), typeof(bool), typeof(Slider), true, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -126,6 +141,10 @@ namespace Tizen.NUI.Components
             var instance = (Slider)bindable;
             return instance.isValueShown;
         });
+
+        /// <summary>
+        /// ValueIndicatorTextProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ValueIndicatorTextProperty = BindableProperty.Create(nameof(ValueIndicatorText), typeof(string), typeof(Slider), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -134,10 +153,6 @@ namespace Tizen.NUI.Components
             {
                 string newText = (string)newValue;
                 instance.valueIndicatorText.Text = newText;
-                if (instance.sliderStyle != null)
-                {
-                    instance.sliderStyle.ValueIndicatorText.Text = newText;
-                }
             }
         },
         defaultValueCreator: (bindable) =>
@@ -315,36 +330,13 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Return a copied Style instance of Slider
+        /// Return currently applied style.
         /// </summary>
         /// <remarks>
-        /// It returns copied Style instance and changing it does not effect to the Slider.
-        /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
+        /// Modifying contents in style may cause unexpected behaviour.
         /// </remarks>
         /// <since_tizen> 8 </since_tizen>
-        public new SliderStyle Style
-        {
-            get
-            {
-                var result = new SliderStyle(sliderStyle);
-                result.CopyPropertiesFromView(this);
-                result.Track.CopyPropertiesFromView(bgTrackImage);
-                result.Progress.CopyPropertiesFromView(slidedTrackImage);
-                result.Thumb.CopyPropertiesFromView(thumbImage);
-                result.LowIndicatorImage.CopyPropertiesFromView(lowIndicatorImage);
-                result.HighIndicatorImage.CopyPropertiesFromView(highIndicatorImage);
-                result.LowIndicator.CopyPropertiesFromView(lowIndicatorText);
-                result.HighIndicator.CopyPropertiesFromView(highIndicatorText);
-                result.ValueIndicatorText.CopyPropertiesFromView(valueIndicatorText);
-                result.ValueIndicatorImage.CopyPropertiesFromView(valueIndicatorImage);
-                return result;
-            }
-        }
-
-        /// <summary>
-        /// Return a copied Style instance of Slider
-        /// </summary>
-        private SliderStyle sliderStyle => ViewStyle as SliderStyle;
+        public SliderStyle Style => (SliderStyle)(ViewStyle as SliderStyle)?.Clone();
 
         /// <summary>
         /// Gets or sets the direction type of slider.
@@ -366,6 +358,7 @@ namespace Tizen.NUI.Components
                 RelayoutBaseComponent(false);
                 UpdateBgTrackSize();
                 UpdateBgTrackPosition();
+                UpdateWarningTrackSize();
                 UpdateValue();
             }
         }
@@ -433,6 +426,10 @@ namespace Tizen.NUI.Components
             set
             {
                 curValue = value;
+                if (IsHighlighted)
+                {
+                    EmitAccessibilityEvent(ObjectPropertyChangeEvent.Value);
+                }
                 UpdateValue();
             }
         }
@@ -452,13 +449,15 @@ namespace Tizen.NUI.Components
                 if (null != thumbImage)
                 {
                     thumbImage.Size = value;
-                    sliderStyle.Thumb.Size = value;
+                    thumbSize = value;
                 }
             }
         }
 
         /// <summary>
         /// Gets or sets the resource url of the thumb image object.
+        ///
+        /// Please use ThumbImageUri property.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public string ThumbImageURL
@@ -472,7 +471,7 @@ namespace Tizen.NUI.Components
                 if (null != thumbImage)
                 {
                     thumbImage.ResourceUrl = value;
-                    sliderStyle.Thumb.ResourceUrl = value;
+                    thumbImageUrl = value;
                 }
             }
         }
@@ -480,6 +479,8 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Gets or sets the resource url selector of the thumb image object.
         /// Getter returns copied selector value if exist, null otherwise.
+        ///
+        /// Please use ThumbImageUri property.
         /// </summary>
         /// <exception cref="NullReferenceException">Thrown when setting null value.</exception>
         /// <since_tizen> 6 </since_tizen>
@@ -495,6 +496,41 @@ namespace Tizen.NUI.Components
                 else
                 {
                     thumbImage.SetValue(ImageView.ResourceUrlSelectorProperty, value);
+                    thumbImageUrlSelector = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the Uri of the thumb image.
+        /// </summary>
+        /// <exception cref="NullReferenceException">Thrown when setting null value.</exception>
+        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Selector<Uri> ThumbImageUri
+        {
+            get
+            {
+                if (thumbImage == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    return ((Selector<string>)thumbImage.GetValue(ImageView.ResourceUrlSelectorProperty)).Clone<Uri>(str => { return new Uri(str); });
+                }
+            }
+            set
+            {
+                if (value == null || thumbImage == null)
+                {
+                    throw new NullReferenceException("Slider.ThumbImageUri is null");
+                }
+                else
+                {
+                    Selector<string> stringValue = value.Clone<string>(m => m?.AbsoluteUri);
+                    thumbImage.SetValue(ImageView.ResourceUrlSelectorProperty, stringValue);
+                    thumbImageUrlSelector = stringValue;
                 }
             }
         }
@@ -513,8 +549,8 @@ namespace Tizen.NUI.Components
             {
                 if (null != thumbImage)
                 {
-                    thumbImage.Color = value;
-                    sliderStyle.Thumb.Color = value;
+                    thumbImage.BackgroundColor = value;
+                    thumbColor = value;
                 }
             }
         }
@@ -534,7 +570,6 @@ namespace Tizen.NUI.Components
                 if (null != bgTrackImage)
                 {
                     bgTrackImage.BackgroundColor = value;
-                    sliderStyle.Track.BackgroundColor = value;
                 }
             }
         }
@@ -554,7 +589,6 @@ namespace Tizen.NUI.Components
                 if (null != slidedTrackImage)
                 {
                     slidedTrackImage.BackgroundColor = value;
-                    sliderStyle.Progress.BackgroundColor = value;
                 }
             }
         }
@@ -576,6 +610,123 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Gets or sets the warning start value between minimum value and maximum value of slider.
+        /// </summary>
+        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float WarningStartValue
+        {
+            get
+            {
+                return warningStartValue;
+            }
+            set
+            {
+                warningStartValue = value;
+                UpdateValue();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the color of the warning track image object.
+        /// </summary>
+        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color WarningTrackColor
+        {
+            get
+            {
+                return warningTrackImage?.BackgroundColor;
+            }
+            set
+            {
+                if (null != warningTrackImage)
+                {
+                    warningTrackImage.BackgroundColor = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the color of the warning slided track image object.
+        /// </summary>
+        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color WarningSlidedTrackColor
+        {
+            get
+            {
+                return warningSlidedTrackImage?.BackgroundColor;
+            }
+            set
+            {
+                if (null != warningSlidedTrackImage)
+                {
+                    warningSlidedTrackImage.BackgroundColor = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the resource url of the warning thumb image object.
+        /// </summary>
+        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string WarningThumbImageUrl
+        {
+            get
+            {
+                return warningThumbImageUrl;
+            }
+            set
+            {
+                warningThumbImageUrl = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the Uri of the warning thumb image.
+        /// </summary>
+        /// <exception cref="NullReferenceException">Thrown when setting null value.</exception>
+        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Selector<Uri> WarningThumbImageUri
+        {
+            get
+            {
+                return warningThumbImageUrlSelector?.Clone<Uri>(str => { return new Uri(str); });
+            }
+            set
+            {
+                if (value == null || thumbImage == null)
+                {
+                    throw new NullReferenceException("Slider.WarningThumbImageUri is null");
+                }
+                else
+                {
+                    warningThumbImageUrlSelector = value.Clone<string>(m => m?.AbsoluteUri);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the color of the warning thumb image object.
+        /// </summary>
+        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color WarningThumbColor
+        {
+            get
+            {
+                return warningThumbColor;
+            }
+            set
+            {
+                warningThumbColor = value;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the resource url of the low indicator image object.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
@@ -589,7 +740,6 @@ namespace Tizen.NUI.Components
             {
                 if (null == lowIndicatorImage) lowIndicatorImage = new ImageView();
                 lowIndicatorImage.ResourceUrl = value;
-                sliderStyle.LowIndicatorImage.ResourceUrl = value;
             }
         }
 
@@ -607,7 +757,6 @@ namespace Tizen.NUI.Components
             {
                 if (null == highIndicatorImage) highIndicatorImage = new ImageView();
                 highIndicatorImage.ResourceUrl = value;
-                sliderStyle.HighIndicatorImage.ResourceUrl = value;
             }
         }
 
@@ -626,7 +775,6 @@ namespace Tizen.NUI.Components
                 if (null != lowIndicatorText)
                 {
                     lowIndicatorText.Text = value;
-                    sliderStyle.LowIndicator.Text = value;
                 }
             }
         }
@@ -646,7 +794,6 @@ namespace Tizen.NUI.Components
                 if (null != highIndicatorText)
                 {
                     highIndicatorText.Text = value;
-                    sliderStyle.HighIndicator.Text = value;
                 }
             }
         }
@@ -686,7 +833,6 @@ namespace Tizen.NUI.Components
                 if (null != highIndicatorText)
                 {
                     highIndicatorText.Size = value;
-                    sliderStyle.HighIndicator.Size = value;
                 }
             }
         }
@@ -757,7 +903,6 @@ namespace Tizen.NUI.Components
                 if (null != valueIndicatorImage)
                 {
                     valueIndicatorImage.Size = value;
-                    sliderStyle.ValueIndicatorImage.Size = value;
                 }
             }
         }
@@ -778,8 +923,39 @@ namespace Tizen.NUI.Components
                 if (null != valueIndicatorImage)
                 {
                     valueIndicatorImage.ResourceUrl = value;
-                    sliderStyle.ValueIndicatorImage.ResourceUrl = value;
                 }
+            }
+        }
+
+        /// <summary>
+        /// Flag to decide whether the thumb snap to the nearest discrete value when the user drags the thumb or taps.
+        ///
+        /// The default value is false.
+        /// </summary>
+        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsDiscrete { get; set; } = false;
+
+        /// <summary>
+        /// Gets or sets the discrete value of slider.
+        ///
+        /// The discrete value is evenly spaced between MinValue and MaxValue.
+        /// For example, MinValue is 0, MaxValue is 100, and DiscreteValue is 20.
+        /// Then, the thumb can only go to 0, 20, 40, 60, 80, and 100.
+        /// The default is 0.
+        /// </summary>
+        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float DiscreteValue
+        {
+            get
+            {
+                return discreteValue;
+            }
+            set
+            {
+                discreteValue = value;
+                UpdateValue();
             }
         }
 
@@ -787,16 +963,16 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                if (null == _spaceBetweenTrackAndIndicator)
+                if (null == spaceTrackIndicator)
                 {
-                    _spaceBetweenTrackAndIndicator = new Extents((ushort start, ushort end, ushort top, ushort bottom) =>
+                    spaceTrackIndicator = new Extents((ushort start, ushort end, ushort top, ushort bottom) =>
                     {
                         Extents extents = new Extents(start, end, top, bottom);
-                        _spaceBetweenTrackAndIndicator.CopyFrom(extents);
+                        spaceTrackIndicator.CopyFrom(extents);
                     }, 0, 0, 0, 0);
                 }
 
-                return _spaceBetweenTrackAndIndicator;
+                return spaceTrackIndicator;
             }
         }
 
@@ -849,6 +1025,28 @@ namespace Tizen.NUI.Components
                     else if (direction == DirectionType.Vertical)
                     {
                         slidedTrackImage.SizeWidth = (float)trackThickness.Value;
+                    }
+                }
+                if (warningTrackImage != null)
+                {
+                    if (direction == DirectionType.Horizontal)
+                    {
+                        warningTrackImage.SizeHeight = (float)trackThickness.Value;
+                    }
+                    else if (direction == DirectionType.Vertical)
+                    {
+                        warningTrackImage.SizeWidth = (float)trackThickness.Value;
+                    }
+                }
+                if (warningSlidedTrackImage != null)
+                {
+                    if (direction == DirectionType.Horizontal)
+                    {
+                        warningSlidedTrackImage.SizeHeight = (float)trackThickness.Value;
+                    }
+                    else if (direction == DirectionType.Vertical)
+                    {
+                        warningSlidedTrackImage.SizeWidth = (float)trackThickness.Value;
                     }
                 }
             }
@@ -951,7 +1149,94 @@ namespace Tizen.NUI.Components
                 CreateValueIndicator().ApplyStyle(sliderStyle.ValueIndicatorImage);
             }
 
+            if (null != sliderStyle?.WarningTrack)
+            {
+                CreateWarningTrack().ApplyStyle(sliderStyle.WarningTrack);
+            }
+
+            if (null != sliderStyle?.WarningProgress)
+            {
+                CreateWarningSlidedTrack().ApplyStyle(sliderStyle.WarningProgress);
+            }
+
             EnableControlStatePropagation = true;
+        }
+
+        /// <summary>
+        /// Prevents from showing child widgets in AT-SPI tree.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override bool AccessibilityShouldReportZeroChildren()
+        {
+            return true;
+        }
+
+        /// <summary>
+        /// Minimum value.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override double AccessibilityGetMinimum()
+        {
+            return (double)MinValue;
+        }
+
+        /// <summary>
+        /// Current value.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override double AccessibilityGetCurrent()
+        {
+            return (double)CurrentValue;
+        }
+
+        /// <summary>
+        /// Maximum value.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override double AccessibilityGetMaximum()
+        {
+            return (double)MaxValue;
+        }
+
+        /// <summary>
+        /// Current value.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override bool AccessibilitySetCurrent(double value)
+        {
+            var f = (float)value;
+
+            if (f >= MinValue && f <= MaxValue)
+            {
+                CurrentValue = f;
+                if (sliderValueChangedHandler != null)
+                {
+                    sliderValueChangedHandler(this, new SliderValueChangedEventArgs { CurrentValue = f });
+                }
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Minimum increment.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override double AccessibilityGetMinimumIncrement()
+        {
+            // FIXME
+            return (MaxValue - MinValue) / 20.0;
+        }
+
+        /// <summary>
+        /// Initialize AT-SPI object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnInitialize()
+        {
+            base.OnInitialize();
+            SetAccessibilityConstructor(Role.Slider, AccessibilityInterface.Value);
         }
 
         /// <summary>
@@ -991,6 +1276,8 @@ namespace Tizen.NUI.Components
                     thumbImage.TouchEvent -= OnTouchEventForThumb;
                     Utility.Dispose(thumbImage);
                 }
+                Utility.Dispose(warningSlidedTrackImage);
+                Utility.Dispose(warningTrackImage);
                 Utility.Dispose(slidedTrackImage);
                 if (null != bgTrackImage)
                 {
@@ -1021,6 +1308,7 @@ namespace Tizen.NUI.Components
             UpdateComponentByIndicatorTypeChanged();
             UpdateBgTrackSize();
             UpdateBgTrackPosition();
+            UpdateWarningTrackSize();
             UpdateLowIndicatorSize();
             UpdateValue();
         }
@@ -1045,6 +1333,12 @@ namespace Tizen.NUI.Components
                     curValue = ((currentSlidedOffset / (float)bgTrackLength) * (float)(maxValue - minValue)) + minValue;
                 }
             }
+
+            if (IsDiscrete)
+            {
+                curValue = CalculateDiscreteValue(curValue);
+            }
+
             if (valueChangedHandler != null)
             {
                 ValueChangedArgs args = new ValueChangedArgs();
@@ -1126,6 +1420,12 @@ namespace Tizen.NUI.Components
             if (bgTrackLength != 0)
             {
                 curValue = ((currentSlidedOffset / (float)bgTrackLength) * (maxValue - minValue)) + minValue;
+
+                if (IsDiscrete)
+                {
+                    curValue = CalculateDiscreteValue(curValue);
+                }
+
                 if (null != valueChangedHandler)
                 {
                     ValueChangedArgs args = new ValueChangedArgs();
@@ -1140,6 +1440,11 @@ namespace Tizen.NUI.Components
                     sliderValueChangedHandler(this, args);
                 }
             }
+        }
+
+        private float CalculateDiscreteValue(float value)
+        {
+            return ((float)Math.Round((value / discreteValue)) * discreteValue);
         }
 
         private void UpdateState(bool isFocusedNew, bool isPressedNew)
@@ -1158,6 +1463,8 @@ namespace Tizen.NUI.Components
             if (!isFocused && !isPressed)
             {
                 ControlState = ControlState.Normal;
+                thumbImage.ResourceUrl = thumbImageUrlSelector?.Normal;
+
                 if (stateChangedHandler != null)
                 {
                     StateChangedArgs args = new StateChangedArgs();
@@ -1168,6 +1475,7 @@ namespace Tizen.NUI.Components
             else if (isPressed)
             {
                 ControlState = ControlState.Pressed;
+                thumbImage.ResourceUrl = thumbImageUrlSelector?.Pressed;
 
                 if (stateChangedHandler != null)
                 {
@@ -1179,6 +1487,7 @@ namespace Tizen.NUI.Components
             else if (!isPressed && isFocused)
             {
                 ControlState = ControlState.Focused;
+                thumbImage.ResourceUrl = thumbImageUrlSelector?.Focused;
 
                 if (stateChangedHandler != null)
                 {
@@ -1260,7 +1569,7 @@ namespace Tizen.NUI.Components
         public class ValueChangedArgs : EventArgs
         {
             /// <summary>
-            /// Curren value
+            /// Current value
             /// </summary>
             /// <since_tizen> 6 </since_tizen>
             /// It will be removed in API10
@@ -1278,7 +1587,7 @@ namespace Tizen.NUI.Components
         public class SlidingFinishedArgs : EventArgs
         {
             /// <summary>
-            /// Curren value
+            /// Current value
             /// </summary>
             /// <since_tizen> 6 </since_tizen>
             /// It will be removed in API10
@@ -1296,7 +1605,7 @@ namespace Tizen.NUI.Components
         public class StateChangedArgs : EventArgs
         {
             /// <summary>
-            /// Curent state
+            /// Current state
             /// </summary>
             /// <since_tizen> 6 </since_tizen>
             /// It will be removed in API10

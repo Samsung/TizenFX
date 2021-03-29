@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,11 +22,9 @@ namespace Tizen.NUI
 {
     internal class ViewSignal : Disposable
     {
-
         internal ViewSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
-
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
@@ -68,7 +66,7 @@ namespace Tizen.NUI
             }
             catch (global::System.Exception ex)
             {
-                Tizen.Log.Fatal("NUI", $"[ERROR] excpetion! {ex}: {ex.Message}");
+                Tizen.Log.Fatal("NUI", $"[ERROR] exception! {ex}: {ex.Message}");
                 Tizen.Log.Fatal("NUI", $"[ERROR] current threadID : {Thread.CurrentThread.ManagedThreadId}");
                 Tizen.Log.Fatal("NUI", $"[ERROR] back trace!");
                 global::System.Diagnostics.StackTrace st = new global::System.Diagnostics.StackTrace(true);

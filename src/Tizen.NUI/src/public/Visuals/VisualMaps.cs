@@ -86,7 +86,7 @@ namespace Tizen.NUI
         /// The map for visual.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API9, Will be removed in API11, Plese not use _comonlyUsedMap")]
+        [Obsolete("Deprecated in API9, Will be removed in API11, Please not use _comonlyUsedMap")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible instance fields", Justification = "<Pending>")]
         protected PropertyMap _commonlyUsedMap = null;
 

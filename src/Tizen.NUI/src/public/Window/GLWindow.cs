@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,19 +16,18 @@
  */
 
 extern alias TizenSystemInformation;
-using TizenSystemInformation.Tizen.System;
-using global::System;
+
+using System;
 using System.ComponentModel;
 using System.Collections.Generic;
-using global::System.Runtime.InteropServices;
-using Tizen.NUI.BaseComponents;
+using System.Runtime.InteropServices;
 
 namespace Tizen.NUI
 {
     /// <summary>
     /// The GLWindow class is to draw with native GLES.<br />
     /// This class is the special window. It is for native GLES application.<br />
-    /// So, some special funtions and type are supported.<br />
+    /// So, some special functions and type are supported.<br />
     /// In addition, basic window's functions are supported, too.<br />
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
@@ -52,7 +51,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Creates an initialized handle to a new GLWindow.<br />
-        /// This API can create GLWindow with specifc option.<br />
+        /// This API can create GLWindow with specific option.<br />
         /// </summary>
         /// <param name="name">The name for GL window. </param>
         /// <param name="windowPosition">The position and size of the Window.</param>

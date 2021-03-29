@@ -1138,6 +1138,27 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The GrabHandleColor property.
+        /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (textEditor.GrabHandleColor.X = 0.1f;) is possible.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color GrabHandleColor
+        {
+            get
+            {
+                Color temp = (Color)GetValue(GrabHandleColorProperty);
+                return new Color(OnGrabHandleColorChanged, temp.R, temp.G, temp.B, temp.A);
+            }
+            set
+            {
+                SetValue(GrabHandleColorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// The Placeholder property.
         /// Gets or sets the placeholder: text, color, font family, font style, point size, and pixel size.
         /// </summary>
@@ -1275,8 +1296,6 @@ namespace Tizen.NUI.BaseComponents
         /// If FontSizeScale.UseSystemSetting, will use the SystemSettings.FontSize internally. <br />
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public float FontSizeScale
         {
             get
@@ -1400,14 +1419,14 @@ namespace Tizen.NUI.BaseComponents
 
             if (this.HasBody())
             {
-                if (_textEditorTextChangedCallbackDelegate != null)
+                if (textEditorTextChangedCallbackDelegate != null)
                 {
-                    TextChangedSignal().Disconnect(_textEditorTextChangedCallbackDelegate);
+                    TextChangedSignal().Disconnect(textEditorTextChangedCallbackDelegate);
                 }
 
-                if (_textEditorMaxLengthReachedCallbackDelegate != null)
+                if (textEditorMaxLengthReachedCallbackDelegate != null)
                 {
-                    this.MaxLengthReachedSignal().Disconnect(_textEditorMaxLengthReachedCallbackDelegate);
+                    this.MaxLengthReachedSignal().Disconnect(textEditorMaxLengthReachedCallbackDelegate);
                 }
             }
 
@@ -1560,6 +1579,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int VerticalScrollPosition = Interop.TextEditor.VerticalScrollPositionGet();
             internal static readonly int PrimaryCursorPosition = Interop.TextEditor.PrimaryCursorPositionGet();
             internal static readonly int FontSizeScale = Interop.TextEditor.FontSizeScaleGet();
+            internal static readonly int GrabHandleColor = Interop.TextEditor.GrabHandleColorGet();
         }
 
         internal class InputStyle
@@ -1607,6 +1627,9 @@ namespace Tizen.NUI.BaseComponents
         {
             TextColor = new Vector4(x, y, z, w);
         }
-
+        private void OnGrabHandleColorChanged(float r, float g, float b, float a)
+        {
+            GrabHandleColor = new Color(r, g, b, a);
+        }
     }
 }

@@ -81,10 +81,10 @@ namespace Tizen.NUI
         {
         }
 
-        private DaliEventHandler<object, DetectedEventArgs> _detectedEventHandler;
+        private DaliEventHandler<object, DetectedEventArgs> detectedEventHandler;
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void DetectedCallbackType(IntPtr actor, IntPtr longPressGesture);
-        private DetectedCallbackType _detectedCallback;
+        private DetectedCallbackType detectedCallback;
 
         /// <summary>
         /// This signal is emitted when the specified long press is detected on the attached view.
@@ -95,22 +95,22 @@ namespace Tizen.NUI
         {
             add
             {
-                if (_detectedEventHandler == null)
+                if (detectedEventHandler == null)
                 {
-                    _detectedCallback = OnLongPressGestureDetected;
-                    DetectedSignal().Connect(_detectedCallback);
+                    detectedCallback = OnLongPressGestureDetected;
+                    DetectedSignal().Connect(detectedCallback);
                 }
 
-                _detectedEventHandler += value;
+                detectedEventHandler += value;
             }
 
             remove
             {
-                _detectedEventHandler -= value;
+                detectedEventHandler -= value;
 
-                if (_detectedEventHandler == null && DetectedSignal().Empty() == false)
+                if (detectedEventHandler == null && DetectedSignal().Empty() == false)
                 {
-                    DetectedSignal().Disconnect(_detectedCallback);
+                    DetectedSignal().Disconnect(detectedCallback);
                 }
             }
         }
@@ -204,9 +204,9 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (_detectedEventHandler == null && DetectedSignal().Empty() == false)
+            if (detectedEventHandler == null && DetectedSignal().Empty() == false)
             {
-                DetectedSignal().Disconnect(_detectedCallback);
+                DetectedSignal().Disconnect(detectedCallback);
             }
             Interop.LongPressGestureDetector.DeleteLongPressGestureDetector(swigCPtr);
         }
@@ -224,10 +224,10 @@ namespace Tizen.NUI
 
             e.LongPressGesture = Tizen.NUI.LongPressGesture.GetLongPressGestureFromPtr(longPressGesture);
 
-            if (_detectedEventHandler != null)
+            if (detectedEventHandler != null)
             {
                 //Here we send all data to user event handlers.
-                _detectedEventHandler(this, e);
+                detectedEventHandler(this, e);
             }
         }
 
@@ -239,8 +239,8 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class DetectedEventArgs : EventArgs
         {
-            private View _view;
-            private LongPressGesture _longPressGesture;
+            private View view;
+            private LongPressGesture longPressGesture;
 
             /// <summary>
             /// View the attached view.
@@ -252,11 +252,11 @@ namespace Tizen.NUI
             {
                 get
                 {
-                    return _view;
+                    return view;
                 }
                 set
                 {
-                    _view = value;
+                    view = value;
                 }
             }
 
@@ -270,11 +270,11 @@ namespace Tizen.NUI
             {
                 get
                 {
-                    return _longPressGesture;
+                    return longPressGesture;
                 }
                 set
                 {
-                    _longPressGesture = value;
+                    longPressGesture = value;
                 }
             }
         }

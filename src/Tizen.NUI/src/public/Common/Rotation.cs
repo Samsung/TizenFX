@@ -173,7 +173,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The linear iterpolation (using a straight line between the two rotations).
+        /// The linear interpolation (using a straight line between the two rotations).
         /// </summary>
         /// <param name="q1">The start rotation.</param>
         /// <param name="q2">The end rotation.</param>
@@ -263,7 +263,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Converts the quaternion to an axis or angle pair.
         /// </summary>
-        /// <param name="axis">The result of an an axis.</param>
+        /// <param name="axis">The result of an axis.</param>
         /// <param name="angle">The result of angle in radians.</param>
         /// <returns>True if converted correctly.</returns>
         /// <since_tizen> 3 </since_tizen>

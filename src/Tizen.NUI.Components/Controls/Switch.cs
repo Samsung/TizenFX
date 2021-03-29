@@ -39,7 +39,6 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public Switch() : base()
         {
-            Initialize();
         }
 
         /// <summary>
@@ -49,7 +48,6 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Switch(string style) : base(style)
         {
-            Initialize();
         }
 
         /// <summary>
@@ -59,7 +57,39 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Switch(SwitchStyle switchStyle) : base(switchStyle)
         {
-            Initialize();
+        }
+
+        /// <summary>
+        /// Initialize AT-SPI object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnInitialize()
+        {
+            track = new ImageView()
+            {
+                EnableControlStatePropagation = true
+            };
+            thumb = new ImageView();
+            track.Add(thumb);
+
+            base.OnInitialize();
+            SetAccessibilityConstructor(Role.ToggleButton);
+
+            IsSelectable = true;
+#if PROFILE_MOBILE
+            Feedback = true;
+#endif
+        }
+
+        /// <summary>
+        /// Informs AT-SPI bridge about the set of AT-SPI states associated with this object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override AccessibilityStates AccessibilityCalculateStates()
+        {
+            var states = base.AccessibilityCalculateStates();
+            states.Set(AccessibilityState.Checked, this.IsSelected);
+            return states;
         }
 
         /// <summary>
@@ -76,24 +106,13 @@ namespace Tizen.NUI.Components
         public event EventHandler<SelectedChangedEventArgs> SelectedChanged;
 
         /// <summary>
-        /// Return a copied Style instance of Switch
+        /// Return currently applied style.
         /// </summary>
         /// <remarks>
-        /// It returns copied Style instance and changing it does not effect to the Switch.
-        /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
+        /// Modifying contents in style may cause unexpected behaviour.
         /// </remarks>
         /// <since_tizen> 8 </since_tizen>
-        public new SwitchStyle Style
-        {
-            get
-            {
-                var result = new SwitchStyle(ViewStyle as SwitchStyle);
-                result.CopyPropertiesFromView(this);
-                result.Track.CopyPropertiesFromView(Track);
-                result.Thumb.CopyPropertiesFromView(Thumb);
-                return result;
-            }
-        }
+        public new SwitchStyle Style => (SwitchStyle)(ViewStyle as SwitchStyle)?.Clone();
 
         /// <summary>
         /// Apply style to switch.
@@ -102,22 +121,29 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void ApplyStyle(ViewStyle viewStyle)
         {
-            base.ApplyStyle(viewStyle);
-
-            SwitchStyle swStyle = viewStyle as SwitchStyle;
-
-            if (null != swStyle)
+            if (viewStyle is SwitchStyle switchStyle)
             {
-                if (swStyle.Track != null)
+                if (Extension is SwitchExtension extension)
                 {
-                    Track.ApplyStyle(swStyle.Track);
+                    track.Unparent();
+                    thumb.Unparent();
+                    track = extension.OnCreateTrack(this, track);
+                    thumb = extension.OnCreateThumb(this, thumb);
+                    track.Add(thumb);
                 }
 
-                if (swStyle.Thumb != null)
+                if (switchStyle.Track != null)
                 {
-                    Thumb.ApplyStyle(swStyle.Thumb);
+                    Track.ApplyStyle(switchStyle.Track);
+                }
+
+                if (switchStyle.Thumb != null)
+                {
+                    Thumb.ApplyStyle(switchStyle.Thumb);
                 }
             }
+
+            base.ApplyStyle(viewStyle);
         }
 
         /// <summary>
@@ -126,28 +152,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public ImageView Track
         {
-            get
-            {
-                if (track == null)
-                {
-                    track = new ImageView()
-                    {
-                        PositionUsesPivotPoint = true,
-                        ParentOrigin = Tizen.NUI.ParentOrigin.CenterLeft,
-                        PivotPoint = Tizen.NUI.PivotPoint.CenterLeft,
-                        WidthResizePolicy = ResizePolicyType.FillToParent,
-                        HeightResizePolicy = ResizePolicyType.FillToParent
-                    };
-
-                    var extension = (SwitchExtension)Extension;
-                    if (extension != null)
-                    {
-                        track = extension.OnCreateTrack(this, track);
-                    }
-                    Add(track);
-                }
-                return track;
-            }
+            get => track;
             internal set
             {
                 track = value;
@@ -160,28 +165,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public ImageView Thumb
         {
-            get
-            {
-                if (thumb == null)
-                {
-                    thumb = new ImageView()
-                    {
-                        PositionUsesPivotPoint = true,
-                        ParentOrigin = Tizen.NUI.ParentOrigin.CenterLeft,
-                        PivotPoint = Tizen.NUI.PivotPoint.CenterLeft,
-                        WidthResizePolicy = ResizePolicyType.Fixed,
-                        HeightResizePolicy = ResizePolicyType.Fixed
-                    };
-
-                    var extension = (SwitchExtension)Extension;
-                    if (extension != null)
-                    {
-                        thumb = extension.OnCreateThumb(this, thumb);
-                    }
-                    Add(thumb);
-                }
-                return thumb;
-            }
+            get => thumb;
             internal set
             {
                 thumb = value;
@@ -278,7 +262,9 @@ namespace Tizen.NUI.Components
         /// <returns>True if the event should be consumed.</returns>
         /// <since_tizen> 8 </since_tizen>
         [Obsolete("Deprecated in API8; Will be removed in API10. Please use OnClicked instead.")]
+#pragma warning disable CS0809 // Obsolete member overrides non-obsolete member, It will be removed in API10
         public override bool OnTouch(Touch touch)
+#pragma warning restore CS0809 // Obsolete member overrides non-obsolete member, It will be removed in API10
         {
             return base.OnTouch(touch);
         }
@@ -312,16 +298,23 @@ namespace Tizen.NUI.Components
             }
         }
 
-        private void Initialize()
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void LayoutItems()
         {
-            IsSelectable = true;
-            #if PROFILE_MOBILE
-                Feedback = true;
-            #endif
+            base.LayoutItems();
+            track.Unparent();
+            Add(track);
+            track.LowerToBottom();
         }
 
         private void OnSelect()
         {
+            if (IsHighlighted)
+            {
+                EmitAccessibilityStateChangedEvent(AccessibilityState.Checked, IsSelected);
+            }
+
             ((SwitchExtension)Extension)?.OnSelectedChanged(this);
 
             if (SelectedEvent != null)

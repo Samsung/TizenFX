@@ -1,3 +1,20 @@
+/*
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,25 +55,25 @@ namespace Tizen.NUI.Binding
             WeakReference DelegateWeakReference { get; }
             object DelegateStrongReference { get; }
 
-            readonly bool _isStrongReference;
+            readonly bool isStrongReference;
 
             public MaybeWeakReference(object subscriber, object delegateSource)
             {
                 if (subscriber.Equals(delegateSource))
                 {
-                    // The target is the subscriber; we can use a weakreference
+                    // The target is the subscriber; we can use a weak reference
                     DelegateWeakReference = new WeakReference(delegateSource);
-                    _isStrongReference = false;
+                    isStrongReference = false;
                 }
                 else
                 {
                     DelegateStrongReference = delegateSource;
-                    _isStrongReference = true;
+                    isStrongReference = true;
                 }
             }
 
-            public object Target => _isStrongReference ? DelegateStrongReference : DelegateWeakReference.Target;
-            public bool IsAlive => _isStrongReference || DelegateWeakReference.IsAlive;
+            public object Target => isStrongReference ? DelegateStrongReference : DelegateWeakReference.Target;
+            public bool IsAlive => isStrongReference || DelegateWeakReference.IsAlive;
         }
 
         class Subscription : Tuple<WeakReference, MaybeWeakReference, MethodInfo, Filter>
@@ -100,8 +117,7 @@ namespace Tizen.NUI.Binding
             }
         }
 
-        readonly Dictionary<Sender, List<Subscription>> _subscriptions =
-            new Dictionary<Sender, List<Subscription>>();
+        readonly Dictionary<Sender, List<Subscription>> subscriptions = new Dictionary<Sender, List<Subscription>>();
 
         public static void Send<TSender, TArgs>(TSender sender, string message, TArgs args) where TSender : class
         {
@@ -198,9 +214,9 @@ namespace Tizen.NUI.Binding
             if (message == null)
                 throw new ArgumentNullException(nameof(message));
             var key = new Sender(message, senderType, argType);
-            if (!_subscriptions.ContainsKey(key))
+            if (!subscriptions.ContainsKey(key))
                 return;
-            List<Subscription> subcriptions = _subscriptions[key];
+            List<Subscription> subcriptions = subscriptions[key];
             if (subcriptions == null || !subcriptions.Any())
                 return; // should not be reachable
 
@@ -225,14 +241,14 @@ namespace Tizen.NUI.Binding
                 throw new ArgumentNullException(nameof(message));
             var key = new Sender(message, senderType, argType);
             var value = new Subscription(subscriber, target, methodInfo, filter);
-            if (_subscriptions.ContainsKey(key))
+            if (subscriptions.ContainsKey(key))
             {
-                _subscriptions[key].Add(value);
+                subscriptions[key].Add(value);
             }
             else
             {
                 var list = new List<Subscription> { value };
-                _subscriptions[key] = list;
+                subscriptions[key] = list;
             }
         }
 
@@ -244,11 +260,11 @@ namespace Tizen.NUI.Binding
                 throw new ArgumentNullException(nameof(message));
 
             var key = new Sender(message, senderType, argType);
-            if (!_subscriptions.ContainsKey(key))
+            if (!subscriptions.ContainsKey(key))
                 return;
-            _subscriptions[key].RemoveAll(sub => sub.CanBeRemoved() || sub.Subscriber.Target == subscriber);
-            if (!_subscriptions[key].Any())
-                _subscriptions.Remove(key);
+            subscriptions[key].RemoveAll(sub => sub.CanBeRemoved() || sub.Subscriber.Target == subscriber);
+            if (!subscriptions[key].Any())
+                subscriptions.Remove(key);
         }
 
         // This is a bit gross; it only exists to support the unit tests in PageTests
@@ -256,7 +272,7 @@ namespace Tizen.NUI.Binding
         // tightly coupled to the MessagingCenter singleton 
         internal static void ClearSubscribers()
         {
-            (Instance as MessagingCenter)?._subscriptions.Clear();
+            (Instance as MessagingCenter)?.subscriptions.Clear();
         }
     }
 }

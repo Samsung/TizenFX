@@ -30,17 +30,19 @@ namespace Tizen.NUI
     /// It provides the path to the application resource root folder, from there the filename can be specified along with any subfolders, for example, Images, Models, etc.<br />
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated in API9, Will be removed in API11. Please use ThemeManager instead.")]
     public class StyleManager : BaseHandle
     {
         private static readonly StyleManager instance = StyleManager.Get();
-        private EventHandler<StyleChangedEventArgs> _styleManagerStyleChangedEventHandler;
-        private StyleChangedCallbackDelegate _styleManagerStyleChangedCallbackDelegate;
+        private EventHandler<StyleChangedEventArgs> styleManagerStyleChangedEventHandler;
+        private StyleChangedCallbackDelegate styleManagerStyleChangedCallbackDelegate;
 
         /// <summary>
         /// Creates a StyleManager handle.<br />
         /// This can be initialized with StyleManager::Get().<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API9, Will be removed in API11. Please use ThemeManager instead.")]
         public StyleManager() : this(Interop.StyleManager.NewStyleManager(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -56,23 +58,24 @@ namespace Tizen.NUI
         /// and the controls have been informed.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API9, Will be removed in API11. Please use ThemeManager instead.")]
         public event EventHandler<StyleChangedEventArgs> StyleChanged
         {
             add
             {
-                if (_styleManagerStyleChangedEventHandler == null)
+                if (styleManagerStyleChangedEventHandler == null)
                 {
-                    _styleManagerStyleChangedCallbackDelegate = (OnStyleChanged);
-                    StyleChangedSignal().Connect(_styleManagerStyleChangedCallbackDelegate);
+                    styleManagerStyleChangedCallbackDelegate = (OnStyleChanged);
+                    StyleChangedSignal().Connect(styleManagerStyleChangedCallbackDelegate);
                 }
-                _styleManagerStyleChangedEventHandler += value;
+                styleManagerStyleChangedEventHandler += value;
             }
             remove
             {
-                _styleManagerStyleChangedEventHandler -= value;
-                if (_styleManagerStyleChangedEventHandler == null && StyleChangedSignal().Empty() == false)
+                styleManagerStyleChangedEventHandler -= value;
+                if (styleManagerStyleChangedEventHandler == null && StyleChangedSignal().Empty() == false)
                 {
-                    StyleChangedSignal().Disconnect(_styleManagerStyleChangedCallbackDelegate);
+                    StyleChangedSignal().Disconnect(styleManagerStyleChangedCallbackDelegate);
                 }
             }
         }
@@ -81,6 +84,7 @@ namespace Tizen.NUI
         /// Gets the singleton of the StyleManager object.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
+        [Obsolete("Deprecated in API9, Will be removed in API11. Please use ThemeManager instead.")]
         public static StyleManager Instance
         {
             get
@@ -94,6 +98,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>A handle to the StyleManager control.</returns>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API9, Will be removed in API11. Please use ThemeManager instead.")]
         public static StyleManager Get()
         {
             StyleManager ret = new StyleManager(Interop.StyleManager.Get(), true);
@@ -110,6 +115,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="themeFile">A relative path is specified for style theme.</param>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API9, Will be removed in API11. Please use ThemeManager instead.")]
         public void ApplyTheme(string themeFile)
         {
             Interop.StyleManager.ApplyTheme(SwigCPtr, themeFile);
@@ -120,6 +126,7 @@ namespace Tizen.NUI
         /// Applies the default Toolkit theme.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API9, Will be removed in API11. Please use ThemeManager instead.")]
         public void ApplyDefaultTheme()
         {
             Interop.StyleManager.ApplyDefaultTheme(SwigCPtr);
@@ -132,6 +139,7 @@ namespace Tizen.NUI
         /// <param name="key">The key of the constant.</param>
         /// <param name="value">The value of the constant.</param>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API9, Will be removed in API11. Please use ThemeManager instead.")]
         public void AddConstant(string key, PropertyValue value)
         {
             Interop.StyleManager.SetStyleConstant(SwigCPtr, key, PropertyValue.getCPtr(value));
@@ -145,6 +153,7 @@ namespace Tizen.NUI
         /// <param name="valueOut">The value of the constant if it exists.</param>
         /// <returns></returns>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API9, Will be removed in API11. Please use ThemeManager instead.")]
         public bool GetConstant(string key, PropertyValue valueOut)
         {
             bool ret = Interop.StyleManager.GetStyleConstant(SwigCPtr, key, PropertyValue.getCPtr(valueOut));
@@ -159,6 +168,7 @@ namespace Tizen.NUI
         /// <param name="jsonFileName">The name of the JSON style file to apply.</param>
         /// <param name="styleName">The name of the style within the JSON file to apply.</param>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API9, Will be removed in API11. Please use ThemeManager instead.")]
         public void ApplyStyle(View control, string jsonFileName, string styleName)
         {
             Interop.StyleManager.ApplyStyle(SwigCPtr, View.getCPtr(control), jsonFileName, styleName);
@@ -184,16 +194,15 @@ namespace Tizen.NUI
         // Callback for StyleManager StyleChangedsignal
         private void OnStyleChanged(IntPtr styleManager, StyleChangeType styleChange)
         {
-            StyleChangedEventArgs e = new StyleChangedEventArgs();
-
-            // Populate all members of "e" (StyleChangedEventArgs) with real data.
-            e.StyleManager = Registry.GetManagedBaseHandleFromNativePtr(styleManager) as StyleManager;
-            e.StyleChange = styleChange;
-
-            if (_styleManagerStyleChangedEventHandler != null)
+            if (styleManagerStyleChangedEventHandler != null)
             {
+                StyleChangedEventArgs e = new StyleChangedEventArgs();
+
+                // Populate all members of "e" (StyleChangedEventArgs) with real data.
+                e.StyleManager = Registry.GetManagedBaseHandleFromNativePtr(styleManager) as StyleManager;
+                e.StyleChange = styleChange;
                 //Here we send all data to user event handlers.
-                _styleManagerStyleChangedEventHandler(this, e);
+                styleManagerStyleChangedEventHandler(this, e);
             }
         }
 
@@ -201,24 +210,26 @@ namespace Tizen.NUI
         /// Style changed event arguments.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API9, Will be removed in API11. Please use ThemeManager instead.")]
         public class StyleChangedEventArgs : EventArgs
         {
-            private StyleManager _styleManager;
-            private StyleChangeType _styleChange;
+            private StyleManager styleManager;
+            private StyleChangeType styleChange;
 
             /// <summary>
             /// StyleManager.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [Obsolete("Deprecated in API9, Will be removed in API11. Please use ThemeManager instead.")]
             public StyleManager StyleManager
             {
                 get
                 {
-                    return _styleManager;
+                    return styleManager;
                 }
                 set
                 {
-                    _styleManager = value;
+                    styleManager = value;
                 }
             }
 
@@ -227,15 +238,16 @@ namespace Tizen.NUI
             /// default font size changed or theme has changed).<br />
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [Obsolete("Deprecated in API9, Will be removed in API11. Please use ThemeManager instead.")]
             public StyleChangeType StyleChange
             {
                 get
                 {
-                    return _styleChange;
+                    return styleChange;
                 }
                 set
                 {
-                    _styleChange = value;
+                    styleChange = value;
                 }
             }
         }

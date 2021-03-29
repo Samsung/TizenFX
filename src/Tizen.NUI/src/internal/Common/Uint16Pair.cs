@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,8 +20,6 @@ using System.ComponentModel;
 
 namespace Tizen.NUI
 {
-
-    //"Please do not use! this will be deprecated"
     /// <summary>
     /// Simple class for passing around pairs of small unsigned integers.<br />
     /// Use this for integer dimensions and points with limited range such as image

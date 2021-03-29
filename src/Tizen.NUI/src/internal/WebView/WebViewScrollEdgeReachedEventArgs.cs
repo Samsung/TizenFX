@@ -26,6 +26,11 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class WebViewScrollEdgeReachedEventArgs : EventArgs
     {
+        internal WebViewScrollEdgeReachedEventArgs(Edge e)
+        {
+            ScrollEdge = e;
+        }
+
         /// <summary>
         /// The enumeration for edge.
         /// </summary>
@@ -50,10 +55,5 @@ namespace Tizen.NUI
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Edge ScrollEdge { get; }
-
-        internal WebViewScrollEdgeReachedEventArgs(Edge e)
-        {
-            ScrollEdge = e;
-        }
     }
 }

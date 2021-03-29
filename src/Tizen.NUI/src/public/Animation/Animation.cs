@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,18 +20,13 @@ namespace Tizen.NUI
     using System;
     using System.ComponentModel;
     using System.Runtime.InteropServices;
-    using Tizen.NUI.BaseComponents;
-
-    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
-    using System.Xml;
-    using Tizen.NUI.Binding.Internals;
-    using Tizen.NUI.Binding;
     using System.Globalization;
-    using Tizen.NUI.Xaml.Internals;
     using System.Diagnostics.CodeAnalysis;
+
+    using Tizen.NUI.BaseComponents;
 
     /// <summary>
     /// Animation can be used to animate the properties of any number of objects, typically view.<br />
@@ -45,16 +40,15 @@ namespace Tizen.NUI
     {
         private static bool? disableAnimation = null;
 
+        private AnimationFinishedEventCallbackType animationFinishedEventCallback;
+        private System.IntPtr finishedCallbackOfNative;
 
-        private AnimationFinishedEventCallbackType _animationFinishedEventCallback;
-        private System.IntPtr _finishedCallbackOfNative;
+        private AnimationProgressReachedEventCallbackType animationProgressReachedEventCallback;
 
-        private AnimationProgressReachedEventCallbackType _animationProgressReachedEventCallback;
-
-        private string[] _properties = null;
-        private string[] _destValue = null;
-        private int[] _startTime = null;
-        private int[] _endTime = null;
+        private string[] properties = null;
+        private string[] destValue = null;
+        private int[] startTime = null;
+        private int[] endTime = null;
 
         private List<string> propertyList = null;
         private List<string> destValueList = null;
@@ -77,9 +71,8 @@ namespace Tizen.NUI
 
         internal Animation(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-
-            _animationFinishedEventCallback = OnFinished;
-            _finishedCallbackOfNative = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(_animationFinishedEventCallback);
+            animationFinishedEventCallback = OnFinished;
+            finishedCallbackOfNative = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(animationFinishedEventCallback);
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -88,7 +81,7 @@ namespace Tizen.NUI
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void AnimationProgressReachedEventCallbackType(IntPtr data);
 
-        private event EventHandler _animationFinishedEventHandler;
+        private event EventHandler animationFinishedEventHandler;
 
         /**
         * @brief Event for the finished signal which can be used to subscribe or unsubscribe the event handler.
@@ -99,28 +92,28 @@ namespace Tizen.NUI
         {
             add
             {
-                if (_animationFinishedEventHandler == null && disposed == false)
+                if (animationFinishedEventHandler == null && disposed == false)
                 {
                     AnimationSignal finishedSignal = FinishedSignal();
-                    finishedSignal.Connect(_finishedCallbackOfNative);
+                    finishedSignal.Connect(finishedCallbackOfNative);
                     finishedSignal.Dispose();
                 }
-                _animationFinishedEventHandler += value;
+                animationFinishedEventHandler += value;
             }
             remove
             {
-                _animationFinishedEventHandler -= value;
+                animationFinishedEventHandler -= value;
 
                 AnimationSignal finishedSignal = FinishedSignal();
-                if (_animationFinishedEventHandler == null && finishedSignal.Empty() == false)
+                if (animationFinishedEventHandler == null && finishedSignal.Empty() == false)
                 {
-                    finishedSignal.Disconnect(_finishedCallbackOfNative);
+                    finishedSignal.Disconnect(finishedCallbackOfNative);
                 }
                 finishedSignal.Dispose();
             }
         }
 
-        private event EventHandler _animationProgressReachedEventHandler;
+        private event EventHandler animationProgressReachedEventHandler;
 
         /**
        * @brief Event for the ProgressReached signal, which can be used to subscribe or unsubscribe the event handler.
@@ -131,24 +124,24 @@ namespace Tizen.NUI
         {
             add
             {
-                if (_animationProgressReachedEventHandler == null)
+                if (animationProgressReachedEventHandler == null)
                 {
-                    _animationProgressReachedEventCallback = OnProgressReached;
+                    animationProgressReachedEventCallback = OnProgressReached;
                     AnimationSignal progressReachedSignal = ProgressReachedSignal();
-                    progressReachedSignal?.Connect(_animationProgressReachedEventCallback);
+                    progressReachedSignal?.Connect(animationProgressReachedEventCallback);
                     progressReachedSignal?.Dispose();
                 }
 
-                _animationProgressReachedEventHandler += value;
+                animationProgressReachedEventHandler += value;
             }
             remove
             {
-                _animationProgressReachedEventHandler -= value;
+                animationProgressReachedEventHandler -= value;
 
                 AnimationSignal progressReachedSignal = ProgressReachedSignal();
-                if (_animationProgressReachedEventHandler == null && progressReachedSignal?.Empty() == false)
+                if (animationProgressReachedEventHandler == null && progressReachedSignal?.Empty() == false)
                 {
-                    progressReachedSignal?.Disconnect(_animationProgressReachedEventCallback);
+                    progressReachedSignal?.Disconnect(animationProgressReachedEventCallback);
                 }
                 progressReachedSignal.Dispose();
             }
@@ -375,7 +368,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets specificifications of a speed factor for the animation.<br />
+        /// Gets or sets specifications of a speed factor for the animation.<br />
         /// The speed factor is a multiplier of the normal velocity of the animation.<br />
         /// Values between [0, 1] will slow down the animation and values above one will speed up the animation.<br />
         /// It is also possible to specify a negative multiplier to play the animation in reverse.<br />
@@ -448,11 +441,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _properties;
+                return properties;
             }
             set
             {
-                _properties = value;
+                properties = value;
             }
         }
 
@@ -465,11 +458,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _destValue;
+                return destValue;
             }
             set
             {
-                _destValue = value;
+                destValue = value;
             }
         }
 
@@ -482,11 +475,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _startTime;
+                return startTime;
             }
             set
             {
-                _startTime = value;
+                startTime = value;
             }
         }
 
@@ -499,11 +492,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _endTime;
+                return endTime;
             }
             set
             {
-                _endTime = value;
+                endTime = value;
             }
         }
 
@@ -599,10 +592,7 @@ namespace Tizen.NUI
         /// <param name="handle">Handle to an object.</param>
         /// <returns>Handle to an animation object or an uninitialized handle.</returns>
         /// <exception cref="ArgumentNullException"> Thrown when handle is null. </exception>
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, Please use as keyword instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static Animation DownCast(BaseHandle handle)
+        internal static Animation DownCast(BaseHandle handle)
         {
             if (handle == null)
             {
@@ -632,7 +622,8 @@ namespace Tizen.NUI
         /// <param name="property">The target property to animate.</param>
         /// <param name="relativeValue">The property value will change by this amount.</param>
         /// <param name="alphaFunction">The alpha function to apply.</param>
-        /// <exception cref="ArgumentNullException"> Thrown when target or relativeValue is null. </exception>
+        /// <exception cref="ArgumentNullException"> Thrown when target or property or relativeValue is null. </exception>
+        /// <exception cref="ArgumentException"> Thrown when it failed to find a property from given string or the given relativeValue is invalid format. </exception>
         /// <since_tizen> 3 </since_tizen>
         public void AnimateBy(View target, string property, object relativeValue, AlphaFunction alphaFunction = null)
         {
@@ -640,26 +631,31 @@ namespace Tizen.NUI
             {
                 throw new ArgumentNullException(nameof(target));
             }
-            else if (relativeValue == null)
+            if (property == null)
+            {
+                throw new ArgumentNullException(nameof(property));
+            }
+            if (relativeValue == null)
             {
                 throw new ArgumentNullException(nameof(relativeValue));
             }
 
-            Property _prop = PropertyHelper.GetPropertyFromString(target, property);
-            relativeValue = AvoidFloatPropertyHasIntegerValue(target, _prop, relativeValue);
-            PropertyValue val = PropertyValue.CreateFromObject(relativeValue);
-
-            if (alphaFunction != null)
+            using (var result = PropertyHelper.Search(target, property))
             {
-                AnimateBy(_prop, val, alphaFunction);
-            }
-            else
-            {
-                AnimateBy(_prop, val);
-            }
+                if (result == null)
+                {
+                    throw new ArgumentException("string property is invalid");
+                }
 
-            val.Dispose();
-            _prop.Dispose();
+                var current = result;
+                while (current != null)
+                {
+                    var targetValue = current.RefineValue(relativeValue) ?? throw new ArgumentException("Invalid " + nameof(relativeValue));
+                    AnimateBy(current.Property, targetValue, alphaFunction);
+                    targetValue.Dispose();
+                    current = current.NextResult;
+                }
+            }
         }
 
         /// <summary>
@@ -671,7 +667,8 @@ namespace Tizen.NUI
         /// <param name="startTime">The start time of the animation.</param>
         /// <param name="endTime">The end time of the animation.</param>
         /// <param name="alphaFunction">The alpha function to apply.</param>
-        /// <exception cref="ArgumentNullException"> Thrown when target or relativeValue is null. </exception>
+        /// <exception cref="ArgumentNullException"> Thrown when target or property or relativeValue is null. </exception>
+        /// <exception cref="ArgumentException"> Thrown when it failed to find a property from given string or the given relativeValue is invalid format. </exception>
         /// <since_tizen> 3 </since_tizen>
         public void AnimateBy(View target, string property, object relativeValue, int startTime, int endTime, AlphaFunction alphaFunction = null)
         {
@@ -679,30 +676,32 @@ namespace Tizen.NUI
             {
                 throw new ArgumentNullException(nameof(target));
             }
-            else if (relativeValue == null)
+            if (property == null)
+            {
+                throw new ArgumentNullException(nameof(property));
+            }
+            if (relativeValue == null)
             {
                 throw new ArgumentNullException(nameof(relativeValue));
             }
 
-            Property _prop = PropertyHelper.GetPropertyFromString(target, property);
-            relativeValue = AvoidFloatPropertyHasIntegerValue(target, _prop, relativeValue);
-            PropertyValue val = PropertyValue.CreateFromObject(relativeValue);
-
-            if (alphaFunction != null)
+            using (var result = PropertyHelper.Search(target, property))
             {
-                Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime));
-                AnimateBy(_prop, val, alphaFunction, time);
-                time.Dispose();
-            }
-            else
-            {
-                Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime));
-                AnimateBy(_prop, val, time);
-                time.Dispose();
-            }
+                if (result == null)
+                {
+                    throw new ArgumentException("string property is invalid");
+                }
 
-            val.Dispose();
-            _prop.Dispose();
+                var current = result;
+                using (var time = new TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime)))
+                    while (current != null)
+                    {
+                        var targetValue = current.RefineValue(relativeValue) ?? throw new ArgumentException("Invalid " + nameof(relativeValue));
+                        AnimateBy(current.Property, targetValue, alphaFunction, time);
+                        targetValue.Dispose();
+                        current = current.NextResult;
+                    }
+            }
         }
 
         /// <summary>
@@ -712,7 +711,8 @@ namespace Tizen.NUI
         /// <param name="property">The target property to animate.</param>
         /// <param name="destinationValue">The destination value.</param>
         /// <param name="alphaFunction">The alpha function to apply.</param>
-        /// <exception cref="ArgumentNullException"> Thrown when target or destinationValue is null. </exception>
+        /// <exception cref="ArgumentNullException"> Thrown when target or property or destinationValue is null. </exception>
+        /// <exception cref="ArgumentException"> Thrown when it failed to find a property from given string or the given destinationValue is invalid format. </exception>
         /// <since_tizen> 3 </since_tizen>
         public void AnimateTo(View target, string property, object destinationValue, AlphaFunction alphaFunction = null)
         {
@@ -720,26 +720,31 @@ namespace Tizen.NUI
             {
                 throw new ArgumentNullException(nameof(target));
             }
-            else if (destinationValue == null)
+            if (property == null)
+            {
+                throw new ArgumentNullException(nameof(property));
+            }
+            if (destinationValue == null)
             {
                 throw new ArgumentNullException(nameof(destinationValue));
             }
 
-            Property _prop = PropertyHelper.GetPropertyFromString(target, property);
-            destinationValue = AvoidFloatPropertyHasIntegerValue(target, _prop, destinationValue);
-            PropertyValue val = PropertyValue.CreateFromObject(destinationValue);
-
-            if (alphaFunction != null)
+            using (var result = PropertyHelper.Search(target, property))
             {
-                AnimateTo(_prop, val, alphaFunction);
-            }
-            else
-            {
-                AnimateTo(_prop, val);
-            }
+                if (result == null)
+                {
+                    throw new ArgumentException("string property is invalid");
+                }
 
-            val.Dispose();
-            _prop.Dispose();
+                var current = result;
+                while (current != null)
+                {
+                    var targetValue = current.RefineValue(destinationValue) ?? throw new ArgumentException("Invalid " + nameof(destinationValue));
+                    AnimateTo(current.Property, targetValue, alphaFunction);
+                    targetValue.Dispose();
+                    current = current.NextResult;
+                }
+            }
         }
 
         /// <summary>
@@ -785,22 +790,22 @@ namespace Tizen.NUI
             }
             else
             {
-                if (_properties.Length == _destValue.Length && _startTime.Length == _endTime.Length && _properties.Length == _startTime.Length)
+                if (properties.Length == destValue.Length && startTime.Length == endTime.Length && properties.Length == startTime.Length)
                 {
-                    int length = _properties.Length;
+                    int length = properties.Length;
                     for (int index = 0; index < length; index++)
                     {
                         //object destinationValue = _destValue[index];
                         var elementType = target.GetType();
-                        PropertyInfo propertyInfo = elementType.GetProperties().FirstOrDefault(fi => fi.Name == _properties[index]);
+                        PropertyInfo propertyInfo = elementType.GetProperties().FirstOrDefault(fi => fi.Name == properties[index]);
                         //var propertyInfo = elementType.GetRuntimeProperties().FirstOrDefault(p => p.Name == localName);
                         if (propertyInfo != null)
                         {
-                            object destinationValue = ConvertTo(_destValue[index], propertyInfo.PropertyType);
+                            object destinationValue = ConvertTo(destValue[index], propertyInfo.PropertyType);
 
                             if (destinationValue != null)
                             {
-                                AnimateTo(target, _properties[index], destinationValue, _startTime[index], _endTime[index]);
+                                AnimateTo(target, properties[index], destinationValue, startTime[index], endTime[index]);
                             }
                         }
                     }
@@ -818,7 +823,8 @@ namespace Tizen.NUI
         /// <param name="startTime">The start time of the animation.</param>
         /// <param name="endTime">The end time of the animation.</param>
         /// <param name="alphaFunction">The alpha function to apply.</param>
-        /// <exception cref="ArgumentNullException"> Thrown when target or destinationValue is null. </exception>
+        /// <exception cref="ArgumentNullException"> Thrown when target or property or destinationValue is null. </exception>
+        /// <exception cref="ArgumentException"> Thrown when it failed to find a property from given string or the given destinationValue is invalid format. </exception>
         /// <since_tizen> 3 </since_tizen>
         public void AnimateTo(View target, string property, object destinationValue, int startTime, int endTime, AlphaFunction alphaFunction = null)
         {
@@ -826,30 +832,32 @@ namespace Tizen.NUI
             {
                 throw new ArgumentNullException(nameof(target));
             }
-            else if (destinationValue == null)
+            if (property == null)
+            {
+                throw new ArgumentNullException(nameof(property));
+            }
+            if (destinationValue == null)
             {
                 throw new ArgumentNullException(nameof(destinationValue));
             }
 
-            Property _prop = PropertyHelper.GetPropertyFromString(target, property);
-            destinationValue = AvoidFloatPropertyHasIntegerValue(target, _prop, destinationValue);
-            PropertyValue val = PropertyValue.CreateFromObject(destinationValue);
-
-            if (alphaFunction != null)
+            using (var result = PropertyHelper.Search(target, property))
             {
-                Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime));
-                AnimateTo(_prop, val, alphaFunction, time);
-                time.Dispose();
-            }
-            else
-            {
-                Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime));
-                AnimateTo(_prop, val, time);
-                time.Dispose();
-            }
+                if (result == null)
+                {
+                    throw new ArgumentException("string property is invalid");
+                }
 
-            val.Dispose();
-            _prop.Dispose();
+                var current = result;
+                using (var time = new TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime)))
+                    while (current != null)
+                    {
+                        var targetValue = current.RefineValue(destinationValue) ?? throw new ArgumentException("Invalid " + nameof(destinationValue));
+                        AnimateTo(current.Property, targetValue, alphaFunction, time);
+                        targetValue.Dispose();
+                        current = current.NextResult;
+                    }
+            }
         }
 
         /// <summary>
@@ -860,26 +868,39 @@ namespace Tizen.NUI
         /// <param name="keyFrames">The set of time or value pairs between which to animate.</param>
         /// <param name="interpolation">The method used to interpolate between values.</param>
         /// <param name="alphaFunction">The alpha function to apply.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when target or property or keyFrames is null. </exception>
+        /// <exception cref="ArgumentException"> Thrown when it failed to find a property from given string or the given keyFrames has invalid value. </exception>
         /// <since_tizen> 3 </since_tizen>
         public void AnimateBetween(View target, string property, KeyFrames keyFrames, Interpolation interpolation = Interpolation.Linear, AlphaFunction alphaFunction = null)
         {
-            Property _prop = PropertyHelper.GetPropertyFromString(target, property);
-
-            if (_prop.propertyIndex == Property.InvalidIndex)
+            if (target == null)
             {
-                throw new System.ArgumentException("second argument string property is invalid parameter!");
+                throw new ArgumentNullException(nameof(target));
+            }
+            if (property == null)
+            {
+                throw new ArgumentNullException(nameof(property));
+            }
+            if (keyFrames == null)
+            {
+                throw new ArgumentNullException(nameof(keyFrames));
             }
 
-            if (alphaFunction != null)
+            using (var result = PropertyHelper.Search(target, property))
             {
-                AnimateBetween(_prop, keyFrames, alphaFunction, interpolation);
-            }
-            else
-            {
-                AnimateBetween(_prop, keyFrames, interpolation);
-            }
+                if (result == null)
+                {
+                    throw new ArgumentException("string property is invalid");
+                }
 
-            _prop.Dispose();
+                var current = result;
+                while (current != null)
+                {
+                    // NOTE Do not dispose keyFrames object returned by GetRefinedKeyFrames() here.
+                    AnimateBetween(current.Property, current.RefineKeyFrames(keyFrames) ?? throw new ArgumentException("Invalid " + nameof(keyFrames)), alphaFunction, interpolation);
+                    current = current.NextResult;
+                }
+            }
         }
 
         /// <summary>
@@ -892,23 +913,40 @@ namespace Tizen.NUI
         /// <param name="endTime">The end time of animation in milliseconds.</param>
         /// <param name="interpolation">The method used to interpolate between values.</param>
         /// <param name="alphaFunction">The alpha function to apply.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when target or property or keyFrames is null. </exception>
+        /// <exception cref="ArgumentException"> Thrown when it failed to find a property from given string or the given keyFrames has invalid value. </exception>
         /// <since_tizen> 3 </since_tizen>
         public void AnimateBetween(View target, string property, KeyFrames keyFrames, int startTime, int endTime, Interpolation interpolation = Interpolation.Linear, AlphaFunction alphaFunction = null)
         {
-            Property _prop = PropertyHelper.GetPropertyFromString(target, property);
-
-            Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime));
-            if (alphaFunction != null)
+            if (target == null)
             {
-                AnimateBetween(_prop, keyFrames, alphaFunction, time, interpolation);
+                throw new ArgumentNullException(nameof(target));
             }
-            else
+            if (property == null)
             {
-                AnimateBetween(_prop, keyFrames, time, interpolation);
+                throw new ArgumentNullException(nameof(property));
+            }
+            if (keyFrames == null)
+            {
+                throw new ArgumentNullException(nameof(keyFrames));
             }
 
-            time.Dispose();
-            _prop.Dispose();
+            using (var result = PropertyHelper.Search(target, property))
+            {
+                if (result == null)
+                {
+                    throw new ArgumentException("string property is invalid");
+                }
+
+                var current = result;
+                using (var time = new TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime)))
+                    while (current != null)
+                    {
+                        // NOTE Do not dispose keyFrames object returned by GetRefinedKeyFrames() here.
+                        AnimateBetween(current.Property, current.RefineKeyFrames(keyFrames) ?? throw new ArgumentException("Invalid " + nameof(keyFrames)), alphaFunction, time, interpolation);
+                        current = current.NextResult;
+                    }
+            }
         }
 
         /// <summary>
@@ -1341,63 +1379,61 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal void AnimateBy(Property target, PropertyValue relativeValue)
-        {
-            Interop.Animation.AnimateBy(SwigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(relativeValue));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         internal void AnimateBy(Property target, PropertyValue relativeValue, AlphaFunction alpha)
         {
-            Interop.Animation.AnimateByAlphaFunction(SwigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(relativeValue), AlphaFunction.getCPtr(alpha));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal void AnimateBy(Property target, PropertyValue relativeValue, TimePeriod period)
-        {
-            Interop.Animation.AnimateByTimePeriod(SwigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(relativeValue), TimePeriod.getCPtr(period));
+            if (alpha == null)
+            {
+                Interop.Animation.AnimateBy(SwigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(relativeValue));
+            }
+            else
+            {
+                Interop.Animation.AnimateByAlphaFunction(SwigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(relativeValue), AlphaFunction.getCPtr(alpha));
+            }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void AnimateBy(Property target, PropertyValue relativeValue, AlphaFunction alpha, TimePeriod period)
         {
-            Interop.Animation.AnimateBy(SwigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(relativeValue), AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal void AnimateTo(Property target, PropertyValue destinationValue)
-        {
-            Interop.Animation.AnimateTo(SwigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(destinationValue));
+            if (alpha == null)
+            {
+                Interop.Animation.AnimateByTimePeriod(SwigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(relativeValue), TimePeriod.getCPtr(period));
+            }
+            else
+            {
+                Interop.Animation.AnimateBy(SwigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(relativeValue), AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period));
+            }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void AnimateTo(Property target, PropertyValue destinationValue, AlphaFunction alpha)
         {
-            Interop.Animation.AnimateToAlphaFunction(SwigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(destinationValue), AlphaFunction.getCPtr(alpha));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal void AnimateTo(Property target, PropertyValue destinationValue, TimePeriod period)
-        {
-            Interop.Animation.AnimateToTimePeriod(SwigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(destinationValue), TimePeriod.getCPtr(period));
+            if (alpha == null)
+            {
+                Interop.Animation.AnimateTo(SwigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(destinationValue));
+            }
+            else
+            {
+                Interop.Animation.AnimateToAlphaFunction(SwigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(destinationValue), AlphaFunction.getCPtr(alpha));
+            }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void AnimateTo(Property target, PropertyValue destinationValue, AlphaFunction alpha, TimePeriod period)
         {
-            Interop.Animation.AnimateTo(SwigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(destinationValue), AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period));
+            if (alpha == null)
+            {
+                Interop.Animation.AnimateToTimePeriod(SwigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(destinationValue), TimePeriod.getCPtr(period));
+            }
+            else
+            {
+                Interop.Animation.AnimateTo(SwigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(destinationValue), AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period));
+            }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void AnimateBetween(Property target, KeyFrames keyFrames)
         {
             Interop.Animation.AnimateBetween(SwigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal void AnimateBetween(Property target, KeyFrames keyFrames, Animation.Interpolation interpolation)
-        {
-            Interop.Animation.AnimateBetween(SwigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), (int)interpolation);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1409,19 +1445,20 @@ namespace Tizen.NUI
 
         internal void AnimateBetween(Property target, KeyFrames keyFrames, AlphaFunction alpha, Animation.Interpolation interpolation)
         {
-            Interop.Animation.AnimateBetweenAlphaFunctionInterpolation(SwigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), AlphaFunction.getCPtr(alpha), (int)interpolation);
+            if (alpha == null)
+            {
+                Interop.Animation.AnimateBetween(SwigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), (int)interpolation);
+            }
+            else
+            {
+                Interop.Animation.AnimateBetweenAlphaFunctionInterpolation(SwigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), AlphaFunction.getCPtr(alpha), (int)interpolation);
+            }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void AnimateBetween(Property target, KeyFrames keyFrames, TimePeriod period)
         {
             Interop.Animation.AnimateBetweenTimePeriod(SwigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), TimePeriod.getCPtr(period));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal void AnimateBetween(Property target, KeyFrames keyFrames, TimePeriod period, Animation.Interpolation interpolation)
-        {
-            Interop.Animation.AnimateBetweenTimePeriodInterpolation(SwigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), TimePeriod.getCPtr(period), (int)interpolation);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1433,7 +1470,14 @@ namespace Tizen.NUI
 
         internal void AnimateBetween(Property target, KeyFrames keyFrames, AlphaFunction alpha, TimePeriod period, Animation.Interpolation interpolation)
         {
-            Interop.Animation.AnimateBetween(SwigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period), (int)interpolation);
+            if (alpha == null)
+            {
+                Interop.Animation.AnimateBetweenTimePeriodInterpolation(SwigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), TimePeriod.getCPtr(period), (int)interpolation);
+            }
+            else
+            {
+                Interop.Animation.AnimateBetween(SwigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period), (int)interpolation);
+            }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1484,20 +1528,20 @@ namespace Tizen.NUI
                 return;
             }
 
-            if (_animationFinishedEventHandler != null)
+            if (animationFinishedEventHandler != null)
             {
                 AnimationSignal finishedSignal = FinishedSignal();
-                finishedSignal?.Disconnect(_finishedCallbackOfNative);
+                finishedSignal?.Disconnect(finishedCallbackOfNative);
                 finishedSignal?.Dispose();
-                _animationFinishedEventHandler = null;
+                animationFinishedEventHandler = null;
             }
 
-            if (_animationProgressReachedEventCallback != null)
+            if (animationProgressReachedEventCallback != null)
             {
                 AnimationSignal progressReachedSignal = ProgressReachedSignal();
-                progressReachedSignal?.Disconnect(_animationProgressReachedEventCallback);
+                progressReachedSignal?.Disconnect(animationProgressReachedEventCallback);
                 progressReachedSignal?.Dispose();
-                _animationProgressReachedEventCallback = null;
+                animationProgressReachedEventCallback = null;
             }
 
             base.Dispose(type);
@@ -1517,19 +1561,19 @@ namespace Tizen.NUI
 
         private void OnFinished(IntPtr data)
         {
-            if (_animationFinishedEventHandler != null)
+            if (animationFinishedEventHandler != null)
             {
                 //here we send all data to user event handlers
-                _animationFinishedEventHandler(this, null);
+                animationFinishedEventHandler(this, null);
             }
         }
 
         private void OnProgressReached(IntPtr data)
         {
-            if (_animationProgressReachedEventHandler != null)
+            if (animationProgressReachedEventHandler != null)
             {
                 //here we send all data to user event handlers
-                _animationProgressReachedEventHandler(this, null);
+                animationProgressReachedEventHandler(this, null);
             }
         }
 
@@ -1541,21 +1585,6 @@ namespace Tizen.NUI
         private int SecondsToMilliSeconds(float sec)
         {
             return (int)(sec * 1000);
-        }
-
-        private object AvoidFloatPropertyHasIntegerValue(View target, Property property, object value)
-        {
-            PropertyType propertyType = target.GetPropertyType(property.propertyIndex);
-            if (propertyType.Equals(PropertyType.Float))
-            {
-                System.Type type = value.GetType();
-                if (type.Equals(typeof(System.Int32)) || type.Equals(typeof(int)))
-                {
-                    int num = (int)value;
-                    value = (float)num;
-                }
-            }
-            return value;
         }
     }
 }

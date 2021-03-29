@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,9 +18,8 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Threading.Tasks;
+using System.Diagnostics.CodeAnalysis;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
@@ -32,10 +31,10 @@ namespace Tizen.NUI.Components
     public class Navigator : Control
     {
         //This will be replaced with view transition class instance.
-        private Animation _curAnimation = null;
+        private Animation curAnimation = null;
 
         //This will be replaced with view transition class instance.
-        private Animation _newAnimation = null;
+        private Animation newAnimation = null;
 
         //TODO: Needs to consider how to remove disposed window from dictionary.
         //Two dictionaries are required to remove disposed navigator from dictionary.
@@ -48,6 +47,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Navigator() : base()
         {
+            Layout = new AbsoluteLayout();
         }
 
         /// <summary>
@@ -89,26 +89,26 @@ namespace Tizen.NUI.Components
             curTop.InvokeDisappearing();
 
             //TODO: The following transition codes will be replaced with view transition.
-            if (_curAnimation)
+            if (curAnimation)
             {
-                _curAnimation.Stop();
-                _curAnimation.Clear();
+                curAnimation.Stop();
+                curAnimation.Clear();
             }
 
-            if (_newAnimation)
+            if (newAnimation)
             {
-                _newAnimation.Stop();
-                _newAnimation.Clear();
+                newAnimation.Stop();
+                newAnimation.Clear();
             }
 
-            _curAnimation = new Animation(1000);
+            curAnimation = new Animation(1000);
             using (var scaleVec = new Vector3(0.0f, 0.0f, 1.0f))
             {
-                _curAnimation.AnimateTo(curTop, "Scale", scaleVec, 0, 1000);
+                curAnimation.AnimateTo(curTop, "Scale", scaleVec, 0, 1000);
             }
-            _curAnimation.AnimateTo(curTop, "Opacity", 0.0f, 0, 1000);
-            _curAnimation.EndAction = Animation.EndActions.Discard;
-            _curAnimation.Play();
+            curAnimation.AnimateTo(curTop, "Opacity", 0.0f, 0, 1000);
+            curAnimation.EndAction = Animation.EndActions.Discard;
+            curAnimation.Play();
 
             using (var scaleVec = new Vector3(0.0f, 0.0f, 1.0f))
             {
@@ -121,13 +121,13 @@ namespace Tizen.NUI.Components
             {
                 Tizen.NUI.Object.SetProperty(page.SwigCPtr, Page.Property.OPACITY, scaleProp);
             }
-            _newAnimation = new Animation(1000);
+            newAnimation = new Animation(1000);
             using (var scaleVec = new Vector3(1.0f, 1.0f, 1.0f))
             {
-                _newAnimation.AnimateTo(page, "Scale", scaleVec, 0, 1000);
+                newAnimation.AnimateTo(page, "Scale", scaleVec, 0, 1000);
             }
-            _newAnimation.AnimateTo(page, "Opacity", 1.0f, 0, 1000);
-            _newAnimation.Play();
+            newAnimation.AnimateTo(page, "Opacity", 1.0f, 0, 1000);
+            newAnimation.Play();
         }
 
         /// <summary>
@@ -158,26 +158,26 @@ namespace Tizen.NUI.Components
             curTop.InvokeDisappearing();
 
             //TODO: The following transition codes will be replaced with view transition.
-            if (_curAnimation)
+            if (curAnimation)
             {
-                _curAnimation.Stop();
-                _curAnimation.Clear();
+                curAnimation.Stop();
+                curAnimation.Clear();
             }
 
-            if (_newAnimation)
+            if (newAnimation)
             {
-                _newAnimation.Stop();
-                _newAnimation.Clear();
+                newAnimation.Stop();
+                newAnimation.Clear();
             }
 
-            _curAnimation = new Animation(1000);
+            curAnimation = new Animation(1000);
             using (var scaleVec = new Vector3(0.0f, 0.0f, 1.0f))
             {
-                _curAnimation.AnimateTo(curTop, "Scale", scaleVec, 0, 1000);
+                curAnimation.AnimateTo(curTop, "Scale", scaleVec, 0, 1000);
             }
-            _curAnimation.AnimateTo(curTop, "Opacity", 0.0f, 0, 1000);
-            _curAnimation.Play();
-            _curAnimation.Finished += (object sender, EventArgs e) =>
+            curAnimation.AnimateTo(curTop, "Opacity", 0.0f, 0, 1000);
+            curAnimation.Play();
+            curAnimation.Finished += (object sender, EventArgs e) =>
             {
                 //Removes the current top page after transition is finished.
                 Remove(curTop);
@@ -194,13 +194,13 @@ namespace Tizen.NUI.Components
             {
                 Tizen.NUI.Object.SetProperty(newTop.SwigCPtr, Page.Property.OPACITY, opacityProp);
             }
-            _newAnimation = new Animation(1000);
+            newAnimation = new Animation(1000);
             using (var scaleVec = new Vector3(1.0f, 1.0f, 1.0f))
             {
-                _newAnimation.AnimateTo(newTop, "Scale", scaleVec, 0, 1000);
+                newAnimation.AnimateTo(newTop, "Scale", scaleVec, 0, 1000);
             }
-            _newAnimation.AnimateTo(newTop, "Opacity", 1.0f, 0, 1000);
-            _newAnimation.Play();
+            newAnimation.AnimateTo(newTop, "Opacity", 1.0f, 0, 1000);
+            newAnimation.Play();
 
             return curTop;
         }
@@ -377,6 +377,9 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="content">The content of Dialog.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [SuppressMessage("Microsoft.Reliability",
+                         "CA2000:DisposeObjectsBeforeLosingScope",
+                         Justification = "The pushed views are added to NavigationPages and are disposed in Navigator.Dispose().")]
         public static void ShowDialog(View content = null)
         {
             var window = NUIApplication.GetDefaultWindow();
@@ -397,6 +400,9 @@ namespace Tizen.NUI.Components
         /// <param name="content">The content of AlertDialog.</param>
         /// <param name="actionContent">The action content of AlertDialog.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [SuppressMessage("Microsoft.Reliability",
+                         "CA2000:DisposeObjectsBeforeLosingScope",
+                         Justification = "The pushed views are added to NavigationPages and are disposed in Navigator.Dispose().")]
         public static void ShowAlertDialog(View titleContent, View content, View actionContent)
         {
             var window = NUIApplication.GetDefaultWindow();
@@ -420,6 +426,9 @@ namespace Tizen.NUI.Components
         /// <param name="negativeButtonText">The negative button text in the action content of AlertDialog.</param>
         /// <param name="negativeButtonClickedHandler">The clicked callback of the negative button in the action content of AlertDialog.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [SuppressMessage("Microsoft.Reliability",
+                         "CA2000:DisposeObjectsBeforeLosingScope",
+                         Justification = "The pushed views are added to NavigationPages and are disposed in Navigator.Dispose().")]
         public static void ShowAlertDialog(string title = null, string message = null, string positiveButtonText = null, EventHandler<ClickedEventArgs> positiveButtonClickedHandler = null, string negativeButtonText = null, EventHandler<ClickedEventArgs> negativeButtonClickedHandler = null)
         {
             var window = NUIApplication.GetDefaultWindow();

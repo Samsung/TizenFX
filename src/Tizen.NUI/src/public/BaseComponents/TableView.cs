@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,6 @@ using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.BaseComponents
 {
-
     /// <summary>
     /// TableView is a layout container for aligning child actors in a grid like layout.<br />
     /// TableView constraints the X and the Y position and the width and the height of the child actors.<br />
@@ -395,7 +394,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="padding">Width and height.</param>
         /// <since_tizen> 3 </since_tizen>
-        // [Obsolete("Deprecated in API9, will be removed in API11. Please use CellPadding property instead!")]
+        [Obsolete("Deprecated in API9, will be removed in API11. Please use CellPadding property instead!")]
         public void SetCellPadding(Size2D padding)
         {
             Interop.TableView.SetCellPadding(SwigCPtr, Size2D.getCPtr(padding));
@@ -407,7 +406,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <returns>The current padding as width and height.</returns>
         /// <since_tizen> 3 </since_tizen>
-        // [Obsolete("Deprecated in API9, will be removed in API11. Please use CellPadding property instead!")]
+        [Obsolete("Deprecated in API9, will be removed in API11. Please use CellPadding property instead!")]
         public Vector2 GetCellPadding()
         {
             Vector2 ret = new Vector2(Interop.TableView.GetCellPadding(SwigCPtr), true);
