@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Tizen.NUI.Components\Tizen.NUI.Components.csproj" />
     <ProjectReference Include="..\Tizen.NUI\Tizen.NUI.csproj">
       <GenerateDesignMetadata>true</GenerateDesignMetadata>
       <Name>Tizen.NUI</Name>
@@ -26,6 +27,11 @@
       <HintPath>$(ExternalLibraryDir)System.Xaml.dll</HintPath>
       <Private>False</Private>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Tizen.NUI.Components.Design\" />
+    <Folder Include="Tizen.NUI.Components\" />
   </ItemGroup>
 
 </Project>
