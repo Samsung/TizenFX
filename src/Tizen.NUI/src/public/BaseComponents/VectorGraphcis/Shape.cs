@@ -1,4 +1,4 @@
-/*
+/* 
 * Copyright(c) 2021 Samsung Electronics Co., Ltd.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -102,12 +102,14 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Color FillColor
-        {   
-            get {
+        {
+            get
+            {
                 global::System.IntPtr cPtr = Interop.Shape.GetFillColor(BaseHandle.getCPtr(this));
                 return Vector4.GetVector4FromPtr(cPtr);
             }
-            set {
+            set
+            {
                 Interop.Shape.SetFillColor(BaseHandle.getCPtr(this), Vector4.getCPtr(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -119,10 +121,12 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         [EditorBrowsable(EditorBrowsableState.Never)]
         public FillRuleType FillRule
         {
-            get {
+            get
+            {
                 return (FillRuleType)Interop.Shape.GetFillRule(BaseHandle.getCPtr(this));
             }
-            set {
+            set
+            {
                 Interop.Shape.SetFillRule(BaseHandle.getCPtr(this), (int)value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -134,10 +138,12 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float StrokeWidth
         {
-            get {
+            get
+            {
                 return Interop.Shape.GetStrokeWidth(BaseHandle.getCPtr(this));
             }
-            set {
+            set
+            {
                 Interop.Shape.SetStrokeWidth(BaseHandle.getCPtr(this), value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -149,11 +155,13 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Color StrokeColor
         {
-            get {
+            get
+            {
                 global::System.IntPtr cPtr = Interop.Shape.GetStrokeColor(BaseHandle.getCPtr(this));
                 return Vector4.GetVector4FromPtr(cPtr);
             }
-            set {
+            set
+            {
                 Interop.Shape.SetStrokeColor(BaseHandle.getCPtr(this), Vector4.getCPtr(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -165,10 +173,12 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         [EditorBrowsable(EditorBrowsableState.Never)]
         public StrokeCapType StrokeCap
         {
-            get {
+            get
+            {
                 return (StrokeCapType)Interop.Shape.GetStrokeCap(BaseHandle.getCPtr(this));
             }
-            set {
+            set
+            {
                 Interop.Shape.SetStrokeCap(BaseHandle.getCPtr(this), (int)value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -181,13 +191,15 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         [EditorBrowsable(EditorBrowsableState.Never)]
         public StrokeJoinType StrokeJoin
         {
-            get {
+            get
+            {
                 return (StrokeJoinType)Interop.Shape.GetStrokeJoin(BaseHandle.getCPtr(this));
             }
-            set {
+            set
+            {
                 Interop.Shape.SetStrokeJoin(BaseHandle.getCPtr(this), (int)value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }   
+            }
         }
 
         /// <summary>
@@ -197,18 +209,20 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ReadOnlyCollection<float> StrokeDash
         {
-            get {
+            get
+            {
                 List<float> retList = new List<float>();
                 int patternCount = Interop.Shape.GetStrokeDashCount(BaseHandle.getCPtr(this));
                 for (int i = 0; i < patternCount; i++)
                 {
                     retList.Add(Interop.Shape.GetStrokeDashIndexOf(BaseHandle.getCPtr(this), i));
                 }
-                
+
                 ReadOnlyCollection<float> ret = new ReadOnlyCollection<float>(retList);
                 return ret;
             }
-            set {
+            set
+            {
                 if (value == null)
                 {
                     throw new ArgumentNullException(nameof(value));
@@ -220,7 +234,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
                 }
                 Interop.Shape.SetStrokeDash(BaseHandle.getCPtr(this), pattern, value.Count);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }    
+            }
         }
 
         /// <summary>
@@ -241,7 +255,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// <returns>True when it's successful. False otherwise.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool AddRect(float x, float y, float width, float height, float roundedCornerX, float roundedCornerY)
-        {   
+        {
             bool ret = Interop.Shape.AddRect(BaseHandle.getCPtr(this), x, y, width, height, roundedCornerX, roundedCornerY);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -329,7 +343,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool AddCubicTo(float controlPoint1X, float controlPoint1Y, float controlPoint2X, float controlPoint2Y, float endPointX, float endPointY)
         {
-            bool ret = Interop.Shape.AddCubicTo(BaseHandle.getCPtr(this),  controlPoint1X, controlPoint1Y, controlPoint2X, controlPoint2Y, endPointX, endPointY);
+            bool ret = Interop.Shape.AddCubicTo(BaseHandle.getCPtr(this), controlPoint1X, controlPoint1Y, controlPoint2X, controlPoint2Y, endPointX, endPointY);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
