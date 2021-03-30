@@ -298,7 +298,11 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator Vector4(RelativeVector4 relativeVector4)
         {
-            return new Vector4((float)relativeVector4?.X, (float)relativeVector4.Y, (float)relativeVector4.Z, (float)relativeVector4.W);
+            if (relativeVector4 == null)
+            {
+                return null;
+            }
+            return new Vector4(relativeVector4.X, relativeVector4.Y, relativeVector4.Z, relativeVector4.W);
         }
 
         /// <summary>
@@ -306,7 +310,11 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator RelativeVector4(Vector4 vec)
         {
-            return new RelativeVector4((float)vec?.X, (float)vec.Y, (float)vec.Z, (float)vec.W);
+            if (vec == null)
+            {
+                return null;
+            }
+            return new RelativeVector4(vec.X, vec.Y, vec.Z, vec.W);
         }
 
         /// <summary>
