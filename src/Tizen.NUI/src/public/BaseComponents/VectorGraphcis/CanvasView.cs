@@ -21,11 +21,11 @@ using System.Diagnostics.CodeAnalysis;
 namespace Tizen.NUI.BaseComponents.VectorGraphics
 {
     /// <summary>
-    /// CanvasView is a class for displaying vector primitives.<br />
+    /// CanvasView is a class for displaying vector primitives.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class CanvasView : View
-    {            
+    {
         static CanvasView() { }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         }
 
         /// <summary>
-        /// you can override it to clean-up your own resources.
+        /// You can override it to clean-up your own resources.
         /// </summary>
         /// <param name="type">DisposeTypes</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -68,7 +68,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
             Interop.CanvasView.DeleteCanvasView(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        
+
         /// <summary>
         /// Add drawable object to the CanvasView.
         /// This method is similar to registration. The added shape is drawn on the inner canvas.
@@ -76,7 +76,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// <param name="drawable">Drawable object</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddDrawable(Drawable drawable)
-        {   
+        {
             Interop.CanvasView.AddDrawable(View.getCPtr(this), BaseHandle.getCPtr(drawable));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
