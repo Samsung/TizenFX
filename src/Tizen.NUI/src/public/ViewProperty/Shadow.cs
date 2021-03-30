@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -54,8 +54,9 @@ namespace Tizen.NUI
         /// <summary>
         /// Copy constructor.
         /// </summary>
+        /// <exception cref="ArgumentNullException"> Thrown when other is null. </exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Shadow(Shadow other) : this((float)other?.BlurRadius, other.Offset, other.Color, other.Extents)
+        public Shadow(Shadow other) : this(other == null ? throw new ArgumentNullException(nameof(other)) : other.BlurRadius, other.Offset, other.Color, other.Extents)
         {
         }
 

@@ -94,7 +94,7 @@ namespace Tizen.NUI.Binding
             }
 
             Assembly[] assemblies = Device.GetAssemblies();
-            if (Tizen.NUI.Binding.Internals.Registrar.ExtraAssemblies != null)
+            if (assemblies != null && Tizen.NUI.Binding.Internals.Registrar.ExtraAssemblies != null)
             {
                 assemblies = assemblies.Union(Tizen.NUI.Binding.Internals.Registrar.ExtraAssemblies).ToArray();
             }
