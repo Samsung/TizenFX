@@ -82,52 +82,6 @@ namespace Tizen.NUI.BaseComponents
     }
 
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public partial class ReadingInfoTypes : SafeHandle
-    {
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ReadingInfoTypes() : base(IntPtr.Zero, true)
-        {
-            var obj = Interop.ControlDevel.DaliToolkitDevelControlNewReadingInfoType();
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            this.SetHandle(obj);
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ReadingInfoTypes(IntPtr ptr) : base(ptr, true) { }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool IsInvalid { get { return this.handle == IntPtr.Zero; } }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Set(ReadingInfoType type, bool v)
-        {
-            Interop.ControlDevel.DaliToolkitDevelControlReadingInfoTypesSet(this, (int)type, Convert.ToInt32(v));
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool Get(ReadingInfoType type)
-        {
-            bool result = Interop.ControlDevel.DaliToolkitDevelControlReadingInfoTypesGet(this, (int)type);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return result;
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override bool ReleaseHandle()
-        {
-            Interop.ControlDevel.DaliToolkitDevelControlDeleteReadingInfoType(handle);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            this.SetHandle(IntPtr.Zero);
-            return true;
-        }
-    }
-
-    [EditorBrowsable(EditorBrowsableState.Never)]
     public partial class AccessibilityStates : SafeHandle
     {
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -261,6 +215,9 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RemoveAccessibilityRelation(View second, RelationType relation)
         {
+            if (second is null)
+                throw new ArgumentNullException(nameof(second));
+
             Interop.ControlDevel.DaliToolkitDevelControlRemoveAccessibilityRelation(SwigCPtr, second.SwigCPtr, (int)relation);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -283,18 +240,22 @@ namespace Tizen.NUI.BaseComponents
             return result;
         }
 
+        ///////////////////////////////////////////////////////////////////
+        // ********************* ReadingInfoType *********************** //
+        ///////////////////////////////////////////////////////////////////
+
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetAccessibilityReadingInfoType(ReadingInfoTypes types)
+        public void SetAccessibilityReadingInfoTypes(AccessibilityReadingInfoTypes info)
         {
-            Interop.ControlDevel.DaliToolkitDevelControlSetAccessibilityReadingInfoType(SwigCPtr, types);
+            Interop.ControlDevel.DaliToolkitDevelControlSetAccessibilityReadingInfoTypes(SwigCPtr, (int)info);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ReadingInfoTypes GetAccessibilityReadingInfoType()
+        public AccessibilityReadingInfoTypes GetAccessibilityReadingInfoTypes()
         {
-            var result = new ReadingInfoTypes(Interop.ControlDevel.DaliToolkitDevelControlNewGetAccessibilityReadingInfoType(SwigCPtr));
+            AccessibilityReadingInfoTypes result = (AccessibilityReadingInfoTypes)Interop.ControlDevel.DaliToolkitDevelControlGetAccessibilityReadingInfoTypes(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return result;

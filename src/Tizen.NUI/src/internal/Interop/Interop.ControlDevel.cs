@@ -104,28 +104,12 @@ namespace Tizen.NUI
             public static extern void DaliToolkitDevelControlClearAccessibilityAttributes(global::System.Runtime.InteropServices.HandleRef arg1);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_SetAccessibilityReadingInfoType")]
-            public static extern void DaliToolkitDevelControlSetAccessibilityReadingInfoType(global::System.Runtime.InteropServices.HandleRef arg1, Tizen.NUI.BaseComponents.ReadingInfoTypes arg2);
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_SetAccessibilityReadingInfoType2")]
+            public static extern void DaliToolkitDevelControlSetAccessibilityReadingInfoTypes(global::System.Runtime.InteropServices.HandleRef arg1, int arg2);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_new_ReadingInfoType")]
-            public static extern global::System.IntPtr DaliToolkitDevelControlNewReadingInfoType();
-
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_new_GetAccessibilityReadingInfoType")]
-            public static extern global::System.IntPtr DaliToolkitDevelControlNewGetAccessibilityReadingInfoType(global::System.Runtime.InteropServices.HandleRef arg1);
-
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_delete_ReadingInfoType")]
-            public static extern void DaliToolkitDevelControlDeleteReadingInfoType(IntPtr arg1);
-
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_ReadingInfoTypes_Get")]
-            public static extern bool DaliToolkitDevelControlReadingInfoTypesGet(Tizen.NUI.BaseComponents.ReadingInfoTypes arg1, int arg2);
-
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_ReadingInfoTypes_Set")]
-            public static extern void DaliToolkitDevelControlReadingInfoTypesSet(Tizen.NUI.BaseComponents.ReadingInfoTypes arg1, int arg2, int arg3);
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_GetAccessibilityReadingInfoType2")]
+            public static extern int DaliToolkitDevelControlGetAccessibilityReadingInfoTypes(global::System.Runtime.InteropServices.HandleRef arg1);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_ClearAccessibilityHighlight")]
