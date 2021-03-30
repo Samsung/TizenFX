@@ -22,17 +22,16 @@ using Tizen.NUI;
 
 namespace Tizen.NUI.BaseComponents
 {
-    public partial class ReadingInfoTypes
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    [Flags]
+    public enum AccessibilityReadingInfoTypes : int
     {
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public enum ReadingInfoType
-        {
-            Name = 0,
-            Role,
-            Description,
-            State
-        };
-    }
+        None = 0,
+        Name = 1,
+        Role = 2,
+        Description = 4,
+        State = 8
+    };
 
     [EditorBrowsable(EditorBrowsableState.Never)]
     public enum AccessibilityGesture
