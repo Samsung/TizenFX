@@ -32,6 +32,7 @@
     <ProjectReference Include="../../../src/Tizen.Applications.ComponentBased/Tizen.Applications.ComponentBased.csproj" />
     <ProjectReference Include="../../../src/Tizen.Log/Tizen.Log.csproj" />
     <ProjectReference Include="../../../src/Tizen.Multimedia.MediaPlayer/Tizen.Multimedia.MediaPlayer.csproj" />
+    <ProjectReference Include="../../../src/Tizen.Multimedia.Camera/Tizen.Multimedia.Camera.csproj" />
     <ProjectReference Include="../../../src/Tizen.System.SystemSettings/Tizen.System.SystemSettings.csproj" />
     <ProjectReference Include="../../../src/Tizen.NUI/Tizen.NUI.csproj" />
     <ProjectReference Include="../../../src/Tizen.NUI.Components/Tizen.NUI.Components.csproj" />
