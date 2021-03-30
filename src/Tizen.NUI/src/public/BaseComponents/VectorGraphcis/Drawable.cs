@@ -40,14 +40,16 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float Opacity
-        {   
-            get {
+        {
+            get
+            {
                 return Interop.Drawable.GetOpacity(BaseHandle.getCPtr(this));
             }
-            set {
+            set
+            {
                 Interop.Drawable.SetOpacity(BaseHandle.getCPtr(this), value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }   
+            }
         }
 
         /// <summary>
@@ -57,7 +59,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// <returns>True when it's successful. False otherwise.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Rotate(float degree)
-        {   
+        {
             bool ret = Interop.Drawable.Rotate(BaseHandle.getCPtr(this), degree);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -70,7 +72,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// <returns>True when it's successful. False otherwise.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Scale(float factor)
-        {   
+        {
             bool ret = Interop.Drawable.Scale(BaseHandle.getCPtr(this), factor);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -85,7 +87,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// <exception cref="ArgumentException"> Thrown when matrix array length is not 9. </exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Transform(float[] matrix)
-        {   
+        {
             if (matrix == null)
             {
                 throw new ArgumentNullException(nameof(matrix));
@@ -107,7 +109,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// <returns>True when it's successful. False otherwise.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Translate(float x, float y)
-        {   
+        {
             bool ret = Interop.Drawable.Translate(BaseHandle.getCPtr(this), x, y);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
