@@ -12,7 +12,7 @@ namespace Tizen.NUI.Samples
         const string tag = "NUITEST";
 
         private View root;
-        private CanvasView canvasView ;
+        private CanvasView canvasView;
         private Shape shape;
         private Timer timer;
         private int count = 0;
@@ -57,10 +57,10 @@ namespace Tizen.NUI.Samples
                 FillColor = new Color(0.0f, 0.0f, 1.0f, 1.0f),
                 StrokeColor = new Color(1.0f, 1.0f, 0.0f, 1.0f),
                 StrokeWidth = 10.0f,
-                StrokeDash = new List<float>(){15.0f, 30.0f}.AsReadOnly(),
+                StrokeDash = new List<float>() { 15.0f, 30.0f }.AsReadOnly(),
             };
             shape2.AddCircle(0.0f, 0.0f, 150.0f, 100.0f);
-            shape2.Transform(new float[] {0.6f, 0.0f, 350.0f, 0.0f, 0.6f, 100.0f, 0.0f, 0.0f, 1.0f});        
+            shape2.Transform(new float[] { 0.6f, 0.0f, 350.0f, 0.0f, 0.6f, 100.0f, 0.0f, 0.0f, 1.0f });
 
             canvasView.AddDrawable(shape2);
 
@@ -89,10 +89,10 @@ namespace Tizen.NUI.Samples
             shape4.AddMoveTo(0.0f, -160.0f);
             shape4.AddLineTo(125.0f, 160.0f);
             shape4.AddLineTo(-180.0f, -45.0f);
-            shape4.AddLineTo(180.0f, -45.0f);    
+            shape4.AddLineTo(180.0f, -45.0f);
             shape4.AddLineTo(-125.0f, 160.0f);
             shape4.Close();
-            
+
             canvasView.AddDrawable(shape4);
 
             shape = new Shape()
@@ -138,7 +138,7 @@ namespace Tizen.NUI.Samples
             // Exception test.
             try
             {
-                shape2.Transform(new float[] {0.6f, 0.0f});
+                shape2.Transform(new float[] { 0.6f, 0.0f });
             }
             catch (ArgumentException e)
             {
@@ -160,7 +160,7 @@ namespace Tizen.NUI.Samples
             {
                 log.Debug(tag, "StrokeDash setter : " + e.Message + "\n");
             }
-            
+
             root.Add(canvasView);
 
             timer = new Timer(1000 / 32);
