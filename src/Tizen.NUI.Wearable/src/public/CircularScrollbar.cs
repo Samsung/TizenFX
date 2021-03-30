@@ -350,7 +350,12 @@ namespace Tizen.NUI.Wearable
         {
             base.OnRelayout(size, container);
 
-            if (size.Width == containerSize?.Width && size.Height == containerSize.Height)
+            if (size == null || container == null || containerSize == null)
+            {
+                return;
+            }
+
+            if (size.Width == containerSize.Width && size.Height == containerSize.Height)
             {
                 return;
             }

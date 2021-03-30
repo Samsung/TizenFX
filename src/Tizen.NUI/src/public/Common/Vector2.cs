@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -63,8 +63,9 @@ namespace Tizen.NUI
         /// The copy constructor.
         /// </summary>
         /// <param name="other">The copy target.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when other is null. </exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Vector2(Vector2 other) : this((float)other?.X, (float)other.Y)
+        public Vector2(Vector2 other) : this(other == null ? throw new ArgumentNullException(nameof(other)) : other.X, other.Y)
         {
         }
 

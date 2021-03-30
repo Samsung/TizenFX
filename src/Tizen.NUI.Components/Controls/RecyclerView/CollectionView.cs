@@ -762,22 +762,27 @@ namespace Tizen.NUI.Components
             }
 
             RecyclerViewItem item = base.RealizeItem(index);
-            if (isGrouped) item.ParentGroup = InternalItemSource.GetGroupParent(index);
-
-            switch (SelectionMode)
+            if (item != null)
             {
-                case ItemSelectionMode.SingleSelection:
-                    if (item.BindingContext == SelectedItem) item.IsSelected = true;
-                    break;
+                if (isGrouped)
+                {
+                    item.ParentGroup = InternalItemSource.GetGroupParent(index);
+                }
 
-                case ItemSelectionMode.MultipleSelections:
-                    if (SelectedItems?.Contains(item.BindingContext) ?? false) item.IsSelected = true;
-                    break;
-                case ItemSelectionMode.None:
-                    item.IsSelectable = false;
-                    break;
+                switch (SelectionMode)
+                {
+                    case ItemSelectionMode.SingleSelection:
+                        if (item.BindingContext == SelectedItem) item.IsSelected = true;
+                        break;
+
+                    case ItemSelectionMode.MultipleSelections:
+                        if (SelectedItems?.Contains(item.BindingContext) ?? false) item.IsSelected = true;
+                        break;
+                    case ItemSelectionMode.None:
+                        item.IsSelectable = false;
+                        break;
+                }
             }
-
             return item;
         }
 

@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2020 Samsung Electronics Co., Ltd.
+﻿/* Copyright (c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -642,7 +642,7 @@ namespace Tizen.NUI
             // We need to measure child layout
             View child = Registry.GetManagedBaseHandleFromNativePtr(childPtr) as View;
             // independent child will be measured in LayoutGroup.OnMeasureIndependentChildren().
-            if (child?.ExcludeLayouting ?? true)
+            if ((child == null) || (child?.ExcludeLayouting ?? true))
             {
                 measureSize.width = 0;
                 measureSize.height = 0;
