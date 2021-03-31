@@ -772,11 +772,17 @@ namespace Tizen.NUI.Components
                 switch (SelectionMode)
                 {
                     case ItemSelectionMode.SingleSelection:
-                        if (item.BindingContext == SelectedItem) item.IsSelected = true;
+                        if (item.BindingContext != null && item.BindingContext == SelectedItem)
+                        {
+                            item.IsSelected = true;
+                        }
                         break;
 
                     case ItemSelectionMode.MultipleSelections:
-                        if (SelectedItems?.Contains(item.BindingContext) ?? false) item.IsSelected = true;
+                        if ((item.BindingContext != null) && (SelectedItems?.Contains(item.BindingContext) ?? false))
+                        {
+                            item.IsSelected = true;
+                        }
                         break;
                     case ItemSelectionMode.None:
                         item.IsSelectable = false;
