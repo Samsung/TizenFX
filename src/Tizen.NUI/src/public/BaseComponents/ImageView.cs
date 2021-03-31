@@ -38,7 +38,7 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             string url = (string)newValue;
             url = (url == null ? "" : url);
-            if (imageView.IsCreateByXaml && url.Contains("*Resource*"))
+            if (url.StartsWith("*Resource*"))
             {
                 string resource = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
                 url = url.Replace("*Resource*", resource);
@@ -73,7 +73,7 @@ namespace Tizen.NUI.BaseComponents
                     bool ret = false;
                     if (urlValue != null) ret = urlValue.Get(out url);
                     PropertyMap mmap = new PropertyMap();
-                    if (ret && url.Contains("*Resource*"))
+                    if (ret && url.StartsWith("*Resource*"))
                     {
                         url = url.Replace("*Resource*", resource);
                         mmap.Insert(NDalic.ImageVisualUrl, new PropertyValue(url));
@@ -82,7 +82,7 @@ namespace Tizen.NUI.BaseComponents
                     ret = false;
                     PropertyValue alphaMaskUrlValue = map.Find(NDalic.ImageVisualAlphaMaskUrl);
                     if (alphaMaskUrlValue != null) ret = alphaMaskUrlValue.Get(out alphaMaskURL);
-                    if (ret && alphaMaskURL.Contains("*Resource*"))
+                    if (ret && alphaMaskURL.StartsWith("*Resource*"))
                     {
                         alphaMaskURL = alphaMaskURL.Replace("*Resource*", resource);
                         mmap.Insert(NDalic.ImageVisualUrl, new PropertyValue(alphaMaskURL));
@@ -91,7 +91,7 @@ namespace Tizen.NUI.BaseComponents
                     ret = false;
                     PropertyValue auxiliaryImageURLValue = map.Find(NDalic.ImageVisualAuxiliaryImageUrl);
                     if (auxiliaryImageURLValue != null) ret = auxiliaryImageURLValue.Get(out auxiliaryImageURL);
-                    if (ret && auxiliaryImageURL.Contains("*Resource*"))
+                    if (ret && auxiliaryImageURL.StartsWith("*Resource*"))
                     {
                         auxiliaryImageURL = auxiliaryImageURL.Replace("*Resource*", resource);
                         mmap.Insert(NDalic.ImageVisualAuxiliaryImageUrl, new PropertyValue(auxiliaryImageURL));
