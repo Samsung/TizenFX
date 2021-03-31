@@ -457,7 +457,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Gets or sets the resource url of the thumb image object.
         ///
-        /// Please use ThumbImageUri property.
+        /// Please use ThumbImageUrl property.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public string ThumbImageURL
@@ -480,7 +480,7 @@ namespace Tizen.NUI.Components
         /// Gets or sets the resource url selector of the thumb image object.
         /// Getter returns copied selector value if exist, null otherwise.
         ///
-        /// Please use ThumbImageUri property.
+        /// Please use ThumbImageUrl property.
         /// </summary>
         /// <exception cref="NullReferenceException">Thrown when setting null value.</exception>
         /// <since_tizen> 6 </since_tizen>
@@ -502,12 +502,12 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Gets or sets the Uri of the thumb image.
+        /// Gets or sets the Url of the thumb image.
         /// </summary>
         /// <exception cref="NullReferenceException">Thrown when setting null value.</exception>
         /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Selector<Uri> ThumbImageUri
+        public Selector<string> ThumbImageUrl
         {
             get
             {
@@ -517,20 +517,19 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return ((Selector<string>)thumbImage.GetValue(ImageView.ResourceUrlSelectorProperty)).Clone<Uri>(str => { return new Uri(str); });
+                    return (Selector<string>)thumbImage.GetValue(ImageView.ResourceUrlSelectorProperty);
                 }
             }
             set
             {
                 if (value == null || thumbImage == null)
                 {
-                    throw new NullReferenceException("Slider.ThumbImageUri is null");
+                    throw new NullReferenceException("Slider.ThumbImageUrl is null");
                 }
                 else
                 {
-                    Selector<string> stringValue = value.Clone<string>(m => m?.AbsoluteUri);
-                    thumbImage.SetValue(ImageView.ResourceUrlSelectorProperty, stringValue);
-                    thumbImageUrlSelector = stringValue;
+                    thumbImage.SetValue(ImageView.ResourceUrlSelectorProperty, value);
+                    thumbImageUrlSelector = value;
                 }
             }
         }
@@ -668,43 +667,26 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Gets or sets the resource url of the warning thumb image object.
-        /// </summary>
-        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string WarningThumbImageUrl
-        {
-            get
-            {
-                return warningThumbImageUrl;
-            }
-            set
-            {
-                warningThumbImageUrl = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the Uri of the warning thumb image.
+        /// Gets or sets the Url of the warning thumb image.
         /// </summary>
         /// <exception cref="NullReferenceException">Thrown when setting null value.</exception>
         /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Selector<Uri> WarningThumbImageUri
+        public Selector<string> WarningThumbImageUrl
         {
             get
             {
-                return warningThumbImageUrlSelector?.Clone<Uri>(str => { return new Uri(str); });
+                return warningThumbImageUrlSelector;
             }
             set
             {
                 if (value == null || thumbImage == null)
                 {
-                    throw new NullReferenceException("Slider.WarningThumbImageUri is null");
+                    throw new NullReferenceException("Slider.WarningThumbImageUrl is null");
                 }
                 else
                 {
-                    warningThumbImageUrlSelector = value.Clone<string>(m => m?.AbsoluteUri);
+                    warningThumbImageUrlSelector = value;
                 }
             }
         }
