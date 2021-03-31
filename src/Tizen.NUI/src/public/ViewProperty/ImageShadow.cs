@@ -49,27 +49,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Hidden API (Inhouse API).
-        /// Constructor.
-        /// Using Uri class to provide safe service and secure API.
-        /// </summary>
-        /// <param name="uri">uri.</param>
-        /// <param name="border">border.</param>
-        /// <param name="offset">offset.</param>
-        /// <param name="extents">extents.</param>
-        /// <exception cref="ArgumentNullException">Thrown when uri is null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageShadow(Uri uri, Rectangle border, Vector2 offset, Vector2 extents) : base(offset, extents)
-        {
-            if (uri == null)
-            {
-                throw new ArgumentNullException(nameof(uri));
-            }
-            Url = uri.AbsoluteUri;
-            Border = border == null ? null : new Rectangle(border);
-        }
-
-        /// <summary>
         /// Constructor
         /// </summary>
         /// <exception cref="ArgumentNullException"> Thrown when other is null. </exception>
