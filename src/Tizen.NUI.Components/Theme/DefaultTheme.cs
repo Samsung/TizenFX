@@ -148,6 +148,20 @@ namespace Tizen.NUI.Components
                     .Add<VerticalAlignment?>("/MessageTextLabel/VerticalAlignment", (ViewStyle style, VerticalAlignment? value) => ((AlertDialogStyle)style).MessageTextLabel.VerticalAlignment = value)
                     .AddSelector<Color>("/MessageTextLabel/TextColor", (ViewStyle style, Selector<Color> value) => ((AlertDialogStyle)style).MessageTextLabel.TextColor = value)
                     .Add<Size>("/ActionContent/Size", (ViewStyle style, Size value) => ((AlertDialogStyle)style).ActionContent.Size = value),
+                
+                // TimePicker
+                (new ExternalThemeKeyList(typeof(TimePicker), typeof(TimePickerStyle)))
+                    .Add<Size>("/CellPadding", (ViewStyle style, Size value) => ((TimePickerStyle)style).Size = value)
+                    .Add<Size>("/Pickers/Size", (ViewStyle style, Size value) => ((TimePickerStyle)style).Pickers.Size = value)
+                    .AddSelector<float?>("/Pickers/ItemTextLabel/PixelSize", (ViewStyle style, Selector<float?> value) => ((TimePickerStyle)style).Pickers.ItemTextLabel.PixelSize = value, ControlState.Selected)
+                    .Add<Size>("/Pickers/ItemTextLabel/Size", (ViewStyle style, Size value) => ((TimePickerStyle)style).Pickers.ItemTextLabel.Size = value)
+                    .AddSelector<Color>("/Pickers/ItemTextLabel/TextColor", (ViewStyle style, Selector<Color> value) => ((TimePickerStyle)style).Pickers.ItemTextLabel.TextColor = value, ControlState.Selected)
+                    .AddSelector("/Pickers/ItemTextLabel/BackgroundColor", (ViewStyle style, Selector<Color> value) => ((TimePickerStyle)style).Pickers.ItemTextLabel.BackgroundColor = value, ControlState.Selected)
+                    .Add<float?>("/Pickers/Divider/SizeHeight", (ViewStyle style, float? value) => ((TimePickerStyle)style).Pickers.Divider.SizeHeight = value)
+                    .Add<Position>("/Pickers/Divider/Position", (ViewStyle style, Position value) => ((TimePickerStyle)style).Pickers.Divider.Position = value)
+                    .AddSelector("/Pickers/Divider/BackgroundColor", (ViewStyle style, Selector<Color> value) => ((TimePickerStyle)style).Pickers.Divider.BackgroundColor = value, ControlState.Selected)
+                    .Add<Size>("/Pickers/StartScrollOffset", (ViewStyle style, Size value) => ((TimePickerStyle)style).Pickers.StartScrollOffset = value),
+
             };
 
             return actionSet;
