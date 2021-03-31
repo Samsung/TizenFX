@@ -114,7 +114,7 @@ namespace Tizen.NUI
                 if (viewType != null)
                 {
                     NUILog.Debug("getStartPropertyIndex =  " + viewType.Name + "current index " + startEventPropertyIndex);
-                    viewType = viewType.GetTypeInfo().BaseType;
+                    viewType = viewType.GetTypeInfo()?.BaseType;
                 }
             }
 

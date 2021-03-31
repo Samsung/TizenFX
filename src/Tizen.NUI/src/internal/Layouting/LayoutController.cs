@@ -244,14 +244,14 @@ namespace Tizen.NUI
             Vector2 windowSize = window.GetSize();
             float width = windowSize.Width;
             float height = windowSize.Height;
-            // First layer in the Window should be the default layer (index 0 )
-            foreach (Layer layer in window.LayersChildren)
+
+            window.LayersChildren?.ForEach(layer =>
             {
-                foreach (View view in layer.Children)
+                layer?.Children?.ForEach(view =>
                 {
                     FindRootLayouts(view, width, height);
-                }
-            }
+                });
+            });
             windowSize.Dispose();
             windowSize = null;
         }
