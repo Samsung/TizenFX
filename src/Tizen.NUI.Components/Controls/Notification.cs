@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,36 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 8 </since_tizen>
     public class Notification : Disposable
     {
+        /// <summary>
+        /// Toast will appear at the top of the screen.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly Position ToastTop = ParentOrigin.TopCenter;
+
+        /// <summary>
+        /// Toast will appear at the center of the screen.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly Position ToastCenter = ParentOrigin.Center;
+
+        /// <summary>
+        /// Toast will appear at the bottom of the screen.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly Position ToastBottom = ParentOrigin.BottomCenter;
+
+        /// <summary>
+        /// Show the notification for a short period of time.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly uint ToastShort = 2000;
+
+        /// <summary>
+        /// Show the notification for a long period of time.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly uint ToastLong = ToastShort * 2;
+
         private static HashSet<Notification> instanceSet;
 
         private Window notificationWindow;
@@ -45,15 +75,20 @@ namespace Tizen.NUI.Components
 
         private NotificationState state = NotificationState.Ready;
 
+        static Notification()
+        {
+            ThemeManager.AddPackageTheme(DefaultThemeCreator.Instance);
+        }
+
         /// <summary>
         /// Create a notification with a content View.
         /// </summary>
         /// <param name="contentView">The content view instance to display in the notification window.</param>
-        /// <exception cref="ArgumentException">Thrown when a given contentView is invalid.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when a given contentView is null.</exception>
         /// <since_tizen> 8 </since_tizen>
         public Notification(View contentView) : base()
         {
-            ContentView = contentView ?? throw new ArgumentException("Input contentView should not be null.");
+            ContentView = contentView ?? throw new ArgumentNullException(nameof(contentView));
         }
 
         private enum NotificationState
@@ -117,9 +152,60 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Create a simple text notification called toast.
+        /// </summary>
+        /// <param name="text">The string content.</param>
+        /// <param name="gravity">The location at which the toast should appear. It's one of the notification constants: ToastTop, ToastCenter and ToastBottom.</param>
+        /// <returns>The created Notification instance.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when the given text or gravity is null.</exception>
+        /// <remark>Application need to set http://tizen.org/privilege/window.priority.set to post a notification.</remark>
+        /// <example>
+        /// The following example demonstrates how to make a toast at the bottom and show it for a short period time.
+        /// <code>
+        /// Notification.MakeToast("Hello World!", Notification.ToastBottom).Post(Notification.ToastShort);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Notification MakeToast(string text, Position gravity)
+        {
+            var textLabel = new TextLabel(text ?? throw new ArgumentNullException(nameof(text)))
+            {
+                Opacity = 0.0f
+            };
+
+            if (gravity == null) throw new ArgumentNullException(nameof(gravity));
+
+            var style = ThemeManager.GetStyle("NotificationToast");
+            if (style != null)
+            {
+                textLabel.ApplyStyle(style);
+            }
+
+            textLabel.ParentOrigin = gravity;
+            textLabel.PivotPoint = gravity;
+
+            if (gravity == ToastCenter)
+            {
+                textLabel.PositionY = 0;
+            }
+            else if (gravity == ToastBottom)
+            {
+                textLabel.PositionY = -textLabel.PositionY;
+            }
+
+            var postAnimation = new Animation(700);
+            postAnimation.AnimateTo(textLabel, "Opacity", 1.0f);
+
+            var dismissAnimation = new Animation(500);
+            dismissAnimation.AnimateTo(textLabel, "Opacity", 0.0f);
+
+            return new Notification(textLabel).SetAnimationOnPost(postAnimation).SetAnimationOnDismiss(dismissAnimation);
+        }
+
+        /// <summary>
         /// Post a notification window with the content view.
         /// </summary>
-        /// <param name="duration">Dismiss the notification window after given time. The value 0 won't dismiss the notification.</param>
+        /// <param name="duration">Dismiss the notification window after given time in millisecond. The value 0 won't dismiss the notification.</param>
         /// <returns>The current Notification instance.</returns>
         /// <privilege>http://tizen.org/privilege/window.priority.set</privilege>
         /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have proper privilege.</exception>
