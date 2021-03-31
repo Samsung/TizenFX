@@ -435,6 +435,59 @@ namespace Tizen.NUI.Components
                 StartScrollOffset = new Size2D(0, 12),
             });
 
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.TabButton", new TabButtonStyle()
+            {
+                Size = new Size(-1, 84),
+                CornerRadius = 0,
+                BackgroundColor = Color.White,
+                Text = new TextLabelStyle()
+                {
+                    PixelSize = 28,
+                    Size = new Size(-2, -2),
+                    TextColor = new Selector<Color>()
+                    {
+                        Normal = new Color("#000C2BFF"),
+                        Selected = new Color("#000C2BFF"),
+                        Pressed = new Color("#1473E6FF"),
+                        Disabled = new Color("#C3CAD2FF"),
+                    },
+                },
+                Icon = new ImageViewStyle()
+                {
+                    Size = new Size(48, 48),
+                    Color = new Selector<Color>()
+                    {
+                        Normal = new Color("#000C2BFF"),
+                        Selected = new Color("#000C2BFF"),
+                        Pressed = new Color("#1473E6FF"),
+                        Disabled = new Color("#C3CAD2FF"),
+                    },
+                },
+                TopLine = new ViewStyle()
+                {
+                    Size = new Size(-1, 1),
+                    BackgroundColor = new Selector<Color>()
+                    {
+                        Normal = new Color("#000C2BFF"),
+                        Selected = new Color("#000C2BFF"),
+                        Pressed = new Color("#1473E6FF"),
+                        Disabled = new Color("#C3CAD2FF"),
+                    },
+                },
+                BottomLine = new ViewStyle()
+                {
+                    Size = new Size(-1, 8),
+                    Position = new Position(0, 76), // 84 - 8
+                    BackgroundColor = new Selector<Color>()
+                    {
+                        Normal = Color.Transparent,
+                        Selected = new Color("#000C2BFF"),
+                        Pressed = new Color("#1473E6FF"),
+                        Disabled = Color.Transparent,
+                    },
+                },
+            });
+
             return theme;
         }
     }

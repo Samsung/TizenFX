@@ -112,6 +112,22 @@ namespace Tizen.NUI.Components
                     .AddSelector("/ItemTextLabel/TextColor", (ViewStyle style, Selector<Color> value) => ((PickerStyle)style).ItemTextLabel.TextColor = value)
                     .AddSelector("/ItemTextLabel/PixelSize", (ViewStyle style, Selector<float?> value) => ((PickerStyle)style).ItemTextLabel.PixelSize = value)
                     .AddSelector("/Divider/Background", (ViewStyle style, Selector<Color> value) => ((PickerStyle)style).Divider.BackgroundColor = value),
+
+                // TabButton
+                (new ExternalThemeKeyList(typeof(TabButton), typeof(TabButtonStyle)))
+                    .Add<Size>("/Size", (ViewStyle style, Size value) => ((ViewStyle)style).Size = value)
+                    .Add<float?>("/CornerRadius", (ViewStyle style, float? value) => ((ViewStyle)style).CornerRadius = value)
+                    .AddSelector<Color>("/BackgroundColor", (ViewStyle style, Selector<Color> value) => ((ViewStyle)style).BackgroundColor = value, ControlState.Selected)
+                    .AddSelector<float?>("/Text/PixelSize", SetButtonTextPixelSize, ControlState.Selected)
+                    .Add<Size>("/Text/Size", (ViewStyle style, Size value) => ((ButtonStyle)style).Text.Size = value)
+                    .AddSelector<Color>("/Text/TextColor", SetButtonTextColor, ControlState.Selected)
+                    .Add<Size>("/Icon/Size", (ViewStyle style, Size value) => ((ButtonStyle)style).Icon.Size = value)
+                    .AddSelector<Color>("/Icon/Color", (ViewStyle style, Selector<Color> value) => ((ButtonStyle)style).Icon.Color = value, ControlState.Selected)
+                    .Add<Size>("/TopLine/Size", (ViewStyle style, Size value) => ((TabButtonStyle)style).TopLine.Size = value)
+                    .AddSelector<Color>("/TopLine/BackgroundColor", (ViewStyle style, Selector<Color> value) => ((TabButtonStyle)style).TopLine.BackgroundColor = value, ControlState.Selected)
+                    .Add<Size>("/BottomLine/Size", (ViewStyle style, Size value) => ((TabButtonStyle)style).BottomLine.Size = value)
+                    .Add<Position>("/BottomLine/Position", (ViewStyle style, Position value) => ((TabButtonStyle)style).BottomLine.Position = value)
+                    .AddSelector<Color>("/BottomLine/BackgroundColor", (ViewStyle style, Selector<Color> value) => ((TabButtonStyle)style).BottomLine.BackgroundColor = value, ControlState.Selected),
             };
 
             return actionSet;
