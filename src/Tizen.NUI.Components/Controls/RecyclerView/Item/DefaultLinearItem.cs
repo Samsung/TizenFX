@@ -358,7 +358,7 @@ namespace Tizen.NUI.Components
                 RelativeLayout.SetLeftTarget(itemExtra, this);
                 RelativeLayout.SetLeftRelativeOffset(itemExtra, 1.0F);
                 RelativeLayout.SetRightTarget(itemExtra, this);
-                RelativeLayout.SetRightRelativeOffset(itemIcon, 1.0F);
+                RelativeLayout.SetRightRelativeOffset(itemExtra, 1.0F);
                 RelativeLayout.SetTopTarget(itemExtra, this);
                 RelativeLayout.SetTopRelativeOffset(itemExtra, 0.0F);
                 RelativeLayout.SetBottomTarget(itemExtra, this);
