@@ -1056,8 +1056,9 @@ namespace Tizen.NUI
         /// The copy constructor.
         /// </summary>
         /// <param name="other">The copy target.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when other is null. </exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Color(Color other) : this((float)other?.R, (float)other.G, (float)other.B, (float)other.A)
+        public Color(Color other) : this(other == null ? throw new ArgumentNullException(nameof(other)) : other.R, other.G, other.B, other.A)
         {
         }
 
@@ -1232,7 +1233,11 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator Vector4(Color color)
         {
-            return new Vector4((float)color?.R, (float)color.G, (float)color.B, (float)color.A);
+            if (color == null)
+            {
+                return null;
+            }
+            return new Vector4(color.R, color.G, color.B, color.A);
         }
 
         /// <summary>
@@ -1242,7 +1247,11 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator Color(Vector4 vec)
         {
-            return new Color((float)vec?.R, (float)vec.G, (float)vec.B, (float)vec.A);
+            if (vec == null)
+            {
+                return null;
+            }
+            return new Color(vec.R, vec.G, vec.B, vec.A);
         }
 
         /// <summary>
