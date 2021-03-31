@@ -488,6 +488,21 @@ namespace Tizen.NUI.Components
                 },
             });
 
+            theme.AddStyleWithoutClone("NotificationToast", new TextLabelStyle()
+            {
+                BackgroundImage = FrameworkInformation.ResourcePath + "IoT_Toast_1.png",
+                BackgroundImageBorder = new Rectangle(28, 28, 28, 28),
+                TextColor = new Color("#000C2B"),
+                PixelSize = 32,
+                WidthResizePolicy = ResizePolicyType.UseNaturalSize,
+                HeightResizePolicy = ResizePolicyType.UseNaturalSize,
+                PositionUsesPivotPoint = true,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                Padding = new Extents(40, 40, 24, 24),
+                PositionY = 120,
+            });
+
             return theme;
         }
     }
