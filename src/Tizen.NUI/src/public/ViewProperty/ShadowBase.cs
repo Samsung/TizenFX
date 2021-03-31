@@ -15,6 +15,7 @@
  *
  */
 
+using System;
 using System.ComponentModel;
 using System.Diagnostics;
 
@@ -81,8 +82,9 @@ namespace Tizen.NUI
         /// <summary>
         /// Copy Constructor
         /// </summary>
+        /// <exception cref="ArgumentNullException"> Thrown when other is null. </exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected ShadowBase(ShadowBase other) : this(other?.Offset, other.Extents)
+        protected ShadowBase(ShadowBase other) : this(other == null ? throw new ArgumentNullException(nameof(other)) : other.Offset, other.Extents)
         {
         }
 

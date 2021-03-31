@@ -211,7 +211,10 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <summary>
+        /// Gets / Sets the status of whether the view is excluded from its parent's layouting or not.
+        /// </summary>
+        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ExcludeLayouting
         {
@@ -2394,6 +2397,9 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Set the layout on this View. Replaces any existing Layout.
         /// </summary>
+        /// <remarks>
+        /// If this Layout is set as null explicitly, it means this View itself and it's child Views will not use Layout anymore.
+        /// </remarks>
         /// <since_tizen> 6 </since_tizen>
         public LayoutItem Layout
         {
@@ -2453,22 +2459,24 @@ namespace Tizen.NUI.BaseComponents
                     // Do not try to set Margins or Padding on a null Layout (when a layout is being removed from a View)
                     if (value != null)
                     {
-                        if (Margin.Top != 0 || Margin.Bottom != 0 || Margin.Start != 0 || Margin.End != 0)
+                        Extents margin = Margin;
+                        Extents padding = Padding;
+                        if (margin.Top != 0 || margin.Bottom != 0 || margin.Start != 0 || margin.End != 0)
                         {
                             // If View already has a margin set then store it in Layout instead.
-                            value.Margin = Margin;
+                            value.Margin = margin;
                             SetValue(MarginProperty, new Extents(0, 0, 0, 0));
                             NotifyPropertyChanged();
                         }
 
-                        if (Padding.Top != 0 || Padding.Bottom != 0 || Padding.Start != 0 || Padding.End != 0)
+                        if (padding.Top != 0 || padding.Bottom != 0 || padding.Start != 0 || padding.End != 0)
                         {
                             // If View already has a padding set then store it in Layout instead.
-                            value.Padding = Padding;
+                            value.Padding = padding;
 
                             // If Layout is a LayoutItem then it could be a View that handles it's own padding.
                             // Let the View keeps it's padding.  Still store Padding in Layout to reduce code paths.
-                            if (typeof(LayoutGroup).IsAssignableFrom(Layout.GetType()))
+                            if (typeof(LayoutGroup).IsAssignableFrom(value.GetType()))
                             {
                                 SetValue(PaddingProperty, new Extents(0, 0, 0, 0));
                                 NotifyPropertyChanged();
