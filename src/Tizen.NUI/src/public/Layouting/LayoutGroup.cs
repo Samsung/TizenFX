@@ -444,8 +444,8 @@ namespace Tizen.NUI
                 if (childLayout != null)
                 {
                     // Use position if explicitly set to child otherwise will be top left.
-                    var childLeft = new LayoutLength(childLayout.Owner.Position2D.X);
-                    var childTop = new LayoutLength(childLayout.Owner.Position2D.Y);
+                    var childLeft = new LayoutLength(childLayout.Owner.PositionX);
+                    var childTop = new LayoutLength(childLayout.Owner.PositionY);
 
                     View owner = Owner;
 
@@ -474,10 +474,8 @@ namespace Tizen.NUI
                 LayoutLength childWidth = childLayout.MeasuredWidth.Size;
                 LayoutLength childHeight = childLayout.MeasuredHeight.Size;
 
-                Position2D childPosition = childLayout.Owner.Position2D;
-
-                LayoutLength childPositionX = new LayoutLength(childPosition.X);
-                LayoutLength childPositionY = new LayoutLength(childPosition.Y);
+                LayoutLength childPositionX = new LayoutLength(childLayout.Owner.PositionX);
+                LayoutLength childPositionY = new LayoutLength(childLayout.Owner.PositionY);
 
                 childLayout.Layout(childPositionX, childPositionY, childPositionX + childWidth, childPositionY + childHeight, true);
             }
@@ -605,17 +603,18 @@ namespace Tizen.NUI
             }
 
             View childOwner = child.Owner;
+            Extents margin = childOwner.Margin;
 
             MeasureSpecification childWidthMeasureSpec = GetChildMeasureSpecification(
                         new MeasureSpecification(
-                            new LayoutLength(parentWidthMeasureSpec.Size + widthUsed - (childOwner.Margin.Start + childOwner.Margin.End)),
+                            new LayoutLength(parentWidthMeasureSpec.Size + widthUsed - (margin.Start + margin.End)),
                             parentWidthMeasureSpec.Mode),
                         new LayoutLength(Padding.Start + Padding.End),
                         new LayoutLength(childOwner.WidthSpecification));
 
             MeasureSpecification childHeightMeasureSpec = GetChildMeasureSpecification(
                         new MeasureSpecification(
-                            new LayoutLength(parentHeightMeasureSpec.Size + heightUsed - (childOwner.Margin.Top + childOwner.Margin.Bottom)),
+                            new LayoutLength(parentHeightMeasureSpec.Size + heightUsed - (margin.Top + margin.Bottom)),
                             parentHeightMeasureSpec.Mode),
                         new LayoutLength(Padding.Top + Padding.Bottom),
                         new LayoutLength(childOwner.HeightSpecification));

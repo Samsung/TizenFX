@@ -16,6 +16,7 @@
  */
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
 using Tizen.NUI.Accessibility;
@@ -57,7 +58,7 @@ namespace Tizen.NUI.Components
             if (instance.iconRelativeOrientation != newIconOrientation)
             {
                 instance.iconRelativeOrientation = newIconOrientation;
-                instance.UpdateUIContent();
+                instance.LayoutItems();
             }
         },
         defaultValueCreator: (bindable) => ((Button)bindable).iconRelativeOrientation
@@ -74,6 +75,7 @@ namespace Tizen.NUI.Components
                 if (instance.isEnabled != newEnabled)
                 {
                     instance.isEnabled = newEnabled;
+                    instance.Sensitive = newEnabled;
                     instance.UpdateState();
                 }
             }
@@ -126,7 +128,7 @@ namespace Tizen.NUI.Components
         {
             var instance = (Button)bindable;
             instance.iconPadding = (Extents)((Extents)newValue).Clone();
-            instance.UpdateUIContent();
+            instance.OnTextOrIconUpdated();
         },
         defaultValueCreator: (bindable) => ((Button)bindable).iconPadding);
 
@@ -136,11 +138,11 @@ namespace Tizen.NUI.Components
         {
             var instance = (Button)bindable;
             instance.textPadding = (Extents)((Extents)newValue).Clone();
-            instance.UpdateUIContent();
+            instance.OnTextOrIconUpdated();
         },
         defaultValueCreator: (bindable) => ((Button)bindable).textPadding);
 
-        private IconOrientation? iconRelativeOrientation;
+        private IconOrientation? iconRelativeOrientation = IconOrientation.Left;
         private bool isSelected = false;
         private bool isSelectable = false;
         private bool isEnabled = true;
@@ -182,6 +184,7 @@ namespace Tizen.NUI.Components
         protected override AccessibilityStates AccessibilityCalculateStates()
         {
             var states = base.AccessibilityCalculateStates();
+            states.Set(AccessibilityState.Checked, this.IsSelected);
             states.Set(AccessibilityState.Enabled, this.IsEnabled);
             return states;
         }
@@ -250,23 +253,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public ImageView Icon
         {
-            get
-            {
-                if (null == buttonIcon)
-                {
-                    buttonIcon = CreateIcon();
-                    if (null != Extension)
-                    {
-                        buttonIcon = Extension.OnCreateIcon(this, buttonIcon);
-                    }
-                    if (null != buttonIcon)
-                    {
-                        Add(buttonIcon);
-                        buttonIcon.Relayout += OnIconRelayout;
-                    }
-                }
-                return buttonIcon;
-            }
+            get => buttonIcon;
             internal set
             {
                 buttonIcon = value;
@@ -290,6 +277,7 @@ namespace Tizen.NUI.Components
                     }
                     if (null != overlayImage)
                     {
+                        overlayImage.ExcludeLayouting = true;
                         Add(overlayImage);
                     }
                 }
@@ -307,22 +295,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public TextLabel TextLabel
         {
-            get
-            {
-                if (null == buttonText)
-                {
-                    buttonText = CreateText();
-                    if (null != Extension)
-                    {
-                        buttonText = Extension.OnCreateText(this, buttonText);
-                    }
-                    if (null != buttonText)
-                    {
-                        Add(buttonText);
-                    }
-                }
-                return buttonText;
-            }
+            get => buttonText;
             internal set
             {
                 buttonText = value;
@@ -740,6 +713,8 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public override void ApplyStyle(ViewStyle viewStyle)
         {
+            Debug.Assert(buttonIcon != null && buttonText != null);
+
             styleApplied = false;
 
             base.ApplyStyle(viewStyle);
@@ -747,19 +722,35 @@ namespace Tizen.NUI.Components
             if (viewStyle is ButtonStyle buttonStyle)
             {
                 Extension = buttonStyle.CreateExtension();
+
                 if (buttonStyle.Overlay != null)
-                {
+                {   
                     OverlayImage?.ApplyStyle(buttonStyle.Overlay);
+                }
+
+                if (Extension != null)
+                {
+                    buttonIcon.Unparent();
+                    buttonIcon.Relayout -= OnIconRelayout;
+                    buttonIcon = Extension.OnCreateIcon(this, buttonIcon);
+                    buttonIcon.Relayout += OnIconRelayout;
+
+                    buttonText.Unparent();
+                    buttonText.Relayout -= OnTextRelayout;
+                    buttonText = Extension.OnCreateText(this, buttonText);
+                    buttonText.Relayout += OnTextRelayout;
+
+                    LayoutItems();
                 }
 
                 if (buttonStyle.Text != null)
                 {
-                    TextLabel?.ApplyStyle(buttonStyle.Text);
+                    buttonText.ApplyStyle(buttonStyle.Text);
                 }
 
                 if (buttonStyle.Icon != null)
                 {
-                    Icon?.ApplyStyle(buttonStyle.Icon);
+                    buttonIcon.ApplyStyle(buttonStyle.Icon);
                 }
             }
 
