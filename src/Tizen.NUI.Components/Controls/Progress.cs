@@ -483,9 +483,12 @@ namespace Tizen.NUI.Components
         {
             indeterminateAnimation?.Stop();
 
-            indeterminateAnimation = AnimateVisual(indeterminateImage, "pixelArea", destinationValue, 0, 1000,  AlphaFunction.BuiltinFunctions.Default, initialValue);
-            indeterminateAnimation.Looping = true;
-            indeterminateAnimation.Play();
+            if (null != indeterminateImage)
+            {
+                indeterminateAnimation = AnimateVisual(indeterminateImage, "pixelArea", destinationValue, 0, 1000,  AlphaFunction.BuiltinFunctions.Default, initialValue);
+                indeterminateAnimation.Looping = true;
+                indeterminateAnimation.Play();
+            }
         }
 
         /// <summary>
@@ -510,7 +513,10 @@ namespace Tizen.NUI.Components
                 indeterminateAnimation?.Stop();
                 indeterminateAnimation = null;
 
-                indeterminateImage.Opacity = 0.0f;
+                if (null != indeterminateImage)
+                {
+                    indeterminateImage.Opacity = 0.0f;
+                }
                 progressImage.Hide();
                 bufferImage.Show();
             }
@@ -519,7 +525,10 @@ namespace Tizen.NUI.Components
                 indeterminateAnimation?.Stop();
                 indeterminateAnimation = null;
 
-                indeterminateImage.Opacity = 0.0f;
+                if (null != indeterminateImage)
+                {
+                    indeterminateImage.Opacity = 0.0f;
+                }
                 bufferImage.Show();
                 progressImage.Show();
 
@@ -529,7 +538,10 @@ namespace Tizen.NUI.Components
             {
                 bufferImage.Hide();
                 progressImage.Hide();
-                indeterminateImage.Opacity = 1.0f;
+                if (null != indeterminateImage)
+                {
+                    indeterminateImage.Opacity = 1.0f;
+                }
 
                 UpdateIndeterminateAnimation();
             }
