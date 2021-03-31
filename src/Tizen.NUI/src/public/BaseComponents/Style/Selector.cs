@@ -17,6 +17,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.BaseComponents
@@ -27,39 +28,20 @@ namespace Tizen.NUI.BaseComponents
     /// <typeparam name="T">The property type of the selector. if it's reference type, it should be of type <see cref="ICloneable"/> that implement deep copy in <see cref="ICloneable.Clone"/>.</typeparam>
     /// <since_tizen> 6 </since_tizen>
     /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [SuppressMessage("Microsoft.Naming",
+                     "CA1710:IdentifiersShouldHaveCorrectSuffix",
+                     Justification = "The name Selector provides meaningful information about the characteristics.")]
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class Selector<T>
+    public class Selector<T> : ICollection<SelectorItem<T>>
     {
         private readonly bool cloneable = typeof(ICloneable).IsAssignableFrom(typeof(T));
+        private SelectorItem<T> all;
 
         /// <summary>
         /// The list for adding <see cref="SelectorItem{T}"/>.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         List<SelectorItem<T>> SelectorItems { get; set; } = new List<SelectorItem<T>>();
-
-        /// <summary>
-        /// Adds the specified state and value to the <see cref="SelectorItems"/>.
-        /// </summary>
-        /// <param name="state">The state.</param>
-        /// <param name="value">The value associated with state.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Add(ControlState state, T value)
-        {
-            if (state == ControlState.All)
-            {
-                All = value;
-                return;
-            }
-
-            // To prevent a state from having multiple values, remove existing state-value pair.
-            int index = SelectorItems.FindIndex(x => x.State == state);
-            if (index != -1)
-                SelectorItems.RemoveAt(index);
-
-            SelectorItems.Add(new SelectorItem<T>(state, value));
-            All = default;
-        }
 
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -78,7 +60,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector(T value) : this()
         {
-            All = cloneable ? (T)((ICloneable)value)?.Clone() : value;
+            All = value;
         }
 
         /// Copy constructor
@@ -91,13 +73,12 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// All State.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <remark> This is for XAML. Do not ACR this. </remark>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T All
         {
-            get;
-            set;
+            get => all == null ? default(T) : all.Value;
+            set => Add(ControlState.All, value);
         }
 
         /// <summary>
@@ -105,11 +86,11 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <exception cref="KeyNotFoundException">Thrown when the selector does not contain the this value.</exception>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <remark> This is for XAML. Do not ACR this. </remark>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T Normal
         {
-            get => GetOrThrowKeyNotFound(x => x.State == ControlState.Normal);
+            get => GetSafely(x => x.State == ControlState.Normal);
             set => Add(ControlState.Normal, value);
         }
         /// <summary>
@@ -117,106 +98,92 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <exception cref="KeyNotFoundException">Thrown when the selector does not contain the this value.</exception>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <remark> This is for XAML. Do not ACR this. </remark>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T Pressed
         {
-            get => GetOrThrowKeyNotFound(x => x.State == ControlState.Pressed);
+            get => GetSafely(x => x.State == ControlState.Pressed);
             set => Add(ControlState.Pressed, value);
         }
         /// <summary>
         /// Focused State.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// <exception cref="KeyNotFoundException">Thrown when the selector does not contain the this value.</exception>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <remark> This is for XAML. Do not ACR this. </remark>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T Focused
         {
-            get => GetOrThrowKeyNotFound(x => x.State == ControlState.Focused);
+            get => GetSafely(x => x.State == ControlState.Focused);
             set => Add(ControlState.Focused, value);
         }
         /// <summary>
         /// Selected State.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// <exception cref="KeyNotFoundException">Thrown when the selector does not contain the this value.</exception>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <remark> This is for XAML. Do not ACR this. </remark>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T Selected
         {
-            get => GetOrThrowKeyNotFound(x => x.State == ControlState.Selected);
+            get => GetSafely(x => x.State == ControlState.Selected);
             set => Add(ControlState.Selected, value);
         }
         /// <summary>
         /// Disabled State.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// <exception cref="KeyNotFoundException">Thrown when the selector does not contain the this value.</exception>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <remark> This is for XAML. Do not ACR this. </remark>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T Disabled
         {
-            get => GetOrThrowKeyNotFound(x => x.State == ControlState.Disabled);
+            get => GetSafely(x => x.State == ControlState.Disabled);
             set => Add(ControlState.Disabled, value);
         }
         /// <summary>
         /// DisabledFocused State.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// <exception cref="KeyNotFoundException">Thrown when the selector does not contain the this value.</exception>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <remark> This is for XAML. Do not ACR this. </remark>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T DisabledFocused
         {
-            get => GetOrThrowKeyNotFound(x => x.State == ControlState.DisabledFocused);
+            get => GetSafely(x => x.State == ControlState.DisabledFocused);
             set => Add(ControlState.DisabledFocused, value);
         }
         /// <summary>
         /// SelectedFocused State.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// <exception cref="KeyNotFoundException">Thrown when the selector does not contain the this value.</exception>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <remark> This is for XAML. Do not ACR this. </remark>
         public T SelectedFocused
         {
-            get => GetOrThrowKeyNotFound(x => x.State == ControlState.SelectedFocused);
+            get => GetSafely(x => x.State == ControlState.SelectedFocused);
             set => Add(ControlState.SelectedFocused, value);
         }
         /// <summary>
         /// DisabledSelected State.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// <exception cref="KeyNotFoundException">Thrown when the selector does not contain the this value.</exception>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <remark> This is for XAML. Do not ACR this. </remark>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T DisabledSelected
         {
-            get => GetOrThrowKeyNotFound(x => x.State == ControlState.DisabledSelected);
+            get => GetSafely(x => x.State == ControlState.DisabledSelected);
             set => Add(ControlState.DisabledSelected, value);
         }
 
         /// <summary>
         /// SelectedPressed State.
         /// </summary>
-        /// <exception cref="KeyNotFoundException">Thrown when the selector does not contain the this value.</exception>
+        /// <remark> This is for XAML. Do not ACR this. </remark>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T SelectedPressed
         {
-            get => GetOrThrowKeyNotFound(x => x.State == ControlState.SelectedPressed);
+            get => GetSafely(x => x.State == ControlState.SelectedPressed);
             set => Add(ControlState.SelectedPressed, value);
         }
 
         /// <summary>
         /// Other State.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// <exception cref="KeyNotFoundException">Thrown when the selector does not contain the this value.</exception>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <remark> This is for XAML. Do not ACR this. </remark>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T Other
         {
-            get => GetOrThrowKeyNotFound(x => x.State == ControlState.Other);
+            get => GetSafely(x => x.State == ControlState.Other);
             set => Add(ControlState.Other, value);
         }
 
@@ -227,7 +194,140 @@ namespace Tizen.NUI.BaseComponents
         public int Count => SelectorItems.Count;
 
         /// <summary>
+        /// Gets a value indicating whether the selector is read-only.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsReadOnly => false;
+
+        /// <summary>
+        /// Adds the specified state and value to the selector.
+        /// </summary>
+        /// <param name="state">The state.</param>
+        /// <param name="value">The value associated with state.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Add(ControlState state, T value)
+        {
+            // To prevent a state from having multiple values, remove existing state-value pair.
+            int index = SelectorItems.FindIndex(x => x.State == state);
+            if (index != -1)
+            {
+                SelectorItems.RemoveAt(index);
+            }
+
+            var item = new SelectorItem<T>(state, value);
+            SelectorItems.Add(item);
+
+            if (state == ControlState.All)
+            {
+                all = item;
+            }
+        }
+
+        /// <summary>
+        /// Adds the specified state and value to the selector.
+        /// </summary>
+        /// <param name="item">The selector item includes state and value.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when item is null. </exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Add(SelectorItem<T> item)
+        {
+            if (item == null) throw new ArgumentNullException(nameof(item));
+
+            // To prevent a state from having multiple values, remove existing state-value pair.
+            int index = SelectorItems.FindIndex(x => x.State == item.State);
+            if (index != -1)
+            {
+                SelectorItems.RemoveAt(index);
+            }
+
+            SelectorItems.Add(item);
+
+            if (item.State == ControlState.All)
+            {
+                all = item;
+            }
+        }
+
+        /// <summary>
+        /// Remove an item from the selector.
+        /// </summary>
+        /// <param name="item">The selector item includes state and value.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when item is null. </exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Remove(SelectorItem<T> item)
+        {
+            if (item == null) throw new ArgumentNullException(nameof(item));
+
+            int index = SelectorItems.FindIndex(x => x.State == item.State);
+            if (index != -1)
+            {
+                if (EqualsItem(item.Value, SelectorItems[index].Value))
+                {
+                    SelectorItems.RemoveAt(index);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Determines whether the selector contains a specific value.
+        /// </summary>
+        /// <param name="item">The selector item includes state and value.</param>
+        /// <returns>True if item is found in the selector. otherwise, false.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when item is null. </exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Contains(SelectorItem<T> item)
+        {
+            if (item == null) throw new ArgumentNullException(nameof(item));
+
+            int index = SelectorItems.FindIndex(x => x.State == item.State);
+            return index != -1 && EqualsItem(item.Value, SelectorItems[index].Value);
+        }
+
+        /// <summary>
+        /// Copies the elements of the selector to an Array, starting at a particular Array index.
+        /// </summary>
+        /// <param name="items">The one-dimensional array that is the destination of the elements copied from selector. The Array must have zero-based indexing.</param>
+        /// <param name="startIndex">The zero-based index in array at which copying begins.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when the items is null. </exception>
+        /// <exception cref="ArgumentException"> Thrown when the startIndex is not valid. </exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void CopyTo(SelectorItem<T>[] items, int startIndex)
+        {
+            if (items == null) throw new ArgumentNullException(nameof(items));
+            if (startIndex < 0) throw new ArgumentException($"{nameof(startIndex)} can not be negative.");
+
+            for (int i = startIndex, j = 0; i < SelectorItems.Count; i++, j++)
+            {
+                var item = SelectorItems[i];
+                items[j] = new SelectorItem<T>(item.State, item.Value);
+            }
+        }
+
+        /// <summary>
+        /// Returns an enumerator that iterates through the collection.
+        /// </summary>
+        /// <return> An enumerator that can be used to iterate through the collection. </return>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public IEnumerator<SelectorItem<T>> GetEnumerator()
+        {
+            return SelectorItems.GetEnumerator();
+        }
+
+        /// <summary>
+        /// Returns an enumerator that iterates through a collection.
+        /// </summary>
+        /// <return> An IEnumerator object that can be used to iterate through the collection. </return>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        /// <summary>
         /// Get value by State.
+        /// It will traverse from the first item to find proper fit when there is no perfect state match.
         /// </summary>
         /// <exception cref="ArgumentNullException"> Thrown when state is null. </exception>
         /// <since_tizen> 6 </since_tizen>
@@ -236,15 +336,13 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool GetValue(ControlState state, out T result)
         {
-            if (All != null)
-            {
-                result = All;
+            if (state == null) throw new ArgumentNullException(nameof(state));
 
+            if (all != null)
+            {
+                result = all.Value;
                 return true;
             }
-
-            if (state == null)
-                throw new ArgumentNullException(nameof(state));
 
             result = default;
 
@@ -285,7 +383,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Clear()
         {
-            All = default;
+            all = null;
             SelectorItems.Clear();
         }
 
@@ -326,9 +424,9 @@ namespace Tizen.NUI.BaseComponents
         {
             if (converter == null) throw new ArgumentNullException(nameof(converter));
 
-            Selector<TOut> result = new Selector<TOut>();
-            result.All = converter(All);
+            Selector<TOut> result = new Selector<TOut>();            
             result.SelectorItems = SelectorItems.ConvertAll<SelectorItem<TOut>>(m => new SelectorItem<TOut>(m.State, converter(m.Value)));
+            UpdateAllLink();
 
             return result;
         }
@@ -347,14 +445,14 @@ namespace Tizen.NUI.BaseComponents
 
             if (cloneable)
             {
-                All = (T)((ICloneable)other.All)?.Clone();
                 SelectorItems = other.SelectorItems.ConvertAll(m => new SelectorItem<T>(m.State, (T)((ICloneable)m.Value)?.Clone()));
             }
             else
             {
-                All = other.All;
                 SelectorItems = other.SelectorItems.ConvertAll(m => m);
             }
+
+            UpdateAllLink();
         }
 
         private bool EqualsItem(T a, T b)
@@ -420,22 +518,32 @@ namespace Tizen.NUI.BaseComponents
 
         internal void AddWithoutDuplicationCheck(ControlState state, T value)
         {
+            var item = new SelectorItem<T>(state, value);
+            SelectorItems.Add(item);
+
             if (state == ControlState.All)
             {
-                All = value;
-                return;
+                all = item;
             }
-            SelectorItems.Add(new SelectorItem<T>(state, value));
         }
 
-        private T GetOrThrowKeyNotFound(System.Predicate<SelectorItem<T>> match)
+        private T GetSafely(System.Predicate<SelectorItem<T>> match)
         {
             var item = SelectorItems.Find(match);
-            if (item == null)
+            return item == null ? default(T) : item.Value;
+        }
+
+        private void UpdateAllLink()
+        {
+            int index = SelectorItems.FindIndex(x => x.State == ControlState.All);
+            if (index >= 0)
             {
-                throw new KeyNotFoundException("The selector does not contain this value.");
+                all = SelectorItems[index];   
             }
-            return item.Value;
+            else
+            {
+                all = null;
+            }
         }
     }
 

@@ -409,6 +409,100 @@ namespace Tizen.NUI.Components
                 ActionCellPadding = new Size2D(40, 0),
             });
 
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.Picker", new PickerStyle()
+            {
+                Size = new Size(160, 339),
+                ItemTextLabel = new TextLabelStyle()
+                {
+                    //FIXME: Should be check PointSize. given size from UX is too large.
+                    PixelSize = 32,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    Size = new Size(0,72),
+                    TextColor = new Selector<Color>()
+                    {
+                        Normal = new Color("#000C2BFF"),
+                    },
+                    BackgroundColor = Color.White,
+                },
+                Divider = new ViewStyle()
+                {
+                    SizeHeight = 2.0f,
+                    WidthResizePolicy = ResizePolicyType.FillToParent,
+                    Position = new Position(0, 132),
+                    BackgroundColor = new Color("#0A0E4AFF"),
+                },
+                StartScrollOffset = new Size2D(0, 12),
+            });
+
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.TabButton", new TabButtonStyle()
+            {
+                Size = new Size(-1, 84),
+                CornerRadius = 0,
+                BackgroundColor = Color.White,
+                Text = new TextLabelStyle()
+                {
+                    PixelSize = 28,
+                    Size = new Size(-2, -2),
+                    TextColor = new Selector<Color>()
+                    {
+                        Normal = new Color("#000C2BFF"),
+                        Selected = new Color("#000C2BFF"),
+                        Pressed = new Color("#1473E6FF"),
+                        Disabled = new Color("#C3CAD2FF"),
+                    },
+                },
+                Icon = new ImageViewStyle()
+                {
+                    Size = new Size(48, 48),
+                    Color = new Selector<Color>()
+                    {
+                        Normal = new Color("#000C2BFF"),
+                        Selected = new Color("#000C2BFF"),
+                        Pressed = new Color("#1473E6FF"),
+                        Disabled = new Color("#C3CAD2FF"),
+                    },
+                },
+                TopLine = new ViewStyle()
+                {
+                    Size = new Size(-1, 1),
+                    BackgroundColor = new Selector<Color>()
+                    {
+                        Normal = new Color("#000C2BFF"),
+                        Selected = new Color("#000C2BFF"),
+                        Pressed = new Color("#1473E6FF"),
+                        Disabled = new Color("#C3CAD2FF"),
+                    },
+                },
+                BottomLine = new ViewStyle()
+                {
+                    Size = new Size(-1, 8),
+                    Position = new Position(0, 76), // 84 - 8
+                    BackgroundColor = new Selector<Color>()
+                    {
+                        Normal = Color.Transparent,
+                        Selected = new Color("#000C2BFF"),
+                        Pressed = new Color("#1473E6FF"),
+                        Disabled = Color.Transparent,
+                    },
+                },
+            });
+
+            theme.AddStyleWithoutClone("NotificationToast", new TextLabelStyle()
+            {
+                BackgroundImage = FrameworkInformation.ResourcePath + "IoT_Toast_1.png",
+                BackgroundImageBorder = new Rectangle(28, 28, 28, 28),
+                TextColor = new Color("#000C2B"),
+                PixelSize = 32,
+                WidthResizePolicy = ResizePolicyType.UseNaturalSize,
+                HeightResizePolicy = ResizePolicyType.UseNaturalSize,
+                PositionUsesPivotPoint = true,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                Padding = new Extents(40, 40, 24, 24),
+                PositionY = 120,
+            });
+
             return theme;
         }
     }
