@@ -79,7 +79,6 @@ namespace Tizen.NUI.BaseComponents
         /// Set Resource URL
         /// </summary>
         // Suppress warning : This has been being used by users, so that the interface can not be changed.
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1056:Uri properties should not be strings", Justification = "<Pending>")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string ResourceURL
         {
@@ -105,7 +104,6 @@ namespace Tizen.NUI.BaseComponents
         /// Set Resource URL
         /// </summary>
         // Suppress warning : This has been being used by users, so that the interface can not be changed.
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1056:Uri properties should not be strings", Justification = "<Pending>")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new string ResourceUrl
         {

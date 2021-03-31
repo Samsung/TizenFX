@@ -82,14 +82,14 @@ namespace Tizen.NUI
         /// Get URI from pixel data.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Uri Uri
+        public string Url
         {
             get
             {
                 string Uri = "";
                 Uri = Interop.PixelData.GenerateUrl(this.SwigCPtr.Handle);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return new Uri(Uri);
+                return Uri;
             }
         }
 

@@ -41,14 +41,14 @@ namespace Tizen.NUI
         /// Get URI from native image source.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Uri Uri
+        public string Url
         {
             get
             {
                 string uri = "";
                 uri = Interop.NativeImageSource.GenerateUrl(this.SwigCPtr.Handle);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return new Uri(uri);
+                return uri;
             }
         }
 
