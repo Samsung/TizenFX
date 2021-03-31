@@ -409,6 +409,32 @@ namespace Tizen.NUI.Components
                 ActionCellPadding = new Size2D(40, 0),
             });
 
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.Picker", new PickerStyle()
+            {
+                Size = new Size(160, 339),
+                ItemTextLabel = new TextLabelStyle()
+                {
+                    //FIXME: Should be check PointSize. given size from UX is too large.
+                    PixelSize = 32,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    Size = new Size(0,72),
+                    TextColor = new Selector<Color>()
+                    {
+                        Normal = new Color("#000C2BFF"),
+                    },
+                    BackgroundColor = Color.White,
+                },
+                Divider = new ViewStyle()
+                {
+                    SizeHeight = 2.0f,
+                    WidthResizePolicy = ResizePolicyType.FillToParent,
+                    Position = new Position(0, 132),
+                    BackgroundColor = new Color("#0A0E4AFF"),
+                },
+                StartScrollOffset = new Size2D(0, 12),
+            });
+
             return theme;
         }
     }
