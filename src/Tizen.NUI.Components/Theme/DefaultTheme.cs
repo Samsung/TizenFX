@@ -105,6 +105,13 @@ namespace Tizen.NUI.Components
 
                 // AppBar
                 (new ExternalThemeKeyList(typeof(AppBar), typeof(AppBarStyle))),
+
+                // Picker
+                (new ExternalThemeKeyList(typeof(Picker), typeof(PickerStyle)))
+                    .AddSelector("/ItemTextLabel/Background", (ViewStyle style, Selector<Color> value) => ((PickerStyle)style).ItemTextLabel.BackgroundColor = value)
+                    .AddSelector("/ItemTextLabel/TextColor", (ViewStyle style, Selector<Color> value) => ((PickerStyle)style).ItemTextLabel.TextColor = value)
+                    .AddSelector("/ItemTextLabel/PixelSize", (ViewStyle style, Selector<float?> value) => ((PickerStyle)style).ItemTextLabel.PixelSize = value)
+                    .AddSelector("/Divider/Background", (ViewStyle style, Selector<Color> value) => ((PickerStyle)style).Divider.BackgroundColor = value),
             };
 
             return actionSet;
