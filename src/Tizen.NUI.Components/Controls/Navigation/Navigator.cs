@@ -154,8 +154,8 @@ namespace Tizen.NUI.Components
             var newTop = NavigationPages[NavigationPages.Count - 2];
 
             //Invoke Page events
-            newTop?.InvokeAppearing();
-            curTop?.InvokeDisappearing();
+            newTop.InvokeAppearing();
+            curTop.InvokeDisappearing();
 
             //TODO: The following transition codes will be replaced with view transition.
             if (curAnimation)
