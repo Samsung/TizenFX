@@ -149,6 +149,12 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
+            if (url.StartsWith("*Resource*"))
+            {
+                string resource = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
+                url = url.Replace("*Resource*", resource);
+            }
+
             if (view.backgroundExtraData == null)
             {
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.BACKGROUND, new PropertyValue(url));
