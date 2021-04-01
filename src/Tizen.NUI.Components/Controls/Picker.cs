@@ -544,7 +544,7 @@ namespace Tizen.NUI.Components
 
                 float adjustDestination = AdjustTargetPositionOfScrollAnimation(destination);
 
-                float maxPosition = ScrollAvailableArea != null ? ScrollAvailableArea.Y : ScrollAvailableArea.Y;
+                float maxPosition = ScrollAvailableArea != null ? ScrollAvailableArea.Y : 0;
                 float minPosition = ScrollAvailableArea != null ? ScrollAvailableArea.X : 0;
 
                 if (destination < -maxPosition || destination > minPosition)
