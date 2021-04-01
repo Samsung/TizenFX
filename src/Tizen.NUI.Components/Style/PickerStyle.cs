@@ -59,7 +59,7 @@ namespace Tizen.NUI.Components
         /// Gets or sets the PickerStyle Item list start offset value.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Size2D StartScrollOffset { get; set; } = new Size2D();
+        public Size StartScrollOffset { get; set; } = new Size();
 
         /// <summary>
         /// Style's clone function.
@@ -75,7 +75,7 @@ namespace Tizen.NUI.Components
                 ItemTextLabel.CopyFrom(pickerStyle.ItemTextLabel);
                 Divider.CopyFrom(pickerStyle.Divider);
                 StartScrollOffset = (pickerStyle.StartScrollOffset == null) ?
-                                    new Size2D() : new Size2D(pickerStyle.StartScrollOffset.Width, pickerStyle.StartScrollOffset.Height);
+                                    new Size() : new Size(pickerStyle.StartScrollOffset.Width, pickerStyle.StartScrollOffset.Height);
             }
         }
     }
