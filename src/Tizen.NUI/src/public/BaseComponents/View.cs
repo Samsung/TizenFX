@@ -471,7 +471,6 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-
         /// <summary>
         /// Whether the CornerRadius property value is relative (percentage [0.0f to 1.0f] of the view size) or absolute (in world units).
         /// It is absolute by default.
