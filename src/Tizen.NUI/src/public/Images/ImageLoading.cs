@@ -55,40 +55,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Hidden API (Inhouse API).
-        /// Using Uri class to provide safe service and secure API.
-        /// Load an image synchronously from local file.
-        /// </summary>
-        /// <param name="uri">The URI of the image file to load.</param>
-        /// <param name="size">The width and height to fit the loaded image to, 0.0 means whole image.</param>
-        /// <param name="fittingMode">The method used to fit the shape of the image before loading to the shape defined by the size parameter.</param>
-        /// <param name="samplingMode">The filtering method used when sampling pixels from the input image while fitting it to desired size.</param>
-        /// <param name="orientationCorrection">Reorient the image to respect any orientation metadata in its header.</param>
-        /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case loading failed.</returns>
-        /// <exception cref="ArgumentNullException">Thrown when size is null.</exception>
-        /// <exception cref="ArgumentNullException">Thrown when uri is null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static PixelBuffer LoadImageFromFile(Uri uri, Size2D size, FittingModeType fittingMode, SamplingModeType samplingMode, bool orientationCorrection)
-        {
-            if (null == size)
-            {
-                throw new ArgumentNullException(nameof(size));
-            }
-            if (uri == null)
-            {
-                throw new ArgumentNullException(nameof(uri));
-            }
-
-            PixelBuffer ret;
-            using (var uSize = new Uint16Pair((uint)size.Width, (uint)size.Height))
-            {
-                ret = new PixelBuffer(Interop.ImageLoading.LoadImageFromFile(uri.AbsoluteUri, Uint16Pair.getCPtr(uSize), (int)fittingMode, (int)samplingMode, orientationCorrection), true);
-            }
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
         /// Load an image synchronously from local file.
         /// </summary>
         /// <param name="url">The URL of the image file to load.</param>
@@ -114,38 +80,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Hidden API (Inhouse API).
-        /// Using Uri class to provide safe service and secure API.
-        /// Load an image synchronously from local file.
-        /// </summary>
-        /// <param name="uri">The URI of the image file to load.</param>
-        /// <param name="size">The width and height to fit the loaded image to, 0.0 means whole image.</param>
-        /// <param name="fittingMode">The method used to fit the shape of the image before loading to the shape defined by the size parameter.</param>
-        /// <param name="samplingMode">The filtering method used when sampling pixels from the input image while fitting it to desired size.</param>
-        /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case loading failed.</returns>
-        /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
-        /// <exception cref="ArgumentNullException">Thrown when uri is null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static PixelBuffer LoadImageFromFile(Uri uri, Size2D size, FittingModeType fittingMode, SamplingModeType samplingMode)
-        {
-            if (null == size)
-            {
-                throw new ArgumentNullException(nameof(size));
-            }
-            if (uri == null)
-            {
-                throw new ArgumentNullException(nameof(uri));
-            }
-
-            var uSize = new Uint16Pair((uint)size.Width, (uint)size.Height);
-            PixelBuffer ret = new PixelBuffer(Interop.ImageLoading.LoadImageFromFile(uri.AbsoluteUri, Uint16Pair.getCPtr(uSize), (int)fittingMode, (int)samplingMode), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            uSize.Dispose();
-            return ret;
-        }
-
-        /// <summary>
         /// Load an image synchronously from local file.
         /// </summary>
         /// <param name="url">The URL of the image file to load.</param>
@@ -164,36 +98,6 @@ namespace Tizen.NUI
             }
             var uSize = new Uint16Pair((uint)size.Width, (uint)size.Height);
             PixelBuffer ret = new PixelBuffer(Interop.ImageLoading.LoadImageFromFile(url, Uint16Pair.getCPtr(uSize), (int)fittingMode), true);
-            uSize.Dispose();
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Hidden API (Inhouse API).
-        /// Using Uri class to provide safe service and secure API.
-        /// Load an image synchronously from local file.
-        /// </summary>
-        /// <param name="uri">The URI of the image file to load.</param>
-        /// <param name="size">The width and height to fit the loaded image to, 0.0 means whole image.</param>
-        /// <param name="fittingMode">The method used to fit the shape of the image before loading to the shape defined by the size parameter.</param>
-        /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case loading failed.</returns>
-        /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
-        /// <exception cref="ArgumentNullException">Thrown when uri is null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static PixelBuffer LoadImageFromFile(Uri uri, Size2D size, FittingModeType fittingMode)
-        {
-            if (null == size)
-            {
-                throw new ArgumentNullException(nameof(size));
-            }
-            if (uri == null)
-            {
-                throw new ArgumentNullException(nameof(uri));
-            }
-
-            var uSize = new Uint16Pair((uint)size.Width, (uint)size.Height);
-            PixelBuffer ret = new PixelBuffer(Interop.ImageLoading.LoadImageFromFile(uri.AbsoluteUri, Uint16Pair.getCPtr(uSize), (int)fittingMode), true);
             uSize.Dispose();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -223,35 +127,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Hidden API (Inhouse API).
-        /// Using Uri class to provide safe service and secure API.
-        /// Load an image synchronously from local file.
-        /// </summary>
-        /// <param name="uri">The URI of the image file to load.</param>
-        /// <param name="size">The width and height to fit the loaded image to, 0.0 means whole image.</param>
-        /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case loading failed.</returns>
-        /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
-        /// <exception cref="ArgumentNullException">Thrown when uri is null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static PixelBuffer LoadImageFromFile(Uri uri, Size2D size)
-        {
-            if (null == size)
-            {
-                throw new ArgumentNullException(nameof(size));
-            }
-            if (uri == null)
-            {
-                throw new ArgumentNullException(nameof(uri));
-            }
-
-            var uSize = new Uint16Pair((uint)size.Width, (uint)size.Height);
-            PixelBuffer ret = new PixelBuffer(Interop.ImageLoading.LoadImageFromFile(uri.AbsoluteUri, Uint16Pair.getCPtr(uSize)), true);
-            uSize.Dispose();
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
         /// Load an image synchronously from local file.
         /// </summary>
         /// <param name="url">The URL of the image file to load.</param>
@@ -262,27 +137,6 @@ namespace Tizen.NUI
         public static PixelBuffer LoadImageFromFile(string url)
         {
             PixelBuffer ret = new PixelBuffer(Interop.ImageLoading.LoadImageFromFile(url), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Hidden API (Inhouse API).
-        /// Using Uri class to provide safe service and secure API.
-        /// Load an image synchronously from local file.
-        /// </summary>
-        /// <param name="uri">The URI of the image file to load.</param>
-        /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case loading failed.</returns>
-        /// <exception cref="ArgumentNullException">Thrown when uri is null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static PixelBuffer LoadImageFromFile(Uri uri)
-        {
-            if (uri == null)
-            {
-                throw new ArgumentNullException(nameof(uri));
-            }
-
-            PixelBuffer ret = new PixelBuffer(Interop.ImageLoading.LoadImageFromFile(uri.AbsoluteUri), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -455,39 +309,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Hidden API (Inhouse API).
-        /// Using Uri class to provide safe service and secure API.
-        /// Load an image synchronously from a remote resource.
-        /// </summary>
-        /// <param name="uri">The URI of the image file to load.</param>
-        /// <param name="size">The width and height to fit the loaded image to, 0.0 means whole image.</param>
-        /// <param name="fittingMode">The method used to fit the shape of the image before loading to the shape defined by the size parameter.</param>
-        /// <param name="samplingMode">The filtering method used when sampling pixels from the input image while fitting it to desired size.</param>
-        /// <param name="orientationCorrection">Reorient the image to respect any orientation metadata in its header.</param>
-        /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case downloading or decoding failed.</returns>
-        /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
-        /// <exception cref="ArgumentNullException">Thrown when uri is null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static PixelBuffer DownloadImageSynchronously(Uri uri, Size2D size, FittingModeType fittingMode, SamplingModeType samplingMode, bool orientationCorrection)
-        {
-            if (null == size)
-            {
-                throw new ArgumentNullException(nameof(size));
-            }
-            if (uri == null)
-            {
-                throw new ArgumentNullException(nameof(uri));
-            }
-
-            var uSize = new Uint16Pair((uint)size.Width, (uint)size.Height);
-            PixelBuffer ret = new PixelBuffer(Interop.ImageLoading.DownloadImageSynchronously(uri.AbsoluteUri, Uint16Pair.getCPtr(uSize), (int)fittingMode, (int)samplingMode, orientationCorrection), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            uSize.Dispose();
-            return ret;
-        }
-
-        /// <summary>
         /// Load an image synchronously from a remote resource.
         /// </summary>
         /// <param name="url">The URL of the image file to load.</param>
@@ -507,37 +328,6 @@ namespace Tizen.NUI
             }
             var uSize = new Uint16Pair((uint)size.Width, (uint)size.Height);
             PixelBuffer ret = new PixelBuffer(Interop.ImageLoading.DownloadImageSynchronously(url, Uint16Pair.getCPtr(uSize), (int)fittingMode, (int)samplingMode), true);
-            uSize.Dispose();
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Hidden API (Inhouse API).
-        /// Using Uri class to provide safe service and secure API.
-        /// Load an image synchronously from a remote resource.
-        /// </summary>
-        /// <param name="uri">The URI of the image file to load.</param>
-        /// <param name="size">The width and height to fit the loaded image to, 0.0 means whole image.</param>
-        /// <param name="fittingMode">The method used to fit the shape of the image before loading to the shape defined by the size parameter.</param>
-        /// <param name="samplingMode">The filtering method used when sampling pixels from the input image while fitting it to desired size.</param>
-        /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case downloading or decoding failed.</returns>
-        /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
-        /// <exception cref="ArgumentNullException">Thrown when uri is null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static PixelBuffer DownloadImageSynchronously(Uri uri, Size2D size, FittingModeType fittingMode, SamplingModeType samplingMode)
-        {
-            if (null == size)
-            {
-                throw new ArgumentNullException(nameof(size));
-            }
-            if (uri == null)
-            {
-                throw new ArgumentNullException(nameof(uri));
-            }
-
-            var uSize = new Uint16Pair((uint)size.Width, (uint)size.Height);
-            PixelBuffer ret = new PixelBuffer(Interop.ImageLoading.DownloadImageSynchronously(uri.AbsoluteUri, Uint16Pair.getCPtr(uSize), (int)fittingMode, (int)samplingMode), true);
             uSize.Dispose();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -621,35 +411,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Hidden API (Inhouse API).
-        /// Using Uri class to provide safe service and secure API.
-        /// Load an image synchronously from a remote resource.
-        /// </summary>
-        /// <param name="uri">The URI of the image file to load.</param>
-        /// <param name="size">The width and height to fit the loaded image to, 0.0 means whole image.</param>
-        /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case downloading or decoding failed.</returns>
-        /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
-        /// <exception cref="ArgumentNullException">Thrown when uri is null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static PixelBuffer DownloadImageSynchronously(Uri uri, Size2D size)
-        {
-            if (null == size)
-            {
-                throw new ArgumentNullException(nameof(size));
-            }
-            if (uri == null)
-            {
-                throw new ArgumentNullException(nameof(uri));
-            }
-
-            var uSize = new Uint16Pair((uint)size.Width, (uint)size.Height);
-            PixelBuffer ret = new PixelBuffer(Interop.ImageLoading.DownloadImageSynchronously(uri.AbsoluteUri, Uint16Pair.getCPtr(uSize)), true);
-            uSize.Dispose();
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
         /// Load an image synchronously from a remote resource.
         /// </summary>
         /// <param name="url">The URL of the image file to load.</param>
@@ -660,27 +421,6 @@ namespace Tizen.NUI
         public static PixelBuffer DownloadImageSynchronously(string url)
         {
             PixelBuffer ret = new PixelBuffer(Interop.ImageLoading.DownloadImageSynchronously(url), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Hidden API (Inhouse API).
-        /// Using Uri class to provide safe service and secure API.
-        /// Load an image synchronously from a remote resource.
-        /// </summary>
-        /// <param name="uri">The URI of the image file to load.</param>
-        /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case downloading or decoding failed.</returns>
-        /// <exception cref="ArgumentNullException">Thrown when uri is null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static PixelBuffer DownloadImageSynchronously(Uri uri)
-        {
-            if (uri == null)
-            {
-                throw new ArgumentNullException(nameof(uri));
-            }
-
-            PixelBuffer ret = new PixelBuffer(Interop.ImageLoading.DownloadImageSynchronously(uri.AbsoluteUri), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
