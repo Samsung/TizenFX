@@ -432,7 +432,7 @@ namespace Tizen.NUI.Components
                     Position = new Position(0, 132),
                     BackgroundColor = new Color("#0A0E4AFF"),
                 },
-                StartScrollOffset = new Size2D(0, 12),
+                StartScrollOffset = new Size(0, 12),
             });
 
             theme.AddStyleWithoutClone("Tizen.NUI.Components.TabButton", new TabButtonStyle()
