@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -228,7 +228,11 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator Vector2(Size2D size)
         {
-            return new Vector2((float)size?.Width, (float)size.Height);
+            if (size == null)
+            {
+                return null;
+            }
+            return new Vector2(size.Width, size.Height);
         }
 
         /// <summary>
@@ -239,7 +243,11 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator Size2D(Vector2 vector2)
         {
-            return new Size2D((int)vector2?.X, (int)vector2.Y);
+            if (vector2 == null)
+            {
+                return null;
+            }
+            return new Size2D((int)vector2.X, (int)vector2.Y);
         }
 
         /// <summary>
@@ -251,7 +259,11 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static implicit operator Size2D(Size size)
         {
-            return new Size2D((int)size?.Width, (int)size.Height);
+            if (size == null)
+            {
+                return null;
+            }
+            return new Size2D((int)size.Width, (int)size.Height);
         }
 
 

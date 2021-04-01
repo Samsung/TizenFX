@@ -41,8 +41,8 @@ namespace Tizen.NUI.Components
                 BackgroundColor = new Selector<Color>()
                 {
                     Normal = new Color(0.039f, 0.055f, 0.29f, 1),
-                    Focused = new Color(0, 0.2f, 0.545f, 1),
                     Pressed = new Color(0.106f, 0.412f, 0.792f, 1),
+                    Focused = new Color(0, 0.2f, 0.545f, 1),
                     Disabled = new Color(0.765f, 0.792f, 0.824f, 1),
                 },
                 Text = new TextLabelStyle()
@@ -260,37 +260,42 @@ namespace Tizen.NUI.Components
 
             theme.AddStyleWithoutClone("Tizen.NUI.Components.DefaultLinearItem", new DefaultLinearItemStyle()
             {
-                SizeHeight = 130,
-                Padding = new Extents(20, 20, 5, 5),
+                SizeHeight = 108,
+                Padding = new Extents(64, 64, 18, 17),
                 BackgroundColor = new Selector<Color>()
                 {
                     Normal = new Color(1, 1, 1, 1),
                     Pressed = new Color(0.85f, 0.85f, 0.85f, 1),
                     Disabled = new Color(0.70f, 0.70f, 0.70f, 1),
-                    Selected = new Color(0.701f, 0.898f, 0.937f, 1),
+                    Selected = new Color(0.85f, 0.85f, 0.85f, 1),
                 },
                 Label = new TextLabelStyle()
                 {
-                    PointSize = 10,
+                    PixelSize = 32,
                     Ellipsis = true,
+                    FontFamily = "BreezeSans", //FXIME Font Weight is Light
+                    TextColor = new Color("#001447FF"),
                 },
                 SubLabel = new TextLabelStyle()
                 {
-                    PointSize = 6,
+                    PixelSize = 28,
                     Ellipsis = true,
+                    FontFamily = "BreezeSans",
+                    TextColor = new Color("#001447FF"),
                 },
                 Icon = new ViewStyle()
                 {
-                    Margin = new Extents(0, 20, 0, 0)
+                    Margin = new Extents(0, 32, 0, 0)
                 },
                 Extra = new ViewStyle()
                 {
-                    Margin = new Extents(20, 0, 0, 0)
+                    Margin = new Extents(32, 0, 0, 0)
                 },
                 Seperator = new ViewStyle()
                 {
-                    Margin = new Extents(5, 5, 0, 0),
-                    BackgroundColor = new Color(0.78f, 0.78f, 0.78f, 1),
+                    SizeHeight = 1,
+                    Margin = new Extents(64, 64, 0, 0),
+                    BackgroundColor = new Color("#C3CAD2FF"),
                 },
             });
             theme.AddStyleWithoutClone("Tizen.NUI.Components.DefaultGridItem", new DefaultGridItemStyle()
@@ -298,8 +303,9 @@ namespace Tizen.NUI.Components
                 Padding = new Extents(5, 5, 5, 5),
                 Caption = new TextLabelStyle()
                 {
-                    PointSize = 9,
-                    Ellipsis = true,
+                    SizeHeight = 60,
+                    PixelSize = 24,
+                    LineWrapMode = LineWrapMode.Character,
                 },
                 Badge = new ViewStyle()
                 {
@@ -309,25 +315,26 @@ namespace Tizen.NUI.Components
 
             theme.AddStyleWithoutClone("Tizen.NUI.Components.DefaultTitleItem", new DefaultTitleItemStyle()
             {
-                SizeHeight = 90,
-                Padding = new Extents(10, 10, 5, 5),
+                SizeHeight = 60,
+                Padding = new Extents(64, 64, 12, 12),
                 BackgroundColor = new Selector<Color>()
                 {
-                    Normal = new Color(0.78f, 0.78f, 0.78f, 1),
+                    Normal = new Color("#EEEEF1FF"),
                 },
                 Label = new TextLabelStyle()
                 {
-                    PointSize = 10,
+                    PixelSize = 28,
                     Ellipsis = true,
+                    TextColor = new Color("#001447FF"),
                 },
                 Icon = new ViewStyle()
                 {
-                    Margin = new Extents(10, 0, 0, 0)
+                    Margin = new Extents(40, 0, 0, 0)
                 },
                 Seperator = new ViewStyle()
                 {
                     Margin = new Extents(0, 0, 0, 0),
-                    BackgroundColor = new Color(0.85f, 0.85f, 0.85f, 1),
+                    BackgroundColor = new Color(0, 0, 0, 0),
                 },
             });
 
@@ -400,6 +407,100 @@ namespace Tizen.NUI.Components
                 NavigationPadding = new Extents(0, 24, 0, 0),
                 ActionPadding = new Extents(40, 0, 0, 0),
                 ActionCellPadding = new Size2D(40, 0),
+            });
+
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.Picker", new PickerStyle()
+            {
+                Size = new Size(160, 339),
+                ItemTextLabel = new TextLabelStyle()
+                {
+                    //FIXME: Should be check PointSize. given size from UX is too large.
+                    PixelSize = 32,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    Size = new Size(0,72),
+                    TextColor = new Selector<Color>()
+                    {
+                        Normal = new Color("#000C2BFF"),
+                    },
+                    BackgroundColor = Color.White,
+                },
+                Divider = new ViewStyle()
+                {
+                    SizeHeight = 2.0f,
+                    WidthResizePolicy = ResizePolicyType.FillToParent,
+                    Position = new Position(0, 132),
+                    BackgroundColor = new Color("#0A0E4AFF"),
+                },
+                StartScrollOffset = new Size2D(0, 12),
+            });
+
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.TabButton", new TabButtonStyle()
+            {
+                Size = new Size(-1, 84),
+                CornerRadius = 0,
+                BackgroundColor = Color.White,
+                Text = new TextLabelStyle()
+                {
+                    PixelSize = 28,
+                    Size = new Size(-2, -2),
+                    TextColor = new Selector<Color>()
+                    {
+                        Normal = new Color("#000C2BFF"),
+                        Selected = new Color("#000C2BFF"),
+                        Pressed = new Color("#1473E6FF"),
+                        Disabled = new Color("#C3CAD2FF"),
+                    },
+                },
+                Icon = new ImageViewStyle()
+                {
+                    Size = new Size(48, 48),
+                    Color = new Selector<Color>()
+                    {
+                        Normal = new Color("#000C2BFF"),
+                        Selected = new Color("#000C2BFF"),
+                        Pressed = new Color("#1473E6FF"),
+                        Disabled = new Color("#C3CAD2FF"),
+                    },
+                },
+                TopLine = new ViewStyle()
+                {
+                    Size = new Size(-1, 1),
+                    BackgroundColor = new Selector<Color>()
+                    {
+                        Normal = new Color("#000C2BFF"),
+                        Selected = new Color("#000C2BFF"),
+                        Pressed = new Color("#1473E6FF"),
+                        Disabled = new Color("#C3CAD2FF"),
+                    },
+                },
+                BottomLine = new ViewStyle()
+                {
+                    Size = new Size(-1, 8),
+                    Position = new Position(0, 76), // 84 - 8
+                    BackgroundColor = new Selector<Color>()
+                    {
+                        Normal = Color.Transparent,
+                        Selected = new Color("#000C2BFF"),
+                        Pressed = new Color("#1473E6FF"),
+                        Disabled = Color.Transparent,
+                    },
+                },
+            });
+
+            theme.AddStyleWithoutClone("NotificationToast", new TextLabelStyle()
+            {
+                BackgroundImage = FrameworkInformation.ResourcePath + "IoT_Toast_1.png",
+                BackgroundImageBorder = new Rectangle(28, 28, 28, 28),
+                TextColor = new Color("#000C2B"),
+                PixelSize = 32,
+                WidthResizePolicy = ResizePolicyType.UseNaturalSize,
+                HeightResizePolicy = ResizePolicyType.UseNaturalSize,
+                PositionUsesPivotPoint = true,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                Padding = new Extents(40, 40, 24, 24),
+                PositionY = 120,
             });
 
             return theme;

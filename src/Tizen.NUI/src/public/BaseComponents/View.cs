@@ -211,7 +211,10 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <summary>
+        /// Gets / Sets the status of whether the view is excluded from its parent's layouting or not.
+        /// </summary>
+        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ExcludeLayouting
         {
@@ -2394,6 +2397,9 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Set the layout on this View. Replaces any existing Layout.
         /// </summary>
+        /// <remarks>
+        /// If this Layout is set as null explicitly, it means this View itself and it's child Views will not use Layout anymore.
+        /// </remarks>
         /// <since_tizen> 6 </since_tizen>
         public LayoutItem Layout
         {
@@ -2470,7 +2476,7 @@ namespace Tizen.NUI.BaseComponents
 
                             // If Layout is a LayoutItem then it could be a View that handles it's own padding.
                             // Let the View keeps it's padding.  Still store Padding in Layout to reduce code paths.
-                            if (typeof(LayoutGroup).IsAssignableFrom(Layout.GetType()))
+                            if (typeof(LayoutGroup).IsAssignableFrom(value.GetType()))
                             {
                                 SetValue(PaddingProperty, new Extents(0, 0, 0, 0));
                                 NotifyPropertyChanged();
