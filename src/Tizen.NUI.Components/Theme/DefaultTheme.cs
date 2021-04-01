@@ -108,10 +108,15 @@ namespace Tizen.NUI.Components
 
                 // Picker
                 (new ExternalThemeKeyList(typeof(Picker), typeof(PickerStyle)))
-                    .AddSelector("/ItemTextLabel/Background", (ViewStyle style, Selector<Color> value) => ((PickerStyle)style).ItemTextLabel.BackgroundColor = value)
-                    .AddSelector("/ItemTextLabel/TextColor", (ViewStyle style, Selector<Color> value) => ((PickerStyle)style).ItemTextLabel.TextColor = value)
-                    .AddSelector("/ItemTextLabel/PixelSize", (ViewStyle style, Selector<float?> value) => ((PickerStyle)style).ItemTextLabel.PixelSize = value)
-                    .AddSelector("/Divider/Background", (ViewStyle style, Selector<Color> value) => ((PickerStyle)style).Divider.BackgroundColor = value),
+                    .Add<Size>("/Size", (ViewStyle style, Size value) => ((ViewStyle)style).Size = value)
+                    .AddSelector<float?>("/ItemTextLabel/PixelSize", (ViewStyle style, Selector<float?> value) => ((PickerStyle)style).ItemTextLabel.PixelSize = value, ControlState.Selected)
+                    .Add<Size>("/ItemTextLabel/Size", (ViewStyle style, Size value) => ((PickerStyle)style).ItemTextLabel.Size = value)
+                    .AddSelector<Color>("/ItemTextLabel/TextColor", (ViewStyle style, Selector<Color> value) => ((PickerStyle)style).ItemTextLabel.TextColor = value, ControlState.Selected)
+                    .AddSelector("/ItemTextLabel/BackgroundColor", (ViewStyle style, Selector<Color> value) => ((PickerStyle)style).ItemTextLabel.BackgroundColor = value, ControlState.Selected)
+                    .Add<float?>("/Divider/SizeHeight", (ViewStyle style, float? value) => ((PickerStyle)style).Divider.SizeHeight = value)
+                    .Add<Position>("/Divider/Position", (ViewStyle style, Position value) => ((PickerStyle)style).Divider.Position = value)
+                    .AddSelector("/Divider/BackgroundColor", (ViewStyle style, Selector<Color> value) => ((PickerStyle)style).Divider.BackgroundColor = value, ControlState.Selected)
+                    .Add<Size>("/StartScrollOffset", (ViewStyle style, Size value) => ((PickerStyle)style).StartScrollOffset = value),
 
                 // TabButton
                 (new ExternalThemeKeyList(typeof(TabButton), typeof(TabButtonStyle)))
