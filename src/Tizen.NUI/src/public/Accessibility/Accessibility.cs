@@ -110,6 +110,18 @@ namespace Tizen.NUI.Accessibility
         }
 
         /// <summary>
+        /// Cancels anything screen-reader is reading / has queued to read
+        /// </summary>
+        /// <param name="alsoNonDiscardable">whether to cancel non-discardable readings as well</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void StopReading(bool alsoNonDiscardable)
+        {
+            Interop.Accessibility.StopReading(View.getCPtr(dummy), alsoNonDiscardable);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         ///  Get View that is used to highlight widget.
         /// </summary>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
