@@ -188,25 +188,29 @@ namespace Tizen.NUI
         // Parent not a View so assume it's a Layer which is the size of the window.
         void MeasureAndLayout(View root, float parentWidth, float parentHeight)
         {
-            float positionX = root.PositionX;
-            float positionY = root.PositionY;
+            if (root.Layout != null)
+            {
+                float positionX = root.PositionX;
+                float positionY = root.PositionY;
 
-            // Determine measure specification for root.
-            // The root layout policy could be an exact size, be match parent or wrap children.
-            // If wrap children then at most it can be the root parent size.
-            // If match parent then should be root parent size.
-            // If exact then should be that size limited by the root parent size.
-            MeasureSpecification parentWidthSpecification = CreateMeasureSpecification(parentWidth, root.WidthSpecification);
-            MeasureSpecification parentHeightSpecification = CreateMeasureSpecification(parentHeight, root.HeightSpecification);
+                // Determine measure specification for root.
+                // The root layout policy could be an exact size, be match parent or wrap children.
+                // If wrap children then at most it can be the root parent size.
+                // If match parent then should be root parent size.
+                // If exact then should be that size limited by the root parent size.
+                MeasureSpecification parentWidthSpecification = CreateMeasureSpecification(parentWidth, root.WidthSpecification);
+                MeasureSpecification parentHeightSpecification = CreateMeasureSpecification(parentHeight, root.HeightSpecification);
 
-            // Start at root with it's parent's widthSpecification and heightSpecification
-            MeasureHierarchy(root, parentWidthSpecification, parentHeightSpecification);
+                // Start at root with it's parent's widthSpecification and heightSpecification
+                MeasureHierarchy(root, parentWidthSpecification, parentHeightSpecification);
 
-            // Start at root which was just measured.
-            PerformLayout(root, new LayoutLength(positionX),
-                                 new LayoutLength(positionY),
-                                 new LayoutLength(positionX) + root.Layout.MeasuredWidth.Size,
-                                 new LayoutLength(positionY) + root.Layout.MeasuredHeight.Size);
+                // Start at root which was just measured.
+                PerformLayout(root, new LayoutLength(positionX),
+                                     new LayoutLength(positionY),
+                                     new LayoutLength(positionX) + root.Layout.MeasuredWidth.Size,
+                                     new LayoutLength(positionY) + root.Layout.MeasuredHeight.Size);
+
+            }
 
             if (SetupCoreAnimation() && OverrideCoreAnimation == false)
             {
@@ -240,14 +244,14 @@ namespace Tizen.NUI
             Vector2 windowSize = window.GetSize();
             float width = windowSize.Width;
             float height = windowSize.Height;
-            // First layer in the Window should be the default layer (index 0 )
-            foreach (Layer layer in window.LayersChildren)
+
+            window.LayersChildren?.ForEach(layer =>
             {
-                foreach (View view in layer.Children)
+                layer?.Children?.ForEach(view =>
                 {
                     FindRootLayouts(view, width, height);
-                }
-            }
+                });
+            });
             windowSize.Dispose();
             windowSize = null;
         }

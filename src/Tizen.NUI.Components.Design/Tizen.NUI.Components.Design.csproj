@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ExternalLibraryDir Condition="'$(ExternalLibraryDir)' == ''">$(ProjectRootDir)externals\libs\</ExternalLibraryDir>
+    <ArtifactsDirectory>$(OutputBaseDir)bin\design\</ArtifactsDirectory>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <Company>Samsung Inc.</Company>
+    <Description>Provides the design-time metadata for the XAML language service.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Tizen.NUI.Components\Tizen.NUI.Components.csproj" />
+    <ProjectReference Include="..\Tizen.NUI\Tizen.NUI.csproj">
+      <GenerateDesignMetadata>true</GenerateDesignMetadata>
+      <Name>Tizen.NUI</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.Windows.Design.Extensibility">
+      <HintPath>$(ExternalLibraryDir)Microsoft.Windows.Design.Extensibility.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xaml">
+      <HintPath>$(ExternalLibraryDir)System.Xaml.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Tizen.NUI.Components.Design\" />
+    <Folder Include="Tizen.NUI.Components\" />
+  </ItemGroup>
+
+</Project>

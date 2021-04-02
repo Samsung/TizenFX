@@ -279,6 +279,7 @@ namespace Tizen.MachineLearning.Inference
         public TensorsData Invoke(TensorsData inTensorsData)
         {
             TensorsData out_data = null;
+            TensorsInfo inInfo = null;
             IntPtr outDataPtr = IntPtr.Zero;
             NNStreamerError ret = NNStreamerError.None;
 
@@ -290,12 +291,12 @@ namespace Tizen.MachineLearning.Inference
                 throw NNStreamerExceptionFactory.CreateException(NNStreamerError.InvalidParameter, msg);
             }
 
+            if (inTensorsData.TensorsInfo == null)
+                throw NNStreamerExceptionFactory.CreateException(NNStreamerError.InvalidParameter, "TensorsInfo is null");
+
+            inInfo = inTensorsData.TensorsInfo;
             if (_dynamicMode)
             {
-                TensorsInfo inInfo = inTensorsData.TensorsInfo;
-                if (inInfo == null)
-                    throw NNStreamerExceptionFactory.CreateException(NNStreamerError.InvalidParameter, "TensorsInfo is null");
-
                 /* Apply all data */
                 inTensorsData.PrepareInvoke();
 
@@ -307,9 +308,7 @@ namespace Tizen.MachineLearning.Inference
             }
             else
             {
-                TensorsInfo data_inInfo = inTensorsData.TensorsInfo;
-
-                if (!data_inInfo.Equals(_inInfo))
+                if (!inInfo.Equals(_inInfo))
                 {
                     string msg = "The TensorsInfo of Input TensorsData is different from that of SingleShot object";
                     throw NNStreamerExceptionFactory.CreateException(NNStreamerError.InvalidParameter, msg);
@@ -321,7 +320,7 @@ namespace Tizen.MachineLearning.Inference
                 ret = Interop.SingleShot.InvokeSingle(_handle, inTensorsData.GetHandle(), out outDataPtr);
                 NNStreamer.CheckException(ret, "fail to invoke the single inference");
 
-                out_data = TensorsData.CreateFromNativeHandle(outDataPtr, data_inInfo.GetTensorsInfoHandle(), true);
+                out_data = TensorsData.CreateFromNativeHandle(outDataPtr, inInfo.GetTensorsInfoHandle(), true);
             }
             return out_data;
         }
