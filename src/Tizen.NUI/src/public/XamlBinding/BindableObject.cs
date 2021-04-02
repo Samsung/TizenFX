@@ -554,7 +554,13 @@ namespace Tizen.NUI.Binding
             return false;
         }
 
-        internal void SetDynamicResource(BindableProperty property, string key)
+        /// <summary>
+        /// Internal use, will never open
+        /// </summary>
+        /// <param name="property"></param>
+        /// <param name="key"></param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetDynamicResource(BindableProperty property, string key)
         {
             SetDynamicResource(property, key, false);
         }

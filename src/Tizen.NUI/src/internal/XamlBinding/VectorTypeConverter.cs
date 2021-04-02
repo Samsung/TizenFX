@@ -21,11 +21,16 @@ using System.Reflection;
 using System.Globalization;
 
 using Tizen.NUI;
+using System.ComponentModel;
 
 namespace Tizen.NUI.Binding
 {
-    internal class Vector2TypeConverter : TypeConverter
+    //Internal used, will never open
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class Vector2TypeConverter : TypeConverter
     {
+        //Internal used, will never open
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override object ConvertFromInvariantString(string value)
         {
             if (value != null)
@@ -41,6 +46,8 @@ namespace Tizen.NUI.Binding
             throw new InvalidOperationException($"Cannot convert \"{value}\" into {typeof(Vector2)}");
         }
 
+        //Internal used, will never open
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override string ConvertToString(object value)
         {
             Vector2 vector = (Vector2)value;
@@ -48,8 +55,12 @@ namespace Tizen.NUI.Binding
         }
     }
 
+    //Internal used, will never open
+    [EditorBrowsable(EditorBrowsableState.Never)]
     internal class Vector3TypeConverter : TypeConverter
     {
+        //Internal used, will never open
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override object ConvertFromInvariantString(string value)
         {
             if (value != null)
@@ -66,6 +77,8 @@ namespace Tizen.NUI.Binding
             throw new InvalidOperationException($"Cannot convert \"{value}\" into {typeof(Vector3)}");
         }
 
+        //Internal used, will never open
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override string ConvertToString(object value)
         {
             Vector3 vector = (Vector3)value;
@@ -73,8 +86,12 @@ namespace Tizen.NUI.Binding
         }
     }
 
-    internal class Vector4TypeConverter : TypeConverter
+    //Internal used, will never open
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class Vector4TypeConverter : TypeConverter
     {
+        //Internal used, will never open
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override object ConvertFromInvariantString(string value)
         {
             if (value != null)
@@ -92,6 +109,8 @@ namespace Tizen.NUI.Binding
             throw new InvalidOperationException($"Cannot convert \"{value}\" into {typeof(Vector4)}");
         }
 
+        //Internal used, will never open
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override string ConvertToString(object value)
         {
             Vector4 vector = (Vector4)value;
@@ -99,8 +118,12 @@ namespace Tizen.NUI.Binding
         }
     }
 
-    internal class RelativeVector2TypeConverter : TypeConverter
+    //Internal used, will never open
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class RelativeVector2TypeConverter : TypeConverter
     {
+        //Internal used, will never open
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override object ConvertFromInvariantString(string value)
         {
             if (value != null)
@@ -116,6 +139,8 @@ namespace Tizen.NUI.Binding
             throw new InvalidOperationException($"Cannot convert \"{value}\" into {typeof(RelativeVector2)}");
         }
 
+        //Internal used, will never open
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override string ConvertToString(object value)
         {
             RelativeVector2 vector = (RelativeVector2)value;
@@ -123,8 +148,12 @@ namespace Tizen.NUI.Binding
         }
     }
 
-    internal class RelativeVector3TypeConverter : TypeConverter
+    //Internal used, will never open
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class RelativeVector3TypeConverter : TypeConverter
     {
+        //Internal used, will never open
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override object ConvertFromInvariantString(string value)
         {
             if (value != null)
@@ -141,6 +170,8 @@ namespace Tizen.NUI.Binding
             throw new InvalidOperationException($"Cannot convert \"{value}\" into {typeof(RelativeVector3)}");
         }
 
+        //Internal used, will never open
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override string ConvertToString(object value)
         {
             RelativeVector3 vector = (RelativeVector3)value;
@@ -148,8 +179,12 @@ namespace Tizen.NUI.Binding
         }
     }
 
-    internal class RelativeVector4TypeConverter : TypeConverter
+    //Internal used, will never open
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class RelativeVector4TypeConverter : TypeConverter
     {
+        //Internal used, will never open
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override object ConvertFromInvariantString(string value)
         {
             if (value != null)
@@ -167,6 +202,8 @@ namespace Tizen.NUI.Binding
             throw new InvalidOperationException($"Cannot convert \"{value}\" into {typeof(RelativeVector4)}");
         }
 
+        //Internal used, will never open
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override string ConvertToString(object value)
         {
             RelativeVector4 vector = (RelativeVector4)value;

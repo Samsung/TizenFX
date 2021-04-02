@@ -16,12 +16,17 @@
  */
 
 using System;
+using System.ComponentModel;
 using System.Globalization;
 
 namespace Tizen.NUI.Binding
 {
-    internal class RotationTypeConverter : TypeConverter
+    //Internal used, will never open
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class RotationTypeConverter : TypeConverter
     {
+        //Internal used, will never open
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override object ConvertFromInvariantString(string value)
         {
             // public Rotation(Radian radian(float), Vector3 vector3)
@@ -72,6 +77,8 @@ namespace Tizen.NUI.Binding
             throw new InvalidOperationException($"Cannot convert \"{value}\" into {typeof(Rotation)}");
         }
 
+        //Internal used, will never open
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override string ConvertToString(object value)
         {
             Rotation rotation = (Rotation)value;
