@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,6 +37,8 @@ namespace Tizen.NUI.BaseComponents
         private float fontSizeScale = 1.0f;
         private bool hasFontSizeChangedCallback = false;
 
+        static TextEditor() { }
+
         /// <summary>
         /// Creates the TextEditor control.
         /// </summary>
@@ -44,6 +46,14 @@ namespace Tizen.NUI.BaseComponents
         public TextEditor() : this(Interop.TextEditor.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Creates the TextEditor with specified style.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextEditor(TextEditorStyle style) : this(Interop.TextLabel.New(), true, style: style)
+        {
         }
 
         /// <summary>
@@ -68,7 +78,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal TextEditor(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(cPtr, cMemoryOwn)
+        internal TextEditor(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true, TextEditorStyle style = null) : base(cPtr, cMemoryOwn, style)
         {
             if (!shown)
             {

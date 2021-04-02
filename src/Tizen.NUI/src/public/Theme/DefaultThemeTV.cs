@@ -14,21 +14,22 @@
  * limitations under the License.
  *
  */
-
+#if PROFILE_TV
 using System.Collections.Generic;
 
 namespace Tizen.NUI
 {
-    internal partial class DefaultThemeCreator : IThemeCreator
+    internal partial class DefaultThemeCreator
     {
-        private DefaultThemeCreator() { }
-
-        internal const string DefaultId = "Tizen.NUI.Theme.Common";
-        internal const string DefaultVersion = "1.0.0";
-
-        internal static IThemeCreator Instance { get; set; } = new DefaultThemeCreator();
-
-        public HashSet<ExternalThemeKeyList> GetExternalThemeKeyListSet() => null;
+        public Theme Create()
+        {
+            Theme theme = new Theme()
+            {
+                Id = DefaultId,
+                Version = DefaultVersion,
+            };
+            return theme;
+        }
     }
 }
-
+#endif
