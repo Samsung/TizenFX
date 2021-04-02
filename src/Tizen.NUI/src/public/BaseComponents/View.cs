@@ -495,7 +495,10 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return Accessibility.AccessibilityManager.Instance.GetCurrentFocusView() == this;
+                using (View view = Accessibility.Accessibility.Instance.GetCurrentlyHighlightedView())
+                {
+                    return view == this;
+                }
             }
         }
 
