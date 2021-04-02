@@ -57,7 +57,7 @@ namespace Tizen.NUI.Binding
 
     //Internal used, will never open
     [EditorBrowsable(EditorBrowsableState.Never)]
-    internal class Vector3TypeConverter : TypeConverter
+    public class Vector3TypeConverter : TypeConverter
     {
         //Internal used, will never open
         [EditorBrowsable(EditorBrowsableState.Never)]
