@@ -241,9 +241,18 @@ namespace Tizen.NUI.BaseComponents
         // ****************** Accessibility Relations ******************* //
         ///////////////////////////////////////////////////////////////////
 
+        /// <summary>
+        /// Creates relation between objects.
+        /// </summary>
+        /// <param name="second">Object which will be in relation.</param>
+        /// <param name="relation">Relation type.</param>
+        /// <exception cref="ArgumentNullException">You must pass valid object. NULL could not be in relation.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AppendAccessibilityRelation(View second, RelationType relation)
         {
+            if (second is null)
+                throw new ArgumentNullException(nameof(second));
+
             Interop.ControlDevel.DaliToolkitDevelControlAppendAccessibilityRelation(SwigCPtr, second.SwigCPtr, (int)relation);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
