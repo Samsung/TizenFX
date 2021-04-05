@@ -333,6 +333,16 @@ namespace Tizen.NUI
             Tizen.Log.Debug("NUI", $"GetNativeImageSource()");
             return new NativeImageSource(Interop.Capture.GetNativeImageSourcePtr(SwigCPtr), true);
         }
+
+        /// <summary>
+        /// Get the brightness of the captured image.
+        /// </summary>
+        /// <returns>The brightness of the captured image.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint GetImageBrightness()
+        {
+            return Interop.Capture.GetImageBrightness(SwigCPtr);
+        }
     }
 
     /// <summary>
