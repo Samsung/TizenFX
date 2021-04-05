@@ -144,7 +144,7 @@ namespace Tizen.NUI
             args[0] = Tizen.Applications.Application.Current.ApplicationInfo.ExecutablePath;
             if (string.IsNullOrEmpty(args[0]))
             {
-                args[0] = this.GetType().Assembly.FullName;
+                args[0] = this.GetType().Assembly.FullName.Replace(" ", "");
             }
 
             if (windowRectangle != null)
