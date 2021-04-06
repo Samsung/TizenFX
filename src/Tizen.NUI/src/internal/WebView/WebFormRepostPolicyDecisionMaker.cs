@@ -40,10 +40,5 @@ namespace Tizen.NUI
             Interop.WebFormRepostPolicyDecisionMaker.Reply(SwigCPtr, allowed);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(WebContext obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
-        }
     }
 }
