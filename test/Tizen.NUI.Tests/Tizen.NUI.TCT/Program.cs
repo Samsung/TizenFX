@@ -110,7 +110,7 @@ namespace Tizen.NUI.Devel.Tests
         {
             base.OnResume();
 
-            tlog.Debug(tag, $"OnResume() START!");
+            tlog.Debug(tag, $"### OnResume() START!");
 
             TRunner t = new TRunner();
             t.LoadTestsuite();
