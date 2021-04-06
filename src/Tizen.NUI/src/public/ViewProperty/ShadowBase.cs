@@ -92,7 +92,7 @@ namespace Tizen.NUI
         /// The position offset value (x, y) from the top left corner.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Vector2 Offset { get; set; }
+        public Vector2 Offset { get; internal set; }
 
         /// <summary>
         /// The shadow will extend its size by specified amount of length.<br />
@@ -101,7 +101,7 @@ namespace Tizen.NUI
         /// the output shadow will have size (105, 95).
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Vector2 Extents { get; set; }
+        public Vector2 Extents { get; internal set; }
 
         /// <summary>
         /// Equality operator.
