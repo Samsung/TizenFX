@@ -158,8 +158,13 @@ namespace Tizen.NUI.Components
         internal static readonly BindableProperty ItemAlignmentProperty = BindableProperty.Create(nameof(ItemAlignment), typeof(LinearLayout.Alignment), typeof(Button), LinearLayout.Alignment.Center, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Button)bindable;
-            instance.itemAlignment = (LinearLayout.Alignment)newValue;
-            instance.LayoutItems();
+            var newAlignment = (LinearLayout.Alignment)newValue;
+
+            if (instance.itemAlignment != newAlignment)
+            {
+                instance.itemAlignment = newAlignment;
+                instance.LayoutItems();   
+            }
         },
         defaultValueCreator: (bindable) => ((Button)bindable).itemAlignment);
 
@@ -178,7 +183,7 @@ namespace Tizen.NUI.Components
         private bool isSelectable = false;
         private bool isEnabled = true;
         private Size2D itemSpacing;
-        private LinearLayout.Alignment itemAlignment;
+        private LinearLayout.Alignment itemAlignment = LinearLayout.Alignment.Center;
 
         static Button() { }
 
