@@ -289,6 +289,11 @@ namespace Tizen.NUI.Components
         {
             Debug.Assert(size != null);
 
+            if (size.Equals(this.size))
+            {
+                return;
+            }
+
             this.size = new Vector2(size);
 
             UpdateSizeAndSpacing();
