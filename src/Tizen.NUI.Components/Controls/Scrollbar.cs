@@ -530,7 +530,7 @@ namespace Tizen.NUI.Components
         private void UpdateThumbColor(Color color)
         {
             thumbColor = color;
-            if (String.IsNullOrEmpty(thumbView.ResourceUrl))
+            if (!String.IsNullOrEmpty(thumbView.ResourceUrl))
             {
                 thumbView.Color = color;
                 thumbView.BackgroundColor = Color.Transparent;
