@@ -244,6 +244,8 @@ namespace Tizen.NUI.Components
 
             WidthResizePolicy = ResizePolicyType.FillToParent;
             HeightResizePolicy = ResizePolicyType.FillToParent;
+
+            EnableControlState = false;
         }
 
         /// <inheritdoc/>
