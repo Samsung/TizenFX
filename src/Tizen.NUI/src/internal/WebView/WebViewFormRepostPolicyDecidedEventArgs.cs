@@ -24,9 +24,9 @@ namespace Tizen.NUI
     /// Event arguments that passed via the WebView.WebFormRepostDecision.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class WebViewFormRepostDecisionEventArgs : EventArgs
+    public class WebViewFormRepostPolicyDecidedEventArgs : EventArgs
     {
-        internal WebViewFormRepostDecisionEventArgs(WebFormRepostDecision decision)
+        internal WebViewFormRepostPolicyDecidedEventArgs(WebFormRepostPolicyDecision decision)
         {
             FormRepostDecision = decision;
         }
@@ -35,6 +35,6 @@ namespace Tizen.NUI
         /// The form repost decision.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public WebFormRepostDecision FormRepostDecision { get; }
+        public WebFormRepostPolicyDecision FormRepostDecision { get; }
     }
 }

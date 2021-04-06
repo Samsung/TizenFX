@@ -54,9 +54,9 @@ namespace Tizen.NUI
         private EventHandler<WebViewUrlChangedEventArgs> urlChangedEventHandler;
         private WebViewUrlChangedCallbackDelegate urlChangedCallback;
 
-        private readonly WebViewFormRepostDecisionSignal formRepostDecisionSignal;
-        private EventHandler<WebViewFormRepostDecisionEventArgs> formRepostDecisionEventHandler;
-        private WebViewFormRepostDecisionCallbackDelegate formRepostDecisionCallback;
+        private readonly WebViewFormRepostDecidedSignal formRepostPolicyDecidedSignal;
+        private EventHandler<WebViewFormRepostPolicyDecidedEventArgs> formRepostPolicyDecidedEventHandler;
+        private WebViewFormRepostPolicyDecidedCallbackDelegate formRepostPolicyDecidedCallback;
 
         private readonly WebViewFrameRenderedSignal frameRenderedSignal;
         private EventHandler<WebViewFrameRenderedEventArgs> frameRenderedEventHandler;
@@ -110,7 +110,7 @@ namespace Tizen.NUI
             pageLoadErrorSignal = new WebViewPageLoadErrorSignal(Interop.WebView.NewWebViewPageLoadErrorSignalPageLoadError(SwigCPtr));
             scrollEdgeReachedSignal = new WebViewScrollEdgeReachedSignal(Interop.WebView.NewWebViewScrollEdgeReachedSignalScrollEdgeReached(SwigCPtr));
             urlChangedSignal = new WebViewUrlChangedSignal(Interop.WebView.NewWebViewUrlChangedSignalUrlChanged(SwigCPtr));
-            formRepostDecisionSignal = new WebViewFormRepostDecisionSignal(Interop.WebView.NewWebViewFormRepostDecisionSignalFormRepostDecision(SwigCPtr));
+            formRepostPolicyDecidedSignal = new WebViewFormRepostDecidedSignal(Interop.WebView.NewWebViewFormRepostDecisionSignalFormRepostDecision(SwigCPtr));
             frameRenderedSignal = new WebViewFrameRenderedSignal(Interop.WebView.WebViewFrameRenderedSignalFrameRenderedGet(SwigCPtr));
 
             BackForwardList = new WebBackForwardList(Interop.WebView.GetWebBackForwardList(SwigCPtr), false);
@@ -141,7 +141,7 @@ namespace Tizen.NUI
                 pageLoadErrorSignal.Dispose();
                 scrollEdgeReachedSignal.Dispose();
                 urlChangedSignal.Dispose();
-                formRepostDecisionSignal.Dispose();
+                formRepostPolicyDecidedSignal.Dispose();
                 frameRenderedSignal.Dispose();
 
                 BackForwardList.Dispose();
@@ -194,7 +194,7 @@ namespace Tizen.NUI
         private delegate void WebViewUrlChangedCallbackDelegate(IntPtr data, string pageUrl);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void WebViewFormRepostDecisionCallbackDelegate(IntPtr data, IntPtr decision);
+        private delegate void WebViewFormRepostPolicyDecidedCallbackDelegate(IntPtr data, IntPtr decision);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WebViewFrameRenderedCallbackDelegate(IntPtr data);
@@ -356,27 +356,27 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Event for the FormRepostDecision signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// Event for the FormRepostDecided signal which can be used to subscribe or unsubscribe the event handler.<br />
         /// This signal is emitted when form repost policy would be decided.<br />
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<WebViewFormRepostDecisionEventArgs> FormRepostDecision
+        public event EventHandler<WebViewFormRepostPolicyDecidedEventArgs> FormRepostPolicyDecided
         {
             add
             {
-                if (formRepostDecisionEventHandler == null)
+                if (formRepostPolicyDecidedEventHandler == null)
                 {
-                    formRepostDecisionCallback = OnFormRepostDecision;
-                    formRepostDecisionSignal.Connect(formRepostDecisionCallback);
+                    formRepostPolicyDecidedCallback = OnFormRepostPolicyDecided;
+                    formRepostPolicyDecidedSignal.Connect(formRepostPolicyDecidedCallback);
                 }
-                formRepostDecisionEventHandler += value;
+                formRepostPolicyDecidedEventHandler += value;
             }
             remove
             {
-                formRepostDecisionEventHandler -= value;
-                if (formRepostDecisionEventHandler == null && formRepostDecisionCallback != null)
+                formRepostPolicyDecidedEventHandler -= value;
+                if (formRepostPolicyDecidedEventHandler == null && formRepostPolicyDecidedCallback != null)
                 {
-                    formRepostDecisionSignal.Disconnect(formRepostDecisionCallback);
+                    formRepostPolicyDecidedSignal.Disconnect(formRepostPolicyDecidedCallback);
                 }
             }
         }
@@ -1169,10 +1169,10 @@ namespace Tizen.NUI
             urlChangedEventHandler?.Invoke(this, new WebViewUrlChangedEventArgs(pageUrl));
         }
 
-        private void OnFormRepostDecision(IntPtr data, IntPtr decision)
+        private void OnFormRepostPolicyDecided(IntPtr data, IntPtr decision)
         {
-            WebFormRepostDecision repostDecision = new WebFormRepostDecision(decision, false);
-            formRepostDecisionEventHandler?.Invoke(this, new WebViewFormRepostDecisionEventArgs(repostDecision));
+            WebFormRepostPolicyDecision repostDecision = new WebFormRepostPolicyDecision(decision, false);
+            formRepostPolicyDecidedEventHandler?.Invoke(this, new WebViewFormRepostPolicyDecidedEventArgs(repostDecision));
             repostDecision.Dispose();
         }
 

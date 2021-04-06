@@ -24,9 +24,9 @@ namespace Tizen.NUI
     /// It is a class for form repost decision of web view.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class WebFormRepostDecision : Disposable
+    public class WebFormRepostPolicyDecision : Disposable
     {
-        internal WebFormRepostDecision(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal WebFormRepostPolicyDecision(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
