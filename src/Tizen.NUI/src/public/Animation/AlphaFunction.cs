@@ -78,10 +78,11 @@ namespace Tizen.NUI
         {
         }
 
-        internal AlphaFunction(SWIGTYPE_p_f_float__float function) : this(Interop.AlphaFunction.NewAlphaFunction(SWIGTYPE_p_f_float__float.getCPtr(function)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
+        // Not used : This will be remained by 2021-05-30 to check side effect. After 2021-05-30 this will be removed cleanly
+        // internal AlphaFunction(SWIGTYPE_p_f_float__float function) : this(Interop.AlphaFunction.NewAlphaFunction(SWIGTYPE_p_f_float__float.getCPtr(function)), true)
+        // {
+        //     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        // }
 
         /// <summary>
         /// This specifies the various types of BuiltinFunctions.
@@ -315,13 +316,14 @@ namespace Tizen.NUI
             return propertyKey;
         }
 
-        internal SWIGTYPE_p_f_float__float GetCustomFunction()
-        {
-            global::System.IntPtr cPtr = Interop.AlphaFunction.GetCustomFunction(SwigCPtr);
-            SWIGTYPE_p_f_float__float ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_f_float__float(cPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
+        // Not used : This will be remained by 2021-05-30 to check side effect. After 2021-05-30 this will be removed cleanly
+        // internal SWIGTYPE_p_f_float__float GetCustomFunction()
+        // {
+        //     global::System.IntPtr cPtr = Interop.AlphaFunction.GetCustomFunction(SwigCPtr);
+        //     SWIGTYPE_p_f_float__float ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_f_float__float(cPtr);
+        //     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        //     return ret;
+        // }
 
         /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]

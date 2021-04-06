@@ -56,12 +56,18 @@ namespace NUnitLite.TUnit
         public TRunner(Assembly testAssembly)
         {
             _testAssembly = testAssembly;
+            Tizen.Log.Fatal("NUITEST", $"");
+            Tizen.Log.Fatal("NUITEST", $"TRunner() _testAssembly={_testAssembly}");
 #if TIZEN
             TSettings.GetInstance().ConnectTestkitStub();
 #endif
         }
 
-        public TRunner() : this(Assembly.GetEntryAssembly()) { }
+        public TRunner() : this(Assembly.GetEntryAssembly())
+        {
+            Tizen.Log.Fatal("NUITEST", $"");
+            Tizen.Log.Fatal("NUITEST", $"TRunner()");
+        }
 
         /// <summary>
         /// Get the app name of the Tizen package
@@ -106,20 +112,25 @@ namespace NUnitLite.TUnit
         /// </summary>
         public void LoadTestsuite()
         {
+            Tizen.Log.Fatal("NUITEST", $"");
+            Tizen.Log.Fatal("NUITEST", $"LoadTestsuite()");
             TSettings.CurTCIndex = 0;
             string cache_path = Tizen.Applications.Application.Current.DirectoryInfo.Cache;
             string dllPath = cache_path.Replace("cache", "bin");
             string pkgName = GetPackageName(dllPath);
             if (pkgName == "")
             {
+                Tizen.Log.Fatal("NUITEST", $"The package name is invalid!");
                 TLogger.WriteError("The package name is invalid!");
                 return;
             }
 
             //TLogger.Write("Executing the application: " + pkgName + "...");
+            Tizen.Log.Fatal("NUITEST", $"Executing the application: {pkgName}");
 
             string exeFilePathName = string.Format(dllPath + "Tizen.{0}.Tests.exe", pkgName);
             //TLogger.Write("exeFilePathName : " + exeFilePathName);
+            Tizen.Log.Fatal("NUITEST", $"exeFilePathName : {exeFilePathName}");
 
             AssemblyName asmName = new AssemblyName(GetAssemblyName(exeFilePathName));
             _testAssembly = Assembly.Load(asmName);
@@ -136,6 +147,8 @@ namespace NUnitLite.TUnit
             TSettings.GetInstance().SetOutputFilePathName(outputFilePathName);
             string[] s = new string[1] { exeFilePathName };
 
+            Tizen.Log.Fatal("NUITEST", $"outputFilePathName : {outputFilePathName}");
+            
             //new TextRunner(_testAssembly).Execute(s);
             LoadTestsuite(s, outputFilePathName);
         }
