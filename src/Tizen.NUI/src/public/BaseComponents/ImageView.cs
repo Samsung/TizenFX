@@ -266,6 +266,7 @@ namespace Tizen.NUI.BaseComponents
         private string _alphaMaskUrl = null;
         private int _desired_width = -1;
         private int _desired_height = -1;
+        private VisualFittingModeType _fittingMode = VisualFittingModeType.Fill;
         private readonly TriggerableSelector<string> resourceUrlSelector = new TriggerableSelector<string>(ResourceUrlProperty);
         private readonly TriggerableSelector<Rectangle> borderSelector = new TriggerableSelector<Rectangle>(BorderProperty);
 
@@ -889,12 +890,13 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                int ret = (int)VisualFittingModeType.Fill;
+                int ret = (int)_fittingMode;
                 PropertyMap imageMap = new PropertyMap();
                 PropertyValue image = Tizen.NUI.Object.GetProperty(SwigCPtr, ImageView.Property.IMAGE);
                 image?.Get(imageMap);
                 PropertyValue fittingMode = imageMap?.Find(Visual.Property.VisualFittingMode);
                 fittingMode?.Get(out ret);
+                _fittingMode = (VisualFittingModeType)ret;
 
                 imageMap?.Dispose();
                 image?.Dispose();
@@ -905,6 +907,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 VisualFittingModeType ret = CovertFittingModetoVisualFittingMode(value);
+                _fittingMode = ret;
                 PropertyValue setValue = new PropertyValue((int)ret);
                 UpdateImage(Visual.Property.VisualFittingMode, setValue);
                 setValue?.Dispose();
@@ -1221,6 +1224,13 @@ namespace Tizen.NUI.BaseComponents
                 PropertyValue border = new PropertyValue(_border);
                 imageMap?.Insert(NpatchImageVisualProperty.Border, border);
                 border?.Dispose();
+            }
+
+            if(key != Visual.Property.VisualFittingMode && _fittingMode != VisualFittingModeType.Fill)
+            {
+                PropertyValue fittingMode = new PropertyValue((int)_fittingMode);
+                imageMap?.Insert(Visual.Property.VisualFittingMode, fittingMode);
+                fittingMode?.Dispose();
             }
 
             PropertyValue synchronosLoading = new PropertyValue(_synchronosLoading);
