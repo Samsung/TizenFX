@@ -21,45 +21,38 @@ using Tizen.NUI.Binding;
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// PickerStyle is a class which saves PickerStyle's ux data.
+    /// TimePickerStyle is a class which saves TimePickerStyle's ux data.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class PickerStyle : ControlStyle
+    public class TimePickerStyle : ControlStyle
     {
         /// <summary>
-        /// Creates a new instance of a PickerStyle.
+        /// Creates a new instance of a TimePickerStyle.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public PickerStyle() : base()
+        public TimePickerStyle() : base()
         {
         }
 
         /// <summary>
-        /// Creates a new instance of a PickerStyle with style.
+        /// Creates a new instance of a TimePickerStyle with style.
         /// </summary>
-        /// <param name="style">Creates PickerStyle by style customized by user.</param>
+        /// <param name="style">Creates TimePickerStyle by style customized by user.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public PickerStyle(PickerStyle style) : base(style)
+        public TimePickerStyle(TimePickerStyle style) : base(style)
         {
         }
 
         /// <summary>
-        /// Gets or sets the PickerStyle Item TextLabel style.
-        /// This style is applied if PickerStyle Item is a TextLabel.
+        /// Gets or sets the TimePickerStyle internal pickers style.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextLabelStyle ItemTextLabel { get; set; } = new TextLabelStyle();
+        public PickerStyle Pickers { get; set;} = new PickerStyle();
 
         /// <summary>
-        /// Gets or sets the PickerStyle Center line style.
-        /// </summary>
-        public ViewStyle Divider { get; set;} = new ViewStyle();
-        
-        /// <summary>
-        /// Gets or sets the PickerStyle Item list start offset value.
+        /// Gets or sets the TimePickerStyle internal pickers padding.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Size StartScrollOffset { get; set; } = new Size();
+        public Size2D CellPadding { get; set; } = new Size2D();
 
         /// <summary>
         /// Style's clone function.
@@ -70,12 +63,11 @@ namespace Tizen.NUI.Components
         {
             base.CopyFrom(bindableObject);
 
-            if (bindableObject is PickerStyle pickerStyle)
+            if (bindableObject is TimePickerStyle timePickerStyle)
             {
-                ItemTextLabel.CopyFrom(pickerStyle.ItemTextLabel);
-                Divider.CopyFrom(pickerStyle.Divider);
-                StartScrollOffset = (pickerStyle.StartScrollOffset == null) ?
-                                    new Size() : new Size(pickerStyle.StartScrollOffset.Width, pickerStyle.StartScrollOffset.Height);
+                Pickers.CopyFrom(timePickerStyle.Pickers);
+                CellPadding = (timePickerStyle.CellPadding == null) ?
+                               new Size2D() : new Size2D(timePickerStyle.CellPadding.Width, timePickerStyle.CellPadding.Height);
             }
         }
     }
