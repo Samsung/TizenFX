@@ -38,6 +38,7 @@ namespace Tizen.NUI.Components
                 Size = new Size(339, 96),
                 CornerRadiusPolicy = VisualTransformPolicyType.Relative,
                 CornerRadius = 0.2916f,
+                ItemAlignment = LinearLayout.Alignment.Center,
                 BackgroundColor = new Selector<Color>()
                 {
                     Normal = new Color(0.039f, 0.055f, 0.29f, 1),
@@ -54,7 +55,8 @@ namespace Tizen.NUI.Components
 
             theme.AddStyleWithoutClone("Tizen.NUI.Components.CheckBox", new ButtonStyle()
             {
-                TextPadding = new Extents(32, 0, 0, 0),
+                ItemSpacing = new Size2D(32, 32),
+                ItemAlignment = LinearLayout.Alignment.Begin,
                 Icon = new ImageViewStyle()
                 {
                     Size = new Size(36, 36),
@@ -134,7 +136,8 @@ namespace Tizen.NUI.Components
 
             theme.AddStyleWithoutClone("Tizen.NUI.Components.RadioButton", new ButtonStyle()
             {
-                TextPadding = new Extents(32, 0, 0, 0),
+                ItemSpacing = new Size2D(32, 32),
+                ItemAlignment = LinearLayout.Alignment.Begin,
                 Icon = new ImageViewStyle()
                 {
                     Size = new Size(36, 36),
@@ -188,7 +191,8 @@ namespace Tizen.NUI.Components
 
             theme.AddStyleWithoutClone("Tizen.NUI.Components.Switch", new SwitchStyle()
             {
-                TextPadding = new Extents(32, 0, 0, 0),
+                ItemSpacing = new Size2D(32, 32),
+                ItemAlignment = LinearLayout.Alignment.Begin,
                 Track = new ImageViewStyle()
                 {
                     Size = new Size(80, 40),
@@ -240,11 +244,13 @@ namespace Tizen.NUI.Components
 
             theme.AddStyleWithoutClone("Tizen.NUI.Components.Scrollbar", new ScrollbarStyle()
             {
-                TrackThickness = 6,
-                ThumbThickness = 6,
-                TrackColor = new Color(1, 1, 1, 0.15f),
-                ThumbColor = new Color(0.6f, 0.6f, 0.6f, 1.0f),
-                TrackPadding = 4
+                TrackThickness = 12,
+                ThumbThickness = 12,
+                TrackColor = new Color(0f, 0f, 0f, 0f),
+                ThumbColor = new Color("#0A0E4AFF"),
+                TrackPadding = 4,
+                ThumbVerticalImageUrl = FrameworkInformation.ResourcePath + "nui_component_default_scroll_vbar.#.png",
+                ThumbHorizontalImageUrl = FrameworkInformation.ResourcePath + "nui_component_default_scroll_hbar.#.png",
             });
 
             theme.AddStyleWithoutClone("Tizen.NUI.Components.RecyclerViewItem", new RecyclerViewItemStyle()

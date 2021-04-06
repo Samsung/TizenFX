@@ -17,6 +17,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Components.Extension;
 using Tizen.NUI.Accessibility; // To use AccessibilityManager
@@ -28,6 +29,7 @@ namespace Tizen.NUI.Components
         private ImageView overlayImage;
         private TextLabel buttonText;
         private ImageView buttonIcon;
+        private Vector2 size;
 
         private EventHandler<StateChangedEventArgs> stateChangeHandler;
 
@@ -274,13 +276,22 @@ namespace Tizen.NUI.Components
 
             buttonText = CreateText();
             buttonIcon = CreateIcon();
-            buttonText.Relayout += OnTextRelayout;
-            buttonIcon.Relayout += OnIconRelayout;
             LayoutItems();
 
 #if PROFILE_MOBILE
             Feedback = true;
 #endif
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnRelayout(Vector2 size, RelayoutContainer container)
+        {
+            Debug.Assert(size != null);
+
+            this.size = new Vector2(size);
+
+            UpdateSizeAndSpacing();
         }
 
         /// <inheritdoc/>
@@ -324,7 +335,8 @@ namespace Tizen.NUI.Components
                 Layout = new LinearLayout()
                 {
                     LinearOrientation = LinearLayout.Orientation.Horizontal,
-                    LinearAlignment = LinearLayout.Alignment.Center,
+                    LinearAlignment = itemAlignment,
+                    CellPadding = itemSpacing ?? new Size2D(0, 0)
                 };
 
                 Add(buttonIcon);
@@ -335,7 +347,8 @@ namespace Tizen.NUI.Components
                 Layout = new LinearLayout()
                 {
                     LinearOrientation = LinearLayout.Orientation.Horizontal,
-                    LinearAlignment = LinearLayout.Alignment.Center,
+                    LinearAlignment = itemAlignment,
+                    CellPadding = itemSpacing ?? new Size2D(0, 0)
                 };
 
                 Add(buttonText);
@@ -346,7 +359,8 @@ namespace Tizen.NUI.Components
                 Layout = new LinearLayout()
                 {
                     LinearOrientation = LinearLayout.Orientation.Vertical,
-                    LinearAlignment = LinearLayout.Alignment.Center,
+                    LinearAlignment = itemAlignment,
+                    CellPadding = itemSpacing ?? new Size2D(0, 0)
                 };
 
                 Add(buttonIcon);
@@ -357,7 +371,8 @@ namespace Tizen.NUI.Components
                 Layout = new LinearLayout()
                 {
                     LinearOrientation = LinearLayout.Orientation.Vertical,
-                    LinearAlignment = LinearLayout.Alignment.Center,
+                    LinearAlignment = itemAlignment,
+                    CellPadding = itemSpacing ?? new Size2D(0, 0)
                 };
 
                 Add(buttonText);
@@ -371,62 +386,51 @@ namespace Tizen.NUI.Components
             }
         }
 
-        private void OnTextOrIconUpdated()
+        private void UpdateSizeAndSpacing()
         {
-            if (buttonIcon == null || buttonText == null)
+            if (size == null || buttonIcon == null || buttonText == null)
+            {
+                return;
+            }
+
+            LinearLayout layout = Layout as LinearLayout;
+
+            if (layout == null)
             {
                 return;
             }
 
             float lengthWithoutText = 0;
+            Size2D cellPadding = null;
+            Extents iconMargin = buttonIcon.Margin ?? new Extents(0);
+            Extents textMargin = buttonText.Margin ?? new Extents(0);
 
-            if (iconPadding == null || buttonIcon.Size.Width == 0 || buttonIcon.Size.Height == 0)
+            if (buttonIcon.Size.Width != 0 && buttonIcon.Size.Height != 0)
             {
-                buttonIcon.Margin = new Extents(0);
                 lengthWithoutText = buttonIcon.Size.Width;
-            }
-            else if (iconRelativeOrientation == IconOrientation.Left || iconRelativeOrientation == IconOrientation.Right)
-            {
-                buttonIcon.Margin = new Extents(iconPadding.Start, iconPadding.End, 0, 0);
-                lengthWithoutText = iconPadding.Start + iconPadding.End + buttonIcon.Size.Width;
-            }
-            else
-            {
-                buttonIcon.Margin = new Extents(0, 0, iconPadding.Top, iconPadding.Bottom);
+
+                if (!String.IsNullOrEmpty(buttonText.Text))
+                {
+                    cellPadding = itemSpacing;
+
+                    if (iconRelativeOrientation == IconOrientation.Left || iconRelativeOrientation == IconOrientation.Right)
+                    {
+                        lengthWithoutText += (itemSpacing?.Width ?? 0) + iconMargin.Start + iconMargin.End + textMargin.Start + textMargin.End;
+                    }
+                    else
+                    {
+                        lengthWithoutText += (itemSpacing?.Height ?? 0) + iconMargin.Top + iconMargin.Bottom + textMargin.Top + textMargin.Bottom;
+                    }
+                }
             }
 
-            if (textPadding == null || buttonText.Size.Width == 0 || buttonText.Size.Height == 0)
-            {
-                buttonText.Margin = new Extents(0);
-            }
-            else 
-            {
-                if (iconRelativeOrientation == IconOrientation.Left || iconRelativeOrientation == IconOrientation.Right)
-                {
-                    buttonText.Margin = new Extents(textPadding.Start, textPadding.End, 0, 0);
-                    lengthWithoutText += textPadding.Start + textPadding.End;
-                }
-                else
-                {
-                    buttonText.Margin = new Extents(0, 0, textPadding.Top, textPadding.Bottom);
-                }
-            }
+            layout.CellPadding = cellPadding ?? new Size2D(0, 0);
 
             // If the button has fixed width and the text is not empty, the text should not exceed button boundary.
-            if (WidthSpecification >= 0 && !String.IsNullOrEmpty(buttonText.Text))
+            if (WidthSpecification != LayoutParamPolicies.WrapContent && !String.IsNullOrEmpty(buttonText.Text))
             {
-                buttonText.MaximumSize = new Size2D(Math.Max(WidthSpecification - (int)lengthWithoutText, Math.Max((int)buttonText.MinimumSize.Width, 1)), HeightSpecification);
+                buttonText.MaximumSize = new Size2D((int)Math.Max(size.Width - lengthWithoutText, Math.Max(buttonText.MinimumSize.Width, 1)), (int)size.Height);
             }
-        }
-
-        private void OnIconRelayout(object sender, EventArgs args)
-        {
-            OnTextOrIconUpdated();
-        }
-
-        private void OnTextRelayout(object sender, EventArgs args)
-        {
-            OnTextOrIconUpdated();
         }
 
         private void OnClickedInternal(ClickedEventArgs eventArgs)
