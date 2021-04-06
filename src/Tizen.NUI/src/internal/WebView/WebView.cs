@@ -59,7 +59,7 @@ namespace Tizen.NUI
         private WebViewFormRepostPolicyDecidedCallbackDelegate formRepostPolicyDecidedCallback;
 
         private readonly WebViewFrameRenderedSignal frameRenderedSignal;
-        private EventHandler<WebViewFrameRenderedEventArgs> frameRenderedEventHandler;
+        private EventHandler<EventArgs> frameRenderedEventHandler;
         private WebViewFrameRenderedCallbackDelegate frameRenderedCallback;
 
         /// <summary>
@@ -386,7 +386,7 @@ namespace Tizen.NUI
         /// This signal is emitted when frame is rendered off-screen.<br />
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<WebViewFrameRenderedEventArgs> FrameRendered
+        public event EventHandler<EventArgs> FrameRendered
         {
             add
             {
@@ -1178,7 +1178,7 @@ namespace Tizen.NUI
 
         private void OnFrameRendered(IntPtr data)
         {
-            frameRenderedEventHandler?.Invoke(this, new WebViewFrameRenderedEventArgs());
+            frameRenderedEventHandler?.Invoke(this, new EventArgs());
         }
     }
 }
