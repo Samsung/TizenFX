@@ -1171,7 +1171,7 @@ namespace Tizen.NUI
 
         private void OnFormRepostPolicyDecided(IntPtr data, IntPtr decision)
         {
-            WebFormRepostPolicyDecision repostDecision = new WebFormRepostPolicyDecision(decision, false);
+            WebFormRepostPolicyDecisionMaker repostDecision = new WebFormRepostPolicyDecisionMaker(decision, false);
             formRepostPolicyDecidedEventHandler?.Invoke(this, new WebViewFormRepostPolicyDecidedEventArgs(repostDecision));
             repostDecision.Dispose();
         }

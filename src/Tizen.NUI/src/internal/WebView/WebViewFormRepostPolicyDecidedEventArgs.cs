@@ -26,15 +26,15 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class WebViewFormRepostPolicyDecidedEventArgs : EventArgs
     {
-        internal WebViewFormRepostPolicyDecidedEventArgs(WebFormRepostPolicyDecision decision)
+        internal WebViewFormRepostPolicyDecidedEventArgs(WebFormRepostPolicyDecisionMaker maker)
         {
-            FormRepostDecision = decision;
+            FormRepostPolicyDecisionMaker = maker;
         }
 
         /// <summary>
         /// The form repost decision.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public WebFormRepostPolicyDecision FormRepostDecision { get; }
+        public WebFormRepostPolicyDecisionMaker FormRepostPolicyDecisionMaker { get; }
     }
 }

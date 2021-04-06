@@ -21,12 +21,12 @@ using System.ComponentModel;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// It is a class for form repost decision of web view.
+    /// It is a class for form repost policy decision maker of web view.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class WebFormRepostPolicyDecision : Disposable
+    public class WebFormRepostPolicyDecisionMaker : Disposable
     {
-        internal WebFormRepostPolicyDecision(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal WebFormRepostPolicyDecisionMaker(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
@@ -37,7 +37,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Reply(bool allowed)
         {
-            Interop.WebFormRepostDecision.Reply(SwigCPtr, allowed);
+            Interop.WebFormRepostPolicyDecisionMaker.Reply(SwigCPtr, allowed);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
