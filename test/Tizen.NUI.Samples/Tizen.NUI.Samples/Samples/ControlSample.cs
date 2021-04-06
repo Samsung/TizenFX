@@ -30,11 +30,7 @@ namespace Tizen.NUI.Samples
                 ParentOrigin = ParentOrigin.Center,
                 PivotPoint = PivotPoint.Center,
                 PositionUsesPivotPoint = true,
-                BoxShadow = new Shadow()
-                {
-                    Color = new Color(0.2f, 0.2f, 0.2f, 0.3f),
-                    Offset = new Vector2(5, 5),
-                },
+                BoxShadow = new Shadow(0, new Color(0.2f, 0.2f, 0.2f, 0.3f), new Vector2(5, 5)),
                 CornerRadius = 0.5f,
                 CornerRadiusPolicy = VisualTransformPolicyType.Relative,
             };

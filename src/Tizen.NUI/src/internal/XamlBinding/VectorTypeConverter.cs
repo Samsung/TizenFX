@@ -30,12 +30,7 @@ namespace Tizen.NUI.Binding
         {
             if (value != null)
             {
-                string[] parts = value.Split(',');
-                if (parts.Length == 2)
-                {
-                    return new Vector2(Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture),
-                                       Single.Parse(parts[1].Trim(), CultureInfo.InvariantCulture));
-                }
+                return FromString(value);
             }
 
             throw new InvalidOperationException($"Cannot convert \"{value}\" into {typeof(Vector2)}");
@@ -43,8 +38,24 @@ namespace Tizen.NUI.Binding
 
         public override string ConvertToString(object value)
         {
-            Vector2 vector = (Vector2)value;
-            return vector.X.ToString() + " " + vector.Y.ToString();
+            return ToString((Vector2)value);
+        }
+
+        internal static Vector2 FromString(string value)
+        {
+            var parts = value.Split(',');
+
+            if (parts.Length != 2)
+            {
+                throw new InvalidOperationException($"Cannot convert \"{value}\" into {typeof(Vector2)}");
+            }
+
+            return new Vector2(Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture), Single.Parse(parts[1].Trim(), CultureInfo.InvariantCulture));
+        }
+
+        internal static string ToString(Vector2 value)
+        {
+            return value.X.ToString() + " " + value.Y.ToString();
         }
     }
 
