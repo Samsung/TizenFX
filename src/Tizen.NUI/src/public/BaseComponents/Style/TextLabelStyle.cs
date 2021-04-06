@@ -289,6 +289,18 @@ namespace Tizen.NUI.BaseComponents
         {
             return ((TextLabelStyle)bindable).textShadow;
         });
+        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty FontStyleProperty = BindableProperty.Create(nameof(FontStyle), typeof(PropertyMap), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textLabelStyle = (TextLabelStyle)bindable;
+            textLabelStyle.fontStyle = (PropertyMap)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textLabelStyle = (TextLabelStyle)bindable;
+            return textLabelStyle.fontStyle;
+        });
 
         private bool? multiLine;
         private HorizontalAlignment? horizontalAlignment;
@@ -313,6 +325,7 @@ namespace Tizen.NUI.BaseComponents
         private Selector<Color> textColorSelector;
         private Selector<float?> pointSizeSelector;
         private Selector<TextShadow> textShadow;
+        private PropertyMap fontStyle;
 
         static TextLabelStyle() { }
 
@@ -526,6 +539,14 @@ namespace Tizen.NUI.BaseComponents
         {
             get => (Selector<TextShadow>)GetValue(TextShadowProperty);
             set => SetValue(TextShadowProperty, value);
+        }
+
+        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyMap FontStyle
+        {
+            get => (PropertyMap)GetValue(FontStyleProperty);
+            set => SetValue(FontStyleProperty, value);
         }
     }
 }
