@@ -28,55 +28,55 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public partial class TextLabel
     {
-        private EventHandler<AnchorTouchedEventArgs> textLabelAnchorTouchedEventHandler;
-        private AnchorTouchedCallbackDelegate textLabelAnchorTouchedCallbackDelegate;
+        private EventHandler<AnchorClickedEventArgs> textLabelAnchorClickedEventHandler;
+        private AnchorClickedCallbackDelegate textLabelAnchorClickedCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void AnchorTouchedCallbackDelegate(IntPtr textLabel, IntPtr href, uint hrefLength);
+        private delegate void AnchorClickedCallbackDelegate(IntPtr textLabel, IntPtr href, uint hrefLength);
 
         /// <summary>
-        /// The AnchorTouched signal is emitted when the anchor is touched.
+        /// The AnchorClicked signal is emitted when the anchor is clicked.
         /// </summary>
         /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<AnchorTouchedEventArgs> AnchorTouched
+        public event EventHandler<AnchorClickedEventArgs> AnchorClicked
         {
             add
             {
-                if (textLabelAnchorTouchedEventHandler == null)
+                if (textLabelAnchorClickedEventHandler == null)
                 {
-                    textLabelAnchorTouchedCallbackDelegate = (OnAnchorTouched);
-                    AnchorTouchedSignal().Connect(textLabelAnchorTouchedCallbackDelegate);
+                    textLabelAnchorClickedCallbackDelegate = (OnAnchorClicked);
+                    AnchorClickedSignal().Connect(textLabelAnchorClickedCallbackDelegate);
                 }
-                textLabelAnchorTouchedEventHandler += value;
+                textLabelAnchorClickedEventHandler += value;
             }
             remove
             {
-                textLabelAnchorTouchedEventHandler -= value;
-                if (textLabelAnchorTouchedEventHandler == null && AnchorTouchedSignal().Empty() == false)
+                textLabelAnchorClickedEventHandler -= value;
+                if (textLabelAnchorClickedEventHandler == null && AnchorClickedSignal().Empty() == false)
                 {
-                    AnchorTouchedSignal().Disconnect(textLabelAnchorTouchedCallbackDelegate);
+                    AnchorClickedSignal().Disconnect(textLabelAnchorClickedCallbackDelegate);
                 }
             }
         }
 
-        internal TextLabelSignal AnchorTouchedSignal()
+        internal TextLabelSignal AnchorClickedSignal()
         {
-            TextLabelSignal ret = new TextLabelSignal(Interop.TextLabel.AnchorTouchedSignal(SwigCPtr), false);
+            TextLabelSignal ret = new TextLabelSignal(Interop.TextLabel.AnchorClickedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        private void OnAnchorTouched(IntPtr textLabel, IntPtr href, uint hrefLength)
+        private void OnAnchorClicked(IntPtr textLabel, IntPtr href, uint hrefLength)
         {
             // Note: hrefLength is useful for get the length of a const char* (href) in dali-toolkit.
             // But NUI can get the length of string (href), so hrefLength is not necessary in NUI.
-            AnchorTouchedEventArgs e = new AnchorTouchedEventArgs();
+            AnchorClickedEventArgs e = new AnchorClickedEventArgs();
 
-            // Populate all members of "e" (AnchorTouchedEventArgs) with real data
+            // Populate all members of "e" (AnchorClickedEventArgs) with real data
             e.Href = Marshal.PtrToStringAnsi(href);
             //here we send all data to user event handlers
-            textLabelAnchorTouchedEventHandler?.Invoke(this, e);
+            textLabelAnchorClickedEventHandler?.Invoke(this, e);
         }
     }
 }

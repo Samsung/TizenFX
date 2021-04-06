@@ -36,8 +36,8 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler<MaxLengthReachedEventArgs> textEditorMaxLengthReachedEventHandler;
         private MaxLengthReachedCallbackDelegate textEditorMaxLengthReachedCallbackDelegate;
 
-        private EventHandler<AnchorTouchedEventArgs> textEditorAnchorTouchedEventHandler;
-        private AnchorTouchedCallbackDelegate textEditorAnchorTouchedCallbackDelegate;
+        private EventHandler<AnchorClickedEventArgs> textEditorAnchorClickedEventHandler;
+        private AnchorClickedCallbackDelegate textEditorAnchorClickedCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void TextChangedCallbackDelegate(IntPtr textEditor);
@@ -49,7 +49,7 @@ namespace Tizen.NUI.BaseComponents
         private delegate void MaxLengthReachedCallbackDelegate(IntPtr textEditor);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void AnchorTouchedCallbackDelegate(IntPtr textEditor, IntPtr href, uint hrefLength);
+        private delegate void AnchorClickedCallbackDelegate(IntPtr textEditor, IntPtr href, uint hrefLength);
 
         /// <summary>
         /// An event for the TextChanged signal which can be used to subscribe or unsubscribe the event handler
@@ -130,27 +130,27 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The AnchorTouched signal is emitted when the anchor is touched.
+        /// The AnchorClicked signal is emitted when the anchor is clicked.
         /// </summary>
         /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<AnchorTouchedEventArgs> AnchorTouched
+        public event EventHandler<AnchorClickedEventArgs> AnchorClicked
         {
             add
             {
-                if (textEditorAnchorTouchedEventHandler == null)
+                if (textEditorAnchorClickedEventHandler == null)
                 {
-                    textEditorAnchorTouchedCallbackDelegate = (OnAnchorTouched);
-                    AnchorTouchedSignal().Connect(textEditorAnchorTouchedCallbackDelegate);
+                    textEditorAnchorClickedCallbackDelegate = (OnAnchorClicked);
+                    AnchorClickedSignal().Connect(textEditorAnchorClickedCallbackDelegate);
                 }
-                textEditorAnchorTouchedEventHandler += value;
+                textEditorAnchorClickedEventHandler += value;
             }
             remove
             {
-                textEditorAnchorTouchedEventHandler -= value;
-                if (textEditorAnchorTouchedEventHandler == null && AnchorTouchedSignal().Empty() == false)
+                textEditorAnchorClickedEventHandler -= value;
+                if (textEditorAnchorClickedEventHandler == null && AnchorClickedSignal().Empty() == false)
                 {
-                    AnchorTouchedSignal().Disconnect(textEditorAnchorTouchedCallbackDelegate);
+                    AnchorClickedSignal().Disconnect(textEditorAnchorClickedCallbackDelegate);
                 }
             }
         }
@@ -176,9 +176,9 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        internal TextEditorSignal AnchorTouchedSignal()
+        internal TextEditorSignal AnchorClickedSignal()
         {
-            TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.AnchorTouchedSignal(SwigCPtr), false);
+            TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.AnchorClickedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -226,16 +226,16 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        private void OnAnchorTouched(IntPtr textEditor, IntPtr href, uint hrefLength)
+        private void OnAnchorClicked(IntPtr textEditor, IntPtr href, uint hrefLength)
         {
             // Note: hrefLength is useful for get the length of a const char* (href) in dali-toolkit.
             // But NUI can get the length of string (href), so hrefLength is not necessary in NUI.
-            AnchorTouchedEventArgs e = new AnchorTouchedEventArgs();
+            AnchorClickedEventArgs e = new AnchorClickedEventArgs();
 
-            // Populate all members of "e" (AnchorTouchedEventArgs) with real data
+            // Populate all members of "e" (AnchorClickedEventArgs) with real data
             e.Href = Marshal.PtrToStringAnsi(href);
             //here we send all data to user event handlers
-            textEditorAnchorTouchedEventHandler?.Invoke(this, e);
+            textEditorAnchorClickedEventHandler?.Invoke(this, e);
         }
 
         /// <summary>
