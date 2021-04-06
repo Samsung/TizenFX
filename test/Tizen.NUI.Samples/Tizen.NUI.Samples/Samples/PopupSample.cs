@@ -92,12 +92,7 @@ namespace Tizen.NUI.Samples
             popup.Title.Padding = 0;
 
             // Shadow
-            popup.ImageShadow = new ImageShadow
-            {
-                Url = CommonResource.GetFHResourcePath() + "11. Popup/popup_background_shadow.png",
-                Border = new Rectangle(24, 24, 24, 24),
-                Extents = new Vector2(48, 48)
-            };
+            popup.ImageShadow = new ImageShadow(CommonResource.GetFHResourcePath() + "11. Popup/popup_background_shadow.png", new Rectangle(24, 24, 24, 24), extents: new Vector2(48, 48));
 
             // Background
             popup.BackgroundImage = CommonResource.GetFHResourcePath() + "11. Popup/popup_background.png";
@@ -113,11 +108,7 @@ namespace Tizen.NUI.Samples
                 Normal = new Color(1.0f, 1.0f, 1.0f, 0.5f),
                 Pressed = new Color(0.0f, 0.0f, 0.0f, 0.5f)
             };
-            popup.ButtonImageShadow = new ImageShadow
-            {
-                Url = CommonResource.GetFHResourcePath() + "3. Button/rectangle_btn_shadow.png",
-                Border = new Rectangle(5, 5, 5, 5)
-            };
+            popup.ButtonImageShadow = new ImageShadow(CommonResource.GetFHResourcePath() + "3. Button/rectangle_btn_shadow.png", new Rectangle(5, 5, 5, 5));
             popup.ButtonTextColor = color[0];
             popup.ButtonHeight = 132;
             popup.PopupButtonClickEvent += PopupButtonClickedEvent;
@@ -145,12 +136,7 @@ namespace Tizen.NUI.Samples
                 MinimumSize = new Size(1032, 184),
                 BackgroundImage = new Selector<string> { All = CommonResource.GetFHResourcePath() + "11. Popup/popup_background.png" },
                 BackgroundImageBorder = new Selector<Rectangle> { All = new Rectangle(0, 0, 81, 81) },
-                ImageShadow = new ImageShadow
-                {
-                    Url = CommonResource.GetFHResourcePath() + "11. Popup/popup_background_shadow.png",
-                    Border = new Rectangle(24, 24, 24, 24),
-                    Extents = new Vector2(48, 48),
-                },
+                ImageShadow = new ImageShadow(CommonResource.GetFHResourcePath() + "11. Popup/popup_background_shadow.png", new Rectangle(24, 24, 24, 24), extents: new Vector2(48, 48)),
                 Title = new TextLabelStyle
                 {
                     PointSize = new Selector<float?> { All = 25 },
@@ -171,11 +157,7 @@ namespace Tizen.NUI.Samples
                     PivotPoint = Tizen.NUI.PivotPoint.BottomLeft,
                     BackgroundImage = new Selector<string> { All = CommonResource.GetFHResourcePath() + "3. Button/rectangle_btn_normal.png" },
                     BackgroundImageBorder = new Selector<Rectangle> { All = new Rectangle(5, 5, 5, 5) },
-                    ImageShadow = new ImageShadow
-                    {
-                        Url = CommonResource.GetFHResourcePath() + "3. Button/rectangle_btn_shadow.png",
-                        Border = new Rectangle(5, 5, 5, 5),
-                    },
+                    ImageShadow = new ImageShadow(CommonResource.GetFHResourcePath() + "3. Button/rectangle_btn_shadow.png", new Rectangle(5, 5, 5, 5)),
                     Overlay = new ImageViewStyle
                     {
                         PositionUsesPivotPoint = true,

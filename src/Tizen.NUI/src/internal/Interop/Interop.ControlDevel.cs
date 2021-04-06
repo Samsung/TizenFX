@@ -203,6 +203,18 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_Bridge_Remove_Popup")]
             public static extern void DaliAccessibilityBridgeRemovePopup(global::System.Runtime.InteropServices.HandleRef arg1);
 
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_Accessible_GetCurrentlyHighlightedActor")]
+            public static extern global::System.IntPtr DaliAccessibilityAccessibleGetCurrentlyHighlightedActor();
+
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_Accessible_GetHighlightActor")]
+            public static extern global::System.IntPtr DaliAccessibilityAccessibleGetHighlightActor();
+
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_Accessible_SetHighlightActor")]
+            public static extern void DaliAccessibilityAccessibleSetHighlightActor(global::System.Runtime.InteropServices.HandleRef arg1);
+
             // SetAccessibilityConstructor
 
             // Keep this structure layout binary compatible with the respective C++ structure!

@@ -108,6 +108,70 @@ namespace Tizen.NUI.Accessibility
             Interop.Accessibility.PauseResume(View.getCPtr(dummy), pause);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
+
+        /// <summary>
+        /// Cancels anything screen-reader is reading / has queued to read
+        /// </summary>
+        /// <param name="alsoNonDiscardable">whether to cancel non-discardable readings as well</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void StopReading(bool alsoNonDiscardable)
+        {
+            Interop.Accessibility.StopReading(View.getCPtr(dummy), alsoNonDiscardable);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        ///  Get View that is used to highlight widget.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public View GetHighlightFrameView()
+        {
+            var ptr = Interop.ControlDevel.DaliAccessibilityAccessibleGetHighlightActor();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (ptr == IntPtr.Zero)
+                return null;
+            return new View(ptr, true);
+        }
+
+        /// <summary>
+        ///  Set view that will be used to highlight widget.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetHighlightFrameView(View view)
+        {
+            Interop.ControlDevel.DaliAccessibilityAccessibleSetHighlightActor(View.getCPtr(view));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        ///  Get highligted View.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public View GetCurrentlyHighlightedView()
+        {
+            var ptr = Interop.ControlDevel.DaliAccessibilityAccessibleGetCurrentlyHighlightedActor();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (ptr == IntPtr.Zero)
+                return null;
+            return new View(ptr, true);
+        }
+
+        /// <summary>
+        ///  Clear highlight.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ClearCurrentlyHighlightedView()
+        {
+            using (View view = GetCurrentlyHighlightedView())
+            {
+                return view.ClearAccessibilityHighlight();
+            }
+        }
         #endregion Method
 
 
