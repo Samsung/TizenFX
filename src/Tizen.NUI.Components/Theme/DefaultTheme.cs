@@ -74,7 +74,8 @@ namespace Tizen.NUI.Components
                     .AddSelector("/Progress/Background", (ViewStyle style, Selector<Color> value) => ((ProgressStyle)style).Progress.BackgroundColor = value)
                     .AddSelector("/Track/ResourceUrl", (ViewStyle style, Selector<string> value) => ((ProgressStyle)style).Track.ResourceUrl = value)
                     .AddSelector("/Buffer/ResourceUrl", (ViewStyle style, Selector<string> value) => ((ProgressStyle)style).Buffer.ResourceUrl = value)
-                    .AddSelector("/Progress/ResourceUrl", (ViewStyle style, Selector<string> value) => ((ProgressStyle)style).Progress.ResourceUrl = value),
+                    .AddSelector("/Progress/ResourceUrl", (ViewStyle style, Selector<string> value) => ((ProgressStyle)style).Progress.ResourceUrl = value)
+                    .Add<string>("/Indeterminate", (ViewStyle style, string value) => ((ProgressStyle)style).Indeterminate = value),
 
                 // Slider
                 (new ExternalThemeKeyList(typeof(Slider), typeof(SliderStyle)))
@@ -83,21 +84,21 @@ namespace Tizen.NUI.Components
                     .AddSelector("/Thumb/Background", (ViewStyle style, Selector<Color> value) => ((SliderStyle)style).Thumb.BackgroundColor = value)
                     .AddSelector("/Thumb/ResourceUrl", (ViewStyle style, Selector<string> value) => ((SliderStyle)style).Thumb.ResourceUrl = value)
                     .AddSelector("/ValueIndicatorImage/ResourceUrl", (ViewStyle style, Selector<string> value) => ((SliderStyle)style).ValueIndicatorImage.ResourceUrl = value),
-                
+
                 // Pagination
                 (new ExternalThemeKeyList(typeof(Pagination), typeof(PaginationStyle)))
                     .AddSelector("/IndicatorImageUrl", (ViewStyle style, Selector<string> value) => ((PaginationStyle)style).IndicatorImageUrl = value),
-                
+
                 // Scrollbar
                 (new ExternalThemeKeyList(typeof(Scrollbar), typeof(ScrollbarStyle)))
                     .Add("/TrackColor", (ViewStyle style, Color value) => ((ScrollbarStyle)style).TrackColor = value)
                     .Add("/ThumbColor", (ViewStyle style, Color value) => ((ScrollbarStyle)style).ThumbColor = value),
-                
+
                 // RecyclerViewItem
                 (new ExternalThemeKeyList(typeof(RecyclerViewItem), typeof(RecyclerViewItemStyle)))
                     .AddBackgroundSelector("/Background", SetBackgroundColor, SetBackgroundImage, ControlState.Selected)
                     .Add<Rectangle>("/BackgroundImageBorder", SetBackgroundBorder),
-                
+
                 // DefaultTitleItem
                 (new ExternalThemeKeyList(typeof(DefaultTitleItem), typeof(DefaultTitleItemStyle)))
                     .AddBackgroundSelector("/Background", SetBackgroundColor, SetBackgroundImage)

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,22 +46,28 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Get or set track image.
+        /// Gets or sets track image.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         public ImageViewStyle Track { get; set; } = new ImageViewStyle();
 
         /// <summary>
-        /// Get or set progress image.
+        /// Gets or sets progress image.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         public ImageViewStyle Progress { get; set; } = new ImageViewStyle();
 
         /// <summary>
-        /// Get or set buffer image.
+        /// Gets or sets buffer image.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         public ImageViewStyle Buffer { get; set; } = new ImageViewStyle();
+
+        /// <summary>
+        /// Gets or sets indeterminate progress resource.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string Indeterminate { get; set; }
 
         /// <summary>
         /// Style's clone function.
@@ -77,6 +83,7 @@ namespace Tizen.NUI.Components
                 Track.CopyFrom(progressStyle.Track);
                 Progress.CopyFrom(progressStyle.Progress);
                 Buffer.CopyFrom(progressStyle.Buffer);
+                Indeterminate = progressStyle.Indeterminate;
             }
         }
     }
