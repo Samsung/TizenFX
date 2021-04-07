@@ -23,12 +23,14 @@ using System.Diagnostics;
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// The Progress class of nui component. It's used to show the ongoing status with a long narrow bar.
+    /// The Progress class is used to show the ongoing status with a long narrow bar.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     public class Progress : Control
     {
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <summary>
+        /// MaxValueProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty MaxValueProperty = BindableProperty.Create(nameof(MaxValue), typeof(float), typeof(Progress), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -45,7 +47,9 @@ namespace Tizen.NUI.Components
             return instance.maxValue;
         });
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <summary>
+        /// MinValueProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty MinValueProperty = BindableProperty.Create(nameof(MinValue), typeof(float), typeof(Progress), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -62,7 +66,9 @@ namespace Tizen.NUI.Components
             return instance.minValue;
         });
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <summary>
+        /// CurrentValueProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty CurrentValueProperty = BindableProperty.Create(nameof(CurrentValue), typeof(float), typeof(Progress), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -83,7 +89,9 @@ namespace Tizen.NUI.Components
             return instance.currentValue;
         });
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <summary>
+        /// BufferValueProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty BufferValueProperty = BindableProperty.Create(nameof(BufferValue), typeof(float), typeof(Progress), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -104,7 +112,9 @@ namespace Tizen.NUI.Components
             return instance.bufferValue;
         });
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <summary>
+        /// ProgressStateProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ProgressStateProperty = BindableProperty.Create(nameof(ProgressState), typeof(ProgressStatusType), typeof(Progress), ProgressStatusType.Indeterminate, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -377,6 +387,10 @@ namespace Tizen.NUI.Components
             InitializeTrack();
             InitializeBuffer();
             InitializeProgress();
+            InitializeIndeterminate();
+
+            indeterminateAnimation?.Stop();
+            indeterminateAnimation = null;
         }
 
         /// <inheritdoc/>
@@ -394,6 +408,11 @@ namespace Tizen.NUI.Components
                 trackImage.ApplyStyle(progressStyle.Track);
                 progressImage.ApplyStyle(progressStyle.Progress);
                 bufferImage.ApplyStyle(progressStyle.Buffer);
+
+                if (null != indeterminateImage && null != progressStyle.Indeterminate)
+                {
+                    indeterminateImage.URL = progressStyle.Indeterminate;
+                }
             }
         }
 
@@ -547,18 +566,6 @@ namespace Tizen.NUI.Components
             }
         }
 
-        private void Initialize()
-        {
-            // create necessary components
-            InitializeTrack();
-            InitializeBuffer();
-            InitializeProgress();
-            InitializeIndeterminate();
-
-            indeterminateAnimation?.Stop();
-            indeterminateAnimation = null;
-        }
-
         private void InitializeTrack()
         {
             if (null == trackImage)
@@ -616,13 +623,16 @@ namespace Tizen.NUI.Components
                 SizePolicy = VisualTransformPolicyType.Relative,
                 Origin = Visual.AlignType.Center,
                 AnchorPoint = Visual.AlignType.Center,
-                Opacity = 1.0f,
+                Opacity = 0.0f,
                 Size = new Size2D(1, 1),
                 URL = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "nui_component_default_progress_indeterminate.png"
             };
             AddVisual("Indeterminate", indeterminateImage);
 
-            // TODO : Need to update Style for indeterminate state.
+            if (state == ProgressStatusType.Indeterminate)
+            {
+                indeterminateImage.Opacity = 1.0f;
+            }
         }
     }
 }
