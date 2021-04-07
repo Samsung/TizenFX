@@ -34,8 +34,6 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public partial class Window : BaseHandle
     {
-        private static readonly Window instance = Application.Instance?.GetWindow();
-
         private HandleRef stageCPtr;
         private Layer rootLayer;
         private string windowTitle;
@@ -264,13 +262,7 @@ namespace Tizen.NUI
         /// Gets the current window.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Window Instance
-        {
-            get
-            {
-                return instance;
-            }
-        }
+        public static Window Instance { get; internal set; }
 
         /// <summary>
         /// Gets or sets a window type.
