@@ -24,6 +24,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Represents a shadow with color and blur radius for a View.
     /// </summary>
+    [Tizen.NUI.Binding.TypeConverter(typeof(Tizen.NUI.Binding.ShadowTypeConverter))]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Shadow : ShadowBase, ICloneable
     {
@@ -45,7 +46,7 @@ namespace Tizen.NUI
         /// Create a Shadow with custom values.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Shadow(float blurRadius, Vector2 offset, Color color, Vector2 extents) : base(offset, extents)
+        public Shadow(float blurRadius, Color color, Vector2 offset = null, Vector2 extents = null) : base(offset, extents)
         {
             BlurRadius = blurRadius;
             Color = color == null ? new Color(defaultColor) : new Color(color);
@@ -56,7 +57,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <exception cref="ArgumentNullException"> Thrown when other is null. </exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Shadow(Shadow other) : this(other == null ? throw new ArgumentNullException(nameof(other)) : other.BlurRadius, other.Offset, other.Color, other.Extents)
+        public Shadow(Shadow other) : this(other == null ? throw new ArgumentNullException(nameof(other)) : other.BlurRadius, other.Color, other.Offset, other.Extents)
         {
         }
 
@@ -81,7 +82,7 @@ namespace Tizen.NUI
         /// The color for the shadow.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Color Color { get; set; }
+        public Color Color { get; internal set; }
 
         /// <summary>
         /// The blur radius value for the shadow. Bigger value, much blurry.
@@ -90,7 +91,7 @@ namespace Tizen.NUI
         /// Negative value is ignored. (no blur)
         /// </remark>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public float BlurRadius { get; set; }
+        public float BlurRadius { get; internal set; }
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]

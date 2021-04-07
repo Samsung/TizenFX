@@ -46,62 +46,17 @@
         </c:ButtonStyle.Text>
     </c:ButtonStyle>
 
-    <!--DropDown-->
-    <c:DropDownStyle x:Key="Tizen.NUI.Components.DropDown" SpaceBetweenButtonTextAndIcon="10" ListPadding="5">
-        <c:DropDownStyle.Button>
-            <!--DropDown Button-->
-            <c:ButtonStyle BackgroundImageBorder="6, 6, 6, 6" IconPadding="6">
-                <c:ButtonStyle.BackgroundImage>
-                    <Selector x:TypeArguments="x:String" Pressed="{NUIResourcePath nui_component_default_checkbox_bg_p.png}" Other="{NUIResourcePath nui_component_default_checkbox_bg_n.png}"/>
-                </c:ButtonStyle.BackgroundImage>
-                <c:ButtonStyle.Text>
-                    <TextLabelStyle Text="Select an item" PointSize="12"/>
-                </c:ButtonStyle.Text>
-                <c:ButtonStyle.Icon>
-                    <ImageViewStyle Size="28, 28" ResourceUrl="{NUIResourcePath nui_component_default_dropdown_button_icon.png}"/>
-                </c:ButtonStyle.Icon>
-            </c:ButtonStyle>
-        </c:DropDownStyle.Button>
-        <c:DropDownStyle.ListBackgroundImage>
-            <!--DropDown ListBackgroundImage-->
-            <ImageViewStyle ResourceUrl="{NUIResourcePath nui_component_default_dropdown_list_bg.png}" Border="6, 6, 6, 6" Size="280, 360"/>
-        </c:DropDownStyle.ListBackgroundImage>
-    </c:DropDownStyle>
-
-    <!--DropDownDataItem-->
-    <c:DropDownItemStyle x:Key="Tizen.NUI.Components.DropDown.DropDownDataItem" Size="360, 50">
-        <c:DropDownItemStyle.BackgroundColor>
-            <Selector x:TypeArguments="Color" Pressed="0.05, 0.63, 0.9, 1" Selected="0.8, 0.8, 0.8, 1" Normal="1, 1, 1, 1"/>
-        </c:DropDownItemStyle.BackgroundColor>
-        <c:DropDownItemStyle.Text>
-            <TextLabelStyle PointSize="12" Position="28, 0"/>
-        </c:DropDownItemStyle.Text>
-    </c:DropDownItemStyle>
-
-    <!--DropDownDataItem (for legacy FH)-->
-    <c:DropDownItemStyle x:Key="Tizen.FH.NUI.Components.DropDownDataItem" Size="360, 50">
-        <c:DropDownItemStyle.BackgroundColor>
-            <Selector x:TypeArguments="Color" Pressed="0.05, 0.63, 0.9, 1" Selected="0.8, 0.8, 0.8, 1" Normal="1, 1, 1, 1"/>
-        </c:DropDownItemStyle.BackgroundColor>
-        <c:DropDownItemStyle.Text>
-            <TextLabelStyle PointSize="12" Position="28, 0"/>
-        </c:DropDownItemStyle.Text>
-    </c:DropDownItemStyle>
-
-    <!--DropDownDataItem (for legacy FH)-->
-    <c:DropDownItemStyle x:Key="DropDownDataItem" Size="360, 50">
-        <c:DropDownItemStyle.BackgroundColor>
-            <Selector x:TypeArguments="Color" Pressed="0.05, 0.63, 0.9, 1" Selected="0.8, 0.8, 0.8, 1" Normal="1, 1, 1, 1"/>
-        </c:DropDownItemStyle.BackgroundColor>
-        <c:DropDownItemStyle.Text>
-            <TextLabelStyle PointSize="12" Position="28, 0"/>
-        </c:DropDownItemStyle.Text>
-    </c:DropDownItemStyle>
-
     <!--Popup-->
-    <c:PopupStyle x:Key="Tizen.NUI.Components.Popup" Size="500, 280" BackgroundColor="0.9, 0.9, 0.9, 1">
+    <c:PopupStyle x:Key="Tizen.NUI.Components.Popup" Size="500, 280" BackgroundColor="0.9, 0.9, 0.9, 1" ImageShadow="">
         <c:PopupStyle.ImageShadow>
-            <ImageShadow Url="{NUIResourcePath nui_component_default_popup_shadow.png}" Border="24, 24, 24, 24" Extents="48, 48"/>
+            <ImageShadow>
+                <x:Arguments>
+                    <x:String>{NUIResourcePath nui_component_default_popup_shadow.png}</x:String>
+                    <Rectangle>24, 24, 24, 24</Rectangle>
+                    <Vector2>0, 0</Vector2>
+                    <Vector2>48, 48</Vector2>
+                </x:Arguments>
+            </ImageShadow>
         </c:PopupStyle.ImageShadow>
         <c:PopupStyle.Title>
             <TextLabelStyle PointSize="16" Padding="20" />
@@ -200,27 +155,6 @@
             </TextLabelStyle>
         </c:Switch.Text>
     </c:SwitchStyle>
-
-    <!--Tab-->
-    <c:TabStyle x:Key="Tizen.NUI.Components.Tab" Size="480, 80" BackgroundColor="Yellow">
-        <c:TabStyle.UnderLine>
-            <ViewStyle Size="0, 6" BackgroundColor="0.05, 0.63, 0.9, 1.0" />
-        </c:TabStyle.UnderLine>
-        <c:TabStyle.Text>
-            <TextLabelStyle PointSize="16">
-                <TextLabelStyle.TextColor>
-                    <Selector x:TypeArguments="Color" Normal="Black" Selected="0.05, 0.63, 0.9, 1" />
-                </TextLabelStyle.TextColor>
-            </TextLabelStyle>
-        </c:TabStyle.Text>
-    </c:TabStyle>
-
-    <!--Toast-->
-    <c:ToastStyle x:Key="Tizen.NUI.Components.Toast" BackgroundColor="0, 0, 0, 0.8">
-        <c:ToastStyle.Text>
-            <TextLabelStyle Padding="12, 12, 8, 8" />
-        </c:ToastStyle.Text>
-    </c:ToastStyle>
 
     <!--Loading-->
     <c:LoadingStyle x:Key="Tizen.NUI.Components.Loading" LoadingSize="100, 100" />
