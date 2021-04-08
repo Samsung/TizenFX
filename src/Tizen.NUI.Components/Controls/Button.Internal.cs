@@ -69,7 +69,7 @@ namespace Tizen.NUI.Components
             {
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
-                AccessibilityHighlightable = false,
+                AccessibilityHighlightable = false
             };
         }
 
@@ -274,8 +274,6 @@ namespace Tizen.NUI.Components
 
             buttonText = CreateText();
             buttonIcon = CreateIcon();
-            buttonText.Relayout += OnTextRelayout;
-            buttonIcon.Relayout += OnIconRelayout;
             LayoutItems();
 
 #if PROFILE_MOBILE
@@ -369,64 +367,6 @@ namespace Tizen.NUI.Components
                 overlayImage.ExcludeLayouting = true;
                 Add(overlayImage);
             }
-        }
-
-        private void OnTextOrIconUpdated()
-        {
-            if (buttonIcon == null || buttonText == null)
-            {
-                return;
-            }
-
-            float lengthWithoutText = 0;
-
-            if (iconPadding == null || buttonIcon.Size.Width == 0 || buttonIcon.Size.Height == 0)
-            {
-                buttonIcon.Margin = new Extents(0);
-                lengthWithoutText = buttonIcon.Size.Width;
-            }
-            else if (iconRelativeOrientation == IconOrientation.Left || iconRelativeOrientation == IconOrientation.Right)
-            {
-                buttonIcon.Margin = new Extents(iconPadding.Start, iconPadding.End, 0, 0);
-                lengthWithoutText = iconPadding.Start + iconPadding.End + buttonIcon.Size.Width;
-            }
-            else
-            {
-                buttonIcon.Margin = new Extents(0, 0, iconPadding.Top, iconPadding.Bottom);
-            }
-
-            if (textPadding == null || buttonText.Size.Width == 0 || buttonText.Size.Height == 0)
-            {
-                buttonText.Margin = new Extents(0);
-            }
-            else 
-            {
-                if (iconRelativeOrientation == IconOrientation.Left || iconRelativeOrientation == IconOrientation.Right)
-                {
-                    buttonText.Margin = new Extents(textPadding.Start, textPadding.End, 0, 0);
-                    lengthWithoutText += textPadding.Start + textPadding.End;
-                }
-                else
-                {
-                    buttonText.Margin = new Extents(0, 0, textPadding.Top, textPadding.Bottom);
-                }
-            }
-
-            // If the button has fixed width and the text is not empty, the text should not exceed button boundary.
-            if (WidthSpecification >= 0 && !String.IsNullOrEmpty(buttonText.Text))
-            {
-                buttonText.MaximumSize = new Size2D(Math.Max(WidthSpecification - (int)lengthWithoutText, Math.Max((int)buttonText.MinimumSize.Width, 1)), HeightSpecification);
-            }
-        }
-
-        private void OnIconRelayout(object sender, EventArgs args)
-        {
-            OnTextOrIconUpdated();
-        }
-
-        private void OnTextRelayout(object sender, EventArgs args)
-        {
-            OnTextOrIconUpdated();
         }
 
         private void OnClickedInternal(ClickedEventArgs eventArgs)
