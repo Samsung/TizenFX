@@ -108,10 +108,5 @@ namespace Tizen.NUI
             Interop.WebCookieManager.ClearCookies(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(WebCookieManager obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
-        }
     }
 }
