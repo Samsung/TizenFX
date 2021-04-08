@@ -16,16 +16,21 @@
  */
 
 using System;
+using System.ComponentModel;
 using System.Globalization;
 
 using Tizen.NUI;
 
 namespace Tizen.NUI.Binding
 {
+    //Internal used, will never open
     [Xaml.ProvideCompiled("Tizen.NUI.Xaml.Core.XamlC.RectangleTypeConverter")]
     [Xaml.TypeConversion(typeof(Rectangle))]
-    internal class RectangleTypeConverter : TypeConverter
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class RectangleTypeConverter : TypeConverter
     {
+        //Internal used, will never open
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override object ConvertFromInvariantString(string value)
         {
             if (value != null)
@@ -40,10 +45,19 @@ namespace Tizen.NUI.Binding
             throw new InvalidOperationException(string.Format("Cannot convert \"{0}\" into {1}", value, typeof(Rectangle)));
         }
 
+        //Internal used, will never open
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override string ConvertToString(object value)
         {
-            Rectangle rec = (Rectangle)value;
-            return rec.X.ToString() + " " + rec.Y.ToString() + " " + rec.Width.ToString() + " " + rec.Height.ToString();
+            Rectangle rect = value as Rectangle;
+            if (null != rect)
+            {
+                return rect.X.ToString() + " " + rect.Y.ToString() + " " + rect.Width.ToString() + " " + rect.Height.ToString();
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

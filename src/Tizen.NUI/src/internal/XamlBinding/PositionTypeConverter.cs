@@ -21,11 +21,16 @@ using System.Reflection;
 using System.Globalization;
 
 using Tizen.NUI;
+using System.ComponentModel;
 
 namespace Tizen.NUI.Binding
 {
-    internal class PositionTypeConverter : TypeConverter
+    //Internal used, will never open
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class PositionTypeConverter : TypeConverter
     {
+        //Internal used, will never open
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override object ConvertFromInvariantString(string value)
         {
             if (value != null)
@@ -87,24 +92,46 @@ namespace Tizen.NUI.Binding
             throw new InvalidOperationException($"Cannot convert \"{value}\" into {typeof(Position)}");
         }
 
+        //Internal used, will never open
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override string ConvertToString(object value)
         {
-            Position position = (Position)value;
-            return position.X.ToString() + " " + position.Y.ToString() + " " + position.Z.ToString();
+            Position position = value as Position;
+            if (null != position)
+            {
+                return position.X.ToString() + " " + position.Y.ToString() + " " + position.Z.ToString();
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 
-    internal class Position2DTypeConverter : TypeConverter
+    //Internal used, will never open
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class Position2DTypeConverter : TypeConverter
     {
+        //Internal used, will never open
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override object ConvertFromInvariantString(string value)
         {
             return Position2D.ConvertFromString(value);
         }
 
+        //Internal used, will never open
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override string ConvertToString(object value)
         {
-            Position2D position = (Position2D)value;
-            return position.X.ToString() + " " + position.Y.ToString();
+            Position2D position = value as Position2D;
+            if (null != position)
+            {
+                return position.X.ToString() + " " + position.Y.ToString();
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

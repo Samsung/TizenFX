@@ -16,12 +16,17 @@
  */
 
 using System;
+using System.ComponentModel;
 using System.Globalization;
 
 namespace Tizen.NUI.Binding
 {
-    internal class RotationTypeConverter : TypeConverter
+    //Internal used, will never open
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class RotationTypeConverter : TypeConverter
     {
+        //Internal used, will never open
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override object ConvertFromInvariantString(string value)
         {
             // public Rotation(Radian radian(float), Vector3 vector3)
@@ -43,7 +48,9 @@ namespace Tizen.NUI.Binding
                         if (radianOrDegree == "D" || radianOrDegree == "DEGREE")
                         {
                             // Orientation="D:23, 0, 0, 1"
-                            radian = new Radian(new Degree(Single.Parse(head[1].Trim(), CultureInfo.InvariantCulture)));
+                            var degree = new Degree(Single.Parse(head[1].Trim(), CultureInfo.InvariantCulture));
+                            radian = new Radian(degree);
+                            degree.Dispose();
                         }
                         else if (radianOrDegree == "R" || radianOrDegree == "RADIAN")
                         {
@@ -65,17 +72,22 @@ namespace Tizen.NUI.Binding
                     Vector3 vector3 = new Vector3(Single.Parse(parts[1].Trim(), CultureInfo.InvariantCulture),
                                                   Single.Parse(parts[2].Trim(), CultureInfo.InvariantCulture),
                                                   Single.Parse(parts[3].Trim(), CultureInfo.InvariantCulture));
-                    return new Rotation(radian, vector3);
+                    var ret = new Rotation(radian, vector3);
+                    radian?.Dispose();
+                    vector3.Dispose();
+                    return ret;
                 }
             }
 
             throw new InvalidOperationException($"Cannot convert \"{value}\" into {typeof(Rotation)}");
         }
 
+        //Internal used, will never open
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override string ConvertToString(object value)
         {
-            Rotation rotation = (Rotation)value;
-            return rotation.ToString();
+            Rotation rotation = value as Rotation;
+            return rotation?.ToString();
         }
     }
 }
