@@ -106,13 +106,13 @@ namespace Tizen.NUI.BaseComponents
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class GetDescriptionEventArgs : EventArgs
     {
-        public string Description { get; internal set; }
+        public string Description { get; set; }
     }
 
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class GetNameEventArgs : EventArgs
     {
-        public string Description { get; internal set; }
+        public string Name { get; set; }
     }
 
     /// <summary>
@@ -229,9 +229,11 @@ namespace Tizen.NUI.BaseComponents
                 return;
 
             var arg = new GetDescriptionEventArgs();
-            arg.Description = StringToVoidSignal.ConvertParam1(data);
+            arg.Description = StringToVoidSignal.GetResult(data);
 
             getDescriptionHandler?.Invoke(this, arg);
+
+            StringToVoidSignal.SetResult(data, arg.Description);
         }
 
         // This uses GetDescription signal from C++ API.
@@ -283,9 +285,11 @@ namespace Tizen.NUI.BaseComponents
                 return;
 
             var arg = new GetNameEventArgs();
-            arg.Description = StringToVoidSignal.ConvertParam1(data);
+            arg.Name = StringToVoidSignal.GetResult(data);
 
             getNameHandler?.Invoke(this, arg);
+
+            StringToVoidSignal.SetResult(data, arg.Name);
         }
 
         // This uses GetName signal from C++ API.

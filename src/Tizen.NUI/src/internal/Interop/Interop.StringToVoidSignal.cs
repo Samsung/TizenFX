@@ -42,11 +42,11 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Signal_StringToVoid_Disconnect")]
             public static extern void Disconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Signal_StringToVoid_Emit")]
-            public static extern void Emit(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Signal_StringToVoid_GetResult")]
+            public static extern string GetResult(global::System.IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Signal_StringToVoid_Convert_Param1")]
-            public static extern string ConvertParam1(global::System.IntPtr jarg1);
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Signal_StringToVoid_SetResult")]
+            public static extern void SetResult(global::System.IntPtr jarg1, string jarg2);
         }
     }
 }
