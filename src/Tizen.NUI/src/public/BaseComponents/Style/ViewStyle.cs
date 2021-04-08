@@ -48,7 +48,7 @@ namespace Tizen.NUI.BaseComponents
         private Size size;
         private Extents margin;
         private bool? themeChangeSensitive;
-        private float? cornerRadius;
+        private Vector4 cornerRadius;
 
         private Selector<ImageShadow> imageShadow;
         private Selector<Shadow> boxShadow;
@@ -352,12 +352,13 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The radius for the rounded corners of the View
+        /// The radius for the rounded corners of the View.
+        /// The values in Vector4 are used in clockwise order from top-left to bottom-left : Vector4(top-left-corner, top-right-corner, bottom-right-corner, bottom-left-corner).
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public float? CornerRadius
+        public Vector4 CornerRadius
         {
-            get => (float?)GetValue(CornerRadiusProperty);
+            get => (Vector4)GetValue(CornerRadiusProperty);
             set => SetValue(CornerRadiusProperty, value);
         }
 

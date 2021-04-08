@@ -465,6 +465,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The radius for the rounded corners of the View.
         /// This will rounds background and shadow edges.
+        /// The values in Vector4 are used in clockwise order from top-left to bottom-left : Vector4(top-left-corner, top-right-corner, bottom-right-corner, bottom-left-corner).
         /// Note that, an image background (or shadow) may not have rounded corners if it uses a Border property.
         /// </summary>
         /// <remarks>
@@ -473,11 +474,11 @@ namespace Tizen.NUI.BaseComponents
         /// </para>
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public float CornerRadius
+        public Vector4 CornerRadius
         {
             get
             {
-                return (float)GetValue(CornerRadiusProperty);
+                return (Vector4)GetValue(CornerRadiusProperty);
             }
             set
             {

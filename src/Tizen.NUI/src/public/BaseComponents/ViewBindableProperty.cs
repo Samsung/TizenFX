@@ -91,9 +91,13 @@ namespace Tizen.NUI.BaseComponents
 
                 PropertyMap map = new PropertyMap();
 
+                // TODO Fix to support Vector4 for corner radius after dali support it.
+                //      Current code only gets first argument of Vector4.
+                float cornerRadius = view.backgroundExtraData.CornerRadius?.X ?? 0.0f;
+
                 map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Color))
                    .Add(ColorVisualProperty.MixColor, new PropertyValue((Color)newValue))
-                   .Add(Visual.Property.CornerRadius, new PropertyValue(view.backgroundExtraData.CornerRadius))
+                   .Add(Visual.Property.CornerRadius, new PropertyValue(cornerRadius))
                    .Add(Visual.Property.CornerRadiusPolicy, new PropertyValue((int)(view.backgroundExtraData.CornerRadiusPolicy)));
 
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.BACKGROUND, new PropertyValue(map));
@@ -165,8 +169,12 @@ namespace Tizen.NUI.BaseComponents
 
             PropertyMap map = new PropertyMap();
 
+            // TODO Fix to support Vector4 for corner radius after dali support it.
+            //      Current code only gets first argument of Vector4.
+            float cornerRadius = view.backgroundExtraData.CornerRadius?.X ?? 0.0f;
+
             map.Add(ImageVisualProperty.URL, new PropertyValue(url))
-               .Add(Visual.Property.CornerRadius, new PropertyValue(view.backgroundExtraData.CornerRadius))
+               .Add(Visual.Property.CornerRadius, new PropertyValue(cornerRadius))
                .Add(Visual.Property.CornerRadiusPolicy, new PropertyValue((int)(view.backgroundExtraData.CornerRadiusPolicy)))
                .Add(ImageVisualProperty.SynchronousLoading, new PropertyValue(view.backgroundImageSynchronosLoading));
 
@@ -1573,10 +1581,10 @@ namespace Tizen.NUI.BaseComponents
         /// CornerRadius Property
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CornerRadiusProperty = BindableProperty.Create(nameof(CornerRadius), typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty CornerRadiusProperty = BindableProperty.Create(nameof(CornerRadius), typeof(Vector4), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
-            (view.backgroundExtraData ?? (view.backgroundExtraData = new BackgroundExtraData())).CornerRadius = (float)newValue;
+            (view.backgroundExtraData ?? (view.backgroundExtraData = new BackgroundExtraData())).CornerRadius = (Vector4)newValue;
             view.ApplyCornerRadius();
         },
         defaultValueCreator: (bindable) =>
@@ -1593,7 +1601,11 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             (view.backgroundExtraData ?? (view.backgroundExtraData = new BackgroundExtraData())).CornerRadiusPolicy = (VisualTransformPolicyType)newValue;
-            if (view.backgroundExtraData.CornerRadius != 0)
+
+            // TODO Fix to support Vector4 for corner radius after dali support it.
+            //      Current code only gets first argument of Vector4.
+            float cornerRadius = view.backgroundExtraData.CornerRadius?.X ?? 0.0f;
+            if (cornerRadius != 0)
             {
                 view.ApplyCornerRadius();
             }
