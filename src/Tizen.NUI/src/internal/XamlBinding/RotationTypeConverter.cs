@@ -73,7 +73,7 @@ namespace Tizen.NUI.Binding
                                                   Single.Parse(parts[2].Trim(), CultureInfo.InvariantCulture),
                                                   Single.Parse(parts[3].Trim(), CultureInfo.InvariantCulture));
                     var ret = new Rotation(radian, vector3);
-                    radian.Dispose();
+                    radian?.Dispose();
                     vector3.Dispose();
                     return ret;
                 }

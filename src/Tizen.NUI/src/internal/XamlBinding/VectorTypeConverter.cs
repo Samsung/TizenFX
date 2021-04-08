@@ -255,7 +255,7 @@ namespace Tizen.NUI.Binding
             RelativeVector4 vector = value as RelativeVector4;
             if (null != vector)
             {
-                return vector.X.ToString() + " " + vector.Y.ToString() + " " + vector.Z.ToString() + " " + vector.W.ToString(); ;
+                return vector.X.ToString() + " " + vector.Y.ToString() + " " + vector.Z.ToString() + " " + vector.W.ToString();
             }
             else
             {
