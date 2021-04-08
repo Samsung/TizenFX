@@ -1290,24 +1290,58 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// TouchArea can reset the view's touchable area.<br/>
-        /// If you set the TouchArea on an view, when you touch the view, the touch area is used rather than the size of the view.
+        /// TouchArea can expand the view's touchable area.<br/>
+        /// If you set the TouchAreaOffset on an view, when you touch the view, the touch area is used rather than the size of the view.<br/>
+        /// This is based on the top left x, y coordinates.<br/>
+        /// example) <br/>
+        ///  view.Size = new Size(100, 100);<br/>
+        ///  view.SetTouchAreaOffset(-10, 20, 30, -40); // left, right, bottom, top <br/>
+        /// then touch area is 130x170.<br/>
+        /// this is view.width + TouchAreaOffset.right - TouchAreaOffset.left and view.height + TouchAreaOffset.bottom - TouchAreaOffset.top <br/>
+        /// +---------------------+ <br/>
+        /// |         ^           | <br/>
+        /// |         |           | <br/>
+        /// |         | -40       | <br/>
+        /// |         |           | <br/>
+        /// |         |           | <br/>
+        /// |    +----+----+      | <br/>
+        /// |    |         |      | <br/>
+        /// | -10|         | 20   | <br/>
+        /// |<---+         +----->| <br/>
+        /// |    |         |      | <br/>
+        /// |    |         |      | <br/>
+        /// |    +----+----+      | <br/>
+        /// |         |           | <br/>
+        /// |         | 30        | <br/>
+        /// |         |           | <br/>
+        /// |         v           | <br/>
+        /// +---------------------+ <br/>
+        /// <param name="left">The left offset</param>
+        /// <param name="right">The right offset</param>
+        /// <param name="bottom">The bottom offset</param>
+        /// <param name="top">The top offset</param>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Size TouchArea
+        public void SetTouchAreaOffset(int left, int right, int bottom, int top)
         {
-            get
-            {
-                Size value = new Size(0, 0, 0);
-                GetProperty(View.Property.TouchArea).Get(value);
-                return value;
-            }
-            set
-            {
-                SetProperty(View.Property.TouchArea, new Tizen.NUI.PropertyValue(value));
-                NotifyPropertyChanged();
-            }
+            Interop.ActorInternal.SetTouchAreaOffset(SwigCPtr, left, right, bottom, top);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Gets the touch area offset information.
+        /// <param name="left">The left offset</param>
+        /// <param name="right">The right offset</param>
+        /// <param name="bottom">The bottom offset</param>
+        /// <param name="top">The top offset</param>
+        /// </summary>
+        // [EditorBrowsable(EditorBrowsableState.Never)]
+        public void GetTouchAreaOffset(out int left, out int right, out int bottom, out int top)
+        {
+            Interop.ActorInternal.GetTouchAreaOffset(SwigCPtr, out left, out right, out bottom, out top);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
     }
 }
