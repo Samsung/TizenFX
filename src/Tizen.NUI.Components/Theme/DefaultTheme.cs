@@ -109,10 +109,15 @@ namespace Tizen.NUI.Components
 
                 // Picker
                 (new ExternalThemeKeyList(typeof(Picker), typeof(PickerStyle)))
-                    .AddSelector("/ItemTextLabel/Background", (ViewStyle style, Selector<Color> value) => ((PickerStyle)style).ItemTextLabel.BackgroundColor = value)
-                    .AddSelector("/ItemTextLabel/TextColor", (ViewStyle style, Selector<Color> value) => ((PickerStyle)style).ItemTextLabel.TextColor = value)
-                    .AddSelector("/ItemTextLabel/PixelSize", (ViewStyle style, Selector<float?> value) => ((PickerStyle)style).ItemTextLabel.PixelSize = value)
-                    .AddSelector("/Divider/Background", (ViewStyle style, Selector<Color> value) => ((PickerStyle)style).Divider.BackgroundColor = value),
+                    .Add<Size>("/Size", (ViewStyle style, Size value) => ((ViewStyle)style).Size = value)
+                    .AddSelector<float?>("/ItemTextLabel/PixelSize", (ViewStyle style, Selector<float?> value) => ((PickerStyle)style).ItemTextLabel.PixelSize = value, ControlState.Selected)
+                    .Add<Size>("/ItemTextLabel/Size", (ViewStyle style, Size value) => ((PickerStyle)style).ItemTextLabel.Size = value)
+                    .AddSelector<Color>("/ItemTextLabel/TextColor", (ViewStyle style, Selector<Color> value) => ((PickerStyle)style).ItemTextLabel.TextColor = value, ControlState.Selected)
+                    .AddSelector("/ItemTextLabel/BackgroundColor", (ViewStyle style, Selector<Color> value) => ((PickerStyle)style).ItemTextLabel.BackgroundColor = value, ControlState.Selected)
+                    .Add<float?>("/Divider/SizeHeight", (ViewStyle style, float? value) => ((PickerStyle)style).Divider.SizeHeight = value)
+                    .Add<Position>("/Divider/Position", (ViewStyle style, Position value) => ((PickerStyle)style).Divider.Position = value)
+                    .AddSelector("/Divider/BackgroundColor", (ViewStyle style, Selector<Color> value) => ((PickerStyle)style).Divider.BackgroundColor = value, ControlState.Selected)
+                    .Add<Size>("/StartScrollOffset", (ViewStyle style, Size value) => ((PickerStyle)style).StartScrollOffset = value),
 
                 // TabButton
                 (new ExternalThemeKeyList(typeof(TabButton), typeof(TabButtonStyle)))
@@ -129,6 +134,32 @@ namespace Tizen.NUI.Components
                     .Add<Size>("/BottomLine/Size", (ViewStyle style, Size value) => ((TabButtonStyle)style).BottomLine.Size = value)
                     .Add<Position>("/BottomLine/Position", (ViewStyle style, Position value) => ((TabButtonStyle)style).BottomLine.Position = value)
                     .AddSelector<Color>("/BottomLine/BackgroundColor", (ViewStyle style, Selector<Color> value) => ((TabButtonStyle)style).BottomLine.BackgroundColor = value, ControlState.Selected),
+
+                // TimePicker
+                (new ExternalThemeKeyList(typeof(TimePicker), typeof(TimePickerStyle)))
+                    .Add<Size>("/CellPadding", (ViewStyle style, Size value) => ((TimePickerStyle)style).Size = value)
+                    .Add<Size>("/Pickers/Size", (ViewStyle style, Size value) => ((TimePickerStyle)style).Pickers.Size = value)
+                    .AddSelector<float?>("/Pickers/ItemTextLabel/PixelSize", (ViewStyle style, Selector<float?> value) => ((TimePickerStyle)style).Pickers.ItemTextLabel.PixelSize = value, ControlState.Selected)
+                    .Add<Size>("/Pickers/ItemTextLabel/Size", (ViewStyle style, Size value) => ((TimePickerStyle)style).Pickers.ItemTextLabel.Size = value)
+                    .AddSelector<Color>("/Pickers/ItemTextLabel/TextColor", (ViewStyle style, Selector<Color> value) => ((TimePickerStyle)style).Pickers.ItemTextLabel.TextColor = value, ControlState.Selected)
+                    .AddSelector("/Pickers/ItemTextLabel/BackgroundColor", (ViewStyle style, Selector<Color> value) => ((TimePickerStyle)style).Pickers.ItemTextLabel.BackgroundColor = value, ControlState.Selected)
+                    .Add<float?>("/Pickers/Divider/SizeHeight", (ViewStyle style, float? value) => ((TimePickerStyle)style).Pickers.Divider.SizeHeight = value)
+                    .Add<Position>("/Pickers/Divider/Position", (ViewStyle style, Position value) => ((TimePickerStyle)style).Pickers.Divider.Position = value)
+                    .AddSelector("/Pickers/Divider/BackgroundColor", (ViewStyle style, Selector<Color> value) => ((TimePickerStyle)style).Pickers.Divider.BackgroundColor = value, ControlState.Selected)
+                    .Add<Size>("/Pickers/StartScrollOffset", (ViewStyle style, Size value) => ((TimePickerStyle)style).Pickers.StartScrollOffset = value),
+
+                // DatePicker
+                (new ExternalThemeKeyList(typeof(DatePicker), typeof(DatePickerStyle)))
+                    .Add<Size>("/CellPadding", (ViewStyle style, Size value) => ((DatePickerStyle)style).Size = value)
+                    .Add<Size>("/Pickers/Size", (ViewStyle style, Size value) => ((DatePickerStyle)style).Pickers.Size = value)
+                    .AddSelector<float?>("/Pickers/ItemTextLabel/PixelSize", (ViewStyle style, Selector<float?> value) => ((DatePickerStyle)style).Pickers.ItemTextLabel.PixelSize = value, ControlState.Selected)
+                    .Add<Size>("/Pickers/ItemTextLabel/Size", (ViewStyle style, Size value) => ((DatePickerStyle)style).Pickers.ItemTextLabel.Size = value)
+                    .AddSelector<Color>("/Pickers/ItemTextLabel/TextColor", (ViewStyle style, Selector<Color> value) => ((DatePickerStyle)style).Pickers.ItemTextLabel.TextColor = value, ControlState.Selected)
+                    .AddSelector("/Pickers/ItemTextLabel/BackgroundColor", (ViewStyle style, Selector<Color> value) => ((DatePickerStyle)style).Pickers.ItemTextLabel.BackgroundColor = value, ControlState.Selected)
+                    .Add<float?>("/Pickers/Divider/SizeHeight", (ViewStyle style, float? value) => ((DatePickerStyle)style).Pickers.Divider.SizeHeight = value)
+                    .Add<Position>("/Pickers/Divider/Position", (ViewStyle style, Position value) => ((DatePickerStyle)style).Pickers.Divider.Position = value)
+                    .AddSelector("/Pickers/Divider/BackgroundColor", (ViewStyle style, Selector<Color> value) => ((DatePickerStyle)style).Pickers.Divider.BackgroundColor = value, ControlState.Selected)
+                    .Add<Size>("/Pickers/StartScrollOffset", (ViewStyle style, Size value) => ((DatePickerStyle)style).Pickers.StartScrollOffset = value),
             };
 
             return actionSet;

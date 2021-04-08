@@ -37,6 +37,7 @@ namespace Tizen.NUI.Samples
             {
                 Size = new Size(400, 300),
                 ScrollingDirection = Components.ScrollableBase.Direction.Horizontal,
+                HideScrollbar = false,
             };
             horizontalScrollableBase.ScrollOutOfBound += OnHorizontalScrollOutOfBound;
 
@@ -82,6 +83,7 @@ namespace Tizen.NUI.Samples
                 Size = new Size(400, 300),
                 ScrollingDirection = Components.ScrollableBase.Direction.Vertical,
                 EnableOverShootingEffect = true,
+                HideScrollbar = false,
             };
             verticalScrollableBase.ScrollOutOfBound += OnVerticalScrollOutOfBound;
 
