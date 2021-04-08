@@ -260,7 +260,6 @@ namespace Tizen.NUI
         /// Vector3 vector3 = new Vector3(width, height, depth);
         /// </code>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector3(...) constructor")]
         public float Width
         {
             set
@@ -465,7 +464,6 @@ namespace Tizen.NUI
         /// Vector3 vector3 = new Vector3(width, height, depth);
         /// </code>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector3(...) constructor")]
         public float Depth
         {
             set

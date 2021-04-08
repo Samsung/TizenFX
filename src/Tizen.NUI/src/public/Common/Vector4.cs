@@ -421,7 +421,6 @@ namespace Tizen.NUI
         /// Vector4 vector4 = new Vector4(r, g, b, a);
         /// </code>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector4(...) constructor")]
         public float B
         {
             set
