@@ -39,8 +39,8 @@ namespace Tizen.NUI
             { "boxShadow.CornerRadius", new VisualPropertyData(View.Property.SHADOW, Visual.Property.CornerRadius, ObjectIntToFloat) },
             { "boxShadow.Offset",       new VisualPropertyData(View.Property.SHADOW, (int)VisualTransformPropertyType.Offset) },
             { "boxShadow.Opacity",      new VisualPropertyData(View.Property.SHADOW, Visual.Property.Opacity, ObjectIntToFloat) },
-            { "cornerRadius",           new VisualPropertyData(View.Property.BACKGROUND, Visual.Property.CornerRadius, ObjectIntToFloat, null,
-                                        new VisualPropertyData(View.Property.SHADOW, Visual.Property.CornerRadius, ObjectIntToFloat)) },
+            { "cornerRadius",           new VisualPropertyData(View.Property.BACKGROUND, Visual.Property.CornerRadius, ObjectVector4ToFloat, null,
+                                        new VisualPropertyData(View.Property.SHADOW, Visual.Property.CornerRadius, ObjectVector4ToFloat)) },
             { "imageShadow.Offset",     new VisualPropertyData(View.Property.SHADOW, (int)VisualTransformPropertyType.Offset) },
             { "shadow.CornerRadius",    new VisualPropertyData(View.Property.SHADOW, Visual.Property.CornerRadius, ObjectIntToFloat) },
         };
@@ -204,6 +204,17 @@ namespace Tizen.NUI
             if (type.Equals(typeof(System.Int32)) || type.Equals(typeof(int)))
             {
                 return (float)((int)value);
+            }
+
+            return value;
+        }
+
+        private static object ObjectVector4ToFloat(object value)
+        {
+            Type type = value.GetType();
+            if (type.Equals(typeof(Vector4)))
+            {
+                return ((Vector4)value).X;
             }
 
             return value;

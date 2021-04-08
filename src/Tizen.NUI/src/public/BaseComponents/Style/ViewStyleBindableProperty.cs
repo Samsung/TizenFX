@@ -373,10 +373,10 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary> Bindable property of CornerRadius. Please do not open it. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CornerRadiusProperty = BindableProperty.Create(nameof(CornerRadius), typeof(float?), typeof(ViewStyle), null,
-            propertyChanged: (bindable, oldValue, newValue) => ((ViewStyle)bindable).cornerRadius = (float?)newValue,
-            defaultValueCreator: (bindable) => ((ViewStyle)bindable).cornerRadius
-        );
+        public static readonly BindableProperty CornerRadiusProperty = BindableProperty.Create(nameof(CornerRadius), typeof(Vector4), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            ((ViewStyle)bindable).cornerRadius = (Vector4)newValue;
+        }, defaultValueCreator: (bindable) => ((ViewStyle)bindable).cornerRadius);
 
         /// <summary> Bindable property of CornerRadiusPolicy. Please do not open it. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]

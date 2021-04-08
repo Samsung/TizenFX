@@ -676,6 +676,16 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Converts the float value to Vector4 class implicitly.
+        /// </summary>
+        /// <param name="value">A float value to be converted to Vector4</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static implicit operator Vector4(float value)
+        {
+            return new Vector4(value, value, value, value);
+        }
+
+        /// <summary>
         /// Determines whether the specified object is equal to the current object.
         /// </summary>
         /// <param name="obj">The object to compare with the current object.</param>
