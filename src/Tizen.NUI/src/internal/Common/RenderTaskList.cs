@@ -15,9 +15,14 @@
  *
  */
 
+using System;
+using System.ComponentModel;
+
 namespace Tizen.NUI
 {
-    internal class RenderTaskList : BaseHandle
+    /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class RenderTaskList : BaseHandle
     {
         internal RenderTaskList(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
@@ -28,16 +33,22 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.RenderTask.DeleteRenderTaskList(swigCPtr);
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public RenderTaskList() : this(Interop.RenderTask.NewRenderTaskList(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static RenderTaskList DownCast(BaseHandle handle)
         {
             RenderTaskList ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as RenderTaskList;
@@ -45,6 +56,8 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public RenderTaskList(RenderTaskList handle) : this(Interop.RenderTask.NewRenderTaskList(RenderTaskList.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -57,6 +70,8 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public RenderTask CreateTask()
         {
             RenderTask ret = new RenderTask(Interop.RenderTask.RenderTaskListCreateTask(SwigCPtr), true);
@@ -64,12 +79,16 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void RemoveTask(RenderTask task)
         {
             Interop.RenderTask.RenderTaskListRemoveTask(SwigCPtr, RenderTask.getCPtr(task));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetTaskCount()
         {
             uint ret = Interop.RenderTask.RenderTaskListGetTaskCount(SwigCPtr);
@@ -77,6 +96,8 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public RenderTask GetTask(uint index)
         {
             RenderTask ret = new RenderTask(Interop.RenderTask.RenderTaskListGetTask(SwigCPtr, index), true);
