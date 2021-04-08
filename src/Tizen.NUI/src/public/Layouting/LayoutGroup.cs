@@ -166,7 +166,7 @@ namespace Tizen.NUI
                 {
                     // If child of this layout is a pure View then assign it a LayoutGroup
                     // If the child is derived from a View then it may be a legacy or existing container hence will do layouting itself.
-                    child.Layout = new AbsoluteLayout();
+                    child.Layout = (child as TextLabel)?.CreateTextLayout() ?? new AbsoluteLayout();
                 }
             }
             else
@@ -442,6 +442,10 @@ namespace Tizen.NUI
             // Layout takes ownership of it's owner's children.
             foreach (View view in Owner.Children)
             {
+                if (view is TextLabel)
+                {
+                    view.Layout = (view as TextLabel)?.CreateTextLayout();
+                }
                 AddChildToLayoutGroup(view);
             }
 
