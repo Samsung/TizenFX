@@ -83,11 +83,35 @@ namespace Tizen.NUI.Components
             return ((ScrollbarStyle)bindable).trackPadding;
         });
 
+        /// <summary>Bindable property of ThumbBackgroundImageVertical</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ThumbVerticalImageUrlProperty = BindableProperty.Create(nameof(ThumbVerticalImageUrl), typeof(string), typeof(ScrollbarStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            ((ScrollbarStyle)bindable).thumbVerticalImageUrl = ((string)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            return ((ScrollbarStyle)bindable).thumbVerticalImageUrl;
+        });
+
+        /// <summary>Bindable property of ThumbBackgroundImageUrl</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ThumbHorizontalImageUrlProperty = BindableProperty.Create(nameof(ThumbHorizontalImageUrl), typeof(string), typeof(ScrollbarStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            ((ScrollbarStyle)bindable).thumbHorizontalImageUrl = ((string)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            return ((ScrollbarStyle)bindable).thumbHorizontalImageUrl;
+        });
+
         private float? trackThickness;
         private float? thumbThickness;
         private Color trackColor;
         private Color thumbColor;
         private Extents trackPadding;
+        private string thumbVerticalImageUrl;
+        private string thumbHorizontalImageUrl;
 
         #endregion Fields
 
@@ -172,6 +196,27 @@ namespace Tizen.NUI.Components
             get => (Extents)GetValue(TrackPaddingProperty);
             set => SetValue(TrackPaddingProperty, value);
         }
+
+        /// <summary>
+        /// The image url of the vertical thumb.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string ThumbVerticalImageUrl
+        {
+            get => (string)GetValue(ThumbVerticalImageUrlProperty);
+            set => SetValue(ThumbVerticalImageUrlProperty, value);
+        }
+
+        /// <summary>
+        /// The image url of the horizontal thumb.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string ThumbHorizontalImageUrl
+        {
+            get => (string)GetValue(ThumbHorizontalImageUrlProperty);
+            set => SetValue(ThumbHorizontalImageUrlProperty, value);
+        }
+
 
         #endregion Properties
     }

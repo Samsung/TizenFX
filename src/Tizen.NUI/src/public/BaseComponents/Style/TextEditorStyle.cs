@@ -99,6 +99,12 @@ namespace Tizen.NUI.BaseComponents
             propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).cursorWidth = (int?)newValue,
             defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).cursorWidth);
 
+        /// <summary> The bindable property of GrabHandleColor. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly BindableProperty GrabHandleColorProperty = BindableProperty.Create(nameof(GrabHandleColor), typeof(Color), typeof(TextEditorStyle), null,
+            propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).grabHandleColor = (Color)newValue,
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).grabHandleColor);
+
         /// <summary> The bindable property of GrabHandleImage. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static readonly BindableProperty GrabHandleImageProperty = BindableProperty.Create(nameof(GrabHandleImage), typeof(string), typeof(TextEditorStyle), String.Empty,
@@ -109,6 +115,18 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static readonly BindableProperty GrabHandlePressedImageProperty = BindableProperty.Create(nameof(GrabHandlePressedImage), typeof(string), typeof(TextEditorStyle), String.Empty, propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).grabHandlePressedImage = (string)newValue,
             defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).grabHandlePressedImage);
+
+        /// <summary> The bindable property of SelectionHandleImageLeft. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly BindableProperty SelectionHandleImageLeftProperty = BindableProperty.Create(nameof(SelectionHandleImageLeft), typeof(PropertyMap), typeof(TextEditorStyle), null,
+            propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).selectionHandleImageLeft = (PropertyMap)newValue,
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).selectionHandleImageLeft);
+
+        /// <summary> The bindable property of SelectionHandleImageRight. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly BindableProperty SelectionHandleImageRightProperty = BindableProperty.Create(nameof(SelectionHandleImageRight), typeof(PropertyMap), typeof(TextEditorStyle), null,
+            propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).selectionHandleImageRight = (PropertyMap)newValue,
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).selectionHandleImageRight);
 
         /// <summary> The bindable property of ScrollThreshold. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -194,14 +212,23 @@ namespace Tizen.NUI.BaseComponents
             propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).matchSystemLanguageDirection = (bool?)newValue,
             defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).matchSystemLanguageDirection);
 
+        /// <summary> The bindable property of FontStyleProperty. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty FontStyleProperty = BindableProperty.Create(nameof(FontStyle), typeof(PropertyMap), typeof(TextEditorStyle), null,
+            propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).fontStyle = (PropertyMap)newValue,
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).fontStyle);
+
         private HorizontalAlignment? horizontalAlignment;
         private Vector4 secondaryCursorColor;
         private bool? enableCursorBlink;
         private float? cursorBlinkInterval;
         private float? cursorBlinkDuration;
         private int? cursorWidth;
+        private Color grabHandleColor;
         private string grabHandleImage;
         private string grabHandlePressedImage;
+        private PropertyMap selectionHandleImageLeft;
+        private PropertyMap selectionHandleImageRight;
         private float? scrollThreshold;
         private float? scrollSpeed;
         private Vector4 selectionHighlightColor;
@@ -222,6 +249,7 @@ namespace Tizen.NUI.BaseComponents
         private float? pointSize;
         private Color placeholderTextColor;
         private Vector4 primaryCursorColor;
+        private PropertyMap fontStyle;
 
         static TextEditorStyle() { }
 
@@ -305,6 +333,16 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The GrabHandleColor property.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color GrabHandleColor
+        {
+            get => (Color)GetValue(GrabHandleColorProperty);
+            set => SetValue(GrabHandleColorProperty, value);
+        }
+
+        /// <summary>
         /// The GrabHandleImage property.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -322,6 +360,26 @@ namespace Tizen.NUI.BaseComponents
         {
             get => (string)GetValue(GrabHandlePressedImageProperty);
             set => SetValue(GrabHandlePressedImageProperty, value);
+        }
+
+        /// <summary>
+        /// The SelectionHandleImageLeft property.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyMap SelectionHandleImageLeft
+        {
+            get => (PropertyMap)GetValue(SelectionHandleImageLeftProperty);
+            set => SetValue(SelectionHandleImageLeftProperty, value);
+        }
+
+        /// <summary>
+        /// The SelectionHandleImageRight property.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyMap SelectionHandleImageRight
+        {
+            get => (PropertyMap)GetValue(SelectionHandleImageRightProperty);
+            set => SetValue(SelectionHandleImageRightProperty, value);
         }
 
         /// <summary>
@@ -518,6 +576,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get => (Vector4)GetValue(PrimaryCursorColorProperty);
             set => SetValue(PrimaryCursorColorProperty, value);
+        }
+
+        /// <summary>
+        /// The FontStyle property.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyMap FontStyle
+        {
+            get => (PropertyMap)GetValue(FontStyleProperty);
+            set => SetValue(FontStyleProperty, value);
         }
     }
 }
