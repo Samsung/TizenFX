@@ -180,6 +180,26 @@ namespace Tizen.NUI.Components
                     .Add<Position>("/Pickers/Divider/Position", (ViewStyle style, Position value) => ((DatePickerStyle)style).Pickers.Divider.Position = value)
                     .AddSelector("/Pickers/Divider/BackgroundColor", (ViewStyle style, Selector<Color> value) => ((DatePickerStyle)style).Pickers.Divider.BackgroundColor = value, ControlState.Selected)
                     .Add<Size>("/Pickers/StartScrollOffset", (ViewStyle style, Size value) => ((DatePickerStyle)style).Pickers.StartScrollOffset = value),
+
+                // AlertDialog
+                (new ExternalThemeKeyList(typeof(AlertDialog), typeof(AlertDialogStyle)))
+                    .Add<Size>("/Size", (ViewStyle style, Size value) => ((ViewStyle)style).Size = value)
+                    .Add<Extents>("/Padding", (ViewStyle style, Extents value) => ((ViewStyle)style).Padding = value)
+                    .Add<string>("/BackgroundImage", (ViewStyle style, string value) => ((ViewStyle)style).BackgroundImage = value)
+                    .Add<Size>("/TitleTextLabel/Size", (ViewStyle style, Size value) => ((AlertDialogStyle)style).TitleTextLabel.Size = value)
+                    .Add<Extents>("/TitleTextLabel/Margin", (ViewStyle style, Extents value) => ((AlertDialogStyle)style).TitleTextLabel.Margin = value)
+                    .Add<float?>("/TitleTextLabel/PixelSize", (ViewStyle style, float? value) => ((AlertDialogStyle)style).TitleTextLabel.PixelSize = value)
+                    .Add<HorizontalAlignment?>("/TitleTextLabel/HorizontalAlignment", (ViewStyle style, HorizontalAlignment? value) => ((AlertDialogStyle)style).TitleTextLabel.HorizontalAlignment = value)
+                    .Add<VerticalAlignment?>("/TitleTextLabel/VerticalAlignment", (ViewStyle style, VerticalAlignment? value) => ((AlertDialogStyle)style).TitleTextLabel.VerticalAlignment = value)
+                    .AddSelector<Color>("/TitleTextLabel/TextColor", (ViewStyle style, Selector<Color> value) => ((AlertDialogStyle)style).TitleTextLabel.TextColor = value)
+                    .Add<Size>("/MessageTextLabel/Size", (ViewStyle style, Size value) => ((AlertDialogStyle)style).MessageTextLabel.Size = value)
+                    .Add<Extents>("/MessageTextLabel/Margin", (ViewStyle style, Extents value) => ((AlertDialogStyle)style).MessageTextLabel.Margin = value)
+                    .Add<float?>("/MessageTextLabel/PixelSize", (ViewStyle style, float? value) => ((AlertDialogStyle)style).MessageTextLabel.PixelSize = value)
+                    .Add<bool?>("/MessageTextLabel/MultiLine", (ViewStyle style, bool? value) => ((AlertDialogStyle)style).MessageTextLabel.MultiLine = value)
+                    .Add<HorizontalAlignment?>("/MessageTextLabel/HorizontalAlignment", (ViewStyle style, HorizontalAlignment? value) => ((AlertDialogStyle)style).MessageTextLabel.HorizontalAlignment = value)
+                    .Add<VerticalAlignment?>("/MessageTextLabel/VerticalAlignment", (ViewStyle style, VerticalAlignment? value) => ((AlertDialogStyle)style).MessageTextLabel.VerticalAlignment = value)
+                    .AddSelector<Color>("/MessageTextLabel/TextColor", (ViewStyle style, Selector<Color> value) => ((AlertDialogStyle)style).MessageTextLabel.TextColor = value)
+                    .Add<Size>("/ActionContent/Size", (ViewStyle style, Size value) => ((AlertDialogStyle)style).ActionContent.Size = value),
             };
 
             return actionSet;
