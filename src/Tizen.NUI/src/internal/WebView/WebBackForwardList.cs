@@ -65,11 +65,6 @@ namespace Tizen.NUI
                 return new Uri(Interop.WebBackForwardListItem.GetOriginalUrl(SwigCPtr));
             }
         }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(WebBackForwardListItem obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
-        }
     }
 
     /// <summary>
@@ -112,11 +107,6 @@ namespace Tizen.NUI
         {
             System.IntPtr itemPtr = Interop.WebBackForwardList.GetItemAtIndex(SwigCPtr, index);
             return new WebBackForwardListItem(itemPtr, false);
-        }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(WebBackForwardList obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
     }
 }
