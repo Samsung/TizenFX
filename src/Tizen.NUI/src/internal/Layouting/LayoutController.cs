@@ -190,26 +190,32 @@ namespace Tizen.NUI
         {
             if (root.Layout != null)
             {
-                float positionX = root.PositionX;
-                float positionY = root.PositionY;
-
                 // Determine measure specification for root.
                 // The root layout policy could be an exact size, be match parent or wrap children.
                 // If wrap children then at most it can be the root parent size.
                 // If match parent then should be root parent size.
                 // If exact then should be that size limited by the root parent size.
-                MeasureSpecification parentWidthSpecification = CreateMeasureSpecification(parentWidth, root.WidthSpecification);
-                MeasureSpecification parentHeightSpecification = CreateMeasureSpecification(parentHeight, root.HeightSpecification);
+                float widthSize = GetLengthSize(parentWidth, root.WidthSpecification);
+                float heightSize = GetLengthSize(parentHeight, root.HeightSpecification);
+                MeasureSpecification.ModeType widthMode = GetMode(root.WidthSpecification);
+                MeasureSpecification.ModeType heightMode = GetMode(root.HeightSpecification);
 
-                // Start at root with it's parent's widthSpecification and heightSpecification
-                MeasureHierarchy(root, parentWidthSpecification, parentHeightSpecification);
+                if (root.Layout.NeedsLayout(widthSize, heightSize, widthMode, heightMode))
+                {
+                    MeasureSpecification widthSpec = CreateMeasureSpecification(widthSize, widthMode);
+                    MeasureSpecification heightSpec = CreateMeasureSpecification(heightSize, heightMode);
 
+                    // Start at root with it's parent's widthSpecification and heightSpecification
+                    MeasureHierarchy(root, widthSpec, heightSpec);
+                }
+
+                float positionX = root.PositionX;
+                float positionY = root.PositionY;
                 // Start at root which was just measured.
                 PerformLayout(root, new LayoutLength(positionX),
                                      new LayoutLength(positionY),
                                      new LayoutLength(positionX) + root.Layout.MeasuredWidth.Size,
                                      new LayoutLength(positionY) + root.Layout.MeasuredHeight.Size);
-
             }
 
             if (SetupCoreAnimation() && OverrideCoreAnimation == false)
@@ -218,22 +224,24 @@ namespace Tizen.NUI
             }
         }
 
-        private MeasureSpecification CreateMeasureSpecification(float size, int specification)
+        private float GetLengthSize(float size, int specification)
         {
-            LayoutLength length = new LayoutLength(size);
-            MeasureSpecification.ModeType mode = MeasureSpecification.ModeType.Unspecified;
+            // exact size provided so match width exactly
+            return (specification >= 0) ? specification : size;
+        }
 
-            if (specification >= 0)
+        private MeasureSpecification.ModeType GetMode(int specification)
+        {
+            if (specification >= 0 || specification == LayoutParamPolicies.MatchParent)
             {
-                // exact size provided so match width exactly
-                length = new LayoutLength(specification);
-                mode = MeasureSpecification.ModeType.Exactly;
+                return MeasureSpecification.ModeType.Exactly;
             }
-            else if (specification == LayoutParamPolicies.MatchParent)
-            {
-                mode = MeasureSpecification.ModeType.Exactly;
-            }
-            return new MeasureSpecification(length, mode);
+            return MeasureSpecification.ModeType.Unspecified;
+        }
+
+        private MeasureSpecification CreateMeasureSpecification(float size, MeasureSpecification.ModeType mode)
+        {
+            return new MeasureSpecification(new LayoutLength(size), mode);
         }
 
         /// <summary>
