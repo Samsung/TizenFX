@@ -83,6 +83,7 @@ namespace Tizen.NUI.Components
 
             NavigationPages.Add(page);
             Add(page);
+            page.Navigator = this;
 
             //Invoke Page events
             page.InvokeAppearing();
@@ -231,6 +232,7 @@ namespace Tizen.NUI.Components
 
             NavigationPages.Insert(index, page);
             Add(page);
+            page.Navigator = this;
         }
 
         /// <summary>
@@ -280,6 +282,7 @@ namespace Tizen.NUI.Components
                 throw new ArgumentNullException(nameof(page), "page should not be null.");
             }
 
+            page.Navigator = null;
             NavigationPages.Remove(page);
             base.Remove(page);
         }
@@ -388,7 +391,11 @@ namespace Tizen.NUI.Components
             var dialog = new Dialog(content);
             SetDialogScrim(dialog);
 
-            var dialogPage = new Page(dialog);
+            // FIXME: Needs to use DialogPage.
+            var dialogPage = new ContentPage()
+            {
+                Content = dialog,
+            };
             defaultNavigator.Push(dialogPage);
         }
 
@@ -411,7 +418,11 @@ namespace Tizen.NUI.Components
             var dialog = new AlertDialog(titleContent, content, actionContent);
             SetDialogScrim(dialog);
 
-            var dialogPage = new Page(dialog);
+            // FIXME: Needs to use DialogPage.
+            var dialogPage = new ContentPage()
+            {
+                Content = dialog,
+            };
             defaultNavigator.Push(dialogPage);
         }
 
@@ -437,7 +448,11 @@ namespace Tizen.NUI.Components
             var dialog = new AlertDialog(title, message, positiveButtonText, positiveButtonClickedHandler, negativeButtonText, negativeButtonClickedHandler);
             SetDialogScrim(dialog);
 
-            var dialogPage = new Page(dialog);
+            // FIXME: Needs to use DialogPage.
+            var dialogPage = new ContentPage()
+            {
+                Content = dialog,
+            };
             defaultNavigator.Push(dialogPage);
         }
 
