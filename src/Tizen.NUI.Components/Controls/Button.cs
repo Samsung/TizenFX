@@ -662,7 +662,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// The item (text or icon or both) alignment.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public LinearLayout.Alignment ItemAlignment
         {
             get => (LinearLayout.Alignment)GetValue(ItemAlignmentProperty);
@@ -674,7 +674,7 @@ namespace Tizen.NUI.Components
         /// The value is applied when there exist icon and text both.
         /// The width value is used when the items are arranged horizontally. Otherwise, the height value is used.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public Size2D ItemSpacing
         {
             get => (Size2D)GetValue(ItemSpacingProperty);
