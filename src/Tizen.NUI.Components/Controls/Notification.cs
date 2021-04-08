@@ -165,7 +165,7 @@ namespace Tizen.NUI.Components
         /// Notification.MakeToast("Hello World!", Notification.ToastBottom).Post(Notification.ToastShort);
         /// </code>
         /// </example>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static Notification MakeToast(string text, Position gravity)
         {
             var textLabel = new TextLabel(text ?? throw new ArgumentNullException(nameof(text)))
