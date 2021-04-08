@@ -49,7 +49,7 @@ namespace Tizen.NUI.Binding
                         {
                             // Orientation="D:23, 0, 0, 1"
                             var degree = new Degree(Single.Parse(head[1].Trim(), CultureInfo.InvariantCulture));
-                            radian = new Radian();
+                            radian = new Radian(degree);
                             degree.Dispose();
                         }
                         else if (radianOrDegree == "R" || radianOrDegree == "RADIAN")
