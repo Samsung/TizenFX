@@ -204,13 +204,17 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal void SetCamera(Camera camera)
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetCamera(Camera camera)
         {
             Interop.RenderTask.SetCameraActor(SwigCPtr, Camera.getCPtr(camera));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Camera GetCamera()
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Camera GetCamera()
         {
             Camera ret = new Camera(Interop.RenderTask.GetCameraActor(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
