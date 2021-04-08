@@ -249,7 +249,10 @@ namespace Tizen.NUI
             {
                 layer?.Children?.ForEach(view =>
                 {
-                    FindRootLayouts(view, width, height);
+                    if (view != null)
+                    {
+                        FindRootLayouts(view, width, height);
+                    }
                 });
             });
             windowSize.Dispose();
