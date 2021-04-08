@@ -505,8 +505,7 @@ namespace Tizen.NUI.Components
         /// Gets or sets the Url of the thumb image.
         /// </summary>
         /// <exception cref="NullReferenceException">Thrown when setting null value.</exception>
-        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public Selector<string> ThumbImageUrl
         {
             get
@@ -838,8 +837,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Flag to decide whether the value indicator is shown
         /// </summary>
-        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public bool IsValueShown
         {
             get
@@ -855,8 +853,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Gets or sets the text of value indicator.
         /// </summary>
-        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public string ValueIndicatorText
         {
             get
@@ -872,8 +869,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Gets or sets the size of the value indicator image object.
         /// </summary>
-        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public Size ValueIndicatorSize
         {
             get
@@ -892,8 +888,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Gets or sets the resource url of the value indicator image object.
         /// </summary>
-        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public string ValueIndicatorUrl
         {
             get
@@ -914,8 +909,7 @@ namespace Tizen.NUI.Components
         ///
         /// The default value is false.
         /// </summary>
-        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public bool IsDiscrete { get; set; } = false;
 
         /// <summary>
@@ -926,8 +920,7 @@ namespace Tizen.NUI.Components
         /// Then, the thumb can only go to 0, 20, 40, 60, 80, and 100.
         /// The default is 0.
         /// </summary>
-        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public float DiscreteValue
         {
             get
@@ -1280,7 +1273,6 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Update Slider by style.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
         /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnUpdate()
