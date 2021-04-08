@@ -96,8 +96,15 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override string ConvertToString(object value)
         {
-            Position position = (Position)value;
-            return position.X.ToString() + " " + position.Y.ToString() + " " + position.Z.ToString();
+            Position position = value as Position;
+            if (null != position)
+            {
+                return position.X.ToString() + " " + position.Y.ToString() + " " + position.Z.ToString();
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 
@@ -116,8 +123,15 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override string ConvertToString(object value)
         {
-            Position2D position = (Position2D)value;
-            return position.X.ToString() + " " + position.Y.ToString();
+            Position2D position = value as Position2D;
+            if (null != position)
+            {
+                return position.X.ToString() + " " + position.Y.ToString();
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

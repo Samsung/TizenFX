@@ -50,8 +50,15 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override string ConvertToString(object value)
         {
-            Vector2 vector = (Vector2)value;
-            return vector.X.ToString() + " " + vector.Y.ToString();
+            Vector2 vector = value as Vector2;
+            if (null != vector)
+            {
+                return vector.X.ToString() + " " + vector.Y.ToString();
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 
@@ -81,8 +88,15 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override string ConvertToString(object value)
         {
-            Vector3 vector = (Vector3)value;
-            return vector.X.ToString() + " " + vector.Y.ToString() + " " + vector.Z.ToString();
+            Vector3 vector = value as Vector3;
+            if (null != vector)
+            {
+                return vector.X.ToString() + " " + vector.Y.ToString() + " " + vector.Z.ToString();
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 
@@ -113,8 +127,15 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override string ConvertToString(object value)
         {
-            Vector4 vector = (Vector4)value;
-            return vector.X.ToString() + " " + vector.Y.ToString() + " " + vector.Z.ToString() + " " + vector.W.ToString();
+            Vector4 vector = value as Vector4;
+            if (null != vector)
+            {
+                return vector.X.ToString() + " " + vector.Y.ToString() + " " + vector.Z.ToString() + " " + vector.W.ToString();
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 
@@ -143,8 +164,15 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override string ConvertToString(object value)
         {
-            RelativeVector2 vector = (RelativeVector2)value;
-            return vector.X.ToString() + " " + vector.Y.ToString();
+            RelativeVector2 vector = value as RelativeVector2;
+            if (null != vector)
+            {
+                return vector.X.ToString() + " " + vector.Y.ToString();
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 
@@ -174,8 +202,15 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override string ConvertToString(object value)
         {
-            RelativeVector3 vector = (RelativeVector3)value;
-            return vector.X.ToString() + " " + vector.Y.ToString() + " " + vector.Z.ToString();
+            RelativeVector3 vector = value as RelativeVector3;
+            if (null != vector)
+            {
+                return vector.X.ToString() + " " + vector.Y.ToString() + " " + vector.Z.ToString();
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 
@@ -206,8 +241,15 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override string ConvertToString(object value)
         {
-            RelativeVector4 vector = (RelativeVector4)value;
-            return vector.X.ToString() + " " + vector.Y.ToString() + " " + vector.Z.ToString() + " " + vector.W.ToString(); ;
+            RelativeVector4 vector = value as RelativeVector4;
+            if (null != vector)
+            {
+                return vector.X.ToString() + " " + vector.Y.ToString() + " " + vector.Z.ToString() + " " + vector.W.ToString(); ;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

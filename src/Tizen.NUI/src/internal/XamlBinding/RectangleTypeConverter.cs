@@ -49,8 +49,15 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override string ConvertToString(object value)
         {
-            Rectangle rec = (Rectangle)value;
-            return rec.X.ToString() + " " + rec.Y.ToString() + " " + rec.Width.ToString() + " " + rec.Height.ToString();
+            Rectangle rect = value as Rectangle;
+            if (null != rect)
+            {
+                return rect.X.ToString() + " " + rect.Y.ToString() + " " + rect.Width.ToString() + " " + rect.Height.ToString();
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }
