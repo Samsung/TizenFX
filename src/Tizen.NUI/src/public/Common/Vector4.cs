@@ -423,6 +423,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public float B
         {
+            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector4(...) constructor")]
             set
             {
                 Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector4(...) constructor");
