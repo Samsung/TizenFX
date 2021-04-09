@@ -53,6 +53,8 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.TEXT, new Tizen.NUI.PropertyValue((string)newValue));
+                textLabel.selectorData?.Text?.Reset(textLabel);
+                textLabel.RequestLayout();
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
@@ -70,6 +72,8 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.FontFamily, new Tizen.NUI.PropertyValue((string)newValue));
+                textLabel.selectorData?.FontFamily?.Reset(textLabel);
+                textLabel.RequestLayout();
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
@@ -87,6 +91,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.FontStyle, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                textLabel.RequestLayout();
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
@@ -104,6 +109,8 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.PointSize, new Tizen.NUI.PropertyValue((float)newValue));
+                textLabel.selectorData?.PointSize?.Reset(textLabel);
+                textLabel.RequestLayout();
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
@@ -121,6 +128,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.MultiLine, new Tizen.NUI.PropertyValue((bool)newValue));
+                textLabel.RequestLayout();
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
@@ -286,6 +294,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.LineSpacing, new Tizen.NUI.PropertyValue((float)newValue));
+                textLabel.RequestLayout();
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
@@ -388,6 +397,8 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.PixelSize, new Tizen.NUI.PropertyValue((float)newValue));
+                textLabel.selectorData?.PixelSize?.Reset(textLabel);
+                textLabel.RequestLayout();
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
@@ -532,6 +543,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.MinLineSize, new Tizen.NUI.PropertyValue((float)newValue));
+                textLabel.RequestLayout();
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
@@ -551,6 +563,7 @@ namespace Tizen.NUI.BaseComponents
                 using (var property = new Tizen.NUI.PropertyValue((float)newValue))
                 {
                     Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.FontSizeScale, property);
+                    textLabel.RequestLayout();
                 }
             }
         }),
