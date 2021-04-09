@@ -32,7 +32,7 @@ namespace Tizen.NUI.BaseComponents
                      "CA1710:IdentifiersShouldHaveCorrectSuffix",
                      Justification = "The name Selector provides meaningful information about the characteristics.")]
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class Selector<T> : ICollection<SelectorItem<T>>
+    public class Selector<T> : IEnumerable<SelectorItem<T>>
     {
         private readonly bool cloneable = typeof(ICloneable).IsAssignableFrom(typeof(T));
         private SelectorItem<T> all;
