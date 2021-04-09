@@ -32,7 +32,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// Creates an initialized CanvasView.
         /// </summary>
         /// <param name="viewBox">The size of viewbox.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "It does not have dispose ownership.")]
         public CanvasView(Size2D viewBox) : this(viewBox == null ? throw new ArgumentNullException(nameof(viewBox)) : Interop.CanvasView.New(Uint16Pair.getCPtr(new Uint16Pair((uint)viewBox.Width, (uint)viewBox.Height))), true)
         {
@@ -74,7 +74,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// This method is similar to registration. The added shape is drawn on the inner canvas.
         /// </summary>
         /// <param name="drawable">Drawable object</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public void AddDrawable(Drawable drawable)
         {
             Interop.CanvasView.AddDrawable(View.getCPtr(this), BaseHandle.getCPtr(drawable));
