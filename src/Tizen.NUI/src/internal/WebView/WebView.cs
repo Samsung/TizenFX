@@ -54,6 +54,14 @@ namespace Tizen.NUI
         private EventHandler<WebViewUrlChangedEventArgs> urlChangedEventHandler;
         private WebViewUrlChangedCallbackDelegate urlChangedCallback;
 
+        private readonly WebViewFormRepostDecidedSignal formRepostPolicyDecidedSignal;
+        private EventHandler<WebViewFormRepostPolicyDecidedEventArgs> formRepostPolicyDecidedEventHandler;
+        private WebViewFormRepostPolicyDecidedCallbackDelegate formRepostPolicyDecidedCallback;
+
+        private readonly WebViewFrameRenderedSignal frameRenderedSignal;
+        private EventHandler<EventArgs> frameRenderedEventHandler;
+        private WebViewFrameRenderedCallbackDelegate frameRenderedCallback;
+
         /// <summary>
         /// Creates a WebView.
         /// </summary>
@@ -102,6 +110,8 @@ namespace Tizen.NUI
             pageLoadErrorSignal = new WebViewPageLoadErrorSignal(Interop.WebView.NewWebViewPageLoadErrorSignalPageLoadError(SwigCPtr));
             scrollEdgeReachedSignal = new WebViewScrollEdgeReachedSignal(Interop.WebView.NewWebViewScrollEdgeReachedSignalScrollEdgeReached(SwigCPtr));
             urlChangedSignal = new WebViewUrlChangedSignal(Interop.WebView.NewWebViewUrlChangedSignalUrlChanged(SwigCPtr));
+            formRepostPolicyDecidedSignal = new WebViewFormRepostDecidedSignal(Interop.WebView.NewWebViewFormRepostDecisionSignalFormRepostDecision(SwigCPtr));
+            frameRenderedSignal = new WebViewFrameRenderedSignal(Interop.WebView.WebViewFrameRenderedSignalFrameRenderedGet(SwigCPtr));
 
             BackForwardList = new WebBackForwardList(Interop.WebView.GetWebBackForwardList(SwigCPtr), false);
             Context = new WebContext(Interop.WebView.GetWebContext(SwigCPtr), false);
@@ -131,6 +141,8 @@ namespace Tizen.NUI
                 pageLoadErrorSignal.Dispose();
                 scrollEdgeReachedSignal.Dispose();
                 urlChangedSignal.Dispose();
+                formRepostPolicyDecidedSignal.Dispose();
+                frameRenderedSignal.Dispose();
 
                 BackForwardList.Dispose();
                 Context.Dispose();
@@ -180,6 +192,12 @@ namespace Tizen.NUI
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WebViewUrlChangedCallbackDelegate(IntPtr data, string pageUrl);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void WebViewFormRepostPolicyDecidedCallbackDelegate(IntPtr data, IntPtr decision);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void WebViewFrameRenderedCallbackDelegate(IntPtr data);
 
         /// <summary>
         /// Event for the PageLoadStarted signal which can be used to subscribe or unsubscribe the event handler.<br />
@@ -333,6 +351,58 @@ namespace Tizen.NUI
                 if (urlChangedEventHandler == null && urlChangedCallback != null)
                 {
                     urlChangedSignal.Disconnect(urlChangedCallback);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Event for the FormRepostDecided signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted when form repost policy would be decided.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<WebViewFormRepostPolicyDecidedEventArgs> FormRepostPolicyDecided
+        {
+            add
+            {
+                if (formRepostPolicyDecidedEventHandler == null)
+                {
+                    formRepostPolicyDecidedCallback = OnFormRepostPolicyDecided;
+                    formRepostPolicyDecidedSignal.Connect(formRepostPolicyDecidedCallback);
+                }
+                formRepostPolicyDecidedEventHandler += value;
+            }
+            remove
+            {
+                formRepostPolicyDecidedEventHandler -= value;
+                if (formRepostPolicyDecidedEventHandler == null && formRepostPolicyDecidedCallback != null)
+                {
+                    formRepostPolicyDecidedSignal.Disconnect(formRepostPolicyDecidedCallback);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Event for the FrameRendered signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted when frame is rendered off-screen.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<EventArgs> FrameRendered
+        {
+            add
+            {
+                if (frameRenderedEventHandler == null)
+                {
+                    frameRenderedCallback = OnFrameRendered;
+                    frameRenderedSignal.Connect(frameRenderedCallback);
+                }
+                frameRenderedEventHandler += value;
+            }
+            remove
+            {
+                frameRenderedEventHandler -= value;
+                if (frameRenderedEventHandler == null && frameRenderedCallback != null)
+                {
+                    frameRenderedSignal.Disconnect(frameRenderedCallback);
                 }
             }
         }
@@ -559,6 +629,40 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Whether mouse events are enabled or not.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool MouseEventsEnabled
+        {
+            get
+            {
+                return (bool)GetValue(MouseEventsEnabledProperty);
+            }
+            set
+            {
+                SetValue(MouseEventsEnabledProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Whether key events are enabled or not.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool KeyEventsEnabled
+        {
+            get
+            {
+                return (bool)GetValue(KeyEventsEnabledProperty);
+            }
+            set
+            {
+                SetValue(KeyEventsEnabledProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// Gets title of web page.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -594,6 +698,8 @@ namespace Tizen.NUI
             internal static readonly int ContentSize = Interop.WebView.ContentSizeGet();
             internal static readonly int Title = Interop.WebView.TitleGet();
             internal static readonly int VideoHoleEnabled = Interop.WebView.VideoHoleEnabledGet();
+            internal static readonly int MouseEventsEnabled = Interop.WebView.MouseEventsEnabledGet();
+            internal static readonly int KeyEventsEnabled = Interop.WebView.KeyEventsEnabledGet();
         }
 
         private static readonly BindableProperty UrlProperty = BindableProperty.Create(nameof(Url), typeof(string), typeof(WebView), string.Empty, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
@@ -681,6 +787,38 @@ namespace Tizen.NUI
             var webview = (WebView)bindable;
             bool temp;
             Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.VideoHoleEnabled).Get(out temp);
+            return temp;
+        });
+
+        private static readonly BindableProperty MouseEventsEnabledProperty = BindableProperty.Create(nameof(MouseEventsEnabled), typeof(bool), typeof(WebView), true, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var webview = (WebView)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty(webview.SwigCPtr, WebView.Property.MouseEventsEnabled, new Tizen.NUI.PropertyValue((bool)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+                var webview = (WebView)bindable;
+                bool temp;
+                Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.MouseEventsEnabled).Get(out temp);
+                return temp;
+        });
+
+        private static readonly BindableProperty KeyEventsEnabledProperty = BindableProperty.Create(nameof(KeyEventsEnabled), typeof(bool), typeof(WebView), true, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var webview = (WebView)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty(webview.SwigCPtr, WebView.Property.KeyEventsEnabled, new Tizen.NUI.PropertyValue((bool)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var webview = (WebView)bindable;
+            bool temp;
+            Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.KeyEventsEnabled).Get(out temp);
             return temp;
         });
 
@@ -1029,6 +1167,18 @@ namespace Tizen.NUI
         private void OnUrlChanged(IntPtr data, string pageUrl)
         {
             urlChangedEventHandler?.Invoke(this, new WebViewUrlChangedEventArgs(pageUrl));
+        }
+
+        private void OnFormRepostPolicyDecided(IntPtr data, IntPtr decision)
+        {
+            WebFormRepostPolicyDecisionMaker repostDecision = new WebFormRepostPolicyDecisionMaker(decision, false);
+            formRepostPolicyDecidedEventHandler?.Invoke(this, new WebViewFormRepostPolicyDecidedEventArgs(repostDecision));
+            repostDecision.Dispose();
+        }
+
+        private void OnFrameRendered(IntPtr data)
+        {
+            frameRenderedEventHandler?.Invoke(this, new EventArgs());
         }
     }
 }

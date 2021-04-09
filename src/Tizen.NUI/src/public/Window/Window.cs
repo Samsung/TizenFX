@@ -1229,7 +1229,9 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal RenderTaskList GetRenderTaskList()
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public RenderTaskList GetRenderTaskList()
         {
             RenderTaskList ret = new RenderTaskList(Interop.Stage.GetRenderTaskList(stageCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
