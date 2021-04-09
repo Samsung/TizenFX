@@ -163,9 +163,13 @@ namespace Tizen.NUI
 
             var map = GetPropertyMap();
 
-            if (attachedView.CornerRadius > 0)
+            // TODO Fix to support Vector4 for corner radius after dali support it.
+            //      Current code only gets first argument of Vector4.
+            float cornerRadius = attachedView.CornerRadius?.X ?? 0.0f;
+
+            if (cornerRadius > 0)
             {
-                map[Visual.Property.CornerRadius] = new PropertyValue(attachedView.CornerRadius);
+                map[Visual.Property.CornerRadius] = new PropertyValue(cornerRadius);
                 map[Visual.Property.CornerRadiusPolicy] = new PropertyValue((int)attachedView.CornerRadiusPolicy);
             }
 
