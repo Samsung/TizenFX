@@ -409,9 +409,9 @@ namespace Tizen.NUI.Components
                 progressImage.ApplyStyle(progressStyle.Progress);
                 bufferImage.ApplyStyle(progressStyle.Buffer);
 
-                if (null != indeterminateImage && null != progressStyle.Indeterminate)
+                if (null != indeterminateImage && null != progressStyle.IndeterminateImageUrl)
                 {
-                    indeterminateImage.URL = progressStyle.Indeterminate;
+                    indeterminateImage.URL = progressStyle.IndeterminateImageUrl;
                 }
             }
         }
