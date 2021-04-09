@@ -97,6 +97,11 @@ namespace Tizen.NUI.Components
                     {
                         instance.UpdateState();
                     }
+
+                    if (instance.IsHighlighted)
+                    {
+                        instance.EmitAccessibilityStateChangedEvent(AccessibilityState.Checked, newSelected);
+                    }
                 }
             }
         },
