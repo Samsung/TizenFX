@@ -161,6 +161,35 @@ namespace Tizen.NUI.Components
             return instance.valueIndicatorText.Text;
         });
 
+        /// <summary>
+        /// Bindable property of CurrentValue
+        /// <remark>
+        /// Hidden API, used for NUI XAML data binding
+        /// </remark>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty CurrentValueProperty = BindableProperty.Create(nameof(CurrentValue), typeof(float), typeof(Slider), 0.0f, BindingMode.TwoWay,
+            propertyChanged: (bindable, oldValue, newValue) =>
+            {
+                var instance = (Slider)bindable;
+
+                if (newValue != null)
+                {
+                    instance.curValue = (float)newValue;
+                    if (instance.IsHighlighted)
+                    {
+                        instance.EmitAccessibilityEvent(ObjectPropertyChangeEvent.Value);
+                    }
+                    instance.UpdateValue();
+                }
+            },
+            defaultValueCreator: (bindable) =>
+            {
+                var instance = (Slider)bindable;
+                return instance.curValue;
+            }
+        );
+
         static Slider() { }
 
         /// <summary>
@@ -421,16 +450,11 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return curValue;
+                return (float)GetValue(CurrentValueProperty);
             }
             set
             {
-                curValue = value;
-                if (IsHighlighted)
-                {
-                    EmitAccessibilityEvent(ObjectPropertyChangeEvent.Value);
-                }
-                UpdateValue();
+                SetValue(CurrentValueProperty, value);
             }
         }
 
@@ -1301,37 +1325,37 @@ namespace Tizen.NUI.Components
 
             if (currentSlidedOffset <= 0)
             {
-                curValue = minValue;
+                this.CurrentValue = minValue;
             }
             else if (currentSlidedOffset >= BgTrackLength())
             {
-                curValue = maxValue;
+                this.CurrentValue = maxValue;
             }
             else
             {
                 int bgTrackLength = BgTrackLength();
                 if (bgTrackLength != 0)
                 {
-                    curValue = ((currentSlidedOffset / (float)bgTrackLength) * (float)(maxValue - minValue)) + minValue;
+                    this.CurrentValue = ((currentSlidedOffset / (float)bgTrackLength) * (float)(maxValue - minValue)) + minValue;
                 }
             }
 
             if (IsDiscrete)
             {
-                curValue = CalculateDiscreteValue(curValue);
+                this.CurrentValue = CalculateDiscreteValue(this.CurrentValue);
             }
 
             if (valueChangedHandler != null)
             {
                 ValueChangedArgs args = new ValueChangedArgs();
-                args.CurrentValue = curValue;
+                args.CurrentValue = this.CurrentValue;
                 valueChangedHandler(this, args);
             }
 
             if (sliderValueChangedHandler != null)
             {
                 SliderValueChangedEventArgs args = new SliderValueChangedEventArgs();
-                args.CurrentValue = curValue;
+                args.CurrentValue = this.CurrentValue;
                 sliderValueChangedHandler(this, args);
             }
         }
@@ -1401,24 +1425,24 @@ namespace Tizen.NUI.Components
 
             if (bgTrackLength != 0)
             {
-                curValue = ((currentSlidedOffset / (float)bgTrackLength) * (maxValue - minValue)) + minValue;
+                this.CurrentValue = ((currentSlidedOffset / (float)bgTrackLength) * (maxValue - minValue)) + minValue;
 
                 if (IsDiscrete)
                 {
-                    curValue = CalculateDiscreteValue(curValue);
+                    this.CurrentValue = CalculateDiscreteValue(this.CurrentValue);
                 }
 
                 if (null != valueChangedHandler)
                 {
                     ValueChangedArgs args = new ValueChangedArgs();
-                    args.CurrentValue = curValue;
+                    args.CurrentValue = this.CurrentValue;
                     valueChangedHandler(this, args);
                 }
 
                 if (null != sliderValueChangedHandler)
                 {
                     SliderValueChangedEventArgs args = new SliderValueChangedEventArgs();
-                    args.CurrentValue = curValue;
+                    args.CurrentValue = this.CurrentValue;
                     sliderValueChangedHandler(this, args);
                 }
             }
