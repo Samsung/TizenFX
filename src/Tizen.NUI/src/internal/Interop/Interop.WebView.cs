@@ -17,7 +17,6 @@
 
 namespace Tizen.NUI
 {
-
     internal static partial class Interop
     {
         internal static partial class WebView
@@ -75,6 +74,12 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_Property_VIDEO_HOLE_ENABLED_get")]
             public static extern int VideoHoleEnabledGet();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_Property_MOUSE_EVENTS_ENABLED_get")]
+            public static extern int MouseEventsEnabledGet();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_Property_KEY_EVENTS_ENABLED_get")]
+            public static extern int KeyEventsEnabledGet();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_GetFavicon")]
             public static extern global::System.IntPtr GetFavicon(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -198,6 +203,27 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebViewUrlChangedSignal_Disconnect")]
             public static extern void WebViewUrlChangedSignalDisconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_WebViewFormRepostDecisionSignal_FormRepostDecision")]
+            public static extern global::System.IntPtr NewWebViewFormRepostDecisionSignalFormRepostDecision(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WebViewFormRepostDecisionSignal")]
+            public static extern void DeleteWebViewFormRepostDecisionSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebViewFormRepostDecisionSignal_Connect")]
+            public static extern void WebViewFormRepostDecisionSignalConnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebViewFormRepostDecisionSignal_Disconnect")]
+            public static extern void WebViewFormRepostDecisionSignalDisconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebViewFrameRenderedSignal_FrameRendered")]
+            public static extern global::System.IntPtr WebViewFrameRenderedSignalFrameRenderedGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebViewFrameRenderedSignal_Connect")]
+            public static extern void WebViewFrameRenderedSignalConnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebViewFrameRenderedSignal_Disconnect")]
+            public static extern void WebViewFrameRenderedSignalDisconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
         }
     }
 }

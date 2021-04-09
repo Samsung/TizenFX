@@ -16,14 +16,17 @@
  */
 
 using System;
+using System.ComponentModel;
 using System.Globalization;
 using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.Binding
 {
+    /// Internal use, will never open
+    [EditorBrowsable(EditorBrowsableState.Never)]
     [Xaml.ProvideCompiled("Tizen.NUI.Xaml.Core.XamlC.TypeTypeConverter")]
     [Xaml.TypeConversion(typeof(Type))]
-    internal sealed class TypeTypeConverter : TypeConverter, IExtendedTypeConverter
+    public sealed class TypeTypeConverter : TypeConverter, IExtendedTypeConverter
     {
         [Obsolete("IExtendedTypeConverter.ConvertFrom is obsolete as of version 2.2.0. Please use ConvertFromInvariantString (string, IServiceProvider) instead.")]
         object IExtendedTypeConverter.ConvertFrom(CultureInfo culture, object value, IServiceProvider serviceProvider)
@@ -42,6 +45,8 @@ namespace Tizen.NUI.Binding
             return typeResolver.Resolve(value, serviceProvider);
         }
 
+        /// Internal use, will never open
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override object ConvertFromInvariantString(string value)
         {
             throw new NotImplementedException();
