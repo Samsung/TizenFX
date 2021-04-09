@@ -235,8 +235,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(TextProperty, value);
-                selectorData?.Text?.Reset(this);
-                NotifyPropertyChangedAndRequestLayout();
+                NotifyPropertyChanged();
             }
         }
 
@@ -254,8 +253,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(FontFamilyProperty, value);
-                selectorData?.FontFamily?.Reset(this);
-                NotifyPropertyChangedAndRequestLayout();
+                NotifyPropertyChanged();
             }
         }
 
@@ -273,7 +271,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(FontStyleProperty, value);
-                NotifyPropertyChangedAndRequestLayout();
+                NotifyPropertyChanged();
             }
         }
 
@@ -291,8 +289,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(PointSizeProperty, value);
-                selectorData?.PointSize?.Reset(this);
-                NotifyPropertyChangedAndRequestLayout();
+                NotifyPropertyChanged();
             }
         }
 
@@ -310,7 +307,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(MultiLineProperty, value);
-                NotifyPropertyChangedAndRequestLayout();
+                NotifyPropertyChanged();
             }
         }
 
@@ -633,7 +630,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(LineSpacingProperty, value);
-                NotifyPropertyChangedAndRequestLayout();
+                NotifyPropertyChanged();
             }
         }
 
@@ -742,8 +739,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(PixelSizeProperty, value);
-                selectorData?.PixelSize?.Reset(this);
-                NotifyPropertyChangedAndRequestLayout();
+                NotifyPropertyChanged();
             }
         }
 
@@ -923,7 +919,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(MinLineSizeProperty, value);
-                NotifyPropertyChangedAndRequestLayout();
+                NotifyPropertyChanged();
             }
         }
 
@@ -969,7 +965,7 @@ namespace Tizen.NUI.BaseComponents
                 }
 
                 SetValue(FontSizeScaleProperty, newFontSizeScale);
-                NotifyPropertyChangedAndRequestLayout();
+                NotifyPropertyChanged();
             }
         }
 
@@ -1065,7 +1061,6 @@ namespace Tizen.NUI.BaseComponents
         {
             float newFontSizeScale = TextUtils.GetFontSizeScale(e.Value);
             SetValue(FontSizeScaleProperty, newFontSizeScale);
-            NotifyPropertyChangedAndRequestLayout();
         }
 
         private void addFontSizeChangedCallback()
@@ -1102,9 +1097,8 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        private void NotifyPropertyChangedAndRequestLayout()
+        private void RequestLayout()
         {
-            NotifyPropertyChanged();
             Layout?.RequestLayout();
         }
 
