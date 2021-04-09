@@ -29,7 +29,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// Creates an initialized drawable.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        private Drawable() {}
+        private Drawable() { }
 
         internal Drawable(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
@@ -38,7 +38,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// <summary>
         /// The transparency level [0 ~ 1.0], 0 means totally transparent, while 1 means opaque.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public float Opacity
         {
             get
@@ -57,7 +57,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// </summary>
         /// <param name="degree">The degree value of angle.</param>
         /// <returns>True when it's successful. False otherwise.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public bool Rotate(float degree)
         {
             bool ret = Interop.Drawable.Rotate(BaseHandle.getCPtr(this), degree);
@@ -70,7 +70,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// </summary>
         /// <param name="factor">The scale factor value.</param>
         /// <returns>True when it's successful. False otherwise.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public bool Scale(float factor)
         {
             bool ret = Interop.Drawable.Scale(BaseHandle.getCPtr(this), factor);
@@ -85,7 +85,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// <returns>True when it's successful. False otherwise.</returns>
         /// <exception cref="ArgumentNullException"> Thrown when matrix is null. </exception>
         /// <exception cref="ArgumentException"> Thrown when matrix array length is not 9. </exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public bool Transform(float[] matrix)
         {
             if (matrix == null)
@@ -107,7 +107,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// <param name="x">The x-axis movement value.</param>
         /// <param name="y">The y-axis movement value.</param>
         /// <returns>True when it's successful. False otherwise.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public bool Translate(float x, float y)
         {
             bool ret = Interop.Drawable.Translate(BaseHandle.getCPtr(this), x, y);
