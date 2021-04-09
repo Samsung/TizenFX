@@ -30,7 +30,7 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class WebView : View
     {
-        private Vector4 documentBackgroundColor;
+        private Vector4 backgroundColor;
         private bool tilesClearedWhenHidden;
         private float tileCoverAreaMultiplier;
         private bool cursorEnabledByClient;
@@ -187,14 +187,14 @@ namespace Tizen.NUI
         public delegate void JavaScriptPromptCallback(string message1, string message2);
 
         /// <summary>
-        /// The callback function that is invoked when screen shot is captured.
+        /// The callback function that is invoked when screen shot is acquired asynchronously.
         /// </summary>
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public delegate void ScreenshotCapturedCallback(ImageView image);
+        public delegate void ScreenshotAcquiredCallback(ImageView image);
 
         /// <summary>
-        /// The callback function that is invoked when video playing is checked.
+        /// The callback function that is invoked when video playing is checked asynchronously.
         /// </summary>
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -750,19 +750,18 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Background color of web page.
+        /// Background color of web view.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Vector4 DocumentBackgroundColor
+        public new Color BackgroundColor
         {
             get
             {
-                return documentBackgroundColor;
+                return (Color)GetValue(WebViewBackgroundColorProperty);
             }
             set
             {
-                documentBackgroundColor = value;
-                SetValue(DocumentBackgroundColorProperty, value);
+                SetValue(WebViewBackgroundColorProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -775,11 +774,10 @@ namespace Tizen.NUI
         {
             get
             {
-                return tilesClearedWhenHidden;
+                return (bool)GetValue(TilesClearedWhenHiddenProperty);
             }
             set
             {
-                tilesClearedWhenHidden = value;
                 SetValue(TilesClearedWhenHiddenProperty, value);
                 NotifyPropertyChanged();
             }
@@ -793,11 +791,10 @@ namespace Tizen.NUI
         {
             get
             {
-                return tileCoverAreaMultiplier;
+                return (float)GetValue(TileCoverAreaMultiplierProperty);
             }
             set
             {
-                tileCoverAreaMultiplier = value;
                 SetValue(TileCoverAreaMultiplierProperty, value);
                 NotifyPropertyChanged();
             }
@@ -811,11 +808,10 @@ namespace Tizen.NUI
         {
             get
             {
-                return cursorEnabledByClient;
+                return (bool)GetValue(CursorEnabledByClientProperty);
             }
             set
             {
-                cursorEnabledByClient = value;
                 SetValue(CursorEnabledByClientProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1025,10 +1021,10 @@ namespace Tizen.NUI
         },
         defaultValueCreator: (bindable) =>
         {
-                var webview = (WebView)bindable;
-                bool temp;
-                Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.MouseEventsEnabled).Get(out temp);
-                return temp;
+            var webview = (WebView)bindable;
+            bool temp;
+            Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.MouseEventsEnabled).Get(out temp);
+            return temp;
         });
 
         private static readonly BindableProperty KeyEventsEnabledProperty = BindableProperty.Create(nameof(KeyEventsEnabled), typeof(bool), typeof(WebView), true, propertyChanged: (bindable, oldValue, newValue) =>
@@ -1047,13 +1043,19 @@ namespace Tizen.NUI
             return temp;
         });
 
-        private static readonly BindableProperty DocumentBackgroundColorProperty = BindableProperty.Create(nameof(DocumentBackgroundColor), typeof(Vector4), typeof(WebView), true, propertyChanged: (bindable, oldValue, newValue) =>
+        private static readonly BindableProperty WebViewBackgroundColorProperty = BindableProperty.Create(nameof(BackgroundColor), typeof(Vector4), typeof(WebView), true, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var webview = (WebView)bindable;
             if (newValue != null)
             {
+                webview.backgroundColor = (Vector4)newValue;
                 Tizen.NUI.Object.SetProperty(webview.SwigCPtr, WebView.Property.DocumentBackgroundColor, new Tizen.NUI.PropertyValue((Vector4)newValue));
             }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var webview = (WebView)bindable;
+            return webview.backgroundColor;
         });
 
         private static readonly BindableProperty TilesClearedWhenHiddenProperty = BindableProperty.Create(nameof(TilesClearedWhenHidden), typeof(bool), typeof(WebView), true, propertyChanged: (bindable, oldValue, newValue) =>
@@ -1061,8 +1063,14 @@ namespace Tizen.NUI
             var webview = (WebView)bindable;
             if (newValue != null)
             {
+                webview.tilesClearedWhenHidden = (bool)newValue;
                 Tizen.NUI.Object.SetProperty(webview.SwigCPtr, WebView.Property.TilesClearedWhenHidden, new Tizen.NUI.PropertyValue((bool)newValue));
             }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var webview = (WebView)bindable;
+            return webview.tilesClearedWhenHidden;
         });
 
         private static readonly BindableProperty TileCoverAreaMultiplierProperty = BindableProperty.Create(nameof(TileCoverAreaMultiplier), typeof(float), typeof(WebView), true, propertyChanged: (bindable, oldValue, newValue) =>
@@ -1070,8 +1078,14 @@ namespace Tizen.NUI
             var webview = (WebView)bindable;
             if (newValue != null)
             {
+                webview.tileCoverAreaMultiplier = (float)newValue;
                 Tizen.NUI.Object.SetProperty(webview.SwigCPtr, WebView.Property.TileCoverAreaMultiplier, new Tizen.NUI.PropertyValue((float)newValue));
             }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var webview = (WebView)bindable;
+            return webview.tileCoverAreaMultiplier;
         });
 
         private static readonly BindableProperty CursorEnabledByClientProperty = BindableProperty.Create(nameof(CursorEnabledByClient), typeof(bool), typeof(WebView), true, propertyChanged: (bindable, oldValue, newValue) =>
@@ -1079,8 +1093,14 @@ namespace Tizen.NUI
             var webview = (WebView)bindable;
             if (newValue != null)
             {
+                webview.cursorEnabledByClient = (bool)newValue;
                 Tizen.NUI.Object.SetProperty(webview.SwigCPtr, WebView.Property.CursorEnabledByClient, new Tizen.NUI.PropertyValue((bool)newValue));
             }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var webview = (WebView)bindable;
+            return webview.cursorEnabledByClient;
         });
 
         private static readonly BindableProperty SelectedTextProperty = BindableProperty.Create(nameof(SelectedText), typeof(string), typeof(WebView), null, defaultValueCreator: (bindable) =>
@@ -1170,13 +1190,13 @@ namespace Tizen.NUI
         /// <summary>
         /// Loads the specified html as the content of the view to override current history entry.
         /// <param name="html">The html to be loaded</param>
-        /// <param name="basicUri">Basic URL used for relative paths to external objects</param>
+        /// <param name="baseUri">Base URL used for relative paths to external objects</param>
         /// <param name="unreachableUri">URL that could not be reached</param>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool LoadHtmlStringOverrideCurrentEntry(string html, string basicUri, string unreachableUri)
+        public bool LoadHtmlStringOverrideCurrentEntry(string html, string baseUri, string unreachableUri)
         {
-            bool result = Interop.WebView.LoadHtmlStringOverrideCurrentEntry(SwigCPtr, html, basicUri, unreachableUri);
+            bool result = Interop.WebView.LoadHtmlStringOverrideCurrentEntry(SwigCPtr, html, baseUri, unreachableUri);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return result;
         }
@@ -1589,7 +1609,7 @@ namespace Tizen.NUI
         /// <param name="callback">The callback for getting screen shot</param>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool GetScreenshotAsynchronously(Rectangle viewArea, float scaleFactor, ScreenshotCapturedCallback callback)
+        public bool GetScreenshotAsynchronously(Rectangle viewArea, float scaleFactor, ScreenshotAcquiredCallback callback)
         {
             System.IntPtr ip = Marshal.GetFunctionPointerForDelegate(callback);
             bool result = Interop.WebView.GetScreenshotAsynchronously(SwigCPtr, Rectangle.getCPtr(viewArea), scaleFactor, new HandleRef(this, ip));
