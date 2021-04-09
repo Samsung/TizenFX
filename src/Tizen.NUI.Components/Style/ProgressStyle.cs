@@ -67,7 +67,7 @@ namespace Tizen.NUI.Components
         /// Gets or sets indeterminate progress resource.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public string Indeterminate { get; set; }
+        public string IndeterminateImageUrl { get; set; }
 
         /// <summary>
         /// Style's clone function.
@@ -83,7 +83,7 @@ namespace Tizen.NUI.Components
                 Track.CopyFrom(progressStyle.Track);
                 Progress.CopyFrom(progressStyle.Progress);
                 Buffer.CopyFrom(progressStyle.Buffer);
-                Indeterminate = progressStyle.Indeterminate;
+                IndeterminateImageUrl = progressStyle.IndeterminateImageUrl;
             }
         }
     }

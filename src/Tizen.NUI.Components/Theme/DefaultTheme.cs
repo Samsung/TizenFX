@@ -75,7 +75,7 @@ namespace Tizen.NUI.Components
                     .AddSelector("/Track/ResourceUrl", (ViewStyle style, Selector<string> value) => ((ProgressStyle)style).Track.ResourceUrl = value)
                     .AddSelector("/Buffer/ResourceUrl", (ViewStyle style, Selector<string> value) => ((ProgressStyle)style).Buffer.ResourceUrl = value)
                     .AddSelector("/Progress/ResourceUrl", (ViewStyle style, Selector<string> value) => ((ProgressStyle)style).Progress.ResourceUrl = value)
-                    .Add<string>("/Indeterminate", (ViewStyle style, string value) => ((ProgressStyle)style).Indeterminate = value),
+                    .Add<string>("/IndeterminateImageUrl", (ViewStyle style, string value) => ((ProgressStyle)style).IndeterminateImageUrl = value),
 
                 // Slider
                 (new ExternalThemeKeyList(typeof(Slider), typeof(SliderStyle)))
