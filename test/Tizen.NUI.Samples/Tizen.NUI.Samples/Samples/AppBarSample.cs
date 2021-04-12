@@ -1,4 +1,6 @@
-﻿using Tizen.NUI.BaseComponents;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Components;
 
 namespace Tizen.NUI.Samples
@@ -28,10 +30,10 @@ namespace Tizen.NUI.Samples
 
             firstAppBar = new AppBar()
             {
-                AutoNavigationContent = false
+                AutoNavigationContent = false,
+                Title = "First Page",
+                Actions = new View[] { firstActionButton },
             };
-            firstAppBar.SetTitle("First Page");
-            firstAppBar.AddActions(firstActionButton);
 
             firstButton = new Button()
             {
@@ -64,9 +66,11 @@ namespace Tizen.NUI.Samples
                 NUIApplication.GetDefaultWindow().GetDefaultNavigator().Pop();
             };
 
-            secondAppBar = new AppBar();
-            secondAppBar.SetTitle("Second Page");
-            secondAppBar.AddActions(secondActionButton);
+            secondAppBar = new AppBar()
+            {
+                Title = "Second Page",
+                Actions = new View[] { secondActionButton },
+            };
 
             secondButton = new Button()
             {
