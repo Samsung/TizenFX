@@ -30,7 +30,7 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class WebView : View
     {
-        private Vector4 backgroundColor;
+        private Vector4 contentBackgroundColor;
         private bool tilesClearedWhenHidden;
         private float tileCoverAreaMultiplier;
         private bool cursorEnabledByClient;
@@ -750,18 +750,18 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Background color of document of web page.
+        /// Background color of web page.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Color DocumentBackgroundColor
+        public Color ContentBackgroundColor
         {
             get
             {
-                return (Color)GetValue(DocumentBackgroundColorProperty);
+                return (Color)GetValue(ContentBackgroundColorProperty);
             }
             set
             {
-                SetValue(DocumentBackgroundColorProperty, value);
+                SetValue(ContentBackgroundColorProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -1043,19 +1043,19 @@ namespace Tizen.NUI
             return temp;
         });
 
-        private static readonly BindableProperty DocumentBackgroundColorProperty = BindableProperty.Create(nameof(DocumentBackgroundColor), typeof(Vector4), typeof(WebView), true, propertyChanged: (bindable, oldValue, newValue) =>
+        private static readonly BindableProperty ContentBackgroundColorProperty = BindableProperty.Create(nameof(ContentBackgroundColor), typeof(Vector4), typeof(WebView), true, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var webview = (WebView)bindable;
             if (newValue != null)
             {
-                webview.backgroundColor = (Vector4)newValue;
+                webview.contentBackgroundColor = (Vector4)newValue;
                 Tizen.NUI.Object.SetProperty(webview.SwigCPtr, WebView.Property.DocumentBackgroundColor, new Tizen.NUI.PropertyValue((Vector4)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var webview = (WebView)bindable;
-            return webview.backgroundColor;
+            return webview.contentBackgroundColor;
         });
 
         private static readonly BindableProperty TilesClearedWhenHiddenProperty = BindableProperty.Create(nameof(TilesClearedWhenHidden), typeof(bool), typeof(WebView), true, propertyChanged: (bindable, oldValue, newValue) =>
