@@ -11,7 +11,6 @@ namespace Tizen.NUI.Samples
     {
         public void Activate()
         {
-            log.Debug(tag, $"Activate(): start \n");
             resourcePath = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
 
             window = NUIApplication.GetDefaultWindow();
@@ -27,11 +26,8 @@ namespace Tizen.NUI.Samples
 
             window.Add(root);
 
-            log.Debug(tag, $"root view added \n");
-
             capturedView0 = new ImageView(resourcePath + "/images/image1.jpg")
             {
-                Name = "test_v0",
                 Size = new Size(100, 100),
                 BackgroundColor = Color.Red,
             };
@@ -39,16 +35,11 @@ namespace Tizen.NUI.Samples
 
             capturedView1 = new ImageView(resourcePath + "/images/image2.jpg")
             {
-                Name = "test_v1",
                 Size = new Size(150, 150),
                 Position = new Position(150, 150),
                 BackgroundColor = Color.Yellow,
             };
             root.Add(capturedView1);
-
-            //TDD
-            //tddTest();
-            //checkCaptureNew();
         }
 
         private void onCaptureFinished(object sender, CaptureFinishedEventArgs e)
@@ -57,7 +48,6 @@ namespace Tizen.NUI.Samples
 
             if (sender is Capture)
             {
-                log.Debug(tag, $"sender is Capture \n");
                 var url = capture.GetNativeImageSource().Url;
                 capturedImage = new ImageView(url);
                 log.Debug(tag, $"url={url} \n");
@@ -76,30 +66,17 @@ namespace Tizen.NUI.Samples
                 if (!done)
                 {
                     done = true;
-                    capture = new Capture();
-                    capture.Start(root, new Size(510, 510), @"/opt/usr/nui_captured.jpg");
+                    capture = new Capture()
+                    {
+                        Size = new Size(510, 510),
+                        ClearColor = Color.White,
+                        Path = "/opt/usr/nui_captured.jpg",
+                    };
+                    capture.Start(capturedView0);
                     capture.Finished += onCaptureFinished;
                     log.Debug(tag, $"capture done \n");
                 }
             }
-        }
-
-        private void tddTest()
-        {
-            log.Debug(tag, $"TDD test before Assert");
-
-            Assert.IsFalse(true, "TDD test, Exception throw");
-
-            Assert.IsFalse(false, "TDD test, Exception throw");
-
-            log.Debug(tag, $"TDD test after Assert");
-        }
-
-        private void checkCaptureNew()
-        {
-            var target = new Capture();
-            Assert.IsNotNull(target, "target should not be null");
-            Assert.IsTrue(target is Capture, "target should be Capture class");
         }
 
         public void Deactivate()
