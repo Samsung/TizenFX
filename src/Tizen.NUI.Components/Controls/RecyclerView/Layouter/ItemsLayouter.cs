@@ -346,7 +346,11 @@ namespace Tizen.NUI.Components
             }
 
             disposed = true;
-            if (disposing) Clear();
+            if (disposing)
+            {
+                Clear();
+                padding.Dispose();
+            }
         }
 
         internal virtual (float X, float Y) GetItemPosition(int index)
