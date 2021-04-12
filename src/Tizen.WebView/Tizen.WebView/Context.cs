@@ -53,7 +53,8 @@ namespace Tizen.WebView
         private CookieManager _cookieManager;
 
         private Interop.ChromiumEwk.DownloadStartCallback _downloadStartCallback;
-        
+        private Interop.ChromiumEwk.InterceptRequestCallback _interceptRequestCallback;
+
         /// <summary>
         /// The delegate for handling download request.
         /// </summary>
@@ -61,6 +62,14 @@ namespace Tizen.WebView
         /// <param name="url"> url of the download request. </param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void DownloadRequestDelegate(string url);
+
+        /// <summary>
+        /// The delegate for intercepting and handling a resource request.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        /// <param name="interceptor"> The object which can handle a intercepted request. </param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public delegate void InterceptRequestDelegate(RequestInterceptor interceptor);
 
         internal Context(IntPtr handle)
         {
@@ -137,6 +146,43 @@ namespace Tizen.WebView
                 startDownloadCb(url);
             };
             Interop.ChromiumEwk.ewk_context_did_start_download_callback_set(_handle, _downloadStartCallback, IntPtr.Zero);
+        }
+
+        /// <summary>
+        /// Sets the delegate function for intercepting a resource request.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        /// <param name="interceptRequestCb"> The delegate function for intercepting a resource request. </param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetInterceptRequestDelegate(InterceptRequestDelegate interceptRequestCb)
+        {
+            _interceptRequestCallback = (IntPtr context, IntPtr request, IntPtr userData) =>
+            {
+                interceptRequestCb(new RequestInterceptor(request));
+            };
+            Interop.ChromiumEwk.ewk_context_intercept_request_callback_set(_handle, _interceptRequestCallback, IntPtr.Zero);
+
+        }
+
+        /// <summary>
+        /// Starts the inspector server.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        /// <param name="port"> The port number. </param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint StartInspectorServer(uint port)
+        {
+            return Interop.ChromiumEwk.ewk_context_inspector_server_start(_handle, port);
+        }
+
+        /// <summary>
+        /// Stops the inspector server.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void StopInspectorServer()
+        {
+            Interop.ChromiumEwk.ewk_context_inspector_server_stop(_handle);
         }
     }
 }
