@@ -254,7 +254,7 @@ namespace Tizen.Network.Bluetooth
 
         private void RegisterDiscoveryStateChangedEvent()
         {
-            _discoveryStateChangedCallback = (int result, BluetoothDeviceDiscoveryState state, IntPtr deviceInfo, IntPtr userData) =>
+            _discoveryStateChangedCallback = (int result, BluetoothDeviceDiscoveryState state, ref BluetoothDiscoveredDeviceStruct deviceInfo, IntPtr userData) =>
             {
                 Log.Info(Globals.LogTag, "Discovery state changed callback is called");
                 if (_discoveryStateChanged != null)
@@ -272,8 +272,8 @@ namespace Tizen.Network.Bluetooth
                         }
                     case BluetoothDeviceDiscoveryState.Found:
                         {
-                            BluetoothDiscoveredDeviceStruct info = (BluetoothDiscoveredDeviceStruct)Marshal.PtrToStructure(deviceInfo, typeof(BluetoothDiscoveredDeviceStruct));
-                            _discoveryStateChanged(null, new DiscoveryStateChangedEventArgs(res,state,BluetoothUtils.ConvertStructToDiscoveredDevice(info)));
+//                            BluetoothDiscoveredDeviceStruct info = (BluetoothDiscoveredDeviceStruct)Marshal.PtrToStructure(deviceInfo, typeof(BluetoothDiscoveredDeviceStruct));
+                            _discoveryStateChanged(null, new DiscoveryStateChangedEventArgs(res,state,BluetoothUtils.ConvertStructToDiscoveredDevice(deviceInfo)));
                             break;
                         }
                     default:

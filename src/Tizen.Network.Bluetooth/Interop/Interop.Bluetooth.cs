@@ -35,7 +35,7 @@ internal static partial class Interop
         internal delegate void VisibilityDurationChangedCallback(int duration, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void DiscoveryStateChangedCallback(int result, BluetoothDeviceDiscoveryState state, IntPtr deviceInfo, IntPtr userData);
+        internal delegate void DiscoveryStateChangedCallback(int result, BluetoothDeviceDiscoveryState state, ref BluetoothDiscoveredDeviceStruct deviceInfo, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate bool BondedDeviceCallback([MarshalAs(UnmanagedType.Struct)]ref BluetoothDeviceStruct device, IntPtr userData);
