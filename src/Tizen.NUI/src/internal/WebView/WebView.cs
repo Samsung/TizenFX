@@ -30,7 +30,7 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class WebView : View
     {
-        private Vector4 backgroundColor;
+        private Vector4 contentBackgroundColor;
         private bool tilesClearedWhenHidden;
         private float tileCoverAreaMultiplier;
         private bool cursorEnabledByClient;
@@ -66,6 +66,9 @@ namespace Tizen.NUI
         private readonly WebViewFrameRenderedSignal frameRenderedSignal;
         private EventHandler<EventArgs> frameRenderedEventHandler;
         private WebViewFrameRenderedCallbackDelegate frameRenderedCallback;
+
+        private ScreenshotAcquiredCallback screenshotAcquiredCallback;
+        private readonly WebViewScreenshotAcquiredProxyCallback screenshotAcquiredProxyCallback;
 
         /// <summary>
         /// Creates a WebView.
@@ -117,6 +120,8 @@ namespace Tizen.NUI
             urlChangedSignal = new WebViewUrlChangedSignal(Interop.WebView.NewWebViewUrlChangedSignalUrlChanged(SwigCPtr));
             formRepostPolicyDecidedSignal = new WebViewFormRepostDecidedSignal(Interop.WebView.NewWebViewFormRepostDecisionSignalFormRepostDecision(SwigCPtr));
             frameRenderedSignal = new WebViewFrameRenderedSignal(Interop.WebView.WebViewFrameRenderedSignalFrameRenderedGet(SwigCPtr));
+
+            screenshotAcquiredProxyCallback = OnScreenshotAcquired;
 
             BackForwardList = new WebBackForwardList(Interop.WebView.GetWebBackForwardList(SwigCPtr), false);
             Context = new WebContext(Interop.WebView.GetWebContext(SwigCPtr), false);
@@ -224,6 +229,9 @@ namespace Tizen.NUI
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WebViewFrameRenderedCallbackDelegate(IntPtr data);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void WebViewScreenshotAcquiredProxyCallback(IntPtr data);
 
         /// <summary>
         /// Event for the PageLoadStarted signal which can be used to subscribe or unsubscribe the event handler.<br />
@@ -455,7 +463,7 @@ namespace Tizen.NUI
             /// Search text only at the beginning of the words
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            AtWordStarts = 1 << 1,
+            AtWordStart = 1 << 1,
 
             /// <summary>
             /// Treat capital letters in the middle of words as word start
@@ -750,18 +758,18 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Background color of document of web page.
+        /// Background color of web page.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Color DocumentBackgroundColor
+        public Color ContentBackgroundColor
         {
             get
             {
-                return (Color)GetValue(DocumentBackgroundColorProperty);
+                return (Color)GetValue(ContentBackgroundColorProperty);
             }
             set
             {
-                SetValue(DocumentBackgroundColorProperty, value);
+                SetValue(ContentBackgroundColorProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -1043,19 +1051,19 @@ namespace Tizen.NUI
             return temp;
         });
 
-        private static readonly BindableProperty DocumentBackgroundColorProperty = BindableProperty.Create(nameof(DocumentBackgroundColor), typeof(Vector4), typeof(WebView), true, propertyChanged: (bindable, oldValue, newValue) =>
+        private static readonly BindableProperty ContentBackgroundColorProperty = BindableProperty.Create(nameof(ContentBackgroundColor), typeof(Vector4), typeof(WebView), true, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var webview = (WebView)bindable;
             if (newValue != null)
             {
-                webview.backgroundColor = (Vector4)newValue;
+                webview.contentBackgroundColor = (Vector4)newValue;
                 Tizen.NUI.Object.SetProperty(webview.SwigCPtr, WebView.Property.DocumentBackgroundColor, new Tizen.NUI.PropertyValue((Vector4)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var webview = (WebView)bindable;
-            return webview.backgroundColor;
+            return webview.contentBackgroundColor;
         });
 
         private static readonly BindableProperty TilesClearedWhenHiddenProperty = BindableProperty.Create(nameof(TilesClearedWhenHidden), typeof(bool), typeof(WebView), true, propertyChanged: (bindable, oldValue, newValue) =>
@@ -1611,7 +1619,8 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool GetScreenshotAsynchronously(Rectangle viewArea, float scaleFactor, ScreenshotAcquiredCallback callback)
         {
-            System.IntPtr ip = Marshal.GetFunctionPointerForDelegate(callback);
+            screenshotAcquiredCallback = callback;
+            System.IntPtr ip = Marshal.GetFunctionPointerForDelegate(screenshotAcquiredProxyCallback);
             bool result = Interop.WebView.GetScreenshotAsynchronously(SwigCPtr, Rectangle.getCPtr(viewArea), scaleFactor, new HandleRef(this, ip));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return result;
@@ -1744,6 +1753,13 @@ namespace Tizen.NUI
         private void OnFrameRendered(IntPtr data)
         {
             frameRenderedEventHandler?.Invoke(this, new EventArgs());
+        }
+
+        private void OnScreenshotAcquired(IntPtr data)
+        {
+            ImageView image = new ImageView(data, true);
+            screenshotAcquiredCallback?.Invoke(image);
+            image.Dispose();
         }
     }
 }
