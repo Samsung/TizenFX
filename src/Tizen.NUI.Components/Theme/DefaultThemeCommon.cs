@@ -132,6 +132,7 @@ namespace Tizen.NUI.Components
                 {
                     BackgroundColor = new Color(0.05f, 0.63f, 0.9f, 1),
                 },
+                IndeterminateImageUrl = FrameworkInformation.ResourcePath + "nui_component_default_progress_indeterminate.png",
             });
 
             theme.AddStyleWithoutClone("Tizen.NUI.Components.RadioButton", new ButtonStyle()
