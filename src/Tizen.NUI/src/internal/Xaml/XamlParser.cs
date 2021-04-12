@@ -319,7 +319,7 @@ namespace Tizen.NUI.Xaml
         static IList<XmlnsDefinitionAttribute> s_xmlnsDefinitions;
         public static IList<Assembly> s_assemblies = new List<Assembly>();// = new Assembly[]{};
 
-        static void GatherXmlnsDefinitionAttributes()
+        static void GatherXmlnsDefinitionAttributes(Assembly currentAssembly)
         {
             //this could be extended to look for [XmlnsDefinition] in all assemblies
             // var assemblies = new [] {
@@ -327,7 +327,28 @@ namespace Tizen.NUI.Xaml
             // 	//typeof(XamlLoader).GetTypeInfo().Assembly,
             // };
             // s_assemblies = new Assembly[]{typeof(View).GetTypeInfo().Assembly};
-            s_assemblies.Add(typeof(View).GetTypeInfo().Assembly);
+            //s_assemblies.Add(typeof(View).GetTypeInfo().Assembly);
+            var assemblies = currentAssembly?.GetReferencedAssemblies();
+
+            if (null == assemblies || 0 == assemblies.Length)
+            {
+                s_assemblies.Add(typeof(View).GetTypeInfo().Assembly);
+            }
+            else
+            {
+                foreach (var assembly in assemblies)
+                {
+                    try
+                    {
+                        s_assemblies.Add(Assembly.Load(assembly));
+                    }
+                    catch (Exception e)
+                    {
+                        Tizen.Log.Fatal("NUI", "Load referenced assemblies e.Message: " + e.Message);
+                        Console.WriteLine("\n[FATAL] Load referenced assemblies e.Message: {0}\n", e.Message);
+                    }
+                }
+            }
 
             s_xmlnsDefinitions = new List<XmlnsDefinitionAttribute>();
 
@@ -343,7 +364,7 @@ namespace Tizen.NUI.Xaml
             out XamlParseException exception)
         {
             if (s_xmlnsDefinitions == null)
-                GatherXmlnsDefinitionAttributes();
+                GatherXmlnsDefinitionAttributes(currentAssembly);
 
             var namespaceURI = xmlType.NamespaceUri;
             var elementName = xmlType.Name;
