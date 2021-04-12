@@ -67,6 +67,14 @@ namespace Tizen.NUI
         private EventHandler<EventArgs> frameRenderedEventHandler;
         private WebViewFrameRenderedCallbackDelegate frameRenderedCallback;
 
+        private readonly WebViewHttpRequestInterceptedSignal httpRequestInterceptedSignal;
+        private EventHandler<WebViewHttpRequestInterceptedEventArgs> httpRequestInterceptedEventHandler;
+        private WebViewHttpRequestInterceptedCallbackDelegate httpRequestInterceptedCallback;
+
+        private readonly WebViewConsoleMessageReceivedSignal consoleMessageReceivedSignal;
+        private EventHandler<WebViewConsoleMessageReceivedEventArgs> consoleMessageReceivedEventHandler;
+        private WebViewConsoleMessageReceivedCallbackDelegate consoleMessageReceivedCallback;
+
         /// <summary>
         /// Creates a WebView.
         /// </summary>
@@ -117,6 +125,8 @@ namespace Tizen.NUI
             urlChangedSignal = new WebViewUrlChangedSignal(Interop.WebView.NewWebViewUrlChangedSignalUrlChanged(SwigCPtr));
             formRepostPolicyDecidedSignal = new WebViewFormRepostDecidedSignal(Interop.WebView.NewWebViewFormRepostDecisionSignalFormRepostDecision(SwigCPtr));
             frameRenderedSignal = new WebViewFrameRenderedSignal(Interop.WebView.WebViewFrameRenderedSignalFrameRenderedGet(SwigCPtr));
+            httpRequestInterceptedSignal = new WebViewHttpRequestInterceptedSignal(Interop.WebView.NewWebViewRequestInterceptorSignalRequestInterceptor(SwigCPtr));
+            consoleMessageReceivedSignal = new WebViewConsoleMessageReceivedSignal(Interop.WebView.NewWebViewConsoleMessageSignalConsoleMessage(SwigCPtr));
 
             BackForwardList = new WebBackForwardList(Interop.WebView.GetWebBackForwardList(SwigCPtr), false);
             Context = new WebContext(Interop.WebView.GetWebContext(SwigCPtr), false);
@@ -148,6 +158,8 @@ namespace Tizen.NUI
                 urlChangedSignal.Dispose();
                 formRepostPolicyDecidedSignal.Dispose();
                 frameRenderedSignal.Dispose();
+                httpRequestInterceptedSignal.Dispose();
+                consoleMessageReceivedSignal.Dispose();
 
                 BackForwardList.Dispose();
                 Context.Dispose();
@@ -211,7 +223,7 @@ namespace Tizen.NUI
         private delegate void WebViewPageLoadCallbackDelegate(IntPtr data, string pageUrl);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void WebViewPageLoadErrorCallbackDelegate(IntPtr data, string pageUrl, int errorCode);
+        private delegate void WebViewPageLoadErrorCallbackDelegate(IntPtr data, IntPtr error);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WebViewScrollEdgeReachedCallbackDelegate(IntPtr data, int edge);
@@ -224,6 +236,12 @@ namespace Tizen.NUI
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WebViewFrameRenderedCallbackDelegate(IntPtr data);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void WebViewHttpRequestInterceptedCallbackDelegate(IntPtr data, IntPtr interceptor);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void WebViewConsoleMessageReceivedCallbackDelegate(IntPtr data, IntPtr message);
 
         /// <summary>
         /// Event for the PageLoadStarted signal which can be used to subscribe or unsubscribe the event handler.<br />
@@ -314,7 +332,7 @@ namespace Tizen.NUI
             {
                 if (pageLoadErrorEventHandler == null)
                 {
-                    pageLoadErrorCallback = (OnPageLoadError);
+                    pageLoadErrorCallback = OnPageLoadError;
                     pageLoadErrorSignal.Connect(pageLoadErrorCallback);
                 }
                 pageLoadErrorEventHandler += value;
@@ -429,6 +447,58 @@ namespace Tizen.NUI
                 if (frameRenderedEventHandler == null && frameRenderedCallback != null)
                 {
                     frameRenderedSignal.Disconnect(frameRenderedCallback);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Event for the HttpRequestIntercepted signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted when http request would be intercepted.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<WebViewHttpRequestInterceptedEventArgs> HttpRequestIntercepted
+        {
+            add
+            {
+                if (httpRequestInterceptedEventHandler == null)
+                {
+                    httpRequestInterceptedCallback = OnHttpRequestIntercepted;
+                    httpRequestInterceptedSignal.Connect(httpRequestInterceptedCallback);
+                }
+                httpRequestInterceptedEventHandler += value;
+            }
+            remove
+            {
+                httpRequestInterceptedEventHandler -= value;
+                if (httpRequestInterceptedEventHandler == null && httpRequestInterceptedCallback != null)
+                {
+                    httpRequestInterceptedSignal.Disconnect(httpRequestInterceptedCallback);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Event for the ConsoleMessageReceived signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted when console message is received.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<WebViewConsoleMessageReceivedEventArgs> ConsoleMessageReceived
+        {
+            add
+            {
+                if (consoleMessageReceivedEventHandler == null)
+                {
+                    consoleMessageReceivedCallback = OnConsoleMessageReceived;
+                    consoleMessageReceivedSignal.Connect(consoleMessageReceivedCallback);
+                }
+                consoleMessageReceivedEventHandler += value;
+            }
+            remove
+            {
+                consoleMessageReceivedEventHandler -= value;
+                if (consoleMessageReceivedEventHandler == null && consoleMessageReceivedCallback != null)
+                {
+                    consoleMessageReceivedSignal.Disconnect(consoleMessageReceivedCallback);
                 }
             }
         }
@@ -1712,15 +1782,11 @@ namespace Tizen.NUI
             pageLoadFinishedEventHandler?.Invoke(this, e);
         }
 
-        private void OnPageLoadError(IntPtr data, string pageUrl, int errorCode)
+        private void OnPageLoadError(IntPtr data, IntPtr error)
         {
-            WebViewPageLoadErrorEventArgs e = new WebViewPageLoadErrorEventArgs();
-
-            e.WebView = Registry.GetManagedBaseHandleFromNativePtr(data) as WebView;
-            e.PageUrl = pageUrl;
-            e.ErrorCode = (WebViewPageLoadErrorEventArgs.LoadErrorCode)errorCode;
-
-            pageLoadErrorEventHandler?.Invoke(this, e);
+            WebPageLoadError loadError = new WebPageLoadError(error, false);
+            pageLoadErrorEventHandler?.Invoke(this, new WebViewPageLoadErrorEventArgs(loadError));
+            loadError.Dispose();
         }
 
         private void OnScrollEdgeReached(IntPtr data, int edge)
@@ -1744,6 +1810,20 @@ namespace Tizen.NUI
         private void OnFrameRendered(IntPtr data)
         {
             frameRenderedEventHandler?.Invoke(this, new EventArgs());
+        }
+
+        private void OnHttpRequestIntercepted(IntPtr data, IntPtr interceptor)
+        {
+            WebHttpRequestInterceptor requestInterceptor = new WebHttpRequestInterceptor(interceptor, false);
+            httpRequestInterceptedEventHandler?.Invoke(this, new WebViewHttpRequestInterceptedEventArgs(requestInterceptor));
+            requestInterceptor.Dispose();
+        }
+
+        private void OnConsoleMessageReceived(IntPtr data, IntPtr message)
+        {
+            WebConsoleMessage consoleMessage = new WebConsoleMessage(message, false);
+            consoleMessageReceivedEventHandler?.Invoke(this, new WebViewConsoleMessageReceivedEventArgs(consoleMessage));
+            consoleMessage.Dispose();
         }
     }
 }
