@@ -750,18 +750,18 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Background color of web view.
+        /// Background color of document of web page.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public new Color BackgroundColor
+        public Color DocumentBackgroundColor
         {
             get
             {
-                return (Color)GetValue(WebViewBackgroundColorProperty);
+                return (Color)GetValue(DocumentBackgroundColorProperty);
             }
             set
             {
-                SetValue(WebViewBackgroundColorProperty, value);
+                SetValue(DocumentBackgroundColorProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -1043,7 +1043,7 @@ namespace Tizen.NUI
             return temp;
         });
 
-        private static readonly BindableProperty WebViewBackgroundColorProperty = BindableProperty.Create(nameof(BackgroundColor), typeof(Vector4), typeof(WebView), true, propertyChanged: (bindable, oldValue, newValue) =>
+        private static readonly BindableProperty DocumentBackgroundColorProperty = BindableProperty.Create(nameof(DocumentBackgroundColor), typeof(Vector4), typeof(WebView), true, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var webview = (WebView)bindable;
             if (newValue != null)
