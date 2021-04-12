@@ -283,6 +283,9 @@ namespace Tizen.NUI.Components
             {
                 //Extension = RecyclerViewItemStyle.CreateExtension();
             }
+            //FIXME : currently padding and margin are not applied by ApplyStyle automatically as missing binding features.               
+            Padding = new Extents(viewStyle.Padding);
+            Margin = new Extents(viewStyle.Margin);
 
             styleApplied = true;
         }

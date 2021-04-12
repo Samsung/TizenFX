@@ -268,6 +268,7 @@ namespace Tizen.NUI.Components
             if (!recycle || !PushRecycleCache(item))
             {
                 //ContentContainer.Remove(item);
+                Console.WriteLine("Item [{0}] Disposed!", item.GetHashCode());
                 Utility.Dispose(item);
             }
         }

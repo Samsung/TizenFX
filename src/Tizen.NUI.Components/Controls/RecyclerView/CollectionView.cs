@@ -263,6 +263,15 @@ namespace Tizen.NUI.Components
                 }
 
                 needInitalizeLayouter = true;
+
+                var styleName = "Tizen.NUI.Components." + (itemsLayouter is LinearLayouter? "LinearLayouter" : (itemsLayouter is GridLayouter ? "GridLayouter" : "ItemsLayouter"));
+                using (ViewStyle layouterStyle = ThemeManager.GetStyle(styleName))
+                {
+                    if (layouterStyle != null)
+                    {
+                        itemsLayouter.Padding = new Extents(layouterStyle.Padding);
+                    }
+                }
                 Init();
             }
         }
@@ -632,23 +641,17 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Scroll to specific item's aligned position with or without animation.
         /// </summary>
-        /// <param name="item">Target item of dataset.</param>
+        /// <param name="index">Target item index of dataset.</param>
         /// <param name="animate">Boolean flag of animation.</param>
         /// <param name="align">Align state of item. see details in ItemScrollTo.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public virtual void ScrollTo(object item, bool animate = false, ItemScrollTo align = ItemScrollTo.Nearest)
+        public virtual void ScrollTo(int index, bool animate = false, ItemScrollTo align = ItemScrollTo.Nearest)
         {
-            if (item == null) throw new ArgumentNullException(nameof(item));
             if (ItemsLayouter == null) throw new Exception("Item Layouter must exist.");
 
-            if (InternalItemSource.GetPosition(item) == -1)
-            {
-                throw new Exception("ScrollTo parameter item is not a member of ItemsSource");
-            }
-
             float scrollPos, curPos, curSize, curItemSize;
-            (float x, float y) = ItemsLayouter.GetItemPosition(item);
-            (float width, float height) = ItemsLayouter.GetItemSize(item);
+            (float x, float y) = ItemsLayouter.GetItemPosition(index);
+            (float width, float height) = ItemsLayouter.GetItemSize(index);
             if (ScrollingDirection == Direction.Horizontal)
             {
                 scrollPos = x;
@@ -696,6 +699,28 @@ namespace Tizen.NUI.Components
 
             //Console.WriteLine("[NUI] ScrollTo [{0}]-------------------", scrollPos);
             base.ScrollTo(scrollPos, animate);
+        }
+
+        /// <summary>
+        /// Apply style to CollectionView
+        /// </summary>
+        /// <param name="viewStyle">The style to apply.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void ApplyStyle(ViewStyle viewStyle)
+        {
+            base.ApplyStyle(viewStyle);
+            if (viewStyle != null)
+            {
+                //Extension = RecyclerViewItemStyle.CreateExtension();
+            }
+            if (itemsLayouter != null)
+            {
+                string styleName = "Tizen.NUI.Compoenents." + (itemsLayouter is LinearLayouter? "LinearLayouter" : (itemsLayouter is GridLayouter ? "GridLayouter" : "ItemsLayouter"));
+                using (ViewStyle layouterStyle = ThemeManager.GetStyle(styleName))
+                {
+                    itemsLayouter.Padding = new Extents(layouterStyle.Padding);
+                }
+            }
         }
 
         // Realize and Decorate the item.
