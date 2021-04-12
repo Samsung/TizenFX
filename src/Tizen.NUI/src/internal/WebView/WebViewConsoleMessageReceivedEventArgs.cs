@@ -21,20 +21,20 @@ using System.ComponentModel;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// Event arguments that passed via the WebView.PageLoadError.
+    /// Event arguments that passed via the WebView.ConsoleMessageReceived.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class WebViewPageLoadErrorEventArgs : EventArgs
+    public class WebViewConsoleMessageReceivedEventArgs : EventArgs
     {
-        internal WebViewPageLoadErrorEventArgs(WebPageLoadError error)
+        internal WebViewConsoleMessageReceivedEventArgs(WebConsoleMessage message)
         {
-            PageLoadError = error;
+            ConsoleMessage = message;
         }
 
         /// <summary>
-        /// The load error of current web page.
+        /// The console message of current webpage.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public WebPageLoadError PageLoadError { get; }
+        public WebConsoleMessage ConsoleMessage { get; }
     }
 }

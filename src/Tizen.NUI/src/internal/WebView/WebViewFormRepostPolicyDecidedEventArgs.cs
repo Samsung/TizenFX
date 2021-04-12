@@ -21,7 +21,7 @@ using System.ComponentModel;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// Event arguments that passed via the WebView.WebFormRepostDecision.
+    /// Event arguments that passed via the WebView.FormRepostPolicyDecided.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class WebViewFormRepostPolicyDecidedEventArgs : EventArgs
