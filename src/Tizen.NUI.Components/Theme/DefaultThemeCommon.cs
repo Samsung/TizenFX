@@ -396,13 +396,13 @@ namespace Tizen.NUI.Components
                 },
                 ActionView = new ViewStyle()
                 {
-                    Size = new Size(-1, 48),
+                    Size = new Size(-1, 120),
                     CornerRadius = 0,
                     BackgroundColor = new Color(0, 0, 0, 0),
                 },
                 ActionButton = new ButtonStyle()
                 {
-                    Size = new Size(-1, 48),
+                    Size = new Size(-1, 120),
                     CornerRadius = 0,
                     BackgroundColor = new Color(0, 0, 0, 0),
                     Text = new TextLabelStyle()
@@ -659,6 +659,40 @@ namespace Tizen.NUI.Components
                 ActionContent = new ViewStyle()
                 {
                     Size = new Size(1024, -2),
+                },
+            });
+
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.MenuItem", new ButtonStyle()
+            {
+                Size = new Size(480, -2),
+                MinimumSize = new Size2D(0, 72),
+                CornerRadius = 0,
+                BackgroundImage = FrameworkInformation.ResourcePath + "nui_component_menu_item_bg.png",
+                Padding = new Extents(16, 16, 16, 16),
+                Text = new TextLabelStyle()
+                {
+                    PixelSize = 32,
+                    MultiLine = true,
+                    HorizontalAlignment = HorizontalAlignment.Begin,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    TextColor = new Selector<Color>()
+                    {
+                        Normal = new Color("#001447FF"),
+                        Focused = new Color("#00338BFF"),
+                        Pressed = new Color("#1B69CAFF"),
+                        Disabled = new Color("#C3CAD2FF"),
+                    },
+                },
+                Icon = new ImageViewStyle()
+                {
+                    Size = new Size(-2, 48),
+                    Color = new Selector<Color>()
+                    {
+                        Normal = new Color("#001447FF"),
+                        Focused = new Color("#00338BFF"),
+                        Pressed = new Color("#1B69CAFF"),
+                        Disabled = new Color("#C3CAD2FF"),
+                    },
                 },
             });
 
