@@ -428,10 +428,5 @@ namespace Tizen.NUI
                 Interop.WebSettings.SetDefaultTextEncodingName(SwigCPtr, value);
             }
         }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(WebSettings obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
-        }
     }
 }

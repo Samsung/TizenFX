@@ -132,6 +132,7 @@ namespace Tizen.NUI.Components
                 {
                     BackgroundColor = new Color(0.05f, 0.63f, 0.9f, 1),
                 },
+                IndeterminateImageUrl = FrameworkInformation.ResourcePath + "nui_component_default_progress_indeterminate.png",
             });
 
             theme.AddStyleWithoutClone("Tizen.NUI.Components.RadioButton", new ButtonStyle()
@@ -244,11 +245,13 @@ namespace Tizen.NUI.Components
 
             theme.AddStyleWithoutClone("Tizen.NUI.Components.Scrollbar", new ScrollbarStyle()
             {
-                TrackThickness = 6,
-                ThumbThickness = 6,
-                TrackColor = new Color(1, 1, 1, 0.15f),
-                ThumbColor = new Color(0.6f, 0.6f, 0.6f, 1.0f),
-                TrackPadding = 4
+                TrackThickness = 12,
+                ThumbThickness = 12,
+                TrackColor = new Color(0f, 0f, 0f, 0f),
+                ThumbColor = new Color("#0A0E4AFF"),
+                TrackPadding = 4,
+                ThumbVerticalImageUrl = FrameworkInformation.ResourcePath + "nui_component_default_scroll_vbar.#.png",
+                ThumbHorizontalImageUrl = FrameworkInformation.ResourcePath + "nui_component_default_scroll_hbar.#.png",
             });
 
             theme.AddStyleWithoutClone("Tizen.NUI.Components.RecyclerViewItem", new RecyclerViewItemStyle()
@@ -567,6 +570,42 @@ namespace Tizen.NUI.Components
                     },
                     StartScrollOffset = new Size2D(0, 12),
                 }
+            });
+
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.AlertDialog", new AlertDialogStyle()
+            {
+                Size = new Size(-2, -2),
+                Padding = new Extents(80, 80, 0, 0),
+                BackgroundImage = FrameworkInformation.ResourcePath + "nui_component_default_dialog_bg.#.png",
+                TitleTextLabel = new TextLabelStyle()
+                {
+                    Size = new Size(1024, -2),
+                    Margin = new Extents(0, 0, 40, 40),
+                    PixelSize = 40,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    TextColor = new Selector<Color>()
+                    {
+                        Normal = new Color("#000C2BFF"),
+                    },
+                },
+                MessageTextLabel = new TextLabelStyle()
+                {
+                    Size = new Size(1024, -2),
+                    Margin = new Extents(0, 0, 0, 64),
+                    PixelSize = 32,
+                    MultiLine = true,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    TextColor = new Selector<Color>()
+                    {
+                        Normal = new Color("#000C2BFF"),
+                    },
+                },
+                ActionContent = new ViewStyle()
+                {
+                    Size = new Size(1024, -2),
+                },
             });
 
             return theme;
