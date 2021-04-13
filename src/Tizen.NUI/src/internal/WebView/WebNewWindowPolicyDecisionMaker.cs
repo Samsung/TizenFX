@@ -37,19 +37,19 @@ namespace Tizen.NUI
         public enum DecisionType
         {
             /// <summary>
-            /// Use
+            /// Accepts the decision.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             Use,
 
             /// <summary>
-            /// Download
+            /// Decides to download something.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             Download,
 
             /// <summary>
-            /// Ignore
+            /// Ignores the decision.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             Ignore,
@@ -102,88 +102,97 @@ namespace Tizen.NUI
         /// Gets the url that request policy decision.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Uri GetUrl()
+        public string Url
         {
-            string result = Interop.WebNewWindowPolicyDecisionMaker.GetUrl(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return new Uri(result);
+            get
+            {
+                return Interop.WebNewWindowPolicyDecisionMaker.GetUrl(SwigCPtr);
+            }
         }
 
         /// <summary>
         /// Gets a cookie that web page has.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public string GetCookie()
+        public string Cookie
         {
-            string result = Interop.WebNewWindowPolicyDecisionMaker.GetCookie(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return result;
+            get
+            {
+                return Interop.WebNewWindowPolicyDecisionMaker.GetCookie(SwigCPtr);
+            }
         }
 
         /// <summary>
         /// Gets a decision type.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public DecisionType GetDecisionType()
+        public DecisionType PolicyDecisionType
         {
-            DecisionType result = (DecisionType)Interop.WebNewWindowPolicyDecisionMaker.GetDecisionType(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return result;
+            get
+            {
+                return (DecisionType)Interop.WebNewWindowPolicyDecisionMaker.GetDecisionType(SwigCPtr);
+            }
         }
 
         /// <summary>
         /// Gets a MIME type for response data.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public string GetResponseMime()
+        public string ResponseMime
         {
-            string result = Interop.WebNewWindowPolicyDecisionMaker.GetResponseMime(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return result;
+            get
+            {
+                return Interop.WebNewWindowPolicyDecisionMaker.GetResponseMime(SwigCPtr);
+            }
         }
 
         /// <summary>
         /// Gets a HTTP status code.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public int GetResponseStatusCode()
+        public int ResponseStatusCode
         {
-            int result = Interop.WebNewWindowPolicyDecisionMaker.GetResponseStatusCode(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return result;
+            get
+            {
+                return Interop.WebNewWindowPolicyDecisionMaker.GetResponseStatusCode(SwigCPtr);
+            }
         }
 
         /// <summary>
         /// Gets a navigation type.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public NavigationType GetNavigationType()
+        public NavigationType DecisionNavigationType
         {
-            NavigationType result = (NavigationType)Interop.WebNewWindowPolicyDecisionMaker.GetNavigationType(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return result;
+            get
+            {
+                return (NavigationType)Interop.WebNewWindowPolicyDecisionMaker.GetNavigationType(SwigCPtr);
+            }
         }
 
         /// <summary>
         /// Gets frame of web view.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public WebFrame GetFrame()
+        public WebFrame Frame
         {
-            IntPtr result = Interop.WebNewWindowPolicyDecisionMaker.GetFrame(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return new WebFrame(result, false);
+            get
+            {
+                IntPtr result = Interop.WebNewWindowPolicyDecisionMaker.GetFrame(SwigCPtr);
+                return new WebFrame(result, false);
+            }
         }
 
         /// <summary>
         /// Gets a scheme.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public string GetScheme()
+        public string Scheme
         {
-            string result = Interop.WebNewWindowPolicyDecisionMaker.GetScheme(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return result;
+            get
+            {
+                return Interop.WebNewWindowPolicyDecisionMaker.GetScheme(SwigCPtr);
+            }
         }
 
         /// <summary>
