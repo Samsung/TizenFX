@@ -198,7 +198,7 @@ namespace Tizen.NUI.Components
         /// Indicates to dismiss dialog by touching on scrim.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool EnableDismissOnScrim { get; set; }
+        public bool EnableDismissOnScrim { get; set; } = true;
 
         private View CreateDefaultScrim()
         {
