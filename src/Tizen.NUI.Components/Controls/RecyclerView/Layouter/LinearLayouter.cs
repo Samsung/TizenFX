@@ -320,7 +320,6 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-
                     if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
                         ItemPosition.Add(Current);
 
