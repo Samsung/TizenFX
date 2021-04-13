@@ -1930,9 +1930,7 @@ namespace Tizen.NUI
 
         private void OnPageLoadError(IntPtr data, IntPtr error)
         {
-            WebPageLoadError loadError = new WebPageLoadError(error, false);
-            pageLoadErrorEventHandler?.Invoke(this, new WebViewPageLoadErrorEventArgs(loadError));
-            loadError.Dispose();
+            pageLoadErrorEventHandler?.Invoke(this, new WebViewPageLoadErrorEventArgs(new WebPageLoadError(error, false)));
         }
 
         private void OnScrollEdgeReached(IntPtr data, int edge)
@@ -1987,16 +1985,12 @@ namespace Tizen.NUI
 
         private void OnHttpRequestIntercepted(IntPtr data, IntPtr interceptor)
         {
-            WebHttpRequestInterceptor requestInterceptor = new WebHttpRequestInterceptor(interceptor, false);
-            httpRequestInterceptedEventHandler?.Invoke(this, new WebViewHttpRequestInterceptedEventArgs(requestInterceptor));
-            requestInterceptor.Dispose();
+            httpRequestInterceptedEventHandler?.Invoke(this, new WebViewHttpRequestInterceptedEventArgs(new WebHttpRequestInterceptor(interceptor, false)));
         }
 
         private void OnConsoleMessageReceived(IntPtr data, IntPtr message)
         {
-            WebConsoleMessage consoleMessage = new WebConsoleMessage(message, false);
-            consoleMessageReceivedEventHandler?.Invoke(this, new WebViewConsoleMessageReceivedEventArgs(consoleMessage));
-            consoleMessage.Dispose();
+            consoleMessageReceivedEventHandler?.Invoke(this, new WebViewConsoleMessageReceivedEventArgs(new WebConsoleMessage(message, false)));
         }
     }
 }

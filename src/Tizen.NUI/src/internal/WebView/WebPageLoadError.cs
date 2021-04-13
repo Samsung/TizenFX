@@ -113,13 +113,13 @@ namespace Tizen.NUI
             /// Cannot connect to the network.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            CantConnect,
+            CannotConnect,
 
             /// <summary>
             /// Fail to look up host from the DNS.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            CantLookupHost,
+            CannotLookupHost,
 
             /// <summary>
             /// Fail to SSL/TLS handshake.
@@ -186,44 +186,48 @@ namespace Tizen.NUI
         /// Queries failing URL for this error.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Uri GetUrl()
+        public string Url
         {
-            string result = Interop.WebPageLoadError.GetUrl(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return new Uri(result);
+            get
+            {
+                return Interop.WebPageLoadError.GetUrl(SwigCPtr);
+            }
         }
 
         /// <summary>
         /// Queries code for this error.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ErrorCode GetErrorCode()
+        public ErrorCode Code
         {
-            ErrorCode result = (ErrorCode)Interop.WebPageLoadError.GetCode(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return result;
+            get
+            {
+                return (ErrorCode)Interop.WebPageLoadError.GetCode(SwigCPtr);
+            }
         }
 
         /// <summary>
         /// Queries description for this error.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public string GetDescription()
+        public string Description
         {
-            string result = Interop.WebPageLoadError.GetDescription(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return result;
+            get
+            {
+                return Interop.WebPageLoadError.GetDescription(SwigCPtr);
+            }
         }
 
         /// <summary>
         /// Queries type for this error.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ErrorType GetErrorType()
+        public ErrorType Type
         {
-            ErrorType result = (ErrorType)Interop.WebPageLoadError.GetType(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return result;
+            get
+            {
+                return (ErrorType)Interop.WebPageLoadError.GetType(SwigCPtr);
+            }
         }
     }
 }

@@ -77,44 +77,48 @@ namespace Tizen.NUI
         /// Queries the source of the console message.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public string GetSource()
+        public string Source
         {
-            string result = Interop.WebConsoleMessage.GetSource(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return result;
+            get
+            {
+                return Interop.WebConsoleMessage.GetSource(SwigCPtr);
+            }
         }
 
         /// <summary>
         /// Queries line no of the console message.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint GetLine()
+        public uint Line
         {
-            uint result = Interop.WebConsoleMessage.GetLine(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return result;
+            get
+            {
+                return Interop.WebConsoleMessage.GetLine(SwigCPtr);
+            }
         }
 
         /// <summary>
         /// Queries the log severity of the console message.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public SeverityLevel GetSeverityLevel()
+        public SeverityLevel Level
         {
-            SeverityLevel result = (SeverityLevel)Interop.WebConsoleMessage.GetSeverityLevel(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return result;
+            get
+            {
+                return (SeverityLevel)Interop.WebConsoleMessage.GetSeverityLevel(SwigCPtr);
+            }
         }
 
         /// <summary>
         /// Queries the text of console message.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public string GetText()
+        public string Text
         {
-            string result = Interop.WebConsoleMessage.GetText(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return result;
+            get
+            {
+                return Interop.WebConsoleMessage.GetText(SwigCPtr);
+            }
         }
     }
 }

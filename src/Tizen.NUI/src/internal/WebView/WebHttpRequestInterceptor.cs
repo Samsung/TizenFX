@@ -34,11 +34,12 @@ namespace Tizen.NUI
         /// Gets url of intercepted request.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Uri GetUrl()
+        public string Url
         {
-            string result = Interop.WebHttpRequestInterceptor.GetUrl(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return new Uri(result);
+            get
+            {
+                return Interop.WebHttpRequestInterceptor.GetUrl(SwigCPtr);
+            }
         }
 
         /// <summary>
