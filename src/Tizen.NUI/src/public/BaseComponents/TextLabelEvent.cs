@@ -37,8 +37,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The AnchorClicked signal is emitted when the anchor is clicked.
         /// </summary>
-        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public event EventHandler<AnchorClickedEventArgs> AnchorClicked
         {
             add
