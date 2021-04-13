@@ -320,7 +320,9 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    ItemPosition.Add(Current);
+
+                    if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
+                        ItemPosition.Add(Current);
 
                     if (i == 0 && hasHeader) Current += headerSize;
                     else if (i == count - 1 && hasFooter) Current += footerSize;
@@ -331,7 +333,6 @@ namespace Tizen.NUI.Components
             ScrollContentSize = Current + (IsHorizontal? Padding.End : Padding.Bottom);
             if (IsHorizontal) colView.ContentContainer.SizeWidth = ScrollContentSize;
             else colView.ContentContainer.SizeHeight = ScrollContentSize;
-
 
             base.Initialize(view);
             //Console.WriteLine("[NUI] Init Done, StepCnadidate{0}, Scroll{1}", StepCandidate, ScrollContentSize);
@@ -397,42 +398,8 @@ namespace Tizen.NUI.Components
                 }
                 if (item == null) item = colView.RealizeItem(i);
                 VisibleItems.Add(item);
-/*
-                // 5. Placing item.
-                float posX = 0F, posY = 0F;
-                int spaceStartX = Padding.Start + item.Margin.Start;
-                int spaceStartY = Padding.Top + item.Margin.Top;
 
-                if (isGrouped)
-                {
-                    //isHeader?
-                    if (colView.Header == item)
-                    {
-                        posX = spaceStartX;
-                        posY = spaceStartY;
-                    }
-                    else if (colView.Footer == item)
-                    {
-                        posX = (IsHorizontal? ScrollContentSize - footerSize - Padding.End + footerMargin.Start : spaceStartX);
-                        posY = (IsHorizontal? spaceStartY : ScrollContentSize - footerSize - Padding.Bottom - footerMargin.Top);
-                    }
-                    else
-                    {
-                        GroupInfo gInfo = GetGroupInfo(i);
-                        posX = (IsHorizontal?
-                                item.Margin.Start + gInfo.GroupPosition + gInfo.ItemPosition[i - gInfo.StartIndex]:
-                                spaceStartX);
-                        posY = (IsHorizontal?
-                                spaceStartY:
-                                item.Margin.Top + gInfo.GroupPosition + gInfo.ItemPosition[i - gInfo.StartIndex]);
-                    }
-                }
-                else
-                {
-                    posX = (IsHorizontal? ItemPosition[i] + item.Margin.Start : spaceStartX);
-                    posY = (IsHorizontal? spaceStartY : ItemPosition[i] + item.Margin.Top);
-                }
-*/
+                // 5. Placing item.
                 (float posX, float posY) = GetItemPosition(i);
                 item.Position = new Position(posX, posY);
             
