@@ -28,6 +28,26 @@ namespace Tizen.NUI.Components
     public abstract class ItemsLayouter : ICollectionChangedNotifier, IDisposable
     {
         private bool disposed = false;
+        private Extents padding = new Extents(0, 0, 0, 0);
+
+        /// <summary>
+        /// Padding for ContentContainer of RecyclerView.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Extents Padding {
+            get
+            {
+                return padding;
+            }
+            set
+            {
+                padding = value;
+                if (ItemsView?.ContentContainer != null)
+                {
+                    ItemsView.Padding = padding;
+                }
+            }
+        }
 
         /// <summary>
         /// Container which contains ViewItems.
@@ -76,6 +96,12 @@ namespace Tizen.NUI.Components
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected float StepCandidate { get; set; }
+
+        /// <summary>
+        /// Candidate item's Margin for scroll size measure.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected Extents CandidateMargin { get; set; }
 
         /// <summary>
         /// Content size of scrollable.
@@ -129,30 +155,6 @@ namespace Tizen.NUI.Components
             VisibleItems.Clear();
             ItemsView = null;
             Container = null;
-        }
-
-        /// <summary>
-        /// Position of layouting item.
-        /// </summary>
-        /// <param name="item">item of dataset.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public virtual (float X, float Y) GetItemPosition(object item)
-        {
-            if (item == null) throw new ArgumentNullException(nameof(item));
-            // Layouting Items in scrollPosition.
-            return (0, 0);
-        }
-
-        /// <summary>
-        /// Size of layouting item.
-        /// </summary>
-        /// <param name="item">item of dataset.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public virtual (float X, float Y) GetItemSize(object item)
-        {
-            if (item == null) throw new ArgumentNullException(nameof(item));
-            // Layouting Items in scrollPosition.
-            return (0, 0);
         }
 
         /// <summary>
@@ -307,12 +309,12 @@ namespace Tizen.NUI.Components
             // but in some multiple-line TextLabel can be long enough to over the it's parent size.
 
             MeasureSpecification childWidthMeasureSpec = LayoutGroup.GetChildMeasureSpecification(
-                        new MeasureSpecification(new LayoutLength(parent.Size.Width), MeasureSpecification.ModeType.Exactly),
+                        new MeasureSpecification(new LayoutLength(parent.Size.Width - parent.Padding.Start - parent.Padding.End - child.Margin.Start - child.Margin.End), MeasureSpecification.ModeType.Exactly),
                         new LayoutLength(0),
                         new LayoutLength(child.WidthSpecification));
 
             MeasureSpecification childHeightMeasureSpec = LayoutGroup.GetChildMeasureSpecification(
-                        new MeasureSpecification(new LayoutLength(parent.Size.Height), MeasureSpecification.ModeType.Exactly),
+                        new MeasureSpecification(new LayoutLength(parent.Size.Height - parent.Padding.Top - parent.Padding.Bottom - child.Margin.Top - child.Margin.Bottom), MeasureSpecification.ModeType.Exactly),
                         new LayoutLength(0),
                         new LayoutLength(child.HeightSpecification));
 
@@ -343,7 +345,21 @@ namespace Tizen.NUI.Components
             }
 
             disposed = true;
-            if (disposing) Clear();
+            if (disposing)
+            {
+                Clear();
+                padding.Dispose();
+            }
+        }
+
+        internal virtual (float X, float Y) GetItemPosition(int index)
+        {
+            return (0, 0);
+        }
+
+        internal virtual (float Width, float Height) GetItemSize(int index)
+        {
+            return (0, 0);
         }
     }
 }
