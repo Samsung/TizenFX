@@ -103,10 +103,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public int X
         {
+            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Rectangle(...) constructor")]
             set
             {
-                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Rectangle(...) constructor");
-
                 x = (value);
 
                 callback?.Invoke(X, Y, Width, Height);
@@ -134,10 +133,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public int Y
         {
+            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Rectangle(...) constructor")]
             set
             {
-                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Rectangle(...) constructor");
-
                 y = (value);
 
                 callback?.Invoke(X, Y, Width, Height);
@@ -165,10 +163,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public int Width
         {
+            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Rectangle(...) constructor")]
             set
             {
-                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Rectangle(...) constructor");
-
                 width = (value);
 
                 callback?.Invoke(X, Y, Width, Height);
@@ -196,10 +193,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public int Height
         {
+            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Rectangle(...) constructor")]
             set
             {
-                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Rectangle(...) constructor");
-
                 height = (value);
 
                 callback?.Invoke(X, Y, Width, Height);
