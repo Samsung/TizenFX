@@ -666,7 +666,7 @@ namespace Tizen.NUI.Components
             else if (colView.InternalItemSource.IsFooter(index))
             {
                 return ((IsHorizontal? ScrollContentSize - footerSize - Padding.End + footerMargin.Start : spaceStartX + footerMargin.Start),
-                        (IsHorizontal? spaceStartY + footerMargin.Top : ScrollContentSize - footerSize - Padding.Bottom - footerMargin.Top));
+                        (IsHorizontal? spaceStartY + footerMargin.Top : ScrollContentSize - footerSize - Padding.Bottom + footerMargin.Top));
             }
             else if (isGrouped)
             {
@@ -692,35 +692,35 @@ namespace Tizen.NUI.Components
             {
                 return ((IsHorizontal? (int)headerSize : (int)(colView.Size.Width) - Padding.Start - Padding.End)
                         - headerMargin.Start - headerMargin.End,
-                        (IsHorizontal? (int)colView.Size.Height - Padding.Top - Padding.End: (int)headerSize)
+                        (IsHorizontal? (int)colView.Size.Height - Padding.Top - Padding.Bottom: (int)headerSize)
                         - headerMargin.Top - headerMargin.Bottom);
             }
             else if (colView.InternalItemSource.IsFooter(index))
             {
                 return ((IsHorizontal? (int)footerSize : (int)(colView.Size.Width) - Padding.Start - Padding.End)
                         - footerMargin.Start - footerMargin.End,
-                        (IsHorizontal? (int)colView.Size.Height - Padding.Top - Padding.End: (int)footerSize)
+                        (IsHorizontal? (int)colView.Size.Height - Padding.Top - Padding.Bottom: (int)footerSize)
                         - footerMargin.Top - footerMargin.Bottom);
             }
             else if (colView.InternalItemSource.IsGroupHeader(index))
             {
                 return ((IsHorizontal? (int)groupHeaderSize : (int)(colView.Size.Width) - Padding.Start - Padding.End)
                         - groupHeaderMargin.Start - groupHeaderMargin.End,
-                        (IsHorizontal? (int)colView.Size.Height - Padding.Top - Padding.End: (int)groupHeaderSize)
+                        (IsHorizontal? (int)colView.Size.Height - Padding.Top - Padding.Bottom: (int)groupHeaderSize)
                         - groupHeaderMargin.Top - groupHeaderMargin.Bottom);
             }
             else if (colView.InternalItemSource.IsGroupFooter(index))
             {
                 return ((IsHorizontal? (int)groupFooterSize : (int)(colView.Size.Width) - Padding.Start - Padding.End)
                         - groupFooterMargin.Start - groupFooterMargin.End,
-                        (IsHorizontal? (int)colView.Size.Height - Padding.Top - Padding.End: (int)groupFooterSize)
+                        (IsHorizontal? (int)colView.Size.Height - Padding.Top - Padding.Bottom: (int)groupFooterSize)
                         - groupFooterMargin.Top - groupFooterMargin.Bottom);
             }
             else
             {
                 return ((IsHorizontal? (int)StepCandidate : (int)(colView.Size.Width) - Padding.Start - Padding.End)
                         - CandidateMargin.Start - CandidateMargin.End,
-                        (IsHorizontal? (int)colView.Size.Height - Padding.Top - Padding.End: (int)StepCandidate)
+                        (IsHorizontal? (int)colView.Size.Height - Padding.Top - Padding.Bottom: (int)StepCandidate)
                         - CandidateMargin.Top - CandidateMargin.Bottom);
             }            
         }
