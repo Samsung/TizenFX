@@ -200,6 +200,25 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool EnableDismissOnScrim { get; set; } = true;
 
+        /// <summary>
+        /// The color of scrim.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color ScrimColor
+        {
+            get
+            {
+                return Scrim?.BackgroundColor;
+            }
+            set
+            {
+                if (Scrim != null)
+                {
+                    Scrim.BackgroundColor = value;
+                }
+            }
+        }
+
         private View CreateDefaultScrim()
         {
             //FIXME: Needs to separate GUI implementation codes to style cs file.
