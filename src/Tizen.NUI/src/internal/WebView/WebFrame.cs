@@ -15,26 +15,29 @@
  *
  */
 
-using System;
 using System.ComponentModel;
 
 namespace Tizen.NUI
 {
     /// <summary>
-    /// Event arguments that passed via the WebView.WebFormRepostDecision.
+    /// It is a class for frame of web view.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class WebViewFormRepostPolicyDecidedEventArgs : EventArgs
+    public class WebFrame : Disposable
     {
-        internal WebViewFormRepostPolicyDecidedEventArgs(WebFormRepostPolicyDecisionMaker maker)
+        internal WebFrame(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-            FormRepostPolicyDecisionMaker = maker;
         }
 
         /// <summary>
-        /// The form repost policy decision maker.
+        /// Checks whether the frame is main frame or not.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public WebFormRepostPolicyDecisionMaker FormRepostPolicyDecisionMaker { get; }
+        public bool IsMainFrame()
+        {
+            bool result = Interop.WebFrame.IsMainFrame(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return result;
+        }
     }
 }

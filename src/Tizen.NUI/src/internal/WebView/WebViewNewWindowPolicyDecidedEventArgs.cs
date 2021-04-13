@@ -21,20 +21,20 @@ using System.ComponentModel;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// Event arguments that passed via the WebView.WebFormRepostDecision.
+    /// Event arguments that passed via the WebView.NewWindowPolicyDecided.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class WebViewFormRepostPolicyDecidedEventArgs : EventArgs
+    public class WebViewNewWindowPolicyDecidedEventArgs : EventArgs
     {
-        internal WebViewFormRepostPolicyDecidedEventArgs(WebFormRepostPolicyDecisionMaker maker)
+        internal WebViewNewWindowPolicyDecidedEventArgs(WebNewWindowPolicyDecisionMaker maker)
         {
-            FormRepostPolicyDecisionMaker = maker;
+            NewWindowPolicyDecisionMaker = maker;
         }
 
         /// <summary>
-        /// The form repost policy decision maker.
+        /// The new window policy decision maker.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public WebFormRepostPolicyDecisionMaker FormRepostPolicyDecisionMaker { get; }
+        public WebNewWindowPolicyDecisionMaker NewWindowPolicyDecisionMaker { get; }
     }
 }
