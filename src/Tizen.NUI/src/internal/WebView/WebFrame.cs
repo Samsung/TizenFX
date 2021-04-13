@@ -33,11 +33,12 @@ namespace Tizen.NUI
         /// Checks whether the frame is main frame or not.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool IsMainFrame()
+        public bool IsMainFrame
         {
-            bool result = Interop.WebFrame.IsMainFrame(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return result;
+            get
+            {
+                return Interop.WebFrame.IsMainFrame(SwigCPtr);
+            }
         }
     }
 }
