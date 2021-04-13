@@ -39,8 +39,9 @@ namespace Tizen.NUI
             { "boxShadow.CornerRadius", new VisualPropertyData(View.Property.SHADOW, Visual.Property.CornerRadius, ObjectIntToFloat) },
             { "boxShadow.Offset",       new VisualPropertyData(View.Property.SHADOW, (int)VisualTransformPropertyType.Offset) },
             { "boxShadow.Opacity",      new VisualPropertyData(View.Property.SHADOW, Visual.Property.Opacity, ObjectIntToFloat) },
-            { "cornerRadius",           new VisualPropertyData(View.Property.BACKGROUND, Visual.Property.CornerRadius, ObjectVector4ToFloat, null,
-                                        new VisualPropertyData(View.Property.SHADOW, Visual.Property.CornerRadius, ObjectVector4ToFloat)) },
+            { "cornerRadius",           new VisualPropertyData(ImageView.Property.IMAGE, Visual.Property.CornerRadius, null, null,
+                                        new VisualPropertyData(View.Property.SHADOW, Visual.Property.CornerRadius, null, null,
+                                        new VisualPropertyData(View.Property.BACKGROUND, Visual.Property.CornerRadius, null, null))) },
             { "imageShadow.Offset",     new VisualPropertyData(View.Property.SHADOW, (int)VisualTransformPropertyType.Offset) },
             { "shadow.CornerRadius",    new VisualPropertyData(View.Property.SHADOW, Visual.Property.CornerRadius, ObjectIntToFloat) },
         };
@@ -109,15 +110,14 @@ namespace Tizen.NUI
             if (property.propertyIndex == Property.InvalidIndex)
             {
                 property.Dispose();
-                return null;
+                return data.RelatedData == null ? null : GenerateVisualPropertySearchResult(view, data.RelatedData);
             }
 
             SearchResult result = new SearchResult(property, data.ObjectConverter, data.PropertyValueConverter);
 
-            while (data.RelatedData != null)
+            if (data.RelatedData != null)
             {
                 result.NextResult = GenerateVisualPropertySearchResult(view, data.RelatedData);
-                data = data.RelatedData;
             }
 
             return result;
