@@ -256,7 +256,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void ApplyStyle(ViewStyle viewStyle)
         {
-
             base.ApplyStyle(viewStyle);
             if (viewStyle != null && viewStyle is DefaultLinearItemStyle defaultStyle)
             {
@@ -271,12 +270,9 @@ namespace Tizen.NUI.Components
                 if (itemSeperator != null)
                 {
                     itemSeperator.ApplyStyle(defaultStyle.Seperator);
-                    //FIXME : currently margin is not applied by ApplyStyle automatically.
-                    itemSeperator.Margin = defaultStyle.Seperator.Margin;
+                    //FIXME : currently padding and margin are not applied by ApplyStyle automatically as missing binding features.
+                    itemSeperator.Margin = new Extents(defaultStyle.Seperator.Margin);
                 }
-                //FIXME : currently padding is not applied by ApplyStyle automatically.
-                Extents padding = defaultStyle.Padding;
-                Padding = padding;
             }
         }
 

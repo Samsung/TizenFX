@@ -254,6 +254,21 @@ namespace Tizen.NUI.Components
                 ThumbHorizontalImageUrl = FrameworkInformation.ResourcePath + "nui_component_default_scroll_hbar.#.png",
             });
 
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.LinearLayouter", new ViewStyle()
+            {
+                Padding = new Extents(64, 64, 0, 0)
+            });
+
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.GridLayouter", new ViewStyle()
+            {
+                Padding = new Extents(0, 0, 0, 0),
+            });
+
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.ItemsLayouter", new ViewStyle()
+            {
+                Padding = new Extents(0, 0, 0, 0),
+            });
+
             theme.AddStyleWithoutClone("Tizen.NUI.Components.RecyclerViewItem", new RecyclerViewItemStyle()
             {
                 BackgroundColor = new Selector<Color>()
@@ -269,6 +284,7 @@ namespace Tizen.NUI.Components
             {
                 SizeHeight = 108,
                 Padding = new Extents(64, 64, 18, 17),
+                Margin = new Extents(0, 0, 0, 0),
                 BackgroundColor = new Selector<Color>()
                 {
                     Normal = new Color(1, 1, 1, 1),
@@ -307,7 +323,8 @@ namespace Tizen.NUI.Components
             });
             theme.AddStyleWithoutClone("Tizen.NUI.Components.DefaultGridItem", new DefaultGridItemStyle()
             {
-                Padding = new Extents(5, 5, 5, 5),
+                Padding = new Extents(0, 0, 0, 0),
+                Margin = new Extents(5, 5, 5, 5),
                 Caption = new TextLabelStyle()
                 {
                     SizeHeight = 60,
@@ -324,6 +341,7 @@ namespace Tizen.NUI.Components
             {
                 SizeHeight = 60,
                 Padding = new Extents(64, 64, 12, 12),
+                Margin = new Extents(0, 0, 0, 0),
                 BackgroundColor = new Selector<Color>()
                 {
                     Normal = new Color("#EEEEF1FF"),
