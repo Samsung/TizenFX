@@ -305,6 +305,18 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebViewFrameRenderedSignal_Disconnect")]
             public static extern void WebViewFrameRenderedSignalDisconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_WebViewPolicyDecisionSignal_PolicyDecision")]
+            public static extern global::System.IntPtr NewWebViewPolicyDecisionSignalPolicyDecision(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WebViewPolicyDecisionSignal")]
+            public static extern void DeleteWebViewPolicyDecisionSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebViewPolicyDecisionSignal_Connect")]
+            public static extern void WebViewPolicyDecisionSignalConnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebViewPolicyDecisionSignal_Disconnect")]
+            public static extern void WebViewPolicyDecisionSignalDisconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
         }
     }
 }
