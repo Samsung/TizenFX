@@ -293,7 +293,8 @@ namespace Tizen.NUI.Components
                                 GroupSize = groupHeaderSize,
                                 GroupPosition = Current
                             };
-                            currentGroup.ItemPosition.Add(0);
+                            if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
+                                currentGroup.ItemPosition.Add(0);
                             groups.Add(currentGroup);
                             Current += groupHeaderSize;
                         }
@@ -303,14 +304,16 @@ namespace Tizen.NUI.Components
                             //currentGroup.hasFooter = true;
                             currentGroup.Count++;
                             currentGroup.GroupSize += groupFooterSize;
-                            currentGroup.ItemPosition.Add(Current - currentGroup.GroupPosition);
+                            if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
+                                currentGroup.ItemPosition.Add(Current - currentGroup.GroupPosition);
                             Current += groupFooterSize;
                         }
                         else
                         {
                             currentGroup.Count++;
                             currentGroup.GroupSize += StepCandidate;
-                            currentGroup.ItemPosition.Add(Current - currentGroup.GroupPosition);
+                            if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
+                                currentGroup.ItemPosition.Add(Current - currentGroup.GroupPosition);
                             Current += StepCandidate;
                         }
                     }
@@ -353,7 +356,8 @@ namespace Tizen.NUI.Components
             {
                 for (int i = ItemSizeChanged; i <= LastIndex; i++)
                     UpdatePosition(i);
-                ScrollContentSize = ItemPosition[LastIndex - 1] + GetItemStepSize(LastIndex) + (IsHorizontal? Padding.End : Padding.Bottom);
+                (float updateX, float updateY) = GetItemPosition(LastIndex);
+                ScrollContentSize = GetItemStepSize(LastIndex) + (IsHorizontal? updateX + Padding.End : updateY + Padding.Bottom);
             }
 
             int prevFirstVisible = FirstVisible;
@@ -393,7 +397,7 @@ namespace Tizen.NUI.Components
                 }
                 if (item == null) item = colView.RealizeItem(i);
                 VisibleItems.Add(item);
-
+/*
                 // 5. Placing item.
                 float posX = 0F, posY = 0F;
                 int spaceStartX = Padding.Start + item.Margin.Start;
@@ -428,7 +432,8 @@ namespace Tizen.NUI.Components
                     posX = (IsHorizontal? ItemPosition[i] + item.Margin.Start : spaceStartX);
                     posY = (IsHorizontal? spaceStartY : ItemPosition[i] + item.Margin.Top);
                 }
-
+*/
+                (float posX, float posY) = GetItemPosition(i);
                 item.Position = new Position(posX, posY);
             
                 if (IsHorizontal && item.HeightSpecification == LayoutParamPolicies.MatchParent)
@@ -579,8 +584,8 @@ namespace Tizen.NUI.Components
                                     break;
 
                                 }
-                                else if (gInfo.ItemPosition[i] <= visibleArea.X - gInfo.GroupPosition &&
-                                        gInfo.ItemPosition[i + 1] >= visibleArea.X - gInfo.GroupPosition)
+                                else if (GetGroupPosition(gInfo, gInfo.StartIndex + i) <= visibleArea.X &&
+                                        GetGroupPosition(gInfo, gInfo.StartIndex + i + 1) >= visibleArea.X)
                                 {
                                     found.start = gInfo.StartIndex + i - adds;
                                     failed = false;
@@ -631,8 +636,8 @@ namespace Tizen.NUI.Components
                                     break;
 
                                 }
-                                else if (gInfo.ItemPosition[i] <= visibleArea.Y - gInfo.GroupPosition &&
-                                        gInfo.ItemPosition[i + 1] >= visibleArea.Y - gInfo.GroupPosition)
+                                else if (GetGroupPosition(gInfo, gInfo.StartIndex + i) <= visibleArea.Y &&
+                                        GetGroupPosition(gInfo, gInfo.StartIndex + i + 1) >= visibleArea.Y)
                                 {
                                     found.end = gInfo.StartIndex + i + adds;
                                     failed = false;
@@ -671,17 +676,37 @@ namespace Tizen.NUI.Components
             else if (isGrouped)
             {
                 GroupInfo gInfo = GetGroupInfo(index);
+                float current = GetGroupPosition(gInfo, index);
+                Extents itemMargin = CandidateMargin;
+
+                if (colView.InternalItemSource.IsGroupHeader(index))
+                {
+                    itemMargin = groupHeaderMargin;
+                }
+                else if (colView.InternalItemSource.IsGroupFooter(index))
+                {
+                    itemMargin = groupFooterMargin;
+                }
                 return ((IsHorizontal?
-                            CandidateMargin.Start + gInfo.GroupPosition + gInfo.ItemPosition[index - gInfo.StartIndex]:
-                            spaceStartX),
+                        itemMargin.Start + GetGroupPosition(gInfo, index):
+                        spaceStartX + itemMargin.Start),
                         (IsHorizontal?
-                            spaceStartY:
-                            CandidateMargin.Top + gInfo.GroupPosition + gInfo.ItemPosition[index - gInfo.StartIndex]));
+                        spaceStartY + itemMargin.Top:
+                        itemMargin.Top + GetGroupPosition(gInfo, index)));
+            }
+            else if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
+            {
+                //FIXME : CandidateMargin need to be actual itemMargin
+                return ((IsHorizontal? ItemPosition[index] + CandidateMargin.Start : spaceStartX + CandidateMargin.Start),
+                        (IsHorizontal? spaceStartY + CandidateMargin.Top : ItemPosition[index] + CandidateMargin.Top));
             }
             else
             {
-                return ((IsHorizontal? ItemPosition[index] + CandidateMargin.Start : spaceStartX + CandidateMargin.Start),
-                        (IsHorizontal? spaceStartY + CandidateMargin.Top : ItemPosition[index] + CandidateMargin.Top));
+                int adjustIndex = index - (hasHeader ? 1 : 0);
+                float current = (hasHeader? headerSize : 0) + adjustIndex * StepCandidate;
+                //FIXME : CandidateMargin need to be actual itemMargin
+                return ((IsHorizontal? current + CandidateMargin.Start : spaceStartX + CandidateMargin.Start),
+                        (IsHorizontal? spaceStartY + CandidateMargin.Top : current + CandidateMargin.Top));
             }
         }
 
@@ -759,8 +784,8 @@ namespace Tizen.NUI.Components
                     //IsGroupFooter = (colView.InternalItemSource as IGroupableItemSource).IsGroupFooter(index);
                     //Do Something
                 }
-
-            ItemPosition[index] = ItemPosition[index - 1] + GetItemStepSize(index - 1);
+            if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
+                ItemPosition[index] = ItemPosition[index - 1] + GetItemStepSize(index - 1);
         }
 
         private RecyclerViewItem GetVisibleItem(int index)
@@ -791,6 +816,21 @@ namespace Tizen.NUI.Components
             Visited = null;
             return null;
         }
+
+        private float GetGroupPosition(GroupInfo groupInfo, int index)
+        {
+            if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
+                return groupInfo.GroupPosition + groupInfo.ItemPosition[index - groupInfo.StartIndex];
+            else
+            {
+                float pos = groupInfo.GroupPosition;
+                if (groupInfo.StartIndex == index) return pos;
+
+                pos = pos + groupHeaderSize + StepCandidate * (index - groupInfo.StartIndex - 1);
+
+                return pos;
+            }
+        }
         /*
                 private object GetGroupParent(int index)
                 {
@@ -819,7 +859,7 @@ namespace Tizen.NUI.Components
             public int Count;
             public float GroupSize;
             public float GroupPosition;
-            //Items relative position from the GroupPosition
+            //Items relative position from the GroupPosition. Only use for MeasureAll.
             public List<float> ItemPosition = new List<float>();
         }
     }
