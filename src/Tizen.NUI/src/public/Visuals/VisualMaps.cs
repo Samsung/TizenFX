@@ -80,7 +80,7 @@ namespace Tizen.NUI
         /// The corner radius value of the visual.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        private float? cornerRadius = null;
+        private Vector4 cornerRadius = null;
 
         /// <summary>
         /// The map for visual.
@@ -613,11 +613,11 @@ namespace Tizen.NUI
         /// The corner radius of the visual.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public float CornerRadius
+        public Vector4 CornerRadius
         {
-            protected get
+            get
             {
-                return cornerRadius ?? (0.0f);
+                return cornerRadius;
             }
             set
             {
@@ -706,7 +706,7 @@ namespace Tizen.NUI
             }
             if (cornerRadius != null)
             {
-                PropertyValue temp = new PropertyValue((int)cornerRadius);
+                PropertyValue temp = new PropertyValue(cornerRadius);
                 _outputVisualMap.Add(Visual.Property.CornerRadius, temp);
                 temp.Dispose();
             }
@@ -771,6 +771,7 @@ namespace Tizen.NUI
                 visualSize?.Dispose();
                 visualSizePolicy?.Dispose();
                 visualTransformMap?.Dispose();
+                cornerRadius?.Dispose();
             }
             disposed = true;
         }
