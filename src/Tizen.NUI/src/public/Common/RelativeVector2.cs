@@ -89,10 +89,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public float X
         {
+            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new RelativeVector2(...) constructor")]
             set
             {
-                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new RelativeVector2(...) constructor");
-
                 Interop.Vector2.XSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -121,10 +120,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public float Y
         {
+            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new RelativeVector2(...) constructor")]
             set
             {
-                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new RelativeVector2(...) constructor");
-
                 Interop.Vector2.YSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
