@@ -37,7 +37,6 @@ namespace Tizen.NUI.Components
         public Extents Padding {
             get
             {
-                Console.WriteLine("Padding Getter!");
                 return padding;
             }
             set
