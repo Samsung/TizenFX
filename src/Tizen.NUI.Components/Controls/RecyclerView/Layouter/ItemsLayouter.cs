@@ -314,7 +314,7 @@ namespace Tizen.NUI.Components
                         new LayoutLength(child.WidthSpecification));
 
             MeasureSpecification childHeightMeasureSpec = LayoutGroup.GetChildMeasureSpecification(
-                        new MeasureSpecification(new LayoutLength(parent.Size.Height - parent.Padding.Top - parent.Padding.End - child.Margin.Top - child.Margin.End), MeasureSpecification.ModeType.Exactly),
+                        new MeasureSpecification(new LayoutLength(parent.Size.Height - parent.Padding.Top - parent.Padding.Bottom - child.Margin.Top - child.Margin.Bottom), MeasureSpecification.ModeType.Exactly),
                         new LayoutLength(0),
                         new LayoutLength(child.HeightSpecification));
 
