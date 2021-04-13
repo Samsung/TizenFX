@@ -228,10 +228,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public float X
         {
+            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector3(...) constructor")]
             set
             {
-                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector3(...) constructor");
-
                 Interop.Vector3.XSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -260,13 +259,11 @@ namespace Tizen.NUI
         /// Vector3 vector3 = new Vector3(width, height, depth);
         /// </code>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector3(...) constructor")]
         public float Width
         {
+            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector3(...) constructor")]
             set
             {
-                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector3(...) constructor");
-
                 Interop.Vector3.WidthSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -297,10 +294,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public float R
         {
+            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector3(...) constructor")]
             set
             {
-                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector3(...) constructor");
-
                 Interop.Vector3.RSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -331,10 +327,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public float Y
         {
+            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector3(...) constructor")]
             set
             {
-                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector3(...) constructor");
-
                 Interop.Vector3.YSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -365,10 +360,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public float Height
         {
+            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector3(...) constructor")]
             set
             {
-                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector3(...) constructor");
-
                 Interop.Vector3.HeightSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -399,10 +393,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public float G
         {
+            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector3(...) constructor")]
             set
             {
-                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector3(...) constructor");
-
                 Interop.Vector3.GSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -433,10 +426,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public float Z
         {
+            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector3(...) constructor")]
             set
             {
-                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector3(...) constructor");
-
                 Interop.Vector3.ZSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -465,13 +457,11 @@ namespace Tizen.NUI
         /// Vector3 vector3 = new Vector3(width, height, depth);
         /// </code>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector3(...) constructor")]
         public float Depth
         {
+            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector3(...) constructor")]
             set
             {
-                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector3(...) constructor");
-
                 Interop.Vector3.DepthSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -502,10 +492,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public float B
         {
+            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector3(...) constructor")]
             set
             {
-                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector3(...) constructor");
-
                 Interop.Vector3.BSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 

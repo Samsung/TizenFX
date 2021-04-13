@@ -141,9 +141,9 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public ushort Start
         {
+            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Extents(...) constructor")]
             set
             {
-                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Extents(...) constructor");
                 Interop.Extents.StartSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -174,10 +174,9 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public ushort End
         {
+            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Extents(...) constructor")]
             set
             {
-                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Extents(...) constructor");
-
                 Interop.Extents.EndSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -208,10 +207,9 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public ushort Top
         {
+            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Extents(...) constructor")]
             set
             {
-                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Extents(...) constructor");
-
                 Interop.Extents.TopSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -242,10 +240,9 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public ushort Bottom
         {
+            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Extents(...) constructor")]
             set
             {
-                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Extents(...) constructor");
-
                 Interop.Extents.BottomSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 

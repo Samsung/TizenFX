@@ -108,10 +108,9 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public float Width
         {
+            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Size(...) constructor")]
             set
             {
-                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Size(...) constructor");
-
                 Interop.Vector3.WidthSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -142,10 +141,9 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public float Height
         {
+            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Size(...) constructor")]
             set
             {
-                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Size(...) constructor");
-
                 Interop.Vector3.HeightSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -176,10 +174,9 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public float Depth
         {
+            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Size(...) constructor")]
             set
             {
-                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Size(...) constructor");
-
                 Interop.Vector3.DepthSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
