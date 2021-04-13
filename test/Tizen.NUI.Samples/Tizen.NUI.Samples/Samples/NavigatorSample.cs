@@ -6,7 +6,7 @@ namespace Tizen.NUI.Samples
     public class NavigatorSample : IExample
     {
         private Navigator navigator;
-        private Page firstPage, secondPage;
+        private ContentPage firstPage, secondPage;
         private Button firstButton, secondButton;
 
         public void Activate()
@@ -36,7 +36,10 @@ namespace Tizen.NUI.Samples
                 CreateSecondPage();
             };
 
-            firstPage = new Page(firstButton);
+            firstPage = new ContentPage()
+            {
+                Content = firstButton,
+            };
             firstPage.Appearing += (object sender, PageAppearingEventArgs e) =>
             {
                 global::System.Console.WriteLine("First Page is appearing!");
@@ -62,7 +65,10 @@ namespace Tizen.NUI.Samples
                 navigator.Pop();
             };
 
-            secondPage = new Page(secondButton);
+            secondPage = new ContentPage()
+            {
+                Content = secondButton,
+            };
             secondPage.Appearing += (object sender, PageAppearingEventArgs e) =>
             {
                 global::System.Console.WriteLine("Second Page is appearing!");

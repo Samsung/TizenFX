@@ -70,6 +70,7 @@ namespace Tizen.NUI.Components
         private int minValue;
         private int lastScrollPosion;
         private bool onAnimation; //Scroller on animation check.
+        private bool onAlignAnimation;
         private bool displayedValuesUpdate; //User sets displayed value check.
         private bool needItemUpdate; //min, max or display value updated check.
         private bool loopEnabled;
@@ -327,16 +328,20 @@ namespace Tizen.NUI.Components
             ValueChanged?.Invoke(this, eventArgs);
         }
 
+        private void PageAdjust(float positionY)
+        {
+            //Check the scroll is going out to the dummys if so, bring it back to page.
+            if (positionY > -(startScrollY - (itemHeight * 2)))
+                pickerScroller.ScrollTo(-positionY + pageSize, false);
+            else if (positionY < -(startScrollY + pageSize - (itemHeight * 2)))
+                pickerScroller.ScrollTo(-positionY - pageSize, false);
+        }
+
         private void OnScroll(object sender, ScrollEventArgs e)
         {
-            //Ignore if the scrolling animation happened.
-            if (!loopEnabled || onAnimation) return;
+            if (!loopEnabled || onAnimation || onAlignAnimation) return;
             
-            //Check the scroll is going out to the dummys if so, bring it back to page.
-            if (e.Position.Y > -(startScrollY - (itemHeight * 2))) 
-                pickerScroller.ScrollTo(-e.Position.Y + pageSize, false);
-            else if (e.Position.Y < -(startScrollY + pageSize - (itemHeight * 2)))
-                pickerScroller.ScrollTo(-e.Position.Y - pageSize, false);
+            PageAdjust(e.Position.Y);
         }
 
         private void OnScrollAnimationStarted(object sender, ScrollEventArgs e)
@@ -355,15 +360,23 @@ namespace Tizen.NUI.Components
 
             lastScrollPosion = (int)(-e.Position.Y + offset);
 
+            onAnimation = false;
+            if (onAlignAnimation) {
+                onAlignAnimation = false;
+                PageAdjust(e.Position.Y);
+
+                return;
+            }
+
             //Item center align with animation, otherwise changed event emit.
-            if (offset != 0) 
+            if (offset != 0) {
+                onAlignAnimation = true;
                 pickerScroller.ScrollTo(-e.Position.Y + offset, true);
+            }
             else {
                 currentValue = ((int)(-e.Position.Y / itemHeight) + 2);
                 OnValueChanged();
             }
-
-            onAnimation = false;
         }
 
         //This is UI requirement. It helps where exactly center item is.
@@ -502,7 +515,7 @@ namespace Tizen.NUI.Components
             public PickerScroller(PickerStyle pickerStyle) : base()
             {
                 //Default rate is 0.998. this is for reduce scroll animation length.
-                decelerationRate = 0.994f;
+                decelerationRate = 0.991f;
                 startScrollOffset = (int)pickerStyle.StartScrollOffset.Height;
                 itemHeight = (int)pickerStyle.ItemTextLabel.Size.Height;
                 logValueOfDeceleration = (float)Math.Log(decelerationRate);
@@ -530,9 +543,13 @@ namespace Tizen.NUI.Components
             //Override Decelerating for Picker feature.
             protected override void Decelerating(float velocity, Animation animation)
             {
+                //Reduce Scroll animation speed.
+                //The picker is to select items in the scroll area, it is not correct to animate
+                //the scroll with very high speed.
+                velocity *= 0.5f;
                 velocityOfLastPan = Math.Abs(velocity);
 
-                float currentScrollPosition = -(ScrollingDirection == Direction.Horizontal ? ContentContainer.CurrentPosition.X : ContentContainer.CurrentPosition.Y);
+                float currentScrollPosition = -ContentContainer.PositionY;
                 panAnimationDelta = (velocityOfLastPan * decelerationRate) / (1 - decelerationRate);
                 panAnimationDelta = velocity > 0 ? -panAnimationDelta : panAnimationDelta;
 
@@ -578,7 +595,7 @@ namespace Tizen.NUI.Components
                 customScrollAlphaFunction = new UserAlphaFunctionDelegate(CustomScrollAlphaFunction);
                 animation.DefaultAlphaFunction = new AlphaFunction(customScrollAlphaFunction);
                 animation.Duration = (int)panAnimationDuration;
-                animation.AnimateTo(ContentContainer, (ScrollingDirection == Direction.Horizontal) ? "PositionX" : "PositionY", (int)destination);
+                animation.AnimateTo(ContentContainer, "PositionY", (int)destination);
                 animation.Play();
             }
         }

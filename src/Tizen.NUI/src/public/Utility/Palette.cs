@@ -502,9 +502,9 @@ namespace Tizen.NUI
             [EditorBrowsable(EditorBrowsableState.Never)]
             public Swatch(int rgbcolorInt, int populationOfSwatch)
             {
-                red = (int)(((rgbcolorInt >> 16) & 0xff) / 255.0f);
-                green = (int)(((rgbcolorInt >> 8) & 0xff) / 255.0f);
-                blue = (int)((rgbcolorInt & 0xff) / 255.0f);
+                red = (int)((rgbcolorInt >> 16) & 0xff);
+                green = (int)((rgbcolorInt >> 8) & 0xff);
+                blue = (int)(rgbcolorInt & 0xff);
                 colorInt = rgbcolorInt;
                 population = populationOfSwatch;
             }

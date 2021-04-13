@@ -74,7 +74,8 @@ namespace Tizen.NUI.Components
                     .AddSelector("/Progress/Background", (ViewStyle style, Selector<Color> value) => ((ProgressStyle)style).Progress.BackgroundColor = value)
                     .AddSelector("/Track/ResourceUrl", (ViewStyle style, Selector<string> value) => ((ProgressStyle)style).Track.ResourceUrl = value)
                     .AddSelector("/Buffer/ResourceUrl", (ViewStyle style, Selector<string> value) => ((ProgressStyle)style).Buffer.ResourceUrl = value)
-                    .AddSelector("/Progress/ResourceUrl", (ViewStyle style, Selector<string> value) => ((ProgressStyle)style).Progress.ResourceUrl = value),
+                    .AddSelector("/Progress/ResourceUrl", (ViewStyle style, Selector<string> value) => ((ProgressStyle)style).Progress.ResourceUrl = value)
+                    .Add<string>("/IndeterminateImageUrl", (ViewStyle style, string value) => ((ProgressStyle)style).IndeterminateImageUrl = value),
 
                 // Slider
                 (new ExternalThemeKeyList(typeof(Slider), typeof(SliderStyle)))
@@ -83,21 +84,21 @@ namespace Tizen.NUI.Components
                     .AddSelector("/Thumb/Background", (ViewStyle style, Selector<Color> value) => ((SliderStyle)style).Thumb.BackgroundColor = value)
                     .AddSelector("/Thumb/ResourceUrl", (ViewStyle style, Selector<string> value) => ((SliderStyle)style).Thumb.ResourceUrl = value)
                     .AddSelector("/ValueIndicatorImage/ResourceUrl", (ViewStyle style, Selector<string> value) => ((SliderStyle)style).ValueIndicatorImage.ResourceUrl = value),
-                
+
                 // Pagination
                 (new ExternalThemeKeyList(typeof(Pagination), typeof(PaginationStyle)))
                     .AddSelector("/IndicatorImageUrl", (ViewStyle style, Selector<string> value) => ((PaginationStyle)style).IndicatorImageUrl = value),
-                
+
                 // Scrollbar
                 (new ExternalThemeKeyList(typeof(Scrollbar), typeof(ScrollbarStyle)))
                     .Add("/TrackColor", (ViewStyle style, Color value) => ((ScrollbarStyle)style).TrackColor = value)
                     .Add("/ThumbColor", (ViewStyle style, Color value) => ((ScrollbarStyle)style).ThumbColor = value),
-                
+
                 // RecyclerViewItem
                 (new ExternalThemeKeyList(typeof(RecyclerViewItem), typeof(RecyclerViewItemStyle)))
                     .AddBackgroundSelector("/Background", SetBackgroundColor, SetBackgroundImage, ControlState.Selected)
                     .Add<Rectangle>("/BackgroundImageBorder", SetBackgroundBorder),
-                
+
                 // DefaultTitleItem
                 (new ExternalThemeKeyList(typeof(DefaultTitleItem), typeof(DefaultTitleItemStyle)))
                     .AddBackgroundSelector("/Background", SetBackgroundColor, SetBackgroundImage)
@@ -159,6 +160,26 @@ namespace Tizen.NUI.Components
                     .Add<Position>("/Pickers/Divider/Position", (ViewStyle style, Position value) => ((DatePickerStyle)style).Pickers.Divider.Position = value)
                     .AddSelector("/Pickers/Divider/BackgroundColor", (ViewStyle style, Selector<Color> value) => ((DatePickerStyle)style).Pickers.Divider.BackgroundColor = value, ControlState.Selected)
                     .Add<Size>("/Pickers/StartScrollOffset", (ViewStyle style, Size value) => ((DatePickerStyle)style).Pickers.StartScrollOffset = value),
+
+                // AlertDialog
+                (new ExternalThemeKeyList(typeof(AlertDialog), typeof(AlertDialogStyle)))
+                    .Add<Size>("/Size", (ViewStyle style, Size value) => ((ViewStyle)style).Size = value)
+                    .Add<Extents>("/Padding", (ViewStyle style, Extents value) => ((ViewStyle)style).Padding = value)
+                    .Add<string>("/BackgroundImage", (ViewStyle style, string value) => ((ViewStyle)style).BackgroundImage = value)
+                    .Add<Size>("/TitleTextLabel/Size", (ViewStyle style, Size value) => ((AlertDialogStyle)style).TitleTextLabel.Size = value)
+                    .Add<Extents>("/TitleTextLabel/Margin", (ViewStyle style, Extents value) => ((AlertDialogStyle)style).TitleTextLabel.Margin = value)
+                    .Add<float?>("/TitleTextLabel/PixelSize", (ViewStyle style, float? value) => ((AlertDialogStyle)style).TitleTextLabel.PixelSize = value)
+                    .Add<HorizontalAlignment?>("/TitleTextLabel/HorizontalAlignment", (ViewStyle style, HorizontalAlignment? value) => ((AlertDialogStyle)style).TitleTextLabel.HorizontalAlignment = value)
+                    .Add<VerticalAlignment?>("/TitleTextLabel/VerticalAlignment", (ViewStyle style, VerticalAlignment? value) => ((AlertDialogStyle)style).TitleTextLabel.VerticalAlignment = value)
+                    .AddSelector<Color>("/TitleTextLabel/TextColor", (ViewStyle style, Selector<Color> value) => ((AlertDialogStyle)style).TitleTextLabel.TextColor = value)
+                    .Add<Size>("/MessageTextLabel/Size", (ViewStyle style, Size value) => ((AlertDialogStyle)style).MessageTextLabel.Size = value)
+                    .Add<Extents>("/MessageTextLabel/Margin", (ViewStyle style, Extents value) => ((AlertDialogStyle)style).MessageTextLabel.Margin = value)
+                    .Add<float?>("/MessageTextLabel/PixelSize", (ViewStyle style, float? value) => ((AlertDialogStyle)style).MessageTextLabel.PixelSize = value)
+                    .Add<bool?>("/MessageTextLabel/MultiLine", (ViewStyle style, bool? value) => ((AlertDialogStyle)style).MessageTextLabel.MultiLine = value)
+                    .Add<HorizontalAlignment?>("/MessageTextLabel/HorizontalAlignment", (ViewStyle style, HorizontalAlignment? value) => ((AlertDialogStyle)style).MessageTextLabel.HorizontalAlignment = value)
+                    .Add<VerticalAlignment?>("/MessageTextLabel/VerticalAlignment", (ViewStyle style, VerticalAlignment? value) => ((AlertDialogStyle)style).MessageTextLabel.VerticalAlignment = value)
+                    .AddSelector<Color>("/MessageTextLabel/TextColor", (ViewStyle style, Selector<Color> value) => ((AlertDialogStyle)style).MessageTextLabel.TextColor = value)
+                    .Add<Size>("/ActionContent/Size", (ViewStyle style, Size value) => ((AlertDialogStyle)style).ActionContent.Size = value),
             };
 
             return actionSet;
