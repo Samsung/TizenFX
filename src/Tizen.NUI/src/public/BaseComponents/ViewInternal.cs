@@ -1045,16 +1045,14 @@ namespace Tizen.NUI.BaseComponents
         {
             if (backgroundExtraData == null) return;
 
-            // TODO Fix to support Vector4 for corner radius after dali support it.
-            //      Current code only gets first argument of Vector4.
-            float cornerRadius = backgroundExtraData.CornerRadius?.X ?? 0.0f;
+            var cornerRadius = backgroundExtraData.CornerRadius == null ? new PropertyValue() : new PropertyValue(backgroundExtraData.CornerRadius);
 
             // Apply to the background visual
             PropertyMap backgroundMap = new PropertyMap();
             PropertyValue background = Tizen.NUI.Object.GetProperty(SwigCPtr, View.Property.BACKGROUND);
             if (background.Get(backgroundMap) && !backgroundMap.Empty())
             {
-                backgroundMap[Visual.Property.CornerRadius] = new PropertyValue(cornerRadius);
+                backgroundMap[Visual.Property.CornerRadius] = cornerRadius;
                 backgroundMap[Visual.Property.CornerRadiusPolicy] = new PropertyValue((int)backgroundExtraData.CornerRadiusPolicy);
                 var temp = new PropertyValue(backgroundMap);
                 Tizen.NUI.Object.SetProperty(SwigCPtr, View.Property.BACKGROUND, temp);
@@ -1062,13 +1060,14 @@ namespace Tizen.NUI.BaseComponents
             }
             backgroundMap.Dispose();
             background.Dispose();
+            cornerRadius.Dispose();
 
             // Apply to the shadow visual
             PropertyMap shadowMap = new PropertyMap();
             PropertyValue shadow = Tizen.NUI.Object.GetProperty(SwigCPtr, View.Property.SHADOW);
             if (shadow.Get(shadowMap) && !shadowMap.Empty())
             {
-                shadowMap[Visual.Property.CornerRadius] = new PropertyValue(cornerRadius);
+                shadowMap[Visual.Property.CornerRadius] = cornerRadius;
                 shadowMap[Visual.Property.CornerRadiusPolicy] = new PropertyValue((int)backgroundExtraData.CornerRadiusPolicy);
                 var temp = new PropertyValue(shadowMap);
                 Tizen.NUI.Object.SetProperty(SwigCPtr, View.Property.SHADOW, temp);
