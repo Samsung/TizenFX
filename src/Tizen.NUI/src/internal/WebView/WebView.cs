@@ -451,6 +451,32 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Event for the NewWindowPolicyDecided signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted when new window policy would be decided.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<WebViewNewWindowPolicyDecidedEventArgs> NewWindowPolicyDecided
+        {
+            add
+            {
+                if (newWindowPolicyDecidedEventHandler == null)
+                {
+                    newWindowPolicyDecidedCallback = OnNewWindowPolicyDecided;
+                    newWindowPolicyDecidedSignal.Connect(newWindowPolicyDecidedCallback);
+                }
+                newWindowPolicyDecidedEventHandler += value;
+            }
+            remove
+            {
+                newWindowPolicyDecidedEventHandler -= value;
+                if (newWindowPolicyDecidedEventHandler == null && newWindowPolicyDecidedCallback != null)
+                {
+                    newWindowPolicyDecidedSignal.Disconnect(newWindowPolicyDecidedCallback);
+                }
+            }
+        }
+
+        /// <summary>
         /// Options for searching texts.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -509,31 +535,6 @@ namespace Tizen.NUI
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             ShowHighlight = 1 << 7,
-        }
-
-        /// Event for the NewWindowPolicyDecided signal which can be used to subscribe or unsubscribe the event handler.<br />
-        /// This signal is emitted when new window policy would be decided.<br />
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<WebViewNewWindowPolicyDecidedEventArgs> NewWindowPolicyDecided
-        {
-            add
-            {
-                if (newWindowPolicyDecidedEventHandler == null)
-                {
-                    newWindowPolicyDecidedCallback = OnNewWindowPolicyDecided;
-                    newWindowPolicyDecidedSignal.Connect(newWindowPolicyDecidedCallback);
-                }
-                newWindowPolicyDecidedEventHandler += value;
-            }
-            remove
-            {
-                newWindowPolicyDecidedEventHandler -= value;
-                if (newWindowPolicyDecidedEventHandler == null && newWindowPolicyDecidedCallback != null)
-                {
-                    newWindowPolicyDecidedSignal.Disconnect(newWindowPolicyDecidedCallback);
-                }
-            }
         }
 
         /// <summary>
@@ -1798,9 +1799,7 @@ namespace Tizen.NUI
 
         private void OnNewWindowPolicyDecided(IntPtr data, IntPtr maker)
         {
-            WebNewWindowPolicyDecisionMaker decisionMaker = new WebNewWindowPolicyDecisionMaker(maker, false);
-            newWindowPolicyDecidedEventHandler?.Invoke(this, new WebViewNewWindowPolicyDecidedEventArgs(decisionMaker));
-            decisionMaker.Dispose();
+            newWindowPolicyDecidedEventHandler?.Invoke(this, new WebViewNewWindowPolicyDecidedEventArgs(new WebNewWindowPolicyDecisionMaker(maker, false)));
         }
     }
 }
