@@ -59,7 +59,7 @@ namespace Tizen.NUI
         private EventHandler<WebViewUrlChangedEventArgs> urlChangedEventHandler;
         private WebViewUrlChangedCallbackDelegate urlChangedCallback;
 
-        private readonly WebViewFormRepostDecidedSignal formRepostPolicyDecidedSignal;
+        private readonly WebViewFormRepostPolicyDecidedSignal formRepostPolicyDecidedSignal;
         private EventHandler<WebViewFormRepostPolicyDecidedEventArgs> formRepostPolicyDecidedEventHandler;
         private WebViewFormRepostPolicyDecidedCallbackDelegate formRepostPolicyDecidedCallback;
 
@@ -69,6 +69,10 @@ namespace Tizen.NUI
 
         private ScreenshotAcquiredCallback screenshotAcquiredCallback;
         private readonly WebViewScreenshotAcquiredProxyCallback screenshotAcquiredProxyCallback;
+
+        private readonly WebViewNewWindowPolicyDecidedSignal newWindowPolicyDecidedSignal;
+        private EventHandler<WebViewNewWindowPolicyDecidedEventArgs> newWindowPolicyDecidedEventHandler;
+        private WebViewNewWindowPolicyDecidedCallbackDelegate newWindowPolicyDecidedCallback;
 
         /// <summary>
         /// Creates a WebView.
@@ -118,8 +122,9 @@ namespace Tizen.NUI
             pageLoadErrorSignal = new WebViewPageLoadErrorSignal(Interop.WebView.NewWebViewPageLoadErrorSignalPageLoadError(SwigCPtr));
             scrollEdgeReachedSignal = new WebViewScrollEdgeReachedSignal(Interop.WebView.NewWebViewScrollEdgeReachedSignalScrollEdgeReached(SwigCPtr));
             urlChangedSignal = new WebViewUrlChangedSignal(Interop.WebView.NewWebViewUrlChangedSignalUrlChanged(SwigCPtr));
-            formRepostPolicyDecidedSignal = new WebViewFormRepostDecidedSignal(Interop.WebView.NewWebViewFormRepostDecisionSignalFormRepostDecision(SwigCPtr));
+            formRepostPolicyDecidedSignal = new WebViewFormRepostPolicyDecidedSignal(Interop.WebView.NewWebViewFormRepostDecisionSignalFormRepostDecision(SwigCPtr));
             frameRenderedSignal = new WebViewFrameRenderedSignal(Interop.WebView.WebViewFrameRenderedSignalFrameRenderedGet(SwigCPtr));
+            newWindowPolicyDecidedSignal = new WebViewNewWindowPolicyDecidedSignal(Interop.WebView.NewWebViewPolicyDecisionSignalPolicyDecision(SwigCPtr));
 
             screenshotAcquiredProxyCallback = OnScreenshotAcquired;
 
@@ -153,6 +158,7 @@ namespace Tizen.NUI
                 urlChangedSignal.Dispose();
                 formRepostPolicyDecidedSignal.Dispose();
                 frameRenderedSignal.Dispose();
+                newWindowPolicyDecidedSignal.Dispose();
 
                 BackForwardList.Dispose();
                 Context.Dispose();
@@ -225,13 +231,16 @@ namespace Tizen.NUI
         private delegate void WebViewUrlChangedCallbackDelegate(IntPtr data, string pageUrl);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void WebViewFormRepostPolicyDecidedCallbackDelegate(IntPtr data, IntPtr decision);
+        private delegate void WebViewFormRepostPolicyDecidedCallbackDelegate(IntPtr data, IntPtr maker);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WebViewFrameRenderedCallbackDelegate(IntPtr data);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WebViewScreenshotAcquiredProxyCallback(IntPtr data);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void WebViewNewWindowPolicyDecidedCallbackDelegate(IntPtr data, IntPtr maker);
 
         /// <summary>
         /// Event for the PageLoadStarted signal which can be used to subscribe or unsubscribe the event handler.<br />
@@ -500,6 +509,31 @@ namespace Tizen.NUI
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             ShowHighlight = 1 << 7,
+        }
+
+        /// Event for the NewWindowPolicyDecided signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted when new window policy would be decided.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<WebViewNewWindowPolicyDecidedEventArgs> NewWindowPolicyDecided
+        {
+            add
+            {
+                if (newWindowPolicyDecidedEventHandler == null)
+                {
+                    newWindowPolicyDecidedCallback = OnNewWindowPolicyDecided;
+                    newWindowPolicyDecidedSignal.Connect(newWindowPolicyDecidedCallback);
+                }
+                newWindowPolicyDecidedEventHandler += value;
+            }
+            remove
+            {
+                newWindowPolicyDecidedEventHandler -= value;
+                if (newWindowPolicyDecidedEventHandler == null && newWindowPolicyDecidedCallback != null)
+                {
+                    newWindowPolicyDecidedSignal.Disconnect(newWindowPolicyDecidedCallback);
+                }
+            }
         }
 
         /// <summary>
@@ -1760,6 +1794,13 @@ namespace Tizen.NUI
             ImageView image = new ImageView(data, true);
             screenshotAcquiredCallback?.Invoke(image);
             image.Dispose();
+        }
+
+        private void OnNewWindowPolicyDecided(IntPtr data, IntPtr maker)
+        {
+            WebNewWindowPolicyDecisionMaker decisionMaker = new WebNewWindowPolicyDecisionMaker(maker, false);
+            newWindowPolicyDecidedEventHandler?.Invoke(this, new WebViewNewWindowPolicyDecidedEventArgs(decisionMaker));
+            decisionMaker.Dispose();
         }
     }
 }
