@@ -33,6 +33,7 @@ namespace Tizen.NUI
         private bool allowFileAccessFromExternalUrl;
         private bool allowScriptsOpenWindows;
         private bool useScrollbarThumbFocusNotifications;
+        private bool viewportMetaTag;
 
         internal WebSettings(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
@@ -50,8 +51,9 @@ namespace Tizen.NUI
             }
             set
             {
-                allowMixedContents = value;
                 Interop.WebSettings.AllowMixedContents(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                allowMixedContents = value;
             }
         }
 
@@ -67,8 +69,9 @@ namespace Tizen.NUI
             }
             set
             {
-                enableSpatialNavigation = value;
                 Interop.WebSettings.EnableSpatialNavigation(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                enableSpatialNavigation = value;
             }
         }
 
@@ -85,6 +88,7 @@ namespace Tizen.NUI
             set
             {
                 Interop.WebSettings.SetDefaultFontSize(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
@@ -100,8 +104,9 @@ namespace Tizen.NUI
             }
             set
             {
-                enableWebSecurity = value;
                 Interop.WebSettings.EnableWebSecurity(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                enableWebSecurity = value;
             }
         }
 
@@ -117,8 +122,9 @@ namespace Tizen.NUI
             }
             set 
             {
-                enableCacheBuilder = value;
                 Interop.WebSettings.EnableCacheBuilder(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                enableCacheBuilder = value;
             }
         }
 
@@ -133,8 +139,9 @@ namespace Tizen.NUI
             }
             set
             {
-                enableDoNotTrack = value;
                 Interop.WebSettings.EnableDoNotTrack(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                enableDoNotTrack = value;
             }
         }
 
@@ -150,8 +157,9 @@ namespace Tizen.NUI
             }
             set
             {
-                useScrollbarThumbFocusNotifications = value;
                 Interop.WebSettings.UseScrollbarThumbFocusNotifications(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                useScrollbarThumbFocusNotifications = value;
             }
         }
 
@@ -167,8 +175,9 @@ namespace Tizen.NUI
             }
             set
             {
-                allowFileAccessFromExternalUrl = value;
                 Interop.WebSettings.AllowFileAccessFromExternalUrl(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                allowFileAccessFromExternalUrl = value;
             }
         }
 
@@ -185,6 +194,7 @@ namespace Tizen.NUI
             set
             {
                 Interop.WebSettings.EnableJavaScript(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
@@ -201,6 +211,7 @@ namespace Tizen.NUI
             set
             {
                 Interop.WebSettings.EnableAutoFitting(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
@@ -217,6 +228,7 @@ namespace Tizen.NUI
             set 
             {
                 Interop.WebSettings.EnablePlugins(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
@@ -233,6 +245,7 @@ namespace Tizen.NUI
             set
             {
                 Interop.WebSettings.EnablePrivateBrowsing(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
@@ -249,6 +262,7 @@ namespace Tizen.NUI
             set
             {
                 Interop.WebSettings.EnableLinkMagnifier(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
@@ -265,6 +279,7 @@ namespace Tizen.NUI
             set
             {
                 Interop.WebSettings.UseKeypadWithoutUserAction(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
@@ -281,6 +296,7 @@ namespace Tizen.NUI
             set
             {
                 Interop.WebSettings.EnableAutofillPasswordForm(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
@@ -297,6 +313,7 @@ namespace Tizen.NUI
             set
             {
                 Interop.WebSettings.EnableFormCandidateData(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
@@ -313,6 +330,7 @@ namespace Tizen.NUI
             set
             {
                 Interop.WebSettings.EnableTextSelection(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
@@ -329,6 +347,7 @@ namespace Tizen.NUI
             set
             {
                 Interop.WebSettings.EnableTextAutosizing(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
@@ -345,6 +364,7 @@ namespace Tizen.NUI
             set
             {
                 Interop.WebSettings.EnableArrowScroll(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
@@ -361,6 +381,7 @@ namespace Tizen.NUI
             set
             {
                 Interop.WebSettings.EnableClipboard(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
@@ -377,6 +398,7 @@ namespace Tizen.NUI
             set
             {
                 Interop.WebSettings.EnableImePanel(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
@@ -392,8 +414,9 @@ namespace Tizen.NUI
             }
             set
             {
-                allowScriptsOpenWindows = value;
                 Interop.WebSettings.AllowScriptsOpenWindows(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                allowScriptsOpenWindows = value;
             }
         }
 
@@ -410,6 +433,7 @@ namespace Tizen.NUI
             set
             {
                 Interop.WebSettings.AllowImagesLoadAutomatically(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
@@ -426,7 +450,84 @@ namespace Tizen.NUI
             set
             {
                 Interop.WebSettings.SetDefaultTextEncodingName(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
+        }
+
+        /// <summary>
+        ///  Viewport meta tag.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ViewportMetaTag
+        {
+            get
+            {
+                return viewportMetaTag;
+            }
+            set
+            {
+                Interop.WebSettings.SetViewportMetaTag(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                viewportMetaTag = value;
+            }
+        }
+
+        /// <summary>
+        ///  Force zoom
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ZoomForced
+        {
+            get
+            {
+                return Interop.WebSettings.IsZoomForced(SwigCPtr);
+            }
+            set
+            {
+                Interop.WebSettings.SetForceZoom(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+        /// <summary>
+        ///  Enable text zoom
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool TextZoomEnabled
+        {
+            get
+            {
+                return Interop.WebSettings.IsTextZoomEnabled(SwigCPtr);
+            }
+            set
+            {
+                Interop.WebSettings.SetTextZoomEnabled(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+        /// <summary>
+        ///  Enable extra feature
+        /// </summary>
+        /// <param name="str">The string of extra feature.</param>
+        /// <param name="tag">Enable or disable.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void EnableExtraFeature(string str, bool tag)
+        {
+            Interop.WebSettings.SetExtraFeature(SwigCPtr, str, tag);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        ///  Enable extra feature
+        /// </summary>
+        /// <param name="str">The string of extra feature.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsExtraFeatureEnabled(string str)
+        {
+            bool ret = Interop.WebSettings.IsExtraFeatureEnabled(SwigCPtr, str);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
     }
 }
