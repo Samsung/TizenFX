@@ -39,13 +39,6 @@ namespace Tizen.NUI.Components
         private View defaultTitleContent = null;
         private View defaultContent = null;
         private View defaultActionContent = null;
-        // FIXME: Now AlertDialog.Padding Top and Bottom increases AlertDialog size incorrectly.
-        //        Until the bug is fixed, padding view is added after action content.
-        private View defaultActionContentPadding = null;
-
-        private AlertDialogStyle alertDialogStyle => ViewStyle as AlertDialogStyle;
-
-        private bool styleApplied = false;
 
         /// <summary>
         /// Creates a new instance of AlertDialog.
@@ -84,51 +77,9 @@ namespace Tizen.NUI.Components
                 {
                     Utility.Dispose(actionContent);
                 }
-
-                // FIXME: Now AlertDialog.Padding Top and Bottom increases AlertDialog size incorrectly.
-                //        Until the bug is fixed, padding view is added after action content.
-                if (defaultActionContentPadding != null)
-                {
-                    Utility.Dispose(defaultActionContentPadding);
-                }
             }
 
             base.Dispose(type);
-        }
-
-        /// <summary>
-        /// Applies style to AlertDialog.
-        /// </summary>
-        /// <param name="viewStyle">The style to apply.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override void ApplyStyle(ViewStyle viewStyle)
-        {
-            styleApplied = false;
-
-            base.ApplyStyle(viewStyle);
-
-            // Apply Title style.
-            if ((alertDialogStyle?.TitleTextLabel != null) && (DefaultTitleContent is TextLabel))
-            {
-                ((TextLabel)DefaultTitleContent)?.ApplyStyle(alertDialogStyle.TitleTextLabel);
-            }
-
-            // Apply Message style.
-            if ((alertDialogStyle?.MessageTextLabel != null) && (DefaultContent is TextLabel))
-            {
-                ((TextLabel)DefaultContent)?.ApplyStyle(alertDialogStyle.MessageTextLabel);
-            }
-
-            // Apply ActionContent style.
-            if (alertDialogStyle?.ActionContent != null)
-            {
-                DefaultActionContent?.ApplyStyle(alertDialogStyle.ActionContent);
-            }
-
-            styleApplied = true;
-
-            // Calculate dialog position and children's positions based on padding sizes.
-            CalculatePosition();
         }
 
         /// <summary>
@@ -411,13 +362,6 @@ namespace Tizen.NUI.Components
                     defaultActionContent = CreateDefaultActionContent();
                 }
 
-                // FIXME: Now AlertDialog.Padding Top and Bottom increases AlertDialog size incorrectly.
-                //        Until the bug is fixed, padding view is added after action content.
-                if (defaultActionContentPadding == null)
-                {
-                    defaultActionContentPadding = CreateDefaultActionContentPadding();
-                }
-
                 return defaultActionContent;
             }
         }
@@ -470,89 +414,57 @@ namespace Tizen.NUI.Components
             if (actionContent != null)
             {
                 Add(actionContent);
-
-                // FIXME: Now AlertDialog.Padding Top and Bottom increases AlertDialog size incorrectly.
-                //        Until the bug is fixed, padding view is added after action content.
-                if (actionContent == defaultActionContent)
-                {
-                    if (defaultActionContentPadding != null)
-                    {
-                        Add(defaultActionContentPadding);
-                    }
-                }
             }
         }
 
         private TextLabel CreateDefaultTitleContent()
         {
-            return new TextLabel();
+            //FIXME: Needs to separate GUI implementation codes to style cs file.
+            return new TextLabel()
+            {
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                BackgroundColor = new Color(1.0f, 1.0f, 1.0f, 1.0f),
+                Size = new Size(360, 80),
+            };
         }
 
         private TextLabel CreateDefaultContent()
         {
-            return new TextLabel();
+            //FIXME: Needs to separate GUI implementation codes to style cs file.
+            return new TextLabel()
+            {
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                BackgroundColor = new Color(1.0f, 1.0f, 1.0f, 1.0f),
+                Size = new Size(360, 200),
+            };
         }
 
         private View CreateDefaultActionContent()
         {
-            return new View()
+            //FIXME: Needs to separate GUI implementation codes to style cs file.
+            return new Control()
             {
+                BackgroundColor = new Color(1.0f, 1.0f, 1.0f, 1.0f),
+                Size = new Size(360, 80),
                 Layout = new LinearLayout()
                 {
                     LinearOrientation = LinearLayout.Orientation.Horizontal,
+                    LinearAlignment = LinearLayout.Alignment.CenterHorizontal,
+                    CellPadding = new Size2D(10, 0),
                 },
             };
         }
 
-        // FIXME: Now AlertDialog.Padding Top and Bottom increases AlertDialog size incorrectly.
-        //        Until the bug is fixed, padding view is added after action content.
-        private View CreateDefaultActionContentPadding()
-        {
-            var layout = Layout as LinearLayout;
-
-            if ((layout == null) || (defaultActionContent == null))
-            {
-                return null;
-            }
-
-            View paddingView = null;
-
-            using (Size2D size = new Size2D(defaultActionContent.Size2D.Width, defaultActionContent.Size2D.Height))
-            {
-                if (layout.LinearOrientation == LinearLayout.Orientation.Horizontal)
-                {
-                    size.Width = 40;
-                }
-                else
-                {
-                    size.Height = 40;
-                }
-
-                paddingView = new View()
-                {
-                    Size2D = new Size2D(size.Width, size.Height),
-                };
-            }
-
-            return paddingView;
-        }
-
         private void OnRelayout(object sender, EventArgs e)
         {
-            // Calculate dialog position and children's positions based on padding sizes.
+            //FIXME: Needs to separate GUI implementation codes to style cs file.
             CalculatePosition();
         }
 
-        // Calculate dialog position and children's positions based on padding sizes.
         private void CalculatePosition()
         {
-            if (styleApplied == false)
-            {
-                return;
-            }
-
-            CalculateActionsCellPadding();
-
             var size = Size2D;
             var parent = GetParent();
             Size2D parentSize;
@@ -567,59 +479,6 @@ namespace Tizen.NUI.Components
             }
 
             Position2D = new Position2D((parentSize.Width - size.Width) / 2, (parentSize.Height - size.Height) / 2);
-        }
-
-        // Calculate CellPadding among Actions if ActionContent is LinearLayout.
-        private void CalculateActionsCellPadding()
-        {
-            if ((ActionContent != DefaultActionContent) || (ActionContent.Layout is LinearLayout == false))
-            {
-                return;
-            }
-
-            if (Actions == null)
-            {
-                return;
-            }
-
-            var size = Size2D;
-            var layout = ActionContent.Layout as LinearLayout;
-            int count = 0;
-
-            if (layout.LinearOrientation == LinearLayout.Orientation.Horizontal)
-            {
-                int actionsWidth = 0;
-
-                foreach (var action in Actions)
-                {
-                    actionsWidth += ((View)action).Size2D.Width + ((((View)action).Margin?.Start + ((View)action).Margin?.End) ?? 0);
-                    count++;
-                }
-
-                if (count > 1)
-                {
-                    actionsWidth += (Padding?.Start + Padding?.End) ?? 0;
-                    var cellPaddingWidth = (size.Width - actionsWidth) / (count - 1);
-                    layout.CellPadding = new Size2D(cellPaddingWidth , 0);
-                }
-            }
-            else
-            {
-                int actionsHeight = 0;
-
-                foreach (var action in Actions)
-                {
-                    actionsHeight += ((View)action).Size2D.Height + ((((View)action).Margin?.Top + ((View)action).Margin?.Bottom) ?? 0);
-                    count++;
-                }
-
-                if (count > 1)
-                {
-                    actionsHeight += (Padding?.Top + Padding?.Bottom) ?? 0;
-                    var cellPaddingHeight = (size.Height - actionsHeight) / (count - 1);
-                    layout.CellPadding = new Size2D(0, cellPaddingHeight);
-                }
-            }
         }
     }
 }
