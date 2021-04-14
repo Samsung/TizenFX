@@ -14,14 +14,13 @@
  * limitations under the License.
  *
  */
-#if !PROFILE_WEARABLE
+#if false
 
 using System.Diagnostics.CodeAnalysis;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.Components
 {
-    // It is a C# version of res/Tizen.NUI.Components_Tizen.NUI.Theme.Common.xaml
     internal partial class DefaultThemeCreator : IThemeCreator
     {
         [SuppressMessage("Microsoft.Reliability", "CA2000: Dispose objects before losing scope", Justification = "The responsibility to dispose the object is transferred to the theme object.")]
