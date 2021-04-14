@@ -626,42 +626,6 @@ namespace Tizen.NUI.Components
                 }
             });
 
-            theme.AddStyleWithoutClone("Tizen.NUI.Components.AlertDialog", new AlertDialogStyle()
-            {
-                Size = new Size(-2, -2),
-                Padding = new Extents(80, 80, 0, 0),
-                BackgroundImage = FrameworkInformation.ResourcePath + "nui_component_default_dialog_bg.#.png",
-                TitleTextLabel = new TextLabelStyle()
-                {
-                    Size = new Size(1024, -2),
-                    Margin = new Extents(0, 0, 40, 40),
-                    PixelSize = 40,
-                    HorizontalAlignment = HorizontalAlignment.Center,
-                    VerticalAlignment = VerticalAlignment.Center,
-                    TextColor = new Selector<Color>()
-                    {
-                        Normal = new Color("#000C2BFF"),
-                    },
-                },
-                MessageTextLabel = new TextLabelStyle()
-                {
-                    Size = new Size(1024, -2),
-                    Margin = new Extents(0, 0, 0, 64),
-                    PixelSize = 32,
-                    MultiLine = true,
-                    HorizontalAlignment = HorizontalAlignment.Center,
-                    VerticalAlignment = VerticalAlignment.Center,
-                    TextColor = new Selector<Color>()
-                    {
-                        Normal = new Color("#000C2BFF"),
-                    },
-                },
-                ActionContent = new ViewStyle()
-                {
-                    Size = new Size(1024, -2),
-                },
-            });
-
             return theme;
         }
     }
