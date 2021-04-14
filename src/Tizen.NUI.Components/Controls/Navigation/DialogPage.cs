@@ -44,6 +44,10 @@ namespace Tizen.NUI.Components
             WidthResizePolicy = ResizePolicyType.FillToParent;
             HeightResizePolicy = ResizePolicyType.FillToParent;
 
+            // FIXME: To pass touch event when Scrim is disabled.
+            //        When proper way to pass touch event is introduced, this code should be fixed.
+            EnableControlState = false;
+
             Scrim = CreateDefaultScrim();
         }
 
