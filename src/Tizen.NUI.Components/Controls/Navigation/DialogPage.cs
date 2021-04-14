@@ -198,7 +198,26 @@ namespace Tizen.NUI.Components
         /// Indicates to dismiss dialog by touching on scrim.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool EnableDismissOnScrim { get; set; }
+        public bool EnableDismissOnScrim { get; set; } = true;
+
+        /// <summary>
+        /// The color of scrim.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color ScrimColor
+        {
+            get
+            {
+                return Scrim?.BackgroundColor;
+            }
+            set
+            {
+                if (Scrim != null)
+                {
+                    Scrim.BackgroundColor = value;
+                }
+            }
+        }
 
         private View CreateDefaultScrim()
         {

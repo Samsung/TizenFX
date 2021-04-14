@@ -14,14 +14,13 @@
  * limitations under the License.
  *
  */
-#if !PROFILE_WEARABLE
+#if false
 
 using System.Diagnostics.CodeAnalysis;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.Components
 {
-    // It is a C# version of res/Tizen.NUI.Components_Tizen.NUI.Theme.Common.xaml
     internal partial class DefaultThemeCreator : IThemeCreator
     {
         [SuppressMessage("Microsoft.Reliability", "CA2000: Dispose objects before losing scope", Justification = "The responsibility to dispose the object is transferred to the theme object.")]
@@ -588,42 +587,6 @@ namespace Tizen.NUI.Components
                     },
                     StartScrollOffset = new Size2D(0, 12),
                 }
-            });
-
-            theme.AddStyleWithoutClone("Tizen.NUI.Components.AlertDialog", new AlertDialogStyle()
-            {
-                Size = new Size(-2, -2),
-                Padding = new Extents(80, 80, 0, 0),
-                BackgroundImage = FrameworkInformation.ResourcePath + "nui_component_default_dialog_bg.#.png",
-                TitleTextLabel = new TextLabelStyle()
-                {
-                    Size = new Size(1024, -2),
-                    Margin = new Extents(0, 0, 40, 40),
-                    PixelSize = 40,
-                    HorizontalAlignment = HorizontalAlignment.Center,
-                    VerticalAlignment = VerticalAlignment.Center,
-                    TextColor = new Selector<Color>()
-                    {
-                        Normal = new Color("#000C2BFF"),
-                    },
-                },
-                MessageTextLabel = new TextLabelStyle()
-                {
-                    Size = new Size(1024, -2),
-                    Margin = new Extents(0, 0, 0, 64),
-                    PixelSize = 32,
-                    MultiLine = true,
-                    HorizontalAlignment = HorizontalAlignment.Center,
-                    VerticalAlignment = VerticalAlignment.Center,
-                    TextColor = new Selector<Color>()
-                    {
-                        Normal = new Color("#000C2BFF"),
-                    },
-                },
-                ActionContent = new ViewStyle()
-                {
-                    Size = new Size(1024, -2),
-                },
             });
 
             return theme;
