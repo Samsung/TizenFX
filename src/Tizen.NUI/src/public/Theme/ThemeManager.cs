@@ -126,7 +126,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Load a style with style name in the current theme.
-        /// For components, the style name is a component name with namespace (e.g. Tizen.NUI.Components.Button) in normal case.
+        /// For components, the default style name of a component is a component name with namespace (e.g. Tizen.NUI.Components.Button).
         /// </summary>
         /// <param name="styleName">The style name.</param>
         /// <exception cref="ArgumentNullException">Thrown when the given styleName is null.</exception>

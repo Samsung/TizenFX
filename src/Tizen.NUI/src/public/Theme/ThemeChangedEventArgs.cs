@@ -34,7 +34,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The new theme's id.
+        /// The new theme's ID.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public string ThemeId { get; }

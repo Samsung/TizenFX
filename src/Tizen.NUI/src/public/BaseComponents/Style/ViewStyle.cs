@@ -75,7 +75,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Gets or sets the image resource url of the background of view.
-        /// The mutually exclusive with "backgroundColor".
+        /// The mutually exclusive with "BackgroundColor". Setting it overwrites existing "BackgroundColor".
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public Selector<string> BackgroundImage
@@ -166,7 +166,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Gets or sets the size width of the view.
+        /// Gets or sets the width of the view.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public float? SizeWidth
@@ -176,7 +176,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Gets or sets the size height of the view.
+        /// Gets or sets the height of the view.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public float? SizeHeight
@@ -314,8 +314,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Sets the size of a view for the width, the height and the depth.<br />
-        /// The views default depth is the minimum of width and height.<br />
+        /// Sets the size of a view for the width, the height, and the depth.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public Size Size
@@ -336,7 +335,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Gets or sets the color of the background of view.
-        /// The mutually exclusive with "backgroundImage".
+        /// The mutually exclusive with "BackgroundImage". Setting it overwrites existing "BackgroundImage".
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public Selector<Color> BackgroundColor
@@ -505,10 +504,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Release instance.
         /// </summary>
-        /// <param name="disposing">
-        /// If disposing equals true, the method has been called directly or indirectly by a user's code. Managed and unmanaged resources can be disposed.
-        /// If disposing equals false, the method has been called by the runtime from inside the finalizer and you should not reference other objects. Only unmanaged resources can be disposed.
-        /// </param>
+        /// <param name="disposing"> If it true, the method has been called by a user's code. Otherwise the method has been called by the finalizer. </param>
         /// <since_tizen> 9 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {

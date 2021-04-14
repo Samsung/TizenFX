@@ -25,7 +25,7 @@ namespace Tizen.NUI.BaseComponents
     /// <summary>
     /// The selector class is a collection of a <see cref="ControlState" /> and a T value pair.
     /// </summary>
-    /// <typeparam name="T">The property type of the selector. If it's reference type, it is recommended to be of type <see cref="ICloneable"/>.</typeparam>
+    /// <typeparam name="T">The property type of the selector. If it's reference type, it is recommended to be a type implementing <see cref="ICloneable"/>.</typeparam>
     /// <since_tizen> 9 </since_tizen>
     [SuppressMessage("Microsoft.Naming",
                      "CA1710:IdentifiersShouldHaveCorrectSuffix",

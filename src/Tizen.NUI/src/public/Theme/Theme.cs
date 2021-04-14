@@ -97,7 +97,7 @@ namespace Tizen.NUI
         public string Id { get; set; }
 
         /// <summary>
-        /// The string key to identify the Theme.
+        /// The version of the Theme.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public string Version { get; set; } = null;
@@ -228,7 +228,7 @@ namespace Tizen.NUI
         /// Gets a style of given style name.
         /// </summary>
         /// <param name="styleName">The string key to find a ViewStyle.</param>
-        /// <returns>Founded style instance if the style name is found, otherwise null.</returns>
+        /// <returns>Found style instance if the style name has been found, otherwise null.</returns>
         /// <exception cref="ArgumentNullException">Thrown when the given styleName is null.</exception>
         /// <since_tizen> 9 </since_tizen>
         public ViewStyle GetStyle(string styleName)
@@ -241,7 +241,7 @@ namespace Tizen.NUI
         /// Gets a style of given view type.
         /// </summary>
         /// <param name="viewType">The type of View.</param>
-        /// <returns>Founded style instance if the view type is found, otherwise null.</returns>
+        /// <returns>Found style instance if the view type is found, otherwise null.</returns>
         /// <exception cref="ArgumentNullException">Thrown when the given viewType is null.</exception>
         /// <since_tizen> 9 </since_tizen>
         public ViewStyle GetStyle(Type viewType)

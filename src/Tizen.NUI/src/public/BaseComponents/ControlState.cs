@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2020-2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@ namespace Tizen.NUI.BaseComponents
         private static readonly Dictionary<string, ControlState> stateDictionary = new Dictionary<string, ControlState>();
         //Default States
         /// <summary>
-        /// Thia is used in a selector class. It represents all states, so if this state is defined in a selector, the other states are ignored.
+        /// The All state is used in a selector class. It represents all states, so if this state is defined in a selector, the other states are ignored.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public static readonly ControlState All = Create("All");
