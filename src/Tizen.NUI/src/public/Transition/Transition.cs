@@ -22,14 +22,15 @@ namespace Tizen.NUI
     using Tizen.NUI.BaseComponents;
 
     /// <summary>
-    /// Transition class is a cluster of properties for the transition of View Pair.
-    /// Transition class will be used as a property of Navigator.Transition.
-    /// During page Transition each of View pair those have same TransitionTag will be move with same Navigator.Transition property.
+    /// Transition class is a cluster of properties for the transition of View pair.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class Transition : TransitionBase
     {
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Create a Transition for the View pair.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public Transition()
         {
         }
