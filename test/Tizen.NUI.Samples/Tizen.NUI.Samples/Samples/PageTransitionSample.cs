@@ -15,8 +15,8 @@ namespace Tizen.NUI.Samples
         private readonly string totalGreyTag = "totalGrey";
 
         private Navigator navigator;
-        private Page mainPage;
-        private Page redPage, greenPage, bluePage, totalPage;
+        private ContentPage mainPage;
+        private ContentPage redPage, greenPage, bluePage, totalPage;
 
         private readonly Vector4 ColorGrey = new Vector4(0.82f, 0.80f, 0.78f, 1.0f);
         private readonly Vector4 ColorBackground = new Vector4(0.99f, 0.94f, 0.83f, 1.0f);
@@ -82,7 +82,10 @@ namespace Tizen.NUI.Samples
             layoutView.Add(greenButton);
             layoutView.Add(blueButton);
 
-            mainPage = new Page(mainRoot);
+            mainPage = new ContentPage()
+            {
+                Content = mainRoot,
+            };
             navigator.Push(mainPage);
 
             View totalGreyView = new View()
@@ -174,7 +177,10 @@ namespace Tizen.NUI.Samples
                 return true;
             };
 
-            totalPage = new Page(totalPageRoot);
+            totalPage = new ContentPage()
+            {
+                Content = totalPageRoot,
+            };
         }
 
         private View CreateButton(Color color, string colorTag, string greyTag, Page secondPage)
@@ -298,7 +304,10 @@ namespace Tizen.NUI.Samples
             };
             pageRoot.Add(pageBackground);
 
-            Page page = new Page(pageRoot);
+            Page page = new ContentPage()
+            {
+                Content = pageRoot,
+            };
             return page;
         }
 

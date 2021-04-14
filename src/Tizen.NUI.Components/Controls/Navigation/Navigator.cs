@@ -18,6 +18,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.Components
 {
@@ -540,9 +541,9 @@ namespace Tizen.NUI.Components
             newTopPage.SetVisible(true);
 
             List<View> taggedViewsInNewTopPage = new List<View>();
-            RetrieveTaggedViews(taggedViewsInNewTopPage, newTopPage.Content);
+            RetrieveTaggedViews(taggedViewsInNewTopPage, newTopPage);
             List<View> taggedViewsInCurrentTopPage = new List<View>();
-            RetrieveTaggedViews(taggedViewsInCurrentTopPage, currentTopPage.Content);
+            RetrieveTaggedViews(taggedViewsInCurrentTopPage, currentTopPage);
 
             List<KeyValuePair<View, View>> sameTaggedViewPair = new List<KeyValuePair<View, View>>();
             foreach(View currentTopPageView in taggedViewsInCurrentTopPage)
