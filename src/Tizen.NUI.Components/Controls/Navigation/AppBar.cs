@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ namespace Tizen.NUI.Components
     /// The AppBar class is a class which shows title text and provides navigation
     /// and action functions on Page.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class AppBar : Control
     {
         private bool autoNavigationContent = true;
@@ -48,7 +48,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Creates a new instance of AppBar.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public AppBar() : base()
         {
             Initialize();
@@ -58,7 +58,7 @@ namespace Tizen.NUI.Components
         /// Creates a new instance of AppBar.
         /// </summary>
         /// <param name="style">Creates AppBar by special style defined in UX.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public AppBar(string style) : base(style)
         {
             Initialize();
@@ -68,7 +68,7 @@ namespace Tizen.NUI.Components
         /// Creates a new instance of AppBar.
         /// </summary>
         /// <param name="appBarStyle">Creates AppBar by style customized by user.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public AppBar(AppBarStyle appBarStyle) : base(appBarStyle)
         {
             Initialize();
@@ -153,11 +153,12 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Navigation content of AppBar. NavigationContent is added to Children automatically.
+        /// Navigation content of AppBar.
+        /// NavigationContent is added as a child of AppBar automatically.
         /// If AutoNavigationContent is set to be true and NavigationContent is not set,
         /// then default navigation content is automatically displayed.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public View NavigationContent
         {
             get
@@ -188,10 +189,10 @@ namespace Tizen.NUI.Components
 
         /// <summary>
         /// Title text of AppBar.
-        /// SetTitle sets title text to the default title content.
+        /// Title sets title text to the default title content.
         /// If TitleContent is not TextLabel, then Title does not set title text of the TitleContent.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public string Title
         {
             get
@@ -215,10 +216,11 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Title content of AppBar. TitleContent is added to Children automatically.
+        /// Title content of AppBar.
+        /// TitleContent is added as a child of AppBar automatically.
         /// If TitleContent is not TextLabel, then Title does not set title text of the TitleContent.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public View TitleContent
         {
             get
@@ -255,10 +257,11 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Action views of AppBar.
         /// Action views are added to ActionContent of AppBar.
-        /// The Action and ActionButton styles of AppBarStyle are applied to actions only by setting Actions.
-        /// If you do not want to apply Action and ActionButton styles to action views, then please use ActionContent.Add() instead.
+        /// If action views and action buttons are set to Actions, then proper style look for action views and action buttons are automatically applied to action views and action buttons.
+        /// e.g. size, button icon color, etc.
+        /// If you do not want to apply framework's style look for action views and action buttons, then please use ActionContent.Add(actionView) instead of setting Actions.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public IEnumerable<View> Actions
         {
             get
@@ -309,11 +312,12 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Action content of AppBar. ActionContent is added to Children automatically.
+        /// Action content of AppBar.
+        /// ActionContent is added as a child of AppBar automatically.
         /// Action content contains action views and action buttons by Actions.
         /// The Action and ActionButton styles of AppBarStyle are applied to actions only by setting Actions.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public View ActionContent
         {
             get
@@ -371,7 +375,7 @@ namespace Tizen.NUI.Components
         /// then default navigation content is automatically displayed.
         /// If default navigation content is clicked, it calls navigator pop operation.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public bool AutoNavigationContent
         {
             get
@@ -465,7 +469,7 @@ namespace Tizen.NUI.Components
         /// Applies style to AppBar.
         /// </summary>
         /// <param name="viewStyle">The style to apply.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public override void ApplyStyle(ViewStyle viewStyle)
         {
             styleApplied = false;
