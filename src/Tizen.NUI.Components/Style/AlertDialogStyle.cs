@@ -21,27 +21,28 @@ using Tizen.NUI.Binding;
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// AlertDialogStyle is a class which saves AlertDialog's ux data.
+    /// AlertDialogStyle is a class which saves AlertDialog's UX data.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class AlertDialogStyle : ButtonStyle
     {
         [EditorBrowsable(EditorBrowsableState.Never)]
         static AlertDialogStyle() { }
 
         /// <summary>
-        /// Creates a new instance of a AlertDialogStyle.
+        /// Creates a new instance of an AlertDialogStyle.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public AlertDialogStyle() : base()
         {
         }
 
         /// <summary>
-        /// Creates a new instance of a AlertDialogStyle with style.
+        /// Creates a new instance of an AlertDialogStyle with style.
+        /// The given style is copied to the new instance.
         /// </summary>
         /// <param name="style">Create AlertDialogStyle by style customized by user.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public AlertDialogStyle(AlertDialogStyle style) : base(style)
         {
         }
@@ -50,27 +51,24 @@ namespace Tizen.NUI.Components
         /// Gets or sets the AlertDialog Title TextLabel style.
         /// This style is applied if AlertDialog TitleContent is a TextLabel.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public TextLabelStyle TitleTextLabel { get; set; } = new TextLabelStyle();
 
         /// <summary>
         /// Gets or sets the AlertDialog Message TextLabel style.
         /// This style is applied if AlertDialog Content is a TextLabel.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public TextLabelStyle MessageTextLabel { get; set; } = new TextLabelStyle();
 
         /// <summary>
         /// Gets or sets the AlertDialog ActionContent style.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public ViewStyle ActionContent { get; set; } = new ViewStyle();
 
-        /// <summary>
-        /// Style's clone function.
-        /// </summary>
-        /// <param name="bindableObject">The style that need to copy.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <inheritdoc/>
+        /// <since_tizen> 9 </since_tizen>
         public override void CopyFrom(BindableObject bindableObject)
         {
             base.CopyFrom(bindableObject);
