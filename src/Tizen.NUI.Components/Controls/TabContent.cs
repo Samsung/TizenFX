@@ -24,7 +24,7 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// TabContent is a class which contains a set of Views and has one of them selected.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class TabContent : Control
     {
         private IList<View> views;
@@ -32,7 +32,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Creates a new instance of TabContent.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public TabContent()
         {
             SelectedIndex = -1;
@@ -41,6 +41,8 @@ namespace Tizen.NUI.Components
 
         /// <summary>
         /// The index of the selected view.
+        /// The indices of views in TabContent are basically the order of adding to TabContent by <see cref="TabView.AddTab"/>.
+        /// So a view's index in TabContent can be changed whenever <see cref="TabView.AddTab"/> or <see cref="TabView.RemoveTab"/> is called.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected int SelectedIndex { get; set; }
@@ -48,7 +50,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Gets the count of views.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public int ViewCount => views.Count;
 
         /// <summary>
@@ -110,8 +112,10 @@ namespace Tizen.NUI.Components
 
         /// <summary>
         /// Selects a view at the specified index of TabContent.
+        /// The indices of views in TabContent are basically the order of adding to TabContent by <see cref="TabView.AddTab"/>.
+        /// So a view's index in TabContent can be changed whenever <see cref="TabView.AddTab"/> or <see cref="TabView.RemoveTab"/> is called.
         /// </summary>
-        /// <param name="index">The index of TabContent where a view will be selected.</param>
+        /// <param name="index">The index of a view in TabContent where the view will be selected.</param>
         /// <exception cref="ArgumentOutOfRangeException">Thrown when the index is less than -1, or greater than or equal to the number of views.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal void Select(int index)
@@ -136,10 +140,12 @@ namespace Tizen.NUI.Components
 
         /// <summary>
         /// Gets the view at the specified index of TabContent.
+        /// The indices of views in TabContent are basically the order of adding to TabContent by <see cref="TabView.AddTab"/>.
+        /// So a view's index in TabContent can be changed whenever <see cref="TabView.AddTab"/> or <see cref="TabView.RemoveTab"/> is called.
         /// </summary>
-        /// <param name="index">The index of TabContent where the specified view exists.</param>
+        /// <param name="index">The index of a view in TabContent where the specified view exists.</param>
         /// <exception cref="ArgumentOutOfRangeException">Thrown when the index is less than 0, or greater than or equal to the number of views.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public View GetView(int index)
         {
             if ((index < 0) || (index >= views.Count))
@@ -150,10 +156,7 @@ namespace Tizen.NUI.Components
             return views[index];
         }
 
-        /// <summary>
-        /// Dispose TabContent and all children on it.
-        /// </summary>
-        /// <param name="type">Dispose type.</param>
+        /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
