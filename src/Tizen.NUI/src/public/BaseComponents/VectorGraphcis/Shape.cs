@@ -362,5 +362,18 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
+
+        /// <summary>
+        /// Reset the added path(rect, circle, path, etc...) information.
+        /// Color and Stroke information are keeped.
+        /// </summary>
+        /// <returns>True when it's successful. False otherwise.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Reset()
+        {
+            bool ret = Interop.Shape.Reset(BaseHandle.getCPtr(this));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
     }
 }
