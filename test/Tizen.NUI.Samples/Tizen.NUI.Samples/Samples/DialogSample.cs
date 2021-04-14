@@ -33,11 +33,7 @@ namespace Tizen.NUI.Samples
                 Navigator.ShowDialog(textLabel);
             };
 
-            var dialogPage = new ContentPage()
-            {
-                Content = button,
-            };
-            window.GetDefaultNavigator().Push(dialogPage);
+            window.GetDefaultNavigator().Push(new Page(button));
         }
 
         public void Deactivate()
