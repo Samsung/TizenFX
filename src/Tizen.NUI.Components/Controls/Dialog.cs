@@ -22,9 +22,9 @@ using Tizen.NUI.BaseComponents;
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// Dialog class shows a popup content with background scrim.
+    /// Dialog class shows a dialog with content.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class Dialog : Control
     {
         private View content = null;
@@ -32,7 +32,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Creates a new instance of Dialog.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public Dialog() : base()
         {
             Layout = new AbsoluteLayout();
@@ -40,10 +40,7 @@ namespace Tizen.NUI.Components
             this.Relayout += OnRelayout;
         }
 
-        /// <summary>
-        /// Dispose Dialog and all children on it.
-        /// </summary>
-        /// <param name="type">Dispose type.</param>
+        /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
@@ -66,9 +63,10 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Popup content of Dialog. Content is added to Children automatically.
+        /// Popup content of Dialog.
+        /// Content is added as a child of Dialog automatically.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public View Content
         {
             get
