@@ -77,11 +77,7 @@ namespace Tizen.NUI.Components
         {
             //Console.WriteLine("[NUI] On ReLayout [{0} {0}]", size.X, size.Y);
             base.OnRelayout(size, container);
-            if (InternalItemsLayouter != null && ItemsSource != null && ItemTemplate != null)
-            {
-                InternalItemsLayouter.Initialize(this);
-                InternalItemsLayouter.RequestLayout(ScrollingDirection == Direction.Horizontal ? ContentContainer.CurrentPosition.X : ContentContainer.CurrentPosition.Y, true);
-            }
+            Initialize();
         }
 
         /// <summary>
@@ -269,6 +265,20 @@ namespace Tizen.NUI.Components
             {
                 //ContentContainer.Remove(item);
                 Utility.Dispose(item);
+            }
+        }
+
+        /// <summary>
+        /// Initialize Layouter and Request first layout.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void Initialize()
+        {
+            if (InternalItemsLayouter != null && ItemsSource != null && ItemTemplate != null)
+            {
+                InternalItemsLayouter.Clear();
+                InternalItemsLayouter.Initialize(this);
+                InternalItemsLayouter.RequestLayout(ScrollingDirection == Direction.Horizontal ? ContentContainer.CurrentPosition.X : ContentContainer.CurrentPosition.Y, true);
             }
         }
 
