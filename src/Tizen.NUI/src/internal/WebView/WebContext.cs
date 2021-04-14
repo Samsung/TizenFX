@@ -17,6 +17,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Runtime.InteropServices;
 
 namespace Tizen.NUI
 {
@@ -29,10 +30,57 @@ namespace Tizen.NUI
         private string proxyUri;
         private string certificateFilePath;
         private bool disableCache;
+        private SecurityOriginListAcquiredCallback securityOriginListAcquiredCallback;
+        private readonly WebContextSecurityOriginListAcquiredProxyCallback securityOriginListAcquiredProxyCallback;
+        private PasswordDataListAcquiredCallback passwordDataListAcquiredCallback;
+        private readonly WebContextPasswordDataListAcquiredProxyCallback passwordDataListAcquiredProxyCallback;
 
         internal WebContext(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
+            securityOriginListAcquiredProxyCallback = OnSecurityOriginListAcquired;
+            passwordDataListAcquiredProxyCallback = OnPasswordDataListAcquired;
         }
+
+        /// <summary>
+        /// The callback function that is invoked when security origin list is acquired.
+        /// </summary>
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public delegate void SecurityOriginListAcquiredCallback(WebSecurityOriginList list);
+
+        /// <summary>
+        /// The callback function that is invoked when storage usage is acquired.
+        /// </summary>
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public delegate void StorageUsageAcquiredCallback(ulong usage);
+
+        /// <summary>
+        /// The callback function that is invoked when security origin list is acquired.
+        /// </summary>
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public delegate void PasswordDataListAcquiredCallback(WebPasswordDataList list);
+
+        /// <summary>
+        /// The callback function that is invoked when download is started.
+        /// </summary>
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public delegate void DownloadStartedCallback(string url);
+
+        /// <summary>
+        /// The callback function that is invoked when current mime type need be overridden.
+        /// </summary>
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public delegate bool MimeOverriddenCallback(string url, string currentMime, string newMime);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void WebContextSecurityOriginListAcquiredProxyCallback(IntPtr list);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void WebContextPasswordDataListAcquiredProxyCallback(IntPtr list);
 
         /// <summary>
         /// Cache model
@@ -140,27 +188,93 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Delete Web Database.
+        /// Delete all web database.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void DeleteWebDatabase()
+        public void DeleteAllWebDatabase()
         {
-            Interop.WebContext.DeleteWebDatabase(SwigCPtr);
+            Interop.WebContext.DeleteAllWebDatabase(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
-        /// Delete Web Storage.
+        /// Gets security origins of web database asynchronously.
+        /// <param name="callback">callback for acquiring security origins</param>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void DeleteWebStorage()
+        public bool GetWebDatabaseOrigins(SecurityOriginListAcquiredCallback callback)
         {
-            Interop.WebContext.DeleteWebStorage(SwigCPtr);
+            securityOriginListAcquiredCallback = callback;
+            IntPtr ip = Marshal.GetFunctionPointerForDelegate(securityOriginListAcquiredProxyCallback);
+            bool result = Interop.WebContext.GetWebDatabaseOrigins(SwigCPtr, new HandleRef(this, ip));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return result;
+        }
+
+        /// <summary>
+        /// Deletes web databases by origin.
+        /// <param name="origin">security origin of web database</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool DeleteWebDatabase(WebSecurityOrigin origin)
+        {
+            bool result = Interop.WebContext.DeleteWebDatabase(SwigCPtr, WebSecurityOrigin.getCPtr(origin));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return result;
+        }
+
+        /// <summary>
+        /// Gets a list of security origins of web storage asynchronously.
+        /// <param name="callback">callback for acquiring security origins</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool GetWebStorageOrigins(SecurityOriginListAcquiredCallback callback)
+        {
+            securityOriginListAcquiredCallback = callback;
+            IntPtr ip = Marshal.GetFunctionPointerForDelegate(securityOriginListAcquiredProxyCallback);
+            bool result = Interop.WebContext.GetWebStorageOrigins(SwigCPtr, new HandleRef(this, ip));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return result;
+        }
+
+        /// <summary>
+        /// Gets a list of security origins of web storage asynchronously.
+        /// <param name="origin">security origin of web storage</param>
+        /// <param name="callback">callback for acquiring storage usage</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool GetWebStorageUsageForOrigin(WebSecurityOrigin origin, StorageUsageAcquiredCallback callback)
+        {
+            IntPtr ip = Marshal.GetFunctionPointerForDelegate(callback);
+            bool result = Interop.WebContext.GetWebStorageUsageForOrigin(SwigCPtr, WebSecurityOrigin.getCPtr(origin), new HandleRef(this, ip));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return result;
+        }
+
+        /// <summary>
+        /// Delete all web storage.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void DeleteAllWebStorage()
+        {
+            Interop.WebContext.DeleteAllWebStorage(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
-        /// Delete Local FileSystem.
+        /// Deletes web storage by origin.
+        /// <param name="origin">security origin of web storage</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool DeleteWebStorage(WebSecurityOrigin origin)
+        {
+            bool result = Interop.WebContext.DeleteWebStorageOrigin(SwigCPtr, WebSecurityOrigin.getCPtr(origin));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return result;
+        }
+
+        /// <summary>
+        /// Delete local fileSystem.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void DeleteLocalFileSystem()
@@ -177,6 +291,69 @@ namespace Tizen.NUI
         {
             Interop.WebContext.ClearCache(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Deletes web application cache by origin.
+        /// <param name="origin">security origin of web application</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool DeleteApplicationCache(WebSecurityOrigin origin)
+        {
+            bool result = Interop.WebContext.DeleteApplicationCache(SwigCPtr, WebSecurityOrigin.getCPtr(origin));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return result;
+        }
+
+        /// <summary>
+        /// Gets a list of all password data asynchronously.
+        /// <param name="callback">callback for acquiring password data list</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void GetFormPasswordList(PasswordDataListAcquiredCallback callback)
+        {
+            passwordDataListAcquiredCallback = callback;
+            IntPtr ip = Marshal.GetFunctionPointerForDelegate(passwordDataListAcquiredProxyCallback);
+            Interop.WebContext.GetFormPasswordList(SwigCPtr, new HandleRef(this, ip));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Registers callback for download started.
+        /// <param name="callback">callback for download started</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RegisterDownloadStartedCallback(DownloadStartedCallback callback)
+        {
+            IntPtr ip = Marshal.GetFunctionPointerForDelegate(callback);
+            Interop.WebContext.RegisterDownloadStartedCallback(SwigCPtr, new HandleRef(this, ip));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Registers callback for overriding mime type.
+        /// <param name="callback">callback for overriding mime type</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RegisterMimeOverriddenCallback(MimeOverriddenCallback callback)
+        {
+            IntPtr ip = Marshal.GetFunctionPointerForDelegate(callback);
+            Interop.WebContext.RegisterMimeOverriddenCallback(SwigCPtr, new HandleRef(this, ip));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        private void OnSecurityOriginListAcquired(IntPtr list)
+        {
+            WebSecurityOriginList originList = new WebSecurityOriginList(list, true);
+            securityOriginListAcquiredCallback?.Invoke(originList);
+            originList.Dispose();
+        }
+
+        private void OnPasswordDataListAcquired(IntPtr list)
+        {
+            WebPasswordDataList passwordList = new WebPasswordDataList(list, true);
+            passwordDataListAcquiredCallback?.Invoke(passwordList);
+            passwordList.Dispose();
         }
     }
 }
