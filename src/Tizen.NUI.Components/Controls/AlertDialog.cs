@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,290 +17,69 @@
 
 using System;
 using System.ComponentModel;
+using System.Collections.Generic;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// Types of the action button of AlertDialog.
-    /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public enum AlertDialogActionButtonType
-    {
-        /// <summary>
-        /// Type of the positive action button.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        Positive,
-
-        /// <summary>
-        /// Type of the negative action button.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        Negative
-    }
-
-    /// <summary>
     /// AlertDialog class shows a dialog with title, message and action buttons.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class AlertDialog : Dialog
+    public class AlertDialog : Control
     {
         private string title = null;
         private string message = null;
 
-        private View popupTitle = null;
-        private View popupContent = null;
-        private View popupAction = null;
+        private View titleContent = null;
+        private View content = null;
+        private View actionContent = null;
+        private IEnumerable<View> actionContentViews = null;
 
         private View defaultTitleContent = null;
         private View defaultContent = null;
         private View defaultActionContent = null;
 
-        private Button positiveButton = null;
-        private Button negativeButton = null;
-
         /// <summary>
         /// Creates a new instance of AlertDialog.
         /// </summary>
-        /// <param name="title">The title of AlertDialog.</param>
-        /// <param name="message">The message of AlertDialog.</param>
-        /// <param name="positiveButtonText">The positive button text in the action content of AlertDialog.</param>
-        /// <param name="positiveButtonClickedHandler">The clicked callback of the positive button in the action content of AlertDialog.</param>
-        /// <param name="negativeButtonText">The negative button text in the action content of AlertDialog.</param>
-        /// <param name="negativeButtonClickedHandler">The clicked callback of the negative button in the action content of AlertDialog.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public AlertDialog(string title, string message, string positiveButtonText, EventHandler<ClickedEventArgs> positiveButtonClickedHandler, string negativeButtonText = null, EventHandler<ClickedEventArgs> negativeButtonClickedHandler = null) : base()
+        public AlertDialog() : base()
         {
-            //Content is initialized to add TitleContent, BodyContent and ActionContent.
-            //FIXME: Needs to separate GUI implementation codes to style cs file.
-            InitContent();
-
-            //Title setter calls TitleContent setter if TitleContent is null.
-            Title = title;
-
-            //Message setter calls BodyContent setter if BodyContent is null.
-            Message = message;
-
-            ActionContent = CreateActionContent(positiveButtonText, positiveButtonClickedHandler, negativeButtonText, negativeButtonClickedHandler);
+            Initialize();
         }
 
         /// <summary>
-        /// Creates a new instance of AlertDialog.
+        /// Dispose AlertDialog and all children on it.
         /// </summary>
-        /// <param name="message">The message of AlertDialog.</param>
-        /// <param name="positiveButtonText">The positive button text in the action content of AlertDialog.</param>
-        /// <param name="positiveButtonClickedHandler">The clicked callback of the positive button in the action content of AlertDialog.</param>
-        /// <param name="negativeButtonText">The negative button text in the action content of AlertDialog.</param>
-        /// <param name="negativeButtonClickedHandler">The clicked callback of the negative button in the action content of AlertDialog.</param>
+        /// <param name="type">Dispose type.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public AlertDialog(string message, string positiveButtonText, EventHandler<ClickedEventArgs> positiveButtonClickedHandler, string negativeButtonText = null, EventHandler<ClickedEventArgs> negativeButtonClickedHandler = null) : this(null, message, positiveButtonText, positiveButtonClickedHandler, negativeButtonText, negativeButtonClickedHandler)
+        protected override void Dispose(DisposeTypes type)
         {
-        }
-
-        /// <summary>
-        /// Creates a new instance of AlertDialog.
-        /// </summary>
-        /// <param name="title">The title of AlertDialog.</param>
-        /// <param name="message">The message of AlertDialog.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public AlertDialog(string title, string message) : this(title, message, null, null, null, null)
-        {
-        }
-
-        /// <summary>
-        /// Creates a new instance of AlertDialog.
-        /// </summary>
-        /// <param name="message">The message of AlertDialog.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public AlertDialog(string message) : this(null, message)
-        {
-        }
-
-        /// <summary>
-        /// Creates a new instance of AlertDialog.
-        /// </summary>
-        /// <param name="titleContent">The title content of AlertDialog.</param>
-        /// <param name="bodyContent">The content of AlertDialog.</param>
-        /// <param name="actionContent">The action content of AlertDialog.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public AlertDialog(View titleContent, View bodyContent, View actionContent) : base()
-        {
-            //Content is initialized to add TitleContent, BodyContent and ActionContent.
-            //FIXME: Needs to separate GUI implementation codes to style cs file.
-            InitContent();
-
-            TitleContent = titleContent;
-
-            BodyContent = bodyContent;
-
-            ActionContent = actionContent;
-        }
-
-        /// <summary>
-        /// Creates a new instance of AlertDialog.
-        /// </summary>
-        /// <param name="bodyContent">The content of AlertDialog.</param>
-        /// <param name="actionContent">The action content of AlertDialog.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public AlertDialog(View bodyContent, View actionContent) : this(null, bodyContent, actionContent)
-        {
-        }
-
-        /// <summary>
-        /// Creates a new instance of AlertDialog.
-        /// </summary>
-        /// <param name="bodyContent">The content of AlertDialog.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public AlertDialog(View bodyContent = null) : this(bodyContent, null)
-        {
-        }
-
-        private void InitContent()
-        {
-            var content = new Control();
-
-            var linearLayout = new LinearLayout();
-            linearLayout.LinearOrientation = LinearLayout.Orientation.Vertical;
-            content.Layout = linearLayout;
-
-            Content = content;
-        }
-
-        /// <summary>
-        /// Title content of AlertDialog. TitleContent is added to Children automatically.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public View TitleContent
-        {
-            get
-            {
-                return popupTitle;
-            }
-            set
-            {
-                if (popupTitle == value)
-                {
-                    return;
-                }
-
-                if (popupTitle != null)
-                {
-                    Remove(popupTitle);
-                }
-
-                popupTitle = value;
-                if (popupTitle == null)
-                {
-                    return;
-                }
-
-                ResetContent();
-            }
-        }
-
-        /// <summary>
-        /// BodyContent of AlertDialog. BodyContent is added to Children automatically.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public View BodyContent
-        {
-            get
-            {
-                return popupContent;
-            }
-            set
-            {
-                if (popupContent == value)
-                {
-                    return;
-                }
-
-                if (popupContent != null)
-                {
-                    Remove(popupContent);
-                }
-
-                popupContent = value;
-                if (popupContent == null)
-                {
-                    return;
-                }
-
-                ResetContent();
-            }
-        }
-
-        /// <summary>
-        /// Action content of AlertDialog. ActionContent is added to Children automatically.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public View ActionContent
-        {
-            get
-            {
-                return popupAction;
-            }
-            set
-            {
-                if (popupAction == value)
-                {
-                    return;
-                }
-
-                if (popupAction != null)
-                {
-                    Remove(popupAction);
-                }
-
-                popupAction = value;
-                if (popupAction == null)
-                {
-                    return;
-                }
-
-                ResetContent();
-            }
-        }
-
-        private void ResetContent()
-        {
-            if (Content == null)
+            if (disposed)
             {
                 return;
             }
 
-            //To keep the order of TitleContent, BodyContent and ActionContent,
-            //the existing contents are removed and added again.
-            if (popupTitle != null)
+            if (type == DisposeTypes.Explicit)
             {
-                Content.Remove(popupTitle);
+                if (titleContent != null)
+                {
+                    Utility.Dispose(titleContent);
+                }
+
+                if (content != null)
+                {
+                    Utility.Dispose(content);
+                }
+
+                if (actionContent != null)
+                {
+                    Utility.Dispose(actionContent);
+                }
             }
 
-            if (popupContent != null)
-            {
-                Content.Remove(popupContent);
-            }
-
-            if (popupAction != null)
-            {
-                Content.Remove(popupAction);
-            }
-
-            if (popupTitle != null)
-            {
-                Content.Add(popupTitle);
-            }
-
-            if (popupContent != null)
-            {
-                Content.Add(popupContent);
-            }
-
-            if (popupAction != null)
-            {
-                Content.Add(popupAction);
-            }
+            base.Dispose(type);
         }
 
         /// <summary>
@@ -321,26 +100,48 @@ namespace Tizen.NUI.Components
                 }
 
                 title = value;
-                if (title == null)
+
+                if (TitleContent is TextLabel textLabel)
                 {
-                    if (TitleContent != null)
-                    {
-                        //TitleContent setter calls Remove(popupTitle).
-                        TitleContent = null;
-                    }
+                    textLabel.Text = title;
                 }
-                else
+            }
+        }
+
+        /// <summary>
+        /// Title content of AlertDialog. TitleContent is added to Children automatically.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public View TitleContent
+        {
+            get
+            {
+                return titleContent;
+            }
+            set
+            {
+                if (titleContent == value)
                 {
-                    if (TitleContent == null)
-                    {
-                        TitleContent = CreateTitleContent(title);
-                    }
-                    else if (TitleContent == defaultTitleContent)
-                    {
-                        //Sets text if TitleContent is not set by user.
-                        ((TextLabel)TitleContent).Text = title;
-                    }
+                    return;
                 }
+
+                if (titleContent != null)
+                {
+                    Remove(titleContent);
+                }
+
+                titleContent = value;
+                if (titleContent == null)
+                {
+                    return;
+                }
+
+                if (titleContent is TextLabel textLabel)
+                {
+                    textLabel.Text = Title;
+                }
+
+                ResetContent();
             }
         }
 
@@ -362,222 +163,137 @@ namespace Tizen.NUI.Components
                 }
 
                 message = value;
-                if (message == null)
+
+                if (Content is TextLabel textLabel)
                 {
-                    if (BodyContent != null)
-                    {
-                        //BodyContent setter calls Remove(popupContent).
-                        BodyContent = null;
-                    }
-                }
-                else
-                {
-                    if (BodyContent == null)
-                    {
-                        BodyContent = CreateContent(message);
-                    }
-                    else if (BodyContent == defaultContent)
-                    {
-                        //Sets text if BodyContent is not set by user.
-                        ((TextLabel)BodyContent).Text = message;
-                    }
+                    textLabel.Text = message;
                 }
             }
         }
 
         /// <summary>
-        /// Sets action button in the action content of AlertDialog.
+        /// Content of AlertDialog. Content is added to Children automatically.
         /// </summary>
-        /// <param name="type">The type of action button.</param>
-        /// <param name="text">The text of action button in the action content of AlertDialog.</param>
-        /// <param name="clickedHandler">The clicked callback of the action button in the action content of AlertDialog.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetActionButton(AlertDialogActionButtonType type, string text, EventHandler<ClickedEventArgs> clickedHandler)
+        public View Content
         {
-            if (ActionContent == null)
+            get
             {
-                if (type == AlertDialogActionButtonType.Positive)
-                {
-                    ActionContent = CreateActionContent(text, clickedHandler, null, null);
-                }
-                else
-                {
-                    ActionContent = CreateActionContent(null, null, text, clickedHandler);
-                }
+                return content;
             }
-            else if (ActionContent == defaultActionContent)
+            set
             {
-                //To keep the order of negativeButton and positiveButton,
-                //positiveButton is always removed.
-                if (positiveButton != null)
+                if (content == value)
                 {
-                    ActionContent.Remove(positiveButton);
+                    return;
                 }
 
-                if (type == AlertDialogActionButtonType.Negative)
+                if (content != null)
                 {
-                    if (negativeButton != null)
-                    {
-                        ActionContent.Remove(negativeButton);
-                    }
+                    Remove(content);
+                }
 
-                    negativeButton = CreateActionButton(text, clickedHandler);
-                    if (negativeButton != null)
-                    {
-                        ActionContent.Add(negativeButton);
+                content = value;
+                if (content == null)
+                {
+                    return;
+                }
 
-                        if (positiveButton != null)
+                if (content is TextLabel textLabel)
+                {
+                    textLabel.Text = message;
+                }
+
+                ResetContent();
+            }
+        }
+
+        /// <summary>
+        /// Action views of AlertDialog.
+        /// Action views are added to ActionContent of AlertDialog.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public IEnumerable<View> Actions
+        {
+            get
+            {
+                return actionContentViews;
+            }
+            set
+            {
+                if (ActionContent == null)
+                {
+                    actionContentViews = value;
+                    return;
+                }
+
+                if (actionContentViews != null)
+                {
+                    foreach (var oldAction in actionContentViews)
+                    {
+                        if (ActionContent.Children?.Contains(oldAction) == true)
                         {
-                            ActionContent.Add(positiveButton);
+                            ActionContent.Children.Remove(oldAction);
                         }
                     }
                 }
-                else
+
+                actionContentViews = value;
+
+                if (actionContentViews == null)
                 {
-                    positiveButton = CreateActionButton(text, clickedHandler);
-                    if (positiveButton != null)
-                    {
-                        ActionContent.Add(positiveButton);
-                    }
+                    return;
+                }
+
+                foreach (var action in actionContentViews)
+                {
+                    ActionContent.Add(action);
                 }
             }
-        }
-
-        private TextLabel CreateTitleContent(string text)
-        {
-            if (text == null)
-            {
-                return null;
-            }
-
-            //FIXME: Needs to separate GUI implementation codes to style cs file.
-            var titleContent = new TextLabel(text);
-            titleContent.HorizontalAlignment = HorizontalAlignment.Center;
-            titleContent.VerticalAlignment = VerticalAlignment.Center;
-            titleContent.BackgroundColor = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-            titleContent.Size = new Size(360, 80);
-
-            defaultTitleContent = titleContent;
-
-            return titleContent;
-        }
-
-        private TextLabel CreateContent(string message)
-        {
-            if (message == null)
-            {
-                return null;
-            }
-
-            //FIXME: Needs to separate GUI implementation codes to style cs file.
-            var messageContent = new TextLabel(message);
-            messageContent.HorizontalAlignment = HorizontalAlignment.Center;
-            messageContent.VerticalAlignment = VerticalAlignment.Center;
-            messageContent.BackgroundColor = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-            messageContent.Size = new Size(360, 200);
-
-            defaultContent = messageContent;
-
-            return messageContent;
-        }
-
-        private Button CreateActionButton(string text, EventHandler<ClickedEventArgs> clickedHandler)
-        {
-            if (text == null)
-            {
-                return null;
-            }
-
-            //FIXME: Needs to separate GUI implementation codes to style cs file.
-            var actionButton = new Button();
-            actionButton.Text = text;
-            actionButton.Size = new Size(120, 80);
-
-            if (clickedHandler != null)
-            {
-                actionButton.Clicked += clickedHandler;
-            }
-
-            return actionButton;
-        }
-
-        private View CreateActionContent(string positiveButtonText, EventHandler<ClickedEventArgs> positiveButtonClickedHandler, string negativeButtonText, EventHandler<ClickedEventArgs> negativeButtonClickedHandler)
-        {
-            if ((negativeButtonText == null) && (positiveButtonText == null))
-            {
-                return null;
-            }
-
-            //FIXME: Needs to separate GUI implementation codes to style cs file.
-            var actionContent = new Control();
-            actionContent.BackgroundColor = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-            actionContent.Size = new Size(360, 80);
-
-            //FIXME: Needs to separate GUI implementation codes to style cs file.
-            var actionLayout = new LinearLayout();
-            actionLayout.LinearOrientation = LinearLayout.Orientation.Horizontal;
-            actionLayout.LinearAlignment = LinearLayout.Alignment.CenterHorizontal;
-            actionLayout.CellPadding = new Size2D(10, 0);
-            actionContent.Layout = actionLayout;
-
-            negativeButton = CreateActionButton(negativeButtonText, negativeButtonClickedHandler);
-            if (negativeButton != null)
-            {
-                actionContent.Add(negativeButton);
-            }
-
-            positiveButton = CreateActionButton(positiveButtonText, positiveButtonClickedHandler);
-            if (positiveButton != null)
-            {
-                actionContent.Add(positiveButton);
-            }
-
-            defaultActionContent = actionContent;
-
-            return actionContent;
         }
 
         /// <summary>
-        /// Dispose AlertDialog and all children on it.
+        /// Action content of AlertDialog. ActionContent is added to Children automatically.
         /// </summary>
-        /// <param name="type">Dispose type.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void Dispose(DisposeTypes type)
+        public View ActionContent
         {
-            if (disposed)
-            {
-                return;
-            }
+             get
+             {
+                return actionContent;
+             }
+             set
+             {
+                if (actionContent == value)
+                 {
+                     return;
+                 }
 
-            if (type == DisposeTypes.Explicit)
-            {
-                if (popupTitle != null)
-                {
-                    Utility.Dispose(popupTitle);
-                }
+                var oldActionContent = actionContent;
+                actionContent = value;
 
-                if (popupContent != null)
+                // Add views first before remove previous action content
+                // not to cause Garbage Collector collects views.
+                if ((actionContent != null) && (Actions != null))
                 {
-                    Utility.Dispose(popupContent);
-                }
-
-                if (popupAction != null)
-                {
-                    if (positiveButton != null)
+                    foreach (var action in Actions)
                     {
-                        Utility.Dispose(positiveButton);
+                        actionContent.Add(action);
                     }
-
-                    if (negativeButton != null)
-                    {
-                        Utility.Dispose(negativeButton);
-                    }
-
-                    Utility.Dispose(popupAction);
                 }
-            }
 
-            base.Dispose(type);
+                if (oldActionContent != null)
+                {
+                    Remove(oldActionContent);
+                }
+
+                if (actionContent == null)
+                {
+                    return;
+                }
+
+                ResetContent();
+            }
         }
 
         /// <summary>
@@ -594,6 +310,175 @@ namespace Tizen.NUI.Components
             {
                 return Message;
             }
+        }
+
+        /// <summary>
+        /// Default title content of AlertDialog.
+        /// If Title is set, then default title content is automatically displayed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected View DefaultTitleContent
+        {
+            get
+            {
+                if (defaultTitleContent == null)
+                {
+                    defaultTitleContent = CreateDefaultTitleContent();
+                }
+
+                return defaultTitleContent;
+            }
+        }
+
+        /// <summary>
+        /// Default content of AlertDialog.
+        /// If Message is set, then default content is automatically displayed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected View DefaultContent
+        {
+            get
+            {
+                if (defaultContent == null)
+                {
+                    defaultContent = CreateDefaultContent();
+                }
+
+                return defaultContent;
+            }
+        }
+
+        /// <summary>
+        /// Default action content of AlertDialog.
+        /// If Actions are set, then default action content is automatically displayed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected View DefaultActionContent
+        {
+            get
+            {
+                if (defaultActionContent == null)
+                {
+                    defaultActionContent = CreateDefaultActionContent();
+                }
+
+                return defaultActionContent;
+            }
+        }
+
+        private void Initialize()
+        {
+            Layout = new LinearLayout()
+            {
+                LinearOrientation = LinearLayout.Orientation.Vertical,
+            };
+
+            this.Relayout += OnRelayout;
+
+            TitleContent = DefaultTitleContent;
+
+            Content = DefaultContent;
+
+            ActionContent = DefaultActionContent;
+        }
+
+        private void ResetContent()
+        {
+            //To keep the order of TitleContent, Content and ActionContent,
+            //the existing contents are removed and added again.
+            if (titleContent != null)
+            {
+                Remove(titleContent);
+            }
+
+            if (content != null)
+            {
+                Remove(content);
+            }
+
+            if (actionContent != null)
+            {
+                Remove(actionContent);
+            }
+
+            if (titleContent != null)
+            {
+                Add(titleContent);
+            }
+
+            if (content != null)
+            {
+                Add(content);
+            }
+
+            if (actionContent != null)
+            {
+                Add(actionContent);
+            }
+        }
+
+        private TextLabel CreateDefaultTitleContent()
+        {
+            //FIXME: Needs to separate GUI implementation codes to style cs file.
+            return new TextLabel()
+            {
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                BackgroundColor = new Color(1.0f, 1.0f, 1.0f, 1.0f),
+                Size = new Size(360, 80),
+            };
+        }
+
+        private TextLabel CreateDefaultContent()
+        {
+            //FIXME: Needs to separate GUI implementation codes to style cs file.
+            return new TextLabel()
+            {
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                BackgroundColor = new Color(1.0f, 1.0f, 1.0f, 1.0f),
+                Size = new Size(360, 200),
+            };
+        }
+
+        private View CreateDefaultActionContent()
+        {
+            //FIXME: Needs to separate GUI implementation codes to style cs file.
+            return new Control()
+            {
+                BackgroundColor = new Color(1.0f, 1.0f, 1.0f, 1.0f),
+                Size = new Size(360, 80),
+                Layout = new LinearLayout()
+                {
+                    LinearOrientation = LinearLayout.Orientation.Horizontal,
+                    LinearAlignment = LinearLayout.Alignment.CenterHorizontal,
+                    CellPadding = new Size2D(10, 0),
+                },
+            };
+        }
+
+        private void OnRelayout(object sender, EventArgs e)
+        {
+            //FIXME: Needs to separate GUI implementation codes to style cs file.
+            CalculatePosition();
+        }
+
+        private void CalculatePosition()
+        {
+            var size = Size2D;
+            var parent = GetParent();
+            Size2D parentSize;
+
+            if ((parent != null) && (parent is View))
+            {
+                parentSize = ((View)parent).Size;
+            }
+            else
+            {
+                parentSize = NUIApplication.GetDefaultWindow().Size;
+            }
+
+            Position2D = new Position2D((parentSize.Width - size.Width) / 2, (parentSize.Height - size.Height) / 2);
         }
     }
 }
