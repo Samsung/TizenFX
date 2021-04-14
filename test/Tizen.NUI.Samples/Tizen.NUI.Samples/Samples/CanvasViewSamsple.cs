@@ -13,7 +13,10 @@ namespace Tizen.NUI.Samples
 
         private View root;
         private CanvasView canvasView;
-        private Shape shape;
+        private Shape roundedRectShape;
+        private Shape circleShape;
+        private Shape arcShape;
+        private Shape starShape;
         private Timer timer;
         private int count = 0;
 
@@ -38,20 +41,20 @@ namespace Tizen.NUI.Samples
                 PositionUsesPivotPoint = true,
             };
 
-            Shape shape1 = new Shape()
+            roundedRectShape = new Shape()
             {
                 FillColor = new Color(0.5f, 1.0f, 0.0f, 1.0f),
                 StrokeColor = new Color(0.5f, 0.0f, 0.0f, 0.5f),
                 StrokeWidth = 10.0f,
             };
-            shape1.Translate(100.0f, 100.0f);
-            shape1.Scale(1.2f);
-            shape1.Rotate(45.0f);
-            shape1.AddRect(-50.0f, -50.0f, 100.0f, 100.0f, 10.0f, 10.0f);
+            roundedRectShape.Translate(100.0f, 100.0f);
+            roundedRectShape.Scale(1.2f);
+            roundedRectShape.Rotate(45.0f);
+            roundedRectShape.AddRect(-50.0f, -50.0f, 100.0f, 100.0f, 0.0f, 0.0f);
 
-            canvasView.AddDrawable(shape1);
+            canvasView.AddDrawable(roundedRectShape);
 
-            Shape shape2 = new Shape()
+            circleShape = new Shape()
             {
                 Opacity = 0.5f,
                 FillColor = new Color(0.0f, 0.0f, 1.0f, 1.0f),
@@ -59,23 +62,23 @@ namespace Tizen.NUI.Samples
                 StrokeWidth = 10.0f,
                 StrokeDash = new List<float>() { 15.0f, 30.0f }.AsReadOnly(),
             };
-            shape2.AddCircle(0.0f, 0.0f, 150.0f, 100.0f);
-            shape2.Transform(new float[] { 0.6f, 0.0f, 350.0f, 0.0f, 0.6f, 100.0f, 0.0f, 0.0f, 1.0f });
+            circleShape.AddCircle(0.0f, 0.0f, 150.0f, 100.0f);
+            circleShape.Transform(new float[] { 0.6f, 0.0f, 350.0f, 0.0f, 0.6f, 100.0f, 0.0f, 0.0f, 1.0f });
 
-            canvasView.AddDrawable(shape2);
+            canvasView.AddDrawable(circleShape);
 
-            Shape shape3 = new Shape()
+            arcShape = new Shape()
             {
                 StrokeColor = new Color(0.0f, 0.5f, 0.0f, 0.5f),
                 StrokeWidth = 10.0f,
-                StrokeJoin = Shape.StrokeJoinType.Miter,
+                StrokeJoin = Shape.StrokeJoinType.Round,
             };
-            shape3.Translate(100.0f, 300.0f);
-            shape3.AddArc(0.0f, 0.0f, 80.0f, 10.0f, 120.0f, true);
+            arcShape.AddArc(0.0f, 0.0f, 80.0f, 0.0f, 0.0f, true);
+            arcShape.Translate(100.0f, 300.0f);
 
-            canvasView.AddDrawable(shape3);
+            canvasView.AddDrawable(arcShape);
 
-            Shape shape4 = new Shape()
+            Shape shape = new Shape()
             {
                 Opacity = 0.5f,
                 FillColor = new Color(0.0f, 0.5f, 0.0f, 0.5f),
@@ -84,18 +87,18 @@ namespace Tizen.NUI.Samples
                 FillRule = Shape.FillRuleType.EvenOdd,
                 StrokeJoin = Shape.StrokeJoinType.Round,
             };
-            shape4.Scale(0.5f);
-            shape4.Translate(350.0f, 300.0f);
-            shape4.AddMoveTo(0.0f, -160.0f);
-            shape4.AddLineTo(125.0f, 160.0f);
-            shape4.AddLineTo(-180.0f, -45.0f);
-            shape4.AddLineTo(180.0f, -45.0f);
-            shape4.AddLineTo(-125.0f, 160.0f);
-            shape4.Close();
+            shape.Scale(0.5f);
+            shape.Translate(350.0f, 300.0f);
+            shape.AddMoveTo(0.0f, -160.0f);
+            shape.AddLineTo(125.0f, 160.0f);
+            shape.AddLineTo(-180.0f, -45.0f);
+            shape.AddLineTo(180.0f, -45.0f);
+            shape.AddLineTo(-125.0f, 160.0f);
+            shape.Close();
 
-            canvasView.AddDrawable(shape4);
+            canvasView.AddDrawable(shape);
 
-            shape = new Shape()
+            starShape = new Shape()
             {
                 Opacity = 0.5f,
                 FillColor = new Color(0.0f, 1.0f, 1.0f, 1.0f),
@@ -103,42 +106,42 @@ namespace Tizen.NUI.Samples
                 StrokeWidth = 30.0f,
                 StrokeCap = Shape.StrokeCapType.Round,
             };
-            shape.Translate(250.0f, 550.0f);
-            shape.Scale(0.5f);
-            shape.AddMoveTo(-1.0f, -165.0f);
-            shape.AddLineTo(53.0f, -56.0f);
-            shape.AddLineTo(174.0f, -39.0f);
-            shape.AddLineTo(87.0f, 45.0f);
-            shape.AddLineTo(107.0f, 166.0f);
-            shape.AddLineTo(-1.0f, 110.0f);
-            shape.AddLineTo(-103.0f, 166.0f);
-            shape.AddLineTo(-88.0f, 46.0f);
-            shape.AddLineTo(-174.0f, -38.0f);
-            shape.AddLineTo(-54.0f, -56.0f);
-            shape.Close();
+            starShape.Translate(250.0f, 550.0f);
+            starShape.Scale(0.5f);
+            starShape.AddMoveTo(-1.0f, -165.0f);
+            starShape.AddLineTo(53.0f, -56.0f);
+            starShape.AddLineTo(174.0f, -39.0f);
+            starShape.AddLineTo(87.0f, 45.0f);
+            starShape.AddLineTo(107.0f, 166.0f);
+            starShape.AddLineTo(-1.0f, 110.0f);
+            starShape.AddLineTo(-103.0f, 166.0f);
+            starShape.AddLineTo(-88.0f, 46.0f);
+            starShape.AddLineTo(-174.0f, -38.0f);
+            starShape.AddLineTo(-54.0f, -56.0f);
+            starShape.Close();
 
-            canvasView.AddDrawable(shape);
+            canvasView.AddDrawable(starShape);
 
             // Test Getter
-            log.Debug(tag, "Shape2 Color : " + shape2.FillColor.R + " " + shape2.FillColor.G + " " + shape2.FillColor.B + " " + shape2.FillColor.A + "\n");
-            log.Debug(tag, "Shape2 StrokeColor : " + shape2.StrokeColor.R + " " + shape2.StrokeColor.G + " " + shape2.StrokeColor.B + " " + shape2.StrokeColor.A + "\n");
+            log.Debug(tag, "circleShape Color : " + circleShape.FillColor.R + " " + circleShape.FillColor.G + " " + circleShape.FillColor.B + " " + circleShape.FillColor.A + "\n");
+            log.Debug(tag, "circleShape StrokeColor : " + circleShape.StrokeColor.R + " " + circleShape.StrokeColor.G + " " + circleShape.StrokeColor.B + " " + circleShape.StrokeColor.A + "\n");
 
-            log.Debug(tag, "Shape3 StrokeCap : " + shape3.StrokeCap + "\n");
+            log.Debug(tag, "arcShape StrokeCap : " + arcShape.StrokeCap + "\n");
 
-            log.Debug(tag, "Shape4 FillRule : " + shape4.FillRule + "\n");
-            log.Debug(tag, "Shape4 StrokeWidth : " + shape4.StrokeWidth + "\n");
-            log.Debug(tag, "Shape4 StrokeJoin : " + shape4.StrokeJoin + "\n");
-            log.Debug(tag, "Shape4 Opacity : " + shape4.Opacity + "\n");
+            log.Debug(tag, "shape2 FillRule : " + shape.FillRule + "\n");
+            log.Debug(tag, "shape2 StrokeWidth : " + shape.StrokeWidth + "\n");
+            log.Debug(tag, "shape2 StrokeJoin : " + shape.StrokeJoin + "\n");
+            log.Debug(tag, "shape2 Opacity : " + shape.Opacity + "\n");
 
-            for (int i = 0; i < shape2.StrokeDash.Count; i++)
+            for (int i = 0; i < circleShape.StrokeDash.Count; i++)
             {
-                log.Debug(tag, "Shape4 StrokeDash : " + shape2.StrokeDash[i] + "\n");
+                log.Debug(tag, "shape2 StrokeDash : " + circleShape.StrokeDash[i] + "\n");
             }
 
             // Exception test.
             try
             {
-                shape2.Transform(new float[] { 0.6f, 0.0f });
+                circleShape.Transform(new float[] { 0.6f, 0.0f });
             }
             catch (ArgumentException e)
             {
@@ -146,7 +149,7 @@ namespace Tizen.NUI.Samples
             }
             try
             {
-                shape2.Transform(null);
+                circleShape.Transform(null);
             }
             catch (ArgumentException e)
             {
@@ -154,7 +157,7 @@ namespace Tizen.NUI.Samples
             }
             try
             {
-                shape2.StrokeDash = null;
+                circleShape.StrokeDash = null;
             }
             catch (ArgumentException e)
             {
@@ -172,6 +175,7 @@ namespace Tizen.NUI.Samples
         {
             if (root != null)
             {
+                timer.Stop();
                 NUIApplication.GetDefaultWindow().Remove(root);
                 canvasView.Dispose();
                 root.Dispose();
@@ -180,8 +184,19 @@ namespace Tizen.NUI.Samples
 
         private bool onTick(object o, Timer.TickEventArgs e)
         {
-            shape.Rotate((float)(count * 2.0f));
-            shape.Scale((float)(count % 100) * 0.01f + 0.6f);
+            roundedRectShape.Reset();
+            roundedRectShape.AddRect(-50.0f, -50.0f, 100.0f, 100.0f, (float)((count / 3.0f) % 30.0f), (float)((count / 3.0f) % 30.0f));
+
+            circleShape.Reset();
+            circleShape.AddCircle(0.0f, 0.0f, (float)(count % 100.0f) + 20.0f, (float)(count % 100.0f) + 40.0f);
+
+            arcShape.Reset();
+            arcShape.AddArc(0.0f, 0.0f, 80.0f, 0.0f, (float)(count % 180.0f), true);
+            arcShape.AddArc(0.0f, 0.0f, 80.0f, (float)(count % 180.0f), (float)(count % 180.0f) / 2.0f, true);
+
+            starShape.Rotate((count * 2.0f) % 360);
+            starShape.Scale((float)(count % 50) * 0.01f + 0.6f);
+
             count++;
 
             return true;
