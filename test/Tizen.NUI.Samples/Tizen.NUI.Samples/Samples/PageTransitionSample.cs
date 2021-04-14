@@ -47,7 +47,7 @@ namespace Tizen.NUI.Samples
                 HeightResizePolicy = ResizePolicyType.FillToParent,
                 Transition = new Transition()
                 {
-                    TimePeriod = new TimePeriod(0.4f),
+                    TimePeriod = new TimePeriod(400),
                     AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseInOutSine),
                 },
             };
