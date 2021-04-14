@@ -27,17 +27,13 @@ namespace Tizen.NUI.Samples
                     BackgroundColor = Color.White,
                     Size = new Size(180, 180),
                     HorizontalAlignment = HorizontalAlignment.Center,
-                    VerticalAlignment = VerticalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center
                 };
 
-                DialogPage.ShowDialog(textLabel);
+                Navigator.ShowDialog(textLabel);
             };
 
-            var page = new ContentPage()
-            {
-                Content = button,
-            };
-            window.GetDefaultNavigator().Push(page);
+            window.GetDefaultNavigator().Push(new Page(button));
         }
 
         public void Deactivate()
