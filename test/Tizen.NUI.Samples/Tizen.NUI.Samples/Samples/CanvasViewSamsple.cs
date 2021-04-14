@@ -184,13 +184,13 @@ namespace Tizen.NUI.Samples
 
         private bool onTick(object o, Timer.TickEventArgs e)
         {
-            roundedRectShape.Reset();
+            roundedRectShape.ResetPath();
             roundedRectShape.AddRect(-50.0f, -50.0f, 100.0f, 100.0f, (float)((count / 3.0f) % 30.0f), (float)((count / 3.0f) % 30.0f));
 
-            circleShape.Reset();
+            circleShape.ResetPath();
             circleShape.AddCircle(0.0f, 0.0f, (float)(count % 100.0f) + 20.0f, (float)(count % 100.0f) + 40.0f);
 
-            arcShape.Reset();
+            arcShape.ResetPath();
             arcShape.AddArc(0.0f, 0.0f, 80.0f, 0.0f, (float)(count % 180.0f), true);
             arcShape.AddArc(0.0f, 0.0f, 80.0f, (float)(count % 180.0f), (float)(count % 180.0f) / 2.0f, true);
 
