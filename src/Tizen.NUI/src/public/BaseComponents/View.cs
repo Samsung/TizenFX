@@ -2763,11 +2763,9 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Set or Get TransitionOptions for the page transition.
+        /// This property is used to define how this view will be transition during Page switching.
         /// </summary>
-        /// <remarks>
-        /// Hidden-API (Inhouse-API).
-        /// </remarks>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public TransitionOptions TransitionOptions
         {
             set
