@@ -23,7 +23,7 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// TabButton is a class which is used for selecting one content in a TabView.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class TabButton : SelectButton
     {
         private bool selectedAgain = false;
@@ -38,7 +38,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Creates a new instance of TabButton.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public TabButton()
         {
             Initialize();
@@ -64,10 +64,7 @@ namespace Tizen.NUI.Components
             Initialize();
         }
 
-        /// <summary>
-        /// Applies style to TabButton.
-        /// </summary>
-        /// <param name="viewStyle">The style to apply.</param>
+        /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void ApplyStyle(ViewStyle viewStyle)
         {
@@ -126,10 +123,7 @@ namespace Tizen.NUI.Components
             return ret;
         }
 
-        /// <summary>
-        /// Dispose TabButton and all children on it.
-        /// </summary>
-        /// <param name="type">Dispose type.</param>
+        /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
