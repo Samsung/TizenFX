@@ -26,9 +26,9 @@ using Tizen.NUI.Binding.Internals;
 namespace Tizen.NUI.Binding
 {
     /// <summary>
-    /// Provides a mechanism by which application developers can propagate changes that are made to data in one object to another, by enabling validation, type coercion, and an event system.
+    /// Provides a mechanism by which application developers can propagate changes that are made to data in one object to another.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public abstract class BindableObject : INotifyPropertyChanged, IDynamicResourceHandler
     {
         /// <summary>
@@ -63,8 +63,7 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// Raised when a property has changed.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>Copy properties of other ViewStyle to this.</summary>
