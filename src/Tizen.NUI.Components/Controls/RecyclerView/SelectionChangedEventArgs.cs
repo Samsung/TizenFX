@@ -21,9 +21,9 @@ using System.Collections.Generic;
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// Selection changed event. this might be deprecated.
+    /// Selection changed event in RecyclerView items.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class SelectionChangedEventArgs : EventArgs
     {
         static readonly IReadOnlyList<object> selectEmpty = new List<object>(0);
@@ -31,13 +31,13 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Previous selection list.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public IReadOnlyList<object> PreviousSelection { get; }
 
         /// <summary>
         /// Current selection list.    
         ///  </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public IReadOnlyList<object> CurrentSelection { get; }
 
         internal SelectionChangedEventArgs(object previousSelection, object currentSelection)

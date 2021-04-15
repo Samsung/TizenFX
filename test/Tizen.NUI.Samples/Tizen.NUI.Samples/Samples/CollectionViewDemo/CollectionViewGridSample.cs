@@ -43,8 +43,8 @@ namespace Tizen.NUI.Samples
                     item.WidthSpecification = 180;
                     item.HeightSpecification = 240;
                     //Decorate Label
-                    item.Caption.SetBinding(TextLabel.TextProperty, "ViewLabel");
-                    item.Caption.HorizontalAlignment = HorizontalAlignment.Center;
+                    item.Label.SetBinding(TextLabel.TextProperty, "ViewLabel");
+                    item.Label.HorizontalAlignment = HorizontalAlignment.Center;
                     //Decorate Image
                     item.Image.SetBinding(ImageView.ResourceUrlProperty, "ImageUrl");
                     item.Image.WidthSpecification = 170;

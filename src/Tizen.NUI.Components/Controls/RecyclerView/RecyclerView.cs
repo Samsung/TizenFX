@@ -22,15 +22,15 @@ using Tizen.NUI.Binding;
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// [Draft] This class provides a View that can layouting items in list and grid with high performance.
+    /// A View that serves as a base class for views that contain a templated list of items.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public abstract class RecyclerView : ScrollableBase, ICollectionChangedNotifier
     {
         /// <summary>
         /// Base Constructor
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public RecyclerView() : base()
         {
             Scrolling += OnScrolling;
@@ -39,13 +39,13 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Item's source data.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public virtual IEnumerable ItemsSource { get; set; }
 
         /// <summary>
         /// DataTemplate for items.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public virtual DataTemplate ItemTemplate { get; set; }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace Tizen.NUI.Components
         protected int CacheMax { get; set; } = 50;
 
         /// <inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public override void OnRelayout(Vector2 size, RelayoutContainer container)
         {
             //Console.WriteLine("[NUI] On ReLayout [{0} {0}]", size.X, size.Y);
@@ -339,8 +339,8 @@ namespace Tizen.NUI.Components
 
         /// <summary>
         /// On scroll event callback.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// </summary>        
+        /// <since_tizen> 9 </since_tizen>
         protected virtual void OnScrolling(object source, ScrollEventArgs args)
         {
             if (args == null) throw new ArgumentNullException(nameof(args));
