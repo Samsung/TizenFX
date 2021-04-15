@@ -37,7 +37,7 @@ namespace Tizen.NUI
             {
                 FontFamily = "BreezeSans",
                 PixelSize = 32,
-                TextColor = new Color(0.00f, 0.05f, 0.17f, 1),
+                TextColor = new Color(1.00f, 1.00f, 1.00f, 1),
                 FontStyle = new PropertyMap().Add("weight", new PropertyValue("light")),
             });
 
@@ -46,12 +46,12 @@ namespace Tizen.NUI
             {
                 FontFamily = "BreezeSans",
                 PixelSize = 32,
-                TextColor = new Color(0.00f, 0.05f, 0.17f, 1),
+                TextColor = new Color(1.00f, 1.00f, 1.00f, 1),
                 FontStyle = new PropertyMap().Add("weight", new PropertyValue("regular")),
                 PrimaryCursorColor = new Vector4(0.08f, 0.45f, 0.90f, 1),
                 SecondaryCursorColor = new Vector4(0.08f, 0.45f, 0.90f, 1),
                 CursorWidth = 3,
-                SelectionHighlightColor = new Vector4(0.17f, 0.37f, 0.72f, 0.20f),
+                SelectionHighlightColor = new Vector4(1.00f, 1.00f, 1.00f, 0.20f),
                 GrabHandleColor = new Color(0.08f, 0.45f, 0.90f, 1),
                 GrabHandleImage = FrameworkInformation.ResourcePath + "IoT_handler_center_downW.png",
                 SelectionHandleImageLeft = new PropertyMap().Add("filename", new PropertyValue(FrameworkInformation.ResourcePath + "IoT_handler_downleftW.png")),
@@ -63,12 +63,12 @@ namespace Tizen.NUI
             {
                 FontFamily = "BreezeSans",
                 PixelSize = 32,
-                TextColor = new Color(0.00f, 0.05f, 0.17f, 1),
+                TextColor = new Color(1.00f, 1.00f, 1.00f, 1),
                 FontStyle = new PropertyMap().Add("weight", new PropertyValue("regular")),
                 PrimaryCursorColor = new Vector4(0.08f, 0.45f, 0.90f, 1),
                 SecondaryCursorColor = new Vector4(0.08f, 0.45f, 0.90f, 1),
                 CursorWidth = 3,
-                SelectionHighlightColor = new Vector4(0.17f, 0.37f, 0.72f, 0.20f),
+                SelectionHighlightColor = new Vector4(1.00f, 1.00f, 1.00f, 0.20f),
                 GrabHandleColor = new Color(0.08f, 0.45f, 0.90f, 1),
                 GrabHandleImage = FrameworkInformation.ResourcePath + "IoT_handler_center_downW.png",
                 SelectionHandleImageLeft = new PropertyMap().Add("filename", new PropertyValue(FrameworkInformation.ResourcePath + "IoT_handler_downleftW.png")),
