@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright (c) 2020 Samsung Electronics Co., Ltd All Rights Reserved
+* Copyright (c) 2020 - 2021 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
 * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ namespace Tizen.Peripheral.I2c
         /// <summary>
         /// Native handle to I2c.
         /// </summary>
-        private IntPtr _handle;
+        private IntPtr _handle = IntPtr.Zero;
         private bool _disposed = false;
 
         /// <summary>
@@ -38,11 +38,9 @@ namespace Tizen.Peripheral.I2c
         /// <param name="address">The address of the slave device.</param>
         public I2cDevice(int bus, int address)
         {
-            var ret = NativeI2c.Open(bus, address, out IntPtr handle);
+            var ret = NativeI2c.Open(bus, address, out _handle);
             if (ret != Internals.Errors.ErrorCode.None)
                 throw ExceptionFactory.CreateException(ret);
-
-            _handle = handle;
         }
 
         /// <summary>
@@ -78,6 +76,7 @@ namespace Tizen.Peripheral.I2c
             }
 
             NativeI2c.Close(_handle);
+            _handle = IntPtr.Zero;
             _disposed = true;
         }
 
@@ -87,6 +86,8 @@ namespace Tizen.Peripheral.I2c
         /// <param name="dataOut">The output byte array.</param>
         public void Read(byte[] dataOut)
         {
+            if (dataOut == null)
+                throw new ArgumentNullException(nameof(dataOut));
             var length = Convert.ToUInt32(dataOut.Length);
             var ret = NativeI2c.Read(_handle, dataOut, length);
             if (ret != Internals.Errors.ErrorCode.None)
@@ -99,6 +100,8 @@ namespace Tizen.Peripheral.I2c
         /// <param name="data"></param>
         public void Write(byte[] data)
         {
+            if (data == null)
+                throw new ArgumentNullException(nameof(data));
             var length = Convert.ToUInt32(data.Length);
             var ret = NativeI2c.Write(_handle, data, length);
             if (ret != Internals.Errors.ErrorCode.None)

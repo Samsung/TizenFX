@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright (c) 2020 Samsung Electronics Co., Ltd All Rights Reserved
+* Copyright (c) 2020 - 2021 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
 * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ namespace Tizen.Peripheral.Adc
         /// <summary>
         /// Native handle to ADC.
         /// </summary>
-        private IntPtr _handle;
+        private IntPtr _handle = IntPtr.Zero;
         private bool _disposed = false;
 
         /// <summary>
@@ -38,11 +38,9 @@ namespace Tizen.Peripheral.Adc
         /// <param name="channel">The ADC channel number to control.</param>
         public AdcChannel(int device, int channel)
         {
-            var ret = NativeAdc.Open(device, channel, out IntPtr handle);
+            var ret = NativeAdc.Open(device, channel, out _handle);
             if (ret != Internals.Errors.ErrorCode.None)
                 throw ExceptionFactory.CreateException(ret);
-
-            _handle= handle;
         }
 
         /// <summary>
@@ -61,7 +59,6 @@ namespace Tizen.Peripheral.Adc
             var ret = NativeAdc.Read(_handle, out uint adcValue);
             if (ret != Internals.Errors.ErrorCode.None)
                 throw ExceptionFactory.CreateException(ret);
-
             return adcValue;
         }
 
@@ -90,6 +87,7 @@ namespace Tizen.Peripheral.Adc
             }
 
             NativeAdc.Close(_handle);
+            _handle = IntPtr.Zero;
             _disposed = true;
         }
     }
