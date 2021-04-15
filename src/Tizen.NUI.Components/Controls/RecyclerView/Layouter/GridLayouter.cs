@@ -21,9 +21,9 @@ using Tizen.NUI.BaseComponents;
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// This class implements a grid box layout.
+    /// Layouter for CollectionView to display items in grid layout.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class GridLayouter : ItemsLayouter
     {
         private CollectionView colView;
@@ -48,8 +48,9 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Clean up ItemsLayouter.
         /// </summary>
-        /// <param name="view"> ItemsView of layouter. </param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <param name="view"> CollectionView of layouter. </param>
+        /// <since_tizen> 9 </since_tizen>
+        /// <remarks>please note that, view must be type of CollectionView</remarks>
         public override void Initialize(RecyclerView view)
         {
             colView = view as CollectionView;
@@ -335,6 +336,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="scrollPosition">Scroll position which is calculated by ScrollableBase</param>
         /// <param name="force">boolean force flag to layouting forcely.</param>
+        /// <since_tizen> 9 </since_tizen>
         public override void RequestLayout(float scrollPosition, bool force = false)
         {
             // Layouting is only possible after once it intialized.

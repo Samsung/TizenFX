@@ -23,9 +23,9 @@ using Tizen.NUI.Components.Extension;
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// RecyclerViewItemStyle is a class which saves RecyclerViewItem's ux data.
+    /// RecyclerViewItemStyle is a class which saves RecyclerViewItem's UX data.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class RecyclerViewItemStyle : ControlStyle
     {
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -74,7 +74,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Creates a new instance of a RecyclerViewItemStyle.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public RecyclerViewItemStyle() : base()
         {
         }

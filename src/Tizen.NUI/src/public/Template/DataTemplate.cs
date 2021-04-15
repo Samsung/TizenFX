@@ -21,13 +21,16 @@ using System.Collections.Generic;
 
 namespace Tizen.NUI.Binding
 {
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <summary>
+    /// A template for multiple bindings, commonly used by RecylerView and CollectionView.
+    /// </summary>
+    /// <since_tizen> 9 </since_tizen>
     public class DataTemplate : ElementTemplate
     {
         /// <summary>
         /// Base constructor.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public DataTemplate()
         {
         }
@@ -36,7 +39,7 @@ namespace Tizen.NUI.Binding
         /// Base constructor with specific Type.
         /// </summary>
         /// <param name="type">The Type of content.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public DataTemplate(Type type) : base(type)
         {
         }
@@ -45,18 +48,31 @@ namespace Tizen.NUI.Binding
         /// Base constructor with loadTemplate function.
         /// </summary>
         /// <param name="loadTemplate">The function of loading templated object.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+         /// <since_tizen> 9 </since_tizen>
         public DataTemplate(Func<object> loadTemplate) : base(loadTemplate)
         {
         }
 
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Gets a dictionary of bindings, indexed by the bound properties.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public IDictionary<BindableProperty, BindingBase> Bindings { get; } = new Dictionary<BindableProperty, BindingBase>();
 
-        [EditorBrowsable(EditorBrowsableState.Never)]
+
+        /// <summary>
+        /// Returns a dictionary of property values for this DataTemplate, indexed by property.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public IDictionary<BindableProperty, object> Values { get; } = new Dictionary<BindableProperty, object>();
 
-        [EditorBrowsable(EditorBrowsableState.Never)]
+
+        /// <summary>
+        /// Sets the binding for property.
+        /// </summary>
+        /// <param name="property">The property to which to bind.</param>
+        /// <param name="binding">The binding to use.</param>
+        /// <since_tizen> 9 </since_tizen>
         public void SetBinding(BindableProperty property, BindingBase binding)
         {
             if (property == null)
@@ -68,6 +84,12 @@ namespace Tizen.NUI.Binding
             Bindings[property] = binding;
         }
 
+        /// <summary>
+        /// Sets the value of property.
+        /// </summary>
+        /// <param name="property">The property to set.</param>
+        /// <param name="value">The new value.</param>
+        /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetValue(BindableProperty property, object value)
         {
