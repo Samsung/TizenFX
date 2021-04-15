@@ -21,40 +21,50 @@ using Tizen.NUI.Binding;
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// TabButtonStyle is a class which saves TabButton's ux data.
+    /// AlertDialogStyle is a class which saves AlertDialog's ux data.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class TabButtonStyle : ButtonStyle
+    public class AlertDialogStyle : ButtonStyle
     {
         [EditorBrowsable(EditorBrowsableState.Never)]
-        static TabButtonStyle() { }
+        static AlertDialogStyle() { }
 
         /// <summary>
-        /// Creates a new instance of a TabButtonStyle.
+        /// Creates a new instance of a AlertDialogStyle.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TabButtonStyle() : base()
+        public AlertDialogStyle() : base()
         {
         }
 
         /// <summary>
-        /// Creates a new instance of a TabButtonStyle with style.
+        /// Creates a new instance of a AlertDialogStyle with style.
         /// </summary>
-        /// <param name="style">Create TabButtonStyle by style customized by user.</param>
+        /// <param name="style">Create AlertDialogStyle by style customized by user.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TabButtonStyle(TabButtonStyle style) : base(style)
+        public AlertDialogStyle(AlertDialogStyle style) : base(style)
         {
         }
 
         /// <summary>
-        /// Gets or Sets the Line Style at the top of TabButton.
+        /// Gets or sets the AlertDialog Title TextLabel style.
+        /// This style is applied if AlertDialog TitleContent is a TextLabel.
         /// </summary>
-        internal ViewStyle TopLine { get; set; } = new ViewStyle();
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextLabelStyle TitleTextLabel { get; set; } = new TextLabelStyle();
 
         /// <summary>
-        /// Gets or Sets the Line Style at the bottom of TabButton.
+        /// Gets or sets the AlertDialog Message TextLabel style.
+        /// This style is applied if AlertDialog Content is a TextLabel.
         /// </summary>
-        internal ViewStyle BottomLine { get; set; } = new ViewStyle();
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextLabelStyle MessageTextLabel { get; set; } = new TextLabelStyle();
+
+        /// <summary>
+        /// Gets or sets the AlertDialog ActionContent style.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ViewStyle ActionContent { get; set; } = new ViewStyle();
 
         /// <summary>
         /// Style's clone function.
@@ -65,10 +75,11 @@ namespace Tizen.NUI.Components
         {
             base.CopyFrom(bindableObject);
 
-            if (bindableObject is TabButtonStyle tabButtonStyle)
+            if (bindableObject is AlertDialogStyle alertDialogStyle)
             {
-                TopLine.CopyFrom(tabButtonStyle.TopLine);
-                BottomLine.CopyFrom(tabButtonStyle.BottomLine);
+                TitleTextLabel.CopyFrom(alertDialogStyle.TitleTextLabel);
+                MessageTextLabel.CopyFrom(alertDialogStyle.MessageTextLabel);
+                ActionContent.CopyFrom(alertDialogStyle.ActionContent);
             }
         }
     }
