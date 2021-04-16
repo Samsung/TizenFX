@@ -231,7 +231,7 @@ namespace Tizen.Network.Nsd
         /// <feature>http://tizen.org/feature/network.service_discovery.dnssd</feature>
         /// <exception cref="NotSupportedException">Thrown when DNS-SD is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when any other error occurred.</exception>
-        public byte[] GetTXTRecords()
+        public byte[] GetRawTXTRecords()
         {
             int ret = Interop.Nsd.Dnssd.GetAllTxtRecord(_serviceHandle, out ushort length, out IntPtr data);
             if (ret != (int)DnssdError.None)
@@ -273,7 +273,7 @@ namespace Tizen.Network.Nsd
                 NsdErrorFactory.ThrowDnssdException(ret);
             }
             byte[] txtValue;
-            txtValue = GetTXTRecords();
+            txtValue = GetRawTXTRecords();
             ret = Interop.Nsd.Dnssd.SetRecord(_serviceHandle, _dnsRecordtype, (ushort)txtValue.Length, txtValue);
             if (ret != (int)DnssdError.None)
             {
@@ -281,58 +281,7 @@ namespace Tizen.Network.Nsd
                 NsdErrorFactory.ThrowDnssdException(ret);
             }
         }
-
-        /// <summary>
-        /// Set the record.
-        /// </summary>
-        /// <remarks>
-        /// TXT record should be added after registering the local service using RegisterService().
-        /// </remarks>
-        /// <returns>on success returns zero else returns error number.</returns>
-        /// <since_tizen> 9 </since_tizen>
-        /// <param name="type">type of the record to set</param>
-        /// <param name="record">The value of the TXT record</param>
-        /// <feature>http://tizen.org/feature/network.service_discovery.dnssd</feature>
-        /// <exception cref="NotSupportedException">Thrown when DNS-SD is not supported.</exception>
-        /// <exception cref="ArgumentException">Thrown when the value of the key is null.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when any other error occurred.</exception>
-        public int SetRecord(ushort type, byte[] record)
-        {
-            if (record == null)
-            {
-                Log.Error(Globals.LogTag, "Invalid data");
-                NsdErrorFactory.ThrowDnssdException((int)DnssdError.InvalidParameter);
-            }
-            int ret = Interop.Nsd.Dnssd.SetRecord(_serviceHandle, type, (ushort)record.Length, record);
-            if (ret != (int)DnssdError.None)
-            {
-                Log.Error(Globals.LogTag, "Failed to set the DNS resource record, Error: " + (DnssdError)ret);
-                NsdErrorFactory.ThrowDnssdException(ret);
-            }
-            return ret;
-        }
-
-        /// <summary>
-        /// Un Set the record.
-        /// </summary>
-        /// <returns>on success returns zero else returns error number.</returns>
-        /// <since_tizen> 9 </since_tizen>
-        /// <param name="type">unset the type of record</param>
-        /// <feature>http://tizen.org/feature/network.service_discovery.dnssd</feature>
-        /// <exception cref="NotSupportedException">Thrown when DNS-SD is not supported.</exception>
-        /// <exception cref="ArgumentException">Thrown when the value of the key is null.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when any other error occurred.</exception>
-        public int UnsetRecord(ushort type)
-        {
-            int ret = Interop.Nsd.Dnssd.UnsetRecord(_serviceHandle, type);
-            if (ret != (int)DnssdError.None)
-            {
-                Log.Error(Globals.LogTag, "Failed to unset the DNS resource record, Error: " + (DnssdError)ret);
-                NsdErrorFactory.ThrowDnssdException(ret);
-            }
-            return ret;
-        }
-
+        
         /// <summary>
         /// Removes the TXT record.
         /// </summary>
