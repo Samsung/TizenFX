@@ -484,7 +484,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public StringSelector TextSelector
         {
-            get => buttonText == null ? null : new StringSelector((Selector<string>)buttonText.GetValue(TextLabel.TextSelectorProperty));
+            get => buttonText == null ? null : new StringSelector(buttonText.TextSelector);
             set
             {
                 if (value == null || buttonText == null)
@@ -493,7 +493,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    buttonText.SetValue(TextLabel.TextSelectorProperty, value);
+                    buttonText.TextSelector = value;
                 }
             }
         }
@@ -506,7 +506,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public StringSelector TranslatableTextSelector
         {
-            get => buttonText == null ? null : new StringSelector((Selector<string>)buttonText.GetValue(TextLabel.TranslatableTextSelectorProperty));
+            get => buttonText == null ? null : new StringSelector(buttonText.TranslatableTextSelector);
             set
             {
                 if (value == null || buttonText == null)
@@ -515,7 +515,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    buttonText.SetValue(TextLabel.TranslatableTextSelectorProperty, value);
+                    buttonText.TranslatableTextSelector = value;
                 }
             }
         }
@@ -528,7 +528,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public ColorSelector TextColorSelector
         {
-            get => buttonText == null ? null : new ColorSelector((Selector<Color>)buttonText.GetValue(TextLabel.TextColorSelectorProperty));
+            get => buttonText == null ? null : new ColorSelector(buttonText.TextColorSelector);
             set
             {
                 if (value == null || buttonText == null)
@@ -537,7 +537,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    buttonText.SetValue(TextLabel.TextColorSelectorProperty, value);
+                    buttonText.TextColorSelector = value;
                 }
             }
         }
@@ -550,7 +550,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public FloatSelector PointSizeSelector
         {
-            get => buttonText == null ? null : new FloatSelector((Selector<float?>)buttonText.GetValue(TextLabel.PointSizeSelectorProperty));
+            get => buttonText == null ? null : new FloatSelector(buttonText.PointSizeSelector);
             set
             {
                 if (value == null || buttonText == null)
@@ -559,7 +559,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    buttonText.SetValue(TextLabel.PointSizeSelectorProperty, value);
+                    buttonText.PointSizeSelector = value;
                 }
             }
         }
@@ -572,7 +572,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public StringSelector IconURLSelector
         {
-            get => buttonIcon == null ? null : new StringSelector((Selector<string>)buttonIcon.GetValue(ImageView.ResourceUrlSelectorProperty));
+            get => buttonIcon == null ? null : new StringSelector(buttonIcon.ResourceUrlSelector);
             set
             {
                 if (value == null || buttonIcon == null)
@@ -581,7 +581,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    buttonIcon.SetValue(ImageView.ResourceUrlSelectorProperty, value);
+                    buttonIcon.ResourceUrlSelector = value;
                 }
             }
         }
