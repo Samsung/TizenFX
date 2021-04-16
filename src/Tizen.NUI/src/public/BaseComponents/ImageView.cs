@@ -36,15 +36,16 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty ResourceUrlProperty = BindableProperty.Create(nameof(ImageView.ResourceUrl), typeof(string), typeof(ImageView), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var imageView = (ImageView)bindable;
-            string url = (string)newValue;
-            url = (url == null ? "" : url);
-            if (url.StartsWith("*Resource*"))
+
+            if (newValue is Selector<string> selector)
             {
-                string resource = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
-                url = url.Replace("*Resource*", resource);
+                imageView.ResourceUrlSelector = selector;
             }
-            imageView._resourceUrl = url;
-            imageView.UpdateImage(ImageVisualProperty.URL, new PropertyValue(url));
+            else
+            {
+                imageView.resourceUrlSelector?.Reset(imageView);
+                imageView.SetResourceUrl((string)newValue);
+            }
         },
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
@@ -162,10 +163,16 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty BorderProperty = BindableProperty.Create(nameof(Border), typeof(Rectangle), typeof(ImageView), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var imageView = (ImageView)bindable;
-            if (newValue != null)
+            imageView.borderSelector?.Reset(imageView);
+
+            if (newValue is Selector<Rectangle> selector)
             {
-                imageView._border = new Rectangle((Rectangle)newValue);
-                imageView.UpdateImage(NpatchImageVisualProperty.Border, new PropertyValue(imageView._border));
+                if (selector.HasAll()) imageView.SetBorder(selector.All);
+                else imageView.borderSelector = new TriggerableSelector<Rectangle>(imageView, selector, imageView.SetBorder, true);
+            }
+            else
+            {
+                imageView.SetBorder((Rectangle)newValue);
             }
         },
         defaultValueCreator: (bindable) =>
@@ -233,28 +240,6 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }));
 
-        internal static readonly BindableProperty ResourceUrlSelectorProperty = BindableProperty.Create("ResourceUrlSelector", typeof(Selector<string>), typeof(ImageView), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var imageView = (ImageView)bindable;
-            imageView.resourceUrlSelector.Update(imageView, (Selector<string>)newValue, true);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var imageView = (ImageView)bindable;
-            return imageView.GetSelector<string>(imageView.resourceUrlSelector, ImageView.ResourceUrlProperty);
-        });
-
-        internal static readonly BindableProperty BorderSelectorProperty = BindableProperty.Create("BorderSelector", typeof(Selector<Rectangle>), typeof(ImageView), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var imageView = (ImageView)bindable;
-            imageView.borderSelector.Update(imageView, (Selector<Rectangle>)newValue, true);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var imageView = (ImageView)bindable;
-            return imageView.GetSelector<Rectangle>(imageView.borderSelector, ImageView.BorderProperty);
-        });
-
         private EventHandler<ResourceReadyEventArgs> _resourceReadyEventHandler;
         private ResourceReadyEventCallbackType _resourceReadyEventCallback;
         private EventHandler<ResourceLoadedEventArgs> _resourceLoadedEventHandler;
@@ -267,8 +252,8 @@ namespace Tizen.NUI.BaseComponents
         private int _desired_width = -1;
         private int _desired_height = -1;
         private VisualFittingModeType _fittingMode = VisualFittingModeType.Fill;
-        private readonly TriggerableSelector<string> resourceUrlSelector = new TriggerableSelector<string>(ResourceUrlProperty);
-        private readonly TriggerableSelector<Rectangle> borderSelector = new TriggerableSelector<Rectangle>(BorderProperty);
+        private TriggerableSelector<string> resourceUrlSelector;
+        private TriggerableSelector<Rectangle> borderSelector;
 
         /// <summary>
         /// Creates an initialized ImageView.
@@ -454,7 +439,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(ResourceUrlProperty, value);
-                resourceUrlSelector.Reset(this);
                 NotifyPropertyChanged();
             }
         }
@@ -589,7 +573,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(BorderProperty, value);
-                borderSelector.Reset(this);
                 NotifyPropertyChanged();
             }
         }
@@ -1083,6 +1066,19 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        internal Selector<string> ResourceUrlSelector
+        {
+            get => GetSelector<string>(resourceUrlSelector, ImageView.ResourceUrlProperty);
+            set
+            {
+                resourceUrlSelector?.Reset(this);
+                if (value == null) return;
+
+                if (value.HasAll()) SetResourceUrl(value.All);
+                else resourceUrlSelector = new TriggerableSelector<string>(this, value, SetResourceUrl, true);
+            }
+        }
+
         /// <summary>
         /// Get attributes, it is abstract function and must be override.
         /// </summary>
@@ -1171,6 +1167,28 @@ namespace Tizen.NUI.BaseComponents
             {
                 _resourceReadyEventHandler(this, e);
             }
+        }
+
+        private void SetResourceUrl(string value)
+        {
+            value = (value == null ? "" : value);
+            if (value.StartsWith("*Resource*"))
+            {
+                string resource = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
+                value = value.Replace("*Resource*", resource);
+            }
+            _resourceUrl = value;
+            UpdateImage(ImageVisualProperty.URL, new PropertyValue(value));
+        }
+
+        private void SetBorder(Rectangle value)
+        {
+            if (value == null)
+            {
+                return;
+            }
+            _border = new Rectangle(value);
+            UpdateImage(NpatchImageVisualProperty.Border, new PropertyValue(_border));
         }
 
         private void UpdateImageMap(PropertyMap fromMap)
