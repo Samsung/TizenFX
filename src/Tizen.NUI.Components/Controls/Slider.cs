@@ -510,7 +510,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public StringSelector ThumbImageURLSelector
         {
-            get => thumbImage == null ? null : new StringSelector((Selector<string>)thumbImage.GetValue(ImageView.ResourceUrlSelectorProperty));
+            get => thumbImage == null ? null : new StringSelector(thumbImage.ResourceUrlSelector);
             set
             {
                 if (value == null || thumbImage == null)
@@ -519,7 +519,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    thumbImage.SetValue(ImageView.ResourceUrlSelectorProperty, value);
+                    thumbImage.ResourceUrlSelector = value;
                     thumbImageUrlSelector = value;
                 }
             }
@@ -540,7 +540,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (Selector<string>)thumbImage.GetValue(ImageView.ResourceUrlSelectorProperty);
+                    return thumbImage.ResourceUrlSelector;
                 }
             }
             set
@@ -551,7 +551,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    thumbImage.SetValue(ImageView.ResourceUrlSelectorProperty, value);
+                    thumbImage.ResourceUrlSelector = value;
                     thumbImageUrlSelector = value;
                 }
             }

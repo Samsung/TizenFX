@@ -28,27 +28,27 @@ namespace Tizen.NUI.BaseComponents
     {
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ResourceUrlSelectorProperty = BindableProperty.Create("ResourceUrlSelector", typeof(Selector<string>), typeof(ImageViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ResourceUrlProperty = BindableProperty.Create(nameof(ResourceUrl), typeof(Selector<string>), typeof(ImageViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var imageViewStyle = (ImageViewStyle)bindable;
-            imageViewStyle.resourceUrlSelector = ((Selector<string>)newValue)?.Clone();
+            imageViewStyle.resourceUrl = ((Selector<string>)newValue)?.Clone();
         },
         defaultValueCreator: (bindable) =>
         {
             var imageViewStyle = (ImageViewStyle)bindable;
-            return imageViewStyle.resourceUrlSelector;
+            return imageViewStyle.resourceUrl;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BorderSelectorProperty = BindableProperty.Create("BorderSelector", typeof(Selector<Rectangle>), typeof(ImageViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty BorderProperty = BindableProperty.Create(nameof(Border), typeof(Selector<Rectangle>), typeof(ImageViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var imageViewStyle = (ImageViewStyle)bindable;
-            imageViewStyle.borderSelector = ((Selector<Rectangle>)newValue)?.Clone();
+            imageViewStyle.border = ((Selector<Rectangle>)newValue)?.Clone();
         },
         defaultValueCreator: (bindable) =>
         {
             var imageViewStyle = (ImageViewStyle)bindable;
-            return imageViewStyle.borderSelector;
+            return imageViewStyle.border;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -90,8 +90,8 @@ namespace Tizen.NUI.BaseComponents
         private bool? borderOnly;
         private bool? synchronosLoading;
         private bool? orientationCorrection;
-        private Selector<string> resourceUrlSelector;
-        private Selector<Rectangle> borderSelector;
+        private Selector<string> resourceUrl;
+        private Selector<Rectangle> border;
 
         static ImageViewStyle() { }
 
@@ -136,10 +136,10 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Selector<string> tmp = (Selector<string>)GetValue(ResourceUrlSelectorProperty);
-                return (null != tmp) ? tmp : resourceUrlSelector = new Selector<string>();
+                Selector<string> tmp = (Selector<string>)GetValue(ResourceUrlProperty);
+                return (null != tmp) ? tmp : resourceUrl = new Selector<string>();
             }
-            set => SetValue(ResourceUrlSelectorProperty, value);
+            set => SetValue(ResourceUrlProperty, value);
         }
 
         /// <summary>
@@ -151,10 +151,10 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Selector<Rectangle> tmp = (Selector<Rectangle>)GetValue(BorderSelectorProperty);
-                return (null != tmp) ? tmp : borderSelector = new Selector<Rectangle>();
+                Selector<Rectangle> tmp = (Selector<Rectangle>)GetValue(BorderProperty);
+                return (null != tmp) ? tmp : border = new Selector<Rectangle>();
             }
-            set => SetValue(BorderSelectorProperty, value);
+            set => SetValue(BorderProperty, value);
         }
     }
 }

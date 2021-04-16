@@ -511,9 +511,9 @@ namespace Tizen.NUI.BaseComponents
             return (hash * 23) + itemSum;
         }
 
-        internal bool HasMultiValue()
+        internal bool HasAll()
         {
-            return SelectorItems.Count > 1;
+            return all != null;
         }
 
         internal void AddWithoutDuplicationCheck(ControlState state, T value)
@@ -553,17 +553,37 @@ namespace Tizen.NUI.BaseComponents
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class TriggerableSelector<T>
     {
-        private readonly BindableProperty targetBindableProperty;
+        private readonly Action<T> targetPropertySetter;
         private Selector<T> selector;
 
         /// <summary>
         /// Create an TriggerableSelector.
         /// </summary>
-        /// <param name="targetBindableProperty">The TriggerableSelector will change this bindable property value when the view's ControlState has changed.</param>
+        /// <param name="view">The View that is affected by this TriggerableSelector.</param>
+        /// <param name="selector">The selector value.</param>
+        /// <param name="targetPropertySetter">The TriggerableSelector will call this setter when the view's ControlState has changed.</param>
+        /// <param name="updateView">Whether it updates the target view after create a instance.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when given argument is null. </exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TriggerableSelector(BindableProperty targetBindableProperty)
+        public TriggerableSelector(View view, Selector<T> selector, Action<T> targetPropertySetter, bool updateView = false)
         {
-            this.targetBindableProperty = targetBindableProperty;
+            if (view == null)
+            {
+                throw new ArgumentNullException(nameof(view));
+            }
+
+            this.selector = selector ?? throw new ArgumentNullException(nameof(selector));
+            this.targetPropertySetter = targetPropertySetter ?? throw new ArgumentNullException(nameof(targetPropertySetter));
+
+            if (!selector.HasAll())
+            {
+                view.ControlStateChangeEventInternal += OnViewControlState;
+            }
+
+            if (updateView && selector.GetValue(view.ControlState, out var value))
+            {
+                targetPropertySetter.Invoke(value);
+            }
         }
 
         /// <summary>
@@ -573,47 +593,17 @@ namespace Tizen.NUI.BaseComponents
         public Selector<T> Get() => selector;
 
         /// <summary>
-        /// Update containing selector from the other selector.
-        /// </summary>
-        /// <param name="view">The View that is affected by this TriggerableSelector.</param>
-        /// <param name="otherSelector">The copy target.</param>
-        /// <param name="updateView">Whether it updates the target view after update the selector or not.</param>
-        /// <exception cref="ArgumentNullException"> Thrown when view is null. </exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Update(View view, Selector<T> otherSelector, bool updateView = false)
-        {
-            Reset(view);
-
-            if (null == view)
-            {
-                throw new ArgumentNullException(nameof(view));
-            }
-
-            if (otherSelector == null)
-            {
-                return;
-            }
-
-            selector = otherSelector;
-
-            if (otherSelector.HasMultiValue())
-            {
-                view.ControlStateChangeEventInternal += OnViewControlState;
-            }
-
-            if (updateView && otherSelector.GetValue(view.ControlState, out var value))
-            {
-                view.SetValue(targetBindableProperty, value);
-            }
-        }
-
-        /// <summary>
         /// Reset selector and listeners.
         /// </summary>
         /// <param name="view">The View that is affected by this TriggerableSelector.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Reset(View view)
         {
+            if (selector == null)
+            {
+                return;
+            }
+
             if (view != null)
             {
                 view.ControlStateChangeEventInternal -= OnViewControlState;
@@ -626,7 +616,7 @@ namespace Tizen.NUI.BaseComponents
             View view = obj as View;
             if (null != view && selector.GetValue(controlStateChangedInfo.CurrentState, out var value))
             {
-                view.SetValue(targetBindableProperty, value);
+                targetPropertySetter.Invoke(value);
             }
         }
     }

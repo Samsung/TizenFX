@@ -826,13 +826,6 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        internal void SetColor(Vector4 color)
-        {
-            Interop.ActorInternal.SetColor(SwigCPtr, Vector4.getCPtr(color));
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         internal Vector4 GetCurrentColor()
         {
             Vector4 ret = new Vector4(Interop.ActorInternal.GetCurrentColor(SwigCPtr), true);
