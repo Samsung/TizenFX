@@ -23,7 +23,7 @@ namespace Tizen.NUI.BaseComponents
     {
         /// <summary> Bindable property of BackgroundImage. Please do not open it. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BackgroundImageSelectorProperty = BindableProperty.Create("BackgroundImageSelector", typeof(Selector<string>), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty BackgroundImageProperty = BindableProperty.Create(nameof(BackgroundImage), typeof(Selector<string>), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var viewStyle = (ViewStyle)bindable;
 
@@ -64,7 +64,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary> Bindable property of Opacity. Please do not open it. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty OpacitySelectorProperty = BindableProperty.Create("OpacitySelector", typeof(Selector<float?>), typeof(ViewStyle), null,
+        public static readonly BindableProperty OpacityProperty = BindableProperty.Create(nameof(Opacity), typeof(Selector<float?>), typeof(ViewStyle), null,
             propertyChanged: (bindable, oldValue, newValue) => ((ViewStyle)bindable).opacitySelector = (Selector<float?>)newValue,
             defaultValueCreator: (bindable) => ((ViewStyle)bindable).opacitySelector
         );
@@ -299,7 +299,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary> Bindable property of BackgroundColor. Please do not open it. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BackgroundColorSelectorProperty = BindableProperty.Create("BackgroundColorSelector", typeof(Selector<Color>), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty BackgroundColorProperty = BindableProperty.Create(nameof(BackgroundColor), typeof(Selector<Color>), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var viewStyle = (ViewStyle)bindable;
 
@@ -321,21 +321,21 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary> Bindable property of ColorSelector. Please do not open it. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ColorSelectorProperty = BindableProperty.Create("ColorSelector", typeof(Selector<Color>), typeof(ViewStyle), null,
+        public static readonly BindableProperty ColorProperty = BindableProperty.Create(nameof(Color), typeof(Selector<Color>), typeof(ViewStyle), null,
             propertyChanged: (bindable, oldValue, newValue) => ((ViewStyle)bindable).colorSelector = (Selector<Color>)newValue,
             defaultValueCreator: (bindable) => ((ViewStyle)bindable).colorSelector
         );
 
         /// <summary> Bindable property of BackgroundImageBorder. Please do not open it. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BackgroundImageBorderSelectorProperty = BindableProperty.Create("BackgroundImageBorderSelector", typeof(Selector<Rectangle>), typeof(ViewStyle), null,
+        public static readonly BindableProperty BackgroundImageBorderProperty = BindableProperty.Create(nameof(BackgroundImageBorder), typeof(Selector<Rectangle>), typeof(ViewStyle), null,
             propertyChanged: (bindable, oldValue, newValue) => ((ViewStyle)bindable).backgroundImageBorderSelector = (Selector<Rectangle>)newValue,
             defaultValueCreator: (bindable) => ((ViewStyle)bindable).backgroundImageBorderSelector
         );
 
         /// <summary> Bindable property of ImageShadow. Please do not open it. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ImageShadowSelectorProperty = BindableProperty.Create("ImageShadowSelector", typeof(Selector<ImageShadow>), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ImageShadowProperty = BindableProperty.Create(nameof(ImageShadow), typeof(Selector<ImageShadow>), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var viewStyle = (ViewStyle)bindable;
 
@@ -354,7 +354,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary> Bindable property of BoxShadow. Please do not open it. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BoxShadowSelectorProperty = BindableProperty.Create("BoxShadowSelector", typeof(Selector<Shadow>), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty BoxShadowProperty = BindableProperty.Create(nameof(BoxShadow), typeof(Selector<Shadow>), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var viewStyle = (ViewStyle)bindable;
 

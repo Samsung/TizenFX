@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,9 +35,15 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty TranslatableTextProperty = BindableProperty.Create(nameof(TranslatableText), typeof(string), typeof(TextLabel), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textLabel = (TextLabel)bindable;
-            if (newValue != null)
+
+            if (newValue is Selector<string> selector)
             {
-                textLabel.translatableText = (string)newValue;
+                textLabel.TranslatableTextSelector = selector;
+            }
+            else
+            {
+                textLabel.selectorData?.TranslatableText?.Reset(textLabel);
+                textLabel.SetTranslatableText((string)newValue);
             }
         },
         defaultValueCreator: (bindable) =>
@@ -50,11 +56,15 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(TextLabel), string.Empty, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var textLabel = (TextLabel)bindable;
-            if (newValue != null)
+
+            if (newValue is Selector<string> selector)
             {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.TEXT, new Tizen.NUI.PropertyValue((string)newValue));
+                textLabel.TextSelector = selector;
+            }
+            else
+            {
                 textLabel.selectorData?.Text?.Reset(textLabel);
-                textLabel.RequestLayout();
+                textLabel.SetText((string)newValue);
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
@@ -69,11 +79,15 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty FontFamilyProperty = BindableProperty.Create(nameof(FontFamily), typeof(string), typeof(TextLabel), string.Empty, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var textLabel = (TextLabel)bindable;
-            if (newValue != null)
+
+            if (newValue is Selector<string> selector)
             {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.FontFamily, new Tizen.NUI.PropertyValue((string)newValue));
+                textLabel.FontFamilySelector = selector;
+            }
+            else
+            {
                 textLabel.selectorData?.FontFamily?.Reset(textLabel);
-                textLabel.RequestLayout();
+                textLabel.SetFontFamily((string)newValue);
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
@@ -106,11 +120,15 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty PointSizeProperty = BindableProperty.Create(nameof(PointSize), typeof(float), typeof(TextLabel), default(float), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var textLabel = (TextLabel)bindable;
-            if (newValue != null)
+
+            if (newValue is Selector<float?> selector)
             {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.PointSize, new Tizen.NUI.PropertyValue((float)newValue));
+                textLabel.PointSizeSelector = selector;
+            }
+            else
+            {
                 textLabel.selectorData?.PointSize?.Reset(textLabel);
-                textLabel.RequestLayout();
+                textLabel.SetPointSize((float?)newValue);
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
@@ -188,9 +206,15 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty TextColorProperty = BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(TextLabel), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var textLabel = (TextLabel)bindable;
-            if (newValue != null)
+
+            if (newValue is Selector<Color> selector)
             {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.TextColor, new Tizen.NUI.PropertyValue((Color)newValue));
+                textLabel.TextColorSelector = selector;
+            }
+            else
+            {
+                textLabel.selectorData?.TextColor?.Reset(textLabel);
+                textLabel.SetTextColor((Color)newValue);
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
@@ -343,9 +367,15 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty TextShadowProperty = BindableProperty.Create(nameof(TextShadow), typeof(TextShadow), typeof(TextLabel), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var textLabel = (TextLabel)bindable;
-            if (newValue != null)
+
+            if (newValue is Selector<TextShadow> selector)
             {
-                Object.SetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, Property.SHADOW, TextShadow.ToPropertyValue((TextShadow)newValue));
+                textLabel.TextShadowSelector = selector;
+            }
+            else
+            {
+                textLabel.selectorData?.TextShadow?.Reset(textLabel);
+                textLabel.SetTextShadow((TextShadow)newValue);
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
@@ -394,11 +424,15 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty PixelSizeProperty = BindableProperty.Create(nameof(PixelSize), typeof(float), typeof(TextLabel), default(float), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var textLabel = (TextLabel)bindable;
-            if (newValue != null)
+
+            if (newValue is Selector<float?> selector)
             {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.PixelSize, new Tizen.NUI.PropertyValue((float)newValue));
+                textLabel.PixelSizeSelector = selector;
+            }
+            else
+            {
                 textLabel.selectorData?.PixelSize?.Reset(textLabel);
-                textLabel.RequestLayout();
+                textLabel.SetPixelSize((float?)newValue);
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
@@ -575,91 +609,169 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         }));
 
-        #region Selectors
-        internal static readonly BindableProperty TranslatableTextSelectorProperty = BindableProperty.Create("TranslatableTextSelector", typeof(Selector<string>), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
+        internal Selector<string> TranslatableTextSelector
         {
-            var textLabel = (TextLabel)bindable;
-            textLabel.EnsureSelectorData().EnsureTranslatableText().Update(textLabel, (Selector<string>)newValue, true);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var textLabel = (TextLabel)bindable;
-            return textLabel.GetSelector<string>(textLabel.selectorData?.TranslatableText, TextLabel.TranslatableTextProperty);
-        });
-        internal static readonly BindableProperty TextSelectorProperty = BindableProperty.Create("TextSelector", typeof(Selector<string>), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var textLabel = (TextLabel)bindable;
-            textLabel.EnsureSelectorData().EnsureText().Update(textLabel, (Selector<string>)newValue, true);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var textLabel = (TextLabel)bindable;
-            return textLabel.GetSelector<string>(textLabel.selectorData?.Text, TextLabel.TextProperty);
-        });
-        internal static readonly BindableProperty FontFamilySelectorProperty = BindableProperty.Create("FontFamilySelector", typeof(Selector<string>), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var textLabel = (TextLabel)bindable;
-            textLabel.EnsureSelectorData().EnsureFontFamily().Update(textLabel, (Selector<string>)newValue, true);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var textLabel = (TextLabel)bindable;
-            return textLabel.GetSelector<string>(textLabel.selectorData?.FontFamily, TextLabel.FontFamilyProperty);
-        });
-        internal static readonly BindableProperty PointSizeSelectorProperty = BindableProperty.Create("PointSizeSelector", typeof(Selector<float?>), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var textLabel = (TextLabel)bindable;
-            textLabel.EnsureSelectorData().EnsurePointSize().Update(textLabel, (Selector<float?>)newValue, true);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var textLabel = (TextLabel)bindable;
-            return textLabel.GetSelector<float?>(textLabel.selectorData?.PointSize, TextLabel.PointSizeProperty);
-        });
-        internal static readonly BindableProperty TextColorSelectorProperty = BindableProperty.Create("TextColorSelector", typeof(Selector<Color>), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var textLabel = (TextLabel)bindable;
-            textLabel.EnsureSelectorData().EnsureTextColor().Update(textLabel, (Selector<Color>)newValue, true);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var textLabel = (TextLabel)bindable;
-            var selector =  textLabel.selectorData?.TextColor?.Get();
-            if (selector != null)
+            get => GetSelector<string>(selectorData?.TranslatableText, TextLabel.TranslatableTextProperty);
+            set
             {
-                return selector;
-            }
+                selectorData?.TranslatableText?.Reset(this);
+                if (value == null) return;
 
-            Color color = new Color();
-            if (!textLabel.GetProperty(TextLabel.Property.TextColor).Get(color))
+                if (value.HasAll()) SetTranslatableText(value.All);
+                else EnsureSelectorData().TranslatableText = new TriggerableSelector<string>(this, value, SetTranslatableText, true);
+            }
+        }
+
+        internal Selector<string> TextSelector
+        {
+            get => GetSelector<string>(selectorData?.Text, TextLabel.TextProperty);
+            set
             {
-                return null;
+                selectorData?.Text?.Reset(this);
+                if (value == null) return;
+
+                if (value.HasAll()) SetText(value.All);
+                else EnsureSelectorData().Text = new TriggerableSelector<string>(this, value, SetText, true);
             }
-            return new Selector<Color>(color);
-        });
+        }
 
-        internal static readonly BindableProperty TextShadowSelectorProperty = BindableProperty.Create("TextShadowSelector", typeof(Selector<TextShadow>), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
+        internal Selector<string> FontFamilySelector
         {
-            var textLabel = (TextLabel)bindable;
-            textLabel.EnsureSelectorData().EnsureTextShadow().Update(textLabel, (Selector<TextShadow>)newValue, true);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var textLabel = (TextLabel)bindable;
-            return textLabel.GetSelector<TextShadow>(textLabel.selectorData?.TextShadow, TextLabel.TextShadowProperty);
-        });
+            get => GetSelector<string>(selectorData?.FontFamily, TextLabel.FontFamilyProperty);
+            set
+            {
+                selectorData?.FontFamily?.Reset(this);
+                if (value == null) return;
 
-        internal static readonly BindableProperty PixelSizeSelectorProperty = BindableProperty.Create("PixelSizeSelector", typeof(Selector<float?>), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var textLabel = (TextLabel)bindable;
-            ((TextLabel)bindable).EnsureSelectorData().EnsurePixelSize().Update(textLabel, (Selector<float?>)newValue, true);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var textLabel = (TextLabel)bindable;
-            return textLabel.GetSelector<float?>(textLabel.selectorData?.PixelSize, TextLabel.PixelSizeProperty);
-        });
-        #endregion
+                if (value.HasAll()) SetFontFamily(value.All);
+                else EnsureSelectorData().FontFamily = new TriggerableSelector<string>(this, value, SetFontFamily, true);
+            }
+        }
 
+        internal Selector<float?> PointSizeSelector
+        {
+            get => GetSelector<float?>(selectorData?.PointSize, TextLabel.PointSizeProperty);
+            set
+            {
+                selectorData?.PointSize?.Reset(this);
+                if (value == null) return;
+
+                if (value.HasAll()) SetPointSize(value.All);
+                else EnsureSelectorData().PointSize = new TriggerableSelector<float?>(this, value, SetPointSize, true);
+            }
+        }
+
+        internal Selector<Color> TextColorSelector
+        {
+            get
+            {
+                var selector =  selectorData?.TextColor?.Get();
+                if (selector != null)
+                {
+                    return selector;
+                }
+
+                Color color = new Color();
+                if (!GetProperty(TextLabel.Property.TextColor).Get(color))
+                {
+                    return null;
+                }
+                return new Selector<Color>(color);
+            }
+            set
+            {
+                selectorData?.TextColor?.Reset(this);
+                if (value == null) return;
+
+                if (value.HasAll()) SetTextColor(value.All);
+                else EnsureSelectorData().TextColor = new TriggerableSelector<Color>(this, value, SetTextColor, true);
+            }
+        }
+
+        internal Selector<float?> PixelSizeSelector
+        {
+            get => GetSelector<float?>(selectorData?.PixelSize, TextLabel.PixelSizeProperty);
+            set
+            {
+                selectorData?.PixelSize?.Reset(this);
+                if (value == null) return;
+
+                if (value.HasAll()) SetPixelSize(value.All);
+                else EnsureSelectorData().PixelSize = new TriggerableSelector<float?>(this, value, SetPixelSize, true);
+            }
+        }
+
+        internal Selector<TextShadow> TextShadowSelector
+        {
+            get => GetSelector<TextShadow>(selectorData?.TextShadow, TextLabel.TextShadowProperty);
+            set
+            {
+                selectorData?.TextShadow?.Reset(this);
+                if (value == null) return;
+
+                if (value.HasAll()) SetTextShadow(value.All);
+                else EnsureSelectorData().TextShadow = new TriggerableSelector<TextShadow>(this, value, SetTextShadow);
+            }
+        }
+
+        private void SetTranslatableText(string value)
+        {
+            if (value != null)
+            {
+                translatableText = value;
+            }
+        }
+
+        private void SetText(string value)
+        {
+            if (value != null)
+            {
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, TextLabel.Property.TEXT, new Tizen.NUI.PropertyValue(value));
+                RequestLayout();
+            }
+        }
+
+        private void SetFontFamily(string value)
+        {
+            if (value != null)
+            {
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, TextLabel.Property.FontFamily, new Tizen.NUI.PropertyValue(value));
+                RequestLayout();
+            }
+        }
+
+        private void SetTextColor(Color value)
+        {
+            if (value != null)
+            {
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, TextLabel.Property.TextColor, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        private void SetPointSize(float? value)
+        {
+            if (value != null)
+            {
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, TextLabel.Property.PointSize, new Tizen.NUI.PropertyValue((float)value));
+                RequestLayout();
+            }
+        }
+
+        private void SetPixelSize(float? value)
+        {
+            if (value != null)
+            {
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, TextLabel.Property.PixelSize, new Tizen.NUI.PropertyValue((float)value));
+                RequestLayout();
+            }
+        }
+
+        private void SetTextShadow(TextShadow value)
+        {
+            if (value != null)
+            {
+                Object.SetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, Property.SHADOW, TextShadow.ToPropertyValue(value));
+            }
+        }
     }
 }
