@@ -24,7 +24,7 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// MenuItem is a class which is used to show a list of items in Menu.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class MenuItem : SelectButton
     {
         private bool selectedAgain = false;
@@ -34,7 +34,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Creates a new instance of MenuItem.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public MenuItem()
         {
             Initialize();
@@ -50,10 +50,7 @@ namespace Tizen.NUI.Components
             Initialize();
         }
 
-        /// <summary>
-        /// Dispose MenuItem and all children on it.
-        /// </summary>
-        /// <param name="type">Dispose type.</param>
+        /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
