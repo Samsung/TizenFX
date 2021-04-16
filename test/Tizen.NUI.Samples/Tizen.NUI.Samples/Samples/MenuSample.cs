@@ -44,7 +44,14 @@ namespace Tizen.NUI.Samples
 
             moreButton.Clicked += (object sender, ClickedEventArgs args) =>
             {
-                DialogPage.ShowMenu(moreButton, menuItem, menuItem2, menuItem3, menuItem4);
+                var menu = new Menu()
+                {
+                    Anchor = moreButton,
+                    HorizontalPositionToAnchor = Menu.RelativePosition.Center,
+                    VerticalPositionToAnchor = Menu.RelativePosition.End,
+                    Items = new MenuItem[] { menuItem, menuItem2, menuItem3, menuItem4 },
+                };
+                menu.Post();
             };
         }
 
