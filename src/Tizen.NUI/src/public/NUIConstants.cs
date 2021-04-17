@@ -746,7 +746,13 @@ namespace Tizen.NUI
         /// <summary>
         /// Used for simple dialog windows.
         /// </summary>
-        Dialog
+        Dialog,
+        /// <summary>
+        /// Suppors to make partial size window easliy.
+        /// It is useful to make popup style window and this window is always upper than the other normal window.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Floating
     }
 
     /// <since_tizen> 3 </since_tizen>

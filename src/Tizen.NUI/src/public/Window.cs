@@ -203,6 +203,54 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Enumeration of direction for window resized by display server.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum WindowResizeDirection
+        {
+            /// <summary>
+            /// Start resizing window to the top-left edge.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            ToLeft      = 1,
+            /// <summary>
+            /// Start resizing window to the top side.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Top           = 2,
+            /// <summary>
+            /// Start resizing window to the top-right edge.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            TopRight     = 3,
+            /// <summary>
+            /// Start resizing window to the left side.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Left          = 4,
+            /// <summary>
+            /// Start resizing window to the right side.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Right         = 5,
+            /// <summary>
+            /// Start resizing window to the bottom-left edge.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            BottomLeft   = 6,
+            /// <summary>
+            /// Start resizing window to the bottom side.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Bottom        = 7,
+            /// <summary>
+            /// Start resizing window to the bottom-right edge.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            BottomRight  = 8
+        }
+
+        /// <summary>
         /// The stage instance property (read-only).<br />
         /// Gets the current window.<br />
         /// </summary>
@@ -1269,6 +1317,26 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             // Setting Position of the window should request a relayout of the tree.
+        }
+
+        /// <summary>
+        /// Requests the window is moved by display server.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RequestMoveToServer()
+        {
+            Interop.Window.RequestMoveToServer(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        ///  Requests the window is resized by display server.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RequestResizeToServer(WindowResizeDirection direction)
+        {
+            Interop.Window.RequestResizeToServer(SwigCPtr, (uint)direction);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
