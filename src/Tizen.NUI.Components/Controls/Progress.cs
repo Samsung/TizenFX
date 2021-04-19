@@ -240,8 +240,7 @@ namespace Tizen.NUI.Components
         /// The property to get/set the indeterminate image.
         /// </summary>
         /// <exception cref="NullReferenceException">Thrown when setting null value.</exception>
-        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public string IndeterminateImageUrl
         {
             get
@@ -446,7 +445,6 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Change Image status. It can be override.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
         /// This needs to be considered more if public-open is necessary.
         [EditorBrowsable(EditorBrowsableState.Never)]
         private void UpdateStates()
@@ -457,7 +455,6 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Update progress value
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
         /// This needs to be considered more if public-open is necessary.
         [EditorBrowsable(EditorBrowsableState.Never)]
         private void UpdateValue()

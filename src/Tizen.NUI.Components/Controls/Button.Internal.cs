@@ -287,7 +287,12 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnRelayout(Vector2 size, RelayoutContainer container)
         {
-            Debug.Assert(size != null);
+            if (size == null) return;
+
+            if (size.Equals(this.size))
+            {
+                return;
+            }
 
             this.size = new Vector2(size);
 
