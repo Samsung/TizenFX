@@ -18,7 +18,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.Components
@@ -232,6 +231,7 @@ namespace Tizen.NUI.Components
 
             NavigationPages.Add(page);
             Add(page);
+            page.Navigator = this;
 
             //Invoke Page events
             page.InvokeAppearing();
@@ -250,33 +250,21 @@ namespace Tizen.NUI.Components
                 newAnimation.Clear();
             }
 
-            curAnimation = new Animation(1000);
-            using (var scaleVec = new Vector3(0.0f, 0.0f, 1.0f))
+            if (page is DialogPage == false)
             {
-                curAnimation.AnimateTo(curTop, "Scale", scaleVec, 0, 1000);
-            }
-            curAnimation.AnimateTo(curTop, "Opacity", 0.0f, 0, 1000);
-            curAnimation.EndAction = Animation.EndActions.Discard;
-            curAnimation.Play();
+                curAnimation = new Animation(1000);
+                curAnimation.AnimateTo(curTop, "Opacity", 0.0f, 0, 1000);
+                curAnimation.EndAction = Animation.EndActions.Discard;
+                curAnimation.Play();
 
-            using (var scaleVec = new Vector3(0.0f, 0.0f, 1.0f))
-            {
-                using (var scaleProp = new Tizen.NUI.PropertyValue(scaleVec))
+                using (var opacityProp = new Tizen.NUI.PropertyValue(0.0f))
                 {
-                    Tizen.NUI.Object.SetProperty(page.SwigCPtr, Page.Property.SCALE, scaleProp);
+                    Tizen.NUI.Object.SetProperty(page.SwigCPtr, Page.Property.OPACITY, opacityProp);
                 }
+                newAnimation = new Animation(1000);
+                newAnimation.AnimateTo(page, "Opacity", 1.0f, 0, 1000);
+                newAnimation.Play();
             }
-            using (var scaleProp = new Tizen.NUI.PropertyValue(0.0f))
-            {
-                Tizen.NUI.Object.SetProperty(page.SwigCPtr, Page.Property.OPACITY, scaleProp);
-            }
-            newAnimation = new Animation(1000);
-            using (var scaleVec = new Vector3(1.0f, 1.0f, 1.0f))
-            {
-                newAnimation.AnimateTo(page, "Scale", scaleVec, 0, 1000);
-            }
-            newAnimation.AnimateTo(page, "Opacity", 1.0f, 0, 1000);
-            newAnimation.Play();
         }
 
         /// <summary>
@@ -325,37 +313,29 @@ namespace Tizen.NUI.Components
                 newAnimation.Clear();
             }
 
-            curAnimation = new Animation(1000);
-            using (var scaleVec = new Vector3(0.0f, 0.0f, 1.0f))
+            if (curTop is DialogPage == false)
             {
-                curAnimation.AnimateTo(curTop, "Scale", scaleVec, 0, 1000);
-            }
-            curAnimation.AnimateTo(curTop, "Opacity", 0.0f, 0, 1000);
-            curAnimation.Play();
-            curAnimation.Finished += (object sender, EventArgs e) =>
-            {
-                //Removes the current top page after transition is finished.
-                Remove(curTop);
-            };
-
-            using (var scaleVec = new Vector3(0.0f, 0.0f, 1.0f))
-            {
-                using (var scaleProp = new Tizen.NUI.PropertyValue(scaleVec))
+                curAnimation = new Animation(1000);
+                curAnimation.AnimateTo(curTop, "Opacity", 0.0f, 0, 1000);
+                curAnimation.Play();
+                curAnimation.Finished += (object sender, EventArgs e) =>
                 {
-                    Tizen.NUI.Object.SetProperty(newTop.SwigCPtr, Page.Property.SCALE, scaleProp);
+                    //Removes the current top page after transition is finished.
+                    Remove(curTop);
+                };
+
+                using (var opacityProp = new Tizen.NUI.PropertyValue(0.0f))
+                {
+                    Tizen.NUI.Object.SetProperty(newTop.SwigCPtr, Page.Property.OPACITY, opacityProp);
                 }
+                newAnimation = new Animation(1000);
+                newAnimation.AnimateTo(newTop, "Opacity", 1.0f, 0, 1000);
+                newAnimation.Play();
             }
-            using (var opacityProp = new Tizen.NUI.PropertyValue(0.0f))
+            else
             {
-                Tizen.NUI.Object.SetProperty(newTop.SwigCPtr, Page.Property.OPACITY, opacityProp);
+                Remove(curTop);
             }
-            newAnimation = new Animation(1000);
-            using (var scaleVec = new Vector3(1.0f, 1.0f, 1.0f))
-            {
-                newAnimation.AnimateTo(newTop, "Scale", scaleVec, 0, 1000);
-            }
-            newAnimation.AnimateTo(newTop, "Opacity", 1.0f, 0, 1000);
-            newAnimation.Play();
 
             return curTop;
         }
@@ -386,6 +366,7 @@ namespace Tizen.NUI.Components
 
             NavigationPages.Insert(index, page);
             Add(page);
+            page.Navigator = this;
         }
 
         /// <summary>
@@ -435,6 +416,7 @@ namespace Tizen.NUI.Components
                 throw new ArgumentNullException(nameof(page), "page should not be null.");
             }
 
+            page.Navigator = null;
             NavigationPages.Remove(page);
             base.Remove(page);
         }
@@ -528,75 +510,6 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Shows a dialog by pushing a page containing dialog to default navigator.
-        /// </summary>
-        /// <param name="content">The content of Dialog.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        [SuppressMessage("Microsoft.Reliability",
-                         "CA2000:DisposeObjectsBeforeLosingScope",
-                         Justification = "The pushed views are added to NavigationPages and are disposed in Navigator.Dispose().")]
-        public static void ShowDialog(View content = null)
-        {
-            var window = NUIApplication.GetDefaultWindow();
-            var defaultNavigator = window.GetDefaultNavigator();
-
-            var dialog = new Dialog(content);
-            SetDialogScrim(dialog);
-
-            var dialogPage = new Page(dialog);
-            defaultNavigator.Push(dialogPage);
-        }
-
-        /// <summary>
-        /// Shows an alert dialog by pushing a page containing the alert dialog
-        /// to default navigator.
-        /// </summary>
-        /// <param name="titleContent">The title content of AlertDialog.</param>
-        /// <param name="content">The content of AlertDialog.</param>
-        /// <param name="actionContent">The action content of AlertDialog.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        [SuppressMessage("Microsoft.Reliability",
-                         "CA2000:DisposeObjectsBeforeLosingScope",
-                         Justification = "The pushed views are added to NavigationPages and are disposed in Navigator.Dispose().")]
-        public static void ShowAlertDialog(View titleContent, View content, View actionContent)
-        {
-            var window = NUIApplication.GetDefaultWindow();
-            var defaultNavigator = window.GetDefaultNavigator();
-
-            var dialog = new AlertDialog(titleContent, content, actionContent);
-            SetDialogScrim(dialog);
-
-            var dialogPage = new Page(dialog);
-            defaultNavigator.Push(dialogPage);
-        }
-
-        /// <summary>
-        /// Shows an alert dialog by pushing a page containing the alert dialog
-        /// to default navigator.
-        /// </summary>
-        /// <param name="title">The title of AlertDialog.</param>
-        /// <param name="message">The message of AlertDialog.</param>
-        /// <param name="positiveButtonText">The positive button text in the action content of AlertDialog.</param>
-        /// <param name="positiveButtonClickedHandler">The clicked callback of the positive button in the action content of AlertDialog.</param>
-        /// <param name="negativeButtonText">The negative button text in the action content of AlertDialog.</param>
-        /// <param name="negativeButtonClickedHandler">The clicked callback of the negative button in the action content of AlertDialog.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        [SuppressMessage("Microsoft.Reliability",
-                         "CA2000:DisposeObjectsBeforeLosingScope",
-                         Justification = "The pushed views are added to NavigationPages and are disposed in Navigator.Dispose().")]
-        public static void ShowAlertDialog(string title = null, string message = null, string positiveButtonText = null, EventHandler<ClickedEventArgs> positiveButtonClickedHandler = null, string negativeButtonText = null, EventHandler<ClickedEventArgs> negativeButtonClickedHandler = null)
-        {
-            var window = NUIApplication.GetDefaultWindow();
-            var defaultNavigator = window.GetDefaultNavigator();
-
-            var dialog = new AlertDialog(title, message, positiveButtonText, positiveButtonClickedHandler, negativeButtonText, negativeButtonClickedHandler);
-            SetDialogScrim(dialog);
-
-            var dialogPage = new Page(dialog);
-            defaultNavigator.Push(dialogPage);
-        }
-
-        /// <summary>
         /// Create Transition between currentTopPage and newTopPage
         /// </summary>
         /// <param name="currentTopPage">The top page of Navigator.</param>
@@ -608,9 +521,9 @@ namespace Tizen.NUI.Components
             newTopPage.SetVisible(true);
 
             List<View> taggedViewsInNewTopPage = new List<View>();
-            RetrieveTaggedViews(taggedViewsInNewTopPage, newTopPage.Content);
+            RetrieveTaggedViews(taggedViewsInNewTopPage, newTopPage);
             List<View> taggedViewsInCurrentTopPage = new List<View>();
-            RetrieveTaggedViews(taggedViewsInCurrentTopPage, currentTopPage.Content);
+            RetrieveTaggedViews(taggedViewsInCurrentTopPage, currentTopPage);
 
             List<KeyValuePair<View, View>> sameTaggedViewPair = new List<KeyValuePair<View, View>>();
             foreach(View currentTopPageView in taggedViewsInCurrentTopPage)
@@ -669,35 +582,6 @@ namespace Tizen.NUI.Components
             return newTransitionSet;
         }
 
-        private static void SetDialogScrim(Dialog dialog)
-        {
-            if (dialog == null)
-            {
-                return;
-            }
-
-            var window = NUIApplication.GetDefaultWindow();
-            var defaultNavigator = window.GetDefaultNavigator();
-            var defaultScrim = dialog.Scrim;
-
-            //Copies default scrim's GUI properties.
-            var scrim = new VisualView();
-            scrim.BackgroundColor = defaultScrim.BackgroundColor;
-            scrim.Size = defaultScrim.Size;
-            scrim.TouchEvent += (object source, View.TouchEventArgs e) =>
-            {
-                if (e.Touch.GetState(0) == PointStateType.Up)
-                {
-                    defaultNavigator.Pop();
-                }
-
-                return true;
-            };
-
-            dialog.Scrim = scrim;
-        }
-
-
         /// <summary>
         /// Retrieve Tagged Views in the view tree.
         /// </summary>
@@ -731,4 +615,4 @@ namespace Tizen.NUI.Components
             TransitionFinished?.Invoke(this, new EventArgs());
         }
     }
-} //namespace Tizen.NUI
+}

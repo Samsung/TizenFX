@@ -56,20 +56,20 @@ namespace Tizen.NUI.Components
             theme.AddStyleWithoutClone("Tizen.NUI.Components.CheckBox", new ButtonStyle()
             {
                 ItemSpacing = new Size2D(32, 32),
-                ItemAlignment = LinearLayout.Alignment.Begin,
+                ItemAlignment = LinearLayout.Alignment.CenterVertical,
                 Icon = new ImageViewStyle()
                 {
                     Size = new Size(36, 36),
                     ResourceUrl = new Selector<string>()
                     {
-                        Normal = FrameworkInformation.ResourcePath + "IoT_check_off.svg",
-                        Pressed = FrameworkInformation.ResourcePath + "IoT_check_off_p.svg",
-                        Disabled = FrameworkInformation.ResourcePath + "IoT_check_off_d.svg",
-                        Focused = FrameworkInformation.ResourcePath + "IoT_check_off_f.svg",
-                        Selected = FrameworkInformation.ResourcePath + "IoT_check_on.svg",
-                        SelectedPressed = FrameworkInformation.ResourcePath + "IoT_check_on_p.svg",
-                        SelectedFocused = FrameworkInformation.ResourcePath + "IoT_check_on_f.svg",
-                        DisabledSelected = FrameworkInformation.ResourcePath + "IoT_check_on_d.svg",
+                        Normal = FrameworkInformation.ResourcePath + "IoT_check_off.png",
+                        Pressed = FrameworkInformation.ResourcePath + "IoT_check_off_p.png",
+                        Disabled = FrameworkInformation.ResourcePath + "IoT_check_off_d.png",
+                        Focused = FrameworkInformation.ResourcePath + "IoT_check_off_f.png",
+                        Selected = FrameworkInformation.ResourcePath + "IoT_check_on.png",
+                        SelectedPressed = FrameworkInformation.ResourcePath + "IoT_check_on_p.png",
+                        SelectedFocused = FrameworkInformation.ResourcePath + "IoT_check_on_f.png",
+                        DisabledSelected = FrameworkInformation.ResourcePath + "IoT_check_on_d.png",
                     },
                 },
                 Text = new TextLabelStyle()
@@ -138,20 +138,20 @@ namespace Tizen.NUI.Components
             theme.AddStyleWithoutClone("Tizen.NUI.Components.RadioButton", new ButtonStyle()
             {
                 ItemSpacing = new Size2D(32, 32),
-                ItemAlignment = LinearLayout.Alignment.Begin,
+                ItemAlignment = LinearLayout.Alignment.CenterVertical,
                 Icon = new ImageViewStyle()
                 {
                     Size = new Size(36, 36),
                     ResourceUrl = new Selector<string>()
                     {
-                        Normal = FrameworkInformation.ResourcePath + "IoT_radiobutton_off.svg",
-                        Pressed = FrameworkInformation.ResourcePath + "IoT_radiobutton_off_p.svg",
-                        Disabled = FrameworkInformation.ResourcePath + "IoT_radiobutton_off_d.svg",
-                        Focused = FrameworkInformation.ResourcePath + "IoT_radiobutton_off_f.svg",
-                        Selected = FrameworkInformation.ResourcePath + "IoT_radiobutton_on.svg",
-                        SelectedPressed = FrameworkInformation.ResourcePath + "IoT_radiobutton_on_p.svg",
-                        SelectedFocused = FrameworkInformation.ResourcePath + "IoT_radiobutton_on_f.svg",
-                        DisabledSelected = FrameworkInformation.ResourcePath + "IoT_radiobutton_on_d.svg",
+                        Normal = FrameworkInformation.ResourcePath + "IoT_radiobutton_off.png",
+                        Pressed = FrameworkInformation.ResourcePath + "IoT_radiobutton_off_p.png",
+                        Disabled = FrameworkInformation.ResourcePath + "IoT_radiobutton_off_d.png",
+                        Focused = FrameworkInformation.ResourcePath + "IoT_radiobutton_off_f.png",
+                        Selected = FrameworkInformation.ResourcePath + "IoT_radiobutton_on.png",
+                        SelectedPressed = FrameworkInformation.ResourcePath + "IoT_radiobutton_on_p.png",
+                        SelectedFocused = FrameworkInformation.ResourcePath + "IoT_radiobutton_on_f.png",
+                        DisabledSelected = FrameworkInformation.ResourcePath + "IoT_radiobutton_on_d.png",
                     },
                 },
                 Text = new TextLabelStyle()
@@ -193,20 +193,20 @@ namespace Tizen.NUI.Components
             theme.AddStyleWithoutClone("Tizen.NUI.Components.Switch", new SwitchStyle()
             {
                 ItemSpacing = new Size2D(32, 32),
-                ItemAlignment = LinearLayout.Alignment.Begin,
+                ItemAlignment = LinearLayout.Alignment.CenterVertical,
                 Track = new ImageViewStyle()
                 {
                     Size = new Size(80, 40),
                     ResourceUrl = new Selector<string>()
                     {
-                        Normal = FrameworkInformation.ResourcePath + "IoT_switch_track_off.svg",
-                        Pressed = FrameworkInformation.ResourcePath + "IoT_switch_track_off_p.svg",
-                        Disabled = FrameworkInformation.ResourcePath + "IoT_switch_track_off_d.svg",
-                        Focused = FrameworkInformation.ResourcePath + "IoT_switch_track_off_f.svg",
-                        Selected = FrameworkInformation.ResourcePath + "IoT_switch_track_on.svg",
-                        SelectedPressed = FrameworkInformation.ResourcePath + "IoT_switch_track_on_p.svg",
-                        SelectedFocused = FrameworkInformation.ResourcePath + "IoT_switch_track_on_f.svg",
-                        DisabledSelected = FrameworkInformation.ResourcePath + "IoT_switch_track_on_d.svg",
+                        Normal = FrameworkInformation.ResourcePath + "IoT_switch_track_off.png",
+                        Pressed = FrameworkInformation.ResourcePath + "IoT_switch_track_off_p.png",
+                        Disabled = FrameworkInformation.ResourcePath + "IoT_switch_track_off_d.png",
+                        Focused = FrameworkInformation.ResourcePath + "IoT_switch_track_off_f.png",
+                        Selected = FrameworkInformation.ResourcePath + "IoT_switch_track_on.png",
+                        SelectedPressed = FrameworkInformation.ResourcePath + "IoT_switch_track_on_p.png",
+                        SelectedFocused = FrameworkInformation.ResourcePath + "IoT_switch_track_on_f.png",
+                        DisabledSelected = FrameworkInformation.ResourcePath + "IoT_switch_track_on_d.png",
                     },
                 },
                 Thumb = new ImageViewStyle()
@@ -214,11 +214,11 @@ namespace Tizen.NUI.Components
                     Size = new Size(40, 40),
                     ResourceUrl = new Selector<string>()
                     {
-                        Normal = FrameworkInformation.ResourcePath + "IoT_switch_thumb.svg",
-                        Disabled = FrameworkInformation.ResourcePath + "IoT_switch_thumb_d.svg",
-                        Selected = FrameworkInformation.ResourcePath + "IoT_switch_thumb_s.svg",
-                        SelectedPressed = FrameworkInformation.ResourcePath + "IoT_switch_thumb_sp.svg",
-                        SelectedFocused = FrameworkInformation.ResourcePath + "IoT_switch_thumb_sf.svg",
+                        Normal = FrameworkInformation.ResourcePath + "IoT_switch_thumb.png",
+                        Disabled = FrameworkInformation.ResourcePath + "IoT_switch_thumb_d.png",
+                        Selected = FrameworkInformation.ResourcePath + "IoT_switch_thumb_s.png",
+                        SelectedPressed = FrameworkInformation.ResourcePath + "IoT_switch_thumb_sp.png",
+                        SelectedFocused = FrameworkInformation.ResourcePath + "IoT_switch_thumb_sf.png",
                     }
                 },
                 Text = new TextLabelStyle()
@@ -396,13 +396,13 @@ namespace Tizen.NUI.Components
                 },
                 ActionView = new ViewStyle()
                 {
-                    Size = new Size(-1, 48),
+                    Size = new Size(-1, 120),
                     CornerRadius = 0,
                     BackgroundColor = new Color(0, 0, 0, 0),
                 },
                 ActionButton = new ButtonStyle()
                 {
-                    Size = new Size(-1, 48),
+                    Size = new Size(-1, 120),
                     CornerRadius = 0,
                     BackgroundColor = new Color(0, 0, 0, 0),
                     Text = new TextLabelStyle()
@@ -588,6 +588,76 @@ namespace Tizen.NUI.Components
                     },
                     StartScrollOffset = new Size2D(0, 12),
                 }
+            });
+
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.AlertDialog", new AlertDialogStyle()
+            {
+                Size = new Size(-2, -2),
+                Padding = new Extents(80, 80, 0, 0),
+                BackgroundImage = FrameworkInformation.ResourcePath + "nui_component_default_dialog_bg.#.png",
+                TitleTextLabel = new TextLabelStyle()
+                {
+                    Size = new Size(1024, -2),
+                    Margin = new Extents(0, 0, 40, 40),
+                    PixelSize = 40,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    TextColor = new Selector<Color>()
+                    {
+                        Normal = new Color("#000C2BFF"),
+                    },
+                },
+                MessageTextLabel = new TextLabelStyle()
+                {
+                    Size = new Size(1024, -2),
+                    Margin = new Extents(0, 0, 0, 64),
+                    PixelSize = 32,
+                    MultiLine = true,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    TextColor = new Selector<Color>()
+                    {
+                        Normal = new Color("#000C2BFF"),
+                    },
+                },
+                ActionContent = new ViewStyle()
+                {
+                    Size = new Size(1024, -2),
+                },
+            });
+
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.MenuItem", new ButtonStyle()
+            {
+                Size = new Size(480, -2),
+                MinimumSize = new Size2D(0, 72),
+                CornerRadius = 0,
+                BackgroundImage = FrameworkInformation.ResourcePath + "nui_component_menu_item_bg.png",
+                Padding = new Extents(16, 16, 16, 16),
+                Text = new TextLabelStyle()
+                {
+                    PixelSize = 32,
+                    MultiLine = true,
+                    HorizontalAlignment = HorizontalAlignment.Begin,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    TextColor = new Selector<Color>()
+                    {
+                        Normal = new Color("#001447FF"),
+                        Focused = new Color("#00338BFF"),
+                        Pressed = new Color("#1B69CAFF"),
+                        Disabled = new Color("#C3CAD2FF"),
+                    },
+                },
+                Icon = new ImageViewStyle()
+                {
+                    Size = new Size(-2, 48),
+                    Color = new Selector<Color>()
+                    {
+                        Normal = new Color("#001447FF"),
+                        Focused = new Color("#00338BFF"),
+                        Pressed = new Color("#1B69CAFF"),
+                        Disabled = new Color("#C3CAD2FF"),
+                    },
+                },
             });
 
             return theme;
