@@ -122,6 +122,18 @@ namespace Tizen.NUI.Accessibility
         }
 
         /// <summary>
+        /// Suppress reading of screen-reader
+        /// </summary>
+        /// <param name="suppress">whether to suppress reading of screen-reader</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SuppressScreenReader(bool suppress)
+        {
+            Interop.Accessibility.SuppressScreenReader(View.getCPtr(dummy), suppress);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         ///  Get View that is used to highlight widget.
         /// </summary>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
