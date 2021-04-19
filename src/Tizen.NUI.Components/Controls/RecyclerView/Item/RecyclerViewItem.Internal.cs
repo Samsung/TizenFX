@@ -279,10 +279,17 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnBindingContextChanged()
         {
-            foreach (View child in Children)
+            PropagateBindingContext(this);
+        }
+
+        private void PropagateBindingContext(View parent)
+        {
+            foreach (View child in parent.Children)
             {
                 SetChildInheritedBindingContext(child, BindingContext);
+                PropagateBindingContext(child);
             }
+
         }
 
         private void OnClickedInternal(ClickedEventArgs eventArgs)
