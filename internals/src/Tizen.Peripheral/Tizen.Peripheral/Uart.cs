@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright (c) 2020 Samsung Electronics Co., Ltd All Rights Reserved
+* Copyright (c) 2020 - 2021 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
 * you may not use this file except in compliance with the License.
@@ -168,7 +168,7 @@ namespace Tizen.Peripheral.Uart
         /// <summary>
         /// Native handle to I2c.
         /// </summary>
-        private IntPtr _handle;
+        private IntPtr _handle = IntPtr.Zero;
 
         /// <summary>
         /// Opens the UART slave device.
@@ -176,11 +176,9 @@ namespace Tizen.Peripheral.Uart
         /// <param name="port">The UART port number that the slave device is connected.</param>
         public SerialPort(int port)
         {
-            var ret = NativeUart.Open(port, out IntPtr handle);
+            var ret = NativeUart.Open(port, out _handle);
             if (ret != Internals.Errors.ErrorCode.None)
                 throw ExceptionFactory.CreateException(ret);
-
-            _handle = handle;
         }
 
         /// <summary>
@@ -216,6 +214,7 @@ namespace Tizen.Peripheral.Uart
             }
 
             NativeUart.Close(_handle);
+            _handle = IntPtr.Zero;
             _disposed = true;
         }
 
@@ -228,6 +227,8 @@ namespace Tizen.Peripheral.Uart
         /// <returns>The number of bytes read.</returns>
         public int Read(byte[] buffer, int offset, int count)
         {
+            if (buffer == null)
+                throw new ArgumentNullException(nameof(buffer));
             if (count > buffer.Length - offset)
                 throw new Exception("Can not read more bytes than the buffer can hold.");
             byte[] tmpBuffer = new byte[count];
@@ -247,6 +248,8 @@ namespace Tizen.Peripheral.Uart
         /// <param name="count">The number of bytes to write</param>
         public int Write(byte[] buffer, int offset, int count)
         {
+            if (buffer == null)
+                throw new ArgumentNullException(nameof(buffer));
             if (count > buffer.Length - offset)
                 throw new Exception("Can not write more bytes than the buffer holds.");
             byte[] tmpBuffer = new byte[count];

@@ -1227,9 +1227,11 @@ namespace Tizen.NUI.BaseComponents
             imageMap?.Insert(NpatchImageVisualProperty.SynchronousLoading, synchronosLoading);
             synchronosLoading?.Dispose();
 
-            if (backgroundExtraData != null && backgroundExtraData.CornerRadius > 0)
+            if (backgroundExtraData != null && backgroundExtraData.CornerRadius != null)
             {
-                using (var cornerRadius = new PropertyValue(backgroundExtraData.CornerRadius))
+                // TODO Fix to support Vector4 for corner radius after dali support it.
+                //      Current code only gets first argument of Vector4.
+                using (var cornerRadius = new PropertyValue(backgroundExtraData.CornerRadius.X))
                 using (var cornerRadiusPolicy = new PropertyValue((int)backgroundExtraData.CornerRadiusPolicy))
                 {
                     imageMap.Insert(Visual.Property.CornerRadius, cornerRadius);
