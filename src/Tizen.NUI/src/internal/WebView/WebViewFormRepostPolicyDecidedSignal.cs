@@ -17,9 +17,9 @@
 
 namespace Tizen.NUI
 {
-    internal class WebViewFormRepostDecidedSignal : Disposable
+    internal class WebViewFormRepostPolicyDecidedSignal : Disposable
     {
-        public WebViewFormRepostDecidedSignal(global::System.IntPtr cPtr) : base(cPtr, true)
+        public WebViewFormRepostPolicyDecidedSignal(global::System.IntPtr cPtr) : base(cPtr, true)
         {
         }
 

@@ -66,7 +66,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Gets or sets indeterminate progress resource.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public string IndeterminateImageUrl { get; set; }
 
         /// <summary>

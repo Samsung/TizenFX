@@ -186,7 +186,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(TranslatableTextProperty, value);
-                selectorData?.TranslatableText?.Reset(this);
             }
         }
         private string translatableText
@@ -367,7 +366,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(TextColorProperty, value);
-                selectorData?.TextColor?.Reset(this);
                 NotifyPropertyChanged();
             }
         }
@@ -684,7 +682,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(TextShadowProperty, value);
-                selectorData?.TextShadow?.Reset(this);
                 NotifyPropertyChanged();
             }
         }

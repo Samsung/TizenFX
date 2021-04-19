@@ -29,7 +29,7 @@ namespace Tizen.NUI.Components
     {
         /// <summary>
         /// IndicatorTypeProperty
-        /// </summary> 
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty IndicatorTypeProperty = BindableProperty.Create(nameof(IndicatorType), typeof(IndicatorType?), typeof(SliderStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -47,7 +47,7 @@ namespace Tizen.NUI.Components
 
         /// <summary>
         /// SpaceBetweenTrackAndIndicatorProperty
-        /// </summary> 
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty SpaceBetweenTrackAndIndicatorProperty = BindableProperty.Create(nameof(SpaceBetweenTrackAndIndicator), typeof(uint?), typeof(SliderStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -65,7 +65,7 @@ namespace Tizen.NUI.Components
 
         /// <summary>
         /// TrackThicknessProperty
-        /// </summary> 
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TrackThicknessProperty = BindableProperty.Create(nameof(TrackThickness), typeof(uint?), typeof(SliderStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -83,7 +83,7 @@ namespace Tizen.NUI.Components
 
         /// <summary>
         /// TrackPaddingProperty
-        /// </summary> 
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TrackPaddingProperty = BindableProperty.Create(nameof(TrackPadding), typeof(Extents), typeof(SliderStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -178,15 +178,13 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Get or set the value indicator text.
         /// </summary>
-        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public TextLabelStyle ValueIndicatorText { get; set; } = new TextLabelStyle();
 
         /// <summary>
         /// Get or set the value indicator image.
         /// </summary>
-        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public ImageViewStyle ValueIndicatorImage { get; set; } = new ImageViewStyle();
 
         /// <summary>
