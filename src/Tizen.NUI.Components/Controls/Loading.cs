@@ -96,6 +96,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public Loading() : base()
         {
+            Initialize();
         }
 
         /// <summary>
@@ -105,6 +106,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Loading(string style) : base(style)
         {
+            Initialize();
         }
 
         /// <summary>
@@ -114,6 +116,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Loading(LoadingStyle loadingStyle) : base(loadingStyle)
         {
+            Initialize();
         }
 
         /// <summary>
@@ -184,6 +187,7 @@ namespace Tizen.NUI.Components
         public override void OnInitialize()
         {
             base.OnInitialize();
+            SetAccessibilityConstructor(Role.ProgressBar);
 
             imageVisual = new AnimatedImageVisual()
             {
@@ -292,6 +296,11 @@ namespace Tizen.NUI.Components
             PropertyValue attributes = new PropertyValue(0);
             this.DoAction(imageVisual.VisualIndex, Property.ActionStop, attributes);
             attributes.Dispose();
+        }
+
+        private void Initialize()
+        {
+            AccessibilityHighlightable = true;
         }
     }
 }
