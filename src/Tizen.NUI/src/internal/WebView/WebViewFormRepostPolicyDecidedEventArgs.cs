@@ -32,7 +32,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The form repost decision.
+        /// The form repost policy decision maker.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public WebFormRepostPolicyDecisionMaker FormRepostPolicyDecisionMaker { get; }
