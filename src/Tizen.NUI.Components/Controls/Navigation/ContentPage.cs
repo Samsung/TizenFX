@@ -35,11 +35,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ContentPage() : base()
         {
-            // AppBar and Content are located vertically.
-            Layout = new LinearLayout()
-            {
-                LinearOrientation = LinearLayout.Orientation.Vertical,
-            };
+            Layout = new AbsoluteLayout();
 
             // ContentPage fills to parent by default.
             WidthResizePolicy = ResizePolicyType.FillToParent;
@@ -76,6 +72,7 @@ namespace Tizen.NUI.Components
 
         /// <summary>
         /// AppBar of ContentPage. AppBar is added to Children automatically.
+        /// AppBar is positioned at the top of the Page.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public AppBar AppBar
@@ -102,14 +99,16 @@ namespace Tizen.NUI.Components
                     return;
                 }
 
-                appBar.Weight = 0.0f;
+                Add(appBar);
 
-                ResetContent();
+                CalculatePosition();
             }
         }
 
         /// <summary>
         /// Content of ContentPage. Content is added to Children automatically.
+        /// Content is positioned below AppBar.
+        /// Content is resized to fill the full screen except AppBar.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public View Content
@@ -136,34 +135,80 @@ namespace Tizen.NUI.Components
                     return;
                 }
 
-                content.Weight = 1.0f;
+                Add(content);
 
-                ResetContent();
+                CalculatePosition();
             }
         }
 
-        private void ResetContent()
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnRelayout(Vector2 size, RelayoutContainer container)
         {
-            // To keep the order of AppBar and Content, the existing contents are
-            // removed and added again.
-            if ((appBar != null) && Children.Contains(appBar))
-            {
-                Remove(appBar);
-            }
+            base.OnRelayout(size, container);
 
-            if ((content != null) && Children.Contains(content))
+            CalculatePosition();
+        }
+
+        // Calculate appBar and content's positions.
+        private void CalculatePosition()
+        {
+            // If ContentPage size has not been set yet, then content size cannot be calculated.
+            if ((Size2D.Width == 0) && (Size2D.Height == 0))
             {
-                Remove(content);
+                return;
             }
 
             if (appBar != null)
             {
-                Add(appBar);
+                int appBarPosX = Position2D.X + Padding.Start + appBar.Margin.Top;
+                int appBarPosY = Position2D.Y + Padding.Top + appBar.Margin.Top;
+
+                appBar.Position2D = new Position2D(appBarPosX, appBarPosY);
+
+                if ((appBar.WidthSpecification == LayoutParamPolicies.MatchParent) || (appBar.HeightSpecification == LayoutParamPolicies.MatchParent))
+                {
+                    int appBarSizeW = appBar.Size2D.Width;
+                    int appBarSizeH = appBar.Size2D.Height;
+
+                    if (appBar.WidthSpecification == LayoutParamPolicies.MatchParent)
+                    {
+                        appBarSizeW = Size2D.Width - Padding.Start - Padding.End - appBar.Margin.Start - appBar.Margin.End;
+                    }
+
+                    if (appBar.HeightSpecification == LayoutParamPolicies.MatchParent)
+                    {
+                        appBarSizeH = Size2D.Height - Padding.Top - Padding.Bottom - appBar.Margin.Top - appBar.Margin.Bottom;
+                    }
+
+                    appBar.Size2D = new Size2D(appBarSizeW, appBarSizeH);
+                }
             }
 
             if (content != null)
             {
-                Add(content);
+                int contentPosX = Position2D.X + Padding.Start + content.Margin.Start;
+                int contentPosY = Position2D.Y + Padding.Top + content.Margin.Top + (appBar?.Size2D.Height ?? 0);
+
+                content.Position2D = new Position2D(contentPosX, contentPosY);
+
+                if ((content.WidthSpecification == LayoutParamPolicies.MatchParent) || (content.HeightSpecification == LayoutParamPolicies.MatchParent))
+                {
+                    int contentSizeW = content.Size2D.Width;
+                    int contentSizeH = content.Size2D.Height;
+
+                    if (content.WidthSpecification == LayoutParamPolicies.MatchParent)
+                    {
+                        contentSizeW = Size2D.Width - Padding.Start - Padding.End - content.Margin.Start - content.Margin.End;
+                    }
+
+                    if (content.HeightSpecification == LayoutParamPolicies.MatchParent)
+                    {
+                        contentSizeH = Size2D.Height - Padding.Top - Padding.Bottom - content.Margin.Top - content.Margin.Bottom - (appBar?.Size2D.Height ?? 0);
+                    }
+
+                    content.Size2D = new Size2D(contentSizeW, contentSizeH);
+                }
             }
         }
     }
