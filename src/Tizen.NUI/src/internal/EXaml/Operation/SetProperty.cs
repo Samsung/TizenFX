@@ -38,6 +38,11 @@ namespace Tizen.NUI.EXaml
             object instance = LoadEXaml.GatheredInstances[instanceIndex];
             var property = GatherProperty.GatheredProperties[propertyIndex];
 
+            if (property == null)
+            {
+                return;
+            }
+
             if (value is Instance)
             {
                 int valueIndex = (value as Instance).Index;
