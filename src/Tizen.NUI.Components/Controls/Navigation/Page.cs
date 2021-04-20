@@ -16,6 +16,7 @@
  */
 using System;
 using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.Components
 {
@@ -39,37 +40,166 @@ namespace Tizen.NUI.Components
     /// The Page class is a class which is an element of navigation.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public abstract class Page : Control
+    public class Page : Control
     {
-        private Navigator navigator = null;
+        private AppBar appBar = null;
+        private View content = null;
 
         /// <summary>
         /// Creates a new instance of a Page.
         /// </summary>
+        /// <param name="content">The content to set to Content of Page.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Page() : base()
+        public Page(View content = null) : this(null, content)
         {
         }
 
         /// <summary>
-        /// Navigator which has pushed the Page into its stack.
-        /// If this Page has not been pushed into any Navigator, then Navigator is null.
+        /// Creates a new instance of a Page.
+        /// </summary>
+        /// <param name="appBar">The content to set to AppBar of Page.</param>
+        /// <param name="content">The content to set to Content of Page.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Page(AppBar appBar, View content = null) : base()
+        {
+            //AppBar and Content are located vertically.
+            var linearLayout = new LinearLayout();
+            linearLayout.LinearOrientation = LinearLayout.Orientation.Vertical;
+            Layout = linearLayout;
+
+            //Page fills to parent by default.
+            WidthResizePolicy = ResizePolicyType.FillToParent;
+            HeightResizePolicy = ResizePolicyType.FillToParent;
+
+            if (appBar)
+            {
+                AppBar = appBar;
+            }
+
+            if (content)
+            {
+                Content = content;
+            }
+        }
+
+        /// <summary>
+        /// Dispose Page and all children on it.
+        /// </summary>
+        /// <param name="type">Dispose type.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                if (appBar != null)
+                {
+                    Utility.Dispose(appBar);
+                }
+
+                if (content != null)
+                {
+                    Utility.Dispose(content);
+                }
+            }
+
+            base.Dispose(type);
+        }
+
+        /// <summary>
+        /// AppBar of Page. AppBar is added to Children automatically.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Navigator Navigator
+        public AppBar AppBar
         {
             get
             {
-                return navigator;
+                return appBar;
             }
-            internal set
+            set
             {
-                if (navigator == value)
+                if (appBar == value)
                 {
                     return;
                 }
 
-                navigator = value;
+                if (appBar != null)
+                {
+                    Remove(appBar);
+                }
+
+                appBar = value;
+                if (appBar == null)
+                {
+                    return;
+                }
+
+                appBar.Weight = 0.0f;
+
+                ResetContent();
+            }
+        }
+
+        /// <summary>
+        /// Content of Page. Content is added to Children automatically.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public View Content
+        {
+            get
+            {
+                return content;
+            }
+            set
+            {
+                if (content == value)
+                {
+                    return;
+                }
+
+                if (content != null)
+                {
+                    Remove(content);
+                }
+
+                content = value;
+                if (content == null)
+                {
+                    return;
+                }
+
+                content.Weight = 1.0f;
+
+                ResetContent();
+            }
+        }
+
+        private void ResetContent()
+        {
+            //To keep the order of AppBar and Content, the existing contents are
+            //removed and added again.
+            if ((appBar != null) && Children.Contains(appBar))
+            {
+                Remove(appBar);
+            }
+
+            if ((content != null) && Children.Contains(content))
+            {
+                Remove(content);
+            }
+
+            if (appBar != null)
+            {
+                Add(appBar);
+            }
+
+            if (content != null)
+            {
+                Add(content);
             }
         }
 

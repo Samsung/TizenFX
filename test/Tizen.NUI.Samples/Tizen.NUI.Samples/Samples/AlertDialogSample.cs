@@ -27,11 +27,7 @@ namespace Tizen.NUI.Samples
                     "No", (object sender2, ClickedEventArgs e2) => { window.GetDefaultNavigator().Pop(); });
             };
 
-            var dialogPage = new ContentPage()
-            {
-                Content = button,
-            };
-            window.GetDefaultNavigator().Push(dialogPage);
+            window.GetDefaultNavigator().Push(new Page(button));
         }
 
         public void Deactivate()

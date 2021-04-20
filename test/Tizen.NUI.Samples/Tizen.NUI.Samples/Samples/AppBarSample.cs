@@ -7,7 +7,7 @@ namespace Tizen.NUI.Samples
 {
     public class AppBarSample : IExample
     {
-        private ContentPage firstPage, secondPage;
+        private Page firstPage, secondPage;
         private AppBar firstAppBar, secondAppBar;
         private Button firstActionButton, secondActionButton;
         private Button firstButton, secondButton;
@@ -46,11 +46,7 @@ namespace Tizen.NUI.Samples
                 CreateSecondPage();
             };
 
-            firstPage = new ContentPage()
-            {
-                AppBar = firstAppBar,
-                Content = firstButton,
-            };
+            firstPage = new Page(firstAppBar, firstButton);
 
             NUIApplication.GetDefaultWindow().GetDefaultNavigator().Push(firstPage);
         }
@@ -83,11 +79,7 @@ namespace Tizen.NUI.Samples
                 NUIApplication.GetDefaultWindow().GetDefaultNavigator().Pop();
             };
 
-            secondPage = new ContentPage()
-            {
-                AppBar = secondAppBar,
-                Content = secondButton,
-            };
+            secondPage = new Page(secondAppBar, secondButton);
 
             NUIApplication.GetDefaultWindow().GetDefaultNavigator().Push(secondPage);
         }
