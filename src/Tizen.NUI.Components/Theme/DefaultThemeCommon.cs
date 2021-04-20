@@ -119,9 +119,10 @@ namespace Tizen.NUI.Components
 
             theme.AddStyleWithoutClone("Tizen.NUI.Components.Progress", new ProgressStyle()
             {
-                Size = new Size(200, 5),
+                Size = new Size(200, 25),
                 Track = new ImageViewStyle()
                 {
+                    ResourceUrl = FrameworkInformation.ResourcePath + "IoT_progressindicator_empty.png",
                     BackgroundColor = new Color(0, 0, 0, 0.1f),
                 },
                 Buffer = new ImageViewStyle()
@@ -130,6 +131,11 @@ namespace Tizen.NUI.Components
                 },
                 Progress = new ImageViewStyle()
                 {
+                    ResourceUrl = new Selector<string>()
+                    {
+                        Normal = FrameworkInformation.ResourcePath + "IoT_progressindicator_progress.png",
+                        Disabled = FrameworkInformation.ResourcePath + "IoT_progressindicator_progressdisabled.png",
+                    },
                     BackgroundColor = new Color(0.05f, 0.63f, 0.9f, 1),
                 },
                 IndeterminateImageUrl = FrameworkInformation.ResourcePath + "nui_component_default_progress_indeterminate.png",
@@ -164,29 +170,38 @@ namespace Tizen.NUI.Components
             theme.AddStyleWithoutClone("Tizen.NUI.Components.Slider", new SliderStyle()
             {
                 Size = new Size(200, 50),
-                TrackThickness = 5,
+                TrackThickness = 8,
                 Track = new ImageViewStyle()
                 {
-                    BackgroundColor = new Color(0, 0, 0, 0.1f),
+                    Size = new Size(100, 8),
+                    ResourceUrl = new Selector<string>()
+                    {
+                        Normal = FrameworkInformation.ResourcePath + "IoT_slider_status_empty_track.png",
+                        Disabled = FrameworkInformation.ResourcePath + "IoT_slider_status_track_disabled.png",
+                    },
+                    BackgroundColor = new Color(1.0f, 1.0f, 1.0f, 0.1f),
                 },
                 Progress = new ImageViewStyle()
                 {
-                    BackgroundColor = new Color(0.5f, 0.63f, 0.9f, 1),
+                    Size = new Size(100, 8),
+                    ResourceUrl = FrameworkInformation.ResourcePath + "IoT_slider_status_track.png",
+                    BackgroundColor = new Color(0.03f, 0.05f, 0.3f, 1),
                 },
                 Thumb = new ImageViewStyle()
                 {
-                    Size = new Size(50, 50),
-                    ResourceUrl = FrameworkInformation.ResourcePath + "nui_component_default_slider_thumb_n.png",
-                    BackgroundImage = new Selector<string>()
+                    Size = new Size(36, 36),
+                    ResourceUrl = FrameworkInformation.ResourcePath + "IoT_slider_handler_normal.png",
+                    // TODO : Should check later when UX guide provides the pressed image
+                    /*BackgroundImage = new Selector<string>()
                     {
                         Normal = FrameworkInformation.ResourcePath + "nui_component_default_slider_thumb_bg_p.png",
                         Pressed = FrameworkInformation.ResourcePath + "nui_component_default_slider_thumb_bg_p.png",
-                    }
+                    }*/
                 },
                 ValueIndicatorImage = new ImageViewStyle()
                 {
-                    Size = new Size(83, 54),
-                    ResourceUrl = FrameworkInformation.ResourcePath + "nui_component_default_slider_value_indicator.png",
+                    Size = new Size(49, 24),
+                    BackgroundColor = new Color(0.0f, 0.04f, 0.16f, 1.0f),
                 },
             });
 
