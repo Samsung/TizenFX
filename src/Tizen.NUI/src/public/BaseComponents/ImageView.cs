@@ -1140,8 +1140,8 @@ namespace Tizen.NUI.BaseComponents
                 //You should release all of your own disposable objects here.
                 _border?.Dispose();
                 _border = null;
-                borderSelector.Reset(this);
-                resourceUrlSelector.Reset(this);
+                borderSelector?.Reset(this);
+                resourceUrlSelector?.Reset(this);
             }
 
             base.Dispose(type);
