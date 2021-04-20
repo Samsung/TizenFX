@@ -127,33 +127,53 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty IconPaddingProperty = BindableProperty.Create(nameof(IconPadding), typeof(Extents), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Button)bindable;
-            instance.iconPadding = (Extents)((Extents)newValue).Clone();
-            if (instance.buttonIcon != null)
+            if (instance.buttonIcon == null)
             {
-                instance.buttonIcon.Margin = instance.iconPadding;
+                return;
             }
+            instance.buttonIcon.Padding = (Extents)newValue;
         },
-        defaultValueCreator: (bindable) => ((Button)bindable).iconPadding);
+        defaultValueCreator: (bindable) => ((Button)bindable).buttonIcon?.Padding);
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TextPaddingProperty = BindableProperty.Create(nameof(TextPadding), typeof(Extents), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Button)bindable;
-            instance.textPadding = (Extents)((Extents)newValue).Clone();
-            if (instance.buttonText != null)
+            if (instance.buttonText == null)
             {
-                instance.buttonText.Margin = instance.textPadding;
+                return;
             }
+            instance.buttonText.Padding = (Extents)newValue;
         },
-        defaultValueCreator: (bindable) => ((Button)bindable).textPadding);
+        defaultValueCreator: (bindable) => ((Button)bindable).buttonText?.Padding);
+
+        /// <summary> The bindable property of ItemAlignment. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly BindableProperty ItemAlignmentProperty = BindableProperty.Create(nameof(ItemAlignment), typeof(LinearLayout.Alignment), typeof(Button), LinearLayout.Alignment.Center, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Button)bindable;
+            instance.itemAlignment = (LinearLayout.Alignment)newValue;
+            instance.LayoutItems();
+        },
+        defaultValueCreator: (bindable) => ((Button)bindable).itemAlignment);
+
+        /// <summary> The bindable property of ItemSpacing. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly BindableProperty ItemSpacingProperty = BindableProperty.Create(nameof(ItemSpacing), typeof(Size2D), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Button)bindable;
+            instance.itemSpacing = (Size2D)newValue;
+            instance.UpdateSizeAndSpacing();
+        },
+        defaultValueCreator: (bindable) => ((Button)bindable).itemSpacing);
 
         private IconOrientation? iconRelativeOrientation = IconOrientation.Left;
         private bool isSelected = false;
         private bool isSelectable = false;
         private bool isEnabled = true;
-        private Extents iconPadding;
-        private Extents textPadding;
+        private Size2D itemSpacing;
+        private LinearLayout.Alignment itemAlignment;
 
         static Button() { }
 
@@ -610,7 +630,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Icon padding in Button, work only when show icon and text.
+        /// Icon padding in Button. It is shortcut of Icon.Padding.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public Extents IconPadding
@@ -620,13 +640,35 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Text padding in Button, work only when show icon and text.
+        /// Text padding in Button. It is shortcut of TextLabel.Padding.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public Extents TextPadding
         {
             get => (Extents)GetValue(TextPaddingProperty) ?? new Extents();
             set => SetValue(TextPaddingProperty, value);
+        }
+
+        /// <summary>
+        /// The item (text or icon or both) alignment.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public LinearLayout.Alignment ItemAlignment
+        {
+            get => (LinearLayout.Alignment)GetValue(ItemAlignmentProperty);
+            set => SetValue(ItemAlignmentProperty, value);
+        }
+
+        /// <summary>
+        /// The space between icon and text.
+        /// The value is applied when there exist icon and text both.
+        /// The width value is used when the items are arranged horizontally. Otherwise, the height value is used.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Size2D ItemSpacing
+        {
+            get => (Size2D)GetValue(ItemSpacingProperty);
+            set => SetValue(ItemSpacingProperty, value);
         }
 
         /// <summary>
@@ -737,9 +779,11 @@ namespace Tizen.NUI.Components
                 if (Extension != null)
                 {
                     buttonIcon.Unparent();
-                    buttonText.Unparent();
                     buttonIcon = Extension.OnCreateIcon(this, buttonIcon);
+
+                    buttonText.Unparent();
                     buttonText = Extension.OnCreateText(this, buttonText);
+
                     LayoutItems();
                 }
 

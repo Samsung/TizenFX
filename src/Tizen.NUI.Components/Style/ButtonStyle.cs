@@ -98,12 +98,30 @@ namespace Tizen.NUI.Components
             return buttonStyle.textPadding;
         });
 
+        /// <summary> The bindable property of ItemAlignment. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly BindableProperty ItemAlignmentProperty = BindableProperty.Create(nameof(ItemAlignment), typeof(LinearLayout.Alignment?), typeof(ButtonStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            ((ButtonStyle)bindable).itemAlignment = (LinearLayout.Alignment?)newValue;
+        },
+        defaultValueCreator: (bindable) => ((ButtonStyle)bindable).itemAlignment);
+
+        /// <summary> The bindable property of ItemSpacing. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly BindableProperty ItemSpacingProperty = BindableProperty.Create(nameof(ItemSpacing), typeof(Size2D), typeof(ButtonStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            ((ButtonStyle)bindable).itemSpacing = (Size2D)newValue;
+        },
+        defaultValueCreator: (bindable) => ((ButtonStyle)bindable).itemSpacing);
+
         private bool? isSelectable;
         private bool? isSelected;
         private bool? isEnabled;
         private Button.IconOrientation? iconRelativeOrientation;
         private Extents iconPadding;
         private Extents textPadding;
+        private Size2D itemSpacing;
+        private LinearLayout.Alignment? itemAlignment;
 
         static ButtonStyle() { }
 
@@ -183,23 +201,47 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Icon padding in Button, work only when show icon and text.
+        /// Icon padding in Button. It is shortcut of Icon.Padding.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         public Extents IconPadding
         {
+            // TODO Fixme
+            // When there are icon and text, the linear layout does not count padding.
             get => ((Extents)GetValue(IconPaddingProperty)) ?? (iconPadding = new Extents());
             set => SetValue(IconPaddingProperty, value);
         }
 
         /// <summary>
-        /// Text padding in Button, work only when show icon and text.
+        /// Text padding in Button. It is shortcut of Text.Padding.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         public Extents TextPadding
         {
             get => ((Extents)GetValue(TextPaddingProperty)) ?? (textPadding = new Extents());
             set => SetValue(TextPaddingProperty, value);
+        }
+
+        /// <summary>
+        /// The item (text or icon or both) alignment.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public LinearLayout.Alignment? ItemAlignment
+        {
+            get => (LinearLayout.Alignment?)GetValue(ItemAlignmentProperty);
+            set => SetValue(ItemAlignmentProperty, value);
+        }
+
+        /// <summary>
+        /// The space between icon and text.
+        /// The value is applied when there exist icon and text both.
+        /// The width value is used when the items are arranged horizontally. Otherwise, the height value is used.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Size2D ItemSpacing
+        {
+            get => (Size2D)GetValue(ItemSpacingProperty);
+            set => SetValue(ItemSpacingProperty, value);
         }
 
         /// <summary>
