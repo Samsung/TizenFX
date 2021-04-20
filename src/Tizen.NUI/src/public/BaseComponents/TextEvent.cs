@@ -21,13 +21,13 @@ using System.ComponentModel;
 namespace Tizen.NUI.BaseComponents
 {
     /// <summary>
-    /// AnchorClickedEventArgs is a class to record anchor click event arguments which will sent to user.
+    /// AnchorClickedEventArgs is a class to record anchor click event arguments which will be sent to user.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
     public class AnchorClickedEventArgs : EventArgs
     {
         /// <summary>
-        /// Anchor href.
+        /// Anchor href(hypertext reference).
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public string Href { get; set; }
