@@ -71,7 +71,7 @@ namespace Tizen.NUI.Components
             {
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
-                AccessibilityHighlightable = false
+                AccessibilityHighlightable = false,
             };
         }
 
