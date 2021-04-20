@@ -38,6 +38,7 @@ namespace Tizen.NUI.Components
                 Size = new Size(339, 96),
                 CornerRadiusPolicy = VisualTransformPolicyType.Relative,
                 CornerRadius = 0.2916f,
+                ItemAlignment = LinearLayout.Alignment.Center,
                 BackgroundColor = new Selector<Color>()
                 {
                     Normal = new Color(0.039f, 0.055f, 0.29f, 1),
@@ -54,7 +55,8 @@ namespace Tizen.NUI.Components
 
             theme.AddStyleWithoutClone("Tizen.NUI.Components.CheckBox", new ButtonStyle()
             {
-                TextPadding = new Extents(32, 0, 0, 0),
+                ItemSpacing = new Size2D(32, 32),
+                ItemAlignment = LinearLayout.Alignment.Begin,
                 Icon = new ImageViewStyle()
                 {
                     Size = new Size(36, 36),
@@ -134,7 +136,8 @@ namespace Tizen.NUI.Components
 
             theme.AddStyleWithoutClone("Tizen.NUI.Components.RadioButton", new ButtonStyle()
             {
-                TextPadding = new Extents(32, 0, 0, 0),
+                ItemSpacing = new Size2D(32, 32),
+                ItemAlignment = LinearLayout.Alignment.Begin,
                 Icon = new ImageViewStyle()
                 {
                     Size = new Size(36, 36),
@@ -188,7 +191,8 @@ namespace Tizen.NUI.Components
 
             theme.AddStyleWithoutClone("Tizen.NUI.Components.Switch", new SwitchStyle()
             {
-                TextPadding = new Extents(32, 0, 0, 0),
+                ItemSpacing = new Size2D(32, 32),
+                ItemAlignment = LinearLayout.Alignment.Begin,
                 Track = new ImageViewStyle()
                 {
                     Size = new Size(80, 40),
