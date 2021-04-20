@@ -250,33 +250,21 @@ namespace Tizen.NUI.Components
                 newAnimation.Clear();
             }
 
-            curAnimation = new Animation(1000);
-            using (var scaleVec = new Vector3(0.0f, 0.0f, 1.0f))
+            if (page is DialogPage == false)
             {
-                curAnimation.AnimateTo(curTop, "Scale", scaleVec, 0, 1000);
-            }
-            curAnimation.AnimateTo(curTop, "Opacity", 0.0f, 0, 1000);
-            curAnimation.EndAction = Animation.EndActions.Discard;
-            curAnimation.Play();
+                curAnimation = new Animation(1000);
+                curAnimation.AnimateTo(curTop, "Opacity", 0.0f, 0, 1000);
+                curAnimation.EndAction = Animation.EndActions.Discard;
+                curAnimation.Play();
 
-            using (var scaleVec = new Vector3(0.0f, 0.0f, 1.0f))
-            {
-                using (var scaleProp = new Tizen.NUI.PropertyValue(scaleVec))
+                using (var opacityProp = new Tizen.NUI.PropertyValue(0.0f))
                 {
-                    Tizen.NUI.Object.SetProperty(page.SwigCPtr, Page.Property.SCALE, scaleProp);
+                    Tizen.NUI.Object.SetProperty(page.SwigCPtr, Page.Property.OPACITY, opacityProp);
                 }
+                newAnimation = new Animation(1000);
+                newAnimation.AnimateTo(page, "Opacity", 1.0f, 0, 1000);
+                newAnimation.Play();
             }
-            using (var scaleProp = new Tizen.NUI.PropertyValue(0.0f))
-            {
-                Tizen.NUI.Object.SetProperty(page.SwigCPtr, Page.Property.OPACITY, scaleProp);
-            }
-            newAnimation = new Animation(1000);
-            using (var scaleVec = new Vector3(1.0f, 1.0f, 1.0f))
-            {
-                newAnimation.AnimateTo(page, "Scale", scaleVec, 0, 1000);
-            }
-            newAnimation.AnimateTo(page, "Opacity", 1.0f, 0, 1000);
-            newAnimation.Play();
         }
 
         /// <summary>
@@ -325,37 +313,29 @@ namespace Tizen.NUI.Components
                 newAnimation.Clear();
             }
 
-            curAnimation = new Animation(1000);
-            using (var scaleVec = new Vector3(0.0f, 0.0f, 1.0f))
+            if (curTop is DialogPage == false)
             {
-                curAnimation.AnimateTo(curTop, "Scale", scaleVec, 0, 1000);
-            }
-            curAnimation.AnimateTo(curTop, "Opacity", 0.0f, 0, 1000);
-            curAnimation.Play();
-            curAnimation.Finished += (object sender, EventArgs e) =>
-            {
-                //Removes the current top page after transition is finished.
-                Remove(curTop);
-            };
-
-            using (var scaleVec = new Vector3(0.0f, 0.0f, 1.0f))
-            {
-                using (var scaleProp = new Tizen.NUI.PropertyValue(scaleVec))
+                curAnimation = new Animation(1000);
+                curAnimation.AnimateTo(curTop, "Opacity", 0.0f, 0, 1000);
+                curAnimation.Play();
+                curAnimation.Finished += (object sender, EventArgs e) =>
                 {
-                    Tizen.NUI.Object.SetProperty(newTop.SwigCPtr, Page.Property.SCALE, scaleProp);
+                    //Removes the current top page after transition is finished.
+                    Remove(curTop);
+                };
+
+                using (var opacityProp = new Tizen.NUI.PropertyValue(0.0f))
+                {
+                    Tizen.NUI.Object.SetProperty(newTop.SwigCPtr, Page.Property.OPACITY, opacityProp);
                 }
+                newAnimation = new Animation(1000);
+                newAnimation.AnimateTo(newTop, "Opacity", 1.0f, 0, 1000);
+                newAnimation.Play();
             }
-            using (var opacityProp = new Tizen.NUI.PropertyValue(0.0f))
+            else
             {
-                Tizen.NUI.Object.SetProperty(newTop.SwigCPtr, Page.Property.OPACITY, opacityProp);
+                Remove(curTop);
             }
-            newAnimation = new Animation(1000);
-            using (var scaleVec = new Vector3(1.0f, 1.0f, 1.0f))
-            {
-                newAnimation.AnimateTo(newTop, "Scale", scaleVec, 0, 1000);
-            }
-            newAnimation.AnimateTo(newTop, "Opacity", 1.0f, 0, 1000);
-            newAnimation.Play();
 
             return curTop;
         }
