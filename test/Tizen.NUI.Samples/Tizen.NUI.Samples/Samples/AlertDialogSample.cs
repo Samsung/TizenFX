@@ -20,14 +20,28 @@ namespace Tizen.NUI.Samples
                 HeightResizePolicy = ResizePolicyType.FillToParent
             };
 
+            var positiveButton = new Button()
+            {
+                Text = "Yes",
+            };
+            positiveButton.Clicked += (object sender, ClickedEventArgs e) => { window.GetDefaultNavigator().Pop(); };
+
+            var negativeButton = new Button()
+            {
+                Text = "No",
+            };
+            negativeButton.Clicked += (object sender, ClickedEventArgs e) => { window.GetDefaultNavigator().Pop(); };
+
             button.Clicked += (object sender, ClickedEventArgs e) =>
             {
-                Navigator.ShowAlertDialog("Title", "Message",
-                    "Yes", (object sender2, ClickedEventArgs e2) => { window.GetDefaultNavigator().Pop(); },
-                    "No", (object sender2, ClickedEventArgs e2) => { window.GetDefaultNavigator().Pop(); });
+                DialogPage.ShowAlertDialog("Title", "Message", positiveButton, negativeButton);
             };
 
-            window.GetDefaultNavigator().Push(new Page(button));
+            var page = new ContentPage()
+            {
+                Content = button,
+            };
+            window.GetDefaultNavigator().Push(page);
         }
 
         public void Deactivate()

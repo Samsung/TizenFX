@@ -66,7 +66,10 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnInitialize()
         {
-            track = new ImageView();
+            track = new ImageView()
+            {
+                EnableControlStatePropagation = true
+            };
             thumb = new ImageView();
             track.Add(thumb);
 
