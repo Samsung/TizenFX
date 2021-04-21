@@ -60,7 +60,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Cookie Accept Policy
+        /// Enumeration for cookie accept policy
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public enum CookieAcceptPolicyType
@@ -85,7 +85,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Cookie persistent storage type.
+        /// Enumeration for cookie persistent storage type.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public enum CookiePersistentStorageType
@@ -120,7 +120,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Set the proxy uri.
+        /// Sets the proxy uri.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetPersistentStorage(string path, CookiePersistentStorageType storageType)
@@ -130,7 +130,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Set Default Proxy Auth.
+        /// Clears cookies.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ClearCookies()
