@@ -2297,7 +2297,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         ///<summary>
-        /// Set a layout transitions for this View.
+        /// Sets a layout transitions for this View.
         ///</summary>
         /// <exception cref="ArgumentNullException"> Thrown when value is null. </exception>
         /// <remarks>
