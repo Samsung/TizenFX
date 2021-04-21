@@ -228,6 +228,12 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_RegisterGeolocationPermissionCallback")]
             public static extern void RegisterGeolocationPermissionCallback(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_CreateHitTest")]
+            public static extern global::System.IntPtr CreateHitTest(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3, int jarg4);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_CreateHitTestAsynchronously")]
+            public static extern bool CreateHitTestAsynchronously(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3, int jarg4, global::System.Runtime.InteropServices.HandleRef jarg5);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_SWIGUpcast")]
             public static extern global::System.IntPtr Upcast(global::System.IntPtr jarg1);
 
