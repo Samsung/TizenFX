@@ -70,6 +70,9 @@ namespace Tizen.NUI
         private ScreenshotAcquiredCallback screenshotAcquiredCallback;
         private readonly WebViewScreenshotAcquiredProxyCallback screenshotAcquiredProxyCallback;
 
+        private HitTestFinishedCallback hitTestFinishedCallback;
+        private readonly WebViewHitTestFinishedProxyCallback hitTestFinishedProxyCallback;
+
         private readonly WebViewNewWindowPolicyDecidedSignal newWindowPolicyDecidedSignal;
         private EventHandler<WebViewNewWindowPolicyDecidedEventArgs> newWindowPolicyDecidedEventHandler;
         private WebViewNewWindowPolicyDecidedCallbackDelegate newWindowPolicyDecidedCallback;
@@ -162,6 +165,7 @@ namespace Tizen.NUI
             contextMenuItemSelectedSignal = new WebViewContextMenuItemSelectedSignal(Interop.WebView.NewWebViewContextMenuItemSelectedSignalContextMenuItemSelected(SwigCPtr));
 
             screenshotAcquiredProxyCallback = OnScreenshotAcquired;
+            hitTestFinishedProxyCallback = OnHitTestCreated;
 
             BackForwardList = new WebBackForwardList(Interop.WebView.GetWebBackForwardList(SwigCPtr), false);
             Context = new WebContext(Interop.WebView.GetWebContext(SwigCPtr), false);
@@ -268,6 +272,13 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void GeolocationPermissionCallback(string host, string protocol);
 
+        /// <summary>
+        /// The callback function that is invoked when hit test is created.
+        /// </summary>
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public delegate void HitTestFinishedCallback(WebHitTestResult test);
+
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WebViewPageLoadCallbackDelegate(IntPtr data, string pageUrl);
 
@@ -288,6 +299,9 @@ namespace Tizen.NUI
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WebViewScreenshotAcquiredProxyCallback(IntPtr data);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void WebViewHitTestFinishedProxyCallback(IntPtr data);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WebViewNewWindowPolicyDecidedCallbackDelegate(IntPtr data, IntPtr maker);
@@ -785,6 +799,37 @@ namespace Tizen.NUI
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             ShowHighlight = 1 << 7,
+        }
+
+        /// <summary>
+        /// Enumeration for mode of hit test.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum HitTestMode
+        {
+            /// <summary>
+            /// Link data
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Default = 1 << 1,
+
+            /// <summary>
+            /// Extra node data(tag name, node value, attribute infomation, etc).
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            NodeData = 1 << 2,
+
+            /// <summary>
+            /// Extra image data(image data, image data length, image file name exteionsion, etc).
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            ImageData = 1 << 3,
+
+            /// <summary>
+            /// All data
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            All = Default | NodeData | ImageData,
         }
 
         /// <summary>
@@ -1935,6 +1980,37 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Does hit test synchronously.
+        /// <param name="x">the horizontal position to query</param>
+        /// <param name="y">the vertical position to query</param>
+        /// <param name="mode">the mode of hit test</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public WebHitTestResult HitTest(int x, int y, HitTestMode mode)
+        {
+            System.IntPtr result = Interop.WebView.CreateHitTest(SwigCPtr, x, y, (int)mode);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return new WebHitTestResult(result, true);
+        }
+
+        /// <summary>
+        /// Does hit test asynchronously.
+        /// <param name="x">the horizontal position to query</param>
+        /// <param name="y">the vertical position to query</param>
+        /// <param name="mode">the mode of hit test</param>
+        /// <param name="callback">the callback that is called after hit test is finished.</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool HitTestAsynchronously(int x, int y, HitTestMode mode, HitTestFinishedCallback callback)
+        {
+            hitTestFinishedCallback = callback;
+            System.IntPtr ip = Marshal.GetFunctionPointerForDelegate(hitTestFinishedProxyCallback);
+            bool result = Interop.WebView.CreateHitTestAsynchronously(SwigCPtr, x, y, (int)mode, new HandleRef(this, ip));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return result;
+        }
+
+        /// <summary>
         /// Deprecated. Clears the cache of current WebView.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -2066,6 +2142,13 @@ namespace Tizen.NUI
         private void OnContextMenuItemSelected(IntPtr data, IntPtr item)
         {
             contextMenuItemSelectedEventHandler?.Invoke(this, new WebViewContextMenuItemSelectedEventArgs(new WebContextMenuItem(item, false)));
+        }
+
+        private void OnHitTestCreated(IntPtr test)
+        {
+            WebHitTestResult hitTest = new WebHitTestResult(test, true);
+            hitTestFinishedCallback?.Invoke(hitTest);
+            hitTest.Dispose();
         }
     }
 }
