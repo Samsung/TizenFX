@@ -74,6 +74,18 @@ namespace Tizen.NUI
         private EventHandler<WebViewNewWindowPolicyDecidedEventArgs> newWindowPolicyDecidedEventHandler;
         private WebViewNewWindowPolicyDecidedCallbackDelegate newWindowPolicyDecidedCallback;
 
+        private readonly WebViewCertificateReceivedSignal certificateConfirmedSignal;
+        private EventHandler<WebViewCertificateReceivedEventArgs> certificateConfirmedEventHandler;
+        private WebViewCertificateReceivedCallbackDelegate certificateConfirmedCallback;
+
+        private readonly WebViewCertificateReceivedSignal sslCertificateChangedSignal;
+        private EventHandler<WebViewCertificateReceivedEventArgs> sslCertificateChangedEventHandler;
+        private WebViewCertificateReceivedCallbackDelegate sslCertificateChangedCallback;
+
+        private readonly WebViewHttpAuthRequestedSignal httpAuthRequestedSignal;
+        private EventHandler<WebViewHttpAuthRequestedEventArgs> httpAuthRequestedEventHandler;
+        private WebViewHttpAuthRequestedCallbackDelegate httpAuthRequestedCallback;
+
         /// <summary>
         /// Creates a WebView.
         /// </summary>
@@ -125,6 +137,9 @@ namespace Tizen.NUI
             formRepostPolicyDecidedSignal = new WebViewFormRepostPolicyDecidedSignal(Interop.WebView.NewWebViewFormRepostDecisionSignalFormRepostDecision(SwigCPtr));
             frameRenderedSignal = new WebViewFrameRenderedSignal(Interop.WebView.WebViewFrameRenderedSignalFrameRenderedGet(SwigCPtr));
             newWindowPolicyDecidedSignal = new WebViewNewWindowPolicyDecidedSignal(Interop.WebView.NewWebViewPolicyDecisionSignalPolicyDecision(SwigCPtr));
+            certificateConfirmedSignal = new WebViewCertificateReceivedSignal(Interop.WebView.NewWebViewCertificateSignalCertificateConfirm(SwigCPtr));
+            sslCertificateChangedSignal = new WebViewCertificateReceivedSignal(Interop.WebView.NewWebViewCertificateSignalSslCertificateChanged(SwigCPtr));
+            httpAuthRequestedSignal = new WebViewHttpAuthRequestedSignal(Interop.WebView.NewWebViewHttpAuthHandlerSignalHttpAuthHandler(SwigCPtr));
 
             screenshotAcquiredProxyCallback = OnScreenshotAcquired;
 
@@ -159,6 +174,9 @@ namespace Tizen.NUI
                 formRepostPolicyDecidedSignal.Dispose();
                 frameRenderedSignal.Dispose();
                 newWindowPolicyDecidedSignal.Dispose();
+                certificateConfirmedSignal.Dispose();
+                sslCertificateChangedSignal.Dispose();
+                httpAuthRequestedSignal.Dispose();
 
                 BackForwardList.Dispose();
                 Context.Dispose();
@@ -241,6 +259,12 @@ namespace Tizen.NUI
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WebViewNewWindowPolicyDecidedCallbackDelegate(IntPtr data, IntPtr maker);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void WebViewCertificateReceivedCallbackDelegate(IntPtr data, IntPtr certificate);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void WebViewHttpAuthRequestedCallbackDelegate(IntPtr data, IntPtr handler);
 
         /// <summary>
         /// Event for the PageLoadStarted signal which can be used to subscribe or unsubscribe the event handler.<br />
@@ -472,6 +496,84 @@ namespace Tizen.NUI
                 if (newWindowPolicyDecidedEventHandler == null && newWindowPolicyDecidedCallback != null)
                 {
                     newWindowPolicyDecidedSignal.Disconnect(newWindowPolicyDecidedCallback);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Event for the CertificateConfirmed signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted when certificate would be confirmed.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<WebViewCertificateReceivedEventArgs> CertificateConfirmed
+        {
+            add
+            {
+                if (certificateConfirmedEventHandler == null)
+                {
+                    certificateConfirmedCallback = OnCertificateConfirmed;
+                    certificateConfirmedSignal.Connect(certificateConfirmedCallback);
+                }
+                certificateConfirmedEventHandler += value;
+            }
+            remove
+            {
+                certificateConfirmedEventHandler -= value;
+                if (certificateConfirmedEventHandler == null && certificateConfirmedCallback != null)
+                {
+                    certificateConfirmedSignal.Disconnect(certificateConfirmedCallback);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Event for the SslCertificateChanged signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted when SSL certificate is changed.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<WebViewCertificateReceivedEventArgs> SslCertificateChanged
+        {
+            add
+            {
+                if (sslCertificateChangedEventHandler == null)
+                {
+                    sslCertificateChangedCallback = OnSslCertificateChanged;
+                    sslCertificateChangedSignal.Connect(sslCertificateChangedCallback);
+                }
+                sslCertificateChangedEventHandler += value;
+            }
+            remove
+            {
+                sslCertificateChangedEventHandler -= value;
+                if (sslCertificateChangedEventHandler == null && sslCertificateChangedCallback != null)
+                {
+                    sslCertificateChangedSignal.Disconnect(sslCertificateChangedCallback);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Event for the HttpAuthRequested signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted when http authentication is requested.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<WebViewHttpAuthRequestedEventArgs> HttpAuthRequested
+        {
+            add
+            {
+                if (httpAuthRequestedEventHandler == null)
+                {
+                    httpAuthRequestedCallback = OnHttpAuthRequested;
+                    httpAuthRequestedSignal.Connect(httpAuthRequestedCallback);
+                }
+                httpAuthRequestedEventHandler += value;
+            }
+            remove
+            {
+                httpAuthRequestedEventHandler -= value;
+                if (httpAuthRequestedEventHandler == null && httpAuthRequestedCallback != null)
+                {
+                    httpAuthRequestedSignal.Disconnect(httpAuthRequestedCallback);
                 }
             }
         }
@@ -1800,6 +1902,21 @@ namespace Tizen.NUI
         private void OnNewWindowPolicyDecided(IntPtr data, IntPtr maker)
         {
             newWindowPolicyDecidedEventHandler?.Invoke(this, new WebViewNewWindowPolicyDecidedEventArgs(new WebNewWindowPolicyDecisionMaker(maker, false)));
+        }
+
+        private void OnCertificateConfirmed(IntPtr data, IntPtr certificate)
+        {
+            certificateConfirmedEventHandler?.Invoke(this, new WebViewCertificateReceivedEventArgs(new WebCertificate(certificate, false)));
+        }
+
+        private void OnSslCertificateChanged(IntPtr data, IntPtr certificate)
+        {
+            sslCertificateChangedEventHandler?.Invoke(this, new WebViewCertificateReceivedEventArgs(new WebCertificate(certificate, false)));
+        }
+
+        private void OnHttpAuthRequested(IntPtr data, IntPtr handler)
+        {
+            httpAuthRequestedEventHandler?.Invoke(this, new WebViewHttpAuthRequestedEventArgs(new WebHttpAuthHandler(handler, false)));
         }
     }
 }
