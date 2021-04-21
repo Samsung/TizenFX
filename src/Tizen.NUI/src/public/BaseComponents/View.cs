@@ -467,6 +467,20 @@ namespace Tizen.NUI.BaseComponents
         // Accessibility
         //
 
+        /// <summary>
+        /// Gets or sets a value that allows the automation framework to find and interact with this element.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new string AutomationId
+        {
+            get { return base.AutomationId; }
+            set
+            {
+                base.AutomationId = value;
+                AppendAccessibilityAttribute("automationId", value);
+            }
+        }
+
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected bool IsHighlighted
         {
