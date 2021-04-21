@@ -21,45 +21,37 @@ using System.ComponentModel;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// It is a class for password data list of web view.
+    /// It is a class for password data of web view.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class WebPasswordDataList : Disposable
+    public class WebPasswordData : Disposable
     {
-        internal WebPasswordDataList(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal WebPasswordData(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-        }
-
-        /// This will not be public opened.
-        /// <param name="swigCPtr"></param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
-        {
-            Interop.WebPasswordDataList.DeleteWebPasswordDataList(swigCPtr);
         }
 
         /// <summary>
-        /// Count of password data list.
+        /// Url which password is related to.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint ItemCount
+        public string Url
         {
             get
             {
-                return Interop.WebPasswordDataList.GetItemCount(SwigCPtr);
+                return Interop.WebPasswordData.GetUrl(SwigCPtr);
             }
         }
 
         /// <summary>
-        /// Gets password data by index.
-        /// <param name="index">index of list</param>
+        /// Whether fingerprint is used or not.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public WebPasswordData GetItemAtIndex(uint index)
+        public bool FingerprintUsed
         {
-            System.IntPtr dataIntPtr = Interop.WebPasswordDataList.ValueOfIndex(SwigCPtr, index);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) return null;
-            return new WebPasswordData(dataIntPtr, false);
+            get
+            {
+                return Interop.WebPasswordData.GetUseFingerprint(SwigCPtr);
+            }
         }
     }
 }

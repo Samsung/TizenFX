@@ -368,6 +368,30 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebViewConsoleMessageSignal_Disconnect")]
             public static extern void WebViewConsoleMessageSignalDisconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_WebViewContextMenuCustomizedSignal_ContextMenuCustomized")]
+            public static extern global::System.IntPtr NewWebViewContextMenuCustomizedSignalContextMenuCustomized(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WebViewContextMenuCustomizedSignal")]
+            public static extern void DeleteWebViewContextMenuCustomizedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebViewContextMenuCustomizedSignal_Connect")]
+            public static extern void WebViewContextMenuCustomizedSignalConnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebViewContextMenuCustomizedSignal_Disconnect")]
+            public static extern void WebViewContextMenuCustomizedSignalDisconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_WebViewContextMenuItemSelectedSignal_ContextMenuItemSelected")]
+            public static extern global::System.IntPtr NewWebViewContextMenuItemSelectedSignalContextMenuItemSelected(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WebViewContextMenuItemSelectedSignal")]
+            public static extern void DeleteWebViewContextMenuItemSelectedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebViewContextMenuItemSelectedSignal_Connect")]
+            public static extern void WebViewContextMenuItemSelectedSignalConnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebViewContextMenuItemSelectedSignal_Disconnect")]
+            public static extern void WebViewContextMenuItemSelectedSignalDisconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
         }
     }
 }
