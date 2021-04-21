@@ -21,12 +21,12 @@ using System.ComponentModel;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// It is a class for security origin list of web view.
+    /// It is a class for form repost policy decision maker of web view.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class WebSecurityOriginList : Disposable
+    public class WebContextMenuItemList : Disposable
     {
-        internal WebSecurityOriginList(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal WebContextMenuItemList(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
@@ -35,31 +35,31 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.WebSecurityOriginList.DeleteWebSecurityOriginList(swigCPtr);
+            Interop.WebContextMenuItemList.DeleteWebContextMenuItemList(swigCPtr);
         }
 
         /// <summary>
-        /// Count of security origin list.
+        /// Gets item count
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint ItemCount
         {
             get
             {
-                return Interop.WebSecurityOriginList.GetItemCount(SwigCPtr);
+                return Interop.WebContextMenuItemList.GetItemCount(SwigCPtr);
             }
         }
 
         /// <summary>
-        /// Gets security origin by index.
-        /// <param name="index">index of list</param>
+        /// Gets item at the index.
+        /// <param name="index">The index of item</param>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public WebSecurityOrigin GetItemAtIndex(uint index)
+        public WebContextMenuItem GetItemAtIndex(uint index)
         {
-            System.IntPtr dataIntPtr = Interop.WebSecurityOriginList.ValueOfIndex(SwigCPtr, index);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) return null;
-            return new WebSecurityOrigin(dataIntPtr, false);
+            IntPtr result = Interop.WebContextMenuItemList.ValueOfIndex(SwigCPtr, index);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return new WebContextMenuItem(result, false);
         }
     }
 }

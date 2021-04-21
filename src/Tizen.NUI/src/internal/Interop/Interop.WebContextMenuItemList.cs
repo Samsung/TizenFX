@@ -19,15 +19,15 @@ namespace Tizen.NUI
 {
     internal static partial class Interop
     {
-        internal static partial class WebPasswordDataList
+        internal static partial class WebContextMenuItemList
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WebPasswordDataList")]
-            public static extern void DeleteWebPasswordDataList(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WebContextMenu_ItemList")]
+            public static extern void DeleteWebContextMenuItemList(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebPasswordDataList_GetItemCount")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContextMenu_ItemList_GetItemCount")]
             public static extern uint GetItemCount(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebPasswordDataList_ValueOfIndex")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContextMenu_ItemList_ValueOfIndex")]
             public static extern System.IntPtr ValueOfIndex(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
         }
     }
