@@ -718,7 +718,8 @@ namespace Tizen.NUI.Components
                 string styleName = "Tizen.NUI.Compoenents." + (itemsLayouter is LinearLayouter? "LinearLayouter" : (itemsLayouter is GridLayouter ? "GridLayouter" : "ItemsLayouter"));
                 using (ViewStyle layouterStyle = ThemeManager.GetStyle(styleName))
                 {
-                    itemsLayouter.Padding = new Extents(layouterStyle.Padding);
+                    if (layouterStyle != null)
+                        itemsLayouter.Padding = new Extents(layouterStyle.Padding);
                 }
             }
         }
