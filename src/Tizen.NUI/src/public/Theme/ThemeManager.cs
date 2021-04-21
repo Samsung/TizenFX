@@ -24,17 +24,17 @@ using Tizen.NUI.BaseComponents;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// This static module provides methods that can manage NUI <seealso cref="Theme"/>.
+    /// This static module provides methods that can manage NUI <see cref="Theme"/>.
     /// </summary>
     /// <example>
-    /// To apply custom theme to the application, try <seealso cref="ApplyTheme(Theme)"/>.
+    /// To apply custom theme to the application, try <see cref="ApplyTheme(Theme)"/>.
     /// <code>
     /// var customTheme = new Theme(res + "customThemeFile.xaml");
     /// ThemeManager.ApplyTheme(customTheme);
     /// </code>
     /// </example>
     /// <summary></summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public static class ThemeManager
     {
         private static Theme defaultTheme;
@@ -48,9 +48,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// An event invoked after the theme has changed by <seealso cref="ApplyTheme(Theme)"/>.
+        /// An event invoked after the theme has changed by <see cref="ApplyTheme(Theme)"/>.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static event EventHandler<ThemeChangedEventArgs> ThemeChanged;
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="theme">The theme instance to be applied.</param>
         /// <exception cref="ArgumentNullException">Thrown when the given theme is null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static void ApplyTheme(Theme theme)
         {
             var newTheme = (Theme)theme?.Clone() ?? throw new ArgumentNullException(nameof(theme));
@@ -126,11 +126,11 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Load a style with style name in the current theme.
-        /// For components, the style name is a component name (e.g. Button) in normal case.
+        /// For components, the default style name of a component is a component name with namespace (e.g. Tizen.NUI.Components.Button).
         /// </summary>
         /// <param name="styleName">The style name.</param>
         /// <exception cref="ArgumentNullException">Thrown when the given styleName is null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static ViewStyle GetStyle(string styleName)
         {
             if (styleName == null) throw new ArgumentNullException(nameof(styleName));
@@ -138,11 +138,12 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Load a style with View type in the current theme.
+        /// Load a style with view type in the current theme.
+        /// If it failed to find a style with the given type, it will try with it's parent type until it succeeds.
         /// </summary>
-        /// <param name="viewType">The type of View.</param>
+        /// <param name="viewType"> The type of the view. Full name of the given type will be a key to find a style in the current theme. (e.g. Tizen.NUI.Components.Button) </param>
         /// <exception cref="ArgumentNullException">Thrown when the given viewType is null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static ViewStyle GetStyle(Type viewType)
         {
             if (viewType == null) throw new ArgumentNullException(nameof(viewType));
