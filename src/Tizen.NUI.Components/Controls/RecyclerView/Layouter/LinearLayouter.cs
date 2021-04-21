@@ -642,6 +642,11 @@ namespace Tizen.NUI.Components
             else if (isGrouped)
             {
                 GroupInfo gInfo = GetGroupInfo(index);
+                if (gInfo == null)
+                {
+                    Tizen.Log.Error("NUI", "GroupInfo failed to get in GetItemPosition()!");
+                    return (0, 0);
+                }
                 float current = GetGroupPosition(gInfo, index);
                 Extents itemMargin = CandidateMargin;
 
