@@ -31,13 +31,13 @@ namespace Tizen.NUI
     /// Each ViewStyle item is identified by a string key that can be matched the <seealso cref="View.StyleName"/>.
     /// </para>
     /// <para>
-    /// The main purpose of providing Theme is to separate style details from the structure.
+    /// The main purpose of providing theme is to separate style details from the structure.
     /// Managing style separately makes it easier to customize the look of application by user context.
-    /// Also since a Theme can be created from xaml file, it can be treated as a resource.
+    /// Also since a theme can be created from xaml file, it can be treated as a resource.
     /// This enables sharing styles with other applications.
     /// </para>
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class Theme : BindableObject
     {
         private readonly Dictionary<string, ViewStyle> map;
@@ -45,19 +45,23 @@ namespace Tizen.NUI
         private string baseTheme;
         ResourceDictionary resources;
 
-        /// <summary>Create an empty theme.</summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Create an empty theme.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public Theme()
         {
             map = new Dictionary<string, ViewStyle>();
         }
 
-        /// <summary>Create a new theme from the xaml file.</summary>
+        /// <summary>
+        /// Create a new theme from the xaml file.
+        /// </summary>
         /// <param name="xamlFile">An absolute path to the xaml file.</param>
         /// <exception cref="ArgumentNullException">Thrown when the given xamlFile is null or empty string.</exception>
         /// <exception cref="global::System.IO.IOException">Thrown when there are file IO problems.</exception>
         /// <exception cref="Exception">Thrown when the content of the xaml file is not valid xaml form.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public Theme(string xamlFile) : this()
         {
             if (string.IsNullOrEmpty(xamlFile))
@@ -89,13 +93,13 @@ namespace Tizen.NUI
         /// <summary>
         /// The string key to identify the Theme.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public string Id { get; set; }
 
         /// <summary>
-        /// The string key to identify the Theme.
+        /// The version of the Theme.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public string Version { get; set; } = null;
 
         /// <summary>
@@ -224,11 +228,12 @@ namespace Tizen.NUI
         /// Gets a style of given style name.
         /// </summary>
         /// <param name="styleName">The string key to find a ViewStyle.</param>
-        /// <returns>Founded style instance.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <returns>Found style instance if the style name has been found, otherwise null.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when the given styleName is null.</exception>
+        /// <since_tizen> 9 </since_tizen>
         public ViewStyle GetStyle(string styleName)
         {
-            map.TryGetValue(styleName, out ViewStyle result);
+            map.TryGetValue(styleName ?? throw new ArgumentNullException(nameof(styleName)), out ViewStyle result);
             return result;
         }
 
@@ -236,9 +241,9 @@ namespace Tizen.NUI
         /// Gets a style of given view type.
         /// </summary>
         /// <param name="viewType">The type of View.</param>
-        /// <returns>Founded style instance.</returns>
+        /// <returns>Found style instance if the view type is found, otherwise null.</returns>
         /// <exception cref="ArgumentNullException">Thrown when the given viewType is null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public ViewStyle GetStyle(Type viewType)
         {
             var currentType = viewType ?? throw new ArgumentNullException(nameof(viewType));
@@ -261,12 +266,19 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="styleName">The style name to add.</param>
         /// <param name="value">The style instance to add.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void AddStyle(string styleName, ViewStyle value) => map[styleName] = value?.Clone();
-
+        /// <exception cref="ArgumentNullException">Thrown when the given styleName is null.</exception>
+        /// <since_tizen> 9 </since_tizen>
+        public void AddStyle(string styleName, ViewStyle value)
+        {
+            if (styleName == null)
+            {
+                throw new ArgumentNullException(nameof(styleName));
+            }
+            map[styleName] = value?.Clone();
+        }
 
         /// <inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public object Clone()
         {
             var result = new Theme()
@@ -282,7 +294,7 @@ namespace Tizen.NUI
             return result;
         }
 
-        /// <summary>Merge other Theme into this.</summary>
+        /// <summary>Merge other theme into this.</summary>
         /// <param name="xamlFile">An absolute path to the xaml file of the theme.</param>
         /// <exception cref="ArgumentException">Thrown when the given xamlFile is null or empty string.</exception>
         /// <exception cref="global::System.IO.IOException">Thrown when there are file IO problems.</exception>
@@ -293,9 +305,9 @@ namespace Tizen.NUI
             MergeWithoutClone(new Theme(xamlFile));
         }
 
-        /// <summary>Merge other Theme into this.</summary>
-        /// <param name="theme">The Theme.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>Merge other theme into this.</summary>
+        /// <param name="theme">The theme to be merged with this theme.</param>
+        /// <since_tizen> 9 </since_tizen>
         public void Merge(Theme theme)
         {
             if (theme == null)
