@@ -169,7 +169,7 @@ namespace Tizen.NUI.Accessibility
         {
             using (View view = GetCurrentlyHighlightedView())
             {
-                return view.ClearAccessibilityHighlight();
+                return view?.ClearAccessibilityHighlight() ?? false;
             }
         }
         #endregion Method
