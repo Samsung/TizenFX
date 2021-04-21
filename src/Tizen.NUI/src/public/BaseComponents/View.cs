@@ -412,9 +412,6 @@ namespace Tizen.NUI.BaseComponents
         /// It is null by default.
         /// </summary>
         /// <remarks>
-        /// Getter returns copied instance of current shadow.
-        /// </remarks>
-        /// <remarks>
         /// The mutually exclusive with "ImageShadow".
         /// </remarks>
         /// <remarks>
@@ -427,7 +424,7 @@ namespace Tizen.NUI.BaseComponents
         /// Animatable sub-property : Offset, Color, BlurRadius.
         /// </para>
         /// </remarks>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public Shadow BoxShadow
         {
             get
@@ -452,7 +449,7 @@ namespace Tizen.NUI.BaseComponents
         /// Animatable - This property can be animated using <c>Animation</c> class.
         /// </para>
         /// </remarks>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public Vector4 CornerRadius
         {
             get
@@ -662,7 +659,7 @@ namespace Tizen.NUI.BaseComponents
         /// It is absolute by default.
         /// When the policy is relative, the corner radius is relative to the smaller of the view's width and height.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public VisualTransformPolicyType CornerRadiusPolicy
         {
             get => (VisualTransformPolicyType)GetValue(CornerRadiusPolicyProperty);
@@ -2632,7 +2629,7 @@ namespace Tizen.NUI.BaseComponents
         /// If the value is true, the View will change its style as the theme changes.
         /// It is false by default, but turned to true when setting StyleName (by setting property or using specified constructor).
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public bool ThemeChangeSensitive
         {
             get => (bool)GetValue(ThemeChangeSensitiveProperty);
@@ -2679,7 +2676,7 @@ namespace Tizen.NUI.BaseComponents
         /// Apply style instance to the view.
         /// Basically it sets the bindable property to the value of the bindable property with same name in the style.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public virtual void ApplyStyle(ViewStyle viewStyle)
         {
             if (viewStyle == null || this.viewStyle == viewStyle) return;

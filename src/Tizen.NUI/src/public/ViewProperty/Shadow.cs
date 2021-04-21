@@ -24,8 +24,8 @@ namespace Tizen.NUI
     /// <summary>
     /// Represents a shadow with color and blur radius for a View.
     /// </summary>
+    /// <since_tizen> 9 </since_tizen>
     [Tizen.NUI.Binding.TypeConverter(typeof(Tizen.NUI.Binding.ShadowTypeConverter))]
-    [EditorBrowsable(EditorBrowsableState.Never)]
     public class Shadow : ShadowBase, ICloneable
     {
         private static readonly Color noColor = new Color(0, 0, 0, 0);
@@ -35,7 +35,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Create a Shadow with default values.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public Shadow() : base()
         {
             BlurRadius = 0;
@@ -45,7 +45,11 @@ namespace Tizen.NUI
         /// <summary>
         /// Create a Shadow with custom values.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <param name="blurRadius">The blur radius value for the shadow. Bigger value, much blurry.</param>
+        /// <param name="color">The color for the shadow.</param>
+        /// <param name="offset">Optional. The position offset value (x, y) from the top left corner. See <see cref="ShadowBase.Offset"/>.</param>
+        /// <param name="extents">Optional. The shadow will extend its size by specified amount of length. See <see cref="ShadowBase.Extents"/>.</param>
+        /// <since_tizen> 9 </since_tizen>
         public Shadow(float blurRadius, Color color, Vector2 offset = null, Vector2 extents = null) : base(offset, extents)
         {
             BlurRadius = blurRadius;
@@ -81,7 +85,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The color for the shadow.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public Color Color { get; internal set; }
 
         /// <summary>
@@ -90,7 +94,7 @@ namespace Tizen.NUI
         /// <remark>
         /// Negative value is ignored. (no blur)
         /// </remark>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public float BlurRadius { get; internal set; }
 
         /// <inheritdoc/>
