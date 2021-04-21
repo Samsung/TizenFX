@@ -19,15 +19,6 @@ namespace Tizen.NUI
 {
     internal static partial class Interop
     {
-        internal static partial class WebSecurityOrigin
-        {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebSecurityOrigin_GetHost")]
-            public static extern string GetHost(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebSecurityOrigin_GetProtocol")]
-            public static extern string GetProtocol(global::System.Runtime.InteropServices.HandleRef jarg1);
-        }
-
         internal static partial class WebSecurityOriginList
         {
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WebSecurityOriginList")]
