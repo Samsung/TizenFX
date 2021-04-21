@@ -32,6 +32,9 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "csharp_dali_accessibility_stop_reading")]
             public static extern void StopReading(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "csharp_dali_accessibility_supress_screen_reader")]
+            public static extern bool SuppressScreenReader(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
         }
     }
 }
