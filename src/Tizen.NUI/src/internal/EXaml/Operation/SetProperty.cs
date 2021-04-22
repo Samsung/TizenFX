@@ -26,27 +26,25 @@ namespace Tizen.NUI.EXaml
 {
     internal class SetProperty : Operation
     {
-        public SetProperty(int instanceIndex, int propertyIndex, object value)
+        public SetProperty(GlobalDataList globalDataList, int instanceIndex, int propertyIndex, object value)
         {
             this.instanceIndex = instanceIndex;
             this.propertyIndex = propertyIndex;
             this.value = value;
+            this.globalDataList = globalDataList;
         }
+
+        private GlobalDataList globalDataList;
 
         public void Do()
         {
-            object instance = LoadEXaml.GatheredInstances[instanceIndex];
-            var property = GatherProperty.GatheredProperties[propertyIndex];
-
-            if (property == null)
-            {
-                return;
-            }
+            object instance = globalDataList.GatheredInstances[instanceIndex];
+            var property = globalDataList.GatheredProperties[propertyIndex];
 
             if (value is Instance)
             {
                 int valueIndex = (value as Instance).Index;
-                property.SetMethod.Invoke(instance, new object[] { LoadEXaml.GatheredInstances[valueIndex] });
+                property.SetMethod.Invoke(instance, new object[] { globalDataList.GatheredInstances[valueIndex] });
             }
             else
             {
