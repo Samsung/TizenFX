@@ -70,6 +70,9 @@ namespace Tizen.NUI
         private ScreenshotAcquiredCallback screenshotAcquiredCallback;
         private readonly WebViewScreenshotAcquiredProxyCallback screenshotAcquiredProxyCallback;
 
+        private HitTestFinishedCallback hitTestFinishedCallback;
+        private readonly WebViewHitTestFinishedProxyCallback hitTestFinishedProxyCallback;
+
         private readonly WebViewNewWindowPolicyDecidedSignal newWindowPolicyDecidedSignal;
         private EventHandler<WebViewNewWindowPolicyDecidedEventArgs> newWindowPolicyDecidedEventHandler;
         private WebViewNewWindowPolicyDecidedCallbackDelegate newWindowPolicyDecidedCallback;
@@ -85,6 +88,22 @@ namespace Tizen.NUI
         private readonly WebViewHttpAuthRequestedSignal httpAuthRequestedSignal;
         private EventHandler<WebViewHttpAuthRequestedEventArgs> httpAuthRequestedEventHandler;
         private WebViewHttpAuthRequestedCallbackDelegate httpAuthRequestedCallback;
+
+        private readonly WebViewHttpRequestInterceptedSignal httpRequestInterceptedSignal;
+        private EventHandler<WebViewHttpRequestInterceptedEventArgs> httpRequestInterceptedEventHandler;
+        private WebViewHttpRequestInterceptedCallbackDelegate httpRequestInterceptedCallback;
+
+        private readonly WebViewConsoleMessageReceivedSignal consoleMessageReceivedSignal;
+        private EventHandler<WebViewConsoleMessageReceivedEventArgs> consoleMessageReceivedEventHandler;
+        private WebViewConsoleMessageReceivedCallbackDelegate consoleMessageReceivedCallback;
+
+        private readonly WebViewContextMenuCustomizedSignal contextMenuCustomizedSignal;
+        private EventHandler<WebViewContextMenuCustomizedEventArgs> contextMenuCustomizedEventHandler;
+        private WebViewContextMenuCustomizedCallbackDelegate contextMenuCustomizedCallback;
+
+        private readonly WebViewContextMenuItemSelectedSignal contextMenuItemSelectedSignal;
+        private EventHandler<WebViewContextMenuItemSelectedEventArgs> contextMenuItemSelectedEventHandler;
+        private WebViewContextMenuItemSelectedCallbackDelegate contextMenuItemSelectedCallback;
 
         /// <summary>
         /// Creates a WebView.
@@ -140,8 +159,13 @@ namespace Tizen.NUI
             certificateConfirmedSignal = new WebViewCertificateReceivedSignal(Interop.WebView.NewWebViewCertificateSignalCertificateConfirm(SwigCPtr));
             sslCertificateChangedSignal = new WebViewCertificateReceivedSignal(Interop.WebView.NewWebViewCertificateSignalSslCertificateChanged(SwigCPtr));
             httpAuthRequestedSignal = new WebViewHttpAuthRequestedSignal(Interop.WebView.NewWebViewHttpAuthHandlerSignalHttpAuthHandler(SwigCPtr));
+            httpRequestInterceptedSignal = new WebViewHttpRequestInterceptedSignal(Interop.WebView.NewWebViewRequestInterceptorSignalRequestInterceptor(SwigCPtr));
+            consoleMessageReceivedSignal = new WebViewConsoleMessageReceivedSignal(Interop.WebView.NewWebViewConsoleMessageSignalConsoleMessage(SwigCPtr));
+            contextMenuCustomizedSignal = new WebViewContextMenuCustomizedSignal(Interop.WebView.NewWebViewContextMenuCustomizedSignalContextMenuCustomized(SwigCPtr));
+            contextMenuItemSelectedSignal = new WebViewContextMenuItemSelectedSignal(Interop.WebView.NewWebViewContextMenuItemSelectedSignalContextMenuItemSelected(SwigCPtr));
 
             screenshotAcquiredProxyCallback = OnScreenshotAcquired;
+            hitTestFinishedProxyCallback = OnHitTestCreated;
 
             BackForwardList = new WebBackForwardList(Interop.WebView.GetWebBackForwardList(SwigCPtr), false);
             Context = new WebContext(Interop.WebView.GetWebContext(SwigCPtr), false);
@@ -177,6 +201,10 @@ namespace Tizen.NUI
                 certificateConfirmedSignal.Dispose();
                 sslCertificateChangedSignal.Dispose();
                 httpAuthRequestedSignal.Dispose();
+                httpRequestInterceptedSignal.Dispose();
+                consoleMessageReceivedSignal.Dispose();
+                contextMenuCustomizedSignal.Dispose();
+                contextMenuItemSelectedSignal.Dispose();
 
                 BackForwardList.Dispose();
                 Context.Dispose();
@@ -185,6 +213,14 @@ namespace Tizen.NUI
             }
 
             base.Dispose(type);
+        }
+
+        /// This will not be public opened.
+        /// <param name="swigCPtr"></param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.WebView.DeleteWebView(swigCPtr);
         }
 
         /// <summary>
@@ -236,11 +272,18 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void GeolocationPermissionCallback(string host, string protocol);
 
+        /// <summary>
+        /// The callback function that is invoked when hit test is created.
+        /// </summary>
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public delegate void HitTestFinishedCallback(WebHitTestResult test);
+
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WebViewPageLoadCallbackDelegate(IntPtr data, string pageUrl);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void WebViewPageLoadErrorCallbackDelegate(IntPtr data, string pageUrl, int errorCode);
+        private delegate void WebViewPageLoadErrorCallbackDelegate(IntPtr data, IntPtr error);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WebViewScrollEdgeReachedCallbackDelegate(IntPtr data, int edge);
@@ -258,6 +301,9 @@ namespace Tizen.NUI
         private delegate void WebViewScreenshotAcquiredProxyCallback(IntPtr data);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void WebViewHitTestFinishedProxyCallback(IntPtr data);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WebViewNewWindowPolicyDecidedCallbackDelegate(IntPtr data, IntPtr maker);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -265,6 +311,18 @@ namespace Tizen.NUI
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WebViewHttpAuthRequestedCallbackDelegate(IntPtr data, IntPtr handler);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void WebViewHttpRequestInterceptedCallbackDelegate(IntPtr data, IntPtr interceptor);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void WebViewConsoleMessageReceivedCallbackDelegate(IntPtr data, IntPtr message);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void WebViewContextMenuCustomizedCallbackDelegate(IntPtr data, IntPtr menu);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void WebViewContextMenuItemSelectedCallbackDelegate(IntPtr data, IntPtr item);
 
         /// <summary>
         /// Event for the PageLoadStarted signal which can be used to subscribe or unsubscribe the event handler.<br />
@@ -355,7 +413,7 @@ namespace Tizen.NUI
             {
                 if (pageLoadErrorEventHandler == null)
                 {
-                    pageLoadErrorCallback = (OnPageLoadError);
+                    pageLoadErrorCallback = OnPageLoadError;
                     pageLoadErrorSignal.Connect(pageLoadErrorCallback);
                 }
                 pageLoadErrorEventHandler += value;
@@ -527,6 +585,32 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Event for the HttpRequestIntercepted signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted when http request would be intercepted.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<WebViewHttpRequestInterceptedEventArgs> HttpRequestIntercepted
+        {
+            add
+            {
+                if (httpRequestInterceptedEventHandler == null)
+                {
+                    httpRequestInterceptedCallback = OnHttpRequestIntercepted;
+                    httpRequestInterceptedSignal.Connect(httpRequestInterceptedCallback);
+                }
+                httpRequestInterceptedEventHandler += value;
+            }
+            remove
+            {
+                httpRequestInterceptedEventHandler -= value;
+                if (httpRequestInterceptedEventHandler == null && httpRequestInterceptedCallback != null)
+                {
+                    httpRequestInterceptedSignal.Disconnect(httpRequestInterceptedCallback);
+                }
+            }
+        }
+
+        /// <summary>
         /// Event for the SslCertificateChanged signal which can be used to subscribe or unsubscribe the event handler.<br />
         /// This signal is emitted when SSL certificate is changed.<br />
         /// </summary>
@@ -574,6 +658,84 @@ namespace Tizen.NUI
                 if (httpAuthRequestedEventHandler == null && httpAuthRequestedCallback != null)
                 {
                     httpAuthRequestedSignal.Disconnect(httpAuthRequestedCallback);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Event for the ConsoleMessageReceived signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted when console message is received.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<WebViewConsoleMessageReceivedEventArgs> ConsoleMessageReceived
+        {
+            add
+            {
+                if (consoleMessageReceivedEventHandler == null)
+                {
+                    consoleMessageReceivedCallback = OnConsoleMessageReceived;
+                    consoleMessageReceivedSignal.Connect(consoleMessageReceivedCallback);
+                }
+                consoleMessageReceivedEventHandler += value;
+            }
+            remove
+            {
+                consoleMessageReceivedEventHandler -= value;
+                if (consoleMessageReceivedEventHandler == null && consoleMessageReceivedCallback != null)
+                {
+                    consoleMessageReceivedSignal.Disconnect(consoleMessageReceivedCallback);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Event for the ContextMenuCustomized signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted when context menu is customized.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<WebViewContextMenuCustomizedEventArgs> ContextMenuCustomized
+        {
+            add
+            {
+                if (contextMenuCustomizedEventHandler == null)
+                {
+                    contextMenuCustomizedCallback = OnContextMenuCustomized;
+                    contextMenuCustomizedSignal.Connect(contextMenuCustomizedCallback);
+                }
+                contextMenuCustomizedEventHandler += value;
+            }
+            remove
+            {
+                contextMenuCustomizedEventHandler -= value;
+                if (contextMenuCustomizedEventHandler == null && contextMenuCustomizedCallback != null)
+                {
+                    contextMenuCustomizedSignal.Disconnect(contextMenuCustomizedCallback);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Event for the ContextMenuItemSelected signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted when context menu item is selected.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<WebViewContextMenuItemSelectedEventArgs> ContextMenuItemSelected
+        {
+            add
+            {
+                if (contextMenuItemSelectedEventHandler == null)
+                {
+                    contextMenuItemSelectedCallback = OnContextMenuItemSelected;
+                    contextMenuItemSelectedSignal.Connect(contextMenuItemSelectedCallback);
+                }
+                contextMenuItemSelectedEventHandler += value;
+            }
+            remove
+            {
+                contextMenuItemSelectedEventHandler -= value;
+                if (contextMenuItemSelectedEventHandler == null && contextMenuItemSelectedCallback != null)
+                {
+                    contextMenuItemSelectedSignal.Disconnect(contextMenuItemSelectedCallback);
                 }
             }
         }
@@ -637,6 +799,37 @@ namespace Tizen.NUI
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             ShowHighlight = 1 << 7,
+        }
+
+        /// <summary>
+        /// Enumeration for mode of hit test.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum HitTestMode
+        {
+            /// <summary>
+            /// Link data
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Default = 1 << 1,
+
+            /// <summary>
+            /// Extra node data(tag name, node value, attribute infomation, etc).
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            NodeData = 1 << 2,
+
+            /// <summary>
+            /// Extra image data(image data, image data length, image file name exteionsion, etc).
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            ImageData = 1 << 3,
+
+            /// <summary>
+            /// All data
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            All = Default | NodeData | ImageData,
         }
 
         /// <summary>
@@ -995,8 +1188,6 @@ namespace Tizen.NUI
             get
             {
                 global::System.IntPtr imageView = Interop.WebView.GetFavicon(SwigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending)
-                    return null;
                 return new ImageView(imageView, false);
             }
         }
@@ -1789,6 +1980,37 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Does hit test synchronously.
+        /// <param name="x">the horizontal position to query</param>
+        /// <param name="y">the vertical position to query</param>
+        /// <param name="mode">the mode of hit test</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public WebHitTestResult HitTest(int x, int y, HitTestMode mode)
+        {
+            System.IntPtr result = Interop.WebView.CreateHitTest(SwigCPtr, x, y, (int)mode);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return new WebHitTestResult(result, true);
+        }
+
+        /// <summary>
+        /// Does hit test asynchronously.
+        /// <param name="x">the horizontal position to query</param>
+        /// <param name="y">the vertical position to query</param>
+        /// <param name="mode">the mode of hit test</param>
+        /// <param name="callback">the callback that is called after hit test is finished.</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool HitTestAsynchronously(int x, int y, HitTestMode mode, HitTestFinishedCallback callback)
+        {
+            hitTestFinishedCallback = callback;
+            System.IntPtr ip = Marshal.GetFunctionPointerForDelegate(hitTestFinishedProxyCallback);
+            bool result = Interop.WebView.CreateHitTestAsynchronously(SwigCPtr, x, y, (int)mode, new HandleRef(this, ip));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return result;
+        }
+
+        /// <summary>
         /// Deprecated. Clears the cache of current WebView.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -1825,14 +2047,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// This will not be public opened.
-        /// <param name="swigCPtr"></param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
-        {
-            Interop.WebView.DeleteWebView(swigCPtr);
-        }
-
         private void OnPageLoadStarted(IntPtr data, string pageUrl)
         {
             WebViewPageLoadEventArgs e = new WebViewPageLoadEventArgs();
@@ -1858,21 +2072,14 @@ namespace Tizen.NUI
             pageLoadFinishedEventHandler?.Invoke(this, e);
         }
 
-        private void OnPageLoadError(IntPtr data, string pageUrl, int errorCode)
+        private void OnPageLoadError(IntPtr data, IntPtr error)
         {
-            WebViewPageLoadErrorEventArgs e = new WebViewPageLoadErrorEventArgs();
-
-            e.WebView = Registry.GetManagedBaseHandleFromNativePtr(data) as WebView;
-            e.PageUrl = pageUrl;
-            e.ErrorCode = (WebViewPageLoadErrorEventArgs.LoadErrorCode)errorCode;
-
-            pageLoadErrorEventHandler?.Invoke(this, e);
+            pageLoadErrorEventHandler?.Invoke(this, new WebViewPageLoadErrorEventArgs(new WebPageLoadError(error, false)));
         }
 
         private void OnScrollEdgeReached(IntPtr data, int edge)
         {
-            WebViewScrollEdgeReachedEventArgs arg = new WebViewScrollEdgeReachedEventArgs((WebViewScrollEdgeReachedEventArgs.Edge)edge);
-            scrollEdgeReachedEventHandler?.Invoke(this, arg);
+            scrollEdgeReachedEventHandler?.Invoke(this, new WebViewScrollEdgeReachedEventArgs((WebViewScrollEdgeReachedEventArgs.Edge)edge));
         }
 
         private void OnUrlChanged(IntPtr data, string pageUrl)
@@ -1882,9 +2089,7 @@ namespace Tizen.NUI
 
         private void OnFormRepostPolicyDecided(IntPtr data, IntPtr decision)
         {
-            WebFormRepostPolicyDecisionMaker repostDecision = new WebFormRepostPolicyDecisionMaker(decision, false);
-            formRepostPolicyDecidedEventHandler?.Invoke(this, new WebViewFormRepostPolicyDecidedEventArgs(repostDecision));
-            repostDecision.Dispose();
+            formRepostPolicyDecidedEventHandler?.Invoke(this, new WebViewFormRepostPolicyDecidedEventArgs(new WebFormRepostPolicyDecisionMaker(decision, false)));
         }
 
         private void OnFrameRendered(IntPtr data)
@@ -1917,6 +2122,33 @@ namespace Tizen.NUI
         private void OnHttpAuthRequested(IntPtr data, IntPtr handler)
         {
             httpAuthRequestedEventHandler?.Invoke(this, new WebViewHttpAuthRequestedEventArgs(new WebHttpAuthHandler(handler, false)));
+        }
+
+        private void OnHttpRequestIntercepted(IntPtr data, IntPtr interceptor)
+        {
+            httpRequestInterceptedEventHandler?.Invoke(this, new WebViewHttpRequestInterceptedEventArgs(new WebHttpRequestInterceptor(interceptor, false)));
+        }
+
+        private void OnConsoleMessageReceived(IntPtr data, IntPtr message)
+        {
+            consoleMessageReceivedEventHandler?.Invoke(this, new WebViewConsoleMessageReceivedEventArgs(new WebConsoleMessage(message, false)));
+        }
+
+        private void OnContextMenuCustomized(IntPtr data, IntPtr menu)
+        {
+            contextMenuCustomizedEventHandler?.Invoke(this, new WebViewContextMenuCustomizedEventArgs(new WebContextMenu(menu, false)));
+        }
+
+        private void OnContextMenuItemSelected(IntPtr data, IntPtr item)
+        {
+            contextMenuItemSelectedEventHandler?.Invoke(this, new WebViewContextMenuItemSelectedEventArgs(new WebContextMenuItem(item, false)));
+        }
+
+        private void OnHitTestCreated(IntPtr test)
+        {
+            WebHitTestResult hitTest = new WebHitTestResult(test, true);
+            hitTestFinishedCallback?.Invoke(hitTest);
+            hitTest.Dispose();
         }
     }
 }
