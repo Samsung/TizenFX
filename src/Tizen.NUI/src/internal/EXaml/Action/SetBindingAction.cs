@@ -25,12 +25,14 @@ namespace Tizen.NUI.EXaml
 {
     internal class SetBindingAction : Action
     {
-        public SetBindingAction(Action parent)
+        public SetBindingAction(GlobalDataList globalDataList, Action parent)
         {
             this.parent = parent;
+            this.globalDataList = globalDataList;
         }
 
         private Action parent;
+        private GlobalDataList globalDataList;
 
         public Action DealChar(char c)
         {
@@ -68,7 +70,7 @@ namespace Tizen.NUI.EXaml
                 var propertyIndex = (int)childOp.ValueList[1];
                 int valueIndex = (childOp.ValueList[2] as Instance).Index;
 
-                LoadEXaml.Operations.Add(new SetBinding(instanceIndex, propertyIndex, valueIndex));
+                globalDataList.Operations.Add(new SetBinding(globalDataList, instanceIndex, propertyIndex, valueIndex));
             }
         }
     }

@@ -28,6 +28,7 @@ namespace Tizen.NUI.EXaml
             this.sign = sign;
             this.parent = parent;
         }
+
         private char sign;
         private Action parent;
 

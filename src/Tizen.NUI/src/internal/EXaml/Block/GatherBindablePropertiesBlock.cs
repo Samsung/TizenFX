@@ -21,9 +21,9 @@ using System.Text;
 
 namespace Tizen.NUI.EXaml
 {
-    internal class GatherEventsBlock : Action
+    internal class GatherBindablePropertiesBlock : Action
     {
-        public GatherEventsBlock(GlobalDataList globalDataList, Action parent)
+        public GatherBindablePropertiesBlock(GlobalDataList globalDataList, Action parent)
         {
             this.parent = parent;
             this.globalDataList = globalDataList;
@@ -63,9 +63,9 @@ namespace Tizen.NUI.EXaml
         public void OnActive()
         {
             int typeIndex = int.Parse(childOp.ValueList[0] as string);
-            string eventName = childOp.ValueList[1] as string;
+            string propertyName = childOp.ValueList[1] as string;
 
-            globalDataList.Operations.Add(new GatherEvent(globalDataList, typeIndex, eventName));
+            globalDataList.Operations.Add(new GatherBindableProperties(globalDataList, typeIndex, propertyName));
         }
     }
 }

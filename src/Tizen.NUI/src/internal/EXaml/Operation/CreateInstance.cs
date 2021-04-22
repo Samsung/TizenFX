@@ -26,25 +26,28 @@ namespace Tizen.NUI.EXaml
 {
     internal class CreateInstance : Operation
     {
-        public CreateInstance(int typeIndex, List<object> paramList = null)
+        public CreateInstance(GlobalDataList globalDataList, int typeIndex, List<object> paramList = null)
         {
             this.typeIndex = typeIndex;
             this.paramList = paramList;
+            this.globalDataList = globalDataList;
         }
+
+        private GlobalDataList globalDataList;
 
         public void Do()
         {
-            if (0 == LoadEXaml.GatheredInstances.Count && null != Root)
+            if (0 == globalDataList.GatheredInstances.Count && null != Root)
             {
-                LoadEXaml.GatheredInstances.Add(Root);
+                globalDataList.GatheredInstances.Add(Root);
             }
             else
             {
-                var type = GatherType.GatheredTypes[typeIndex];
+                var type = globalDataList.GatheredTypes[typeIndex];
 
                 if (null == paramList)
                 {
-                    LoadEXaml.GatheredInstances.Add(Activator.CreateInstance(type));
+                    globalDataList.GatheredInstances.Add(Activator.CreateInstance(type));
                 }
                 else
                 {
@@ -52,16 +55,16 @@ namespace Tizen.NUI.EXaml
                     {
                         if (paramList[i] is Instance)
                         {
-                            paramList[i] = LoadEXaml.GatheredInstances[(paramList[i] as Instance).Index];
+                            paramList[i] = globalDataList.GatheredInstances[(paramList[i] as Instance).Index];
                         }
                     }
-                    LoadEXaml.GatheredInstances.Add(Activator.CreateInstance(type, paramList.ToArray()));
+                    globalDataList.GatheredInstances.Add(Activator.CreateInstance(type, paramList.ToArray()));
                 }
             }
 
-            if (1 == LoadEXaml.GatheredInstances.Count)
+            if (1 == globalDataList.GatheredInstances.Count)
             {
-                var rootObject = LoadEXaml.GatheredInstances[0] as BindableObject;
+                var rootObject = globalDataList.GatheredInstances[0] as BindableObject;
                 if (null != rootObject)
                 {
                     rootObject.IsCreateByXaml = true;
