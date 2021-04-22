@@ -26,20 +26,22 @@ namespace Tizen.NUI.EXaml
 {
     internal class GatherProperty : Operation
     {
-        public GatherProperty(int typeIndex, string propertyName)
+        public GatherProperty(GlobalDataList globalDataList, int typeIndex, string propertyName)
         {
             this.typeIndex = typeIndex;
             this.propertyName = propertyName;
+            this.globalDataList = globalDataList;
         }
+
+        private GlobalDataList globalDataList;
 
         public void Do()
         {
-            var type = GatherType.GatheredTypes[typeIndex];
-            GatheredProperties.Add(type.GetProperty(propertyName));
+            var type = globalDataList.GatheredTypes[typeIndex];
+            globalDataList.GatheredProperties.Add(type.GetProperty(propertyName));
         }
 
         private int typeIndex;
         private string propertyName;
-        internal static List<PropertyInfo> GatheredProperties = new List<PropertyInfo>();
     }
 }

@@ -23,12 +23,14 @@ namespace Tizen.NUI.EXaml
 {
     internal class GatherAssembliesBlock : Action
     {
-        public GatherAssembliesBlock(Action parent)
+        public GatherAssembliesBlock(GlobalDataList globalDataList, Action parent)
         {
             this.parent = parent;
+            this.globalDataList = globalDataList;
         }
 
         private Action parent;
+        private GlobalDataList globalDataList;
 
         public Action DealChar(char c)
         {
@@ -61,7 +63,7 @@ namespace Tizen.NUI.EXaml
         public void OnActive()
         {
             var readedAssemblyName = childOp.Value as string;
-            LoadEXaml.Operations.Add(new GatherAssembly(readedAssemblyName));
+            globalDataList.Operations.Add(new GatherAssembly(globalDataList, readedAssemblyName));
             childOp = null;
         }
     }

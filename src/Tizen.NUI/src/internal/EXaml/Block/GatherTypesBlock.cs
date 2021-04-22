@@ -23,12 +23,14 @@ namespace Tizen.NUI.EXaml
 {
     internal class GatherTypesBlock : Action
     {
-        public GatherTypesBlock(Action parent)
+        public GatherTypesBlock(GlobalDataList globalDataList, Action parent)
         {
             this.parent = parent;
+            this.globalDataList = globalDataList;
         }
 
         private Action parent;
+        private GlobalDataList globalDataList;
 
         public Action DealChar(char c)
         {
@@ -60,7 +62,7 @@ namespace Tizen.NUI.EXaml
 
         public void OnActive()
         {
-            LoadEXaml.Operations.Add(GatherType(childOp.ValueList));
+            globalDataList.Operations.Add(GatherType(childOp.ValueList));
             childOp = null;
         }
 
@@ -78,11 +80,11 @@ namespace Tizen.NUI.EXaml
                     genericTypeIndexs.Add((int)index);
                 }
 
-                return new GatherType(assemblyIndex, typeName, genericTypeIndexs);
+                return new GatherType(globalDataList, assemblyIndex, typeName, genericTypeIndexs);
             }
             else
             {
-                return new GatherType(assemblyIndex, typeName);
+                return new GatherType(globalDataList, assemblyIndex, typeName);
             }
         }
     }

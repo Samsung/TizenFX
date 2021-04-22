@@ -15,6 +15,7 @@
  *
  */
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
@@ -24,13 +25,12 @@ using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI.EXaml
 {
-    internal class CallAddMethod : Operation
+    internal class AddToCollectionProperty : Operation
     {
-        public CallAddMethod(GlobalDataList globalDataList, int parentIndex, int childIndex, int methodIndex)
+        public AddToCollectionProperty(GlobalDataList globalDataList, int instanceIndex, object value)
         {
-            this.parentIndex = parentIndex;
-            this.childIndex = childIndex;
-            this.methodIndex = methodIndex;
+            this.instanceIndex = instanceIndex;
+            this.value = value;
             this.globalDataList = globalDataList;
         }
 
@@ -38,15 +38,23 @@ namespace Tizen.NUI.EXaml
 
         public void Do()
         {
-            object parent = globalDataList.GatheredInstances[parentIndex];
-            object child = globalDataList.GatheredInstances[childIndex];
-            var method = globalDataList.GatheredMethods[methodIndex];
+            var collection = globalDataList.ObjectsFromProperty[instanceIndex] as IList;
 
-            method.Invoke(parent, new object[] { child });
+            if (null != collection)
+            {
+                if (value is Instance)
+                {
+                    int valueIndex = (value as Instance).Index;
+                    collection.Add(globalDataList.GatheredInstances[valueIndex]);
+                }
+                else
+                {
+                    collection.Add(value);
+                }
+            }
         }
 
-        private int parentIndex;
-        private int childIndex;
-        private int methodIndex;
+        private int instanceIndex;
+        private object value;
     }
 }

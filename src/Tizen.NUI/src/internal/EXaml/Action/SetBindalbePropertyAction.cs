@@ -25,12 +25,14 @@ namespace Tizen.NUI.EXaml
 {
     internal class SetBindalbePropertyAction : Action
     {
-        public SetBindalbePropertyAction(Action parent)
+        public SetBindalbePropertyAction(GlobalDataList globalDataList, Action parent)
         {
             this.parent = parent;
+            this.globalDataList = globalDataList;
         }
 
         private Action parent;
+        private GlobalDataList globalDataList;
 
         public Action DealChar(char c)
         {
@@ -67,7 +69,7 @@ namespace Tizen.NUI.EXaml
                 int instanceIndex = (childOp.ValueList[0] as Instance).Index;
                 int bindalbePropertyIndex = (int)childOp.ValueList[1];
                 var value = childOp.ValueList[2];
-                LoadEXaml.Operations.Add(new SetBindalbeProperty(instanceIndex, bindalbePropertyIndex, value));
+                globalDataList.Operations.Add(new SetBindalbeProperty(globalDataList, instanceIndex, bindalbePropertyIndex, value));
             }
         }
     }

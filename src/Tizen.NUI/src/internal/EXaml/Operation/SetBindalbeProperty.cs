@@ -26,25 +26,28 @@ namespace Tizen.NUI.EXaml
 {
     internal class SetBindalbeProperty : Operation
     {
-        public SetBindalbeProperty(int instanceIndex, int bindalbePropertyIndex, object value)
+        public SetBindalbeProperty(GlobalDataList globalDataList, int instanceIndex, int bindalbePropertyIndex, object value)
         {
             this.instanceIndex = instanceIndex;
             this.bindalbePropertyIndex = bindalbePropertyIndex;
             this.value = value;
+            this.globalDataList = globalDataList;
         }
+
+        private GlobalDataList globalDataList;
 
         public void Do()
         {
-            var instance = LoadEXaml.GatheredInstances[instanceIndex] as BindableObject;
+            var instance = globalDataList.GatheredInstances[instanceIndex] as BindableObject;
 
             if (null != instance)
             {
-                var property = GatherBindableProperties.GatheredBindableProperties[bindalbePropertyIndex];
+                var property = globalDataList.GatheredBindableProperties[bindalbePropertyIndex];
 
                 if (value is Instance)
                 {
                     int valueIndex = (value as Instance).Index;
-                    instance.SetValue(property, LoadEXaml.GatheredInstances[valueIndex]);
+                    instance.SetValue(property, globalDataList.GatheredInstances[valueIndex]);
                 }
                 else
                 {

@@ -26,17 +26,20 @@ namespace Tizen.NUI.EXaml
 {
     internal class AddToResourceDictionary : Operation
     {
-        internal AddToResourceDictionary(int instanceIndex, string key, object value)
+        internal AddToResourceDictionary(GlobalDataList globalDataList, int instanceIndex, string key, object value)
         {
             this.instanceIndex = instanceIndex;
             this.key = key;
             this.value = value;
+            this.globalDataList = globalDataList;
         }
+
+        private GlobalDataList globalDataList;
 
         public void Do()
         {
-            var instance = LoadEXaml.GatheredInstances[instanceIndex] as ResourceDictionary;
-            var realValue = (value is Instance) ? LoadEXaml.GatheredInstances[(value as Instance).Index] : value;
+            var instance = globalDataList.GatheredInstances[instanceIndex] as ResourceDictionary;
+            var realValue = (value is Instance) ? globalDataList.GatheredInstances[(value as Instance).Index] : value;
 
             instance.Add(key, realValue);
         }

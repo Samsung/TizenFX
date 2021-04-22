@@ -26,18 +26,21 @@ namespace Tizen.NUI.EXaml
 {
     internal class RegisterXName : Operation
     {
-        public RegisterXName(object instance, string name)
+        public RegisterXName(GlobalDataList globalDataList, object instance, string name)
         {
             this.instance = instance;
             this.name = name;
+            this.globalDataList = globalDataList;
         }
+
+        private GlobalDataList globalDataList;
 
         public void Do()
         {
             object realInstance = null;
             if (instance is Instance)
             {
-                realInstance = LoadEXaml.GatheredInstances[(instance as Instance).Index];
+                realInstance = globalDataList.GatheredInstances[(instance as Instance).Index];
             }
             else
             {

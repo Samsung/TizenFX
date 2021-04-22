@@ -26,16 +26,19 @@ namespace Tizen.NUI.EXaml
 {
     internal class GatherConvertedValue : Operation
     {
-        public GatherConvertedValue(int converterIndex, string value)
+        public GatherConvertedValue(GlobalDataList globalDataList, int converterIndex, string value)
         {
             this.converterIndex = converterIndex;
             this.value = value;
+            this.globalDataList = globalDataList;
         }
+
+        private GlobalDataList globalDataList;
 
         public void Do()
         {
-            var converter = LoadEXaml.GatheredInstances[converterIndex] as TypeConverter;
-            LoadEXaml.GatheredInstances.Add(converter.ConvertFromInvariantString(value));
+            var converter = globalDataList.GatheredInstances[converterIndex] as TypeConverter;
+            globalDataList.GatheredInstances.Add(converter.ConvertFromInvariantString(value));
         }
 
         private int converterIndex;

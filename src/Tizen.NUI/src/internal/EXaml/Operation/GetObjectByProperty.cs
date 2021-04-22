@@ -24,13 +24,12 @@ using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI.EXaml
 {
-    internal class CallAddMethod : Operation
+    internal class GetObjectByProperty : Operation
     {
-        public CallAddMethod(GlobalDataList globalDataList, int parentIndex, int childIndex, int methodIndex)
+        public GetObjectByProperty(GlobalDataList globalDataList, int instanceIndex, string propertyName)
         {
-            this.parentIndex = parentIndex;
-            this.childIndex = childIndex;
-            this.methodIndex = methodIndex;
+            this.instanceIndex = instanceIndex;
+            this.propertyName = propertyName;
             this.globalDataList = globalDataList;
         }
 
@@ -38,15 +37,15 @@ namespace Tizen.NUI.EXaml
 
         public void Do()
         {
-            object parent = globalDataList.GatheredInstances[parentIndex];
-            object child = globalDataList.GatheredInstances[childIndex];
-            var method = globalDataList.GatheredMethods[methodIndex];
+            var instance = globalDataList.GatheredInstances[instanceIndex];
+            var property = instance.GetType().GetProperty(propertyName);
 
-            method.Invoke(parent, new object[] { child });
+            var @object = property.GetMethod.Invoke(instance, Array.Empty<object>());
+            globalDataList.ObjectsFromProperty.Add(@object);
         }
 
-        private int parentIndex;
-        private int childIndex;
-        private int methodIndex;
+        private int instanceIndex;
+
+        private string propertyName;
     }
 }

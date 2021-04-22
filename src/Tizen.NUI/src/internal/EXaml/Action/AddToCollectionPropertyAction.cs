@@ -18,12 +18,14 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
+using Tizen.NUI.Binding;
+using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI.EXaml
 {
-    internal class GatherEventsBlock : Action
+    internal class AddToCollectionPropertyAction : Action
     {
-        public GatherEventsBlock(GlobalDataList globalDataList, Action parent)
+        public AddToCollectionPropertyAction(GlobalDataList globalDataList, Action parent)
         {
             this.parent = parent;
             this.globalDataList = globalDataList;
@@ -45,7 +47,7 @@ namespace Tizen.NUI.EXaml
                     childOp = new GetValueListAction(')', this);
                     return childOp;
 
-                case '>':
+                case '~':
                     parent?.OnActive();
                     return parent;
             }
@@ -62,10 +64,12 @@ namespace Tizen.NUI.EXaml
 
         public void OnActive()
         {
-            int typeIndex = int.Parse(childOp.ValueList[0] as string);
-            string eventName = childOp.ValueList[1] as string;
-
-            globalDataList.Operations.Add(new GatherEvent(globalDataList, typeIndex, eventName));
+            if (null != childOp)
+            {
+                int instanceIndex = (int)childOp.ValueList[0];
+                var value = childOp.ValueList[1];
+                globalDataList.Operations.Add(new AddToCollectionProperty(globalDataList, instanceIndex, value));
+            }
         }
     }
 }
