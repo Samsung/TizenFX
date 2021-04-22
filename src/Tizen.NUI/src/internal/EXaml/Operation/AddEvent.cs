@@ -26,22 +26,25 @@ namespace Tizen.NUI.EXaml
 {
     internal class AddEvent : Operation
     {
-        public AddEvent(int instanceIndex, int elementIndex, int eventIndex, int valueIndex)
+        public AddEvent(GlobalDataList globalDataList, int instanceIndex, int elementIndex, int eventIndex, int valueIndex)
         {
             this.instanceIndex = instanceIndex;
             this.elementIndex = elementIndex;
             this.eventIndex = eventIndex;
             this.valueIndex = valueIndex;
+            this.globalDataList = globalDataList;
         }
+
+        private GlobalDataList globalDataList;
 
         public void Do()
         {
-            object instance = LoadEXaml.GatheredInstances[instanceIndex];
-            object element = LoadEXaml.GatheredInstances[elementIndex];
-            var eventInfo = GatherEvent.GatheredEvents[eventIndex];
+            object instance = globalDataList.GatheredInstances[instanceIndex];
+            object element = globalDataList.GatheredInstances[elementIndex];
+            var eventInfo = globalDataList.GatheredEvents[eventIndex];
             try
             {
-                var methodInfo = GatherMethod.GatheredMethods[valueIndex];
+                var methodInfo = globalDataList.GatheredMethods[valueIndex];
                 eventInfo.AddEventHandler(instance, methodInfo.CreateDelegate(eventInfo.EventHandlerType, element));
             }
             catch (ArgumentException ae)
