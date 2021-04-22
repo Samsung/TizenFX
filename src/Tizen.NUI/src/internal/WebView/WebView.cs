@@ -165,7 +165,7 @@ namespace Tizen.NUI
             contextMenuItemSelectedSignal = new WebViewContextMenuItemSelectedSignal(Interop.WebView.NewWebViewContextMenuItemSelectedSignalContextMenuItemSelected(SwigCPtr));
 
             screenshotAcquiredProxyCallback = OnScreenshotAcquired;
-            hitTestFinishedProxyCallback = OnHitTestCreated;
+            hitTestFinishedProxyCallback = OnHitTestFinished;
 
             BackForwardList = new WebBackForwardList(Interop.WebView.GetWebBackForwardList(SwigCPtr), false);
             Context = new WebContext(Interop.WebView.GetWebContext(SwigCPtr), false);
@@ -273,7 +273,7 @@ namespace Tizen.NUI
         public delegate void GeolocationPermissionCallback(string host, string protocol);
 
         /// <summary>
-        /// The callback function that is invoked when hit test is created.
+        /// The callback function that is invoked when hit test is finished.
         /// </summary>
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -930,11 +930,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return Settings.EnableJavaScript;
+                return Settings.JavaScriptEnabled;
             }
             set
             {
-                Settings.EnableJavaScript = value;
+                Settings.JavaScriptEnabled = value;
             }
         }
 
@@ -946,11 +946,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return Settings.AllowImagesLoadAutomatically;
+                return Settings.AutomaticImageLoadingAllowed;
             }
             set
             {
-                Settings.AllowImagesLoadAutomatically = value;
+                Settings.AutomaticImageLoadingAllowed = value;
             }
         }
 
@@ -2144,7 +2144,7 @@ namespace Tizen.NUI
             contextMenuItemSelectedEventHandler?.Invoke(this, new WebViewContextMenuItemSelectedEventArgs(new WebContextMenuItem(item, false)));
         }
 
-        private void OnHitTestCreated(IntPtr test)
+        private void OnHitTestFinished(IntPtr test)
         {
             WebHitTestResult hitTest = new WebHitTestResult(test, true);
             hitTestFinishedCallback?.Invoke(hitTest);

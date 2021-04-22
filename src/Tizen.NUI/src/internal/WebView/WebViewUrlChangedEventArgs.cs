@@ -28,13 +28,13 @@ namespace Tizen.NUI
     {
         internal WebViewUrlChangedEventArgs(string url)
         {
-            NewPageUri = new Uri(url);
+            NewPageUrl = url;
         }
 
         /// <summary>
-        /// The uri of new web page.
+        /// The url of new web page.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Uri NewPageUri { get; }
+        public string NewPageUrl { get; }
     }
 }
