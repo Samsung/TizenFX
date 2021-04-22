@@ -410,7 +410,7 @@ namespace Tizen.NUI.Components
         protected override AccessibilityStates AccessibilityCalculateStates()
         {
             var states = base.AccessibilityCalculateStates();
-            FlagSetter(ref states, AccessibilityStates.Modal, true);
+            states.Set(AccessibilityState.Modal, true);
             return states;
         }
 
