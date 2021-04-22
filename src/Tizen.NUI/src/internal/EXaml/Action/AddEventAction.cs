@@ -25,12 +25,14 @@ namespace Tizen.NUI.EXaml
 {
     internal class AddEventAction : Action
     {
-        public AddEventAction(Action parent)
+        public AddEventAction(GlobalDataList globalDataList, Action parent)
         {
             this.parent = parent;
+            this.globalDataList = globalDataList;
         }
 
         private Action parent;
+        private GlobalDataList globalDataList;
 
         public Action DealChar(char c)
         {
@@ -68,7 +70,7 @@ namespace Tizen.NUI.EXaml
                 int elementIndex = (childOp.ValueList[1] as Instance).Index;
                 int propertyIndex = (int)childOp.ValueList[2];
                 int value = (int)childOp.ValueList[3];
-                LoadEXaml.Operations.Add(new AddEvent(instanceIndex, elementIndex, propertyIndex, value));
+                globalDataList.Operations.Add(new AddEvent(globalDataList, instanceIndex, elementIndex, propertyIndex, value));
             }
         }
     }

@@ -30,12 +30,14 @@ namespace Tizen.NUI.EXaml
 {
     internal class GatherMethodsBlock : Action
     {
-        public GatherMethodsBlock(Action parent)
+        public GatherMethodsBlock(GlobalDataList globalDataList, Action parent)
         {
             this.parent = parent;
+            this.globalDataList = globalDataList;
         }
 
         private Action parent;
+        private GlobalDataList globalDataList;
 
         public Action DealChar(char c)
         {
@@ -69,7 +71,7 @@ namespace Tizen.NUI.EXaml
         {
             int typeIndex = int.Parse(childOp.ValueList[0] as string);
             string name = childOp.ValueList[1] as string;
-            LoadEXaml.Operations.Add(new GatherMethod(typeIndex, name));
+            globalDataList.Operations.Add(new GatherMethod(globalDataList, typeIndex, name));
         }
     }
 }
