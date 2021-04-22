@@ -361,13 +361,29 @@ namespace Tizen.NUI.Components
             }
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Initialize AT-SPI object.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnInitialize()
         {
             base.OnInitialize();
             SetAccessibilityConstructor(Role.Dialog);
+            AppendAccessibilityAttribute("sub-role", "Alert");
+            Show(); // calls AddPopup()
         }
+
+        /// <summary>
+        /// Informs AT-SPI bridge about the set of AT-SPI states associated with this object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override AccessibilityStates AccessibilityCalculateStates()
+        {
+            var states = base.AccessibilityCalculateStates();
+            states.Set(AccessibilityState.Modal, true);
+            return states;
+        }
+
 
         /// <summary>
         /// Default title content of AlertDialog.
