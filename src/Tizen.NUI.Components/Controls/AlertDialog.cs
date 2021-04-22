@@ -391,6 +391,14 @@ namespace Tizen.NUI.Components
             }
         }
 
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnInitialize()
+        {
+            base.OnInitialize();
+            SetAccessibilityConstructor(Role.Dialog);
+        }
+
         /// <summary>
         /// Default title content of AlertDialog.
         /// If Title is set, then default title content is automatically displayed.
@@ -466,6 +474,7 @@ namespace Tizen.NUI.Components
             Content = DefaultContent;
 
             ActionContent = DefaultActionContent;
+            AccessibilityHighlightable = true;
         }
 
         private void ResetContent()
