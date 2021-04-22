@@ -27,7 +27,7 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class WebContext : Disposable
     {
-        private string proxyUri;
+        private string proxyUrl;
         private string appId;
         private string appVersion;
         private float timeOffset;
@@ -158,28 +158,28 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Set the proxy uri.
+        /// Proxy url.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Uri ProxyUri
+        public string ProxyUrl
         {
             get
             {
-                return new Uri(proxyUri);
+                return proxyUrl;
             }
             set
             {
                 if (value != null)
                 {
-                    Interop.WebContext.SetProxyUri(SwigCPtr, proxyUri);
+                    Interop.WebContext.SetProxyUri(SwigCPtr, value);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                    proxyUri = value.AbsoluteUri;
+                    proxyUrl = value;
                 }
             }
         }
 
         /// <summary>
-        /// Set the Certificate File Path.
+        /// Certificate file path.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string CertificateFilePath
@@ -196,7 +196,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Disable cache or not.
+        /// Enables cache or not.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool CacheEnabled
@@ -213,7 +213,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Set context app id.
+        /// App id.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string AppId
@@ -231,7 +231,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Set context app version.
+        /// App version.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string AppVersion
@@ -249,7 +249,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Set context app type.
+        /// App type.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ApplicationType AppType
@@ -267,7 +267,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Set context time offset.
+        /// Time offset.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float TimeOffset
@@ -302,7 +302,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get context proxy.
+        /// Gets context proxy.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string ContextProxy
@@ -314,7 +314,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// get proxy bypass rule.
+        /// Gets proxy bypass rule.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string ProxyBypassRule
@@ -326,7 +326,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Set Default Proxy Auth.
+        /// Sets default proxy auth.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetDefaultProxyAuth(string username, string password)
@@ -336,7 +336,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Delete all web database.
+        /// Deletes all web database.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void DeleteAllWebDatabase()
@@ -400,7 +400,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Delete all web storage.
+        /// Deletes all web storage.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void DeleteAllWebStorage()
@@ -422,7 +422,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Delete local fileSystem.
+        /// Deletes local fileSystem.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void DeleteLocalFileSystem()
@@ -432,7 +432,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Clear cache.
+        /// Clears cache.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ClearCache()
@@ -491,7 +491,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Set context time zone offset.
+        /// Sets context time zone offset.
         /// <param name="offset">Time offset</param>
         /// <param name="time">Daylight saving time</param>
         /// </summary>
@@ -503,7 +503,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Register url schemes enabled.
+        /// Registers url schemes enabled.
         /// <param name="strArray">The string array of schemes</param>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -517,7 +517,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Register js plugin mime types.
+        /// Registers js plugin mime types.
         /// <param name="strArray">The string array of types</param>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -531,7 +531,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Delete all application cache.
+        /// Deletes all application cache.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool DeleteAllApplicationCache()
@@ -542,7 +542,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Delete all web indexed database.
+        /// Deletes all web indexed database.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool DeleteAllWebIndexedDatabase()
@@ -553,7 +553,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Delete password dataList.
+        /// Deletes password dataList.
         /// <param name="strArray">The string array of dataList</param>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -567,7 +567,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Delete all password data.
+        /// Deletes all password data.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void DeleteAllFormPasswordData()
@@ -577,7 +577,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Delete all candidate data.
+        /// Deletes all candidate data.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void DeleteAllFormCandidateData()
@@ -587,7 +587,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Set context proxy.
+        /// Sets context proxy.
         /// <param name="proxy">The string array of dataList</param>
         /// <param name="rule">Bypass rule</param>
         /// </summary>
@@ -599,7 +599,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Free unused memory.
+        /// Frees unused memory.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool FreeUnusedMemory()
