@@ -26,17 +26,20 @@ namespace Tizen.NUI.EXaml
 {
     internal class SetDynamicResource : Operation
     {
-        public SetDynamicResource(int instanceIndex, int propertyIndex, string key)
+        public SetDynamicResource(GlobalDataList globalDataList, int instanceIndex, int propertyIndex, string key)
         {
             this.instanceIndex = instanceIndex;
             this.propertyIndex = propertyIndex;
             this.key = key;
+            this.globalDataList = globalDataList;
         }
+
+        private GlobalDataList globalDataList;
 
         public void Do()
         {
-            var instance = LoadEXaml.GatheredInstances[instanceIndex] as BindableObject;
-            var property = GatherBindableProperties.GatheredBindableProperties[propertyIndex];
+            var instance = globalDataList.GatheredInstances[instanceIndex] as BindableObject;
+            var property = globalDataList.GatheredBindableProperties[propertyIndex];
 
             instance.SetDynamicResource(property, key);
         }
