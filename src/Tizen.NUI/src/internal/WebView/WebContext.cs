@@ -28,8 +28,10 @@ namespace Tizen.NUI
     public class WebContext : Disposable
     {
         private string proxyUri;
-        private string certificateFilePath;
-        private bool disableCache;
+        private string appId;
+        private string appVersion;
+        private float timeOffset;
+        private ApplicationType applicationType;
         private SecurityOriginListAcquiredCallback securityOriginListAcquiredCallback;
         private readonly WebContextSecurityOriginListAcquiredProxyCallback securityOriginListAcquiredProxyCallback;
         private PasswordDataListAcquiredCallback passwordDataListAcquiredCallback;
@@ -108,6 +110,37 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Application type
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum ApplicationType
+        {
+            /// <summary>
+            /// Web browser.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            WebBrowser,
+
+            /// <summary>
+            /// Hbb tv.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            HbbTv,
+
+            /// <summary>
+            /// Web runtime.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            WebRuntime,
+
+            /// <summary>
+            /// Other.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Other,
+        }
+
+        /// <summary>
         /// Cache model
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -120,6 +153,7 @@ namespace Tizen.NUI
             set
             {
                 Interop.WebContext.SetCacheModel(SwigCPtr, (int)value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
@@ -137,8 +171,9 @@ namespace Tizen.NUI
             {
                 if (value != null)
                 {
-                    proxyUri = value.AbsoluteUri;
                     Interop.WebContext.SetProxyUri(SwigCPtr, proxyUri);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    proxyUri = value.AbsoluteUri;
                 }
             }
         }
@@ -151,12 +186,12 @@ namespace Tizen.NUI
         {
             get
             {
-                return certificateFilePath;
+                return Interop.WebContext.GetCertificateFilePath(SwigCPtr);
             }
             set
             {
-                certificateFilePath = value;
                 Interop.WebContext.SetCertificateFilePath(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
@@ -164,16 +199,129 @@ namespace Tizen.NUI
         /// Disable cache or not.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool DisableCache
+        public bool CacheEnabled
         {
             get
             {
-                return disableCache;
+                return Interop.WebContext.IsCacheEnabled(SwigCPtr);
             }
             set
             {
-                disableCache = value;
-                Interop.WebContext.DisableCache(SwigCPtr, value);
+                Interop.WebContext.EnableCache(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+        /// <summary>
+        /// Set context app id.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string AppId
+        {
+            get
+            {
+                return appId;
+            }
+            set
+            {
+                Interop.WebContext.SetContextAppId(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                appId = value;
+            }
+        }
+
+        /// <summary>
+        /// Set context app version.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string AppVersion
+        {
+            get
+            {
+                return appVersion;
+            }
+            set
+            {
+                Interop.WebContext.SetContextAppVersion(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                appVersion = value;
+            }
+        }
+
+        /// <summary>
+        /// Set context app type.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ApplicationType AppType
+        {
+            get
+            {
+                return applicationType;
+            }
+            set
+            {
+                Interop.WebContext.SetContextApplicationType(SwigCPtr, (int)value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                applicationType = value;
+            }
+        }
+
+        /// <summary>
+        /// Set context time offset.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float TimeOffset
+        {
+            get
+            {
+                return timeOffset;
+            }
+            set
+            {
+                Interop.WebContext.SetContextTimeOffset(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                timeOffset = value;
+            }
+        }
+
+        /// <summary>
+        /// Default zoom factor.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float DefaultZoomFactor
+        {
+            get
+            {
+                return Interop.WebContext.GetContextDefaultZoomFactor(SwigCPtr);
+            }
+            set
+            {
+                Interop.WebContext.SetDefaultZoomFactor(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+        /// <summary>
+        /// Get context proxy.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string ContextProxy
+        {
+            get
+            {
+                return Interop.WebContext.GetContextProxy(SwigCPtr);
+            }
+        }
+
+        /// <summary>
+        /// get proxy bypass rule.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string ProxyBypassRule
+        {
+            get
+            {
+                return Interop.WebContext.GetProxyBypassRule(SwigCPtr);
             }
         }
 
@@ -268,7 +416,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool DeleteWebStorage(WebSecurityOrigin origin)
         {
-            bool result = Interop.WebContext.DeleteWebStorageOrigin(SwigCPtr, WebSecurityOrigin.getCPtr(origin));
+            bool result = Interop.WebContext.DeleteWebStorage(SwigCPtr, WebSecurityOrigin.getCPtr(origin));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return result;
         }
@@ -340,6 +488,125 @@ namespace Tizen.NUI
             IntPtr ip = Marshal.GetFunctionPointerForDelegate(callback);
             Interop.WebContext.RegisterMimeOverriddenCallback(SwigCPtr, new HandleRef(this, ip));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Set context time zone offset.
+        /// <param name="offset">Time offset</param>
+        /// <param name="time">Daylight saving time</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetContextTimeZoneOffset(float offset, float time)
+        {
+            Interop.WebContext.SetContextTimeZoneOffset(SwigCPtr, offset, time);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Register url schemes enabled.
+        /// <param name="strArray">The string array of schemes</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RegisterUrlSchemesAsCorsEnabled(string[] strArray)
+        {
+            if (strArray != null)
+            {
+                Interop.WebContext.RegisterUrlSchemesAsCorsEnabled(SwigCPtr, strArray, (uint)strArray.Length);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+        /// <summary>
+        /// Register js plugin mime types.
+        /// <param name="strArray">The string array of types</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RegisterJsPluginMimeTypes(string[] strArray)
+        {
+            if (strArray != null)
+            {
+                Interop.WebContext.RegisterJsPluginMimeTypes(SwigCPtr, strArray, (uint)strArray.Length);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+        /// <summary>
+        /// Delete all application cache.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool DeleteAllApplicationCache()
+        {
+            bool ret = Interop.WebContext.DeleteAllApplicationCache(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Delete all web indexed database.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool DeleteAllWebIndexedDatabase()
+        {
+            bool ret = Interop.WebContext.DeleteAllWebIndexedDatabase(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Delete password dataList.
+        /// <param name="strArray">The string array of dataList</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void DeleteFormPasswordDataList(string[] strArray)
+        {
+            if (strArray != null)
+            {
+                Interop.WebContext.DeleteFormPasswordDataList(SwigCPtr, strArray, (uint)strArray.Length);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+        /// <summary>
+        /// Delete all password data.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void DeleteAllFormPasswordData()
+        {
+            Interop.WebContext.DeleteAllFormPasswordData(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Delete all candidate data.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void DeleteAllFormCandidateData()
+        {
+            Interop.WebContext.DeleteAllFormCandidateData(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Set context proxy.
+        /// <param name="proxy">The string array of dataList</param>
+        /// <param name="rule">Bypass rule</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetContextProxy(string proxy, string rule)
+        {
+            Interop.WebContext.SetContextProxy(SwigCPtr, proxy, rule);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Free unused memory.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool FreeUnusedMemory()
+        {
+            bool ret = Interop.WebContext.FreeUnusedMemory(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         private void OnSecurityOriginListAcquired(IntPtr list)

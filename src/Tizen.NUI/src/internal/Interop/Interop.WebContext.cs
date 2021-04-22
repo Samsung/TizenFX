@@ -33,9 +33,6 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContext_SetCertificateFilePath")]
             public static extern void SetCertificateFilePath(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContext_DisableCache")]
-            public static extern void DisableCache(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContext_SetDefaultProxyAuth")]
             public static extern void SetDefaultProxyAuth(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3);
 
@@ -54,11 +51,11 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContext_GetWebStorageUsageForOrigin")]
             public static extern bool GetWebStorageUsageForOrigin(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContext_DeleteWebStorage")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContext_DeleteAllWebStorage")]
             public static extern void DeleteAllWebStorage(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContext_DeleteWebStorageOrigin")]
-            public static extern bool DeleteWebStorageOrigin(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContext_DeleteWebStorage")]
+            public static extern bool DeleteWebStorage(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContext_DeleteLocalFileSystem")]
             public static extern void DeleteLocalFileSystem(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -77,6 +74,69 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContext_RegisterMimeOverriddenCallback")]
             public static extern void RegisterMimeOverriddenCallback(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContext_EnableCache")]
+            public static extern void EnableCache(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContext_IsCacheEnabled")]
+            public static extern bool IsCacheEnabled(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContext_GetContextCertificateFile")]
+            public static extern string GetCertificateFilePath(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContext_SetContextAppId")]
+            public static extern void SetContextAppId(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContext_SetContextAppVersion")]
+            public static extern bool SetContextAppVersion(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContext_SetContextApplicationType")]
+            public static extern void SetContextApplicationType(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContext_SetContextTimeOffset")]
+            public static extern void SetContextTimeOffset(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContext_SetContextTimeZoneOffset")]
+            public static extern void SetContextTimeZoneOffset(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContext_RegisterUrlSchemesAsCorsEnabled")]
+            public static extern void RegisterUrlSchemesAsCorsEnabled(global::System.Runtime.InteropServices.HandleRef jarg1, string[] jarg2, uint jarg3);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContext_RegisterJsPluginMimeTypes")]
+            public static extern void RegisterJsPluginMimeTypes(global::System.Runtime.InteropServices.HandleRef jarg1, string[] jarg2, uint jarg3);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContext_SetDefaultZoomFactor")]
+            public static extern void SetDefaultZoomFactor(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContext_GetContextDefaultZoomFactor")]
+            public static extern float GetContextDefaultZoomFactor(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContext_DeleteAllApplicationCache")]
+            public static extern bool DeleteAllApplicationCache(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContext_DeleteAllWebIndexedDatabase")]
+            public static extern bool DeleteAllWebIndexedDatabase(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContext_DeleteFormPasswordDataList")]
+            public static extern void DeleteFormPasswordDataList(global::System.Runtime.InteropServices.HandleRef jarg1, string[] jarg2, uint jarg3);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContext_DeleteAllFormPasswordData")]
+            public static extern void DeleteAllFormPasswordData(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContext_DeleteAllFormCandidateData")]
+            public static extern void DeleteAllFormCandidateData(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContext_GetContextProxy")]
+            public static extern string GetContextProxy(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContext_SetContextProxy")]
+            public static extern void SetContextProxy(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContext_GetProxyBypassRule")]
+            public static extern string GetProxyBypassRule(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContext_FreeUnusedMemory")]
+            public static extern bool FreeUnusedMemory(global::System.Runtime.InteropServices.HandleRef jarg1);
         }
     }
 }
