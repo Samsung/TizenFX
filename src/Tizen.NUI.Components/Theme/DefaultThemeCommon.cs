@@ -38,6 +38,7 @@ namespace Tizen.NUI.Components
                 Size = new Size(339, 96),
                 CornerRadiusPolicy = VisualTransformPolicyType.Relative,
                 CornerRadius = 0.2916f,
+                ItemAlignment = LinearLayout.Alignment.Center,
                 BackgroundColor = new Selector<Color>()
                 {
                     Normal = new Color(0.039f, 0.055f, 0.29f, 1),
@@ -54,20 +55,21 @@ namespace Tizen.NUI.Components
 
             theme.AddStyleWithoutClone("Tizen.NUI.Components.CheckBox", new ButtonStyle()
             {
-                TextPadding = new Extents(32, 0, 0, 0),
+                ItemSpacing = new Size2D(32, 32),
+                ItemAlignment = LinearLayout.Alignment.CenterVertical,
                 Icon = new ImageViewStyle()
                 {
                     Size = new Size(36, 36),
                     ResourceUrl = new Selector<string>()
                     {
-                        Normal = FrameworkInformation.ResourcePath + "IoT_check_off.svg",
-                        Pressed = FrameworkInformation.ResourcePath + "IoT_check_off_p.svg",
-                        Disabled = FrameworkInformation.ResourcePath + "IoT_check_off_d.svg",
-                        Focused = FrameworkInformation.ResourcePath + "IoT_check_off_f.svg",
-                        Selected = FrameworkInformation.ResourcePath + "IoT_check_on.svg",
-                        SelectedPressed = FrameworkInformation.ResourcePath + "IoT_check_on_p.svg",
-                        SelectedFocused = FrameworkInformation.ResourcePath + "IoT_check_on_f.svg",
-                        DisabledSelected = FrameworkInformation.ResourcePath + "IoT_check_on_d.svg",
+                        Normal = FrameworkInformation.ResourcePath + "IoT_check_off.png",
+                        Pressed = FrameworkInformation.ResourcePath + "IoT_check_off_p.png",
+                        Disabled = FrameworkInformation.ResourcePath + "IoT_check_off_d.png",
+                        Focused = FrameworkInformation.ResourcePath + "IoT_check_off_f.png",
+                        Selected = FrameworkInformation.ResourcePath + "IoT_check_on.png",
+                        SelectedPressed = FrameworkInformation.ResourcePath + "IoT_check_on_p.png",
+                        SelectedFocused = FrameworkInformation.ResourcePath + "IoT_check_on_f.png",
+                        DisabledSelected = FrameworkInformation.ResourcePath + "IoT_check_on_d.png",
                     },
                 },
                 Text = new TextLabelStyle()
@@ -117,9 +119,10 @@ namespace Tizen.NUI.Components
 
             theme.AddStyleWithoutClone("Tizen.NUI.Components.Progress", new ProgressStyle()
             {
-                Size = new Size(200, 5),
+                Size = new Size(200, 25),
                 Track = new ImageViewStyle()
                 {
+                    ResourceUrl = FrameworkInformation.ResourcePath + "IoT_progressindicator_empty.png",
                     BackgroundColor = new Color(0, 0, 0, 0.1f),
                 },
                 Buffer = new ImageViewStyle()
@@ -128,26 +131,33 @@ namespace Tizen.NUI.Components
                 },
                 Progress = new ImageViewStyle()
                 {
+                    ResourceUrl = new Selector<string>()
+                    {
+                        Normal = FrameworkInformation.ResourcePath + "IoT_progressindicator_progress.png",
+                        Disabled = FrameworkInformation.ResourcePath + "IoT_progressindicator_progressdisabled.png",
+                    },
                     BackgroundColor = new Color(0.05f, 0.63f, 0.9f, 1),
                 },
+                IndeterminateImageUrl = FrameworkInformation.ResourcePath + "nui_component_default_progress_indeterminate.png",
             });
 
             theme.AddStyleWithoutClone("Tizen.NUI.Components.RadioButton", new ButtonStyle()
             {
-                TextPadding = new Extents(32, 0, 0, 0),
+                ItemSpacing = new Size2D(32, 32),
+                ItemAlignment = LinearLayout.Alignment.CenterVertical,
                 Icon = new ImageViewStyle()
                 {
                     Size = new Size(36, 36),
                     ResourceUrl = new Selector<string>()
                     {
-                        Normal = FrameworkInformation.ResourcePath + "IoT_radiobutton_off.svg",
-                        Pressed = FrameworkInformation.ResourcePath + "IoT_radiobutton_off_p.svg",
-                        Disabled = FrameworkInformation.ResourcePath + "IoT_radiobutton_off_d.svg",
-                        Focused = FrameworkInformation.ResourcePath + "IoT_radiobutton_off_f.svg",
-                        Selected = FrameworkInformation.ResourcePath + "IoT_radiobutton_on.svg",
-                        SelectedPressed = FrameworkInformation.ResourcePath + "IoT_radiobutton_on_p.svg",
-                        SelectedFocused = FrameworkInformation.ResourcePath + "IoT_radiobutton_on_f.svg",
-                        DisabledSelected = FrameworkInformation.ResourcePath + "IoT_radiobutton_on_d.svg",
+                        Normal = FrameworkInformation.ResourcePath + "IoT_radiobutton_off.png",
+                        Pressed = FrameworkInformation.ResourcePath + "IoT_radiobutton_off_p.png",
+                        Disabled = FrameworkInformation.ResourcePath + "IoT_radiobutton_off_d.png",
+                        Focused = FrameworkInformation.ResourcePath + "IoT_radiobutton_off_f.png",
+                        Selected = FrameworkInformation.ResourcePath + "IoT_radiobutton_on.png",
+                        SelectedPressed = FrameworkInformation.ResourcePath + "IoT_radiobutton_on_p.png",
+                        SelectedFocused = FrameworkInformation.ResourcePath + "IoT_radiobutton_on_f.png",
+                        DisabledSelected = FrameworkInformation.ResourcePath + "IoT_radiobutton_on_d.png",
                     },
                 },
                 Text = new TextLabelStyle()
@@ -160,48 +170,58 @@ namespace Tizen.NUI.Components
             theme.AddStyleWithoutClone("Tizen.NUI.Components.Slider", new SliderStyle()
             {
                 Size = new Size(200, 50),
-                TrackThickness = 5,
+                TrackThickness = 8,
                 Track = new ImageViewStyle()
                 {
-                    BackgroundColor = new Color(0, 0, 0, 0.1f),
+                    Size = new Size(100, 8),
+                    ResourceUrl = new Selector<string>()
+                    {
+                        Normal = FrameworkInformation.ResourcePath + "IoT_slider_status_empty_track.png",
+                        Disabled = FrameworkInformation.ResourcePath + "IoT_slider_status_track_disabled.png",
+                    },
+                    BackgroundColor = new Color(1.0f, 1.0f, 1.0f, 0.1f),
                 },
                 Progress = new ImageViewStyle()
                 {
-                    BackgroundColor = new Color(0.5f, 0.63f, 0.9f, 1),
+                    Size = new Size(100, 8),
+                    ResourceUrl = FrameworkInformation.ResourcePath + "IoT_slider_status_track.png",
+                    BackgroundColor = new Color(0.03f, 0.05f, 0.3f, 1),
                 },
                 Thumb = new ImageViewStyle()
                 {
-                    Size = new Size(50, 50),
-                    ResourceUrl = FrameworkInformation.ResourcePath + "nui_component_default_slider_thumb_n.png",
-                    BackgroundImage = new Selector<string>()
+                    Size = new Size(36, 36),
+                    ResourceUrl = FrameworkInformation.ResourcePath + "IoT_slider_handler_normal.png",
+                    // TODO : Should check later when UX guide provides the pressed image
+                    /*BackgroundImage = new Selector<string>()
                     {
                         Normal = FrameworkInformation.ResourcePath + "nui_component_default_slider_thumb_bg_p.png",
                         Pressed = FrameworkInformation.ResourcePath + "nui_component_default_slider_thumb_bg_p.png",
-                    }
+                    }*/
                 },
                 ValueIndicatorImage = new ImageViewStyle()
                 {
-                    Size = new Size(83, 54),
-                    ResourceUrl = FrameworkInformation.ResourcePath + "nui_component_default_slider_value_indicator.png",
+                    Size = new Size(49, 24),
+                    BackgroundColor = new Color(0.0f, 0.04f, 0.16f, 1.0f),
                 },
             });
 
             theme.AddStyleWithoutClone("Tizen.NUI.Components.Switch", new SwitchStyle()
             {
-                TextPadding = new Extents(32, 0, 0, 0),
+                ItemSpacing = new Size2D(32, 32),
+                ItemAlignment = LinearLayout.Alignment.CenterVertical,
                 Track = new ImageViewStyle()
                 {
                     Size = new Size(80, 40),
                     ResourceUrl = new Selector<string>()
                     {
-                        Normal = FrameworkInformation.ResourcePath + "IoT_switch_track_off.svg",
-                        Pressed = FrameworkInformation.ResourcePath + "IoT_switch_track_off_p.svg",
-                        Disabled = FrameworkInformation.ResourcePath + "IoT_switch_track_off_d.svg",
-                        Focused = FrameworkInformation.ResourcePath + "IoT_switch_track_off_f.svg",
-                        Selected = FrameworkInformation.ResourcePath + "IoT_switch_track_on.svg",
-                        SelectedPressed = FrameworkInformation.ResourcePath + "IoT_switch_track_on_p.svg",
-                        SelectedFocused = FrameworkInformation.ResourcePath + "IoT_switch_track_on_f.svg",
-                        DisabledSelected = FrameworkInformation.ResourcePath + "IoT_switch_track_on_d.svg",
+                        Normal = FrameworkInformation.ResourcePath + "IoT_switch_track_off.png",
+                        Pressed = FrameworkInformation.ResourcePath + "IoT_switch_track_off_p.png",
+                        Disabled = FrameworkInformation.ResourcePath + "IoT_switch_track_off_d.png",
+                        Focused = FrameworkInformation.ResourcePath + "IoT_switch_track_off_f.png",
+                        Selected = FrameworkInformation.ResourcePath + "IoT_switch_track_on.png",
+                        SelectedPressed = FrameworkInformation.ResourcePath + "IoT_switch_track_on_p.png",
+                        SelectedFocused = FrameworkInformation.ResourcePath + "IoT_switch_track_on_f.png",
+                        DisabledSelected = FrameworkInformation.ResourcePath + "IoT_switch_track_on_d.png",
                     },
                 },
                 Thumb = new ImageViewStyle()
@@ -209,11 +229,11 @@ namespace Tizen.NUI.Components
                     Size = new Size(40, 40),
                     ResourceUrl = new Selector<string>()
                     {
-                        Normal = FrameworkInformation.ResourcePath + "IoT_switch_thumb.svg",
-                        Disabled = FrameworkInformation.ResourcePath + "IoT_switch_thumb_d.svg",
-                        Selected = FrameworkInformation.ResourcePath + "IoT_switch_thumb_s.svg",
-                        SelectedPressed = FrameworkInformation.ResourcePath + "IoT_switch_thumb_sp.svg",
-                        SelectedFocused = FrameworkInformation.ResourcePath + "IoT_switch_thumb_sf.svg",
+                        Normal = FrameworkInformation.ResourcePath + "IoT_switch_thumb.png",
+                        Disabled = FrameworkInformation.ResourcePath + "IoT_switch_thumb_d.png",
+                        Selected = FrameworkInformation.ResourcePath + "IoT_switch_thumb_s.png",
+                        SelectedPressed = FrameworkInformation.ResourcePath + "IoT_switch_thumb_sp.png",
+                        SelectedFocused = FrameworkInformation.ResourcePath + "IoT_switch_thumb_sf.png",
                     }
                 },
                 Text = new TextLabelStyle()
@@ -240,11 +260,28 @@ namespace Tizen.NUI.Components
 
             theme.AddStyleWithoutClone("Tizen.NUI.Components.Scrollbar", new ScrollbarStyle()
             {
-                TrackThickness = 6,
-                ThumbThickness = 6,
-                TrackColor = new Color(1, 1, 1, 0.15f),
-                ThumbColor = new Color(0.6f, 0.6f, 0.6f, 1.0f),
-                TrackPadding = 4
+                TrackThickness = 12,
+                ThumbThickness = 12,
+                TrackColor = new Color(0f, 0f, 0f, 0f),
+                ThumbColor = new Color("#0A0E4AFF"),
+                TrackPadding = 4,
+                ThumbVerticalImageUrl = FrameworkInformation.ResourcePath + "nui_component_default_scroll_vbar.#.png",
+                ThumbHorizontalImageUrl = FrameworkInformation.ResourcePath + "nui_component_default_scroll_hbar.#.png",
+            });
+
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.LinearLayouter", new ViewStyle()
+            {
+                Padding = new Extents(64, 64, 0, 0)
+            });
+
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.GridLayouter", new ViewStyle()
+            {
+                Padding = new Extents(0, 0, 0, 0),
+            });
+
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.ItemsLayouter", new ViewStyle()
+            {
+                Padding = new Extents(0, 0, 0, 0),
             });
 
             theme.AddStyleWithoutClone("Tizen.NUI.Components.RecyclerViewItem", new RecyclerViewItemStyle()
@@ -262,6 +299,7 @@ namespace Tizen.NUI.Components
             {
                 SizeHeight = 108,
                 Padding = new Extents(64, 64, 18, 17),
+                Margin = new Extents(0, 0, 0, 0),
                 BackgroundColor = new Selector<Color>()
                 {
                     Normal = new Color(1, 1, 1, 1),
@@ -300,7 +338,8 @@ namespace Tizen.NUI.Components
             });
             theme.AddStyleWithoutClone("Tizen.NUI.Components.DefaultGridItem", new DefaultGridItemStyle()
             {
-                Padding = new Extents(5, 5, 5, 5),
+                Padding = new Extents(0, 0, 0, 0),
+                Margin = new Extents(5, 5, 5, 5),
                 Caption = new TextLabelStyle()
                 {
                     SizeHeight = 60,
@@ -317,6 +356,7 @@ namespace Tizen.NUI.Components
             {
                 SizeHeight = 60,
                 Padding = new Extents(64, 64, 12, 12),
+                Margin = new Extents(0, 0, 0, 0),
                 BackgroundColor = new Selector<Color>()
                 {
                     Normal = new Color("#EEEEF1FF"),
@@ -371,13 +411,13 @@ namespace Tizen.NUI.Components
                 },
                 ActionView = new ViewStyle()
                 {
-                    Size = new Size(-1, 48),
+                    Size = new Size(-1, 120),
                     CornerRadius = 0,
                     BackgroundColor = new Color(0, 0, 0, 0),
                 },
                 ActionButton = new ButtonStyle()
                 {
-                    Size = new Size(-1, 48),
+                    Size = new Size(-1, 120),
                     CornerRadius = 0,
                     BackgroundColor = new Color(0, 0, 0, 0),
                     Text = new TextLabelStyle()
@@ -432,7 +472,7 @@ namespace Tizen.NUI.Components
                     Position = new Position(0, 132),
                     BackgroundColor = new Color("#0A0E4AFF"),
                 },
-                StartScrollOffset = new Size2D(0, 12),
+                StartScrollOffset = new Size(0, 12),
             });
 
             theme.AddStyleWithoutClone("Tizen.NUI.Components.TabButton", new TabButtonStyle()
@@ -536,6 +576,138 @@ namespace Tizen.NUI.Components
                 ActionContent = new ViewStyle()
                 {
                     Size = new Size(1024, -2),
+                },
+            });
+
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.TimePicker", new TimePickerStyle()
+            {
+                CellPadding = new Size(50, 339),
+
+                Pickers = new PickerStyle()
+                {
+                    Size = new Size(160, 339),
+                    ItemTextLabel = new TextLabelStyle()
+                    {
+                        //FIXME: Should be check PointSize. given size from UX is too large.
+                        PixelSize = 32,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        Size = new Size(0,72),
+                        TextColor = new Selector<Color>()
+                        {
+                            Normal = new Color("#000C2BFF"),
+                        },
+                        BackgroundColor = Color.White,
+                    },
+                    Divider = new ViewStyle()
+                    {
+                        SizeHeight = 2.0f,
+                        WidthResizePolicy = ResizePolicyType.FillToParent,
+                        Position = new Position(0, 132),
+                        BackgroundColor = new Color("#0A0E4AFF"),
+                    },
+                    StartScrollOffset = new Size2D(0, 12),
+                }
+            });
+
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.DatePicker", new DatePickerStyle()
+            {
+                CellPadding = new Size(50, 339),
+
+                Pickers = new PickerStyle()
+                {
+                    Size = new Size(160, 339),
+                    ItemTextLabel = new TextLabelStyle()
+                    {
+                        //FIXME: Should be check PointSize. given size from UX is too large.
+                        PixelSize = 32,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        Size = new Size(0,72),
+                        TextColor = new Selector<Color>()
+                        {
+                            Normal = new Color("#000C2BFF"),
+                        },
+                        BackgroundColor = Color.White,
+                    },
+                    Divider = new ViewStyle()
+                    {
+                        SizeHeight = 2.0f,
+                        WidthResizePolicy = ResizePolicyType.FillToParent,
+                        Position = new Position(0, 132),
+                        BackgroundColor = new Color("#0A0E4AFF"),
+                    },
+                    StartScrollOffset = new Size2D(0, 12),
+                }
+            });
+
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.AlertDialog", new AlertDialogStyle()
+            {
+                Size = new Size(-2, -2),
+                Padding = new Extents(80, 80, 0, 0),
+                BackgroundImage = FrameworkInformation.ResourcePath + "nui_component_default_dialog_bg.#.png",
+                TitleTextLabel = new TextLabelStyle()
+                {
+                    Size = new Size(1024, -2),
+                    Margin = new Extents(0, 0, 40, 40),
+                    PixelSize = 40,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    TextColor = new Selector<Color>()
+                    {
+                        Normal = new Color("#000C2BFF"),
+                    },
+                },
+                MessageTextLabel = new TextLabelStyle()
+                {
+                    Size = new Size(1024, -2),
+                    Margin = new Extents(0, 0, 0, 64),
+                    PixelSize = 32,
+                    MultiLine = true,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    TextColor = new Selector<Color>()
+                    {
+                        Normal = new Color("#000C2BFF"),
+                    },
+                },
+                ActionContent = new ViewStyle()
+                {
+                    Size = new Size(1024, -2),
+                },
+            });
+
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.MenuItem", new ButtonStyle()
+            {
+                Size = new Size(480, -2),
+                MinimumSize = new Size2D(0, 72),
+                CornerRadius = 0,
+                BackgroundImage = FrameworkInformation.ResourcePath + "nui_component_menu_item_bg.png",
+                Padding = new Extents(16, 16, 16, 16),
+                Text = new TextLabelStyle()
+                {
+                    PixelSize = 32,
+                    MultiLine = true,
+                    HorizontalAlignment = HorizontalAlignment.Begin,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    TextColor = new Selector<Color>()
+                    {
+                        Normal = new Color("#001447FF"),
+                        Focused = new Color("#00338BFF"),
+                        Pressed = new Color("#1B69CAFF"),
+                        Disabled = new Color("#C3CAD2FF"),
+                    },
+                },
+                Icon = new ImageViewStyle()
+                {
+                    Size = new Size(-2, 48),
+                    Color = new Selector<Color>()
+                    {
+                        Normal = new Color("#001447FF"),
+                        Focused = new Color("#00338BFF"),
+                        Pressed = new Color("#1B69CAFF"),
+                        Disabled = new Color("#C3CAD2FF"),
+                    },
                 },
             });
 

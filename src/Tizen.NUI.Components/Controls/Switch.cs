@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
  */
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Components.Extension;
 
@@ -65,7 +66,10 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnInitialize()
         {
-            track = new ImageView();
+            track = new ImageView()
+            {
+                EnableControlStatePropagation = true
+            };
             thumb = new ImageView();
             track.Add(thumb);
 
@@ -175,8 +179,12 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public StringSelector SwitchBackgroundImageURLSelector
         {
-            get => track == null ? null : new StringSelector((Selector<string>)track.GetValue(ImageView.ResourceUrlSelectorProperty));
-            set => track?.SetValue(ImageView.ResourceUrlSelectorProperty, value);
+            get => new StringSelector(track.ResourceUrlSelector);
+            set
+            {
+                Debug.Assert(track != null);
+                track.ResourceUrlSelector = value;
+            }
         }
 
         /// <summary>
@@ -202,8 +210,12 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public StringSelector SwitchHandlerImageURLSelector
         {
-            get => thumb == null ? null : new StringSelector((Selector<string>)thumb.GetValue(ImageView.ResourceUrlSelectorProperty));
-            set => thumb?.SetValue(ImageView.ResourceUrlSelectorProperty, value);
+            get => new StringSelector(thumb.ResourceUrlSelector);
+            set
+            {
+                Debug.Assert(thumb != null);
+                thumb.ResourceUrlSelector = value;
+            }
         }
 
         /// <summary>

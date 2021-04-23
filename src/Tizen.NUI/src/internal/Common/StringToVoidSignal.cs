@@ -35,11 +35,18 @@ namespace Tizen.NUI
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        static internal string ConvertParam1(global::System.IntPtr data)
+        static internal string GetResult(global::System.IntPtr data)
         {
-            string result = Interop.StringToVoidSignal.ConvertParam1(data);
+            string result = Interop.StringToVoidSignal.GetResult(data);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return result;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        static internal void SetResult(global::System.IntPtr data, string res)
+        {
+            Interop.StringToVoidSignal.SetResult(data, res);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -88,13 +95,6 @@ namespace Tizen.NUI
                 Interop.StringToVoidSignal.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Emit()
-        {
-            Interop.StringToVoidSignal.Emit(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
     }
 }

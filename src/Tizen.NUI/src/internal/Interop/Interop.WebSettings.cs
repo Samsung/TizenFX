@@ -140,6 +140,27 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebSettings_SetDefaultTextEncodingName")]
             public static extern void SetDefaultTextEncodingName(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebSettings_SetViewportMetaTag")]
+            public static extern bool SetViewportMetaTag(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebSettings_SetForceZoom")]
+            public static extern bool SetForceZoom(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebSettings_IsZoomForced")]
+            public static extern bool IsZoomForced(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebSettings_SetTextZoomEnabled")]
+            public static extern bool SetTextZoomEnabled(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebSettings_IsTextZoomEnabled")]
+            public static extern bool IsTextZoomEnabled(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebSettings_SetExtraFeature")]
+            public static extern void SetExtraFeature(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, bool jarg3);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebSettings_IsExtraFeatureEnabled")]
+            public static extern bool IsExtraFeatureEnabled(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
         }
     }
 }

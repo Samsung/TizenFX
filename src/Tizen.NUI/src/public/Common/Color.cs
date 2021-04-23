@@ -1097,9 +1097,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public float R
         {
+            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Color(...) constructor")]
             set
             {
-                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Color(...) constructor");
                 Interop.Vector4.RSet(SwigCPtr, ValueCheck(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -1130,9 +1130,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public float G
         {
+            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Color(...) constructor")]
             set
             {
-                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Color(...) constructor");
                 Interop.Vector4.GSet(SwigCPtr, ValueCheck(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -1163,9 +1163,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public float B
         {
+            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Color(...) constructor")]
             set
             {
-                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Color(...) constructor");
                 Interop.Vector4.BSet(SwigCPtr, ValueCheck(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -1196,9 +1196,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public float A
         {
+            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Color(...) constructor")]
             set
             {
-                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Color(...) constructor");
                 Interop.Vector4.ASet(SwigCPtr, ValueCheck(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 

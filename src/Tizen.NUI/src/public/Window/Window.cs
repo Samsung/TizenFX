@@ -34,8 +34,6 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public partial class Window : BaseHandle
     {
-        private static readonly Window instance = Application.Instance?.GetWindow();
-
         private HandleRef stageCPtr;
         private Layer rootLayer;
         private string windowTitle;
@@ -264,13 +262,7 @@ namespace Tizen.NUI
         /// Gets the current window.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Window Instance
-        {
-            get
-            {
-                return instance;
-            }
-        }
+        public static Window Instance { get; internal set; }
 
         /// <summary>
         /// Gets or sets a window type.
@@ -1237,7 +1229,9 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal RenderTaskList GetRenderTaskList()
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public RenderTaskList GetRenderTaskList()
         {
             RenderTaskList ret = new RenderTaskList(Interop.Stage.GetRenderTaskList(stageCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

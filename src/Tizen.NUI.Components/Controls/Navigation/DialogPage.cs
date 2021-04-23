@@ -44,6 +44,10 @@ namespace Tizen.NUI.Components
             WidthResizePolicy = ResizePolicyType.FillToParent;
             HeightResizePolicy = ResizePolicyType.FillToParent;
 
+            // FIXME: To pass touch event when Scrim is disabled.
+            //        When proper way to pass touch event is introduced, this code should be fixed.
+            EnableControlState = false;
+
             Scrim = CreateDefaultScrim();
         }
 
@@ -198,7 +202,26 @@ namespace Tizen.NUI.Components
         /// Indicates to dismiss dialog by touching on scrim.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool EnableDismissOnScrim { get; set; }
+        public bool EnableDismissOnScrim { get; set; } = true;
+
+        /// <summary>
+        /// The color of scrim.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color ScrimColor
+        {
+            get
+            {
+                return Scrim?.BackgroundColor;
+            }
+            set
+            {
+                if (Scrim != null)
+                {
+                    Scrim.BackgroundColor = value;
+                }
+            }
+        }
 
         private View CreateDefaultScrim()
         {
@@ -261,6 +284,66 @@ namespace Tizen.NUI.Components
                     Message = message,
                     Actions =  actions,
                 },
+            };
+
+            NUIApplication.GetDefaultWindow().GetDefaultNavigator().Push(dialogPage);
+        }
+
+        /// <summary>
+        /// Shows a menu by pushing a dialog page containing menu to default navigator.
+        /// </summary>
+        /// <param name="anchor">The anchor view where menu is displayed.</param>
+        /// <param name="items">The menu items.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [SuppressMessage("Microsoft.Reliability",
+                         "CA2000:DisposeObjectsBeforeLosingScope",
+                         Justification = "The pushed views are added to NavigationPages and are disposed in Navigator.Dispose().")]
+        public static void ShowMenu(View anchor, params MenuItem[] items)
+        {
+            if (items == null)
+            {
+                return;
+            }
+
+            Position2D anchorPosition = new Position2D((int)(anchor?.ScreenPosition.X ?? 0), (int)(anchor?.ScreenPosition.Y ?? 0) + (anchor?.Size2D.Height ?? 0) + (anchor?.Margin.Bottom ?? 0));
+
+            var dialogPage = new DialogPage()
+            {
+                Content = new Menu()
+                {
+                    Items = items,
+                    AnchorPosition = anchorPosition,
+                },
+                ScrimColor = Color.Transparent,
+            };
+
+            NUIApplication.GetDefaultWindow().GetDefaultNavigator().Push(dialogPage);
+        }
+
+        /// <summary>
+        /// Shows a menu by pushing a dialog page containing menu to default navigator.
+        /// </summary>
+        /// <param name="anchorPosition">The anchor position where menu is displayed.</param>
+        /// <param name="items">The menu items.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [SuppressMessage("Microsoft.Reliability",
+                         "CA2000:DisposeObjectsBeforeLosingScope",
+                         Justification = "The pushed views are added to NavigationPages and are disposed in Navigator.Dispose().")]
+        public static void ShowMenu(Position2D anchorPosition, params MenuItem[] items)
+        {
+            if (items == null)
+            {
+                return;
+            }
+
+            var dialogPage = new DialogPage()
+            {
+                Content = new Menu()
+                {
+                    Items = items,
+                    AnchorPosition = anchorPosition,
+                },
+                ScrimColor = Color.Transparent,
             };
 
             NUIApplication.GetDefaultWindow().GetDefaultNavigator().Push(dialogPage);

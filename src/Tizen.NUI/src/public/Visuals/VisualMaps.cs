@@ -424,7 +424,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Gets or sets the origin of the visual within its control area.<br />
-        /// By default, the origin is center.<br />
+        /// By default, the origin is AlignType.TopBegin.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -432,7 +432,7 @@ namespace Tizen.NUI
         {
             get
             {
-                return visualOrigin ?? (Visual.AlignType.Center);
+                return visualOrigin ?? (Visual.AlignType.TopBegin);
             }
             set
             {
@@ -443,7 +443,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Gets or sets the anchor point of the visual.<br />
-        /// By default, the anchor point is center.<br />
+        /// By default, the anchor point is AlignType.TopBegin.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -451,7 +451,7 @@ namespace Tizen.NUI
         {
             get
             {
-                return visualAnchorPoint ?? (Visual.AlignType.Center);
+                return visualAnchorPoint ?? (Visual.AlignType.TopBegin);
             }
             set
             {

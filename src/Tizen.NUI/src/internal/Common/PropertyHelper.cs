@@ -211,10 +211,9 @@ namespace Tizen.NUI
 
         private static object ObjectVector4ToFloat(object value)
         {
-            Type type = value.GetType();
-            if (type.Equals(typeof(Vector4)))
+            if (value is Vector4 vector)
             {
-                return ((Vector4)value).X;
+                return vector.X;
             }
 
             return value;
