@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,6 +34,10 @@ namespace Tizen.NUI.BaseComponents
         private string textEditorPlaceHolderTextSid = null;
         private bool systemlangTextFlag = false;
         private InputMethodContext inputMethodContext = null;
+        private float fontSizeScale = 1.0f;
+        private bool hasFontSizeChangedCallback = false;
+
+        static TextEditor() { }
 
         /// <summary>
         /// Creates the TextEditor control.
@@ -42,6 +46,14 @@ namespace Tizen.NUI.BaseComponents
         public TextEditor() : this(Interop.TextEditor.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Creates the TextEditor with specified style.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextEditor(TextEditorStyle style) : this(Interop.TextLabel.New(), true, style: style)
+        {
         }
 
         /// <summary>
@@ -66,7 +78,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal TextEditor(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.TextEditor.Upcast(cPtr), cMemoryOwn)
+        internal TextEditor(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true, TextEditorStyle style = null) : base(cPtr, cMemoryOwn, style)
         {
             if (!shown)
             {
@@ -1136,6 +1148,27 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The GrabHandleColor property.
+        /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (textEditor.GrabHandleColor.X = 0.1f;) is possible.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color GrabHandleColor
+        {
+            get
+            {
+                Color temp = (Color)GetValue(GrabHandleColorProperty);
+                return new Color(OnGrabHandleColorChanged, temp.R, temp.G, temp.B, temp.A);
+            }
+            set
+            {
+                SetValue(GrabHandleColorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// The Placeholder property.
         /// Gets or sets the placeholder: text, color, font family, font style, point size, and pixel size.
         /// </summary>
@@ -1268,6 +1301,52 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The FontSizeScale property. <br />
+        /// The default value is 1.0. <br />
+        /// If FontSizeScale.UseSystemSetting, will use the SystemSettings.FontSize internally. <br />
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public float FontSizeScale
+        {
+            get
+            {
+                return fontSizeScale;
+            }
+            set
+            {
+                float newFontSizeScale;
+
+                if (fontSizeScale == value) return;
+
+                fontSizeScale = value;
+                if (fontSizeScale == Tizen.NUI.FontSizeScale.UseSystemSetting)
+                {
+                    SystemSettingsFontSize systemSettingsFontSize;
+
+                    try
+                    {
+                        systemSettingsFontSize = SystemSettings.FontSize;
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("{0} Exception caught.", e);
+                        systemSettingsFontSize = SystemSettingsFontSize.Normal;
+                    }
+                    newFontSizeScale = TextUtils.GetFontSizeScale(systemSettingsFontSize);
+                    addFontSizeChangedCallback();
+                }
+                else
+                {
+                    newFontSizeScale = fontSizeScale;
+                    removeFontSizeChangedCallback();
+                }
+
+                SetValue(FontSizeScaleProperty, newFontSizeScale);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// Scroll the text control by specific amount..
         /// </summary>
         /// <param name="scroll">The amount (in pixels) of scrolling in horizontal &amp; vertical directions.</param>
@@ -1342,20 +1421,22 @@ namespace Tizen.NUI.BaseComponents
                 SystemSettings.LocaleLanguageChanged -= SystemSettings_LocaleLanguageChanged;
             }
 
+            removeFontSizeChangedCallback();
+
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
             if (this.HasBody())
             {
-                if (_textEditorTextChangedCallbackDelegate != null)
+                if (textEditorTextChangedCallbackDelegate != null)
                 {
-                    TextChangedSignal().Disconnect(_textEditorTextChangedCallbackDelegate);
+                    TextChangedSignal().Disconnect(textEditorTextChangedCallbackDelegate);
                 }
 
-                if (_textEditorMaxLengthReachedCallbackDelegate != null)
+                if (textEditorMaxLengthReachedCallbackDelegate != null)
                 {
-                    this.MaxLengthReachedSignal().Disconnect(_textEditorMaxLengthReachedCallbackDelegate);
+                    this.MaxLengthReachedSignal().Disconnect(textEditorMaxLengthReachedCallbackDelegate);
                 }
             }
 
@@ -1400,6 +1481,47 @@ namespace Tizen.NUI.BaseComponents
             if (textEditorPlaceHolderTextSid != null)
             {
                 PlaceholderText = NUIApplication.MultilingualResourceManager?.GetString(textEditorPlaceHolderTextSid, new CultureInfo(e.Value.Replace("_", "-")));
+            }
+        }
+
+        private void SystemSettingsFontSizeChanged(object sender, FontSizeChangedEventArgs e)
+        {
+            float newFontSizeScale = TextUtils.GetFontSizeScale(e.Value);
+            SetValue(FontSizeScaleProperty, newFontSizeScale);
+            NotifyPropertyChanged();
+        }
+
+        private void addFontSizeChangedCallback()
+        {
+            if (hasFontSizeChangedCallback != true)
+            {
+                try
+                {
+                    SystemSettings.FontSizeChanged += SystemSettingsFontSizeChanged;
+                    hasFontSizeChangedCallback = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("{0} Exception caught.", e);
+                    hasFontSizeChangedCallback = false;
+                }
+            }
+        }
+
+        private void removeFontSizeChangedCallback()
+        {
+            if (hasFontSizeChangedCallback == true)
+            {
+                try
+                {
+                    SystemSettings.FontSizeChanged -= SystemSettingsFontSizeChanged;
+                    hasFontSizeChangedCallback = false;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("{0} Exception caught.", e);
+                    hasFontSizeChangedCallback = true;
+                }
             }
         }
 
@@ -1466,6 +1588,8 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int HorizontalScrollPosition = Interop.TextEditor.HorizontalScrollPositionGet();
             internal static readonly int VerticalScrollPosition = Interop.TextEditor.VerticalScrollPositionGet();
             internal static readonly int PrimaryCursorPosition = Interop.TextEditor.PrimaryCursorPositionGet();
+            internal static readonly int FontSizeScale = Interop.TextEditor.FontSizeScaleGet();
+            internal static readonly int GrabHandleColor = Interop.TextEditor.GrabHandleColorGet();
         }
 
         internal class InputStyle
@@ -1513,6 +1637,9 @@ namespace Tizen.NUI.BaseComponents
         {
             TextColor = new Vector4(x, y, z, w);
         }
-
+        private void OnGrabHandleColorChanged(float r, float g, float b, float a)
+        {
+            GrabHandleColor = new Color(r, g, b, a);
+        }
     }
 }

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -59,6 +59,23 @@ namespace Tizen.NUI.BaseComponents
         {
             var textField = (TextField)bindable;
             return textField.translatablePlaceholderText;
+        });
+        /// <summary>
+        /// TranslatablePlaceholderTextFocused property
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty TranslatablePlaceholderTextFocusedProperty = BindableProperty.Create(nameof(TranslatablePlaceholderTextFocused), typeof(string), typeof(TextField), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textField = (TextField)bindable;
+            if (newValue != null)
+            {
+                textField.translatablePlaceholderTextFocused = (string)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textField = (TextField)bindable;
+            return textField.translatablePlaceholderTextFocused;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -970,87 +987,41 @@ namespace Tizen.NUI.BaseComponents
             return (bool)temp;
         }));
 
-        #region Selectors
-        internal static readonly BindableProperty TranslatableTextSelectorProperty = BindableProperty.Create("TranslatableTextSelector", typeof(Selector<string>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty FontSizeScaleProperty = BindableProperty.Create(nameof(FontSizeScale), typeof(float), typeof(TextLabel), default(float), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
-            textField.SelectorData.TranslatableText.Update(textField, (Selector<string>)newValue, true);
-        },
-        defaultValueCreator: (bindable) =>
+            if (newValue != null)
+            {
+                using (var property = new Tizen.NUI.PropertyValue((float)newValue))
+                {
+                    Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.FontSizeScale, property);
+                }
+            }
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textField = (TextField)bindable;
-            return textField.SelectorData.TranslatableText.Get(textField);
-        });
-        internal static readonly BindableProperty TranslatablePlaceholderTextSelectorProperty = BindableProperty.Create("TranslatablePlaceholderTextSelector", typeof(Selector<string>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
+            float temp;
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.FontSizeScale).Get(out temp);
+            return temp;
+        }));
+        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty GrabHandleColorProperty = BindableProperty.Create(nameof(TextField.GrabHandleColor), typeof(Color), typeof(TextField), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
-            textField.SelectorData.TranslatablePlaceholderText.Update(textField, (Selector<string>)newValue, true);
-        },
-        defaultValueCreator: (bindable) =>
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.GrabHandleColor, new Tizen.NUI.PropertyValue((Color)newValue));
+            }
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textField = (TextField)bindable;
-            return textField.SelectorData.TranslatablePlaceholderText.Get(textField);
-        });
-        internal static readonly BindableProperty TextSelectorProperty = BindableProperty.Create("TextSelector", typeof(Selector<string>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var textField = (TextField)bindable;
-            textField.SelectorData.Text.Update(textField, (Selector<string>)newValue, true);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var textField = (TextField)bindable;
-            return textField.SelectorData.Text.Get(textField);
-        });
-        internal static readonly BindableProperty FontFamilySelectorProperty = BindableProperty.Create("FontFamilySelector", typeof(Selector<string>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var textField = (TextField)bindable;
-            textField.SelectorData.FontFamily.Update(textField, (Selector<string>)newValue, true);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var textField = (TextField)bindable;
-            return textField.SelectorData.FontFamily.Get(textField);
-        });
-        internal static readonly BindableProperty PointSizeSelectorProperty = BindableProperty.Create("PointSizeSelector", typeof(Selector<float?>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var textField = (TextField)bindable;
-            textField.SelectorData.PointSize.Update(textField, (Selector<float?>)newValue, true);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var textField = (TextField)bindable;
-            return textField.SelectorData.PointSize.Get(textField);
-        });
-        internal static readonly BindableProperty TextColorSelectorProperty = BindableProperty.Create("TextColorSelector", typeof(Selector<Color>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var textField = (TextField)bindable;
-            textField.SelectorData.TextColor.Update(textField, (Selector<Color>)newValue, true);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var textField = (TextField)bindable;
-            return textField.SelectorData.TextColor.Get(textField);
-        });
-        internal static readonly BindableProperty PlaceholderTextColorSelectorProperty = BindableProperty.Create("PlaceholderTextColorSelector", typeof(Selector<Vector4>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var textField = (TextField)bindable;
-            textField.SelectorData.PlaceholderTextColor.Update(textField, (Selector<Vector4>)newValue, true);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var textField = (TextField)bindable;
-            return textField.SelectorData.PlaceholderTextColor.Get(textField);
-        });
-        internal static readonly BindableProperty PrimaryCursorColorSelectorProperty = BindableProperty.Create("PrimaryCursorColorSelector", typeof(Selector<Vector4>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var textField = (TextField)bindable;
-            textField.SelectorData.PrimaryCursorColor.Update(textField, (Selector<Vector4>)newValue, true);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var textField = (TextField)bindable;
-            return textField.SelectorData.PrimaryCursorColor.Get(textField);
-        });
-        #endregion
+            Color temp = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.GrabHandleColor).Get(temp);
+            return temp;
+        }));
     }
 }

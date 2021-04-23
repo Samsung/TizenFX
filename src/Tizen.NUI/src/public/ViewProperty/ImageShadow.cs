@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +24,7 @@ namespace Tizen.NUI
     /// <summary>
     /// The Shadow composed of image for View
     /// </summary>
+    [Tizen.NUI.Binding.TypeConverter(typeof(Tizen.NUI.Binding.ImageShadowTypeConverter))]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class ImageShadow : ShadowBase, ICloneable
     {
@@ -42,38 +43,26 @@ namespace Tizen.NUI
         /// Constructor
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageShadow(string url, Rectangle border, Vector2 offset, Vector2 extents) : base(offset, extents)
+        public ImageShadow(string url, Vector2 offset = null, Vector2 extents = null) : this(url, null, offset, extents)
         {
-            Url = url;
-            Border = border == null ? null : new Rectangle(border);
-        }
-
-        /// <summary>
-        /// Hidden API (Inhouse API).
-        /// Constructor.
-        /// Using Uri class to provide safe sevice and secure API.
-        /// </summary>
-        /// <param name="uri">uri.</param>
-        /// <param name="border">border.</param>
-        /// <param name="offset">offset.</param>
-        /// <param name="extents">extents.</param>
-        /// <exception cref="ArgumentNullException">Thrown when uri is null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageShadow(Uri uri, Rectangle border, Vector2 offset, Vector2 extents) : base(offset, extents)
-        {
-            if (uri == null)
-            {
-                throw new ArgumentNullException(nameof(uri));
-            }
-            Url = uri.AbsoluteUri;
-            Border = border == null ? null : new Rectangle(border);
         }
 
         /// <summary>
         /// Constructor
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageShadow(ImageShadow other) : this(other?.Url, other.Border, other.Offset, other.Extents)
+        public ImageShadow(string url, Rectangle border, Vector2 offset = null, Vector2 extents = null) : base(offset, extents)
+        {
+            Url = url;
+            Border = border == null ? null : new Rectangle(border);
+        }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <exception cref="ArgumentNullException"> Thrown when other is null. </exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageShadow(ImageShadow other) : this(other == null ? throw new ArgumentNullException(nameof(other)) : other.Url, other.Border, other.Offset, other.Extents)
         {
         }
 
@@ -110,7 +99,7 @@ namespace Tizen.NUI
         /// The url for the shadow image to load.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public string Url { get; set; }
+        public string Url { get; internal set; }
 
         /// <summary>
         /// Optional.<br />
@@ -118,7 +107,7 @@ namespace Tizen.NUI
         /// Set left, right, bottom, top length of the border you don't want to stretch in the image.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Rectangle Border { get; set; }
+        public Rectangle Border { get; internal set; }
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -180,7 +169,14 @@ namespace Tizen.NUI
 
             map[ImageVisualProperty.Border] = PropertyValue.CreateWithGuard(Border);
 
-            map[ImageVisualProperty.URL] = PropertyValue.CreateWithGuard(Url);
+            string urlString = Url;
+            if (Url.StartsWith("*Resource*"))
+            {
+                string resource = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
+                urlString = Url.Replace("*Resource*", resource);
+            }
+
+            map[ImageVisualProperty.URL] = PropertyValue.CreateWithGuard(urlString);
 
             return map;
         }

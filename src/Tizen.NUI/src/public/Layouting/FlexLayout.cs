@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2020 Samsung Electronics Co., Ltd.
+﻿/* Copyright (c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -89,18 +89,15 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty FlexGrowProperty = BindableProperty.CreateAttached("FlexGrow", typeof(float), typeof(FlexLayout), FlexUndefined, validateValue: (bindable, value) => (float)value >= 0, propertyChanged: OnChildPropertyChanged);
 
-        private static bool LayoutDebugFlex = false; // Debug flag
-
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private bool swigCMemOwn;
         private bool disposed;
         private bool isDisposeQueued = false;
-        private bool disposedThis = false;
 
         private MeasureSpecification parentMeasureSpecificationWidth;
         private MeasureSpecification parentMeasureSpecificationHeight;
 
-        private IntPtr _rootFlex;  // Pointer to the unmanged flex layout class.
+        private IntPtr _rootFlex;  // Pointer to the unmanaged flex layout class.
 
         internal const float FlexUndefined = 10E20F; // Auto setting which is equivalent to WrapContent.
 
@@ -304,7 +301,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(bool disposing)
         {
-            if (disposedThis)
+            if (disposed)
             {
                 return;
             }
@@ -314,7 +311,7 @@ namespace Tizen.NUI
                 // TODO: dispose managed state (managed objects).
                 // Explicit call. user calls Dispose()
 
-                //Throw excpetion if Dispose() is called in separate thread.
+                //Throw exception if Dispose() is called in separate thread.
                 if (!Window.IsInstalled())
                 {
                     throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
@@ -341,7 +338,6 @@ namespace Tizen.NUI
 
             // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
             // TODO: set large fields to null.
-            disposedThis = true;
             base.Dispose(disposing);
         }
 
@@ -646,7 +642,7 @@ namespace Tizen.NUI
             // We need to measure child layout
             View child = Registry.GetManagedBaseHandleFromNativePtr(childPtr) as View;
             // independent child will be measured in LayoutGroup.OnMeasureIndependentChildren().
-            if (child?.ExcludeLayouting ?? true)
+            if ((child == null) || (child?.ExcludeLayouting ?? true))
             {
                 measureSize.width = 0;
                 measureSize.height = 0;
@@ -654,17 +650,18 @@ namespace Tizen.NUI
             }
 
             LayoutItem childLayout = child.Layout;
+            Extents margin = child.Margin;
 
             MeasureSpecification childWidthMeasureSpec = GetChildMeasureSpecification(
                                     new MeasureSpecification(
-                                        new LayoutLength(parentMeasureSpecificationWidth.Size - (child.Margin.Start + child.Margin.End)),
+                                        new LayoutLength(parentMeasureSpecificationWidth.Size - (margin.Start + margin.End)),
                                         parentMeasureSpecificationWidth.Mode),
                                     new LayoutLength(Padding.Start + Padding.End),
                                     new LayoutLength(child.WidthSpecification));
 
             MeasureSpecification childHeightMeasureSpec = GetChildMeasureSpecification(
                                     new MeasureSpecification(
-                                        new LayoutLength(parentMeasureSpecificationHeight.Size - (child.Margin.Top + child.Margin.Bottom)),
+                                        new LayoutLength(parentMeasureSpecificationHeight.Size - (margin.Top + margin.Bottom)),
                                         parentMeasureSpecificationHeight.Mode),
                                     new LayoutLength(Padding.Top + Padding.Bottom),
                                     new LayoutLength(child.HeightSpecification));
@@ -703,12 +700,17 @@ namespace Tizen.NUI
         /// Callback when child is removed from container.<br />
         /// </summary>
         /// <param name="child">The Layout child.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when child is null. </exception>
         /// <since_tizen> 6 </since_tizen>
         protected override void OnChildRemove(LayoutItem child)
         {
+            if (null == child)
+            {
+                throw new ArgumentNullException(nameof(child));
+            }
             // When child View is removed from it's parent View (that is a Layout) then remove it from the layout too.
             // FlexLayout refers to the child as a View not LayoutItem.
-            Interop.FlexLayout.RemoveChild(swigCPtr, child);
+            Interop.FlexLayout.RemoveChild(swigCPtr, child.Owner.SwigCPtr);
         }
 
         /// <summary>
@@ -777,8 +779,7 @@ namespace Tizen.NUI
             LayoutLength flexLayoutWidth = new LayoutLength(Interop.FlexLayout.GetWidth(swigCPtr));
             LayoutLength flexLayoutHeight = new LayoutLength(Interop.FlexLayout.GetHeight(swigCPtr));
 
-            Debug.WriteLineIf(LayoutDebugFlex, "FlexLayout OnMeasure width:" + flexLayoutWidth.AsRoundedValue()
-                                                + " height:" + flexLayoutHeight.AsRoundedValue());
+            NUILog.Debug("FlexLayout OnMeasure width:" + flexLayoutWidth.AsRoundedValue() + " height:" + flexLayoutHeight.AsRoundedValue());
 
             SetMeasuredDimensions(GetDefaultSize(flexLayoutWidth, widthMeasureSpec),
                                    GetDefaultSize(flexLayoutHeight, heightMeasureSpec));
@@ -811,6 +812,7 @@ namespace Tizen.NUI
                     // Get the frame for the child, start, top, end, bottom.
                     Vector4 frame = new Vector4(Interop.FlexLayout.GetNodeFrame(swigCPtr, childIndex), true);
                     childLayout.Layout(new LayoutLength(frame.X), new LayoutLength(frame.Y), new LayoutLength(frame.Z), new LayoutLength(frame.W));
+                    frame.Dispose();
                 }
             }
         }

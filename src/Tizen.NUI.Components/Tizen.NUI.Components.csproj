@@ -2,8 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <NoWarn>$(NoWarn);CS0618</NoWarn>
+    <NoWarn>$(NoWarn);CS0618;CA1054;CA1056</NoWarn>
   </PropertyGroup>
+
+  <ItemGroup>
+    <TizenPreloadFile Include="Tizen.NUI.Components.preload" Sequence="31" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Tizen.Log\Tizen.Log.csproj" />
@@ -13,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="res\*.png">
+    <None Update="res\*.png;res\*.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

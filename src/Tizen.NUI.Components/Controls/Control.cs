@@ -16,7 +16,6 @@
  */
 
 using System;
-using System.Diagnostics;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
@@ -26,7 +25,7 @@ using Tizen.System;
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// The control component is base class of tv nui components. It's abstract class, so cann't instantiate and can only be inherited.
+    /// The control component is base class of tv nui components. It's abstract class, so can't instantiate and can only be inherited.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -46,15 +45,18 @@ namespace Tizen.NUI.Components
 
         private Feedback feedback = null;
 
-        private TapGestureDetector tapGestureDetector = null;
-
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ControlStyle Style => (ControlStyle)ViewStyle.Clone();
-
         static Control()
         {
-            ThemeManager.AddPackageTheme(new DefaultThemeCreator());
+            ThemeManager.AddPackageTheme(DefaultThemeCreator.Instance);
+        }
+
+        /// <summary>
+        /// This is used to improve theme performance.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        static public void Preload()
+        {
+            DefaultThemeCreator.Preload();
         }
 
         /// <summary>
@@ -76,7 +78,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Control(ControlStyle style) : base(style)
         {
-            Initialize();
         }
 
         /// <summary>
@@ -86,15 +87,14 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Control(string styleName) : this(ThemeManager.GetStyle(styleName) as ControlStyle)
+        public Control(string styleName) : this(new ControlStyle() /* Apply empty style */)
         {
             if (ThemeManager.GetStyle(styleName) == null)
             {
                 throw new InvalidOperationException($"There is no style {styleName}");
             }
 
-            this.styleName = styleName;
-            ThemeChangeSensitive = true;
+            StyleName = styleName;
         }
 
         /// <summary>
@@ -113,25 +113,27 @@ namespace Tizen.NUI.Components
 
                 if (value)
                 {
-                    Debug.Assert(feedback == null && tapGestureDetector == null);
-
-                    tapGestureDetector = new TapGestureDetector();
-                    tapGestureDetector.Attach(this);
-                    tapGestureDetector.Detected += OnTapGestureDetected;
                     feedback = new Feedback();
+                    this.TouchEvent += OnTouchPlayFeedback;
                 }
                 else
                 {
-                    Debug.Assert(feedback != null && tapGestureDetector != null);
-
-                    feedback.Stop();
+                    this.TouchEvent -= OnTouchPlayFeedback;
                     feedback = null;
-
-                    tapGestureDetector.Detected -= OnTapGestureDetected;
-                    tapGestureDetector.Detach(this);
-                    tapGestureDetector = null;
                 }
             }
+        }
+
+        private bool OnTouchPlayFeedback(object source, TouchEventArgs e)
+        {
+            if (Feedback && e?.Touch.GetState(0) == PointStateType.Down)
+            {
+                if (feedback != null && feedback.IsSupportedPattern(FeedbackType.Sound, "Tap"))
+                {
+                    feedback.Play(FeedbackType.Sound, "Tap");
+                }
+            }
+            return false;
         }
 
         /// Internal used.
@@ -188,12 +190,24 @@ namespace Tizen.NUI.Components
                 return;
             }
 
+            feedback = null;
+            this.TouchEvent -= OnTouchPlayFeedback;
+
             if (type == DisposeTypes.Explicit)
             {
-                Feedback = false; // Release feedback resources.
             }
 
             base.Dispose(type);
+        }
+
+        /// <inheritdoc/>
+        public override void OnInitialize()
+        {
+            base.OnInitialize();
+
+            LeaveRequired = true;
+            StateFocusableOnTouchMode = false;
+            EnableControlState = true;
         }
 
         /// <summary>
@@ -249,25 +263,6 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Tap gesture callback.
-        /// </summary>
-        /// <param name="source">The sender</param>
-        /// <param name="e">The tap gesture event data</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual void OnTapGestureDetected(object source, TapGestureDetector.DetectedEventArgs e)
-        {
-            if (Feedback && e?.TapGesture?.State == Gesture.StateType.Started)
-            {
-                if (feedback != null && feedback.IsSupportedPattern(FeedbackType.Sound, "Tap"))
-                {
-                    feedback.Play(FeedbackType.Sound, "Tap");
-                }
-            }
-        }
-
-        /// <summary>
         /// Update by style.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
@@ -311,15 +306,6 @@ namespace Tizen.NUI.Components
 
             // If the OnThemeChangedEvent is not implemented, ApplyStyle()
             base.OnThemeChanged(sender, e);
-        }
-
-        private void Initialize()
-        {
-            LeaveRequired = true;
-
-            StateFocusableOnTouchMode = false;
-
-            EnableControlState = true;
         }
     }
 }

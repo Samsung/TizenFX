@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,9 +32,11 @@ namespace Tizen.NUI.BaseComponents
     {
         private string textFieldTextSid = null;
         private string textFieldPlaceHolderTextSid = null;
+        private string textFieldPlaceHolderTextFocusedSid = null;
         private bool systemlangTextFlag = false;
         private InputMethodContext inputMethodCotext = null;
-        private TextFieldSelectorData selectorData;
+        private float fontSizeScale = 1.0f;
+        private bool hasFontSizeChangedCallback = false;
 
         static TextField() { }
 
@@ -60,17 +62,15 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Get attribues, it is abstract function and must be override.
+        /// Get attributes, it is abstract function and must be override.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override ViewStyle GetViewStyle()
+        protected override ViewStyle CreateViewStyle()
         {
             return new TextFieldStyle();
         }
 
-        internal TextField(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : base(Interop.TextField.Upcast(cPtr), cMemoryOwn, viewStyle)
+        internal TextField(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : base(cPtr, cMemoryOwn, viewStyle)
         {
             if (!shown)
             {
@@ -78,7 +78,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal TextField(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.TextField.Upcast(cPtr), cMemoryOwn, null)
+        internal TextField(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(cPtr, cMemoryOwn, null)
         {
             if (!shown)
             {
@@ -118,7 +118,6 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                selectorData?.TranslatableText.UpdateIfNeeds(this, value);
                 SetValue(TranslatableTextProperty, value);
             }
         }
@@ -157,7 +156,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(TranslatablePlaceholderTextProperty, value);
-                selectorData?.TranslatablePlaceholderText.UpdateIfNeeds(this, value);
             }
         }
         private string translatablePlaceholderText
@@ -179,6 +177,44 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The TranslatablePlaceholderTextFocused property.<br />
+        /// The text can set the SID value.<br />
+        /// </summary>
+        /// <exception cref='ArgumentNullException'>
+        /// ResourceManager about multilingual is null.
+        /// </exception>
+        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string TranslatablePlaceholderTextFocused
+        {
+            get
+            {
+                return (string)GetValue(TranslatablePlaceholderTextFocusedProperty);
+            }
+            set
+            {
+                SetValue(TranslatablePlaceholderTextFocusedProperty, value);
+            }
+        }
+        private string translatablePlaceholderTextFocused
+        {
+            get
+            {
+                return textFieldPlaceHolderTextFocusedSid;
+            }
+            set
+            {
+                if (NUIApplication.MultilingualResourceManager == null)
+                {
+                    throw new ArgumentNullException(null, "ResourceManager about multilingual is null");
+                }
+                textFieldPlaceHolderTextFocusedSid = value;
+                PlaceholderTextFocused = SetTranslatable(textFieldPlaceHolderTextFocusedSid);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// The Text property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -191,7 +227,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValueAndForceSendChangeSignal(TextProperty, value);
-                selectorData?.Text.UpdateIfNeeds(this, value);
                 NotifyPropertyChanged();
             }
         }
@@ -243,7 +278,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(FontFamilyProperty, value);
-                selectorData?.FontFamily.UpdateIfNeeds(this, value);
                 NotifyPropertyChanged();
             }
         }
@@ -278,7 +312,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(PointSizeProperty, value);
-                selectorData?.PointSize.UpdateIfNeeds(this, value);
                 NotifyPropertyChanged();
             }
         }
@@ -369,7 +402,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(TextColorProperty, value);
-                selectorData?.TextColor.UpdateIfNeeds(this, value);
                 NotifyPropertyChanged();
             }
         }
@@ -391,7 +423,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(PlaceholderTextColorProperty, value);
-                selectorData?.PlaceholderTextColor.UpdateIfNeeds(this, value);
                 NotifyPropertyChanged();
             }
         }
@@ -469,7 +500,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(PrimaryCursorColorProperty, value);
-                selectorData?.PrimaryCursorColor.UpdateIfNeeds(this, value);
                 NotifyPropertyChanged();
             }
         }
@@ -1211,6 +1241,27 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The GrabHandleColor property.
+        /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (textField.GrabHandleColor.X = 0.1f;) is possible.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color GrabHandleColor
+        {
+            get
+            {
+                Color temp = (Color)GetValue(GrabHandleColorProperty);
+                return new Color(OnGrabHandleColorChanged, temp.R, temp.G, temp.B, temp.A);
+            }
+            set
+            {
+                SetValue(GrabHandleColorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// The Placeholder property.
         /// Gets or sets the placeholder: text, color, font family, font style, point size, and pixel size.
         /// </summary>
@@ -1303,6 +1354,52 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// The FontSizeScale property. <br />
+        /// The default value is 1.0. <br />
+        /// If FontSizeScale.UseSystemSetting, will use the SystemSettings.FontSize internally. <br />
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public float FontSizeScale
+        {
+            get
+            {
+                return fontSizeScale;
+            }
+            set
+            {
+                float newFontSizeScale;
+
+                if (fontSizeScale == value) return;
+
+                fontSizeScale = value;
+                if (fontSizeScale == Tizen.NUI.FontSizeScale.UseSystemSetting)
+                {
+                    SystemSettingsFontSize systemSettingsFontSize;
+
+                    try
+                    {
+                        systemSettingsFontSize = SystemSettings.FontSize;
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("{0} Exception caught.", e);
+                        systemSettingsFontSize = SystemSettingsFontSize.Normal;
+                    }
+                    newFontSizeScale = TextUtils.GetFontSizeScale(systemSettingsFontSize);
+                    addFontSizeChangedCallback();
+                }
+                else
+                {
+                    newFontSizeScale = fontSizeScale;
+                    removeFontSizeChangedCallback();
+                }
+
+                SetValue(FontSizeScaleProperty, newFontSizeScale);
+                NotifyPropertyChanged();
+            }
+        }
+
         /// Only used by the IL of xaml, will never changed to not hidden.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool IsCreateByXaml
@@ -1322,18 +1419,6 @@ namespace Tizen.NUI.BaseComponents
                         this.Text = e.TextField.Text;
                     };
                 }
-            }
-        }
-
-        private TextFieldSelectorData SelectorData
-        {
-            get
-            {
-                if (selectorData == null)
-                {
-                    selectorData = new TextFieldSelectorData();
-                }
-                return selectorData;
             }
         }
 
@@ -1406,12 +1491,13 @@ namespace Tizen.NUI.BaseComponents
                 SystemSettings.LocaleLanguageChanged -= SystemSettings_LocaleLanguageChanged;
             }
 
+            removeFontSizeChangedCallback();
+
             if (type == DisposeTypes.Explicit)
             {
                 //Called by User
                 //Release your own managed resources here.
                 //You should release all of your own disposable objects here.
-                selectorData?.Reset(this);
             }
 
             //Release your own unmanaged resources here.
@@ -1419,14 +1505,14 @@ namespace Tizen.NUI.BaseComponents
             //because the execution order of Finalizes is non-deterministic.
             if (this.HasBody())
             {
-                if (_textFieldMaxLengthReachedCallbackDelegate != null)
+                if (textFieldMaxLengthReachedCallbackDelegate != null)
                 {
-                    this.MaxLengthReachedSignal().Disconnect(_textFieldMaxLengthReachedCallbackDelegate);
+                    this.MaxLengthReachedSignal().Disconnect(textFieldMaxLengthReachedCallbackDelegate);
                 }
 
-                if (_textFieldTextChangedCallbackDelegate != null)
+                if (textFieldTextChangedCallbackDelegate != null)
                 {
-                    TextChangedSignal().Disconnect(_textFieldTextChangedCallbackDelegate);
+                    TextChangedSignal().Disconnect(textFieldTextChangedCallbackDelegate);
                 }
             }
 
@@ -1471,6 +1557,51 @@ namespace Tizen.NUI.BaseComponents
             if (textFieldPlaceHolderTextSid != null)
             {
                 PlaceholderText = NUIApplication.MultilingualResourceManager?.GetString(textFieldPlaceHolderTextSid, new CultureInfo(e.Value.Replace("_", "-")));
+            }
+            if (textFieldPlaceHolderTextFocusedSid != null)
+            {
+                PlaceholderTextFocused = NUIApplication.MultilingualResourceManager?.GetString(textFieldPlaceHolderTextFocusedSid, new CultureInfo(e.Value.Replace("_", "-")));
+            }
+        }
+
+        private void SystemSettingsFontSizeChanged(object sender, FontSizeChangedEventArgs e)
+        {
+            float newFontSizeScale = TextUtils.GetFontSizeScale(e.Value);
+            SetValue(FontSizeScaleProperty, newFontSizeScale);
+            NotifyPropertyChanged();
+        }
+
+        private void addFontSizeChangedCallback()
+        {
+            if (hasFontSizeChangedCallback != true)
+            {
+                try
+                {
+                    SystemSettings.FontSizeChanged += SystemSettingsFontSizeChanged;
+                    hasFontSizeChangedCallback = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("{0} Exception caught.", e);
+                    hasFontSizeChangedCallback = false;
+                }
+            }
+        }
+
+        private void removeFontSizeChangedCallback()
+        {
+            if (hasFontSizeChangedCallback == true)
+            {
+                try
+                {
+                    SystemSettings.FontSizeChanged -= SystemSettingsFontSizeChanged;
+                    hasFontSizeChangedCallback = false;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("{0} Exception caught.", e);
+                    hasFontSizeChangedCallback = true;
+                }
             }
         }
 
@@ -1534,6 +1665,8 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int SelectedTextEnd = Interop.TextField.SelectedTextEndGet();
             internal static readonly int EnableEditing = Interop.TextField.EnableEditingGet();
             internal static readonly int PrimaryCursorPosition = Interop.TextField.PrimaryCursorPositionGet();
+            internal static readonly int FontSizeScale = Interop.TextField.FontSizeScaleGet();
+            internal static readonly int GrabHandleColor = Interop.TextField.GrabHandleColorGet();
         }
 
         internal class InputStyle
@@ -1587,6 +1720,10 @@ namespace Tizen.NUI.BaseComponents
         private void OnTextColorChanged(float r, float g, float b, float a)
         {
             TextColor = new Color(r, g, b, a);
+        }
+        private void OnGrabHandleColorChanged(float r, float g, float b, float a)
+        {
+            GrabHandleColor = new Color(r, g, b, a);
         }
     }
 }

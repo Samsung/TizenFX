@@ -6,54 +6,55 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
   Id="Tizen.NUI.Theme.Wearable">
 
-  <!--Button-->
-  <c:ButtonStyle x:Key="Tizen.NUI.Components.Button" Size="210, 72" CornerRadius="36">
-    <c:ButtonStyle.BackgroundColor>
-      <Selector x:TypeArguments="Color" Normal="0, 0.1647, 0.3019, 0.85" Pressed="0, 0.2475, 0.5019, 0.85" Disabled="0.2392, 0.2392, 0.2392, 0.85"/>
-    </c:ButtonStyle.BackgroundColor>
-    <c:ButtonStyle.Opacity>
-      <Selector x:TypeArguments="x:Single?" Other="1.0" Disabled="0.3"/>
-    </c:ButtonStyle.Opacity>
-    <c:ButtonStyle.Text>  <!--Button Text-->
-      <TextLabelStyle FontFamily="SamsungOne 700" PixelSize="28" Padding="20, 20, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <TextLabelStyle.TextColor>
-          <Selector x:TypeArguments="Color" Normal="0.2196, 0.6131, 0.9882, 1" Disabled="1, 1, 1, 0.35"/>
-        </TextLabelStyle.TextColor>
-      </TextLabelStyle>
-    </c:ButtonStyle.Text>
-  </c:ButtonStyle>
+    <!--Button-->
+    <c:ButtonStyle x:Key="Tizen.NUI.Components.Button" Size="210, 72" CornerRadius="36">
+        <c:ButtonStyle.BackgroundColor>
+            <Selector x:TypeArguments="Color" Normal="0, 0.1647, 0.3019, 0.85" Pressed="0, 0.2475, 0.5019, 0.85" Disabled="0.2392, 0.2392, 0.2392, 0.85"/>
+        </c:ButtonStyle.BackgroundColor>
+        <c:ButtonStyle.Opacity>
+            <Selector x:TypeArguments="x:Single?" Other="1.0" Disabled="0.3"/>
+        </c:ButtonStyle.Opacity>
+        <c:ButtonStyle.Text>
+            <!--Button Text-->
+            <TextLabelStyle FontFamily="SamsungOne 700" PixelSize="28" Padding="20, 20, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextLabelStyle.TextColor>
+                    <Selector x:TypeArguments="Color" Normal="0.2196, 0.6131, 0.9882, 1" Disabled="1, 1, 1, 0.35"/>
+                </TextLabelStyle.TextColor>
+            </TextLabelStyle>
+        </c:ButtonStyle.Text>
+    </c:ButtonStyle>
 
-  <!--CheckBox-->
-  <cx:LottieButtonStyle x:Key="Tizen.NUI.Components.CheckBox" LottieUrl="NUIResourcePath nui_wearable_checkbox_icon.json">
-    <cx:LottieButtonStyle.PlayRange>
-      <Selector x:TypeArguments="LottieFrameInfo" Selected="19, 36" Normal="0, 18"/>
-    </cx:LottieButtonStyle.PlayRange>
-    <cx:LottieButtonStyle.Opacity>
-      <Selector x:TypeArguments="x:Single?" Other="1" Pressed="0.6" Disabled="0.3"/>
-    </cx:LottieButtonStyle.Opacity>
-  </cx:LottieButtonStyle>
+    <!--CheckBox-->
+    <cx:LottieButtonStyle x:Key="Tizen.NUI.Components.CheckBox" LottieUrl="NUIResourcePath nui_wearable_checkbox_icon.json">
+        <cx:LottieButtonStyle.PlayRange>
+            <Selector x:TypeArguments="LottieFrameInfo" Selected="19, 36" Normal="0, 18"/>
+        </cx:LottieButtonStyle.PlayRange>
+        <cx:LottieButtonStyle.Opacity>
+            <Selector x:TypeArguments="x:Single?" Other="1" Pressed="0.6" Disabled="0.3"/>
+        </cx:LottieButtonStyle.Opacity>
+    </cx:LottieButtonStyle>
 
-  <!--RadioButton-->
-  <cx:LottieButtonStyle x:Key="Tizen.NUI.Components.RadioButton" LottieUrl="NUIResourcePath nui_wearable_radiobutton_icon.json">
-    <cx:LottieButtonStyle.PlayRange>
-      <Selector x:TypeArguments="LottieFrameInfo" Selected="0, 12" Normal="13, 25"/>
-    </cx:LottieButtonStyle.PlayRange>
-    <cx:LottieButtonStyle.Opacity>
-      <Selector x:TypeArguments="x:Single?" Other="1" Pressed="0.6" Disabled="0.3"/>
-    </cx:LottieButtonStyle.Opacity>
-  </cx:LottieButtonStyle>
+    <!--RadioButton-->
+    <cx:LottieButtonStyle x:Key="Tizen.NUI.Components.RadioButton" LottieUrl="NUIResourcePath nui_wearable_radiobutton_icon.json">
+        <cx:LottieButtonStyle.PlayRange>
+            <Selector x:TypeArguments="LottieFrameInfo" Selected="0, 12" Normal="13, 25"/>
+        </cx:LottieButtonStyle.PlayRange>
+        <cx:LottieButtonStyle.Opacity>
+            <Selector x:TypeArguments="x:Single?" Other="1" Pressed="0.6" Disabled="0.3"/>
+        </cx:LottieButtonStyle.Opacity>
+    </cx:LottieButtonStyle>
 
-  <!--Switch-->
-  <cx:LottieSwitchStyle x:Key="Tizen.NUI.Components.Switch" LottieUrl="NUIResourcePath nui_wearable_switch_icon.json">
-    <cx:LottieSwitchStyle.PlayRange>
-      <Selector x:TypeArguments="LottieFrameInfo" Selected="0, 18" Normal="19, 36"/>
-    </cx:LottieSwitchStyle.PlayRange>
-    <cx:LottieSwitchStyle.Opacity>
-      <Selector x:TypeArguments="x:Single?" Other="1" Pressed="0.6" Disabled="0.3"/>
-    </cx:LottieSwitchStyle.Opacity>
-  </cx:LottieSwitchStyle>
+    <!--Switch-->
+    <cx:LottieSwitchStyle x:Key="Tizen.NUI.Components.Switch" LottieUrl="NUIResourcePath nui_wearable_switch_icon.json">
+        <cx:LottieSwitchStyle.PlayRange>
+            <Selector x:TypeArguments="LottieFrameInfo" Selected="0, 18" Normal="19, 36"/>
+        </cx:LottieSwitchStyle.PlayRange>
+        <cx:LottieSwitchStyle.Opacity>
+            <Selector x:TypeArguments="x:Single?" Other="1" Pressed="0.6" Disabled="0.3"/>
+        </cx:LottieSwitchStyle.Opacity>
+    </cx:LottieSwitchStyle>
 
-  <!--Loading-->
-  <c:LoadingStyle x:Key="Tizen.NUI.Components.Loading" LoadingSize="360, 360" />
+    <!--Loading-->
+    <c:LoadingStyle x:Key="Tizen.NUI.Components.Loading" LoadingSize="360, 360" />
 
 </Theme>

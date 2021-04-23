@@ -47,10 +47,6 @@ namespace Tizen.NUI.Components.Extension
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override ImageView OnCreateIcon(Button button, ImageView icon)
         {
-            LottieView.PositionUsesPivotPoint = true;
-            LottieView.ParentOrigin = NUI.ParentOrigin.Center;
-            LottieView.PivotPoint = NUI.PivotPoint.Center;
-
             LottieButtonExtension.InitializeLottieView(button, LottieView);
 
             return LottieView;

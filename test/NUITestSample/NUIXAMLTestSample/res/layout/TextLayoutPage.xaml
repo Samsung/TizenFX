@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<View x:Class="Tizen.NUI.Examples..TextLayoutPage"
+    xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+    xmlns:a="clr-namespace:Tizen.NUI;assembly=Tizen.NUI"
+    xmlns:b="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+    xmlns:c="clr-namespace:Tizen.NUI.Components;assembly=Tizen.NUI.Components"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <c:Slider x:Name="slider" Position2D="50,30" Size2D="500,50" BackgroundColor="Yellow" MaxValue="600" MinValue="100"/>
+
+    <b:View x:Name="view" SizeWidth="{Binding Source={x:Reference Name=slider}, Path=CurrentValue}" SizeHeight="500" Position2D="10,100" 
+            HeightSpecification="-2">
+
+        <b:View.Layout>
+            <a:GridLayout Rows="2" GridOrientation="Horizontal"/>
+        </b:View.Layout>
+
+        <b:TextLabel x:Name="text"  Text="this is text LineWrapMode=Character, Long loooooooooooooooooong!" BackgroundColor="Red"
+                TextColor="White" MultiLine="True" LineWrapMode="Character" WidthSpecification="-1" HeightSpecification="-2" />
+
+        <b:TextLabel x:Name="text2"  Text="this is text2 LineWrapMode=Word, Long loooooooooooooooooong!" BackgroundColor="Blue"
+                TextColor="White" MultiLine="True" LineWrapMode="Word"  WidthSpecification="-1" HeightSpecification="-2" />
+
+    </b:View>
+
+</View>

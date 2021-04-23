@@ -1,11 +1,13 @@
-﻿using Tizen.NUI.BaseComponents;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Components;
 
 namespace Tizen.NUI.Samples
 {
     public class AppBarSample : IExample
     {
-        private Page firstPage, secondPage;
+        private ContentPage firstPage, secondPage;
         private AppBar firstAppBar, secondAppBar;
         private Button firstActionButton, secondActionButton;
         private Button firstButton, secondButton;
@@ -19,17 +21,18 @@ namespace Tizen.NUI.Samples
         {
             firstActionButton = new Button()
             {
-                Text = "2",
-                Size = new Size(72.0f, 72.0f)
+                Text = "Page 2",
             };
             firstActionButton.Clicked += (object sender, ClickedEventArgs e) =>
             {
                 CreateSecondPage();
             };
 
-            firstAppBar = new AppBar("First Page", firstActionButton)
+            firstAppBar = new AppBar()
             {
-                AutoNavigationContent = false
+                AutoNavigationContent = false,
+                Title = "First Page",
+                Actions = new View[] { firstActionButton },
             };
 
             firstButton = new Button()
@@ -43,7 +46,11 @@ namespace Tizen.NUI.Samples
                 CreateSecondPage();
             };
 
-            firstPage = new Page(firstAppBar, firstButton);
+            firstPage = new ContentPage()
+            {
+                AppBar = firstAppBar,
+                Content = firstButton,
+            };
 
             NUIApplication.GetDefaultWindow().GetDefaultNavigator().Push(firstPage);
         }
@@ -52,15 +59,18 @@ namespace Tizen.NUI.Samples
         {
             secondActionButton = new Button()
             {
-                Text = "1",
-                Size = new Size(72.0f, 72.0f)
+                Text = "Page 1",
             };
             secondActionButton.Clicked += (object sender, ClickedEventArgs e) =>
             {
                 NUIApplication.GetDefaultWindow().GetDefaultNavigator().Pop();
             };
 
-            secondAppBar = new AppBar("Second Page", secondActionButton);
+            secondAppBar = new AppBar()
+            {
+                Title = "Second Page",
+                Actions = new View[] { secondActionButton },
+            };
 
             secondButton = new Button()
             {
@@ -73,7 +83,11 @@ namespace Tizen.NUI.Samples
                 NUIApplication.GetDefaultWindow().GetDefaultNavigator().Pop();
             };
 
-            secondPage = new Page(secondAppBar, secondButton);
+            secondPage = new ContentPage()
+            {
+                AppBar = secondAppBar,
+                Content = secondButton,
+            };
 
             NUIApplication.GetDefaultWindow().GetDefaultNavigator().Push(secondPage);
         }

@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -54,9 +54,6 @@ namespace Tizen.NUI.Components
         private IList<TabButton> tabButtons;
 
         private TabButtonGroup tabButtonGroup;
-
-        //TODO: This tab button height should be implemented in TabBar style.
-        private float tabButtonHeight = 72.0f;
 
         /// <summary>
         /// Creates a new instance of TabBar.
@@ -130,7 +127,6 @@ namespace Tizen.NUI.Components
             if (SelectedIndex == -1)
             {
                 tabButton.IsSelected = true;
-                tabButton.SetTabButtonState(ControlState.Pressed);
                 SelectedIndex = 0;
 
                 if (TabButtonSelected != null)
@@ -184,7 +180,6 @@ namespace Tizen.NUI.Components
             if ((SelectedIndex != -1) && (selectedTabButton != tabButtons[SelectedIndex]))
             {
                 tabButtons[SelectedIndex].IsSelected = true;
-                tabButtons[SelectedIndex].SetTabButtonState(ControlState.Pressed);
             }
 
             //TODO: To support non-unified tab button size.
@@ -211,9 +206,9 @@ namespace Tizen.NUI.Components
 
             foreach (TabButton tabButton in tabButtons)
             {
-                if ((tabButton.Size.Width != tabButtonWidth) || (tabButton.Size.Height != tabButtonHeight))
+                if (tabButton.Size.Width != tabButtonWidth)
                 {
-                    tabButton.Size = new Size(tabButtonWidth, tabButtonHeight);
+                    tabButton.Size = new Size(tabButtonWidth, tabButton.Size.Height);
                 }
             }
         }

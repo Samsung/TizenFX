@@ -1,3 +1,20 @@
+/*
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
 using System;
 using System.Reflection;
 using System.Windows.Input;
@@ -130,7 +147,7 @@ namespace Tizen.NUI.Binding
         }
 
         /// <summary>
-        /// Returns a Boolean indicating if the Command can be exectued with the given parameter.
+        /// Returns a Boolean indicating if the Command can be executed with the given parameter.
         /// </summary>
         /// <param name="parameter">An Object used as parameter to determine if the Command can be executed.</param>
         /// <returns>true if the Command can be executed, false otherwise.</returns>

@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,22 +14,21 @@
  * limitations under the License.
  *
  */
-#if !PROFILE_WEARABLE
 
 using System.Collections.Generic;
 
 namespace Tizen.NUI
 {
-    internal class DefaultThemeCreator : IThemeCreator
+    internal partial class DefaultThemeCreator : IThemeCreator
     {
-        public Theme Create() => Create(null);
-        public Theme Create(IEnumerable<KeyValuePair<string, string>> changedResources)
-        {
-            Theme theme = new Theme() { Id = "Tizen.NUI.Theme.Common" };
-            theme.SetChangedResources(changedResources);
-            return theme;
-        }
+        private DefaultThemeCreator() { }
+
+        internal const string DefaultId = "Tizen.NUI.Theme.Common";
+        internal const string DefaultVersion = "1.0.0";
+
+        internal static IThemeCreator Instance { get; set; } = new DefaultThemeCreator();
+
+        public HashSet<ExternalThemeKeyList> GetExternalThemeKeyListSet() => null;
     }
 }
 
-#endif

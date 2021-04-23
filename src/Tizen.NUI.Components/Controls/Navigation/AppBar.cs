@@ -14,12 +14,10 @@
  * limitations under the License.
  *
  */
-using System;
-using System.Collections.Generic;
+
 using System.ComponentModel;
+using System.Collections.Generic;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Binding;
-using System.Windows.Input;
 
 namespace Tizen.NUI.Components
 {
@@ -30,159 +28,50 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class AppBar : Control
     {
-        //TODO: This app bar height should be implemented in AppBar style.
-        private float appBarHeight = 72.0f;
-
         private bool autoNavigationContent = true;
-        private View defaultNavigationContent = null;
 
-        private View appBarNavigation = null;
-        private View appBarTitle = null;
-        private View appBarAction = null;
+        private string title = null;
+
+        private View navigationContent = null;
+        private View titleContent = null;
+        private View actionContent = null;
+        private IEnumerable<View> actionContentViews = null;
+
+        private View defaultNavigationContent = null;
+        private View defaultTitleContent = null;
+        private View defaultActionContent = null;
+
+        private AppBarStyle appBarStyle => ViewStyle as AppBarStyle;
+
+        private bool styleApplied = false;
 
         /// <summary>
-        /// Creates a new instance of a AppBar.
+        /// Creates a new instance of AppBar.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public AppBar() : base()
         {
-            defaultNavigationContent = CreateDefaultNavigationContent();
-
-            //Navigation, Title and Action are located horizontally.
-            var linearLayout = new LinearLayout();
-            linearLayout.LinearOrientation = LinearLayout.Orientation.Horizontal;
-            Layout = linearLayout;
-
-            WidthSpecification = LayoutParamPolicies.MatchParent;
-
-            //TODO: This app bar height should be implemented in AppBar style.
-            SizeHeight = appBarHeight;
-
-            if ((AutoNavigationContent == true) && (DefaultNavigationContent != null))
-            {
-                Add(DefaultNavigationContent);
-            }
+            Initialize();
         }
 
         /// <summary>
-        /// Creates a new instance of a AppBar.
+        /// Creates a new instance of AppBar.
         /// </summary>
-        /// <param name="navigationContent">The content to set to NavigationContent of AppBar.</param>
-        /// <param name="titleContent">The content to set to TitleContent of AppBar.</param>
-        /// <param name="actionContent">The content to set to ActionContent of AppBar.</param>
+        /// <param name="style">Creates AppBar by special style defined in UX.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public AppBar(View navigationContent, View titleContent, View actionContent) : base()
+        public AppBar(string style) : base(style)
         {
-            defaultNavigationContent = CreateDefaultNavigationContent();
-
-            //Navigation, Title and Action are located horizontally.
-            var linearLayout = new LinearLayout();
-            linearLayout.LinearOrientation = LinearLayout.Orientation.Horizontal;
-            Layout = linearLayout;
-
-            WidthSpecification = LayoutParamPolicies.MatchParent;
-
-            //TODO: This app bar height should be implemented in AppBar style.
-            SizeHeight = appBarHeight;
-
-            if (navigationContent != null)
-            {
-                NavigationContent = navigationContent;
-            }
-            else if ((AutoNavigationContent == true) && (DefaultNavigationContent != null))
-            {
-                Add(DefaultNavigationContent);
-            }
-
-            if (titleContent != null)
-            {
-                TitleContent = titleContent;
-            }
-
-            if (actionContent != null)
-            {
-                ActionContent = actionContent;
-            }
+            Initialize();
         }
 
         /// <summary>
-        /// Creates a new instance of a AppBar.
+        /// Creates a new instance of AppBar.
         /// </summary>
-        /// <param name="title">The text string to set to TitleContent of AppBar.</param>
-        /// <param name="actionContents">The contents to add to ActionContent of AppBar.</param>
+        /// <param name="appBarStyle">Creates AppBar by style customized by user.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public AppBar(string title, params View[] actionContents) : this(null, title, actionContents)
+        public AppBar(AppBarStyle appBarStyle) : base(appBarStyle)
         {
-        }
-
-        /// <summary>
-        /// Creates a new instance of a AppBar.
-        /// </summary>
-        /// <param name="navigationContent">The content to set to NavigationContent of AppBar.</param>
-        /// <param name="title">The text string to set to TitleContent of AppBar.</param>
-        /// <param name="actionContents">The contents to add to ActionContent of AppBar.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public AppBar(View navigationContent, string title, params View[] actionContents) : base()
-        {
-            defaultNavigationContent = CreateDefaultNavigationContent();
-
-            //Navigation, Title and Action are located horizontally.
-            var linearLayout = new LinearLayout();
-            linearLayout.LinearOrientation = LinearLayout.Orientation.Horizontal;
-            Layout = linearLayout;
-
-            WidthSpecification = LayoutParamPolicies.MatchParent;
-
-            //TODO: This app bar height should be implemented in AppBar style.
-            SizeHeight = appBarHeight;
-
-            if (navigationContent != null)
-            {
-                navigationContent.HeightSpecification = LayoutParamPolicies.MatchParent;
-                navigationContent.Weight = 0.0f;
-
-                NavigationContent = navigationContent;
-            }
-            else if ((AutoNavigationContent == true) && (DefaultNavigationContent != null))
-            {
-                Add(DefaultNavigationContent);
-            }
-
-            if (title != null)
-            {
-                var titleContent = new TextLabel()
-                {
-                    Text = title,
-                    HeightSpecification = LayoutParamPolicies.MatchParent,
-                    VerticalAlignment = VerticalAlignment.Center,
-                    Weight = 1.0f,
-                    BackgroundColor = new Color(0.88f, 0.88f, 0.88f, 1.0f)
-                };
-
-                TitleContent = titleContent;
-            }
-
-            if (actionContents != null)
-            {
-                var actionContent = new Control()
-                {
-                    Layout = new LinearLayout()
-                    {
-                        LinearOrientation = LinearLayout.Orientation.Horizontal
-                    },
-                    HeightSpecification = LayoutParamPolicies.MatchParent,
-                    Weight = 0.0f
-                };
-
-                foreach (var actionView in actionContents)
-                {
-                    actionView.HeightSpecification = LayoutParamPolicies.MatchParent;
-
-                    actionContent.Add(actionView);
-                }
-
-                ActionContent = actionContent;
-            }
+            Initialize();
         }
 
         /// <summary>
@@ -199,19 +88,64 @@ namespace Tizen.NUI.Components
 
             if (type == DisposeTypes.Explicit)
             {
-                if (appBarNavigation != null)
+                if (navigationContent == defaultNavigationContent)
                 {
-                    Utility.Dispose(appBarNavigation);
+                    if (navigationContent != null)
+                    {
+                        Utility.Dispose(navigationContent);
+                    }
+                }
+                else
+                {
+                    if (navigationContent != null)
+                    {
+                        Utility.Dispose(navigationContent);
+                    }
+
+                    if (defaultNavigationContent != null)
+                    {
+                        Utility.Dispose(defaultNavigationContent);
+                    }
                 }
 
-                if (appBarTitle != null)
+                if (titleContent == defaultTitleContent)
                 {
-                    Utility.Dispose(appBarTitle);
+                    if (titleContent != null)
+                    {
+                        Utility.Dispose(titleContent);
+                    }
+                }
+                else
+                {
+                    if (titleContent != null)
+                    {
+                        Utility.Dispose(titleContent);
+                    }
+
+                    if (defaultTitleContent != null)
+                    {
+                        Utility.Dispose(defaultTitleContent);
+                    }
                 }
 
-                if (appBarAction != null)
+                if (actionContent == defaultActionContent)
                 {
-                    Utility.Dispose(appBarAction);
+                    if (actionContent != null)
+                    {
+                        Utility.Dispose(actionContent);
+                    }
+                }
+                else
+                {
+                    if (actionContent != null)
+                    {
+                        Utility.Dispose(actionContent);
+                    }
+
+                    if (defaultActionContent != null)
+                    {
+                        Utility.Dispose(defaultActionContent);
+                    }
                 }
             }
 
@@ -228,22 +162,22 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return appBarNavigation;
+                return navigationContent;
             }
             set
             {
-                if (appBarNavigation == value)
+                if (navigationContent == value)
                 {
                     return;
                 }
 
-                if (appBarNavigation != null)
+                if (navigationContent != null)
                 {
-                    Remove(appBarNavigation);
+                    Remove(navigationContent);
                 }
 
-                appBarNavigation = value;
-                if (appBarNavigation == null)
+                navigationContent = value;
+                if (navigationContent == null)
                 {
                     return;
                 }
@@ -253,31 +187,65 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Title text of AppBar.
+        /// SetTitle sets title text to the default title content.
+        /// If TitleContent is not TextLabel, then Title does not set title text of the TitleContent.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string Title
+        {
+            get
+            {
+                return title;
+            }
+            set
+            {
+                if (title == value)
+                {
+                    return;
+                }
+
+                title = value;
+
+                if (TitleContent is TextLabel textLabel)
+                {
+                    textLabel.Text = title;
+                }
+            }
+        }
+
+        /// <summary>
         /// Title content of AppBar. TitleContent is added to Children automatically.
+        /// If TitleContent is not TextLabel, then Title does not set title text of the TitleContent.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public View TitleContent
         {
             get
             {
-                return appBarTitle;
+                return titleContent;
             }
             set
             {
-                if (appBarTitle == value)
+                if (titleContent == value)
                 {
                     return;
                 }
 
-                if (appBarTitle != null)
+                if (titleContent != null)
                 {
-                    Remove(appBarTitle);
+                    Remove(titleContent);
                 }
 
-                appBarTitle = value;
-                if (appBarTitle == null)
+                titleContent = value;
+                if (titleContent == null)
                 {
                     return;
+                }
+
+                if (titleContent is TextLabel textLabel)
+                {
+                    textLabel.Text = Title;
                 }
 
                 ResetContent();
@@ -285,29 +253,109 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Action views of AppBar.
+        /// Action views are added to ActionContent of AppBar.
+        /// The Action and ActionButton styles of AppBarStyle are applied to actions only by setting Actions.
+        /// If you do not want to apply Action and ActionButton styles to action views, then please use ActionContent.Add() instead.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public IEnumerable<View> Actions
+        {
+            get
+            {
+                return actionContentViews;
+            }
+            set
+            {
+                if (ActionContent == null)
+                {
+                    actionContentViews = value;
+                    return;
+                }
+
+                if (actionContentViews != null)
+                {
+                    foreach (var oldAction in actionContentViews)
+                    {
+                        if (ActionContent.Children?.Contains(oldAction) == true)
+                        {
+                            ActionContent.Children.Remove(oldAction);
+                        }
+                    }
+                }
+
+                actionContentViews = value;
+
+                if (actionContentViews == null)
+                {
+                    return;
+                }
+
+                foreach (var action in actionContentViews)
+                {
+                    // Apply Action and ActionButton styles.
+                    if ((action is Button) && (appBarStyle?.ActionButton != null))
+                    {
+                        action.ApplyStyle(appBarStyle.ActionButton);
+                    }
+                    else if (appBarStyle?.ActionView != null)
+                    {
+                        action.ApplyStyle(appBarStyle.ActionView);
+                    }
+
+                    ActionContent.Add(action);
+                }
+            }
+        }
+
+        /// <summary>
         /// Action content of AppBar. ActionContent is added to Children automatically.
+        /// Action content contains action views and action buttons by Actions.
+        /// The Action and ActionButton styles of AppBarStyle are applied to actions only by setting Actions.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public View ActionContent
         {
             get
             {
-                return appBarAction;
+                return actionContent;
             }
             set
             {
-                if (appBarAction == value)
+                if (actionContent == value)
                 {
                     return;
                 }
 
-                if (appBarAction != null)
+                var oldActionContent = actionContent;
+                actionContent = value;
+
+                // Add views first before remove previous action content
+                // not to cause Garbage Collector collects views.
+                if ((actionContent != null) && (Actions != null))
                 {
-                    Remove(appBarAction);
+                    foreach (var action in Actions)
+                    {
+                        // Apply Action and ActionButton styles.
+                        if ((action is Button) && (appBarStyle?.ActionButton != null))
+                        {
+                            action.ApplyStyle(appBarStyle.ActionButton);
+                        }
+                        else if (appBarStyle?.ActionView != null)
+                        {
+                            action.ApplyStyle(appBarStyle.ActionView);
+                        }
+
+                        actionContent.Add(action);
+                    }
                 }
 
-                appBarAction = value;
-                if (appBarAction == null)
+                if (oldActionContent != null)
+                {
+                    Remove(oldActionContent);
+                }
+
+                if (actionContent == null)
                 {
                     return;
                 }
@@ -340,7 +388,17 @@ namespace Tizen.NUI.Components
 
                 autoNavigationContent = value;
 
-                ResetContent();
+                if (autoNavigationContent == true)
+                {
+                    if (NavigationContent == null)
+                    {
+                        NavigationContent = DefaultNavigationContent;
+                    }
+                }
+                else if (NavigationContent == DefaultNavigationContent)
+                {
+                    NavigationContent = null;
+                }
             }
         }
 
@@ -355,24 +413,143 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                //TODO: Do not set default navigation content if there is no previous page.
+                // TODO: Do not set default navigation content if there is no previous page.
+                if (defaultNavigationContent == null)
+                {
+                    defaultNavigationContent = CreateDefaultNavigationContent();
+                }
+
                 return defaultNavigationContent;
             }
         }
 
+        /// <summary>
+        /// Default title content of AppBar set automatically by default.
+        /// If TitleContent is not set by user, then default title content is
+        /// automatically displayed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected View DefaultTitleContent
+        {
+            get
+            {
+                if (defaultTitleContent == null)
+                {
+                    defaultTitleContent = CreateDefaultTitleContent();
+                }
+
+                return defaultTitleContent;
+            }
+        }
+
+        /// <summary>
+        /// Default action content of AppBar set automatically by default.
+        /// If ActionContent is not set by user, then default action content is
+        /// automatically displayed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected View DefaultActionContent
+        {
+            get
+            {
+                if (defaultActionContent == null)
+                {
+                    defaultActionContent = CreateDefaultActionContent();
+                }
+
+                return defaultActionContent;
+            }
+        }
+
+        /// <summary>
+        /// Applies style to AppBar.
+        /// </summary>
+        /// <param name="viewStyle">The style to apply.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void ApplyStyle(ViewStyle viewStyle)
+        {
+            styleApplied = false;
+
+            base.ApplyStyle(viewStyle);
+
+            // Apply Back Button style.
+            if ((appBarStyle?.BackButton != null) && (DefaultNavigationContent is Button button))
+            {
+                button.ApplyStyle(appBarStyle.BackButton);
+            }
+
+            // Apply Title style.
+            if ((appBarStyle?.TitleTextLabel != null) && (DefaultTitleContent is TextLabel textLabel))
+            {
+                textLabel.ApplyStyle(appBarStyle.TitleTextLabel);
+            }
+
+            // Apply ActionCellPadding style.
+            if (DefaultActionContent?.Layout is LinearLayout linearLayout)
+            {
+                linearLayout.CellPadding = new Size2D(appBarStyle?.ActionCellPadding?.Width ?? 0, appBarStyle?.ActionCellPadding?.Height ?? 0);
+            }
+
+            // Apply Action and ActionButton styles.
+            if (DefaultActionContent?.Children != null)
+            {
+                foreach (var action in DefaultActionContent?.Children)
+                {
+                    if ((action is Button) && (appBarStyle?.ActionButton != null))
+                    {
+                        action.ApplyStyle(appBarStyle.ActionButton);
+                    }
+                    else if (appBarStyle?.ActionView != null)
+                    {
+                        action.ApplyStyle(appBarStyle.ActionView);
+                    }
+                }
+            }
+
+            styleApplied = true;
+
+            // Calculate children's positions based on padding sizes.
+            CalculatePosition();
+        }
+
+        /// <summary>
+        /// Gets AppBar style.
+        /// </summary>
+        /// <returns>The default AppBar style.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override ViewStyle CreateViewStyle()
+        {
+            return new AppBarStyle();
+        }
+
+        private void Initialize()
+        {
+            // Navigation, Title and Action are located horizontally.
+            Layout = new LinearLayout()
+            {
+                LinearOrientation = LinearLayout.Orientation.Horizontal,
+                LinearAlignment = LinearLayout.Alignment.CenterVertical,
+            };
+
+            WidthSpecification = LayoutParamPolicies.MatchParent;
+
+            if (AutoNavigationContent == true)
+            {
+                NavigationContent = DefaultNavigationContent;
+            }
+
+            TitleContent = DefaultTitleContent;
+
+            ActionContent = DefaultActionContent;
+        }
+
         private View CreateDefaultNavigationContent()
         {
-            var backButton = new Button()
-            {
-                //FIXME: When back icon resource is added, replace this text to the icon resource.
-                Text = "<",
-                //TODO: This app bar height should be implemented in Appbar style.
-                Size = new Size(72.0f, 72.0f),
-            };
+            var backButton = new Button(appBarStyle?.BackButton ?? null);
 
             backButton.Clicked += (object sender, ClickedEventArgs args) =>
             {
-                //The page of app bar is popped when default back button is clicked.
+                // The page of app bar is popped when default back button is clicked.
                 var page = GetParent() as Page;
                 if (page != null)
                 {
@@ -387,46 +564,91 @@ namespace Tizen.NUI.Components
             return backButton;
         }
 
+        private View CreateDefaultTitleContent()
+        {
+            return new TextLabel(appBarStyle?.TitleTextLabel ?? null)
+            {
+                HeightSpecification = LayoutParamPolicies.MatchParent,
+                Weight = 1.0f,
+            };
+        }
+
+        private View CreateDefaultActionContent()
+        {
+            return new View()
+            {
+                Layout = new LinearLayout()
+                {
+                    LinearOrientation = LinearLayout.Orientation.Horizontal,
+
+                    // Apply ActionCellPadding style.
+                    CellPadding = new Size2D(appBarStyle?.ActionCellPadding?.Width ?? 0, appBarStyle?.ActionCellPadding?.Height ?? 0),
+                },
+                Weight = 0.0f,
+            };
+        }
+
         private void ResetContent()
         {
-            //To keep the order of NavigationContent, TitleContent and ActionContent,
-            //the existing contents are removed and added again.
-            if ((appBarNavigation != null) && Children.Contains(appBarNavigation))
+            // To keep the order of NavigationContent, TitleContent and ActionContent,
+            // the existing contents are removed and added again.
+            if ((navigationContent != null) && Children.Contains(navigationContent))
             {
-                Remove(appBarNavigation);
-            }
-            else if ((DefaultNavigationContent != null) && Children.Contains(DefaultNavigationContent))
-            {
-                Remove(DefaultNavigationContent);
+                Remove(navigationContent);
             }
 
-            if ((appBarTitle != null) && Children.Contains(appBarTitle))
+            if ((titleContent != null) && Children.Contains(titleContent))
             {
-                Remove(appBarTitle);
+                Remove(titleContent);
             }
 
-            if ((appBarAction != null) && Children.Contains(appBarAction))
+            if ((actionContent != null) && Children.Contains(actionContent))
             {
-                Remove(appBarAction);
+                Remove(actionContent);
             }
 
-            if (appBarNavigation != null)
+            if (navigationContent != null)
             {
-                Add(appBarNavigation);
-            }
-            else if ((AutoNavigationContent == true) && (DefaultNavigationContent != null))
-            {
-                Add(DefaultNavigationContent);
+                Add(navigationContent);
             }
 
-            if (appBarTitle != null)
+            if (titleContent != null)
             {
-                Add(appBarTitle);
+                Add(titleContent);
             }
 
-            if (appBarAction != null)
+            if (actionContent != null)
             {
-                Add(appBarAction);
+                Add(actionContent);
+            }
+
+            // Calculate children's positions based on padding sizes.
+            CalculatePosition();
+        }
+
+        private void CalculatePosition()
+        {
+            if (styleApplied == false)
+            {
+                return;
+            }
+
+            // Apply NavigationPadding style.
+            if ((NavigationContent != null) && (appBarStyle?.NavigationPadding != null))
+            {
+                if (NavigationContent.Margin.NotEqualTo(appBarStyle.NavigationPadding))
+                {
+                    NavigationContent.Margin.CopyFrom(appBarStyle.NavigationPadding);
+                }
+            }
+
+            // Apply ActionPadding style.
+            if ((ActionContent != null) && (appBarStyle?.ActionPadding != null))
+            {
+                if (ActionContent.Margin.NotEqualTo(appBarStyle.ActionPadding))
+                {
+                    ActionContent.Margin.CopyFrom(appBarStyle.ActionPadding);
+                }
             }
         }
     }

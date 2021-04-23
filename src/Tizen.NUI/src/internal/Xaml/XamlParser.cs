@@ -1,3 +1,19 @@
+/*
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 //
 // XamlParser.cs
 //
@@ -33,7 +49,6 @@ using System.Reflection;
 using System.Xml;
 using Tizen.NUI.Binding;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.UIComponents;
 using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI.Xaml
@@ -304,7 +319,7 @@ namespace Tizen.NUI.Xaml
         static IList<XmlnsDefinitionAttribute> s_xmlnsDefinitions;
         public static IList<Assembly> s_assemblies = new List<Assembly>();// = new Assembly[]{};
 
-        static void GatherXmlnsDefinitionAttributes()
+        static void GatherXmlnsDefinitionAttributes(Assembly currentAssembly)
         {
             //this could be extended to look for [XmlnsDefinition] in all assemblies
             // var assemblies = new [] {
@@ -312,7 +327,28 @@ namespace Tizen.NUI.Xaml
             // 	//typeof(XamlLoader).GetTypeInfo().Assembly,
             // };
             // s_assemblies = new Assembly[]{typeof(View).GetTypeInfo().Assembly};
-            s_assemblies.Add(typeof(View).GetTypeInfo().Assembly);
+            //s_assemblies.Add(typeof(View).GetTypeInfo().Assembly);
+            var assemblies = currentAssembly?.GetReferencedAssemblies();
+
+            if (null == assemblies || 0 == assemblies.Length)
+            {
+                s_assemblies.Add(typeof(View).GetTypeInfo().Assembly);
+            }
+            else
+            {
+                foreach (var assembly in assemblies)
+                {
+                    try
+                    {
+                        s_assemblies.Add(Assembly.Load(assembly));
+                    }
+                    catch (Exception e)
+                    {
+                        Tizen.Log.Fatal("NUI", "Load referenced assemblies e.Message: " + e.Message);
+                        Console.WriteLine("\n[FATAL] Load referenced assemblies e.Message: {0}\n", e.Message);
+                    }
+                }
+            }
 
             s_xmlnsDefinitions = new List<XmlnsDefinitionAttribute>();
 
@@ -328,7 +364,7 @@ namespace Tizen.NUI.Xaml
             out XamlParseException exception)
         {
             if (s_xmlnsDefinitions == null)
-                GatherXmlnsDefinitionAttributes();
+                GatherXmlnsDefinitionAttributes(currentAssembly);
 
             var namespaceURI = xmlType.NamespaceUri;
             var elementName = xmlType.Name;

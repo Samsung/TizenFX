@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2020 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2021 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,7 +31,6 @@ namespace Tizen.NUI
         private Interop.FrameProvider.FrameProviderEventCallbacks callbacks;
         private bool disposed = false;
 
-
         /// <summary>
         /// Initializes the FrameProvider class.
         /// </summary>
@@ -39,7 +38,7 @@ namespace Tizen.NUI
         /// <exception cref="ArgumentException">Thrown when failed because of an invalid parameter.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when the memory is insufficient.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed to create the frame broker handle.</exception>
-        /// <remarks>This class is only avaliable for platform level signed applications.</remarks>
+        /// <remarks>This class is only available for platform level signed applications.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal FrameProvider(Window window)
         {

@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,14 +30,14 @@ namespace Tizen.NUI.BaseComponents
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class AnimatedVectorImageView : LottieAnimationView
     {
-        #region Constructor, Distructor, Dispose
+        #region Constructor, Destructor, Dispose
         /// <summary>
         /// Construct VectorAnimationView.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public AnimatedVectorImageView() : base()
         {
-            tlog.Fatal(tag, $"[VAV START[ constuctor objId={GetId()} ]VAV END]");
+            tlog.Fatal(tag, $"[AnimatedVectorImageView START[ constructor objId={GetId()} ] END]");
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public AnimatedVectorImageView(float scale) : base(scale)
         {
-            tlog.Fatal(tag, $"[VAV START[ constuctor scale={scale}) objId={GetId()} ]VAV END]");
+            tlog.Fatal(tag, $"[AnimatedVectorImageView START[ constructor scale={scale}) objId={GetId()} ] END]");
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 return;
             }
-            tlog.Fatal(tag, $"[VAV START[ [{GetId()}] type={type})");
+            tlog.Fatal(tag, $"[AnimatedVectorImageView START[ [{GetId()}] type={type})");
 
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
@@ -69,55 +69,53 @@ namespace Tizen.NUI.BaseComponents
 
             base.Dispose(type);
 
-            tlog.Fatal(tag, $"]VAV END]");
+            tlog.Fatal(tag, $"]AnimatedVectorImageView END]");
         }
-        #endregion Constructor, Distructor, Dispose
+        #endregion Constructor, Destructor, Dispose
 
 
         #region Property
         /// <summary>
         /// Set Resource URL
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         // Suppress warning : This has been being used by users, so that the interface can not be changed.
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1056:Uri properties should not be strings", Justification = "<Pending>")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string ResourceURL
         {
             set
             {
-                tlog.Fatal(tag, $"[VAV START[ [{GetId()}] ResourceURL SET");
+                tlog.Fatal(tag, $"[AnimatedVectorImageView START[ [{GetId()}] ResourceURL SET");
 
-                if (value == resourceURL)
+                if (value == resourceUrl)
                 {
                     tlog.Fatal(tag, $"set same URL! ");
                     return;
                 }
-                resourceURL = (value == null) ? "" : value;
-                URL = resourceURL;
-                isMinMaxSet = minMaxSetTypes.NotSetByUser;
+                resourceUrl = (value == null) ? "" : value;
+                URL = resourceUrl;
+                isMinMaxFrameSet = minMaxSetTypes.NotSetByUser;
                 totalFrameNum = base.TotalFrame;
-                tlog.Fatal(tag, $" [{GetId()}] resourceURL={resourceURL}) ]VAV END]");
+                tlog.Fatal(tag, $" [{GetId()}] resourceUrl={resourceUrl}) ]AnimatedVectorImageView END]");
             }
-            get => resourceURL;
+            get => resourceUrl;
         }
 
         /// <summary>
         /// Set Resource URL
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         // Suppress warning : This has been being used by users, so that the interface can not be changed.
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1056:Uri properties should not be strings", Justification = "<Pending>")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public new string ResourceUrl
         {
             set
             {
-                tlog.Fatal(tag, $"[VAV START[ [{GetId()}] ResourceUrl SET");
+                tlog.Fatal(tag, $"[AnimatedVectorImageView START[ [{GetId()}] ResourceUrl SET");
                 this.ResourceURL = value;
-                tlog.Fatal(tag, $" [{GetId()}] value={value}) ]VAV END]");
+                tlog.Fatal(tag, $" [{GetId()}] value={value}) ]AnimatedVectorImageView END]");
             }
             get
             {
-                tlog.Fatal(tag, $"[VAV [ [{GetId()}] ResourceUrl GET");
+                tlog.Fatal(tag, $"[AnimatedVectorImageView [ [{GetId()}] ResourceUrl GET");
                 return this.ResourceURL;
             }
         }
@@ -135,14 +133,14 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
-                tlog.Fatal(tag, $"[VAV START[ [{GetId()}] RepeatCount SET");
+                tlog.Fatal(tag, $"[AnimatedVectorImageView START[ [{GetId()}] RepeatCount SET");
 
-                repeatCount = (value < -1) ? -1 : value;
-                LoopCount = (repeatCount < 0) ? repeatCount : repeatCount + 1;
+                repeatCnt = (value < -1) ? -1 : value;
+                LoopCount = (repeatCnt < 0) ? repeatCnt : repeatCnt + 1;
 
-                tlog.Fatal(tag, $"[{GetId()}] repeatCount={repeatCount} ]VAV END]");
+                tlog.Fatal(tag, $"[{GetId()}] repeatCnt={repeatCnt} ]AnimatedVectorImageView END]");
             }
-            get => repeatCount;
+            get => repeatCnt;
         }
 
         /// <summary>
@@ -163,9 +161,9 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
-                tlog.Fatal(tag, $"[VAV START[ [{GetId()}] CurrentFrame SET");
+                tlog.Fatal(tag, $"[AnimatedVectorImageView START[ [{GetId()}] CurrentFrame SET");
 
-                if (string.IsNullOrEmpty(resourceURL))
+                if (string.IsNullOrEmpty(resourceUrl))
                 {
                     throw new InvalidOperationException("Resource Url not yet Set");
                 }
@@ -179,15 +177,15 @@ namespace Tizen.NUI.BaseComponents
                     value = totalFrameNum - 1;
                 }
 
-                currentFrame = value;
+                innerCurrentFrame = value;
                 AnimationState = AnimationStates.Paused;
 
                 base.SetMinMaxFrame(0, totalFrameNum - 1);
-                base.CurrentFrame = currentFrame;
+                base.CurrentFrame = innerCurrentFrame;
 
-                tlog.Fatal(tag, $" [{GetId()}] currentFrame={currentFrame}) ]VAV END]");
+                tlog.Fatal(tag, $" [{GetId()}] innerCurrentFrame={innerCurrentFrame}) ]AnimatedVectorImageView END]");
             }
-            get => currentFrame;
+            get => innerCurrentFrame;
         }
 
         /// <summary>
@@ -198,7 +196,7 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
-                tlog.Fatal(tag, $"[VAV START[ [{GetId()}] RepeatMode SET");
+                tlog.Fatal(tag, $"[AnimatedVectorImageView START[ [{GetId()}] RepeatMode SET");
                 repeatMode = value;
 
                 switch (repeatMode)
@@ -214,38 +212,9 @@ namespace Tizen.NUI.BaseComponents
                         break;
                 }
 
-                tlog.Fatal(tag, $" [{GetId()}] repeatMode={repeatMode}) ]VAV END]");
+                tlog.Fatal(tag, $" [{GetId()}] repeatMode={repeatMode}) ]AnimatedVectorImageView END]");
             }
             get => repeatMode;
-        }
-
-        /// <summary>
-        /// Repeat of animation.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public RepeatModeType Repeat
-        {
-            set
-            {
-                tlog.Fatal(tag, $"[VAV START[ [{GetId()}] Repeat SET");
-                repeat = value;
-
-                switch (repeat)
-                {
-                    case RepeatModeType.Restart:
-                        LoopingMode = LoopingModeType.Restart;
-                        break;
-                    case RepeatModeType.Reverse:
-                        LoopingMode = LoopingModeType.AutoReverse;
-                        break;
-                    default:
-                        LoopingMode = LoopingModeType.Restart;
-                        break;
-                }
-
-                tlog.Fatal(tag, $" [{GetId()}] repeat={repeat}) ]VAV END]");
-            }
-            get => repeat;
         }
 
         /// <summary>
@@ -282,28 +251,28 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetMinAndMaxFrame(int minFrame, int maxFrame)
         {
-            tlog.Fatal(tag, $"[VAV START[ [{GetId()}] SetMinAndMaxFrame({minFrame}, {maxFrame})");
+            tlog.Fatal(tag, $"[AnimatedVectorImageView START[ [{GetId()}] SetMinAndMaxFrame({minFrame}, {maxFrame})");
 
-            minFrame = (minFrame) > 0 ? minFrame : 0;
-            mMaxFrame = (maxFrame) > 0 ? maxFrame : 0;
-            isMinMaxSet = minMaxSetTypes.SetByMinAndMaxFrameMethod;
+            minimumFrame = (minFrame) > 0 ? minFrame : 0;
+            maximumFrame = (maxFrame) > 0 ? maxFrame : 0;
+            isMinMaxFrameSet = minMaxSetTypes.SetByMinAndMaxFrameMethod;
 
-            if (minFrame >= totalFrameNum)
+            if (minimumFrame >= totalFrameNum)
             {
-                minFrame = totalFrameNum - 1;
+                minimumFrame = totalFrameNum - 1;
             }
 
-            if (mMaxFrame >= totalFrameNum)
+            if (maximumFrame >= totalFrameNum)
             {
-                mMaxFrame = totalFrameNum - 1;
+                maximumFrame = totalFrameNum - 1;
             }
 
-            if (minFrame > mMaxFrame)
+            if (minimumFrame > maximumFrame)
             {
                 return;
             }
 
-            tlog.Fatal(tag, $" [{GetId()}] minFrame:{minFrame}, mMaxFrame:{mMaxFrame}) ]VAV END]");
+            tlog.Fatal(tag, $" [{GetId()}] minimumFrame:{minimumFrame}, maximumFrame:{maximumFrame}) ]AnimatedVectorImageView END]");
         }
 
         /// <summary>
@@ -316,25 +285,25 @@ namespace Tizen.NUI.BaseComponents
         {
             tlog.Fatal(tag, $"SetMinMaxFrame({minFrame}, {maxFrame})!!!");
 
-            minFrame = (minFrame) > 0 ? minFrame : 0;
-            mMaxFrame = (maxFrame) > 0 ? maxFrame : 0;
-            isMinMaxSet = minMaxSetTypes.SetByBaseSetMinMaxFrameMethod;
+            minimumFrame = (minFrame) > 0 ? minFrame : 0;
+            maximumFrame = (maxFrame) > 0 ? maxFrame : 0;
+            isMinMaxFrameSet = minMaxSetTypes.SetByBaseSetMinMaxFrameMethod;
 
-            if (minFrame >= totalFrameNum)
+            if (minimumFrame >= totalFrameNum)
             {
-                minFrame = totalFrameNum - 1;
+                minimumFrame = totalFrameNum - 1;
             }
 
-            if (mMaxFrame >= totalFrameNum)
+            if (maximumFrame >= totalFrameNum)
             {
-                mMaxFrame = totalFrameNum - 1;
+                maximumFrame = totalFrameNum - 1;
             }
 
-            base.SetMinMaxFrame(minFrame, mMaxFrame);
+            base.SetMinMaxFrame(minimumFrame, maximumFrame);
         }
 
         /// <summary>
-        /// A marker has its start frame and end frame.
+        /// A marker has its start frame and end frame. 
         /// Animation will play between the start frame and the end frame of the marker if one marker is specified.
         /// Or animation will play between the start frame of the first marker and the end frame of the second marker if two markers are specified.   *
         /// </summary>
@@ -344,7 +313,7 @@ namespace Tizen.NUI.BaseComponents
         public new void SetMinMaxFrameByMarker(string marker1, string marker2 = null)
         {
             tlog.Fatal(tag, $"SetMinMaxFrameByMarker({marker1}, {marker2})");
-            isMinMaxSet = minMaxSetTypes.SetByMarker;
+            isMinMaxFrameSet = minMaxSetTypes.SetByMarker;
             base.SetMinMaxFrameByMarker(marker1, marker2);
         }
 
@@ -354,14 +323,14 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new void Play()
         {
-            tlog.Fatal(tag, $"[VAV START[ [{GetId()}] AnimationState={AnimationState}, PlayState={PlayState}");
+            tlog.Fatal(tag, $"[AnimatedVectorImageView START[ [{GetId()}] AnimationState={AnimationState}, PlayState={PlayState}");
 
-            if (string.IsNullOrEmpty(resourceURL))
+            if (string.IsNullOrEmpty(resourceUrl))
             {
                 throw new InvalidOperationException("Resource Url not yet Set");
             }
 
-            switch (isMinMaxSet)
+            switch (isMinMaxFrameSet)
             {
                 case minMaxSetTypes.NotSetByUser:
                     base.SetMinMaxFrame(0, totalFrameNum - 1);
@@ -369,8 +338,8 @@ namespace Tizen.NUI.BaseComponents
                     break;
 
                 case minMaxSetTypes.SetByMinAndMaxFrameMethod:
-                    base.SetMinMaxFrame(minFrame, mMaxFrame);
-                    base.CurrentFrame = minFrame;
+                    base.SetMinMaxFrame(minimumFrame, maximumFrame);
+                    base.CurrentFrame = minimumFrame;
                     break;
 
                 case minMaxSetTypes.SetByMarker:
@@ -387,7 +356,7 @@ namespace Tizen.NUI.BaseComponents
             base.Play();
             AnimationState = AnimationStates.Playing;
 
-            tlog.Fatal(tag, $" [{GetId()}] isMinMaxSet={isMinMaxSet}) ]VAV END]");
+            tlog.Fatal(tag, $" [{GetId()}] isMinMaxFrameSet={isMinMaxFrameSet}) ]AnimatedVectorImageView END]");
         }
 
         /// <summary>
@@ -396,9 +365,9 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new void Pause()
         {
-            tlog.Fatal(tag, $"[VAV START[ [{GetId()}] AnimationState={AnimationState}, PlayState={PlayState}");
+            tlog.Fatal(tag, $"[AnimatedVectorImageView START[ [{GetId()}] AnimationState={AnimationState}, PlayState={PlayState}");
 
-            if (string.IsNullOrEmpty(resourceURL))
+            if (string.IsNullOrEmpty(resourceUrl))
             {
                 throw new InvalidOperationException("Resource Url not yet Set");
             }
@@ -406,7 +375,7 @@ namespace Tizen.NUI.BaseComponents
             base.Pause();
             AnimationState = AnimationStates.Paused;
 
-            tlog.Fatal(tag, $" [{GetId()}] ]VAV END]");
+            tlog.Fatal(tag, $" [{GetId()}] ]AnimatedVectorImageView END]");
         }
 
         /// <summary>
@@ -420,9 +389,9 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Stop(EndActions endAction = EndActions.Cancel)
         {
-            tlog.Fatal(tag, $"[VAV START[ [{GetId()}] endAction:({endAction}), PlayState={PlayState}");
+            tlog.Fatal(tag, $"[AnimatedVectorImageView START[ [{GetId()}] endAction:({endAction}), PlayState={PlayState}");
 
-            if (string.IsNullOrEmpty(resourceURL))
+            if (string.IsNullOrEmpty(resourceUrl))
             {
                 throw new InvalidOperationException("Resource Url not yet Set");
             }
@@ -432,9 +401,9 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-            if (internalEndAction != endAction)
+            if (innerEndAction != endAction)
             {
-                internalEndAction = endAction;
+                innerEndAction = endAction;
                 switch (endAction)
                 {
                     case EndActions.Cancel:
@@ -457,23 +426,23 @@ namespace Tizen.NUI.BaseComponents
 
             if (endAction == EndActions.StopFinal)
             {
-                switch (isMinMaxSet)
+                switch (isMinMaxFrameSet)
                 {
                     case minMaxSetTypes.NotSetByUser:
                         if (base.CurrentFrame != totalFrameNum - 1)
                         {
-                            tlog.Fatal(tag, $"isMinMaxSet:{isMinMaxSet}, CurrentFrameNumber:{base.CurrentFrame}, totalFrameNum:{ totalFrameNum}");
+                            tlog.Fatal(tag, $"isMinMaxFrameSet:{isMinMaxFrameSet}, CurrentFrameNumber:{base.CurrentFrame}, totalFrameNum:{ totalFrameNum}");
                             base.CurrentFrame = totalFrameNum - 1;
-                            tlog.Fatal(tag, $"set CurrentFrameNumber({base.CurrentFrame}) as totalFrameNum({mMaxFrame}) - 1 !");
+                            tlog.Fatal(tag, $"set CurrentFrameNumber({base.CurrentFrame}) as totalFrameNum({maximumFrame}) - 1 !");
                         }
                         break;
 
                     case minMaxSetTypes.SetByMinAndMaxFrameMethod:
-                        if (base.CurrentFrame != mMaxFrame)
+                        if (base.CurrentFrame != maximumFrame)
                         {
-                            tlog.Fatal(tag, $"isMinMaxSet:{isMinMaxSet}, CurrentFrameNumber:{base.CurrentFrame}, mMaxFrame:{ mMaxFrame}");
-                            base.CurrentFrame = mMaxFrame;
-                            tlog.Fatal(tag, $"set CurrentFrameNumber({base.CurrentFrame}) as mMaxFrame({mMaxFrame})!!!");
+                            tlog.Fatal(tag, $"isMinMaxFrameSet:{isMinMaxFrameSet}, CurrentFrameNumber:{base.CurrentFrame}, maximumFrame:{ maximumFrame}");
+                            base.CurrentFrame = maximumFrame;
+                            tlog.Fatal(tag, $"set CurrentFrameNumber({base.CurrentFrame}) as maximumFrame({maximumFrame})!!!");
                         }
                         break;
                     case minMaxSetTypes.SetByBaseSetMinMaxFrameMethod:
@@ -483,7 +452,7 @@ namespace Tizen.NUI.BaseComponents
                         break;
                 }
             }
-            tlog.Fatal(tag, $" [{GetId()}] ]VAV END]");
+            tlog.Fatal(tag, $" [{GetId()}] ]AnimatedVectorImageView END]");
         }
         #endregion Method
 
@@ -492,39 +461,18 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// RepeatMode of animation.
         /// </summary>
-        [Obsolete("Please do not use! This will be removed. Please use AnimatedVectorImageView.RepeatModeType instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
         // Suppress warning : This has been being used by users, so that the interface can not be changed.
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1717:Only FlagsAttribute enums should have plural names", Justification = "<Pending>")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public enum RepeatModes
         {
             /// <summary>
-            /// When the animation reaches the end and RepeatCount is nonZero, the animation restarts from the beginning.
-            /// </summary>
-            [Obsolete("Please do not use! This will be removed. Please use AnimatedVectorImageView.RepeatModeType.Restart instead!")]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            Restart = LoopingModeType.Restart,
-            /// <summary>
-            /// When the animation reaches the end and RepeatCount nonZero, the animation reverses direction on every animation cycle.
-            /// </summary>
-            [Obsolete("Please do not use! This will be removed. Please use AnimatedVectorImageView.RepeatModeType.Reverse instead!")]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            Reverse = LoopingModeType.AutoReverse
-        }
-
-        /// <summary>
-        /// RepeatMode type of animation.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public enum RepeatModeType
-        {
-            /// <summary>
-            /// When the animation reaches the end and RepeatCount is nonZero, the animation restarts from the beginning.
+            /// When the animation reaches the end and RepeatCount is nonZero, the animation restarts from the beginning. 
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             Restart = LoopingModeType.Restart,
             /// <summary>
-            /// When the animation reaches the end and RepeatCount nonZero, the animation reverses direction on every animation cycle.
+            /// When the animation reaches the end and RepeatCount nonZero, the animation reverses direction on every animation cycle. 
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             Reverse = LoopingModeType.AutoReverse
@@ -533,33 +481,12 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// EndActions of animation.
         /// </summary>
-        [Obsolete("Please do not use! This will be removed. Please use AnimatedVectorImageView.EndAction instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
         // Suppress warning : This has been being used by users, so that the interface can not be changed.
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1717:Only FlagsAttribute enums should have plural names", Justification = "<Pending>")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public enum EndActions
         {
             /// <summary> End action is Cancel, Animation Stops at the Current Frame.</summary>
-            [Obsolete("Please do not use! This will be removed. Please use AnimatedVectorImageView.EndAction.Cancel instead!")]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            Cancel = 0,
-            /// <summary>  End action is Discard, Animation Stops at the Min Frame</summary>
-            [Obsolete("Please do not use! This will be removed. Please use AnimatedVectorImageView.EndAction.Discard instead!")]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            Discard = 1,
-            /// <summary> End action is StopFinal, Animation Stops at the Max Frame</summary>
-            [Obsolete("Please do not use! This will be removed. Please use AnimatedVectorImageView.EndAction.StopFinal instead!")]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            StopFinal = 2
-        }
-
-        /// <summary>
-        /// EndAction of animation.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public enum EndAction
-        {
-            /// <summary> End action is Cancel, Animation Stops at the Current Frame.</summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             Cancel = 0,
             /// <summary>  End action is Discard, Animation Stops at the Min Frame</summary>
@@ -571,33 +498,12 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// AnimationState of animation.
+        /// AnimationStates of animation.
         /// </summary>
-        [Obsolete("Please do not use! This will be removed. Please use AnimatedVectorImageView.State instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
         // Suppress warning : This has been being used by users, so that the interface can not be changed.
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1717:Only FlagsAttribute enums should have plural names", Justification = "<Pending>")]
-        public enum AnimationStates
-        {
-            /// <summary> The animation has stopped.</summary>
-            [Obsolete("Please do not use! This will be removed. Please use AnimatedVectorImageView.State.Stopped instead!")]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            Stopped = PlayStateType.Stopped,
-            /// <summary> The animation is playing.</summary>
-            [Obsolete("Please do not use! This will be removed. Please use AnimatedVectorImageView.State.Playing instead!")]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            Playing = PlayStateType.Playing,
-            /// <summary> The animation is paused.</summary>
-            [Obsolete("Please do not use! This will be removed. Please use AnimatedVectorImageView.State.Paused instead!")]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            Paused = PlayStateType.Paused
-        }
-
-        /// <summary>
-        /// Animation State of animation.
-        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public new enum State
+        public enum AnimationStates
         {
             /// <summary> The animation has stopped.</summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
@@ -611,19 +517,20 @@ namespace Tizen.NUI.BaseComponents
         }
         #endregion Event, Enum, Struct, ETC
 
+
         #region Internal
         #endregion Internal
 
+
         #region Private
-        private string resourceURL = null;
-        private int repeatCount = 0;
+        private string resourceUrl = null;
+        private int repeatCnt = 0;
         private int totalFrameNum = 0;
-        private int minFrame = -1, mMaxFrame = -1;
-        private minMaxSetTypes isMinMaxSet = minMaxSetTypes.NotSetByUser;
-        private int currentFrame = -1;
-        private EndActions internalEndAction = EndActions.Cancel;
-        private RepeatModeType repeat = RepeatModeType.Restart;
         private RepeatModes repeatMode = RepeatModes.Restart;
+        private int minimumFrame = -1, maximumFrame = -1;
+        private minMaxSetTypes isMinMaxFrameSet = minMaxSetTypes.NotSetByUser;
+        private int innerCurrentFrame = -1;
+        private EndActions innerEndAction = EndActions.Cancel;
         private enum minMaxSetTypes
         {
             NotSetByUser,

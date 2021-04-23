@@ -2,7 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <NoWarn>$(NoWarn);CS0618;CS0809;CS1591</NoWarn>
+    <NoWarn>$(NoWarn);CS0618;CS0809;CS1591;CA1054;CA1056</NoWarn>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,6 +22,7 @@
     <ProjectReference Include="..\Tizen.Applications.ComponentBased\Tizen.Applications.ComponentBased.csproj" />
     <ProjectReference Include="..\Tizen.System.Information\Tizen.System.Information.csproj" />
     <ProjectReference Include="..\Tizen.System.SystemSettings\Tizen.System.SystemSettings.csproj" />
+    <ProjectReference Include="..\Tizen.Applications.ThemeManager\Tizen.Applications.ThemeManager.csproj" />
   </ItemGroup>
 
   <Target Name="ChangeAliasesOfStrongNameAssemblies" BeforeTargets="FindReferenceAssembliesForReferences;ResolveReferences">
@@ -33,5 +35,11 @@
       </ReferencePath>
     </ItemGroup>
   </Target>
+
+  <ItemGroup>
+    <None Update="res\*.png;res\*.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 
 </Project>

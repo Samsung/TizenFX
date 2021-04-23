@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,24 +18,52 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Threading.Tasks;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// The Navigator is a class which navigates pages with stack methods such
-    /// as Push and Pop.
+    /// The Navigator is a class which navigates pages with stack methods such as Push and Pop.
+    ///
+    /// With Transition class, Navigator supports smooth transition of View pair between two Pages
+    /// by using PushWithTransition(Page) and PopWithTransition() methods.
+    /// If there is View pair of current top Page and next top Page those have same View.TransitionOptions.TransitionTag,
+    /// Navigator creates smooth transition motion for them.
+    /// Navigator.Transition property can be used to set properties of the Transition such as TimePeriod and AlphaFunction.
+    /// When all transitions are finished, Navigator calls a callback methods those connected on the "TransitionFinished" event.
+    /// 
+    /// <example>
+    /// <code>
+    /// Navigator.Transition = new Transition()
+    /// {
+    ///     TimePeriod = new TimePeriod(0.5),
+    ///     AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseInOutSine)
+    /// }
+    ///
+    /// Navigator.PushWithTransition(newPage);
+    /// </code>
+    /// </example>
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Navigator : Control
     {
-        //This will be replaced with view transition class instance.
-        private Animation _curAnimation = null;
+        private static readonly float DefaultTransitionDuration = 0.5f;
 
         //This will be replaced with view transition class instance.
-        private Animation _newAnimation = null;
+        private Animation curAnimation = null;
+
+        //This will be replaced with view transition class instance.
+        private Animation newAnimation = null;
+
+        private TransitionSet transitionSet = null;
+
+        private Transition transition = new Transition()
+        {
+            TimePeriod = new TimePeriod(DefaultTransitionDuration),
+            AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default),
+        };
+
+        private bool transitionFinished = true;
 
         //TODO: Needs to consider how to remove disposed window from dictionary.
         //Two dictionaries are required to remove disposed navigator from dictionary.
@@ -48,13 +76,127 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Navigator() : base()
         {
+            Layout = new AbsoluteLayout();
         }
+        
+        /// <summary>
+        /// An event for the page disappearing signal which can be used to subscribe or unsubscribe the event handler provided by the user.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<EventArgs> TransitionFinished;
 
         /// <summary>
         /// List of pages of Navigator.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public List<Page> NavigationPages { get; } = new List<Page>();
+
+        /// <summary>
+        /// Transition properties for the transition of View pair those have same transition tag.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Transition Transition
+        {
+            set
+            {
+                transition = value;
+            }
+            get
+            {
+                return transition;
+            }
+        }
+
+        /// <summary>
+        /// Pushes a page to Navigator.
+        /// If the page is already in Navigator, then it is not pushed.
+        /// </summary>
+        /// <param name="page">The page to push to Navigator.</param>
+        /// <exception cref="ArgumentNullException">Thrown when the argument page is null.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void PushWithTransition(Page page)
+        {
+            if (!transitionFinished)
+            {
+                Tizen.Log.Error("NUI", "Transition is still not finished.\n");
+                return;
+            }
+
+            if (page == null)
+            {
+                throw new ArgumentNullException(nameof(page), "page should not be null.");
+            }
+
+            //Duplicate page is not pushed.
+            if (NavigationPages.Contains(page)) return;
+
+            var topPage = Peek();
+
+            if (!topPage)
+            {
+                Insert(0, page);
+                return;
+            }
+
+            NavigationPages.Add(page);
+            Add(page);
+
+            //Invoke Page events
+            page.InvokeAppearing();
+            topPage.InvokeDisappearing();
+
+            transitionSet = CreateTransition(topPage, page, true);
+            transitionSet.Finished += (object sender, EventArgs e) =>
+            {
+                topPage.SetVisible(false);
+            };
+            transitionFinished = false;
+        }
+
+        /// <summary>
+        /// Pops the top page from Navigator.
+        /// </summary>
+        /// <returns>The popped page.</returns>
+        /// <exception cref="InvalidOperationException">Thrown when there is no page in Navigator.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Page PopWithTransition()
+        {
+            if (!transitionFinished)
+            {
+                Tizen.Log.Error("NUI", "Transition is still not finished.\n");
+                return null;
+            }
+
+            if (NavigationPages.Count == 0)
+            {
+                throw new InvalidOperationException("There is no page in Navigator.");
+            }
+
+            var topPage = Peek();
+
+            if (NavigationPages.Count == 1)
+            {
+                Remove(topPage);
+                return topPage;
+            }
+            var newTopPage = NavigationPages[NavigationPages.Count - 2];
+
+//            newTopPage.RaiseAbove(topPage);
+
+            //Invoke Page events
+            newTopPage.InvokeAppearing();
+            topPage.InvokeDisappearing();
+
+            transitionSet = CreateTransition(topPage, newTopPage, false);
+            transitionSet.Finished += (object sender, EventArgs e) =>
+            {
+                Remove(topPage);
+                topPage.SetVisible(true);
+            };
+            transitionFinished = false;
+
+            return topPage;
+        }
 
         /// <summary>
         /// Pushes a page to Navigator.
@@ -65,6 +207,12 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Push(Page page)
         {
+            if (!transitionFinished)
+            {
+                Tizen.Log.Error("NUI", "Transition is still not finished.\n");
+                return;
+            }
+
             if (page == null)
             {
                 throw new ArgumentNullException(nameof(page), "page should not be null.");
@@ -83,51 +231,40 @@ namespace Tizen.NUI.Components
 
             NavigationPages.Add(page);
             Add(page);
+            page.Navigator = this;
 
             //Invoke Page events
             page.InvokeAppearing();
             curTop.InvokeDisappearing();
 
             //TODO: The following transition codes will be replaced with view transition.
-            if (_curAnimation)
+            if (curAnimation)
             {
-                _curAnimation.Stop();
-                _curAnimation.Clear();
+                curAnimation.Stop();
+                curAnimation.Clear();
             }
 
-            if (_newAnimation)
+            if (newAnimation)
             {
-                _newAnimation.Stop();
-                _newAnimation.Clear();
+                newAnimation.Stop();
+                newAnimation.Clear();
             }
 
-            _curAnimation = new Animation(1000);
-            using (var scaleVec = new Vector3(0.0f, 0.0f, 1.0f))
+            if (page is DialogPage == false)
             {
-                _curAnimation.AnimateTo(curTop, "Scale", scaleVec, 0, 1000);
-            }
-            _curAnimation.AnimateTo(curTop, "Opacity", 0.0f, 0, 1000);
-            _curAnimation.EndAction = Animation.EndActions.Discard;
-            _curAnimation.Play();
+                curAnimation = new Animation(1000);
+                curAnimation.AnimateTo(curTop, "Opacity", 0.0f, 0, 1000);
+                curAnimation.EndAction = Animation.EndActions.Discard;
+                curAnimation.Play();
 
-            using (var scaleVec = new Vector3(0.0f, 0.0f, 1.0f))
-            {
-                using (var scaleProp = new Tizen.NUI.PropertyValue(scaleVec))
+                using (var opacityProp = new Tizen.NUI.PropertyValue(0.0f))
                 {
-                    Tizen.NUI.Object.SetProperty(page.SwigCPtr, Page.Property.SCALE, scaleProp);
+                    Tizen.NUI.Object.SetProperty(page.SwigCPtr, Page.Property.OPACITY, opacityProp);
                 }
+                newAnimation = new Animation(1000);
+                newAnimation.AnimateTo(page, "Opacity", 1.0f, 0, 1000);
+                newAnimation.Play();
             }
-            using (var scaleProp = new Tizen.NUI.PropertyValue(0.0f))
-            {
-                Tizen.NUI.Object.SetProperty(page.SwigCPtr, Page.Property.OPACITY, scaleProp);
-            }
-            _newAnimation = new Animation(1000);
-            using (var scaleVec = new Vector3(1.0f, 1.0f, 1.0f))
-            {
-                _newAnimation.AnimateTo(page, "Scale", scaleVec, 0, 1000);
-            }
-            _newAnimation.AnimateTo(page, "Opacity", 1.0f, 0, 1000);
-            _newAnimation.Play();
         }
 
         /// <summary>
@@ -138,6 +275,12 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Page Pop()
         {
+            if (!transitionFinished)
+            {
+                Tizen.Log.Error("NUI", "Transition is still not finished.\n");
+                return null;
+            }
+
             if (NavigationPages.Count == 0)
             {
                 throw new InvalidOperationException("There is no page in Navigator.");
@@ -158,49 +301,41 @@ namespace Tizen.NUI.Components
             curTop.InvokeDisappearing();
 
             //TODO: The following transition codes will be replaced with view transition.
-            if (_curAnimation)
+            if (curAnimation)
             {
-                _curAnimation.Stop();
-                _curAnimation.Clear();
+                curAnimation.Stop();
+                curAnimation.Clear();
             }
 
-            if (_newAnimation)
+            if (newAnimation)
             {
-                _newAnimation.Stop();
-                _newAnimation.Clear();
+                newAnimation.Stop();
+                newAnimation.Clear();
             }
 
-            _curAnimation = new Animation(1000);
-            using (var scaleVec = new Vector3(0.0f, 0.0f, 1.0f))
+            if (curTop is DialogPage == false)
             {
-                _curAnimation.AnimateTo(curTop, "Scale", scaleVec, 0, 1000);
-            }
-            _curAnimation.AnimateTo(curTop, "Opacity", 0.0f, 0, 1000);
-            _curAnimation.Play();
-            _curAnimation.Finished += (object sender, EventArgs e) =>
-            {
-                //Removes the current top page after transition is finished.
-                Remove(curTop);
-            };
-
-            using (var scaleVec = new Vector3(0.0f, 0.0f, 1.0f))
-            {
-                using (var scaleProp = new Tizen.NUI.PropertyValue(scaleVec))
+                curAnimation = new Animation(1000);
+                curAnimation.AnimateTo(curTop, "Opacity", 0.0f, 0, 1000);
+                curAnimation.Play();
+                curAnimation.Finished += (object sender, EventArgs e) =>
                 {
-                    Tizen.NUI.Object.SetProperty(newTop.SwigCPtr, Page.Property.SCALE, scaleProp);
+                    //Removes the current top page after transition is finished.
+                    Remove(curTop);
+                };
+
+                using (var opacityProp = new Tizen.NUI.PropertyValue(0.0f))
+                {
+                    Tizen.NUI.Object.SetProperty(newTop.SwigCPtr, Page.Property.OPACITY, opacityProp);
                 }
+                newAnimation = new Animation(1000);
+                newAnimation.AnimateTo(newTop, "Opacity", 1.0f, 0, 1000);
+                newAnimation.Play();
             }
-            using (var opacityProp = new Tizen.NUI.PropertyValue(0.0f))
+            else
             {
-                Tizen.NUI.Object.SetProperty(newTop.SwigCPtr, Page.Property.OPACITY, opacityProp);
+                Remove(curTop);
             }
-            _newAnimation = new Animation(1000);
-            using (var scaleVec = new Vector3(1.0f, 1.0f, 1.0f))
-            {
-                _newAnimation.AnimateTo(newTop, "Scale", scaleVec, 0, 1000);
-            }
-            _newAnimation.AnimateTo(newTop, "Opacity", 1.0f, 0, 1000);
-            _newAnimation.Play();
 
             return curTop;
         }
@@ -231,6 +366,7 @@ namespace Tizen.NUI.Components
 
             NavigationPages.Insert(index, page);
             Add(page);
+            page.Navigator = this;
         }
 
         /// <summary>
@@ -280,6 +416,7 @@ namespace Tizen.NUI.Components
                 throw new ArgumentNullException(nameof(page), "page should not be null.");
             }
 
+            page.Navigator = null;
             NavigationPages.Remove(page);
             base.Remove(page);
         }
@@ -373,92 +510,109 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Shows a dialog by pushing a page containing dialog to default navigator.
+        /// Create Transition between currentTopPage and newTopPage
         /// </summary>
-        /// <param name="content">The content of Dialog.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static void ShowDialog(View content = null)
+        /// <param name="currentTopPage">The top page of Navigator.</param>
+        /// <param name="newTopPage">The new top page after transition.</param>
+        /// <param name="pushTransition">True if this transition is for push new page</param>
+        private TransitionSet CreateTransition(Page currentTopPage, Page newTopPage, bool pushTransition)
         {
-            var window = NUIApplication.GetDefaultWindow();
-            var defaultNavigator = window.GetDefaultNavigator();
+            currentTopPage.SetVisible(true);
+            newTopPage.SetVisible(true);
 
-            var dialog = new Dialog(content);
-            SetDialogScrim(dialog);
+            List<View> taggedViewsInNewTopPage = new List<View>();
+            RetrieveTaggedViews(taggedViewsInNewTopPage, newTopPage);
+            List<View> taggedViewsInCurrentTopPage = new List<View>();
+            RetrieveTaggedViews(taggedViewsInCurrentTopPage, currentTopPage);
 
-            var dialogPage = new Page(dialog);
-            defaultNavigator.Push(dialogPage);
+            List<KeyValuePair<View, View>> sameTaggedViewPair = new List<KeyValuePair<View, View>>();
+            foreach(View currentTopPageView in taggedViewsInCurrentTopPage)
+            {
+                bool findPair = false;
+                foreach(View newTopPageView in taggedViewsInNewTopPage)
+                {
+                    if((currentTopPageView.TransitionOptions != null) && (newTopPageView.TransitionOptions != null) &&
+                        currentTopPageView.TransitionOptions?.TransitionTag == newTopPageView.TransitionOptions?.TransitionTag)
+                    {
+                        sameTaggedViewPair.Add(new KeyValuePair<View, View>(currentTopPageView, newTopPageView));
+                        findPair = true;
+                        break;
+                    }
+                }
+                if(findPair)
+                {
+                    taggedViewsInNewTopPage.Remove(sameTaggedViewPair[sameTaggedViewPair.Count - 1].Value);
+                }
+            }
+            foreach(KeyValuePair<View, View> pair in sameTaggedViewPair)
+            {
+                taggedViewsInCurrentTopPage.Remove(pair.Key);
+            }
+
+            TransitionSet newTransitionSet = new TransitionSet();
+            foreach(KeyValuePair<View, View> pair in sameTaggedViewPair)
+            {
+                TransitionItem pairTransition = transition.CreateTransition(pair.Key, pair.Value);
+                if(pair.Value.TransitionOptions?.TransitionWithChild ?? false)
+                {
+                    pairTransition.TransitionWithChild = true;
+                }
+                newTransitionSet.AddTransition(pairTransition);
+            }
+            newTransitionSet.Play();
+
+            newTransitionSet.Finished += (object sender, EventArgs e) =>
+            {
+                transitionFinished = true;
+                InvokeTransitionFinished();
+                transitionSet.Dispose();
+                currentTopPage.Opacity = 1.0f;
+            };
+
+            // default entering/exit transition - fast fade (half duration compaired with that of view pair transition)
+            float duration = (transition.TimePeriod.DurationSeconds + transition.TimePeriod.DelaySeconds) * 0.8f;
+            Animation fade = new Animation(duration);
+            fade.AnimateTo(currentTopPage, "Opacity", 0.0f);
+            KeyFrames keyframes = new KeyFrames();
+            keyframes.Add(0.0f, 0.0f);
+            keyframes.Add(1.0f, 1.0f);
+            fade.AnimateBetween(newTopPage, "Opacity", keyframes);
+            fade.Play();
+
+            return newTransitionSet;
         }
 
         /// <summary>
-        /// Shows an alert dialog by pushing a page containing the alert dialog
-        /// to default navigator.
+        /// Retrieve Tagged Views in the view tree.
         /// </summary>
-        /// <param name="titleContent">The title content of AlertDialog.</param>
-        /// <param name="content">The content of AlertDialog.</param>
-        /// <param name="actionContent">The action content of AlertDialog.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static void ShowAlertDialog(View titleContent, View content, View actionContent)
+        /// <param name="taggedViews">Returned tagged view list..</param>
+        /// <param name="view">Root View to get tagged child View.</param>
+        private void RetrieveTaggedViews(List<View> taggedViews, View view)
         {
-            var window = NUIApplication.GetDefaultWindow();
-            var defaultNavigator = window.GetDefaultNavigator();
+            if (!string.IsNullOrEmpty(view.TransitionOptions?.TransitionTag))
+            {
+                taggedViews.Add((view as View));
+            }
 
-            var dialog = new AlertDialog(titleContent, content, actionContent);
-            SetDialogScrim(dialog);
-
-            var dialogPage = new Page(dialog);
-            defaultNavigator.Push(dialogPage);
-        }
-
-        /// <summary>
-        /// Shows an alert dialog by pushing a page containing the alert dialog
-        /// to default navigator.
-        /// </summary>
-        /// <param name="title">The title of AlertDialog.</param>
-        /// <param name="message">The message of AlertDialog.</param>
-        /// <param name="positiveButtonText">The positive button text in the action content of AlertDialog.</param>
-        /// <param name="positiveButtonClickedHandler">The clicked callback of the positive button in the action content of AlertDialog.</param>
-        /// <param name="negativeButtonText">The negative button text in the action content of AlertDialog.</param>
-        /// <param name="negativeButtonClickedHandler">The clicked callback of the negative button in the action content of AlertDialog.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static void ShowAlertDialog(string title = null, string message = null, string positiveButtonText = null, EventHandler<ClickedEventArgs> positiveButtonClickedHandler = null, string negativeButtonText = null, EventHandler<ClickedEventArgs> negativeButtonClickedHandler = null)
-        {
-            var window = NUIApplication.GetDefaultWindow();
-            var defaultNavigator = window.GetDefaultNavigator();
-
-            var dialog = new AlertDialog(title, message, positiveButtonText, positiveButtonClickedHandler, negativeButtonText, negativeButtonClickedHandler);
-            SetDialogScrim(dialog);
-
-            var dialogPage = new Page(dialog);
-            defaultNavigator.Push(dialogPage);
-        }
-
-
-        private static void SetDialogScrim(Dialog dialog)
-        {
-            if (dialog == null)
+            if (view.ChildCount == 0)
             {
                 return;
             }
 
-            var window = NUIApplication.GetDefaultWindow();
-            var defaultNavigator = window.GetDefaultNavigator();
-            var defaultScrim = dialog.Scrim;
-
-            //Copies default scrim's GUI properties.
-            var scrim = new VisualView();
-            scrim.BackgroundColor = defaultScrim.BackgroundColor;
-            scrim.Size = defaultScrim.Size;
-            scrim.TouchEvent += (object source, View.TouchEventArgs e) =>
+            if (view.TransitionOptions?.TransitionWithChild ?? false)
             {
-                if (e.Touch.GetState(0) == PointStateType.Up)
-                {
-                    defaultNavigator.Pop();
-                }
+                return;
+            }
 
-                return true;
-            };
+            foreach (View child in view.Children)
+            {
+                RetrieveTaggedViews(taggedViews, child);
+            }
+        }
 
-            dialog.Scrim = scrim;
+        internal void InvokeTransitionFinished()
+        {
+            TransitionFinished?.Invoke(this, new EventArgs());
         }
     }
-} //namespace Tizen.NUI
+}

@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,10 +17,10 @@
 
 extern alias TizenSystemSettings;
 using TizenSystemSettings.Tizen.System;
+
 using System;
 using System.Globalization;
 using System.ComponentModel;
-using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -49,17 +49,20 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
+                    var minSize = Owner.MinimumSize;
+                    var maxSize = Owner.MaximumSize;
+                    var naturalSize = Owner.GetNaturalSize();
+
                     if (heightMeasureSpec.Mode == MeasureSpecification.ModeType.Exactly)
                     {
                         // GetWidthForHeight is not implemented.
-                        totalWidth = Owner.GetNaturalSize().Width;
+                        totalWidth = Math.Min(Math.Max(naturalSize.Width, minSize.Width), (maxSize.Width < 0 ? Int32.MaxValue : maxSize.Width));
                         widthMeasureSpec = new MeasureSpecification(new LayoutLength(totalWidth), MeasureSpecification.ModeType.Exactly);
                     }
                     else
                     {
-                        Vector3 naturalSize = Owner.GetNaturalSize();
-                        totalWidth = naturalSize.Width;
-                        totalHeight = naturalSize.Height;
+                        totalWidth = Math.Min(Math.Max(naturalSize.Width, minSize.Width), (maxSize.Width < 0 ? Int32.MaxValue : maxSize.Width));
+                        totalHeight = Math.Min(Math.Max(naturalSize.Height, minSize.Height), (maxSize.Height < 0 ? Int32.MaxValue : maxSize.Height));
 
                         heightMeasureSpec = new MeasureSpecification(new LayoutLength(totalHeight), MeasureSpecification.ModeType.Exactly);
                         widthMeasureSpec = new MeasureSpecification(new LayoutLength(totalWidth), MeasureSpecification.ModeType.Exactly);
@@ -79,6 +82,8 @@ namespace Tizen.NUI.BaseComponents
         private string textLabelSid = null;
         private bool systemlangTextFlag = false;
         private TextLabelSelectorData selectorData;
+        private float fontSizeScale = 1.0f;
+        private bool hasFontSizeChangedCallback = false;
 
         /// <summary>
         /// Creates the TextLabel control.
@@ -87,14 +92,12 @@ namespace Tizen.NUI.BaseComponents
         public TextLabel() : this(Interop.TextLabel.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            Layout = new TextLayout();
         }
 
         /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TextLabel(TextLabelStyle viewStyle) : this(Interop.TextLabel.New(), true, viewStyle)
         {
-            Layout = new TextLayout();
         }
 
         /// <summary>
@@ -106,7 +109,6 @@ namespace Tizen.NUI.BaseComponents
         public TextLabel(bool shown) : this(Interop.TextLabel.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            Layout = new TextLayout();
             SetVisible(shown);
         }
 
@@ -118,7 +120,6 @@ namespace Tizen.NUI.BaseComponents
         public TextLabel(string text) : this(Interop.TextLabel.New(text), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            Layout = new TextLayout();
         }
 
         /// <summary>
@@ -131,7 +132,6 @@ namespace Tizen.NUI.BaseComponents
         public TextLabel(string text, bool shown) : this(Interop.TextLabel.New(text), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            Layout = new TextLayout();
             SetVisible(shown);
         }
 
@@ -145,7 +145,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal TextLabel(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : base(Interop.TextLabel.Upcast(cPtr), cMemoryOwn, viewStyle)
+        internal TextLabel(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : base(cPtr, cMemoryOwn, viewStyle)
         {
             if (!shown)
             {
@@ -153,12 +153,20 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal TextLabel(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.TextLabel.Upcast(cPtr), cMemoryOwn, null)
+        internal TextLabel(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(cPtr, cMemoryOwn, null)
         {
             if (!shown)
             {
                 SetVisible(false);
             }
+        }
+
+        /// <summary>
+        /// Create internal layout of TextLabel
+        /// </summary>
+        internal LayoutItem CreateTextLayout()
+        {
+            return new TextLayout();
         }
 
         /// <summary>
@@ -178,7 +186,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(TranslatableTextProperty, value);
-                selectorData?.TranslatableText.UpdateIfNeeds(this, value);
             }
         }
         private string translatableText
@@ -227,8 +234,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(TextProperty, value);
-                selectorData?.Text.UpdateIfNeeds(this, value);
-                NotifyPropertyChangedAndRequestLayout();
+                NotifyPropertyChanged();
             }
         }
 
@@ -246,8 +252,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(FontFamilyProperty, value);
-                selectorData?.FontFamily.UpdateIfNeeds(this, value);
-                NotifyPropertyChangedAndRequestLayout();
+                NotifyPropertyChanged();
             }
         }
 
@@ -265,7 +270,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(FontStyleProperty, value);
-                NotifyPropertyChangedAndRequestLayout();
+                NotifyPropertyChanged();
             }
         }
 
@@ -283,8 +288,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(PointSizeProperty, value);
-                selectorData?.PointSize.UpdateIfNeeds(this, value);
-                NotifyPropertyChangedAndRequestLayout();
+                NotifyPropertyChanged();
             }
         }
 
@@ -302,7 +306,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(MultiLineProperty, value);
-                NotifyPropertyChangedAndRequestLayout();
+                NotifyPropertyChanged();
             }
         }
 
@@ -362,7 +366,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(TextColorProperty, value);
-                selectorData?.TextColor.UpdateIfNeeds(this, value);
                 NotifyPropertyChanged();
             }
         }
@@ -625,7 +628,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(LineSpacingProperty, value);
-                NotifyPropertyChangedAndRequestLayout();
+                NotifyPropertyChanged();
             }
         }
 
@@ -679,7 +682,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(TextShadowProperty, value);
-                selectorData?.TextShadow.UpdateIfNeeds(this, value);
                 NotifyPropertyChanged();
             }
         }
@@ -734,7 +736,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(PixelSizeProperty, value);
-                NotifyPropertyChangedAndRequestLayout();
+                NotifyPropertyChanged();
             }
         }
 
@@ -914,21 +916,57 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(MinLineSizeProperty, value);
-                NotifyPropertyChangedAndRequestLayout();
+                NotifyPropertyChanged();
             }
         }
 
-        private TextLabelSelectorData SelectorData
+        /// <summary>
+        /// The FontSizeScale property. <br />
+        /// The default value is 1.0. <br />
+        /// If FontSizeScale.UseSystemSetting, will use the SystemSettings.FontSize internally. <br />
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public float FontSizeScale
         {
             get
             {
-                if (selectorData == null)
+                return fontSizeScale;
+            }
+            set
+            {
+                float newFontSizeScale;
+
+                if (fontSizeScale == value) return;
+
+                fontSizeScale = value;
+                if (fontSizeScale == Tizen.NUI.FontSizeScale.UseSystemSetting)
                 {
-                    selectorData = new TextLabelSelectorData();
+                    SystemSettingsFontSize systemSettingsFontSize;
+
+                    try
+                    {
+                        systemSettingsFontSize = SystemSettings.FontSize;
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("{0} Exception caught.", e);
+                        systemSettingsFontSize = SystemSettingsFontSize.Normal;
+                    }
+                    newFontSizeScale = TextUtils.GetFontSizeScale(systemSettingsFontSize);
+                    addFontSizeChangedCallback();
                 }
-                return selectorData;
+                else
+                {
+                    newFontSizeScale = fontSizeScale;
+                    removeFontSizeChangedCallback();
+                }
+
+                SetValue(FontSizeScaleProperty, newFontSizeScale);
+                NotifyPropertyChanged();
             }
         }
+
+        private TextLabelSelectorData EnsureSelectorData() => selectorData ?? (selectorData = new TextLabelSelectorData());
 
         /// <summary>
         /// Downcasts a handle to textLabel handle
@@ -969,6 +1007,8 @@ namespace Tizen.NUI.BaseComponents
                 SystemSettings.LocaleLanguageChanged -= SystemSettings_LocaleLanguageChanged;
             }
 
+            removeFontSizeChangedCallback();
+
             if (type == DisposeTypes.Explicit)
             {
                 //Called by User
@@ -995,10 +1035,8 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Get attribues, it is abstract function and must be override.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override ViewStyle GetViewStyle()
+        protected override ViewStyle CreateViewStyle()
         {
             return new TextLabelStyle();
         }
@@ -1016,9 +1054,48 @@ namespace Tizen.NUI.BaseComponents
             Text = NUIApplication.MultilingualResourceManager?.GetString(textLabelSid, new CultureInfo(e.Value.Replace("_", "-")));
         }
 
-        private void NotifyPropertyChangedAndRequestLayout()
+        private void SystemSettingsFontSizeChanged(object sender, FontSizeChangedEventArgs e)
         {
-            NotifyPropertyChanged();
+            float newFontSizeScale = TextUtils.GetFontSizeScale(e.Value);
+            SetValue(FontSizeScaleProperty, newFontSizeScale);
+        }
+
+        private void addFontSizeChangedCallback()
+        {
+            if (hasFontSizeChangedCallback != true)
+            {
+                try
+                {
+                    SystemSettings.FontSizeChanged += SystemSettingsFontSizeChanged;
+                    hasFontSizeChangedCallback = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("{0} Exception caught.", e);
+                    hasFontSizeChangedCallback = false;
+                }
+            }
+        }
+
+        private void removeFontSizeChangedCallback()
+        {
+            if (hasFontSizeChangedCallback == true)
+            {
+                try
+                {
+                    SystemSettings.FontSizeChanged -= SystemSettingsFontSizeChanged;
+                    hasFontSizeChangedCallback = false;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("{0} Exception caught.", e);
+                    hasFontSizeChangedCallback = true;
+                }
+            }
+        }
+
+        private void RequestLayout()
+        {
             Layout?.RequestLayout();
         }
 
@@ -1053,6 +1130,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int MatchSystemLanguageDirection = Interop.TextLabel.MatchSystemLanguageDirectionGet();
             internal static readonly int TextFit = Interop.TextLabel.TextFitGet();
             internal static readonly int MinLineSize = Interop.TextLabel.MinLineSizeGet();
+            internal static readonly int FontSizeScale = Interop.TextLabel.FontSizeScaleGet();
         }
 
         private void OnShadowColorChanged(float x, float y, float z, float w)

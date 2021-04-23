@@ -29,7 +29,7 @@ namespace Tizen.NUI.Components
     {
         static ControlStyle()
         {
-            ThemeManager.AddPackageTheme(new DefaultThemeCreator());
+            ThemeManager.AddPackageTheme(DefaultThemeCreator.Instance);
         }
 
         /// <summary>
