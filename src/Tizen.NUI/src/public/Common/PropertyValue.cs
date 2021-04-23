@@ -146,16 +146,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Creates a Offset property value.
-        /// </summary>
-        /// <param name="vectorValue">Offset values.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public PropertyValue(Offset vectorValue) : this(Interop.PropertyValue.NewPropertyValueRect(Offset.getCPtr(vectorValue)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
         /// Creates a Rotation property value.
         /// </summary>
         /// <param name="quaternion">Rotation values.</param>
@@ -350,10 +340,6 @@ namespace Tizen.NUI
             {
                 value = new PropertyValue((Rectangle)obj);
             }
-            else if (type.Equals(typeof(Offset)))
-            {
-                value = new PropertyValue((Offset)obj);
-            }
             else
             {
                 throw new global::System.InvalidOperationException("Unimplemented type for Property Value :" + type.Name);
@@ -482,19 +468,6 @@ namespace Tizen.NUI
         public bool Get(Rectangle rect)
         {
             bool ret = Interop.PropertyValue.GetRect(SwigCPtr, Rectangle.getCPtr(rect));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Retrieves an integer offset.
-        /// </summary>
-        /// <param name="rect">On return, an integer offset.</param>
-        /// <returns>Returns true if the value is successfully retrieved, false if the type is not convertible.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool Get(Offset rect)
-        {
-            bool ret = Interop.PropertyValue.GetRect(SwigCPtr, Offset.getCPtr(rect));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

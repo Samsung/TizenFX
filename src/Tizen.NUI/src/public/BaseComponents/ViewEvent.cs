@@ -1295,7 +1295,7 @@ namespace Tizen.NUI.BaseComponents
         /// This is based on the top left x, y coordinates.<br/>
         /// example) <br/>
         ///  view.Size = new Size(100, 100);<br/>
-        ///  view.SetTouchAreaOffset(-10, 20, 30, -40); // left, right, bottom, top <br/>
+        ///  view.TouchAreaOffset = new Offset(-10, 20, 30, -40); // left, right, bottom, top <br/>
         /// then touch area is 130x170.<br/>
         /// this is view.width + TouchAreaOffset.right - TouchAreaOffset.left and view.height + TouchAreaOffset.bottom - TouchAreaOffset.top <br/>
         /// +---------------------+ <br/>
@@ -1322,15 +1322,18 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Offset value = new Offset(0, 0, 0, 0);
-                GetProperty(View.Property.TouchAreaOffset).Get(value);
-                return value;
+                Interop.ActorInternal.GetTouchAreaOffset(SwigCPtr, out int left, out int right, out int bottom, out int top);
+                if (NDalicPINVOKE.SWIGPendingException.Pending)
+                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return new Offset(left, right, bottom, top);
             }
             set
             {
-                SetProperty(View.Property.TouchAreaOffset, new Tizen.NUI.PropertyValue(value));
-                NotifyPropertyChanged();
+                Interop.ActorInternal.SetTouchAreaOffset(SwigCPtr, value.Left, value.Right, value.Bottom, value.Top);
+                if (NDalicPINVOKE.SWIGPendingException.Pending)
+                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
+
     }
 }
