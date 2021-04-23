@@ -204,6 +204,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Actor_Property_BLEND_EQUATION_get")]
             public static extern int BlendEquationGet();
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Actor_Property_TOUCH_AREA_OFFSET_get")]
+            public static extern int TouchAreaOffsetGet();
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Actor_Property")]
             public static extern global::System.IntPtr NewActorProperty();
 

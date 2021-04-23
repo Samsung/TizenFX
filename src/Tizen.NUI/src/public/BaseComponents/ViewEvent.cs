@@ -1316,32 +1316,21 @@ namespace Tizen.NUI.BaseComponents
         /// |         |           | <br/>
         /// |         v           | <br/>
         /// +---------------------+ <br/>
-        /// <param name="left">The left offset</param>
-        /// <param name="right">The right offset</param>
-        /// <param name="bottom">The bottom offset</param>
-        /// <param name="top">The top offset</param>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetTouchAreaOffset(int left, int right, int bottom, int top)
+        public Offset TouchAreaOffset
         {
-            Interop.ActorInternal.SetTouchAreaOffset(SwigCPtr, left, right, bottom, top);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Gets the touch area offset information.
-        /// <param name="left">The left offset</param>
-        /// <param name="right">The right offset</param>
-        /// <param name="bottom">The bottom offset</param>
-        /// <param name="top">The top offset</param>
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void GetTouchAreaOffset(out int left, out int right, out int bottom, out int top)
-        {
-            Interop.ActorInternal.GetTouchAreaOffset(SwigCPtr, out left, out right, out bottom, out top);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            get
+            {
+                Offset value = new Offset(0, 0, 0, 0);
+                GetProperty(View.Property.TouchAreaOffset).Get(value);
+                return value;
+            }
+            set
+            {
+                SetProperty(View.Property.TouchAreaOffset, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
+            }
         }
     }
 }
