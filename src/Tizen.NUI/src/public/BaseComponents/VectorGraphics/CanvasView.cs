@@ -32,6 +32,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// Creates an initialized CanvasView.
         /// </summary>
         /// <param name="viewBox">The size of viewbox.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when viewBox is null. </exception>
         /// <since_tizen> 9 </since_tizen>
         [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "It does not have dispose ownership.")]
         public CanvasView(Size2D viewBox) : this(viewBox == null ? throw new ArgumentNullException(nameof(viewBox)) : Interop.CanvasView.New(Uint16Pair.getCPtr(new Uint16Pair((uint)viewBox.Width, (uint)viewBox.Height))), true)
