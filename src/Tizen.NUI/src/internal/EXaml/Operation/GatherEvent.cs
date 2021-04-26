@@ -26,20 +26,22 @@ namespace Tizen.NUI.EXaml
 {
     internal class GatherEvent : Operation
     {
-        public GatherEvent(int typeIndex, string eventName)
+        public GatherEvent(GlobalDataList globalDataList, int typeIndex, string eventName)
         {
             this.typeIndex = typeIndex;
             this.eventName = eventName;
+            this.globalDataList = globalDataList;
         }
+
+        private GlobalDataList globalDataList;
 
         public void Do()
         {
-            var type = GatherType.GatheredTypes[typeIndex];
-            GatheredEvents.Add(type.GetEvent(eventName));
+            var type = globalDataList.GatheredTypes[typeIndex];
+            globalDataList.GatheredEvents.Add(type.GetEvent(eventName));
         }
 
         private int typeIndex;
         private string eventName;
-        internal static List<EventInfo> GatheredEvents = new List<EventInfo>();
     }
 }
