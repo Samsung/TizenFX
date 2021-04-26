@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,20 +21,37 @@ using System.ComponentModel;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// Event arguments that passed via the WebView.PageLoadError.
+    /// It is a class for password data of web view.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class WebViewPageLoadErrorEventArgs : EventArgs
+    public class WebPasswordData : Disposable
     {
-        internal WebViewPageLoadErrorEventArgs(WebPageLoadError error)
+        internal WebPasswordData(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-            PageLoadError = error;
         }
 
         /// <summary>
-        /// The load error of current web page.
+        /// Url which password is related to.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public WebPageLoadError PageLoadError { get; }
+        public string Url
+        {
+            get
+            {
+                return Interop.WebPasswordData.GetUrl(SwigCPtr);
+            }
+        }
+
+        /// <summary>
+        /// Whether fingerprint is used or not.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool FingerprintUsed
+        {
+            get
+            {
+                return Interop.WebPasswordData.GetUseFingerprint(SwigCPtr);
+            }
+        }
     }
 }
