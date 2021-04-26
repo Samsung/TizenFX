@@ -22,22 +22,28 @@ namespace Tizen.NUI
     using Tizen.NUI.BaseComponents;
 
     /// <summary>
-    /// TransitionBase class is a base class for each Transitions.
+    /// TransitionBase class is a base class for all Transition.
     /// Each Transition child classes inherits this base class.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class TransitionBase : Disposable
     {
-        private static readonly float DefaultDuration = 0.5f;
-        protected internal AlphaFunction alphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default);
-        protected internal TimePeriod timePeriod = new TimePeriod(DefaultDuration);
+        private static readonly int DefaultDuration = 500;
+        private AlphaFunction alphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default);
+        private TimePeriod timePeriod = new TimePeriod(DefaultDuration);
 
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Create a TransitionBase
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public TransitionBase()
         {
         }
 
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Set/Get the alpha function for a transition.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public AlphaFunction AlphaFunction
         {
             set
@@ -50,7 +56,10 @@ namespace Tizen.NUI
             }
         }
 
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Set/Get time period that contains delay and duration.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public TimePeriod TimePeriod
         {
             set
@@ -68,6 +77,7 @@ namespace Tizen.NUI
             return new TransitionItemBase(target, isEntering, timePeriod, alphaFunction);
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
             alphaFunction.Dispose();
