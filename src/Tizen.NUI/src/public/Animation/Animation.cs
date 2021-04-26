@@ -693,7 +693,7 @@ namespace Tizen.NUI
                 }
 
                 var current = result;
-                using (var time = new TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime)))
+                using (var time = new TimePeriod(startTime, endTime - startTime))
                     while (current != null)
                     {
                         var targetValue = current.RefineValue(relativeValue) ?? throw new ArgumentException("Invalid " + nameof(relativeValue));
@@ -849,7 +849,7 @@ namespace Tizen.NUI
                 }
 
                 var current = result;
-                using (var time = new TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime)))
+                using (var time = new TimePeriod(startTime, endTime - startTime))
                     while (current != null)
                     {
                         var targetValue = current.RefineValue(destinationValue) ?? throw new ArgumentException("Invalid " + nameof(destinationValue));
@@ -939,7 +939,7 @@ namespace Tizen.NUI
                 }
 
                 var current = result;
-                using (var time = new TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime)))
+                using (var time = new TimePeriod(startTime, endTime - startTime))
                     while (current != null)
                     {
                         // NOTE Do not dispose keyFrames object returned by GetRefinedKeyFrames() here.
@@ -985,7 +985,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void AnimatePath(View view, Path path, Vector3 forward, int startTime, int endTime, AlphaFunction alphaFunction = null)
         {
-            TimePeriod time = new TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime));
+            TimePeriod time = new TimePeriod(startTime, endTime - startTime);
             if (alphaFunction == null)
             {
                 Animate(view, path, forward, time);
