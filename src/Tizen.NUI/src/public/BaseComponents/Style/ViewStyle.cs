@@ -48,7 +48,7 @@ namespace Tizen.NUI.BaseComponents
         private Size size;
         private Extents margin;
         private bool? themeChangeSensitive;
-        private float? cornerRadius;
+        private Vector4 cornerRadius;
 
         private Selector<ImageShadow> imageShadow;
         private Selector<Shadow> boxShadow;
@@ -78,10 +78,10 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Selector<string> image = (Selector<string>)GetValue(BackgroundImageSelectorProperty);
+                Selector<string> image = (Selector<string>)GetValue(BackgroundImageProperty);
                 return (null != image) ? image : backgroundImageSelector = new Selector<string>();
             }
-            set => SetValue(BackgroundImageSelectorProperty, value);
+            set => SetValue(BackgroundImageProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -107,10 +107,10 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Selector<float?> opacity = (Selector<float?>)GetValue(OpacitySelectorProperty);
+                Selector<float?> opacity = (Selector<float?>)GetValue(OpacityProperty);
                 return (null != opacity) ? opacity : opacitySelector = new Selector<float?>();
             }
-            set => SetValue(OpacitySelectorProperty, value);
+            set => SetValue(OpacityProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -297,10 +297,10 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Selector<Color> color = (Selector<Color>)GetValue(BackgroundColorSelectorProperty);
+                Selector<Color> color = (Selector<Color>)GetValue(BackgroundColorProperty);
                 return (null != color) ? color : backgroundColorSelector = new Selector<Color>();
             }
-            set => SetValue(BackgroundColorSelectorProperty, value);
+            set => SetValue(BackgroundColorProperty, value);
         }
 
         /// <summary>
@@ -309,8 +309,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<Color> Color
         {
-            get => (Selector<Color>)GetValue(ColorSelectorProperty) ?? (colorSelector = new Selector<Color>());
-            set => SetValue(ColorSelectorProperty, value);
+            get => (Selector<Color>)GetValue(ColorProperty) ?? (colorSelector = new Selector<Color>());
+            set => SetValue(ColorProperty, value);
         }
 
         /// <summary>View BackgroundBorder</summary>
@@ -320,10 +320,10 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Selector<Rectangle> border = (Selector<Rectangle>)GetValue(BackgroundImageBorderSelectorProperty);
+                Selector<Rectangle> border = (Selector<Rectangle>)GetValue(BackgroundImageBorderProperty);
                 return (null != border) ? border : backgroundImageBorderSelector = new Selector<Rectangle>();
             }
-            set => SetValue(BackgroundImageBorderSelectorProperty, value);
+            set => SetValue(BackgroundImageBorderProperty, value);
         }
 
         /// <summary>
@@ -336,8 +336,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<ImageShadow> ImageShadow
         {
-            get => (Selector<ImageShadow>)GetValue(ImageShadowSelectorProperty);
-            set => SetValue(ImageShadowSelectorProperty, value);
+            get => (Selector<ImageShadow>)GetValue(ImageShadowProperty);
+            set => SetValue(ImageShadowProperty, value);
         }
 
         /// <summary>
@@ -347,17 +347,18 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<Shadow> BoxShadow
         {
-            get => (Selector<Shadow>)GetValue(BoxShadowSelectorProperty);
-            set => SetValue(BoxShadowSelectorProperty, value);
+            get => (Selector<Shadow>)GetValue(BoxShadowProperty);
+            set => SetValue(BoxShadowProperty, value);
         }
 
         /// <summary>
-        /// The radius for the rounded corners of the View
+        /// The radius for the rounded corners of the View.
+        /// The values in Vector4 are used in clockwise order from top-left to bottom-left : Vector4(top-left-corner, top-right-corner, bottom-right-corner, bottom-left-corner).
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public float? CornerRadius
+        public Vector4 CornerRadius
         {
-            get => (float?)GetValue(CornerRadiusProperty);
+            get => (Vector4)GetValue(CornerRadiusProperty);
             set => SetValue(CornerRadiusProperty, value);
         }
 
@@ -398,31 +399,6 @@ namespace Tizen.NUI.BaseComponents
         /// HashSet of dirty properties. Internal use only.
         /// </summary>
         internal HashSet<BindableProperty> DirtyProperties { get; private set; }
-
-        /// <summary>
-        /// Set style's bindable properties from the view.
-        /// </summary>
-        /// <param name="view">The view that includes property data.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public virtual void CopyPropertiesFromView(View view)
-        {
-            if (view == null) return;
-
-            BindableProperty.GetBindablePropertysOfType(GetType(), out var styleProperties);
-            BindableProperty.GetBindablePropertysOfType(view.GetType(), out var viewProperties);
-
-
-            if (styleProperties == null || viewProperties == null) return;
-
-            foreach (var stylePropertyItem in styleProperties)
-            {
-                viewProperties.TryGetValue(stylePropertyItem.Key, out var viewProperty);
-
-                if (viewProperty == null) continue;
-
-                SetValue(stylePropertyItem.Value, view.GetValue(viewProperty));
-            }
-        }
 
         /// <summary>Create a cloned ViewStyle.</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]

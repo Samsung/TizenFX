@@ -95,8 +95,8 @@ namespace Tizen.NUI
         /// </summary>
         private void GetPropertyStartRange(System.Type viewType, ref PropertyRange range)
         {
-            const int maxCountPerDerivation = 1000; // For child and animtable properties we use a gap of 1000 between each
-                                                    // views property range in the heirachy
+            const int maxCountPerDerivation = 1000; // For child and animatable properties we use a gap of 1000 between each
+                                                    // views property range in the hierarchy
 
             // custom views start there property index, at view_PROPERTY_END_INDEX
             // we add 1000, just incase View class (our C# custom view base) starts using scriptable properties
@@ -106,15 +106,15 @@ namespace Tizen.NUI
             // we add 1000, just incase View class starts using animatable properties
             int startAnimatablePropertyIndex = (int)Tizen.NUI.PropertyRanges.ANIMATABLE_PROPERTY_REGISTRATION_START_INDEX + maxCountPerDerivation;
 
-            if (viewType != null)
+            while (viewType?.GetTypeInfo()?.BaseType?.Name != "CustomView")   // custom view is our C# view base class. we don't go any deeper.
             {
-                while (viewType.GetTypeInfo().BaseType?.Name != "CustomView")   // custom view is our C# view base class. we don't go any deeper.
+                // for every base class increase property start index
+                startEventPropertyIndex += (int)Tizen.NUI.PropertyRanges.DEFAULT_PROPERTY_MAX_COUNT_PER_DERIVATION; // DALi uses 10,000
+                startAnimatablePropertyIndex += maxCountPerDerivation;
+                if (viewType != null)
                 {
-                    // for every base class increase property start index
-                    startEventPropertyIndex += (int)Tizen.NUI.PropertyRanges.DEFAULT_PROPERTY_MAX_COUNT_PER_DERIVATION; // DALi uses 10,000
-                    startAnimatablePropertyIndex += maxCountPerDerivation;
                     NUILog.Debug("getStartPropertyIndex =  " + viewType.Name + "current index " + startEventPropertyIndex);
-                    viewType = viewType.GetTypeInfo().BaseType;
+                    viewType = viewType.GetTypeInfo()?.BaseType;
                 }
             }
 

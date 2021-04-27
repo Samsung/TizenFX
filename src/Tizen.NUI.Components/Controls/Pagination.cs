@@ -176,6 +176,7 @@ namespace Tizen.NUI.Components
         /// Gets or sets the count of the pages/indicators.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
+        /// <exception cref="ArgumentException">Thrown when the given value is negative.</exception>
         public int IndicatorCount
         {
             get
@@ -184,7 +185,12 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                if (indicatorCount == value || value < 0)
+                if (value < 0)
+                {
+                    throw new ArgumentException($"Setting {nameof(IndicatorCount)} to negative is not allowed.");
+                }
+
+                if (indicatorCount == value)
                 {
                     return;
                 }
@@ -324,14 +330,12 @@ namespace Tizen.NUI.Components
                     selectedIndicatorColor = value;
                 }
 
-                if (selectedIndex == -1)
+                if (indicatorList.Count > selectedIndex)
                 {
-                    return;
+                    var indicator = indicatorList[selectedIndex];
+                    indicator.MixColor = selectedIndicatorColor;
+                    indicator.Opacity = selectedIndicatorColor.A;
                 }
-
-                ImageVisual indicator = indicatorList[selectedIndex];
-                indicator.MixColor = selectedIndicatorColor;
-                indicator.Opacity = selectedIndicatorColor.A;
             }
         }
 

@@ -64,21 +64,22 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty FrameRateProperty = BindableProperty.Create(nameof(FrameRate), typeof(int), typeof(Loading), (int)(1000 / 16.6f), propertyChanged: (bindable, oldValue, newValue) =>
         {
-            Debug.Assert(((Loading)bindable).imageVisual != null);
+            var instance = (Loading)bindable;
+            Debug.Assert(instance.imageVisual != null);
 
-            int frameRate = (int)newValue;
-            if (0 != frameRate) //It will crash if 0
+            instance.frameRate = (int)newValue;
+            if (0 != instance.frameRate) //It will crash if 0
             {
-                ((Loading)bindable).imageVisual.FrameDelay = 1000.0f / frameRate;
+                instance.imageVisual.FrameDelay = instance.frameRate;
             }
         },
         defaultValueCreator: (bindable) =>
         {
-            Debug.Assert(((Loading)bindable).imageVisual != null);
-            return ((Loading)bindable).imageVisual.FrameDelay * 1000.0f;
+            return ((Loading)bindable).frameRate;
         });
 
         private AnimatedImageVisual imageVisual = null;
+        private int frameRate = (int)(1000 / 16.6f);
 
         internal new class Property
         {
@@ -95,6 +96,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public Loading() : base()
         {
+            Initialize();
         }
 
         /// <summary>
@@ -104,6 +106,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Loading(string style) : base(style)
         {
+            Initialize();
         }
 
         /// <summary>
@@ -113,6 +116,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Loading(LoadingStyle loadingStyle) : base(loadingStyle)
         {
+            Initialize();
         }
 
         /// <summary>
@@ -183,6 +187,7 @@ namespace Tizen.NUI.Components
         public override void OnInitialize()
         {
             base.OnInitialize();
+            SetAccessibilityConstructor(Role.ProgressBar);
 
             imageVisual = new AnimatedImageVisual()
             {
@@ -291,6 +296,11 @@ namespace Tizen.NUI.Components
             PropertyValue attributes = new PropertyValue(0);
             this.DoAction(imageVisual.VisualIndex, Property.ActionStop, attributes);
             attributes.Dispose();
+        }
+
+        private void Initialize()
+        {
+            AccessibilityHighlightable = true;
         }
     }
 }

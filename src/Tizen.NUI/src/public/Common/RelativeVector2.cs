@@ -89,10 +89,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public float X
         {
+            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new RelativeVector2(...) constructor")]
             set
             {
-                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new RelativeVector2(...) constructor");
-
                 Interop.Vector2.XSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -121,10 +120,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public float Y
         {
+            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new RelativeVector2(...) constructor")]
             set
             {
-                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new RelativeVector2(...) constructor");
-
                 Interop.Vector2.YSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -224,7 +222,11 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator Vector2(RelativeVector2 relativeVector2)
         {
-            return new Vector2((float)relativeVector2?.X, (float)relativeVector2.Y);
+            if (relativeVector2 == null)
+            {
+                return null;
+            }
+            return new Vector2(relativeVector2.X, relativeVector2.Y);
         }
 
         /// <summary>
@@ -232,7 +234,11 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator RelativeVector2(Vector2 vec)
         {
-            return new RelativeVector2((float)vec?.X, (float)vec.Y);
+            if (vec == null)
+            {
+                return null;
+            }
+            return new RelativeVector2(vec.X, vec.Y);
         }
 
         /// <summary>
@@ -266,7 +272,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the the hash code of this RelativeVector2.
+        /// Gets the hash code of this RelativeVector2.
         /// </summary>
         /// <returns>The Hash Code.</returns>
         /// <since_tizen> 6 </since_tizen>

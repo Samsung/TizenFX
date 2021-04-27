@@ -195,6 +195,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_InputStyleChangedSignal")]
             public static extern global::System.IntPtr InputStyleChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_AnchorClickedSignal")]
+            public static extern global::System.IntPtr AnchorClickedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextFieldSignal_Empty")]
             public static extern bool TextFieldSignalEmpty(global::System.Runtime.InteropServices.HandleRef jarg1);
 
@@ -269,6 +272,9 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_FONT_SIZE_SCALE_get")]
             public static extern int FontSizeScaleGet();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_GRAB_HANDLE_COLOR_get")]
+            public static extern int GrabHandleColorGet();
         }
     }
 }

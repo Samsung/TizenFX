@@ -22,7 +22,7 @@ using Tizen.Applications;
 
 namespace Tizen.NUI
 {
-    [SuppressMessage("Microsoft.Design", "CA1031: Do not catch general exception types", Justification = "This method is to handle external resources that may throw an exception but ignorable. This method should not interupt the main stream.")]
+    [SuppressMessage("Microsoft.Design", "CA1031: Do not catch general exception types", Justification = "This method is to handle external resources that may throw an exception but ignorable. This method should not interrupt the main stream.")]
     internal static class ExternalThemeManager
     {
         private static Tizen.Applications.ThemeManager.ThemeLoader themeLoader = InitializeThemeLoader();
@@ -67,12 +67,12 @@ namespace Tizen.NUI
                     }
                     catch (ArgumentException e)
                     {
-                        Tizen.Log.Error("NUI", $"{e.GetType().Name} occured while getting theme application info.");
+                        Tizen.Log.Error("NUI", $"{e.GetType().Name} occurred while getting theme application info.");
                         throw;
                     }
                     catch (InvalidOperationException e)
                     {
-                        Tizen.Log.Error("NUI", $"{e.GetType().Name} occured while getting theme application info.");
+                        Tizen.Log.Error("NUI", $"{e.GetType().Name} occurred while getting theme application info.");
                         throw;
                     }
 
@@ -121,7 +121,7 @@ namespace Tizen.NUI
             }
             catch (Exception e)
             {
-                Tizen.Log.Info("NUI", $"[Ignorable] {e.GetType().Name} occured while getting current theme using {themeLoader.GetType().FullName}: {e.Message}");
+                Tizen.Log.Info("NUI", $"[Ignorable] {e.GetType().Name} occurred while getting current theme using {themeLoader.GetType().FullName}: {e.Message}");
             }
 
             if (tizenTheme == null || string.IsNullOrEmpty(tizenTheme.Id) || string.IsNullOrEmpty(tizenTheme.Version))
@@ -149,7 +149,7 @@ namespace Tizen.NUI
             }
             catch (Exception e)
             {
-                Tizen.Log.Info("NUI", $"[Ignorable] {e.GetType().Name} occured while getting load theme using {themeLoader.GetType().FullName}: {e.Message}");
+                Tizen.Log.Info("NUI", $"[Ignorable] {e.GetType().Name} occurred while getting load theme using {themeLoader.GetType().FullName}: {e.Message}");
             }
 
             return tizenTheme == null ? null : new TizenExternalTheme(tizenTheme);
@@ -210,7 +210,7 @@ namespace Tizen.NUI
             }
             catch (Exception e)
             {
-                Tizen.Log.Info("NUI", $"[Ignorable] {e.GetType().Name} occured while setting Tizen.Applications.ThemeManager: {e.Message}");
+                Tizen.Log.Info("NUI", $"[Ignorable] {e.GetType().Name} occurred while setting Tizen.Applications.ThemeManager: {e.Message}");
             }
 
             return null;

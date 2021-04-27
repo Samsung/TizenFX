@@ -92,7 +92,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The contructor.
+        /// The constructor.
         /// </summary>
         public KeyboardEventSignalType() : this(Interop.KeyboardEventSignalType.NewKeyboardEventSignalType(), true)
         {

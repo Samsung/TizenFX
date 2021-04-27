@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright (c) 2020 Samsung Electronics Co., Ltd All Rights Reserved
+* Copyright (c) 2020 - 2021 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
 * you may not use this file except in compliance with the License.
@@ -52,7 +52,7 @@ namespace Tizen.Peripheral.Pwm
         /// <summary>
         /// Native handle to PWM.
         /// </summary>
-        private IntPtr _handle;
+        private IntPtr _handle = IntPtr.Zero;
 
         /// <summary>
         /// Opens the PWM pin.
@@ -61,11 +61,9 @@ namespace Tizen.Peripheral.Pwm
         /// <param name="pin">The PWM pin (channel) number to control.</param>
         public PwmPin(int chip, int pin)
         {
-            var ret = NativePwm.Open(chip, pin, out IntPtr handle);
+            var ret = NativePwm.Open(chip, pin, out _handle);
             if (ret != Internals.Errors.ErrorCode.None)
                 throw ExceptionFactory.CreateException(ret);
-
-            _handle = handle;
         }
 
         /// <summary>
@@ -101,6 +99,7 @@ namespace Tizen.Peripheral.Pwm
             }
 
             NativePwm.Close(_handle);
+            _handle = IntPtr.Zero;
             _disposed = true;
         }
 

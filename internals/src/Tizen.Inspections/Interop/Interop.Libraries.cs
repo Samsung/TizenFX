@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2020 Samsung Electronics Co., Ltd All Rights Reserved
+* Copyright (c) 2021 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
 * you may not use this file except in compliance with the License.
@@ -18,6 +18,6 @@ internal static partial class Interop
 {
     internal static partial class Libraries
     {
-        public const string Diagnostics = "libdiagnostics.so.1.0.0";
+        public const string Diagnostics = "libdiagnostics.so.1.2.0";
     }
 }

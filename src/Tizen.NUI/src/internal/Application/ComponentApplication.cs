@@ -99,7 +99,7 @@ namespace Tizen.NUI
 
         /**
           * @brief Event for Initialized signal which can be used to subscribe/unsubscribe the event handler
-          *  provided by the user. Initialized signal is emitted when application is initialised
+          *  provided by the user. Initialized signal is emitted when application is initialized
           */
         public event CreateNativeEventHandler CreateNative
         {

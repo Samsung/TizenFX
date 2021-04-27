@@ -39,8 +39,6 @@ namespace Tizen.NUI
     /// </summary>
     public class LayoutItem : IDisposable
     {
-        static bool LayoutDebugFrameData = false; // Debug flag
-
         private bool disposed = false;
         private MeasureSpecification oldWidthMeasureSpec; // Store measure specification to compare against later
         private MeasureSpecification oldHeightMeasureSpec; // Store measure specification to compare against later
@@ -205,30 +203,34 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public void Measure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
         {
-            // Check if relayouting is required.
-            bool specChanged = (widthMeasureSpec.Size != oldWidthMeasureSpec.Size) ||
-                (heightMeasureSpec.Size != oldHeightMeasureSpec.Size) ||
-                (widthMeasureSpec.Mode != oldWidthMeasureSpec.Mode) ||
-                (heightMeasureSpec.Mode != oldHeightMeasureSpec.Mode);
+            OnMeasure(widthMeasureSpec, heightMeasureSpec);
+            OnMeasureIndependentChildren(widthMeasureSpec, heightMeasureSpec);
+            flags = flags | LayoutFlags.LayoutRequired;
+            flags &= ~LayoutFlags.ForceLayout;
 
-            bool isSpecExactly = (widthMeasureSpec.Mode == MeasureSpecification.ModeType.Exactly) &&
-                (heightMeasureSpec.Mode == MeasureSpecification.ModeType.Exactly);
-
-            bool matchesSpecSize = (MeasuredWidth.Size == widthMeasureSpec.Size) &&
-                (MeasuredHeight.Size == heightMeasureSpec.Size);
-
-            bool needsLayout = specChanged && (!isSpecExactly || !matchesSpecSize);
-            needsLayout = needsLayout || ((flags & LayoutFlags.ForceLayout) == LayoutFlags.ForceLayout);
-
-            if (needsLayout)
-            {
-                OnMeasure(widthMeasureSpec, heightMeasureSpec);
-                OnMeasureIndependentChildren(widthMeasureSpec, heightMeasureSpec);
-                flags = flags | LayoutFlags.LayoutRequired;
-                flags &= ~LayoutFlags.ForceLayout;
-            }
             oldWidthMeasureSpec = widthMeasureSpec;
             oldHeightMeasureSpec = heightMeasureSpec;
+        }
+
+        internal bool NeedsLayout(float widthSize, float heightSize, MeasureSpecification.ModeType widthMode, MeasureSpecification.ModeType heightMode)
+        {
+            if (LayoutRequested)
+            {
+                return true;
+            }
+
+            // Check if relayouting is required.
+            bool specChanged = (widthSize != oldWidthMeasureSpec.Size.AsDecimal()) || (widthMode != oldWidthMeasureSpec.Mode) ||
+                               (heightSize != oldHeightMeasureSpec.Size.AsDecimal()) || (heightMode != oldHeightMeasureSpec.Mode);
+
+            bool isSpecExactly = (widthMode == MeasureSpecification.ModeType.Exactly) &&
+                                 (heightMode == MeasureSpecification.ModeType.Exactly);
+
+            bool matchesSpecSize = (MeasuredWidth.Size.AsDecimal() == widthSize) && (MeasuredHeight.Size.AsDecimal() == heightSize);
+
+            bool needsLayout = specChanged && (!isSpecExactly || !matchesSpecSize);
+
+            return needsLayout;
         }
 
         /// <summary>
@@ -562,7 +564,7 @@ namespace Tizen.NUI
                 // Store new layout position data
                 layoutPositionData = new LayoutData(this, ConditionForAnimation, left, top, right, bottom);
 
-                Debug.WriteLineIf(LayoutDebugFrameData, "LayoutItem FramePositionData View:" + layoutPositionData.Item.Owner.Name +
+                NUILog.Debug("LayoutItem FramePositionData View:" + layoutPositionData.Item.Owner.Name +
                                                          " left:" + layoutPositionData.Left +
                                                          " top:" + layoutPositionData.Top +
                                                          " right:" + layoutPositionData.Right +

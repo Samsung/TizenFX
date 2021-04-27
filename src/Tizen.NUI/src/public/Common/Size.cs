@@ -108,10 +108,9 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public float Width
         {
+            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Size(...) constructor")]
             set
             {
-                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Size(...) constructor");
-
                 Interop.Vector3.WidthSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -142,10 +141,9 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public float Height
         {
+            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Size(...) constructor")]
             set
             {
-                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Size(...) constructor");
-
                 Interop.Vector3.HeightSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -176,10 +174,9 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public float Depth
         {
+            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Size(...) constructor")]
             set
             {
-                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Size(...) constructor");
-
                 Interop.Vector3.DepthSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -307,7 +304,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the the hash code of this Size.
+        /// Gets the hash code of this Size.
         /// </summary>
         /// <returns>The Hash Code.</returns>
         /// <since_tizen> 6 </since_tizen>
@@ -355,7 +352,11 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public static implicit operator Vector3(Size size)
         {
-            return new Vector3((float)size?.Width, (float)size.Height, (float)size.Depth);
+            if (size == null)
+            {
+                return null;
+            }
+            return new Vector3(size.Width, size.Height, size.Depth);
         }
 
         /// <summary>
@@ -365,7 +366,11 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public static implicit operator Size(Vector3 vec)
         {
-            return new Size((int)vec?.Width, (int)vec.Height, (int)vec.Depth);
+            if (vec == null)
+            {
+                return null;
+            }
+            return new Size(vec.Width, vec.Height, vec.Depth);
         }
 
         /// <summary>
@@ -377,7 +382,11 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static implicit operator Size(Size2D size2d)
         {
-            return new Size((int)size2d?.Width, (int)size2d.Height, 0);
+            if (size2d == null)
+            {
+                return null;
+            }
+            return new Size(size2d.Width, size2d.Height);
         }
 
 

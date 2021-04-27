@@ -63,7 +63,7 @@ namespace Tizen.NUI
         /// <summary>
         /// returns the count of the individual property transitions stored within this handle.
         /// </summary>
-        /// <returns>A handle to the image at the the specified position.</returns>
+        /// <returns>A handle to the image at the specified position.</returns>
         /// <since_tizen> 3 </since_tizen>
         public uint Count()
         {

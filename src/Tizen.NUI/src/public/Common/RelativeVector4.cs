@@ -96,10 +96,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public float X
         {
+            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new RelativeVector4(...) constructor")]
             set
             {
-                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new RelativeVector4(...) constructor");
-
                 Interop.Vector4.XSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -130,10 +129,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public float Y
         {
+            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new RelativeVector4(...) constructor")]
             set
             {
-                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new RelativeVector4(...) constructor");
-
                 Interop.Vector4.YSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -164,10 +162,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public float Z
         {
+            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new RelativeVector4(...) constructor")]
             set
             {
-                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new RelativeVector4(...) constructor");
-
                 Interop.Vector4.ZSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -198,10 +195,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public float W
         {
+            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new RelativeVector4(...) constructor")]
             set
             {
-                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new RelativeVector4(...) constructor");
-
                 Interop.Vector4.WSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -298,7 +294,11 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator Vector4(RelativeVector4 relativeVector4)
         {
-            return new Vector4((float)relativeVector4?.X, (float)relativeVector4.Y, (float)relativeVector4.Z, (float)relativeVector4.W);
+            if (relativeVector4 == null)
+            {
+                return null;
+            }
+            return new Vector4(relativeVector4.X, relativeVector4.Y, relativeVector4.Z, relativeVector4.W);
         }
 
         /// <summary>
@@ -306,7 +306,11 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator RelativeVector4(Vector4 vec)
         {
-            return new RelativeVector4((float)vec?.X, (float)vec.Y, (float)vec.Z, (float)vec.W);
+            if (vec == null)
+            {
+                return null;
+            }
+            return new RelativeVector4(vec.X, vec.Y, vec.Z, vec.W);
         }
 
         /// <summary>
@@ -340,7 +344,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the the hash code of this RelativeVector4.
+        /// Gets the hash code of this RelativeVector4.
         /// </summary>
         /// <returns>The Hash Code.</returns>
         /// <since_tizen> 6 </since_tizen>

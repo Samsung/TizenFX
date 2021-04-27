@@ -16,8 +16,6 @@
 using System;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Binding;
-using Tizen.NUI.Components.Extension;
 using Tizen.NUI.Accessibility;
 
 namespace Tizen.NUI.Components
@@ -45,7 +43,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public DefaultGridItem() : base()
         {
-            Initialize();
         }
 
         /// <summary>
@@ -55,7 +52,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public DefaultGridItem(string style) : base(style)
         {
-            Initialize();
         }
 
         /// <summary>
@@ -65,7 +61,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public DefaultGridItem(DefaultGridItemStyle itemStyle) : base(itemStyle)
         {
-            Initialize();
         }
 
         /// <summary>
@@ -439,10 +434,13 @@ namespace Tizen.NUI.Components
 
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Initializes AT-SPI object.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        private void Initialize()
+        public override void OnInitialize()
         {
+            base.OnInitialize();
             Layout = new RelativeLayout();
             layoutChanged = true;
             LayoutDirectionChanged += OnLayoutDirectionChanged;

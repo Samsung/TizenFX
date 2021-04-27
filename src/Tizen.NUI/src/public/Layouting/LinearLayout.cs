@@ -305,7 +305,7 @@ namespace Tizen.NUI
                 {
                     if (useExcessSpace)
                     {
-                        // Parent is not defiend!!!
+                        // Parent is not defined!!!
                         // The widthMode is either Unspecified or AtMost, and
                         // this child is only laid out using excess space. Measure
                         // using WrapContent so that we can find out the view's
@@ -709,9 +709,9 @@ namespace Tizen.NUI
                         childTop = new LayoutLength(Padding.Top + childMargin.Top);
                         break;
                 }
-                childLeft += childMargin.Start;
+                childLeft += (isLayoutRtl ? childMargin.End : childMargin.Start);
                 childLayout.Layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight);
-                childLeft += childWidth + childMargin.End + ((i < count - 1) ? CellPadding.Width : 0);
+                childLeft += childWidth + (isLayoutRtl ? childMargin.Start : childMargin.End) + ((i < count - 1) ? CellPadding.Width : 0);
             }
         } // LayoutHorizontally
 

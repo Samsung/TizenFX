@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2020 Samsung Electronics Co., Ltd All Rights Reserved
+* Copyright (c) 2021 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
 * you may not use this file except in compliance with the License.
@@ -15,6 +15,9 @@
 */
 
 using System;
+using System.Runtime.InteropServices;
+using Tizen;
+using Tizen.Applications;
 using NativeApi = Interop.Inspections;
 
 namespace Tizen.Inspections
@@ -25,7 +28,9 @@ namespace Tizen.Inspections
     public static class Inspector
     {
         private static NativeApi.NotificationCallback _notificationCallback;
+        private static NativeApi.DataRequestCallback _dataRequestCallback;
         private static event EventHandler<EventReceivedEventArgs> _eventReceived;
+        private static event EventHandler<DataRequestReceivedEventArgs> _dataRequestReceived;
 
         /// <summary>
         /// Event to be invoked when new inspection context arrives.
@@ -44,6 +49,55 @@ namespace Tizen.Inspections
                 if (_eventReceived == null)
                     UnsetNotificationCallback();
             }
+        }
+
+        /// <summary>
+        /// Event to be invoked when new inspection data request arrives.
+        /// </summary>
+        public static event EventHandler<DataRequestReceivedEventArgs> DataRequestReceived
+        {
+            add
+            {
+                if (_dataRequestReceived == null)
+                    SetDataRequestCallback();
+                _dataRequestReceived += value;
+            }
+            remove
+            {
+                _dataRequestReceived -= value;
+                if (_dataRequestReceived == null)
+                    UnsetDataRequestCallback();
+            }
+        }
+
+        /// <summary>
+        /// Subscribes to inspection event sent by other module.
+        /// </summary>
+        /// <param name="eventName">Event name.</param>
+        /// <param name="moduleID">An ID of the event sender module.</param>
+        /// <remarks>
+        /// This function is permitted only to an app signed by platform level certificates.
+        /// </remarks>
+        public static void SubscribeEvent(string eventName, string moduleID)
+        {
+            var ret = NativeApi.SubscribeEvent(eventName, moduleID);
+            if (ret != NativeApi.InspectionError.None)
+                throw ExceptionFactory.CreateException(ret);
+        }
+
+        /// <summary>
+        /// Sends inspection event.
+        /// </summary>
+        /// <param name="eventName">Event name.</param>
+        /// <param name="eventData">Event data.</param>
+        /// <remarks>
+        /// This function is permitted only to an app signed by platform level certificates.
+        /// </remarks>
+        public static void SendEvent(string eventName, Bundle eventData)
+        {
+            var ret = NativeApi.SendEvent(eventName, eventData);
+            if (ret != NativeApi.InspectionError.None)
+                throw ExceptionFactory.CreateException(ret);
         }
 
         /// <summary>
@@ -69,9 +123,22 @@ namespace Tizen.Inspections
             return new InspectionData(data);
         }
 
+        /// <summary>
+        /// Requests bugreport creation.
+        /// </summary>
+        /// <privilege>http://tizen.org/privilege/bugreport.admin</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <param name="pid">An ID of a process that should be livedumped. When pid is 0, system-wide bugreport is created.</param>
+        public static void RequestBugreport(int pid)
+        {
+            var ret = NativeApi.RequestBugreport(pid);
+            if (ret != NativeApi.InspectionError.None)
+                throw ExceptionFactory.CreateException(ret);
+        }
+
         private static void SetNotificationCallback()
         {
-            _notificationCallback = (IntPtr ctx, IntPtr data) =>
+            _notificationCallback = (IntPtr ctx, IntPtr userData) =>
             {
                 _eventReceived?.Invoke(null, new EventReceivedEventArgs(new InspectionContext(ctx)));
             };
@@ -83,7 +150,30 @@ namespace Tizen.Inspections
 
         private static void UnsetNotificationCallback()
         {
-            NativeApi.UnsetNotificationCb();
+            var ret = NativeApi.UnsetNotificationCb();
+            if (ret != NativeApi.InspectionError.None)
+                throw ExceptionFactory.CreateException(ret);
+        }
+
+        private static void SetDataRequestCallback()
+        {
+            _dataRequestCallback = (IntPtr data, string[] parameters, int paramsSize, IntPtr ctx, IntPtr userData) =>
+            {
+                InspectionContext context = ctx != IntPtr.Zero ? new InspectionContext(ctx) : null;
+
+                _dataRequestReceived?.Invoke(null, new DataRequestReceivedEventArgs(new InspectionData(data), parameters, context));
+            };
+
+            var ret = NativeApi.SetDataRequestCb(_dataRequestCallback, IntPtr.Zero);
+            if (ret != NativeApi.InspectionError.None)
+                throw ExceptionFactory.CreateException(ret);
+        }
+
+        private static void UnsetDataRequestCallback()
+        {
+            var ret = NativeApi.UnsetDataRequestCb();
+            if (ret != NativeApi.InspectionError.None)
+                throw ExceptionFactory.CreateException(ret);
         }
     }
 
@@ -103,11 +193,28 @@ namespace Tizen.Inspections
         {
             _handle = handle;
 
-            var ret = NativeApi.GetClientID(handle, out string clientID);
+            IntPtr eventData = IntPtr.Zero;
+
+            var ret = NativeApi.GetClientID(handle, out IntPtr clientID);
             if (ret != NativeApi.InspectionError.None)
                 throw ExceptionFactory.CreateException(ret);
 
-            ModuleID = clientID;
+            ModuleID = Marshal.PtrToStringAnsi(clientID);
+
+            ret = NativeApi.GetEventName(handle, out IntPtr eventName);
+            if (ret != NativeApi.InspectionError.None)
+                throw ExceptionFactory.CreateException(ret);
+
+            EventName = Marshal.PtrToStringAnsi(eventName);
+
+            ret = NativeApi.GetEventData(handle, out eventData);
+            if (ret != NativeApi.InspectionError.None)
+                throw ExceptionFactory.CreateException(ret);
+
+            if (eventData != IntPtr.Zero)
+            {
+                EventData = new Bundle(new SafeBundleHandle(eventData, false));
+            }
         }
 
         /// <summary>
@@ -144,6 +251,16 @@ namespace Tizen.Inspections
         /// Stores module ID.
         /// </summary>
         public string ModuleID { get; internal set; }
+
+        /// <summary>
+        /// Stores event name.
+        /// </summary>
+        public string EventName { get; internal set; }
+
+        /// <summary>
+        /// Stores event data.
+        /// </summary>
+        public Bundle EventData { get; internal set; }
 
         /// <summary>
         /// Dispose API for closing the internal resources.
@@ -251,6 +368,48 @@ namespace Tizen.Inspections
             }
 
             return (int)bytes_read;
+        }
+
+        /// <summary>
+        /// Writes given number of bytes to inspection data.
+        /// </summary>
+        /// <param name="buffer">An array of bytes. This method copies count bytes from buffer to the current stream.</param>
+        /// <param name="offset">The zero-based byte offset in buffer at which to begin copying bytes to the current stream.</param>
+        /// <param name="count">The number of bytes to be written to the current stream.</param>
+        /// <returns>
+        /// The number of bytes written to the current stream.
+        /// </returns>
+        public int Write(byte[] buffer, int offset, int count)
+        {
+            return WriteUnsafe(buffer, offset, count);
+        }
+
+        private unsafe int WriteUnsafe(byte[] buffer, int offset, int count)
+        {
+            var length = Convert.ToUInt32(count);
+            uint bytes_written = 0;
+
+            if (buffer == null)
+                throw new ArgumentNullException(nameof(buffer));
+
+            if (offset + count > buffer.Length)
+                throw new ArgumentException("The sum of offset and count is larger than the buffer length");
+
+            if (offset < 0)
+                throw new ArgumentOutOfRangeException(nameof(offset));
+
+            if (count < 0)
+                throw new ArgumentOutOfRangeException(nameof(count));
+
+            fixed (byte* p = &buffer[offset])
+            {
+                IntPtr ptr = (IntPtr)p;
+                var ret = NativeApi.DataWrite(_handle, ptr, length, out bytes_written);
+                if (ret < NativeApi.InspectionError.None)
+                    throw ExceptionFactory.CreateException(ret);
+            }
+
+            return (int)bytes_written;
         }
 
         /// <summary>

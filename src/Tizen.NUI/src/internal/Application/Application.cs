@@ -490,8 +490,8 @@ namespace Tizen.NUI
                 appControlSignal = null;
             }
 
-            win?.Dispose();
-            win = null;
+            window?.Dispose();
+            window = null;
 
             base.Dispose(type);
         }
@@ -575,11 +575,11 @@ namespace Tizen.NUI
         private NUIApplicationAppControlEventCallbackDelegate applicationAppControlEventCallbackDelegate;
         private ApplicationControlSignal appControlSignal;
 
-        private Window win;
+        private Window window;
 
         /**
           * @brief Event for Initialized signal which can be used to subscribe/unsubscribe the event handler
-          *  provided by the user. Initialized signal is emitted when application is initialised
+          *  provided by the user. Initialized signal is emitted when application is initialized
           */
         public event DaliEventHandler<object, NUIApplicationInitEventArgs> Initialized
         {
@@ -613,6 +613,7 @@ namespace Tizen.NUI
         {
             // Initialize DisposeQueue Singleton class. This is also required to create DisposeQueue on main thread.
             DisposeQueue.Instance.Initialize();
+            Window.Instance = GetWindow();
 
             // Notify that the window is displayed to the app core.
             if (NUIApplication.IsPreload)
@@ -1172,7 +1173,7 @@ namespace Tizen.NUI
             }
             catch (Exception exception)
             {
-                Tizen.Log.Fatal("NUI", "[Error] got exception during Application New(), this should not occur, msg : " + exception.Message);
+                Tizen.Log.Fatal("NUI", "[Error] got exception during Application New(), this should not occur, message : " + exception.Message);
                 Tizen.Log.Fatal("NUI", "[Error] error line number : " + new StackTrace(exception, true).GetFrame(0).GetFileLineNumber());
                 Tizen.Log.Fatal("NUI", "[Error] Stack Trace : " + exception.StackTrace);
                 throw;
@@ -1203,7 +1204,7 @@ namespace Tizen.NUI
             }
             catch (Exception exception)
             {
-                Tizen.Log.Fatal("NUI", "[Error] got exception during Application New(), this should not occur, msg : " + exception.Message);
+                Tizen.Log.Fatal("NUI", "[Error] got exception during Application New(), this should not occur, message : " + exception.Message);
                 Tizen.Log.Fatal("NUI", "[Error] error line number : " + new StackTrace(exception, true).GetFrame(0).GetFileLineNumber());
                 Tizen.Log.Fatal("NUI", "[Error] Stack Trace : " + exception.StackTrace);
                 throw;
@@ -1259,14 +1260,15 @@ namespace Tizen.NUI
 
         public Window GetWindow()
         {
-            win = Registry.GetManagedBaseHandleFromNativePtr(Interop.Application.GetWindow(SwigCPtr)) as Window;
-            if (win == null)
+            if (window != null)
             {
-                win = new Window(Interop.Application.GetWindow(SwigCPtr), true);
+                return window;
             }
 
+            window = (Registry.GetManagedBaseHandleFromNativePtr(Interop.Application.GetWindow(SwigCPtr)) as Window) ?? new Window(Interop.Application.GetWindow(SwigCPtr), true);
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return win;
+            return window;
         }
 
         public static string GetResourcePath()

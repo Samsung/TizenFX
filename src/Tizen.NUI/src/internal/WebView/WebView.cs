@@ -30,6 +30,11 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class WebView : View
     {
+        private Vector4 contentBackgroundColor;
+        private bool tilesClearedWhenHidden;
+        private float tileCoverAreaMultiplier;
+        private bool cursorEnabledByClient;
+
         private readonly WebViewPageLoadSignal pageLoadStartedSignal;
         private EventHandler<WebViewPageLoadEventArgs> pageLoadStartedEventHandler;
         private WebViewPageLoadCallbackDelegate pageLoadStartedCallback;
@@ -53,6 +58,21 @@ namespace Tizen.NUI
         private readonly WebViewUrlChangedSignal urlChangedSignal;
         private EventHandler<WebViewUrlChangedEventArgs> urlChangedEventHandler;
         private WebViewUrlChangedCallbackDelegate urlChangedCallback;
+
+        private readonly WebViewFormRepostPolicyDecidedSignal formRepostPolicyDecidedSignal;
+        private EventHandler<WebViewFormRepostPolicyDecidedEventArgs> formRepostPolicyDecidedEventHandler;
+        private WebViewFormRepostPolicyDecidedCallbackDelegate formRepostPolicyDecidedCallback;
+
+        private readonly WebViewFrameRenderedSignal frameRenderedSignal;
+        private EventHandler<EventArgs> frameRenderedEventHandler;
+        private WebViewFrameRenderedCallbackDelegate frameRenderedCallback;
+
+        private ScreenshotAcquiredCallback screenshotAcquiredCallback;
+        private readonly WebViewScreenshotAcquiredProxyCallback screenshotAcquiredProxyCallback;
+
+        private readonly WebViewNewWindowPolicyDecidedSignal newWindowPolicyDecidedSignal;
+        private EventHandler<WebViewNewWindowPolicyDecidedEventArgs> newWindowPolicyDecidedEventHandler;
+        private WebViewNewWindowPolicyDecidedCallbackDelegate newWindowPolicyDecidedCallback;
 
         /// <summary>
         /// Creates a WebView.
@@ -102,6 +122,11 @@ namespace Tizen.NUI
             pageLoadErrorSignal = new WebViewPageLoadErrorSignal(Interop.WebView.NewWebViewPageLoadErrorSignalPageLoadError(SwigCPtr));
             scrollEdgeReachedSignal = new WebViewScrollEdgeReachedSignal(Interop.WebView.NewWebViewScrollEdgeReachedSignalScrollEdgeReached(SwigCPtr));
             urlChangedSignal = new WebViewUrlChangedSignal(Interop.WebView.NewWebViewUrlChangedSignalUrlChanged(SwigCPtr));
+            formRepostPolicyDecidedSignal = new WebViewFormRepostPolicyDecidedSignal(Interop.WebView.NewWebViewFormRepostDecisionSignalFormRepostDecision(SwigCPtr));
+            frameRenderedSignal = new WebViewFrameRenderedSignal(Interop.WebView.WebViewFrameRenderedSignalFrameRenderedGet(SwigCPtr));
+            newWindowPolicyDecidedSignal = new WebViewNewWindowPolicyDecidedSignal(Interop.WebView.NewWebViewPolicyDecisionSignalPolicyDecision(SwigCPtr));
+
+            screenshotAcquiredProxyCallback = OnScreenshotAcquired;
 
             BackForwardList = new WebBackForwardList(Interop.WebView.GetWebBackForwardList(SwigCPtr), false);
             Context = new WebContext(Interop.WebView.GetWebContext(SwigCPtr), false);
@@ -131,6 +156,9 @@ namespace Tizen.NUI
                 pageLoadErrorSignal.Dispose();
                 scrollEdgeReachedSignal.Dispose();
                 urlChangedSignal.Dispose();
+                formRepostPolicyDecidedSignal.Dispose();
+                frameRenderedSignal.Dispose();
+                newWindowPolicyDecidedSignal.Dispose();
 
                 BackForwardList.Dispose();
                 Context.Dispose();
@@ -169,6 +197,27 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void JavaScriptPromptCallback(string message1, string message2);
 
+        /// <summary>
+        /// The callback function that is invoked when screen shot is acquired asynchronously.
+        /// </summary>
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public delegate void ScreenshotAcquiredCallback(ImageView image);
+
+        /// <summary>
+        /// The callback function that is invoked when video playing is checked asynchronously.
+        /// </summary>
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public delegate void VideoPlayingCallback(bool isPlaying);
+
+        /// <summary>
+        /// The callback function that is invoked when geolocation permission is requested.
+        /// </summary>
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public delegate void GeolocationPermissionCallback(string host, string protocol);
+
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WebViewPageLoadCallbackDelegate(IntPtr data, string pageUrl);
 
@@ -180,6 +229,18 @@ namespace Tizen.NUI
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WebViewUrlChangedCallbackDelegate(IntPtr data, string pageUrl);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void WebViewFormRepostPolicyDecidedCallbackDelegate(IntPtr data, IntPtr maker);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void WebViewFrameRenderedCallbackDelegate(IntPtr data);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void WebViewScreenshotAcquiredProxyCallback(IntPtr data);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void WebViewNewWindowPolicyDecidedCallbackDelegate(IntPtr data, IntPtr maker);
 
         /// <summary>
         /// Event for the PageLoadStarted signal which can be used to subscribe or unsubscribe the event handler.<br />
@@ -338,6 +399,145 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Event for the FormRepostDecided signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted when form repost policy would be decided.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<WebViewFormRepostPolicyDecidedEventArgs> FormRepostPolicyDecided
+        {
+            add
+            {
+                if (formRepostPolicyDecidedEventHandler == null)
+                {
+                    formRepostPolicyDecidedCallback = OnFormRepostPolicyDecided;
+                    formRepostPolicyDecidedSignal.Connect(formRepostPolicyDecidedCallback);
+                }
+                formRepostPolicyDecidedEventHandler += value;
+            }
+            remove
+            {
+                formRepostPolicyDecidedEventHandler -= value;
+                if (formRepostPolicyDecidedEventHandler == null && formRepostPolicyDecidedCallback != null)
+                {
+                    formRepostPolicyDecidedSignal.Disconnect(formRepostPolicyDecidedCallback);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Event for the FrameRendered signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted when frame is rendered off-screen.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<EventArgs> FrameRendered
+        {
+            add
+            {
+                if (frameRenderedEventHandler == null)
+                {
+                    frameRenderedCallback = OnFrameRendered;
+                    frameRenderedSignal.Connect(frameRenderedCallback);
+                }
+                frameRenderedEventHandler += value;
+            }
+            remove
+            {
+                frameRenderedEventHandler -= value;
+                if (frameRenderedEventHandler == null && frameRenderedCallback != null)
+                {
+                    frameRenderedSignal.Disconnect(frameRenderedCallback);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Event for the NewWindowPolicyDecided signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted when new window policy would be decided.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<WebViewNewWindowPolicyDecidedEventArgs> NewWindowPolicyDecided
+        {
+            add
+            {
+                if (newWindowPolicyDecidedEventHandler == null)
+                {
+                    newWindowPolicyDecidedCallback = OnNewWindowPolicyDecided;
+                    newWindowPolicyDecidedSignal.Connect(newWindowPolicyDecidedCallback);
+                }
+                newWindowPolicyDecidedEventHandler += value;
+            }
+            remove
+            {
+                newWindowPolicyDecidedEventHandler -= value;
+                if (newWindowPolicyDecidedEventHandler == null && newWindowPolicyDecidedCallback != null)
+                {
+                    newWindowPolicyDecidedSignal.Disconnect(newWindowPolicyDecidedCallback);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Options for searching texts.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum FindOption
+        {
+            /// <summary>
+            /// No search flags
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            None = 0,
+
+            /// <summary>
+            /// Case insensitive search
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            CaseInsensitive = 1 << 0,
+
+            /// <summary>
+            /// Search text only at the beginning of the words
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            AtWordStart = 1 << 1,
+
+            /// <summary>
+            /// Treat capital letters in the middle of words as word start
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            TreatMediaCapitalAsWordStart = 1 << 2,
+
+            /// <summary>
+            /// Search backwards
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Backwards = 1 << 3,
+
+            /// <summary>
+            /// If not present the search stops at the end of the document
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            WrapAround = 1 << 4,
+
+            /// <summary>
+            /// Show overlay
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            ShowOverlay = 1 << 5,
+
+            /// <summary>
+            /// Show indicator
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            ShowFindIndiator = 1 << 6,
+
+            /// <summary>
+            /// Show highlight
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            ShowHighlight = 1 << 7,
+        }
+
+        /// <summary>
         /// BackForwardList.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -493,7 +693,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The postion of scroll.
+        /// The position of scroll.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Position ScrollPosition
@@ -559,6 +759,120 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Whether mouse events are enabled or not.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool MouseEventsEnabled
+        {
+            get
+            {
+                return (bool)GetValue(MouseEventsEnabledProperty);
+            }
+            set
+            {
+                SetValue(MouseEventsEnabledProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Whether key events are enabled or not.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool KeyEventsEnabled
+        {
+            get
+            {
+                return (bool)GetValue(KeyEventsEnabledProperty);
+            }
+            set
+            {
+                SetValue(KeyEventsEnabledProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Background color of web page.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color ContentBackgroundColor
+        {
+            get
+            {
+                return (Color)GetValue(ContentBackgroundColorProperty);
+            }
+            set
+            {
+                SetValue(ContentBackgroundColorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Whether tiles are cleared or not when hidden.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool TilesClearedWhenHidden
+        {
+            get
+            {
+                return (bool)GetValue(TilesClearedWhenHiddenProperty);
+            }
+            set
+            {
+                SetValue(TilesClearedWhenHiddenProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Multiplier of cover area of tile when web page is rendered.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float TileCoverAreaMultiplier
+        {
+            get
+            {
+                return (float)GetValue(TileCoverAreaMultiplierProperty);
+            }
+            set
+            {
+                SetValue(TileCoverAreaMultiplierProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Whether cursor is enabled or not by client.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool CursorEnabledByClient
+        {
+            get
+            {
+                return (bool)GetValue(CursorEnabledByClientProperty);
+            }
+            set
+            {
+                SetValue(CursorEnabledByClientProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets selected text in web page.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string SelectedText
+        {
+            get
+            {
+                return (string)GetValue(SelectedTextProperty);
+            }
+        }
+
+        /// <summary>
         /// Gets title of web page.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -571,7 +885,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets fav icon.
+        /// Gets favicon of web page.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ImageView Favicon
@@ -585,6 +899,52 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Zoom factor of web page.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float PageZoomFactor
+        {
+            get
+            {
+                return (float)GetValue(PageZoomFactorProperty);
+            }
+            set
+            {
+                SetValue(PageZoomFactorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Zoom factor of text in web page.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float TextZoomFactor
+        {
+            get
+            {
+                return (float)GetValue(TextZoomFactorProperty);
+            }
+            set
+            {
+                SetValue(TextZoomFactorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets percentage of loading progress.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float LoadProgressPercentage
+        {
+            get
+            {
+                return (float)GetValue(LoadProgressPercentageProperty);
+            }
+        }
+
         internal static new class Property
         {
             internal static readonly int Url = Interop.WebView.UrlGet();
@@ -594,6 +954,16 @@ namespace Tizen.NUI
             internal static readonly int ContentSize = Interop.WebView.ContentSizeGet();
             internal static readonly int Title = Interop.WebView.TitleGet();
             internal static readonly int VideoHoleEnabled = Interop.WebView.VideoHoleEnabledGet();
+            internal static readonly int MouseEventsEnabled = Interop.WebView.MouseEventsEnabledGet();
+            internal static readonly int KeyEventsEnabled = Interop.WebView.KeyEventsEnabledGet();
+            internal static readonly int DocumentBackgroundColor = Interop.WebView.DocumentBackgroundColorGet();
+            internal static readonly int TilesClearedWhenHidden = Interop.WebView.TilesClearedWhenHiddenGet();
+            internal static readonly int TileCoverAreaMultiplier = Interop.WebView.TileCoverAreaMultiplierGet();
+            internal static readonly int CursorEnabledByClient = Interop.WebView.CursorEnabledByClientGet();
+            internal static readonly int SelectedText = Interop.WebView.SelectedTextGet();
+            internal static readonly int PageZoomFactor = Interop.WebView.PageZoomFactorGet();
+            internal static readonly int TextZoomFactor = Interop.WebView.TextZoomFactorGet();
+            internal static readonly int LoadProgressPercentage = Interop.WebView.LoadProgressPercentageGet();
         }
 
         private static readonly BindableProperty UrlProperty = BindableProperty.Create(nameof(Url), typeof(string), typeof(WebView), string.Empty, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
@@ -684,6 +1054,146 @@ namespace Tizen.NUI
             return temp;
         });
 
+        private static readonly BindableProperty MouseEventsEnabledProperty = BindableProperty.Create(nameof(MouseEventsEnabled), typeof(bool), typeof(WebView), true, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var webview = (WebView)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty(webview.SwigCPtr, WebView.Property.MouseEventsEnabled, new Tizen.NUI.PropertyValue((bool)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var webview = (WebView)bindable;
+            bool temp;
+            Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.MouseEventsEnabled).Get(out temp);
+            return temp;
+        });
+
+        private static readonly BindableProperty KeyEventsEnabledProperty = BindableProperty.Create(nameof(KeyEventsEnabled), typeof(bool), typeof(WebView), true, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var webview = (WebView)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty(webview.SwigCPtr, WebView.Property.KeyEventsEnabled, new Tizen.NUI.PropertyValue((bool)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var webview = (WebView)bindable;
+            bool temp;
+            Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.KeyEventsEnabled).Get(out temp);
+            return temp;
+        });
+
+        private static readonly BindableProperty ContentBackgroundColorProperty = BindableProperty.Create(nameof(ContentBackgroundColor), typeof(Vector4), typeof(WebView), true, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var webview = (WebView)bindable;
+            if (newValue != null)
+            {
+                webview.contentBackgroundColor = (Vector4)newValue;
+                Tizen.NUI.Object.SetProperty(webview.SwigCPtr, WebView.Property.DocumentBackgroundColor, new Tizen.NUI.PropertyValue((Vector4)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var webview = (WebView)bindable;
+            return webview.contentBackgroundColor;
+        });
+
+        private static readonly BindableProperty TilesClearedWhenHiddenProperty = BindableProperty.Create(nameof(TilesClearedWhenHidden), typeof(bool), typeof(WebView), true, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var webview = (WebView)bindable;
+            if (newValue != null)
+            {
+                webview.tilesClearedWhenHidden = (bool)newValue;
+                Tizen.NUI.Object.SetProperty(webview.SwigCPtr, WebView.Property.TilesClearedWhenHidden, new Tizen.NUI.PropertyValue((bool)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var webview = (WebView)bindable;
+            return webview.tilesClearedWhenHidden;
+        });
+
+        private static readonly BindableProperty TileCoverAreaMultiplierProperty = BindableProperty.Create(nameof(TileCoverAreaMultiplier), typeof(float), typeof(WebView), true, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var webview = (WebView)bindable;
+            if (newValue != null)
+            {
+                webview.tileCoverAreaMultiplier = (float)newValue;
+                Tizen.NUI.Object.SetProperty(webview.SwigCPtr, WebView.Property.TileCoverAreaMultiplier, new Tizen.NUI.PropertyValue((float)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var webview = (WebView)bindable;
+            return webview.tileCoverAreaMultiplier;
+        });
+
+        private static readonly BindableProperty CursorEnabledByClientProperty = BindableProperty.Create(nameof(CursorEnabledByClient), typeof(bool), typeof(WebView), true, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var webview = (WebView)bindable;
+            if (newValue != null)
+            {
+                webview.cursorEnabledByClient = (bool)newValue;
+                Tizen.NUI.Object.SetProperty(webview.SwigCPtr, WebView.Property.CursorEnabledByClient, new Tizen.NUI.PropertyValue((bool)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var webview = (WebView)bindable;
+            return webview.cursorEnabledByClient;
+        });
+
+        private static readonly BindableProperty SelectedTextProperty = BindableProperty.Create(nameof(SelectedText), typeof(string), typeof(WebView), null, defaultValueCreator: (bindable) =>
+        {
+            var webview = (WebView)bindable;
+            string text;
+            Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.SelectedText).Get(out text);
+            return text;
+        });
+
+        private static readonly BindableProperty PageZoomFactorProperty = BindableProperty.Create(nameof(PageZoomFactor), typeof(float), typeof(WebView), true, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var webview = (WebView)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty(webview.SwigCPtr, WebView.Property.PageZoomFactor, new Tizen.NUI.PropertyValue((float)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var webview = (WebView)bindable;
+            float temp;
+            Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.PageZoomFactor).Get(out temp);
+            return temp;
+        });
+
+        private static readonly BindableProperty TextZoomFactorProperty = BindableProperty.Create(nameof(TextZoomFactor), typeof(float), typeof(WebView), true, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var webview = (WebView)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty(webview.SwigCPtr, WebView.Property.TextZoomFactor, new Tizen.NUI.PropertyValue((float)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var webview = (WebView)bindable;
+            float temp;
+            Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.TextZoomFactor).Get(out temp);
+            return temp;
+        });
+
+        private static readonly BindableProperty LoadProgressPercentageProperty = BindableProperty.Create(nameof(LoadProgressPercentage), typeof(float), typeof(WebView), null, defaultValueCreator: (bindable) =>
+        {
+            var webview = (WebView)bindable;
+            float percentage;
+            Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.LoadProgressPercentage).Get(out percentage);
+            return percentage;
+        });
+
         // For rooting handlers
         internal Dictionary<string, JavaScriptMessageHandler> handlerRootMap = new Dictionary<string, JavaScriptMessageHandler>();
 
@@ -721,6 +1231,36 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Loads the specified html as the content of the view to override current history entry.
+        /// <param name="html">The html to be loaded</param>
+        /// <param name="baseUri">Base URL used for relative paths to external objects</param>
+        /// <param name="unreachableUri">URL that could not be reached</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool LoadHtmlStringOverrideCurrentEntry(string html, string baseUri, string unreachableUri)
+        {
+            bool result = Interop.WebView.LoadHtmlStringOverrideCurrentEntry(SwigCPtr, html, baseUri, unreachableUri);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return result;
+        }
+
+        /// <summary>
+        /// Requests to load the given contents by MIME type.
+        /// <param name="contents">The contents to be loaded</param>
+        /// <param name="contentSize">The size of contents (in bytes)</param>
+        /// <param name="mimeType">The type of contents, "text/html" is assumed if null</param>
+        /// <param name="encoding">The encoding for contents, "UTF-8" is assumed if null</param>
+        /// <param name="baseUri">The base URI to use for relative resources</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool LoadContents(string contents, uint contentSize, string mimeType, string encoding, string baseUri)
+        {
+            bool result = Interop.WebView.LoadContents(SwigCPtr, contents, contentSize, mimeType, encoding, baseUri);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return result;
+        }
+
+        /// <summary>
         /// Reloads the Web
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -728,6 +1268,17 @@ namespace Tizen.NUI
         {
             Interop.WebView.Reload(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Reloads the current page's document without cache
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ReloadWithoutCache()
+        {
+            bool result = Interop.WebView.ReloadWithoutCache(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return result;
         }
 
         /// <summary>
@@ -761,7 +1312,75 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Scroll web view by deltaX and detlaY.
+        /// Suspends all network loading.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SuspendNetworkLoading()
+        {
+            Interop.WebView.SuspendNetworkLoading(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Resumes all network loading.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void ResumeNetworkLoading()
+        {
+            Interop.WebView.ResumeNetworkLoading(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Adds custom header.
+        /// <param name="name">The name of custom header</param>
+        /// <param name="value">The value of custom header</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool AddCustomHeader(string name, string value)
+        {
+            bool result = Interop.WebView.AddCustomHeader(SwigCPtr, name, value);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return result;
+        }
+
+        /// <summary>
+        /// Removes custom header.
+        /// <param name="name">The name of custom header</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool RemoveCustomHeader(string name)
+        {
+            bool result = Interop.WebView.RemoveCustomHeader(SwigCPtr, name);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return result;
+        }
+
+        /// <summary>
+        /// Starts the inspector server.
+        /// <param name="port">The port number</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint StartInspectorServer(uint port)
+        {
+            uint result = Interop.WebView.StartInspectorServer(SwigCPtr, port);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return result;
+        }
+
+        /// <summary>
+        /// Stops the inspector server.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool StopInspectorServer()
+        {
+            bool result = Interop.WebView.StopInspectorServer(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return result;
+        }
+
+        /// <summary>
+        /// Scrolls page of web view by deltaX and detlaY.
         /// <param name="deltaX">The deltaX of scroll</param>
         /// <param name="deltaY">The deltaY of scroll</param>
         /// </summary>
@@ -770,6 +1389,19 @@ namespace Tizen.NUI
         {
             Interop.WebView.ScrollBy(SwigCPtr, deltaX, deltaY);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Scrolls edge of web view by deltaX and deltaY.
+        /// <param name="deltaX">The deltaX of scroll</param>
+        /// <param name="deltaY">The deltaY of scroll</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ScrollEdgeBy(int deltaX, int deltaY)
+        {
+            bool result = Interop.WebView.ScrollEdgeBy(SwigCPtr, deltaX, deltaY);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return result;
         }
 
         /// <summary>
@@ -909,7 +1541,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Reply for promp popup.
+        /// Reply for prompt popup.
         /// <param name="result">text in prompt input field.</param>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -936,6 +1568,121 @@ namespace Tizen.NUI
         public void ClearHistory()
         {
             Interop.WebView.ClearHistory(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Scales the current page, centered at the given point.
+        /// <param name="scaleFactor">The new factor to be scaled</param>
+        /// <param name="point">The center coordinate</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetScaleFactor(float scaleFactor, Vector2 point)
+        {
+            Interop.WebView.SetScaleFactor(SwigCPtr, scaleFactor, Vector2.getCPtr(point));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Gets the current scale factor of the page.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float GetScaleFactor()
+        {
+            float result = Interop.WebView.GetScaleFactor(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return result;
+        }
+
+        /// <summary>
+        /// Requests to activate/deactivate the accessibility usage set by web app.
+        /// <param name="activated">The new factor to be scaled</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void ActivateAccessibility(bool activated)
+        {
+            Interop.WebView.ActivateAccessibility(SwigCPtr, activated);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Searches and highlights the given string in the document.
+        /// <param name="text">The text to be searched</param>
+        /// <param name="options">The options to search</param>
+        /// <param name="maxMatchCount">The maximum match count to search</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool HighlightText(string text, FindOption options, uint maxMatchCount)
+        {
+            bool result = Interop.WebView.HighlightText(SwigCPtr, text, (int)options, maxMatchCount);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return result;
+        }
+
+        /// <summary>
+        /// Adds dynamic certificate path.
+        /// <param name="host">Host that required client authentication</param>
+        /// <param name="certPath">The file path stored certificate</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void AddDynamicCertificatePath(string host, string certPath)
+        {
+            Interop.WebView.AddDynamicCertificatePath(SwigCPtr, host, certPath);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Get snapshot of the specified viewArea of page.
+        /// <param name="viewArea">Host that required client authentication</param>
+        /// <param name="scaleFactor">The file path stored certificate</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageView GetScreenshot(Rectangle viewArea, float scaleFactor)
+        {
+            IntPtr image = Interop.WebView.GetScreenshot(SwigCPtr, Rectangle.getCPtr(viewArea), scaleFactor);
+            ImageView imageView = new ImageView(image, true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return imageView;
+        }
+
+        /// <summary>
+        /// Get snapshot of the specified viewArea of page.
+        /// <param name="viewArea">Host that required client authentication</param>
+        /// <param name="scaleFactor">The file path stored certificate</param>
+        /// <param name="callback">The callback for getting screen shot</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool GetScreenshotAsynchronously(Rectangle viewArea, float scaleFactor, ScreenshotAcquiredCallback callback)
+        {
+            screenshotAcquiredCallback = callback;
+            System.IntPtr ip = Marshal.GetFunctionPointerForDelegate(screenshotAcquiredProxyCallback);
+            bool result = Interop.WebView.GetScreenshotAsynchronously(SwigCPtr, Rectangle.getCPtr(viewArea), scaleFactor, new HandleRef(this, ip));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return result;
+        }
+
+        /// <summary>
+        /// Asynchronous requests to check if there is a video playing in the given view.
+        /// <param name="callback">The callback called after checking if video is playing or not</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool CheckVideoPlayingAsynchronously(VideoPlayingCallback callback)
+        {
+            System.IntPtr ip = Marshal.GetFunctionPointerForDelegate(callback);
+            bool result = Interop.WebView.CheckVideoPlayingAsynchronously(SwigCPtr, new HandleRef(this, ip));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return result;
+        }
+
+        /// <summary>
+        /// Registers callback which will be called upon geolocation permission request.
+        /// <param name="callback">The callback for requesting geolocation permission</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RegisterGeolocationPermissionCallback(GeolocationPermissionCallback callback)
+        {
+            System.IntPtr ip = Marshal.GetFunctionPointerForDelegate(callback);
+            Interop.WebView.RegisterGeolocationPermissionCallback(SwigCPtr, new HandleRef(this, ip));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1029,6 +1776,30 @@ namespace Tizen.NUI
         private void OnUrlChanged(IntPtr data, string pageUrl)
         {
             urlChangedEventHandler?.Invoke(this, new WebViewUrlChangedEventArgs(pageUrl));
+        }
+
+        private void OnFormRepostPolicyDecided(IntPtr data, IntPtr decision)
+        {
+            WebFormRepostPolicyDecisionMaker repostDecision = new WebFormRepostPolicyDecisionMaker(decision, false);
+            formRepostPolicyDecidedEventHandler?.Invoke(this, new WebViewFormRepostPolicyDecidedEventArgs(repostDecision));
+            repostDecision.Dispose();
+        }
+
+        private void OnFrameRendered(IntPtr data)
+        {
+            frameRenderedEventHandler?.Invoke(this, new EventArgs());
+        }
+
+        private void OnScreenshotAcquired(IntPtr data)
+        {
+            ImageView image = new ImageView(data, true);
+            screenshotAcquiredCallback?.Invoke(image);
+            image.Dispose();
+        }
+
+        private void OnNewWindowPolicyDecided(IntPtr data, IntPtr maker)
+        {
+            newWindowPolicyDecidedEventHandler?.Invoke(this, new WebViewNewWindowPolicyDecidedEventArgs(new WebNewWindowPolicyDecisionMaker(maker, false)));
         }
     }
 }

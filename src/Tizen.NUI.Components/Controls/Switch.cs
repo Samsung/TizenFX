@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
  */
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Components.Extension;
 
@@ -60,13 +61,21 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Initilize AT-SPI object.
+        /// Initialize AT-SPI object.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnInitialize()
         {
+            track = new ImageView()
+            {
+                EnableControlStatePropagation = true
+            };
+            thumb = new ImageView();
+            track.Add(thumb);
+
             base.OnInitialize();
             SetAccessibilityConstructor(Role.ToggleButton);
+
             IsSelectable = true;
 #if PROFILE_MOBILE
             Feedback = true;
@@ -113,18 +122,25 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void ApplyStyle(ViewStyle viewStyle)
         {
-            SwitchStyle swStyle = viewStyle as SwitchStyle;
-
-            if (null != swStyle)
+            if (viewStyle is SwitchStyle switchStyle)
             {
-                if (swStyle.Track != null)
+                if (Extension is SwitchExtension extension)
                 {
-                    Track.ApplyStyle(swStyle.Track);
+                    track.Unparent();
+                    thumb.Unparent();
+                    track = extension.OnCreateTrack(this, track);
+                    thumb = extension.OnCreateThumb(this, thumb);
+                    track.Add(thumb);
                 }
 
-                if (swStyle.Thumb != null)
+                if (switchStyle.Track != null)
                 {
-                    Thumb.ApplyStyle(swStyle.Thumb);
+                    Track.ApplyStyle(switchStyle.Track);
+                }
+
+                if (switchStyle.Thumb != null)
+                {
+                    Thumb.ApplyStyle(switchStyle.Thumb);
                 }
             }
 
@@ -137,28 +153,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public ImageView Track
         {
-            get
-            {
-                if (track == null)
-                {
-                    track = new ImageView()
-                    {
-                        PositionUsesPivotPoint = true,
-                        ParentOrigin = Tizen.NUI.ParentOrigin.CenterLeft,
-                        PivotPoint = Tizen.NUI.PivotPoint.CenterLeft,
-                        WidthResizePolicy = ResizePolicyType.FillToParent,
-                        HeightResizePolicy = ResizePolicyType.FillToParent
-                    };
-
-                    var extension = (SwitchExtension)Extension;
-                    if (extension != null)
-                    {
-                        track = extension.OnCreateTrack(this, track);
-                    }
-                    Add(track);
-                }
-                return track;
-            }
+            get => track;
             internal set
             {
                 track = value;
@@ -171,28 +166,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public ImageView Thumb
         {
-            get
-            {
-                if (thumb == null)
-                {
-                    thumb = new ImageView()
-                    {
-                        PositionUsesPivotPoint = true,
-                        ParentOrigin = Tizen.NUI.ParentOrigin.CenterLeft,
-                        PivotPoint = Tizen.NUI.PivotPoint.CenterLeft,
-                        WidthResizePolicy = ResizePolicyType.Fixed,
-                        HeightResizePolicy = ResizePolicyType.Fixed
-                    };
-
-                    var extension = (SwitchExtension)Extension;
-                    if (extension != null)
-                    {
-                        thumb = extension.OnCreateThumb(this, thumb);
-                    }
-                    Add(thumb);
-                }
-                return thumb;
-            }
+            get => thumb;
             internal set
             {
                 thumb = value;
@@ -205,8 +179,12 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public StringSelector SwitchBackgroundImageURLSelector
         {
-            get => track == null ? null : new StringSelector((Selector<string>)track.GetValue(ImageView.ResourceUrlSelectorProperty));
-            set => track?.SetValue(ImageView.ResourceUrlSelectorProperty, value);
+            get => new StringSelector(track.ResourceUrlSelector);
+            set
+            {
+                Debug.Assert(track != null);
+                track.ResourceUrlSelector = value;
+            }
         }
 
         /// <summary>
@@ -232,8 +210,12 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public StringSelector SwitchHandlerImageURLSelector
         {
-            get => thumb == null ? null : new StringSelector((Selector<string>)thumb.GetValue(ImageView.ResourceUrlSelectorProperty));
-            set => thumb?.SetValue(ImageView.ResourceUrlSelectorProperty, value);
+            get => new StringSelector(thumb.ResourceUrlSelector);
+            set
+            {
+                Debug.Assert(thumb != null);
+                thumb.ResourceUrlSelector = value;
+            }
         }
 
         /// <summary>
@@ -323,6 +305,16 @@ namespace Tizen.NUI.Components
             {
                 OnSelect();
             }
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void LayoutItems()
+        {
+            base.LayoutItems();
+            track.Unparent();
+            Add(track);
+            track.LowerToBottom();
         }
 
         private void OnSelect()
