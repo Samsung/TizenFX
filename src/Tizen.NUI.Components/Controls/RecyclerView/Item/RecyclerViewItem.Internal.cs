@@ -145,10 +145,16 @@ namespace Tizen.NUI.Components
                                 CollectionView colView = ParentItemsView as CollectionView;
                                 switch (colView.SelectionMode)
                                 {
-                                    case ItemSelectionMode.SingleSelection:
+                                    case ItemSelectionMode.Single:
                                         colView.SelectedItem = IsSelected ? null : BindingContext;
                                         break;
-                                    case ItemSelectionMode.MultipleSelections:
+                                    case ItemSelectionMode.SingleAlways:
+                                        if (colView.SelectedItem != BindingContext)
+                                        {
+                                            colView.SelectedItem = BindingContext;
+                                        }
+                                        break;
+                                    case ItemSelectionMode.Multiple:
                                         var selectedItems = colView.SelectedItems;
                                         if (selectedItems.Contains(BindingContext)) selectedItems.Remove(BindingContext);
                                         else selectedItems.Add(BindingContext);
