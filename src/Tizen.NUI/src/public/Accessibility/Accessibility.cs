@@ -177,64 +177,6 @@ namespace Tizen.NUI.Accessibility
 
         #region Event, Enum, Struct, ETC
         /// <summary>
-        ///  Say Finished event arguments
-        /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public class SayFinishedEventArgs : EventArgs
-        {
-            /// <summary>
-            /// The state of Say finished
-            /// </summary>
-            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public SayFinishedState State
-            {
-                private set;
-                get;
-            }
-
-            internal SayFinishedEventArgs(int result)
-            {
-                State = (SayFinishedState)(result);
-                tlog.Fatal(tag, $"SayFinishedEventArgs Constructor! State={State}");
-            }
-        }
-
-        /// <summary>
-        /// Enum of Say finished event argument status
-        /// </summary>
-        [Obsolete("Please do not use! This will be removed. Please use Accessibility.SayFinishedState instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public enum SayFinishedStates
-        {
-            /// <summary>
-            /// Invalid
-            /// </summary>
-            [Obsolete("Please do not use! This will be removed. Please use Accessibility.SayFinishedState.Invalid instead!")]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            Invalid = -1,
-            /// <summary>
-            /// Cancelled
-            /// </summary>
-            [Obsolete("Please do not use! This will be removed. Please use Accessibility.SayFinishedState.Invalid instead!")]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            Cancelled = 1,
-            /// <summary>
-            /// Stopped
-            /// </summary>
-            [Obsolete("Please do not use! This will be removed. Please use Accessibility.SayFinishedState.Invalid instead!")]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            Stopped = 2,
-            /// <summary>
-            /// Skipped
-            /// </summary>
-            [Obsolete("Please do not use! This will be removed. Please use Accessibility.SayFinishedState.Invalid instead!")]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            Skipped = 3
-        }
-
-        /// <summary>
         /// Enum of Say finished event argument status
         /// </summary>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
@@ -334,5 +276,30 @@ namespace Tizen.NUI.Accessibility
 
         private static string tag = "NUITEST";
         #endregion Private
+    }
+
+    /// <summary>
+    ///  Say Finished event arguments
+    /// </summary>
+    // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class SayFinishedEventArgs : EventArgs
+    {
+        /// <summary>
+        /// The state of Say finished
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Accessibility.SayFinishedState State
+        {
+            private set;
+            get;
+        }
+
+        internal SayFinishedEventArgs(int result)
+        {
+            State = (Accessibility.SayFinishedState)(result);
+            tlog.Fatal("NUITEST", $"SayFinishedEventArgs Constructor! State={State}");
+        }
     }
 }
