@@ -125,14 +125,14 @@ namespace Tizen.NUI.Components
         /// Notify range of observable items from start to end are changed.
         /// </summary>
         /// <param name="source">Dataset source.</param>
-        /// <param name="start">Start index of changed items range.</param>
-        /// <param name="end">End index of changed items range.</param>
+        /// <param name="startRange">Start index of changed items range.</param>
+        /// <param name="endRange">End index of changed items range.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public virtual void NotifyItemRangeChanged(IItemSource source, int start, int end)
+        public virtual void NotifyItemRangeChanged(IItemSource source, int startRange, int endRange)
         {
             if (InternalItemsLayouter != null)
             {
-                InternalItemsLayouter.NotifyItemRangeChanged(source, start, end);
+                InternalItemsLayouter.NotifyItemRangeChanged(source, startRange, endRange);
             }
         }
 
@@ -224,7 +224,6 @@ namespace Tizen.NUI.Components
                 InternalItemsLayouter.NotifyItemRangeRemoved(source, startIndex, count);
             }
         }
-
 
         /// <summary>
         /// Realize indexed item.
