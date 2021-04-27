@@ -7,6 +7,51 @@ references:
   commentId: N:Tizen.Inspections
   fullName: Tizen.Inspections
   nameWithType: Tizen.Inspections
+- uid: Tizen.Inspections.DataRequestReceivedEventArgs
+  name: DataRequestReceivedEventArgs
+  href: internals/api/Tizen.Inspections.DataRequestReceivedEventArgs.html
+  commentId: T:Tizen.Inspections.DataRequestReceivedEventArgs
+  fullName: Tizen.Inspections.DataRequestReceivedEventArgs
+  nameWithType: DataRequestReceivedEventArgs
+- uid: Tizen.Inspections.DataRequestReceivedEventArgs.Context
+  name: Context
+  href: internals/api/Tizen.Inspections.DataRequestReceivedEventArgs.html#Tizen_Inspections_DataRequestReceivedEventArgs_Context
+  commentId: P:Tizen.Inspections.DataRequestReceivedEventArgs.Context
+  fullName: Tizen.Inspections.DataRequestReceivedEventArgs.Context
+  nameWithType: DataRequestReceivedEventArgs.Context
+- uid: Tizen.Inspections.DataRequestReceivedEventArgs.Context*
+  name: Context
+  href: internals/api/Tizen.Inspections.DataRequestReceivedEventArgs.html#Tizen_Inspections_DataRequestReceivedEventArgs_Context_
+  commentId: Overload:Tizen.Inspections.DataRequestReceivedEventArgs.Context
+  isSpec: "True"
+  fullName: Tizen.Inspections.DataRequestReceivedEventArgs.Context
+  nameWithType: DataRequestReceivedEventArgs.Context
+- uid: Tizen.Inspections.DataRequestReceivedEventArgs.Data
+  name: Data
+  href: internals/api/Tizen.Inspections.DataRequestReceivedEventArgs.html#Tizen_Inspections_DataRequestReceivedEventArgs_Data
+  commentId: P:Tizen.Inspections.DataRequestReceivedEventArgs.Data
+  fullName: Tizen.Inspections.DataRequestReceivedEventArgs.Data
+  nameWithType: DataRequestReceivedEventArgs.Data
+- uid: Tizen.Inspections.DataRequestReceivedEventArgs.Data*
+  name: Data
+  href: internals/api/Tizen.Inspections.DataRequestReceivedEventArgs.html#Tizen_Inspections_DataRequestReceivedEventArgs_Data_
+  commentId: Overload:Tizen.Inspections.DataRequestReceivedEventArgs.Data
+  isSpec: "True"
+  fullName: Tizen.Inspections.DataRequestReceivedEventArgs.Data
+  nameWithType: DataRequestReceivedEventArgs.Data
+- uid: Tizen.Inspections.DataRequestReceivedEventArgs.Parameters
+  name: Parameters
+  href: internals/api/Tizen.Inspections.DataRequestReceivedEventArgs.html#Tizen_Inspections_DataRequestReceivedEventArgs_Parameters
+  commentId: P:Tizen.Inspections.DataRequestReceivedEventArgs.Parameters
+  fullName: Tizen.Inspections.DataRequestReceivedEventArgs.Parameters
+  nameWithType: DataRequestReceivedEventArgs.Parameters
+- uid: Tizen.Inspections.DataRequestReceivedEventArgs.Parameters*
+  name: Parameters
+  href: internals/api/Tizen.Inspections.DataRequestReceivedEventArgs.html#Tizen_Inspections_DataRequestReceivedEventArgs_Parameters_
+  commentId: Overload:Tizen.Inspections.DataRequestReceivedEventArgs.Parameters
+  isSpec: "True"
+  fullName: Tizen.Inspections.DataRequestReceivedEventArgs.Parameters
+  nameWithType: DataRequestReceivedEventArgs.Parameters
 - uid: Tizen.Inspections.EventReceivedEventArgs
   name: EventReceivedEventArgs
   href: internals/api/Tizen.Inspections.EventReceivedEventArgs.html
@@ -51,6 +96,32 @@ references:
   isSpec: "True"
   fullName: Tizen.Inspections.InspectionContext.Dispose
   nameWithType: InspectionContext.Dispose
+- uid: Tizen.Inspections.InspectionContext.EventData
+  name: EventData
+  href: internals/api/Tizen.Inspections.InspectionContext.html#Tizen_Inspections_InspectionContext_EventData
+  commentId: P:Tizen.Inspections.InspectionContext.EventData
+  fullName: Tizen.Inspections.InspectionContext.EventData
+  nameWithType: InspectionContext.EventData
+- uid: Tizen.Inspections.InspectionContext.EventData*
+  name: EventData
+  href: internals/api/Tizen.Inspections.InspectionContext.html#Tizen_Inspections_InspectionContext_EventData_
+  commentId: Overload:Tizen.Inspections.InspectionContext.EventData
+  isSpec: "True"
+  fullName: Tizen.Inspections.InspectionContext.EventData
+  nameWithType: InspectionContext.EventData
+- uid: Tizen.Inspections.InspectionContext.EventName
+  name: EventName
+  href: internals/api/Tizen.Inspections.InspectionContext.html#Tizen_Inspections_InspectionContext_EventName
+  commentId: P:Tizen.Inspections.InspectionContext.EventName
+  fullName: Tizen.Inspections.InspectionContext.EventName
+  nameWithType: InspectionContext.EventName
+- uid: Tizen.Inspections.InspectionContext.EventName*
+  name: EventName
+  href: internals/api/Tizen.Inspections.InspectionContext.html#Tizen_Inspections_InspectionContext_EventName_
+  commentId: Overload:Tizen.Inspections.InspectionContext.EventName
+  isSpec: "True"
+  fullName: Tizen.Inspections.InspectionContext.EventName
+  nameWithType: InspectionContext.EventName
 - uid: Tizen.Inspections.InspectionContext.Finalize
   name: Finalize()
   href: internals/api/Tizen.Inspections.InspectionContext.html#Tizen_Inspections_InspectionContext_Finalize
@@ -156,18 +227,53 @@ references:
   isSpec: "True"
   fullName: Tizen.Inspections.InspectionData.Read
   nameWithType: InspectionData.Read
+- uid: Tizen.Inspections.InspectionData.Write(System.Byte[],System.Int32,System.Int32)
+  name: Write(Byte[], Int32, Int32)
+  href: internals/api/Tizen.Inspections.InspectionData.html#Tizen_Inspections_InspectionData_Write_System_Byte___System_Int32_System_Int32_
+  commentId: M:Tizen.Inspections.InspectionData.Write(System.Byte[],System.Int32,System.Int32)
+  name.vb: Write(Byte(), Int32, Int32)
+  fullName: Tizen.Inspections.InspectionData.Write(System.Byte[], System.Int32, System.Int32)
+  fullName.vb: Tizen.Inspections.InspectionData.Write(System.Byte(), System.Int32, System.Int32)
+  nameWithType: InspectionData.Write(Byte[], Int32, Int32)
+  nameWithType.vb: InspectionData.Write(Byte(), Int32, Int32)
+- uid: Tizen.Inspections.InspectionData.Write*
+  name: Write
+  href: internals/api/Tizen.Inspections.InspectionData.html#Tizen_Inspections_InspectionData_Write_
+  commentId: Overload:Tizen.Inspections.InspectionData.Write
+  isSpec: "True"
+  fullName: Tizen.Inspections.InspectionData.Write
+  nameWithType: InspectionData.Write
 - uid: Tizen.Inspections.Inspector
   name: Inspector
   href: internals/api/Tizen.Inspections.Inspector.html
   commentId: T:Tizen.Inspections.Inspector
   fullName: Tizen.Inspections.Inspector
   nameWithType: Inspector
+- uid: Tizen.Inspections.Inspector.DataRequestReceived
+  name: DataRequestReceived
+  href: internals/api/Tizen.Inspections.Inspector.html#Tizen_Inspections_Inspector_DataRequestReceived
+  commentId: E:Tizen.Inspections.Inspector.DataRequestReceived
+  fullName: Tizen.Inspections.Inspector.DataRequestReceived
+  nameWithType: Inspector.DataRequestReceived
 - uid: Tizen.Inspections.Inspector.EventReceived
   name: EventReceived
   href: internals/api/Tizen.Inspections.Inspector.html#Tizen_Inspections_Inspector_EventReceived
   commentId: E:Tizen.Inspections.Inspector.EventReceived
   fullName: Tizen.Inspections.Inspector.EventReceived
   nameWithType: Inspector.EventReceived
+- uid: Tizen.Inspections.Inspector.RequestBugreport(System.Int32)
+  name: RequestBugreport(Int32)
+  href: internals/api/Tizen.Inspections.Inspector.html#Tizen_Inspections_Inspector_RequestBugreport_System_Int32_
+  commentId: M:Tizen.Inspections.Inspector.RequestBugreport(System.Int32)
+  fullName: Tizen.Inspections.Inspector.RequestBugreport(System.Int32)
+  nameWithType: Inspector.RequestBugreport(Int32)
+- uid: Tizen.Inspections.Inspector.RequestBugreport*
+  name: RequestBugreport
+  href: internals/api/Tizen.Inspections.Inspector.html#Tizen_Inspections_Inspector_RequestBugreport_
+  commentId: Overload:Tizen.Inspections.Inspector.RequestBugreport
+  isSpec: "True"
+  fullName: Tizen.Inspections.Inspector.RequestBugreport
+  nameWithType: Inspector.RequestBugreport
 - uid: Tizen.Inspections.Inspector.RequestInspectableData(System.String,System.String[])
   name: RequestInspectableData(String, String[])
   href: internals/api/Tizen.Inspections.Inspector.html#Tizen_Inspections_Inspector_RequestInspectableData_System_String_System_String___
@@ -184,6 +290,32 @@ references:
   isSpec: "True"
   fullName: Tizen.Inspections.Inspector.RequestInspectableData
   nameWithType: Inspector.RequestInspectableData
+- uid: Tizen.Inspections.Inspector.SendEvent(System.String,Tizen.Applications.Bundle)
+  name: SendEvent(String, Bundle)
+  href: internals/api/Tizen.Inspections.Inspector.html#Tizen_Inspections_Inspector_SendEvent_System_String_Tizen_Applications_Bundle_
+  commentId: M:Tizen.Inspections.Inspector.SendEvent(System.String,Tizen.Applications.Bundle)
+  fullName: Tizen.Inspections.Inspector.SendEvent(System.String, Tizen.Applications.Bundle)
+  nameWithType: Inspector.SendEvent(String, Bundle)
+- uid: Tizen.Inspections.Inspector.SendEvent*
+  name: SendEvent
+  href: internals/api/Tizen.Inspections.Inspector.html#Tizen_Inspections_Inspector_SendEvent_
+  commentId: Overload:Tizen.Inspections.Inspector.SendEvent
+  isSpec: "True"
+  fullName: Tizen.Inspections.Inspector.SendEvent
+  nameWithType: Inspector.SendEvent
+- uid: Tizen.Inspections.Inspector.SubscribeEvent(System.String,System.String)
+  name: SubscribeEvent(String, String)
+  href: internals/api/Tizen.Inspections.Inspector.html#Tizen_Inspections_Inspector_SubscribeEvent_System_String_System_String_
+  commentId: M:Tizen.Inspections.Inspector.SubscribeEvent(System.String,System.String)
+  fullName: Tizen.Inspections.Inspector.SubscribeEvent(System.String, System.String)
+  nameWithType: Inspector.SubscribeEvent(String, String)
+- uid: Tizen.Inspections.Inspector.SubscribeEvent*
+  name: SubscribeEvent
+  href: internals/api/Tizen.Inspections.Inspector.html#Tizen_Inspections_Inspector_SubscribeEvent_
+  commentId: Overload:Tizen.Inspections.Inspector.SubscribeEvent
+  isSpec: "True"
+  fullName: Tizen.Inspections.Inspector.SubscribeEvent
+  nameWithType: Inspector.SubscribeEvent
 - uid: Tizen.Peripheral.Adc
   name: Tizen.Peripheral.Adc
   href: internals/api/Tizen.Peripheral.Adc.html
