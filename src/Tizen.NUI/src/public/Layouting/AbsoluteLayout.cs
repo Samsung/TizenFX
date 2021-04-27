@@ -52,9 +52,8 @@ namespace Tizen.NUI
 
                 // Determine the width and height needed by the children using their given position and size.
                 // Children could overlap so find the right most child.
-                Position2D childPosition = childLayout.Owner.Position2D;
-                float childRight = childLayout.MeasuredWidth.Size.AsDecimal() + childPosition.X;
-                float childBottom = childLayout.MeasuredHeight.Size.AsDecimal() + childPosition.Y;
+                float childRight = childLayout.MeasuredWidth.Size.AsDecimal() + childLayout.Owner.PositionX;
+                float childBottom = childLayout.MeasuredHeight.Size.AsDecimal() + childLayout.Owner.PositionY;
 
                 if (maxWidth < childRight)
                     maxWidth = childRight;
@@ -94,10 +93,8 @@ namespace Tizen.NUI
                 LayoutLength childWidth = childLayout.MeasuredWidth.Size;
                 LayoutLength childHeight = childLayout.MeasuredHeight.Size;
 
-                Position2D childPosition = childLayout.Owner.Position2D;
-
-                LayoutLength childLeft = new LayoutLength(childPosition.X);
-                LayoutLength childTop = new LayoutLength(childPosition.Y);
+                LayoutLength childLeft = new LayoutLength(childLayout.Owner.PositionX);
+                LayoutLength childTop = new LayoutLength(childLayout.Owner.PositionY);
 
                 childLayout.Layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight, true);
             }

@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,15 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class TabButtonGroup : SelectGroup
     {
+        /// <summary>
+        /// Constructs TabButtonGroup
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TabButtonGroup() : base()
+        {
+            EnableMultiSelection = false;
+        }
+
         /// <summary>
         /// Adds a tab button to the end of TabButtonGroup.
         /// </summary>
@@ -57,38 +66,6 @@ namespace Tizen.NUI.Components
             }
 
             base.RemoveSelection(tabButton);
-        }
-
-        /// <summary>
-        /// Sets the state of the rest of tab buttons in TabButtonGroup as normal
-        /// when a selection is made by a user.
-        /// </summary>
-        /// <param name="selection">The handler of the SelectButton selected by a user.</param>
-        /// <exception cref="ArgumentNullException">Thrown when the argument selection is null.</exception>
-        /// <exception cref="ArgumentException">Thrown when the argument selection does not exist in TabButtonGroup.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void SelectionHandler(SelectButton selection)
-        {
-            TabButton selectedTab = selection as TabButton;
-
-            if (selectedTab == null)
-            {
-                throw new ArgumentNullException(nameof(selection), "selection should not be null.");
-            }
-
-            if (ItemGroup.Contains(selectedTab) == false)
-            {
-                throw new ArgumentException("selection does not exist in TabButtonGroup.", nameof(selection));
-            }
-
-            foreach (TabButton tabButton in ItemGroup)
-            {
-                if ((tabButton != null) && (tabButton != selectedTab) && (selectedTab.IsEnabled == true))
-                {
-                    tabButton.IsSelected = false;
-                    tabButton.SetTabButtonState(ControlState.Normal);
-                }
-            }
         }
     }
 }

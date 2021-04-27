@@ -32,12 +32,16 @@ namespace Tizen.NUI.Components
         private CollectionView colView;
         private bool hasHeader;
         private float headerSize;
+        private Extents headerMargin;
         private bool hasFooter;
         private float footerSize;
+        private Extents footerMargin;
         private bool isGrouped;
         private readonly List<GroupInfo> groups = new List<GroupInfo>();
         private float groupHeaderSize;
+        private Extents groupHeaderMargin;
         private float groupFooterSize;
+        private Extents groupFooterMargin;
         private GroupInfo Visited;
 
         /// <summary>
@@ -76,10 +80,14 @@ namespace Tizen.NUI.Components
             {
                 MeasureChild(colView, header);
 
-                width = header.Layout != null ? header.Layout.MeasuredWidth.Size.AsRoundedValue() : 0;
-                height = header.Layout != null ? header.Layout.MeasuredHeight.Size.AsRoundedValue() : 0;
+                width = header.Layout != null? header.Layout.MeasuredWidth.Size.AsRoundedValue() : 0;
+                height = header.Layout != null? header.Layout.MeasuredHeight.Size.AsRoundedValue() : 0;
 
-                headerSize = IsHorizontal ? width : height;
+                Extents itemMargin = header.Margin;
+                headerSize = IsHorizontal?
+                                width + itemMargin.Start + itemMargin.End:
+                                height + itemMargin.Top + itemMargin.Bottom;
+                headerMargin = new Extents(itemMargin);
                 hasHeader = true;
 
                 colView.UnrealizeItem(header);
@@ -90,10 +98,14 @@ namespace Tizen.NUI.Components
             {
                 MeasureChild(colView, footer);
 
-                width = footer.Layout != null ? footer.Layout.MeasuredWidth.Size.AsRoundedValue() : 0;
-                height = footer.Layout != null ? footer.Layout.MeasuredHeight.Size.AsRoundedValue() : 0;
+                width = footer.Layout != null? footer.Layout.MeasuredWidth.Size.AsRoundedValue() : 0;
+                height = footer.Layout != null? footer.Layout.MeasuredHeight.Size.AsRoundedValue() : 0;
 
-                footerSize = IsHorizontal ? width : height;
+                Extents itemMargin = footer.Margin;
+                footerSize = IsHorizontal?
+                                width + itemMargin.Start + itemMargin.End:
+                                height + itemMargin.Top + itemMargin.Bottom;
+                footerMargin = new Extents(itemMargin);
                 footer.Index = count - 1;
                 hasFooter = true;
 
@@ -102,9 +114,9 @@ namespace Tizen.NUI.Components
             else hasFooter = false;
 
             //No Internal Source exist.
-            if (count == (hasHeader ? (hasFooter ? 2 : 1) : 0)) return;
+            if (count == (hasHeader? (hasFooter? 2 : 1) : 0)) return;
 
-            int firstIndex = hasHeader ? 1 : 0;
+            int firstIndex = hasHeader? 1 : 0;
 
             if (colView.IsGrouped)
             {
@@ -134,9 +146,12 @@ namespace Tizen.NUI.Components
                             width = groupHeader.Layout.MeasuredWidth.Size.AsRoundedValue();
                             height = groupHeader.Layout.MeasuredHeight.Size.AsRoundedValue();
                         }
-                        //Console.WriteLine("[NUI] GroupHeader Size {0} :{0}", width, height);
                         // pick the StepCandidate.
-                        groupHeaderSize = IsHorizontal ? width : height;
+                        Extents itemMargin = groupHeader.Margin;
+                        groupHeaderSize = IsHorizontal?
+                                            width + itemMargin.Start + itemMargin.End:
+                                            height + itemMargin.Top + itemMargin.Bottom;
+                        groupHeaderMargin = new Extents(itemMargin);
                         colView.UnrealizeItem(groupHeader);
                     }
                 }
@@ -169,8 +184,11 @@ namespace Tizen.NUI.Components
                             height = groupFooter.Layout.MeasuredHeight.Size.AsRoundedValue();
                         }
                         // pick the StepCandidate.
-                        groupFooterSize = IsHorizontal ? width : height;
-
+                        Extents itemMargin = groupFooter.Margin;
+                        groupFooterSize = IsHorizontal?
+                                            width + itemMargin.Start + itemMargin.End:
+                                            height + itemMargin.Top + itemMargin.Bottom;
+                        groupFooterMargin = new Extents(itemMargin);  
                         colView.UnrealizeItem(groupFooter);
                     }
                 }
@@ -220,15 +238,18 @@ namespace Tizen.NUI.Components
                     width = sizeDeligate.Layout.MeasuredWidth.Size.AsRoundedValue();
                     height = sizeDeligate.Layout.MeasuredHeight.Size.AsRoundedValue();
                 }
-                //Console.WriteLine("[NUI] Layout Size {0} :{0}", width, height);
                 // pick the StepCandidate.
-                StepCandidate = IsHorizontal ? width : height;
+                Extents itemMargin = sizeDeligate.Margin;
+                StepCandidate = IsHorizontal?
+                                width + itemMargin.Start + itemMargin.End:
+                                height + itemMargin.Top + itemMargin.Bottom;
+                CandidateMargin = new Extents(itemMargin);  
                 if (StepCandidate == 0) StepCandidate = 1; //????
 
                 colView.UnrealizeItem(sizeDeligate);
             }
 
-            float Current = 0.0F;
+            float Current = IsHorizontal? Padding.Start : Padding.Top;
             IGroupableItemSource source = colView.InternalItemSource;
             GroupInfo currentGroup = null;
             for (int i = 0; i < count; i++)
@@ -272,7 +293,8 @@ namespace Tizen.NUI.Components
                                 GroupSize = groupHeaderSize,
                                 GroupPosition = Current
                             };
-                            currentGroup.ItemPosition.Add(0);
+                            if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
+                                currentGroup.ItemPosition.Add(0);
                             groups.Add(currentGroup);
                             Current += groupHeaderSize;
                         }
@@ -282,21 +304,24 @@ namespace Tizen.NUI.Components
                             //currentGroup.hasFooter = true;
                             currentGroup.Count++;
                             currentGroup.GroupSize += groupFooterSize;
-                            currentGroup.ItemPosition.Add(Current - currentGroup.GroupPosition);
+                            if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
+                                currentGroup.ItemPosition.Add(Current - currentGroup.GroupPosition);
                             Current += groupFooterSize;
                         }
                         else
                         {
                             currentGroup.Count++;
                             currentGroup.GroupSize += StepCandidate;
-                            currentGroup.ItemPosition.Add(Current - currentGroup.GroupPosition);
+                            if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
+                                currentGroup.ItemPosition.Add(Current - currentGroup.GroupPosition);
                             Current += StepCandidate;
                         }
                     }
                 }
                 else
                 {
-                    ItemPosition.Add(Current);
+                    if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
+                        ItemPosition.Add(Current);
 
                     if (i == 0 && hasHeader) Current += headerSize;
                     else if (i == count - 1 && hasFooter) Current += footerSize;
@@ -304,10 +329,9 @@ namespace Tizen.NUI.Components
                 }
             }
 
-            ScrollContentSize = Current;
+            ScrollContentSize = Current + (IsHorizontal? Padding.End : Padding.Bottom);
             if (IsHorizontal) colView.ContentContainer.SizeWidth = ScrollContentSize;
             else colView.ContentContainer.SizeHeight = ScrollContentSize;
-
 
             base.Initialize(view);
             //Console.WriteLine("[NUI] Init Done, StepCnadidate{0}, Scroll{1}", StepCandidate, ScrollContentSize);
@@ -332,14 +356,15 @@ namespace Tizen.NUI.Components
             {
                 for (int i = ItemSizeChanged; i <= LastIndex; i++)
                     UpdatePosition(i);
-                ScrollContentSize = ItemPosition[LastIndex - 1] + GetItemSize(LastIndex);
+                (float updateX, float updateY) = GetItemPosition(LastIndex);
+                ScrollContentSize = GetItemStepSize(LastIndex) + (IsHorizontal? updateX + Padding.End : updateY + Padding.Bottom);
             }
 
             int prevFirstVisible = FirstVisible;
             int prevLastVisible = LastVisible;
 
             (float X, float Y) visibleArea = (PrevScrollPosition,
-                PrevScrollPosition + (IsHorizontal ? colView.Size.Width : colView.Size.Height)
+                PrevScrollPosition + (IsHorizontal? colView.Size.Width : colView.Size.Height)
             );
 
             // 1. Set First/Last Visible Item Index. 
@@ -371,63 +396,21 @@ namespace Tizen.NUI.Components
                     if (item) continue;
                 }
                 if (item == null) item = colView.RealizeItem(i);
-
                 VisibleItems.Add(item);
 
                 // 5. Placing item.
-                float posX = 0F, posY = 0F;
-                if (isGrouped)
-                {
-                    //isHeader?
-                    if (colView.Header == item)
-                    {
-                        posX = 0F;
-                        posY = 0F;
-                    }
-                    else if (colView.Footer == item)
-                    {
-                        posX = (IsHorizontal ? ScrollContentSize - item.SizeWidth : 0F);
-                        posY = (IsHorizontal ? 0F : ScrollContentSize - item.SizeHeight);
-                    }
-                    else
-                    {
-                        GroupInfo gInfo = GetGroupInfo(i);
-                        posX = (IsHorizontal ? gInfo.GroupPosition + gInfo.ItemPosition[i - gInfo.StartIndex] : 0F);
-                        posY = (IsHorizontal ? 0F : gInfo.GroupPosition + gInfo.ItemPosition[i - gInfo.StartIndex]);
-                    }
-                }
-                else
-                {
-                    posX = (IsHorizontal ? ItemPosition[i] : 0F);
-                    posY = (IsHorizontal ? 0F : ItemPosition[i]);
-                }
-
+                (float posX, float posY) = GetItemPosition(i);
                 item.Position = new Position(posX, posY);
-                //Console.WriteLine("[NUI] ["+item+"]["+item.Index+"] :: ["+item.Position.X+", "+item.Position.Y+"] ==== \n");
+            
+                if (IsHorizontal && item.HeightSpecification == LayoutParamPolicies.MatchParent)
+                {
+                    item.Size = new Size(item.Size.Width, Container.Size.Height - Padding.Top - Padding.Bottom - item.Margin.Top - item.Margin.Bottom);
+                }
+                else if (!IsHorizontal && item.WidthSpecification == LayoutParamPolicies.MatchParent)
+                {
+                    item.Size = new Size(Container.Size.Width - Padding.Start - Padding.End - item.Margin.Start - item.Margin.End, item.Size.Height);
+                }
             }
-        }
-
-        /// <Inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override (float X, float Y) GetItemPosition(object item)
-        {
-            if (item == null) throw new ArgumentNullException(nameof(item));
-            // Layouting Items in scrollPosition.
-            float pos = ItemPosition[colView.InternalItemSource.GetPosition(item)];
-
-            return (IsHorizontal ? (pos, 0.0F) : (0.0F, pos));
-        }
-
-        /// <Inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override (float X, float Y) GetItemSize(object item)
-        {
-            if (item == null) throw new ArgumentNullException(nameof(item));
-            // Layouting Items in scrollPosition.
-            float size = GetItemSize(colView.InternalItemSource.GetPosition(item));
-            float view = (IsHorizontal ? colView.Size.Height : colView.Size.Width);
-
-            return (IsHorizontal ? (size, view) : (view, size));
         }
 
         /// <inheritdoc/>
@@ -453,7 +436,7 @@ namespace Tizen.NUI.Components
                 PrevSize = ItemPosition[item.Index + 1] - ItemPosition[item.Index];
             }
 
-            CurrentSize = (IsHorizontal ? item.Size.Width : item.Size.Height);
+            CurrentSize = (IsHorizontal? item.Size.Width : item.Size.Height);
 
             if (CurrentSize != PrevSize)
             {
@@ -498,22 +481,22 @@ namespace Tizen.NUI.Components
             {
                 case View.FocusDirection.Left:
                     {
-                        targetSibling = IsHorizontal ? currentFocusedView.SiblingOrder - 1 : targetSibling;
+                        targetSibling = IsHorizontal? currentFocusedView.SiblingOrder - 1 : targetSibling;
                         break;
                     }
                 case View.FocusDirection.Right:
                     {
-                        targetSibling = IsHorizontal ? currentFocusedView.SiblingOrder + 1 : targetSibling;
+                        targetSibling = IsHorizontal? currentFocusedView.SiblingOrder + 1 : targetSibling;
                         break;
                     }
                 case View.FocusDirection.Up:
                     {
-                        targetSibling = IsHorizontal ? targetSibling : currentFocusedView.SiblingOrder - 1;
+                        targetSibling = IsHorizontal? targetSibling : currentFocusedView.SiblingOrder - 1;
                         break;
                     }
                 case View.FocusDirection.Down:
                     {
-                        targetSibling = IsHorizontal ? targetSibling : currentFocusedView.SiblingOrder + 1;
+                        targetSibling = IsHorizontal? targetSibling : currentFocusedView.SiblingOrder + 1;
                         break;
                     }
             }
@@ -534,14 +517,14 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override (int start, int end) FindVisibleItems((float X, float Y) visibleArea)
         {
-            int MaxIndex = colView.InternalItemSource.Count - 1 - (hasFooter ? 1 : 0);
+            int MaxIndex = colView.InternalItemSource.Count - 1 - (hasFooter? 1 : 0);
             int adds = 5;
             int skipGroup = -2;
             (int start, int end) found = (0, 0);
 
             // 1. Find the start index.
             // Header is Showing
-            if (hasHeader && visibleArea.X <= headerSize)
+            if (hasHeader && visibleArea.X <= headerSize + (IsHorizontal? Padding.Start: Padding.Top))
             {
                 found.start = 0;
             }
@@ -567,8 +550,8 @@ namespace Tizen.NUI.Components
                                     break;
 
                                 }
-                                else if (gInfo.ItemPosition[i] <= visibleArea.X - gInfo.GroupPosition &&
-                                        gInfo.ItemPosition[i + 1] >= visibleArea.X - gInfo.GroupPosition)
+                                else if (GetGroupPosition(gInfo, gInfo.StartIndex + i) <= visibleArea.X &&
+                                        GetGroupPosition(gInfo, gInfo.StartIndex + i + 1) >= visibleArea.X)
                                 {
                                     found.start = gInfo.StartIndex + i - adds;
                                     failed = false;
@@ -585,7 +568,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    float visibleAreaX = visibleArea.X - (hasHeader ? headerSize : 0);
+                    float visibleAreaX = visibleArea.X - (hasHeader? headerSize : 0);
                     found.start = (Convert.ToInt32(Math.Abs(visibleAreaX / StepCandidate)) - adds);
                 }
 
@@ -619,8 +602,8 @@ namespace Tizen.NUI.Components
                                     break;
 
                                 }
-                                else if (gInfo.ItemPosition[i] <= visibleArea.Y - gInfo.GroupPosition &&
-                                        gInfo.ItemPosition[i + 1] >= visibleArea.Y - gInfo.GroupPosition)
+                                else if (GetGroupPosition(gInfo, gInfo.StartIndex + i) <= visibleArea.Y &&
+                                        GetGroupPosition(gInfo, gInfo.StartIndex + i + 1) >= visibleArea.Y)
                                 {
                                     found.end = gInfo.StartIndex + i + adds;
                                     failed = false;
@@ -633,7 +616,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    float visibleAreaY = visibleArea.Y - (hasHeader ? headerSize : 0);
+                    float visibleAreaY = visibleArea.Y - (hasHeader? headerSize : 0);
                     found.end = (Convert.ToInt32(Math.Abs(visibleAreaY / StepCandidate)) + adds);
                     if (hasHeader) found.end += 1;
                 }
@@ -642,7 +625,103 @@ namespace Tizen.NUI.Components
             return found;
         }
 
-        private float GetItemSize(int index)
+        // Item position excluding margins.
+        internal override (float X, float Y) GetItemPosition(int index)
+        {
+            int spaceStartX = Padding.Start;
+            int spaceStartY = Padding.Top;
+            if (colView.InternalItemSource.IsHeader(index))
+            {
+                return (spaceStartX + headerMargin.Start, spaceStartY + headerMargin.Top);
+            }
+            else if (colView.InternalItemSource.IsFooter(index))
+            {
+                return ((IsHorizontal? ScrollContentSize - footerSize - Padding.End + footerMargin.Start : spaceStartX + footerMargin.Start),
+                        (IsHorizontal? spaceStartY + footerMargin.Top : ScrollContentSize - footerSize - Padding.Bottom + footerMargin.Top));
+            }
+            else if (isGrouped)
+            {
+                GroupInfo gInfo = GetGroupInfo(index);
+                if (gInfo == null)
+                {
+                    Tizen.Log.Error("NUI", "GroupInfo failed to get in GetItemPosition()!");
+                    return (0, 0);
+                }
+                float current = GetGroupPosition(gInfo, index);
+                Extents itemMargin = CandidateMargin;
+
+                if (colView.InternalItemSource.IsGroupHeader(index))
+                {
+                    itemMargin = groupHeaderMargin;
+                }
+                else if (colView.InternalItemSource.IsGroupFooter(index))
+                {
+                    itemMargin = groupFooterMargin;
+                }
+                return ((IsHorizontal?
+                        itemMargin.Start + GetGroupPosition(gInfo, index):
+                        spaceStartX + itemMargin.Start),
+                        (IsHorizontal?
+                        spaceStartY + itemMargin.Top:
+                        itemMargin.Top + GetGroupPosition(gInfo, index)));
+            }
+            else if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
+            {
+                //FIXME : CandidateMargin need to be actual itemMargin
+                return ((IsHorizontal? ItemPosition[index] + CandidateMargin.Start : spaceStartX + CandidateMargin.Start),
+                        (IsHorizontal? spaceStartY + CandidateMargin.Top : ItemPosition[index] + CandidateMargin.Top));
+            }
+            else
+            {
+                int adjustIndex = index - (hasHeader ? 1 : 0);
+                float current = (hasHeader? headerSize : 0) + adjustIndex * StepCandidate;
+                //FIXME : CandidateMargin need to be actual itemMargin
+                return ((IsHorizontal? current + CandidateMargin.Start : spaceStartX + CandidateMargin.Start),
+                        (IsHorizontal? spaceStartY + CandidateMargin.Top : current + CandidateMargin.Top));
+            }
+        }
+
+        // Item size excluding margins. this size is approximated size.
+        internal override (float Width, float Height) GetItemSize(int index)
+        {
+            if (colView.InternalItemSource.IsHeader(index))
+            {
+                return ((IsHorizontal? (int)headerSize : (int)(colView.Size.Width) - Padding.Start - Padding.End)
+                        - headerMargin.Start - headerMargin.End,
+                        (IsHorizontal? (int)colView.Size.Height - Padding.Top - Padding.Bottom: (int)headerSize)
+                        - headerMargin.Top - headerMargin.Bottom);
+            }
+            else if (colView.InternalItemSource.IsFooter(index))
+            {
+                return ((IsHorizontal? (int)footerSize : (int)(colView.Size.Width) - Padding.Start - Padding.End)
+                        - footerMargin.Start - footerMargin.End,
+                        (IsHorizontal? (int)colView.Size.Height - Padding.Top - Padding.Bottom: (int)footerSize)
+                        - footerMargin.Top - footerMargin.Bottom);
+            }
+            else if (colView.InternalItemSource.IsGroupHeader(index))
+            {
+                return ((IsHorizontal? (int)groupHeaderSize : (int)(colView.Size.Width) - Padding.Start - Padding.End)
+                        - groupHeaderMargin.Start - groupHeaderMargin.End,
+                        (IsHorizontal? (int)colView.Size.Height - Padding.Top - Padding.Bottom: (int)groupHeaderSize)
+                        - groupHeaderMargin.Top - groupHeaderMargin.Bottom);
+            }
+            else if (colView.InternalItemSource.IsGroupFooter(index))
+            {
+                return ((IsHorizontal? (int)groupFooterSize : (int)(colView.Size.Width) - Padding.Start - Padding.End)
+                        - groupFooterMargin.Start - groupFooterMargin.End,
+                        (IsHorizontal? (int)colView.Size.Height - Padding.Top - Padding.Bottom: (int)groupFooterSize)
+                        - groupFooterMargin.Top - groupFooterMargin.Bottom);
+            }
+            else
+            {
+                return ((IsHorizontal? (int)StepCandidate : (int)(colView.Size.Width) - Padding.Start - Padding.End)
+                        - CandidateMargin.Start - CandidateMargin.End,
+                        (IsHorizontal? (int)colView.Size.Height - Padding.Top - Padding.Bottom: (int)StepCandidate)
+                        - CandidateMargin.Top - CandidateMargin.Bottom);
+            }            
+        }
+
+        private float GetItemStepSize(int index)
         {
             if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
             {
@@ -650,12 +729,17 @@ namespace Tizen.NUI.Components
             }
             else
             {
-                if (index == 0 && hasHeader)
+                if (colView.InternalItemSource.IsHeader(index))
                     return headerSize;
-                if (index == colView.InternalItemSource.Count - 1 && hasFooter)
+                else if (colView.InternalItemSource.IsFooter(index))
                     return footerSize;
-                return StepCandidate;
-            }
+                else if (colView.InternalItemSource.IsGroupHeader(index))
+                    return groupHeaderSize;
+                else if (colView.InternalItemSource.IsGroupFooter(index))
+                    return groupFooterSize;
+                else
+                    return StepCandidate;
+            }            
         }
 
         private void UpdatePosition(int index)
@@ -671,8 +755,8 @@ namespace Tizen.NUI.Components
                     //IsGroupFooter = (colView.InternalItemSource as IGroupableItemSource).IsGroupFooter(index);
                     //Do Something
                 }
-
-            ItemPosition[index] = ItemPosition[index - 1] + GetItemSize(index - 1);
+            if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
+                ItemPosition[index] = ItemPosition[index - 1] + GetItemStepSize(index - 1);
         }
 
         private RecyclerViewItem GetVisibleItem(int index)
@@ -703,6 +787,21 @@ namespace Tizen.NUI.Components
             Visited = null;
             return null;
         }
+
+        private float GetGroupPosition(GroupInfo groupInfo, int index)
+        {
+            if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
+                return groupInfo.GroupPosition + groupInfo.ItemPosition[index - groupInfo.StartIndex];
+            else
+            {
+                float pos = groupInfo.GroupPosition;
+                if (groupInfo.StartIndex == index) return pos;
+
+                pos = pos + groupHeaderSize + StepCandidate * (index - groupInfo.StartIndex - 1);
+
+                return pos;
+            }
+        }
         /*
                 private object GetGroupParent(int index)
                 {
@@ -731,7 +830,7 @@ namespace Tizen.NUI.Components
             public int Count;
             public float GroupSize;
             public float GroupPosition;
-            //Items relative position from the GroupPosition
+            //Items relative position from the GroupPosition. Only use for MeasureAll.
             public List<float> ItemPosition = new List<float>();
         }
     }

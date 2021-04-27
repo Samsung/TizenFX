@@ -42,7 +42,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public DefaultTitleItem() : base()
         {
-            Initialize();
         }
 
         /// <summary>
@@ -52,7 +51,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public DefaultTitleItem(string style) : base(style)
         {
-            Initialize();
         }
 
         /// <summary>
@@ -62,7 +60,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public DefaultTitleItem(DefaultTitleItemStyle itemStyle) : base(itemStyle)
         {
-            Initialize();
         }
 
         /// <summary>
@@ -196,7 +193,11 @@ namespace Tizen.NUI.Components
                 if (itemIcon != null)
                     itemIcon.ApplyStyle(defaultStyle.Icon);
                 if (itemSeperator != null)
+                {
                     itemSeperator.ApplyStyle(defaultStyle.Seperator);
+                    //FIXME : currently padding and margin are not applied by ApplyStyle automatically as missing binding features.
+                    itemSeperator.Margin = new Extents(defaultStyle.Seperator.Margin);
+                }
             }
         }
 
@@ -247,12 +248,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void MeasureChild()
         {
-            if (itemLabel)
-            {
-                var pad = Padding;
-                var margin = itemLabel.Margin;
-                itemLabel.SizeWidth = SizeWidth - pad.Start - pad.End - margin.Start - margin.End;
-            }
+            // Do measure in here if necessary.
         }
 
         /// <inheritdoc/>
@@ -355,7 +351,11 @@ namespace Tizen.NUI.Components
             return new DefaultTitleItemStyle();
         }
 
-        private void Initialize()
+        /// <summary>
+        /// Initializes AT-SPI object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnInitialize()
         {
             base.OnInitialize();
             Layout = new RelativeLayout();

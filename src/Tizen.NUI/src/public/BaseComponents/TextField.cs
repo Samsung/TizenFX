@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,7 +35,6 @@ namespace Tizen.NUI.BaseComponents
         private string textFieldPlaceHolderTextFocusedSid = null;
         private bool systemlangTextFlag = false;
         private InputMethodContext inputMethodCotext = null;
-        private TextFieldSelectorData selectorData;
         private float fontSizeScale = 1.0f;
         private bool hasFontSizeChangedCallback = false;
 
@@ -119,7 +118,6 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                selectorData?.TranslatableText?.Reset(this);
                 SetValue(TranslatableTextProperty, value);
             }
         }
@@ -158,7 +156,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(TranslatablePlaceholderTextProperty, value);
-                selectorData?.TranslatablePlaceholderText?.Reset(this);
             }
         }
         private string translatablePlaceholderText
@@ -197,7 +194,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(TranslatablePlaceholderTextFocusedProperty, value);
-                selectorData?.TranslatablePlaceholderTextFocused?.Reset(this);
             }
         }
         private string translatablePlaceholderTextFocused
@@ -231,7 +227,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValueAndForceSendChangeSignal(TextProperty, value);
-                selectorData?.Text?.Reset(this);
                 NotifyPropertyChanged();
             }
         }
@@ -283,7 +278,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(FontFamilyProperty, value);
-                selectorData?.FontFamily?.Reset(this);
                 NotifyPropertyChanged();
             }
         }
@@ -318,7 +312,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(PointSizeProperty, value);
-                selectorData?.PointSize?.Reset(this);
                 NotifyPropertyChanged();
             }
         }
@@ -409,7 +402,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(TextColorProperty, value);
-                selectorData?.TextColor?.Reset(this);
                 NotifyPropertyChanged();
             }
         }
@@ -431,7 +423,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(PlaceholderTextColorProperty, value);
-                selectorData?.PlaceholderTextColor?.Reset(this);
                 NotifyPropertyChanged();
             }
         }
@@ -509,7 +500,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(PrimaryCursorColorProperty, value);
-                selectorData?.PrimaryCursorColor?.Reset(this);
                 NotifyPropertyChanged();
             }
         }
@@ -1087,7 +1077,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(PixelSizeProperty, value);
-                selectorData?.PixelSize?.Reset(this);
                 NotifyPropertyChanged();
             }
         }
@@ -1252,6 +1241,27 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The GrabHandleColor property.
+        /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (textField.GrabHandleColor.X = 0.1f;) is possible.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color GrabHandleColor
+        {
+            get
+            {
+                Color temp = (Color)GetValue(GrabHandleColorProperty);
+                return new Color(OnGrabHandleColorChanged, temp.R, temp.G, temp.B, temp.A);
+            }
+            set
+            {
+                SetValue(GrabHandleColorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// The Placeholder property.
         /// Gets or sets the placeholder: text, color, font family, font style, point size, and pixel size.
         /// </summary>
@@ -1412,8 +1422,6 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        private TextFieldSelectorData EnsureSelectorData() => selectorData ?? (selectorData = new TextFieldSelectorData());
-
         /// <summary>
         /// Get the InputMethodContext instance.
         /// </summary>
@@ -1490,7 +1498,6 @@ namespace Tizen.NUI.BaseComponents
                 //Called by User
                 //Release your own managed resources here.
                 //You should release all of your own disposable objects here.
-                selectorData?.Reset(this);
             }
 
             //Release your own unmanaged resources here.
@@ -1659,6 +1666,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int EnableEditing = Interop.TextField.EnableEditingGet();
             internal static readonly int PrimaryCursorPosition = Interop.TextField.PrimaryCursorPositionGet();
             internal static readonly int FontSizeScale = Interop.TextField.FontSizeScaleGet();
+            internal static readonly int GrabHandleColor = Interop.TextField.GrabHandleColorGet();
         }
 
         internal class InputStyle
@@ -1712,6 +1720,10 @@ namespace Tizen.NUI.BaseComponents
         private void OnTextColorChanged(float r, float g, float b, float a)
         {
             TextColor = new Color(r, g, b, a);
+        }
+        private void OnGrabHandleColorChanged(float r, float g, float b, float a)
+        {
+            GrabHandleColor = new Color(r, g, b, a);
         }
     }
 }

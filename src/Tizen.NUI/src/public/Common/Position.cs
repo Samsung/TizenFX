@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -534,10 +534,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public float X
         {
+            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Position(...) constructor")]
             set
             {
-                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Position(...) constructor");
-
                 Interop.Vector3.XSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -568,10 +567,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public float Y
         {
+            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Position(...) constructor")]
             set
             {
-                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Position(...) constructor");
-
                 Interop.Vector3.YSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -602,10 +600,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public float Z
         {
+            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Position(...) constructor")]
             set
             {
-                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Position(...) constructor");
-
                 Interop.Vector3.ZSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -787,9 +784,13 @@ namespace Tizen.NUI
         /// Converts a position instance to a Vector3 instance.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static implicit operator Vector3(Position Position)
+        public static implicit operator Vector3(Position position)
         {
-            return new Vector3((float)Position?.X, (float)Position.Y, (float)Position.Z);
+            if (position == null)
+            {
+                return null;
+            }
+            return new Vector3(position.X, position.Y, position.Z);
         }
 
         /// <summary>
@@ -798,7 +799,11 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator Position(Vector3 vec)
         {
-            return new Position((float)vec?.X, (float)vec.Y, (float)vec.Z);
+            if (vec == null)
+            {
+                return null;
+            }
+            return new Position(vec.X, vec.Y, vec.Z);
         }
 
         /// <summary>
@@ -810,7 +815,11 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static implicit operator Position(Position2D position2d)
         {
-            return new Position((float)position2d?.X, (float)position2d.Y, 0);
+            if (position2d == null)
+            {
+                return null;
+            }
+            return new Position(position2d.X, position2d.Y, 0);
         }
 
         /// <summary>

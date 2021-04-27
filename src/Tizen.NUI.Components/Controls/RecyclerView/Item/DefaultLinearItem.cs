@@ -44,7 +44,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public DefaultLinearItem() : base()
         {
-            Initialize();
         }
 
         /// <summary>
@@ -54,7 +53,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public DefaultLinearItem(string style) : base(style)
         {
-            Initialize();
         }
 
         /// <summary>
@@ -64,7 +62,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public DefaultLinearItem(DefaultLinearItemStyle itemStyle) : base(itemStyle)
         {
-            Initialize();
         }
 
         /// <summary>
@@ -259,7 +256,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void ApplyStyle(ViewStyle viewStyle)
         {
-
             base.ApplyStyle(viewStyle);
             if (viewStyle != null && viewStyle is DefaultLinearItemStyle defaultStyle)
             {
@@ -272,7 +268,11 @@ namespace Tizen.NUI.Components
                 if (itemExtra != null)
                     itemExtra.ApplyStyle(defaultStyle.Extra);
                 if (itemSeperator != null)
+                {
                     itemSeperator.ApplyStyle(defaultStyle.Seperator);
+                    //FIXME : currently padding and margin are not applied by ApplyStyle automatically as missing binding features.
+                    itemSeperator.Margin = new Extents(defaultStyle.Seperator.Margin);
+                }
             }
         }
 
@@ -323,18 +323,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void MeasureChild()
         {
-            var pad = Padding;
-            if (itemLabel)
-            {
-                var margin = itemLabel.Margin;
-                itemLabel.SizeWidth = SizeWidth - pad.Start - pad.End - margin.Start - margin.End;
-            }
-
-            if (itemSubLabel)
-            {
-                var margin = itemSubLabel.Margin;
-                itemSubLabel.SizeWidth = SizeWidth - pad.Start - pad.End - margin.Start - margin.End;
-            }
+            //Do Measure in here if necessary.
         }
 
         /// <inheritdoc/>
@@ -365,7 +354,7 @@ namespace Tizen.NUI.Components
                 RelativeLayout.SetLeftTarget(itemExtra, this);
                 RelativeLayout.SetLeftRelativeOffset(itemExtra, 1.0F);
                 RelativeLayout.SetRightTarget(itemExtra, this);
-                RelativeLayout.SetRightRelativeOffset(itemIcon, 1.0F);
+                RelativeLayout.SetRightRelativeOffset(itemExtra, 1.0F);
                 RelativeLayout.SetTopTarget(itemExtra, this);
                 RelativeLayout.SetTopRelativeOffset(itemExtra, 0.0F);
                 RelativeLayout.SetBottomTarget(itemExtra, this);
@@ -376,7 +365,7 @@ namespace Tizen.NUI.Components
 
             if (itemSubLabel != null)
             {
-                if (itemIcon)
+                if (itemIcon != null)
                 {
                     RelativeLayout.SetLeftTarget(itemSubLabel, itemIcon);
                     RelativeLayout.SetLeftRelativeOffset(itemSubLabel, 1.0F);
@@ -386,7 +375,7 @@ namespace Tizen.NUI.Components
                     RelativeLayout.SetLeftTarget(itemSubLabel, this);
                     RelativeLayout.SetLeftRelativeOffset(itemSubLabel, 0.0F);
                 }
-                if (itemExtra)
+                if (itemExtra != null)
                 {
                     RelativeLayout.SetRightTarget(itemSubLabel, itemExtra);
                     RelativeLayout.SetRightRelativeOffset(itemSubLabel, 0.0F);
@@ -407,7 +396,7 @@ namespace Tizen.NUI.Components
                 RelativeLayout.SetFillHorizontal(itemSubLabel, true);
             }
 
-            if (itemIcon)
+            if (itemIcon != null)
             {
                 RelativeLayout.SetLeftTarget(itemLabel, itemIcon);
                 RelativeLayout.SetLeftRelativeOffset(itemLabel, 1.0F);
@@ -417,7 +406,7 @@ namespace Tizen.NUI.Components
                 RelativeLayout.SetLeftTarget(itemLabel, this);
                 RelativeLayout.SetLeftRelativeOffset(itemLabel, 0.0F);
             }
-            if (itemExtra)
+            if (itemExtra != null)
             {
                 RelativeLayout.SetRightTarget(itemLabel, itemExtra);
                 RelativeLayout.SetRightRelativeOffset(itemLabel, 0.0F);
@@ -431,7 +420,7 @@ namespace Tizen.NUI.Components
             RelativeLayout.SetTopTarget(itemLabel, this);
             RelativeLayout.SetTopRelativeOffset(itemLabel, 0.0F);
 
-            if (itemSubLabel)
+            if (itemSubLabel != null)
             {
                 RelativeLayout.SetBottomTarget(itemLabel, itemSubLabel);
                 RelativeLayout.SetBottomRelativeOffset(itemLabel, 0.0F);
@@ -509,7 +498,11 @@ namespace Tizen.NUI.Components
             return new DefaultLinearItemStyle();
         }
 
-        private void Initialize()
+        /// <summary>
+        /// Initializes AT-SPI object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnInitialize()
         {
             base.OnInitialize();
             Layout = new RelativeLayout();

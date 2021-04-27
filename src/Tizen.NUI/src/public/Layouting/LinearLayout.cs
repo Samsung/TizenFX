@@ -709,9 +709,9 @@ namespace Tizen.NUI
                         childTop = new LayoutLength(Padding.Top + childMargin.Top);
                         break;
                 }
-                childLeft += childMargin.Start;
+                childLeft += (isLayoutRtl ? childMargin.End : childMargin.Start);
                 childLayout.Layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight);
-                childLeft += childWidth + childMargin.End + ((i < count - 1) ? CellPadding.Width : 0);
+                childLeft += childWidth + (isLayoutRtl ? childMargin.Start : childMargin.End) + ((i < count - 1) ? CellPadding.Width : 0);
             }
         } // LayoutHorizontally
 

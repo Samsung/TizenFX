@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -100,10 +100,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public int X
         {
+            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Position2D(...) constructor")]
             set
             {
-                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Position2D(...) constructor");
-
                 Interop.Vector2.XSet(SwigCPtr, (float)value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -134,10 +133,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public int Y
         {
+            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Position2D(...) constructor")]
             set
             {
-                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Position2D(...) constructor");
-
                 Interop.Vector2.YSet(SwigCPtr, (float)value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -337,7 +335,11 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator Vector2(Position2D position2d)
         {
-            return new Vector2((float)position2d?.X, (float)position2d.Y);
+            if (position2d == null)
+            {
+                return null;
+            }
+            return new Vector2(position2d.X, position2d.Y);
         }
 
         /// <summary>
@@ -348,7 +350,11 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator Position2D(Vector2 vec)
         {
-            return new Position2D((int)vec?.X, (int)vec.Y);
+            if (vec == null)
+            {
+                return null;
+            }
+            return new Position2D((int)vec.X, (int)vec.Y);
         }
 
         /// <summary>
@@ -360,7 +366,11 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static implicit operator Position2D(Position position)
         {
-            return new Position2D((int)position?.X, (int)position.Y);
+            if (position == null)
+            {
+                return null;
+            }
+            return new Position2D((int)position.X, (int)position.Y);
         }
 
         /// <inheritdoc/>

@@ -15,6 +15,7 @@
  *
  */
 
+using System;
 using System.ComponentModel;
 using System.Diagnostics;
 
@@ -81,8 +82,9 @@ namespace Tizen.NUI
         /// <summary>
         /// Copy Constructor
         /// </summary>
+        /// <exception cref="ArgumentNullException"> Thrown when other is null. </exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected ShadowBase(ShadowBase other) : this(other?.Offset, other.Extents)
+        protected ShadowBase(ShadowBase other) : this(other == null ? throw new ArgumentNullException(nameof(other)) : other.Offset, other.Extents)
         {
         }
 
@@ -90,7 +92,7 @@ namespace Tizen.NUI
         /// The position offset value (x, y) from the top left corner.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Vector2 Offset { get; set; }
+        public Vector2 Offset { get; internal set; }
 
         /// <summary>
         /// The shadow will extend its size by specified amount of length.<br />
@@ -99,7 +101,7 @@ namespace Tizen.NUI
         /// the output shadow will have size (105, 95).
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Vector2 Extents { get; set; }
+        public Vector2 Extents { get; internal set; }
 
         /// <summary>
         /// Equality operator.
@@ -161,9 +163,13 @@ namespace Tizen.NUI
 
             var map = GetPropertyMap();
 
-            if (attachedView.CornerRadius > 0)
+            // TODO Fix to support Vector4 for corner radius after dali support it.
+            //      Current code only gets first argument of Vector4.
+            float cornerRadius = attachedView.CornerRadius?.X ?? 0.0f;
+
+            if (cornerRadius > 0)
             {
-                map[Visual.Property.CornerRadius] = new PropertyValue(attachedView.CornerRadius);
+                map[Visual.Property.CornerRadius] = new PropertyValue(cornerRadius);
                 map[Visual.Property.CornerRadiusPolicy] = new PropertyValue((int)attachedView.CornerRadiusPolicy);
             }
 

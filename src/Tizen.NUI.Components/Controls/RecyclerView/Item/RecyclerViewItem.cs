@@ -104,7 +104,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public RecyclerViewItem() : base()
         {
-            Initialize();
         }
 
         /// <summary>
@@ -114,7 +113,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public RecyclerViewItem(string style) : base(style)
         {
-            Initialize();
         }
 
         /// <summary>
@@ -124,7 +122,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public RecyclerViewItem(RecyclerViewItemStyle itemStyle) : base(itemStyle)
         {
-            Initialize();
         }
 
         /// <summary>
@@ -285,6 +282,9 @@ namespace Tizen.NUI.Components
             if (viewStyle != null)
             {
                 //Extension = RecyclerViewItemStyle.CreateExtension();
+                //FIXME : currently padding and margin are not applied by ApplyStyle automatically as missing binding features.               
+                Padding = new Extents(viewStyle.Padding);
+                Margin = new Extents(viewStyle.Margin);
             }
 
             styleApplied = true;

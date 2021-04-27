@@ -19,7 +19,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using Tizen.NUI.Binding;
-using Tizen.NUI.Components;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -46,6 +45,7 @@ namespace Tizen.NUI.BaseComponents
         private bool excludeLayouting = false;
         private LayoutTransition layoutTransition;
         private ControlState controlStates = ControlState.Normal;
+        private TransitionOptions transitionOptions = null;
 
         static View() { }
 
@@ -211,7 +211,10 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <summary>
+        /// Gets / Sets the status of whether the view is excluded from its parent's layouting or not.
+        /// </summary>
+        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ExcludeLayouting
         {
@@ -314,11 +317,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(BackgroundColorProperty, value);
-                if (selectorData != null)
-                {
-                    selectorData.BackgroundImage?.Reset(this);
-                    selectorData.BackgroundColor?.Reset(this);
-                }
                 NotifyPropertyChanged();
             }
         }
@@ -336,11 +334,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(BackgroundImageProperty, value);
-                if (selectorData != null)
-                {
-                    selectorData.BackgroundColor?.Reset(this);
-                    selectorData.BackgroundImage?.Reset(this);
-                }
                 NotifyPropertyChanged();
             }
         }
@@ -359,7 +352,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(BackgroundImageBorderProperty, value);
-                selectorData?.BackgroundImageBorder?.Reset(this);
                 NotifyPropertyChanged();
             }
         }
@@ -411,11 +403,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(ImageShadowProperty, value);
-                if (selectorData != null)
-                {
-                    selectorData.BoxShadow?.Reset(this);
-                    selectorData.ImageShadow?.Reset(this);
-                }
                 NotifyPropertyChanged();
             }
         }
@@ -450,11 +437,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(BoxShadowProperty, value);
-                if (selectorData != null)
-                {
-                    selectorData.ImageShadow?.Reset(this);
-                    selectorData.BoxShadow?.Reset(this);
-                }
                 NotifyPropertyChanged();
             }
         }
@@ -462,6 +444,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The radius for the rounded corners of the View.
         /// This will rounds background and shadow edges.
+        /// The values in Vector4 are used in clockwise order from top-left to bottom-left : Vector4(top-left-corner, top-right-corner, bottom-right-corner, bottom-left-corner).
         /// Note that, an image background (or shadow) may not have rounded corners if it uses a Border property.
         /// </summary>
         /// <remarks>
@@ -470,11 +453,11 @@ namespace Tizen.NUI.BaseComponents
         /// </para>
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public float CornerRadius
+        public Vector4 CornerRadius
         {
             get
             {
-                return (float)GetValue(CornerRadiusProperty);
+                return (Vector4)GetValue(CornerRadiusProperty);
             }
             set
             {
@@ -492,7 +475,10 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return Accessibility.AccessibilityManager.Instance.GetCurrentFocusView() == this;
+                using (View view = Accessibility.Accessibility.Instance.GetCurrentlyHighlightedView())
+                {
+                    return view == this;
+                }
             }
         }
 
@@ -1083,7 +1069,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(OpacityProperty, value);
-                selectorData?.Opacity?.Reset(this);
                 NotifyPropertyChanged();
             }
         }
@@ -2386,7 +2371,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(ColorProperty, value);
-                selectorData?.Color?.Reset(this);
                 NotifyPropertyChanged();
             }
         }
@@ -2394,6 +2378,9 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Set the layout on this View. Replaces any existing Layout.
         /// </summary>
+        /// <remarks>
+        /// If this Layout is set as null explicitly, it means this View itself and it's child Views will not use Layout anymore.
+        /// </remarks>
         /// <since_tizen> 6 </since_tizen>
         public LayoutItem Layout
         {
@@ -2453,22 +2440,24 @@ namespace Tizen.NUI.BaseComponents
                     // Do not try to set Margins or Padding on a null Layout (when a layout is being removed from a View)
                     if (value != null)
                     {
-                        if (Margin.Top != 0 || Margin.Bottom != 0 || Margin.Start != 0 || Margin.End != 0)
+                        Extents margin = Margin;
+                        Extents padding = Padding;
+                        if (margin.Top != 0 || margin.Bottom != 0 || margin.Start != 0 || margin.End != 0)
                         {
                             // If View already has a margin set then store it in Layout instead.
-                            value.Margin = Margin;
+                            value.Margin = margin;
                             SetValue(MarginProperty, new Extents(0, 0, 0, 0));
                             NotifyPropertyChanged();
                         }
 
-                        if (Padding.Top != 0 || Padding.Bottom != 0 || Padding.Start != 0 || Padding.End != 0)
+                        if (padding.Top != 0 || padding.Bottom != 0 || padding.Start != 0 || padding.End != 0)
                         {
                             // If View already has a padding set then store it in Layout instead.
-                            value.Padding = Padding;
+                            value.Padding = padding;
 
                             // If Layout is a LayoutItem then it could be a View that handles it's own padding.
                             // Let the View keeps it's padding.  Still store Padding in Layout to reduce code paths.
-                            if (typeof(LayoutGroup).IsAssignableFrom(Layout.GetType()))
+                            if (typeof(LayoutGroup).IsAssignableFrom(value.GetType()))
                             {
                                 SetValue(PaddingProperty, new Extents(0, 0, 0, 0));
                                 NotifyPropertyChanged();
@@ -2683,11 +2672,6 @@ namespace Tizen.NUI.BaseComponents
                 return false;
             }
 
-            if (styleProperty.ReturnType.IsGenericType && styleProperty.ReturnType.GetGenericTypeDefinition() == typeof(Selector<>))
-            {
-                return dirtyPropertySet.Contains(styleProperty.PropertyName.Substring(0, styleProperty.PropertyName.Length - 8));
-            }
-
             return dirtyPropertySet.Contains(styleProperty.PropertyName);
         }
 
@@ -2767,5 +2751,23 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// Set or Get TransitionOptions for the page transition.
+        /// </summary>
+        /// <remarks>
+        /// Hidden-API (Inhouse-API).
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TransitionOptions TransitionOptions
+        {
+            set
+            {
+                transitionOptions = value;
+            }
+            get
+            {
+                return transitionOptions;
+            }
+        }
     }
 }
