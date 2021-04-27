@@ -265,12 +265,10 @@ namespace Tizen.NUI.Components
                 needInitalizeLayouter = true;
 
                 var styleName = "Tizen.NUI.Components." + (itemsLayouter is LinearLayouter? "LinearLayouter" : (itemsLayouter is GridLayouter ? "GridLayouter" : "ItemsLayouter"));
-                using (ViewStyle layouterStyle = ThemeManager.GetStyle(styleName))
+                ViewStyle layouterStyle = ThemeManager.GetStyle(styleName);
+                if (layouterStyle != null)
                 {
-                    if (layouterStyle != null)
-                    {
-                        itemsLayouter.Padding = new Extents(layouterStyle.Padding);
-                    }
+                    itemsLayouter.Padding = new Extents(layouterStyle.Padding);
                 }
                 Init();
             }
@@ -716,11 +714,9 @@ namespace Tizen.NUI.Components
             if (itemsLayouter != null)
             {
                 string styleName = "Tizen.NUI.Compoenents." + (itemsLayouter is LinearLayouter? "LinearLayouter" : (itemsLayouter is GridLayouter ? "GridLayouter" : "ItemsLayouter"));
-                using (ViewStyle layouterStyle = ThemeManager.GetStyle(styleName))
-                {
-                    if (layouterStyle != null)
-                        itemsLayouter.Padding = new Extents(layouterStyle.Padding);
-                }
+                ViewStyle layouterStyle = ThemeManager.GetStyle(styleName);
+                if (layouterStyle != null)
+                    itemsLayouter.Padding = new Extents(layouterStyle.Padding);
             }
         }
 
