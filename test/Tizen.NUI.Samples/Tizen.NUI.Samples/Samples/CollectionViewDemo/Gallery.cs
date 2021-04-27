@@ -7,7 +7,6 @@ using Tizen.NUI.Components;
 using Tizen.NUI.Binding;
 
 
-
 class Gallery : INotifyPropertyChanged
 {
     string sourceDir = Tizen.NUI.Samples.CommonResource.GetDaliResourcePath()+"ItemViewDemo/gallery/gallery-medium-";
@@ -75,6 +74,7 @@ class Album : ObservableCollection<Gallery>
     private int index;
     private string name;
     private DateTime date;
+    private bool selected;
 
     public Album(int albumIndex, string albumName, DateTime albumDate)
     {
@@ -96,6 +96,16 @@ class Album : ObservableCollection<Gallery>
         get
         {
             return date.ToLongDateString();
+        }
+    }
+    public bool Selected {
+        get
+        {
+            return selected;
+        }
+        set
+        {
+            selected = value;
         }
     }
 }
@@ -183,7 +193,6 @@ class AlbumViewModel : ObservableCollection<Album>
         ("Buy new Car", new DateTime(2017, 10, 18)),
         ("Graduation", new DateTime(2017, 6, 30)),
     };
-
 
     public AlbumViewModel()
     {
