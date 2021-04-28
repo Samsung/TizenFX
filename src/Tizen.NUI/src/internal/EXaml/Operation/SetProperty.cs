@@ -39,12 +39,34 @@ namespace Tizen.NUI.EXaml
         public void Do()
         {
             object instance = globalDataList.GatheredInstances[instanceIndex];
+            if (null == instance)
+            {
+                throw new Exception(String.Format("Can't get instance by index {0}", instanceIndex));
+            }
+
             var property = globalDataList.GatheredProperties[propertyIndex];
+
+            if (null == property)
+            {
+                throw new Exception(String.Format("Can't find property {0} in type {1}", property.Name, instance.GetType().FullName));
+            }
+
+            if (null == property.SetMethod)
+            {
+                throw new Exception(String.Format("Property {0} hasn't set method", property.Name));
+            }
 
             if (value is Instance)
             {
                 int valueIndex = (value as Instance).Index;
-                property.SetMethod.Invoke(instance, new object[] { globalDataList.GatheredInstances[valueIndex] });
+                object realValue = globalDataList.GatheredInstances[valueIndex];
+
+                if (null == realValue)
+                {
+                    throw new Exception(String.Format("Can't get instance of value by index {0}", valueIndex));
+                }
+
+                property.SetMethod.Invoke(instance, new object[] { realValue });
             }
             else
             {
