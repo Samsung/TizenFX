@@ -2675,16 +2675,6 @@ namespace Tizen.NUI.BaseComponents
             UpdateStyle();
         }
 
-        private bool IsViewPropertyDirty(BindableProperty styleProperty)
-        {
-            if (dirtyPropertySet.Count == 0)
-            {
-                return false;
-            }
-
-            return dirtyPropertySet.Contains(styleProperty.PropertyName);
-        }
-
         /// <summary>
         /// Apply style instance to the view.
         /// Basically it sets the bindable property to the value of the bindable property with same name in the style.
@@ -2702,11 +2692,6 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-            if (dirtyPropertySet == null)
-            {
-                dirtyPropertySet = new HashSet<string>();
-            }
-
             BindableProperty.GetBindablePropertysOfType(GetType(), out var bindablePropertyOfView);
 
             if (bindablePropertyOfView == null)
@@ -2719,12 +2704,6 @@ namespace Tizen.NUI.BaseComponents
 
             foreach (var sourceProperty in dirtyStyleProperties)
             {
-                if (blockSetDirty && IsViewPropertyDirty(sourceProperty))
-                {
-                    // Skip applying theme style for a property set by user.
-                    continue;
-                }
-
                 var sourceValue = viewStyle.GetValue(sourceProperty);
 
                 if (sourceValue == null)
