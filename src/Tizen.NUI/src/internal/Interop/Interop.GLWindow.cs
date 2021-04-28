@@ -110,6 +110,12 @@ namespace Tizen.NUI
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_RenderOnce")]
             public static extern void GlWindowRenderOnce(HandleRef jarg1);
 
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_GetRenderingMode")]
+            public static extern int GlWindowGetRenderingMode(HandleRef jarg1);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_SetRenderingMode")]
+            public static extern void GlWindowSetRenderingMode(HandleRef jarg1, int jarg2);
+
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_SWIGUpcast")]
             public static extern global::System.IntPtr GlWindowUpcast(global::System.IntPtr jarg1);
 
