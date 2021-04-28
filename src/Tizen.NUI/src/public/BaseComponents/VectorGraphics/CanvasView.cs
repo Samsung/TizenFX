@@ -23,7 +23,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
     /// <summary>
     /// CanvasView is a class for displaying vector primitives.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class CanvasView : View
     {
         static CanvasView() { }
