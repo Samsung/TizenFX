@@ -17,6 +17,8 @@ namespace Tizen.NUI.Samples
         private Shape circleShape;
         private Shape arcShape;
         private Shape starShape;
+        private DrawableGroup group1;
+        private DrawableGroup group2;
         private Timer timer;
         private int count = 0;
 
@@ -52,8 +54,6 @@ namespace Tizen.NUI.Samples
             roundedRectShape.Rotate(45.0f);
             roundedRectShape.AddRect(-50.0f, -50.0f, 100.0f, 100.0f, 0.0f, 0.0f);
 
-            canvasView.AddDrawable(roundedRectShape);
-
             circleShape = new Shape()
             {
                 Opacity = 0.5f,
@@ -65,8 +65,6 @@ namespace Tizen.NUI.Samples
             circleShape.AddCircle(0.0f, 0.0f, 150.0f, 100.0f);
             circleShape.Transform(new float[] { 0.6f, 0.0f, 350.0f, 0.0f, 0.6f, 100.0f, 0.0f, 0.0f, 1.0f });
 
-            canvasView.AddDrawable(circleShape);
-
             arcShape = new Shape()
             {
                 StrokeColor = new Color(0.0f, 0.5f, 0.0f, 0.5f),
@@ -75,8 +73,6 @@ namespace Tizen.NUI.Samples
             };
             arcShape.AddArc(0.0f, 0.0f, 80.0f, 0.0f, 0.0f, true);
             arcShape.Translate(100.0f, 300.0f);
-
-            canvasView.AddDrawable(arcShape);
 
             Shape shape = new Shape()
             {
@@ -121,6 +117,16 @@ namespace Tizen.NUI.Samples
             starShape.Close();
 
             canvasView.AddDrawable(starShape);
+
+
+            group1 = new DrawableGroup();
+            group1.AddDrawable(roundedRectShape);
+            group1.AddDrawable(arcShape);
+
+            group2 = new DrawableGroup();
+            group2.AddDrawable(group1);
+            group2.AddDrawable(circleShape);
+            canvasView.AddDrawable(group2);
 
             // Test Getter
             log.Debug(tag, "circleShape Color : " + circleShape.FillColor.R + " " + circleShape.FillColor.G + " " + circleShape.FillColor.B + " " + circleShape.FillColor.A + "\n");
@@ -196,6 +202,9 @@ namespace Tizen.NUI.Samples
 
             starShape.Rotate((count * 2.0f) % 360);
             starShape.Scale((float)(count % 50) * 0.01f + 0.6f);
+
+            group1.Scale((float)(count % 100) * 0.002f + 0.8f);
+            group2.Opacity = 1.0f - (float)(count % 80) * 0.01f;
 
             count++;
 
