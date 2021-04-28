@@ -20,7 +20,11 @@ using global::System.ComponentModel;
 
 namespace Tizen.NUI
 {
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <summary>
+    /// TimePeriod is used to define delay and duration of a process such as <see cref="Transition"/>.
+    /// TimePeriod is composed of Delay and Duration in milliseconds
+    /// </summary>
+    /// <since_tizen> 9 </since_tizen>
     public class TimePeriod : Disposable
     {
         internal TimePeriod(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
@@ -37,48 +41,72 @@ namespace Tizen.NUI
             Interop.TimePeriod.DeleteTimePeriod(swigCPtr);
         }
 
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public TimePeriod(float durationSeconds) : this(Interop.TimePeriod.NewTimePeriod(durationSeconds), true)
+        /// <summary>
+        /// The constructor.
+        /// Creates an time peroid object with the user-defined alpha function.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public TimePeriod(int durationMilliSeconds) : this(Interop.TimePeriod.NewTimePeriod((float)durationMilliSeconds / 1000.0f), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public TimePeriod(float delaySeconds, float durationSeconds) : this(Interop.TimePeriod.NewTimePeriod(delaySeconds, durationSeconds), true)
+        /// <summary>
+        /// The constructor.
+        /// Creates an time peroid object with the user-defined alpha function.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public TimePeriod(float delayMilliSeconds, float durationMilliSeconds) : this(Interop.TimePeriod.NewTimePeriod((float)delayMilliSeconds / 1000.0f, (float)durationMilliSeconds / 1000.0f), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public float DelaySeconds
+        /// <summary>
+        /// A delay before the time period in milliseconds
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public int DelayMilliseconds
         {
             set
             {
-                Interop.TimePeriod.DelaySecondsSet(SwigCPtr, value);
+                Interop.TimePeriod.DelaySecondsSet(SwigCPtr, MilliSecondsToSeconds(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = Interop.TimePeriod.DelaySecondsGet(SwigCPtr);
+                int ret = SecondsToMilliSeconds(Interop.TimePeriod.DelaySecondsGet(SwigCPtr));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
 
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public float DurationSeconds
+        /// <summary>
+        /// The duration of the time period in milliseconds
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public int DurationMilliseconds
         {
             set
             {
-                Interop.TimePeriod.DurationSecondsSet(SwigCPtr, value);
+                Interop.TimePeriod.DurationSecondsSet(SwigCPtr, MilliSecondsToSeconds(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = Interop.TimePeriod.DurationSecondsGet(SwigCPtr);
+                int ret = SecondsToMilliSeconds(Interop.TimePeriod.DurationSecondsGet(SwigCPtr));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
+        }
+
+        private float MilliSecondsToSeconds(int millisec)
+        {
+            return (float)millisec / 1000.0f;
+        }
+
+        private int SecondsToMilliSeconds(float sec)
+        {
+            return (int)(sec * 1000);
         }
     }
 }

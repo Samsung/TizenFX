@@ -23,25 +23,26 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// AppBarStyle is a class which saves AppBar's ux data.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class AppBarStyle : ControlStyle
     {
         [EditorBrowsable(EditorBrowsableState.Never)]
         static AppBarStyle() { }
 
         /// <summary>
-        /// Creates a new instance of a AppBarStyle.
+        /// Creates a new instance of an AppBarStyle.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public AppBarStyle() : base()
         {
         }
 
         /// <summary>
-        /// Creates a new instance of a AppBarStyle with style.
+        /// Creates a new instance of an AppBarStyle with style.
+        /// The given style is copied to the new instance.
         /// </summary>
         /// <param name="style">Creates AppBarStyle by style customized by user.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public AppBarStyle(AppBarStyle style) : base(style)
         {
         }
@@ -49,28 +50,28 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Gets or sets the AppBar Back Button style.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public ButtonStyle BackButton { get; set; } = new ButtonStyle();
 
         /// <summary>
         /// Gets or sets the AppBar Title TextLabel style.
         /// This style is applied if AppBar Title is a TextLabel.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public TextLabelStyle TitleTextLabel { get; set; } = new TextLabelStyle();
 
         /// <summary>
         /// Gets or sets the AppBar Action View style.
         /// This style is applied if AppBar ActionContent's child is a View.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public ViewStyle ActionView { get; set; } = new ViewStyle();
 
         /// <summary>
         /// Gets or sets the AppBar Action Button style.
         /// This style is applied if AppBar ActionContent's child is a Button.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public ButtonStyle ActionButton { get; set; } = new ButtonStyle();
 
         /// <summary>
@@ -98,7 +99,7 @@ namespace Tizen.NUI.Components
         /// Style's clone function.
         /// </summary>
         /// <param name="bindableObject">The style that needs to copy.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public override void CopyFrom(BindableObject bindableObject)
         {
             base.CopyFrom(bindableObject);
