@@ -25,7 +25,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
     /// <summary>
     /// Shape is a command list for drawing one shape groups It has own path data and properties for sync/asynchronous drawing
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class Shape : Drawable
     {
         /// <summary>
