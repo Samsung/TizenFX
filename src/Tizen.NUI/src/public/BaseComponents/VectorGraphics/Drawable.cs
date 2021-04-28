@@ -22,7 +22,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
     /// <summary>
     /// Drawable is a object class for drawing a vector primitive.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class Drawable : BaseHandle
     {
         /// <summary>
