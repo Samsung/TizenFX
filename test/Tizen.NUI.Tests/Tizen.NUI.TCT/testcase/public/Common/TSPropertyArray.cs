@@ -172,7 +172,7 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsTrue(testingTarget.Capacity() == 3, "testingTarget's capacity should be 3");
 
             testingTarget.Dispose();
-            tlog.Debug(tag, $"PropertyArrayClear END (OK)");
+            tlog.Debug(tag, $"PropertyArrayReserve END (OK)");
         }
 
         [Test]
