@@ -23,7 +23,7 @@ namespace Tizen.NUI
     {
         private DefaultThemeCreator() { }
 
-        internal const string DefaultId = "Tizen.NUI.Theme.Common";
+        internal const string DefaultId = "org.tizen.default-light-theme";
         internal const string DefaultVersion = "1.0.0";
 
         internal static IThemeCreator Instance { get; set; } = new DefaultThemeCreator();
