@@ -417,6 +417,12 @@ ScrollView instance.</p>
       <h4><a class="xref" href="Tizen.NUI.Shader.Hint.html">Shader.Hint</a></h4>
       <section><p>Hint.</p>
 </section>
+      <h4><a class="xref" href="Tizen.NUI.Shadow.html">Shadow</a></h4>
+      <section><p>Represents a shadow with color and blur radius for a View.</p>
+</section>
+      <h4><a class="xref" href="Tizen.NUI.ShadowBase.html">ShadowBase</a></h4>
+      <section><p>The base class to describe basic shadow.</p>
+</section>
       <h4><a class="xref" href="Tizen.NUI.Size.html">Size</a></h4>
       <section><p>A three-dimensional size.</p>
 </section>
@@ -452,6 +458,28 @@ The images have to be ordered in the same order they are declared in the shader.
       <h4><a class="xref" href="Tizen.NUI.TextVisual.html">TextVisual</a></h4>
       <section><p>A class encapsulating the property map of the text visual.</p>
 </section>
+      <h4><a class="xref" href="Tizen.NUI.Theme.html">Theme</a></h4>
+      <section><p>
+Basically, the Theme is a dictionary of <a class="xref" href="Tizen.NUI.BaseComponents.ViewStyle.html">ViewStyle</a>s that can decorate NUI <a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a>s.
+Each ViewStyle item is identified by a string key that can be matched the <a class="xref" href="Tizen.NUI.BaseComponents.View.html#Tizen_NUI_BaseComponents_View_StyleName">StyleName</a>.
+</p>
+<p>
+The main purpose of providing theme is to separate style details from the structure.
+Managing style separately makes it easier to customize the look of application by user context.
+Also since a theme can be created from xaml file, it can be treated as a resource.
+This enables sharing styles with other applications.
+</p>
+</section>
+      <h4><a class="xref" href="Tizen.NUI.ThemeChangedEventArgs.html">ThemeChangedEventArgs</a></h4>
+      <section><p>The event arguments that hold data for the event <a class="xref" href="Tizen.NUI.ThemeManager.html#Tizen_NUI_ThemeManager_ThemeChanged">ThemeChanged</a>.</p>
+</section>
+      <h4><a class="xref" href="Tizen.NUI.ThemeManager.html">ThemeManager</a></h4>
+      <section><p>This static module provides methods that can manage NUI <a class="xref" href="Tizen.NUI.Theme.html">Theme</a>.</p>
+</section>
+      <h4><a class="xref" href="Tizen.NUI.TimePeriod.html">TimePeriod</a></h4>
+      <section><p>TimePeriod is used to define delay and duration of a process such as <a class="xref" href="Tizen.NUI.Transition.html">Transition</a>.
+TimePeriod is composed of Delay and Duration in milliseconds</p>
+</section>
       <h4><a class="xref" href="Tizen.NUI.Timer.html">Timer</a></h4>
       <section><p>Mechanism to issue simple periodic or one-shot events.<br>
 Timer is provided for application developers to be able to issue
@@ -471,12 +499,10 @@ When a multi-touch event occurs, each point represents the points that are curre
 touched or the points where a touch has stopped.<br></p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.Transition.html">Transition</a></h4>
-      <section><p>Transition class is a cluster of properties for the transition of View Pair.
-Transition class will be used as a property of Navigator.Transition.
-During page Transition each of View pair those have same TransitionTag will be move with same Navigator.Transition property.</p>
+      <section><p>Transition class is a cluster of properties for the transition of View pair.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.TransitionBase.html">TransitionBase</a></h4>
-      <section><p>TransitionBase class is a base class for each Transitions.
+      <section><p>TransitionBase class is a base class for all Transition.
 Each Transition child classes inherits this base class.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.TransitionComponents.html">TransitionComponents</a></h4>
@@ -488,6 +514,11 @@ This is normally used when animating visuals.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.TransitionList.html">TransitionList</a></h4>
       <section><p>Define a List of LayoutTransitions</p>
+</section>
+      <h4><a class="xref" href="Tizen.NUI.TransitionOptions.html">TransitionOptions</a></h4>
+      <section><p>This TransitionOptions class is a class to control Transition motion.
+This class includes multiple options for the Transition.
+NUI supports various kinds of Transitions such as App transition, Page transition, and so on.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.TTSPlayer.html">TTSPlayer</a></h4>
       <section><p>The Text-to-speech (TTS) player.</p>
