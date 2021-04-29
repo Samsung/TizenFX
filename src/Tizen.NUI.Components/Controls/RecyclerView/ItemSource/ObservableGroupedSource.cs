@@ -186,6 +186,13 @@ namespace Tizen.NUI.Components
             notifier.NotifyItemMoved(this, localFromIndex, localToIndex);
         }
 
+        public void NotifyItemRangeMoved(IItemSource group, int localFromIndex, int localToIndex, int count)
+        {
+            localFromIndex = GetAbsolutePosition(group, localFromIndex);
+            localToIndex = GetAbsolutePosition(group, localToIndex);
+            notifier.NotifyItemRangeMoved(this, localFromIndex, localToIndex, count);
+        }
+
         public void NotifyItemRangeChanged(IItemSource group, int localStartIndex, int localEndIndex)
         {
             localStartIndex = GetAbsolutePosition(group, localStartIndex);
@@ -395,13 +402,17 @@ namespace Tizen.NUI.Components
 
         void Move(NotifyCollectionChangedEventArgs args)
         {
+            var itemCount = CountItemsInGroups(args.OldStartingIndex, args.OldItems.Count);
             var start = Math.Min(args.OldStartingIndex, args.NewStartingIndex);
-            var end = Math.Max(args.OldStartingIndex, args.NewStartingIndex) + args.NewItems.Count;
+            var end = Math.Max(args.OldStartingIndex, args.NewStartingIndex) + itemCount;
 
-            var itemCount = CountItemsInGroups(start, end - start);
-            var absolutePosition = GetAbsolutePosition(groups[start], 0);
+            var fromPosition = GetAbsolutePosition(groups[args.OldStartingIndex], 0);
+            var toPosition = GetAbsolutePosition(groups[args.NewStartingIndex], 0);
 
-            notifier.NotifyItemRangeChanged(this, absolutePosition, itemCount);
+            // RangeChanged give unspecified information about moves.
+            // use RangeMoved instead of rangeChanged.
+            //notifier.NotifyItemRangeChanged(this, absolutePosition, itemCount);
+            notifier.NotifyItemRangeMoved(this, fromPosition, toPosition, itemCount);
 
             UpdateGroupTracking();
         }
