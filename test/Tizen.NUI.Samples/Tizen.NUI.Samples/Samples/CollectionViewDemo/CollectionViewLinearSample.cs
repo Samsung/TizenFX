@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Components;
 using Tizen.NUI.Binding;
@@ -13,12 +14,22 @@ namespace Tizen.NUI.Samples
         int itemCount = 500;
         string selectedItem;
         ItemSelectionMode selMode;
+        ObservableCollection<Gallery> gallerySource;
+        Gallery insertMenu = new Gallery(999, "Insert item to 3rd");
+        Gallery deleteMenu = new Gallery(999, "Delete item at 3rd");
+        Gallery moveMenu = new Gallery(999, "Move last item to 3rd");
+
 
         public void Activate()
         {
             Window window = NUIApplication.GetDefaultWindow();
 
-            var myViewModelSource = new GalleryViewModel(itemCount);
+            var myViewModelSource = gallerySource = new GalleryViewModel(itemCount);
+            // Add test menu options.
+            gallerySource.Insert(0, moveMenu);
+            gallerySource.Insert(0, deleteMenu);
+            gallerySource.Insert(0, insertMenu);
+
             selMode = ItemSelectionMode.SingleSelection;
             DefaultTitleItem myTitle = new DefaultTitleItem();
             myTitle.Text = "Linear Sample Count["+itemCount+"]";
@@ -95,16 +106,36 @@ namespace Tizen.NUI.Samples
             {
                 if (item == null) break;
                 Gallery selItem = (Gallery)item;
-                selItem.Selected = true;
+                //selItem.Selected = true;
                 selectedItem = selItem.Name;
+
+                // Check test menu options.
+                if (selItem == insertMenu)
+                {
+                    // Insert new item to index 3.
+                    Random rand = new Random();
+                    int idx = rand.Next(1000);
+                    gallerySource.Insert(3, new Gallery(idx, "Inserted Item"));
+                }
+                else if (selItem == deleteMenu)
+                {
+                    // Remove item in index 3.
+                    gallerySource.RemoveAt(3);
+                }
+                else if (selItem == moveMenu)
+                {
+                    // Move last indexed item to index 3.
+                    gallerySource.Move(gallerySource.Count - 1, 3);                    
+                }
                 //Tizen.Log.Debug("NUI", "LSH :: Selected: {0}", selItem.ViewLabel);
             }
             if (colView.Header != null && colView.Header is DefaultTitleItem)
             {
                 DefaultTitleItem title = (DefaultTitleItem)colView.Header;
-                title.Text = "Linear Sample Count[" + itemCount + (selectedItem != null ? "] Selected [" + selectedItem + "]" : "]");
+                title.Text = "Linear Sample Count[" + gallerySource.Count + (selectedItem != null ? "] Selected [" + selectedItem + "]" : "]");
             }
         }
+
         public void Deactivate()
         {
             if (colView != null)
