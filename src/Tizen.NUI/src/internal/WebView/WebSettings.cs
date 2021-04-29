@@ -39,6 +39,11 @@ namespace Tizen.NUI
         {
         }
 
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.WebSettings.DeleteWebSettings(swigCPtr);
+        }
+
         /// <summary>
         /// Allows mixed contents or not.
         /// </summary>

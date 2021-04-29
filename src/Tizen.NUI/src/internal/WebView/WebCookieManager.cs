@@ -34,6 +34,11 @@ namespace Tizen.NUI
         {
         }
 
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.WebCookieManager.DeleteWebCookieManager(swigCPtr);
+        }
+
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void CookieChangedCallback();
 

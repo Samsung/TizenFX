@@ -48,6 +48,9 @@ namespace Tizen.NUI
 
         internal static partial class WebBackForwardList
         {
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WebBackForwardList")]
+            public static extern void DeleteWebBackForwardList(global::System.Runtime.InteropServices.HandleRef jarg1);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebBackForwardList_GetItemCount")]
             public static extern uint GetItemCount(global::System.Runtime.InteropServices.HandleRef jarg1);
 

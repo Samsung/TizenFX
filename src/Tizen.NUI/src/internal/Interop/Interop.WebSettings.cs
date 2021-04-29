@@ -21,6 +21,9 @@ namespace Tizen.NUI
     {
         internal static partial class WebSettings
         {
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WebSettings")]
+            public static extern void DeleteWebSettings(global::System.Runtime.InteropServices.HandleRef jarg1);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebSettings_AllowMixedContents")]
             public static extern void AllowMixedContents(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
 

@@ -166,11 +166,6 @@ namespace Tizen.NUI
 
             screenshotAcquiredProxyCallback = OnScreenshotAcquired;
             hitTestFinishedProxyCallback = OnHitTestFinished;
-
-            BackForwardList = new WebBackForwardList(Interop.WebView.GetWebBackForwardList(SwigCPtr), false);
-            Context = new WebContext(Interop.WebView.GetWebContext(SwigCPtr), false);
-            CookieManager = new WebCookieManager(Interop.WebView.GetWebCookieManager(SwigCPtr), false);
-            Settings = new WebSettings(Interop.WebView.GetWebSettings(SwigCPtr), false);
         }
 
         /// <summary>
@@ -205,11 +200,6 @@ namespace Tizen.NUI
                 consoleMessageReceivedSignal.Dispose();
                 contextMenuCustomizedSignal.Dispose();
                 contextMenuItemSelectedSignal.Dispose();
-
-                BackForwardList.Dispose();
-                Context.Dispose();
-                CookieManager.Dispose();
-                Settings.Dispose();
             }
 
             base.Dispose(type);
@@ -836,25 +826,49 @@ namespace Tizen.NUI
         /// BackForwardList.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public WebBackForwardList BackForwardList { get; }
+        public WebBackForwardList BackForwardList
+        {
+            get
+            {
+                return new WebBackForwardList(Interop.WebView.GetWebBackForwardList(SwigCPtr), true);
+            }
+        }
 
         /// <summary>
         /// Context.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public WebContext Context { get; }
+        public WebContext Context
+        {
+            get
+            {
+                return new WebContext(Interop.WebView.GetWebContext(SwigCPtr), true);
+            }
+        }
 
         /// <summary>
         /// CookieManager.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public WebCookieManager CookieManager { get; }
+        public WebCookieManager CookieManager
+        {
+            get
+            {
+                return new WebCookieManager(Interop.WebView.GetWebCookieManager(SwigCPtr), true);
+            }
+        }
 
         /// <summary>
         /// BackForwardList.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public WebSettings Settings { get; }
+        public WebSettings Settings
+        {
+            get
+            {
+                return new WebSettings(Interop.WebView.GetWebSettings(SwigCPtr), true);
+            }
+        }
 
         /// <summary>
         /// The url to load.

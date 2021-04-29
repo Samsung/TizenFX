@@ -123,6 +123,11 @@ namespace Tizen.NUI
         {
         }
 
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.WebBackForwardList.DeleteWebBackForwardList(swigCPtr);
+        }
+
         /// <summary>
         /// Get item count.
         /// </summary>

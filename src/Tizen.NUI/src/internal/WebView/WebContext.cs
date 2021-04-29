@@ -43,6 +43,11 @@ namespace Tizen.NUI
             passwordDataListAcquiredProxyCallback = OnPasswordDataListAcquired;
         }
 
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.WebContext.DeleteWebContext(swigCPtr);
+        }
+
         /// <summary>
         /// The callback function that is invoked when security origin list is acquired.
         /// </summary>

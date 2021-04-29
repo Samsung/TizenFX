@@ -21,6 +21,9 @@ namespace Tizen.NUI
     {
         internal static partial class WebCookieManager
         {
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WebCookieManager")]
+            public static extern void DeleteWebCookieManager(global::System.Runtime.InteropServices.HandleRef jarg1);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebCookieManager_GetCookieAcceptPolicy")]
             public static extern int GetCookieAcceptPolicy(global::System.Runtime.InteropServices.HandleRef jarg1);
 

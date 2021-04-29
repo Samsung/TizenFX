@@ -21,6 +21,9 @@ namespace Tizen.NUI
     {
         internal static partial class WebContext
         {
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WebContext")]
+            public static extern void DeleteWebContext(global::System.Runtime.InteropServices.HandleRef jarg1);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContext_GetCacheModel")]
             public static extern int GetCacheModel(global::System.Runtime.InteropServices.HandleRef jarg1);
 
