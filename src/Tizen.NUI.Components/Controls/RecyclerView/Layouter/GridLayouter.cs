@@ -477,16 +477,10 @@ namespace Tizen.NUI.Components
             // Insert Single item.
             if (source == null) throw new ArgumentNullException(nameof(source));
 
-            Console.WriteLine("Item is inserted in {0}", startIndex);
             // Will be null if not a group.
             float currentSize = 0;
             IGroupableItemSource gSource = source as IGroupableItemSource;
-            if (gSource == null)
-            {
-                Console.WriteLine("colViewSource[{0}:{1}], notifySource[{2}:{3}]",
-                colView.InternalItemSource, colView.InternalItemSource.GetHashCode(),
-                source, source.GetHashCode());
-            }
+
             // Get the first Visible Position to adjust.
             /*
             int topInScreenIndex = 0;
@@ -535,8 +529,6 @@ namespace Tizen.NUI.Components
                     if (parentIndex >= groups.Count) throw new Exception("group parent is bigger than group counts.");
                     groupInfo = groups[parentIndex];//GetGroupInfo(groupParent);
                     if (groupInfo == null) throw new Exception("Cannot find group information!");
-
-                    Console.WriteLine("Find the Group![{0}]", groupInfo.StartIndex);
 
                     if (gSource.IsGroupFooter(startIndex))
                     {

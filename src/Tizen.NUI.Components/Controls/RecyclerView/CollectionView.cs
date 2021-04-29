@@ -209,7 +209,7 @@ namespace Tizen.NUI.Components
                         prevNotifyCollectionChanged.CollectionChanged -= CollectionChanged;
                     }
                     itemsLayouter.Clear();
-                    if (selectedItem != null) selectedItems = null;
+                    if (selectedItem != null) selectedItem = null;
                     if (selectedItems != null)
                     {
                         selectedItems.Clear();
@@ -522,7 +522,6 @@ namespace Tizen.NUI.Components
             if (selectedItems != null)
             {
                 selectedItems.Clear();
-                selectedItems = null;
             }
 
             base.NotifyDataSetChanged();
@@ -951,6 +950,7 @@ namespace Tizen.NUI.Components
                 ItemsLayouter.Initialize(this);
                 needInitalizeLayouter = false;
             }
+
             base.OnScrolling(source, args);
         }
 
@@ -964,10 +964,14 @@ namespace Tizen.NUI.Components
             {
                 return;
             }
-            
+
             if (type == DisposeTypes.Explicit)
             {
                 disposed = true;
+
+                // From now on, no need to use this properties,
+                // so remove reference, to push it into garbage collector.
+
                 if (InternalItemSource != null)
                 {
                     InternalItemSource.Dispose();
@@ -985,7 +989,16 @@ namespace Tizen.NUI.Components
                 }
                 groupHeaderTemplate = null;
                 groupFooterTemplate = null;
-                //
+
+                if (selectedItem != null) 
+                {
+                    selectedItem = null;
+                }
+                if (selectedItems != null)
+                {
+                    selectedItems.Clear();
+                    selectedItems = null;
+                }
             }
 
             base.Dispose(type);
