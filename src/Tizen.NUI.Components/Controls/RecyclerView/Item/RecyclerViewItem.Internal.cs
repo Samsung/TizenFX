@@ -284,6 +284,7 @@ namespace Tizen.NUI.Components
 
         private void PropagateBindingContext(View parent)
         {
+            if (parent?.Children == null) return;
             foreach (View child in parent.Children)
             {
                 SetChildInheritedBindingContext(child, BindingContext);
