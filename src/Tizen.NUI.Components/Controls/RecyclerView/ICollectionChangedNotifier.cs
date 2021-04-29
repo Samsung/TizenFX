@@ -57,6 +57,16 @@ namespace Tizen.NUI.Components
         void NotifyItemMoved(IItemSource source, int fromPosition, int toPosition);
 
         /// <summary>
+        /// Notify the range of the observable items are moved from fromPosition to ToPosition.
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="fromPosition"></param>
+        /// <param name="toPosition"></param>
+        /// <param name="count"></param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        void NotifyItemRangeMoved(IItemSource source, int fromPosition, int toPosition, int count);
+
+        /// <summary>
         /// Notify the range of observable items from start to end are changed.
         /// </summary>
         /// <param name="source"></param>
