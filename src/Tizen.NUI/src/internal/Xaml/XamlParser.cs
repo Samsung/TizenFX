@@ -327,25 +327,30 @@ namespace Tizen.NUI.Xaml
             // 	//typeof(XamlLoader).GetTypeInfo().Assembly,
             // };
             // s_assemblies = new Assembly[]{typeof(View).GetTypeInfo().Assembly};
-            //s_assemblies.Add(typeof(View).GetTypeInfo().Assembly);
-            var assemblies = currentAssembly?.GetReferencedAssemblies();
-
-            if (null == assemblies || 0 == assemblies.Length)
+            if (null == currentAssembly)
             {
                 s_assemblies.Add(typeof(View).GetTypeInfo().Assembly);
             }
             else
             {
-                foreach (var assembly in assemblies)
+                s_assemblies.Add(currentAssembly);
+
+                var assemblies = currentAssembly?.GetReferencedAssemblies();
+
+                if (null != assemblies)
                 {
-                    try
+                    foreach (var assembly in assemblies)
                     {
-                        s_assemblies.Add(Assembly.Load(assembly));
-                    }
-                    catch (Exception e)
-                    {
-                        Tizen.Log.Fatal("NUI", "Load referenced assemblies e.Message: " + e.Message);
-                        Console.WriteLine("\n[FATAL] Load referenced assemblies e.Message: {0}\n", e.Message);
+                        try
+                        {
+                            s_assemblies.Add(Assembly.Load(assembly));
+                        }
+                        catch (Exception e)
+                        {
+                            Tizen.Log.Fatal("NUI", "Load referenced assemblies e.Message: " + e.Message);
+                            Console.WriteLine("\n[FATAL] Load referenced assemblies e.Message: {0}\n", e.Message);
+                            throw new XamlParseException(e.Message);
+                        }
                     }
                 }
             }
