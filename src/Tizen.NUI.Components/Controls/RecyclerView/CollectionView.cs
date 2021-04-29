@@ -344,12 +344,6 @@ namespace Tizen.NUI.Components
         public object SelectionChangedCommandParameter { set; get; }
 
         /// <summary>
-        /// Size strategy of measuring scroll content. see details in ItemSizingStrategy.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ItemSizingStrategy SizingStrategy { get; set; }
-
-        /// <summary>
         /// Header item which placed in top-most position.
         /// note : internal index and count will be increased.
         /// </summary>
@@ -464,7 +458,6 @@ namespace Tizen.NUI.Components
             }
         }
 
-
         /// <summary>
         /// Internal encapsulated items data source.
         /// </summary>
@@ -479,6 +472,13 @@ namespace Tizen.NUI.Components
                 base.InternalItemSource = value;
             }
         }
+
+        /// <summary>
+        /// Size strategy of measuring scroll content. see details in ItemSizingStrategy.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal ItemSizingStrategy SizingStrategy { get; set; }
+
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnRelayout(Vector2 size, RelayoutContainer container)
