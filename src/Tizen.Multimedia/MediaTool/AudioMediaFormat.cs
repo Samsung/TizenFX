@@ -261,7 +261,7 @@ namespace Tizen.Multimedia
             Bit = bit;
             BitRate = bitRate;
             AacType = IsAacSupportedMimeType(mimeType) ? GetAacType(handle) : MediaFormatAacType.None;
-            AudioChannelMap = GetAudioChannelMap(handle);
+            AudioChannelMap = Channel == 0 ? null : GetAudioChannelMap(handle);
         }
 
         private static ReadOnlyCollection<MediaFormatAudioChannelPosition> GetAudioChannelMap(IntPtr handle)
