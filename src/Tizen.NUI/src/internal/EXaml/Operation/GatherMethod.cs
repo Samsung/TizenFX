@@ -27,21 +27,23 @@ namespace Tizen.NUI.EXaml
 {
     internal class GatherMethod : Operation
     {
-        public GatherMethod(int typeIndex, string methodName)
+        public GatherMethod(GlobalDataList globalDataList, int typeIndex, string methodName)
         {
             this.typeIndex = typeIndex;
             this.methodName = methodName;
+            this.globalDataList = globalDataList;
         }
+
+        private GlobalDataList globalDataList;
 
         public void Do()
         {
-            var type = GatherType.GatheredTypes[typeIndex];
+            var type = globalDataList.GatheredTypes[typeIndex];
             var method = type.GetRuntimeMethods().FirstOrDefault(mi => mi.Name == methodName);
-            GatheredMethods.Add(method);
+            globalDataList.GatheredMethods.Add(method);
         }
 
         private int typeIndex;
         private string methodName;
-        internal static List<MethodInfo> GatheredMethods = new List<MethodInfo>();
     }
 }

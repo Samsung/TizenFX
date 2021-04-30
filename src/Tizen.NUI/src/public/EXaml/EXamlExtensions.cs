@@ -31,6 +31,7 @@ namespace Tizen.NUI.EXaml
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static TXaml LoadFromEXamlPath<TXaml>(this TXaml view, string path)
         {
+            MainAssembly = view.GetType().Assembly;
             //This EXaml file will be converted by Tizen.NUI.XamlBuild from the .xaml
             string xamlScript = GetXamlFromPath(path);
             LoadEXaml.Load(view, xamlScript);
@@ -39,7 +40,7 @@ namespace Tizen.NUI.EXaml
 
         /// Internal used, will never be opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static TXaml LoadFromEXamlPath<TXaml>(this TXaml view, Type callingType)
+        public static T LoadFromEXamlPath<T>(this T view, Type callingType)
         {
             if (null == callingType)
             {
@@ -74,6 +75,22 @@ namespace Tizen.NUI.EXaml
                 LoadEXaml.Load(view, xaml);
             }
                 
+            return view;
+        }
+
+        /// Used for TCT and TC coverage, will never be opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static T LoadFromEXaml<T>(this T view, string eXamlStr)
+        {
+            if (null == eXamlStr)
+            {
+                return view;
+            }
+
+            MainAssembly = view.GetType().Assembly;
+
+            LoadEXaml.Load(view, eXamlStr);
+
             return view;
         }
 
