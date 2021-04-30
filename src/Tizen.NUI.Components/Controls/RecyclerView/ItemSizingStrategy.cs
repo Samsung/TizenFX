@@ -24,7 +24,12 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public enum ItemSizingStrategy
     {
-
+        /// <summary>
+        /// Measure first item and deligate size for all items.
+        /// if template is selector, the size of first item from each template will be deligated.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        MeasureFirst,
         /// <summary>
         /// Measure all items in advanced.
         /// Estimate first item size for all, and when scroll reached position,
@@ -32,11 +37,5 @@ namespace Tizen.NUI.Components
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         MeasureAll,
-        /// <summary>
-        /// Measure first item and deligate size for all items.
-        /// if template is selector, the size of first item from each template will be deligated.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        MeasureFirst,
     }
 }

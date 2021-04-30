@@ -25,12 +25,14 @@ namespace Tizen.NUI.EXaml
 {
     internal class AddToResourceDictionaryAction : Action
     {
-        public AddToResourceDictionaryAction(Action parent)
+        public AddToResourceDictionaryAction(GlobalDataList globalDataList, Action parent)
         {
             this.parent = parent;
+            this.globalDataList = globalDataList;
         }
 
         private Action parent;
+        private GlobalDataList globalDataList;
 
         public Action DealChar(char c)
         {
@@ -67,7 +69,7 @@ namespace Tizen.NUI.EXaml
                 int instanceIndex = (childOp.ValueList[0] as Instance).Index;
                 string key = childOp.ValueList[1] as string;
                 var value = childOp.ValueList[2];
-                LoadEXaml.Operations.Add(new AddToResourceDictionary(instanceIndex, key, value));
+                globalDataList.Operations.Add(new AddToResourceDictionary(globalDataList, instanceIndex, key, value));
             }
         }
     }

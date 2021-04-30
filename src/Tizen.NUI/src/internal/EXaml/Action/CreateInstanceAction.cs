@@ -22,13 +22,16 @@ using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI.EXaml
 {
-    internal class CreateObjectAction : Action
+    internal class CreateInstanceAction : Action
     {
-        internal CreateObjectAction(Action parent)
+        internal CreateInstanceAction(GlobalDataList globalDataList, Action parent)
         {
             this.parent = parent;
+            this.globalDataList = globalDataList;
         }
+
         private Action parent;
+        private GlobalDataList globalDataList;
 
         public Action DealChar(char c)
         {
@@ -66,11 +69,11 @@ namespace Tizen.NUI.EXaml
                 int typeIndex = (int)getTypeIndexOp.Value;
                 if (null == getParamListOp)
                 {
-                    LoadEXaml.Operations.Add(new CreateInstance(typeIndex));
+                    globalDataList.Operations.Add(new CreateInstance(globalDataList, typeIndex));
                 }
                 else
                 {
-                    LoadEXaml.Operations.Add(new CreateInstance(typeIndex, getParamListOp.ValueList));
+                    globalDataList.Operations.Add(new CreateInstance(globalDataList, typeIndex, getParamListOp.ValueList));
                 }
                 getParamListOp = null;
             }

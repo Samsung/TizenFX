@@ -22,10 +22,9 @@ using System.Diagnostics;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// The property map class that has transform property for one of its items.
-    /// This class can be used to convert visual properties to map.
+    /// The base class to describe basic shadow.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public abstract class ShadowBase
     {
         private static readonly Vector2 noOffset = new Vector2(0, 0);
@@ -91,7 +90,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The position offset value (x, y) from the top left corner.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public Vector2 Offset { get; internal set; }
 
         /// <summary>
@@ -100,13 +99,13 @@ namespace Tizen.NUI
         /// For example, when View's size is (100, 100) and the Shadow's Extents is (5, -5),
         /// the output shadow will have size (105, 95).
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public Vector2 Extents { get; internal set; }
 
         /// <summary>
         /// Equality operator.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static bool operator ==(ShadowBase shadow1, ShadowBase shadow2)
         {
             return object.ReferenceEquals(shadow1, null) ? object.ReferenceEquals(shadow2, null) : shadow1.Equals(shadow2);
@@ -115,14 +114,14 @@ namespace Tizen.NUI
         /// <summary>
         /// Inequality operator.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static bool operator !=(ShadowBase shadow1, ShadowBase shadow2)
         {
             return !(shadow1 == shadow2);
         }
 
         /// <inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public override bool Equals(object other)
         {
             if ((other == null) || !GetType().Equals(other.GetType()))
@@ -163,13 +162,9 @@ namespace Tizen.NUI
 
             var map = GetPropertyMap();
 
-            // TODO Fix to support Vector4 for corner radius after dali support it.
-            //      Current code only gets first argument of Vector4.
-            float cornerRadius = attachedView.CornerRadius?.X ?? 0.0f;
-
-            if (cornerRadius > 0)
+            if (attachedView.CornerRadius != null)
             {
-                map[Visual.Property.CornerRadius] = new PropertyValue(cornerRadius);
+                map[Visual.Property.CornerRadius] = attachedView.CornerRadius == null ? new PropertyValue() : new PropertyValue(attachedView.CornerRadius);
                 map[Visual.Property.CornerRadiusPolicy] = new PropertyValue((int)attachedView.CornerRadiusPolicy);
             }
 

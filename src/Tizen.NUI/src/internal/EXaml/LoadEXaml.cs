@@ -24,24 +24,27 @@ namespace Tizen.NUI.EXaml
     {
         internal static void Load(object view, string xaml)
         {
-            CreateObjectAction.Root = view;
+            var globalDataList = new GlobalDataList();
+
+            CreateInstanceAction.Root = view;
 
             int index = 0;
 
-            var createObject = new CreateObjectAction(null);
-            var addExistInstance = new AddExistInstanceAction(null);
-            var registerXName = new RegisterXNameAction(null);
-            var setProperty = new SetPropertyAction(null);
-            var addEvent = new AddEventAction(null);
-            var setBindalbeProperty = new SetBindalbePropertyAction(null);
-            var addObject = new CallAddMethodAction(null);
-            var setDynamicResourceAction = new SetDynamicResourceAction(null);
-            var addToResourceDictionaryAction = new AddToResourceDictionaryAction(null);
-            var setBindingAction = new SetBindingAction(null);
+            var createInstance = new CreateInstanceAction(globalDataList, null);
+            var getObjectByProperty = new GetObjectByPropertyAction(globalDataList, null);
+            var addExistInstance = new AddExistInstanceAction(globalDataList, null);
+            var registerXName = new RegisterXNameAction(globalDataList, null);
+            var setProperty = new SetPropertyAction(globalDataList, null);
+            var addToCollectionProperty = new AddToCollectionPropertyAction(globalDataList, null);
+            var addEvent = new AddEventAction(globalDataList, null);
+            var setBindalbeProperty = new SetBindalbePropertyAction(globalDataList, null);
+            var addObject = new CallAddMethodAction(globalDataList, null);
+            var setDynamicResourceAction = new SetDynamicResourceAction(globalDataList, null);
+            var addToResourceDictionaryAction = new AddToResourceDictionaryAction(globalDataList, null);
+            var setBindingAction = new SetBindingAction(globalDataList, null);
 
             foreach (char c in xaml)
             {
-                //Console.Write(c);
                 if (null == currentOp)
                 {
                     switch (c)
@@ -49,44 +52,49 @@ namespace Tizen.NUI.EXaml
                         case '<':
                             if (0 == index)
                             {
-                                currentOp = new GatherAssembliesBlock(null);
+                                currentOp = new GatherAssembliesBlock(globalDataList, null);
                                 currentOp.Init();
                                 index++;
                             }
                             else if (1 == index)
                             {
-                                currentOp = new GatherTypesBlock(null);
+                                currentOp = new GatherTypesBlock(globalDataList, null);
                                 currentOp.Init();
                                 index++;
                             }
                             else if (2 == index)
                             {
-                                currentOp = new GatherPropertiesBlock(null);
+                                currentOp = new GatherPropertiesBlock(globalDataList, null);
                                 currentOp.Init();
                                 index++;
                             }
                             else if (3 == index)
                             {
-                                currentOp = new GatherEventsBlock(null);
+                                currentOp = new GatherEventsBlock(globalDataList, null);
                                 currentOp.Init();
                                 index++;
                             }
                             else if (4 == index)
                             {
-                                currentOp = new GatherMethodsBlock(null);
+                                currentOp = new GatherMethodsBlock(globalDataList, null);
                                 currentOp.Init();
                                 index++;
                             }
                             else if (5 == index)
                             {
-                                currentOp = new GatherBindablePropertiesAction(null);
+                                currentOp = new GatherBindablePropertiesBlock(globalDataList, null);
                                 currentOp.Init();
                                 index++;
                             }
                             break;
 
                         case '{':
-                            currentOp = createObject;
+                            currentOp = createInstance;
+                            currentOp.Init();
+                            break;
+
+                        case '`':
+                            currentOp = getObjectByProperty;
                             currentOp.Init();
                             break;
 
@@ -102,6 +110,11 @@ namespace Tizen.NUI.EXaml
 
                         case '[':
                             currentOp = setProperty;
+                            currentOp.Init();
+                            break;
+
+                        case '~':
+                            currentOp = addToCollectionProperty;
                             currentOp.Init();
                             break;
 
@@ -142,21 +155,11 @@ namespace Tizen.NUI.EXaml
                 }
             }
 
-            foreach (var op in Operations)
+            foreach (var op in globalDataList.Operations)
             {
                 op.Do();
             }
         }
-
-        internal static List<object> GatheredInstances
-        {
-            get;
-        } = new List<object>();
-
-        internal static List<Operation> Operations
-        {
-            get;
-        } = new List<Operation>();
 
         private static Action currentOp = null;
     }
