@@ -1,0 +1,157 @@
+/*
+ * Copyright (c) 2021 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the License);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+using System;
+using static Interop;
+
+namespace Tizen.Multimedia.Remoting
+{
+    public partial class WebRTC
+    {
+        private NativeWebRTC.ErrorOccurredCallback _webRtcErrorCallback;
+        private NativeWebRTC.StateChangedCallback _webRtcStateChangedCallback;
+        private NativeWebRTC.NegotiationNeededCallback _webRtcNegotiationNeededCallback;
+        private NativeWebRTC.IceCandidateCallback _webRtcIceCandicateCallback;
+        private NativeWebRTC.TrackAddedCallback _webRtcTrackAddedCallback;
+        private NativeWebRTC.FrameEncodedCallback _webRtcFrameEncodedCallback;
+        private NativeDataChannel.CreatedCallback _webRtcDataChannelCreatedCallback;
+        private uint? _trackId;
+
+        public event EventHandler<WebRTCErrorOccurredEventArgs> ErrorOccurred;
+
+        public event EventHandler<WebRTCStateChangedEventArgs> StateChanged;
+
+        public event EventHandler<EventArgs> NegotiationNeeded;
+
+        public event EventHandler<WebRTCIceCandicateEventArgs> IceCandidate;
+
+        public event EventHandler<WebRTCTrackAddedEventArgs> TrackAdded;
+
+        public event EventHandler<WebRTCFrameEncodedEventArgs> AudioFrameEncoded;
+
+        public event EventHandler<WebRTCFrameEncodedEventArgs> VideoFrameEncoded;
+
+        public event EventHandler<WebRTCDataChannelCreatedEventArgs> DataChannelCreated;
+
+        private void RegisterEvents()
+        {
+            RegisterErrorOccurredCallback();
+            RegisterStateChangedCallback();
+            RegisterNegotiationNeededCallback();
+            RegisterIceCandidateCallback();
+            RegisterTrackAddedCallback();
+            RegisterFrameEncodedCallback();
+            RegisterDataChannelCreatedCallback();
+        }
+
+        private void RegisterErrorOccurredCallback()
+        {
+            _webRtcErrorCallback = (handle, error, state, _) =>
+            {
+                Log.Info(WebRTCLog.Tag, $"{error}, {state}");
+
+                ErrorOccurred?.Invoke(this, new WebRTCErrorOccurredEventArgs((WebRTCError)error, state));
+            };
+
+            NativeWebRTC.SetErrorCb(Handle, _webRtcErrorCallback, IntPtr.Zero).ThrowIfFailed("Failed to set error callback.");
+        }
+
+        private void RegisterStateChangedCallback()
+        {
+            _webRtcStateChangedCallback = (handle, previous, current, _) =>
+            {
+                Log.Info(WebRTCLog.Tag, $"{previous}, {current}");
+
+                StateChanged?.Invoke(this, new WebRTCStateChangedEventArgs(previous, current));
+            };
+
+            NativeWebRTC.SetStateChangedCb(Handle, _webRtcStateChangedCallback, IntPtr.Zero).
+                ThrowIfFailed("Failed to set state changed callback.");
+        }
+
+        private void RegisterNegotiationNeededCallback()
+        {
+            _webRtcNegotiationNeededCallback = (handle, _) =>
+            {
+                NegotiationNeeded?.Invoke(this, new EventArgs());
+            };
+
+            NativeWebRTC.SetNegotiationNeededCb(Handle, _webRtcNegotiationNeededCallback, IntPtr.Zero).
+                ThrowIfFailed("Failed to set negotiation needed callback.");
+        }
+
+        private void RegisterIceCandidateCallback()
+        {
+            _webRtcIceCandicateCallback = (handle, candidate, _) =>
+            {
+                IceCandidate?.Invoke(this, new WebRTCIceCandicateEventArgs(candidate));
+            };
+
+            NativeWebRTC.SetIceCandidateCb(Handle, _webRtcIceCandicateCallback, IntPtr.Zero).
+                ThrowIfFailed("Failed to set ice candidate callback.");
+        }
+
+        private void RegisterTrackAddedCallback()
+        {
+            _webRtcTrackAddedCallback = (handle, type, id, _) =>
+            {
+                if (type == MediaType.Video)
+                {
+                    _trackId = id;
+                }
+
+                TrackAdded?.Invoke(this, new WebRTCTrackAddedEventArgs(type, id));
+            };
+
+            NativeWebRTC.SetTrackAddedCb(Handle, _webRtcTrackAddedCallback, IntPtr.Zero).
+                ThrowIfFailed("Failed to set track added callback.");
+        }
+
+        private void RegisterFrameEncodedCallback()
+        {
+            _webRtcFrameEncodedCallback = (handle, type, id, packet, _) =>
+            {
+                if (type == MediaType.Audio)
+                {
+                    AudioFrameEncoded?.Invoke(this, new WebRTCFrameEncodedEventArgs(type, id, MediaPacket.From(packet)));
+                }
+                else
+                {
+                    VideoFrameEncoded?.Invoke(this, new WebRTCFrameEncodedEventArgs(type, id, MediaPacket.From(packet)));
+                }
+            };
+
+            NativeWebRTC.SetAudioFrameEncodedCb(Handle, _webRtcFrameEncodedCallback, IntPtr.Zero).
+                ThrowIfFailed("Failed to set audio frame encoded callback.");
+
+            NativeWebRTC.SetVideoFrameEncodedCb(Handle, _webRtcFrameEncodedCallback, IntPtr.Zero).
+                ThrowIfFailed("Failed to set video frame encoded callback.");
+        }
+
+        private void RegisterDataChannelCreatedCallback()
+        {
+            _webRtcDataChannelCreatedCallback = (handle, dataChannelHandle, _) =>
+            {
+                Log.Debug(WebRTCLog.Tag, "Enter");
+
+                DataChannelCreated?.Invoke(this, new WebRTCDataChannelCreatedEventArgs(dataChannelHandle));
+            };
+
+            NativeDataChannel.SetCreatedByPeerCb(Handle, _webRtcDataChannelCreatedCallback, IntPtr.Zero).
+                ThrowIfFailed("Failed to set data channel created callback.");
+        }
+    }
+}

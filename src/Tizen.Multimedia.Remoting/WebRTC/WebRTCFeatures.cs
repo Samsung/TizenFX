@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2021 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-internal static partial class Interop
+namespace Tizen.Multimedia.Remoting
 {
-    internal static partial class Libraries
+    internal static class WebRTCFeatures
     {
-        public const string ScreenMirroring = "libcapi-media-screen-mirroring.so.0";
-        public const string MediaController = "libcapi-media-controller.so.0";
-        public const string WebRTC = "libcapi-media-webrtc.so.0";
+        internal const string Wifi = "http://tizen.org/feature/network.wifi";
+        internal const string Telephony = "http://tizen.org/feature/network.telephony";
+        internal const string Ethernet = "http://tizen.org/feature/network.ethernet";
     }
 }

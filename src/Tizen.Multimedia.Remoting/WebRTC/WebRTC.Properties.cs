@@ -1,0 +1,139 @@
+/*
+ * Copyright (c) 2021 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the License);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+using ElmSharp;
+using System;
+using System.Diagnostics;
+using static Interop;
+using NativeWebRTC = Interop.NativeWebRTC;
+
+namespace Tizen.Multimedia.Remoting
+{
+    public partial class WebRTC
+    {
+        internal IntPtr Handle
+        {
+            get
+            {
+                ValidateNotDisposed();
+                return _handle.DangerousGetHandle();
+            }
+        }
+
+        public WebRTCState State
+        {
+            get
+            {
+                ValidateNotDisposed();
+
+                NativeWebRTC.GetState(Handle, out WebRTCState state).
+                    ThrowIfFailed("Failed to retrieve the state of the WebRTC");
+
+                Debug.Assert(Enum.IsDefined(typeof(WebRTCState), state));
+
+                return state;
+            }
+        }
+
+        public string StunServer
+        {
+            get
+            {
+                ValidateNotDisposed();
+
+                NativeWebRTC.GetStunServer(Handle, out string server).
+                    ThrowIfFailed("Failed to get stun server name");
+
+                return server;
+            }
+            set
+            {
+                ValidateNotDisposed();
+
+                if (value == null)
+                {
+                    throw new ArgumentNullException(nameof(value), "Stun server name is null.");
+                }
+
+                NativeWebRTC.SetStunServer(Handle, value).
+                    ThrowIfFailed("Failed to set stun server name");
+            }
+        }
+
+        public WebRTCDisplaySettings DisplaySettings { get; }
+
+        private WebRTCErrorCode SetDisplay(Display display)
+            => display.ApplyTo(this);
+
+        private void ReplaceDisplay(Display newDisplay)
+        {
+            _display?.SetOwner(null);
+            _display = newDisplay;
+            _display?.SetOwner(this);
+        }
+
+        public Display Display
+        {
+            get => _display;
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException(nameof(value), "Display cannot be null.");
+                }
+
+                ValidateWebRTCState(WebRTCState.Playing);
+
+                if (value?.Owner != null)
+                {
+                    if (ReferenceEquals(this, value.Owner))
+                    {
+                        throw new ArgumentException("The display has already been assigned to another.");
+                    }
+                }
+                else
+                {
+                    SetDisplay(value).ThrowIfFailed("Failed to configure display of the WebRTC");
+                    ReplaceDisplay(value);
+                }
+            }
+        }
+
+        WebRTCErrorCode IDisplayable<WebRTCErrorCode>.ApplyEvasDisplay(DisplayType type, EvasObject evasObject)
+        {
+            Debug.Assert(!IsDisposed);
+
+            Debug.Assert(Enum.IsDefined(typeof(DisplayType), type));
+            Debug.Assert(type != DisplayType.None);
+
+            if (!_trackId.HasValue)
+                throw new InvalidOperationException("Track is not added yet.");
+
+            return NativeWebRTC.SetDisplay(Handle, _trackId.Value,
+                type == DisplayType.Overlay ? WebRTCDisplayType.Overlay : WebRTCDisplayType.Evas, evasObject);
+        }
+
+        WebRTCErrorCode IDisplayable<WebRTCErrorCode>.ApplyEcoreWindow(IntPtr windowHandle)
+        {
+            Debug.Assert(!IsDisposed);
+
+            if (!_trackId.HasValue)
+                throw new InvalidOperationException("Track is not added yet.");
+
+            return NativeWebRTC.SetEcoreDisplay(Handle, _trackId.Value, windowHandle);
+        }
+    }
+}
