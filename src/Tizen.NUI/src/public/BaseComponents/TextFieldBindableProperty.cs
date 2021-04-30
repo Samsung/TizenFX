@@ -1023,5 +1023,113 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.GrabHandleColor).Get(temp);
             return temp;
         }));
+
+        /// <summary>
+        /// ShadowOffsetProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static BindableProperty ShadowOffsetProperty { get; } = BindableProperty.Create(nameof(ShadowOffset), typeof(Tizen.NUI.Vector2), typeof(Tizen.NUI.BaseComponents.TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.TextField)bindable;
+            if (newValue != null)
+            {
+                instance.InternalShadowOffset = (Tizen.NUI.Vector2)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.TextField)bindable;
+            return instance.InternalShadowOffset;
+        });
+
+        /// <summary>
+        /// ShadowColorProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static BindableProperty ShadowColorProperty { get; } = BindableProperty.Create(nameof(ShadowColor), typeof(Tizen.NUI.Vector4), typeof(Tizen.NUI.BaseComponents.TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.TextField)bindable;
+            if (newValue != null)
+            {
+                instance.InternalShadowColor = (Tizen.NUI.Vector4)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.TextField)bindable;
+            return instance.InternalShadowColor;
+        });
+
+        /// <summary>
+        /// SelectedTextStartProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static BindableProperty SelectedTextStartProperty { get; } = BindableProperty.Create(nameof(SelectedTextStart), typeof(int), typeof(Tizen.NUI.BaseComponents.TextField), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.TextField)bindable;
+            if (newValue != null)
+            {
+                instance.InternalSelectedTextStart = (int)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.TextField)bindable;
+            return instance.InternalSelectedTextStart;
+        });
+
+        /// <summary>
+        /// SelectedTextEndProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static BindableProperty SelectedTextEndProperty { get; } = BindableProperty.Create(nameof(SelectedTextEnd), typeof(int), typeof(Tizen.NUI.BaseComponents.TextField), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.TextField)bindable;
+            if (newValue != null)
+            {
+                instance.InternalSelectedTextEnd = (int)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.TextField)bindable;
+            return instance.InternalSelectedTextEnd;
+        });
+
+        /// <summary>
+        /// EnableEditingProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static BindableProperty EnableEditingProperty { get; } = BindableProperty.Create(nameof(EnableEditing), typeof(bool), typeof(Tizen.NUI.BaseComponents.TextField), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.TextField)bindable;
+            if (newValue != null)
+            {
+                instance.InternalEnableEditing = (bool)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.TextField)bindable;
+            return instance.InternalEnableEditing;
+        });
+
+        /// <summary>
+        /// PrimaryCursorPositionProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static BindableProperty PrimaryCursorPositionProperty { get; } = BindableProperty.Create(nameof(PrimaryCursorPosition), typeof(int), typeof(Tizen.NUI.BaseComponents.TextField), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.TextField)bindable;
+            if (newValue != null)
+            {
+                instance.InternalPrimaryCursorPosition = (int)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.TextField)bindable;
+            return instance.InternalPrimaryCursorPosition;
+        });
     }
 }

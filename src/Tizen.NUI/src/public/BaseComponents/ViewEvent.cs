@@ -261,7 +261,19 @@ namespace Tizen.NUI.BaseComponents
         ///  This prevents the parent from intercepting touch.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool DisallowInterceptTouchEvent { get; set; }
+        public bool DisallowInterceptTouchEvent
+        {
+            get
+            {
+                return (bool)GetValue(DisallowInterceptTouchEventProperty);
+            }
+            set
+            {
+                SetValue(DisallowInterceptTouchEventProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private bool InternalDisallowInterceptTouchEvent { get; set; }
 
 
         /// <summary>
@@ -1319,6 +1331,18 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Offset TouchAreaOffset
+        {
+            get
+            {
+                return (Offset)GetValue(TouchAreaOffsetProperty);
+            }
+            set
+            {
+                SetValue(TouchAreaOffsetProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Offset InternalTouchAreaOffset
         {
             get
             {

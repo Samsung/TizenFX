@@ -1892,5 +1892,292 @@ namespace Tizen.NUI.BaseComponents
         {
             Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, View.Property.SHADOW, value == null ? new PropertyValue() : value.ToPropertyValue(this));
         }
+        /// <summary>
+        /// ExcludeLayoutingProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static BindableProperty ExcludeLayoutingProperty { get; } = BindableProperty.Create(nameof(ExcludeLayouting), typeof(bool), typeof(Tizen.NUI.BaseComponents.View), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.View)bindable;
+            if (newValue != null)
+            {
+                instance.InternalExcludeLayouting = (bool)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.View)bindable;
+            return instance.InternalExcludeLayouting;
+        });
+
+        /// <summary>
+        /// TooltipTextProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static BindableProperty TooltipTextProperty { get; } = BindableProperty.Create(nameof(TooltipText), typeof(string), typeof(Tizen.NUI.BaseComponents.View), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.View)bindable;
+            if (newValue != null)
+            {
+                instance.InternalTooltipText = (string)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.View)bindable;
+            return instance.InternalTooltipText;
+        });
+
+        /// <summary>
+        /// PositionUsesAnchorPointProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static BindableProperty PositionUsesAnchorPointProperty { get; } = BindableProperty.Create(nameof(PositionUsesAnchorPoint), typeof(bool), typeof(Tizen.NUI.BaseComponents.View), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.View)bindable;
+            if (newValue != null)
+            {
+                instance.InternalPositionUsesAnchorPoint = (bool)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.View)bindable;
+            return instance.InternalPositionUsesAnchorPoint;
+        });
+
+        /// <summary>
+        /// AnchorPointProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static BindableProperty AnchorPointProperty { get; } = BindableProperty.Create(nameof(AnchorPoint), typeof(Tizen.NUI.Position), typeof(Tizen.NUI.BaseComponents.View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.View)bindable;
+            if (newValue != null)
+            {
+                instance.InternalAnchorPoint = (Tizen.NUI.Position)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.View)bindable;
+            return instance.InternalAnchorPoint;
+        });
+
+        /// <summary>
+        /// WidthSpecificationProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static BindableProperty WidthSpecificationProperty { get; } = BindableProperty.Create(nameof(WidthSpecification), typeof(int), typeof(Tizen.NUI.BaseComponents.View), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.View)bindable;
+            if (newValue != null)
+            {
+                instance.InternalWidthSpecification = (int)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.View)bindable;
+            return instance.InternalWidthSpecification;
+        });
+
+        /// <summary>
+        /// HeightSpecificationProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static BindableProperty HeightSpecificationProperty { get; } = BindableProperty.Create(nameof(HeightSpecification), typeof(int), typeof(Tizen.NUI.BaseComponents.View), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.View)bindable;
+            if (newValue != null)
+            {
+                instance.InternalHeightSpecification = (int)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.View)bindable;
+            return instance.InternalHeightSpecification;
+        });
+
+        /// <summary>
+        /// LayoutTransitionProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static BindableProperty LayoutTransitionProperty { get; } = BindableProperty.Create(nameof(LayoutTransition), typeof(Tizen.NUI.LayoutTransition), typeof(Tizen.NUI.BaseComponents.View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.View)bindable;
+            if (newValue != null)
+            {
+                instance.InternalLayoutTransition = (Tizen.NUI.LayoutTransition)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.View)bindable;
+            return instance.InternalLayoutTransition;
+        });
+
+        /// <summary>
+        /// PaddingEXProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static BindableProperty PaddingEXProperty { get; } = BindableProperty.Create(nameof(PaddingEX), typeof(Tizen.NUI.Extents), typeof(Tizen.NUI.BaseComponents.View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.View)bindable;
+            if (newValue != null)
+            {
+                instance.InternalPaddingEX = (Tizen.NUI.Extents)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.View)bindable;
+            return instance.InternalPaddingEX;
+        });
+
+        /// <summary>
+        /// LayoutProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static BindableProperty LayoutProperty { get; } = BindableProperty.Create(nameof(Layout), typeof(Tizen.NUI.LayoutItem), typeof(Tizen.NUI.BaseComponents.View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.View)bindable;
+            if (newValue != null)
+            {
+                instance.InternalLayout = (Tizen.NUI.LayoutItem)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.View)bindable;
+            return instance.InternalLayout;
+        });
+
+        /// <summary>
+        /// BackgroundImageSynchronosLoadingProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static BindableProperty BackgroundImageSynchronosLoadingProperty { get; } = BindableProperty.Create(nameof(BackgroundImageSynchronosLoading), typeof(bool), typeof(Tizen.NUI.BaseComponents.View), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.View)bindable;
+            if (newValue != null)
+            {
+                instance.InternalBackgroundImageSynchronosLoading = (bool)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.View)bindable;
+            return instance.InternalBackgroundImageSynchronosLoading;
+        });
+
+        /// <summary>
+        /// EnableControlStatePropagationProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static BindableProperty EnableControlStatePropagationProperty { get; } = BindableProperty.Create(nameof(EnableControlStatePropagation), typeof(bool), typeof(Tizen.NUI.BaseComponents.View), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.View)bindable;
+            if (newValue != null)
+            {
+                instance.InternalEnableControlStatePropagation = (bool)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.View)bindable;
+            return instance.InternalEnableControlStatePropagation;
+        });
+
+        /// <summary>
+        /// GrabTouchAfterLeaveProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static BindableProperty GrabTouchAfterLeaveProperty { get; } = BindableProperty.Create(nameof(GrabTouchAfterLeave), typeof(bool), typeof(Tizen.NUI.BaseComponents.View), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.View)bindable;
+            if (newValue != null)
+            {
+                instance.InternalGrabTouchAfterLeave = (bool)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.View)bindable;
+            return instance.InternalGrabTouchAfterLeave;
+        });
+
+        /// <summary>
+        /// BlendEquationProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static BindableProperty BlendEquationProperty { get; } = BindableProperty.Create(nameof(BlendEquation), typeof(Tizen.NUI.BlendEquationType), typeof(Tizen.NUI.BaseComponents.View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.View)bindable;
+            if (newValue != null)
+            {
+                instance.InternalBlendEquation = (Tizen.NUI.BlendEquationType)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.View)bindable;
+            return instance.InternalBlendEquation;
+        });
+
+        /// <summary>
+        /// TransitionOptionsProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static BindableProperty TransitionOptionsProperty { get; } = BindableProperty.Create(nameof(TransitionOptions), typeof(Tizen.NUI.TransitionOptions), typeof(Tizen.NUI.BaseComponents.View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.View)bindable;
+            if (newValue != null)
+            {
+                instance.InternalTransitionOptions = (Tizen.NUI.TransitionOptions)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.View)bindable;
+            return instance.InternalTransitionOptions;
+        });
+
+        /// <summary>
+        /// DisallowInterceptTouchEventProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static BindableProperty DisallowInterceptTouchEventProperty { get; } = BindableProperty.Create(nameof(DisallowInterceptTouchEvent), typeof(bool), typeof(Tizen.NUI.BaseComponents.View), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.View)bindable;
+            if (newValue != null)
+            {
+                instance.InternalDisallowInterceptTouchEvent = (bool)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.View)bindable;
+            return instance.InternalDisallowInterceptTouchEvent;
+        });
+
+        /// <summary>
+        /// TouchAreaOffsetProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static BindableProperty TouchAreaOffsetProperty { get; } = BindableProperty.Create(nameof(TouchAreaOffset), typeof(Tizen.NUI.Offset), typeof(Tizen.NUI.BaseComponents.View), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.View)bindable;
+            if (newValue != null)
+            {
+                instance.InternalTouchAreaOffset = (Tizen.NUI.Offset)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.View)bindable;
+            return instance.InternalTouchAreaOffset;
+        });
     }
 }

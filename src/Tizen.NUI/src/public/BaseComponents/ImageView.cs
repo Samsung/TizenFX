@@ -27,7 +27,7 @@ namespace Tizen.NUI.BaseComponents
     /// An instance of ImageView can be created using a URL or an image instance.<br />
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class ImageView : View
+    public partial class ImageView : View
     {
         static ImageView() { }
 
@@ -454,6 +454,18 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return (PropertyMap)GetValue(ImageMapProperty);
+            }
+            set
+            {
+                SetValue(ImageMapProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private PropertyMap InternalImageMap
+        {
+            get
+            {
                 if (_border == null)
                 {
                     PropertyMap returnValue = new PropertyMap();
@@ -760,6 +772,18 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return (System.String)GetValue(AlphaMaskURLProperty);
+            }
+            set
+            {
+                SetValue(AlphaMaskURLProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private string InternalAlphaMaskURL
+        {
+            get
+            {
                 string ret = "";
                 PropertyMap imageMap = new PropertyMap();
                 PropertyValue image = Tizen.NUI.Object.GetProperty(SwigCPtr, ImageView.Property.IMAGE);
@@ -795,6 +819,18 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public bool CropToMask
+        {
+            get
+            {
+                return (bool)GetValue(CropToMaskProperty);
+            }
+            set
+            {
+                SetValue(CropToMaskProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private bool InternalCropToMask
         {
             get
             {
@@ -873,6 +909,18 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return (FittingModeType)GetValue(FittingModeProperty);
+            }
+            set
+            {
+                SetValue(FittingModeProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private FittingModeType InternalFittingMode
+        {
+            get
+            {
                 int ret = (int)_fittingMode;
                 PropertyMap imageMap = new PropertyMap();
                 PropertyValue image = Tizen.NUI.Object.GetProperty(SwigCPtr, ImageView.Property.IMAGE);
@@ -911,6 +959,18 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return (int)GetValue(DesiredWidthProperty);
+            }
+            set
+            {
+                SetValue(DesiredWidthProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private int InternalDesiredWidth
+        {
+            get
+            {
                 PropertyMap imageMap = new PropertyMap();
                 PropertyValue image = Tizen.NUI.Object.GetProperty(SwigCPtr, ImageView.Property.IMAGE);
                 image?.Get(imageMap);
@@ -945,6 +1005,18 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return (int)GetValue(DesiredHeightProperty);
+            }
+            set
+            {
+                SetValue(DesiredHeightProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private int InternalDesiredHeight
+        {
+            get
+            {
                 PropertyMap imageMap = new PropertyMap();
                 PropertyValue image = Tizen.NUI.Object.GetProperty(SwigCPtr, ImageView.Property.IMAGE);
                 image?.Get(imageMap);
@@ -973,6 +1045,18 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ReleasePolicyType ReleasePolicy
+        {
+            get
+            {
+                return (ReleasePolicyType)GetValue(ReleasePolicyProperty);
+            }
+            set
+            {
+                SetValue(ReleasePolicyProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private ReleasePolicyType InternalReleasePolicy
         {
             get
             {
@@ -1010,6 +1094,18 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return (WrapModeType)GetValue(WrapModeUProperty);
+            }
+            set
+            {
+                SetValue(WrapModeUProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private WrapModeType InternalWrapModeU
+        {
+            get
+            {
                 int ret = (int)WrapModeType.Default;
                 PropertyMap imageMap = new PropertyMap();
                 PropertyValue image = Tizen.NUI.Object.GetProperty(SwigCPtr, ImageView.Property.IMAGE);
@@ -1042,6 +1138,18 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 6 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public WrapModeType WrapModeV
+        {
+            get
+            {
+                return (WrapModeType)GetValue(WrapModeVProperty);
+            }
+            set
+            {
+                SetValue(WrapModeVProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private WrapModeType InternalWrapModeV
         {
             get
             {

@@ -25,7 +25,7 @@ namespace Tizen.NUI
     /// Layers provide a mechanism for overlaying groups of actors on top of each other.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class Layer : Container
+    public partial class Layer : Container
     {
         private Window window;
 
@@ -99,6 +99,18 @@ namespace Tizen.NUI
         {
             get
             {
+                return (LayerBehavior)GetValue(BehaviorProperty);
+            }
+            set
+            {
+                SetValue(BehaviorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Layer.LayerBehavior InternalBehavior
+        {
+            get
+            {
                 return GetBehavior();
             }
             set
@@ -113,6 +125,18 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public Rectangle Viewport
+        {
+            get
+            {
+                return (Rectangle)GetValue(ViewportProperty);
+            }
+            set
+            {
+                SetValue(ViewportProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Rectangle InternalViewport
         {
             get
             {
@@ -146,6 +170,18 @@ namespace Tizen.NUI
         {
             get
             {
+                return (float)GetValue(OpacityProperty);
+            }
+            set
+            {
+                SetValue(OpacityProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private float InternalOpacity
+        {
+            get
+            {
                 float temp = 0.0f;
                 var pValue = GetProperty(View.Property.OPACITY);
                 pValue.Get(out temp);
@@ -165,6 +201,18 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public bool Visibility
+        {
+            get
+            {
+                return (bool)GetValue(VisibilityProperty);
+            }
+            set
+            {
+                SetValue(VisibilityProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private bool InternalVisibility
         {
             get
             {
@@ -199,6 +247,18 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string Name
+        {
+            get
+            {
+                return (string)GetValue(NameProperty);
+            }
+            set
+            {
+                SetValue(NameProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private string InternalName
         {
             get
             {
