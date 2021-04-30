@@ -100,7 +100,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// HEVC M10P.
         /// </summary>
-        HevcM10P = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2082),
+        HevcM10p = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2082),
 
         /// <summary>
         /// VP8.
