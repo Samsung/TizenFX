@@ -261,7 +261,7 @@ namespace Tizen.Multimedia
             Bit = bit;
             BitRate = bitRate;
             AacType = IsAacSupportedMimeType(mimeType) ? GetAacType(handle) : MediaFormatAacType.None;
-            AudioChannelMap = GetAudioChannelMap(handle);
+            AudioChannelMap = Channel == 0 ? null : GetAudioChannelMap(handle);
         }
 
         private static ReadOnlyCollection<MediaFormatAudioChannelPosition> GetAudioChannelMap(IntPtr handle)
@@ -269,7 +269,9 @@ namespace Tizen.Multimedia
             var ret = Native.GetAudioChannelMask(handle, out ulong mask);
             MultimediaDebug.AssertNoError(ret);
 
-            ret = Native.GetChannelPositionFromMask(handle, mask, out MediaFormatAudioChannelPosition[] positions);
+            var positions = new MediaFormatAudioChannelPosition[Enum.GetNames(typeof(MediaFormatAudioChannelPosition)).Length];
+
+            ret = Native.GetChannelPositionFromMask(handle, mask, ref positions);
             MultimediaDebug.AssertNoError(ret);
 
             return positions == null ? null :

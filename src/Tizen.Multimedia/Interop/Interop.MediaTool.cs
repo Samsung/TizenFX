@@ -188,7 +188,7 @@ namespace Tizen.Multimedia
 
             [DllImport(Libraries.MediaTool, EntryPoint = "media_format_channel_positions_from_mask")]
             internal static extern int GetChannelPositionFromMask(IntPtr handle, ulong mask,
-                out MediaFormatAudioChannelPosition[] position);
+                ref MediaFormatAudioChannelPosition[] position);
 
             [DllImport(Libraries.MediaTool, EntryPoint = "media_format_channel_positions_to_mask")]
             internal static extern int GetMaskFromChannelPosition(IntPtr handle,
