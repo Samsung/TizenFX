@@ -153,6 +153,11 @@ namespace Tizen.NUI.Components
                 if (ItemsView != null) ItemsView.UnrealizeItem(item, false);
             }
             VisibleItems.Clear();
+            if (CandidateMargin != null)
+            {
+                CandidateMargin.Dispose();
+                CandidateMargin = null;
+            }
             ItemsView = null;
             Container = null;
         }
@@ -222,6 +227,18 @@ namespace Tizen.NUI.Components
         /// <param name="toPosition">Moved item position.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void NotifyItemMoved(IItemSource source, int fromPosition, int toPosition)
+        {
+        }
+
+        /// <summary>
+        /// Notify the range of the observable items are moved from fromPosition to ToPosition.
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="fromPosition"></param>
+        /// <param name="toPosition"></param>
+        /// <param name="count"></param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual void NotifyItemRangeMoved(IItemSource source, int fromPosition, int toPosition, int count)
         {
         }
 

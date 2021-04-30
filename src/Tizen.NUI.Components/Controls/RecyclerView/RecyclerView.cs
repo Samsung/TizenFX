@@ -88,7 +88,7 @@ namespace Tizen.NUI.Components
         /// Notify Dataset is Changed.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void NotifyDataSetChanged()
+        public virtual void NotifyDataSetChanged()
         {
             //Need to update view.
             if (InternalItemsLayouter != null)
@@ -113,11 +113,26 @@ namespace Tizen.NUI.Components
         /// <param name="source">Dataset source.</param>
         /// <param name="startIndex">Changed item index.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void NotifyItemChanged(IItemSource source, int startIndex)
+        public virtual void NotifyItemChanged(IItemSource source, int startIndex)
         {
             if (InternalItemsLayouter != null)
             {
                 InternalItemsLayouter.NotifyItemChanged(source, startIndex);
+            }
+        }
+
+        /// <summary>
+        /// Notify range of observable items from start to end are changed.
+        /// </summary>
+        /// <param name="source">Dataset source.</param>
+        /// <param name="startRange">Start index of changed items range.</param>
+        /// <param name="endRange">End index of changed items range.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual void NotifyItemRangeChanged(IItemSource source, int startRange, int endRange)
+        {
+            if (InternalItemsLayouter != null)
+            {
+                InternalItemsLayouter.NotifyItemRangeChanged(source, startRange, endRange);
             }
         }
 
@@ -127,41 +142,11 @@ namespace Tizen.NUI.Components
         /// <param name="source">Dataset source.</param>
         /// <param name="startIndex">Inserted item index.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void NotifyItemInserted(IItemSource source, int startIndex)
+        public virtual void NotifyItemInserted(IItemSource source, int startIndex)
         {
             if (InternalItemsLayouter != null)
             {
                 InternalItemsLayouter.NotifyItemInserted(source, startIndex);
-            }
-        }
-
-        /// <summary>
-        /// Notify observable item is moved from fromPosition to ToPosition.
-        /// </summary>
-        /// <param name="source">Dataset source.</param>
-        /// <param name="fromPosition">Previous item position.</param>
-        /// <param name="toPosition">Moved item position.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void NotifyItemMoved(IItemSource source, int fromPosition, int toPosition)
-        {
-            if (InternalItemsLayouter != null)
-            {
-                InternalItemsLayouter.NotifyItemMoved(source, fromPosition, toPosition);
-            }
-        }
-
-        /// <summary>
-        /// Notify range of observable items from start to end are changed.
-        /// </summary>
-        /// <param name="source">Dataset source.</param>
-        /// <param name="start">Start index of changed items range.</param>
-        /// <param name="end">End index of changed items range.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void NotifyItemRangeChanged(IItemSource source, int start, int end)
-        {
-            if (InternalItemsLayouter != null)
-            {
-                InternalItemsLayouter.NotifyItemRangeChanged(source, start, end);
             }
         }
 
@@ -172,11 +157,56 @@ namespace Tizen.NUI.Components
         /// <param name="startIndex">Start index of inserted items range.</param>
         /// <param name="count">The number of inserted items.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void NotifyItemRangeInserted(IItemSource source, int startIndex, int count)
+        public virtual void NotifyItemRangeInserted(IItemSource source, int startIndex, int count)
         {
             if (InternalItemsLayouter != null)
             {
                 InternalItemsLayouter.NotifyItemRangeInserted(source, startIndex, count);
+            }
+        }
+
+        /// <summary>
+        /// Notify observable item is moved from fromPosition to ToPosition.
+        /// </summary>
+        /// <param name="source">Dataset source.</param>
+        /// <param name="fromPosition">Previous item position.</param>
+        /// <param name="toPosition">Moved item position.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual void NotifyItemMoved(IItemSource source, int fromPosition, int toPosition)
+        {
+            if (InternalItemsLayouter != null)
+            {
+                InternalItemsLayouter.NotifyItemMoved(source, fromPosition, toPosition);
+            }
+        }
+
+        /// <summary>
+        /// Notify the observable item is moved from fromPosition to ToPosition.
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="fromPosition"></param>
+        /// <param name="toPosition"></param>
+        /// <param name="count"></param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual void NotifyItemRangeMoved(IItemSource source, int fromPosition, int toPosition, int count)
+        {
+            if (InternalItemsLayouter != null)
+            {
+                InternalItemsLayouter.NotifyItemRangeMoved(source, fromPosition, toPosition, count);
+            }
+        }
+
+        /// <summary>
+        /// Notify the observable item in startIndex is removed.
+        /// </summary>
+        /// <param name="source">Dataset source.</param>
+        /// <param name="startIndex">Index of removed item.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual void NotifyItemRemoved(IItemSource source, int startIndex)
+        {
+            if (InternalItemsLayouter != null)
+            {
+                InternalItemsLayouter.NotifyItemRemoved(source, startIndex);
             }
         }
 
@@ -187,25 +217,11 @@ namespace Tizen.NUI.Components
         /// <param name="startIndex">Start index of removed items range.</param>
         /// <param name="count">The number of removed items</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void NotifyItemRangeRemoved(IItemSource source, int startIndex, int count)
+        public virtual void NotifyItemRangeRemoved(IItemSource source, int startIndex, int count)
         {
             if (InternalItemsLayouter != null)
             {
                 InternalItemsLayouter.NotifyItemRangeRemoved(source, startIndex, count);
-            }
-        }
-
-        /// <summary>
-        /// Notify the observable item in startIndex is removed.
-        /// </summary>
-        /// <param name="source">Dataset source.</param>
-        /// <param name="startIndex">Index of removed item.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void NotifyItemRemoved(IItemSource source, int startIndex)
-        {
-            if (InternalItemsLayouter != null)
-            {
-                InternalItemsLayouter.NotifyItemRemoved(source, startIndex);
             }
         }
 
@@ -256,13 +272,11 @@ namespace Tizen.NUI.Components
         {
             item.Index = -1;
             item.ParentItemsView = null;
-            // Remove BindingContext null set for performance improving.
-            //item.BindingContext = null; 
+            item.BindingContext = null; 
             item.IsPressed = false;
             item.IsSelected = false;
             item.IsEnabled = true;
-            // Remove Update Style on default for performance improving.
-            //item.UpdateState();
+            item.UpdateState();
             item.Relayout -= OnItemRelayout;
 
             if (!recycle || !PushRecycleCache(item))
