@@ -687,7 +687,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="index">Target item index of dataset.</param>
         /// <param name="animate">Boolean flag of animation.</param>
-        /// <param name="align">Align state of item. See details in \<see cref="ItemScrollTo"/\>.</param>
+        /// <param name="align">Align state of item. See details in <see cref="ItemScrollTo"/>.</param>
         /// <since_tizen> 9 </since_tizen>
         public virtual void ScrollTo(int index, bool animate = false, ItemScrollTo align = ItemScrollTo.Nearest)
         {
