@@ -31,7 +31,7 @@ namespace Tizen.NUI.Samples
             insertDeleteGroup.Add(deleteMenu);
             albumSource.Insert(0, insertDeleteGroup);
 
-            selMode = ItemSelectionMode.MultipleSelections;
+            selMode = ItemSelectionMode.Multiple;
             DefaultTitleItem myTitle = new DefaultTitleItem();
             myTitle.Text = "Grid Sample Count["+ albumSource.Count+"]";
             //Set Width Specification as MatchParent to fit the Item width with parent View.
@@ -56,7 +56,7 @@ namespace Tizen.NUI.Samples
                     //Decorate Badge checkbox.
                     //[NOTE] This is sample of CheckBox usage in CollectionView.
                     // Checkbox change their selection by IsSelectedProperty bindings with
-                    // SelectionChanged event with MulitpleSelections ItemSelectionMode of CollectionView.
+                    // SelectionChanged event with Mulitple ItemSelectionMode of CollectionView.
                     item.Badge = new CheckBox();
                     //FIXME : SetBinding in RadioButton crashed as Sensitive Property is disposed.
                     //item.Badge.SetBinding(CheckBox.IsSelectedProperty, "Selected");
