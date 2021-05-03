@@ -37,6 +37,7 @@ namespace Tizen.NUI.Binding
         /// <param name="container">An optional container object in which
         /// the developer may have opted to store DataTemplateSelector objects.</param>
         /// <returns>A developer-defined DataTemplate that can be used to display item.</returns>
+        /// <since_tizen> 9 </since_tizen>
         public DataTemplate SelectTemplate(object item, BindableObject container)
         {
             DataTemplate dataTemplate = null;
