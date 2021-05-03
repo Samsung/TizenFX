@@ -39,13 +39,19 @@ namespace Tizen.NUI.BaseComponents
         private int heightPolicy = LayoutParamPolicies.WrapContent; // Layout height policy
         private float weight = 0.0f; // Weighting of child View in a Layout
         private bool backgroundImageSynchronosLoading = false;
-        private bool controlStatePropagation = false;
-        private ViewStyle viewStyle;
-        private bool themeChangeSensitive = false;
         private bool excludeLayouting = false;
         private LayoutTransition layoutTransition;
-        private ControlState controlStates = ControlState.Normal;
         private TransitionOptions transitionOptions = null;
+        private ThemeData themeData;
+
+        internal class ThemeData
+        {
+            public bool controlStatePropagation = false;
+            public ViewStyle viewStyle;
+            public bool themeChangeSensitive = false;
+            public ControlState controlStates = ControlState.Normal;
+            public ViewSelectorData selectorData;
+        }
 
         static View() { }
 
@@ -159,12 +165,13 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                if (null == viewStyle)
+                if (themeData == null) themeData = new ThemeData();
+
+                if (themeData.viewStyle == null)
                 {
                     ApplyStyle(CreateViewStyle());
                 }
-
-                return viewStyle;
+                return themeData.viewStyle;
             }
         }
 
@@ -180,24 +187,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return controlStates;
+                return themeData == null ? ControlState.Normal : themeData.controlStates;
             }
             protected set
             {
-                if (controlStates == value)
+                if (ControlState == value)
                 {
                     return;
                 }
 
-                var prevState = controlStates;
+                var prevState = ControlState;
 
-                controlStates = value;
+                if (themeData == null) themeData = new ThemeData();
+                themeData.controlStates = value;
 
                 var changeInfo = new ControlStateChangedEventArgs(prevState, value);
 
                 ControlStateChangeEventInternal?.Invoke(this, changeInfo);
 
-                if (controlStatePropagation)
+                if (themeData.controlStatePropagation)
                 {
                     foreach (View child in Children)
                     {
@@ -2400,10 +2408,14 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool EnableControlStatePropagation
         {
-            get => controlStatePropagation;
+            get => themeData?.controlStatePropagation ?? false;
             set
             {
-                controlStatePropagation = value;
+                if (EnableControlStatePropagation == value) return;
+
+                if (themeData == null) themeData = new ThemeData();
+
+                themeData.controlStatePropagation = value;
 
                 foreach (View child in Children)
                 {
@@ -2522,9 +2534,11 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 9 </since_tizen>
         public virtual void ApplyStyle(ViewStyle viewStyle)
         {
-            if (viewStyle == null || this.viewStyle == viewStyle) return;
+            if (viewStyle == null || themeData?.viewStyle == viewStyle) return;
 
-            this.viewStyle = viewStyle;
+            if (themeData == null) themeData = new ThemeData();
+
+            themeData.viewStyle = viewStyle;
 
             if (viewStyle.DirtyProperties == null || viewStyle.DirtyProperties.Count == 0)
             {
