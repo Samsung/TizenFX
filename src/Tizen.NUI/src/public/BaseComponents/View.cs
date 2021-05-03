@@ -825,6 +825,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <remarks>
         /// The property cascade chaining set is possible. For example, this (view.CellIndex.X = 0.1f;) is possible.
+        /// Also, this property is for <see cref="TableView"/> class. Please use the property for the child position of <see cref="TableView"/>.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Vector2 CellIndex
@@ -844,6 +845,9 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The number of rows this child occupies, if not set, the default value is 1.
         /// </summary>
+        /// <remarks>
+        /// This property is for <see cref="TableView"/> class. Please use the property for the child position of <see cref="TableView"/>.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public float RowSpan
         {
@@ -861,6 +865,9 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The number of columns this child occupies, if not set, the default value is 1.
         /// </summary>
+        /// <remarks>
+        /// This property is for <see cref="TableView"/> class. Please use the property for the child position of <see cref="TableView"/>.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public float ColumnSpan
         {
@@ -878,6 +885,9 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The horizontal alignment of this child inside the cells, if not set, the default value is 'left'.
         /// </summary>
+        /// <remarks>
+        /// This property is for <see cref="TableView"/> class. Please use the property for the child position of <see cref="TableView"/>.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Tizen.NUI.HorizontalAlignmentType CellHorizontalAlignment
         {
@@ -895,6 +905,9 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The vertical alignment of this child inside the cells, if not set, the default value is 'top'.
         /// </summary>
+        /// <remarks>
+        /// This property is for <see cref="TableView"/> class. Please use the property for the child position of <see cref="TableView"/>.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Tizen.NUI.VerticalAlignmentType CellVerticalAlignment
         {
@@ -2298,7 +2311,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         ///<summary>
-        /// Set a layout transitions for this View.
+        /// Sets a layout transitions for this View.
         ///</summary>
         /// <exception cref="ArgumentNullException"> Thrown when value is null. </exception>
         /// <remarks>
@@ -2676,16 +2689,6 @@ namespace Tizen.NUI.BaseComponents
             UpdateStyle();
         }
 
-        private bool IsViewPropertyDirty(BindableProperty styleProperty)
-        {
-            if (dirtyPropertySet.Count == 0)
-            {
-                return false;
-            }
-
-            return dirtyPropertySet.Contains(styleProperty.PropertyName);
-        }
-
         /// <summary>
         /// Apply style instance to the view.
         /// Basically it sets the bindable property to the value of the bindable property with same name in the style.
@@ -2703,11 +2706,6 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-            if (dirtyPropertySet == null)
-            {
-                dirtyPropertySet = new HashSet<string>();
-            }
-
             BindableProperty.GetBindablePropertysOfType(GetType(), out var bindablePropertyOfView);
 
             if (bindablePropertyOfView == null)
@@ -2720,12 +2718,6 @@ namespace Tizen.NUI.BaseComponents
 
             foreach (var sourceProperty in dirtyStyleProperties)
             {
-                if (blockSetDirty && IsViewPropertyDirty(sourceProperty))
-                {
-                    // Skip applying theme style for a property set by user.
-                    continue;
-                }
-
                 var sourceValue = viewStyle.GetValue(sourceProperty);
 
                 if (sourceValue == null)
@@ -2764,11 +2756,9 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Set or Get TransitionOptions for the page transition.
+        /// This property is used to define how this view will be transition during Page switching.
         /// </summary>
-        /// <remarks>
-        /// Hidden-API (Inhouse-API).
-        /// </remarks>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public TransitionOptions TransitionOptions
         {
             set

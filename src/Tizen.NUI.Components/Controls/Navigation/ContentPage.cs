@@ -23,7 +23,7 @@ namespace Tizen.NUI.Components
     /// The ContentPage class is a class which is a formatted full screen page.
     /// ContentPage contains title app bar and content.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class ContentPage : Page
     {
         private AppBar appBar = null;
@@ -32,7 +32,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Creates a new instance of a ContentPage.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public ContentPage() : base()
         {
             Layout = new AbsoluteLayout();
@@ -71,10 +71,11 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// AppBar of ContentPage. AppBar is added to Children automatically.
+        /// AppBar of ContentPage.
+        /// AppBar is added as a child of ContentPage automatically.
         /// AppBar is positioned at the top of the Page.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public AppBar AppBar
         {
             get
@@ -106,11 +107,12 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Content of ContentPage. Content is added to Children automatically.
+        /// Content of ContentPage.
+        /// Content is added as a child of ContentPage automatically.
         /// Content is positioned below AppBar.
         /// Content is resized to fill the full screen except AppBar.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public View Content
         {
             get

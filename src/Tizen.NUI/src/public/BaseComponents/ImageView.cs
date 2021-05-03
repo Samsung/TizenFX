@@ -1257,9 +1257,7 @@ namespace Tizen.NUI.BaseComponents
 
             if (backgroundExtraData != null && backgroundExtraData.CornerRadius != null)
             {
-                // TODO Fix to support Vector4 for corner radius after dali support it.
-                //      Current code only gets first argument of Vector4.
-                using (var cornerRadius = new PropertyValue(backgroundExtraData.CornerRadius.X))
+                using (var cornerRadius = new PropertyValue(backgroundExtraData.CornerRadius))
                 using (var cornerRadiusPolicy = new PropertyValue((int)backgroundExtraData.CornerRadiusPolicy))
                 {
                     imageMap.Insert(Visual.Property.CornerRadius, cornerRadius);

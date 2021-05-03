@@ -24,11 +24,10 @@ namespace Tizen.NUI
     /// <summary>
     /// This TransitionOptions class is a class to control Transition motion.
     /// This class includes multiple options for the Transition.
-    /// NUI supports a kind of Transitions such as App transition, Page transition, and so on.
-    /// Some of options could be used only for the App transition or Page transition, but others could be used for multiple purpose.
+    /// NUI supports various kinds of Transitions such as App transition, Page transition, and so on.
     /// </summary>
     /// <seealso cref="NUIApplication.TransitionOptions" />
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class TransitionOptions : IDisposable
     {
         private bool disposed = false;
@@ -51,7 +50,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Initializes the TransitionOptions class.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public TransitionOptions()
         {
         }
@@ -105,18 +104,20 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// During the Page transition, if two Views each of on the old top Page
-        /// and new top Page have same TransitionTag, the View on the old top Page
-        /// will be transition to the one of new top Page.
+        /// String tag to find View pair to be used in Page transition.
+        /// If there is a View have same TransitionTag in a next or previous Page.
+        /// The View will be pair for transition.
+        /// This is property for Page Transition.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public string TransitionTag { set; get; } = null;
 
         /// <summary>
+        /// Property for Page transition.
         /// A View could be transition with its child Views or without them.
         /// Default value is false
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public bool TransitionWithChild { set; get; } = false;
 
         /// <summary>

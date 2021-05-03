@@ -26,16 +26,19 @@ namespace Tizen.NUI.EXaml
 {
     internal class GatherEnumValue : Operation
     {
-        public GatherEnumValue(int typeIndex, string value)
+        public GatherEnumValue(GlobalDataList globalDataList, int typeIndex, string value)
         {
             this.typeIndex = typeIndex;
             this.value = value;
+            this.globalDataList = globalDataList;
         }
+
+        private GlobalDataList globalDataList;
 
         public void Do()
         {
-            var enumType = GatherType.GatheredTypes[typeIndex];
-            LoadEXaml.GatheredInstances.Add(Enum.Parse(enumType, value));
+            var enumType = globalDataList.GatheredTypes[typeIndex];
+            globalDataList.GatheredInstances.Add(Enum.Parse(enumType, value));
         }
 
         private int typeIndex;

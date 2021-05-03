@@ -16,19 +16,22 @@
  */
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Text;
+using Tizen.NUI.Binding;
+using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI.EXaml
 {
-    internal class GatherBindablePropertiesAction : Action
+    internal class GetObjectByPropertyAction : Action
     {
-        public GatherBindablePropertiesAction(Action parent)
+        internal GetObjectByPropertyAction(GlobalDataList globalDataList, Action parent)
         {
             this.parent = parent;
+            this.globalDataList = globalDataList;
         }
 
         private Action parent;
+        private GlobalDataList globalDataList;
 
         public Action DealChar(char c)
         {
@@ -39,31 +42,46 @@ namespace Tizen.NUI.EXaml
                 case '\r':
                     break;
 
+                case '`':
+                    parent?.OnActive();
+                    return parent;
+
                 case '(':
                     childOp = new GetValueListAction(')', this);
                     return childOp;
-
-                case '>':
-                    parent?.OnActive();
-                    return parent;
             }
 
             return this;
         }
 
-        private GetValueListAction childOp;
-
         public void Init()
         {
-            childOp = null;
         }
 
         public void OnActive()
         {
-            int typeIndex = int.Parse(childOp.ValueList[0] as string);
-            string propertyName = childOp.ValueList[1] as string;
+            if (null != childOp)
+            {
+                int instanceIndex = (childOp.ValueList[0] as Instance).Index;
+                string propertyName = childOp.ValueList[1] as string;
+                globalDataList.Operations.Add(new GetObjectByProperty(globalDataList, instanceIndex, propertyName));
+            }
 
-            LoadEXaml.Operations.Add(new GatherBindableProperties(typeIndex, propertyName));
+            childOp = null;
+        }
+
+        private GetValueListAction childOp;
+
+        internal static object Root
+        {
+            get
+            {
+                return CreateInstance.Root;
+            }
+            set
+            {
+                CreateInstance.Root = value;
+            }
         }
     }
 }

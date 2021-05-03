@@ -21,45 +21,6 @@ using System.ComponentModel;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// It is a class for password data of web view.
-    /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public class WebPasswordData : Disposable
-    {
-        internal WebPasswordData(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
-        {
-        }
-
-        /// <summary>
-        /// Url which password is related to.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string Url
-        {
-            get
-            {
-                string result = Interop.WebPasswordData.GetUrl(SwigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) return null;
-                return result;
-            }
-        }
-
-        /// <summary>
-        /// Whether fingerprint is used or not.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool UseFingerprint
-        {
-            get
-            {
-                bool result = Interop.WebPasswordData.GetUseFingerprint(SwigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) return false;
-                return result;
-            }
-        }
-    }
-
-    /// <summary>
     /// It is a class for password data list of web view.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
@@ -85,9 +46,7 @@ namespace Tizen.NUI
         {
             get
             {
-                uint result = Interop.WebPasswordDataList.GetItemCount(SwigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) return 0;
-                return result;
+                return Interop.WebPasswordDataList.GetItemCount(SwigCPtr);
             }
         }
 

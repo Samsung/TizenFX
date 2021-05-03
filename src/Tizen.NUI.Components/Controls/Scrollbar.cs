@@ -435,7 +435,7 @@ namespace Tizen.NUI.Components
         {
             base.OnRelayout(size, container);
 
-            if (size.Width == containerSize.Width && size.Height == containerSize.Height)
+            if (size == null || size.Width == containerSize.Width && size.Height == containerSize.Height)
             {
                 return;
             }
@@ -457,18 +457,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void ApplyStyle(ViewStyle viewStyle)
         {
-            if (viewStyle is ScrollbarStyle scrollbarStyle)
-            {
-                // Apply essential look.
-                if (scrollbarStyle.TrackThickness == null) scrollbarStyle.TrackThickness = 6.0f;
-                if (scrollbarStyle.ThumbThickness == null) scrollbarStyle.ThumbThickness = 6.0f;
-                if (scrollbarStyle.TrackColor == null) scrollbarStyle.TrackColor = new Color(1.0f, 1.0f, 1.0f, 0.15f);
-                if (scrollbarStyle.ThumbColor == null) scrollbarStyle.ThumbColor = new Color(0.6f, 0.6f, 0.6f, 1.0f);
-                if (scrollbarStyle.TrackPadding == null) scrollbarStyle.TrackPadding = 4;
-                if (scrollbarStyle.WidthResizePolicy == null) scrollbarStyle.WidthResizePolicy = ResizePolicyType.FillToParent;
-                if (scrollbarStyle.HeightResizePolicy == null) scrollbarStyle.HeightResizePolicy = ResizePolicyType.FillToParent;
-            }
-
             base.ApplyStyle(viewStyle);
         }
 

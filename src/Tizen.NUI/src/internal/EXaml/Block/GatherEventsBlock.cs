@@ -23,12 +23,14 @@ namespace Tizen.NUI.EXaml
 {
     internal class GatherEventsBlock : Action
     {
-        public GatherEventsBlock(Action parent)
+        public GatherEventsBlock(GlobalDataList globalDataList, Action parent)
         {
             this.parent = parent;
+            this.globalDataList = globalDataList;
         }
 
         private Action parent;
+        private GlobalDataList globalDataList;
 
         public Action DealChar(char c)
         {
@@ -63,7 +65,7 @@ namespace Tizen.NUI.EXaml
             int typeIndex = int.Parse(childOp.ValueList[0] as string);
             string eventName = childOp.ValueList[1] as string;
 
-            LoadEXaml.Operations.Add(new GatherEvent(typeIndex, eventName));
+            globalDataList.Operations.Add(new GatherEvent(globalDataList, typeIndex, eventName));
         }
     }
 }
