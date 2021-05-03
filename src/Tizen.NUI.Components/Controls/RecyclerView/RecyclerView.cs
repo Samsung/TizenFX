@@ -270,6 +270,7 @@ namespace Tizen.NUI.Components
         /// <param name="recycle"> Allow recycle. default is true </param>
         internal virtual void UnrealizeItem(RecyclerViewItem item, bool recycle = true)
         {
+            if (item == null) return;
             item.Index = -1;
             item.ParentItemsView = null;
             item.BindingContext = null; 
@@ -364,14 +365,12 @@ namespace Tizen.NUI.Components
 
             if (type == DisposeTypes.Explicit)
             {
-                disposed = true;
                 // call the clear!
                 if (RecycleCache != null)
                 {
                     foreach (RecyclerViewItem item in RecycleCache)
                     {
-                        //ContentContainer.Remove(item);
-                        Utility.Dispose(item);
+                        UnrealizeItem(item, false);
                     }
                     RecycleCache.Clear();
                 }
@@ -379,7 +378,11 @@ namespace Tizen.NUI.Components
                 InternalItemsLayouter = null;
                 ItemsSource = null;
                 ItemTemplate = null;
-                if (InternalItemSource != null) InternalItemSource.Dispose();
+                if (InternalItemSource != null)
+                {
+                    InternalItemSource.Dispose();
+                    InternalItemSource = null;
+                }
                 //
             }
 
