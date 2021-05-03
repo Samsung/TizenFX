@@ -49,7 +49,7 @@ namespace Tizen.NUI.Components
         /// Clean up ItemsLayouter.
         /// </summary>
         /// <param name="view"> CollectionView of layouter. </param>
-         /// <remarks>please note that, view must be type of CollectionView</remarks>
+        /// <remarks>please note that, view must be type of CollectionView</remarks>
         /// <since_tizen> 9 </since_tizen>
         public override void Initialize(RecyclerView view)
         {
