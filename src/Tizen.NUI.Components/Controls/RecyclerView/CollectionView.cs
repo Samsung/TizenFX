@@ -827,14 +827,15 @@ namespace Tizen.NUI.Components
 
             switch (SelectionMode)
             {
-                case ItemSelectionMode.SingleSelection:
+                case ItemSelectionMode.Single:
+                case ItemSelectionMode.SingleAlways:
                     if (item.BindingContext != null && item.BindingContext == SelectedItem)
                     {
                         item.IsSelected = true;
                     }
                     break;
 
-                case ItemSelectionMode.MultipleSelections:
+                case ItemSelectionMode.Multiple:
                     if ((item.BindingContext != null) && (SelectedItems?.Contains(item.BindingContext) ?? false))
                     {
                         item.IsSelected = true;
@@ -1040,13 +1041,13 @@ namespace Tizen.NUI.Components
             {
                 case ItemSelectionMode.None:
                     break;
-                case ItemSelectionMode.SingleSelection:
+                case ItemSelectionMode.Single:
                     if (colView.SelectedItem != null)
                     {
                         previousSelection.Add(colView.SelectedItem);
                     }
                     break;
-                case ItemSelectionMode.MultipleSelections:
+                case ItemSelectionMode.Multiple:
                     previousSelection = colView.SelectedItems;
                     break;
             }
@@ -1055,13 +1056,13 @@ namespace Tizen.NUI.Components
             {
                 case ItemSelectionMode.None:
                     break;
-                case ItemSelectionMode.SingleSelection:
+                case ItemSelectionMode.Single:
                     if (colView.SelectedItem != null)
                     {
                         newSelection.Add(colView.SelectedItem);
                     }
                     break;
-                case ItemSelectionMode.MultipleSelections:
+                case ItemSelectionMode.Multiple:
                     newSelection = colView.SelectedItems;
                     break;
             }
