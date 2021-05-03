@@ -938,12 +938,13 @@ namespace Tizen.NUI.Components
 
         /// <summary>
         /// Gets or sets the discrete value of slider.
-        ///
+        /// </summary>
+        /// <remarks>
         /// The discrete value is evenly spaced between MinValue and MaxValue.
         /// For example, MinValue is 0, MaxValue is 100, and DiscreteValue is 20.
         /// Then, the thumb can only go to 0, 20, 40, 60, 80, and 100.
         /// The default is 0.
-        /// </summary>
+        /// </remarks>
         /// <since_tizen> 9 </since_tizen>
         public float DiscreteValue
         {
