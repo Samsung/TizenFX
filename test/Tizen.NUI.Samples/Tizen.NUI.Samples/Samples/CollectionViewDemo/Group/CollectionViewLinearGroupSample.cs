@@ -32,7 +32,7 @@ namespace Tizen.NUI.Samples
             insertDeleteGroup.Add(deleteMenu);
             albumSource.Insert(0, insertDeleteGroup);
 
-            selMode = ItemSelectionMode.SingleSelection;
+            selMode = ItemSelectionMode.Single;
             DefaultTitleItem myTitle = new DefaultTitleItem();
             //To Bind the Count property changes, need to create custom property for count.
             myTitle.Text = "Linear Sample Group["+ albumSource.Count+"]";
@@ -58,7 +58,7 @@ namespace Tizen.NUI.Samples
                     //Decorate Extra RadioButton.
                     //[NOTE] This is sample of RadioButton usage in CollectionView.
                     // RadioButton change their selection by IsSelectedProperty bindings with
-                    // SelectionChanged event with SingleSelection ItemSelectionMode of CollectionView.
+                    // SelectionChanged event with Single ItemSelectionMode of CollectionView.
                     // be aware of there are no RadioButtonGroup. 
                     item.Extra = new RadioButton();
                     //FIXME : SetBinding in RadioButton crashed as Sensitive Property is disposed.
