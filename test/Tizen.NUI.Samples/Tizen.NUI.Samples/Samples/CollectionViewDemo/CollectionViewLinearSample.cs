@@ -30,7 +30,7 @@ namespace Tizen.NUI.Samples
             gallerySource.Insert(0, deleteMenu);
             gallerySource.Insert(0, insertMenu);
 
-            selMode = ItemSelectionMode.SingleSelection;
+            selMode = ItemSelectionMode.Single;
             DefaultTitleItem myTitle = new DefaultTitleItem();
             myTitle.Text = "Linear Sample Count["+itemCount+"]";
             //Set Width Specification as MatchParent to fit the Item width with parent View.
@@ -66,7 +66,7 @@ namespace Tizen.NUI.Samples
                     //Decorate Extra RadioButton.
                     //[NOTE] This is sample of RadioButton usage in CollectionView.
                     // RadioButton change their selection by IsSelectedProperty bindings with
-                    // SelectionChanged event with SingleSelection ItemSelectionMode of CollectionView.
+                    // SelectionChanged event with Single ItemSelectionMode of CollectionView.
                     // be aware of there are no RadioButtonGroup.
                     item.Extra = new RadioButton();
                     //FIXME : SetBinding in RadioButton crashed as Sensitive Property is disposed.

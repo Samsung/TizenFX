@@ -15,6 +15,7 @@
  */
 
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.NUI.Components
 {
@@ -22,6 +23,9 @@ namespace Tizen.NUI.Components
     /// Selection mode of CollecitonView.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
+    [SuppressMessage("Microsoft.Naming",
+                     "CA1720: Identifiers should not contain type names",
+                     Justification = "Single is the member of enum ItemSelectionMode. there are no possible danger to miss using Single Identifiers.")]
     public enum ItemSelectionMode
     {
         /// <summary>
@@ -33,11 +37,17 @@ namespace Tizen.NUI.Components
         /// Single selection. select item exclusively so previous selected item will be unselected.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        SingleSelection,
+        Single,
+        /// <summary>
+        /// Single selection always. select item exclusively but selection is always exist after being selected.
+        /// to deselect item, clear selection forcely.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        SingleAlways,
         /// <summary>
         /// Multiple selections. select multiple items and previous selected item still remains selected.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        MultipleSelections
+        Multiple
     }
 }
