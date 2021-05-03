@@ -28,8 +28,6 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public partial class View
     {
-        private ViewSelectorData selectorData;
-
         internal string styleName;
 
         /// <summary>
@@ -1109,8 +1107,8 @@ namespace Tizen.NUI.BaseComponents
                 //Called by User
                 //Release your own managed resources here.
                 //You should release all of your own disposable objects here.
-                selectorData?.Reset(this);
-                if (themeChangeSensitive)
+                themeData?.selectorData?.Reset(this);
+                if (ThemeChangeSensitive)
                 {
                     ThemeManager.ThemeChangedInternal.Remove(OnThemeChanged);
                 }
@@ -1384,6 +1382,11 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        private ViewSelectorData EnsureSelectorData() => selectorData ?? (selectorData = new ViewSelectorData());
+        private ViewSelectorData EnsureSelectorData()
+        {
+            if (themeData == null) themeData = new ThemeData();
+
+            return themeData.selectorData ?? (themeData.selectorData = new ViewSelectorData());
+        }
     }
 }
