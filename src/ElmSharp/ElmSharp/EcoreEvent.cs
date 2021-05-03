@@ -188,10 +188,11 @@ namespace ElmSharp
             remove
             {
                 EventHandler<TEventArgs> handler = value;
-                var callbacks = _nativeCallbacks.Where(cb => cb.eventHandler == handler);
+                var callbacks = _nativeCallbacks.Where(cb => cb.eventHandler == handler).ToList();
                 foreach (var cb in callbacks)
                 {
                     Interop.Ecore.ecore_event_handler_del(cb.nativeHandler);
+                    _nativeCallbacks.Remove(cb);
                 }
             }
         }
