@@ -851,6 +851,7 @@ namespace Tizen.NUI.Components
         // Unrealize and caching the item.
         internal override void UnrealizeItem(RecyclerViewItem item, bool recycle = true)
         {
+            if (item == null) return;
             if (item == Header)
             {
                 item.Hide();
@@ -958,16 +959,11 @@ namespace Tizen.NUI.Components
 
             if (type == DisposeTypes.Explicit)
             {
-                disposed = true;
-
                 // From now on, no need to use this properties,
                 // so remove reference, to push it into garbage collector.
 
-                if (InternalItemSource != null)
-                {
-                    InternalItemSource.Dispose();
-                    InternalItemSource = null;
-                }
+                // Arugable to disposing user-created members.
+                /*
                 if (Header != null)
                 {
                     Utility.Dispose(Header);
@@ -978,6 +974,8 @@ namespace Tizen.NUI.Components
                     Utility.Dispose(Footer);
                     Footer = null;
                 }
+                */
+
                 groupHeaderTemplate = null;
                 groupFooterTemplate = null;
 
@@ -989,6 +987,27 @@ namespace Tizen.NUI.Components
                 {
                     selectedItems.Clear();
                     selectedItems = null;
+                }
+                if (InternalItemSource != null)
+                {
+                    InternalItemSource.Dispose();
+                    InternalItemSource = null;
+                }
+                if (recycleGroupHeaderCache != null)
+                {
+                    foreach(RecyclerViewItem item in recycleGroupHeaderCache)
+                    {
+                        UnrealizeItem(item, false);
+                    }
+                    recycleGroupHeaderCache.Clear();
+                }
+                if (recycleGroupFooterCache != null)
+                {
+                    foreach(RecyclerViewItem item in recycleGroupFooterCache)
+                    {
+                        UnrealizeItem(item, false);
+                    }
+                    recycleGroupFooterCache.Clear();
                 }
             }
 
