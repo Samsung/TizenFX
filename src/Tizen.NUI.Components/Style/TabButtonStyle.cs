@@ -56,10 +56,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         internal ViewStyle BottomLine { get; set; } = new ViewStyle();
 
-        /// <summary>
-        /// Style's clone function.
-        /// </summary>
-        /// <param name="bindableObject">The style that need to copy.</param>
+        /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void CopyFrom(BindableObject bindableObject)
         {
