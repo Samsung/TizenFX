@@ -33,7 +33,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Creates a new instance of a DefaultLinearItemStyle.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public DefaultLinearItemStyle() : base()
         {
         }

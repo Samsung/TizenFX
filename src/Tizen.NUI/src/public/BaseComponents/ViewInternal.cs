@@ -28,9 +28,7 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public partial class View
     {
-        private static bool blockSetDirty = false;
         private ViewSelectorData selectorData;
-        private HashSet<string> dirtyPropertySet;
 
         internal string styleName;
 
@@ -1172,21 +1170,6 @@ namespace Tizen.NUI.BaseComponents
             return false;
         }
 
-        /// <summary>
-        /// Call this method from a child class to notify that a change happened on a property.
-        /// </summary>
-        /// <param name="propertyName">The name of the property that changed.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            base.OnPropertyChanged(propertyName);
-
-            if (!blockSetDirty)
-            {
-                dirtyPropertySet?.Add(propertyName);
-            }
-        }
-
         private void DisConnectFromSignals()
         {
             // Save current CPtr.
@@ -1397,9 +1380,7 @@ namespace Tizen.NUI.BaseComponents
 
             if (newStyle != null)
             {
-                blockSetDirty = true;
                 ApplyStyle(newStyle);
-                blockSetDirty = false;
             }
         }
 
