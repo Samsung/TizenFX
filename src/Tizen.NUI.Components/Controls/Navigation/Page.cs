@@ -55,7 +55,7 @@ namespace Tizen.NUI.Components
         /// Navigator which has pushed the Page into its stack.
         /// If this Page has not been pushed into any Navigator, then Navigator is null.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public Navigator Navigator
         {
             get

@@ -462,18 +462,25 @@ namespace Tizen.NUI.Components
             {
                 //Extension : Extension?.OnDispose(this);
 
-                if (itemImage != null)
-                {
-                    Utility.Dispose(itemImage);
-                }
-                if (itemCaption != null)
-                {
-                    Utility.Dispose(itemCaption);
-                }
+                // Arugable to disposing user-created members.
+                /*
                 if (itemBadge != null)
                 {
                     Utility.Dispose(itemBadge);
                 }
+                */
+
+                if (itemImage != null)
+                {
+                    Utility.Dispose(itemImage);
+                    itemImage = null;
+                }
+                if (itemCaption != null)
+                {
+                    Utility.Dispose(itemCaption);
+                    itemCaption = null;
+                }
+
             }
 
             base.Dispose(type);

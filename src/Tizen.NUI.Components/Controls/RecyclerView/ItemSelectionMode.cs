@@ -15,29 +15,39 @@
  */
 
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.NUI.Components
 {
     /// <summary>
     /// Selection mode of CollecitonView.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
+    [SuppressMessage("Microsoft.Naming",
+                     "CA1720: Identifiers should not contain type names",
+                     Justification = "Single is the member of enum ItemSelectionMode. there are no possible danger to miss using Single Identifiers.")]
     public enum ItemSelectionMode
     {
         /// <summary>
-        /// None of item can be selected.
+        /// None of the items can be selected.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         None,
         /// <summary>
-        /// Single selection. select item exclusively so previous selected item will be unselected.
+        /// Single selection. Select item exclusively so previous selected item will be unselected.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        SingleSelection,
+        /// <since_tizen> 9 </since_tizen>
+        Single,
         /// <summary>
-        /// Multiple selections. select multiple items and previous selected item still remains selected.
+        /// Single selection always. It's not possible to unselect all, so after user selects an item,
+        /// there is always exactly one item selected. To deselect item, clear selection forcely.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        MultipleSelections
+        /// <since_tizen> 9 </since_tizen>
+        SingleAlways,
+        /// <summary>
+        /// Multiple selections. Select multiple items and previous selected item still remains selected.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        Multiple
     }
 }

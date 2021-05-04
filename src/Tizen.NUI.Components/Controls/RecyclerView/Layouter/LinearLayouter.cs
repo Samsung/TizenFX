@@ -21,9 +21,9 @@ using System.ComponentModel;
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// [Draft] This class implements a linear box layout.
+    /// layouter for CollectionView to display items in linear layout.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class LinearLayouter : ItemsLayouter
     {
         private readonly List<float> ItemPosition = new List<float>();
@@ -48,8 +48,9 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Clean up ItemsLayouter.
         /// </summary>
-        /// <param name="view"> ItemsView of layouter.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <param name="view"> CollectionView of layouter.</param>
+        /// <remarks>please note that, view must be type of CollectionView</remarks>
+        /// <since_tizen> 9 </since_tizen>
         public override void Initialize(RecyclerView view)
         {
             colView = view as CollectionView;
@@ -336,7 +337,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="scrollPosition">Scroll position which is calculated by ScrollableBase</param>
         /// <param name="force">boolean force flag to layouting forcely.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public override void RequestLayout(float scrollPosition, bool force = false)
         {
             // Layouting is only possible after once it initialized.
