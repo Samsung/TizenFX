@@ -61,10 +61,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Size StartScrollOffset { get; set; } = new Size();
 
-        /// <summary>
-        /// Style's clone function.
-        /// </summary>
-        /// <param name="bindableObject">The style that needs to copy.</param>
+        /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void CopyFrom(BindableObject bindableObject)
         {
