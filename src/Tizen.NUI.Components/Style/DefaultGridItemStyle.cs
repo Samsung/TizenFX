@@ -53,7 +53,7 @@ namespace Tizen.NUI.Components
         /// Label Text's style.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextLabelStyle Caption { get; set; } = new TextLabelStyle();
+        public TextLabelStyle Label { get; set; } = new TextLabelStyle();
 
         /// <summary>
         /// Icon's style.
@@ -78,7 +78,7 @@ namespace Tizen.NUI.Components
 
             if (bindableObject is DefaultGridItemStyle RecyclerViewItemStyle)
             {
-                Caption.CopyFrom(RecyclerViewItemStyle.Caption);
+                Label.CopyFrom(RecyclerViewItemStyle.Label);
                 Image.CopyFrom(RecyclerViewItemStyle.Image);
                 Badge.CopyFrom(RecyclerViewItemStyle.Badge);
                 //Border.CopyFrom(RecyclerViewItemStyle.Border);

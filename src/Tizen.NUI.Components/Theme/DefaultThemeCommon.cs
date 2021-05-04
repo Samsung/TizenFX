@@ -340,7 +340,7 @@ namespace Tizen.NUI.Components
             {
                 Padding = new Extents(0, 0, 0, 0),
                 Margin = new Extents(5, 5, 5, 5),
-                Caption = new TextLabelStyle()
+                Label = new TextLabelStyle()
                 {
                     SizeHeight = 60,
                     PixelSize = 24,
