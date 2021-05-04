@@ -110,10 +110,7 @@ namespace Tizen.NUI.Components
             set => SetValue(IndicatorSpacingProperty, value);
         }
 
-        /// <summary>
-        /// Retrieves a copy of PaginationStyle.
-        /// </summary>
-        /// <param name="bindableObject">The style that need to copy.</param>
+        /// <inheritdoc/>
         /// <since_tizen> 8 </since_tizen>
         public override void CopyFrom(BindableObject bindableObject)
         {
