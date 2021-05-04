@@ -45,7 +45,6 @@ namespace Tizen.NUI.EXaml
 
             foreach (char c in xaml)
             {
-                //Console.Write(c);
                 if (null == currentOp)
                 {
                     switch (c)

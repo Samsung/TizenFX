@@ -38,9 +38,24 @@ namespace Tizen.NUI.EXaml
         public void Do()
         {
             var instance = globalDataList.GatheredInstances[instanceIndex];
+            if (null == instance)
+            {
+                throw new Exception(String.Format("Can't get instance by index {0}", instanceIndex));
+            }
+
             var property = instance.GetType().GetProperty(propertyName);
 
-            var @object = property.GetMethod.Invoke(instance, Array.Empty<object>());
+            if (null == property)
+            {
+                throw new Exception(String.Format("Can't find property {0} in type {1}", propertyName, instance.GetType().FullName));
+            }
+
+            var @object = property.GetMethod?.Invoke(instance, Array.Empty<object>());
+            if (null == @object)
+            {
+                throw new Exception(String.Format("Can't get object of property {0} in type {1}", propertyName, instance.GetType().FullName));
+            }
+
             globalDataList.ObjectsFromProperty.Add(@object);
         }
 
