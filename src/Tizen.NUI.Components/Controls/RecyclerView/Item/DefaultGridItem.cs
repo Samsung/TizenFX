@@ -27,10 +27,10 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class DefaultGridItem : RecyclerViewItem
     {
-        private TextLabel itemCaption;
+        private TextLabel itemLabel;
         private ImageView itemImage;
         private View itemBadge;
-        private CaptionOrientation captionOrientation;
+        private LabelOrientation labelOrientation;
         private bool layoutChanged;
 
         private DefaultGridItemStyle ItemStyle => ViewStyle as DefaultGridItemStyle;
@@ -64,10 +64,10 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Caption orientation.
+        /// Label orientation.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public enum CaptionOrientation
+        public enum LabelOrientation
         {
             /// <summary>
             /// Outside of image bottom edge.
@@ -168,26 +168,26 @@ namespace Tizen.NUI.Components
         /// DefaultGridItem's text part.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextLabel Caption
+        public TextLabel Label
         {
             get
             {
-                if (itemCaption == null)
+                if (itemLabel == null)
                 {
-                    itemCaption = CreateLabel(ItemStyle.Caption);
-                    if (itemCaption != null)
+                    itemLabel = CreateLabel(ItemStyle.Label);
+                    if (itemLabel != null)
                     {
-                        Add(itemCaption);
+                        Add(itemLabel);
                         layoutChanged = true;
                     }
                 }
-                return itemCaption;
+                return itemLabel;
             }
             internal set
             {
-                itemCaption = value;
+                itemLabel = value;
                 layoutChanged = true;
-                AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Label, itemCaption.Text);
+                AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Label, itemLabel.Text);
             }
         }
 
@@ -199,27 +199,27 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Caption.Text;
+                return Label.Text;
             }
             set
             {
-                Caption.Text = value;
+                Label.Text = value;
             }
         }
 
         /// <summary>
-        /// Caption relative orientation with image in DefaultGridItem.
+        /// Label relative orientation with image in DefaultGridItem.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public CaptionOrientation CaptionRelativeOrientation
+        public LabelOrientation LabelOrientationType
         {
             get
             {
-                return captionOrientation;
+                return labelOrientation;
             }
             set
             {
-                captionOrientation = value;
+                labelOrientation = value;
                 layoutChanged = true;
             }
         }
@@ -235,8 +235,8 @@ namespace Tizen.NUI.Components
             base.ApplyStyle(viewStyle);
             if (viewStyle != null && viewStyle is DefaultGridItemStyle defaultStyle)
             {
-                if (itemCaption != null)
-                    itemCaption.ApplyStyle(defaultStyle.Caption);
+                if (itemLabel != null)
+                    itemLabel.ApplyStyle(defaultStyle.Label);
                 if (itemImage != null)
                     itemImage.ApplyStyle(defaultStyle.Image);
                 if (itemBadge != null)
@@ -273,11 +273,11 @@ namespace Tizen.NUI.Components
         protected override void MeasureChild()
         {
             //nothing to do.
-            if (itemCaption)
+            if (itemLabel)
             {
                 var pad = Padding;
-                var margin = itemCaption.Margin;
-                itemCaption.SizeWidth = SizeWidth - pad.Start - pad.End - margin.Start - margin.End;
+                var margin = itemLabel.Margin;
+                itemLabel.SizeWidth = SizeWidth - pad.Start - pad.End - margin.Start - margin.End;
             }
         }
 
@@ -296,15 +296,15 @@ namespace Tizen.NUI.Components
             RelativeLayout.SetRightRelativeOffset(itemImage, 1.0F);
             RelativeLayout.SetHorizontalAlignment(itemImage, RelativeLayout.Alignment.Center);
 
-            if (itemCaption != null)
+            if (itemLabel != null)
             {
-                itemCaption.RaiseAbove(itemImage);
-                RelativeLayout.SetLeftTarget(itemCaption, itemImage);
-                RelativeLayout.SetLeftRelativeOffset(itemCaption, 0.0F);
-                RelativeLayout.SetRightTarget(itemCaption, itemImage);
-                RelativeLayout.SetRightRelativeOffset(itemCaption, 1.0F);
-                RelativeLayout.SetHorizontalAlignment(itemCaption, RelativeLayout.Alignment.Center);
-                RelativeLayout.SetFillHorizontal(itemCaption, true);
+                itemLabel.RaiseAbove(itemImage);
+                RelativeLayout.SetLeftTarget(itemLabel, itemImage);
+                RelativeLayout.SetLeftRelativeOffset(itemLabel, 0.0F);
+                RelativeLayout.SetRightTarget(itemLabel, itemImage);
+                RelativeLayout.SetRightRelativeOffset(itemLabel, 1.0F);
+                RelativeLayout.SetHorizontalAlignment(itemLabel, RelativeLayout.Alignment.Center);
+                RelativeLayout.SetFillHorizontal(itemLabel, true);
             }
             else
             {
@@ -324,20 +324,20 @@ namespace Tizen.NUI.Components
                 RelativeLayout.SetHorizontalAlignment(itemBadge, RelativeLayout.Alignment.End);
             }
 
-            switch (captionOrientation)
+            switch (labelOrientation)
             {
-                case CaptionOrientation.OutsideBottom:
-                    if (itemCaption != null)
+                case LabelOrientation.OutsideBottom:
+                    if (itemLabel != null)
                     {
-                        RelativeLayout.SetTopTarget(itemCaption, this);
-                        RelativeLayout.SetTopRelativeOffset(itemCaption, 1.0F);
-                        RelativeLayout.SetBottomTarget(itemCaption, this);
-                        RelativeLayout.SetBottomRelativeOffset(itemCaption, 1.0F);
-                        RelativeLayout.SetVerticalAlignment(itemCaption, RelativeLayout.Alignment.End);
+                        RelativeLayout.SetTopTarget(itemLabel, this);
+                        RelativeLayout.SetTopRelativeOffset(itemLabel, 1.0F);
+                        RelativeLayout.SetBottomTarget(itemLabel, this);
+                        RelativeLayout.SetBottomRelativeOffset(itemLabel, 1.0F);
+                        RelativeLayout.SetVerticalAlignment(itemLabel, RelativeLayout.Alignment.End);
 
                         RelativeLayout.SetTopTarget(itemImage, this);
                         RelativeLayout.SetTopRelativeOffset(itemImage, 0.0F);
-                        RelativeLayout.SetBottomTarget(itemImage, itemCaption);
+                        RelativeLayout.SetBottomTarget(itemImage, itemLabel);
                         RelativeLayout.SetBottomRelativeOffset(itemImage, 0.0F);
                         RelativeLayout.SetVerticalAlignment(itemImage, RelativeLayout.Alignment.Center);
                     }
@@ -352,16 +352,16 @@ namespace Tizen.NUI.Components
                     }
                     break;
 
-                case CaptionOrientation.OutsideTop:
-                    if (itemCaption != null)
+                case LabelOrientation.OutsideTop:
+                    if (itemLabel != null)
                     {
-                        RelativeLayout.SetTopTarget(itemCaption, this);
-                        RelativeLayout.SetTopRelativeOffset(itemCaption, 0.0F);
-                        RelativeLayout.SetBottomTarget(itemCaption, this);
-                        RelativeLayout.SetBottomRelativeOffset(itemCaption, 0.0F);
-                        RelativeLayout.SetVerticalAlignment(itemCaption, RelativeLayout.Alignment.Start);
+                        RelativeLayout.SetTopTarget(itemLabel, this);
+                        RelativeLayout.SetTopRelativeOffset(itemLabel, 0.0F);
+                        RelativeLayout.SetBottomTarget(itemLabel, this);
+                        RelativeLayout.SetBottomRelativeOffset(itemLabel, 0.0F);
+                        RelativeLayout.SetVerticalAlignment(itemLabel, RelativeLayout.Alignment.Start);
 
-                        RelativeLayout.SetTopTarget(itemImage, itemCaption);
+                        RelativeLayout.SetTopTarget(itemImage, itemLabel);
                         RelativeLayout.SetTopRelativeOffset(itemImage, 1.0F);
                         RelativeLayout.SetBottomTarget(itemImage, this);
                         RelativeLayout.SetBottomRelativeOffset(itemImage, 1.0F);
@@ -378,14 +378,14 @@ namespace Tizen.NUI.Components
                     }
                     break;
 
-                case CaptionOrientation.InsideBottom:
-                    if (itemCaption != null)
+                case LabelOrientation.InsideBottom:
+                    if (itemLabel != null)
                     {
-                        RelativeLayout.SetTopTarget(itemCaption, this);
-                        RelativeLayout.SetTopRelativeOffset(itemCaption, 1.0F);
-                        RelativeLayout.SetBottomTarget(itemCaption, this);
-                        RelativeLayout.SetBottomRelativeOffset(itemCaption, 1.0F);
-                        RelativeLayout.SetVerticalAlignment(itemCaption, RelativeLayout.Alignment.End);
+                        RelativeLayout.SetTopTarget(itemLabel, this);
+                        RelativeLayout.SetTopRelativeOffset(itemLabel, 1.0F);
+                        RelativeLayout.SetBottomTarget(itemLabel, this);
+                        RelativeLayout.SetBottomRelativeOffset(itemLabel, 1.0F);
+                        RelativeLayout.SetVerticalAlignment(itemLabel, RelativeLayout.Alignment.End);
 
                         RelativeLayout.SetTopTarget(itemImage, this);
                         RelativeLayout.SetTopRelativeOffset(itemImage, 0.0F);
@@ -404,14 +404,14 @@ namespace Tizen.NUI.Components
                     }
                     break;
 
-                case CaptionOrientation.InsideTop:
-                    if (itemCaption != null)
+                case LabelOrientation.InsideTop:
+                    if (itemLabel != null)
                     {
-                        RelativeLayout.SetTopTarget(itemCaption, this);
-                        RelativeLayout.SetTopRelativeOffset(itemCaption, 0.0F);
-                        RelativeLayout.SetBottomTarget(itemCaption, this);
-                        RelativeLayout.SetBottomRelativeOffset(itemCaption, 0.0F);
-                        RelativeLayout.SetVerticalAlignment(itemCaption, RelativeLayout.Alignment.Start);
+                        RelativeLayout.SetTopTarget(itemLabel, this);
+                        RelativeLayout.SetTopRelativeOffset(itemLabel, 0.0F);
+                        RelativeLayout.SetBottomTarget(itemLabel, this);
+                        RelativeLayout.SetBottomRelativeOffset(itemLabel, 0.0F);
+                        RelativeLayout.SetVerticalAlignment(itemLabel, RelativeLayout.Alignment.Start);
 
                         RelativeLayout.SetTopTarget(itemImage, this);
                         RelativeLayout.SetTopRelativeOffset(itemImage, 0.0F);
@@ -475,10 +475,10 @@ namespace Tizen.NUI.Components
                     Utility.Dispose(itemImage);
                     itemImage = null;
                 }
-                if (itemCaption != null)
+                if (itemLabel != null)
                 {
-                    Utility.Dispose(itemCaption);
-                    itemCaption = null;
+                    Utility.Dispose(itemLabel);
+                    itemLabel = null;
                 }
 
             }
