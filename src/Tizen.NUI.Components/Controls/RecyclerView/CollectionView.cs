@@ -232,13 +232,8 @@ namespace Tizen.NUI.Components
                     newNotifyCollectionChanged.CollectionChanged += CollectionChanged;
                 }
 
-                if (InternalItemSource != null) InternalItemSource.Dispose();
-                InternalItemSource = ItemsSourceFactory.Create(this);
-
-                if (itemsLayouter == null) return;
-
                 needInitalizeLayouter = true;
-                Init();
+                InitializeLayout();
             }
         }
 
@@ -265,7 +260,7 @@ namespace Tizen.NUI.Components
                 }
 
                 needInitalizeLayouter = true;
-                Init();
+                InitializeLayout();
             }
         }
 
@@ -301,7 +296,7 @@ namespace Tizen.NUI.Components
                 {
                     itemsLayouter.Padding = new Extents(layouterStyle.Padding);
                 }
-                Init();
+                InitializeLayout();
             }
         }
 
@@ -392,7 +387,7 @@ namespace Tizen.NUI.Components
                 }
                 header = value;
                 needInitalizeLayouter = true;
-                Init();
+                InitializeLayout();
             }
         }
 
@@ -420,7 +415,7 @@ namespace Tizen.NUI.Components
                 }
                 footer = value;
                 needInitalizeLayouter = true;
-                Init();
+                InitializeLayout();
             }
         }
 
@@ -435,15 +430,7 @@ namespace Tizen.NUI.Components
             {
                 isGrouped = value;
                 needInitalizeLayouter = true;
-                //Need to re-intialize Internal Item Source.
-                if (InternalItemSource != null)
-                {
-                    InternalItemSource.Dispose();
-                    InternalItemSource = null;
-                }
-                if (ItemsSource != null)
-                    InternalItemSource = ItemsSourceFactory.Create(this);
-                Init();
+                InitializeLayout();
             }
         }
 
@@ -463,7 +450,7 @@ namespace Tizen.NUI.Components
             {
                 groupHeaderTemplate = value;
                 needInitalizeLayouter = true;
-                Init();
+                InitializeLayout();
             }
         }
 
@@ -482,7 +469,7 @@ namespace Tizen.NUI.Components
             {
                 groupFooterTemplate = value;
                 needInitalizeLayouter = true;
-                Init();
+                InitializeLayout();
             }
         }
 
@@ -514,7 +501,7 @@ namespace Tizen.NUI.Components
             base.OnRelayout(size, container);
 
             wasRelayouted = true;
-            if (needInitalizeLayouter) Init();
+            if (needInitalizeLayouter) InitializeLayout();
         }
 
         /// <inheritdoc/>
@@ -927,6 +914,46 @@ namespace Tizen.NUI.Components
             //Selection Callback
         }
 
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void InitializeLayout()
+        {
+            if (ItemsSource == null) return;
+            if (ItemsLayouter == null) return;
+            if (ItemTemplate == null) return;
+
+            if (disposed) return;
+
+            if (!wasRelayouted) return;
+
+            if (isGrouped)
+            {
+                if (GroupHeaderTemplate == null)
+                {
+                    throw new Exception("GroupHeaderTemplate must be exist in grouped ItemSource!");                    
+                }
+            }
+
+            if (needInitalizeLayouter)
+            {
+                //Need to re-intialize Internal Item Source.
+                if (InternalItemSource != null)
+                {
+                    InternalItemSource.Dispose();
+                    InternalItemSource = null;
+                }
+                InternalItemSource = ItemsSourceFactory.Create(this);
+
+                InternalItemSource.HasHeader = (header != null);
+                InternalItemSource.HasFooter = (footer != null);
+                ItemsLayouter.Clear();
+                ItemsLayouter.Initialize(this);
+                needInitalizeLayouter = false;
+            }
+
+            ItemsLayouter.RequestLayout(0.0f, true);
+        }
+
         /// <summary>
         /// Adjust scrolling position by own scrolling rules.
         /// Override this function when developer wants to change destination of flicking.(e.g. always snap to center of item)
@@ -950,13 +977,6 @@ namespace Tizen.NUI.Components
         protected override void OnScrolling(object source, ScrollEventArgs args)
         {
             if (disposed) return;
-
-            if (needInitalizeLayouter)
-            {
-                ItemsLayouter.Initialize(this);
-                needInitalizeLayouter = false;
-            }
-
             base.OnScrolling(source, args);
         }
 
