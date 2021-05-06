@@ -308,6 +308,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="policy">The policy being set.</param>
         /// <param name="dimension">The policy is being set for.</param>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated. Since Tizen.NUI.ResizePolicyType is deprecated, OnSetResizePolicy is no longer supported. Please do not use this.")]
         public virtual void OnSetResizePolicy(ResizePolicyType policy, DimensionType dimension)
         {
         }
