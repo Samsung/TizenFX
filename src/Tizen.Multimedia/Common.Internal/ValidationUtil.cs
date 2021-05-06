@@ -15,7 +15,9 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 
 namespace Tizen.Multimedia
 {
@@ -42,6 +44,27 @@ namespace Tizen.Multimedia
             if (Features.IsSupported(featureKey) == false)
             {
                 throw new NotSupportedException($"The feature({featureKey}) is not supported.");
+            }
+        }
+
+        internal static void ValidateIsNullOrEmpty(string value, string paramName)
+        {
+            if (value == null)
+            {
+                throw new ArgumentNullException(paramName);
+            }
+
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                throw new ArgumentException(paramName + " is a zero-length string.", paramName);
+            }
+        }
+
+        internal static void ValidateIsAny<T>(this IEnumerable<T> enumerable)
+        {
+            if (enumerable == null || !enumerable.Any<T>())
+            {
+                throw new ArgumentNullException(nameof(enumerable));
             }
         }
     }
