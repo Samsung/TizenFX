@@ -32,8 +32,8 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebSettings_AllowScriptsOpenWindows")]
             public static extern void AllowScriptsOpenWindows(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebSettings_AreImagesAutomaticallyLoaded")]
-            public static extern bool AreImagesAutomaticallyLoaded(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebSettings_AreImagesLoadedAutomatically")]
+            public static extern bool AreImagesLoadedAutomatically(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebSettings_AllowImagesLoadAutomatically")]
             public static extern void AllowImagesLoadAutomatically(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
