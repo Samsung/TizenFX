@@ -18,13 +18,29 @@ using System;
 
 namespace Tizen.Multimedia.Remoting
 {
+    /// <summary>
+    /// Provides data for the <see cref="WebRTC.IceCandidate"/> event.
+    /// </summary>
+    /// <since_tizen> 9 </since_tizen>
     public class WebRTCIceCandicateEventArgs : EventArgs
     {
-        internal WebRTCIceCandicateEventArgs(string iceCandidate) =>
+        internal WebRTCIceCandicateEventArgs(string iceCandidate)
+        {
             ICECandicate = iceCandidate;
+        }
 
+        /// <summary>
+        /// Gets the ICE candidate.
+        /// </summary>
+        /// <value>The ICE candidate.</value>
+        /// <since_tizen> 9 </since_tizen>
         public string ICECandicate { get; }
 
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <returns>A string that represents the current object.</returns>
+        /// <since_tizen> 9 </since_tizen>
         public override string ToString() => $"ICE candidate={ICECandicate}";
     }
 }

@@ -21,12 +21,21 @@ using static Interop;
 
 namespace Tizen.Multimedia.Remoting
 {
+    /// <summary>
+    /// Provides the ability to control WebRTCSignalingServer.
+    /// </summary>
+    /// <since_tizen> 9 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class WebRTCSignalingServer : IDisposable
     {
         private readonly IntPtr _handle;
         private bool _disposed;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WebRTCSignalingServer"/> class.
+        /// </summary>
+        /// <param name="port">The server port.</param>
+        /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public WebRTCSignalingServer(int port)
         {
@@ -36,6 +45,10 @@ namespace Tizen.Multimedia.Remoting
             Debug.Assert(true);
         }
 
+        /// <summary>
+        /// Starts the signaling server.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Start()
         {
@@ -45,6 +58,10 @@ namespace Tizen.Multimedia.Remoting
                 ThrowIfFailed("Failed to start signaling server");
         }
 
+        /// <summary>
+        /// Stops the signaling server.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Stop()
         {
@@ -54,12 +71,27 @@ namespace Tizen.Multimedia.Remoting
                 ThrowIfFailed("Failed to stop signaling server");
         }
 
+        #region dispose support
+        internal bool IsDisposed => _disposed;
+        /// <summary>
+        /// Releases all resources used by the current instance.
+        /// </summary>
+        /// <exception cref="ObjectDisposedException">The WebRTCSignalingServer has already been disposed.</exception>
+        /// <since_tizen> 9 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize((object)this);
         }
 
+        /// <summary>
+        /// Releases the unmanaged resources used by the <see cref="WebRTCSignalingServer"/>.
+        /// </summary>
+        /// <param name="disposing">
+        /// true to release both managed and unmanaged resources;
+        /// false to release only unmanaged resources.
+        /// </param>
+        /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void Dispose(bool disposing)
         {
@@ -83,51 +115,58 @@ namespace Tizen.Multimedia.Remoting
                 throw new ObjectDisposedException(nameof(WebRTCSignalingServer));
             }
         }
-
-        internal bool IsDisposed => _disposed;
+        #endregion dispose support
     }
 
+
+    /// <summary>
+    /// Provides the ability to control WebRTCSignalingClient.
+    /// </summary>
+    /// <since_tizen> 9 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class WebRTCSignalingClient : IDisposable
     {
         private readonly IntPtr _handle;
-        private readonly string _serverIp;
-        private readonly int _port;
         private bool _isConnected;
         private SignalingClient.SignalingMessageCallback _signalingMessageCallback;
-        private object messageLock = new object();
         private bool _disposed;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WebRTCSignalingClient"/> class.
+        /// </summary>
+        /// <param name="serverIp">The server IP.</param>
+        /// <param name="port">The server port.</param>
+        /// <seealso cref="GetID"/>
+        /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public WebRTCSignalingClient(string serverIp, int port)
         {
             IntPtr zero = IntPtr.Zero;
+
             ValidationUtil.ValidateIsNullOrEmpty(serverIp, nameof(serverIp));
-            _serverIp = serverIp;
-            _port = port;
+
             _signalingMessageCallback = (type, message, _) =>
             {
-                Log.Info("Tizen.Multimedia.Remoting", $"Signaling Message callback {type}");
+                Log.Info(WebRTCLog.Tag, $"type:{type}, message:{message}");
 
                 if (type == SignalingMessageType.Connected)
                 {
                     _isConnected = true;
                 }
 
-                EventHandler<WebRTCSignalingEventArgs> signalingMessage = _signalingMessage;
-                if (signalingMessage == null)
-                {
-                    return;
-                }
-
-                signalingMessage(this, new WebRTCSignalingEventArgs(type, message));
+                _signalingMessage?.Invoke(this, new WebRTCSignalingEventArgs(type, message));
             };
 
-            SignalingClient.Connect(serverIp, port, _signalingMessageCallback, zero, out _handle).ThrowIfFailed("Failed to connect to server");
+            SignalingClient.Connect(serverIp, port, _signalingMessageCallback, zero, out _handle).
+                ThrowIfFailed("Failed to connect to server");
         }
 
         private event EventHandler<WebRTCSignalingEventArgs> _signalingMessage;
 
+        /// <summary>
+        /// Occurs when a message to be handled is sent from the remote peer or the signaling server.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<WebRTCSignalingEventArgs> SignalingMessage
         {
@@ -143,9 +182,28 @@ namespace Tizen.Multimedia.Remoting
             }
         }
 
+        /// <summary>
+        /// Gets the state whether signaling client is connected to remote peer or not.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsConnected => _isConnected;
+
+        /// <summary>
+        /// Gets the signaling client ID.
+        /// </summary>
+        /// <remarks>
+        /// This method must be called after <see cref="SignalingMessage"/> event is occurred with <see cref="SignalingMessageType.Connected"/>.
+        /// </remarks>
+        /// <returns>The signaling client ID.</returns>
+        /// <exception cref="ObjectDisposedException">The WebRTCSignalingClient has already been disposed.</exception>
+        /// <exception cref="InvalidOperationException">The signaling client is not connected yet.</exception>
+        /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int GetID()
         {
+            ValidateNotDisposed();
+
             if (!IsConnected)
             {
                 throw new InvalidOperationException("Client is not connected to server yet.");
@@ -157,6 +215,13 @@ namespace Tizen.Multimedia.Remoting
             return id;
         }
 
+        /// <summary>
+        /// Requests session with peer ID.
+        /// </summary>
+        /// <param name="peerId">The ID of remote peer.</param>
+        /// <exception cref="ObjectDisposedException">The WebRTCSignalingClient has already been disposed.</exception>
+        /// <see cref="SignalingMessageType.SessionEstablished"/>
+        /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RequestSession(int peerId)
         {
@@ -166,6 +231,12 @@ namespace Tizen.Multimedia.Remoting
                 ThrowIfFailed("Failed to request session to peer");
         }
 
+        /// <summary>
+        /// Sends the signaling message to remote peer.
+        /// </summary>
+        /// <param name="message"></param>
+        /// <exception cref="ObjectDisposedException">The WebRTCSignalingClient has already been disposed.</exception>
+        /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SendMessage(string message)
         {
@@ -175,15 +246,27 @@ namespace Tizen.Multimedia.Remoting
                 ThrowIfFailed("Failed to send message to peer");
         }
 
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool IsConnected => _isConnected;
-
+        #region dispose support
+        internal bool IsDisposed => _disposed;
+        /// <summary>
+        /// Releases all resources used by the current instance.
+        /// </summary>
+        /// <exception cref="ObjectDisposedException">The WebRTCSignalingClient has already been disposed.</exception>
+        /// <since_tizen> 9 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize((object)this);
         }
 
+        /// <summary>
+        /// Releases the unmanaged resources used by the <see cref="WebRTCSignalingClient"/>.
+        /// </summary>
+        /// <param name="disposing">
+        /// true to release both managed and unmanaged resources;
+        /// false to release only unmanaged resources.
+        /// </param>
+        /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void Dispose(bool disposing)
         {
@@ -209,7 +292,6 @@ namespace Tizen.Multimedia.Remoting
                 throw new ObjectDisposedException(nameof(WebRTCSignalingClient));
             }
         }
-
-        internal bool IsDisposed => _disposed;
+        #endregion dispose support
     }
 }

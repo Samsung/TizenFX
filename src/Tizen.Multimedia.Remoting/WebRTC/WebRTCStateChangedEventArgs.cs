@@ -18,6 +18,10 @@ using System;
 
 namespace Tizen.Multimedia.Remoting
 {
+    /// <summary>
+    /// Provides data for the <see cref="WebRTC.StateChanged"/> event.
+    /// </summary>
+    /// <since_tizen> 9 </since_tizen>
     public class WebRTCStateChangedEventArgs : EventArgs
     {
         internal WebRTCStateChangedEventArgs(WebRTCState previous, WebRTCState current)
@@ -26,10 +30,25 @@ namespace Tizen.Multimedia.Remoting
             Current = current;
         }
 
+        /// <summary>
+        /// The previous state.
+        /// </summary>
+        /// <value>The previous WebRTC state</value>
+        /// <since_tizen> 9 </since_tizen>
         public WebRTCState Previous { get; }
 
+        /// <summary>
+        /// The current state.
+        /// </summary>
+        /// <value>The current WebRTC state</value>
+        /// <since_tizen> 9 </since_tizen>
         public WebRTCState Current { get; }
 
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <returns>A string that represents the current object.</returns>
+        /// <since_tizen> 9 </since_tizen>
         public override string ToString() => $"Previous state={Previous}, Current state={Current}";
     }
 }

@@ -58,7 +58,7 @@ internal static partial class Interop
         internal static extern WebRTCErrorCode GetLabel(IntPtr dataChanndelHandle, out string label);
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_get_data")]
-        internal static extern WebRTCErrorCode GetData(IntPtr dataChanndelHandle, out IntPtr data, out uint size);
+        internal static extern WebRTCErrorCode GetData(IntPtr byteDataHandle, out IntPtr data, out uint size);
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_set_data_channel_cb")]
         internal static extern WebRTCErrorCode SetCreatedByPeerCb(IntPtr handle, CreatedCallback callback, IntPtr userData = default);

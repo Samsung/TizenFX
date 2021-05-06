@@ -18,11 +18,18 @@ using System;
 
 namespace Tizen.Multimedia.Remoting
 {
+    /// <summary>
+    /// Provides a means to configure display settings for video <see cref="WebRTC"/>.
+    /// </summary>
+    /// <exception cref="ArgumentNullException">The webRtc is null.</exception>
+    /// <since_tizen> 9 </since_tizen>
     public class WebRTCDisplaySettings
     {
         private readonly WebRTC _webRtc;
 
-        public WebRTCDisplaySettings(WebRTC webRtc) =>
+        internal WebRTCDisplaySettings(WebRTC webRtc)
+        {
             _webRtc = webRtc ?? throw new ArgumentNullException(nameof(webRtc));
+        }
     }
 }

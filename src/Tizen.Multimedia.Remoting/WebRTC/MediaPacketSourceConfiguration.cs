@@ -19,13 +19,26 @@ using static Interop;
 
 namespace Tizen.Multimedia.Remoting
 {
+    /// <summary>
+    /// Provides a means to configure properties and handle events for <see cref="MediaPacketSource"/>.
+    /// </summary>
+    /// <seealso cref="MediaPacketSource"/>
+    /// <since_tizen> 9 </since_tizen>
     public class MediaPacketSourceConfiguration
     {
         private readonly MediaPacketSource _owner;
         NativeWebRTC.MediaPacketBufferStatusCallback _mediaPacketBufferStatusChangedCallback;
 
-        internal MediaPacketSourceConfiguration(MediaPacketSource owner) => _owner = owner;
+        internal MediaPacketSourceConfiguration(MediaPacketSource owner)
+        {
+            _owner = owner;
+        }
 
+        /// <summary>
+        /// Occurs when the buffer underruns or overflows.
+        /// </summary>
+        /// <remarks>The event handler will be executed on an internal thread.</remarks>
+        /// <since_tizen> 9 </since_tizen>
         public event EventHandler<MediaPacketBufferStatusChangedEventArgs> BufferStatusChanged;
 
         private IntPtr Handle => _owner.WebRtc.Handle;
@@ -52,16 +65,9 @@ namespace Tizen.Multimedia.Remoting
         {
             _mediaPacketBufferStatusChangedCallback = (sourceId_, state, _) =>
             {
-                Log.Info(WebRTCLog.Tag, $"{sourceId_}, {state}");
+                Log.Info(WebRTCLog.Tag, $"sourceId:{sourceId_}, state:{state}");
 
-                var bufferStatusChanged = BufferStatusChanged;
-
-                if (bufferStatusChanged == null)
-                {
-                    return;
-                }
-
-                bufferStatusChanged(this, new MediaPacketBufferStatusChangedEventArgs(sourceId_, state));
+                BufferStatusChanged?.Invoke(this, new MediaPacketBufferStatusChangedEventArgs(sourceId_, state));
             };
 
             NativeWebRTC.SetBufferStateChangedCb(Handle, SourceId, _mediaPacketBufferStatusChangedCallback, IntPtr.Zero).

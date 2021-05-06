@@ -23,12 +23,33 @@ using static Interop;
 
 namespace Tizen.Multimedia.Remoting
 {
+    /// <summary>
+    /// Provides the ability to control WebRTC data channel.
+    /// </summary>
+    /// <since_tizen> 9 </since_tizen>
     public partial class WebRTCDataChannel : IDisposable
     {
         private readonly WebRTC _webRtc;
         private readonly IntPtr _handle;
-        private bool _disposed;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WebRTCDataChannel"/> class.
+        /// </summary>
+        /// <remarks>
+        /// The bundle is similar format as the RTCDataChannelInit members outlined https://www.w3.org/TR/webrtc/#dom-rtcdatachannelinit.<br/>
+        /// The following attributes can be set to options by using <see cref="Bundle"/> API:<br/>
+        /// 'ordered' of type bool            : Whether the channel will send data with guaranteed ordering. The default value is true.<br/>
+        /// 'max-packet-lifetime' of type int : The time in milliseconds to attempt transmitting unacknowledged data. -1 for unset. The default value is -1.<br/>
+        /// 'max-retransmits' of type int     : The number of times data will be attempted to be transmitted without acknowledgement before dropping. The default value is -1.<br/>
+        /// 'protocol' of type string         : The subprotocol used by this channel. The default value is NULL.<br/>
+        /// 'id' of type int                  : Override the default identifier selection of this channel. The default value is -1.<br/>
+        /// 'priority' of type int            : The priority to use for this channel(1:very low, 2:low, 3:medium, 4:high). The default value is 2.<br/>
+        /// </remarks>
+        /// <param name="webRtc">The WebRTC instance related this WebRTCDataChannel.</param>
+        /// <param name="bundle">The data channel option.</param>
+        /// <param name="label">The name of this data channel.</param>
+        /// <exception cref="ArgumentNullException">The webRtc or label is null.</exception>
+        /// <since_tizen> 9 </since_tizen>
         public WebRTCDataChannel(WebRTC webRtc, Bundle bundle, string label)
         {
             if (webRtc == null)
@@ -89,8 +110,18 @@ namespace Tizen.Multimedia.Remoting
             }
         }
 
+        /// <summary>
+        /// Gets the label of this data channel.
+        /// </summary>
+        /// <value>The label.</value>
+        /// <since_tizen> 9 </since_tizen>
         public string Label { get; }
 
+        /// <summary>
+        /// Sends a string data across the data channel to the remote peer.
+        /// </summary>
+        /// <param name="data">The string data to send</param>
+        /// <since_tizen> 9 </since_tizen>
         public void Send(string data)
         {
             ValidateNotDisposed();
@@ -99,6 +130,11 @@ namespace Tizen.Multimedia.Remoting
                 ThrowIfFailed("Failed to send string data");
         }
 
+        /// <summary>
+        /// Sends byte data across the data channel to the remote peer.
+        /// </summary>
+        /// <param name="data">The byte data to send</param>
+        /// <since_tizen> 9 </since_tizen>
         public void Send(byte[] data)
         {
             ValidateNotDisposed();
@@ -112,25 +148,27 @@ namespace Tizen.Multimedia.Remoting
                 ThrowIfFailed("Failed to send bytes data");
         }
 
-        public byte[] GetData()
-        {
-            ValidateNotDisposed();
+        #region Dispose support
+        private bool _disposed;
 
-            NativeDataChannel.GetData(Handle, out IntPtr data, out uint size).
-                ThrowIfFailed("Failed to get data");
-
-            byte[] destination = new byte[(int)size];
-            Marshal.Copy(data, destination, 0, (int)size);
-
-            return destination;
-        }
-
+        /// <summary>
+        /// Releases all resources used by the current instance.
+        /// </summary>
+        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <since_tizen> 9 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Releases the unmanaged resources used by the <see cref="WebRTCDataChannel"/>.
+        /// </summary>
+        /// <param name="disposing">
+        /// true to release both managed and unmanaged resources;
+        /// false to release only unmanaged resources.
+        /// </param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void Dispose(bool disposing)
         {
@@ -156,5 +194,6 @@ namespace Tizen.Multimedia.Remoting
         }
 
         internal bool IsDisposed => _disposed;
+        #endregion Dispose support
     }
 }

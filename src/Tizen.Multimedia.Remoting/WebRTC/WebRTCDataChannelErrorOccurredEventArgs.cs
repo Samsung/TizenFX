@@ -18,12 +18,26 @@ using System;
 
 namespace Tizen.Multimedia.Remoting
 {
+    /// <summary>
+    /// Provides data for the <see cref="WebRTCDataChannel.ErrorOccurred"/> event.
+    /// </summary>
+    /// <since_tizen> 9 </since_tizen>
     public class WebRTCDataChannelErrorOccurredEventArgs : EventArgs
     {
         internal WebRTCDataChannelErrorOccurredEventArgs(WebRTCError error) => Error = error;
 
+        /// <summary>
+        /// Gets the error.
+        /// </summary>
+        /// <value>The error.</value>
+        /// <since_tizen> 9 </since_tizen>
         public WebRTCError Error { get; }
 
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <returns>A string that represents the current object.</returns>
+        /// <since_tizen> 9 </since_tizen>
         public override string ToString() => $"Error={Error}";
     }
 }

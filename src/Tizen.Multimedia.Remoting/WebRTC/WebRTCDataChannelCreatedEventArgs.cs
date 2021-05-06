@@ -18,11 +18,19 @@ using System;
 
 namespace Tizen.Multimedia.Remoting
 {
+    /// <summary>
+    /// Provides data for the <see cref="WebRTC.DataChannelCreated"/> event.
+    /// </summary>
+    /// <since_tizen> 9 </since_tizen>
     public class WebRTCDataChannelCreatedEventArgs : EventArgs
     {
         internal WebRTCDataChannelCreatedEventArgs(IntPtr dataChannelHandle) =>
             DataChannel = new WebRTCDataChannel(dataChannelHandle);
 
+        /// <summary>
+        /// Gets the created data channel instance.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public WebRTCDataChannel DataChannel { get; }
     }
 }

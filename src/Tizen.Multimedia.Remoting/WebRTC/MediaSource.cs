@@ -19,6 +19,10 @@ using static Interop;
 
 namespace Tizen.Multimedia.Remoting
 {
+    /// <summary>
+    /// MediaSource is a base class for <see cref="WebRTC"/> sources.
+    /// </summary>
+    /// <since_tizen> 9 </since_tizen>
     public abstract class MediaSource
     {
         internal uint? SourceId { get; set; }
@@ -37,6 +41,13 @@ namespace Tizen.Multimedia.Remoting
 
         internal abstract void OnDetached(WebRTC webRtc);
 
+        /// <summary>
+        /// Gets the current transceiver direction.
+        /// </summary>
+        /// <remarks>The default value is <see cref="TransMode.SendRecv"/></remarks>
+        /// <param name="type"></param>
+        /// <returns>The current transceiver direction.</returns>
+        /// <since_tizen> 9 </since_tizen>
         public TransMode GetTransceiverDirection(MediaType type)
         {
             if (!SourceId.HasValue)
@@ -50,6 +61,12 @@ namespace Tizen.Multimedia.Remoting
             return mode;
         }
 
+        /// <summary>
+        /// Sets the transceiver direction of current media source.
+        /// </summary>
+        /// <param name="type">The media type.</param>
+        /// <param name="direction">The transceiver direction.</param>
+        /// <since_tizen> 9 </since_tizen>
         public void SetTransceiverDirection(MediaType type, TransMode direction)
         {
             if (!SourceId.HasValue)

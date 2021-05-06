@@ -19,6 +19,10 @@ using static Interop;
 
 namespace Tizen.Multimedia.Remoting
 {
+    /// <summary>
+    /// Provides the ability to control WebRTC.
+    /// </summary>
+    /// <since_tizen> 9 </since_tizen>
     public partial class WebRTC
     {
         private NativeWebRTC.ErrorOccurredCallback _webRtcErrorCallback;
@@ -30,20 +34,52 @@ namespace Tizen.Multimedia.Remoting
         private NativeDataChannel.CreatedCallback _webRtcDataChannelCreatedCallback;
         private uint? _trackId;
 
+        /// <summary>
+        /// Occurs when any error occurs.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public event EventHandler<WebRTCErrorOccurredEventArgs> ErrorOccurred;
 
+        /// <summary>
+        /// Occurs when internal state is changed.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public event EventHandler<WebRTCStateChangedEventArgs> StateChanged;
 
+        /// <summary>
+        /// Occurs when negotiation is needed.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public event EventHandler<EventArgs> NegotiationNeeded;
 
+        /// <summary>
+        /// Occurs when the WebRTC needs to send the ICE candidate message to the remote peer.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public event EventHandler<WebRTCIceCandicateEventArgs> IceCandidate;
 
+        /// <summary>
+        /// Occurs when a new track has been added to the WebRTC.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public event EventHandler<WebRTCTrackAddedEventArgs> TrackAdded;
 
+        /// <summary>
+        /// Occurs when each audio frame is ready to render.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public event EventHandler<WebRTCFrameEncodedEventArgs> AudioFrameEncoded;
 
+        /// <summary>
+        /// Occurs when each video frame is ready to render.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public event EventHandler<WebRTCFrameEncodedEventArgs> VideoFrameEncoded;
 
+        /// <summary>
+        /// Occurs when the data channel is created to the connection by the remote peer.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public event EventHandler<WebRTCDataChannelCreatedEventArgs> DataChannelCreated;
 
         private void RegisterEvents()

@@ -18,6 +18,10 @@ using System;
 
 namespace Tizen.Multimedia.Remoting
 {
+    /// <summary>
+    /// Provides data for the <see cref="WebRTC.ErrorOccurred"/> event.
+    /// </summary>
+    /// <since_tizen> 9 </since_tizen>
     public class WebRTCErrorOccurredEventArgs : EventArgs
     {
         internal WebRTCErrorOccurredEventArgs(WebRTCError error, WebRTCState state)
@@ -26,10 +30,25 @@ namespace Tizen.Multimedia.Remoting
             State = state;
         }
 
+        /// <summary>
+        /// Gets the error.
+        /// </summary>
+        /// <value>The error.</value>
+        /// <since_tizen> 9 </since_tizen>
         public WebRTCError Error { get; }
 
+        /// <summary>
+        /// Gets the current state.
+        /// </summary>
+        /// <value>The state.</value>
+        /// <since_tizen> 9 </since_tizen>
         public WebRTCState State { get; }
 
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <returns>A string that represents the current object.</returns>
+        /// <since_tizen> 9 </since_tizen>
         public override string ToString() => $"Error={Error}, State={State}";
     }
 }

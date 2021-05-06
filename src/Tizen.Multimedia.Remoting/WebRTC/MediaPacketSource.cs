@@ -22,6 +22,11 @@ using static Interop;
 
 namespace Tizen.Multimedia.Remoting
 {
+    /// <summary>
+    /// Represents a media packet source.
+    /// </summary>
+    /// <seealso cref="WebRTC.SetSource(MediaSource)"/>
+    /// <since_tizen> 9 </since_tizen>
     public sealed class MediaPacketSource : MediaSource
     {
         private readonly MediaFormat _audioMediaFormat;
@@ -29,6 +34,10 @@ namespace Tizen.Multimedia.Remoting
         private static List<MediaFormatAudioMimeType> _supportedAudioFormats;
         private static List<MediaFormatVideoMimeType> _supportedVideoFormats;
 
+        /// <summary>
+        /// Gets all supported audio types.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public static IEnumerable<MediaFormatAudioMimeType> SupportedAudioTypes
         {
             get
@@ -38,6 +47,10 @@ namespace Tizen.Multimedia.Remoting
             }
         }
 
+        /// <summary>
+        /// Gets all supported video types.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public static IEnumerable<MediaFormatVideoMimeType> SupportedVideoTypes
         {
             get
@@ -116,22 +129,98 @@ namespace Tizen.Multimedia.Remoting
             return new MediaPacketSourceConfiguration(this);
         }
 
+        /// <summary>
+        /// Initializes a new instance of the MediaPacketSource class
+        /// with the specified <see cref="AudioMediaFormat"/> and <see cref="VideoMediaFormat"/>.
+        /// </summary>
+        /// <param name="audioMediaFormat">The <see cref="AudioMediaFormat"/> for this source.</param>
+        /// <param name="videoMediaFormat">The <see cref="VideoMediaFormat"/> for this source.</param>
+        /// <exception cref="ArgumentNullException">Both <paramref name="audioMediaFormat"/> and <paramref name="videoMediaFormat"/> are null.</exception>
+        /// <exception cref="ArgumentException">
+        ///     <paramref name="audioMediaFormat"/> is not supported.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="videoMediaFormat"/> is not supported.
+        /// </exception>
+        /// <seealso cref="SupportedAudioTypes"/>
+        /// <seealso cref="SupportedVideoTypes"/>
+        /// <since_tizen> 9 </since_tizen>
+        public MediaPacketSource(AudioMediaFormat audioMediaFormat, VideoMediaFormat videoMediaFormat)
+        {
+            if (audioMediaFormat == null && videoMediaFormat == null)
+            {
+                throw new ArgumentNullException(string.Concat(nameof(_audioMediaFormat), " and ", nameof(_videoMediaFormat)));
+            }
+
+            _audioMediaFormat = audioMediaFormat;
+            _videoMediaFormat = videoMediaFormat;
+
+            AudioConfiguration = CreateAudioConfiguration(audioMediaFormat);
+            VideoConfiguration = CreateVideoConfiguration(videoMediaFormat);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the MediaPacketSource class with the specified <see cref="AudioMediaFormat"/>.
+        /// </summary>
+        /// <param name="audioMediaFormat">The <see cref="AudioMediaFormat"/> for this source.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="audioMediaFormat"/> is null.</exception>
+        /// <exception cref="ArgumentException"><paramref name="audioMediaFormat"/> is not supported.</exception>
+        /// <seealso cref="SupportedAudioTypes"/>
+        /// <since_tizen> 9 </since_tizen>
         public MediaPacketSource(AudioMediaFormat audioMediaFormat)
         {
             _audioMediaFormat = audioMediaFormat ?? throw new ArgumentNullException(nameof(audioMediaFormat));
             AudioConfiguration = CreateAudioConfiguration(audioMediaFormat);
         }
 
+        /// <summary>
+        /// Initializes a new instance of the MediaPacketSource class with the specified <see cref="VideoMediaFormat"/>.
+        /// </summary>
+        /// <param name="videoMediaFormat">The <see cref="VideoMediaFormat"/> for this source.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="videoMediaFormat"/> is null.</exception>
+        /// <exception cref="ArgumentException"><paramref name="videoMediaFormat"/> is not supported.</exception>
+        /// <seealso cref="SupportedVideoTypes"/>
+        /// <since_tizen> 9 </since_tizen>
         public MediaPacketSource(VideoMediaFormat videoMediaFormat)
         {
             _videoMediaFormat = videoMediaFormat ?? throw new ArgumentNullException(nameof(videoMediaFormat));
             VideoConfiguration = CreateVideoConfiguration(videoMediaFormat);
         }
 
+        /// <summary>
+        /// Gets the audio configuration, or null if no AudioMediaFormat is specified in the constructor.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public MediaPacketSourceConfiguration AudioConfiguration { get; }
 
+        /// <summary>
+        /// Gets the video configuration, or null if no VideoMediaFormat is specified in the constructor.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public MediaPacketSourceConfiguration VideoConfiguration { get; }
 
+        /// <summary>
+        /// Pushes elementary stream to decode audio or video.
+        /// </summary>
+        /// <remarks>
+        /// This source must be set as a source to a WebRTC and the WebRTC must be in the
+        /// <see cref="WebRTCState.Negotiating"/> or <see cref="WebRTCState.Playing"/> state
+        /// </remarks>
+        /// <param name="packet">The <see cref="MediaPacket"/> to decode.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     This source is not set as a source to a WebRTC.<br/>
+        ///     -or-<br/>
+        ///     The WebRTC is not in the valid state.
+        /// </exception>
+        /// <exception cref="ArgumentNullException"><paramref name="packet"/> is null.</exception>
+        /// <exception cref="ObjectDisposedException"><paramref name="packet"/> has been disposed.</exception>
+        /// <exception cref="ArgumentException">
+        ///     <paramref name="packet"/> is neither video nor audio type.<br/>
+        ///     -or-<br/>
+        ///     The format of packet is not matched with the specified format in the constructor.
+        /// </exception>
+        /// <seealso cref="WebRTC.SetSource(MediaSource)"/>
+        /// <seealso cref="MediaPacket"/>
+        /// <since_tizen> 9 </since_tizen>
         public void Push(MediaPacket packet)
         {
             if (WebRtc == null)

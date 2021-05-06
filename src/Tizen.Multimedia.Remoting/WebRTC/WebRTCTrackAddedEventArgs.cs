@@ -18,6 +18,10 @@ using System;
 
 namespace Tizen.Multimedia.Remoting
 {
+    /// <summary>
+    /// Provides data for the <see cref="WebRTC.TrackAdded"/> event.
+    /// </summary>
+    /// <since_tizen> 9 </since_tizen>
     public class WebRTCTrackAddedEventArgs : EventArgs
     {
         internal WebRTCTrackAddedEventArgs(MediaType type, uint id)
@@ -26,10 +30,25 @@ namespace Tizen.Multimedia.Remoting
             ID = id;
         }
 
+        /// <summary>
+        /// Gets the media type.
+        /// </summary>
+        /// <value>The media type.</value>
+        /// <since_tizen> 9 </since_tizen>
         public MediaType Type { get; }
 
+        /// <summary>
+        /// Gets the track ID.
+        /// </summary>
+        /// <value>The track ID.</value>
+        /// <since_tizen> 9 </since_tizen>
         public uint ID { get; }
 
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <returns>A string that represents the current object.</returns>
+        /// <since_tizen> 9 </since_tizen>
         public override string ToString() => $"Track type={Type}, Track ID={ID}";
     }
 }

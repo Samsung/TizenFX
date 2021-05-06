@@ -18,6 +18,10 @@ using System;
 
 namespace Tizen.Multimedia.Remoting
 {
+    /// <summary>
+    /// Provides data for the <see cref="MediaPacketSourceConfiguration.BufferStatusChanged"/> event.
+    /// </summary>
+    /// <since_tizen> 9 </since_tizen>
     public class MediaPacketBufferStatusChangedEventArgs : EventArgs
     {
         internal MediaPacketBufferStatusChangedEventArgs(uint sourceId, MediaPacketBufferStatus status)
@@ -26,10 +30,25 @@ namespace Tizen.Multimedia.Remoting
             Status = status;
         }
 
+        /// <summary>
+        /// Gets the source ID.
+        /// </summary>
+        /// <value>The source ID.</value>
+        /// <since_tizen> 9 </since_tizen>
         public uint SourceId { get; }
 
+        /// <summary>
+        /// Gets the media packet buffer status.
+        /// </summary>
+        /// <value>The media packet buffer status.</value>
+        /// <since_tizen> 9 </since_tizen>
         public MediaPacketBufferStatus Status { get; }
 
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <returns>A string that represents the current object.</returns>
+        /// <since_tizen> 9 </since_tizen>
         public override string ToString() => $"Source ID={SourceId}, Buffer status={Status}";
     }
 }

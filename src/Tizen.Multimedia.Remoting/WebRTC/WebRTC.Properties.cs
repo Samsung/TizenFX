@@ -22,6 +22,10 @@ using NativeWebRTC = Interop.NativeWebRTC;
 
 namespace Tizen.Multimedia.Remoting
 {
+    /// <summary>
+    /// Provides the ability to control WebRTC.
+    /// </summary>
+    /// <since_tizen> 9 </since_tizen>
     public partial class WebRTC
     {
         internal IntPtr Handle
@@ -33,6 +37,12 @@ namespace Tizen.Multimedia.Remoting
             }
         }
 
+        /// <summary>
+        /// Gets the state of the WebRTC.
+        /// </summary>
+        /// <value>The current state of the WebRTC.</value>
+        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <since_tizen> 9 </since_tizen>
         public WebRTCState State
         {
             get
@@ -48,6 +58,12 @@ namespace Tizen.Multimedia.Remoting
             }
         }
 
+        /// <summary>
+        /// Gets or sets the STUN server url.
+        /// </summary>
+        /// <value>The STUN server url</value>
+        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <since_tizen> 9 </since_tizen>
         public string StunServer
         {
             get
@@ -73,6 +89,11 @@ namespace Tizen.Multimedia.Remoting
             }
         }
 
+        /// <summary>
+        /// Gets the display settings.
+        /// </summary>
+        /// <value>A <see cref="WebRTCDisplaySettings"/> that specifies the display settings.</value>
+        /// <since_tizen> 9 </since_tizen>
         public WebRTCDisplaySettings DisplaySettings { get; }
 
         private WebRTCErrorCode SetDisplay(Display display)
@@ -85,6 +106,18 @@ namespace Tizen.Multimedia.Remoting
             _display?.SetOwner(this);
         }
 
+        /// <summary>
+        /// Gets or sets the display.
+        /// </summary>
+        /// <value>A <see cref="Multimedia.Display"/> that specifies the display.</value>
+        /// <remarks>
+        ///     <see cref="Display"/> must be called in <see cref="TrackAdded"/> event.<br/>
+        ///     the display is created with <see cref="MediaView"/>.
+        /// </remarks>
+        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed of.</exception>
+        /// <exception cref="ArgumentException">The value has already been assigned to another WebRTC.</exception>
+        /// <exception cref="InvalidOperationException">The WebRTC is not called in <see cref="TrackAdded"/> event.</exception>
+        /// <since_tizen> 9 </since_tizen>
         public Display Display
         {
             get => _display;

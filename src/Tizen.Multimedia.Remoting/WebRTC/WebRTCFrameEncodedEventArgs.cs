@@ -18,21 +18,45 @@ using System;
 
 namespace Tizen.Multimedia.Remoting
 {
+    /// <summary>
+    /// Provides data for the <see cref="WebRTC.AudioFrameEncoded"/> or <see cref="WebRTC.VideoFrameEncoded"/> event.
+    /// </summary>
+    /// <since_tizen> 9 </since_tizen>
     public class WebRTCFrameEncodedEventArgs : EventArgs
     {
-        internal WebRTCFrameEncodedEventArgs(MediaType type, uint id, MediaPacket packet)
+        internal WebRTCFrameEncodedEventArgs(MediaType type, uint trackId, MediaPacket packet)
         {
             Type = type;
-            ID = id;
+            TrackID = trackId;
             Packet = packet;
         }
 
+        /// <summary>
+        /// Gets the media type.
+        /// </summary>
+        /// <value>The media type.</value>
+        /// <since_tizen> 9 </since_tizen>
         public MediaType Type { get; }
 
-        public uint ID { get; }
+        /// <summary>
+        /// Gets the track ID.
+        /// </summary>
+        /// <value>The track ID.</value>
+        /// <since_tizen> 9 </since_tizen>
+        public uint TrackID { get; }
 
+        /// <summary>
+        /// Gets the media packet which has a frame data.
+        /// </summary>
+        /// <value>The media packet which has a frame data.</value>
+        /// <since_tizen> 9 </since_tizen>
         public MediaPacket Packet { get; }
 
-        public override string ToString() => $"Track type={Type}, Track ID={ID}";
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <returns>A string that represents the current object.</returns>
+        /// <since_tizen> 9 </since_tizen>
+        public override string ToString() => $"Track type={Type}, Track ID={TrackID}";
     }
 }

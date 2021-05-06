@@ -19,6 +19,10 @@ using static Interop;
 
 namespace Tizen.Multimedia.Remoting
 {
+    /// <summary>
+    /// Provides the ability to control WebRTC data channel.
+    /// </summary>
+    /// <since_tizen> 9 </since_tizen>
     public partial class WebRTCDataChannel
     {
         private NativeDataChannel.OpenedCallback _webRtcDataChannelOpenedCallback;
@@ -26,12 +30,28 @@ namespace Tizen.Multimedia.Remoting
         private NativeDataChannel.MessageReceivedCallback _webRtcDataChannelMsgRecvCallback;
         private NativeDataChannel.ErrorCallback _webRtcDataChannelErrorCallback;
 
+        /// <summary>
+        /// Occurs when the data channel's underlying data transport is established.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public event EventHandler<EventArgs> Opened;
 
+        /// <summary>
+        /// Occurs when the data channel has closed down.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public event EventHandler<EventArgs> Closed;
 
+        /// <summary>
+        /// Occurs when a message is received from the remote peer.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public event EventHandler<WebRTCDataChannelMessageReceivedEventArgs> MessageReceived;
 
+        /// <summary>
+        /// Occurs when an error occurs on the data channel.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public event EventHandler<WebRTCDataChannelErrorOccurredEventArgs> ErrorOccurred;
 
         private void RegisterEvents()
