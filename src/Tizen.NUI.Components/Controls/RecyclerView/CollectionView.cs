@@ -26,15 +26,15 @@ using Tizen.NUI.Binding;
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// This class provides a View that can layouting items in list and grid with high performance.
+    /// Selectable RecyclerView that presenting a collection of items with variable layouters.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class CollectionView : RecyclerView
     {
         /// <summary>
         /// Binding Property of selected item in single selection.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static readonly BindableProperty SelectedItemProperty =
             BindableProperty.Create(nameof(SelectedItem), typeof(object), typeof(CollectionView), null,
                 propertyChanged: (bindable, oldValue, newValue) =>
@@ -62,7 +62,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Binding Property of selected items list in multiple selection.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static readonly BindableProperty SelectedItemsProperty =
             BindableProperty.Create(nameof(SelectedItems), typeof(IList<object>), typeof(CollectionView), null,
                 propertyChanged: (bindable, oldValue, newValue) =>
@@ -84,7 +84,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Binding Property of selected items list in multiple selection.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static readonly BindableProperty SelectionModeProperty =
             BindableProperty.Create(nameof(SelectionMode), typeof(ItemSelectionMode), typeof(CollectionView), ItemSelectionMode.None,
                 propertyChanged: (bindable, oldValue, newValue) =>
@@ -124,7 +124,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Base constructor.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public CollectionView() : base()
         {
             FocusGroup = true;
@@ -135,7 +135,7 @@ namespace Tizen.NUI.Components
         /// Base constructor with ItemsSource
         /// </summary>
         /// <param name="itemsSource">item's data source</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public CollectionView(IEnumerable itemsSource) : this()
         {
             ItemsSource = itemsSource;
@@ -157,15 +157,15 @@ namespace Tizen.NUI.Components
 
         /// <summary>
         /// Event of Selection changed.
-        /// old selection list and new selection will be provided.
+        /// previous selection list and current selection will be provided.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public event EventHandler<SelectionChangedEventArgs> SelectionChanged;
 
         /// <summary>
         /// Align item in the viewport when ScrollTo() calls.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public enum ItemScrollTo
         {
             /// <summary>
@@ -174,25 +174,29 @@ namespace Tizen.NUI.Components
             /// item is under the scroll viewport, item will be came into end,
             /// item is in the scroll viewport, no scroll.
             /// </summary>
+            /// <since_tizen> 9 </since_tizen>
             Nearest,
             /// <summary>
             /// Scroll to show item in start of the viewport.
             /// </summary>
+            /// <since_tizen> 9 </since_tizen>
             Start,
             /// <summary>
             /// Scroll to show item in center of the viewport.
             /// </summary>
+            /// <since_tizen> 9 </since_tizen>
             Center,
             /// <summary>
             /// Scroll to show item in end of the viewport.
             /// </summary>
+            /// <since_tizen> 9 </since_tizen>
             End,
         }
 
         /// <summary>
-        /// Item's source data.
+        /// Item's source data in IEnumerable.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public override IEnumerable ItemsSource
         {
             get
@@ -240,8 +244,11 @@ namespace Tizen.NUI.Components
 
         /// <summary>
         /// DataTemplate for items.
+        /// Create visual contents and binding properties.
+        /// return object type is restricted RecyclerViewItem.
+        /// <seealso cref="Tizen.NUI.Binding.DataTemplate" />
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public override DataTemplate ItemTemplate
         {
             get
@@ -264,8 +271,12 @@ namespace Tizen.NUI.Components
 
         /// <summary>
         /// Items Layouter.
+        /// Layouting items on the scroll ContentContainer.
+        /// <seealso cref="ItemsLayouter" />
+        /// <seealso cref="LinearLayouter" />
+        /// <seealso cref="GridLayouter" />
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public virtual ItemsLayouter ItemsLayouter
         {
             get
@@ -297,7 +308,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Scrolling direction to display items layout.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public new Direction ScrollingDirection
         {
             get
@@ -318,7 +329,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Selected item in single selection.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public object SelectedItem
         {
             get => GetValue(SelectedItemProperty);
@@ -328,7 +339,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Selected items list in multiple selection.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public IList<object> SelectedItems
         {
             get => (IList<object>)GetValue(SelectedItemsProperty);
@@ -338,7 +349,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Selection mode to handle items selection. See ItemSelectionMode for details.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public ItemSelectionMode SelectionMode
         {
             get => (ItemSelectionMode)GetValue(SelectionModeProperty);
@@ -358,10 +369,10 @@ namespace Tizen.NUI.Components
         public object SelectionChangedCommandParameter { set; get; }
 
         /// <summary>
-        /// Header item which placed in top-most position.
-        /// note : internal index and count will be increased.
+        /// Header item placed in top-most position.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <remarks>Please note that, internal index will be increased by header.</remarks>
+        /// <since_tizen> 9 </since_tizen>
         public RecyclerViewItem Header
         {
             get => header;
@@ -386,10 +397,10 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Footer item which placed in bottom-most position.
-        /// note : internal count will be increased.
+        /// Footer item placed in bottom-most position.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <remarks>Please note that, internal index will be increased by footer.</remarks>
+        /// <since_tizen> 9 </since_tizen>
         public RecyclerViewItem Footer
         {
             get => footer;
@@ -414,7 +425,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Boolean flag of group feature existence.
+        /// Enable groupable view.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsGrouped
@@ -437,8 +448,10 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        ///  DataTemplate of group header. Group feature is not supported yet.
+        ///  DataTemplate of group header.
         /// </summary>
+        /// <remarks>Please note that, internal index will be increased by group header.
+        /// GroupHeaderTemplate is essential for groupable view.</remarks>        
         [EditorBrowsable(EditorBrowsableState.Never)]
         public DataTemplate GroupHeaderTemplate
         {
@@ -457,6 +470,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// DataTemplate of group footer. Group feature is not supported yet.
         /// </summary>
+        /// <remarks>Please note that, internal index will be increased by group footer.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public DataTemplate GroupFooterTemplate
         {
@@ -494,7 +508,7 @@ namespace Tizen.NUI.Components
         internal ItemSizingStrategy SizingStrategy { get; set; }
 
         /// <inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public override void OnRelayout(Vector2 size, RelayoutContainer container)
         {
             base.OnRelayout(size, container);
@@ -638,7 +652,7 @@ namespace Tizen.NUI.Components
         /// Update selected items list in multiple selection.
         /// </summary>
         /// <param name="newSelection">updated selection list by user</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public void UpdateSelectedItems(IList<object> newSelection)
         {
             var oldSelection = new List<object>(SelectedItems);
@@ -665,7 +679,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="position">Destination.</param>
         /// <param name="animate">Scroll with or without animation</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public new void ScrollTo(float position, bool animate) => base.ScrollTo(position, animate);
 
         /// <summary>
@@ -673,8 +687,8 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="index">Target item index of dataset.</param>
         /// <param name="animate">Boolean flag of animation.</param>
-        /// <param name="align">Align state of item. see details in ItemScrollTo.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <param name="align">Align state of item. See details in <see cref="ItemScrollTo"/>.</param>
+        /// <since_tizen> 9 </since_tizen>
         public virtual void ScrollTo(int index, bool animate = false, ItemScrollTo align = ItemScrollTo.Nearest)
         {
             if (ItemsLayouter == null) throw new Exception("Item Layouter must exist.");
@@ -907,7 +921,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Internal selection callback.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         protected virtual void OnSelectionChanged(SelectionChangedEventArgs args)
         {
             //Selection Callback
@@ -928,11 +942,11 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// OnScroll event callback.
+        /// OnScroll event callback. Requesting layout to the layouter with given scrollPosition.
         /// </summary>
         /// <param name="source">Scroll source object</param>
         /// <param name="args">Scroll event argument</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         protected override void OnScrolling(object source, ScrollEventArgs args)
         {
             if (disposed) return;
@@ -950,6 +964,7 @@ namespace Tizen.NUI.Components
         /// Dispose ItemsView and all children on it.
         /// </summary>
         /// <param name="type">Dispose type.</param>
+        /// <since_tizen> 9 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
