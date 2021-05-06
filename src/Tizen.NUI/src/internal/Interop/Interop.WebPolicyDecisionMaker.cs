@@ -19,7 +19,7 @@ namespace Tizen.NUI
 {
     internal static partial class Interop
     {
-        internal static partial class WebNewWindowPolicyDecisionMaker
+        internal static partial class WebPolicyDecisionMaker
         {
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebPolicyDecision_GetUrl")]
             public static extern string GetUrl(global::System.Runtime.InteropServices.HandleRef jarg1);
