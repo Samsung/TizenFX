@@ -23,12 +23,14 @@ namespace Tizen.NUI.EXaml
 {
     internal class GatherPropertiesBlock : Action
     {
-        public GatherPropertiesBlock(Action parent)
+        public GatherPropertiesBlock(GlobalDataList globalDataList, Action parent)
         {
             this.parent = parent;
+            this.globalDataList = globalDataList;
         }
 
         private Action parent;
+        private GlobalDataList globalDataList;
 
         public Action DealChar(char c)
         {
@@ -63,7 +65,7 @@ namespace Tizen.NUI.EXaml
             int typeIndex = int.Parse(childOp.ValueList[0] as string);
             string propertyName = childOp.ValueList[1] as string;
 
-            LoadEXaml.Operations.Add(new GatherProperty(typeIndex, propertyName));
+            globalDataList.Operations.Add(new GatherProperty(globalDataList, typeIndex, propertyName));
         }
     }
 }

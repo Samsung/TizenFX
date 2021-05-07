@@ -25,14 +25,14 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class WebSettings : Disposable
     {
-        private bool allowMixedContents;
-        private bool enableSpatialNavigation;
-        private bool enableWebSecurity;
-        private bool enableCacheBuilder;
-        private bool enableDoNotTrack;
-        private bool allowFileAccessFromExternalUrl;
-        private bool allowScriptsOpenWindows;
-        private bool useScrollbarThumbFocusNotifications;
+        private bool mixedContentsAllowed;
+        private bool spatialNavigationEnabled;
+        private bool webSecurityEnabled;
+        private bool cacheBuilderEnabled;
+        private bool doNotTrackEnabled;
+        private bool fileAccessFromExternalUrlAllowed;
+        private bool scriptsOpenWindowsAllowed;
+        private bool scrollbarThumbFocusNotificationsUsed;
         private bool viewportMetaTag;
 
         internal WebSettings(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
@@ -40,38 +40,38 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Allow Mixed Contents
+        /// Allows mixed contents or not.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool AllowMixedContents
+        public bool MixedContentsAllowed
         {
             get
             {
-                return allowMixedContents;
+                return mixedContentsAllowed;
             }
             set
             {
                 Interop.WebSettings.AllowMixedContents(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                allowMixedContents = value;
+                mixedContentsAllowed = value;
             }
         }
 
         /// <summary>
-        /// Enable Spatial Navigation.
+        /// Enables spatial navigation or not.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool EnableSpatialNavigation
+        public bool SpatialNavigationEnabled
         {
             get
             {
-                return enableSpatialNavigation;
+                return spatialNavigationEnabled;
             }
             set
             {
                 Interop.WebSettings.EnableSpatialNavigation(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                enableSpatialNavigation = value;
+                spatialNavigationEnabled = value;
             }
         }
 
@@ -93,20 +93,20 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Enable web security.
+        /// Enables web security or not.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool EnableWebSecurity
+        public bool WebSecurityEnabled
         {
             get
             {
-                return enableWebSecurity;
+                return webSecurityEnabled;
             }
             set
             {
                 Interop.WebSettings.EnableWebSecurity(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                enableWebSecurity = value;
+                webSecurityEnabled = value;
             }
         }
 
@@ -118,13 +118,13 @@ namespace Tizen.NUI
         {
             get 
             {
-                return enableCacheBuilder;
+                return cacheBuilderEnabled;
             }
             set 
             {
                 Interop.WebSettings.EnableCacheBuilder(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                enableCacheBuilder = value;
+                cacheBuilderEnabled = value;
             }
         }
 
@@ -135,13 +135,13 @@ namespace Tizen.NUI
         {
             get
             {
-                return enableDoNotTrack;
+                return doNotTrackEnabled;
             }
             set
             {
                 Interop.WebSettings.EnableDoNotTrack(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                enableDoNotTrack = value;
+                doNotTrackEnabled = value;
             }
         }
 
@@ -153,39 +153,39 @@ namespace Tizen.NUI
         {
             get
             {
-                return useScrollbarThumbFocusNotifications;
+                return scrollbarThumbFocusNotificationsUsed;
             }
             set
             {
                 Interop.WebSettings.UseScrollbarThumbFocusNotifications(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                useScrollbarThumbFocusNotifications = value;
+                scrollbarThumbFocusNotificationsUsed = value;
             }
         }
 
         /// <summary>
-        /// Allow File Access From External Url.
+        /// Allows file access from external url or not.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool AllowFileAccessFromExternalUrl
+        public bool FileAccessFromExternalUrlAllowed
         {
             get
             {
-                return allowFileAccessFromExternalUrl;
+                return fileAccessFromExternalUrlAllowed;
             }
             set
             {
                 Interop.WebSettings.AllowFileAccessFromExternalUrl(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                allowFileAccessFromExternalUrl = value;
+                fileAccessFromExternalUrlAllowed = value;
             }
         }
 
         /// <summary>
-        /// Enable JavaScript.
+        /// Enables JavaScript or not.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool EnableJavaScript
+        public bool JavaScriptEnabled
         {
             get
             {
@@ -403,32 +403,32 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Allow Scripts Open Windows.
+        /// Allows scripts open windows or not.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool AllowScriptsOpenWindows
+        public bool ScriptsOpenWindowsAllowed
         {
             get
             {
-                return allowScriptsOpenWindows;
+                return scriptsOpenWindowsAllowed;
             }
             set
             {
                 Interop.WebSettings.AllowScriptsOpenWindows(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                allowScriptsOpenWindows = value;
+                scriptsOpenWindowsAllowed = value;
             }
         }
 
         /// <summary>
-        /// Allow Images Load Automatically.
+        /// Allow images load automatically or not.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool AllowImagesLoadAutomatically
+        public bool AutomaticImageLoadingAllowed
         {
             get
             {
-                return Interop.WebSettings.AreImagesAutomaticallyLoaded(SwigCPtr);
+                return Interop.WebSettings.AreImagesLoadedAutomatically(SwigCPtr);
             }
             set
             {
@@ -438,7 +438,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Default Text Encoding Name.
+        /// Default text encoding name.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string DefaultTextEncodingName

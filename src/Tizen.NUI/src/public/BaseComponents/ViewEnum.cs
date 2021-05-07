@@ -38,23 +38,32 @@ namespace Tizen.NUI.BaseComponents
     }
 
     /// <summary>
-    /// [Draft] Available policies for layout parameters
+    /// Layout policies to decide the size of View when the View is laid out in its parent View.
+    /// LayoutParamPolicies.MatchParent and LayoutParamPolicies.WrapContent can be assigned to <see cref="View.WidthSpecification"/> and <see cref="View.HeightSpecification"/>.
     /// </summary>
-    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <example>
+    /// <code>
+    /// // matchParentView matches its size to its parent size.
+    /// matchParentView.WidthSpecification = LayoutParamPolicies.MatchParent;
+    /// matchParentView.HeightSpecification = LayoutParamPolicies.MatchParent;
+    ///
+    /// // wrapContentView wraps its children with their desired size.
+    /// wrapContentView.WidthSpecification = LayoutParamPolicies.WrapContent;
+    /// wrapContentView.HeightSpecification = LayoutParamPolicies.WrapContent;
+    /// </code>
+    /// </example>
+    /// <since_tizen> 9 </since_tizen>
     public static class LayoutParamPolicies
     {
         /// <summary>
-        /// Constant which indicates child size should match parent size
+        /// Constant which indicates child size should match parent size.
         /// </summary>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public const int MatchParent = -1;
         /// <summary>
-        /// Constant which indicates parent should take the smallest size possible to wrap it's children with their desired size
+        /// Constant which indicates parent should take the smallest size possible to wrap its children with their desired size.
         /// </summary>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public const int WrapContent = -2;
     }
 
@@ -218,7 +227,6 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int AccessibilityHighlightable = Interop.ViewProperty.AccessibilityHighlightableGet();
             internal static readonly int AccessibilityAttributes = Interop.ViewProperty.AccessibilityAttributesGet();
             internal static readonly int AccessibilityAnimated = Interop.ViewProperty.AccessibilityAnimatedGet();
-            internal static readonly int TouchArea = Interop.ActorProperty.TouchAreaGet();
         }
     }
 }

@@ -25,12 +25,14 @@ namespace Tizen.NUI.EXaml
 {
     internal class RegisterXNameAction : Action
     {
-        public RegisterXNameAction(Action parent)
+        public RegisterXNameAction(GlobalDataList globalDataList, Action parent)
         {
             this.parent = parent;
+            this.globalDataList = globalDataList;
         }
 
         private Action parent;
+        private GlobalDataList globalDataList;
 
         public Action DealChar(char c)
         {
@@ -65,7 +67,7 @@ namespace Tizen.NUI.EXaml
             object instance = childOp.ValueList[0];
             string xName = childOp.ValueList[1] as string;
 
-            LoadEXaml.Operations.Add(new RegisterXName(instance, xName));
+            globalDataList.Operations.Add(new RegisterXName(globalDataList, instance, xName));
         }
     }
 }

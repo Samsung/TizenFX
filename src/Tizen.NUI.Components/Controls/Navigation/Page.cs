@@ -38,7 +38,7 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// The Page class is a class which is an element of navigation.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public abstract class Page : Control
     {
         private Navigator navigator = null;
@@ -46,7 +46,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Creates a new instance of a Page.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public Page() : base()
         {
         }
@@ -55,7 +55,7 @@ namespace Tizen.NUI.Components
         /// Navigator which has pushed the Page into its stack.
         /// If this Page has not been pushed into any Navigator, then Navigator is null.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public Navigator Navigator
         {
             get

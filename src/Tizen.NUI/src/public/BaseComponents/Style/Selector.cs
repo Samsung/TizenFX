@@ -23,15 +23,13 @@ using Tizen.NUI.Binding;
 namespace Tizen.NUI.BaseComponents
 {
     /// <summary>
-    /// Selector class, which is related by Control State, it is base class for other Selector.
+    /// The selector class is a collection of a <see cref="ControlState" /> and a T value pair.
     /// </summary>
-    /// <typeparam name="T">The property type of the selector. if it's reference type, it should be of type <see cref="ICloneable"/> that implement deep copy in <see cref="ICloneable.Clone"/>.</typeparam>
-    /// <since_tizen> 6 </since_tizen>
-    /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    /// <typeparam name="T">The property type of the selector. If it's reference type, it is recommended to be a type implementing <see cref="ICloneable"/>.</typeparam>
+    /// <since_tizen> 9 </since_tizen>
     [SuppressMessage("Microsoft.Naming",
                      "CA1710:IdentifiersShouldHaveCorrectSuffix",
                      Justification = "The name Selector provides meaningful information about the characteristics.")]
-    [EditorBrowsable(EditorBrowsableState.Never)]
     public class Selector<T> : IEnumerable<SelectorItem<T>>
     {
         private readonly bool cloneable = typeof(ICloneable).IsAssignableFrom(typeof(T));
@@ -43,15 +41,20 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         List<SelectorItem<T>> SelectorItems { get; set; } = new List<SelectorItem<T>>();
 
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <summary>
+        /// Implicitly convert T type value to selector.
+        /// </summary>
+        /// <param name="value">The value will be converted to a selector.</param>
+        /// <since_tizen> 9 </since_tizen>
         public static implicit operator Selector<T>(T value)
         {
             return new Selector<T>(value);
         }
 
-        /// Default constructor
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Create an empty selector.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public Selector()
         {
         }
@@ -228,7 +231,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="item">The selector item includes state and value.</param>
         /// <exception cref="ArgumentNullException"> Thrown when item is null. </exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public void Add(SelectorItem<T> item)
         {
             if (item == null) throw new ArgumentNullException(nameof(item));
@@ -463,8 +466,8 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Determines whether the specified object is equal to the current object.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(System.Object other)
+        /// <since_tizen> 9 </since_tizen>
+        public override bool Equals(object other)
         {
             var x = other as Selector<T>;
 
@@ -622,9 +625,10 @@ namespace Tizen.NUI.BaseComponents
     }
 
     /// <summary>
-    /// The selector item class that stores a state-value pair.
+    /// The selector item class that stores a control state and a T value pair.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <typeparam name="T">The property type of the selector.</typeparam>
+    /// <since_tizen> 9 </since_tizen>
     public class SelectorItem<T>
     {
         /// <summary>
@@ -638,7 +642,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="state">The state</param>
         /// <param name="value">The value associated with state.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public SelectorItem(ControlState state, T value)
         {
             State = state;
@@ -646,16 +650,16 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The state
+        /// The control state.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ControlState State { get; set; }
+        /// <since_tizen> 9 </since_tizen>
+        public ControlState State { get; internal set; }
 
         /// <summary>
-        /// The value associated with state.
+        /// The value associated with control state.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public T Value { get; set; }
+        /// <since_tizen> 9 </since_tizen>
+        public T Value { get; internal set; }
 
         ///  <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]

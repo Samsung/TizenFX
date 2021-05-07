@@ -25,12 +25,14 @@ namespace Tizen.NUI.EXaml
 {
     internal class CallAddMethodAction : Action
     {
-        public CallAddMethodAction(Action parent)
+        public CallAddMethodAction(GlobalDataList globalDataList, Action parent)
         {
             this.parent = parent;
+            this.globalDataList = globalDataList;
         }
 
         private Action parent;
+        private GlobalDataList globalDataList;
 
         public Action DealChar(char c)
         {
@@ -68,7 +70,7 @@ namespace Tizen.NUI.EXaml
                 int childIndex = (childOp.ValueList[1] as Instance).Index;
                 int methodIndex = (int)childOp.ValueList[2];
 
-                LoadEXaml.Operations.Add(new CallAddMethod(parentIndex, childIndex, methodIndex));
+                globalDataList.Operations.Add(new CallAddMethod(globalDataList, parentIndex, childIndex, methodIndex));
             }
         }
     }

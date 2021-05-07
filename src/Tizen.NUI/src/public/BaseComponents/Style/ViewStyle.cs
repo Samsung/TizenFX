@@ -22,10 +22,9 @@ using Tizen.NUI.Binding;
 namespace Tizen.NUI.BaseComponents
 {
     /// <summary>
-    /// The base class for Children attributes in Components.
+    /// The base class of style attributes for a view.
     /// </summary>
-    /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public partial class ViewStyle : BindableObject, IDisposable
     {
         private bool disposed = false;
@@ -61,8 +60,10 @@ namespace Tizen.NUI.BaseComponents
 
         static ViewStyle() { }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Create an empty style instance.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public ViewStyle() { }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -72,8 +73,11 @@ namespace Tizen.NUI.BaseComponents
             CopyFrom(viewAttributes);
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Gets or sets the image resource url of the background of view.
+        /// The mutually exclusive with "BackgroundColor". Setting it overwrites existing "BackgroundColor".
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public Selector<string> BackgroundImage
         {
             get
@@ -101,8 +105,10 @@ namespace Tizen.NUI.BaseComponents
             set => SetValue(Size2DProperty, value);
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Defines view's opacity value.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public Selector<float?> Opacity
         {
             get
@@ -122,48 +128,67 @@ namespace Tizen.NUI.BaseComponents
             set => SetValue(Position2DProperty, value);
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Determines whether the pivot point should be used to determine the position of the view.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public bool? PositionUsesPivotPoint
         {
             get => (bool?)GetValue(PositionUsesPivotPointProperty);
             set => SetValue(PositionUsesPivotPointProperty, value);
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Gets or sets the origin of a view within its parent's area.<br />
+        /// This is expressed in unit coordinates, such that (0.0, 0.0, 0.5) is the top-left corner of the parent, and (1.0, 1.0, 0.5) is the bottom-right corner.<br />
+        /// The default parent-origin is ParentOrigin.TopLeft (0.0, 0.0, 0.5).<br />
+        /// A view's position is the distance between this origin and the view's anchor-point.<br />
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public Position ParentOrigin
         {
             get => (Position)GetValue(ParentOriginProperty);
             set => SetValue(ParentOriginProperty, value);
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Gets or sets the pivot point of a view.<br />
+        /// This is expressed in unit coordinates, such that (0.0, 0.0, 0.5) is the top-left corner of the view, and (1.0, 1.0, 0.5) is the bottom-right corner.<br />
+        /// The default pivot point is PivotPoint.Center (0.5, 0.5, 0.5).<br />
+        /// A view position is the distance between its parent origin and this pivot point.<br />
+        /// A view's orientation is the rotation from its default orientation, the rotation is centered around its pivot point.<br />
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public Position PivotPoint
         {
             get => (Position)GetValue(PivotPointProperty);
             set => SetValue(PivotPointProperty, value);
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Gets or sets the width of the view.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public float? SizeWidth
         {
             get => (float?)GetValue(SizeWidthProperty);
             set => SetValue(SizeWidthProperty, value);
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Gets or sets the height of the view.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public float? SizeHeight
         {
             get => (float?)GetValue(SizeHeightProperty);
             set => SetValue(SizeHeightProperty, value);
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Gets or sets the position of the view.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public Position Position
         {
             get => (Position)GetValue(PositionProperty);
@@ -202,24 +227,32 @@ namespace Tizen.NUI.BaseComponents
             set => SetValue(DrawModeProperty, value);
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Gets or sets the relative to parent size factor of the view.<br />
+        /// This factor is only used when ResizePolicyType is set to either: ResizePolicyType.SizeRelativeToParent or ResizePolicyType.SizeFixedOffsetFromParent.<br />
+        /// This view's size is set to the view's size multiplied by or added to this factor, depending on ResizePolicyType.<br />
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public Vector3 SizeModeFactor
         {
             get => (Vector3)GetValue(SizeModeFactorProperty);
             set => SetValue(SizeModeFactorProperty, value);
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Gets or sets the width resize policy to be used.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public ResizePolicyType? WidthResizePolicy
         {
             get => (ResizePolicyType?)GetValue(WidthResizePolicyProperty);
             set => SetValue(WidthResizePolicyProperty, value);
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Gets or sets the height resize policy to be used.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public ResizePolicyType? HeightResizePolicy
         {
             get => (ResizePolicyType?)GetValue(HeightResizePolicyProperty);
@@ -242,24 +275,30 @@ namespace Tizen.NUI.BaseComponents
             set => SetValue(HeightForWidthProperty, value);
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Gets or sets the padding for use in layout.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public Extents Padding
         {
             get => (Extents)GetValue(PaddingProperty) ?? (padding = new Extents());
             set => SetValue(PaddingProperty, value);
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Gets or sets the minimum size the view can be assigned in size negotiation.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public Size2D MinimumSize
         {
             get => (Size2D)GetValue(MinimumSizeProperty);
             set => SetValue(MinimumSizeProperty, value);
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Gets or sets the maximum size the view can be assigned in size negotiation.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public Size2D MaximumSize
         {
             get => (Size2D)GetValue(MaximumSizeProperty);
@@ -274,25 +313,31 @@ namespace Tizen.NUI.BaseComponents
             set => SetValue(ClippingModeProperty, value);
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Sets the size of a view for the width, the height, and the depth.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public Size Size
         {
             get => (Size)GetValue(SizeProperty);
             set => SetValue(SizeProperty, value);
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Gets or sets the Margin for use in layout.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public Extents Margin
         {
             get => (Extents)GetValue(MarginProperty) ?? (margin = new Extents());
             set => SetValue(MarginProperty, value);
         }
 
-        /// <summary> View BackgroundColor </summary>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Gets or sets the color of the background of view.
+        /// The mutually exclusive with "BackgroundImage". Setting it overwrites existing "BackgroundImage".
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public Selector<Color> BackgroundColor
         {
             get
@@ -342,9 +387,8 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Describes a box shaped shadow drawing for a View.
-        /// It is null by default.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public Selector<Shadow> BoxShadow
         {
             get => (Selector<Shadow>)GetValue(BoxShadowProperty);
@@ -355,7 +399,7 @@ namespace Tizen.NUI.BaseComponents
         /// The radius for the rounded corners of the View.
         /// The values in Vector4 are used in clockwise order from top-left to bottom-left : Vector4(top-left-corner, top-right-corner, bottom-right-corner, bottom-left-corner).
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public Vector4 CornerRadius
         {
             get => (Vector4)GetValue(CornerRadiusProperty);
@@ -367,7 +411,7 @@ namespace Tizen.NUI.BaseComponents
         /// It is absolute by default.
         /// When the policy is relative, the corner radius is relative to the smaller of the view's width and height.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public VisualTransformPolicyType? CornerRadiusPolicy
         {
             get => (VisualTransformPolicyType?)GetValue(CornerRadiusPolicyProperty);
@@ -413,15 +457,14 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Release instance.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
             global::System.GC.SuppressFinalize(this);
         }
 
-        /// <summary>Copy properties of other ViewStyle to this.</summary>
-        /// <param name="other">The other BindableProperty merge to this.</param>
+        /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void CopyFrom(BindableObject other)
         {
@@ -460,7 +503,8 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Release instance.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <param name="disposing"> If it true, the method has been called by a user's code. Otherwise the method has been called by the finalizer. </param>
+        /// <since_tizen> 9 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (disposed)

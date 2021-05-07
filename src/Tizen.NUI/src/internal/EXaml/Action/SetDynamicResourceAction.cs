@@ -22,12 +22,14 @@ namespace Tizen.NUI.EXaml
 {
     internal class SetDynamicResourceAction : Action
     {
-        public SetDynamicResourceAction(Action parent)
+        public SetDynamicResourceAction(GlobalDataList globalDataList, Action parent)
         {
             this.parent = parent;
+            this.globalDataList = globalDataList;
         }
 
         private Action parent;
+        private GlobalDataList globalDataList;
 
         public Action DealChar(char c)
         {
@@ -65,7 +67,7 @@ namespace Tizen.NUI.EXaml
                 int propertyIndex = (int)childOp.ValueList[1];
                 string key = childOp.ValueList[2] as string;
 
-                LoadEXaml.Operations.Add(new SetDynamicResource(instanceIndex, propertyIndex, key));
+                globalDataList.Operations.Add(new SetDynamicResource(globalDataList, instanceIndex, propertyIndex, key));
             }
         }
     }

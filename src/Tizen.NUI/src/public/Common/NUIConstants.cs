@@ -1830,11 +1830,104 @@ namespace Tizen.NUI
     }
 
     /// <summary>
+    /// Offset has left, right, bottom, top value.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public struct Offset
+    {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="left">left offset</param>
+        /// <param name="right">right offset</param>
+        /// <param name="bottom">bottom offset</param>
+        /// <param name="top">top offset</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Offset(int left, int right, int bottom, int top)
+        {
+            Left = left;
+            Right = right;
+            Bottom = bottom;
+            Top = top;
+        }
+
+        /// <summary>
+        /// Left
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int Left {get; set;}
+
+        /// <summary>
+        /// Right
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int Right {get; set;}
+
+        /// <summary>
+        /// Bottom
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int Bottom {get; set;}
+
+        /// <summary>
+        /// Top
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int Top {get; set;}
+
+    }
+
+    /// <summary>
     /// TODO This is to get TizenFX resource path. It needs to be fixed to use application framework API in the future.
     /// Internal use only. Do not open this API.
     /// </summary>
     internal struct FrameworkInformation
     {
         public readonly static string ResourcePath = "/usr/share/dotnet.tizen/framework/res/";
+    }
+
+    /// <summary>
+    /// This Enumeration is used the GLES version for EGL configuration.<br />
+    /// If the device can not support GLES version 3.0 over, the version will be chosen with GLES version 2.0.<br />
+    /// It is for GLWindow and GLView.<br />
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum GLESVersion
+    {
+      /// <summary>
+      /// GLES version 2.0
+      /// </summary>
+      [EditorBrowsable(EditorBrowsableState.Never)]
+      Version20 = 0,
+
+      /// <summary>
+      /// GLES version 3.0
+      /// </summary>
+      [EditorBrowsable(EditorBrowsableState.Never)]
+      Version30
+    }
+
+    /// <summary>
+    /// Enumeration for rendering mode
+    /// This Enumeration is used to choose the rendering mode.
+    /// It has two options.
+    /// One of them is continuous mode. It is rendered continuously.
+    /// The other is on demand mode. It is rendered by application.
+    /// It is for GLWindow and GLView.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum GLRenderingMode
+    {
+      /// <summary>
+      /// continuous mode
+      /// </summary>
+      [EditorBrowsable(EditorBrowsableState.Never)]
+      Continuous = 0,
+
+      /// <summary>
+      /// on demand by application
+      /// </summary>
+      [EditorBrowsable(EditorBrowsableState.Never)]
+      OnDemand = 1
     }
 }

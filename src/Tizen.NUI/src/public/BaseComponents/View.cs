@@ -412,9 +412,6 @@ namespace Tizen.NUI.BaseComponents
         /// It is null by default.
         /// </summary>
         /// <remarks>
-        /// Getter returns copied instance of current shadow.
-        /// </remarks>
-        /// <remarks>
         /// The mutually exclusive with "ImageShadow".
         /// </remarks>
         /// <remarks>
@@ -427,7 +424,7 @@ namespace Tizen.NUI.BaseComponents
         /// Animatable sub-property : Offset, Color, BlurRadius.
         /// </para>
         /// </remarks>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public Shadow BoxShadow
         {
             get
@@ -452,7 +449,7 @@ namespace Tizen.NUI.BaseComponents
         /// Animatable - This property can be animated using <c>Animation</c> class.
         /// </para>
         /// </remarks>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public Vector4 CornerRadius
         {
             get
@@ -662,7 +659,7 @@ namespace Tizen.NUI.BaseComponents
         /// It is absolute by default.
         /// When the policy is relative, the corner radius is relative to the smaller of the view's width and height.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public VisualTransformPolicyType CornerRadiusPolicy
         {
             get => (VisualTransformPolicyType)GetValue(CornerRadiusPolicyProperty);
@@ -814,6 +811,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <remarks>
         /// The property cascade chaining set is possible. For example, this (view.CellIndex.X = 0.1f;) is possible.
+        /// Also, this property is for <see cref="TableView"/> class. Please use the property for the child position of <see cref="TableView"/>.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Vector2 CellIndex
@@ -833,6 +831,9 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The number of rows this child occupies, if not set, the default value is 1.
         /// </summary>
+        /// <remarks>
+        /// This property is for <see cref="TableView"/> class. Please use the property for the child position of <see cref="TableView"/>.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public float RowSpan
         {
@@ -850,6 +851,9 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The number of columns this child occupies, if not set, the default value is 1.
         /// </summary>
+        /// <remarks>
+        /// This property is for <see cref="TableView"/> class. Please use the property for the child position of <see cref="TableView"/>.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public float ColumnSpan
         {
@@ -867,6 +871,9 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The horizontal alignment of this child inside the cells, if not set, the default value is 'left'.
         /// </summary>
+        /// <remarks>
+        /// This property is for <see cref="TableView"/> class. Please use the property for the child position of <see cref="TableView"/>.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Tizen.NUI.HorizontalAlignmentType CellHorizontalAlignment
         {
@@ -884,6 +891,9 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The vertical alignment of this child inside the cells, if not set, the default value is 'top'.
         /// </summary>
+        /// <remarks>
+        /// This property is for <see cref="TableView"/> class. Please use the property for the child position of <see cref="TableView"/>.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Tizen.NUI.VerticalAlignmentType CellVerticalAlignment
         {
@@ -2215,8 +2225,23 @@ namespace Tizen.NUI.BaseComponents
         }
 
         ///<summary>
-        /// The required policy for this dimension, LayoutParamPolicies enum or exact value.
+        /// The required policy for this dimension, <see cref="LayoutParamPolicies"/> values or exact value.
         ///</summary>
+        /// <example>
+        /// <code>
+        /// // matchParentView matches its size to its parent size.
+        /// matchParentView.WidthSpecification = LayoutParamPolicies.MatchParent;
+        /// matchParentView.HeightSpecification = LayoutParamPolicies.MatchParent;
+        ///
+        /// // wrapContentView wraps its children with their desired size.
+        /// wrapContentView.WidthSpecification = LayoutParamPolicies.WrapContent;
+        /// wrapContentView.HeightSpecification = LayoutParamPolicies.WrapContent;
+        ///
+        /// // exactSizeView shows itself with an exact size.
+        /// exactSizeView.WidthSpecification = 100;
+        /// exactSizeView.HeightSpecification = 100;
+        /// </code>
+        /// </example>
         /// <since_tizen> 6 </since_tizen>
         public int WidthSpecification
         {
@@ -2243,8 +2268,23 @@ namespace Tizen.NUI.BaseComponents
         }
 
         ///<summary>
-        /// The required policy for this dimension, LayoutParamPolicies enum or exact value.
+        /// The required policy for this dimension, <see cref="LayoutParamPolicies"/> values or exact value.
         ///</summary>
+        /// <example>
+        /// <code>
+        /// // matchParentView matches its size to its parent size.
+        /// matchParentView.WidthSpecification = LayoutParamPolicies.MatchParent;
+        /// matchParentView.HeightSpecification = LayoutParamPolicies.MatchParent;
+        ///
+        /// // wrapContentView wraps its children with their desired size.
+        /// wrapContentView.WidthSpecification = LayoutParamPolicies.WrapContent;
+        /// wrapContentView.HeightSpecification = LayoutParamPolicies.WrapContent;
+        ///
+        /// // exactSizeView shows itself with an exact size.
+        /// exactSizeView.WidthSpecification = 100;
+        /// exactSizeView.HeightSpecification = 100;
+        /// </code>
+        /// </example>
         /// <since_tizen> 6 </since_tizen>
         public int HeightSpecification
         {
@@ -2287,7 +2327,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         ///<summary>
-        /// Set a layout transitions for this View.
+        /// Sets a layout transitions for this View.
         ///</summary>
         /// <exception cref="ArgumentNullException"> Thrown when value is null. </exception>
         /// <remarks>
@@ -2632,7 +2672,7 @@ namespace Tizen.NUI.BaseComponents
         /// If the value is true, the View will change its style as the theme changes.
         /// It is false by default, but turned to true when setting StyleName (by setting property or using specified constructor).
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public bool ThemeChangeSensitive
         {
             get => (bool)GetValue(ThemeChangeSensitiveProperty);
@@ -2665,21 +2705,11 @@ namespace Tizen.NUI.BaseComponents
             UpdateStyle();
         }
 
-        private bool IsViewPropertyDirty(BindableProperty styleProperty)
-        {
-            if (dirtyPropertySet.Count == 0)
-            {
-                return false;
-            }
-
-            return dirtyPropertySet.Contains(styleProperty.PropertyName);
-        }
-
         /// <summary>
         /// Apply style instance to the view.
         /// Basically it sets the bindable property to the value of the bindable property with same name in the style.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public virtual void ApplyStyle(ViewStyle viewStyle)
         {
             if (viewStyle == null || this.viewStyle == viewStyle) return;
@@ -2690,11 +2720,6 @@ namespace Tizen.NUI.BaseComponents
             {
                 // Nothing to apply
                 return;
-            }
-
-            if (dirtyPropertySet == null)
-            {
-                dirtyPropertySet = new HashSet<string>();
             }
 
             BindableProperty.GetBindablePropertysOfType(GetType(), out var bindablePropertyOfView);
@@ -2709,12 +2734,6 @@ namespace Tizen.NUI.BaseComponents
 
             foreach (var sourceProperty in dirtyStyleProperties)
             {
-                if (blockSetDirty && IsViewPropertyDirty(sourceProperty))
-                {
-                    // Skip applying theme style for a property set by user.
-                    continue;
-                }
-
                 var sourceValue = viewStyle.GetValue(sourceProperty);
 
                 if (sourceValue == null)
@@ -2753,11 +2772,9 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Set or Get TransitionOptions for the page transition.
+        /// This property is used to define how this view will be transition during Page switching.
         /// </summary>
-        /// <remarks>
-        /// Hidden-API (Inhouse-API).
-        /// </remarks>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public TransitionOptions TransitionOptions
         {
             set

@@ -4,7 +4,7 @@ using NUnit.Framework.TUnit;
 using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
 
-namespace Tizen.NUI.Devel.Tests.testcase
+namespace Tizen.NUI.Devel.Tests
 {
     using tlog = Tizen.Log;
 

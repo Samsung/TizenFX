@@ -30,8 +30,10 @@ namespace Tizen.NUI.Components
     {
         /// <summary>
         /// Creates a new instance of TabButtonSelectedEventArgs.
+        /// The indices of tab buttons in TabBar are basically the order of adding to TabBar by <see cref="TabView.AddTab"/>.
+        /// So a tab button's index in TabBar can be changed whenever <see cref="TabView.AddTab"/> or <see cref="TabView.RemoveTab"/> is called.
         /// </summary>
-        /// <param name="index">The selected index.</param>
+        /// <param name="index">The index of the selected tab button in TabBar.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TabButtonSelectedEventArgs(int index)
         {
@@ -48,7 +50,7 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// TabBar is a class which contains a set of TabButtons and has one of them selected.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class TabBar : Control
     {
         private IList<TabButton> tabButtons;
@@ -58,7 +60,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Creates a new instance of TabBar.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public TabBar()
         {
             Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Horizontal };
@@ -79,6 +81,8 @@ namespace Tizen.NUI.Components
 
         /// <summary>
         /// The index of the selected tab button.
+        /// The indices of tab buttons in TabBar are basically the order of adding to TabBar by <see cref="TabView.AddTab"/>.
+        /// So a tab button's index in TabBar can be changed whenever <see cref="TabView.AddTab"/> or <see cref="TabView.RemoveTab"/> is called.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected int SelectedIndex { get; set; }
@@ -86,7 +90,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Gets the count of tab buttons.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public int TabButtonCount => tabButtons.Count;
 
         /// <summary>
@@ -187,6 +191,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnRelayout(Vector2 size, RelayoutContainer container)
         {
             base.OnRelayout(size, container);
@@ -215,10 +220,12 @@ namespace Tizen.NUI.Components
 
         /// <summary>
         /// Gets the tab button at the specified index of TabBar.
+        /// The indices of tab buttons in TabBar are basically the order of adding to TabBar by <see cref="TabView.AddTab"/>.
+        /// So a tab button's index in TabBar can be changed whenever <see cref="TabView.AddTab"/> or <see cref="TabView.RemoveTab"/> is called.
         /// </summary>
-        /// <param name="index">The index of TabBar where the specified tab button exists.</param>
+        /// <param name="index">The index of tab button in TabBar where the specified tab button exists.</param>
         /// <exception cref="ArgumentOutOfRangeException">Thrown when the index is less than 0, or greater than or equal to the number of tab buttons.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public TabButton GetTabButton(int index)
         {
             if ((index < 0) || (index >= tabButtons.Count))
@@ -229,10 +236,7 @@ namespace Tizen.NUI.Components
             return tabButtons[index];
         }
 
-        /// <summary>
-        /// Dispose TabBar and all children on it.
-        /// </summary>
-        /// <param name="type">Dispose type.</param>
+        /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {

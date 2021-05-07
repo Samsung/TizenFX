@@ -26,124 +26,15 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class WebViewPageLoadErrorEventArgs : EventArgs
     {
-        private WebView _webView;
-        private string _pageUrl;
-        private LoadErrorCode _errorCode;
-
-        /// <summary>
-        /// Enumeration for the load error code
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public enum LoadErrorCode
+        internal WebViewPageLoadErrorEventArgs(WebPageLoadError error)
         {
-            /// <summary>
-            /// Unknown.
-            /// </summary>
-            Unknown,
-            /// <summary>
-            /// User canceled.
-            /// </summary>
-            Canceled,
-            /// <summary>
-            /// Can't show the page for this MIME type.
-            /// </summary>
-            CantSupportMimetype,
-            /// <summary>
-            /// File IO error.
-            /// </summary>
-            FailedFileIo,
-            /// <summary>
-            /// Cannot connect to the network.
-            /// </summary>
-            CantConnect,
-            /// <summary>
-            /// Fail to look up host from the DNS.
-            /// </summary>
-            CantLookupHost,
-            /// <summary>
-            /// Fail to SSL/TLS handshake.
-            /// </summary>
-            FailedTlsHandshake,
-            /// <summary>
-            /// Received certificate is invalid.
-            /// </summary>
-            InvalidCertificate,
-            /// <summary>
-            /// Connection timeout.
-            /// </summary>
-            RequestTimeout,
-            /// <summary>
-            /// Too many redirects.
-            /// </summary>
-            TooManyRedirects,
-            /// <summary>
-            /// Too many requests during this load.
-            /// </summary>
-            TooManyRequests,
-            /// <summary>
-            /// Malformed URL.
-            /// </summary>
-            BadUrl,
-            /// <summary>
-            /// Unsupported scheme.
-            /// </summary>
-            UnsupportedScheme,
-            /// <summary>
-            /// User authentication failed on the server.
-            /// </summary>
-            Authentication,
-            /// <summary>
-            /// Web server has an internal server error.
-            /// </summary>
-            InternalServer,
+            PageLoadError = error;
         }
 
         /// <summary>
-        /// The view for displaying webpages.
+        /// The load error of current web page.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public WebView WebView
-        {
-            get
-            {
-                return _webView;
-            }
-            set
-            {
-                _webView = value;
-            }
-        }
-
-        /// <summary>
-        /// The url string of current webpage.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string PageUrl
-        {
-            get
-            {
-                return _pageUrl;
-            }
-            set
-            {
-                _pageUrl = value;
-            }
-        }
-
-        /// <summary>
-        /// The code for the current error.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public LoadErrorCode ErrorCode
-        {
-            get
-            {
-                return _errorCode;
-            }
-            set
-            {
-                _errorCode = value;
-            }
-        }
+        public WebPageLoadError PageLoadError { get; }
     }
 }

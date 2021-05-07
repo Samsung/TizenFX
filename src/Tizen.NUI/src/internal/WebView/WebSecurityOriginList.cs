@@ -21,50 +21,6 @@ using System.ComponentModel;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// It is a class for security origin of web view.
-    /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public class WebSecurityOrigin : Disposable
-    {
-        internal WebSecurityOrigin(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
-        {
-        }
-
-        /// <summary>
-        /// Host of security origin.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string Host
-        {
-            get
-            {
-                string result = Interop.WebSecurityOrigin.GetHost(SwigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) return null;
-                return result;
-            }
-        }
-
-        /// <summary>
-        /// Protocol of security origin.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string Protocol
-        {
-            get
-            {
-                string result = Interop.WebSecurityOrigin.GetProtocol(SwigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) return null;
-                return result;
-            }
-        }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(WebSecurityOrigin obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
-        }
-    }
-
-    /// <summary>
     /// It is a class for security origin list of web view.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
@@ -90,9 +46,7 @@ namespace Tizen.NUI
         {
             get
             {
-                uint result = Interop.WebSecurityOriginList.GetItemCount(SwigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) return 0;
-                return result;
+                return Interop.WebSecurityOriginList.GetItemCount(SwigCPtr);
             }
         }
 

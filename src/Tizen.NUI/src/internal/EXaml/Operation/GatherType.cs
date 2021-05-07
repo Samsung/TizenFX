@@ -26,16 +26,19 @@ namespace Tizen.NUI.EXaml
 {
     internal class GatherType : Operation
     {
-        public GatherType(int assemblyIndex, string typeName, List<int> genericTypeIndexs = null)
+        public GatherType(GlobalDataList globalDataList, int assemblyIndex, string typeName, List<int> genericTypeIndexs = null)
         {
             this.assemblyIndex = assemblyIndex;
             this.typeName = typeName;
             this.genericTypeIndexs = genericTypeIndexs;
+            this.globalDataList = globalDataList;
         }
+
+        private GlobalDataList globalDataList;
 
         public void Do()
         {
-            var assembly = GatherAssembly.GatheredAssemblies[assemblyIndex];
+            var assembly = globalDataList.GatheredAssemblies[assemblyIndex];
             var type = assembly.GetType(typeName);
 
             if (null != genericTypeIndexs)
@@ -44,20 +47,17 @@ namespace Tizen.NUI.EXaml
 
                 for (int i = 0; i < genericTypeIndexs.Count; i++)
                 {
-                    args[i] = GatheredTypes[genericTypeIndexs[i]];
+                    args[i] = globalDataList.GatheredTypes[genericTypeIndexs[i]];
                 }
 
                 type = type.MakeGenericType(args);
             }
 
-            GatheredTypes.Add(type);
+            globalDataList.GatheredTypes.Add(type);
         }
 
         private int assemblyIndex;
         private string typeName;
         private List<int> genericTypeIndexs;
-
-        internal static List<Type> GatheredTypes = new List<Type>();
     }
-
 }

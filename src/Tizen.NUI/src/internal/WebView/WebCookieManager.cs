@@ -15,7 +15,9 @@
  *
  */
 
+using System;
 using System.ComponentModel;
+using System.Runtime.InteropServices;
 
 namespace Tizen.NUI
 {
@@ -25,12 +27,40 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class WebCookieManager : Disposable
     {
+        private EventHandler<EventArgs> cookieChangedEventHandler;
+        private CookieChangedCallback cookieChangedCallback;
+
         internal WebCookieManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void CookieChangedCallback();
+
         /// <summary>
-        /// Cookie Accept Policy
+        /// Event for cookie changed when cookies are added, removed or modified.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<EventArgs> CookieChanged
+        {
+            add
+            {
+                if (cookieChangedEventHandler == null)
+                {
+                    cookieChangedCallback = OnCookieChanged;
+                    IntPtr ip = Marshal.GetFunctionPointerForDelegate(cookieChangedCallback);
+                    Interop.WebCookieManager.CookieChangedCallback(SwigCPtr, new HandleRef(this, ip));
+                }
+                cookieChangedEventHandler += value;
+            }
+            remove
+            {
+                cookieChangedEventHandler -= value;
+            }
+        }
+
+        /// <summary>
+        /// Enumeration for cookie accept policy
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public enum CookieAcceptPolicyType
@@ -55,23 +85,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Cookie accept policy
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public CookieAcceptPolicyType CookieAcceptPolicy
-        {
-            get
-            {
-                return (CookieAcceptPolicyType)Interop.WebCookieManager.GetCookieAcceptPolicy(SwigCPtr);
-            }
-            set
-            {
-                Interop.WebCookieManager.SetCookieAcceptPolicy(SwigCPtr, (int)value);
-            }
-        }
-
-        /// <summary>
-        /// Cookie persistent storage type.
+        /// Enumeration for cookie persistent storage type.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public enum CookiePersistentStorageType
@@ -90,7 +104,23 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Set the proxy uri.
+        /// Cookie accept policy
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public CookieAcceptPolicyType CookieAcceptPolicy
+        {
+            get
+            {
+                return (CookieAcceptPolicyType)Interop.WebCookieManager.GetCookieAcceptPolicy(SwigCPtr);
+            }
+            set
+            {
+                Interop.WebCookieManager.SetCookieAcceptPolicy(SwigCPtr, (int)value);
+            }
+        }
+
+        /// <summary>
+        /// Sets the proxy uri.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetPersistentStorage(string path, CookiePersistentStorageType storageType)
@@ -100,13 +130,18 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Set Default Proxy Auth.
+        /// Clears cookies.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ClearCookies()
         {
             Interop.WebCookieManager.ClearCookies(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        private void OnCookieChanged()
+        {
+            cookieChangedEventHandler?.Invoke(this, new EventArgs());
         }
     }
 }

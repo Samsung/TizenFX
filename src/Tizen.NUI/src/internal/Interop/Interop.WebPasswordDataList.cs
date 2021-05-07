@@ -19,15 +19,6 @@ namespace Tizen.NUI
 {
     internal static partial class Interop
     {
-        internal static partial class WebPasswordData
-        {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebPasswordData_GetUrl")]
-            public static extern string GetUrl(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebPasswordData_GetUseFingerprint")]
-            public static extern bool GetUseFingerprint(global::System.Runtime.InteropServices.HandleRef jarg1);
-        }
-
         internal static partial class WebPasswordDataList
         {
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WebPasswordDataList")]

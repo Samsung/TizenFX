@@ -27,48 +27,28 @@ namespace Tizen.NUI.EXaml
 {
     internal class GatherAssembly : Operation
     {
-        public GatherAssembly(string assemblyName)
+        public GatherAssembly(GlobalDataList globalDataList, string assemblyName)
         {
             this.assemblyName = assemblyName;
+            this.globalDataList = globalDataList;
         }
+
+        private GlobalDataList globalDataList;
 
         public void Do()
         {
             Assembly assembly = null;
-            foreach (var name in AssemblyNameList)
+            foreach (var name in globalDataList.AssemblyNameList)
             {
                 if (name.FullName.StartsWith(assemblyName))
                 {
                     assembly = Assembly.Load(name);
-                    GatheredAssemblies.Add(assembly);
+                    globalDataList.GatheredAssemblies.Add(assembly);
                     break;
                 }
             }
         }
 
-        private static List<AssemblyName> assemblyNameList;
-        private static List<AssemblyName> AssemblyNameList
-        {
-            get
-            {
-                if (null == assemblyNameList)
-                {
-                    assemblyNameList = new List<AssemblyName>();
-                    assemblyNameList.Add(EXamlExtensions.MainAssembly.GetName());
-
-                    var assemblyNames = EXamlExtensions.MainAssembly.GetReferencedAssemblies();
-
-                    foreach (var name in assemblyNames)
-                    {
-                        assemblyNameList.Add(name);
-                    }
-                }
-
-                return assemblyNameList;
-            }
-        }
-
         private string assemblyName;
-        internal static List<Assembly> GatheredAssemblies = new List<Assembly>();
     }
 }
