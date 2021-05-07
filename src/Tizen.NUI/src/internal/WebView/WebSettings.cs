@@ -428,7 +428,7 @@ namespace Tizen.NUI
         {
             get
             {
-                return Interop.WebSettings.AreImagesAutomaticallyLoaded(SwigCPtr);
+                return Interop.WebSettings.AreImagesLoadedAutomatically(SwigCPtr);
             }
             set
             {

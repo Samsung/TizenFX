@@ -2225,8 +2225,23 @@ namespace Tizen.NUI.BaseComponents
         }
 
         ///<summary>
-        /// The required policy for this dimension, LayoutParamPolicies enum or exact value.
+        /// The required policy for this dimension, <see cref="LayoutParamPolicies"/> values or exact value.
         ///</summary>
+        /// <example>
+        /// <code>
+        /// // matchParentView matches its size to its parent size.
+        /// matchParentView.WidthSpecification = LayoutParamPolicies.MatchParent;
+        /// matchParentView.HeightSpecification = LayoutParamPolicies.MatchParent;
+        ///
+        /// // wrapContentView wraps its children with their desired size.
+        /// wrapContentView.WidthSpecification = LayoutParamPolicies.WrapContent;
+        /// wrapContentView.HeightSpecification = LayoutParamPolicies.WrapContent;
+        ///
+        /// // exactSizeView shows itself with an exact size.
+        /// exactSizeView.WidthSpecification = 100;
+        /// exactSizeView.HeightSpecification = 100;
+        /// </code>
+        /// </example>
         /// <since_tizen> 6 </since_tizen>
         public int WidthSpecification
         {
@@ -2253,8 +2268,23 @@ namespace Tizen.NUI.BaseComponents
         }
 
         ///<summary>
-        /// The required policy for this dimension, LayoutParamPolicies enum or exact value.
+        /// The required policy for this dimension, <see cref="LayoutParamPolicies"/> values or exact value.
         ///</summary>
+        /// <example>
+        /// <code>
+        /// // matchParentView matches its size to its parent size.
+        /// matchParentView.WidthSpecification = LayoutParamPolicies.MatchParent;
+        /// matchParentView.HeightSpecification = LayoutParamPolicies.MatchParent;
+        ///
+        /// // wrapContentView wraps its children with their desired size.
+        /// wrapContentView.WidthSpecification = LayoutParamPolicies.WrapContent;
+        /// wrapContentView.HeightSpecification = LayoutParamPolicies.WrapContent;
+        ///
+        /// // exactSizeView shows itself with an exact size.
+        /// exactSizeView.WidthSpecification = 100;
+        /// exactSizeView.HeightSpecification = 100;
+        /// </code>
+        /// </example>
         /// <since_tizen> 6 </since_tizen>
         public int HeightSpecification
         {
@@ -2675,16 +2705,6 @@ namespace Tizen.NUI.BaseComponents
             UpdateStyle();
         }
 
-        private bool IsViewPropertyDirty(BindableProperty styleProperty)
-        {
-            if (dirtyPropertySet.Count == 0)
-            {
-                return false;
-            }
-
-            return dirtyPropertySet.Contains(styleProperty.PropertyName);
-        }
-
         /// <summary>
         /// Apply style instance to the view.
         /// Basically it sets the bindable property to the value of the bindable property with same name in the style.
@@ -2702,11 +2722,6 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-            if (dirtyPropertySet == null)
-            {
-                dirtyPropertySet = new HashSet<string>();
-            }
-
             BindableProperty.GetBindablePropertysOfType(GetType(), out var bindablePropertyOfView);
 
             if (bindablePropertyOfView == null)
@@ -2719,12 +2734,6 @@ namespace Tizen.NUI.BaseComponents
 
             foreach (var sourceProperty in dirtyStyleProperties)
             {
-                if (blockSetDirty && IsViewPropertyDirty(sourceProperty))
-                {
-                    // Skip applying theme style for a property set by user.
-                    continue;
-                }
-
                 var sourceValue = viewStyle.GetValue(sourceProperty);
 
                 if (sourceValue == null)

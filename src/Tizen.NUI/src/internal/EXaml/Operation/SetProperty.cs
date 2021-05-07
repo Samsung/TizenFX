@@ -26,27 +26,47 @@ namespace Tizen.NUI.EXaml
 {
     internal class SetProperty : Operation
     {
-        public SetProperty(int instanceIndex, int propertyIndex, object value)
+        public SetProperty(GlobalDataList globalDataList, int instanceIndex, int propertyIndex, object value)
         {
             this.instanceIndex = instanceIndex;
             this.propertyIndex = propertyIndex;
             this.value = value;
+            this.globalDataList = globalDataList;
         }
+
+        private GlobalDataList globalDataList;
 
         public void Do()
         {
-            object instance = LoadEXaml.GatheredInstances[instanceIndex];
-            var property = GatherProperty.GatheredProperties[propertyIndex];
-
-            if (property == null)
+            object instance = globalDataList.GatheredInstances[instanceIndex];
+            if (null == instance)
             {
-                return;
+                throw new Exception(String.Format("Can't get instance by index {0}", instanceIndex));
+            }
+
+            var property = globalDataList.GatheredProperties[propertyIndex];
+
+            if (null == property)
+            {
+                throw new Exception(String.Format("Can't find property in type {0}", instance.GetType().FullName));
+            }
+
+            if (null == property.SetMethod)
+            {
+                throw new Exception(String.Format("Property {0} hasn't set method", property.Name));
             }
 
             if (value is Instance)
             {
                 int valueIndex = (value as Instance).Index;
-                property.SetMethod.Invoke(instance, new object[] { LoadEXaml.GatheredInstances[valueIndex] });
+                object realValue = globalDataList.GatheredInstances[valueIndex];
+
+                if (null == realValue)
+                {
+                    throw new Exception(String.Format("Can't get instance of value by index {0}", valueIndex));
+                }
+
+                property.SetMethod.Invoke(instance, new object[] { realValue });
             }
             else
             {

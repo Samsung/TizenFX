@@ -1578,10 +1578,7 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             (view.backgroundExtraData ?? (view.backgroundExtraData = new BackgroundExtraData())).CornerRadiusPolicy = (VisualTransformPolicyType)newValue;
 
-            // TODO Fix to support Vector4 for corner radius after dali support it.
-            //      Current code only gets first argument of Vector4.
-            float cornerRadius = view.backgroundExtraData.CornerRadius?.X ?? 0.0f;
-            if (cornerRadius != 0)
+            if (view.backgroundExtraData.CornerRadius != null)
             {
                 view.ApplyCornerRadius();
             }
@@ -1794,12 +1791,8 @@ namespace Tizen.NUI.BaseComponents
 
             PropertyMap map = new PropertyMap();
 
-            // TODO Fix to support Vector4 for corner radius after dali support it.
-            //      Current code only gets first argument of Vector4.
-            float cornerRadius = backgroundExtraData.CornerRadius?.X ?? 0.0f;
-
             map.Add(ImageVisualProperty.URL, new PropertyValue(value))
-               .Add(Visual.Property.CornerRadius, new PropertyValue(cornerRadius))
+               .Add(Visual.Property.CornerRadius, new PropertyValue(backgroundExtraData.CornerRadius == null ? new PropertyValue() : new PropertyValue(backgroundExtraData.CornerRadius)))
                .Add(Visual.Property.CornerRadiusPolicy, new PropertyValue((int)(backgroundExtraData.CornerRadiusPolicy)))
                .Add(ImageVisualProperty.SynchronousLoading, new PropertyValue(backgroundImageSynchronosLoading));
 
@@ -1865,13 +1858,9 @@ namespace Tizen.NUI.BaseComponents
 
             PropertyMap map = new PropertyMap();
 
-            // TODO Fix to support Vector4 for corner radius after dali support it.
-            //      Current code only gets first argument of Vector4.
-            float cornerRadius = backgroundExtraData.CornerRadius?.X ?? 0.0f;
-
             map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Color))
                 .Add(ColorVisualProperty.MixColor, new PropertyValue(value))
-                .Add(Visual.Property.CornerRadius, new PropertyValue(cornerRadius))
+                .Add(Visual.Property.CornerRadius, new PropertyValue(new PropertyValue(backgroundExtraData.CornerRadius == null ? new PropertyValue() : new PropertyValue(backgroundExtraData.CornerRadius))))
                 .Add(Visual.Property.CornerRadiusPolicy, new PropertyValue((int)(backgroundExtraData.CornerRadiusPolicy)));
 
             Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, View.Property.BACKGROUND, new PropertyValue(map));

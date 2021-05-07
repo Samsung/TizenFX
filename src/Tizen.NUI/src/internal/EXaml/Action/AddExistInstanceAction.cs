@@ -24,11 +24,14 @@ namespace Tizen.NUI.EXaml
 {
     internal class AddExistInstanceAction : Action
     {
-        internal AddExistInstanceAction(Action parent)
+        internal AddExistInstanceAction(GlobalDataList globalDataList, Action parent)
         {
             this.parent = parent;
+            this.globalDataList = globalDataList;
         }
+
         private Action parent;
+        private GlobalDataList globalDataList;
 
         public Action DealChar(char c)
         {
@@ -70,11 +73,11 @@ namespace Tizen.NUI.EXaml
 
                 if ('q' == sign)
                 {
-                    LoadEXaml.Operations.Add(new GatherConvertedValue(index, value));
+                    globalDataList.Operations.Add(new GatherConvertedValue(globalDataList, index, value));
                 }
                 else if ('o' == sign)
                 {
-                    LoadEXaml.Operations.Add(new GatherEnumValue(index, value));
+                    globalDataList.Operations.Add(new GatherEnumValue(globalDataList, index, value));
                 }
 
                 getValueListOp = null;
@@ -83,11 +86,5 @@ namespace Tizen.NUI.EXaml
 
         private char sign;
         private GetValueListAction getValueListOp;
-
-        internal static object Root
-        {
-            get;
-            set;
-        }
     }
 }

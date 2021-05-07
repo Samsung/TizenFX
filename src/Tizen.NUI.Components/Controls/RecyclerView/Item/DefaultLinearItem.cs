@@ -463,6 +463,8 @@ namespace Tizen.NUI.Components
             {
                 //Extension : Extension?.OnDispose(this);
 
+                // Arugable to disposing user-created members.
+                /*
                 if (itemIcon != null)
                 {
                     Utility.Dispose(itemIcon);
@@ -471,17 +473,21 @@ namespace Tizen.NUI.Components
                 {
                     Utility.Dispose(itemExtra);
                 }
+                */
                 if (itemLabel != null)
                 {
                     Utility.Dispose(itemLabel);
+                    itemLabel = null;
                 }
                 if (itemSubLabel != null)
                 {
                     Utility.Dispose(itemSubLabel);
+                    itemSubLabel = null;
                 }
                 if (itemSeperator != null)
                 {
                     Utility.Dispose(itemSeperator);
+                    itemSeperator = null;
                 }
             }
 
