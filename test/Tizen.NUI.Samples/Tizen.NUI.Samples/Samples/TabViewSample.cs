@@ -19,8 +19,8 @@ namespace Tizen.NUI.Samples
 
             tabView = new TabView()
             {
-                WidthResizePolicy = ResizePolicyType.FillToParent,
-                HeightResizePolicy = ResizePolicyType.FillToParent
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                HeightSpecification = LayoutParamPolicies.MatchParent,
             };
 
             tabCount = 0;
@@ -37,7 +37,7 @@ namespace Tizen.NUI.Samples
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 HeightSpecification = LayoutParamPolicies.MatchParent,
                 HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Center
+                VerticalAlignment = VerticalAlignment.Center,
             };
 
             tabView.AddTab(tabButton, content);
