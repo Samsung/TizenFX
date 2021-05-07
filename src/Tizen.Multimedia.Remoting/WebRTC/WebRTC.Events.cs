@@ -28,6 +28,7 @@ namespace Tizen.Multimedia.Remoting
         private NativeWebRTC.ErrorOccurredCallback _webRtcErrorOccurredCallback;
         private NativeWebRTC.StateChangedCallback _webRtcStateChangedCallback;
         private NativeWebRTC.IceGatheringStateChangedCallback _webRtcIceGatheringStateChangedCallback;
+        private NativeWebRTC.SignalingStateChangedCallback _webRtcSignalingStateChangedCallback;
         private NativeWebRTC.NegotiationNeededCallback _webRtcNegotiationNeededCallback;
         private NativeWebRTC.IceCandidateCallback _webRtcIceCandicateCallback;
         private NativeWebRTC.TrackAddedCallback _webRtcTrackAddedCallback;
@@ -52,6 +53,12 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public event EventHandler<WebRTCIceGatheringStateChangedEventArgs> IceGatheringStateChanged;
+
+        /// <summary>
+        /// Occurs when the WebRTC signaling state is changed.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public event EventHandler<WebRTCSignalingStateChangedEventArgs> SignalingStateChanged;
 
         /// <summary>
         /// Occurs when negotiation is needed.
@@ -94,6 +101,7 @@ namespace Tizen.Multimedia.Remoting
             RegisterErrorOccurredCallback();
             RegisterStateChangedCallback();
             RegisterIceGatheringStateChangedCallback();
+            RegisterSignalingStateChangedCallback();
             RegisterNegotiationNeededCallback();
             RegisterIceCandidateCallback();
             RegisterTrackAddedCallback();
@@ -110,7 +118,7 @@ namespace Tizen.Multimedia.Remoting
                 ErrorOccurred?.Invoke(this, new WebRTCErrorOccurredEventArgs((WebRTCError)error, state));
             };
 
-            NativeWebRTC.SetErrorOccurredCb(Handle, _webRtcErrorOccurredCallback, IntPtr.Zero).
+            NativeWebRTC.SetErrorOccurredCb(Handle, _webRtcErrorOccurredCallback).
                 ThrowIfFailed("Failed to set error occurred callback.");
         }
 
@@ -123,7 +131,7 @@ namespace Tizen.Multimedia.Remoting
                 StateChanged?.Invoke(this, new WebRTCStateChangedEventArgs(previous, current));
             };
 
-            NativeWebRTC.SetStateChangedCb(Handle, _webRtcStateChangedCallback, IntPtr.Zero).
+            NativeWebRTC.SetStateChangedCb(Handle, _webRtcStateChangedCallback).
                 ThrowIfFailed("Failed to set state changed callback.");
         }
 
@@ -136,8 +144,21 @@ namespace Tizen.Multimedia.Remoting
                 IceGatheringStateChanged?.Invoke(this, new WebRTCIceGatheringStateChangedEventArgs(state));
             };
 
-            NativeWebRTC.SetIceGatheringStateChangedCb(Handle, _webRtcIceGatheringStateChangedCallback, IntPtr.Zero).
+            NativeWebRTC.SetIceGatheringStateChangedCb(Handle, _webRtcIceGatheringStateChangedCallback).
                 ThrowIfFailed("Failed to set Ice gathering state changed callback.");
+        }
+
+        private void RegisterSignalingStateChangedCallback()
+        {
+            _webRtcSignalingStateChangedCallback = (handle, state, _) =>
+            {
+                Log.Info(WebRTCLog.Tag, $"{state}");
+
+                SignalingStateChanged?.Invoke(this, new WebRTCSignalingStateChangedEventArgs(state));
+            };
+
+            NativeWebRTC.SetSignalingStateChangedCb(Handle, _webRtcSignalingStateChangedCallback).
+                ThrowIfFailed("Failed to set signaling state changed callback.");
         }
 
         private void RegisterNegotiationNeededCallback()
@@ -147,7 +168,7 @@ namespace Tizen.Multimedia.Remoting
                 NegotiationNeeded?.Invoke(this, new EventArgs());
             };
 
-            NativeWebRTC.SetNegotiationNeededCb(Handle, _webRtcNegotiationNeededCallback, IntPtr.Zero).
+            NativeWebRTC.SetNegotiationNeededCb(Handle, _webRtcNegotiationNeededCallback).
                 ThrowIfFailed("Failed to set negotiation needed callback.");
         }
 
@@ -158,7 +179,7 @@ namespace Tizen.Multimedia.Remoting
                 IceCandidate?.Invoke(this, new WebRTCIceCandicateEventArgs(candidate));
             };
 
-            NativeWebRTC.SetIceCandidateCb(Handle, _webRtcIceCandicateCallback, IntPtr.Zero).
+            NativeWebRTC.SetIceCandidateCb(Handle, _webRtcIceCandicateCallback).
                 ThrowIfFailed("Failed to set ice candidate callback.");
         }
 
@@ -174,7 +195,7 @@ namespace Tizen.Multimedia.Remoting
                 TrackAdded?.Invoke(this, new WebRTCTrackAddedEventArgs(type, id));
             };
 
-            NativeWebRTC.SetTrackAddedCb(Handle, _webRtcTrackAddedCallback, IntPtr.Zero).
+            NativeWebRTC.SetTrackAddedCb(Handle, _webRtcTrackAddedCallback).
                 ThrowIfFailed("Failed to set track added callback.");
         }
 
@@ -192,10 +213,10 @@ namespace Tizen.Multimedia.Remoting
                 }
             };
 
-            NativeWebRTC.SetAudioFrameEncodedCb(Handle, _webRtcFrameEncodedCallback, IntPtr.Zero).
+            NativeWebRTC.SetAudioFrameEncodedCb(Handle, _webRtcFrameEncodedCallback).
                 ThrowIfFailed("Failed to set audio frame encoded callback.");
 
-            NativeWebRTC.SetVideoFrameEncodedCb(Handle, _webRtcFrameEncodedCallback, IntPtr.Zero).
+            NativeWebRTC.SetVideoFrameEncodedCb(Handle, _webRtcFrameEncodedCallback).
                 ThrowIfFailed("Failed to set video frame encoded callback.");
         }
 
@@ -208,7 +229,7 @@ namespace Tizen.Multimedia.Remoting
                 DataChannel?.Invoke(this, new WebRTCDataChannelEventArgs(dataChannelHandle));
             };
 
-            NativeDataChannel.SetCreatedByPeerCb(Handle, _webRtcDataChannelCreatedCallback, IntPtr.Zero).
+            NativeDataChannel.SetCreatedByPeerCb(Handle, _webRtcDataChannelCreatedCallback).
                 ThrowIfFailed("Failed to set data channel created callback.");
         }
     }

@@ -73,7 +73,28 @@ namespace Tizen.Multimedia.Remoting
                 NativeWebRTC.GetIceGatheringState(Handle, out WebRTCIceGatheringState state).
                     ThrowIfFailed("Failed to retrieve the state of the WebRTC");
 
-                Debug.Assert(Enum.IsDefined(typeof(WebRTCState), state));
+                Debug.Assert(Enum.IsDefined(typeof(WebRTCIceGatheringState), state));
+
+                return state;
+            }
+        }
+
+        /// <summary>
+        /// Gets the signaling state of the WebRTC.
+        /// </summary>
+        /// <value>The current signaling state of the WebRTC.</value>
+        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <since_tizen> 9 </since_tizen>
+        public WebRTCSignalingState SignalingState
+        {
+            get
+            {
+                ValidateNotDisposed();
+
+                NativeWebRTC.GetSignalingState(Handle, out WebRTCSignalingState state).
+                    ThrowIfFailed("Failed to retrieve the state of the WebRTC");
+
+                Debug.Assert(Enum.IsDefined(typeof(WebRTCSignalingState), state));
 
                 return state;
             }

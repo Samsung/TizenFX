@@ -77,15 +77,10 @@ namespace Tizen.Multimedia.Remoting
         Playing,
     }
 
-    internal static class WebRTCStateExtensions
-    {
-        internal static bool IsAnyOf(this WebRTCState thisState, params WebRTCState[] states) =>
-            Array.IndexOf<WebRTCState>(states, thisState) != -1;
-    }
-
     /// <summary>
     /// Specifies states that a <see cref="WebRTC"/> can have.
     /// </summary>
+    /// <seealso cref="WebRTC.IceCandidate"/>
     /// <since_tizen> 9 </since_tizen>
     public enum WebRTCIceGatheringState
     {
@@ -103,6 +98,58 @@ namespace Tizen.Multimedia.Remoting
         /// Ice gathering sequence has been completed.
         /// </summary>
         Completed,
+    }
+
+    /// <summary>
+    /// Specifies states that a <see cref="WebRTC"/> can have.
+    /// </summary>
+    /// <remarks>This state is related in SDP offer/answer.</remarks>
+    /// <since_tizen> 9 </since_tizen>
+    public enum WebRTCSignalingState
+    {
+        /// <summary>
+        /// The Initial state.
+        /// </summary>
+        Stable,
+
+        /// <summary>
+        /// The local SDP offer has been applied successfully.
+        /// </summary>
+        /// <seealso cref="WebRTC.SetLocalDescription"/>
+        /// <seealso cref="WebRTC.CreateSetOffer()"/>
+        HaveLocalOffer,
+
+        /// <summary>
+        /// The remote SDP offer has been applied successfully.
+        /// </summary>
+        /// <seealso cref="WebRTC.SetRemoteDescription"/>
+        /// <seealso cref="WebRTC.CreateSetAnswer(string)"/>
+        HaveRemoteOffer,
+
+        /// <summary>
+        /// The SDP offer sent by the remote peer has been applied and an answer has been created and applied.
+        /// </summary>
+        /// <seealso cref="WebRTC.CreateAnswer()"/>
+        /// <seealso cref="WebRTC.SetLocalDescription"/>
+        /// <seealso cref="WebRTC.CreateSetAnswer(string)"/>
+        HaveLocalPrAnswer,
+
+        /// <summary>
+        /// A provisional answer has been received and successfully applied in local.
+        /// </summary>
+        /// <seealso cref="WebRTC.SetRemoteDescription"/>
+        HaveRemotePrAnswer,
+
+        /// <summary>
+        /// The connection is closed.
+        /// </summary>
+        Closed
+    }
+
+    internal static class WebRTCStateExtensions
+    {
+        internal static bool IsAnyOf<T>(this T thisState, params T[] states) =>
+            Array.IndexOf<T>(states, thisState) != -1;
     }
 
     /// <summary>
