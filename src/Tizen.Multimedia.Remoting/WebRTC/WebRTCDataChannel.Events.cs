@@ -28,7 +28,7 @@ namespace Tizen.Multimedia.Remoting
         private NativeDataChannel.OpenedCallback _webRtcDataChannelOpenedCallback;
         private NativeDataChannel.ClosedCallback _webRtcDataChannelClosedCallback;
         private NativeDataChannel.MessageReceivedCallback _webRtcDataChannelMsgRecvCallback;
-        private NativeDataChannel.ErrorCallback _webRtcDataChannelErrorOccurredCallback;
+        private NativeDataChannel.ErrorOccurredCallback _webRtcDataChannelErrorOccurredCallback;
 
         /// <summary>
         /// Occurs when the data channel's underlying data transport is established.

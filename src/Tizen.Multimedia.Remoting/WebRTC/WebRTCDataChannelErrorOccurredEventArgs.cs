@@ -24,7 +24,10 @@ namespace Tizen.Multimedia.Remoting
     /// <since_tizen> 9 </since_tizen>
     public class WebRTCDataChannelErrorOccurredEventArgs : EventArgs
     {
-        internal WebRTCDataChannelErrorOccurredEventArgs(WebRTCError error) => Error = error;
+        internal WebRTCDataChannelErrorOccurredEventArgs(WebRTCError error)
+        {
+            Error = error;
+        }
 
         /// <summary>
         /// Gets the error.

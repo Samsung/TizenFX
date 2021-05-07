@@ -120,10 +120,10 @@ internal static partial class Interop
 
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_set_error_cb")]
-        internal static extern WebRTCErrorCode SetErrorCb(IntPtr handle, ErrorOccurredCallback callback, IntPtr userData = default);
+        internal static extern WebRTCErrorCode SetErrorOccurredCb(IntPtr handle, ErrorOccurredCallback callback, IntPtr userData = default);
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_unset_error_cb")]
-        internal static extern WebRTCErrorCode UnsetErrorCb(IntPtr handle);
+        internal static extern WebRTCErrorCode UnsetErrorOccurredCb(IntPtr handle);
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_set_state_changed_cb")]
         internal static extern WebRTCErrorCode SetStateChangedCb(IntPtr handle, StateChangedCallback callback, IntPtr userData = default);

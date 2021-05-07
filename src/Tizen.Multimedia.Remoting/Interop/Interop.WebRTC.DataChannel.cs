@@ -33,7 +33,7 @@ internal static partial class Interop
         internal delegate void MessageReceivedCallback(IntPtr dataChannelHandle, DataChannelType type, IntPtr message, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void ErrorCallback(IntPtr dataChanndelHandle, WebRTCErrorCode error, IntPtr userData);
+        internal delegate void ErrorOccurredCallback(IntPtr dataChanndelHandle, WebRTCErrorCode error, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void ClosedCallback(IntPtr dataChanndelHandle, IntPtr userData);
@@ -76,10 +76,10 @@ internal static partial class Interop
         internal static extern WebRTCErrorCode UnsetMessageReceivedCb(IntPtr dataChanndelHandle);
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_data_channel_set_error_cb")]
-        internal static extern WebRTCErrorCode SetErrorCb(IntPtr dataChanndelHandle, ErrorCallback callback, IntPtr userData = default);
+        internal static extern WebRTCErrorCode SetErrorOccurredCb(IntPtr dataChanndelHandle, ErrorOccurredCallback callback, IntPtr userData = default);
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_data_channel_unset_error_cb")]
-        internal static extern WebRTCErrorCode UnsetErrorCb(IntPtr handle);
+        internal static extern WebRTCErrorCode UnsetErrorOccurredCb(IntPtr handle);
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_data_channel_set_close_cb")]
         internal static extern WebRTCErrorCode SetClosedCb(IntPtr dataChanndelHandle, ClosedCallback callback, IntPtr userData = default);
