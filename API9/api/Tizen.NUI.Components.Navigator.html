@@ -104,7 +104,7 @@
     <dd>
       <div class="pdl-holder">
         <div class="pdl"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
-        <div class="pdl"><span class="xref">Tizen.NUI.Binding.BindableObject</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
         <div class="pdl"><span class="xref">Tizen.NUI.Binding.Element</span></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Animatable.html">Animatable</a></div>
@@ -162,7 +162,7 @@ Navigator.PushWithTransition(newPage);</code></pre>
   <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L90">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L92">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_Navigator__ctor_" data-uid="Tizen.NUI.Components.Navigator.#ctor*"></a>
   <h4 id="Tizen_NUI_Components_Navigator__ctor" data-uid="Tizen.NUI.Components.Navigator.#ctor">Navigator()</h4>
@@ -181,7 +181,39 @@ Navigator.PushWithTransition(newPage);</code></pre>
   <h3 id="properties">Properties
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L111">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L107">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Navigator_PageCount_" data-uid="Tizen.NUI.Components.Navigator.PageCount*"></a>
+  <h4 id="Tizen_NUI_Components_Navigator_PageCount" data-uid="Tizen.NUI.Components.Navigator.PageCount">PageCount</h4>
+  <div class="markdown level1 summary"><p>Returns the count of pages in Navigator.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int PageCount { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
+  
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L113">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_Navigator_Transition_" data-uid="Tizen.NUI.Components.Navigator.Transition*"></a>
   <h4 id="Tizen_NUI_Components_Navigator_Transition" data-uid="Tizen.NUI.Components.Navigator.Transition">Transition</h4>
@@ -215,7 +247,426 @@ Navigator.PushWithTransition(newPage);</code></pre>
   <h3 id="methods">Methods
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L175">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L556">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Navigator_GetDefaultNavigator_" data-uid="Tizen.NUI.Components.Navigator.GetDefaultNavigator*"></a>
+  <h4 id="Tizen_NUI_Components_Navigator_GetDefaultNavigator_Tizen_NUI_Window_" data-uid="Tizen.NUI.Components.Navigator.GetDefaultNavigator(Tizen.NUI.Window)">GetDefaultNavigator(Window)</h4>
+  <div class="markdown level1 summary"><p>Returns the default navigator of the given window.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Navigator GetDefaultNavigator(Window window)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Window.html">Window</a></td>
+        <td><span class="parametername">window</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.Navigator.html">Navigator</a></td>
+        <td><p>The default navigator of the given window.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p>Thrown when the argument window is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
+  
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L366">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Navigator_GetPage_" data-uid="Tizen.NUI.Components.Navigator.GetPage*"></a>
+  <h4 id="Tizen_NUI_Components_Navigator_GetPage_System_Int32_" data-uid="Tizen.NUI.Components.Navigator.GetPage(System.Int32)">GetPage(Int32)</h4>
+  <div class="markdown level1 summary"><p>Returns the page of the given index in Navigator.
+The indices of pages in Navigator are basically the order of pushing or inserting to Navigator.
+So a page&apos;s index in Navigator can be changed whenever push/insert or pop/remove occurs.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Page GetPage(int index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>The index of a page in Navigator.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.Page.html">Page</a></td>
+        <td><p>The page of the given index in Navigator.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
+        <td><p>Thrown when the argument index is less than 0, or greater than the number of pages.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L385">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Navigator_IndexOf_" data-uid="Tizen.NUI.Components.Navigator.IndexOf*"></a>
+  <h4 id="Tizen_NUI_Components_Navigator_IndexOf_Tizen_NUI_Components_Page_" data-uid="Tizen.NUI.Components.Navigator.IndexOf(Tizen.NUI.Components.Page)">IndexOf(Page)</h4>
+  <div class="markdown level1 summary"><p>Returns the current index of the given page in Navigator.
+The indices of pages in Navigator are basically the order of pushing or inserting to Navigator.
+So a page&apos;s index in Navigator can be changed whenever push/insert or pop/remove occurs.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int IndexOf(Page page)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.Page.html">Page</a></td>
+        <td><span class="parametername">page</span></td>
+        <td><p>The page in Navigator.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><p>The index of the given page in Navigator. If the given page is not in the Navigator, then -1 is returned.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p>Thrown when the argument page is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
+  
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L415">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Navigator_Insert_" data-uid="Tizen.NUI.Components.Navigator.Insert*"></a>
+  <h4 id="Tizen_NUI_Components_Navigator_Insert_System_Int32_Tizen_NUI_Components_Page_" data-uid="Tizen.NUI.Components.Navigator.Insert(System.Int32,Tizen.NUI.Components.Page)">Insert(Int32, Page)</h4>
+  <div class="markdown level1 summary"><p>Inserts a page at the specified index of Navigator.
+The indices of pages in Navigator are basically the order of pushing or inserting to Navigator.
+So a page&apos;s index in Navigator can be changed whenever push/insert or pop/remove occurs.
+To find the current index of a page in Navigator, please use IndexOf(page).
+If the page is already in Navigator, then it is not inserted.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Insert(int index, Page page)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>The index of a page in Navigator where the page will be inserted.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.Page.html">Page</a></td>
+        <td><span class="parametername">page</span></td>
+        <td><p>The page to insert to Navigator.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
+        <td><p>Thrown when the argument index is less than 0, or greater than the number of pages.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p>Thrown when the argument page is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
+  
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L445">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Navigator_InsertBefore_" data-uid="Tizen.NUI.Components.Navigator.InsertBefore*"></a>
+  <h4 id="Tizen_NUI_Components_Navigator_InsertBefore_Tizen_NUI_Components_Page_Tizen_NUI_Components_Page_" data-uid="Tizen.NUI.Components.Navigator.InsertBefore(Tizen.NUI.Components.Page,Tizen.NUI.Components.Page)">InsertBefore(Page, Page)</h4>
+  <div class="markdown level1 summary"><p>Inserts a page to Navigator before an existing page.
+If the page is already in Navigator, then it is not inserted.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void InsertBefore(Page before, Page page)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.Page.html">Page</a></td>
+        <td><span class="parametername">before</span></td>
+        <td><p>The existing page, before which a page will be inserted.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.Page.html">Page</a></td>
+        <td><span class="parametername">page</span></td>
+        <td><p>The page to insert to Navigator.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p>Thrown when the argument before is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p>Thrown when the argument page is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown when the argument before does not exist in Navigator.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
+  
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L511">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Navigator_Peek_" data-uid="Tizen.NUI.Components.Navigator.Peek*"></a>
+  <h4 id="Tizen_NUI_Components_Navigator_Peek" data-uid="Tizen.NUI.Components.Navigator.Peek">Peek()</h4>
+  <div class="markdown level1 summary"><p>Returns the page at the top of Navigator.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Page Peek()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.Page.html">Page</a></td>
+        <td><p>The page at the top of Navigator.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
+  
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L291">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Navigator_Pop_" data-uid="Tizen.NUI.Components.Navigator.Pop*"></a>
+  <h4 id="Tizen_NUI_Components_Navigator_Pop" data-uid="Tizen.NUI.Components.Navigator.Pop">Pop()</h4>
+  <div class="markdown level1 summary"><p>Pops the top page from Navigator.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Page Pop()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.Page.html">Page</a></td>
+        <td><p>The popped page.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown when there is no page in Navigator.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
+  
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L177">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_Navigator_PopWithTransition_" data-uid="Tizen.NUI.Components.Navigator.PopWithTransition*"></a>
   <h4 id="Tizen_NUI_Components_Navigator_PopWithTransition" data-uid="Tizen.NUI.Components.Navigator.PopWithTransition">PopWithTransition()</h4>
@@ -264,7 +715,59 @@ Navigator.PushWithTransition(newPage);</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L130">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L223">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Navigator_Push_" data-uid="Tizen.NUI.Components.Navigator.Push*"></a>
+  <h4 id="Tizen_NUI_Components_Navigator_Push_Tizen_NUI_Components_Page_" data-uid="Tizen.NUI.Components.Navigator.Push(Tizen.NUI.Components.Page)">Push(Page)</h4>
+  <div class="markdown level1 summary"><p>Pushes a page to Navigator.
+If the page is already in Navigator, then it is not pushed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Push(Page page)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.Page.html">Page</a></td>
+        <td><span class="parametername">page</span></td>
+        <td><p>The page to push to Navigator.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p>Thrown when the argument page is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
+  
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L132">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_Navigator_PushWithTransition_" data-uid="Tizen.NUI.Components.Navigator.PushWithTransition*"></a>
   <h4 id="Tizen_NUI_Components_Navigator_PushWithTransition_Tizen_NUI_Components_Page_" data-uid="Tizen.NUI.Components.Navigator.PushWithTransition(Tizen.NUI.Components.Page)">PushWithTransition(Page)</h4>
@@ -315,10 +818,115 @@ If the page is already in Navigator, then it is not pushed.</p>
   
   <div style="margin-bottom: 15px"></div>
 
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L475">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Navigator_Remove_" data-uid="Tizen.NUI.Components.Navigator.Remove*"></a>
+  <h4 id="Tizen_NUI_Components_Navigator_Remove_Tizen_NUI_Components_Page_" data-uid="Tizen.NUI.Components.Navigator.Remove(Tizen.NUI.Components.Page)">Remove(Page)</h4>
+  <div class="markdown level1 summary"><p>Removes a page from Navigator.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Remove(Page page)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.Page.html">Page</a></td>
+        <td><span class="parametername">page</span></td>
+        <td><p>The page to remove from Navigator.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p>Thrown when the argument page is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
+  
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L496">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Navigator_RemoveAt_" data-uid="Tizen.NUI.Components.Navigator.RemoveAt*"></a>
+  <h4 id="Tizen_NUI_Components_Navigator_RemoveAt_System_Int32_" data-uid="Tizen.NUI.Components.Navigator.RemoveAt(System.Int32)">RemoveAt(Int32)</h4>
+  <div class="markdown level1 summary"><p>Removes a page at the specified index of Navigator.
+The indices of pages in Navigator are basically the order of pushing or inserting to Navigator.
+So a page&apos;s index in Navigator can be changed whenever push/insert or pop/remove occurs.
+To find the current index of a page in Navigator, please use IndexOf(page).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemoveAt(int index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>The index of a page in Navigator where the page will be removed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
+        <td><p>Thrown when the index is less than 0, or greater than or equal to the number of pages.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
+  
+  <div style="margin-bottom: 15px"></div>
+
   <h3 id="events">Events
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L99">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L101">View Source</a>
   </span>
   <h4 id="Tizen_NUI_Components_Navigator_TransitionFinished" data-uid="Tizen.NUI.Components.Navigator.TransitionFinished">TransitionFinished</h4>
   <div class="markdown level1 summary"><p>An event fired when Transition has been finished.</p>
