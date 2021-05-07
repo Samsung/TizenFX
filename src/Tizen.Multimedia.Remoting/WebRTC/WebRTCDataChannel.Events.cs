@@ -28,7 +28,7 @@ namespace Tizen.Multimedia.Remoting
         private NativeDataChannel.OpenedCallback _webRtcDataChannelOpenedCallback;
         private NativeDataChannel.ClosedCallback _webRtcDataChannelClosedCallback;
         private NativeDataChannel.MessageReceivedCallback _webRtcDataChannelMsgRecvCallback;
-        private NativeDataChannel.ErrorCallback _webRtcDataChannelErrorCallback;
+        private NativeDataChannel.ErrorCallback _webRtcDataChannelErrorOccurredCallback;
 
         /// <summary>
         /// Occurs when the data channel's underlying data transport is established.
@@ -86,12 +86,12 @@ namespace Tizen.Multimedia.Remoting
 
         private void RegisterDataChannelErrorOccurredCallback()
         {
-            _webRtcDataChannelErrorCallback = (dataChannelHandle, error, _) =>
+            _webRtcDataChannelErrorOccurredCallback = (dataChannelHandle, error, _) =>
             {
                 ErrorOccurred?.Invoke(this, new WebRTCDataChannelErrorOccurredEventArgs((WebRTCError)error));
             };
 
-            NativeDataChannel.SetErrorCb(_handle, _webRtcDataChannelErrorCallback).
+            NativeDataChannel.SetErrorOccurredCb(_handle, _webRtcDataChannelErrorOccurredCallback).
                 ThrowIfFailed("Failed to set data channel error callback.");
         }
 

@@ -25,7 +25,7 @@ namespace Tizen.Multimedia.Remoting
     /// <since_tizen> 9 </since_tizen>
     public partial class WebRTC
     {
-        private NativeWebRTC.ErrorOccurredCallback _webRtcErrorCallback;
+        private NativeWebRTC.ErrorOccurredCallback _webRtcErrorOccurredCallback;
         private NativeWebRTC.StateChangedCallback _webRtcStateChangedCallback;
         private NativeWebRTC.IceGatheringStateChangedCallback _webRtcIceGatheringStateChangedCallback;
         private NativeWebRTC.NegotiationNeededCallback _webRtcNegotiationNeededCallback;
@@ -87,7 +87,7 @@ namespace Tizen.Multimedia.Remoting
         /// Occurs when the data channel is created to the connection by the remote peer.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public event EventHandler<WebRTCDataChannelCreatedEventArgs> DataChannelCreated;
+        public event EventHandler<WebRTCDataChannelEventArgs> DataChannel;
 
         private void RegisterEvents()
         {
@@ -103,14 +103,15 @@ namespace Tizen.Multimedia.Remoting
 
         private void RegisterErrorOccurredCallback()
         {
-            _webRtcErrorCallback = (handle, error, state, _) =>
+            _webRtcErrorOccurredCallback = (handle, error, state, _) =>
             {
                 Log.Info(WebRTCLog.Tag, $"{error}, {state}");
 
                 ErrorOccurred?.Invoke(this, new WebRTCErrorOccurredEventArgs((WebRTCError)error, state));
             };
 
-            NativeWebRTC.SetErrorCb(Handle, _webRtcErrorCallback, IntPtr.Zero).ThrowIfFailed("Failed to set error callback.");
+            NativeWebRTC.SetErrorOccurredCb(Handle, _webRtcErrorOccurredCallback, IntPtr.Zero).
+                ThrowIfFailed("Failed to set error occurred callback.");
         }
 
         private void RegisterStateChangedCallback()
@@ -204,7 +205,7 @@ namespace Tizen.Multimedia.Remoting
             {
                 Log.Debug(WebRTCLog.Tag, "Enter");
 
-                DataChannelCreated?.Invoke(this, new WebRTCDataChannelCreatedEventArgs(dataChannelHandle));
+                DataChannel?.Invoke(this, new WebRTCDataChannelEventArgs(dataChannelHandle));
             };
 
             NativeDataChannel.SetCreatedByPeerCb(Handle, _webRtcDataChannelCreatedCallback, IntPtr.Zero).

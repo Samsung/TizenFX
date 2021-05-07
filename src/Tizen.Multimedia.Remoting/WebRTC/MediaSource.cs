@@ -44,18 +44,18 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Gets the current transceiver direction.
         /// </summary>
-        /// <remarks>The default value is <see cref="TransMode.SendRecv"/></remarks>
+        /// <remarks>The default value is <see cref="TransceiverDirection.SendRecv"/></remarks>
         /// <param name="type"></param>
         /// <returns>The current transceiver direction.</returns>
         /// <since_tizen> 9 </since_tizen>
-        public TransMode GetTransceiverDirection(MediaType type)
+        public TransceiverDirection GetTransceiverDirection(MediaType type)
         {
             if (!SourceId.HasValue)
             {
                 throw new InvalidOperationException("MediaSource is not attached yet. Call SetSource() first.");
             }
 
-            NativeWebRTC.GetTransceiverDirection(WebRtc.Handle, SourceId.Value, type, out TransMode mode).
+            NativeWebRTC.GetTransceiverDirection(WebRtc.Handle, SourceId.Value, type, out TransceiverDirection mode).
                 ThrowIfFailed("Failed to get transceiver direction.");
 
             return mode;
@@ -67,7 +67,7 @@ namespace Tizen.Multimedia.Remoting
         /// <param name="type">The media type.</param>
         /// <param name="direction">The transceiver direction.</param>
         /// <since_tizen> 9 </since_tizen>
-        public void SetTransceiverDirection(MediaType type, TransMode direction)
+        public void SetTransceiverDirection(MediaType type, TransceiverDirection direction)
         {
             if (!SourceId.HasValue)
             {

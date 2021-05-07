@@ -320,7 +320,7 @@ namespace Tizen.Multimedia.Remoting
         internal override void OnDetached(WebRTC webRtc)
         {
             NativeWebRTC.RemoveMediaSource(webRtc.Handle, SourceId.Value).
-                ThrowIfFailed("Failed to add media source for media packet.");
+                ThrowIfFailed("Failed to remove media source for media packet.");
 
             AudioConfiguration?.OnWebRTCUnset();
             VideoConfiguration?.OnWebRTCUnset();

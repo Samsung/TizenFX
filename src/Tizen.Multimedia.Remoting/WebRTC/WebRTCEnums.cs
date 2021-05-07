@@ -160,7 +160,7 @@ namespace Tizen.Multimedia.Remoting
     /// Specifies the transceiver direction type.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
-    public enum TransMode
+    public enum TransceiverDirection
     {
         /// <summary>
         /// Send only.
