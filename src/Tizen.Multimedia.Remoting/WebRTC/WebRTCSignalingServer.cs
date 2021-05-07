@@ -154,33 +154,19 @@ namespace Tizen.Multimedia.Remoting
                     _isConnected = true;
                 }
 
-                _signalingMessage?.Invoke(this, new WebRTCSignalingEventArgs(type, message));
+                SignalingMessage?.Invoke(this, new WebRTCSignalingEventArgs(type, message));
             };
 
             SignalingClient.Connect(serverIp, port, _signalingMessageCallback, zero, out _handle).
                 ThrowIfFailed("Failed to connect to server");
         }
 
-        private event EventHandler<WebRTCSignalingEventArgs> _signalingMessage;
-
         /// <summary>
         /// Occurs when a message to be handled is sent from the remote peer or the signaling server.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<WebRTCSignalingEventArgs> SignalingMessage
-        {
-            add
-            {
-                _signalingMessage += value;
-            }
-            remove
-            {
-                _signalingMessage -= value;
-                if (_signalingMessage != null)
-                    ;//FIXME: need native impl. currentely not implemented in native.
-            }
-        }
+        public event EventHandler<WebRTCSignalingEventArgs> SignalingMessage;
 
         /// <summary>
         /// Gets the state whether signaling client is connected to remote peer or not.
