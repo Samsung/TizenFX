@@ -97,14 +97,8 @@ internal static partial class Interop
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_create_offer")]
         internal static extern WebRTCErrorCode CreateSDPOffer(IntPtr handle, SafeBundleHandle bundle, out string offer);
 
-        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_create_offer")]
-        internal static extern WebRTCErrorCode CreateSDPOfferWithoutBundle(IntPtr handle, IntPtr bundle, out string offer);
-
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_create_answer")]
         internal static extern WebRTCErrorCode CreateSDPAnswer(IntPtr handle, SafeBundleHandle bundle, out string offer);
-
-        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_create_answer")]
-        internal static extern WebRTCErrorCode CreateSDPAnswerWithoutBundle(IntPtr handle, IntPtr bundle, out string offer);
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_set_local_description")]
         internal static extern WebRTCErrorCode SetLocalDescription(IntPtr handle, string description);

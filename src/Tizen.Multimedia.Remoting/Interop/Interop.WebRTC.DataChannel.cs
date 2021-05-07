@@ -42,9 +42,6 @@ internal static partial class Interop
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_create_data_channel")]
         internal static extern WebRTCErrorCode Create(IntPtr handle, string label, SafeBundleHandle bundle, out IntPtr dataChanndelHandle);
 
-        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_create_data_channel")]
-        internal static extern WebRTCErrorCode CreateWithoutBundle(IntPtr handle, string label, IntPtr bundle, out IntPtr dataChanndelHandle);
-
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_destroy_data_channel")]
         internal static extern WebRTCErrorCode Destroy(IntPtr dataChanndelHandle);
 

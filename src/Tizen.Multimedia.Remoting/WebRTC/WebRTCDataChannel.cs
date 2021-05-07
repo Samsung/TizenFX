@@ -17,7 +17,6 @@
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Runtime.InteropServices;
 using Tizen.Applications;
 using static Interop;
 
@@ -29,7 +28,6 @@ namespace Tizen.Multimedia.Remoting
     /// <since_tizen> 9 </since_tizen>
     public partial class WebRTCDataChannel : IDisposable
     {
-        private readonly WebRTC _webRtc;
         private readonly IntPtr _handle;
 
         /// <summary>
@@ -45,8 +43,8 @@ namespace Tizen.Multimedia.Remoting
         /// 'id' of type int                  : Override the default identifier selection of this channel. The default value is -1.<br/>
         /// 'priority' of type int            : The priority to use for this channel(1:very low, 2:low, 3:medium, 4:high). The default value is 2.<br/>
         /// </remarks>
-        /// <param name="webRtc">The WebRTC instance related this WebRTCDataChannel.</param>
-        /// <param name="bundle">The data channel option.</param>
+        /// <param name="webRtc">The owner of this WebRTCDataChannel.</param>
+        /// <param name="bundle">The data channel option. This can be null.</param>
         /// <param name="label">The name of this data channel.</param>
         /// <exception cref="ArgumentNullException">The webRtc or label is null.</exception>
         /// <since_tizen> 9 </since_tizen>
@@ -62,23 +60,14 @@ namespace Tizen.Multimedia.Remoting
                 throw new ArgumentNullException(nameof(label), "label is null.");
             }
 
-            if (bundle == null)
-            {
-                NativeDataChannel.CreateWithoutBundle(webRtc.Handle, label, IntPtr.Zero, out _handle).
-                    ThrowIfFailed("Failed to create webrtc data channel");
-            }
-            else
-            {
-                NativeDataChannel.Create(webRtc.Handle, label, bundle.SafeBundleHandle, out _handle).
-                    ThrowIfFailed("Failed to create webrtc data channel");
-            }
+            var bundle_ = bundle?.SafeBundleHandle ?? new SafeBundleHandle();
+            NativeDataChannel.Create(webRtc.Handle, label, bundle_, out _handle).
+                ThrowIfFailed("Failed to create webrtc data channel");
 
             Debug.Assert(_handle != null);
 
-            _webRtc = webRtc;
             Label = label;
 
-            Log.Info(WebRTCLog.Tag, "Register event");
             RegisterEvents();
         }
 
@@ -192,8 +181,6 @@ namespace Tizen.Multimedia.Remoting
                 throw new ObjectDisposedException(nameof(WebRTCDataChannel));
             }
         }
-
-        internal bool IsDisposed => _disposed;
         #endregion Dispose support
     }
 }
