@@ -48,6 +48,9 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate bool SupportedMediaFormatCallback(int format, IntPtr userData);
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void IceGatheringStateChangedCallback(IntPtr handle, WebRTCIceGatheringState state, IntPtr userData);
+
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_create")]
         internal static extern WebRTCErrorCode Create(out WebRTCHandle handle);
@@ -63,6 +66,9 @@ internal static partial class Interop
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_get_state")]
         internal static extern WebRTCErrorCode GetState(IntPtr handle, out WebRTCState state);
+
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_get_ice_gathering_state")]
+        internal static extern WebRTCErrorCode GetIceGatheringState(IntPtr handle, out WebRTCIceGatheringState state);
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_add_media_source")]
         internal static extern WebRTCErrorCode AddMediaSource(IntPtr handle, MediaSourceType type, out uint sourceId);
@@ -112,6 +118,7 @@ internal static partial class Interop
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_foreach_media_source_supported_format")]
         internal static extern WebRTCErrorCode SupportedMediaSourceFormat(IntPtr handle, SupportedMediaFormatCallback callback, IntPtr userData);
 
+
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_set_error_cb")]
         internal static extern WebRTCErrorCode SetErrorCb(IntPtr handle, ErrorOccurredCallback callback, IntPtr userData = default);
 
@@ -159,6 +166,12 @@ internal static partial class Interop
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_unset_encoded_video_frame_cb")]
         internal static extern WebRTCErrorCode UnsetVideoFrameEncodedCb(IntPtr handle);
+
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_set_ice_gathering_state_change_cb")]
+        internal static extern WebRTCErrorCode SetIceGatheringStateChangedCb(IntPtr handle, IceGatheringStateChangedCallback callback, IntPtr userData = default);
+
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_unset_ice_gathering_state_change_cb")]
+        internal static extern WebRTCErrorCode UnsetIceGatheringStateChangedCb(IntPtr handle);
     }
 
     internal class WebRTCHandle : SafeHandle

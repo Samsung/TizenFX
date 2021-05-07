@@ -84,6 +84,28 @@ namespace Tizen.Multimedia.Remoting
     }
 
     /// <summary>
+    /// Specifies states that a <see cref="WebRTC"/> can have.
+    /// </summary>
+    /// <since_tizen> 9 </since_tizen>
+    public enum WebRTCIceGatheringState
+    {
+        /// <summary>
+        /// The Initial state.
+        /// </summary>
+        New,
+
+        /// <summary>
+        /// Ice candidate is creating.
+        /// </summary>
+        Gathering,
+
+        /// <summary>
+        /// Ice gathering sequence has been completed.
+        /// </summary>
+        Completed,
+    }
+
+    /// <summary>
     /// Specifies data type that transfers on data channel.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>

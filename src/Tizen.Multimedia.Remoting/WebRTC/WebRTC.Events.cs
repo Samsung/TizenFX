@@ -27,6 +27,7 @@ namespace Tizen.Multimedia.Remoting
     {
         private NativeWebRTC.ErrorOccurredCallback _webRtcErrorCallback;
         private NativeWebRTC.StateChangedCallback _webRtcStateChangedCallback;
+        private NativeWebRTC.IceGatheringStateChangedCallback _webRtcIceGatheringStateChangedCallback;
         private NativeWebRTC.NegotiationNeededCallback _webRtcNegotiationNeededCallback;
         private NativeWebRTC.IceCandidateCallback _webRtcIceCandicateCallback;
         private NativeWebRTC.TrackAddedCallback _webRtcTrackAddedCallback;
@@ -41,10 +42,16 @@ namespace Tizen.Multimedia.Remoting
         public event EventHandler<WebRTCErrorOccurredEventArgs> ErrorOccurred;
 
         /// <summary>
-        /// Occurs when internal state is changed.
+        /// Occurs when WebRTC state is changed.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public event EventHandler<WebRTCStateChangedEventArgs> StateChanged;
+
+        /// <summary>
+        /// Occurs when the WebRTC ICE gathering state is changed.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public event EventHandler<WebRTCIceGatheringStateChangedEventArgs> IceGatheringStateChanged;
 
         /// <summary>
         /// Occurs when negotiation is needed.
@@ -86,6 +93,7 @@ namespace Tizen.Multimedia.Remoting
         {
             RegisterErrorOccurredCallback();
             RegisterStateChangedCallback();
+            RegisterIceGatheringStateChangedCallback();
             RegisterNegotiationNeededCallback();
             RegisterIceCandidateCallback();
             RegisterTrackAddedCallback();
@@ -116,6 +124,19 @@ namespace Tizen.Multimedia.Remoting
 
             NativeWebRTC.SetStateChangedCb(Handle, _webRtcStateChangedCallback, IntPtr.Zero).
                 ThrowIfFailed("Failed to set state changed callback.");
+        }
+
+        private void RegisterIceGatheringStateChangedCallback()
+        {
+            _webRtcIceGatheringStateChangedCallback = (handle, state, _) =>
+            {
+                Log.Info(WebRTCLog.Tag, $"{state}");
+
+                IceGatheringStateChanged?.Invoke(this, new WebRTCIceGatheringStateChangedEventArgs(state));
+            };
+
+            NativeWebRTC.SetIceGatheringStateChangedCb(Handle, _webRtcIceGatheringStateChangedCallback, IntPtr.Zero).
+                ThrowIfFailed("Failed to set Ice gathering state changed callback.");
         }
 
         private void RegisterNegotiationNeededCallback()
