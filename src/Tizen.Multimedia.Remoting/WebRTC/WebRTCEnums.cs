@@ -104,6 +104,10 @@ namespace Tizen.Multimedia.Remoting
     /// Specifies states that a <see cref="WebRTC"/> can have.
     /// </summary>
     /// <remarks>This state is related in SDP offer/answer.</remarks>
+    /// <seealso cref="WebRTC.SetLocalDescription"/>
+    /// <seealso cref="WebRTC.SetRemoteDescription"/>
+    /// <seealso cref="WebRTC.CreateSetOffer()"/>
+    /// <seealso cref="WebRTC.CreateAnswer()"/>
     /// <since_tizen> 9 </since_tizen>
     public enum WebRTCSignalingState
     {
@@ -115,30 +119,61 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// The local SDP offer has been applied successfully.
         /// </summary>
-        /// <seealso cref="WebRTC.SetLocalDescription"/>
-        /// <seealso cref="WebRTC.CreateSetOffer()"/>
         HaveLocalOffer,
 
         /// <summary>
         /// The remote SDP offer has been applied successfully.
         /// </summary>
-        /// <seealso cref="WebRTC.SetRemoteDescription"/>
-        /// <seealso cref="WebRTC.CreateSetAnswer(string)"/>
         HaveRemoteOffer,
 
         /// <summary>
-        /// The SDP offer sent by the remote peer has been applied and an answer has been created and applied.
+        /// The SDP offer sent by the remote peer has been applied and <br/>
+        /// an answer has been created and applied.
         /// </summary>
-        /// <seealso cref="WebRTC.CreateAnswer()"/>
-        /// <seealso cref="WebRTC.SetLocalDescription"/>
-        /// <seealso cref="WebRTC.CreateSetAnswer(string)"/>
         HaveLocalPrAnswer,
 
         /// <summary>
         /// A provisional answer has been received and successfully applied in local.
         /// </summary>
-        /// <seealso cref="WebRTC.SetRemoteDescription"/>
         HaveRemotePrAnswer,
+
+        /// <summary>
+        /// The connection is closed.
+        /// </summary>
+        Closed
+    }
+
+    /// <summary>
+    /// Specifies states that a <see cref="WebRTC"/> can have.
+    /// </summary>
+    /// <remarks>This state is related in peer connection.</remarks>
+    /// <since_tizen> 9 </since_tizen>
+    public enum WebRTCPeerConnectionState
+    {
+        /// <summary>
+        /// The Initial state.
+        /// </summary>
+        New,
+
+        /// <summary>
+        /// Establishing a connection is in the process.
+        /// </summary>
+        Connecting,
+
+        /// <summary>
+        /// The remote SDP offer has been applied successfully.
+        /// </summary>
+        Connected,
+
+        /// <summary>
+        /// The SDP offer sent by the remote peer has been applied and an answer has been created and applied.
+        /// </summary>
+        Disconnected,
+
+        /// <summary>
+        /// A provisional answer has been received and successfully applied in local.
+        /// </summary>
+        Failed,
 
         /// <summary>
         /// The connection is closed.

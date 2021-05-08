@@ -101,6 +101,27 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
+        /// Gets the peer connection state of the WebRTC.
+        /// </summary>
+        /// <value>The current peer connection state of the WebRTC.</value>
+        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <since_tizen> 9 </since_tizen>
+        public WebRTCPeerConnectionState PeerConnectionState
+        {
+            get
+            {
+                ValidateNotDisposed();
+
+                NativeWebRTC.GetPeerConnectionState(Handle, out WebRTCPeerConnectionState state).
+                    ThrowIfFailed("Failed to retrieve the state of the WebRTC");
+
+                Debug.Assert(Enum.IsDefined(typeof(WebRTCPeerConnectionState), state));
+
+                return state;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the STUN server url.
         /// </summary>
         /// <value>The STUN server url</value>

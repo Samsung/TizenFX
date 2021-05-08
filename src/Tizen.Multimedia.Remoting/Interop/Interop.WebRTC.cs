@@ -31,6 +31,15 @@ internal static partial class Interop
         internal delegate void StateChangedCallback(IntPtr handle, WebRTCState previous, WebRTCState current, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void IceGatheringStateChangedCallback(IntPtr handle, WebRTCIceGatheringState state, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void SignalingStateChangedCallback(IntPtr handle, WebRTCSignalingState state, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void PeerConnectionStateChangedCallback(IntPtr handle, WebRTCPeerConnectionState state, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void MediaPacketBufferStatusCallback(uint sourceId, MediaPacketBufferStatus status, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -47,12 +56,6 @@ internal static partial class Interop
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate bool SupportedMediaFormatCallback(int format, IntPtr userData);
-
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void IceGatheringStateChangedCallback(IntPtr handle, WebRTCIceGatheringState state, IntPtr userData);
-
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void SignalingStateChangedCallback(IntPtr handle, WebRTCSignalingState state, IntPtr userData);
 
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_create")]
@@ -75,6 +78,9 @@ internal static partial class Interop
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_get_signaling_state")]
         internal static extern WebRTCErrorCode GetSignalingState(IntPtr handle, out WebRTCSignalingState state);
+
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_get_peer_connection_state")]
+        internal static extern WebRTCErrorCode GetPeerConnectionState(IntPtr handle, out WebRTCPeerConnectionState state);
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_add_media_source")]
         internal static extern WebRTCErrorCode AddMediaSource(IntPtr handle, MediaSourceType type, out uint sourceId);
@@ -148,6 +154,12 @@ internal static partial class Interop
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_unset_signaling_state_change_cb")]
         internal static extern WebRTCErrorCode UnsetSignalingStateChangedCb(IntPtr handle);
+
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_set_peer_connection_state_change_cb")]
+        internal static extern WebRTCErrorCode SetPeerConnectionStateChangedCb(IntPtr handle, PeerConnectionStateChangedCallback callback, IntPtr userData = default);
+
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_unset_peer_connection_state_change_cb")]
+        internal static extern WebRTCErrorCode UnsetPeerConnectionStateChangedCb(IntPtr handle);
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_packet_source_set_buffer_state_changed_cb")]
         internal static extern WebRTCErrorCode SetBufferStateChangedCb(IntPtr handle, uint sourceId, MediaPacketBufferStatusCallback callback, IntPtr userData = default);

@@ -29,6 +29,7 @@ namespace Tizen.Multimedia.Remoting
         private NativeWebRTC.StateChangedCallback _webRtcStateChangedCallback;
         private NativeWebRTC.IceGatheringStateChangedCallback _webRtcIceGatheringStateChangedCallback;
         private NativeWebRTC.SignalingStateChangedCallback _webRtcSignalingStateChangedCallback;
+        private NativeWebRTC.PeerConnectionStateChangedCallback _webRtcPeerConnectionStateChangedCallback;
         private NativeWebRTC.NegotiationNeededCallback _webRtcNegotiationNeededCallback;
         private NativeWebRTC.IceCandidateCallback _webRtcIceCandicateCallback;
         private NativeWebRTC.TrackAddedCallback _webRtcTrackAddedCallback;
@@ -59,6 +60,12 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public event EventHandler<WebRTCSignalingStateChangedEventArgs> SignalingStateChanged;
+
+        /// <summary>
+        /// Occurs when the WebRTC peer connection state is changed.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public event EventHandler<WebRTCPeerConnectionStateChangedEventArgs> PeerConnectionStateChanged;
 
         /// <summary>
         /// Occurs when negotiation is needed.
@@ -102,6 +109,7 @@ namespace Tizen.Multimedia.Remoting
             RegisterStateChangedCallback();
             RegisterIceGatheringStateChangedCallback();
             RegisterSignalingStateChangedCallback();
+            RegisterPeerConnectionStateChangedCallback();
             RegisterNegotiationNeededCallback();
             RegisterIceCandidateCallback();
             RegisterTrackAddedCallback();
@@ -159,6 +167,19 @@ namespace Tizen.Multimedia.Remoting
 
             NativeWebRTC.SetSignalingStateChangedCb(Handle, _webRtcSignalingStateChangedCallback).
                 ThrowIfFailed("Failed to set signaling state changed callback.");
+        }
+
+        private void RegisterPeerConnectionStateChangedCallback()
+        {
+            _webRtcPeerConnectionStateChangedCallback = (handle, state, _) =>
+            {
+                Log.Info(WebRTCLog.Tag, $"{state}");
+
+                PeerConnectionStateChanged?.Invoke(this, new WebRTCPeerConnectionStateChangedEventArgs(state));
+            };
+
+            NativeWebRTC.SetPeerConnectionStateChangedCb(Handle, _webRtcPeerConnectionStateChangedCallback).
+                ThrowIfFailed("Failed to set peer connection state changed callback.");
         }
 
         private void RegisterNegotiationNeededCallback()
