@@ -130,35 +130,6 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Initializes a new instance of the MediaPacketSource class
-        /// with the specified <see cref="AudioMediaFormat"/> and <see cref="VideoMediaFormat"/>.
-        /// </summary>
-        /// <param name="audioMediaFormat">The <see cref="AudioMediaFormat"/> for this source.</param>
-        /// <param name="videoMediaFormat">The <see cref="VideoMediaFormat"/> for this source.</param>
-        /// <exception cref="ArgumentNullException">Both <paramref name="audioMediaFormat"/> and <paramref name="videoMediaFormat"/> are null.</exception>
-        /// <exception cref="ArgumentException">
-        ///     <paramref name="audioMediaFormat"/> is not supported.<br/>
-        ///     -or-<br/>
-        ///     <paramref name="videoMediaFormat"/> is not supported.
-        /// </exception>
-        /// <seealso cref="SupportedAudioTypes"/>
-        /// <seealso cref="SupportedVideoTypes"/>
-        /// <since_tizen> 9 </since_tizen>
-        public MediaPacketSource(AudioMediaFormat audioMediaFormat, VideoMediaFormat videoMediaFormat)
-        {
-            if (audioMediaFormat == null && videoMediaFormat == null)
-            {
-                throw new ArgumentNullException(string.Concat(nameof(_audioMediaFormat), " and ", nameof(_videoMediaFormat)));
-            }
-
-            _audioMediaFormat = audioMediaFormat;
-            _videoMediaFormat = videoMediaFormat;
-
-            AudioConfiguration = CreateAudioConfiguration(audioMediaFormat);
-            VideoConfiguration = CreateVideoConfiguration(videoMediaFormat);
-        }
-
-        /// <summary>
         /// Initializes a new instance of the MediaPacketSource class with the specified <see cref="AudioMediaFormat"/>.
         /// </summary>
         /// <param name="audioMediaFormat">The <see cref="AudioMediaFormat"/> for this source.</param>
@@ -166,7 +137,7 @@ namespace Tizen.Multimedia.Remoting
         /// <exception cref="ArgumentException"><paramref name="audioMediaFormat"/> is not supported.</exception>
         /// <seealso cref="SupportedAudioTypes"/>
         /// <since_tizen> 9 </since_tizen>
-        public MediaPacketSource(AudioMediaFormat audioMediaFormat)
+        public MediaPacketSource(AudioMediaFormat audioMediaFormat) : base(MediaType.Audio)
         {
             _audioMediaFormat = audioMediaFormat ?? throw new ArgumentNullException(nameof(audioMediaFormat));
             AudioConfiguration = CreateAudioConfiguration(audioMediaFormat);
@@ -180,7 +151,7 @@ namespace Tizen.Multimedia.Remoting
         /// <exception cref="ArgumentException"><paramref name="videoMediaFormat"/> is not supported.</exception>
         /// <seealso cref="SupportedVideoTypes"/>
         /// <since_tizen> 9 </since_tizen>
-        public MediaPacketSource(VideoMediaFormat videoMediaFormat)
+        public MediaPacketSource(VideoMediaFormat videoMediaFormat) : base(MediaType.Video)
         {
             _videoMediaFormat = videoMediaFormat ?? throw new ArgumentNullException(nameof(videoMediaFormat));
             VideoConfiguration = CreateVideoConfiguration(videoMediaFormat);

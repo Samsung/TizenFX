@@ -28,6 +28,12 @@ namespace Tizen.Multimedia.Remoting
     /// <since_tizen> 9 </since_tizen>
     public sealed class MediaCameraSource : MediaSource
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MediaCameraSource"/> class.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public MediaCameraSource() : base(MediaType.Video) {}
+
         internal override void OnAttached(WebRTC webRtc)
         {
             Debug.Assert(webRtc != null);

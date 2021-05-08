@@ -29,8 +29,15 @@ namespace Tizen.Multimedia.Remoting
 
         internal WebRTC WebRtc { get; set; }
 
-        internal MediaSource()
+        private MediaType MediaType { get; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MediaSource"/> class.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        protected MediaSource(MediaType mediaType)
         {
+            MediaType = mediaType;
         }
 
         internal void AttachTo(WebRTC webRtc) => OnAttached(webRtc);
@@ -42,40 +49,35 @@ namespace Tizen.Multimedia.Remoting
         internal abstract void OnDetached(WebRTC webRtc);
 
         /// <summary>
-        /// Gets the current transceiver direction.
+        /// Gets or sets the transceiver direction of current media source.
         /// </summary>
-        /// <remarks>The default value is <see cref="TransceiverDirection.SendRecv"/></remarks>
-        /// <param name="type"></param>
-        /// <returns>The current transceiver direction.</returns>
+        /// <value>A <see cref="TransceiverDirection"/> that specifies the transceiver direction.</value>
+        /// <exception cref="InvalidOperationException">MediaSource is not attached yet.</exception>
         /// <since_tizen> 9 </since_tizen>
-        public TransceiverDirection GetTransceiverDirection(MediaType type)
+        public TransceiverDirection TransceiverDirection
         {
-            if (!SourceId.HasValue)
+            get
             {
-                throw new InvalidOperationException("MediaSource is not attached yet. Call SetSource() first.");
+                if (!SourceId.HasValue)
+                {
+                    throw new InvalidOperationException("MediaSource is not attached yet. Call SetSource() first.");
+                }
+
+                NativeWebRTC.GetTransceiverDirection(WebRtc.Handle, SourceId.Value, MediaType, out TransceiverDirection mode).
+                    ThrowIfFailed("Failed to get transceiver direction.");
+
+                return mode;
             }
-
-            NativeWebRTC.GetTransceiverDirection(WebRtc.Handle, SourceId.Value, type, out TransceiverDirection mode).
-                ThrowIfFailed("Failed to get transceiver direction.");
-
-            return mode;
-        }
-
-        /// <summary>
-        /// Sets the transceiver direction of current media source.
-        /// </summary>
-        /// <param name="type">The media type.</param>
-        /// <param name="direction">The transceiver direction.</param>
-        /// <since_tizen> 9 </since_tizen>
-        public void SetTransceiverDirection(MediaType type, TransceiverDirection direction)
-        {
-            if (!SourceId.HasValue)
+            set
             {
-                throw new InvalidOperationException("MediaSource is not attached yet. Call SetSource() first.");
-            }
+                if (!SourceId.HasValue)
+                {
+                    throw new InvalidOperationException("MediaSource is not attached yet. Call SetSource() first.");
+                }
 
-            NativeWebRTC.SetTransceiverDirection(WebRtc.Handle, SourceId.Value, type, direction).
-                ThrowIfFailed("Failed to get transceiver direction.");
+                NativeWebRTC.SetTransceiverDirection(WebRtc.Handle, SourceId.Value, MediaType, value).
+                    ThrowIfFailed("Failed to get transceiver direction.");
+            }
         }
     }
 }

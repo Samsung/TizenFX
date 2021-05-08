@@ -27,6 +27,11 @@ namespace Tizen.Multimedia.Remoting
     /// <since_tizen> 9 </since_tizen>
     public sealed class MediaAudioTestSource : MediaSource
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MediaAudioTestSource"/> class.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public MediaAudioTestSource() : base(MediaType.Audio) {}
         internal override void OnAttached(WebRTC webRtc)
         {
             Debug.Assert(webRtc != null);
@@ -59,6 +64,12 @@ namespace Tizen.Multimedia.Remoting
     /// <since_tizen> 9 </since_tizen>
     public sealed class MediaVideoTestSource : MediaSource
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MediaVideoTestSource"/> class.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public MediaVideoTestSource() : base(MediaType.Video) {}
+
         internal override void OnAttached(WebRTC webRtc)
         {
             Debug.Assert(webRtc != null);

@@ -28,6 +28,12 @@ namespace Tizen.Multimedia.Remoting
     /// <since_tizen> 9 </since_tizen>
     public sealed class MediaMicSource : MediaSource
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MediaMicSource"/> class.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public MediaMicSource() : base(MediaType.Audio) {}
+
         internal override void OnAttached(WebRTC webRtc)
         {
             Debug.Assert(webRtc != null);
