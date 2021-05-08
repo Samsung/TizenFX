@@ -30,6 +30,7 @@ namespace Tizen.Multimedia.Remoting
         private NativeWebRTC.IceGatheringStateChangedCallback _webRtcIceGatheringStateChangedCallback;
         private NativeWebRTC.SignalingStateChangedCallback _webRtcSignalingStateChangedCallback;
         private NativeWebRTC.PeerConnectionStateChangedCallback _webRtcPeerConnectionStateChangedCallback;
+        private NativeWebRTC.IceConnectionStateChangedCallback _webRtcIceConnectionStateChangedCallback;
         private NativeWebRTC.NegotiationNeededCallback _webRtcNegotiationNeededCallback;
         private NativeWebRTC.IceCandidateCallback _webRtcIceCandicateCallback;
         private NativeWebRTC.TrackAddedCallback _webRtcTrackAddedCallback;
@@ -66,6 +67,12 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public event EventHandler<WebRTCPeerConnectionStateChangedEventArgs> PeerConnectionStateChanged;
+
+        /// <summary>
+        /// Occurs when the WebRTC ICE connection state is changed.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public event EventHandler<WebRTCIceConnectionStateChangedEventArgs> IceConnectionStateChanged;
 
         /// <summary>
         /// Occurs when negotiation is needed.
@@ -110,6 +117,7 @@ namespace Tizen.Multimedia.Remoting
             RegisterIceGatheringStateChangedCallback();
             RegisterSignalingStateChangedCallback();
             RegisterPeerConnectionStateChangedCallback();
+            RegisterIceConnectionStateChangedCallback();
             RegisterNegotiationNeededCallback();
             RegisterIceCandidateCallback();
             RegisterTrackAddedCallback();
@@ -147,7 +155,7 @@ namespace Tizen.Multimedia.Remoting
         {
             _webRtcIceGatheringStateChangedCallback = (handle, state, _) =>
             {
-                Log.Info(WebRTCLog.Tag, $"{state}");
+                Log.Info(WebRTCLog.Tag, $"Ice gathering state : {state}");
 
                 IceGatheringStateChanged?.Invoke(this, new WebRTCIceGatheringStateChangedEventArgs(state));
             };
@@ -160,7 +168,7 @@ namespace Tizen.Multimedia.Remoting
         {
             _webRtcSignalingStateChangedCallback = (handle, state, _) =>
             {
-                Log.Info(WebRTCLog.Tag, $"{state}");
+                Log.Info(WebRTCLog.Tag, $"Signaling state : {state}");
 
                 SignalingStateChanged?.Invoke(this, new WebRTCSignalingStateChangedEventArgs(state));
             };
@@ -173,13 +181,26 @@ namespace Tizen.Multimedia.Remoting
         {
             _webRtcPeerConnectionStateChangedCallback = (handle, state, _) =>
             {
-                Log.Info(WebRTCLog.Tag, $"{state}");
+                Log.Info(WebRTCLog.Tag, $"Peer connection state : {state}");
 
                 PeerConnectionStateChanged?.Invoke(this, new WebRTCPeerConnectionStateChangedEventArgs(state));
             };
 
             NativeWebRTC.SetPeerConnectionStateChangedCb(Handle, _webRtcPeerConnectionStateChangedCallback).
                 ThrowIfFailed("Failed to set peer connection state changed callback.");
+        }
+
+        private void RegisterIceConnectionStateChangedCallback()
+        {
+            _webRtcIceConnectionStateChangedCallback = (handle, state, _) =>
+            {
+                Log.Info(WebRTCLog.Tag, $"Ice connection state : {state}");
+
+                IceConnectionStateChanged?.Invoke(this, new WebRTCIceConnectionStateChangedEventArgs(state));
+            };
+
+            NativeWebRTC.SetIceConnectionStateChangedCb(Handle, _webRtcIceConnectionStateChangedCallback).
+                ThrowIfFailed("Failed to set ICE connection state changed callback.");
         }
 
         private void RegisterNegotiationNeededCallback()

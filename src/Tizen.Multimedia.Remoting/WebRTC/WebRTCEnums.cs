@@ -181,6 +181,52 @@ namespace Tizen.Multimedia.Remoting
         Closed
     }
 
+    /// <summary>
+    /// Specifies states that a <see cref="WebRTC"/> can have.
+    /// </summary>
+    /// <remarks>This state describe the current state of local and its connection to the ICE server(STUN or TURN).</remarks>
+    /// <since_tizen> 9 </since_tizen>
+    public enum WebRTCIceConnectionState
+    {
+        /// <summary>
+        /// The Initial state.
+        /// </summary>
+        New,
+
+        /// <summary>
+        /// Checking pairs of local and remote candidates against one another to try to find a compatible match.
+        /// </summary>
+        Checking,
+
+        /// <summary>
+        /// A usable pairing of local and remote candidates has been found for all components of the connection,<br/>
+        /// and the connection has been established.
+        /// </summary>
+        Connected,
+
+        /// <summary>
+        /// Gathering candidates has been finished and hecked all pairs against one another,<br/>
+        /// and has found a connection for all components.
+        /// </summary>
+        Completed,
+
+        /// <summary>
+        /// There's no compatible matches.
+        /// </summary>
+        Failed,
+
+        /// <summary>
+        /// This is a less stringent test than "Failed" and may trigger intermittently and resolve just as spontaneously on less reliable networks,<br/>
+        /// or during temporary disconnections. When the problem resolves, the connection may return to the "connected" state.
+        /// </summary>
+        Disconnected,
+
+        /// <summary>
+        /// Closed.
+        /// </summary>
+        Closed
+    }
+
     internal static class WebRTCStateExtensions
     {
         internal static bool IsAnyOf<T>(this T thisState, params T[] states) =>

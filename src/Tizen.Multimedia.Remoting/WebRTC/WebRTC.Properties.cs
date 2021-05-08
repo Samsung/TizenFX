@@ -122,6 +122,27 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
+        /// Gets the ICE connection state of the WebRTC.
+        /// </summary>
+        /// <value>The current ICE connection state of the WebRTC.</value>
+        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <since_tizen> 9 </since_tizen>
+        public WebRTCIceConnectionState IceConnectionState
+        {
+            get
+            {
+                ValidateNotDisposed();
+
+                NativeWebRTC.GetIceConnectionState(Handle, out WebRTCIceConnectionState state).
+                    ThrowIfFailed("Failed to retrieve the state of the WebRTC");
+
+                Debug.Assert(Enum.IsDefined(typeof(WebRTCIceConnectionState), state));
+
+                return state;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the STUN server url.
         /// </summary>
         /// <value>The STUN server url</value>
