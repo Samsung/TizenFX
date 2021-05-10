@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.ComponentModel;
 using Native = Interop.Camera;
 
 namespace Tizen.Multimedia
@@ -240,6 +241,37 @@ namespace Tizen.Multimedia
             }
         }
 
+        private Native.ExtraPreviewCallback _extraPreviewCallback;
+        private event EventHandler<ExtraPreviewEventArgs> _extraPreview;
+        /// <summary>
+        /// An event that occurs once per frame when previewing.
+        /// Preview callback is registered when an user adds a callback explicitly to avoid useless P/Invoke.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<ExtraPreviewEventArgs> ExtraPreview
+        {
+            add
+            {
+                if (_extraPreview == null)
+                {
+                    RegisterExtraPreviewCallback();
+                }
+
+                _extraPreview += value;
+            }
+
+            remove
+            {
+                _extraPreview -= value;
+
+                if (_extraPreview == null)
+                {
+                    UnregisterExtraPreviewCallback();
+                }
+            }
+        }
+
         private void RegisterCallbacks()
         {
             RegisterErrorCallback();
@@ -405,6 +437,24 @@ namespace Tizen.Multimedia
                 ThrowIfFailed("Unsetting media packet preview callback failed");
 
             _mediaPacketPreviewCallback = null;
+        }
+
+        private void RegisterExtraPreviewCallback()
+        {
+            _extraPreviewCallback = (frame, streamId, _) =>
+            {
+                _extraPreview?.Invoke(this, new ExtraPreviewEventArgs(new PreviewFrame(frame), streamId));
+            };
+
+            Native.SetExtraPreviewCallback(_handle, _extraPreviewCallback, IntPtr.Zero).
+                ThrowIfFailed("Setting extra preview callback failed");
+        }
+
+        private void UnregisterExtraPreviewCallback()
+        {
+            Native.UnsetPreviewCallback(_handle).ThrowIfFailed("Unsetting preview callback failed");
+
+            _extraPreviewCallback = null;
         }
     }
 }

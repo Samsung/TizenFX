@@ -51,7 +51,7 @@ internal static partial class Interop
         internal delegate void PreviewCallback(IntPtr frame, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void ExtraPreviewCallback(IntPtr frame, IntPtr userData);
+        internal delegate void ExtraPreviewCallback(IntPtr frame, int streamId, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void MediaPacketPreviewCallback(IntPtr mediaPacketHandle, IntPtr userData);
@@ -154,17 +154,17 @@ internal static partial class Interop
         [DllImport(Libraries.Camera, EntryPoint = "camera_unset_preview_cb")]
         internal static extern CameraError UnsetPreviewCallback(IntPtr handle);
 
-        [DllImport(Libraries.Camera, EntryPoint = "camera_set_extra_preview_cb")]
-        internal static extern CameraError SetExtraPreviewCallback(IntPtr handle, ExtraPreviewCallback callback, IntPtr userData);
-
-        [DllImport(Libraries.Camera, EntryPoint = "camera_unset_extra_preview_cb")]
-        internal static extern CameraError UnsetExtraPreviewCallback(IntPtr handle);
-
         [DllImport(Libraries.Camera, EntryPoint = "camera_set_media_packet_preview_cb")]
         internal static extern CameraError SetMediaPacketPreviewCallback(IntPtr handle, MediaPacketPreviewCallback callback, IntPtr userData);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_unset_media_packet_preview_cb")]
         internal static extern CameraError UnsetMediaPacketPreviewCallback(IntPtr handle);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_set_extra_preview_cb")]
+        internal static extern CameraError SetExtraPreviewCallback(IntPtr handle, ExtraPreviewCallback callback, IntPtr userData);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_unset_extra_preview_cb")]
+        internal static extern CameraError UnsetExtraPreviewCallback(IntPtr handle);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_set_state_changed_cb")]
         internal static extern CameraError SetStateChangedCallback(IntPtr handle, StateChangedCallback callback, IntPtr userData);
