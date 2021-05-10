@@ -107,6 +107,8 @@ namespace Tizen.NUI.Components
             isPressed = false;
             LayoutDirectionChanged += OnLayoutDirectionChanged;
 
+            this.TouchEvent += OnTouchEventForTrack;
+
             panGestureDetector = new PanGestureDetector();
             panGestureDetector.Attach(this);
             panGestureDetector.Detected += OnPanGestureDetected;
@@ -241,8 +243,6 @@ namespace Tizen.NUI.Components
                     bgTrackImage.Add(thumbImage);
                     thumbImage.RaiseToTop();
                 }
-
-                bgTrackImage.TouchEvent += OnTouchEventForBgTrack;
             }
 
             return bgTrackImage;
