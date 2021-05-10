@@ -938,7 +938,7 @@ namespace Tizen.NUI.Components
         {
             // Destination is depending on implementation of layout manager.
             // Get destination from layout manager.
-            return ItemsLayouter.CalculateCandidateScrollPosition(position);
+            return ItemsLayouter?.CalculateCandidateScrollPosition(position) ?? position;
         }
 
         /// <summary>
@@ -951,7 +951,7 @@ namespace Tizen.NUI.Components
         {
             if (disposed) return;
 
-            if (needInitalizeLayouter)
+            if (needInitalizeLayouter && (ItemsLayouter != null))
             {
                 ItemsLayouter.Initialize(this);
                 needInitalizeLayouter = false;
