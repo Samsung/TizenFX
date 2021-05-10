@@ -645,7 +645,7 @@ namespace Tizen.NUI
             get
             {
                 global::System.IntPtr imageView = Interop.WebView.WebView_GetFavicon(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending)
+                if (imageView == IntPtr.Zero)
                     return null;
                 return new ImageView(imageView, false);
             }
