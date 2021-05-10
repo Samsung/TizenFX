@@ -37,18 +37,8 @@ namespace Tizen.NUI
     /// Vibrant, Vibrant Dark, Vibrant Light, Muted, Muted Dark, Muted Light
     ///
     /// These can be retrieved from the appropriate getter method.
-    ///
-    /// Palette supports both synchronous and asynchronous generation:
-    ///
-    /// Synchronous
-    /// Palette P = Palette.Generate(pixelBuffer);
-    ///
-    /// Asynchronous
-    /// Palette.GenerateAsync(pixelBuffer, (Palette p) => {
-    ///     // Use generated instance
-    /// }};
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public sealed class Palette
     {
         private const int defaultCalculateNumberColors = 16;
@@ -119,18 +109,19 @@ namespace Tizen.NUI
                                       "darkMutedSwatch [" + swatchInfo[5] + "] \n");
         }
 
-        public delegate void PaletteGeneratedEventHandler(Palette palette);
-
         /// <summary>
         /// Generate a Palette asynchronously using bitmap as source.
         /// </summary>
         /// <param name="pixelBuffer">A Target image's pixelBuffer.</param>
-        /// <param name="paletteGeneratedEventHandler">A method will be called with the palette when generated.</param>
-        /// <exception cref="ArgumentNullException">Thrown when the argument pixelBuffer, PaletteGeneratedEventHandler is null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static void GenerateAsync(PixelBuffer pixelBuffer, PaletteGeneratedEventHandler paletteGeneratedEventHandler)
+        /// <returns>A task that represents the asynchronous pixelBuffer generate operation.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when the argument pixelBuffer is null.</exception>
+        /// <since_tizen> 9 </since_tizen>
+        public static async Task<Palette> GenerateAsync(PixelBuffer pixelBuffer)
         {
-            _ = AsyncTask(pixelBuffer, null, paletteGeneratedEventHandler);
+            return await Task.Run(() =>
+            {
+                return Generate(pixelBuffer);
+            }).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -138,13 +129,16 @@ namespace Tizen.NUI
         /// And set a region of the pixelBuffer to be used exclusively when calculating the palette.
         /// </summary>
         /// <param name="pixelBuffer">A Target image's pixelBuffer.</param>
-        /// <param name="region">A rectangle used for region.</param>    
-        /// <param name="paletteGeneratedEventHandler">A method will be called with the palette when generated.</param>
-        /// <exception cref="ArgumentNullException">Thrown when the argument pixelBuffer, PaletteGeneratedEventHandler is null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static void GenerateAsync(PixelBuffer pixelBuffer, Tizen.NUI.Rectangle region, PaletteGeneratedEventHandler paletteGeneratedEventHandler)
+        /// <param name="region">A rectangle used for region.</param>
+        /// <returns>A task that represents the asynchronous pixelBuffer generate operation.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when the argument pixelBuffer is null.</exception>
+        /// <since_tizen> 9 </since_tizen>
+        public static async Task<Palette> GenerateAsync(PixelBuffer pixelBuffer, Rectangle region)
         {
-            _ = AsyncTask(pixelBuffer, region, paletteGeneratedEventHandler);
+            return await Task.Run(() =>
+            {
+                return Generate(pixelBuffer, region);
+            }).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -153,8 +147,8 @@ namespace Tizen.NUI
         /// <param name="pixelBuffer">A Target image's pixelBuffer.</param>
         /// <exception cref="ArgumentNullException">Thrown when the argument pixelBuffer is null.</exception>
         /// <returns>the palette instance.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static Palette generate(PixelBuffer pixelBuffer)
+        /// <since_tizen> 9 </since_tizen>
+        public static Palette Generate(PixelBuffer pixelBuffer)
         {
             return Generate(pixelBuffer, null);
         }
@@ -167,7 +161,7 @@ namespace Tizen.NUI
         /// <param name="region">A rectangle used for region.</param>
         /// <exception cref="ArgumentNullException">Thrown when the argument pixelBuffer is null.</exception>
         /// <returns>the palette instance.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static Palette Generate(PixelBuffer pixelBuffer, Rectangle region)
         {
             Tizen.Log.Info("Palette", "pixelBuffer generate start with region: " + region + "\n");
@@ -204,10 +198,10 @@ namespace Tizen.NUI
         /// Returns all of the swatches which make up the palette.
         /// </summary>
         /// <returns>The swatch list</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ReadOnlyCollection<Swatch> GetSwatches()
+        /// <since_tizen> 9 </since_tizen>
+        public IReadOnlyCollection<Swatch> GetSwatches()
         {
-            return new ReadOnlyCollection<Swatch>(swatches);
+            return swatches;
         }
 
         /// <summary>
@@ -215,7 +209,7 @@ namespace Tizen.NUI
         /// The dominant swatch is defined as the swatch with the greatest population (frequency) within the palette.
         /// </summary>
         /// <returns>The swatch instance</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public Swatch GetDominantSwatch()
         {
             String swatchInfo = null;
@@ -232,7 +226,7 @@ namespace Tizen.NUI
         /// Returns the most vibrant swatch in the palette. Might be null.
         /// </summary>
         /// <returns>The swatch instance</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public Swatch GetVibrantSwatch()
         {
             return vibrantSwatch;
@@ -242,7 +236,7 @@ namespace Tizen.NUI
         /// Returns a light and vibrant swatch from the palette. Might be null.
         /// </summary>
         /// <returns>The swatch instance</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public Swatch GetLightVibrantSwatch()
         {
             return lightVibrantSwatch;
@@ -252,7 +246,7 @@ namespace Tizen.NUI
         /// Returns a dark and vibrant swatch from the palette. Might be null.
         /// </summary>
         /// <returns>The swatch instance</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public Swatch GetDarkVibrantSwatch()
         {
             return darkVibrantSwatch;
@@ -262,7 +256,7 @@ namespace Tizen.NUI
         /// Returns a muted swatch from the palette. Might be null.
         /// </summary>
         /// <returns>The swatch instance</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public Swatch GetMutedSwatch()
         {
             return mutedSwatch;
@@ -272,7 +266,7 @@ namespace Tizen.NUI
         /// Returns a muted and light swatch from the palette. Might be null.
         /// </summary>
         /// <returns>The swatch instance</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public Swatch GetLightMutedSwatch()
         {
             return lightMutedColor;
@@ -282,28 +276,10 @@ namespace Tizen.NUI
         /// Returns a muted and dark swatch from the palette. Might be null.
         /// </summary>
         /// <returns>The swatch instance</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public Swatch GetDarkMutedSwatch()
         {
             return darkMutedSwatch;
-        }
-
-		private static async Task<Palette> AsyncTask(PixelBuffer pixelBuffer, Rectangle region, PaletteGeneratedEventHandler paletteGeneratedEventHandler)
-        {
-            if (paletteGeneratedEventHandler == null)
-            {
-                throw new ArgumentNullException(nameof(paletteGeneratedEventHandler), "PaletteGeneratedEventHandlergate should not be null.");
-            }
-
-            var GenerateTask = Task.Run(() =>
-            {
-                return Generate(pixelBuffer, region);
-            }).ConfigureAwait(false);
-
-            Palette ret = await GenerateTask;
-            paletteGeneratedEventHandler(ret);
-
-            return null; ;
         }
 
         /// <summary>
@@ -487,7 +463,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Represents a color swatch generated from an image's palette. The RGB color can be retrieved calling getRgb()
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public sealed class Swatch
         {
             private const float minContrastTitleText = 3.0f;
@@ -523,7 +499,7 @@ namespace Tizen.NUI
             /// return this swatch's RGB color value
             /// </summary>
             /// <returns>A Tizen.NUI.Color value.</returns>
-            [EditorBrowsable(EditorBrowsableState.Never)]
+            /// <since_tizen> 9 </since_tizen>
             public Color GetRgb()
             {
                 return new Color((float)red / 255, (float)green / 255, (float)blue / 255, 1.0f);
@@ -536,7 +512,7 @@ namespace Tizen.NUI
             ///    hsv[2] is Lightness [0...1]
             /// </summary>
             /// <returns>A float array value.</returns>
-            [EditorBrowsable(EditorBrowsableState.Never)]
+            /// <since_tizen> 9 </since_tizen>
             public float[] GetHsl()
             {
                 if (hsl == null)
@@ -554,12 +530,10 @@ namespace Tizen.NUI
             /// Palette.Swatchs color. This color is guaranteed to have sufficient contrast.
             /// </summary>
             /// <returns>A Tizen.NUI.Color value.</returns>
-            [EditorBrowsable(EditorBrowsableState.Never)]
+            /// <since_tizen> 9 </since_tizen>
             public Color GetTitleTextColor()
             {
                 EnsureTextColorsGenerated();
-
-                //Tizen.Log.Info("Palette", "Swatch Title Text Color = " + titleRgbColor + "\n");
 
                 return new Color((float)(((titleTextColor >> 16) & 0xff) / 255.0f), (float)(((titleTextColor >> 8) & 0xff) / 255.0f), (float)((titleTextColor & 0xff) / 255.0f), (float)(((titleTextColor >> 24) & 0xff) / 255.0f));
             }
@@ -569,22 +543,20 @@ namespace Tizen.NUI
             /// Palette.Swatchs color. This color is guaranteed to have sufficient contrast.
             /// </summary>
             /// <returns>A Tizen.NUI.Color value.</returns>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public Tizen.NUI.Color GetBodyTextColor()
+            /// <since_tizen> 9 </since_tizen>
+            public Color GetBodyTextColor()
             {
                 EnsureTextColorsGenerated();
-
-                //Tizen.Log.Info("Palette", "Swatch Body Text Color = " + bodyRgbColor + "\n");
 
                 return new Color((float)(((bodyTextColor >> 16) & 0xff) / 255.0f), (float)(((bodyTextColor >> 8) & 0xff) / 255.0f), (float)((bodyTextColor & 0xff) / 255.0f), (float)(((bodyTextColor >> 24) & 0xff) / 255.0f));
     
             }
 
             /// <summary>
-            /// return the number of pixels represented by this swatch.
+            /// Returns the number of pixels detected in this swatch.
             /// </summary>
             /// <returns>A number of pixels value.</returns>
-            [EditorBrowsable(EditorBrowsableState.Never)]
+            /// <since_tizen> 9 </since_tizen>
             public int GetPopulation()
             {
                 return population;
