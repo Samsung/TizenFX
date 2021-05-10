@@ -304,7 +304,7 @@ namespace Tizen.Multimedia
             };
 
             Native.SetInterruptStartedCallback(_handle, _interruptStartedCallback, IntPtr.Zero).
-                ThrowIfFailed("Failed to set interrupt callback");
+                ThrowIfFailed("Failed to set interrupt callback.");
         }
 
         private void RegisterInterruptedCallback()
@@ -315,7 +315,7 @@ namespace Tizen.Multimedia
             };
 
             Native.SetInterruptedCallback(_handle, _interruptedCallback, IntPtr.Zero).
-                ThrowIfFailed("Failed to set interrupt callback");
+                ThrowIfFailed("Failed to set interrupt callback.");
         }
 
         private void RegisterErrorCallback()
@@ -338,7 +338,7 @@ namespace Tizen.Multimedia
             };
 
             Native.SetStateChangedCallback(_handle, _stateChangedCallback, IntPtr.Zero).
-                ThrowIfFailed("Setting state changed callback failed");
+                ThrowIfFailed("Failed to set state changed callback.");
         }
 
         private static void RegisterDeviceStateChangedCallback()
@@ -349,7 +349,7 @@ namespace Tizen.Multimedia
             };
 
             Native.SetDeviceStateChangedCallback(_deviceStateChangedCallback, IntPtr.Zero, out _deviceStateCallbackId).
-                ThrowIfFailed("Failed to set device state changed callback");
+                ThrowIfFailed("Failed to set device state changed callback.");
 
             Log.Info(CameraLog.Tag, "add callbackId " + _deviceStateCallbackId.ToString());
         }
@@ -357,7 +357,7 @@ namespace Tizen.Multimedia
         private static void UnregisterDeviceStateChangedCallback()
         {
             Native.UnsetDeviceStateChangedCallback(_deviceStateCallbackId).
-                ThrowIfFailed("Unsetting device state changed callback failed");
+                ThrowIfFailed("Failed to unset device state changed callback.");
 
             _deviceStateChangedCallback = null;
             _deviceStateCallbackId = 0;
@@ -371,7 +371,7 @@ namespace Tizen.Multimedia
             };
 
             Native.SetFocusStateChangedCallback(_handle, _focusStateChangedCallback, IntPtr.Zero).
-                ThrowIfFailed("Setting focus changed callback failed");
+                ThrowIfFailed("Failed to set focus changed callback.");
         }
 
         private void RegisterHdrCaptureProgress()
@@ -382,13 +382,13 @@ namespace Tizen.Multimedia
             };
 
             Native.SetHdrCaptureProgressCallback(_handle, _hdrCaptureProgressCallback, IntPtr.Zero).
-                ThrowIfFailed("Setting Hdr capture progress callback failed");
+                ThrowIfFailed("Failed to set Hdr capture progress callback.");
         }
 
         private void UnregisterHdrCaptureProgress()
         {
             Native.UnsetHdrCaptureProgressCallback(_handle).
-                ThrowIfFailed("Unsetting hdr capture progress is failed");
+                ThrowIfFailed("Failed to unset hdr capture progres callback.");
 
             _hdrCaptureProgressCallback = null;
         }
@@ -401,12 +401,13 @@ namespace Tizen.Multimedia
             };
 
             Native.SetPreviewCallback(_handle, _previewCallback, IntPtr.Zero).
-                ThrowIfFailed("Setting preview callback failed");
+                ThrowIfFailed("Failed to set preview callback.");
         }
 
         private void UnregisterPreviewCallback()
         {
-            Native.UnsetPreviewCallback(_handle).ThrowIfFailed("Unsetting preview callback failed");
+            Native.UnsetPreviewCallback(_handle).
+                ThrowIfFailed("Failed to unset preview callback.");
 
             _previewCallback = null;
         }
@@ -428,13 +429,13 @@ namespace Tizen.Multimedia
             };
 
             Native.SetMediaPacketPreviewCallback(_handle, _mediaPacketPreviewCallback, IntPtr.Zero).
-                ThrowIfFailed("Setting media packet preview callback failed");
+                ThrowIfFailed("Failed to set media packet preview callback.");
         }
 
         private void UnregisterMediaPacketPreviewCallback()
         {
             Native.UnsetMediaPacketPreviewCallback(_handle).
-                ThrowIfFailed("Unsetting media packet preview callback failed");
+                ThrowIfFailed("Failed to unset media packet preview callback.");
 
             _mediaPacketPreviewCallback = null;
         }
@@ -447,12 +448,13 @@ namespace Tizen.Multimedia
             };
 
             Native.SetExtraPreviewCallback(_handle, _extraPreviewCallback, IntPtr.Zero).
-                ThrowIfFailed("Setting extra preview callback failed");
+                ThrowIfFailed("Failed to set extra preview callback.");
         }
 
         private void UnregisterExtraPreviewCallback()
         {
-            Native.UnsetPreviewCallback(_handle).ThrowIfFailed("Unsetting preview callback failed");
+            Native.UnsetPreviewCallback(_handle).
+                ThrowIfFailed("Failed to unset preview callback.");
 
             _extraPreviewCallback = null;
         }
