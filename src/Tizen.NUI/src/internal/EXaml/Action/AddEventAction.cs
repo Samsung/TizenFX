@@ -64,10 +64,10 @@ namespace Tizen.NUI.EXaml
 
         public void OnActive()
         {
-            if (null != childOp)
+            if (null != childOp && childOp.ValueList.Count > 3 && (childOp.ValueList[0] is Instance instance) && (childOp.ValueList[1] is Instance element))
             {
-                int instanceIndex = (childOp.ValueList[0] as Instance).Index;
-                int elementIndex = (childOp.ValueList[1] as Instance).Index;
+                int instanceIndex = instance.Index;
+                int elementIndex = element.Index;
                 int propertyIndex = (int)childOp.ValueList[2];
                 int value = (int)childOp.ValueList[3];
                 globalDataList.Operations.Add(new AddEvent(globalDataList, instanceIndex, elementIndex, propertyIndex, value));
