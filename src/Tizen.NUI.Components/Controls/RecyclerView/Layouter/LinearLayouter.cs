@@ -1325,7 +1325,7 @@ namespace Tizen.NUI.Components
             if (targetSibling > -1 && targetSibling < Container.Children.Count)
             {
                 RecyclerViewItem candidate = Container.Children[targetSibling] as RecyclerViewItem;
-                if (candidate.Index >= 0 && candidate.Index < colView.InternalItemSource.Count)
+                if (candidate != null && candidate.Index >= 0 && candidate.Index < colView.InternalItemSource.Count)
                 {
                     nextFocusedView = candidate;
                 }
