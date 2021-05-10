@@ -41,7 +41,7 @@ namespace Tizen.NUI.EXaml
             var instance = globalDataList.GatheredInstances[instanceIndex] as BindableObject;
             var property = globalDataList.GatheredBindableProperties[propertyIndex];
 
-            instance.SetDynamicResource(property, key);
+            instance?.SetDynamicResource(property, key);
         }
 
         private int instanceIndex;
