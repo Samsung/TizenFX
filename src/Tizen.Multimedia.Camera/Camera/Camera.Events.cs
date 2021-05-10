@@ -281,7 +281,7 @@ namespace Tizen.Multimedia
             RegisterStateChangedCallback();
 
             //Define capturing callback
-            _capturingCallback = (IntPtr main, IntPtr postview, IntPtr thumbnail, IntPtr userData) =>
+            _capturingCallback = (main, postview, thumbnail, userData) =>
             {
                 Capturing?.Invoke(this, new CameraCapturingEventArgs(new StillImage(main),
                     postview == IntPtr.Zero ? null : new StillImage(postview),
@@ -298,52 +298,53 @@ namespace Tizen.Multimedia
 
         private void RegisterInterruptStartedCallback()
         {
-            _interruptStartedCallback = (CameraPolicy policy, CameraState state, IntPtr userData) =>
+            _interruptStartedCallback = (policy, state, _) =>
             {
                 InterruptStarted?.Invoke(this, new CameraInterruptStartedEventArgs(policy, state));
             };
 
-            Native.SetInterruptStartedCallback(_handle, _interruptStartedCallback, IntPtr.Zero).
+            Native.SetInterruptStartedCallback(_handle, _interruptStartedCallback).
                 ThrowIfFailed("Failed to set interrupt callback.");
         }
 
         private void RegisterInterruptedCallback()
         {
-            _interruptedCallback = (CameraPolicy policy, CameraState previous, CameraState current, IntPtr userData) =>
+            _interruptedCallback = (policy, previous, current, _) =>
             {
                 Interrupted?.Invoke(this, new CameraInterruptedEventArgs(policy, previous, current));
             };
 
-            Native.SetInterruptedCallback(_handle, _interruptedCallback, IntPtr.Zero).
+            Native.SetInterruptedCallback(_handle, _interruptedCallback).
                 ThrowIfFailed("Failed to set interrupt callback.");
         }
 
         private void RegisterErrorCallback()
         {
-            _errorCallback = (CameraErrorCode error, CameraState current, IntPtr userData) =>
+            _errorCallback = (error, current, _) =>
             {
                 ErrorOccurred?.Invoke(this, new CameraErrorOccurredEventArgs(error, current));
             };
 
-            Native.SetErrorCallback(_handle, _errorCallback, IntPtr.Zero).ThrowIfFailed("Setting error callback failed");
+            Native.SetErrorCallback(_handle, _errorCallback).
+                ThrowIfFailed("Setting error callback failed");
         }
 
         private void RegisterStateChangedCallback()
         {
-            _stateChangedCallback = (CameraState previous, CameraState current, bool byPolicy, IntPtr _) =>
+            _stateChangedCallback = (previous, current, byPolicy, _) =>
             {
                 SetState(current);
                 Log.Info(CameraLog.Tag, "Camera state changed " + previous.ToString() + " -> " + current.ToString());
                 StateChanged?.Invoke(this, new CameraStateChangedEventArgs(previous, current, byPolicy));
             };
 
-            Native.SetStateChangedCallback(_handle, _stateChangedCallback, IntPtr.Zero).
+            Native.SetStateChangedCallback(_handle, _stateChangedCallback).
                 ThrowIfFailed("Failed to set state changed callback.");
         }
 
         private static void RegisterDeviceStateChangedCallback()
         {
-            _deviceStateChangedCallback = (CameraDevice device, CameraDeviceState state, IntPtr userData) =>
+            _deviceStateChangedCallback = (device, state, _) =>
             {
                 _deviceStateChanged?.Invoke(null, new CameraDeviceStateChangedEventArgs(device, state));
             };
@@ -365,23 +366,23 @@ namespace Tizen.Multimedia
 
         private void RegisterFocusStateChanged()
         {
-            _focusStateChangedCallback = (CameraFocusState state, IntPtr userData) =>
+            _focusStateChangedCallback = (state, _) =>
             {
                 FocusStateChanged?.Invoke(this, new CameraFocusStateChangedEventArgs(state));
             };
 
-            Native.SetFocusStateChangedCallback(_handle, _focusStateChangedCallback, IntPtr.Zero).
+            Native.SetFocusStateChangedCallback(_handle, _focusStateChangedCallback).
                 ThrowIfFailed("Failed to set focus changed callback.");
         }
 
         private void RegisterHdrCaptureProgress()
         {
-            _hdrCaptureProgressCallback = (int percent, IntPtr userData) =>
+            _hdrCaptureProgressCallback = (percent, _) =>
             {
                 _hdrCaptureProgress?.Invoke(this, new HdrCaptureProgressEventArgs(percent));
             };
 
-            Native.SetHdrCaptureProgressCallback(_handle, _hdrCaptureProgressCallback, IntPtr.Zero).
+            Native.SetHdrCaptureProgressCallback(_handle, _hdrCaptureProgressCallback).
                 ThrowIfFailed("Failed to set Hdr capture progress callback.");
         }
 
@@ -395,12 +396,12 @@ namespace Tizen.Multimedia
 
         private void RegisterPreviewCallback()
         {
-            _previewCallback = (IntPtr frame, IntPtr userData) =>
+            _previewCallback = (frame, _) =>
             {
                 _preview?.Invoke(this, new PreviewEventArgs(new PreviewFrame(frame)));
             };
 
-            Native.SetPreviewCallback(_handle, _previewCallback, IntPtr.Zero).
+            Native.SetPreviewCallback(_handle, _previewCallback).
                 ThrowIfFailed("Failed to set preview callback.");
         }
 
@@ -414,7 +415,7 @@ namespace Tizen.Multimedia
 
         private void RegisterMediaPacketPreviewCallback()
         {
-            _mediaPacketPreviewCallback = (IntPtr mediaPacket, IntPtr userData) =>
+            _mediaPacketPreviewCallback = (mediaPacket, _) =>
             {
                 MediaPacket packet = MediaPacket.From(mediaPacket);
 
@@ -428,7 +429,7 @@ namespace Tizen.Multimedia
                 packet.Dispose();
             };
 
-            Native.SetMediaPacketPreviewCallback(_handle, _mediaPacketPreviewCallback, IntPtr.Zero).
+            Native.SetMediaPacketPreviewCallback(_handle, _mediaPacketPreviewCallback).
                 ThrowIfFailed("Failed to set media packet preview callback.");
         }
 
@@ -447,7 +448,7 @@ namespace Tizen.Multimedia
                 _extraPreview?.Invoke(this, new ExtraPreviewEventArgs(new PreviewFrame(frame), streamId));
             };
 
-            Native.SetExtraPreviewCallback(_handle, _extraPreviewCallback, IntPtr.Zero).
+            Native.SetExtraPreviewCallback(_handle, _extraPreviewCallback).
                 ThrowIfFailed("Failed to set extra preview callback.");
         }
 

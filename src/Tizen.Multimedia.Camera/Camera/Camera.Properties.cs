@@ -135,9 +135,7 @@ namespace Tizen.Multimedia
             {
                 ValidateNotDisposed();
 
-                CameraState val = CameraState.None;
-
-                Native.GetState(_handle, out val).ThrowIfFailed("Failed to get camera state");
+                Native.GetState(_handle, out CameraState val).ThrowIfFailed("Failed to get camera state");
 
                 return val;
             }

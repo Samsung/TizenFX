@@ -287,7 +287,7 @@ namespace Tizen.Multimedia
         {
             ValidateState(CameraState.Preview);
 
-            Native.StartCapture(_handle, _capturingCallback, _captureCompletedCallback, IntPtr.Zero).
+            Native.StartCapture(_handle, _capturingCallback, _captureCompletedCallback).
                 ThrowIfFailed("Failed to start the camera capture.");
 
             SetState(CameraState.Capturing);
@@ -342,7 +342,7 @@ namespace Tizen.Multimedia
                 });
             }
 
-            Native.StartContinuousCapture(_handle, count, interval, _capturingCallback, _captureCompletedCallback, IntPtr.Zero).
+            Native.StartContinuousCapture(_handle, count, interval, _capturingCallback, _captureCompletedCallback).
                 ThrowIfFailed("Failed to start the continuous capture.");
 
             SetState(CameraState.Capturing);
@@ -423,7 +423,7 @@ namespace Tizen.Multimedia
                 FaceDetected?.Invoke(this, new FaceDetectedEventArgs(result));
             };
 
-            Native.StartFaceDetection(_handle, _faceDetectedCallback, IntPtr.Zero).
+            Native.StartFaceDetection(_handle, _faceDetectedCallback).
                 ThrowIfFailed("Failed to start face detection");
         }
 
