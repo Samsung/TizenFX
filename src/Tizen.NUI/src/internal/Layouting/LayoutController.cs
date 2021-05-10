@@ -543,6 +543,10 @@ namespace Tizen.NUI
             SetupAnimationForPosition(layoutPositionData, positionTransitionComponents);
 
             SetupAnimationForSize(layoutPositionData, sizeTransitionComponents);
+
+            // Dispose components
+            positionTransitionComponents.Dispose();
+            sizeTransitionComponents.Dispose();
         }
 
     } // class LayoutController
