@@ -2772,7 +2772,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Set or Get TransitionOptions for the page transition.
-        /// This property is used to define how this view will be transition during Page switching.
+        /// This property is used to define how this view will be transitioned during Page switching.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public TransitionOptions TransitionOptions
