@@ -169,7 +169,7 @@ namespace Tizen.NUI
 
             [EditorBrowsable(EditorBrowsableState.Never)]
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_EmitTextCaretMovedEvent")]
-            public static extern global::System.IntPtr DaliAccessibilityEmitTextCaretMovedEvent(global::System.Runtime.InteropServices.HandleRef arg1, int arg2_pos);
+            public static extern global::System.IntPtr DaliAccessibilityEmitTextCursorMovedEvent(global::System.Runtime.InteropServices.HandleRef arg1, int arg2_pos);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_new_Range")]
@@ -181,7 +181,7 @@ namespace Tizen.NUI
 
             [EditorBrowsable(EditorBrowsableState.Never)]
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_Bridge_Add_Popup")]
-            public static extern void DaliAccessibilityBridgeAddPopup(global::System.Runtime.InteropServices.HandleRef arg1);
+            public static extern void DaliAccessibilityBridgeRegisterPopup(global::System.Runtime.InteropServices.HandleRef arg1);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_Bridge_Remove_Popup")]

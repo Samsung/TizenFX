@@ -524,16 +524,16 @@ namespace Tizen.NUI.BaseComponents
         protected virtual AccessibilityStates AccessibilityCalculateStates()
         {
             var states = new AccessibilityStates();
-            states.Set(AccessibilityState.Highlightable, this.AccessibilityHighlightable);
-            states.Set(AccessibilityState.Focusable, this.Focusable);
-            states.Set(AccessibilityState.Focused, this.State == States.Focused);
-            states.Set(AccessibilityState.Highlighted, this.IsHighlighted);
-            states.Set(AccessibilityState.Enabled, this.State != States.Disabled);
-            states.Set(AccessibilityState.Sensitive, this.Sensitive);
-            states.Set(AccessibilityState.Animated, this.AccessibilityAnimated);
-            states.Set(AccessibilityState.Visible, true);
-            states.Set(AccessibilityState.Showing, this.Visibility);
-            states.Set(AccessibilityState.Defunct, !this.IsOnWindow);
+            states.SetStateEnabled(AccessibilityState.Highlightable, this.AccessibilityHighlightable);
+            states.SetStateEnabled(AccessibilityState.Focusable, this.Focusable);
+            states.SetStateEnabled(AccessibilityState.Focused, this.State == States.Focused);
+            states.SetStateEnabled(AccessibilityState.Highlighted, this.IsHighlighted);
+            states.SetStateEnabled(AccessibilityState.Enabled, this.State != States.Disabled);
+            states.SetStateEnabled(AccessibilityState.Sensitive, this.Sensitive);
+            states.SetStateEnabled(AccessibilityState.Animated, this.AccessibilityAnimated);
+            states.SetStateEnabled(AccessibilityState.Visible, true);
+            states.SetStateEnabled(AccessibilityState.Showing, this.Visibility);
+            states.SetStateEnabled(AccessibilityState.Defunct, !this.IsOnWindow);
             return states;
         }
 
