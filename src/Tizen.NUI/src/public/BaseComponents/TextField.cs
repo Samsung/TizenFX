@@ -440,6 +440,18 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return (Vector2)GetValue(ShadowOffsetProperty);
+            }
+            set
+            {
+                SetValue(ShadowOffsetProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Vector2 InternalShadowOffset
+        {
+            get
+            {
                 PropertyMap map = new PropertyMap();
                 GetProperty(TextField.Property.SHADOW).Get(map);
                 Vector2 shadowOffset = new Vector2();
@@ -465,6 +477,18 @@ namespace Tizen.NUI.BaseComponents
         /// </remarks>
         [Obsolete("Please do not use this ShadowColor(Deprecated). Please use Shadow instead.")]
         public Vector4 ShadowColor
+        {
+            get
+            {
+                return (Vector4)GetValue(ShadowColorProperty);
+            }
+            set
+            {
+                SetValue(ShadowColorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Vector4 InternalShadowColor
         {
             get
             {
@@ -1162,6 +1186,18 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return (int)GetValue(SelectedTextStartProperty);
+            }
+            set
+            {
+                SetValue(SelectedTextStartProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private int InternalSelectedTextStart
+        {
+            get
+            {
                 int temp;
                 GetProperty(TextField.Property.SelectedTextStart).Get(out temp);
                 return temp;
@@ -1180,6 +1216,18 @@ namespace Tizen.NUI.BaseComponents
         /// This will be public opened in tizen_6.0 after ACR done, Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int SelectedTextEnd
+        {
+            get
+            {
+                return (int)GetValue(SelectedTextEndProperty);
+            }
+            set
+            {
+                SetValue(SelectedTextEndProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private int InternalSelectedTextEnd
         {
             get
             {
@@ -1204,6 +1252,18 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return (bool)GetValue(EnableEditingProperty);
+            }
+            set
+            {
+                SetValue(EnableEditingProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private bool InternalEnableEditing
+        {
+            get
+            {
                 bool temp;
                 GetProperty(TextField.Property.EnableEditing).Get(out temp);
                 return temp;
@@ -1220,6 +1280,18 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int PrimaryCursorPosition
+        {
+            get
+            {
+                return (int)GetValue(PrimaryCursorPositionProperty);
+            }
+            set
+            {
+                SetValue(PrimaryCursorPositionProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private int InternalPrimaryCursorPosition
         {
             get
             {

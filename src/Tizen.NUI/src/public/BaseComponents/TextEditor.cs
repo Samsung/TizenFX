@@ -98,6 +98,18 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return (string)GetValue(TranslatableTextProperty);
+            }
+            set
+            {
+                SetValue(TranslatableTextProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private string InternalTranslatableText
+        {
+            get
+            {
                 return textEditorTextSid;
             }
             set
@@ -120,6 +132,18 @@ namespace Tizen.NUI.BaseComponents
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
         public string TranslatablePlaceholderText
+        {
+            get
+            {
+                return (string)GetValue(TranslatablePlaceholderTextProperty);
+            }
+            set
+            {
+                SetValue(TranslatablePlaceholderTextProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private string InternalTranslatablePlaceholderText
         {
             get
             {
@@ -1019,6 +1043,18 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return (int)GetValue(SelectedTextStartProperty);
+            }
+            set
+            {
+                SetValue(SelectedTextStartProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private int InternalSelectedTextStart
+        {
+            get
+            {
                 int temp;
                 GetProperty(TextEditor.Property.SelectedTextStart).Get(out temp);
                 return temp;
@@ -1037,6 +1073,18 @@ namespace Tizen.NUI.BaseComponents
         /// This will be public opened in tizen_6.0 after ACR done, Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int SelectedTextEnd
+        {
+            get
+            {
+                return (int)GetValue(SelectedTextEndProperty);
+            }
+            set
+            {
+                SetValue(SelectedTextEndProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private int InternalSelectedTextEnd
         {
             get
             {
@@ -1061,6 +1109,18 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return (bool)GetValue(EnableEditingProperty);
+            }
+            set
+            {
+                SetValue(EnableEditingProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private bool InternalEnableEditing
+        {
+            get
+            {
                 bool temp;
                 GetProperty(TextEditor.Property.EnableEditing).Get(out temp);
                 return temp;
@@ -1077,6 +1137,18 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int HorizontalScrollPosition
+        {
+            get
+            {
+                return (int)GetValue(HorizontalScrollPositionProperty);
+            }
+            set
+            {
+                SetValue(HorizontalScrollPositionProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private int InternalHorizontalScrollPosition
         {
             get
             {
@@ -1105,6 +1177,18 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return (int)GetValue(VerticalScrollPositionProperty);
+            }
+            set
+            {
+                SetValue(VerticalScrollPositionProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private int InternalVerticalScrollPosition
+        {
+            get
+            {
                 int temp;
                 using (PropertyValue propertyValue = GetProperty(TextEditor.Property.VerticalScrollPosition))
                 {
@@ -1127,6 +1211,18 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int PrimaryCursorPosition
+        {
+            get
+            {
+                return (int)GetValue(PrimaryCursorPositionProperty);
+            }
+            set
+            {
+                SetValue(PrimaryCursorPositionProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private int InternalPrimaryCursorPosition
         {
             get
             {

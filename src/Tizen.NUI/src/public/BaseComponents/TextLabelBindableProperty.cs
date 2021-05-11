@@ -773,5 +773,94 @@ namespace Tizen.NUI.BaseComponents
                 Object.SetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, Property.SHADOW, TextShadow.ToPropertyValue(value));
             }
         }
+        /// <summary>
+        /// ShadowOffsetProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static BindableProperty ShadowOffsetProperty { get; } = BindableProperty.Create(nameof(ShadowOffset), typeof(Tizen.NUI.Vector2), typeof(Tizen.NUI.BaseComponents.TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.TextLabel)bindable;
+            if (newValue != null)
+            {
+                instance.InternalShadowOffset = (Tizen.NUI.Vector2)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.TextLabel)bindable;
+            return instance.InternalShadowOffset;
+        });
+
+        /// <summary>
+        /// ShadowColorProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static BindableProperty ShadowColorProperty { get; } = BindableProperty.Create(nameof(ShadowColor), typeof(Tizen.NUI.Vector4), typeof(Tizen.NUI.BaseComponents.TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.TextLabel)bindable;
+            if (newValue != null)
+            {
+                instance.InternalShadowColor = (Tizen.NUI.Vector4)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.TextLabel)bindable;
+            return instance.InternalShadowColor;
+        });
+
+        /// <summary>
+        /// UnderlineEnabledProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static BindableProperty UnderlineEnabledProperty { get; } = BindableProperty.Create(nameof(UnderlineEnabled), typeof(bool), typeof(Tizen.NUI.BaseComponents.TextLabel), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.TextLabel)bindable;
+            if (newValue != null)
+            {
+                instance.InternalUnderlineEnabled = (bool)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.TextLabel)bindable;
+            return instance.InternalUnderlineEnabled;
+        });
+
+        /// <summary>
+        /// UnderlineColorProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static BindableProperty UnderlineColorProperty { get; } = BindableProperty.Create(nameof(UnderlineColor), typeof(Tizen.NUI.Vector4), typeof(Tizen.NUI.BaseComponents.TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.TextLabel)bindable;
+            if (newValue != null)
+            {
+                instance.InternalUnderlineColor = (Tizen.NUI.Vector4)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.TextLabel)bindable;
+            return instance.InternalUnderlineColor;
+        });
+
+        /// <summary>
+        /// UnderlineHeightProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static BindableProperty UnderlineHeightProperty { get; } = BindableProperty.Create(nameof(UnderlineHeight), typeof(float), typeof(Tizen.NUI.BaseComponents.TextLabel), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.TextLabel)bindable;
+            if (newValue != null)
+            {
+                instance.InternalUnderlineHeight = (float)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.TextLabel)bindable;
+            return instance.InternalUnderlineHeight;
+        });
     }
 }

@@ -384,6 +384,18 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return (Vector2)GetValue(ShadowOffsetProperty);
+            }
+            set
+            {
+                SetValue(ShadowOffsetProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Vector2 InternalShadowOffset
+        {
+            get
+            {
                 Vector2 shadowOffset = new Vector2();
                 Shadow.Find(TextLabel.Property.SHADOW, "offset")?.Get(shadowOffset);
                 return new Vector2(OnShadowOffsetChanged, shadowOffset.X, shadowOffset.Y);
@@ -415,6 +427,18 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return (Vector4)GetValue(ShadowColorProperty);
+            }
+            set
+            {
+                SetValue(ShadowColorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Vector4 InternalShadowColor
+        {
+            get
+            {
                 Vector4 shadowColor = new Vector4();
                 Shadow.Find(TextLabel.Property.SHADOW, "color")?.Get(shadowColor);
                 return new Vector4(OnShadowColorChanged, shadowColor.X, shadowColor.Y, shadowColor.Z, shadowColor.W);
@@ -442,6 +466,18 @@ namespace Tizen.NUI.BaseComponents
         /// </remarks>
         [Obsolete("Please do not use this UnderlineEnabled(Deprecated). Please use Underline instead.")]
         public bool UnderlineEnabled
+        {
+            get
+            {
+                return (bool)GetValue(UnderlineEnabledProperty);
+            }
+            set
+            {
+                SetValue(UnderlineEnabledProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private bool InternalUnderlineEnabled
         {
             get
             {
@@ -477,6 +513,18 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return (Vector4)GetValue(UnderlineColorProperty);
+            }
+            set
+            {
+                SetValue(UnderlineColorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Vector4 InternalUnderlineColor
+        {
+            get
+            {
                 Vector4 underlineColor = new Vector4();
                 Underline.Find(TextLabel.Property.UNDERLINE, "color")?.Get(underlineColor);
                 return new Vector4(OnUnderlineColorChanged, underlineColor.X, underlineColor.Y, underlineColor.Z, underlineColor.W);
@@ -504,6 +552,18 @@ namespace Tizen.NUI.BaseComponents
         /// </remarks>
         [Obsolete("Please do not use this UnderlineHeight(Deprecated). Please use Underline instead.")]
         public float UnderlineHeight
+        {
+            get
+            {
+                return (float)GetValue(UnderlineHeightProperty);
+            }
+            set
+            {
+                SetValue(UnderlineHeightProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private float InternalUnderlineHeight
         {
             get
             {

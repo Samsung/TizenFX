@@ -25,7 +25,7 @@ namespace Tizen.NUI
     ///Spins the CustomView class.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class Spin : CustomView
+    public partial class Spin : CustomView
     {
         private VisualBase arrowVisual;
         private TextField textField;
@@ -68,6 +68,18 @@ namespace Tizen.NUI
         {
             get
             {
+                return (int)GetValue(ValueProperty);
+            }
+            set
+            {
+                SetValue(ValueProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private int InternalValue
+        {
+            get
+            {
                 return currentValue;
             }
             set
@@ -99,6 +111,18 @@ namespace Tizen.NUI
         {
             get
             {
+                return (int)GetValue(MinValueProperty);
+            }
+            set
+            {
+                SetValue(MinValueProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private int InternalMinValue
+        {
+            get
+            {
                 return minValue;
             }
             set
@@ -113,6 +137,18 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         [ScriptableProperty()]
         public int MaxValue
+        {
+            get
+            {
+                return (int)GetValue(MaxValueProperty);
+            }
+            set
+            {
+                SetValue(MaxValueProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private int InternalMaxValue
         {
             get
             {
@@ -133,6 +169,18 @@ namespace Tizen.NUI
         {
             get
             {
+                return (int)GetValue(StepProperty);
+            }
+            set
+            {
+                SetValue(StepProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private int InternalStep
+        {
+            get
+            {
                 return singleStep;
             }
             set
@@ -147,6 +195,18 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         [ScriptableProperty()]
         public bool WrappingEnabled
+        {
+            get
+            {
+                return (bool)GetValue(WrappingEnabledProperty);
+            }
+            set
+            {
+                SetValue(WrappingEnabledProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private bool InternalWrappingEnabled
         {
             get
             {
@@ -167,6 +227,18 @@ namespace Tizen.NUI
         {
             get
             {
+                return (int)GetValue(TextPointSizeProperty);
+            }
+            set
+            {
+                SetValue(TextPointSizeProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private int InternalTextPointSize
+        {
+            get
+            {
                 return pointSize;
             }
             set
@@ -182,6 +254,18 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         [ScriptableProperty()]
         public Color TextColor
+        {
+            get
+            {
+                return (Color)GetValue(TextColorProperty);
+            }
+            set
+            {
+                SetValue(TextColorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Color InternalTextColor
         {
             get
             {
@@ -208,6 +292,18 @@ namespace Tizen.NUI
         {
             get
             {
+                return (int)GetValue(MaxTextLengthProperty);
+            }
+            set
+            {
+                SetValue(MaxTextLengthProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private int InternalMaxTextLength
+        {
+            get
+            {
                 return maxTextLength;
             }
             set
@@ -225,6 +321,18 @@ namespace Tizen.NUI
         {
             get
             {
+                return (TextField)GetValue(SpinTextProperty);
+            }
+            set
+            {
+                SetValue(SpinTextProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private TextField InternalSpinText
+        {
+            get
+            {
                 return textField;
             }
             set
@@ -238,6 +346,18 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string IndicatorImage
+        {
+            get
+            {
+                return (string)GetValue(IndicatorImageProperty);
+            }
+            set
+            {
+                SetValue(IndicatorImageProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private string InternalIndicatorImage
         {
             get
             {

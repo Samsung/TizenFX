@@ -27,7 +27,7 @@ namespace Tizen.NUI
     /// Input events that the WidgetView gets are delivered to the widget.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class WidgetView : View
+    public partial class WidgetView : View
     {
         private EventHandler<WidgetViewEventArgs> widgetAddedEventHandler;
         private WidgetAddedEventCallbackType widgetAddedEventCallback;
@@ -364,6 +364,18 @@ namespace Tizen.NUI
         {
             get
             {
+                return (bool)GetValue(PreviewProperty);
+            }
+            set
+            {
+                SetValue(PreviewProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private bool InternalPreview
+        {
+            get
+            {
                 bool retValue = false;
                 PropertyValue preview = GetProperty(WidgetView.Property.PREVIEW);
                 preview?.Get(out retValue);
@@ -383,6 +395,18 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public bool LoadingText
+        {
+            get
+            {
+                return (bool)GetValue(LoadingTextProperty);
+            }
+            set
+            {
+                SetValue(LoadingTextProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private bool InternalLoadingText
         {
             get
             {
@@ -408,6 +432,18 @@ namespace Tizen.NUI
         {
             get
             {
+                return (bool)GetValue(WidgetStateFaultedProperty);
+            }
+            set
+            {
+                SetValue(WidgetStateFaultedProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private bool InternalWidgetStateFaulted
+        {
+            get
+            {
                 bool retValue = false;
                 PropertyValue widgetStateFaulted = GetProperty(WidgetView.Property.WidgetStateFaulted);
                 widgetStateFaulted?.Get(out retValue);
@@ -427,6 +463,18 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public bool PermanentDelete
+        {
+            get
+            {
+                return (bool)GetValue(PermanentDeleteProperty);
+            }
+            set
+            {
+                SetValue(PermanentDeleteProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private bool InternalPermanentDelete
         {
             get
             {
@@ -452,6 +500,18 @@ namespace Tizen.NUI
         {
             get
             {
+                return (PropertyMap)GetValue(RetryTextProperty);
+            }
+            set
+            {
+                SetValue(RetryTextProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private PropertyMap InternalRetryText
+        {
+            get
+            {
                 PropertyMap retValue = new PropertyMap();
                 PropertyValue retryText = GetProperty(WidgetView.Property.RetryText);
                 retryText?.Get(retValue);
@@ -471,6 +531,18 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public PropertyMap Effect
+        {
+            get
+            {
+                return (PropertyMap)GetValue(EffectProperty);
+            }
+            set
+            {
+                SetValue(EffectProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private PropertyMap InternalEffect
         {
             get
             {

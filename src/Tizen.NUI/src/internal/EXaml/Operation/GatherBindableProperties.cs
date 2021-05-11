@@ -38,13 +38,34 @@ namespace Tizen.NUI.EXaml
         public void Do()
         {
             var type = globalDataList.GatheredTypes[typeIndex];
-            var field = type.GetField(fi => fi.Name == propertyName && fi.IsStatic && fi.IsPublic);
-            if (null == field)
+            if (null == type)
             {
-                field = type.GetField(fi => fi.Name == propertyName && fi.IsStatic && !fi.IsPublic);
+                throw new Exception(String.Format("Can't get type by index {0}", typeIndex));
             }
 
-            globalDataList.GatheredBindableProperties.Add(field.GetValue(null) as BindableProperty);
+            var property = type.GetProperty(propertyName, BindingFlags.Public | BindingFlags.Static);
+            if (null != property)
+            {
+                globalDataList.GatheredBindableProperties.Add(property.GetValue(null) as BindableProperty);
+            }
+            else
+            {
+                var field = type.GetField(fi => fi.Name == propertyName && fi.IsStatic && fi.IsPublic);
+                if (null == field)
+                {
+                    field = type.GetField(fi => fi.Name == propertyName && fi.IsStatic && !fi.IsPublic);
+                }
+
+                if (null != field)
+                {
+                    globalDataList.GatheredBindableProperties.Add(field.GetValue(null) as BindableProperty);
+                }
+
+                if (null == field)
+                {
+                    throw new Exception(String.Format("Can't get BindableProperty {0} in type {1}", propertyName, type.FullName));
+                }
+            }
         }
 
         private int typeIndex;
