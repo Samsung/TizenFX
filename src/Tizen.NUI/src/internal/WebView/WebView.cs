@@ -1188,7 +1188,7 @@ namespace Tizen.NUI
             get
             {
                 global::System.IntPtr imageView = Interop.WebView.GetFavicon(SwigCPtr);
-                if (imageView == null || imageView == IntPtr.Zero)
+                if (imageView == IntPtr.Zero)
                     return null;
                 return new ImageView(imageView, false);
             }
