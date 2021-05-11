@@ -73,9 +73,9 @@ namespace Tizen.NUI
         private HitTestFinishedCallback hitTestFinishedCallback;
         private readonly WebViewHitTestFinishedProxyCallback hitTestFinishedProxyCallback;
 
-        private readonly WebViewNewWindowPolicyDecidedSignal newWindowPolicyDecidedSignal;
-        private EventHandler<WebViewNewWindowPolicyDecidedEventArgs> newWindowPolicyDecidedEventHandler;
-        private WebViewNewWindowPolicyDecidedCallbackDelegate newWindowPolicyDecidedCallback;
+        private readonly WebViewResponsePolicyDecidedSignal responsePolicyDecidedSignal;
+        private EventHandler<WebViewResponsePolicyDecidedEventArgs> responsePolicyDecidedEventHandler;
+        private WebViewResponsePolicyDecidedCallbackDelegate responsePolicyDecidedCallback;
 
         private readonly WebViewCertificateReceivedSignal certificateConfirmedSignal;
         private EventHandler<WebViewCertificateReceivedEventArgs> certificateConfirmedEventHandler;
@@ -155,7 +155,7 @@ namespace Tizen.NUI
             urlChangedSignal = new WebViewUrlChangedSignal(Interop.WebView.NewWebViewUrlChangedSignalUrlChanged(SwigCPtr));
             formRepostPolicyDecidedSignal = new WebViewFormRepostPolicyDecidedSignal(Interop.WebView.NewWebViewFormRepostDecisionSignalFormRepostDecision(SwigCPtr));
             frameRenderedSignal = new WebViewFrameRenderedSignal(Interop.WebView.WebViewFrameRenderedSignalFrameRenderedGet(SwigCPtr));
-            newWindowPolicyDecidedSignal = new WebViewNewWindowPolicyDecidedSignal(Interop.WebView.NewWebViewPolicyDecisionSignalPolicyDecision(SwigCPtr));
+            responsePolicyDecidedSignal = new WebViewResponsePolicyDecidedSignal(Interop.WebView.NewWebViewResponsePolicyDecisionSignalPolicyDecision(SwigCPtr));
             certificateConfirmedSignal = new WebViewCertificateReceivedSignal(Interop.WebView.NewWebViewCertificateSignalCertificateConfirm(SwigCPtr));
             sslCertificateChangedSignal = new WebViewCertificateReceivedSignal(Interop.WebView.NewWebViewCertificateSignalSslCertificateChanged(SwigCPtr));
             httpAuthRequestedSignal = new WebViewHttpAuthRequestedSignal(Interop.WebView.NewWebViewHttpAuthHandlerSignalHttpAuthHandler(SwigCPtr));
@@ -197,7 +197,7 @@ namespace Tizen.NUI
                 urlChangedSignal.Dispose();
                 formRepostPolicyDecidedSignal.Dispose();
                 frameRenderedSignal.Dispose();
-                newWindowPolicyDecidedSignal.Dispose();
+                responsePolicyDecidedSignal.Dispose();
                 certificateConfirmedSignal.Dispose();
                 sslCertificateChangedSignal.Dispose();
                 httpAuthRequestedSignal.Dispose();
@@ -304,7 +304,7 @@ namespace Tizen.NUI
         private delegate void WebViewHitTestFinishedProxyCallback(IntPtr data);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void WebViewNewWindowPolicyDecidedCallbackDelegate(IntPtr data, IntPtr maker);
+        private delegate void WebViewResponsePolicyDecidedCallbackDelegate(IntPtr data, IntPtr maker);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WebViewCertificateReceivedCallbackDelegate(IntPtr data, IntPtr certificate);
@@ -533,27 +533,27 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Event for the NewWindowPolicyDecided signal which can be used to subscribe or unsubscribe the event handler.<br />
-        /// This signal is emitted when new window policy would be decided.<br />
+        /// Event for the ResponsePolicyDecided signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted when response policy would be decided.<br />
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<WebViewNewWindowPolicyDecidedEventArgs> NewWindowPolicyDecided
+        public event EventHandler<WebViewResponsePolicyDecidedEventArgs> ResponsePolicyDecided
         {
             add
             {
-                if (newWindowPolicyDecidedEventHandler == null)
+                if (responsePolicyDecidedEventHandler == null)
                 {
-                    newWindowPolicyDecidedCallback = OnNewWindowPolicyDecided;
-                    newWindowPolicyDecidedSignal.Connect(newWindowPolicyDecidedCallback);
+                    responsePolicyDecidedCallback = OnResponsePolicyDecided;
+                    responsePolicyDecidedSignal.Connect(responsePolicyDecidedCallback);
                 }
-                newWindowPolicyDecidedEventHandler += value;
+                responsePolicyDecidedEventHandler += value;
             }
             remove
             {
-                newWindowPolicyDecidedEventHandler -= value;
-                if (newWindowPolicyDecidedEventHandler == null && newWindowPolicyDecidedCallback != null)
+                responsePolicyDecidedEventHandler -= value;
+                if (responsePolicyDecidedEventHandler == null && responsePolicyDecidedCallback != null)
                 {
-                    newWindowPolicyDecidedSignal.Disconnect(newWindowPolicyDecidedCallback);
+                    responsePolicyDecidedSignal.Disconnect(responsePolicyDecidedCallback);
                 }
             }
         }
@@ -1188,6 +1188,8 @@ namespace Tizen.NUI
             get
             {
                 global::System.IntPtr imageView = Interop.WebView.GetFavicon(SwigCPtr);
+                if (imageView == IntPtr.Zero)
+                    return null;
                 return new ImageView(imageView, false);
             }
         }
@@ -2104,9 +2106,9 @@ namespace Tizen.NUI
             image.Dispose();
         }
 
-        private void OnNewWindowPolicyDecided(IntPtr data, IntPtr maker)
+        private void OnResponsePolicyDecided(IntPtr data, IntPtr maker)
         {
-            newWindowPolicyDecidedEventHandler?.Invoke(this, new WebViewNewWindowPolicyDecidedEventArgs(new WebNewWindowPolicyDecisionMaker(maker, false)));
+            responsePolicyDecidedEventHandler?.Invoke(this, new WebViewResponsePolicyDecidedEventArgs(new WebPolicyDecisionMaker(maker, false)));
         }
 
         private void OnCertificateConfirmed(IntPtr data, IntPtr certificate)
