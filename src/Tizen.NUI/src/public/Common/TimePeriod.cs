@@ -43,7 +43,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// The constructor.
-        /// Creates an time peroid object with the user-defined alpha function.
+        /// Creates an time period object with the user-defined alpha function.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public TimePeriod(int durationMilliSeconds) : this(Interop.TimePeriod.NewTimePeriod((float)durationMilliSeconds / 1000.0f), true)
@@ -53,7 +53,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// The constructor.
-        /// Creates an time peroid object with the user-defined alpha function.
+        /// Creates an time period object with the user-defined alpha function.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public TimePeriod(float delayMilliSeconds, float durationMilliSeconds) : this(Interop.TimePeriod.NewTimePeriod((float)delayMilliSeconds / 1000.0f, (float)durationMilliSeconds / 1000.0f), true)
