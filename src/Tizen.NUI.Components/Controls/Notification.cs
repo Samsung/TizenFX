@@ -84,10 +84,16 @@ namespace Tizen.NUI.Components
         /// Create a notification with a content View.
         /// </summary>
         /// <param name="contentView">The content view instance to display in the notification window.</param>
+        /// <exception cref="NotSupportedException">Thrown when the device does not support a notification feature.</exception>
         /// <exception cref="ArgumentNullException">Thrown when a given contentView is null.</exception>
+        /// <remark>Since the notification creates a new window, the system should support a multi-window feature. Otherwise it will throw a NotSupportedException.</remark>
         /// <since_tizen> 8 </since_tizen>
         public Notification(View contentView) : base()
         {
+            if (!Window.IsSupportedMultiWindow())
+            {
+                throw new NotSupportedException("This device does not support multi-window. Notification can not be created. ");
+            }
             ContentView = contentView ?? throw new ArgumentNullException(nameof(contentView));
         }
 
@@ -157,8 +163,10 @@ namespace Tizen.NUI.Components
         /// <param name="text">The string content.</param>
         /// <param name="gravity">The location at which the toast should appear. It's one of the notification constants: ToastTop, ToastCenter and ToastBottom.</param>
         /// <returns>The created Notification instance.</returns>
+        /// <exception cref="NotSupportedException">Thrown when the device does not support a notification feature.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the given text or gravity is null.</exception>
         /// <remark>Application need to set http://tizen.org/privilege/window.priority.set to post a notification.</remark>
+        /// <remark>Since the notification creates a new window, the system should support a multi-window feature. Otherwise it will throw a NotSupportedException.</remark>
         /// <example>
         /// The following example demonstrates how to make a toast at the bottom and show it for a short period time.
         /// <code>
@@ -168,6 +176,11 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 9 </since_tizen>
         public static Notification MakeToast(string text, Position gravity)
         {
+            if (!Window.IsSupportedMultiWindow())
+            {
+                throw new NotSupportedException("This device does not support multi-window. Notification can not be created. ");
+            }
+
             var textLabel = new TextLabel(text ?? throw new ArgumentNullException(nameof(text)))
             {
                 Opacity = 0.0f
@@ -219,7 +232,7 @@ namespace Tizen.NUI.Components
 
             if (!ApplyLevel(level))
             {
-                throw new UnauthorizedAccessException("Cannot post a Notification: Permission Denied");
+                throw new UnauthorizedAccessException("Cannot post a Notification: Permission Denied. The privilege http://tizen.org/privilege/window.priority.set is needed.");
             }
 
             ApplyPositionSize(positionSize);
