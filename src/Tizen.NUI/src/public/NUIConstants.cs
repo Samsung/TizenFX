@@ -775,7 +775,20 @@ namespace Tizen.NUI
         /// character will move character by character to the next line.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        Character
+        Character,
+
+        /// <summary>
+        /// Hyphenation mode will move part of the word (at possible hyphen locations)
+        /// to the next line and draw a hyphen at the end of the line.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Hyphenation,
+
+        /// <summary>
+        /// Mixed mode will try word wrap, if failed, it will try hyphenation wrap.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Mixed
     }
 
     /// <summary>
