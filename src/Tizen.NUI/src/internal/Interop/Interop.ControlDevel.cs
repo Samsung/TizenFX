@@ -282,14 +282,14 @@ namespace Tizen.NUI
                 public AccessibilityGetCharacterCount GetCharacterCount; // 15
 
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                public delegate int AccessibilityGetCaretOffset();
+                public delegate int AccessibilityGetCursorOffset();
                 [EditorBrowsable(EditorBrowsableState.Never)]
-                public AccessibilityGetCaretOffset GetCaretOffset; // 16
+                public AccessibilityGetCursorOffset GetCursorOffset; // 16
 
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                public delegate bool AccessibilitySetCaretOffset(int offset);
+                public delegate bool AccessibilitySetCursorOffset(int offset);
                 [EditorBrowsable(EditorBrowsableState.Never)]
-                public AccessibilitySetCaretOffset SetCaretOffset; // 17
+                public AccessibilitySetCursorOffset SetCursorOffset; // 17
 
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
                 public delegate IntPtr AccessibilityGetTextAtOffset(int offset, int boundary);

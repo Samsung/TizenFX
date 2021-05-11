@@ -298,6 +298,9 @@ namespace Tizen.NUI.BaseComponents
             return result;
         }
 
+        /// <summary>
+        /// Flag to check whether this view is highlighted or not.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected bool IsHighlighted
         {
@@ -590,8 +593,8 @@ namespace Tizen.NUI.BaseComponents
                     IsScrollable = () => AccessibilityIsScrollable(),
                     GetText = (startOffset, endOffset) => DuplicateString(AccessibilityGetText(startOffset, endOffset)),
                     GetCharacterCount = () => AccessibilityGetCharacterCount(),
-                    GetCaretOffset = () => AccessibilityGetCaretOffset(),
-                    SetCaretOffset = (offset) => AccessibilitySetCaretOffset(offset),
+                    GetCursorOffset = () => AccessibilityGetCursorOffset(),
+                    SetCursorOffset = (offset) => AccessibilitySetCursorOffset(offset),
                     GetTextAtOffset = (offset, boundary) => DuplicateRange(AccessibilityGetTextAtOffset(offset, (TextBoundary)boundary)),
                     GetSelection = (selectionNumber) => DuplicateRange(AccessibilityGetSelection(selectionNumber)),
                     RemoveSelection = (selectionNumber) => AccessibilityRemoveSelection(selectionNumber),
@@ -667,16 +670,16 @@ namespace Tizen.NUI.BaseComponents
         protected virtual AccessibilityStates AccessibilityCalculateStates()
         {
             var states = new AccessibilityStates();
-            states.Set(AccessibilityState.Highlightable, this.AccessibilityHighlightable);
-            states.Set(AccessibilityState.Focusable, this.Focusable);
-            states.Set(AccessibilityState.Focused, this.State == States.Focused);
-            states.Set(AccessibilityState.Highlighted, this.IsHighlighted);
-            states.Set(AccessibilityState.Enabled, this.State != States.Disabled);
-            states.Set(AccessibilityState.Sensitive, this.Sensitive);
-            states.Set(AccessibilityState.Animated, this.AccessibilityAnimated);
-            states.Set(AccessibilityState.Visible, true);
-            states.Set(AccessibilityState.Showing, this.Visibility);
-            states.Set(AccessibilityState.Defunct, !this.IsOnWindow);
+            states.SetStateEnabled(AccessibilityState.Highlightable, this.AccessibilityHighlightable);
+            states.SetStateEnabled(AccessibilityState.Focusable, this.Focusable);
+            states.SetStateEnabled(AccessibilityState.Focused, this.State == States.Focused);
+            states.SetStateEnabled(AccessibilityState.Highlighted, this.IsHighlighted);
+            states.SetStateEnabled(AccessibilityState.Enabled, this.State != States.Disabled);
+            states.SetStateEnabled(AccessibilityState.Sensitive, this.Sensitive);
+            states.SetStateEnabled(AccessibilityState.Animated, this.AccessibilityAnimated);
+            states.SetStateEnabled(AccessibilityState.Visible, true);
+            states.SetStateEnabled(AccessibilityState.Showing, this.Visibility);
+            states.SetStateEnabled(AccessibilityState.Defunct, !this.IsOnWindow);
             return states;
         }
 
@@ -690,9 +693,13 @@ namespace Tizen.NUI.BaseComponents
         protected virtual string AccessibilityGetActionName(int index)
         {
             if (index >= 0 && index < AccessibilityActions.Length)
+            {
                 return AccessibilityActions[index];
+            }
             else
+            {
                 return "";
+            }
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -750,13 +757,13 @@ namespace Tizen.NUI.BaseComponents
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual int AccessibilityGetCaretOffset()
+        protected virtual int AccessibilityGetCursorOffset()
         {
             return 0;
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual bool AccessibilitySetCaretOffset(int offset)
+        protected virtual bool AccessibilitySetCursorOffset(int offset)
         {
             return false;
         }
@@ -768,19 +775,19 @@ namespace Tizen.NUI.BaseComponents
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual AccessibilityRange AccessibilityGetSelection(int selectionNum)
+        protected virtual AccessibilityRange AccessibilityGetSelection(int selectionNumber)
         {
             return new AccessibilityRange();
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual bool AccessibilityRemoveSelection(int selectionNum)
+        protected virtual bool AccessibilityRemoveSelection(int selectionNumber)
         {
             return false;
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual bool AccessibilitySetSelection(int selectionNum, int startOffset, int endOffset)
+        protected virtual bool AccessibilitySetSelection(int selectionNumber, int startOffset, int endOffset)
         {
             return false;
         }
