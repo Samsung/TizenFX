@@ -21,12 +21,12 @@ using System.ComponentModel;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// It is a class for new window policy decision maker of web view.
+    /// It is a class for policy decision maker of web view.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class WebNewWindowPolicyDecisionMaker : Disposable
+    public class WebPolicyDecisionMaker : Disposable
     {
-        internal WebNewWindowPolicyDecisionMaker(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal WebPolicyDecisionMaker(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
@@ -106,7 +106,7 @@ namespace Tizen.NUI
         {
             get
             {
-                return Interop.WebNewWindowPolicyDecisionMaker.GetUrl(SwigCPtr);
+                return Interop.WebPolicyDecisionMaker.GetUrl(SwigCPtr);
             }
         }
 
@@ -118,7 +118,7 @@ namespace Tizen.NUI
         {
             get
             {
-                return Interop.WebNewWindowPolicyDecisionMaker.GetCookie(SwigCPtr);
+                return Interop.WebPolicyDecisionMaker.GetCookie(SwigCPtr);
             }
         }
 
@@ -130,7 +130,7 @@ namespace Tizen.NUI
         {
             get
             {
-                return (DecisionType)Interop.WebNewWindowPolicyDecisionMaker.GetDecisionType(SwigCPtr);
+                return (DecisionType)Interop.WebPolicyDecisionMaker.GetDecisionType(SwigCPtr);
             }
         }
 
@@ -142,7 +142,7 @@ namespace Tizen.NUI
         {
             get
             {
-                return Interop.WebNewWindowPolicyDecisionMaker.GetResponseMime(SwigCPtr);
+                return Interop.WebPolicyDecisionMaker.GetResponseMime(SwigCPtr);
             }
         }
 
@@ -154,7 +154,7 @@ namespace Tizen.NUI
         {
             get
             {
-                return Interop.WebNewWindowPolicyDecisionMaker.GetResponseStatusCode(SwigCPtr);
+                return Interop.WebPolicyDecisionMaker.GetResponseStatusCode(SwigCPtr);
             }
         }
 
@@ -166,7 +166,7 @@ namespace Tizen.NUI
         {
             get
             {
-                return (NavigationType)Interop.WebNewWindowPolicyDecisionMaker.GetNavigationType(SwigCPtr);
+                return (NavigationType)Interop.WebPolicyDecisionMaker.GetNavigationType(SwigCPtr);
             }
         }
 
@@ -178,7 +178,7 @@ namespace Tizen.NUI
         {
             get
             {
-                IntPtr result = Interop.WebNewWindowPolicyDecisionMaker.GetFrame(SwigCPtr);
+                IntPtr result = Interop.WebPolicyDecisionMaker.GetFrame(SwigCPtr);
                 return new WebFrame(result, false);
             }
         }
@@ -191,7 +191,7 @@ namespace Tizen.NUI
         {
             get
             {
-                return Interop.WebNewWindowPolicyDecisionMaker.GetScheme(SwigCPtr);
+                return Interop.WebPolicyDecisionMaker.GetScheme(SwigCPtr);
             }
         }
 
@@ -201,7 +201,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Use()
         {
-            bool result = Interop.WebNewWindowPolicyDecisionMaker.Use(SwigCPtr);
+            bool result = Interop.WebPolicyDecisionMaker.Use(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return result;
         }
@@ -212,7 +212,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Ignore()
         {
-            bool result = Interop.WebNewWindowPolicyDecisionMaker.Ignore(SwigCPtr);
+            bool result = Interop.WebPolicyDecisionMaker.Ignore(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return result;
         }
@@ -223,7 +223,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Suspend()
         {
-            bool result = Interop.WebNewWindowPolicyDecisionMaker.Suspend(SwigCPtr);
+            bool result = Interop.WebPolicyDecisionMaker.Suspend(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return result;
         }

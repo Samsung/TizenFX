@@ -21,20 +21,20 @@ using System.ComponentModel;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// Event arguments that passed via the WebView.NewWindowPolicyDecided.
+    /// Event arguments that passed via the WebView.ResponsePolicyDecided.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class WebViewNewWindowPolicyDecidedEventArgs : EventArgs
+    public class WebViewResponsePolicyDecidedEventArgs : EventArgs
     {
-        internal WebViewNewWindowPolicyDecidedEventArgs(WebNewWindowPolicyDecisionMaker maker)
+        internal WebViewResponsePolicyDecidedEventArgs(WebPolicyDecisionMaker maker)
         {
-            NewWindowPolicyDecisionMaker = maker;
+            ResponsePolicyDecisionMaker = maker;
         }
 
         /// <summary>
-        /// The new window policy decision maker.
+        /// The response policy decision maker.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public WebNewWindowPolicyDecisionMaker NewWindowPolicyDecisionMaker { get; }
+        public WebPolicyDecisionMaker ResponsePolicyDecisionMaker { get; }
     }
 }
