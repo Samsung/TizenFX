@@ -15,6 +15,10 @@
  *
  */
 
+#if !PROFILE_TV
+#define ExternalThemeEnabled
+#endif
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -215,6 +219,7 @@ namespace Tizen.NUI
         /// <param name="externalTheme">The external theme instance to be applied as base.</param>
         internal static void ApplyExternalTheme(IExternalTheme externalTheme)
         {
+#if ExternalThemeEnabled
             Debug.Assert(defaultTheme != null);
 
             if (defaultTheme.HasSameIdAndVersion(externalTheme))
@@ -249,6 +254,7 @@ namespace Tizen.NUI
 
             defaultTheme = newTheme;
             NotifyThemeChanged();
+#endif
         }
 
         internal static void AddPackageTheme(IThemeCreator themeCreator)
@@ -262,12 +268,13 @@ namespace Tizen.NUI
             var packageTheme = themeCreator.Create();
             Debug.Assert(packageTheme != null);
 
+#if ExternalThemeEnabled
             var externalTheme = ExternalThemeManager.GetCurrentTheme();
             if (externalTheme != null && !packageTheme.HasSameIdAndVersion(externalTheme))
             {
                 packageTheme.ApplyExternalTheme(externalTheme, themeCreator.GetExternalThemeKeyListSet());
             }
-
+#endif
             if (defaultTheme == null)
             {
                 defaultTheme = new Theme()

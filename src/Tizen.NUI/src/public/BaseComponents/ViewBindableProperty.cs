@@ -82,7 +82,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 
-            view.selectorData?.ClearBackground(view);
+            view.themeData?.selectorData?.ClearBackground(view);
 
             if (newValue is Selector<Color> selector)
             {
@@ -118,7 +118,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 
-            view.selectorData?.Color?.Reset(view);
+            view.themeData?.selectorData?.Color?.Reset(view);
 
             if (newValue is Selector<Color> selector)
             {
@@ -143,10 +143,10 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 
-            if (view.selectorData != null)
+            if (view.themeData?.selectorData != null)
             {
-                view.selectorData.BackgroundColor?.Reset(view);
-                view.selectorData.BackgroundImage?.Reset(view);
+                view.themeData.selectorData.BackgroundColor?.Reset(view);
+                view.themeData.selectorData.BackgroundImage?.Reset(view);
             }
 
             if (newValue is Selector<string> selector)
@@ -175,7 +175,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 
-            view.selectorData?.BackgroundImageBorder?.Reset(view);
+            view.themeData?.selectorData?.BackgroundImageBorder?.Reset(view);
 
             if (newValue is Selector<Rectangle> selector)
             {
@@ -599,7 +599,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 
-            view.selectorData?.Opacity?.Reset(view);
+            view.themeData?.selectorData?.Opacity?.Reset(view);
 
             if (newValue is Selector<float?> selector)
             {
@@ -1499,7 +1499,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 
-            view.selectorData?.ClearShadow(view);
+            view.themeData?.selectorData?.ClearShadow(view);
 
             if (newValue is Selector<ImageShadow> selector)
             {
@@ -1530,7 +1530,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 
-            view.selectorData?.ClearShadow(view);
+            view.themeData?.selectorData?.ClearShadow(view);
 
             if (newValue is Selector<Shadow> selector)
             {
@@ -1624,11 +1624,13 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 
-            if (view.themeChangeSensitive == (bool)newValue) return;
+            if (view.ThemeChangeSensitive == (bool)newValue) return;
 
-            view.themeChangeSensitive = (bool)newValue;
+            if (view.themeData == null) view.themeData = new ThemeData();
 
-            if (view.themeChangeSensitive)
+            view.themeData.themeChangeSensitive = (bool)newValue;
+
+            if (view.themeData.themeChangeSensitive)
             {
                 ThemeManager.ThemeChangedInternal.Add(view.OnThemeChanged);
             }
@@ -1639,7 +1641,7 @@ namespace Tizen.NUI.BaseComponents
         },
         defaultValueCreator: (bindable) =>
         {
-            return ((View)bindable).themeChangeSensitive;
+            return ((View)bindable).themeData?.themeChangeSensitive ?? false;
         });
 
         /// <summary>

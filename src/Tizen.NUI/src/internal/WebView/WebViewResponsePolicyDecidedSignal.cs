@@ -17,15 +17,15 @@
 
 namespace Tizen.NUI
 {
-    internal class WebViewNewWindowPolicyDecidedSignal : Disposable
+    internal class WebViewResponsePolicyDecidedSignal : Disposable
     {
-        public WebViewNewWindowPolicyDecidedSignal(global::System.IntPtr cPtr) : base(cPtr, true)
+        public WebViewResponsePolicyDecidedSignal(global::System.IntPtr cPtr) : base(cPtr, true)
         {
         }
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.WebView.DeleteWebViewPolicyDecisionSignal(swigCPtr);
+            Interop.WebView.DeleteWebViewResponsePolicyDecisionSignal(swigCPtr);
         }
 
         public void Connect(System.Delegate func)
