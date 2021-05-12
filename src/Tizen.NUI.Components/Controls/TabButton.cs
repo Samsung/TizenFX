@@ -125,6 +125,14 @@ namespace Tizen.NUI.Components
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnRelayout(Vector2 size, RelayoutContainer container)
+        {
+            base.OnRelayout(size, container);
+            UpdateSizeAndSpacing();
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -214,21 +222,8 @@ namespace Tizen.NUI.Components
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void OnUpdate()
-        {
-            base.OnUpdate();
-            LayoutItems();
-        }
-
-        /// <inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void LayoutItems()
         {
-            if (styleApplied == false)
-            {
-                return;
-            }
-
             if ((Icon == null) && (TextLabel == null))
             {
                 return;
@@ -244,6 +239,30 @@ namespace Tizen.NUI.Components
             if ((TextLabel != null) && (Children.Contains(TextLabel) == false))
             {
                 Add(TextLabel);
+            }
+        }
+
+        private void Initialize()
+        {
+            Layout = new AbsoluteLayout();
+
+            topLine = new View(tabButtonStyle?.TopLine);
+            Add(topLine);
+
+            bottomLine = new View(tabButtonStyle?.BottomLine);
+            Add(bottomLine);
+        }
+
+        private void UpdateSizeAndSpacing()
+        {
+            if (styleApplied == false)
+            {
+                return;
+            }
+
+            if ((Icon == null) && (TextLabel == null))
+            {
+                return;
             }
 
             // FIXME: set Selector<Extents> to padding
@@ -332,17 +351,6 @@ namespace Tizen.NUI.Components
             }
 
             padding?.Dispose();
-        }
-
-        private void Initialize()
-        {
-            Layout = new AbsoluteLayout();
-
-            topLine = new View(tabButtonStyle?.TopLine);
-            Add(topLine);
-
-            bottomLine = new View(tabButtonStyle?.BottomLine);
-            Add(bottomLine);
         }
     }
 }
