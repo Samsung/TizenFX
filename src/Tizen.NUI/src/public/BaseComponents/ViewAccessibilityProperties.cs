@@ -107,5 +107,15 @@ namespace Tizen.NUI.BaseComponents
                 NotifyPropertyChanged();
             }
         }
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new string AutomationId
+        {
+            get { return base.AutomationId; }
+            set
+            {
+                base.AutomationId = value;
+                AppendAccessibilityAttribute("automationId", value);
+            }
+        }
     }
 }
