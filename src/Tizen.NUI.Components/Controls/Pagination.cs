@@ -367,7 +367,8 @@ namespace Tizen.NUI.Components
 
                 SelectIn(indicatorList[selectedIndex]);
 
-                if (IsHighlighted) {
+                if (IsHighlighted) 
+                {
                     EmitAccessibilityEvent(ObjectPropertyChangeEvent.Value);
                 }
             }
@@ -421,11 +422,11 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override bool AccessibilitySetCurrent(double value)
         {
-            int f = (int)value;
+            int integerValue = (int)value;
 
-            if (f >= 0 && f <= IndicatorCount)
+            if (integerValue >= 0 && integerValue <= IndicatorCount)
             {
-                SelectedIndex = f;
+                SelectedIndex = integerValue;
                 return true;
             }
 
