@@ -32,7 +32,6 @@ namespace Tizen.Telephony
         private List<IntPtr> _callHandle = new List<IntPtr>();
         private List<CallHandle> _list = new List<CallHandle>();
         private IntPtr _callList;
-        private Interop.Call.SafeCallList _safeCallList;
 
         /// <summary>
         /// The public constructor.
@@ -97,7 +96,6 @@ namespace Tizen.Telephony
         public IEnumerable<CallHandle> GetCallHandleList()
         {
             uint count;
-            _callList = new IntPtr();
             _list.Clear();
             TelephonyError error = Interop.Call.GetCallList(_handle, out count, out _callList);
             if (error != TelephonyError.None)
@@ -116,8 +114,6 @@ namespace Tizen.Telephony
                     CallHandle info = new CallHandle(handle);
                     _list.Add(info);
                 }
-
-                _safeCallList = new Interop.Call.SafeCallList(_callList, count);
             }
             return _list;
         }
