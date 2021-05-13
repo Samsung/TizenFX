@@ -75,11 +75,13 @@ namespace Tizen.NUI.EXaml
             {
                 List<int> genericTypeIndexs = new List<int>();
                 var genericTypeIndexList = valueList[1] as List<object>;
-                foreach (var index in genericTypeIndexList)
+                if (genericTypeIndexList != null)
                 {
-                    genericTypeIndexs.Add((int)index);
+                    foreach (var index in genericTypeIndexList)
+                    {
+                        genericTypeIndexs.Add((int)index);
+                    }
                 }
-
                 return new GatherType(globalDataList, assemblyIndex, typeName, genericTypeIndexs);
             }
             else
