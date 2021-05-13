@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Runtime.InteropServices;
 using static Interop.Telephony;
 
@@ -31,7 +32,8 @@ namespace Tizen.Telephony
         internal IntPtr _handle;
         private List<IntPtr> _callHandle = new List<IntPtr>();
         private List<CallHandle> _list = new List<CallHandle>();
-        private IntPtr _callList;
+        private IntPtr _callList = IntPtr.Zero;
+        private uint _callCount = 0;
 
         /// <summary>
         /// The public constructor.
@@ -95,9 +97,15 @@ namespace Tizen.Telephony
         /// <exception cref="OutOfMemoryException">In case of out of memory.</exception>
         public IEnumerable<CallHandle> GetCallHandleList()
         {
-            uint count;
             _list.Clear();
-            TelephonyError error = Interop.Call.GetCallList(_handle, out count, out _callList);
+
+            if (_callCount > 0)
+            {
+                Tizen.Log.Info(Interop.Telephony.LogTag, "Already exist. First release");
+                ReleaseCallHandleList();
+            }
+
+            TelephonyError error = Interop.Call.GetCallList(_handle, out _callCount, out _callList);
             if (error != TelephonyError.None)
             {
                 Tizen.Log.Error(Interop.Telephony.LogTag, "GetCallList Failed with error " + error);
@@ -105,10 +113,10 @@ namespace Tizen.Telephony
             }
 
             _callHandle.Clear();
-            if (count > 0)
+            if (_callCount > 0)
             {
-                IntPtr[] handleArray = new IntPtr[count];
-                Marshal.Copy(_callList, handleArray, 0, (int)count);
+                IntPtr[] handleArray = new IntPtr[_callCount];
+                Marshal.Copy(_callList, handleArray, 0, (int)_callCount);
                 foreach (IntPtr handle in handleArray)
                 {
                     CallHandle info = new CallHandle(handle);
@@ -116,6 +124,31 @@ namespace Tizen.Telephony
                 }
             }
             return _list;
+        }
+
+        /// <summary>
+        /// Releases the list of the current call.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/telephony</privilege>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
+        /// <exception cref="ArgumentException">In case of an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">In case of any system error.</exception>
+        /// <exception cref="UnauthorizedAccessException">In case of privileges not defined.</exception>
+        /// <exception cref="OutOfMemoryException">In case of out of memory.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void ReleaseCallHandleList()
+        {
+            TelephonyError error = Interop.Call.ReleaseCallList(_callCount, ref _callList);
+            if (error != TelephonyError.None)
+            {
+                Tizen.Log.Error(Interop.Telephony.LogTag, "ReleaseCallList Failed with error " + error);
+                throw ExceptionFactory.CreateException(error);
+            }
+            Tizen.Log.Info(Interop.Telephony.LogTag, "CallHandleList Released");
+            _callCount = 0;
+            _callList = IntPtr.Zero;
         }
     }
 }
