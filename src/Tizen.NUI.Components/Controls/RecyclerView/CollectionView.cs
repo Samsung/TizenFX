@@ -212,18 +212,16 @@ namespace Tizen.NUI.Components
                     {
                         prevNotifyCollectionChanged.CollectionChanged -= CollectionChanged;
                     }
-                    itemsLayouter.Clear();
+                    itemsLayouter?.Clear();
                     if (selectedItem != null) selectedItem = null;
-                    if (selectedItems != null)
-                    {
-                        selectedItems.Clear();
-                    }
+                    selectedItems?.Clear();
                 }
 
                 itemsSource = value;
                 if (value == null)
                 {
-                    if (InternalItemSource != null) InternalItemSource.Dispose();
+                    InternalItemSource?.Dispose();
+                    InternalItemSource = null;
                     //layouter.Clear()
                     return;
                 }
@@ -232,7 +230,7 @@ namespace Tizen.NUI.Components
                     newNotifyCollectionChanged.CollectionChanged += CollectionChanged;
                 }
 
-                if (InternalItemSource != null) InternalItemSource.Dispose();
+                InternalItemSource?.Dispose();
                 InternalItemSource = ItemsSourceFactory.Create(this);
 
                 if (itemsLayouter == null) return;
