@@ -83,6 +83,25 @@ namespace Tizen.NUI
         private Vector4 cornerRadius = null;
 
         /// <summary>
+        /// The borderline width of the visual.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        private float? borderlineWidth = null;
+
+        /// <summary>
+        /// The borderline Color of the visual.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        private Color borderlineColor = null;
+
+        /// <summary>
+        /// The borderline offset of the visual.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        private float? borderlineOffset = null;
+
+
+        /// <summary>
         /// The map for visual.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -626,6 +645,56 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// The borderline width of the visual.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float BorderlineWidth
+        {
+            get
+            {
+                return borderlineWidth ?? (0.0f);
+            }
+            set
+            {
+                borderlineWidth = value;
+                UpdateVisual();
+            }
+        }
+
+        /// <summary>
+        /// The borderline color of the visual.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color BorderlineColor
+        {
+            get
+            {
+                return borderlineColor;
+            }
+            set
+            {
+                borderlineColor = value;
+                UpdateVisual();
+            }
+        }
+
+        /// <summary>
+        /// The borderline offset of the visual.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float BorderlineOffset
+        {
+            get
+            {
+                return borderlineOffset ?? (0.0f);
+            }
+            set
+            {
+                borderlineOffset = value;
+                UpdateVisual();
+            }
+        }
         internal string Name
         {
             set;
@@ -772,6 +841,7 @@ namespace Tizen.NUI
                 visualSizePolicy?.Dispose();
                 visualTransformMap?.Dispose();
                 cornerRadius?.Dispose();
+                borderlineColor?.Dispose();
             }
             disposed = true;
         }
