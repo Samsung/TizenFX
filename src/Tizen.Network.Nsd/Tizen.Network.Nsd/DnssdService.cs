@@ -221,12 +221,9 @@ namespace Tizen.Network.Nsd
         }
 
         /// <summary>
-        /// Returns all raw TXT records.
+        /// Returns raw TXT records.
         /// </summary>
-        /// <remarks>
-        /// After adding the TXT record call for get TXT record.
-        /// </remarks>
-        /// <returns>Returns empty bytes in case of no records available else returns raw text tecords.</returns>
+        /// <returns>Returns empty bytes array in case TXT record has not been set, else returns raw TXT record.</returns>
         /// <since_tizen> 9 </since_tizen>
         /// <feature>http://tizen.org/feature/network.service_discovery.dnssd</feature>
         /// <exception cref="NotSupportedException">Thrown when DNS-SD is not supported.</exception>
