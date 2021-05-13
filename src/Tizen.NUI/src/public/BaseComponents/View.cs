@@ -471,7 +471,6 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-
         /// <summary>
         /// Whether the CornerRadius property value is relative (percentage [0.0f to 1.0f] of the view size) or absolute (in world units).
         /// It is absolute by default.
@@ -482,6 +481,83 @@ namespace Tizen.NUI.BaseComponents
         {
             get => (VisualTransformPolicyType)GetValue(CornerRadiusPolicyProperty);
             set => SetValue(CornerRadiusPolicyProperty, value);
+        }
+
+        /// <summary>
+        /// The width for the borderline of the View.
+        /// This will draw borderline at background.
+        /// Note that, an image background may not have borderline if it uses a Border property.
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// </para>
+        /// </remarks>
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float BorderlineWidth
+        {
+            get
+            {
+                return (float)GetValue(BorderlineWidthProperty);
+            }
+            set
+            {
+                SetValue(BorderlineWidthProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The color for the borderline of the View.
+        /// It is Color.Black by default.
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// </para>
+        /// </remarks>
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color BorderlineColor
+        {
+            get
+            {
+                return (Color)GetValue(BorderlineColorProperty);
+            }
+            set
+            {
+                SetValue(BorderlineColorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The Relative offset for the borderline of the View.
+        /// recommand [-1.0f to 1.0f] range.
+        /// If -1.0f, borderline draw inside of View.
+        /// If 1.0f, borderline draw outside of View.
+        /// If 0.0f, borderline draw half at inside and half at outside.
+        /// It is 0.0f by default.
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// </para>
+        /// </remarks>
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float BorderlineOffset
+        {
+            get
+            {
+                return (float)GetValue(BorderlineOffsetProperty);
+            }
+            set
+            {
+                SetValue(BorderlineOffsetProperty, value);
+                NotifyPropertyChanged();
+            }
         }
 
         /// <summary>

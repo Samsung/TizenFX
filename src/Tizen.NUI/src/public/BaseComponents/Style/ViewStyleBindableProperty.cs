@@ -385,6 +385,27 @@ namespace Tizen.NUI.BaseComponents
             defaultValueCreator: (bindable) => ((ViewStyle)bindable).cornerRadiusPolicy
         );
 
+        /// <summary> Bindable property of BorderlineWidth. Please do not open it. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty BorderlineWidthProperty = BindableProperty.Create(nameof(BorderlineWidth), typeof(float?), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            ((ViewStyle)bindable).borderlineWidth = (float?)newValue;
+        }, defaultValueCreator: (bindable) => ((ViewStyle)bindable).borderlineWidth);
+
+        /// <summary> Bindable property of BorderlineColor. Please do not open it. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty BorderlineColorProperty = BindableProperty.Create(nameof(BorderlineColor), typeof(Vector4), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            ((ViewStyle)bindable).borderlineColor = (Vector4)newValue;
+        }, defaultValueCreator: (bindable) => ((ViewStyle)bindable).borderlineColor);
+
+        /// <summary> Bindable property of BorderlineOffset. Please do not open it. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty BorderlineOffsetProperty = BindableProperty.Create(nameof(BorderlineOffset), typeof(float?), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            ((ViewStyle)bindable).borderlineOffset = (float?)newValue;
+        }, defaultValueCreator: (bindable) => ((ViewStyle)bindable).borderlineOffset);
+
         /// <summary> Bindable property of ThemeChangeSensitive. Please do not open it. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ThemeChangeSensitiveProperty = BindableProperty.Create(nameof(ThemeChangeSensitive), typeof(bool?), typeof(ViewStyle), null,

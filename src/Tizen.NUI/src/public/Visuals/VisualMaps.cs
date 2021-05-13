@@ -76,11 +76,11 @@ namespace Tizen.NUI
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible instance fields", Justification = "<Pending>")]
         protected VisualFittingModeType? _visualFittingMode = null;
 
-        /// <summary>
-        /// The corner radius value of the visual.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         private Vector4 cornerRadius = null;
+        private float? borderlineWidth = null;
+        private Color borderlineColor = null;
+        private float? borderlineOffset = null;
+
 
         /// <summary>
         /// The map for visual.
@@ -626,6 +626,56 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// The borderline width of the visual.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float BorderlineWidth
+        {
+            get
+            {
+                return borderlineWidth ?? (0.0f);
+            }
+            set
+            {
+                borderlineWidth = value;
+                UpdateVisual();
+            }
+        }
+
+        /// <summary>
+        /// The borderline color of the visual.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color BorderlineColor
+        {
+            get
+            {
+                return borderlineColor;
+            }
+            set
+            {
+                borderlineColor = value;
+                UpdateVisual();
+            }
+        }
+
+        /// <summary>
+        /// The borderline offset of the visual.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float BorderlineOffset
+        {
+            get
+            {
+                return borderlineOffset ?? (0.0f);
+            }
+            set
+            {
+                borderlineOffset = value;
+                UpdateVisual();
+            }
+        }
         internal string Name
         {
             set;
@@ -710,6 +760,24 @@ namespace Tizen.NUI
                 _outputVisualMap.Add(Visual.Property.CornerRadius, temp);
                 temp.Dispose();
             }
+            if (borderlineWidth != null)
+            {
+                PropertyValue temp = new PropertyValue((float)borderlineWidth);
+                _outputVisualMap.Add(Visual.Property.BorderlineWidth, temp);
+                temp.Dispose();
+            }
+            if (borderlineColor != null)
+            {
+                PropertyValue temp = new PropertyValue(borderlineColor);
+                _outputVisualMap.Add(Visual.Property.BorderlineColor, temp);
+                temp.Dispose();
+            }
+            if (borderlineOffset != null)
+            {
+                PropertyValue temp = new PropertyValue((float)borderlineOffset);
+                _outputVisualMap.Add(Visual.Property.BorderlineOffset, temp);
+                temp.Dispose();
+            }
         }
 
         private void ComposingTransformMap()
@@ -772,6 +840,7 @@ namespace Tizen.NUI
                 visualSizePolicy?.Dispose();
                 visualTransformMap?.Dispose();
                 cornerRadius?.Dispose();
+                borderlineColor?.Dispose();
             }
             disposed = true;
         }
