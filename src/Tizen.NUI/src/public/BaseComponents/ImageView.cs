@@ -1119,6 +1119,32 @@ namespace Tizen.NUI.BaseComponents
             UpdateImage(0, null);
         }
 
+        internal override void ApplyBorderline()
+        {
+            // Ignore BACKGROUND borderline property. only apply borderline to IMAGE.
+            if (backgroundExtraData != null)
+            {
+                var borderlineColor = backgroundExtraData.BorderlineColor == null ? new PropertyValue(Color.Black) : new PropertyValue(backgroundExtraData.BorderlineColor);
+
+                // Apply to the image visual
+                PropertyMap imageMap = new PropertyMap();
+                PropertyValue imageValue = Tizen.NUI.Object.GetProperty(SwigCPtr, ImageView.Property.IMAGE);
+                if (imageValue.Get(imageMap) && !imageMap.Empty())
+                {
+                    imageMap[Visual.Property.BorderlineWidth] = new PropertyValue(backgroundExtraData.BorderlineWidth);
+                    imageMap[Visual.Property.BorderlineColor] = borderlineColor;
+                    imageMap[Visual.Property.BorderlineOffset] = new PropertyValue(backgroundExtraData.BorderlineOffset);
+                    var temp = new PropertyValue(imageMap);
+                    Tizen.NUI.Object.SetProperty(SwigCPtr, ImageView.Property.IMAGE, temp);
+                    temp.Dispose();
+                }
+                imageMap.Dispose();
+                imageValue.Dispose();
+                borderlineColor.Dispose();
+            }
+            UpdateImage(0, null);
+        }
+
         internal ResourceLoadingStatusType GetResourceStatus()
         {
             return (ResourceLoadingStatusType)Interop.View.GetVisualResourceStatus(this.SwigCPtr, Property.IMAGE);
