@@ -76,11 +76,11 @@ namespace Tizen.NUI
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible instance fields", Justification = "<Pending>")]
         protected VisualFittingModeType? _visualFittingMode = null;
 
-        /// <summary>
-        /// The corner radius value of the visual.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         private Vector4 cornerRadius = null;
+        private float? borderlineWidth = null;
+        private Color borderlineColor = null;
+        private float? borderlineOffset = null;
+
 
         /// <summary>
         /// The borderline width of the visual.
@@ -777,6 +777,24 @@ namespace Tizen.NUI
             {
                 PropertyValue temp = new PropertyValue(cornerRadius);
                 _outputVisualMap.Add(Visual.Property.CornerRadius, temp);
+                temp.Dispose();
+            }
+            if (borderlineWidth != null)
+            {
+                PropertyValue temp = new PropertyValue((float)borderlineWidth);
+                _outputVisualMap.Add(Visual.Property.BorderlineWidth, temp);
+                temp.Dispose();
+            }
+            if (borderlineColor != null)
+            {
+                PropertyValue temp = new PropertyValue(borderlineColor);
+                _outputVisualMap.Add(Visual.Property.BorderlineColor, temp);
+                temp.Dispose();
+            }
+            if (borderlineOffset != null)
+            {
+                PropertyValue temp = new PropertyValue((float)borderlineOffset);
+                _outputVisualMap.Add(Visual.Property.BorderlineOffset, temp);
                 temp.Dispose();
             }
         }

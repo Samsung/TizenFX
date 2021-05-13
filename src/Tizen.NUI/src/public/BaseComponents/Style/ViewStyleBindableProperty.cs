@@ -387,9 +387,9 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary> Bindable property of BorderlineWidth. Please do not open it. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BorderlineWidthProperty = BindableProperty.Create(nameof(BorderlineWidth), typeof(float), typeof(ViewStyle), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty BorderlineWidthProperty = BindableProperty.Create(nameof(BorderlineWidth), typeof(float?), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            ((ViewStyle)bindable).borderlineWidth = (float)newValue;
+            ((ViewStyle)bindable).borderlineWidth = (float?)newValue;
         }, defaultValueCreator: (bindable) => ((ViewStyle)bindable).borderlineWidth);
 
         /// <summary> Bindable property of BorderlineColor. Please do not open it. </summary>
@@ -401,9 +401,9 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary> Bindable property of BorderlineOffset. Please do not open it. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BorderlineOffsetProperty = BindableProperty.Create(nameof(BorderlineOffset), typeof(float), typeof(ViewStyle), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty BorderlineOffsetProperty = BindableProperty.Create(nameof(BorderlineOffset), typeof(float?), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            ((ViewStyle)bindable).borderlineOffset = (float)newValue;
+            ((ViewStyle)bindable).borderlineOffset = (float?)newValue;
         }, defaultValueCreator: (bindable) => ((ViewStyle)bindable).borderlineOffset);
 
         /// <summary> Bindable property of ThemeChangeSensitive. Please do not open it. </summary>
