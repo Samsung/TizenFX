@@ -485,8 +485,10 @@ namespace Tizen.NUI.BaseComponents
         /// This method is called when the control accessibility is activated.<br />
         /// Derived classes should override this to perform custom accessibility activation.<br />
         /// </summary>
+        /// <remarks>Hidden-API</remarks>
         /// <returns>True if this control can perform accessibility activation.</returns>
-        internal virtual bool OnAccessibilityActivated()
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool OnAccessibilityActivated()
         {
             return false;
         }

@@ -454,7 +454,14 @@ namespace Tizen.NUI.Components
             LayoutChild();
         }
 
-        internal override bool OnAccessibilityActivated()
+        /// <summary>
+        /// This method is called when the control accessibility is activated.<br />
+        /// Derived classes should override this to perform custom accessibility activation.<br />
+        /// </summary>
+        /// <remarks>Hidden-API</remarks>
+        /// <returns>True if this control can perform accessibility activation.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override bool OnAccessibilityActivated()
         {
             if (!IsEnabled)
             {

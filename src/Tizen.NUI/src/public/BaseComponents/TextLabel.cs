@@ -241,7 +241,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetValue(TextProperty, value);
                 selectorData?.Text.UpdateIfNeeds(this, value);
-                NotifyPropertyChangedAndRequestLayout();
+                Layout?.RequestLayout();
+                NotifyPropertyChanged();
             }
         }
 
