@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -48,13 +48,15 @@ namespace Tizen.NUI
     /// in this case, if source is root of scene, the captured image includes a part of View 'B' on the 'A'.
     /// however, if source is just View 'A', the result includes only 'A'.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class Capture : BaseHandle
     {
+        private uint quality = 100;
+
         /// <summary>
         /// Create an Capture.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public Capture() : this(Interop.Capture.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -65,32 +67,77 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Dispose
+        /// Top left position of capturing region
+        /// Default is Position(0, 0)
         /// </summary>
-        /// <param name="type"></param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void Dispose(DisposeTypes type)
+        /// <since_tizen> 9 </since_tizen>
+        public Position Position { get; set; } = new Position(0, 0, 0);
+
+        /// <summary>
+        /// Size of capturing region
+        /// Size value for each direction is required larger than zero.
+        /// Default is window size.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public Size Size { get; set; } = new Size(0, 0, 0);
+
+        /// <summary>
+        /// Image file path to be saved as a file.
+        /// If path is empty string, the captured result is not saved as a file.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public string Path { get; set; } = null;
+
+        /// <summary>
+        /// Background color of captured scene
+        /// Default color is Color.Transparent
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public Color ClearColor { get; set; } = Color.Transparent;
+
+        /// <summary>
+        /// The value to control image quality for jpeg file format in the range [1, 100]
+        /// Default is 100.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public uint Quality
         {
-            if (disposed)
+            get
             {
-                return;
+                return quality;
             }
-
-            if (type == DisposeTypes.Explicit)
+            set
             {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
+                quality = Math.Min(value, 100);
+                Interop.Capture.SetImageQuality(SwigCPtr, quality);
             }
-
-            base.Dispose(type);
         }
 
-        /// This will not be public opened.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void ReleaseSwigCPtr(HandleRef swigCPtr)
+        /// <summary>
+        /// Start capture and save the image as a file.
+        /// </summary>
+        /// <param name="source">source View or Layer to be used for capture.</param>
+        /// <since_tizen> 9 </since_tizen>
+        public void Start(Container source)
         {
-            Interop.Capture.Delete(swigCPtr);
+            Size size = Size;
+            string path = Path;
+            if(size.Width == 0 || size.Height == 0 || size.Depth == 0)
+            {
+                size = NUIApplication.GetDefaultWindow().Size;
+            }
+            if (null == path)
+            {
+                path = "";
+            }
+            if (source is View || source is Layer)
+            {
+                Vector2 captureSize = new Vector2(size.Width, size.Height);
+                Vector4 clearColor = new Vector4(ClearColor.R, ClearColor.G, ClearColor.B, ClearColor.A);
+                Interop.Capture.Start4(SwigCPtr, source.SwigCPtr, Position.SwigCPtr, captureSize.SwigCPtr, path, clearColor.SwigCPtr);
+
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
         }
 
         /// <summary>
@@ -298,7 +345,7 @@ namespace Tizen.NUI
         /// <summary>
         /// For subscribing Finished event sent by this class.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public event EventHandler<CaptureFinishedEventArgs> Finished
         {
             add
@@ -333,12 +380,41 @@ namespace Tizen.NUI
             Tizen.Log.Debug("NUI", $"GetNativeImageSource()");
             return new NativeImageSource(Interop.Capture.GetNativeImageSourcePtr(SwigCPtr), true);
         }
+
+        /// <summary>
+        /// Dispose
+        /// </summary>
+        /// <param name="type">DisposeTypes to dispose</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+            }
+
+            base.Dispose(type);
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(HandleRef swigCPtr)
+        {
+            Interop.Capture.Delete(swigCPtr);
+        }
     }
 
     /// <summary>
     /// CaptureFinishedEventArgs
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class CaptureFinishedEventArgs : EventArgs
     {
         /// <summary>
