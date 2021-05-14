@@ -81,7 +81,6 @@ namespace Tizen.NUI
         private Color borderlineColor = null;
         private float? borderlineOffset = null;
 
-
         /// <summary>
         /// The map for visual.
         /// </summary>
