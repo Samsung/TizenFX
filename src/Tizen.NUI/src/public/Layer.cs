@@ -256,6 +256,21 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Gets the Layer's ID
+        /// Readonly
+        /// </summary>
+        /// <remarks>Hidden-API</remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint ID
+        {
+            get
+            {
+                return GetId();
+            }
+        }
+
+
         /// From the Container base class.
 
         /// <summary>
@@ -670,6 +685,14 @@ namespace Tizen.NUI
         internal void SetWindow(Window win)
         {
             window = win;
+        }
+
+        internal uint GetId()
+        {
+            uint ret = Interop.Actor.Actor_GetId(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         /// This will not be public opened.
