@@ -1,0 +1,20 @@
+name: "Deploy Packages"
+
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: 'Target Branch to Deploy'
+        required: true
+        default: 'master'
+
+  # schedule:
+  # - cron: "0 16 * * *"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - run: |
+        echo "${{ github.event.inputs.target }}"
+
