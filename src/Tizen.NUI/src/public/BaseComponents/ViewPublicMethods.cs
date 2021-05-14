@@ -632,5 +632,22 @@ namespace Tizen.NUI.BaseComponents
                 view.ObjectDump();
             }
         }
+
+        /// <summary>
+        /// Search through this View's hierarchy for a View with the given unique ID.
+        /// </summary>
+        /// <param name="id">The ID of the View to find.</param>
+        /// <remarks>Hidden-API</remarks>
+        /// <returns>A handle to the View if found, or an empty handle if not.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public View FindChildByID(uint id)
+        {
+            //to fix memory leak issue, match the handle count with native side.
+            IntPtr cPtr = Interop.Actor.Actor_FindChildById(swigCPtr, id);
+            View ret = this.GetInstanceSafely<View>(cPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
     }
 }
