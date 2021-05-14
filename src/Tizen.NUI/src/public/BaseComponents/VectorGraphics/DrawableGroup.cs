@@ -16,6 +16,7 @@
 */
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace Tizen.NUI.BaseComponents.VectorGraphics
@@ -26,6 +27,8 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class DrawableGroup : Drawable
     {
+        private List<Drawable> drawables; //The list of added drawables
+
         /// <summary>
         /// Creates an initialized DrawableGroup.
         /// </summary>
@@ -37,6 +40,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
 
         internal DrawableGroup(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
+            drawables = new List<Drawable>();
         }
 
         /// <summary>
@@ -53,6 +57,10 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
             }
             Interop.DrawableGroup.AddDrawable(View.getCPtr(this), BaseHandle.getCPtr(drawable));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (!drawables.Contains(drawable))
+            {
+                drawables.Add(drawable);
+            }
         }
 
         /// <summary>
@@ -65,6 +73,10 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         {
             bool ret = Interop.DrawableGroup.Clear(BaseHandle.getCPtr(this));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (ret)
+            {
+                drawables.Clear();
+            }
             return ret;
         }
     }
