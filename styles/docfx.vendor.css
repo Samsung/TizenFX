@@ -660,7 +660,7 @@ table td[class*=col-],table th[class*=col-]{position:static;display:table-cell;f
 .table>tbody>tr.danger>td,.table>tbody>tr.danger>th,.table>tbody>tr>td.danger,.table>tbody>tr>th.danger,.table>tfoot>tr.danger>td,.table>tfoot>tr.danger>th,.table>tfoot>tr>td.danger,.table>tfoot>tr>th.danger,.table>thead>tr.danger>td,.table>thead>tr.danger>th,.table>thead>tr>td.danger,.table>thead>tr>th.danger{background-color:#f2dede}
 .table-hover>tbody>tr.danger:hover>td,.table-hover>tbody>tr.danger:hover>th,.table-hover>tbody>tr:hover>.danger,.table-hover>tbody>tr>td.danger:hover,.table-hover>tbody>tr>th.danger:hover{background-color:#ebcccc}
 .table-responsive{min-height:.01%;overflow-x:auto}
-@media screen and (max-width:767px){.table-responsive{width:100%;margin-bottom:15px;overflow-y:hidden;-ms-overflow-style:-ms-autohiding-scrollbar;border:1px solid #ddd}
+@media screen and (max-width:767px){.table-responsive{width:100%;margin-bottom:15px;overflow-y:hidden;-ms-overflow-style:-ms-autohiding-scrollbar;}
 .table-responsive>.table{margin-bottom:0}
 .table-responsive>.table>tbody>tr>td,.table-responsive>.table>tbody>tr>th,.table-responsive>.table>tfoot>tr>td,.table-responsive>.table>tfoot>tr>th,.table-responsive>.table>thead>tr>td,.table-responsive>.table>thead>tr>th{white-space:nowrap}
 .table-responsive>.table-bordered{border:0}
@@ -1451,14 +1451,3 @@ td.visible-print,th.visible-print{display:table-cell!important}
 @media print{.visible-print-inline-block{display:inline-block!important}
 .hidden-print{display:none!important}
 }
-.hljs{display:block;background:#fff;padding:.5em;color:#333;overflow-x:auto}
-.hljs-comment,.hljs-meta{color:#969896}
-.hljs-emphasis,.hljs-quote,.hljs-string,.hljs-strong,.hljs-template-variable,.hljs-variable{color:#df5000}
-.hljs-keyword,.hljs-selector-tag,.hljs-type{color:#a71d5d}
-.hljs-attribute,.hljs-bullet,.hljs-literal,.hljs-symbol{color:#0086b3}
-.hljs-name,.hljs-section{color:#63a35c}
-.hljs-tag{color:#333}
-.hljs-attr,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-id,.hljs-selector-pseudo,.hljs-title{color:#795da3}
-.hljs-addition{color:#55a532;background-color:#eaffea}
-.hljs-deletion{color:#bd2c00;background-color:#ffecec}
-.hljs-link{text-decoration:underline}

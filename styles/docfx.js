@@ -8,7 +8,6 @@ $(function () {
   var hide = 'hide';
   var util = new utility();
 
-  workAroundFixedHeaderForAnchors();
   highlight();
   enableSearch();
 
@@ -51,7 +50,7 @@ $(function () {
   // Styling for tables in conceptual documents using Bootstrap.
   // See http://getbootstrap.com/css/#tables
   function renderTables() {
-    $('table').addClass('table table-bordered table-striped table-condensed').wrap('<div class=\"table-responsive\"></div>');
+    $('table').parent(':not(.table-infra)').find('> table').wrap('<div class=\"table-responsive\"></div>');
   }
 
   // Styling for alerts.
@@ -165,7 +164,6 @@ $(function () {
 
     // Search factory
     function localSearch() {
-      console.log("using local search");
       var lunrIndex = lunr(function () {
         this.ref('href');
         this.field('title', { boost: 50 });
@@ -204,7 +202,6 @@ $(function () {
     }
 
     function webWorkerSearch() {
-      console.log("using Web Worker");
       var indexReady = $.Deferred();
 
       worker.onmessage = function (oEvent) {
@@ -341,7 +338,7 @@ $(function () {
 
   // Update href in navbar
   function renderNavbar() {
-    var navbar = $('#navbar ul')[0];
+    var navbar = $('#secondaryNavbar ul')[0];
     if (typeof (navbar) === 'undefined') {
       loadNavbar();
     } else {
@@ -408,7 +405,7 @@ $(function () {
   }
 
   function renderSidebar() {
-    var sidetoc = $('#sidetoggle .sidetoc')[0];
+    var sidetoc = $('#secondaryNavbar .sidetoc')[0];
     if (typeof (sidetoc) === 'undefined') {
       loadToc();
     } else {
@@ -545,14 +542,14 @@ $(function () {
         return;
       }
       tocPath = tocPath.replace(/\\/g, '/');
-      $('#sidetoc').load(tocPath + " #sidetoggle > div", function () {
+      $('#secondaryNavbar').load(tocPath + " #sidetoggle > div", function () {
         var index = tocPath.lastIndexOf('/');
         var tocrel = '';
         if (index > -1) {
           tocrel = tocPath.substr(0, index + 1);
         }
         var currentHref = util.getAbsolutePath(window.location.pathname);
-        $('#sidetoc').find('a[href]').each(function (i, e) {
+        $('#secondaryNavbar').find('a[href]').each(function (i, e) {
           var href = $(e).attr("href");
           if (util.isRelativePath(href)) {
             href = tocrel + href;
@@ -586,32 +583,25 @@ $(function () {
       });
     })
 
-    var html = util.formList(breadcrumb, 'breadcrumb');
-    $('#breadcrumb').html(html);
+    var html = util.formList(breadcrumb, 'breadcrumb', 'ol', 'breadcrumb-item');
+    $('#td_docs-breadcrumb').html(html);
   }
 
   //Setup Affix
   function renderAffix() {
     var hierarchy = getHierarchy();
     if (hierarchy && hierarchy.length > 0) {
-      var html = '<h5 class="title">In This Article</h5>'
+      var html = '<h5 class="title">ON THIS PAGE</h5>'
       html += util.formList(hierarchy, ['nav', 'bs-docs-sidenav']);
       $("#affix").empty().append(html);
       if ($('footer').is(':visible')) {
         $(".sideaffix").css("bottom", "70px");
       }
-      $('#affix a').click(function(e) {
-        var scrollspy = $('[data-spy="scroll"]').data()['bs.scrollspy'];
-        var target = e.target.hash;
-        if (scrollspy && target) {
-          scrollspy.activate(target);
-        }
-      });
     }
 
     function getHierarchy() {
       // supported headers are h1, h2, h3, and h4
-      var $headers = $($.map(['h1', 'h2', 'h3', 'h4'], function (h) { return ".article article " + h; }).join(", "));
+      var $headers = $($.map(['h1', 'h2', 'h3', 'h4'], function (h) { return "#_content " + h; }).join(", "));
 
       // a stack of hierarchy items that are currently being built
       var stack = [];
@@ -1077,30 +1067,34 @@ $(function () {
       }
     }
 
-    function formList(item, classes) {
+    function formList(item, classes, listTag, itemClass) {
       var level = 1;
       var model = {
         items: item
       };
       var cls = [].concat(classes).join(" ");
-      return getList(model, cls);
 
-      function getList(model, cls) {
+      listTag = listTag || 'ul';
+      itemClass = itemClass || '';
+
+      return getList(model, cls, 0);
+
+      function getList(model, cls, depth) {
         if (!model || !model.items) return null;
         var l = model.items.length;
         if (l === 0) return null;
-        var html = '<ul class="level' + level + ' ' + (cls || '') + '">';
+        var html = '<' + listTag + ' class="level' + level + ' ' + (cls || '') + '">';
         level++;
         for (var i = 0; i < l; i++) {
           var item = model.items[i];
           var href = item.href;
           var name = item.name;
           if (!name) continue;
-          html += href ? '<li><a href="' + href + '">' + name + '</a>' : '<li>' + name;
-          html += getList(item, cls) || '';
+          html += href ? '<li class="' + itemClass + '"><a class="depth-' + depth + '" href="' + href + '">' + name + '</a>' : '<li>' + name;
+          html += getList(item, cls, depth + 1) || '';
           html += '</li>';
         }
-        html += '</ul>';
+        html += '</' + listTag + '>';
         return html;
       }
     }
@@ -1126,74 +1120,5 @@ $(function () {
       }
       return this;
     }
-  }
-
-  // adjusted from https://stackoverflow.com/a/13067009/1523776
-  function workAroundFixedHeaderForAnchors() {
-    var HISTORY_SUPPORT = !!(history && history.pushState);
-    var ANCHOR_REGEX = /^#[^ ]+$/;
-
-    function getFixedOffset() {
-      return $('header').first().height();
-    }
-
-    /**
-     * If the provided href is an anchor which resolves to an element on the
-     * page, scroll to it.
-     * @param  {String} href
-     * @return {Boolean} - Was the href an anchor.
-     */
-    function scrollIfAnchor(href, pushToHistory) {
-      var match, rect, anchorOffset;
-
-      if (!ANCHOR_REGEX.test(href)) {
-        return false;
-      }
-
-      match = document.getElementById(href.slice(1));
-
-      if (match) {
-        rect = match.getBoundingClientRect();
-        anchorOffset = window.pageYOffset + rect.top - getFixedOffset();
-        window.scrollTo(window.pageXOffset, anchorOffset);
-
-        // Add the state to history as-per normal anchor links
-        if (HISTORY_SUPPORT && pushToHistory) {
-          history.pushState({}, document.title, location.pathname + href);
-        }
-      }
-
-      return !!match;
-    }
-
-    /**
-     * Attempt to scroll to the current location's hash.
-     */
-    function scrollToCurrent() {
-      scrollIfAnchor(window.location.hash);
-    }
-
-    /**
-     * If the click event's target was an anchor, fix the scroll position.
-     */
-    function delegateAnchors(e) {
-      var elem = e.target;
-
-      if (scrollIfAnchor(elem.getAttribute('href'), true)) {
-        e.preventDefault();
-      }
-    }
-
-    $(window).on('hashchange', scrollToCurrent);
-
-    $(window).on('load', function () {
-        // scroll to the anchor if present, offset by the header
-        scrollToCurrent();
-    });
-
-    $(document).ready(function () {
-        // Exclude tabbed content case
-        $('a:not([data-tab])').click(function (e) { delegateAnchors(e); });
-    });
   }
 });
