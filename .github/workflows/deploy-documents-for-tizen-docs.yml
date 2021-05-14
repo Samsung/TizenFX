@@ -15,7 +15,7 @@ jobs:
   build:
     runs-on: [self-hosted, linux, x64]
     container:
-      image: tizendotnet/tizenfx-build-worker:2.1
+      image: tizendotnet/tizenfx-build-worker:2.0
 
     steps:
     - uses: actions/checkout@v2
