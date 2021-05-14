@@ -17,6 +17,8 @@ namespace Tizen.NUI.Samples
         private Button button1, button2;
         private Random rand;
         private uint removeTargetID1, removeTargetID2;
+        private Layer layer1, layer2;
+        private uint layer1ID, layer2ID;
 
         public void Activate()
         {
@@ -39,6 +41,16 @@ namespace Tizen.NUI.Samples
             makeParentsAndChildrenToAdd(root);
 
             makeButtons(root);
+
+            layer1 = new Layer();
+            layer1.Name = "layerTest1";
+            win.AddLayer(layer1);
+            layer1ID = layer1.ID;
+
+            layer2 = new Layer();
+            layer2.Name = "layerTest2";
+            win.AddLayer(layer2);
+            layer2ID = layer2.ID;
         }
 
         private void Button_Clicked(object sender, ClickedEventArgs e)
@@ -196,6 +208,80 @@ namespace Tizen.NUI.Samples
             {
                 tlog.Debug(tag, $" child2({childList2[i].Text}) Id={childList2[i].Id}, ID={childList2[i].ID}");
             }
+        }
+        
+        bool toggle = false;
+        private void WindowTouchEvent(object sender, Window.TouchEventArgs e)
+        {
+            if (e.Touch.GetState(0) == PointStateType.Down)
+            {
+                tlog.Debug(tag, $"======================");
+                var ret = checkTest() ? "PASS" : "FAIL";
+                tlog.Debug(tag, $"test result={ret}");
+            }
+        }
+
+        private void WindowKeyEvent(object sender, Window.KeyEventArgs e)
+        {
+            if (e.Key.State == Key.StateType.Down)
+            {
+                if (e.Key.KeyPressedName == "Up")
+                {
+                    tlog.Debug(tag, $"======================");
+                    var ret = checkTest() ? "PASS" : "FAIL";
+                    tlog.Debug(tag, $"test result={ret}");
+                }
+            }
+        }
+
+        bool checkTest()
+        {
+            bool ret = true;
+            toggle = !toggle;
+
+            if (toggle)
+            {
+                var gotten = win.FindLayerByID(layer1ID);
+                if (gotten)
+                {
+                    if (layer1ID == gotten.ID)
+                    {
+                        tlog.Debug(tag, $"Test#1: FindLayerByID({gotten.ID}) OK");
+                    }
+                    else
+                    {
+                        tlog.Debug(tag, $"Test#1: FindLayerByID({gotten.ID}) ERROR");
+                        ret = false;
+                    }
+                }
+                else
+                {
+                    tlog.Debug(tag, $"Test#1: FindLayerByID() ERROR, gotten Layer is NULL!");
+                    ret = false;
+                }
+            }
+            else
+            {
+                var gotten = win.FindLayerByID(layer2ID);
+                if (gotten)
+                {
+                    if (layer2ID == gotten.ID)
+                    {
+                        tlog.Debug(tag, $"Test#2: FindLayerByID({gotten.ID}) OK");
+                    }
+                    else
+                    {
+                        tlog.Debug(tag, $"Test#2: FindLayerByID({gotten.ID}) ERROR");
+                        ret = false;
+                    }
+                }
+                else
+                {
+                    tlog.Debug(tag, $"Test#2: FindLayerByID() ERROR, gotten Layer is NULL!");
+                    ret = false;
+                }
+            }
+            return ret;
         }
 
         public void Deactivate()
