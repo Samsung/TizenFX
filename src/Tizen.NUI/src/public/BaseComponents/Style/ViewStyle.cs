@@ -607,7 +607,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var newStyle = value.Clone() as TOut;
 
-            newStyle.CopyFrom(other);
+            newStyle?.CopyFrom(other);
 
             return newStyle;
         }

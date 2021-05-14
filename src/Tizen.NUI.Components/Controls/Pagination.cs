@@ -366,6 +366,11 @@ namespace Tizen.NUI.Components
                 selectedIndex = refinedValue;
 
                 SelectIn(indicatorList[selectedIndex]);
+
+                if (IsHighlighted) 
+                {
+                    EmitAccessibilityEvent(ObjectPropertyChangeEvent.Value);
+                }
             }
         }
 
@@ -384,11 +389,67 @@ namespace Tizen.NUI.Components
             return new Position(indicatorList[index].Position.X + container.PositionX, indicatorList[index].Position.Y + container.PositionY);
         }
 
+        /// <summary>
+        /// Minimum value.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override double AccessibilityGetMinimum()
+        {
+            return 0.0;
+        }
+
+        /// <summary>
+        /// Current value.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override double AccessibilityGetCurrent()
+        {
+            return (double)SelectedIndex;
+        }
+
+        /// <summary>
+        /// Maximum value.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override double AccessibilityGetMaximum()
+        {
+            return (double)IndicatorCount;
+        }
+
+        /// <summary>
+        /// Current value.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override bool AccessibilitySetCurrent(double value)
+        {
+            int integerValue = (int)value;
+
+            if (integerValue >= 0 && integerValue <= IndicatorCount)
+            {
+                SelectedIndex = integerValue;
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Minimum increment.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override double AccessibilityGetMinimumIncrement()
+        {
+            return 1.0;
+        }
+
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnInitialize()
         {
             base.OnInitialize();
+            SetAccessibilityConstructor(Role.ScrollBar, AccessibilityInterface.Value);
+            AccessibilityHighlightable = true;
+            AppendAccessibilityAttribute("style", "pagecontrolbyvalue");
 
             container = new VisualView()
             {
