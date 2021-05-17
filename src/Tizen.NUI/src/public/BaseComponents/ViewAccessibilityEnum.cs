@@ -299,243 +299,240 @@ namespace Tizen.NUI.BaseComponents
     /// Object can be in many states at the same time.
     /// </remarks>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public enum AccessibilityState
+    [Flags]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1028:EnumStorageShouldBeInt32", Justification = "System.Int32 type wouldn't have sufficient capacity")]
+    public enum AccessibilityStates : ulong
     {
         /// <summary>
         /// Invalid state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Invalid = 0,
+        Invalid                = (1UL << 0),
         /// <summary>
         /// Active state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Active,
+        Active                 = (1UL << 1),
         /// <summary>
         /// Armed state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Armed,
+        Armed                  = (1UL << 2),
         /// <summary>
         /// Busy state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Busy,
+        Busy                   = (1UL << 3),
         /// <summary>
         /// Checked state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Checked,
+        Checked                = (1UL << 4),
         /// <summary>
         /// Collapsed state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Collapsed,
+        Collapsed              = (1UL << 5),
         /// <summary>
         /// Defunct state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Defunct,
+        Defunct                = (1UL << 6),
         /// <summary>
         /// Editable state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Editable,
+        Editable               = (1UL << 7),
         /// <summary>
         /// Enabled state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Enabled,
+        Enabled                = (1UL << 8),
         /// <summary>
         /// Expandable state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Expandable,
+        Expandable             = (1UL << 9),
         /// <summary>
         /// Expanded state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Expanded,
+        Expanded               = (1UL << 10),
         /// <summary>
         /// Focusable state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Focusable,
+        Focusable              = (1UL << 11),
         /// <summary>
         /// Focused state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Focused,
+        Focused                = (1UL << 12),
         /// <summary>
         /// Had tooltip state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        HasTooltip,
+        HasTooltip             = (1UL << 13),
         /// <summary>
         /// Horizontal state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Horizontal,
+        Horizontal             = (1UL << 14),
         /// <summary>
         /// Iconified state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Iconified,
+        Iconified              = (1UL << 15),
         /// <summary>
         /// Modal state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Modal,
+        Modal                  = (1UL << 16),
         /// <summary>
         /// Multi-line state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        MultiLine,
+        MultiLine              = (1UL << 17),
         /// <summary>
         /// Multi-selectable state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        MultiSelectable,
+        MultiSelectable        = (1UL << 18),
         /// <summary>
         /// Opaque state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Opaque,
+        Opaque                 = (1UL << 19),
         /// <summary>
         /// Pressed state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Pressed,
+        Pressed                = (1UL << 20),
         /// <summary>
         /// Resizeable state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Resizeable,
+        Resizeable             = (1UL << 21),
         /// <summary>
         /// Selectable state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Selectable,
+        Selectable             = (1UL << 22),
         /// <summary>
         /// Selected state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Selected,
+        Selected               = (1UL << 23),
         /// <summary>
         /// Sensitive state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Sensitive,
+        Sensitive              = (1UL << 24),
         /// <summary>
         /// Showing state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Showing,
+        Showing                = (1UL << 25),
         /// <summary>
         /// Single line state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        SingleLine,
+        SingleLine             = (1UL << 26),
         /// <summary>
         /// Stale state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Stale,
+        Stale                  = (1UL << 27),
         /// <summary>
         /// Transient state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Transient,
+        Transient              = (1UL << 28),
         /// <summary>
         /// Vertical state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Vertical,
+        Vertical               = (1UL << 29),
         /// <summary>
         /// Visible state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Visible,
+        Visible                = (1UL << 30),
         /// <summary>
         /// Managed descendants state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        ManagesDescendants,
+        ManagesDescendants     = (1UL << 31),
         /// <summary>
         /// Indeterminate state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Indeterminate,
+        Indeterminate          = (1UL << 32),
         /// <summary>
         /// Required state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Required,
+        Required               = (1UL << 33),
         /// <summary>
         /// Truncated state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Truncated,
+        Truncated              = (1UL << 34),
         /// <summary>
         /// Animated state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Animated,
+        Animated               = (1UL << 35),
         /// <summary>
         /// Invalid entry state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        InvalidEntry,
+        InvalidEntry           = (1UL << 36),
         /// <summary>
         /// Supported auto completion state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        SupportsAutocompletion,
+        SupportsAutocompletion = (1UL << 37),
         /// <summary>
         /// Selectable text state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        SelectableText,
+        SelectableText         = (1UL << 38),
         /// <summary>
         /// Default state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        IsDefault,
+        IsDefault              = (1UL << 39),
         /// <summary>
         /// Visited state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Visited,
+        Visited                = (1UL << 40),
         /// <summary>
         /// Checkable state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Checkable,
+        Checkable              = (1UL << 41),
         /// <summary>
         /// Had popup state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        HasPopup,
+        HasPopup               = (1UL << 42),
         /// <summary>
         /// Read only state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        ReadOnly,
+        ReadOnly               = (1UL << 43),
         /// <summary>
         /// Highlighted state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Highlighted,
+        Highlighted            = (1UL << 44),
         /// <summary>
         /// Highlightable state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Highlightable,
-        /// <summary>
-        /// Max count.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        MaxCount,
+        Highlightable          = (1UL << 45),
     };
 
     /// <summary>
@@ -1364,5 +1361,27 @@ namespace Tizen.NUI.BaseComponents
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         Paragraph,
+    }
+
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <summary>
+    /// A helper method to manipulate individual bit flags (e.g. turn them on or off)
+    /// </summary>
+    /// <param name="obj">An object that accumulates combination of bit flags</param>
+    /// <param name="bit">A bit flag to be operated</param>
+    /// <param name="state">A state of the bit flag to be set (0 == off, 1 == on)</param>
+    static public void FlagSetter<T>(ref T obj ,T bit, bool state)
+    {
+        dynamic result = obj;
+        dynamic param = bit;
+        if (state)
+        {
+            result |= param;
+        }
+        else
+        {
+            result &= (~param);
+        }
+        obj = result;
     }
 }

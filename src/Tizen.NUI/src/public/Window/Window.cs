@@ -40,7 +40,7 @@ namespace Tizen.NUI
         private List<Layer> childLayers = new List<Layer>();
         private LayoutController localController;
 
-        private bool IsSupportedMultiWindow()
+        static internal bool IsSupportedMultiWindow()
         {
             bool isSupported = false;
             Information.TryGetValue("http://tizen.org/feature/opengles.surfaceless_context", out isSupported);
