@@ -383,6 +383,28 @@ namespace Tizen.NUI.BaseComponents
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// A helper method to manipulate individual bit flags (e.g. turn them on or off)
+        /// </summary>
+        /// <param name="obj">An object that accumulates combination of bit flags</param>
+        /// <param name="bit">A bit flag to be operated</param>
+        /// <param name="state">A state of the bit flag to be set (0 == off, 1 == on)</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        static public void FlagSetter<T>(ref T obj ,T bit, bool state)
+        {
+            dynamic result = obj;
+            dynamic param = bit;
+            if (state)
+            {
+                result |= param;
+            }
+            else
+            {
+                result &= (~param);
+            }
+            obj = result;
+        }
+
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(bool disposing)
         {
