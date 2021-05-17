@@ -163,7 +163,7 @@ namespace Tizen.NUI.Components
             if (instance.itemAlignment != newAlignment)
             {
                 instance.itemAlignment = newAlignment;
-                instance.LayoutItems();   
+                instance.LayoutItems();
             }
         },
         defaultValueCreator: (bindable) => ((Button)bindable).itemAlignment);
@@ -364,7 +364,7 @@ namespace Tizen.NUI.Components
 
                 if (IsHighlighted && String.IsNullOrEmpty(AccessibilityName) && GetAccessibilityNameSignal().Empty())
                 {
-                    EmitAccessibilityEvent(ObjectPropertyChangeEvent.Name);
+                    EmitAccessibilityEvent(AccessibilityPropertyChangeEvent.Name);
                 }
             }
         }
@@ -782,7 +782,7 @@ namespace Tizen.NUI.Components
                 Extension = buttonStyle.CreateExtension();
 
                 if (buttonStyle.Overlay != null)
-                {   
+                {
                     OverlayImage?.ApplyStyle(buttonStyle.Overlay);
                 }
 

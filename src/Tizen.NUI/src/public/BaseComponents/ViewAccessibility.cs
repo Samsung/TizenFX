@@ -48,7 +48,7 @@ namespace Tizen.NUI.BaseComponents
         public override bool IsInvalid { get { return this.handle == IntPtr.Zero; } }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint RelationSize(View.RelationType relation)
+        public uint RelationSize(AccessibilityRelationType relation)
         {
             uint result = Interop.ControlDevel.DaliToolkitDevelControlAccessibilityRelationsRelationSize(this, Convert.ToInt32(relation));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -57,7 +57,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Address At(View.RelationType relation, int position)
+        public Address At(AccessibilityRelationType relation, int position)
         {
             var bus = Interop.ControlDevel.DaliToolkitDevelControlAccessibilityRelationsAt(this, Convert.ToInt32(relation), position, 0);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -214,7 +214,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="relation">Relation type.</param>
         /// <exception cref="ArgumentNullException">You must pass valid object. NULL could not be in relation.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void AppendAccessibilityRelation(View second, RelationType relation)
+        public void AppendAccessibilityRelation(View second, AccessibilityRelationType relation)
         {
             if (second is null)
                 throw new ArgumentNullException(nameof(second));
@@ -225,7 +225,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void RemoveAccessibilityRelation(View second, RelationType relation)
+        public void RemoveAccessibilityRelation(View second, AccessibilityRelationType relation)
         {
             if (second is null)
                 throw new ArgumentNullException(nameof(second));
@@ -299,7 +299,7 @@ namespace Tizen.NUI.BaseComponents
         ///////////////////////////////////////////////////////////////////
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void EmitAccessibilityEvent(ObjectPropertyChangeEvent e)
+        public void EmitAccessibilityEvent(AccessibilityPropertyChangeEvent e)
         {
             Interop.ControlDevel.DaliAccessibilityEmitAccessibilityEvent(SwigCPtr, Convert.ToInt32(e));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -410,7 +410,7 @@ namespace Tizen.NUI.BaseComponents
                     GetCharacterCount = () => AccessibilityGetCharacterCount(),
                     GetCaretOffset = () => AccessibilityGetCaretOffset(),
                     SetCaretOffset = (offset) => AccessibilitySetCaretOffset(offset),
-                    GetTextAtOffset = (offset, boundary) => rangedup(AccessibilityGetTextAtOffset(offset, (TextBoundary)boundary)),
+                    GetTextAtOffset = (offset, boundary) => rangedup(AccessibilityGetTextAtOffset(offset, (AccessibilityTextBoundary)boundary)),
                     GetSelection = (selectionNum) => rangedup(AccessibilityGetSelection(selectionNum)),
                     RemoveSelection = (selectionNum) => AccessibilityRemoveSelection(selectionNum),
                     SetSelection = (selectionNum, startOffset, endOffset) => AccessibilitySetSelection(selectionNum, startOffset, endOffset),
@@ -582,7 +582,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual AccessibilityRange AccessibilityGetTextAtOffset(int offset, TextBoundary boundary)
+        protected virtual AccessibilityRange AccessibilityGetTextAtOffset(int offset, AccessibilityTextBoundary boundary)
         {
             return new AccessibilityRange();
         }
