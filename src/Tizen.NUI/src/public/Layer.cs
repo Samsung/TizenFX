@@ -687,7 +687,7 @@ namespace Tizen.NUI
             window = win;
         }
 
-        internal uint GetId()
+        private uint GetId()
         {
             uint ret = Interop.Actor.Actor_GetId(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
