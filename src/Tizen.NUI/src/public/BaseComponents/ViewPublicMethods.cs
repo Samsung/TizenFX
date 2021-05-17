@@ -642,11 +642,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public View FindDescendantByID(uint id)
         {
-            //to fix memory leak issue, match the handle count with native side.
-            IntPtr cPtr = Interop.Actor.Actor_FindChildById(swigCPtr, id);
-            View ret = this.GetInstanceSafely<View>(cPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            return FindChildById(id);
         }
 
     }
