@@ -337,9 +337,9 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="states">Accessibility States</param>
         /// <param name="recursive">Flag to point if notifications of children's state would be sent</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void NotifyAccessibilityStatesChange(AccessibilityStates state, bool recursive)
+        public void NotifyAccessibilityStatesChange(AccessibilityStates states, bool recursive)
         {
-            Interop.ControlDevel.DaliToolkitDevelControlNotifyAccessibilityStatesChange(SwigCPtr, (ulong)state, Convert.ToInt32(recursive));
+            Interop.ControlDevel.DaliToolkitDevelControlNotifyAccessibilityStatesChange(SwigCPtr, (ulong)states, Convert.ToInt32(recursive));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -462,29 +462,6 @@ namespace Tizen.NUI.BaseComponents
         private IntPtr accessibilityDelegatePtr;
 
         /// <summary>
-        /// Accessibility interface.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public enum AccessibilityInterface
-        {
-            /// <summary>
-            /// Common accessibility interface
-            /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            None = 0,
-            /// <summary>
-            /// Accessibility interface which can store numeric value
-            /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            Value = 1,
-            /// <summary>
-            /// Accessibility interface which can store editable texts
-            /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            EditableText = 2,
-        }
-
-        /// <summary>
         /// Sets the specific constructor for creating accessibility structure with its role and interface.
         /// </summary>
         /// <remarks>
@@ -533,6 +510,28 @@ namespace Tizen.NUI.BaseComponents
             Interop.ControlDevel.DaliToolkitDevelControlSetAccessibilityConstructor(SwigCPtr, (int)role, (int)accessibilityInterface, accessibilityDelegatePtr, size);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// A helper method to manipulate individual bit flags (e.g. turn them on or off)
+        /// </summary>
+        /// <param name="obj">An object that accumulates combination of bit flags</param>
+        /// <param name="bit">A bit flag to be operated</param>
+        /// <param name="state">A state of the bit flag to be set (0 == off, 1 == on)</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        static public void FlagSetter<T>(ref T obj ,T bit, bool state)
+        {
+            dynamic result = obj;
+            dynamic param = bit;
+            if (state)
+            {
+                result |= param;
+            }
+            else
+            {
+                result &= (~param);
+            }
+            obj = result;
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
