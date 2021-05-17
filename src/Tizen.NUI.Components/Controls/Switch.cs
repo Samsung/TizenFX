@@ -89,7 +89,7 @@ namespace Tizen.NUI.Components
         protected override AccessibilityStates AccessibilityCalculateStates()
         {
             var states = base.AccessibilityCalculateStates();
-            states.Set(AccessibilityState.Checked, this.IsSelected);
+            FlagSetter(ref states, AccessibilityStates.Checked, this.IsSelected);
             return states;
         }
 
@@ -321,7 +321,7 @@ namespace Tizen.NUI.Components
         {
             if (IsHighlighted)
             {
-                EmitAccessibilityStateChangedEvent(AccessibilityState.Checked, IsSelected);
+                EmitAccessibilityStatesChangedEvent(AccessibilityStates.Checked, IsSelected);
             }
 
             ((SwitchExtension)Extension)?.OnSelectedChanged(this);
