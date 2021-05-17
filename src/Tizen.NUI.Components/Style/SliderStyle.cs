@@ -227,10 +227,7 @@ namespace Tizen.NUI.Components
             set => SetValue(TrackPaddingProperty, value);
         }
 
-        /// <summary>
-        /// Style's clone function.
-        /// </summary>
-        /// <param name="bindableObject">The style that need to copy.</param>
+        /// <inheritdoc/>
         /// <since_tizen> 8 </since_tizen>
         public override void CopyFrom(BindableObject bindableObject)
         {

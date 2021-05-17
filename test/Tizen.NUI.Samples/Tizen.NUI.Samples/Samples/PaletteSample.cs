@@ -207,7 +207,7 @@ namespace Tizen.NUI.Samples
         public Palette ImageGenerate(int idx)
         {
             PixelBuffer imgBitmap = ImageLoading.LoadImageFromFile(imagePath[idx]);
-            Palette palette = Palette.generate(imgBitmap);
+            Palette palette = Palette.Generate(imgBitmap);
             
             return palette;
         }

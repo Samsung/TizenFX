@@ -90,15 +90,7 @@ namespace Tizen.NUI.Components
             return true;
         }
 
-        /// <summary>
-        /// Called when the ViewItem is Clicked by a user
-        /// </summary>
-        /// <param name="eventArgs">The click information.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual void OnClicked(ClickedEventArgs eventArgs)
-        {
-            //Console.WriteLine("On Clicked Called {0}", this.Index);
-        }
+
 
         /// <summary>
         /// Called when the ViewItem need to be updated
@@ -145,10 +137,16 @@ namespace Tizen.NUI.Components
                                 CollectionView colView = ParentItemsView as CollectionView;
                                 switch (colView.SelectionMode)
                                 {
-                                    case ItemSelectionMode.SingleSelection:
+                                    case ItemSelectionMode.Single:
                                         colView.SelectedItem = IsSelected ? null : BindingContext;
                                         break;
-                                    case ItemSelectionMode.MultipleSelections:
+                                    case ItemSelectionMode.SingleAlways:
+                                        if (colView.SelectedItem != BindingContext)
+                                        {
+                                            colView.SelectedItem = BindingContext;
+                                        }
+                                        break;
+                                    case ItemSelectionMode.Multiple:
                                         var selectedItems = colView.SelectedItems;
                                         if (selectedItems.Contains(BindingContext)) selectedItems.Remove(BindingContext);
                                         else selectedItems.Add(BindingContext);
@@ -195,25 +193,6 @@ namespace Tizen.NUI.Components
         {
         }
 
-        /// <summary>
-        /// Dispose Item and all children on it.
-        /// </summary>
-        /// <param name="type">Dispose type.</param>
-        protected override void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //
-            }
-
-            base.Dispose(type);
-        }
-
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnControlStateChanged(ControlStateChangedEventArgs controlStateChangedInfo)
@@ -234,16 +213,6 @@ namespace Tizen.NUI.Components
             {
                 IsPressed = statePressed;
             }
-        }
-
-        /// <summary>
-        /// Get ViewItem style.
-        /// </summary>
-        /// <returns>The default ViewItem style.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override ViewStyle CreateViewStyle()
-        {
-            return new RecyclerViewItemStyle();
         }
 
         /// <summary>
@@ -279,10 +248,18 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnBindingContextChanged()
         {
-            foreach (View child in Children)
+            PropagateBindingContext(this);
+        }
+
+        private void PropagateBindingContext(View parent)
+        {
+            if (parent?.Children == null) return;
+            foreach (View child in parent.Children)
             {
                 SetChildInheritedBindingContext(child, BindingContext);
+                PropagateBindingContext(child);
             }
+
         }
 
         private void OnClickedInternal(ClickedEventArgs eventArgs)

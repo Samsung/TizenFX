@@ -95,10 +95,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Size2D ActionCellPadding { get; set; } = new Size2D();
 
-        /// <summary>
-        /// Style's clone function.
-        /// </summary>
-        /// <param name="bindableObject">The style that needs to copy.</param>
+        /// <inheritdoc/>
         /// <since_tizen> 9 </since_tizen>
         public override void CopyFrom(BindableObject bindableObject)
         {
