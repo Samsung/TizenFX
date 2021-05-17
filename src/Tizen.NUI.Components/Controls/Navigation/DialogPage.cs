@@ -25,7 +25,7 @@ namespace Tizen.NUI.Components
     /// The DialogPage class is a class which shows a dialog on the page.
     /// DialogPage contains dialog and dimmed scrim behind the dialog.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class DialogPage : Page
     {
         private View content = null;
@@ -35,7 +35,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Creates a new instance of a DialogPage.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public DialogPage() : base()
         {
             Layout = new AbsoluteLayout();
@@ -80,9 +80,11 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Content of DialogPage. Content is added to Children automatically.
+        /// Content of DialogPage.
+        /// Content is used as dialog, so Content is displayed above the dimmed scrim.
+        /// Content is added as a child of DialogPage automatically.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public View Content
         {
             get
@@ -111,15 +113,24 @@ namespace Tizen.NUI.Components
 
                 if (Scrim != null)
                 {
-                    content.RaiseAbove(Scrim);
+                    foreach (var child in Children)
+                    {
+                        if (child != Scrim)
+                        {
+                            // All children are above Scrim not to be covered by Scrim.
+                            child.RaiseAbove(Scrim);
+                        }
+                    }
                 }
             }
         }
 
         /// <summary>
-        /// Scrim of DialogPage. Scrim is added to Children automatically.
+        /// Scrim of DialogPage.
+        /// Scrim is the dimmed screen region behind dialog.
+        /// Scrim is added as a child of DialogPage automatically.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         protected View Scrim
         {
             get
@@ -146,9 +157,13 @@ namespace Tizen.NUI.Components
 
                 Add(scrim);
 
-                if (Content != null)
+                foreach (var child in Children)
                 {
-                    Content.RaiseAbove(scrim);
+                    if (child != scrim)
+                    {
+                        // All children are above Scrim not to be covered by Scrim.
+                        child.RaiseAbove(scrim);
+                    }
                 }
 
                 if (EnableScrim != Scrim.Visibility)
@@ -168,7 +183,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Indicates to show scrim behind dialog.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public bool EnableScrim
         {
             get
@@ -201,13 +216,13 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Indicates to dismiss dialog by touching on scrim.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public bool EnableDismissOnScrim { get; set; } = true;
 
         /// <summary>
         /// The color of scrim.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public Color ScrimColor
         {
             get
@@ -246,7 +261,7 @@ namespace Tizen.NUI.Components
         /// Shows a dialog by pushing a dialog page containing dialog to default navigator.
         /// </summary>
         /// <param name="content">The content of Dialog.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         [SuppressMessage("Microsoft.Reliability",
                          "CA2000:DisposeObjectsBeforeLosingScope",
                          Justification = "The pushed views are added to NavigationPages and are disposed in Navigator.Dispose().")]
@@ -270,7 +285,7 @@ namespace Tizen.NUI.Components
         /// <param name="title">The title of AlertDialog.</param>
         /// <param name="message">The message of AlertDialog.</param>
         /// <param name="actions">The action views of AlertDialog.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         [SuppressMessage("Microsoft.Reliability",
                          "CA2000:DisposeObjectsBeforeLosingScope",
                          Justification = "The pushed views are added to NavigationPages and are disposed in Navigator.Dispose().")]
@@ -284,66 +299,6 @@ namespace Tizen.NUI.Components
                     Message = message,
                     Actions =  actions,
                 },
-            };
-
-            NUIApplication.GetDefaultWindow().GetDefaultNavigator().Push(dialogPage);
-        }
-
-        /// <summary>
-        /// Shows a menu by pushing a dialog page containing menu to default navigator.
-        /// </summary>
-        /// <param name="anchor">The anchor view where menu is displayed.</param>
-        /// <param name="items">The menu items.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        [SuppressMessage("Microsoft.Reliability",
-                         "CA2000:DisposeObjectsBeforeLosingScope",
-                         Justification = "The pushed views are added to NavigationPages and are disposed in Navigator.Dispose().")]
-        public static void ShowMenu(View anchor, params MenuItem[] items)
-        {
-            if (items == null)
-            {
-                return;
-            }
-
-            Position2D anchorPosition = new Position2D((int)(anchor?.ScreenPosition.X ?? 0), (int)(anchor?.ScreenPosition.Y ?? 0) + (anchor?.Size2D.Height ?? 0) + (anchor?.Margin.Bottom ?? 0));
-
-            var dialogPage = new DialogPage()
-            {
-                Content = new Menu()
-                {
-                    Items = items,
-                    AnchorPosition = anchorPosition,
-                },
-                ScrimColor = Color.Transparent,
-            };
-
-            NUIApplication.GetDefaultWindow().GetDefaultNavigator().Push(dialogPage);
-        }
-
-        /// <summary>
-        /// Shows a menu by pushing a dialog page containing menu to default navigator.
-        /// </summary>
-        /// <param name="anchorPosition">The anchor position where menu is displayed.</param>
-        /// <param name="items">The menu items.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        [SuppressMessage("Microsoft.Reliability",
-                         "CA2000:DisposeObjectsBeforeLosingScope",
-                         Justification = "The pushed views are added to NavigationPages and are disposed in Navigator.Dispose().")]
-        public static void ShowMenu(Position2D anchorPosition, params MenuItem[] items)
-        {
-            if (items == null)
-            {
-                return;
-            }
-
-            var dialogPage = new DialogPage()
-            {
-                Content = new Menu()
-                {
-                    Items = items,
-                    AnchorPosition = anchorPosition,
-                },
-                ScrimColor = Color.Transparent,
             };
 
             NUIApplication.GetDefaultWindow().GetDefaultNavigator().Push(dialogPage);

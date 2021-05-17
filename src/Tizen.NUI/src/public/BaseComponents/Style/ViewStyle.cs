@@ -464,8 +464,7 @@ namespace Tizen.NUI.BaseComponents
             global::System.GC.SuppressFinalize(this);
         }
 
-        /// <summary>Copy properties of other ViewStyle to this.</summary>
-        /// <param name="other">The other BindableProperty merge to this.</param>
+        /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void CopyFrom(BindableObject other)
         {

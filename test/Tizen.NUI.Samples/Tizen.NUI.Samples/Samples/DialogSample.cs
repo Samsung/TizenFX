@@ -11,7 +11,7 @@ namespace Tizen.NUI.Samples
         {
             var window = NUIApplication.GetDefaultWindow();
 
-            oldPageCount = window.GetDefaultNavigator().NavigationPages.Count;
+            oldPageCount = window.GetDefaultNavigator().PageCount;
 
             var button = new Button()
             {
@@ -43,7 +43,7 @@ namespace Tizen.NUI.Samples
         public void Deactivate()
         {
             var window = NUIApplication.GetDefaultWindow();
-            var newPageCount = window.GetDefaultNavigator().NavigationPages.Count;
+            var newPageCount = window.GetDefaultNavigator().PageCount;
 
             for (int i = 0; i < (newPageCount - oldPageCount); i++)
             {

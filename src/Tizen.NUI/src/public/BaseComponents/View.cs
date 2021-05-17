@@ -2225,8 +2225,23 @@ namespace Tizen.NUI.BaseComponents
         }
 
         ///<summary>
-        /// The required policy for this dimension, LayoutParamPolicies enum or exact value.
+        /// The required policy for this dimension, <see cref="LayoutParamPolicies"/> values or exact value.
         ///</summary>
+        /// <example>
+        /// <code>
+        /// // matchParentView matches its size to its parent size.
+        /// matchParentView.WidthSpecification = LayoutParamPolicies.MatchParent;
+        /// matchParentView.HeightSpecification = LayoutParamPolicies.MatchParent;
+        ///
+        /// // wrapContentView wraps its children with their desired size.
+        /// wrapContentView.WidthSpecification = LayoutParamPolicies.WrapContent;
+        /// wrapContentView.HeightSpecification = LayoutParamPolicies.WrapContent;
+        ///
+        /// // exactSizeView shows itself with an exact size.
+        /// exactSizeView.WidthSpecification = 100;
+        /// exactSizeView.HeightSpecification = 100;
+        /// </code>
+        /// </example>
         /// <since_tizen> 6 </since_tizen>
         public int WidthSpecification
         {
@@ -2253,8 +2268,23 @@ namespace Tizen.NUI.BaseComponents
         }
 
         ///<summary>
-        /// The required policy for this dimension, LayoutParamPolicies enum or exact value.
+        /// The required policy for this dimension, <see cref="LayoutParamPolicies"/> values or exact value.
         ///</summary>
+        /// <example>
+        /// <code>
+        /// // matchParentView matches its size to its parent size.
+        /// matchParentView.WidthSpecification = LayoutParamPolicies.MatchParent;
+        /// matchParentView.HeightSpecification = LayoutParamPolicies.MatchParent;
+        ///
+        /// // wrapContentView wraps its children with their desired size.
+        /// wrapContentView.WidthSpecification = LayoutParamPolicies.WrapContent;
+        /// wrapContentView.HeightSpecification = LayoutParamPolicies.WrapContent;
+        ///
+        /// // exactSizeView shows itself with an exact size.
+        /// exactSizeView.WidthSpecification = 100;
+        /// exactSizeView.HeightSpecification = 100;
+        /// </code>
+        /// </example>
         /// <since_tizen> 6 </since_tizen>
         public int HeightSpecification
         {

@@ -83,6 +83,8 @@ namespace Tizen.NUI.Components
         private static Dictionary<Window, Navigator> windowNavigator = new Dictionary<Window, Navigator>();
         private static Dictionary<Navigator, Window> navigatorWindow = new Dictionary<Navigator, Window>();
 
+        private List<Page> navigationPages = new List<Page>();
+
         /// <summary>
         /// Creates a new instance of a Navigator.
         /// </summary>
@@ -99,10 +101,10 @@ namespace Tizen.NUI.Components
         public event EventHandler<EventArgs> TransitionFinished;
 
         /// <summary>
-        /// List of pages of Navigator.
+        /// Returns the count of pages in Navigator.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public List<Page> NavigationPages { get; } = new List<Page>();
+        /// <since_tizen> 9 </since_tizen>
+        public int PageCount => navigationPages.Count;
 
         /// <summary>
         /// Transition properties for the transition of View pair having same transition tag.
@@ -141,7 +143,7 @@ namespace Tizen.NUI.Components
             }
 
             //Duplicate page is not pushed.
-            if (NavigationPages.Contains(page)) return;
+            if (navigationPages.Contains(page)) return;
 
             var topPage = Peek();
 
@@ -151,7 +153,7 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            NavigationPages.Add(page);
+            navigationPages.Add(page);
             Add(page);
 
             //Invoke Page events
@@ -180,19 +182,19 @@ namespace Tizen.NUI.Components
                 return null;
             }
 
-            if (NavigationPages.Count == 0)
+            if (navigationPages.Count == 0)
             {
                 throw new InvalidOperationException("There is no page in Navigator.");
             }
 
             var topPage = Peek();
 
-            if (NavigationPages.Count == 1)
+            if (navigationPages.Count == 1)
             {
                 Remove(topPage);
                 return topPage;
             }
-            var newTopPage = NavigationPages[NavigationPages.Count - 2];
+            var newTopPage = navigationPages[navigationPages.Count - 2];
 
 //            newTopPage.RaiseAbove(topPage);
 
@@ -217,7 +219,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="page">The page to push to Navigator.</param>
         /// <exception cref="ArgumentNullException">Thrown when the argument page is null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public void Push(Page page)
         {
             if (!transitionFinished)
@@ -232,7 +234,7 @@ namespace Tizen.NUI.Components
             }
 
             //Duplicate page is not pushed.
-            if (NavigationPages.Contains(page)) return;
+            if (navigationPages.Contains(page)) return;
 
             var curTop = Peek();
 
@@ -242,7 +244,7 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            NavigationPages.Add(page);
+            navigationPages.Add(page);
             Add(page);
             page.Navigator = this;
 
@@ -285,7 +287,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <returns>The popped page.</returns>
         /// <exception cref="InvalidOperationException">Thrown when there is no page in Navigator.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public Page Pop()
         {
             if (!transitionFinished)
@@ -294,20 +296,20 @@ namespace Tizen.NUI.Components
                 return null;
             }
 
-            if (NavigationPages.Count == 0)
+            if (navigationPages.Count == 0)
             {
                 throw new InvalidOperationException("There is no page in Navigator.");
             }
 
             var curTop = Peek();
 
-            if (NavigationPages.Count == 1)
+            if (navigationPages.Count == 1)
             {
                 Remove(curTop);
                 return curTop;
             }
 
-            var newTop = NavigationPages[NavigationPages.Count - 2];
+            var newTop = navigationPages[navigationPages.Count - 2];
 
             //Invoke Page events
             newTop.InvokeAppearing();
@@ -354,17 +356,65 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Returns the page of the given index in Navigator.
+        /// The indices of pages in Navigator are basically the order of pushing or inserting to Navigator.
+        /// So a page's index in Navigator can be changed whenever push/insert or pop/remove occurs.
+        /// </summary>
+        /// <param name="index">The index of a page in Navigator.</param>
+        /// <returns>The page of the given index in Navigator.</returns>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when the argument index is less than 0, or greater than the number of pages.</exception>
+        public Page GetPage(int index)
+        {
+            if ((index < 0) || (index > navigationPages.Count))
+            {
+                throw new ArgumentOutOfRangeException(nameof(index), "index should be greater than or equal to 0, and less than or equal to the number of pages.");
+            }
+
+            return navigationPages[index];
+        }
+
+        /// <summary>
+        /// Returns the current index of the given page in Navigator.
+        /// The indices of pages in Navigator are basically the order of pushing or inserting to Navigator.
+        /// So a page's index in Navigator can be changed whenever push/insert or pop/remove occurs.
+        /// </summary>
+        /// <param name="page">The page in Navigator.</param>
+        /// <returns>The index of the given page in Navigator. If the given page is not in the Navigator, then -1 is returned.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when the argument page is null.</exception>
+        /// <since_tizen> 9 </since_tizen>
+        public int IndexOf(Page page)
+        {
+            if (page == null)
+            {
+                throw new ArgumentNullException(nameof(page), "page should not be null.");
+            }
+
+            for (int i = 0; i < navigationPages.Count; i++)
+            {
+                if (navigationPages[i] == page)
+                {
+                    return i;
+                }
+            }
+
+            return -1;
+        }
+
+        /// <summary>
         /// Inserts a page at the specified index of Navigator.
+        /// The indices of pages in Navigator are basically the order of pushing or inserting to Navigator.
+        /// So a page's index in Navigator can be changed whenever push/insert or pop/remove occurs.
+        /// To find the current index of a page in Navigator, please use IndexOf(page).
         /// If the page is already in Navigator, then it is not inserted.
         /// </summary>
-        /// <param name="index">The index of Navigator where a page will be inserted.</param>
+        /// <param name="index">The index of a page in Navigator where the page will be inserted.</param>
         /// <param name="page">The page to insert to Navigator.</param>
         /// <exception cref="ArgumentOutOfRangeException">Thrown when the argument index is less than 0, or greater than the number of pages.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the argument page is null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public void Insert(int index, Page page)
         {
-            if ((index < 0) || (index > NavigationPages.Count))
+            if ((index < 0) || (index > navigationPages.Count))
             {
                 throw new ArgumentOutOfRangeException(nameof(index), "index should be greater than or equal to 0, and less than or equal to the number of pages.");
             }
@@ -375,9 +425,9 @@ namespace Tizen.NUI.Components
             }
 
             //Duplicate page is not pushed.
-            if (NavigationPages.Contains(page)) return;
+            if (navigationPages.Contains(page)) return;
 
-            NavigationPages.Insert(index, page);
+            navigationPages.Insert(index, page);
             Add(page);
             page.Navigator = this;
         }
@@ -391,7 +441,7 @@ namespace Tizen.NUI.Components
         /// <exception cref="ArgumentNullException">Thrown when the argument before is null.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the argument page is null.</exception>
         /// <exception cref="ArgumentException">Thrown when the argument before does not exist in Navigator.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public void InsertBefore(Page before, Page page)
         {
             if (before == null)
@@ -405,7 +455,7 @@ namespace Tizen.NUI.Components
             }
 
             //Find the index of before page.
-            int beforeIndex = NavigationPages.FindIndex(x => x == before);
+            int beforeIndex = navigationPages.FindIndex(x => x == before);
 
             //before does not exist in Navigator.
             if (beforeIndex == -1)
@@ -421,7 +471,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="page">The page to remove from Navigator.</param>
         /// <exception cref="ArgumentNullException">Thrown when the argument page is null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public void Remove(Page page)
         {
             if (page == null)
@@ -430,36 +480,39 @@ namespace Tizen.NUI.Components
             }
 
             page.Navigator = null;
-            NavigationPages.Remove(page);
+            navigationPages.Remove(page);
             base.Remove(page);
         }
 
         /// <summary>
         /// Removes a page at the specified index of Navigator.
+        /// The indices of pages in Navigator are basically the order of pushing or inserting to Navigator.
+        /// So a page's index in Navigator can be changed whenever push/insert or pop/remove occurs.
+        /// To find the current index of a page in Navigator, please use IndexOf(page).
         /// </summary>
-        /// <param name="index">The index of Navigator where a page will be removed.</param>
+        /// <param name="index">The index of a page in Navigator where the page will be removed.</param>
         /// <exception cref="ArgumentOutOfRangeException">Thrown when the index is less than 0, or greater than or equal to the number of pages.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public void RemoveAt(int index)
         {
-            if ((index < 0) || (index >= NavigationPages.Count))
+            if ((index < 0) || (index >= navigationPages.Count))
             {
                 throw new ArgumentOutOfRangeException(nameof(index), "index should be greater than or equal to 0, and less than the number of pages.");
             }
 
-            Remove(NavigationPages[index]);
+            Remove(navigationPages[index]);
         }
 
         /// <summary>
         /// Returns the page at the top of Navigator.
         /// </summary>
         /// <returns>The page at the top of Navigator.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public Page Peek()
         {
-            if (NavigationPages.Count == 0) return null;
+            if (navigationPages.Count == 0) return null;
 
-            return NavigationPages[NavigationPages.Count - 1];
+            return navigationPages[navigationPages.Count - 1];
         }
 
         /// <summary>
@@ -476,11 +529,11 @@ namespace Tizen.NUI.Components
 
             if (type == DisposeTypes.Explicit)
             {
-                foreach (Page page in NavigationPages)
+                foreach (Page page in navigationPages)
                 {
                     Utility.Dispose(page);
                 }
-                NavigationPages.Clear();
+                navigationPages.Clear();
 
                 Window window;
 
@@ -499,7 +552,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <returns>The default navigator of the given window.</returns>
         /// <exception cref="ArgumentNullException">Thrown when the argument window is null.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static Navigator GetDefaultNavigator(Window window)
         {
             if (window == null)

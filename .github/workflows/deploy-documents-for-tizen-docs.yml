@@ -1,0 +1,72 @@
+name: "Deploy Documents for Tizen Docs"
+
+on:
+  schedule:
+  - cron: "0 17 * * *"
+  workflow_dispatch:
+
+env:
+  DOCFX_FILE: docfx_tizen_docs.json
+  DEPLOY_BRANCH: tizen-docs-pages
+  CACHE_NAME: docfx-tizen-docs-pages-site
+
+jobs:
+
+  build:
+    runs-on: [self-hosted, linux, x64]
+    container:
+      image: tizendotnet/tizenfx-build-worker:2.0
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        repository: TizenAPI/TizenFX-Docs
+
+    - name: Checkout TizenFX sources
+      run: |
+        ./build.sh clone
+
+    - name: Cache DocFX output
+      id: cache-site
+      uses: actions/cache@v2
+      with:
+        path: _site
+        key: ${{ env.CACHE_NAME }}-${{ hashFiles('repos/commits') }}
+
+    - name: Build Documents
+      if: steps.cache-site.outputs.cache-hit != 'true'
+      run: |
+        ./build.sh restore
+        ./build.sh build
+
+    - name: Archive Artifacts
+      run: |
+        tar cfz site.tar.gz _site/
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: documents
+        path: site.tar.gz
+
+  deploy:
+    needs: [build]
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/download-artifact@v2
+      with:
+        name: documents
+
+    - name: Extract Artifacts
+      run: |
+        tar xfz site.tar.gz
+
+    - name: Deploy GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./_site
+        publish_branch: ${{ env.DEPLOY_BRANCH }}
+        user_name: 'TizenAPI-Bot'
+        user_email: 'tizenapi@samsung.com'
+        full_commit_message: 'Update documents'
