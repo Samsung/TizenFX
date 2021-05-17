@@ -120,6 +120,11 @@ namespace Tizen.NUI.Components
         private int prevFocusedDataIndex = 0;
         private List<RecyclerViewItem> recycleGroupHeaderCache { get; } = new List<RecyclerViewItem>();
         private List<RecyclerViewItem> recycleGroupFooterCache { get; } = new List<RecyclerViewItem>();
+        private bool delayedScrollTo;
+        private (float position, bool anim) delayedScrollToParam;
+
+        private bool delayedIndexScrollTo;
+        private (int index, bool anim, ItemScrollTo scrollTo) delayedIndexScrollToParam;
 
         /// <summary>
         /// Base constructor.
@@ -678,7 +683,28 @@ namespace Tizen.NUI.Components
         /// <param name="position">Destination.</param>
         /// <param name="animate">Scroll with or without animation</param>
         /// <since_tizen> 9 </since_tizen>
-        public new void ScrollTo(float position, bool animate) => base.ScrollTo(position, animate);
+        public new void ScrollTo(float position, bool animate)
+        {
+            if (ItemsLayouter == null) throw new Exception("Item Layouter must exist.");
+            if ((InternalItemSource == null) || needInitalizeLayouter)
+            {
+                delayedScrollTo = true;
+                delayedScrollToParam = (position, animate);
+                return;
+            }
+
+            base.ScrollTo(position, animate);
+        }
+
+        /// <summary>
+        /// Scrolls to the item at the specified index.
+        /// </summary>
+        /// <param name="index">Index of item.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new void ScrollToIndex(int index)
+        {
+            ScrollTo(index, true, ItemScrollTo.Start);
+        }
 
         /// <summary>
         /// Scroll to specific item's aligned position with or without animation.
@@ -690,6 +716,16 @@ namespace Tizen.NUI.Components
         public virtual void ScrollTo(int index, bool animate = false, ItemScrollTo align = ItemScrollTo.Nearest)
         {
             if (ItemsLayouter == null) throw new Exception("Item Layouter must exist.");
+            if ((InternalItemSource == null) || needInitalizeLayouter)
+            {
+                delayedIndexScrollTo = true;
+                delayedIndexScrollToParam = (index, animate, align);
+                return;
+            }
+            if (index < 0 || index >= InternalItemSource.Count)
+            {
+                throw new Exception("index is out of boundary. index should be a value between (0, " + InternalItemSource.Count.ToString() + ").");
+            }
 
             float scrollPos, curPos, curSize, curItemSize;
             (float x, float y) = ItemsLayouter.GetItemPosition(index);
@@ -1135,6 +1171,18 @@ namespace Tizen.NUI.Components
                 needInitalizeLayouter = false;
             }
             ItemsLayouter.RequestLayout(0.0f, true);
+
+            if (delayedScrollTo)
+            {
+                delayedScrollTo = false;
+                ScrollTo(delayedScrollToParam.position, delayedScrollToParam.anim);
+            }
+
+            if (delayedIndexScrollTo)
+            {
+                delayedIndexScrollTo = false;
+                ScrollTo(delayedIndexScrollToParam.index, delayedIndexScrollToParam.anim, delayedIndexScrollToParam.scrollTo);
+            }
 
             if (ScrollingDirection == Direction.Horizontal)
             {
