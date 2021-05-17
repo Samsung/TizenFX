@@ -302,7 +302,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void Show()
         {
-            if (AccessibilityCalculateStates().IsStateEnabled(AccessibilityState.Modal))
+            if ((AccessibilityCalculateStates() & AccessibilityStates.Modal) != 0)
             {
                 RegisterPopup();
             }
@@ -323,7 +323,7 @@ namespace Tizen.NUI.BaseComponents
         {
             SetVisible(false);
 
-            if (AccessibilityCalculateStates().IsStateEnabled(AccessibilityState.Modal))
+            if ((AccessibilityCalculateStates() & AccessibilityStates.Modal) != 0)
             {
                 RemovePopup();
             }

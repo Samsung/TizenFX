@@ -126,83 +126,6 @@ namespace Tizen.NUI.BaseComponents
     }
 
     /// <summary>
-    /// Accessibility States.
-    /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public partial class AccessibilityStates : SafeHandle
-    {
-        /// <summary>
-        /// Creates an initialized AccessibilityStates.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public AccessibilityStates() : base(IntPtr.Zero, true)
-        {
-            var state = Interop.ControlDevel.DaliToolkitDevelControlNewStates();
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            this.SetHandle(state);
-        }
-
-        /// <summary>
-        /// Creates an initialized AccessibilityStates.
-        /// </summary>
-        /// <param name="states">Accessibility states</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public AccessibilityStates(IntPtr states) : base(states, true)
-        {
-        }
-
-        /// <summary>
-        /// Checks whether this handle is invalid or not.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool IsInvalid
-        {
-            get
-            {
-                return this.handle == IntPtr.Zero;
-            }
-        }
-
-        /// <summary>
-        /// Sets whether AccessibilityState is enabled or not.
-        /// </summary>
-        /// <param name="state">AccessibilityState</param>
-        /// <param name="enabled">Flag set to enabled or disabled</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetStateEnabled(AccessibilityState state, bool enabled)
-        {
-            Interop.ControlDevel.DaliToolkitDevelControlStatesSet(this, (int)state, Convert.ToInt32(enabled));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Gets whether this AccessibilityState is enabled or not.
-        /// </summary>
-        /// <param name="state">AccessibilityState</param>
-        /// <returns>True if this AccessibilityState is enabled</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool IsStateEnabled(AccessibilityState state)
-        {
-            bool result = Interop.ControlDevel.DaliToolkitDevelControlStatesGet(this, (int)state);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return result;
-        }
-
-        /// <summary>
-        /// Releases handle itself.
-        /// </summary>
-        /// <returns>true when released successfully.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override bool ReleaseHandle()
-        {
-            Interop.ControlDevel.DaliToolkitDevelControlDeleteStates(handle);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            this.SetHandle(IntPtr.Zero);
-            return true;
-        }
-    }
-
-    /// <summary>
     /// AccessibilityRange is used to store data related with Text.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
@@ -402,7 +325,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         ///////////////////////////////////////////////////////////////////
-        // ****************** Accessibility Relations ******************* //
+        // ******************** Accessibility States ******************* //
         ///////////////////////////////////////////////////////////////////
 
         /// <summary>
@@ -414,9 +337,9 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="states">Accessibility States</param>
         /// <param name="recursive">Flag to point if notifications of children's state would be sent</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void NotifyAccessibilityStateChange(AccessibilityStates states, bool recursive)
+        public void NotifyAccessibilityStatesChange(AccessibilityStates state, bool recursive)
         {
-            Interop.ControlDevel.DaliToolkitDevelControlNotifyAccessibilityStateChange(SwigCPtr, states, Convert.ToInt32(recursive));
+            Interop.ControlDevel.DaliToolkitDevelControlNotifyAccessibilityStatesChange(SwigCPtr, (ulong)state, Convert.ToInt32(recursive));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -427,7 +350,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public AccessibilityStates GetAccessibilityStates()
         {
-            var result = new AccessibilityStates(Interop.ControlDevel.DaliToolkitDevelControlNewGetAccessibilityStates(SwigCPtr));
+            AccessibilityStates result = (AccessibilityStates) Interop.ControlDevel.DaliToolkitDevelControlGetAccessibilityStates(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return result;
         }
@@ -448,14 +371,14 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Emits accessibility state changed event.
+        /// Emits accessibility states changed event.
         /// </summary>
         /// <param name="state">Accessibility state</param>
         /// <param name="equal">True if the state is set or enabled, otherwise false</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void EmitAccessibilityStateChangedEvent(AccessibilityState state, bool equal)
+        public void EmitAccessibilityStatesChangedEvent(AccessibilityStates state, bool equal)
         {
-            Interop.ControlDevel.DaliAccessibilityEmitAccessibilityStateChangedEvent(SwigCPtr, Convert.ToInt32(state), Convert.ToInt32(equal));
+            Interop.ControlDevel.DaliAccessibilityEmitAccessibilityStatesChangedEvent(SwigCPtr, (ulong)state, Convert.ToInt32(equal));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -527,7 +450,7 @@ namespace Tizen.NUI.BaseComponents
 
         private IntPtr DuplicateStates(AccessibilityStates states)
         {
-            return Interop.ControlDevel.DaliToolkitDevelControlStatesCopy(states);
+            return Interop.ControlDevel.DaliToolkitDevelControlConvertState((ulong)states);
         }
 
         private IntPtr DuplicateRange(AccessibilityRange range)
@@ -669,17 +592,19 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual AccessibilityStates AccessibilityCalculateStates()
         {
-            var states = new AccessibilityStates();
-            states.SetStateEnabled(AccessibilityState.Highlightable, this.AccessibilityHighlightable);
-            states.SetStateEnabled(AccessibilityState.Focusable, this.Focusable);
-            states.SetStateEnabled(AccessibilityState.Focused, this.State == States.Focused);
-            states.SetStateEnabled(AccessibilityState.Highlighted, this.IsHighlighted);
-            states.SetStateEnabled(AccessibilityState.Enabled, this.State != States.Disabled);
-            states.SetStateEnabled(AccessibilityState.Sensitive, this.Sensitive);
-            states.SetStateEnabled(AccessibilityState.Animated, this.AccessibilityAnimated);
-            states.SetStateEnabled(AccessibilityState.Visible, true);
-            states.SetStateEnabled(AccessibilityState.Showing, this.Visibility);
-            states.SetStateEnabled(AccessibilityState.Defunct, !this.IsOnWindow);
+            AccessibilityStates states = 0;
+
+            FlagSetter(ref states, AccessibilityStates.Highlightable, this.AccessibilityHighlightable);
+            FlagSetter(ref states, AccessibilityStates.Focusable, this.Focusable);
+            FlagSetter(ref states, AccessibilityStates.Focused, this.State == States.Focused);
+            FlagSetter(ref states, AccessibilityStates.Highlighted, this.IsHighlighted);
+            FlagSetter(ref states, AccessibilityStates.Enabled, this.State != States.Disabled);
+            FlagSetter(ref states, AccessibilityStates.Sensitive, this.Sensitive);
+            FlagSetter(ref states, AccessibilityStates.Animated, this.AccessibilityAnimated);
+            FlagSetter(ref states, AccessibilityStates.Visible, true);
+            FlagSetter(ref states, AccessibilityStates.Showing, this.Visibility);
+            FlagSetter(ref states, AccessibilityStates.Defunct, !this.IsOnWindow);
+
             return states;
         }
 

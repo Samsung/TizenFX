@@ -135,6 +135,33 @@ namespace Tizen.NUI.Accessibility
         }
 
         /// <summary>
+        /// Re-enables auto-initialization of AT-SPI bridge
+        /// </summary>
+        /// <remarks>
+        /// Normal applications do not have to call this function. The AT-SPI bridge is initialized on demand.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void BridgeEnableAutoInit()
+        {
+            Interop.Accessibility.BridgeEnableAutoInit();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Blocks auto-initialization of AT-SPI bridge
+        /// </summary>
+        /// <remarks>
+        /// Use this only if your application starts before DBus does, and call it early in Main().
+        /// When DBus is ready, call BridgeEnableAutoInit().
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void BridgeDisableAutoInit()
+        {
+            Interop.Accessibility.BridgeDisableAutoInit();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         ///  Get View that is used to highlight widget.
         /// </summary>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
