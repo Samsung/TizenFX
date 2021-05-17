@@ -640,7 +640,7 @@ namespace Tizen.NUI.BaseComponents
         /// <remarks>Hidden-API</remarks>
         /// <returns>A handle to the View if found, or an empty handle if not.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public View FindChildByID(uint id)
+        public View FindDescendantByID(uint id)
         {
             //to fix memory leak issue, match the handle count with native side.
             IntPtr cPtr = Interop.Actor.Actor_FindChildById(swigCPtr, id);
