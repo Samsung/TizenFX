@@ -81,26 +81,6 @@ namespace Tizen.NUI
         private Color borderlineColor = null;
         private float? borderlineOffset = null;
 
-
-        /// <summary>
-        /// The borderline width of the visual.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        private float? borderlineWidth = null;
-
-        /// <summary>
-        /// The borderline Color of the visual.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        private Color borderlineColor = null;
-
-        /// <summary>
-        /// The borderline offset of the visual.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        private float? borderlineOffset = null;
-
-
         /// <summary>
         /// The map for visual.
         /// </summary>
