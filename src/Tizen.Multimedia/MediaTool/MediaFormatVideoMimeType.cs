@@ -90,46 +90,55 @@ namespace Tizen.Multimedia
         /// <summary>
         /// HEVC.
         /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         Hevc = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2080),
 
         /// <summary>
         /// HEVC MP.
         /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         HevcMp = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2081),
 
         /// <summary>
         /// HEVC M10P.
         /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         HevcM10p = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2082),
 
         /// <summary>
         /// VP8.
         /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         Vp8 = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2090),
 
         /// <summary>
         /// VP9.
         /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         Vp9 = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x20A0),
 
         /// <summary>
         /// VC1.
         /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         Vc1 = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x20B0),
 
         /// <summary>
         /// DIVX4.
         /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         Divx4 = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x20C4),
 
         /// <summary>
         /// DIVX5.
         /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         Divx5 = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x20C5),
 
         /// <summary>
         /// XVID.
         /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         Xvid = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x20D0),
 
         /// <summary>
