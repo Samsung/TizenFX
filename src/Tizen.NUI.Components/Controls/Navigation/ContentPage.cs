@@ -168,17 +168,20 @@ namespace Tizen.NUI.Components
 
                 appBar.Position2D = new Position2D(appBarPosX, appBarPosY);
 
-                if ((appBar.WidthSpecification == LayoutParamPolicies.MatchParent) || (appBar.HeightSpecification == LayoutParamPolicies.MatchParent))
+                // FIXME: Now, WidthSpecification/HeightSpecification are updated internally.
+                //        When this is resolved, comparing Specification with Size is removed.
+                if ((appBar.WidthSpecification == LayoutParamPolicies.MatchParent) || (appBar.HeightSpecification == LayoutParamPolicies.MatchParent) ||
+                    (appBar.WidthSpecification > Size2D.Width) || (appBar.HeightSpecification > Size2D.Height))
                 {
                     int appBarSizeW = appBar.Size2D.Width;
                     int appBarSizeH = appBar.Size2D.Height;
 
-                    if (appBar.WidthSpecification == LayoutParamPolicies.MatchParent)
+                    if ((appBar.WidthSpecification == LayoutParamPolicies.MatchParent) || (appBar.WidthSpecification > Size2D.Width))
                     {
                         appBarSizeW = Size2D.Width - Padding.Start - Padding.End - appBar.Margin.Start - appBar.Margin.End;
                     }
 
-                    if (appBar.HeightSpecification == LayoutParamPolicies.MatchParent)
+                    if ((appBar.HeightSpecification == LayoutParamPolicies.MatchParent) || (appBar.HeightSpecification > Size2D.Height))
                     {
                         appBarSizeH = Size2D.Height - Padding.Top - Padding.Bottom - appBar.Margin.Top - appBar.Margin.Bottom;
                     }
@@ -194,7 +197,10 @@ namespace Tizen.NUI.Components
 
                 content.Position2D = new Position2D(contentPosX, contentPosY);
 
-                if ((content.WidthSpecification == LayoutParamPolicies.MatchParent) || (content.HeightSpecification == LayoutParamPolicies.MatchParent))
+                // FIXME: Now, WidthSpecification/HeightSpecification are updated internally.
+                //        When this is resolved, comparing Specification with Size is removed.
+                if ((content.WidthSpecification == LayoutParamPolicies.MatchParent) || (content.HeightSpecification == LayoutParamPolicies.MatchParent) ||
+                    (content.WidthSpecification > Size2D.Width) || (content.HeightSpecification > Size2D.Height))
                 {
                     int contentSizeW = content.Size2D.Width;
                     int contentSizeH = content.Size2D.Height;
