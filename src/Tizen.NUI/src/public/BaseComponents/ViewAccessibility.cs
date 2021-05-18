@@ -504,6 +504,12 @@ namespace Tizen.NUI.BaseComponents
                     InsertText = (startPosition, text) => AccessibilityInsertText(startPosition, Marshal.PtrToStringAnsi(text)),
                     SetTextContents = (newContents) => AccessibilitySetTextContents(Marshal.PtrToStringAnsi(newContents)),
                     DeleteText = (startPosition, endPosition) => AccessibilityDeleteText(startPosition, endPosition),
+                    ScrollToChild = (child) => {
+                        using (var view = new View(child,  true))
+                        {
+                            return AccessibilityScrollToChild(view);
+                        }
+                    },
                 };
 
                 accessibilityDelegatePtr = Marshal.AllocHGlobal(size);
@@ -744,6 +750,12 @@ namespace Tizen.NUI.BaseComponents
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual bool AccessibilityDeleteText(int startPosition, int endPosition)
+        {
+            return false;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool AccessibilityScrollToChild(View child)
         {
             return false;
         }
