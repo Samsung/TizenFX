@@ -54,7 +54,7 @@ jobs:
               repo: context.repo.repo,
               workflow_id: workflow.id,
               ref: 'master',
-              inputs: { target }
+              inputs: { target, deploy_to_myget: true, deploy_to_tizen: true }
             })
             console.log(`Event dispatch for ${target} : ${dispatchResp.status}`)
           })
