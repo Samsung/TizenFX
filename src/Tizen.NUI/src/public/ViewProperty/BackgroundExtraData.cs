@@ -27,12 +27,17 @@ namespace Tizen.NUI
         private bool disposed = false;
         internal BackgroundExtraData()
         {
+            BorderlineColor = Tizen.NUI.Color.Black;
         }
 
         internal BackgroundExtraData(BackgroundExtraData other)
         {
             BackgroundImageBorder = other.BackgroundImageBorder;
             CornerRadius = other.CornerRadius;
+            CornerRadiusPolicy = other.CornerRadiusPolicy;
+            BorderlineWidth = other.BorderlineWidth;
+            BorderlineColor = other.BorderlineColor;
+            BorderlineOffset = other.BorderlineOffset;
         }
 
         private Rectangle backgroundImageBorder;
@@ -52,6 +57,15 @@ namespace Tizen.NUI
         /// </summary>
         internal VisualTransformPolicyType CornerRadiusPolicy { get; set; } = VisualTransformPolicyType.Absolute;
 
+        /// <summary></summary>
+        internal float BorderlineWidth { get; set; }
+
+        /// <summary></summary>
+        internal Color BorderlineColor { get; set; }
+
+        /// <summary></summary>
+        internal float BorderlineOffset { get; set; }
+
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void Dispose(bool disposing)
         {
@@ -62,6 +76,8 @@ namespace Tizen.NUI
             if (disposing)
             {
                 backgroundImageBorder?.Dispose();
+                CornerRadius?.Dispose();
+                BorderlineColor?.Dispose();
             }
             disposed = true;
         }

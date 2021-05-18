@@ -215,9 +215,8 @@ namespace Tizen.NUI.Components
                     if (IsSelectable)
                     {
                         // Extension : Extension?.SetTouchInfo(touch);
-                        if (ParentItemsView as CollectionView)
+                        if (ParentItemsView is CollectionView colView)
                         {
-                            CollectionView colView = ParentItemsView as CollectionView;
                             switch (colView.SelectionMode)
                             {
                                 case ItemSelectionMode.Single:

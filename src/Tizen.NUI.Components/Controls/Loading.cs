@@ -134,7 +134,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public string[] ImageArray
         {
-            get => (GetValue(ImageListProperty) as List<string>).ToArray();
+            get => (GetValue(ImageListProperty) as List<string>)?.ToArray() ?? null;
             set => SetValue(ImageListProperty, value == null ? new List<string>() : new List<string>((string[])value));
         }
 
