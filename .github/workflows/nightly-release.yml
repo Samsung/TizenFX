@@ -24,7 +24,7 @@ jobs:
         # find branches without the version tag
         for x in $TARGET_BRANCHES; do
           tags=$(git tag --contains origin/$x)
-          if [[ ! $tags =~ v^[0-9]+\.[0-9]+\.[0-9]+ ]]; then
+          if [[ ! $tags =~ v[0-9]+\.[0-9]+\.[0-9]+ ]]; then
             TARGETS="${TARGETS} $x"
           fi
         done
