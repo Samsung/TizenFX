@@ -23,10 +23,11 @@ namespace Tizen.NUI
     /// <summary>
     /// Loading an image.
     /// </summary>
-    /// <since_tizen> 5 </since_tizen>
-    /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
+    /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public static class ImageLoading
+    // in API6 ~ API8, this has been "public class", not "public static class". to support not-rebuilt API6~API8's Application, this is reverted bact to "public class".
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1052:Static holder types should be Static or NotInheritable", Justification = "<Pending>")]
+    public class ImageLoading
     {
         /// <summary>
         /// Load an image synchronously from local file.
@@ -38,8 +39,7 @@ namespace Tizen.NUI
         /// <param name="orientationCorrection">Reorient the image to respect any orientation metadata in its header.</param>
         /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case loading failed.</returns>
         /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static PixelBuffer LoadImageFromFile(string url, Size2D size, FittingModeType fittingMode, SamplingModeType samplingMode, bool orientationCorrection)
         {
@@ -63,8 +63,7 @@ namespace Tizen.NUI
         /// <param name="samplingMode">The filtering method used when sampling pixels from the input image while fitting it to desired size.</param>
         /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case loading failed.</returns>
         /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static PixelBuffer LoadImageFromFile(string url, Size2D size, FittingModeType fittingMode, SamplingModeType samplingMode)
         {
@@ -87,8 +86,7 @@ namespace Tizen.NUI
         /// <param name="fittingMode">The method used to fit the shape of the image before loading to the shape defined by the size parameter.</param>
         /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case loading failed.</returns>
         /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static PixelBuffer LoadImageFromFile(string url, Size2D size, FittingModeType fittingMode)
         {
@@ -110,8 +108,7 @@ namespace Tizen.NUI
         /// <param name="size">The width and height to fit the loaded image to, 0.0 means whole image.</param>
         /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case loading failed.</returns>
         /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static PixelBuffer LoadImageFromFile(string url, Size2D size)
         {
@@ -131,8 +128,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="url">The URL of the image file to load.</param>
         /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case loading failed.</returns>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static PixelBuffer LoadImageFromFile(string url)
         {
@@ -151,8 +147,7 @@ namespace Tizen.NUI
         /// <param name="orientationCorrection">Whether to use image metadata to rotate or flip the image, for example, from portrait to landscape.</param>
         /// <returns>Dimensions that image will have if it is loaded with given parameters.</returns>
         /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Size2D GetClosestImageSize(string filename, Size2D size, FittingModeType fittingMode, SamplingModeType samplingMode, bool orientationCorrection)
         {
@@ -178,8 +173,7 @@ namespace Tizen.NUI
         /// <param name="samplingMode">The image filter to use if the image needs to be downsampled to the requested size.</param>
         /// <returns>Dimensions that image will have if it is loaded with given parameters.</returns>
         /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Size2D GetClosestImageSize(string filename, Size2D size, FittingModeType fittingMode, SamplingModeType samplingMode)
         {
@@ -204,8 +198,7 @@ namespace Tizen.NUI
         /// <param name="fittingMode">The method to use to map the source image to the desired dimensions.</param>
         /// <returns>Dimensions that image will have if it is loaded with given parameters.</returns>
         /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Size2D GetClosestImageSize(string filename, Size2D size, FittingModeType fittingMode)
         {
@@ -229,8 +222,7 @@ namespace Tizen.NUI
         /// <param name="size">The requested size for the image</param>
         /// <returns>Dimensions that image will have if it is loaded with given parameters.</returns>
         /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Size2D GetClosestImageSize(string filename, Size2D size)
         {
@@ -252,8 +244,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="filename">The name of the image.</param>
         /// <returns>Dimensions that image will have if it is loaded with given parameters.</returns>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Size2D GetClosestImageSize(string filename)
         {
@@ -270,8 +261,7 @@ namespace Tizen.NUI
         /// <param name="filename">The name of the image.</param>
         /// <param name="orientationCorrection">Reorient the image to respect any orientation metadata in its header.</param>
         /// <returns>Dimension of the original image.</returns>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be released at Tizen.NET API Level 9. Therefore, currently this would be used as an in-house API.
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Size2D GetOriginalImageSize(string filename, bool orientationCorrection = true)
         {
@@ -292,8 +282,7 @@ namespace Tizen.NUI
         /// <param name="orientationCorrection">Reorient the image to respect any orientation metadata in its header.</param>
         /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case downloading or decoding failed.</returns>
         /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static PixelBuffer DownloadImageSynchronously(string url, Size2D size, FittingModeType fittingMode, SamplingModeType samplingMode, bool orientationCorrection)
         {
@@ -317,8 +306,7 @@ namespace Tizen.NUI
         /// <param name="samplingMode">The filtering method used when sampling pixels from the input image while fitting it to desired size.</param>
         /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case downloading or decoding failed.</returns>
         /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static PixelBuffer DownloadImageSynchronously(string url, Size2D size, FittingModeType fittingMode, SamplingModeType samplingMode)
         {
@@ -341,8 +329,7 @@ namespace Tizen.NUI
         /// <param name="fittingMode">The method used to fit the shape of the image before loading to the shape defined by the size parameter.</param>
         /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case downloading or decoding failed.</returns>
         /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static PixelBuffer DownloadImageSynchronously(string url, Size2D size, FittingModeType fittingMode)
         {
@@ -368,6 +355,7 @@ namespace Tizen.NUI
         /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case downloading or decoding failed.</returns>
         /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
         /// <exception cref="ArgumentNullException">Thrown when uri is null.</exception>
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static PixelBuffer DownloadImageSynchronously(Uri uri, Size2D size, FittingModeType fittingMode)
         {
@@ -394,8 +382,7 @@ namespace Tizen.NUI
         /// <param name="size">The width and height to fit the loaded image to, 0.0 means whole image.</param>
         /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case downloading or decoding failed.</returns>
         /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static PixelBuffer DownloadImageSynchronously(string url, Size2D size)
         {
@@ -415,8 +402,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="url">The URL of the image file to load.</param>
         /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case downloading or decoding failed.</returns>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static PixelBuffer DownloadImageSynchronously(string url)
         {
