@@ -319,6 +319,11 @@ namespace Tizen.NUI
                 public delegate bool AccessibilityDeleteText(int startPosition, int endPosition);
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilityDeleteText DeleteText; // 26
+
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate bool AccessibilityScrollToChild(IntPtr child);
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilityScrollToChild ScrollToChild; // 27
             }
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_SetAccessibilityConstructor_NUI")]

@@ -840,6 +840,28 @@ namespace Tizen.NUI.Components
             }
         }
 
+
+        /// <summary>
+        /// Scroll to specified item
+        /// </summary>
+        /// <remarks>
+        /// Make sure that the item that is about to receive the accessibility highlight is visible.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override bool AccessibilityScrollToChild(View child)
+        {
+            foreach (RecyclerViewItem item in ContentContainer.Children.Where((item) => item is RecyclerViewItem))
+            {
+                if (child == item)
+                {
+                    ScrollToIndex(item.Index);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         // Realize and Decorate the item.
         internal override RecyclerViewItem RealizeItem(int index)
         {
