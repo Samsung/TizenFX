@@ -4,17 +4,98 @@ on:
   workflow_dispatch:
     inputs:
       target:
-        description: 'Target Branch to Deploy'
+        description: 'Branch to deploy'
         required: true
         default: 'master'
+      deploy_to_myget:
+        description: 'Deploy packages to MyGet?'
+        required: true
+        default: true
+      deploy_to_tizen:
+        description: 'Submit changes to Tizen?'
+        required: true
+        default: true
 
-  # schedule:
-  # - cron: "0 16 * * *"
+env:
+  TARGET_BRANCH: ${{ github.event.inputs.target }}
 
 jobs:
-  test:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-    - run: |
-        echo "${{ github.event.inputs.target }}"
+    - uses: actions/checkout@v2
+      with:
+        ref: ${{ env.TARGET_BRANCH }}
+        fetch-depth: 0
 
+    - name: Git Config
+      run: |
+        git config --global user.name "TizenAPI-Bot"
+        git config --global user.email "tizenapi@samsung.com"
+        git config core.sshCommand "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
+
+    - name: Get Branch Metadata
+      id: metadata
+      uses: TizenAPI/tizenfx-build-actions/branch-metadata@master
+      with:
+        ref: ${{ env.TARGET_BRANCH }}
+
+    - name: Get Version
+      id: version
+      env:
+        VERSION_PREFIX: ${{ steps.metadata.outputs.version-prefix }}
+      run: |
+        VERSION=$VERSION_PREFIX.$((10000+$(git rev-list --count HEAD)))
+        echo VERSION=$VERSION
+        echo "::set-output name=version::$VERSION"
+
+    - name: Build
+      env:
+        VERSION: ${{ steps.version.outputs.version }}
+      run: |
+        ./build.sh full
+        ./build.sh pack $VERSION
+
+    - name: Tag Version
+      env:
+        VERSION: ${{ steps.version.outputs.version }}
+      run: |
+        git tag -fa "v$VERSION" -m "Release $VERSION"
+        git push -f --tags origin refs/tags/"v$VERSION"
+
+    - name: Deploy NuGet packages to MyGet
+      if: github.event.inputs.deploy_to_myget == 'true'
+      env:
+        NUGET_SOURCE: https://tizen.myget.org/F/dotnet-test/api/v2/package
+        APIKEY: ${{ secrets.MYGET_APIKEY }}
+      run: |
+        dotnet nuget push Artifacts/*.nupkg -k $APIKEY -s $NUGET_SOURCE -t 3000
+
+    - name: Setup SSH private keys
+      uses: webfactory/ssh-agent@v0.5.2
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: Submit changes to Tizen
+      if: github.event.inputs.deploy_to_tizen == 'true'
+      env:
+        VERSION: ${{ steps.version.outputs.version }}
+        GERRIT_BRANCH: ${{ steps.metadata.outputs.tizen-branch }}
+        GERRIT_URL: ssh://dotnetbuild@review.tizen.org:29418/platform/core/csapi/tizenfx
+      run: |
+        git remote add gerrit $GERRIT_URL
+        git fetch gerrit $GERRIT_BRANCH
+        git checkout -t gerrit/$GERRIT_BRANCH
+        git merge --no-edit -s recursive -X theirs origin/$TARGET_BRANCH
+        ./packaging/makespec.sh -r $VERSION -n $VERSION -i $VERSION
+        git add packaging/
+        if [ $(git diff --cached --numstat | wc -l) -eq 0 ]; then
+          echo "## no changes to sync"
+          exit 0
+        fi
+        SUBMIT_TAG=submit/$GERRIT_BRANCH/$(date '+%Y%m%d.%H%M%S')
+        echo SUBMIT_TAG=$SUBMIT_TAG
+        git commit -m "Release $VERSION"
+        git tag -m "Release $VERSION" $SUBMIT_TAG
+        git push -f gerrit HEAD:$GERRIT_BRANCH
+        git push gerrit refs/tags/$SUBMIT_TAG
