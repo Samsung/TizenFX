@@ -1,0 +1,39 @@
+name: "Nightly Release"
+
+
+on:
+  schedule:
+    - cron: '0 15 * * *'
+  workflow_dispatch:
+
+env:
+  TARGET_BRANCHES: 'master API8'
+
+jobs:
+  nightly:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - name: Find Branches to Release
+      id: find-targets
+      run: |
+        TARGETS=""
+        # find branches without the version tag
+        for x in $TARGET_BRANCHES; do
+          tags=$(git tag --contains origin/$x)
+          for t in $tags; do
+            if [[ ! $t =~ v^[0-9]+\.[0-9]+\.[0-9]+ ]]; then
+              TARGETS="${TARGETS} $x"
+            fi
+          done
+        done
+        # remove duplicated branch names
+        TARGETS=$(printf "%q\n" $TARGETS | sort -u)
+        echo "::set-output name=targets::${TARGETS}"
+
+    - name: Test
+      run: |
+        echo ${{ steps.find-targets.outputs.targets }}
