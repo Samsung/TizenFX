@@ -24,16 +24,37 @@ jobs:
         # find branches without the version tag
         for x in $TARGET_BRANCHES; do
           tags=$(git tag --contains origin/$x)
-          for t in $tags; do
-            if [[ ! $t =~ v^[0-9]+\.[0-9]+\.[0-9]+ ]]; then
-              TARGETS="${TARGETS} $x"
-            fi
-          done
+          if [[ ! $tags =~ v^[0-9]+\.[0-9]+\.[0-9]+ ]]; then
+            TARGETS="${TARGETS} $x"
+          fi
         done
-        # remove duplicated branch names
-        TARGETS=$(printf "%q\n" $TARGETS | sort -u)
         echo "::set-output name=targets::${TARGETS}"
 
-    - name: Test
-      run: |
-        echo ${{ steps.find-targets.outputs.targets }}
+    - name: Trigger Release
+      uses: actions/github-script@v4
+      env:
+        TARGETS: ${{ steps.find-targets.outputs.targets }}
+        WORKFLOW_NAME: 'Deploy Packages'
+      with:
+        github-token: ${{ secrets.TIZENAPI_GITHUB_TOKEN }}
+        script: |
+          var resp = await github.request('GET /repos/{owner}/{repo}/actions/workflows', {
+            owner: context.repo.owner,
+            repo: context.repo.repo
+          })
+          if (resp.status != 200) throw new Error('Failed to get workflow list.')
+          var workflow = resp.data.workflows.find(w => {
+            return w['name'] === process.env.WORKFLOW_NAME
+          })
+          if (!workflow) throw new Error('Unable to find the workflow.')
+          var targets = process.env.TARGETS.trim().split(' ')
+          targets.forEach(async target => {
+            var dispatchResp = await github.request('POST /repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches', {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: workflow.id,
+              ref: 'master',
+              inputs: { target }
+            })
+            console.log(`Event dispatch for ${target} : ${dispatchResp.status}`)
+          })
