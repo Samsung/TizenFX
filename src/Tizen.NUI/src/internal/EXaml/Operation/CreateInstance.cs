@@ -21,6 +21,7 @@ using System.Text;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
 using Tizen.NUI.Binding.Internals;
+using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.EXaml
 {
@@ -57,7 +58,13 @@ namespace Tizen.NUI.EXaml
                         {
                             paramList[i] = globalDataList.GatheredInstances[(paramList[i] as Instance).Index];
                         }
+
+                        if (paramList[i] is CombinedString)
+                        {
+                            paramList[i] = (paramList[i] as CombinedString).RealString;
+                        }
                     }
+
                     globalDataList.GatheredInstances.Add(Activator.CreateInstance(type, paramList.ToArray()));
                 }
             }

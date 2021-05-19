@@ -21,6 +21,7 @@ using System.Text;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
 using Tizen.NUI.Binding.Internals;
+using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.EXaml
 {
@@ -47,12 +48,15 @@ namespace Tizen.NUI.EXaml
                 if (value is Instance)
                 {
                     int valueIndex = (value as Instance).Index;
-                    instance.SetValue(property, globalDataList.GatheredInstances[valueIndex]);
+                    value = globalDataList.GatheredInstances[valueIndex];
                 }
-                else
+
+                if (value is CombinedString)
                 {
-                    instance.SetValue(property, value);
+                    value = (value as CombinedString).RealString;
                 }
+
+                instance.SetValue(property, value);
             }
         }
 
