@@ -376,6 +376,11 @@ namespace Tizen.NUI.Xaml
             var typeArguments = xmlType.TypeArguments;
             exception = null;
 
+            if (elementName.Contains("-"))
+            {
+                elementName = elementName.Replace('-', '+');
+            }
+
             var lookupAssemblies = new List<XmlnsDefinitionAttribute>();
             var lookupNames = new List<string>();
 
