@@ -500,6 +500,25 @@ namespace Tizen.NUI
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int CornerRadiusPolicy = NDalic.VisualPropertyMixColor + 4;
+            /// <summary>
+            /// The borderline width of the visual.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int BorderlineWidth = NDalic.VisualPropertyMixColor + 5;
+            /// <summary>
+            /// The borderline color of the visual.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int BorderlineColor = NDalic.VisualPropertyMixColor + 6;
+            /// <summary>
+            /// The borderline offset of the visual.
+            /// Relative position of borderline. (percentage [-1.0f to 1.0f]).
+            /// If -1.0f, borderline draw inside of visual
+            /// If 1.0f, borderline draw outside of visual
+            /// If 0.0f, half draw inside and half draw outside of visual
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int BorderlineOffset = NDalic.VisualPropertyMixColor + 7;
         }
 
         /// <summary>
