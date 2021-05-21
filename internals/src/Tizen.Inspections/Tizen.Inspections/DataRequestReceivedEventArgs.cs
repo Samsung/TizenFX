@@ -20,15 +20,27 @@ using NativeApi = Interop.Inspections;
 namespace Tizen.Inspections
 {
     /// <summary>
-    /// EventReceivedEventArgs is an extended EventArgs class.
-    /// This class contains event arguments for the EventReceived event from the Inspection class.
+    /// DataRequestReceivedEventArgs is an extended EventArgs class.
+    /// This class contains event arguments for the DataRequestReceived event from the Inspection class.
     /// </summary>
-    public class EventReceivedEventArgs : EventArgs
+    public class DataRequestReceivedEventArgs : EventArgs
     {
-        internal EventReceivedEventArgs(InspectionContext ctx)
+        internal DataRequestReceivedEventArgs(InspectionData data, string[] parameters, InspectionContext ctx)
         {
+            Data = data;
+            Parameters = parameters;
             Context = ctx;
         }
+
+        /// <summary>
+        /// The instance of InspectionData.
+        /// </summary>
+        public InspectionData Data { get; internal set; }
+
+        /// <summary>
+        /// An array of data request parameters.
+        /// </summary>
+        public string[] Parameters { get; internal set; }
 
         /// <summary>
         /// The instance of InspectionContext.
