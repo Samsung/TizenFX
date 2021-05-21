@@ -15,6 +15,7 @@
 using System;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
+using System.Text.RegularExpressions;
 
 namespace Tizen.NUI
 {
@@ -1983,5 +1984,56 @@ namespace Tizen.NUI
       /// </summary>
       [EditorBrowsable(EditorBrowsableState.Never)]
       OnDemand = 1
+    }
+
+    /// <summary>
+    /// Enumeration for the type of InputFilter. <br />
+    /// </summary>
+    /// <remarks>
+    /// The type of InputFilter that is stored in the <see cref="Tizen.NUI.BaseComponents.InputFilteredEventArgs"/> when the input is filtered. <br />
+    /// </remarks>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum InputFilterType
+    {
+        /// <summary>
+        /// The type of InputFilter is Accept.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Accept,
+
+        /// <summary>
+        /// The type of InputFilter is Reject.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Reject
+    }
+
+    namespace Text
+    {
+        /// <summary>
+        /// A struct to pass data of InputFilter PropertyMap. <br />
+        /// </summary>
+        /// <remarks>
+        /// InputFilter filters input based on regular expressions. <br />
+        /// Users can set the Accepted or Rejected regular expression set, or both. <br />
+        /// If both are used, Rejected has higher priority. <br />
+        /// The InputFilter struct is used as an argument to SetInputFilter and GetInputFilter methods. <br />
+        /// See <see cref="Tizen.NUI.BaseComponents.TextField.SetInputFilter"/>, <see cref="Tizen.NUI.BaseComponents.TextField.GetInputFilter"/>, <see cref="Tizen.NUI.BaseComponents.TextEditor.SetInputFilter"/> and <see cref="Tizen.NUI.BaseComponents.TextEditor.GetInputFilter"/>. <br />
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public struct InputFilter
+        {
+            /// <summary>
+            /// A regular expression in the set of characters to be accepted by the inputFilter.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public Regex Accepted { get; set; }
+
+            /// <summary>
+            /// A regular expression in the set of characters to be rejected by the inputFilter.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public Regex Rejected { get; set; }
+        }
     }
 }
