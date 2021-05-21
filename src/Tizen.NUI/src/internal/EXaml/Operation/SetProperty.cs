@@ -57,9 +57,9 @@ namespace Tizen.NUI.EXaml
                 throw new Exception(String.Format("Property {0} hasn't set method", property.Name));
             }
 
-            if (value is Instance)
+            if (value is Instance valueInstance)
             {
-                int valueIndex = (value as Instance).Index;
+                int valueIndex = valueInstance.Index;
                 value = globalDataList.GatheredInstances[valueIndex];
 
                 if (null == value)

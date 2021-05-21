@@ -45,9 +45,9 @@ namespace Tizen.NUI.EXaml
             {
                 var property = globalDataList.GatheredBindableProperties[bindalbePropertyIndex];
 
-                if (value is Instance)
+                if (value is Instance valueInstance)
                 {
-                    int valueIndex = (value as Instance).Index;
+                    int valueIndex = valueInstance.Index;
                     value = globalDataList.GatheredInstances[valueIndex];
                 }
 
