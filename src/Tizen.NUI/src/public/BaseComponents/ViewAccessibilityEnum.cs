@@ -22,6 +22,29 @@ using Tizen.NUI;
 
 namespace Tizen.NUI.BaseComponents
 {
+    /// <summary>
+    /// Accessibility interface.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum AccessibilityInterface
+    {
+        /// <summary>
+        /// Common accessibility interface
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        None = 0,
+        /// <summary>
+        /// Accessibility interface which can store numeric value
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Value = 1,
+        /// <summary>
+        /// Accessibility interface which can store editable texts
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        EditableText = 2,
+    }
+
     [EditorBrowsable(EditorBrowsableState.Never)]
     [Flags]
     public enum AccessibilityReadingInfoTypes : int
@@ -147,28 +170,6 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public partial class View
     {
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        /// <summary>
-        /// A helper method to manipulate individual bit flags (e.g. turn them on or off)
-        /// </summary>
-        /// <param name="obj">An object that accumulates combination of bit flags</param>
-        /// <param name="bit">A bit flag to be operated</param>
-        /// <param name="state">A state of the bit flag to be set (0 == off, 1 == on)</param>
-        static public void FlagSetter<T>(ref T obj ,T bit, bool state)
-        {
-            dynamic result = obj;
-            dynamic param = bit;
-            if (state)
-            {
-                result |= param;
-            }
-            else
-            {
-                result &= (~param);
-            }
-            obj = result;
-        }
-
         [EditorBrowsable(EditorBrowsableState.Never)]
         public enum RelationType
         {

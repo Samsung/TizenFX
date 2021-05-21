@@ -38,6 +38,20 @@ internal static partial class Interop
                 Falling,
                 Both
             }
+            [StructLayout(LayoutKind.Sequential)]
+            public struct callbackInfo
+            {
+                public int vermagic;
+                public int gpioPinValue;
+                // skip the rest fields in structure as we do not need it
+            }
+            [StructLayout(LayoutKind.Sequential)]
+            public struct PeripherialGpio
+            {
+                public int vermagic;
+                public callbackInfo cbInfo;
+                // skip the rest fields in structure as we do not need it
+            }
 
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             internal delegate void InterruptedEventCallback(IntPtr handle, ErrorCode error, IntPtr data);
