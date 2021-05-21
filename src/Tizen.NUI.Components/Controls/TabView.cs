@@ -95,8 +95,8 @@ namespace Tizen.NUI.Components
             WidthSpecification = LayoutParamPolicies.MatchParent;
             HeightSpecification = LayoutParamPolicies.MatchParent;
 
-            InitTabBar();
             InitContent();
+            InitTabBar();
         }
 
         private void InitTabBar()
