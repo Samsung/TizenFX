@@ -235,6 +235,17 @@ namespace Tizen.Network.Bluetooth
         internal uint number;
         internal uint duration;
     }
+
+    [NativeStruct("bt_gatt_client_att_mtu_info_s", Include = "bluetooth_type.h", PkgConfig = "capi-network-bluetooth")]
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct AttMtuInfoStruct
+    {
+        [MarshalAsAttribute(UnmanagedType.LPStr)]
+        internal string RemoteAddress;
+        internal int Mtu;
+        internal int Status;
+    }
+
     internal static class BluetoothUtils
     {
         internal static BluetoothDevice ConvertStructToDeviceClass(BluetoothDeviceStruct device)
