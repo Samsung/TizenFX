@@ -32,4 +32,29 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 9 </since_tizen>
         public string Href { get; set; }
     }
+
+    /// <summary>
+    /// InputFilteredEventArgs is a class to record input filter event arguments which will be sent to user.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class InputFilteredEventArgs : EventArgs
+    {
+        /// <summary>
+        /// The input filter type (Accepted or Rejected).
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public InputFilterType Type { get; set; }
+
+        /// <summary>
+        /// The set of characters to be accepted.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string Accepted { get; set; }
+
+        /// <summary>
+        /// The set of characters to be rejected.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string Rejected { get; set; }
+    }
 }

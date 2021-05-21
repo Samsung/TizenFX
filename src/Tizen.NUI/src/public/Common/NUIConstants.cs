@@ -1951,4 +1951,26 @@ namespace Tizen.NUI
       [EditorBrowsable(EditorBrowsableState.Never)]
       OnDemand = 1
     }
+
+    /// <summary>
+    /// Enumeration for the type of InputFilter. <br />
+    /// An enum that determines the input filter type of the InputFilter map. <br />
+    /// Users can set the Accepted or Rejected character set, or both. <br />
+    /// If both are used, Rejected has higher priority. <br />
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum InputFilterType
+    {
+        /// <summary>
+        /// The set of characters to be accepted.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Accepted,
+
+        /// <summary>
+        /// The set of characters to be rejected.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Rejected
+    }
 }
