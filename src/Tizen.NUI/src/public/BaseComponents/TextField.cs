@@ -16,11 +16,13 @@
  */
 extern alias TizenSystemSettings;
 using TizenSystemSettings.Tizen.System;
+using System.Text.RegularExpressions;
 
 using System;
 using System.Globalization;
 using System.ComponentModel;
 using Tizen.NUI.Binding;
+using Tizen.NUI.Text;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -1368,6 +1370,61 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Set InputFilter to TextField. <br />
+        /// </summary>
+        /// <param name="inputFilter">The InputFilter</param>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.InputFilter"/> filters input based on regular expressions. <br />
+        /// Users can set the Accepted or Rejected regular expression set, or both. <br />
+        /// If both are used, Rejected has higher priority. <br />
+        /// InputFiltered signal is emitted when the input is filtered by InputFilter <br />
+        /// See <see cref="InputFiltered"/>, <see cref="InputFilterType"/> and <see cref="InputFilteredEventArgs"/> for a detailed description. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetInputFilter method.
+        /// <code>
+        /// Tizen.NUI.Text.InputFilter inputFilter;
+        /// inputFilter.Accepted = new Regex(@"[\d]"); // accept whole digits
+        /// inputFilter.Rejected = new Regex("[0-3]"); // reject 0, 1, 2, 3
+        /// field.SetInputFilter(inputFilter); // acceptable inputs are 4, 5, 6, 7, 8, 9
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetInputFilter(InputFilter inputFilter)
+        {
+            var map = new PropertyMap();
+            var accepted = inputFilter.Accepted != null ? new PropertyValue(inputFilter.Accepted.ToString()) : new PropertyValue("");
+            var rejected = inputFilter.Rejected != null ? new PropertyValue(inputFilter.Rejected.ToString()) : new PropertyValue("");
+            map.Add(0, accepted);
+            map.Add(1, rejected);
+            SetProperty(TextField.Property.InputFilter, new PropertyValue(map));
+        }
+
+        /// <summary>
+        /// Get InputFilter from TextField. <br />
+        /// </summary>
+        /// <returns>The InputFilter</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.InputFilter"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public InputFilter GetInputFilter()
+        {
+            var map = new PropertyMap();
+            GetProperty(TextField.Property.InputFilter).Get(map);
+            string accepted = "";
+            string rejected = "";
+            map.Find(0)?.Get(out accepted);
+            map.Find(1)?.Get(out rejected);
+
+            var inputFilter = new InputFilter();
+            inputFilter.Accepted = new Regex(accepted);
+            inputFilter.Rejected = new Regex(rejected);
+
+            return inputFilter;
+        }
+
+        /// <summary>
         /// The Placeholder property.
         /// The placeholder map contains the following keys :<br />
         /// <list type="table">
@@ -1853,6 +1910,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int FontSizeScale = Interop.TextField.FontSizeScaleGet();
             internal static readonly int GrabHandleColor = Interop.TextField.GrabHandleColorGet();
             internal static readonly int EllipsisPosition = Interop.TextField.EllipsisPositionGet();
+            internal static readonly int InputFilter = Interop.TextField.InputFilterGet();
         }
 
         internal class InputStyle
