@@ -59,9 +59,9 @@ namespace Tizen.NUI.EXaml
                             paramList[i] = globalDataList.GatheredInstances[(paramList[i] as Instance).Index];
                         }
 
-                        if (paramList[i] is CombinedString)
+                        if (paramList[i] is CombinedString combinedString)
                         {
-                            paramList[i] = (paramList[i] as CombinedString).RealString;
+                            paramList[i] = combinedString.RealString;
                         }
                     }
 

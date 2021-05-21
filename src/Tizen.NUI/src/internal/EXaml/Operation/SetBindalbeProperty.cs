@@ -51,9 +51,9 @@ namespace Tizen.NUI.EXaml
                     value = globalDataList.GatheredInstances[valueIndex];
                 }
 
-                if (value is CombinedString)
+                if (value is CombinedString combinedString)
                 {
-                    value = (value as CombinedString).RealString;
+                    value = combinedString.RealString;
                 }
 
                 instance.SetValue(property, value);

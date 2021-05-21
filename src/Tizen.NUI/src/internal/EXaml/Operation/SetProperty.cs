@@ -68,9 +68,9 @@ namespace Tizen.NUI.EXaml
                 }
             }
 
-            if (value is CombinedString)
+            if (value is CombinedString combinedString)
             {
-                value = (value as CombinedString).RealString;
+                value = combinedString.RealString;
             }
 
             property.SetMethod.Invoke(instance, new object[] { value });
