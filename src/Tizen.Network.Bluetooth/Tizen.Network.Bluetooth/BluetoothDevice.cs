@@ -68,9 +68,9 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public BluetoothDevice(string address)
+        public BluetoothDevice(BluetoothLeDevice leDevice)
         {
-            RemoteDeviceAddress = address;
+            RemoteDeviceAddress = leDevice?.RemoteAddress;
         }
 
         /// <summary>
