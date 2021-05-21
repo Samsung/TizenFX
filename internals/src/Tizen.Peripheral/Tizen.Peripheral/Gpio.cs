@@ -168,7 +168,18 @@ namespace Tizen.Peripheral.Gpio
 
         private void OnInterrupted(IntPtr handle, ErrorCode error, IntPtr data)
         {
-            ValueChanged?.Invoke(this, new PinUpdatedEventArgs(PinNumber, Read()));
+            NativeGpio.PeripherialGpio pio = (NativeGpio.PeripherialGpio)
+                                            System.Runtime.InteropServices.Marshal.PtrToStructure(handle,
+                                                typeof(NativeGpio.PeripherialGpio));
+            // check magic values to verify capi structures integrity
+            if (pio.vermagic != 13712 || pio.cbInfo.vermagic != 14469)
+            {
+                Log.Error("Peripheral",
+                        "Unable to parse gpio structure in callback - vermagic is wrong");
+                return;
+            }
+            ValueChanged?.Invoke(this, new PinUpdatedEventArgs(PinNumber, pio.cbInfo.gpioPinValue == 1 ?
+                                                                GpioPinValue.High : GpioPinValue.Low));
         }
 
         /// <summary>

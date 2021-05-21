@@ -21,6 +21,7 @@ using System.Collections.Concurrent;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Reflection;
+using System.ComponentModel;
 
 namespace Tizen.Network.Bluetooth
 {
@@ -60,6 +61,16 @@ namespace Tizen.Network.Bluetooth
 
         internal BluetoothDevice()
         {
+        }
+
+        /// <summary>
+        /// The constructor
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public BluetoothDevice(BluetoothLeDevice leDevice)
+        {
+            RemoteDeviceAddress = leDevice?.RemoteAddress;
         }
 
         /// <summary>
