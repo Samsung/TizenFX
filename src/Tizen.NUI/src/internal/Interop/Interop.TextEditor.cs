@@ -307,6 +307,12 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextEditor_Property_ELLIPSIS_POSITION_get")]
             public static extern int EllipsisPositionGet();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_Property_INPUT_FILTER_get")]
+            public static extern int InputFilterGet();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_InputFilteredSignal")]
+            public static extern global::System.IntPtr InputFilteredSignal(global::System.Runtime.InteropServices.HandleRef textEditorRef);
         }
     }
 }
