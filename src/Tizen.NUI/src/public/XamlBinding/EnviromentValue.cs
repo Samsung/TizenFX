@@ -23,14 +23,14 @@ using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Binding
 {
-    /// This will be opened in next ACR.
+    /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
     [EditorBrowsable(EditorBrowsableState.Never)]
     [ContentProperty("Key")]
     public class EnviromentValue
     {
         static internal Dictionary<string, string> keyToValue = new Dictionary<string, string>();
 
-        /// This will open in next ACR.
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void RegisterLocalEnviroment(string key, string value)
         {
@@ -44,7 +44,7 @@ namespace Tizen.NUI.Binding
             }
         }
 
-        /// This will be opened in next ACR.
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string Key
         {

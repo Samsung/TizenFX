@@ -22,19 +22,19 @@ using System.ComponentModel;
 
 namespace Tizen.NUI.Xaml
 {
-    /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed
+    /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
     [EditorBrowsable(EditorBrowsableState.Never)]
     [ContentProperty("RealString")]
     [AcceptEmptyServiceProvider]
     public sealed class CombinedString : IMarkupExtension<string>
     {
-        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Add(object value)
         {
-            if (value is string)
+            if (value is string str)
             {
-                realString += value as string;
+                realString += str;
             }
             else if (value is EnviromentValue enviromentValue)
             {
@@ -47,7 +47,7 @@ namespace Tizen.NUI.Xaml
         }
 
         private string realString = "";
-        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string RealString
         {
