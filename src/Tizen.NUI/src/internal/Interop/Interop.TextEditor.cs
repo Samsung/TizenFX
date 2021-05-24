@@ -297,6 +297,9 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_Property_ENABLE_GRAB_HANDLE_POPUP_get")]
             public static extern int EnableGrabHandlePopupGet();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_Property_INPUT_METHOD_SETTINGS_get")]
+            public static extern int InputMethodSettingsGet();
         }
     }
 }
