@@ -1347,6 +1347,23 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The InputMethodSettings property.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyMap InputMethodSettings
+        {
+            get
+            {
+                return (PropertyMap)GetValue(InputMethodSettingsProperty);
+            }
+            set
+            {
+                SetValue(InputMethodSettingsProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// Scroll the text control by specific amount..
         /// </summary>
         /// <param name="scroll">The amount (in pixels) of scrolling in horizontal &amp; vertical directions.</param>
@@ -1626,6 +1643,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int GrabHandleColor = Interop.TextEditor.GrabHandleColorGet();
             internal static readonly int EnableGrabHandle = Interop.TextEditor.EnableGrabHandleGet();
             internal static readonly int EnableGrabHandlePopup = Interop.TextEditor.EnableGrabHandlePopupGet();
+            internal static readonly int InputMethodSettings = Interop.TextEditor.InputMethodSettingsGet();
         }
 
         internal class InputStyle
