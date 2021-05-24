@@ -42,6 +42,12 @@ namespace Tizen.NUI
             { "cornerRadius",           new VisualPropertyData(ImageView.Property.IMAGE, Visual.Property.CornerRadius, null, null,
                                         new VisualPropertyData(View.Property.SHADOW, Visual.Property.CornerRadius, null, null,
                                         new VisualPropertyData(View.Property.BACKGROUND, Visual.Property.CornerRadius, null, null))) },
+            { "borderlineWidth",        new VisualPropertyData(ImageView.Property.IMAGE, Visual.Property.BorderlineWidth, ObjectIntToFloat, null,
+                                        new VisualPropertyData(View.Property.BACKGROUND, Visual.Property.BorderlineWidth, ObjectIntToFloat, null)) },
+            { "borderlineColor",        new VisualPropertyData(ImageView.Property.IMAGE, Visual.Property.BorderlineColor, null, null,
+                                        new VisualPropertyData(View.Property.BACKGROUND, Visual.Property.BorderlineColor, null, null)) },
+            { "borderlineOffset",       new VisualPropertyData(ImageView.Property.IMAGE, Visual.Property.BorderlineOffset, null, null,
+                                        new VisualPropertyData(View.Property.BACKGROUND, Visual.Property.BorderlineOffset, null, null)) },
             { "imageShadow.Offset",     new VisualPropertyData(View.Property.SHADOW, (int)VisualTransformPropertyType.Offset) },
             { "shadow.CornerRadius",    new VisualPropertyData(View.Property.SHADOW, Visual.Property.CornerRadius, ObjectIntToFloat) },
         };
