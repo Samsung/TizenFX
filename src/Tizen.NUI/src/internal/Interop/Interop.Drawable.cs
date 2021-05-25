@@ -38,6 +38,9 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Drawable_Transform")]
             public static extern bool Transform(global::System.Runtime.InteropServices.HandleRef jarg1, [global::System.Runtime.InteropServices.In, global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.LPArray)] float[] jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Drawable_GetBoundingBox")]
+            public static extern global::System.IntPtr GetBoundingBox(global::System.Runtime.InteropServices.HandleRef jarg1);
         }
     }
 }
