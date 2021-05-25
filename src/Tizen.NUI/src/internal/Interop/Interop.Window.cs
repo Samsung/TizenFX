@@ -132,7 +132,7 @@ namespace Tizen.NUI
             public static extern int GetType(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_SetNotificationLevel")]
-            public static extern bool SetNotificationLevel(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            public static extern int SetNotificationLevel(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GetNotificationLevel")]
             public static extern int GetNotificationLevel(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -144,13 +144,13 @@ namespace Tizen.NUI
             public static extern bool IsOpaqueState(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_SetScreenOffMode")]
-            public static extern bool SetScreenOffMode(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            public static extern int SetScreenOffMode(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GetScreenOffMode")]
             public static extern int GetScreenOffMode(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_SetBrightness")]
-            public static extern bool SetBrightness(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            public static extern int SetBrightness(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GetBrightness")]
             public static extern int GetBrightness(global::System.Runtime.InteropServices.HandleRef jarg1);
