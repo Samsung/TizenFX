@@ -53,6 +53,38 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         }
 
         /// <summary>
+        /// The bounding box of the drawable object to which no transformation has been applied.
+        /// </summary>
+        /// <remarks>
+        /// The bounding box doesn't indicate the rendering region in the result but primitive region of the object.
+        /// </remarks>
+        /// <remarks>
+        /// The float type Rectangle class is not ready yet.
+        /// Therefore, it transmits data in Vector4 class.
+        /// This type should later be changed to the appropriate data type.
+        /// </remarks>
+        /// <code>
+        ///  Shape shape = new Shape()
+        ///  {      
+        ///      FillColor = new Color(1.0f, 0.0f, 0.0f, 1.0f)
+        ///  };
+        ///  shape.AddRect(0.0f, 0.0f, 100.0f, 100.0f, 0.0f, 0.0f);
+        ///  float boundingBoxX = shape.BoundingBox[0];      // boundingBoxX will be 0.
+        ///  float boundingBoxY = shape.BoundingBox[1];      // boundingBoxY will be 0.
+        ///  float boundingBoxWidth = shape.BoundingBox[2];  // boundingBoxWidth will be 100.
+        ///  float boundingBoxHeight = shape.BoundingBox[3]; // boundingBoxHeight will be 100.
+        /// </code>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Vector4 BoundingBox
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.Drawable.GetBoundingBox(BaseHandle.getCPtr(this));
+                return Vector4.GetVector4FromPtr(cPtr);
+            }
+        }
+
+        /// <summary>
         /// Set the angle of rotation transformation.
         /// </summary>
         /// <param name="degree">The degree value of angle.</param>
