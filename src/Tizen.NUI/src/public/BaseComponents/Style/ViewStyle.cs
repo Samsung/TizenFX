@@ -77,6 +77,13 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The flag that is used when creating a component with this style.
+        /// If the value is true, it will include default component style defined in the default theme.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IncludeDefaultStyle { get; set; } = false;
+
+        /// <summary>
         /// Gets or sets the image resource url of the background of view.
         /// The mutually exclusive with "BackgroundColor". Setting it overwrites existing "BackgroundColor".
         /// </summary>
@@ -538,6 +545,8 @@ namespace Tizen.NUI.BaseComponents
                     SetValue(destinationProperty, sourceValue);
                 }
             }
+
+            IncludeDefaultStyle = source.IncludeDefaultStyle;
         }
 
         /// <summary>
