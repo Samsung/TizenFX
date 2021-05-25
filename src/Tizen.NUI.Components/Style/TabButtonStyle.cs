@@ -49,12 +49,14 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Gets or Sets the Line Style at the top of TabButton.
         /// </summary>
-        internal ViewStyle TopLine { get; set; } = new ViewStyle();
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ViewStyle TopLine { get; set; } = new ViewStyle();
 
         /// <summary>
         /// Gets or Sets the Line Style at the bottom of TabButton.
         /// </summary>
-        internal ViewStyle BottomLine { get; set; } = new ViewStyle();
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ViewStyle BottomLine { get; set; } = new ViewStyle();
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]

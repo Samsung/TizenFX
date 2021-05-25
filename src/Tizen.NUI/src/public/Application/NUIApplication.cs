@@ -50,7 +50,6 @@ namespace Tizen.NUI
         [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "NUICoreBackend is disposed in the base class when the application is terminated")]
         public NUIApplication() : base(new NUICoreBackend())
         {
-            ExternalThemeManager.Initialize();
         }
 
         /// <summary>
@@ -64,7 +63,6 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public NUIApplication(Size2D windowSize, Position2D windowPosition) : base(new NUICoreBackend("", NUIApplication.WindowMode.Opaque, windowSize, windowPosition))
         {
-            ExternalThemeManager.Initialize();
         }
 
         /// <summary>
@@ -75,7 +73,6 @@ namespace Tizen.NUI
         [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "NUICoreBackend is disposed in the base class when the application is terminated")]
         public NUIApplication(string styleSheet) : base(new NUICoreBackend(styleSheet))
         {
-            ExternalThemeManager.Initialize();
         }
 
         /// <summary>
@@ -90,7 +87,6 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public NUIApplication(string styleSheet, Size2D windowSize, Position2D windowPosition) : base(new NUICoreBackend(styleSheet, WindowMode.Opaque, windowSize, windowPosition))
         {
-            ExternalThemeManager.Initialize();
         }
 
         /// <summary>
@@ -102,7 +98,6 @@ namespace Tizen.NUI
         [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "NUICoreBackend is disposed in the base class when the application is terminated")]
         public NUIApplication(string styleSheet, WindowMode windowMode) : base(new NUICoreBackend(styleSheet, windowMode))
         {
-            ExternalThemeManager.Initialize();
         }
 
         /// <summary>
@@ -118,7 +113,6 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public NUIApplication(string styleSheet, WindowMode windowMode, Size2D windowSize, Position2D windowPosition) : base(new NUICoreBackend(styleSheet, windowMode, windowSize, windowPosition))
         {
-            ExternalThemeManager.Initialize();
         }
 
         /// <summary>
@@ -137,7 +131,30 @@ namespace Tizen.NUI
             //windowMode and styleSheet will be added later. currently it's not working as expected.
             Graphics.Backend = backend;
             Tizen.Log.Error("NUI", "Plaese DO NOT set graphical backend type with this constructor! This will give no effect!");
-            ExternalThemeManager.Initialize();
+        }
+
+        /// <summary>
+        /// The constructor with theme option.
+        /// </summary>
+        /// <param name="option">The theme option.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "NUICoreBackend is disposed in the base class when the application is terminated")]
+        public NUIApplication(ThemeOptions option) : base(new NUICoreBackend())
+        {
+            ApplyThemeOption(option);
+        }
+
+        /// <summary>
+        /// The constructor with window size and position and theme option.
+        /// </summary>
+        /// <param name="windowSize">The window size.</param>
+        /// <param name="windowPosition">The window position.</param>
+        /// <param name="option">The theme option.</param>
+        [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "NUICoreBackend is disposed in the base class when the application is terminated")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public NUIApplication(Size2D windowSize, Position2D windowPosition, ThemeOptions option) : base(new NUICoreBackend("", NUIApplication.WindowMode.Opaque, windowSize, windowPosition))
+        {
+            ApplyThemeOption(option);
         }
 
         /// <summary>
@@ -169,6 +186,34 @@ namespace Tizen.NUI
             /// <since_tizen> 3 </since_tizen>
             Transparent = 1
         }
+
+        /// <summary>
+        /// Enumeration for theme options of the NUIApplication.
+        /// </summary>
+        [Flags]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum ThemeOptions : int
+        {
+            /// <summary>
+            /// No option specified.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            None = 0,
+
+            /// <summary>
+            /// Enable platform theme.
+            /// When this option is on, all views in the NUIApplication is affected by platform theme (e.g. light/dark).
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            PlatformThemeEnabled = 1 << 0,
+
+            /// <summary>
+            /// Sets the default value of View.ThemeChangeSensitive.
+            /// when this option is on, all views are made sensitive on theme changing by default.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            ThemeChangeSensitive = 1 << 1,
+        };
 
         /// <summary>
         /// ResourceManager to handle multilingual.
@@ -395,7 +440,7 @@ namespace Tizen.NUI
         static public void Preload()
         {
             Interop.Application.PreInitialize();
-            ThemeManager.AddPackageTheme(DefaultThemeCreator.Instance);
+            ThemeManager.Preload();
             IsPreload = true;
         }
 
@@ -418,6 +463,19 @@ namespace Tizen.NUI
         /// Check if it is loaded as dotnet-loader-nui.
         /// </summary>
         static internal bool IsPreload { get; set; }
+
+        private void ApplyThemeOption(ThemeOptions option)
+        {
+            if ((option & ThemeOptions.PlatformThemeEnabled) != 0)
+            {
+                ThemeManager.PlatformThemeEnabled = true;
+            }
+
+            if ((option & ThemeOptions.ThemeChangeSensitive) != 0)
+            {
+                ThemeManager.ApplicationThemeChangeSensitive = true;
+            }
+        }
     }
 
     /// <summary>

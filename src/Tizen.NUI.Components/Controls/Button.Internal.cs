@@ -67,7 +67,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual TextLabel CreateText()
         {
-            return new TextLabel
+            return new TextLabel(new TextLabelStyle())
             {
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
@@ -82,7 +82,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual ImageView CreateIcon()
         {
-            return new ImageView
+            return new ImageView()
             {
                 AccessibilityHighlightable = false
             };
