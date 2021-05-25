@@ -226,7 +226,6 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int AccessibilityRole = Interop.ViewProperty.AccessibilityRoleGet();
             internal static readonly int AccessibilityHighlightable = Interop.ViewProperty.AccessibilityHighlightableGet();
             internal static readonly int AccessibilityAttributes = Interop.ViewProperty.AccessibilityAttributesGet();
-            internal static readonly int AccessibilityAnimated = Interop.ViewProperty.AccessibilityAnimatedGet();
         }
     }
 }
