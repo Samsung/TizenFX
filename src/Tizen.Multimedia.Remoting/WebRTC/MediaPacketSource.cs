@@ -107,10 +107,11 @@ namespace Tizen.Multimedia.Remoting
                 return null;
             }
 
-            if (!SupportedAudioTypes.Contains<MediaFormatAudioMimeType>(format.MimeType))
-            {
-                throw new ArgumentException($"The audio format is not supported, Type : {format.MimeType}.");
-            }
+            // FIXME: Will be enabled, if native implementation supports this functionality.
+            // if (!SupportedAudioTypes.Contains<MediaFormatAudioMimeType>(format.MimeType))
+            // {
+            //     throw new ArgumentException($"The audio format is not supported, Type : {format.MimeType}.");
+            // }
 
             return new MediaPacketSourceConfiguration(this);
         }
@@ -122,10 +123,11 @@ namespace Tizen.Multimedia.Remoting
                 return null;
             }
 
-            if (!SupportedVideoTypes.Contains(format.MimeType))
-            {
-                throw new ArgumentException($"The video format is not supported, Type : {format.MimeType}.");
-            }
+            // FIXME: Will be enabled, if native implementation supports this functionality.
+            // if (!SupportedVideoTypes.Contains(format.MimeType))
+            // {
+            //     throw new ArgumentException($"The video format is not supported, Type : {format.MimeType}.");
+            // }
             return new MediaPacketSourceConfiguration(this);
         }
 
@@ -238,7 +240,7 @@ namespace Tizen.Multimedia.Remoting
 
             WebRtc.ValidateWebRTCState(WebRTCState.Negotiating, WebRTCState.Playing);
 
-            NativeWebRTC.PushMediaPacket(WebRtc.Handle, packet.GetHandle()).
+            NativeWebRTC.PushMediaPacket(WebRtc.Handle, SourceId.Value, packet.GetHandle()).
                 ThrowIfFailed("Failed to push the packet to the WebRTC");
         }
 

@@ -98,7 +98,7 @@ internal static partial class Interop
         internal static extern WebRTCErrorCode SetMediaPacketSourceInfo(IntPtr handle, uint sourceId, IntPtr packet);
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_packet_source_push_packet")]
-        internal static extern WebRTCErrorCode PushMediaPacket(IntPtr handle, IntPtr packet);
+        internal static extern WebRTCErrorCode PushMediaPacket(IntPtr handle, uint sourceId, IntPtr packet);
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_get_transceiver_direction")]
         internal static extern WebRTCErrorCode GetTransceiverDirection(IntPtr handle, uint sourceId, MediaType type, out TransceiverDirection mode);
