@@ -23,31 +23,60 @@ using Tizen.NUI;
 
 namespace Tizen.NUI.BaseComponents
 {
+    /// <summary>
+    /// Gesture information type containing all values needed to AccessibilityDoGestureSignal.
+    /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     [StructLayout(LayoutKind.Sequential)]
     public struct GestureInfoType : IEquatable<GestureInfoType>
     {
+        /// <summary>
+        /// Accessibility enumerated gesture type.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public AccessibilityGesture type { get; set; }
+        public AccessibilityGesture Type { get; set; }
 
+        /// <summary>
+        /// The X position where the gesture begins.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public int xBeg { get; set; }
+        public int StartPositionX { get; set; }
 
+        /// <summary>
+        /// The X position where the gesture ends.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public int xEnd { get; set; }
+        public int EndPositionX { get; set; }
 
+        /// <summary>
+        /// The Y position where the gesture begins.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public int yBeg { get; set; }
+        public int StartPositionY { get; set; }
 
+        /// <summary>
+        /// The Y position where the gesture ends.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public int yEnd { get; set; }
+        public int EndPositionY { get; set; }
 
+        /// <summary>
+        /// The enumerated state of gesture.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public AccessibilityGestureState state { get; set; }
+        public AccessibilityGestureState State { get; set; }
 
+        /// <summary>
+        /// The time when event occured.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint eventTime { get; set; }
+        public uint EventTime { get; set; }
 
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current object</param>
+        /// <returns>True if the specified object is equal to the current object, otherwise false</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool Equals(System.Object obj)
         {
@@ -58,22 +87,35 @@ namespace Tizen.NUI.BaseComponents
             return false;
         }
 
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="other">The GestureInfoType to compare with the current GestureInfoType</param>
+        /// <returns>True if equal GestureInfoType, otherwise false</returns>
         public bool Equals(GestureInfoType other)
         {
             if ((other == null) || !this.GetType().Equals(other.GetType()))
+            {
                 return false;
+            }
 
-            GestureInfoType sec = (GestureInfoType)other;
-            return
-              type == sec.type &&
-              xBeg == sec.xBeg &&
-              xEnd == sec.xEnd &&
-              yBeg == sec.yBeg &&
-              yEnd == sec.yEnd &&
-              state == sec.state &&
-              eventTime == sec.eventTime;
+            GestureInfoType compared = (GestureInfoType)other;
+            // Return true if the fields match:
+            return (Type == compared.Type &&
+                    StartPositionX == compared.StartPositionX &&
+                    EndPositionX == compared.EndPositionX &&
+                    StartPositionY == compared.StartPositionY &&
+                    EndPositionY == compared.EndPositionY &&
+                    State == compared.State &&
+                    EventTime == compared.EventTime);
         }
 
+        /// <summary>
+        /// The == operator.
+        /// </summary>
+        /// <param name="arg1">The first value</param>
+        /// <param name="arg2">The second value</param>
+        /// <returns>True if GestureInfoTypes are equal</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static bool operator ==(GestureInfoType arg1, GestureInfoType arg2)
         {
@@ -83,35 +125,66 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The != operator.
         /// </summary>
+        /// <param name="arg1">The first value</param>
+        /// <param name="arg2">The second value</param>
+        /// <returns>True if GestureInfoTypes are not equal</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static bool operator !=(GestureInfoType arg1, GestureInfoType arg2)
         {
             return !arg1.Equals(arg2);
         }
 
+        /// <summary>
+        /// Gets the hash code of this baseHandle.
+        /// </summary>
+        /// <returns>The Hash Code</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode()
         {
-            return Tuple.Create((int)type, xBeg, xEnd, yBeg, yEnd, (int)state, eventTime).GetHashCode();
+            return Tuple.Create((int)Type, StartPositionX, EndPositionX, StartPositionY, EndPositionY, (int)State, EventTime).GetHashCode();
         }
     }
 
+    /// <summary>
+    /// Accessibility gesture information event arguments.
+    /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class GestureInfoEventArgs : EventArgs
     {
+        /// <summary>
+        /// The gesture information type.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public GestureInfoType GestureInfo { get; internal set; }
+
+        /// <summary>
+        /// True if the event is consumed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int Consumed { get; set; }
     }
 
+    /// <summary>
+    /// Accessibility description event arguments.
+    /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class GetDescriptionEventArgs : EventArgs
     {
+        /// <summary>
+        /// Accessibility description.
+        /// </summary>
         public string Description { get; set; }
     }
 
+    /// <summary>
+    /// Accessibility name event arguments.
+    /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class GetNameEventArgs : EventArgs
     {
+        /// <summary>
+        /// Accessibility name.
+        /// </summary>
         public string Name { get; set; }
     }
 
@@ -143,12 +216,16 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// Gets the control handle.
+        /// </summary>
+        /// <returns>The control handle of the view</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         ControlHandle GetControl()
         {
-            var ret = new ControlHandle(Interop.View.DownCast(SwigCPtr));
+            var result = new ControlHandle(Interop.View.DownCast(SwigCPtr));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            return result;
         }
 
         ///////////////////////////////////////////////////////////////////
@@ -163,27 +240,32 @@ namespace Tizen.NUI.BaseComponents
         private void OnAccessibilityGestureInfoEvent(IntPtr data)
         {
             if (data == IntPtr.Zero)
+            {
                 return;
+            }
 
             if (Marshal.SizeOf<GestureInfoType>() != AccessibilityDoGestureSignal.GetSizeOfGestureInfo())
             {
                 throw new global::System.ApplicationException("ABI mismatch SizeOf(C# GestureInfo) != SizeOf(c++ GestureInfo)");
             }
 
-            var arg = new GestureInfoEventArgs();
-
-            arg.Consumed = AccessibilityDoGestureSignal.GetResult(data);
-            arg.GestureInfo = (GestureInfoType)Marshal.PtrToStructure(data, typeof(GestureInfoType));
-
+            var arg = new GestureInfoEventArgs()
+            {
+                Consumed = AccessibilityDoGestureSignal.GetResult(data),
+                GestureInfo = (GestureInfoType)Marshal.PtrToStructure(data, typeof(GestureInfoType)),
+            };
             gestureInfoHandler?.Invoke(this, arg);
 
             AccessibilityDoGestureSignal.SetResult(data, Convert.ToInt32(arg.Consumed));
         }
 
-        // This uses DoGestureInfo signal from C++ API.
+        /// <summary>
+        /// AccessibilityGestureInfo is received.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<GestureInfoEventArgs> AccessibilityGestureInfoReceived
         {
+            // This uses DoGestureInfo signal from C++ API.
             add
             {
                 if (gestureInfoHandler == null)
@@ -226,20 +308,26 @@ namespace Tizen.NUI.BaseComponents
         private void OnGetAccessibilityDescriptionEvent(IntPtr data)
         {
             if (data == IntPtr.Zero)
+            {
                 return;
+            }
 
-            var arg = new GetDescriptionEventArgs();
-            arg.Description = StringToVoidSignal.GetResult(data);
-
+            var arg = new GetDescriptionEventArgs()
+            {
+                Description = StringToVoidSignal.GetResult(data)
+            };
             getDescriptionHandler?.Invoke(this, arg);
 
             StringToVoidSignal.SetResult(data, arg.Description);
         }
 
-        // This uses GetDescription signal from C++ API.
+        /// <summary>
+        /// AccessibilityDescription is requested.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<GetDescriptionEventArgs> AccessibilityDescriptionRequested
         {
+            // This uses GetDescription signal from C++ API.
             add
             {
                 if (getDescriptionHandler == null)
@@ -282,20 +370,26 @@ namespace Tizen.NUI.BaseComponents
         private void OnGetAccessibilityNameEvent(IntPtr data)
         {
             if (data == IntPtr.Zero)
+            {
                 return;
+            }
 
-            var arg = new GetNameEventArgs();
-            arg.Name = StringToVoidSignal.GetResult(data);
-
+            var arg = new GetNameEventArgs()
+            {
+                Name = StringToVoidSignal.GetResult(data)
+            };
             getNameHandler?.Invoke(this, arg);
 
             StringToVoidSignal.SetResult(data, arg.Name);
         }
 
-        // This uses GetName signal from C++ API.
+        /// <summary>
+        /// AccessibilityName is requested.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<GetNameEventArgs> AccessibilityNameRequested
         {
+            // This uses GetName signal from C++ API.
             add
             {
                 if (getNameHandler == null)
@@ -340,6 +434,9 @@ namespace Tizen.NUI.BaseComponents
             activateHandler?.Invoke(this, null);
         }
 
+        /// <summary>
+        /// Accessibility is activated.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler AccessibilityActivated
         {
@@ -386,6 +483,9 @@ namespace Tizen.NUI.BaseComponents
             readingSkippedHandler?.Invoke(this, null);
         }
 
+        /// <summary>
+        /// AccessibilityReading is skipped.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler AccessibilityReadingSkipped
         {
@@ -432,6 +532,9 @@ namespace Tizen.NUI.BaseComponents
             readingPausedHandler?.Invoke(this, null);
         }
 
+        /// <summary>
+        /// AccessibilityReading is paused.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler AccessibilityReadingPaused
         {
@@ -478,6 +581,9 @@ namespace Tizen.NUI.BaseComponents
             readingResumedHandler?.Invoke(this, null);
         }
 
+        /// <summary>
+        /// AccessibilityReading is resumed.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler AccessibilityReadingResumed
         {
@@ -524,6 +630,9 @@ namespace Tizen.NUI.BaseComponents
             readingCancelledHandler?.Invoke(this, null);
         }
 
+        /// <summary>
+        /// AccessibilityReading is cancelled.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler AccessibilityReadingCancelled
         {
@@ -570,6 +679,9 @@ namespace Tizen.NUI.BaseComponents
             readingStoppedHandler?.Invoke(this, null);
         }
 
+        /// <summary>
+        /// AccessibilityReading is stopped.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler AccessibilityReadingStopped
         {

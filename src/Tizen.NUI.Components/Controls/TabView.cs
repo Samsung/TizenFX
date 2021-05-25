@@ -91,16 +91,12 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 9 </since_tizen>
         public TabView()
         {
-            // FIXME: Now, WidthSpecification/HeightSpecification are updated internally.
-            //        When this is resolved, LinearLayout can be used.
-            Layout = new AbsoluteLayout();
+            Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Vertical };
             WidthSpecification = LayoutParamPolicies.MatchParent;
             HeightSpecification = LayoutParamPolicies.MatchParent;
 
             InitContent();
             InitTabBar();
-
-            CalculatePosition();
         }
 
         private void InitTabBar()
@@ -206,15 +202,6 @@ namespace Tizen.NUI.Components
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override void OnRelayout(Vector2 size, RelayoutContainer container)
-        {
-            base.OnRelayout(size, container);
-
-            CalculatePosition();
-        }
-
-        /// <inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -237,76 +224,6 @@ namespace Tizen.NUI.Components
             }
 
             base.Dispose(type);
-        }
-
-        private void CalculatePosition()
-        {
-            // If TabView size has not been set yet, then content size cannot be calculated.
-            if ((Size2D.Width == 0) && (Size2D.Height == 0))
-            {
-                return;
-            }
-
-            if (tabBar != null)
-            {
-                // FIXME: Now, WidthSpecification/HeightSpecification are updated internally.
-                //        When this is resolved, comparing Specification with Size is removed.
-                if ((tabBar.WidthSpecification == LayoutParamPolicies.MatchParent) || (tabBar.HeightSpecification == LayoutParamPolicies.MatchParent) ||
-                    (tabBar.WidthSpecification > Size.Width) || (tabBar.HeightSpecification > Size.Height))
-                {
-                    int tabBarSizeW = tabBar.Size2D.Width;
-                    int tabBarSizeH = tabBar.Size2D.Height;
-
-                    if ((tabBar.WidthSpecification == LayoutParamPolicies.MatchParent) || (tabBar.WidthSpecification > Size.Width))
-                    {
-                        tabBarSizeW = Size2D.Width - Padding.Start - Padding.End - tabBar.Margin.Start - tabBar.Margin.End;
-                    }
-
-                    if ((tabBar.HeightSpecification == LayoutParamPolicies.MatchParent) || (tabBar.HeightSpecification > Size.Height))
-                    {
-                        tabBarSizeH = Size2D.Height - Padding.Top - Padding.Bottom - tabBar.Margin.Top - tabBar.Margin.Bottom;
-                    }
-
-                    tabBar.Size2D = new Size2D(tabBarSizeW, tabBarSizeH);
-                }
-            }
-
-            if (content != null)
-            {
-                int contentPosX = Padding.Start + content.Margin.Start;
-                int contentPosY = Padding.Top + content.Margin.Top;
-
-                content.Position = new Position(contentPosX, contentPosY);
-
-                // FIXME: Now, WidthSpecification/HeightSpecification are updated internally.
-                //        When this is resolved, comparing Specification with Size is removed.
-                if ((content.WidthSpecification == LayoutParamPolicies.MatchParent) || (content.HeightSpecification == LayoutParamPolicies.MatchParent) ||
-                    (content.WidthSpecification > Size.Width) || (content.HeightSpecification > Size.Height))
-                {
-                    int contentSizeW = content.Size2D.Width;
-                    int contentSizeH = content.Size2D.Height;
-
-                    if ((content.WidthSpecification == LayoutParamPolicies.MatchParent) || (content.WidthSpecification > Size.Width))
-                    {
-                        contentSizeW = Size2D.Width - Padding.Start - Padding.End - content.Margin.Start - content.Margin.End;
-                    }
-
-                    if ((content.HeightSpecification == LayoutParamPolicies.MatchParent) || (content.HeightSpecification > Size.Height))
-                    {
-                        contentSizeH = Size2D.Height - Padding.Top - Padding.Bottom - content.Margin.Top - content.Margin.Bottom - (tabBar?.Size2D.Height ?? 0);
-                    }
-
-                    content.Size2D = new Size2D(contentSizeW, contentSizeH);
-                }
-            }
-
-            if (tabBar != null)
-            {
-                int tabBarPosX = Padding.Start + tabBar.Margin.Start;
-                int tabBarPosY = /*Padding.Top +*/ tabBar.Margin.Top + (content?.Size2D.Height ?? 0);
-
-                tabBar.Position = new Position(tabBarPosX, tabBarPosY);
-            }
         }
     }
 }
