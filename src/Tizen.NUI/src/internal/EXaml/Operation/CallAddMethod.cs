@@ -26,10 +26,10 @@ namespace Tizen.NUI.EXaml
 {
     internal class CallAddMethod : Operation
     {
-        public CallAddMethod(GlobalDataList globalDataList, int parentIndex, int childIndex, int methodIndex)
+        public CallAddMethod(GlobalDataList globalDataList, int parentIndex, object child, int methodIndex)
         {
             this.parentIndex = parentIndex;
-            this.childIndex = childIndex;
+            this.child = child;
             this.methodIndex = methodIndex;
             this.globalDataList = globalDataList;
         }
@@ -39,14 +39,18 @@ namespace Tizen.NUI.EXaml
         public void Do()
         {
             object parent = globalDataList.GatheredInstances[parentIndex];
-            object child = globalDataList.GatheredInstances[childIndex];
             var method = globalDataList.GatheredMethods[methodIndex];
+
+            if (child is Instance)
+            {
+                child = globalDataList.GatheredInstances[(child as Instance).Index];
+            }
 
             method.Invoke(parent, new object[] { child });
         }
 
         private int parentIndex;
-        private int childIndex;
+        private object child;
         private int methodIndex;
     }
 }

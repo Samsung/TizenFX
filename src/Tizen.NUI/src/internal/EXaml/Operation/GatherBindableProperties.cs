@@ -38,15 +38,23 @@ namespace Tizen.NUI.EXaml
         public void Do()
         {
             var type = globalDataList.GatheredTypes[typeIndex];
-            var field = type.GetField(fi => fi.Name == propertyName && fi.IsStatic && fi.IsPublic);
-            if (null == field)
+            var property = type.GetProperty(propertyName, BindingFlags.Public | BindingFlags.Static);
+            if (null != property)
             {
-                field = type.GetField(fi => fi.Name == propertyName && fi.IsStatic && !fi.IsPublic);
+                globalDataList.GatheredBindableProperties.Add(property.GetValue(null) as BindableProperty);
             }
-
-            if (null != field && field.GetValue(null) is BindableProperty value)
+            else
             {
-                globalDataList.GatheredBindableProperties.Add(value);
+                var field = type.GetField(fi => fi.Name == propertyName && fi.IsStatic && fi.IsPublic);
+                if (null == field)
+                {
+                    field = type.GetField(fi => fi.Name == propertyName && fi.IsStatic && !fi.IsPublic);
+                }
+
+                if (null != field)
+                {
+                    globalDataList.GatheredBindableProperties.Add(field.GetValue(null) as BindableProperty);
+                }
             }
         }
 

@@ -64,13 +64,13 @@ namespace Tizen.NUI.EXaml
 
         public void OnActive()
         {
-            if (null != childOp && childOp.ValueList.Count > 2 && (childOp.ValueList[0] is Instance instance) && (childOp.ValueList[1] is Instance child))
+            if (null != childOp && childOp.ValueList.Count > 2 && (childOp.ValueList[0] is Instance instance))
             {
                 int parentIndex = instance.Index;
-                int childIndex = child.Index;
+                var child = childOp.ValueList[1];
                 int methodIndex = (int)childOp.ValueList[2];
 
-                globalDataList.Operations.Add(new CallAddMethod(globalDataList, parentIndex, childIndex, methodIndex));
+                globalDataList.Operations.Add(new CallAddMethod(globalDataList, parentIndex, child, methodIndex));
             }
         }
     }
