@@ -340,7 +340,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Return currently applied style.
+        /// The last applied style object copy.
         /// </summary>
         /// <remarks>
         /// Modifying contents in style may cause unexpected behaviour.
@@ -799,6 +799,7 @@ namespace Tizen.NUI.Components
 
                 if (buttonStyle.Text != null)
                 {
+                    buttonText.ThemeChangeSensitive = false;
                     buttonText.ApplyStyle(buttonStyle.Text);
                 }
 

@@ -23,6 +23,9 @@ namespace Tizen.NUI
 {
     internal partial class DefaultThemeCreator
     {
+        /// <summary>
+        /// The base theme description.
+        /// </summary>
         [SuppressMessage("Microsoft.Reliability", "CA2000: Dispose objects before losing scope", Justification = "The responsibility to dispose the object is transferred to the theme object.")]
         public Theme Create()
         {
@@ -79,4 +82,5 @@ namespace Tizen.NUI
         }
     }
 }
-#endif
+
+#endif // !PROFILE_TV

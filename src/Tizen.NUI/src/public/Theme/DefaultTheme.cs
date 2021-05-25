@@ -27,8 +27,6 @@ namespace Tizen.NUI
         internal const string DefaultVersion = "1.0.0";
 
         internal static IThemeCreator Instance { get; set; } = new DefaultThemeCreator();
-
-        public HashSet<ExternalThemeKeyList> GetExternalThemeKeyListSet() => null;
     }
 }
 
