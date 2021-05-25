@@ -377,23 +377,6 @@ namespace Tizen.NUI
         /// </summary>
         internal void AddStyleWithoutClone(string styleName, ViewStyle value) => map[styleName] = value;
 
-        internal void ApplyExternalTheme(IExternalTheme externalTheme, HashSet<ExternalThemeKeyList> keyListSet)
-        {
-            Id = externalTheme.Id;
-            Version = externalTheme.Version;
-
-            if (keyListSet == null)
-            {
-                // Nothing to apply
-                return;
-            }
-
-            foreach (var keyList in keyListSet)
-            {
-                keyList?.ApplyKeyActions(externalTheme, this);
-            }
-        }
-
         internal bool HasSameIdAndVersion(IExternalTheme externalTheme)
         {
             if (externalTheme == null)

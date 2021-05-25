@@ -22,6 +22,5 @@ namespace Tizen.NUI
     internal interface IThemeCreator
     {
         Theme Create();
-        HashSet<ExternalThemeKeyList> GetExternalThemeKeyListSet();
     }
 }

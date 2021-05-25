@@ -48,7 +48,6 @@ namespace Tizen.NUI.Components
                 },
                 Text = new TextLabelStyle()
                 {
-                    PixelSize = 32,
                     TextColor = Color.White,
                 }
             });
@@ -74,7 +73,6 @@ namespace Tizen.NUI.Components
                 },
                 Text = new TextLabelStyle()
                 {
-                    PixelSize = 32,
                     TextColor = new Color("#001447")
                 }
             });
@@ -162,7 +160,6 @@ namespace Tizen.NUI.Components
                 },
                 Text = new TextLabelStyle()
                 {
-                    PixelSize = 32,
                     TextColor = new Color("#001447")
                 }
             });
@@ -238,7 +235,6 @@ namespace Tizen.NUI.Components
                 },
                 Text = new TextLabelStyle()
                 {
-                    PixelSize = 32,
                     TextColor = new Color("#001447")
                 }
             });
