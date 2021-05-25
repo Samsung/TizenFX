@@ -230,9 +230,16 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            if (!ApplyLevel(level))
+            var applyLevelResult = ApplyLevel(level);
+
+            if (applyLevelResult == Window.OperationResult.PermissionDenied)
             {
                 throw new UnauthorizedAccessException("Cannot post a Notification: Permission Denied. The privilege http://tizen.org/privilege/window.priority.set is needed.");
+            }
+
+            if (applyLevelResult != Window.OperationResult.Succeed)
+            {
+                Tizen.Log.Info("NUI", "The notification window may not have proper notification level.");
             }
 
             ApplyPositionSize(positionSize);
@@ -266,9 +273,19 @@ namespace Tizen.NUI.Components
         {
             this.level = level;
 
-            if (state == NotificationState.Post && !ApplyLevel(level))
+            if (state == NotificationState.Post)
             {
-                throw new UnauthorizedAccessException("Cannot set notification level: Permission Denied");
+                var result = ApplyLevel(level);
+
+                if (result == Window.OperationResult.PermissionDenied)
+                {
+                    throw new UnauthorizedAccessException("Cannot set notification level: Permission Denied. The privilege http://tizen.org/privilege/window.priority.set is needed.");
+                }
+
+                if (result != Window.OperationResult.Succeed)
+                {
+                    Tizen.Log.Info("NUI", "Cannot set notification level: Unknown reason. The notification window may not have proper notification level.");
+                }
             }
 
             return this;
@@ -440,9 +457,11 @@ namespace Tizen.NUI.Components
             notificationWindow = null;
         }
 
-        private bool ApplyLevel(NotificationLevel level)
+        private Window.OperationResult ApplyLevel(NotificationLevel level)
         {
-            return NotificationWindow.SetNotificationLevel(level);
+            var ret = (Window.OperationResult)Interop.Window.SetNotificationLevel(NotificationWindow.SwigCPtr, (int)level);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         private void ApplyPositionSize(Rectangle positionSize)
