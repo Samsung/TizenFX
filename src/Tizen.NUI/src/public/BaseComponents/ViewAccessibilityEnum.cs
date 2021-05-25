@@ -689,6 +689,10 @@ namespace Tizen.NUI.BaseComponents
     /// <summary>
     /// The accessibility role.
     /// </summary>
+    /// <remarks>
+    /// For more information about AT-SPI2 role definition, please refer to
+    /// https://developer.gnome.org/libatspi/stable/libatspi-atspi-constants.html#AtspiRole
+    /// </remarks>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public enum Role
     {
