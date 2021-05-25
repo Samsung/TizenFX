@@ -27,7 +27,6 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class WebContext : Disposable
     {
-        private string proxyUrl;
         private string appId;
         private string appVersion;
         private float timeOffset;
@@ -165,7 +164,7 @@ namespace Tizen.NUI
         {
             get
             {
-                return proxyUrl;
+                return Interop.WebContext.GetProxyUri(SwigCPtr);
             }
             set
             {
@@ -173,7 +172,6 @@ namespace Tizen.NUI
                 {
                     Interop.WebContext.SetProxyUri(SwigCPtr, value);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                    proxyUrl = value;
                 }
             }
         }
@@ -224,7 +222,7 @@ namespace Tizen.NUI
             }
             set
             {
-                Interop.WebContext.SetContextAppId(SwigCPtr, value);
+                Interop.WebContext.SetAppId(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 appId = value;
             }
@@ -242,7 +240,7 @@ namespace Tizen.NUI
             }
             set
             {
-                Interop.WebContext.SetContextAppVersion(SwigCPtr, value);
+                Interop.WebContext.SetAppVersion(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 appVersion = value;
             }
@@ -260,7 +258,7 @@ namespace Tizen.NUI
             }
             set
             {
-                Interop.WebContext.SetContextApplicationType(SwigCPtr, (int)value);
+                Interop.WebContext.SetApplicationType(SwigCPtr, (int)value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 applicationType = value;
             }
@@ -278,7 +276,7 @@ namespace Tizen.NUI
             }
             set
             {
-                Interop.WebContext.SetContextTimeOffset(SwigCPtr, value);
+                Interop.WebContext.SetTimeOffset(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 timeOffset = value;
             }
@@ -302,14 +300,14 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets context proxy.
+        /// Deprecated. Gets context proxy.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string ContextProxy
         {
             get
             {
-                return Interop.WebContext.GetContextProxy(SwigCPtr);
+                return Interop.WebContext.GetProxyUri(SwigCPtr);
             }
         }
 
@@ -496,36 +494,47 @@ namespace Tizen.NUI
         /// <param name="time">Daylight saving time</param>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetContextTimeZoneOffset(float offset, float time)
+        public void SetTimeZoneOffset(float offset, float time)
         {
-            Interop.WebContext.SetContextTimeZoneOffset(SwigCPtr, offset, time);
+            Interop.WebContext.SetTimeZoneOffset(SwigCPtr, offset, time);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
-        /// Registers url schemes enabled.
-        /// <param name="strArray">The string array of schemes</param>
+        /// Deprecated. Sets context time zone offset.
+        /// <param name="offset">Time offset</param>
+        /// <param name="time">Daylight saving time</param>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void RegisterUrlSchemesAsCorsEnabled(string[] strArray)
+        public void SetContextTimeZoneOffset(float offset, float time)
         {
-            if (strArray != null)
+            SetTimeZoneOffset(offset, time);
+        }
+
+        /// <summary>
+        /// Registers url schemes enabled.
+        /// <param name="schemes">The string array of schemes</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RegisterUrlSchemesAsCorsEnabled(string[] schemes)
+        {
+            if (schemes != null)
             {
-                Interop.WebContext.RegisterUrlSchemesAsCorsEnabled(SwigCPtr, strArray, (uint)strArray.Length);
+                Interop.WebContext.RegisterUrlSchemesAsCorsEnabled(SwigCPtr, schemes, (uint)schemes.Length);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         /// <summary>
         /// Registers js plugin mime types.
-        /// <param name="strArray">The string array of types</param>
+        /// <param name="mimes">The string array of types</param>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void RegisterJsPluginMimeTypes(string[] strArray)
+        public void RegisterJsPluginMimeTypes(string[] mimes)
         {
-            if (strArray != null)
+            if (mimes != null)
             {
-                Interop.WebContext.RegisterJsPluginMimeTypes(SwigCPtr, strArray, (uint)strArray.Length);
+                Interop.WebContext.RegisterJsPluginMimeTypes(SwigCPtr, mimes, (uint)mimes.Length);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -554,14 +563,14 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Deletes password dataList.
-        /// <param name="strArray">The string array of dataList</param>
+        /// <param name="passwords">The string array of data list</param>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void DeleteFormPasswordDataList(string[] strArray)
+        public void DeleteFormPasswordDataList(string[] passwords)
         {
-            if (strArray != null)
+            if (passwords != null)
             {
-                Interop.WebContext.DeleteFormPasswordDataList(SwigCPtr, strArray, (uint)strArray.Length);
+                Interop.WebContext.DeleteFormPasswordDataList(SwigCPtr, passwords, (uint)passwords.Length);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -587,15 +596,26 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sets context proxy.
-        /// <param name="proxy">The string array of dataList</param>
+        /// Sets proxy bypass rule.
+        /// <param name="proxy">The proxy string</param>
+        /// <param name="rule">Bypass rule</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetProxyBypassRule(string proxy, string rule)
+        {
+            Interop.WebContext.SetProxyBypassRule(SwigCPtr, proxy, rule);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Deprecated. Sets proxy bypass rule.
+        /// <param name="proxy">The proxy string</param>
         /// <param name="rule">Bypass rule</param>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetContextProxy(string proxy, string rule)
         {
-            Interop.WebContext.SetContextProxy(SwigCPtr, proxy, rule);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            SetProxyBypassRule(proxy, rule);
         }
 
         /// <summary>
