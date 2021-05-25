@@ -1495,7 +1495,7 @@ namespace Tizen.NUI.Components
             else
             {
                 int adjustIndex = index - (hasHeader ? 1 : 0);
-                float current = (hasHeader? headerSize : 0) + adjustIndex * StepCandidate;
+                float current = (IsHorizontal ? spaceStartX : spaceStartY) + (hasHeader? headerSize : 0) + adjustIndex * StepCandidate;
                 //FIXME : CandidateMargin need to be actual itemMargin
                 return ((IsHorizontal? current + CandidateMargin.Start : spaceStartX + CandidateMargin.Start),
                         (IsHorizontal? spaceStartY + CandidateMargin.Top : current + CandidateMargin.Top));
