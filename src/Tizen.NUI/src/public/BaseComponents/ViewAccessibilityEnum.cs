@@ -23,6 +23,29 @@ using Tizen.NUI;
 namespace Tizen.NUI.BaseComponents
 {
     /// <summary>
+    /// Accessibility interface.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum AccessibilityInterface
+    {
+        /// <summary>
+        /// Common accessibility interface
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        None = 0,
+        /// <summary>
+        /// Accessibility interface which can store numeric value
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Value = 1,
+        /// <summary>
+        /// Accessibility interface which can store editable texts
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        EditableText = 2,
+    }
+
+    /// <summary>
     /// Accessibility reading information types.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]

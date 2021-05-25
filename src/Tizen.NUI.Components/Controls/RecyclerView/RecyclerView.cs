@@ -374,7 +374,7 @@ namespace Tizen.NUI.Components
                     }
                     RecycleCache.Clear();
                 }
-                InternalItemsLayouter.Clear();
+                InternalItemsLayouter?.Clear();
                 InternalItemsLayouter = null;
                 ItemsSource = null;
                 ItemTemplate = null;
