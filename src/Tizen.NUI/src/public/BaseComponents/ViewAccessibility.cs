@@ -599,7 +599,6 @@ namespace Tizen.NUI.BaseComponents
             FlagSetter(ref states, AccessibilityStates.Highlighted, this.IsHighlighted);
             FlagSetter(ref states, AccessibilityStates.Enabled, this.State != States.Disabled);
             FlagSetter(ref states, AccessibilityStates.Sensitive, this.Sensitive);
-            FlagSetter(ref states, AccessibilityStates.Animated, this.AccessibilityAnimated);
             FlagSetter(ref states, AccessibilityStates.Visible, true);
             FlagSetter(ref states, AccessibilityStates.Showing, this.Visibility);
             FlagSetter(ref states, AccessibilityStates.Defunct, !this.IsOnWindow);
