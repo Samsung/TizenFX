@@ -66,6 +66,15 @@ namespace Tizen.NUI.Components
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnInitialize()
+        {
+            base.OnInitialize();
+
+            SetAccessibilityConstructor(Role.PageTab);
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void ApplyStyle(ViewStyle viewStyle)
         {
             styleApplied = false;
@@ -251,6 +260,8 @@ namespace Tizen.NUI.Components
 
             bottomLine = new View(tabButtonStyle?.BottomLine);
             Add(bottomLine);
+
+            AccessibilityHighlightable = true;
         }
 
         private void UpdateSizeAndSpacing()
