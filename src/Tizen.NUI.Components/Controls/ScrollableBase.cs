@@ -573,7 +573,6 @@ namespace Tizen.NUI.Components
         private float maxScrollDistance;
         private float childTargetPosition = 0.0f;
         private PanGestureDetector mPanGestureDetector;
-        private View mInterruptTouchingChild;
         private ScrollbarBase scrollBar;
         private bool scrolling = false;
         private float ratioOfScreenWidthToCompleteScroll = 0.5f;
@@ -648,13 +647,6 @@ namespace Tizen.NUI.Components
             propertyNotification.Notified += OnPropertyChanged;
             base.Add(ContentContainer);
 
-            //Interrupt touching when panning is started
-            mInterruptTouchingChild = new View()
-            {
-                Size = new Size(Window.Instance.WindowSize),
-                BackgroundColor = Color.Transparent,
-            };
-            mInterruptTouchingChild.TouchEvent += OnIterruptTouchingChildTouched;
             Scrollbar = new Scrollbar();
 
             //Show vertical shadow on the top (or bottom) of the scrollable when panning down (or up).
@@ -699,7 +691,7 @@ namespace Tizen.NUI.Components
             AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "ScrollableBase");
         }
 
-        private bool OnIterruptTouchingChildTouched(object source, View.TouchEventArgs args)
+        private bool OnInterruptTouchingChildTouched(object source, View.TouchEventArgs args)
         {
             if (args.Touch.GetState(0) == PointStateType.Down)
             {
@@ -854,7 +846,7 @@ namespace Tizen.NUI.Components
         private void OnScrollAnimationEnded()
         {
             scrolling = false;
-            base.Remove(mInterruptTouchingChild);
+            this.InterceptTouchEvent -= OnInterruptTouchingChildTouched;
 
             ScrollEventArgs eventArgs = new ScrollEventArgs(ContentContainer.CurrentPosition);
             ScrollAnimationEnded?.Invoke(this, eventArgs);
@@ -1341,7 +1333,8 @@ namespace Tizen.NUI.Components
             if (panGesture.State == Gesture.StateType.Started)
             {
                 readyToNotice = false;
-                base.Add(mInterruptTouchingChild);
+                //Interrupt touching when panning is started
+                this.InterceptTouchEvent += OnInterruptTouchingChildTouched;
                 AttachOverShootingShadowView();
                 Debug.WriteLineIf(LayoutDebugScrollableBase, "Gesture Start");
                 if (scrolling && !SnapToPage)
