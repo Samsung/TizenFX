@@ -85,19 +85,19 @@ namespace Tizen.NUI
             public static extern string GetCertificateFilePath(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContext_SetContextAppId")]
-            public static extern void SetContextAppId(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+            public static extern void SetAppId(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContext_SetContextAppVersion")]
-            public static extern bool SetContextAppVersion(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+            public static extern bool SetAppVersion(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContext_SetContextApplicationType")]
-            public static extern void SetContextApplicationType(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            public static extern void SetApplicationType(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContext_SetContextTimeOffset")]
-            public static extern void SetContextTimeOffset(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            public static extern void SetTimeOffset(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContext_SetContextTimeZoneOffset")]
-            public static extern void SetContextTimeZoneOffset(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3);
+            public static extern void SetTimeZoneOffset(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContext_RegisterUrlSchemesAsCorsEnabled")]
             public static extern void RegisterUrlSchemesAsCorsEnabled(global::System.Runtime.InteropServices.HandleRef jarg1, string[] jarg2, uint jarg3);
@@ -127,10 +127,10 @@ namespace Tizen.NUI
             public static extern void DeleteAllFormCandidateData(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContext_GetContextProxy")]
-            public static extern string GetContextProxy(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern string GetProxyUri(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContext_SetContextProxy")]
-            public static extern void SetContextProxy(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3);
+            public static extern void SetProxyBypassRule(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContext_GetProxyBypassRule")]
             public static extern string GetProxyBypassRule(global::System.Runtime.InteropServices.HandleRef jarg1);
