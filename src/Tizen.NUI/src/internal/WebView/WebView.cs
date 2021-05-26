@@ -30,7 +30,7 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class WebView : View
     {
-        private Vector4 contentBackgroundColor;
+        private Color contentBackgroundColor;
         private bool tilesClearedWhenHidden;
         private float tileCoverAreaMultiplier;
         private bool cursorEnabledByClient;
@@ -1381,13 +1381,13 @@ namespace Tizen.NUI
             return temp;
         });
 
-        private static readonly BindableProperty ContentBackgroundColorProperty = BindableProperty.Create(nameof(ContentBackgroundColor), typeof(Vector4), typeof(WebView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        private static readonly BindableProperty ContentBackgroundColorProperty = BindableProperty.Create(nameof(ContentBackgroundColor), typeof(Color), typeof(WebView), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var webview = (WebView)bindable;
             if (newValue != null)
             {
-                webview.contentBackgroundColor = (Vector4)newValue;
-                Tizen.NUI.Object.SetProperty(webview.SwigCPtr, WebView.Property.DocumentBackgroundColor, new Tizen.NUI.PropertyValue((Vector4)newValue));
+                webview.contentBackgroundColor = (Color)newValue;
+                Tizen.NUI.Object.SetProperty(webview.SwigCPtr, WebView.Property.DocumentBackgroundColor, new Tizen.NUI.PropertyValue((Color)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
