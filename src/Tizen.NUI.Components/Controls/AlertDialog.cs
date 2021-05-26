@@ -490,7 +490,6 @@ namespace Tizen.NUI.Components
             Content = DefaultContent;
 
             ActionContent = DefaultActionContent;
-            AccessibilityHighlightable = true;
         }
 
         private void ResetContent()
