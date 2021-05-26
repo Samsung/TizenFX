@@ -87,6 +87,9 @@ namespace Tizen.NUI
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_GenerateUrl")]
             public static extern string GenerateUrl(HandleRef capture);
 
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_GetCapturedBuffer")]
+            public static extern IntPtr GetCapturedBuffer(HandleRef capture);
+
         }
     }
 }
