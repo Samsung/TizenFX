@@ -929,7 +929,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Flag to decide whether the thumb snap to the nearest discrete value when the user drags the thumb or taps.
+        /// Flag to decide whether the thumb snaps to the nearest discrete value when the user drags the thumb or taps.
         ///
         /// The default value is false.
         /// </summary>
@@ -938,12 +938,13 @@ namespace Tizen.NUI.Components
 
         /// <summary>
         /// Gets or sets the discrete value of slider.
-        ///
+        /// </summary>
+        /// <remarks>
         /// The discrete value is evenly spaced between MinValue and MaxValue.
         /// For example, MinValue is 0, MaxValue is 100, and DiscreteValue is 20.
         /// Then, the thumb can only go to 0, 20, 40, 60, 80, and 100.
         /// The default is 0.
-        /// </summary>
+        /// </remarks>
         /// <since_tizen> 9 </since_tizen>
         public float DiscreteValue
         {
@@ -1278,17 +1279,15 @@ namespace Tizen.NUI.Components
                 Utility.Dispose(warningSlidedTrackImage);
                 Utility.Dispose(warningTrackImage);
                 Utility.Dispose(slidedTrackImage);
-                if (null != bgTrackImage)
-                {
-                    bgTrackImage.TouchEvent -= OnTouchEventForBgTrack;
-                    Utility.Dispose(bgTrackImage);
-                }
+                Utility.Dispose(bgTrackImage);
                 Utility.Dispose(lowIndicatorImage);
                 Utility.Dispose(highIndicatorImage);
                 Utility.Dispose(lowIndicatorText);
                 Utility.Dispose(highIndicatorText);
                 Utility.Dispose(valueIndicatorImage);
                 Utility.Dispose(valueIndicatorText);
+
+                this.TouchEvent -= OnTouchEventForTrack;
             }
 
             base.Dispose(type);
@@ -1352,7 +1351,7 @@ namespace Tizen.NUI.Components
             }
         }
 
-        private bool OnTouchEventForBgTrack(object source, TouchEventArgs e)
+        private bool OnTouchEventForTrack(object source, TouchEventArgs e)
         {
             PointStateType state = e.Touch.GetState(0);
             if (state == PointStateType.Down)

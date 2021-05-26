@@ -38,7 +38,7 @@ namespace Tizen.NUI.EXaml
         public void Do()
         {
             var converter = globalDataList.GatheredInstances[converterIndex] as TypeConverter;
-            globalDataList.GatheredInstances.Add(converter.ConvertFromInvariantString(value));
+            globalDataList.GatheredInstances.Add(converter?.ConvertFromInvariantString(value));
         }
 
         private int converterIndex;

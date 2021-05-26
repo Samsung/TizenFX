@@ -48,6 +48,9 @@ namespace Tizen.NUI.BaseComponents
         private Extents margin;
         private bool? themeChangeSensitive;
         private Vector4 cornerRadius;
+        private float? borderlineWidth;
+        private Color borderlineColor;
+        private float? borderlineOffset;
 
         private Selector<ImageShadow> imageShadow;
         private Selector<Shadow> boxShadow;
@@ -419,6 +422,40 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The width for the borderline of the View.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float? BorderlineWidth
+        {
+            get => (float?)GetValue(BorderlineWidthProperty);
+            set => SetValue(BorderlineWidthProperty, value);
+        }
+
+        /// <summary>
+        /// The color for the borderline of the View.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color BorderlineColor
+        {
+            get => (Color)GetValue(BorderlineColorProperty);
+            set => SetValue(BorderlineColorProperty, value);
+        }
+
+        /// <summary>
+        /// The Relative offset for the borderline of the View.
+        /// recommand [-1.0f to 1.0f] range.
+        /// If -1.0f, borderline draw inside of View.
+        /// If 1.0f, borderline draw outside of View.
+        /// If 0.0f, borderline draw half at inside and half at outside.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float? BorderlineOffset
+        {
+            get => (float?)GetValue(BorderlineOffsetProperty);
+            set => SetValue(BorderlineOffsetProperty, value);
+        }
+
+        /// <summary>
         /// The ThemeChangeSensitive value of the View.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -525,6 +562,8 @@ namespace Tizen.NUI.BaseComponents
                 position?.Dispose();
                 size?.Dispose();
                 sizeModeFactor?.Dispose();
+                cornerRadius?.Dispose();
+                borderlineColor?.Dispose();
             }
 
             disposed = true;
@@ -568,7 +607,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var newStyle = value.Clone() as TOut;
 
-            newStyle.CopyFrom(other);
+            newStyle?.CopyFrom(other);
 
             return newStyle;
         }

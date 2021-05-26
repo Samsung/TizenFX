@@ -61,12 +61,10 @@ namespace Tizen.NUI.EXaml
 
         public void OnActive()
         {
-            if (null != childOp)
+            if (null != childOp && childOp.ValueList.Count > 2 && (childOp.ValueList[0] is Instance instance) && (childOp.ValueList[2] is string key))
             {
-                int instanceIndex = (childOp.ValueList[0] as Instance).Index;
+                int instanceIndex = instance.Index;
                 int propertyIndex = (int)childOp.ValueList[1];
-                string key = childOp.ValueList[2] as string;
-
                 globalDataList.Operations.Add(new SetDynamicResource(globalDataList, instanceIndex, propertyIndex, key));
             }
         }

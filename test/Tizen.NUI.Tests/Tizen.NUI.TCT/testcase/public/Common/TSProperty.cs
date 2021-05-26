@@ -188,7 +188,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void PropertyComponentIndexGet()
         {
-            tlog.Debug(tag, $"PropertyPropertyIndexGet START");
+            tlog.Debug(tag, $"PropertyComponentIndexGet START");
 
             var animatable = new Animatable();
             Assert.IsNotNull(animatable, "Should be not null!");
@@ -203,7 +203,7 @@ namespace Tizen.NUI.Devel.Tests
 
             testingTarget.Dispose();
             animatable.Dispose();
-            tlog.Debug(tag, $"PropertyPropertyIndexGet END (OK)");
+            tlog.Debug(tag, $"PropertyComponentIndexGet END (OK)");
         }
 
         [Test]
@@ -213,9 +213,9 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRO")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void PropertyComponentIndexIndexSet()
+        public void PropertyComponentIndexSet()
         {
-            tlog.Debug(tag, $"PropertyPropertyIndexSet START");
+            tlog.Debug(tag, $"PropertyComponentIndexSet START");
 
             var animatable = new Animatable();
             Assert.IsNotNull(animatable, "Should be not null!");
@@ -231,7 +231,7 @@ namespace Tizen.NUI.Devel.Tests
 
             testingTarget.Dispose();
             animatable.Dispose();
-            tlog.Debug(tag, $"PropertyPropertyIndexSet END (OK)");
+            tlog.Debug(tag, $"PropertyComponentIndexSet END (OK)");
         }
     }
 }

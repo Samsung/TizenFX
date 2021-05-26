@@ -1393,6 +1393,40 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Enable grab handle property.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool EnableGrabHandle
+        {
+            get
+            {
+                return (bool)GetValue(EnableGrabHandleProperty);
+            }
+            set
+            {
+                SetValue(EnableGrabHandleProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Enable grab handle popup property.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool EnableGrabHandlePopup
+        {
+            get
+            {
+                return (bool)GetValue(EnableGrabHandlePopupProperty);
+            }
+            set
+            {
+                SetValue(EnableGrabHandlePopupProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TextEditor obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
@@ -1590,6 +1624,8 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int PrimaryCursorPosition = Interop.TextEditor.PrimaryCursorPositionGet();
             internal static readonly int FontSizeScale = Interop.TextEditor.FontSizeScaleGet();
             internal static readonly int GrabHandleColor = Interop.TextEditor.GrabHandleColorGet();
+            internal static readonly int EnableGrabHandle = Interop.TextEditor.EnableGrabHandleGet();
+            internal static readonly int EnableGrabHandlePopup = Interop.TextEditor.EnableGrabHandlePopupGet();
         }
 
         internal class InputStyle

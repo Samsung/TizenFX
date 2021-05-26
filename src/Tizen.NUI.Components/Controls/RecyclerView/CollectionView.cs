@@ -833,10 +833,14 @@ namespace Tizen.NUI.Components
                         groupHeader.isGroupFooter = false;
                         ContentContainer.Add(groupHeader);
                     }
-                    groupHeader.ParentItemsView = this;
-                    groupHeader.Index = index;
-                    groupHeader.ParentGroup = context;
-                    groupHeader.BindingContext = context;
+
+                    if (groupHeader != null)
+                    {
+                        groupHeader.ParentItemsView = this;
+                        groupHeader.Index = index;
+                        groupHeader.ParentGroup = context;
+                        groupHeader.BindingContext = context;
+                    }
                     //group selection?
                     item = groupHeader;
                 }
@@ -854,11 +858,14 @@ namespace Tizen.NUI.Components
                         groupFooter.isGroupFooter = true;
                         ContentContainer.Add(groupFooter);
                     }
-                    groupFooter.ParentItemsView = this;
-                    groupFooter.Index = index;
-                    groupFooter.ParentGroup = context;
-                    groupFooter.BindingContext = context;
 
+                    if (groupFooter != null)
+                    {
+                        groupFooter.ParentItemsView = this;
+                        groupFooter.Index = index;
+                        groupFooter.ParentGroup = context;
+                        groupFooter.BindingContext = context;
+                    }
                     //group selection?
                     item = groupFooter;
                 }

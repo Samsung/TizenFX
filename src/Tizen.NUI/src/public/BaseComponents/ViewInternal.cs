@@ -28,8 +28,6 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public partial class View
     {
-        private ViewSelectorData selectorData;
-
         internal string styleName;
 
         /// <summary>
@@ -1048,6 +1046,7 @@ namespace Tizen.NUI.BaseComponents
             // Apply to the background visual
             PropertyMap backgroundMap = new PropertyMap();
             PropertyValue background = Tizen.NUI.Object.GetProperty(SwigCPtr, View.Property.BACKGROUND);
+
             if (background.Get(backgroundMap) && !backgroundMap.Empty())
             {
                 backgroundMap[Visual.Property.CornerRadius] = cornerRadius;
@@ -1058,7 +1057,6 @@ namespace Tizen.NUI.BaseComponents
             }
             backgroundMap.Dispose();
             background.Dispose();
-            cornerRadius.Dispose();
 
             // Apply to the shadow visual
             PropertyMap shadowMap = new PropertyMap();
@@ -1073,6 +1071,31 @@ namespace Tizen.NUI.BaseComponents
             }
             shadowMap.Dispose();
             shadow.Dispose();
+            cornerRadius.Dispose();
+        }
+
+        /// TODO open as a protected level
+        internal virtual void ApplyBorderline()
+        {
+            if (backgroundExtraData == null) return;
+
+            var borderlineColor = backgroundExtraData.BorderlineColor == null ? new PropertyValue(Color.Black) : new PropertyValue(backgroundExtraData.BorderlineColor);
+
+            // Apply to the background visual
+            PropertyMap backgroundMap = new PropertyMap();
+            PropertyValue background = Tizen.NUI.Object.GetProperty(SwigCPtr, View.Property.BACKGROUND);
+            if (background.Get(backgroundMap) && !backgroundMap.Empty())
+            {
+                backgroundMap[Visual.Property.BorderlineWidth] = new PropertyValue(backgroundExtraData.BorderlineWidth);
+                backgroundMap[Visual.Property.BorderlineColor] = borderlineColor;
+                backgroundMap[Visual.Property.BorderlineOffset] = new PropertyValue(backgroundExtraData.BorderlineOffset);
+                var temp = new PropertyValue(backgroundMap);
+                Tizen.NUI.Object.SetProperty(SwigCPtr, View.Property.BACKGROUND, temp);
+                temp.Dispose();
+            }
+            backgroundMap.Dispose();
+            background.Dispose();
+            borderlineColor.Dispose();
         }
 
         /// <summary>
@@ -1109,8 +1132,8 @@ namespace Tizen.NUI.BaseComponents
                 //Called by User
                 //Release your own managed resources here.
                 //You should release all of your own disposable objects here.
-                selectorData?.Reset(this);
-                if (themeChangeSensitive)
+                themeData?.selectorData?.Reset(this);
+                if (ThemeChangeSensitive)
                 {
                     ThemeManager.ThemeChangedInternal.Remove(OnThemeChanged);
                 }
@@ -1384,6 +1407,11 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        private ViewSelectorData EnsureSelectorData() => selectorData ?? (selectorData = new ViewSelectorData());
+        private ViewSelectorData EnsureSelectorData()
+        {
+            if (themeData == null) themeData = new ThemeData();
+
+            return themeData.selectorData ?? (themeData.selectorData = new ViewSelectorData());
+        }
     }
 }

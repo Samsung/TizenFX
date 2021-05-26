@@ -44,7 +44,10 @@ namespace Tizen.NUI.EXaml
                 field = type.GetField(fi => fi.Name == propertyName && fi.IsStatic && !fi.IsPublic);
             }
 
-            globalDataList.GatheredBindableProperties.Add(field.GetValue(null) as BindableProperty);
+            if (null != field && field.GetValue(null) is BindableProperty value)
+            {
+                globalDataList.GatheredBindableProperties.Add(value);
+            }
         }
 
         private int typeIndex;

@@ -1325,7 +1325,7 @@ namespace Tizen.NUI.Components
             if (targetSibling > -1 && targetSibling < Container.Children.Count)
             {
                 RecyclerViewItem candidate = Container.Children[targetSibling] as RecyclerViewItem;
-                if (candidate.Index >= 0 && candidate.Index < colView.InternalItemSource.Count)
+                if (candidate != null && candidate.Index >= 0 && candidate.Index < colView.InternalItemSource.Count)
                 {
                     nextFocusedView = candidate;
                 }
@@ -1495,7 +1495,7 @@ namespace Tizen.NUI.Components
             else
             {
                 int adjustIndex = index - (hasHeader ? 1 : 0);
-                float current = (hasHeader? headerSize : 0) + adjustIndex * StepCandidate;
+                float current = (IsHorizontal ? spaceStartX : spaceStartY) + (hasHeader? headerSize : 0) + adjustIndex * StepCandidate;
                 //FIXME : CandidateMargin need to be actual itemMargin
                 return ((IsHorizontal? current + CandidateMargin.Start : spaceStartX + CandidateMargin.Start),
                         (IsHorizontal? spaceStartY + CandidateMargin.Top : current + CandidateMargin.Top));
