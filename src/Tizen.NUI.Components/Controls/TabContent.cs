@@ -53,6 +53,15 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 9 </since_tizen>
         public int ViewCount => views.Count;
 
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnInitialize()
+        {
+            base.OnInitialize();
+
+            SetAccessibilityConstructor(Role.PageTabList);
+        }
+
         /// <summary>
         /// Adds a view to TabContent.
         /// </summary>

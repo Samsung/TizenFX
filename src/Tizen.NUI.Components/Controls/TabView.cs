@@ -99,6 +99,15 @@ namespace Tizen.NUI.Components
             InitTabBar();
         }
 
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnInitialize()
+        {
+            base.OnInitialize();
+
+            SetAccessibilityConstructor(Role.PageTabList);
+        }
+
         private void InitTabBar()
         {
             if (tabBar != null)
