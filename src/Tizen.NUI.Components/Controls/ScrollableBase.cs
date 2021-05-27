@@ -728,7 +728,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public override void Remove(View view)
         {
-            if (SnapToPage && CurrentPage == Children.IndexOf(view) && CurrentPage == Children.Count - 1)
+            if (SnapToPage && CurrentPage == Children.IndexOf(view) && CurrentPage == Children.Count - 1 && Children.Count > 1)
             {
                 // Target View is current page and also last child.
                 // CurrentPage should be changed to previous page.
