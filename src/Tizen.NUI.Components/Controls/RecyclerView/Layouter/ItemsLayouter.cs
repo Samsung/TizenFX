@@ -159,8 +159,13 @@ namespace Tizen.NUI.Components
                 CandidateMargin.Dispose();
                 CandidateMargin = null;
             }
+            if (Container)
+            {
+                Container.SizeHeight = 0;
+                Container.Position = new Position(0.0f, 0.0f);
+                Container = null;
+            }
             ItemsView = null;
-            Container = null;
         }
 
         /// <summary>
