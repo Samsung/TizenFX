@@ -758,8 +758,7 @@ namespace Tizen.NUI.Components
             {
                 // Target View is current page and also last child.
                 // CurrentPage should be changed to previous page.
-                CurrentPage = Math.Max(0, CurrentPage - 1);
-                ScrollToIndex(CurrentPage);
+                ScrollToIndex(CurrentPage - 1);
             }
 
             ContentContainer.Remove(view);
