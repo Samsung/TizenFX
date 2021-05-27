@@ -120,6 +120,10 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets or sets whether the view is animated for accessibility or not.
         /// </summary>
+        /// <remarks>
+        /// For views, which intend to block notification of theirs position or size change to AT-SPI2, this value should be set as true.
+        /// Otherwise it is set to false by default and the object position or size change is notified to AT-SPI2.
+        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool AccessibilityAnimated
         {
