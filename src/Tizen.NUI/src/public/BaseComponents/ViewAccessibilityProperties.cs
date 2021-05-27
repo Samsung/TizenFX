@@ -22,8 +22,15 @@ using Tizen.NUI;
 
 namespace Tizen.NUI.BaseComponents
 {
+    /// <summary>
+    /// View is the base class for all views.
+    /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public partial class View
     {
+        /// <summary>
+        /// Gets or sets accessibility name.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string AccessibilityName
         {
@@ -38,6 +45,9 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// Gets or sets accessibility description.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string AccessibilityDescription
         {
@@ -52,6 +62,9 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// Gets or sets accessibility translation domain.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string AccessibilityTranslationDomain
         {
@@ -66,6 +79,9 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// Gets or sets accessibility role.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Role AccessibilityRole
         {
@@ -80,6 +96,13 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// Gets or sets whether the view is highlightable for accessibility or not.
+        /// </summary>
+        /// <remarks>
+        /// For views, which intend to receive accessibility highlight focus, this value should  be set as true.
+        /// Otherwise it is set to false by default and the object is omitted in AT-SPI2 navigation.
+        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool AccessibilityHighlightable
         {
@@ -94,6 +117,13 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// Gets or sets whether the view is animated for accessibility or not.
+        /// </summary>
+        /// <remarks>
+        /// For views, which intend to block notification of theirs position or size change to AT-SPI2, this value should be set as true.
+        /// Otherwise it is set to false by default and the object position or size change is notified to AT-SPI2.
+        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool AccessibilityAnimated
         {
