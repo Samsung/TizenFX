@@ -178,7 +178,7 @@ namespace Tizen.NUI.Components
                     instance.curValue = (float)newValue;
                     if (instance.IsHighlighted)
                     {
-                        instance.EmitAccessibilityEvent(ObjectPropertyChangeEvent.Value);
+                        instance.EmitAccessibilityEvent(AccessibilityPropertyChangeEvent.Value);
                     }
                     instance.UpdateValue();
                 }
