@@ -364,7 +364,7 @@ namespace Tizen.NUI.Components
 
                 if (IsHighlighted && String.IsNullOrEmpty(AccessibilityName) && GetAccessibilityNameSignal().Empty())
                 {
-                    EmitAccessibilityEvent(ObjectPropertyChangeEvent.Name);
+                    EmitAccessibilityEvent(AccessibilityPropertyChangeEvent.Name);
                 }
             }
         }
