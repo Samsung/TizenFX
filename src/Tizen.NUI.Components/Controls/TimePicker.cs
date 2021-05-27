@@ -228,7 +228,7 @@ namespace Tizen.NUI.Components
         public override void OnInitialize()
         {
             base.OnInitialize();
-            SetAccessibilityConstructor(Role.DateEditor, AccessibilityInterface.Value);
+            SetAccessibilityConstructor(Role.DateEditor);
 
             hourPicker = new Picker()
             {
@@ -279,7 +279,6 @@ namespace Tizen.NUI.Components
                          Justification = "The CellPadding will be dispose when the time picker disposed")]
         private void Initialize()
         {
-            AccessibilityHighlightable = true;
             HeightSpecification = LayoutParamPolicies.MatchParent;
 
             Layout = new LinearLayout() { 
