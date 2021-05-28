@@ -1135,24 +1135,31 @@ namespace Tizen.NUI.BaseComponents
             {
                 if(_resourceUrl != null)
                 {
-                  Size2D imageSize = ImageLoading.GetOriginalImageSize(_resourceUrl,true);
-
-                  int adjustedDesiredWidth, adjustedDesiredHeight;
-                  float aspectOfDesiredSize = (float)_desired_height / (float)_desired_width;
-                  float aspectOfImageSize = (float)imageSize.Height / (float)imageSize.Width;
-                  if( aspectOfImageSize > aspectOfDesiredSize)
-                  {
-                    adjustedDesiredWidth = _desired_width;
-                    adjustedDesiredHeight = imageSize.Height * _desired_width / imageSize.Width;
-                  }
-                  else
-                  {
-                    adjustedDesiredWidth = imageSize.Width * _desired_height/ imageSize.Height;
-                    adjustedDesiredHeight = _desired_height;
-                  }
-                  temp.Insert(ImageVisualProperty.DesiredWidth, new PropertyValue(adjustedDesiredWidth));
-                  temp.Insert(ImageVisualProperty.DesiredHeight, new PropertyValue(adjustedDesiredHeight));
-                  temp.Insert(ImageVisualProperty.FittingMode, new PropertyValue((int) FittingModeType.ScaleToFill));
+                    Size2D imageSize = ImageLoading.GetOriginalImageSize(_resourceUrl,true);
+                    if( imageSize.Height > 0 && imageSize.Width > 0 && _desired_width > 0  && _desired_height > 0 )
+                    {
+                        int adjustedDesiredWidth, adjustedDesiredHeight;
+                        float aspectOfDesiredSize = (float)_desired_height / (float)_desired_width;
+                        float aspectOfImageSize = (float)imageSize.Height / (float)imageSize.Width;
+                        if( aspectOfImageSize > aspectOfDesiredSize)
+                        {
+                            adjustedDesiredWidth = _desired_width;
+                            adjustedDesiredHeight = imageSize.Height * _desired_width / imageSize.Width;
+                        }
+                        else
+                        {
+                            adjustedDesiredWidth = imageSize.Width * _desired_height/ imageSize.Height;
+                            adjustedDesiredHeight = _desired_height;
+                        }
+                        temp.Insert(ImageVisualProperty.DesiredWidth, new PropertyValue(adjustedDesiredWidth));
+                        temp.Insert(ImageVisualProperty.DesiredHeight, new PropertyValue(adjustedDesiredHeight));
+                        temp.Insert(ImageVisualProperty.FittingMode, new PropertyValue((int) FittingModeType.ScaleToFill));
+                    }
+                    else
+                    {
+                        Tizen.Log.Fatal("NUI", "[ERROR] Can't use DesiredSize when ImageLoading is failed.");
+                    }
+                    imageSize?.Dispose();
                 }
             }
 
