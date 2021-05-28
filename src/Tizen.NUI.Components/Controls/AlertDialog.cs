@@ -554,6 +554,7 @@ namespace Tizen.NUI.Components
                 Layout = new LinearLayout()
                 {
                     LinearOrientation = LinearLayout.Orientation.Horizontal,
+                    LinearAlignment = LinearLayout.Alignment.Center,
                 },
             };
         }
