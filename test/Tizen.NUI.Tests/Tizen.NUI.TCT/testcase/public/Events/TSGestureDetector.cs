@@ -44,7 +44,6 @@ namespace Tizen.NUI.Devel.Tests
             GestureDetector newOne = new GestureDetector(ret);
             Assert.IsNotNull(newOne, "should be not null");
             Assert.IsInstanceOf<GestureDetector>(newOne, "should be an instance of testing target class!");
-
            
             GestureDetector newTwo = new GestureDetector(GestureDetector.getCPtr(ret).Handle, true);
             Assert.IsNotNull(newTwo, "should be not null");
@@ -67,8 +66,8 @@ namespace Tizen.NUI.Devel.Tests
         public void GestureDetectorAttach()
         {
             tlog.Debug(tag, $"GestureDetectorAttach START");
-			
-            GestureDetector ret = new GestureDetector();
+
+            LongPressGestureDetector ret = new LongPressGestureDetector();
             Assert.IsNotNull(ret, "should be not null");
             Assert.IsInstanceOf<GestureDetector>(ret, "should be an instance of testing target class!");
 
@@ -92,13 +91,14 @@ namespace Tizen.NUI.Devel.Tests
         public void GestureDetectorDetach()
         {
             tlog.Debug(tag, $"GestureDetectorDetach START");
-            GestureDetector ret = new GestureDetector();
+            LongPressGestureDetector ret = new LongPressGestureDetector();
+
             Assert.IsNotNull(ret, "should be not null");
             Assert.IsInstanceOf<GestureDetector>(ret, "should be an instance of testing target class!");
 
             View view = new View();
-            ret.Attach(view);
 
+            ret.Attach(view);
             ret.Detach(view);
             ret.Dispose();
             
@@ -116,7 +116,7 @@ namespace Tizen.NUI.Devel.Tests
         public void GestureDetectorDetachAll()
         {
             tlog.Debug(tag, $"GestureDetectorDetachAll START");
-            GestureDetector ret = new GestureDetector();
+            LongPressGestureDetector ret = new LongPressGestureDetector();
             Assert.IsNotNull(ret, "should be not null");
             Assert.IsInstanceOf<GestureDetector>(ret, "should be an instance of testing target class!");
 
@@ -140,7 +140,7 @@ namespace Tizen.NUI.Devel.Tests
         public void GestureDetectorGetAttachedViewCount()
         {
             tlog.Debug(tag, $"GestureDetectorGetAttachedViewCount START");
-            GestureDetector ret = new GestureDetector();
+            LongPressGestureDetector ret = new LongPressGestureDetector();
             Assert.IsNotNull(ret, "should be not null");
             Assert.IsInstanceOf<GestureDetector>(ret, "should be an instance of testing target class!");
 
@@ -166,7 +166,7 @@ namespace Tizen.NUI.Devel.Tests
         public void GestureDetectorGetAttachedView()
         {
             tlog.Debug(tag, $"GestureDetectorGetAttachedView START");
-            GestureDetector ret = new GestureDetector();
+            LongPressGestureDetector ret = new LongPressGestureDetector();
             Assert.IsNotNull(ret, "should be not null");
             Assert.IsInstanceOf<GestureDetector>(ret, "should be an instance of testing target class!");
 
@@ -196,11 +196,8 @@ namespace Tizen.NUI.Devel.Tests
             GestureDetector newOne = new GestureDetector();
             
             newOne = ret;
-            
             ret.Dispose();
             newOne.Dispose();
-            
-            
             tlog.Debug(tag, $"GestureDetectorAssign END (OK)");
             Assert.Pass("GestureDetectorAssign");
         }
