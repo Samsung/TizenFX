@@ -120,6 +120,8 @@ namespace Tizen.NUI.Components
                     UpdateState();
                     return true;
                 case PointStateType.Interrupted:
+                case PointStateType.Motion:
+                case PointStateType.Leave:
                     IsPressed = false;
                     UpdateState();
                     return true;
@@ -155,17 +157,14 @@ namespace Tizen.NUI.Components
                                 }
                             }
                         }
-                        else
-                        {
-                            // Extension : Extension?.SetTouchInfo(touch);
-                            UpdateState();
-                        }
 
                         if (clicked)
                         {
                             ClickedEventArgs eventArgs = new ClickedEventArgs();
                             OnClickedInternal(eventArgs);
                         }
+
+                        UpdateState();
 
                         return true;
                     }
