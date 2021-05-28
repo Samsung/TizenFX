@@ -236,16 +236,14 @@ namespace Tizen.NUI.Components
                             }
                         }
                     }
-                    else
-                    {
-                        UpdateState();
-                    }
 
                     if (clicked)
                     {
                         ClickedEventArgs eventArgs = new ClickedEventArgs();
                         OnClickedInternal(eventArgs);
                     }
+
+                    UpdateState();
                 }
             }
             return base.OnKey(key);
