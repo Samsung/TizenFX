@@ -378,6 +378,11 @@ namespace Tizen.NUI.Components
                 },
             });
 
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.ContentPage", new ViewStyle()
+            {
+                BackgroundColor = new Color("#EEEFF1FF"),
+            });
+
             theme.AddStyleWithoutClone("Tizen.NUI.Components.AppBar", new AppBarStyle()
             {
                 Size = new Size(-1, 120),
