@@ -378,7 +378,7 @@ namespace Tizen.NUI.Components
                 },
             });
 
-            theme.AddStyleWithoutClone("Tizen.NUI.Components.Page", new ViewStyle()
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.ContentPage", new ViewStyle()
             {
                 BackgroundColor = new Color("#EEEFF1FF"),
             });
