@@ -260,6 +260,9 @@ namespace Tizen.NUI.Components
             {
                 if (value != mScrollingDirection)
                 {
+                    //Reset scroll position and stop scroll animation
+                    ScrollTo(0, false);
+
                     mScrollingDirection = value;
                     mPanGestureDetector.ClearAngles();
                     mPanGestureDetector.AddDirection(value == Direction.Horizontal ?
@@ -987,6 +990,7 @@ namespace Tizen.NUI.Components
             }
             else
             {
+                StopScroll();
                 finalTargetPosition = BoundScrollPosition(childTargetPosition);
 
                 // Set position of scrolling child without an animation
