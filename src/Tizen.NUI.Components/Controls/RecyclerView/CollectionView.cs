@@ -396,6 +396,10 @@ namespace Tizen.NUI.Components
                     ContentContainer.Add(value);
                 }
                 header = value;
+                if (InternalItemSource != null)
+                {
+                    InternalItemSource.HasHeader = (value != null);
+                }
                 needInitalizeLayouter = true;
                 Init();
             }
@@ -424,6 +428,10 @@ namespace Tizen.NUI.Components
                     ContentContainer.Add(value);
                 }
                 footer = value;
+                if (InternalItemSource != null)
+                {
+                    InternalItemSource.HasFooter = (value != null);
+                }
                 needInitalizeLayouter = true;
                 Init();
             }
@@ -468,6 +476,14 @@ namespace Tizen.NUI.Components
             {
                 groupHeaderTemplate = value;
                 needInitalizeLayouter = true;
+                //Need to re-intialize Internal Item Source.
+                if (InternalItemSource != null)
+                {
+                    InternalItemSource.Dispose();
+                    InternalItemSource = null;
+                }
+                if (ItemsSource != null)
+                    InternalItemSource = ItemsSourceFactory.Create(this);
                 Init();
             }
         }
@@ -487,6 +503,14 @@ namespace Tizen.NUI.Components
             {
                 groupFooterTemplate = value;
                 needInitalizeLayouter = true;
+                //Need to re-intialize Internal Item Source.
+                if (InternalItemSource != null)
+                {
+                    InternalItemSource.Dispose();
+                    InternalItemSource = null;
+                }
+                if (ItemsSource != null)
+                    InternalItemSource = ItemsSourceFactory.Create(this);
                 Init();
             }
         }
