@@ -217,7 +217,6 @@ namespace Tizen.NUI.Components
                     {
                         prevNotifyCollectionChanged.CollectionChanged -= CollectionChanged;
                     }
-                    itemsLayouter?.Clear();
                     if (selectedItem != null) selectedItem = null;
                     selectedItems?.Clear();
                 }
@@ -227,7 +226,8 @@ namespace Tizen.NUI.Components
                 {
                     InternalItemSource?.Dispose();
                     InternalItemSource = null;
-                    //layouter.Clear()
+                    itemsLayouter?.Clear();
+                    ClearCache();
                     return;
                 }
                 if (itemsSource is INotifyCollectionChanged newNotifyCollectionChanged)
@@ -263,7 +263,6 @@ namespace Tizen.NUI.Components
                 itemTemplate = value;
                 if (value == null)
                 {
-                    //layouter.clear()
                     return;
                 }
 
@@ -288,8 +287,11 @@ namespace Tizen.NUI.Components
             }
             set
             {
+                itemsLayouter?.Clear();
+                ClearCache();
+
                 itemsLayouter = value;
-                base.InternalItemsLayouter = ItemsLayouter;
+                base.InternalItemsLayouter = itemsLayouter;
                 if (value == null)
                 {
                     needInitalizeLayouter = false;
@@ -982,6 +984,24 @@ namespace Tizen.NUI.Components
             return ItemsLayouter?.CalculateCandidateScrollPosition(position) ?? position;
         }
 
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ClearCache()
+        {
+            foreach (RecyclerViewItem item in recycleGroupHeaderCache)
+            {
+                Utility.Dispose(item);
+            }
+            recycleGroupHeaderCache.Clear();
+            foreach (RecyclerViewItem item in recycleGroupFooterCache)
+            {
+                Utility.Dispose(item);
+            }
+            recycleGroupFooterCache.Clear();
+            base.ClearCache();
+        }
+
+
         /// <summary>
         /// OnScroll event callback. Requesting layout to the layouter with given scrollPosition.
         /// </summary>
@@ -1048,22 +1068,6 @@ namespace Tizen.NUI.Components
                 {
                     InternalItemSource.Dispose();
                     InternalItemSource = null;
-                }
-                if (recycleGroupHeaderCache != null)
-                {
-                    foreach(RecyclerViewItem item in recycleGroupHeaderCache)
-                    {
-                        UnrealizeItem(item, false);
-                    }
-                    recycleGroupHeaderCache.Clear();
-                }
-                if (recycleGroupFooterCache != null)
-                {
-                    foreach(RecyclerViewItem item in recycleGroupFooterCache)
-                    {
-                        UnrealizeItem(item, false);
-                    }
-                    recycleGroupFooterCache.Clear();
                 }
             }
 
@@ -1174,6 +1178,9 @@ namespace Tizen.NUI.Components
 
             if (needInitalizeLayouter)
             {
+                itemsLayouter.Clear();
+                ClearCache();
+
                 ItemsLayouter.Initialize(this);
                 needInitalizeLayouter = false;
             }
