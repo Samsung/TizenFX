@@ -161,7 +161,7 @@ namespace Tizen.NUI.Components
             }
             if (Container)
             {
-                Container.SizeHeight = 0;
+                Container.Size = ItemsView.Size;
                 Container.Position = new Position(0.0f, 0.0f);
                 Container = null;
             }
