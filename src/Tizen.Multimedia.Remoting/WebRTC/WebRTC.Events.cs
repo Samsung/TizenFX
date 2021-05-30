@@ -34,7 +34,8 @@ namespace Tizen.Multimedia.Remoting
         private NativeWebRTC.NegotiationNeededCallback _webRtcNegotiationNeededCallback;
         private NativeWebRTC.IceCandidateCallback _webRtcIceCandicateCallback;
         private NativeWebRTC.TrackAddedCallback _webRtcTrackAddedCallback;
-        private NativeWebRTC.FrameEncodedCallback _webRtcFrameEncodedCallback;
+        private NativeWebRTC.FrameEncodedCallback _webRtcAudioFrameEncodedCallback;
+        private NativeWebRTC.FrameEncodedCallback _webRtcVideoFrameEncodedCallback;
         private NativeDataChannel.CreatedCallback _webRtcDataChannelCreatedCallback;
         private uint? _trackId;
 
@@ -92,17 +93,61 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 9 </since_tizen>
         public event EventHandler<WebRTCTrackAddedEventArgs> TrackAdded;
 
+        private event EventHandler<WebRTCFrameEncodedEventArgs> _audioFrameEncoded;
+
         /// <summary>
         /// Occurs when each audio frame is ready to render.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public event EventHandler<WebRTCFrameEncodedEventArgs> AudioFrameEncoded;
+        public event EventHandler<WebRTCFrameEncodedEventArgs> AudioFrameEncoded
+        {
+            add
+            {
+                if (_audioFrameEncoded == null)
+                {
+                    RegisterAudioFrameEncodedCallback();
+                }
+
+                _audioFrameEncoded += value;
+            }
+            remove
+            {
+                _audioFrameEncoded -= value;
+
+                if (_audioFrameEncoded == null)
+                {
+                    UnregisterAudioFrameEncodedCallback();
+                }
+            }
+        }
+
+        private event EventHandler<WebRTCFrameEncodedEventArgs> _videoFrameEncoded;
 
         /// <summary>
         /// Occurs when each video frame is ready to render.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public event EventHandler<WebRTCFrameEncodedEventArgs> VideoFrameEncoded;
+        public event EventHandler<WebRTCFrameEncodedEventArgs> VideoFrameEncoded
+        {
+            add
+            {
+                if (_videoFrameEncoded == null)
+                {
+                    RegisterVideoFrameEncodedCallback();
+                }
+
+                _videoFrameEncoded += value;
+            }
+            remove
+            {
+                _videoFrameEncoded -= value;
+
+                if (_videoFrameEncoded == null)
+                {
+                    UnregisterVideoFrameEncodedCallback();
+                }
+            }
+        }
 
         /// <summary>
         /// Occurs when the data channel is created to the connection by the remote peer.
@@ -121,7 +166,6 @@ namespace Tizen.Multimedia.Remoting
             RegisterNegotiationNeededCallback();
             RegisterIceCandidateCallback();
             RegisterTrackAddedCallback();
-            RegisterFrameEncodedCallback();
             RegisterDataChannelCreatedCallback();
         }
 
@@ -231,6 +275,7 @@ namespace Tizen.Multimedia.Remoting
             {
                 if (type == MediaType.Video)
                 {
+                    Log.Info(WebRTCLog.Tag, $"track id : {id}");
                     _trackId = id;
                 }
 
@@ -241,25 +286,38 @@ namespace Tizen.Multimedia.Remoting
                 ThrowIfFailed("Failed to set track added callback.");
         }
 
-        private void RegisterFrameEncodedCallback()
+        private void RegisterAudioFrameEncodedCallback()
         {
-            _webRtcFrameEncodedCallback = (handle, type, id, packet, _) =>
+            _webRtcAudioFrameEncodedCallback = (handle, type, id, packet, _) =>
             {
-                if (type == MediaType.Audio)
-                {
-                    AudioFrameEncoded?.Invoke(this, new WebRTCFrameEncodedEventArgs(type, id, MediaPacket.From(packet)));
-                }
-                else
-                {
-                    VideoFrameEncoded?.Invoke(this, new WebRTCFrameEncodedEventArgs(type, id, MediaPacket.From(packet)));
-                }
+                _audioFrameEncoded?.Invoke(this, new WebRTCFrameEncodedEventArgs(type, id, MediaPacket.From(packet)));
             };
 
-            NativeWebRTC.SetAudioFrameEncodedCb(Handle, _webRtcFrameEncodedCallback).
+            NativeWebRTC.SetAudioFrameEncodedCb(Handle, _webRtcAudioFrameEncodedCallback).
                 ThrowIfFailed("Failed to set audio frame encoded callback.");
+        }
 
-            NativeWebRTC.SetVideoFrameEncodedCb(Handle, _webRtcFrameEncodedCallback).
+        private void UnregisterAudioFrameEncodedCallback()
+        {
+            NativeWebRTC.UnsetAudioFrameEncodedCb(Handle).
+                ThrowIfFailed("Failed to unset audio frame encoded callback.");
+        }
+
+        private void RegisterVideoFrameEncodedCallback()
+        {
+            _webRtcVideoFrameEncodedCallback = (handle, type, id, packet, _) =>
+            {
+                _videoFrameEncoded?.Invoke(this, new WebRTCFrameEncodedEventArgs(type, id, MediaPacket.From(packet)));
+            };
+
+            NativeWebRTC.SetVideoFrameEncodedCb(Handle, _webRtcVideoFrameEncodedCallback).
                 ThrowIfFailed("Failed to set video frame encoded callback.");
+        }
+
+        private void UnregisterVideoFrameEncodedCallback()
+        {
+            NativeWebRTC.UnsetVideoFrameEncodedCb(Handle).
+                ThrowIfFailed("Failed to unset video frame encoded callback.");
         }
 
         private void RegisterDataChannelCreatedCallback()
