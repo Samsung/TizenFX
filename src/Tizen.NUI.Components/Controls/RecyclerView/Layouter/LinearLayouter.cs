@@ -409,14 +409,27 @@ namespace Tizen.NUI.Components
                 // 5. Placing item.
                 (float posX, float posY) = GetItemPosition(i);
                 item.Position = new Position(posX, posY);
-            
+
+                var size = (IsHorizontal? item.SizeWidth: item.SizeHeight);
+
+                if (colView.SizingStrategy == ItemSizingStrategy.MeasureFirst)
+                {
+                    if (item.IsHeader || item.IsFooter || item.isGroupHeader || item.isGroupFooter)
+                    {
+                        if (item.IsHeader) size = headerSize;
+                        else if (item.IsFooter) size = footerSize;
+                        else if (item.isGroupHeader) size = groupHeaderSize;
+                        else if (item.isGroupFooter) size = groupFooterSize;
+                    }
+                    else size = StepCandidate;
+                }
                 if (IsHorizontal && item.HeightSpecification == LayoutParamPolicies.MatchParent)
                 {
-                    item.Size = new Size(item.Size.Width, Container.Size.Height - Padding.Top - Padding.Bottom - item.Margin.Top - item.Margin.Bottom);
+                    item.Size = new Size(size, Container.Size.Height - Padding.Top - Padding.Bottom - item.Margin.Top - item.Margin.Bottom);
                 }
                 else if (!IsHorizontal && item.WidthSpecification == LayoutParamPolicies.MatchParent)
                 {
-                    item.Size = new Size(Container.Size.Width - Padding.Start - Padding.End - item.Margin.Start - item.Margin.End, item.Size.Height);
+                    item.Size = new Size(Container.Size.Width - Padding.Start - Padding.End - item.Margin.Start - item.Margin.End, size);
                 }
             }
             return;
@@ -1325,7 +1338,7 @@ namespace Tizen.NUI.Components
             if (targetSibling > -1 && targetSibling < Container.Children.Count)
             {
                 RecyclerViewItem candidate = Container.Children[targetSibling] as RecyclerViewItem;
-                if (candidate.Index >= 0 && candidate.Index < colView.InternalItemSource.Count)
+                if (candidate != null && candidate.Index >= 0 && candidate.Index < colView.InternalItemSource.Count)
                 {
                     nextFocusedView = candidate;
                 }
@@ -1495,7 +1508,7 @@ namespace Tizen.NUI.Components
             else
             {
                 int adjustIndex = index - (hasHeader ? 1 : 0);
-                float current = (hasHeader? headerSize : 0) + adjustIndex * StepCandidate;
+                float current = (IsHorizontal ? spaceStartX : spaceStartY) + (hasHeader? headerSize : 0) + adjustIndex * StepCandidate;
                 //FIXME : CandidateMargin need to be actual itemMargin
                 return ((IsHorizontal? current + CandidateMargin.Start : spaceStartX + CandidateMargin.Start),
                         (IsHorizontal? spaceStartY + CandidateMargin.Top : current + CandidateMargin.Top));

@@ -247,6 +247,14 @@ namespace Tizen.NUI.Components
             }
         }
 
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnInitialize()
+        {
+            base.OnInitialize();
+            SetAccessibilityConstructor(Role.List, AccessibilityInterface.Value);
+        }
+
         /// <summary>
         /// Applies style to Picker.
         /// </summary>
@@ -281,6 +289,7 @@ namespace Tizen.NUI.Components
                 
         private void Initialize()
         {
+            AccessibilityHighlightable = true;
             HeightSpecification = LayoutParamPolicies.MatchParent;
 
             //Picker Using scroller internally. actually it is a kind of scroller which has infinity loop,

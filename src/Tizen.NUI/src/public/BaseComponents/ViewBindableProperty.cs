@@ -82,7 +82,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 
-            view.selectorData?.ClearBackground(view);
+            view.themeData?.selectorData?.ClearBackground(view);
 
             if (newValue is Selector<Color> selector)
             {
@@ -118,7 +118,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 
-            view.selectorData?.Color?.Reset(view);
+            view.themeData?.selectorData?.Color?.Reset(view);
 
             if (newValue is Selector<Color> selector)
             {
@@ -143,10 +143,10 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 
-            if (view.selectorData != null)
+            if (view.themeData?.selectorData != null)
             {
-                view.selectorData.BackgroundColor?.Reset(view);
-                view.selectorData.BackgroundImage?.Reset(view);
+                view.themeData.selectorData.BackgroundColor?.Reset(view);
+                view.themeData.selectorData.BackgroundImage?.Reset(view);
             }
 
             if (newValue is Selector<string> selector)
@@ -175,7 +175,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 
-            view.selectorData?.BackgroundImageBorder?.Reset(view);
+            view.themeData?.selectorData?.BackgroundImageBorder?.Reset(view);
 
             if (newValue is Selector<Rectangle> selector)
             {
@@ -599,7 +599,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 
-            view.selectorData?.Opacity?.Reset(view);
+            view.themeData?.selectorData?.Opacity?.Reset(view);
 
             if (newValue is Selector<float?> selector)
             {
@@ -1499,7 +1499,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 
-            view.selectorData?.ClearShadow(view);
+            view.themeData?.selectorData?.ClearShadow(view);
 
             if (newValue is Selector<ImageShadow> selector)
             {
@@ -1530,7 +1530,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 
-            view.selectorData?.ClearShadow(view);
+            view.themeData?.selectorData?.ClearShadow(view);
 
             if (newValue is Selector<Shadow> selector)
             {
@@ -1566,7 +1566,7 @@ namespace Tizen.NUI.BaseComponents
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
-            return view.backgroundExtraData == null ? 0 : view.backgroundExtraData.CornerRadius;
+            return view.backgroundExtraData == null ? 0.0f : view.backgroundExtraData.CornerRadius;
         });
 
         /// <summary>
@@ -1587,6 +1587,54 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             return view.backgroundExtraData == null ? VisualTransformPolicyType.Absolute : view.backgroundExtraData.CornerRadiusPolicy;
+        });
+
+        /// <summary>
+        /// BorderlineWidth Property
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty BorderlineWidthProperty = BindableProperty.Create(nameof(BorderlineWidth), typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            (view.backgroundExtraData ?? (view.backgroundExtraData = new BackgroundExtraData())).BorderlineWidth = (float)newValue;
+            view.ApplyBorderline();
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view.backgroundExtraData == null ? 0.0f : view.backgroundExtraData.BorderlineWidth;
+        });
+
+        /// <summary>
+        /// BorderlineColor Property
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty BorderlineColorProperty = BindableProperty.Create(nameof(BorderlineColor), typeof(Color), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            (view.backgroundExtraData ?? (view.backgroundExtraData = new BackgroundExtraData())).BorderlineColor = (Color)newValue;
+            view.ApplyBorderline();
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view.backgroundExtraData == null ? Color.Black : view.backgroundExtraData.BorderlineColor;
+        });
+
+        /// <summary>
+        /// BorderlineOffset Property
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty BorderlineOffsetProperty = BindableProperty.Create(nameof(BorderlineOffset), typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            (view.backgroundExtraData ?? (view.backgroundExtraData = new BackgroundExtraData())).BorderlineOffset = (float)newValue;
+            view.ApplyBorderline();
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view.backgroundExtraData == null ? 0.0f : view.backgroundExtraData.BorderlineOffset;
         });
 
         /// <summary>
@@ -1624,11 +1672,13 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 
-            if (view.themeChangeSensitive == (bool)newValue) return;
+            if (view.ThemeChangeSensitive == (bool)newValue) return;
 
-            view.themeChangeSensitive = (bool)newValue;
+            if (view.themeData == null) view.themeData = new ThemeData();
 
-            if (view.themeChangeSensitive)
+            view.themeData.themeChangeSensitive = (bool)newValue;
+
+            if (view.themeData.themeChangeSensitive)
             {
                 ThemeManager.ThemeChangedInternal.Add(view.OnThemeChanged);
             }
@@ -1639,7 +1689,7 @@ namespace Tizen.NUI.BaseComponents
         },
         defaultValueCreator: (bindable) =>
         {
-            return ((View)bindable).themeChangeSensitive;
+            return ((View)bindable).themeData?.themeChangeSensitive ?? false;
         });
 
         /// <summary>
@@ -1794,6 +1844,9 @@ namespace Tizen.NUI.BaseComponents
             map.Add(ImageVisualProperty.URL, new PropertyValue(value))
                .Add(Visual.Property.CornerRadius, new PropertyValue(backgroundExtraData.CornerRadius == null ? new PropertyValue() : new PropertyValue(backgroundExtraData.CornerRadius)))
                .Add(Visual.Property.CornerRadiusPolicy, new PropertyValue((int)(backgroundExtraData.CornerRadiusPolicy)))
+               .Add(Visual.Property.BorderlineWidth, new PropertyValue(backgroundExtraData.BorderlineWidth))
+               .Add(Visual.Property.BorderlineColor, new PropertyValue(backgroundExtraData.BorderlineColor == null ? new PropertyValue(Color.Black) : new PropertyValue(backgroundExtraData.BorderlineColor)))
+               .Add(Visual.Property.BorderlineOffset, new PropertyValue(backgroundExtraData.BorderlineOffset))
                .Add(ImageVisualProperty.SynchronousLoading, new PropertyValue(backgroundImageSynchronosLoading));
 
             if (backgroundExtraData.BackgroundImageBorder != null)
@@ -1859,9 +1912,13 @@ namespace Tizen.NUI.BaseComponents
             PropertyMap map = new PropertyMap();
 
             map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Color))
-                .Add(ColorVisualProperty.MixColor, new PropertyValue(value))
-                .Add(Visual.Property.CornerRadius, new PropertyValue(new PropertyValue(backgroundExtraData.CornerRadius == null ? new PropertyValue() : new PropertyValue(backgroundExtraData.CornerRadius))))
-                .Add(Visual.Property.CornerRadiusPolicy, new PropertyValue((int)(backgroundExtraData.CornerRadiusPolicy)));
+               .Add(ColorVisualProperty.MixColor, new PropertyValue(value))
+               .Add(Visual.Property.CornerRadius, new PropertyValue(new PropertyValue(backgroundExtraData.CornerRadius == null ? new PropertyValue() : new PropertyValue(backgroundExtraData.CornerRadius))))
+               .Add(Visual.Property.CornerRadiusPolicy, new PropertyValue((int)(backgroundExtraData.CornerRadiusPolicy)))
+               .Add(Visual.Property.BorderlineWidth, new PropertyValue(backgroundExtraData.BorderlineWidth))
+               .Add(Visual.Property.BorderlineColor, new PropertyValue(backgroundExtraData.BorderlineColor == null ? new PropertyValue(Color.Black) : new PropertyValue(backgroundExtraData.BorderlineColor)))
+               .Add(Visual.Property.BorderlineOffset, new PropertyValue(backgroundExtraData.BorderlineOffset));
+ 
 
             Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, View.Property.BACKGROUND, new PropertyValue(map));
         }

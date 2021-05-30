@@ -95,8 +95,17 @@ namespace Tizen.NUI.Components
             WidthSpecification = LayoutParamPolicies.MatchParent;
             HeightSpecification = LayoutParamPolicies.MatchParent;
 
-            InitTabBar();
             InitContent();
+            InitTabBar();
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnInitialize()
+        {
+            base.OnInitialize();
+
+            SetAccessibilityConstructor(Role.PageTabList);
         }
 
         private void InitTabBar()

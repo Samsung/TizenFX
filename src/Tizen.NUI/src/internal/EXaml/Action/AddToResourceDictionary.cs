@@ -64,10 +64,9 @@ namespace Tizen.NUI.EXaml
 
         public void OnActive()
         {
-            if (null != childOp)
+            if (null != childOp && childOp.ValueList.Count > 2 && (childOp.ValueList[0] is Instance instance) && (childOp.ValueList[1] is string key))
             {
-                int instanceIndex = (childOp.ValueList[0] as Instance).Index;
-                string key = childOp.ValueList[1] as string;
+                int instanceIndex = instance.Index;
                 var value = childOp.ValueList[2];
                 globalDataList.Operations.Add(new AddToResourceDictionary(globalDataList, instanceIndex, key, value));
             }

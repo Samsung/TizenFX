@@ -136,48 +136,57 @@ namespace Tizen.NUI
     /// Enumeration for size negotiation resize policies.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated. Please use Tizen.NUI.BaseComponents.LayoutParamPolicies instead.")]
     public enum ResizePolicyType
     {
         /// <summary>
         /// Size is fixed as set by SetSize.
         /// </summary>
         [Description("FIXED")]
+        [Obsolete("Deprecated. Instead, please set a positive integer value to Tizen.NUI.View.WidthSpecification or Tizen.NUI.View.HeightSpecification.")]
         Fixed,
         /// <summary>
         /// Size is to use the actor's natural size.
         /// </summary>
         /// <see cref="ViewImpl.GetNaturalSize"/>
         [Description("USE_NATURAL_SIZE")]
+        [Obsolete("Deprecated. Instead, please set a positive integer value to Tizen.NUI.View.WidthSpecification or Tizen.NUI.View.HeightSpecification.")]
         UseNaturalSize,
         /// <summary>
         /// Size is to fill up to the actor's parent's bounds. Aspect ratio is not maintained.
         /// </summary>
         [Description("FILL_TO_PARENT")]
+        [Obsolete("Deprecated. Instead, please set Tizen.NUI.BaseComponents.LayoutParamPolicies.MatchParent to Tizen.NUI.View.WidthSpecification or Tizen.NUI.View.HeightSpecification.")]
         FillToParent,
         /// <summary>
         /// The actors size will be ( ParentSize * SizeRelativeToParentFactor ).
         /// </summary>
         [Description("SIZE_RELATIVE_TO_PARENT")]
+        [Obsolete("Deprecated. Instead, please use parent view having Tizen.NUI.RelativeLayout as its Layout.")]
         SizeRelativeToParent,
         /// <summary>
         /// The actors size will be ( ParentSize + SizeRelativeToParentFactor ).
         /// </summary>
         [Description("SIZE_FIXED_OFFSET_FROM_PARENT")]
+        [Obsolete("Deprecated. Instead, please use parent view having Tizen.NUI.RelativeLayout as its Layout.")]
         SizeFixedOffsetFromParent,
         /// <summary>
         /// The size will adjust to wrap around all children.
         /// </summary>
         [Description("FIT_TO_CHILDREN")]
+        [Obsolete("Deprecated. Instead, please set Tizen.NUI.BaseComponents.LayoutParamPolicies.WrapContent to Tizen.NUI.View.WidthSpecification or Tizen.NUI.View.HeightSpecification.")]
         FitToChildren,
         /// <summary>
         /// One dimension is dependent on the other.
         /// </summary>
         [Description("DIMENSION_DEPENDENCY")]
+        [Obsolete("Deprecated. Instead, please set positive integer values with aspect ratio to Tizen.NUI.View.WidthSpecification and Tizen.NUI.View.HeightSpecification.")]
         DimensionDependency,
         /// <summary>
         /// The size will be assigned to the actor.
         /// </summary>
         [Description("USE_ASSIGNED_SIZE")]
+        [Obsolete("Deprecated. Instead, please set a positive integer value to Tizen.NUI.View.WidthSpecification or Tizen.NUI.View.HeightSpecification.")]
         UseAssignedSize
     }
 
@@ -807,7 +816,20 @@ namespace Tizen.NUI
         /// character will move character by character to the next line.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        Character
+        Character,
+
+        /// <summary>
+        /// Hyphenation mode will move part of the word (at possible hyphen locations)
+        /// to the next line and draw a hyphen at the end of the line.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Hyphenation,
+
+        /// <summary>
+        /// Mixed mode will try word wrap, if failed, it will try hyphenation wrap.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Mixed
     }
 
     /// <summary>
@@ -1884,5 +1906,50 @@ namespace Tizen.NUI
     internal struct FrameworkInformation
     {
         public readonly static string ResourcePath = "/usr/share/dotnet.tizen/framework/res/";
+    }
+
+    /// <summary>
+    /// This Enumeration is used the GLES version for EGL configuration.<br />
+    /// If the device can not support GLES version 3.0 over, the version will be chosen with GLES version 2.0.<br />
+    /// It is for GLWindow and GLView.<br />
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum GLESVersion
+    {
+      /// <summary>
+      /// GLES version 2.0
+      /// </summary>
+      [EditorBrowsable(EditorBrowsableState.Never)]
+      Version20 = 0,
+
+      /// <summary>
+      /// GLES version 3.0
+      /// </summary>
+      [EditorBrowsable(EditorBrowsableState.Never)]
+      Version30
+    }
+
+    /// <summary>
+    /// Enumeration for rendering mode
+    /// This Enumeration is used to choose the rendering mode.
+    /// It has two options.
+    /// One of them is continuous mode. It is rendered continuously.
+    /// The other is on demand mode. It is rendered by application.
+    /// It is for GLWindow and GLView.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum GLRenderingMode
+    {
+      /// <summary>
+      /// continuous mode
+      /// </summary>
+      [EditorBrowsable(EditorBrowsableState.Never)]
+      Continuous = 0,
+
+      /// <summary>
+      /// on demand by application
+      /// </summary>
+      [EditorBrowsable(EditorBrowsableState.Never)]
+      OnDemand = 1
     }
 }

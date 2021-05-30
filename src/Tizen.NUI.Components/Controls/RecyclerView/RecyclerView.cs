@@ -338,6 +338,19 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Clear all remaining caches.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void ClearCache()
+        {
+            foreach (RecyclerViewItem item in RecycleCache)
+            {
+                Utility.Dispose(item);
+            }
+            RecycleCache.Clear();
+        }
+
+        /// <summary>
         /// On scroll event callback.
         /// </summary>        
         /// <since_tizen> 9 </since_tizen>
@@ -368,11 +381,7 @@ namespace Tizen.NUI.Components
                 // call the clear!
                 if (RecycleCache != null)
                 {
-                    foreach (RecyclerViewItem item in RecycleCache)
-                    {
-                        UnrealizeItem(item, false);
-                    }
-                    RecycleCache.Clear();
+                    ClearCache();
                 }
                 InternalItemsLayouter?.Clear();
                 InternalItemsLayouter = null;

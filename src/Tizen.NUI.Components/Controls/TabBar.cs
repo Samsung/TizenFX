@@ -93,6 +93,15 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 9 </since_tizen>
         public int TabButtonCount => tabButtons.Count;
 
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnInitialize()
+        {
+            base.OnInitialize();
+
+            SetAccessibilityConstructor(Role.PageTabList);
+        }
+
         /// <summary>
         /// Adds a tab button to TabBar.
         /// </summary>

@@ -22,6 +22,29 @@ using Tizen.NUI;
 
 namespace Tizen.NUI.BaseComponents
 {
+    /// <summary>
+    /// Accessibility interface.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum AccessibilityInterface
+    {
+        /// <summary>
+        /// Common accessibility interface
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        None = 0,
+        /// <summary>
+        /// Accessibility interface which can store numeric value
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Value = 1,
+        /// <summary>
+        /// Accessibility interface which can store editable texts
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        EditableText = 2,
+    }
+
     [EditorBrowsable(EditorBrowsableState.Never)]
     [Flags]
     public enum AccessibilityReadingInfoTypes : int
@@ -89,55 +112,56 @@ namespace Tizen.NUI.BaseComponents
 
 
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public enum AccessibilityState
+    [Flags]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1028:EnumStorageShouldBeInt32", Justification = "System.Int32 type wouldn't have sufficient capacity")]
+    public enum AccessibilityStates : ulong
     {
-        Invalid = 0,
-        Active,
-        Armed,
-        Busy,
-        Checked,
-        Collapsed,
-        Defunct,
-        Editable,
-        Enabled,
-        Expandable,
-        Expanded,
-        Focusable,
-        Focused,
-        HasTooltip,
-        Horizontal,
-        Iconified,
-        Modal,
-        MultiLine,
-        MultiSelectable,
-        Opaque,
-        Pressed,
-        Resizeable,
-        Selectable,
-        Selected,
-        Sensitive,
-        Showing,
-        SingleLine,
-        Stale,
-        Transient,
-        Vertical,
-        Visible,
-        ManagesDescendants,
-        Indeterminate,
-        Required,
-        Truncated,
-        Animated,
-        InvalidEntry,
-        SupportsAutocompletion,
-        SelectableText,
-        IsDefault,
-        Visited,
-        Checkable,
-        HasPopup,
-        ReadOnly,
-        Highlighted,
-        Highlightable,
-        MaxCount,
+        Invalid                = (1UL << 0),
+        Active                 = (1UL << 1),
+        Armed                  = (1UL << 2),
+        Busy                   = (1UL << 3),
+        Checked                = (1UL << 4),
+        Collapsed              = (1UL << 5),
+        Defunct                = (1UL << 6),
+        Editable               = (1UL << 7),
+        Enabled                = (1UL << 8),
+        Expandable             = (1UL << 9),
+        Expanded               = (1UL << 10),
+        Focusable              = (1UL << 11),
+        Focused                = (1UL << 12),
+        HasTooltip             = (1UL << 13),
+        Horizontal             = (1UL << 14),
+        Iconified              = (1UL << 15),
+        Modal                  = (1UL << 16),
+        MultiLine              = (1UL << 17),
+        MultiSelectable        = (1UL << 18),
+        Opaque                 = (1UL << 19),
+        Pressed                = (1UL << 20),
+        Resizeable             = (1UL << 21),
+        Selectable             = (1UL << 22),
+        Selected               = (1UL << 23),
+        Sensitive              = (1UL << 24),
+        Showing                = (1UL << 25),
+        SingleLine             = (1UL << 26),
+        Stale                  = (1UL << 27),
+        Transient              = (1UL << 28),
+        Vertical               = (1UL << 29),
+        Visible                = (1UL << 30),
+        ManagesDescendants     = (1UL << 31),
+        Indeterminate          = (1UL << 32),
+        Required               = (1UL << 33),
+        Truncated              = (1UL << 34),
+        Animated               = (1UL << 35),
+        InvalidEntry           = (1UL << 36),
+        SupportsAutocompletion = (1UL << 37),
+        SelectableText         = (1UL << 38),
+        IsDefault              = (1UL << 39),
+        Visited                = (1UL << 40),
+        Checkable              = (1UL << 41),
+        HasPopup               = (1UL << 42),
+        ReadOnly               = (1UL << 43),
+        Highlighted            = (1UL << 44),
+        Highlightable          = (1UL << 45),
     };
 
     /// <summary>
@@ -146,7 +170,6 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public partial class View
     {
-
         [EditorBrowsable(EditorBrowsableState.Never)]
         public enum RelationType
         {
