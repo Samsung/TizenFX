@@ -212,8 +212,6 @@ namespace Tizen.Multimedia.Remoting
                     throw new ArgumentNullException(nameof(value), "Display cannot be null.");
                 }
 
-                ValidateWebRTCState(WebRTCState.Playing);
-
                 if (value?.Owner != null)
                 {
                     if (ReferenceEquals(this, value.Owner))
@@ -254,3 +252,4 @@ namespace Tizen.Multimedia.Remoting
         }
     }
 }
+
