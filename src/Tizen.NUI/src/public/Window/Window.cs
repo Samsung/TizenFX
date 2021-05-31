@@ -40,7 +40,7 @@ namespace Tizen.NUI
         private List<Layer> childLayers = new List<Layer>();
         private LayoutController localController;
 
-        private bool IsSupportedMultiWindow()
+        static internal bool IsSupportedMultiWindow()
         {
             bool isSupported = false;
             Information.TryGetValue("http://tizen.org/feature/opengles.surfaceless_context", out isSupported);
@@ -256,6 +256,30 @@ namespace Tizen.NUI
             [EditorBrowsable(EditorBrowsableState.Never)]
             Hide,
         }
+
+        /// <summary>
+        /// Enumeration for result of window operation.
+        /// </summary>
+        internal enum OperationResult
+        {
+            /// <summary>
+            /// Failed for unknown reason
+            /// </summary>
+            UnknownError = 0,
+            /// <summary>
+            /// Succeed
+            /// </summary>
+            Succeed,
+            /// <summary>
+            /// Permission denied
+            /// </summary>
+            PermissionDenied,
+            /// <summary>
+            /// The operation is not supported.
+            /// </summary>
+            NotSupported,
+        }
+
 
         /// <summary>
         /// The stage instance property (read-only).<br />
@@ -647,9 +671,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool SetNotificationLevel(NotificationLevel level)
         {
-            bool ret = Interop.Window.SetNotificationLevel(SwigCPtr, (int)level);
+            var ret = (OperationResult)Interop.Window.SetNotificationLevel(SwigCPtr, (int)level);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            return ret == OperationResult.Succeed;
         }
 
         /// <summary>
@@ -701,9 +725,9 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public bool SetScreenOffMode(ScreenOffMode screenOffMode)
         {
-            bool ret = Interop.Window.SetScreenOffMode(SwigCPtr, (int)screenOffMode);
+            var ret = (OperationResult)Interop.Window.SetScreenOffMode(SwigCPtr, (int)screenOffMode);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            return ret == OperationResult.Succeed;
         }
 
         /// <summary>
@@ -726,9 +750,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool SetBrightness(int brightness)
         {
-            bool ret = Interop.Window.SetBrightness(SwigCPtr, brightness);
+            var ret = (OperationResult)Interop.Window.SetBrightness(SwigCPtr, brightness);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            return ret == OperationResult.Succeed;
         }
 
         /// <summary>

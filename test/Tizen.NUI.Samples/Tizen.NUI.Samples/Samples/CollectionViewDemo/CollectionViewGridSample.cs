@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Components;
 using Tizen.NUI.Binding;
+using System;
 
 namespace Tizen.NUI.Samples
 {
@@ -9,17 +11,25 @@ namespace Tizen.NUI.Samples
     {
         CollectionView colView;
         int itemCount = 500;
-        int selectedCount;
         ItemSelectionMode selMode;
+        ObservableCollection<Gallery> gallerySource;
+        Gallery insertMenu = new Gallery(999, "Insert item to 3rd");
+        Gallery deleteMenu = new Gallery(999, "Delete item at 3rd");
+        Gallery moveMenu = new Gallery(999, "Move last item to 3rd");
 
         public void Activate()
         {
             Window window = NUIApplication.GetDefaultWindow();
 
-            var myViewModelSource = new GalleryViewModel(itemCount);
-            selMode = ItemSelectionMode.MultipleSelections;
+            var myViewModelSource = gallerySource = new GalleryViewModel(itemCount);
+            // Add test menu options.
+            gallerySource.Insert(0, moveMenu);
+            gallerySource.Insert(0, deleteMenu);
+            gallerySource.Insert(0, insertMenu);
+
+            selMode = ItemSelectionMode.Multiple;
             DefaultTitleItem myTitle = new DefaultTitleItem();
-            myTitle.Text = "Grid Sample Count["+itemCount+"] Selected["+selectedCount+"]";
+            myTitle.Text = "Grid Sample Count["+itemCount+"]";
             //Set Width Specification as MatchParent to fit the Item width with parent View.
             myTitle.WidthSpecification = LayoutParamPolicies.MatchParent;
 
@@ -33,8 +43,8 @@ namespace Tizen.NUI.Samples
                     item.WidthSpecification = 180;
                     item.HeightSpecification = 240;
                     //Decorate Label
-                    item.Caption.SetBinding(TextLabel.TextProperty, "ViewLabel");
-                    item.Caption.HorizontalAlignment = HorizontalAlignment.Center;
+                    item.Label.SetBinding(TextLabel.TextProperty, "ViewLabel");
+                    item.Label.HorizontalAlignment = HorizontalAlignment.Center;
                     //Decorate Image
                     item.Image.SetBinding(ImageView.ResourceUrlProperty, "ImageUrl");
                     item.Image.WidthSpecification = 170;
@@ -42,7 +52,7 @@ namespace Tizen.NUI.Samples
                     //Decorate Badge checkbox.
                     //[NOTE] This is sample of CheckBox usage in CollectionView.
                     // Checkbox change their selection by IsSelectedProperty bindings with
-                    // SelectionChanged event with MulitpleSelections ItemSelectionMode of CollectionView.
+                    // SelectionChanged event with Mulitple ItemSelectionMode of CollectionView.
                     item.Badge = new CheckBox();
                     //FIXME : SetBinding in RadioButton crashed as Sensitive Property is disposed.
                     //item.Badge.SetBinding(CheckBox.IsSelectedProperty, "Selected");
@@ -76,7 +86,6 @@ namespace Tizen.NUI.Samples
                     {
                         galItem.Selected = false;
                         Tizen.Log.Debug("Unselected: {0}", galItem.ViewLabel);
-                        selectedCount--;
                     }
                 }
                 else continue;
@@ -90,15 +99,34 @@ namespace Tizen.NUI.Samples
                     {
                         galItem.Selected = true;
                         Tizen.Log.Debug("Selected: {0}", galItem.ViewLabel);
-                        selectedCount++;
+
+                        // Check test menu options.
+                        if (galItem == insertMenu)
+                        {
+                            // Insert new item to index 3.
+                            Random rand = new Random();
+                            int idx = rand.Next(1000);
+                            gallerySource.Insert(3, new Gallery(idx, "Inserted Item"));
+                        }
+                        else if (galItem == deleteMenu)
+                        {
+                            // Remove item in index 3.
+                            gallerySource.RemoveAt(3);
+                        }
+                        else if (galItem == moveMenu)
+                        {
+                            // Move last indexed item to index 3.
+                            gallerySource.Move(gallerySource.Count - 1, 3);                    
+                        }
                     }
+                    
                 }
                 else continue;
             }
             if (colView.Header != null && colView.Header is DefaultTitleItem)
             {
                 DefaultTitleItem title = (DefaultTitleItem)colView.Header;
-                title.Text = "Grid Sample Count["+itemCount+"] Selected["+selectedCount+"]";
+                title.Text = "Grid Sample Count["+gallerySource.Count+"] Selected["+newSel.Count+"]";
             }
         }
 

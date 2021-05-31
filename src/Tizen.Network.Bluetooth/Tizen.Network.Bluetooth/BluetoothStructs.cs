@@ -235,6 +235,17 @@ namespace Tizen.Network.Bluetooth
         internal uint number;
         internal uint duration;
     }
+
+    [NativeStruct("bt_gatt_client_att_mtu_info_s", Include = "bluetooth_type.h", PkgConfig = "capi-network-bluetooth")]
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct AttMtuInfoStruct
+    {
+        [MarshalAsAttribute(UnmanagedType.LPStr)]
+        internal string RemoteAddress;
+        internal int Mtu;
+        internal int Status;
+    }
+
     internal static class BluetoothUtils
     {
         internal static BluetoothDevice ConvertStructToDeviceClass(BluetoothDeviceStruct device)
@@ -260,7 +271,8 @@ namespace Tizen.Network.Bluetooth
             }
 
             resultDevice.RemoteDeviceAddress = device.Address;
-            resultDevice.RemoteDeviceName = Marshal.PtrToStringAnsi(device.Name, DeviceNameLengthMax);
+            if (device.Name != IntPtr.Zero)
+                resultDevice.RemoteDeviceName = Marshal.PtrToStringAnsi(device.Name, DeviceNameLengthMax);
             resultDevice.RemoteDeviceClass = new BluetoothClass();
             resultDevice.Class.MajorType = device.Class.MajorDeviceClassType;
             resultDevice.Class.MinorType = device.Class.MinorDeviceClassType;
@@ -299,7 +311,8 @@ namespace Tizen.Network.Bluetooth
             }
 
             resultDevice.RemoteDeviceAddress = structDevice.Address;
-            resultDevice.RemoteDeviceName = Marshal.PtrToStringAnsi(structDevice.Name, DeviceNameLengthMax);
+            if (structDevice.Name != IntPtr.Zero)
+                resultDevice.RemoteDeviceName = Marshal.PtrToStringAnsi(structDevice.Name, DeviceNameLengthMax);
 
             resultDevice.RemoteDeviceClass = new BluetoothClass();
             resultDevice.Class.MajorType = structDevice.Class.MajorDeviceClassType;

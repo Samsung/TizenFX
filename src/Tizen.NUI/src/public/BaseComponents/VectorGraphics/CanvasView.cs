@@ -16,6 +16,7 @@
 */
 using System;
 using System.ComponentModel;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.NUI.BaseComponents.VectorGraphics
@@ -23,16 +24,19 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
     /// <summary>
     /// CanvasView is a class for displaying vector primitives.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class CanvasView : View
     {
+        private List<Drawable> drawables; //The list of added drawables
+
         static CanvasView() { }
 
         /// <summary>
         /// Creates an initialized CanvasView.
         /// </summary>
         /// <param name="viewBox">The size of viewbox.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <exception cref="ArgumentNullException"> Thrown when viewBox is null. </exception>
+        /// <since_tizen> 9 </since_tizen>
         [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "It does not have dispose ownership.")]
         public CanvasView(Size2D viewBox) : this(viewBox == null ? throw new ArgumentNullException(nameof(viewBox)) : Interop.CanvasView.New(Uint16Pair.getCPtr(new Uint16Pair((uint)viewBox.Width, (uint)viewBox.Height))), true)
         {
@@ -41,6 +45,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
 
         internal CanvasView(global::System.IntPtr cPtr, bool shown = true) : base(cPtr, shown)
         {
+            drawables = new List<Drawable>();
             if (!shown)
             {
                 SetVisible(false);
@@ -58,6 +63,12 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
             {
                 return;
             }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                drawables.Clear();
+            }
+
             base.Dispose(type);
         }
 
@@ -74,11 +85,20 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// This method is similar to registration. The added shape is drawn on the inner canvas.
         /// </summary>
         /// <param name="drawable">Drawable object</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <exception cref="ArgumentNullException"> Thrown when drawable is null. </exception>
+        /// <since_tizen> 9 </since_tizen>
         public void AddDrawable(Drawable drawable)
         {
+            if (drawable == null)
+            {
+                throw new ArgumentNullException(nameof(drawable));
+            }
             Interop.CanvasView.AddDrawable(View.getCPtr(this), BaseHandle.getCPtr(drawable));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (!drawables.Contains(drawable))
+            {
+                drawables.Add(drawable);
+            }
         }
     }
 }

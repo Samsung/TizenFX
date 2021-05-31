@@ -622,6 +622,12 @@ namespace Tizen.NUI.Binding
             Type valueType = value.GetType();
             Type type = ReturnType;
 
+            // TODO This is temporary fix before deleting CreateByXaml flag in BindableProperty.
+            if (valueType.IsGenericType && valueType.GetGenericTypeDefinition() == typeof(Tizen.NUI.BaseComponents.Selector<>) && valueType.GetGenericArguments()[0] == ReturnType)
+            {
+                return true;
+            }
+
             // Dont support arbitrary IConvertible by limiting which types can use this
             Type[] convertableTo;
             TypeConverter typeConverterTo;

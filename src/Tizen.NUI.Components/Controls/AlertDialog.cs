@@ -25,7 +25,7 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// AlertDialog class shows a dialog with title, message and action buttons.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class AlertDialog : Control
     {
         private string title = null;
@@ -50,16 +50,33 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Creates a new instance of AlertDialog.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public AlertDialog() : base()
         {
             Initialize();
         }
 
         /// <summary>
-        /// Dispose AlertDialog and all children on it.
+        /// Creates a new instance of AlertDialog.
         /// </summary>
-        /// <param name="type">Dispose type.</param>
+        /// <param name="style">Creates AlertDialog by special style defined in UX.</param>
+        /// <since_tizen> 9 </since_tizen>
+        public AlertDialog(string style) : base(style)
+        {
+            Initialize();
+        }
+
+        /// <summary>
+        /// Creates a new instance of AlertDialog.
+        /// </summary>
+        /// <param name="alertDialogStyle">Creates AlertDialog by style customized by user.</param>
+        /// <since_tizen> 9 </since_tizen>
+        public AlertDialog(AlertDialogStyle alertDialogStyle) : base(alertDialogStyle)
+        {
+            Initialize();
+        }
+
+        /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
@@ -100,7 +117,7 @@ namespace Tizen.NUI.Components
         /// Applies style to AlertDialog.
         /// </summary>
         /// <param name="viewStyle">The style to apply.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public override void ApplyStyle(ViewStyle viewStyle)
         {
             styleApplied = false;
@@ -133,8 +150,10 @@ namespace Tizen.NUI.Components
 
         /// <summary>
         /// Title text of AlertDialog.
+        /// Title text is set to TitleContent's Text if TitleContent is TextLabel.
+        /// If TitleContent's Text is set manually by user, then it is not guaranteed that TitleContent's Text is the same with Title text.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public string Title
         {
             get
@@ -158,9 +177,12 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Title content of AlertDialog. TitleContent is added to Children automatically.
+        /// Title content of AlertDialog.
+        /// TitleContent is added as a child of AlertDialog automatically.
+        /// Title text is set to TitleContent's Text if TitleContent is TextLabel.
+        /// If TitleContent's Text is set manually by user, then it is not guaranteed that TitleContent's Text is the same with Title text.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public View TitleContent
         {
             get
@@ -196,8 +218,10 @@ namespace Tizen.NUI.Components
 
         /// <summary>
         /// Message text of AlertDialog.
+        /// Message text is set to Content's Text if Content is TextLabel.
+        /// If Content's Text is set manually by user, then it is not guaranteed that Content's Text is the same with Message text.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public string Message
         {
             get
@@ -221,9 +245,12 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Content of AlertDialog. Content is added to Children automatically.
+        /// Content of AlertDialog.
+        /// Content is added as a child of AlertDialog automatically.
+        /// Message text is set to Content's Text if Content is TextLabel.
+        /// If Content's Text is set manually by user, then it is not guaranteed that Content's Text is the same with Message text.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public View Content
         {
             get
@@ -259,9 +286,10 @@ namespace Tizen.NUI.Components
 
         /// <summary>
         /// Action views of AlertDialog.
-        /// Action views are added to ActionContent of AlertDialog.
+        /// Action views are added as children of ActionContent.
+        /// When Actions are set, previous Actions are removed from ActionContent.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public IEnumerable<View> Actions
         {
             get
@@ -302,9 +330,11 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Action content of AlertDialog. ActionContent is added to Children automatically.
+        /// Action content of AlertDialog.
+        /// ActionContent is added as a child of AlertDialog automatically.
+        /// Actions are added as children of ActionContent.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public View ActionContent
         {
              get
@@ -360,6 +390,30 @@ namespace Tizen.NUI.Components
                 return Message;
             }
         }
+
+        /// <summary>
+        /// Initialize AT-SPI object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnInitialize()
+        {
+            base.OnInitialize();
+            SetAccessibilityConstructor(Role.Dialog);
+            AppendAccessibilityAttribute("sub-role", "Alert");
+            Show(); // calls AddPopup()
+        }
+
+        /// <summary>
+        /// Informs AT-SPI bridge about the set of AT-SPI states associated with this object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override AccessibilityStates AccessibilityCalculateStates()
+        {
+            var states = base.AccessibilityCalculateStates();
+            FlagSetter(ref states, AccessibilityStates.Modal, true);
+            return states;
+        }
+
 
         /// <summary>
         /// Default title content of AlertDialog.
@@ -500,6 +554,7 @@ namespace Tizen.NUI.Components
                 Layout = new LinearLayout()
                 {
                     LinearOrientation = LinearLayout.Orientation.Horizontal,
+                    LinearAlignment = LinearLayout.Alignment.Center,
                 },
             };
         }

@@ -34,7 +34,6 @@ namespace Tizen.NUI.Components
                 }
 
                 child.Dispose();
-                child = null;
             }
         }
     }

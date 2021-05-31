@@ -22,14 +22,14 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
     /// <summary>
     /// Drawable is a object class for drawing a vector primitive.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class Drawable : BaseHandle
     {
         /// <summary>
         /// Creates an initialized drawable.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        private Drawable() {}
+        private Drawable() { }
 
         internal Drawable(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
@@ -38,7 +38,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// <summary>
         /// The transparency level [0 ~ 1.0], 0 means totally transparent, while 1 means opaque.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public float Opacity
         {
             get
@@ -53,11 +53,43 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         }
 
         /// <summary>
+        /// The bounding box of the drawable object to which no transformation has been applied.
+        /// </summary>
+        /// <remarks>
+        /// The bounding box doesn't indicate the rendering region in the result but primitive region of the object.
+        /// </remarks>
+        /// <remarks>
+        /// The float type Rectangle class is not ready yet.
+        /// Therefore, it transmits data in Vector4 class.
+        /// This type should later be changed to the appropriate data type.
+        /// </remarks>
+        /// <code>
+        ///  Shape shape = new Shape()
+        ///  {      
+        ///      FillColor = new Color(1.0f, 0.0f, 0.0f, 1.0f)
+        ///  };
+        ///  shape.AddRect(0.0f, 0.0f, 100.0f, 100.0f, 0.0f, 0.0f);
+        ///  float boundingBoxX = shape.BoundingBox[0];      // boundingBoxX will be 0.
+        ///  float boundingBoxY = shape.BoundingBox[1];      // boundingBoxY will be 0.
+        ///  float boundingBoxWidth = shape.BoundingBox[2];  // boundingBoxWidth will be 100.
+        ///  float boundingBoxHeight = shape.BoundingBox[3]; // boundingBoxHeight will be 100.
+        /// </code>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Vector4 BoundingBox
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.Drawable.GetBoundingBox(BaseHandle.getCPtr(this));
+                return Vector4.GetVector4FromPtr(cPtr);
+            }
+        }
+
+        /// <summary>
         /// Set the angle of rotation transformation.
         /// </summary>
         /// <param name="degree">The degree value of angle.</param>
         /// <returns>True when it's successful. False otherwise.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public bool Rotate(float degree)
         {
             bool ret = Interop.Drawable.Rotate(BaseHandle.getCPtr(this), degree);
@@ -70,7 +102,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// </summary>
         /// <param name="factor">The scale factor value.</param>
         /// <returns>True when it's successful. False otherwise.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public bool Scale(float factor)
         {
             bool ret = Interop.Drawable.Scale(BaseHandle.getCPtr(this), factor);
@@ -85,7 +117,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// <returns>True when it's successful. False otherwise.</returns>
         /// <exception cref="ArgumentNullException"> Thrown when matrix is null. </exception>
         /// <exception cref="ArgumentException"> Thrown when matrix array length is not 9. </exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public bool Transform(float[] matrix)
         {
             if (matrix == null)
@@ -107,7 +139,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// <param name="x">The x-axis movement value.</param>
         /// <param name="y">The y-axis movement value.</param>
         /// <returns>True when it's successful. False otherwise.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public bool Translate(float x, float y)
         {
             bool ret = Interop.Drawable.Translate(BaseHandle.getCPtr(this), x, y);

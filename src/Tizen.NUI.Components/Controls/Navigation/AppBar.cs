@@ -465,6 +465,15 @@ namespace Tizen.NUI.Components
             }
         }
 
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnInitialize()
+        {
+            base.OnInitialize();
+
+            SetAccessibilityConstructor(Role.TitleBar);
+        }
+
         /// <summary>
         /// Applies style to AppBar.
         /// </summary>

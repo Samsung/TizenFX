@@ -33,7 +33,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Creates a new instance of a DefaultLinearItemStyle.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public DefaultLinearItemStyle() : base()
         {
         }
@@ -77,10 +77,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ViewStyle Seperator { get; set; } = new ViewStyle();
 
-        /// <summary>
-        /// Style's clone function.
-        /// </summary>
-        /// <param name="bindableObject">The style that need to copy.</param>
+        /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void CopyFrom(BindableObject bindableObject)
         {

@@ -21,10 +21,64 @@ using Tizen.NUI.BaseComponents;
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// TabView is a class which contains a TabBar and TabContent and
-    /// selects a view from the TabContent according to the selected TabButton in the TabBar.
+    /// TabView is a class which contains a TabBar and TabContent.
+    /// TabView adds TabButtons and Views to TabBar and TabContent in TabView by <see cref="TabView.AddTab"/>.
+    /// TabView removes TabButtons and Views from TabBar and TabContent in TabView by <see cref="TabView.RemoveTab"/>.
+    /// TabView selects a view from the TabContent according to the selected TabButton in the TabBar.
+    ///
+    /// <example>
+    /// <code>
+    /// var tabView = new TabView()
+    /// {
+    ///     WidthSpecification = LayoutParamPolicies.MatchParent,
+    ///     HeightSpecification = LayoutParamPolicies.MatchParent,
+    /// };
+    ///
+    /// var tabButton = new TabButton()
+    /// {
+    ///     Text = "Tab#1"
+    /// };
+    ///
+    /// var content = new View()
+    /// {
+    ///     BackgroundColor = Color.Red,
+    ///     WidthSpecification = LayoutParamPolicies.MatchParent,
+    ///     HeightSpecification = LayoutParamPolicies.MatchParent,
+    /// };
+    ///
+    /// tabView.AddTab(tabButton, content);
+    ///
+    /// var tabButton2 = new TabButton()
+    /// {
+    ///     Text = "Tab#2"
+    /// };
+    ///
+    /// var content2 = new View()
+    /// {
+    ///     BackgroundColor = Color.Green,
+    ///     WidthSpecification = LayoutParamPolicies.MatchParent,
+    ///     HeightSpecification = LayoutParamPolicies.MatchParent,
+    /// };
+    ///
+    /// tabView.AddTab(tabButton2, content2);
+    ///
+    /// var tabButton3 = new TabButton()
+    /// {
+    ///     Text = "Tab#3"
+    /// };
+    ///
+    /// var content3 = new View()
+    /// {
+    ///     BackgroundColor = Color.Blue,
+    ///     WidthSpecification = LayoutParamPolicies.MatchParent,
+    ///     HeightSpecification = LayoutParamPolicies.MatchParent,
+    /// };
+    ///
+    /// tabView.AddTab(tabButton3, content3);
+    /// </code>
+    /// </example>
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class TabView : Control
     {
         private TabBar tabBar = null;
@@ -34,15 +88,24 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Creates a new instance of TabView.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public TabView()
         {
             Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Vertical };
             WidthSpecification = LayoutParamPolicies.MatchParent;
             HeightSpecification = LayoutParamPolicies.MatchParent;
 
-            InitTabBar();
             InitContent();
+            InitTabBar();
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnInitialize()
+        {
+            base.OnInitialize();
+
+            SetAccessibilityConstructor(Role.PageTabList);
         }
 
         private void InitTabBar()
@@ -83,7 +146,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Gets TabBar of TabView.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public TabBar TabBar
         {
             get
@@ -95,7 +158,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Gets TabContent of TabView.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public TabContent Content
         {
             get
@@ -109,7 +172,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="tabButton">A tab button to be added.</param>
         /// <param name="view">A content view to be added.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public void AddTab(TabButton tabButton, View view)
         {
             if (TabBar != null)
@@ -125,10 +188,12 @@ namespace Tizen.NUI.Components
 
         /// <summary>
         /// Removes a tab at the specified index of TabView.
+        /// The indices of tabs(tab buttons and views) in TabView are basically the order of adding to TabView by <see cref="TabView.AddTab"/>.
+        /// So the index of a tab(tab button and view) in TabView can be changed whenever <see cref="TabView.AddTab"/> or <see cref="TabView.RemoveTab"/> is called.
         /// </summary>
-        /// <param name="index">The index of TabView where a tab will be removed.</param>
+        /// <param name="index">The index of a tab(tab button and view) in TabView where the tab will be removed.</param>
         /// <exception cref="ArgumentOutOfRangeException">Thrown when the index is less than 0, or greater than or equal to the number of tabs.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public void RemoveTab(int index)
         {
             var tabButton = TabBar.GetTabButton(index);
@@ -144,10 +209,7 @@ namespace Tizen.NUI.Components
             }
         }
 
-        /// <summary>
-        /// Dispose TabView and all children on it.
-        /// </summary>
-        /// <param name="type">Dispose type.</param>
+        /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {

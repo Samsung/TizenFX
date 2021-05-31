@@ -33,7 +33,7 @@ These release branches were __FROZEN__. No new public APIs can be added to these
 
 ## Quick Start
 ### Prerequisites
-Install .NET Core SDK 2.0+ : https://www.microsoft.com/net/download/
+Install .NET Core SDK : https://www.microsoft.com/net/download/
 
 ### Getting the sources
 ```bash

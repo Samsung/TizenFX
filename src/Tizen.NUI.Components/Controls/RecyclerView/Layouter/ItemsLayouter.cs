@@ -21,10 +21,11 @@ using System.ComponentModel;
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// Default layout manager for CollectionView.
-    /// Lay out ViewItem and recycle ViewItem.
+    /// Default layout manager for RecyclerView.
+    /// Layouting RecyclerViewItem on the scroll ContentContainer
+    /// which need to be visible on the view by scroll position.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public abstract class ItemsLayouter : ICollectionChangedNotifier, IDisposable
     {
         private bool disposed = false;
@@ -119,7 +120,7 @@ namespace Tizen.NUI.Components
         /// Clean up ItemsLayouter.
         /// </summary>
         /// <param name="view"> ItemsView of layouter.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public virtual void Initialize(RecyclerView view)
         {
             ItemsView = view ?? throw new ArgumentNullException(nameof(view));
@@ -136,7 +137,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="scrollPosition">Scroll position which is calculated by ScrollableBase</param>
         /// <param name="force">boolean force flag to layouting forcely.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public virtual void RequestLayout(float scrollPosition, bool force = false)
         {
             // Layouting Items in scrollPosition.
@@ -145,7 +146,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Clear the current screen and all properties.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public virtual void Clear()
         {
             foreach (RecyclerViewItem item in VisibleItems)
@@ -153,8 +154,18 @@ namespace Tizen.NUI.Components
                 if (ItemsView != null) ItemsView.UnrealizeItem(item, false);
             }
             VisibleItems.Clear();
+            if (CandidateMargin != null)
+            {
+                CandidateMargin.Dispose();
+                CandidateMargin = null;
+            }
+            if (Container)
+            {
+                Container.SizeHeight = 0;
+                Container.Position = new Position(0.0f, 0.0f);
+                Container = null;
+            }
             ItemsView = null;
-            Container = null;
         }
 
         /// <summary>
@@ -226,6 +237,18 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Notify the range of the observable items are moved from fromPosition to ToPosition.
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="fromPosition"></param>
+        /// <param name="toPosition"></param>
+        /// <param name="count"></param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual void NotifyItemRangeMoved(IItemSource source, int fromPosition, int toPosition, int count)
+        {
+        }
+
+        /// <summary>
         /// Notify the range of observable items from start to end are changed.
         /// </summary>
         /// <param name="source">Dataset source.</param>
@@ -285,7 +308,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Dispose ItemsLayouter and all children on it.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
