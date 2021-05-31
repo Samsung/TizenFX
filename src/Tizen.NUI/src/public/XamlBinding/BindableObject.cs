@@ -44,6 +44,8 @@ namespace Tizen.NUI.Binding
         bool applying;
         object inheritedContext;
 
+        private object bindingContext;
+
         /// <summary>
         /// Gets or sets object that contains the properties that will be targeted by the bound properties that belong to this BindableObject.
         /// </summary>
@@ -51,8 +53,27 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public object BindingContext
         {
-            get { return inheritedContext ?? GetValue(BindingContextProperty); }
-            set { SetValue(BindingContextProperty, value); }
+            get
+            {
+                if (null != bindingContext)
+                {
+                    return bindingContext;
+                }
+
+                if (this is Container container)
+                {
+                    return container.Parent?.BindingContext;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            set
+            {
+                bindingContext = value;
+                FlushBinding();
+            }
         }
 
         void IDynamicResourceHandler.SetDynamicResource(BindableProperty property, string key)
@@ -512,6 +533,23 @@ namespace Tizen.NUI.Binding
             context.Attributes &= ~BindableContextAttributes.IsDynamicResource;
         }
 
+        private List<(BindableProperty, BindingBase, bool)> bindingWaitForFlush = new List<(BindableProperty, BindingBase, bool)>();
+
+        internal void FlushBinding()
+        {
+            foreach (var binding in bindingWaitForFlush)
+            {
+                SetBinding(binding.Item1, binding.Item2, binding.Item3);
+            }
+
+            bindingWaitForFlush.Clear();
+
+            foreach (var child in children)
+            {
+                child.FlushBinding();
+            }
+        }
+
         internal void SetBinding(BindableProperty targetProperty, BindingBase binding, bool fromStyle)
         {
             if (targetProperty == null)
@@ -521,6 +559,21 @@ namespace Tizen.NUI.Binding
 
             if (fromStyle && !CanBeSetFromStyle(targetProperty))
                 return;
+
+            IsCreateByXaml = true;
+
+            var realBinding = binding as Binding;
+            if (null != realBinding)
+            {
+                if (null != realBinding.Source as BindableObject)
+                {
+                    (realBinding.Source as BindableObject).IsCreateByXaml = true;
+                }
+                else if (null == realBinding.Source && null == BindingContext)
+                {
+                    bindingWaitForFlush.Add((targetProperty, binding, fromStyle));
+                }
+            }
 
             var context = GetOrCreateContext(targetProperty);
             if (fromStyle)
@@ -938,6 +991,22 @@ namespace Tizen.NUI.Binding
                 Attributes = attributes;
             }
         }
+
+        internal void AddChildBindableObject(BindableObject child)
+        {
+            if (null != child)
+            {
+                children.Add(child);
+                child.FlushBinding();
+            }
+        }
+
+        internal void RemoveChildBindableObject(BindableObject child)
+        {
+            children.Remove(child);
+        }
+
+        private List<BindableObject> children = new List<BindableObject>();
     }
 }
 

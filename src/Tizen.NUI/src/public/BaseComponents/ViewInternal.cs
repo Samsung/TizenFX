@@ -1021,6 +1021,8 @@ namespace Tizen.NUI.BaseComponents
                 };
                 ChildRemoved(this, e);
             }
+
+            RemoveChildBindableObject(child);
         }
 
         /// <summary>

@@ -166,7 +166,7 @@ namespace Tizen.NUI.BaseComponents
                     };
                     ChildAdded(this, e);
                 }
-                BindableObject.SetInheritedBindingContext(child, this?.BindingContext);
+                this.AddChildBindableObject(child);
             }
         }
 
