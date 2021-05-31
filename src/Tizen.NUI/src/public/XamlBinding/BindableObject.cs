@@ -522,6 +522,8 @@ namespace Tizen.NUI.Binding
             if (fromStyle && !CanBeSetFromStyle(targetProperty))
                 return;
 
+            IsCreateByXaml = true;
+
             var context = GetOrCreateContext(targetProperty);
             if (fromStyle)
                 context.Attributes |= BindableContextAttributes.IsSetFromStyle;
