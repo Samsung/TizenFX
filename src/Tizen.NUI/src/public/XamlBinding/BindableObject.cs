@@ -36,8 +36,31 @@ namespace Tizen.NUI.Binding
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty BindingContextProperty =
-            BindableProperty.Create(nameof(BindingContext), typeof(object), typeof(BindableObject), default(object),
-                                    BindingMode.OneWay, null, BindingContextPropertyChanged, null, null, BindingContextPropertyBindingChanging);
+            BindableProperty.Create(nameof(BindingContext), typeof(object), typeof(BindableObject), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        {
+            var bindableObject = (BindableObject)bindable;
+            if (newValue != null)
+            {
+                bindableObject.bindingContext = newValue;
+                bindableObject.FlushBinding();
+            }
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        {
+            if (null != bindable.bindingContext)
+            {
+                return bindable.bindingContext;
+            }
+
+            if (bindable is Container container)
+            {
+                return container.Parent?.BindingContext;
+            }
+            else
+            {
+                return null;
+            }
+        }));
 
         readonly List<BindablePropertyContext> properties = new List<BindablePropertyContext>(4);
 
@@ -53,27 +76,8 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public object BindingContext
         {
-            get
-            {
-                if (null != bindingContext)
-                {
-                    return bindingContext;
-                }
-
-                if (this is Container container)
-                {
-                    return container.Parent?.BindingContext;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-            set
-            {
-                bindingContext = value;
-                FlushBinding();
-            }
+            get { return inheritedContext ?? GetValue(BindingContextProperty); }
+            set { SetValue(BindingContextProperty, value); }
         }
 
         void IDynamicResourceHandler.SetDynamicResource(BindableProperty property, string key)
@@ -380,7 +384,7 @@ namespace Tizen.NUI.Binding
         /// Method that is called when a bound property is changed.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual void OnPropertyChangedWithData(BindableProperty property) { }
+        protected virtual void OnPropertyChangedWithData(BindableProperty prop) { }
 
         /// <summary>
         /// Unapplies all previously set bindings.
@@ -533,16 +537,10 @@ namespace Tizen.NUI.Binding
             context.Attributes &= ~BindableContextAttributes.IsDynamicResource;
         }
 
-        private List<(BindableProperty, BindingBase, bool)> bindingWaitForFlush = new List<(BindableProperty, BindingBase, bool)>();
-
         internal void FlushBinding()
         {
-            foreach (var binding in bindingWaitForFlush)
-            {
-                SetBinding(binding.Item1, binding.Item2, binding.Item3);
-            }
-
-            bindingWaitForFlush.Clear();
+            ApplyBindings(skipBindingContext: true, fromBindingContextChanged: true);
+            OnBindingContextChanged();
 
             foreach (var child in children)
             {
@@ -561,19 +559,6 @@ namespace Tizen.NUI.Binding
                 return;
 
             IsCreateByXaml = true;
-
-            var realBinding = binding as Binding;
-            if (null != realBinding)
-            {
-                if (null != realBinding.Source as BindableObject)
-                {
-                    (realBinding.Source as BindableObject).IsCreateByXaml = true;
-                }
-                else if (null == realBinding.Source && null == BindingContext)
-                {
-                    bindingWaitForFlush.Add((targetProperty, binding, fromStyle));
-                }
-            }
 
             var context = GetOrCreateContext(targetProperty);
             if (fromStyle)
