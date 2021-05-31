@@ -934,6 +934,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public void ScrollTo(float position, bool animate)
         {
+            StopScroll();
             float currentPositionX = ContentContainer.CurrentPosition.X != 0 ? ContentContainer.CurrentPosition.X : ContentContainer.Position.X;
             float currentPositionY = ContentContainer.CurrentPosition.Y != 0 ? ContentContainer.CurrentPosition.Y : ContentContainer.Position.Y;
             float delta = ScrollingDirection == Direction.Horizontal ? currentPositionX : currentPositionY;
