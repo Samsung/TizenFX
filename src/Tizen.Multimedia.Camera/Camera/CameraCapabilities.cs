@@ -582,15 +582,15 @@ namespace Tizen.Multimedia
         #region Methods for getting supported values
         private IList<Size> GetSupportedPreviewResolutions()
         {
-            List<Size> previewResolutions = new List<Size>();
+            var previewResolutions = new List<Size>();
 
-            NativeCapabilities.PreviewResolutionCallback callback = (int width, int height, IntPtr userData) =>
+            NativeCapabilities.PreviewResolutionCallback callback = (width, height, _) =>
             {
                 previewResolutions.Add(new Size(width, height));
                 return true;
             };
 
-            NativeCapabilities.SupportedPreviewResolutions(_camera.GetHandle(), callback, IntPtr.Zero).
+            NativeCapabilities.SupportedPreviewResolutions(_camera.GetHandle(), callback).
                 ThrowIfFailed("Failed to get the supported preview resolutions");
 
             return previewResolutions.AsReadOnly();
@@ -598,15 +598,15 @@ namespace Tizen.Multimedia
 
         private IList<Size> GetSupportedCaptureResolutions()
         {
-            List<Size> cameraResolutions = new List<Size>();
+            var cameraResolutions = new List<Size>();
 
-            NativeCapabilities.CaptureResolutionCallback callback = (int width, int height, IntPtr userData) =>
+            NativeCapabilities.CaptureResolutionCallback callback = (width, height, _) =>
             {
                 cameraResolutions.Add(new Size(width, height));
                 return true;
             };
 
-            NativeCapabilities.SupportedCaptureResolutions(_camera.GetHandle(), callback, IntPtr.Zero).
+            NativeCapabilities.SupportedCaptureResolutions(_camera.GetHandle(), callback).
                 ThrowIfFailed("Failed to get the supported capture resolutions");
 
             return cameraResolutions.AsReadOnly();
@@ -614,15 +614,15 @@ namespace Tizen.Multimedia
 
         private IList<CameraPixelFormat> GetSupportedCapturePixelFormats()
         {
-            List<CameraPixelFormat> captureFormats = new List<CameraPixelFormat>();
+            var captureFormats = new List<CameraPixelFormat>();
 
-            NativeCapabilities.CaptureFormatCallback callback = (CameraPixelFormat format, IntPtr userData) =>
+            NativeCapabilities.CaptureFormatCallback callback = (format, _) =>
             {
                 captureFormats.Add(format);
                 return true;
             };
 
-            NativeCapabilities.SupportedCapturePixelFormats(_camera.GetHandle(), callback, IntPtr.Zero).
+            NativeCapabilities.SupportedCapturePixelFormats(_camera.GetHandle(), callback).
                 ThrowIfFailed("Failed to get the supported capture formats.");
 
             return captureFormats.AsReadOnly();
@@ -630,15 +630,15 @@ namespace Tizen.Multimedia
 
         private IList<CameraPixelFormat> GetSupportedPreviewPixelFormats()
         {
-            List<CameraPixelFormat> previewFormats = new List<CameraPixelFormat>();
+            var previewFormats = new List<CameraPixelFormat>();
 
-            NativeCapabilities.PreviewFormatCallback callback = (CameraPixelFormat format, IntPtr userData) =>
+            NativeCapabilities.PreviewFormatCallback callback = (format, _) =>
             {
                 previewFormats.Add(format);
                 return true;
             };
 
-            NativeCapabilities.SupportedPreviewPixelFormats(_camera.GetHandle(), callback, IntPtr.Zero).
+            NativeCapabilities.SupportedPreviewPixelFormats(_camera.GetHandle(), callback).
                 ThrowIfFailed("Failed to get the supported preview formats.");
 
             return previewFormats.AsReadOnly();
@@ -646,15 +646,15 @@ namespace Tizen.Multimedia
 
         private IList<CameraFps> GetSupportedPreviewFps()
         {
-            List<CameraFps> previewFps = new List<CameraFps>();
+            var previewFps = new List<CameraFps>();
 
-            NativeCapabilities.FpsCallback callback = (CameraFps fps, IntPtr userData) =>
+            NativeCapabilities.FpsCallback callback = (fps, _) =>
             {
                 previewFps.Add(fps);
                 return true;
             };
 
-            NativeCapabilities.SupportedPreviewFps(_camera.GetHandle(), callback, IntPtr.Zero).
+            NativeCapabilities.SupportedPreviewFps(_camera.GetHandle(), callback).
                 ThrowIfFailed("Failed to get the supported camera fps");
 
             return previewFps.AsReadOnly();
@@ -662,15 +662,15 @@ namespace Tizen.Multimedia
 
         private IList<CameraFps> GetSupportedPreviewFpsByResolutions(int width, int height)
         {
-            List<CameraFps> fpsByResolution = new List<CameraFps>();
+            var fpsByResolution = new List<CameraFps>();
 
-            NativeCapabilities.FpsByResolutionCallback callback = (CameraFps fps, IntPtr userData) =>
+            NativeCapabilities.FpsByResolutionCallback callback = (fps, _) =>
             {
                 fpsByResolution.Add(fps);
                 return true;
             };
 
-            NativeCapabilities.SupportedPreviewFpsByResolution(_camera.GetHandle(), width, height, callback, IntPtr.Zero).
+            NativeCapabilities.SupportedPreviewFpsByResolution(_camera.GetHandle(), width, height, callback).
                 ThrowIfFailed("Failed to get the supported fps by resolutions.");
 
             return fpsByResolution.AsReadOnly();
@@ -678,15 +678,15 @@ namespace Tizen.Multimedia
 
         private IList<CameraAutoFocusMode> GetSupportedAutoFocusModes()
         {
-            List<CameraAutoFocusMode> autoFocusModes = new List<CameraAutoFocusMode>();
+            var autoFocusModes = new List<CameraAutoFocusMode>();
 
-            NativeCapabilities.AfModeCallback callback = (CameraAutoFocusMode mode, IntPtr userData) =>
+            NativeCapabilities.AfModeCallback callback = (mode, _) =>
             {
                 autoFocusModes.Add(mode);
                 return true;
             };
 
-            NativeCapabilities.SupportedAutoFocusModes(_camera.GetHandle(), callback, IntPtr.Zero).
+            NativeCapabilities.SupportedAutoFocusModes(_camera.GetHandle(), callback).
                 ThrowIfFailed("Failed to get the supported Auto focus modes.");
 
             return autoFocusModes.AsReadOnly();
@@ -694,15 +694,15 @@ namespace Tizen.Multimedia
 
         private IList<CameraExposureMode> GetSupportedExposureModes()
         {
-            List<CameraExposureMode> exposureModes = new List<CameraExposureMode>();
+            var exposureModes = new List<CameraExposureMode>();
 
-            NativeCapabilities.ExposureModeCallback callback = (CameraExposureMode mode, IntPtr userData) =>
+            NativeCapabilities.ExposureModeCallback callback = (mode, _) =>
             {
                 exposureModes.Add(mode);
                 return true;
             };
 
-            NativeCapabilities.SupportedExposureModes(_camera.GetHandle(), callback, IntPtr.Zero).
+            NativeCapabilities.SupportedExposureModes(_camera.GetHandle(), callback).
                 ThrowIfFailed("Failed to get the supported Exposure modes.");
 
             return exposureModes.AsReadOnly();
@@ -710,15 +710,15 @@ namespace Tizen.Multimedia
 
         private IList<CameraIsoLevel> GetSupportedIsoLevels()
         {
-            List<CameraIsoLevel> isoLevels = new List<CameraIsoLevel>();
+            var isoLevels = new List<CameraIsoLevel>();
 
-            NativeCapabilities.IsoCallback callback = (CameraIsoLevel iso, IntPtr userData) =>
+            NativeCapabilities.IsoCallback callback = (iso, _) =>
             {
                 isoLevels.Add(iso);
                 return true;
             };
 
-            NativeCapabilities.SupportedIso(_camera.GetHandle(), callback, IntPtr.Zero).
+            NativeCapabilities.SupportedIso(_camera.GetHandle(), callback).
                 ThrowIfFailed("Failed to get the supported Iso levels.");
 
             return isoLevels.AsReadOnly();
@@ -726,15 +726,15 @@ namespace Tizen.Multimedia
 
         private IList<CameraTheaterMode> GetSupportedTheaterModes()
         {
-            List<CameraTheaterMode> theaterModes = new List<CameraTheaterMode>();
+            var theaterModes = new List<CameraTheaterMode>();
 
-            NativeCapabilities.TheaterModeCallback callback = (CameraTheaterMode theaterMode, IntPtr userData) =>
+            NativeCapabilities.TheaterModeCallback callback = (theaterMode, _) =>
             {
                 theaterModes.Add(theaterMode);
                 return true;
             };
 
-            NativeCapabilities.SupportedTheaterModes(_camera.GetHandle(), callback, IntPtr.Zero).
+            NativeCapabilities.SupportedTheaterModes(_camera.GetHandle(), callback).
                 ThrowIfFailed("Failed to get the supported theater modes.");
 
             return theaterModes.AsReadOnly();
@@ -742,15 +742,15 @@ namespace Tizen.Multimedia
 
         private IList<CameraWhiteBalance> GetSupportedWhitebalances()
         {
-            List<CameraWhiteBalance> whitebalances = new List<CameraWhiteBalance>();
+            var whitebalances = new List<CameraWhiteBalance>();
 
-            NativeCapabilities.WhitebalanceCallback callback = (CameraWhiteBalance whiteBalance, IntPtr userData) =>
+            NativeCapabilities.WhitebalanceCallback callback = (whiteBalance, _) =>
             {
                 whitebalances.Add(whiteBalance);
                 return true;
             };
 
-            NativeCapabilities.SupportedWhitebalance(_camera.GetHandle(), callback, IntPtr.Zero).
+            NativeCapabilities.SupportedWhitebalance(_camera.GetHandle(), callback).
                 ThrowIfFailed("Failed to get the supported white balance.");
 
             return whitebalances.AsReadOnly();
@@ -758,15 +758,15 @@ namespace Tizen.Multimedia
 
         private IList<CameraFlashMode> GetSupportedFlashModes()
         {
-            List<CameraFlashMode> flashModes = new List<CameraFlashMode>();
+            var flashModes = new List<CameraFlashMode>();
 
-            NativeCapabilities.FlashModeCallback callback = (CameraFlashMode flashMode, IntPtr userData) =>
+            NativeCapabilities.FlashModeCallback callback = (flashMode, _) =>
             {
                 flashModes.Add(flashMode);
                 return true;
             };
 
-            NativeCapabilities.SupportedFlashModes(_camera.GetHandle(), callback, IntPtr.Zero).
+            NativeCapabilities.SupportedFlashModes(_camera.GetHandle(), callback).
                 ThrowIfFailed("Failed to get the supported flash modes.");
 
             return flashModes.AsReadOnly();
@@ -774,15 +774,15 @@ namespace Tizen.Multimedia
 
         private IList<CameraSceneMode> GetSupportedSceneModes()
         {
-            List<CameraSceneMode> sceneModes = new List<CameraSceneMode>();
+            var sceneModes = new List<CameraSceneMode>();
 
-            NativeCapabilities.SceneModeCallback callback = (CameraSceneMode sceneMode, IntPtr userData) =>
+            NativeCapabilities.SceneModeCallback callback = (sceneMode, _) =>
             {
                 sceneModes.Add(sceneMode);
                 return true;
             };
 
-            NativeCapabilities.SupportedSceneModes(_camera.GetHandle(), callback, IntPtr.Zero).
+            NativeCapabilities.SupportedSceneModes(_camera.GetHandle(), callback).
                 ThrowIfFailed("Failed to get the supported scene modes.");
 
             return sceneModes.AsReadOnly();
@@ -790,15 +790,15 @@ namespace Tizen.Multimedia
 
         private IList<CameraEffectMode> GetSupportedEffects()
         {
-            List<CameraEffectMode> effectModes = new List<CameraEffectMode>();
+            var effectModes = new List<CameraEffectMode>();
 
-            NativeCapabilities.EffectCallback callback = (CameraEffectMode effect, IntPtr userData) =>
+            NativeCapabilities.EffectCallback callback = (effect, _) =>
             {
                 effectModes.Add(effect);
                 return true;
             };
 
-            NativeCapabilities.SupportedEffects(_camera.GetHandle(), callback, IntPtr.Zero).
+            NativeCapabilities.SupportedEffects(_camera.GetHandle(), callback).
                 ThrowIfFailed("Failed to get the supported camera effects.");
 
             return effectModes.AsReadOnly();
@@ -806,15 +806,15 @@ namespace Tizen.Multimedia
 
         private IList<Rotation> GetSupportedStreamRotations()
         {
-            List<Rotation> streamRotations = new List<Rotation>();
+            var streamRotations = new List<Rotation>();
 
-            NativeCapabilities.StreamRotationCallback callback = (Rotation streamRotation, IntPtr userData) =>
+            NativeCapabilities.StreamRotationCallback callback = (streamRotation, _) =>
             {
                 streamRotations.Add(streamRotation);
                 return true;
             };
 
-            NativeCapabilities.SupportedStreamRotations(_camera.GetHandle(), callback, IntPtr.Zero).
+            NativeCapabilities.SupportedStreamRotations(_camera.GetHandle(), callback).
                 ThrowIfFailed("Failed to get the supported camera rotations.");
 
             return streamRotations.AsReadOnly();
@@ -822,15 +822,15 @@ namespace Tizen.Multimedia
 
         private IList<Flips> GetSupportedStreamFlips()
         {
-            List<Flips> streamFlips = new List<Flips>();
+            var streamFlips = new List<Flips>();
 
-            NativeCapabilities.StreamFlipCallback callback = (Flips streamFlip, IntPtr userData) =>
+            NativeCapabilities.StreamFlipCallback callback = (streamFlip, _) =>
             {
                 streamFlips.Add(streamFlip);
                 return true;
             };
 
-            NativeCapabilities.SupportedStreamFlips(_camera.GetHandle(), callback, IntPtr.Zero).
+            NativeCapabilities.SupportedStreamFlips(_camera.GetHandle(), callback).
                 ThrowIfFailed("Failed to get the supported camera flips.");
 
             return streamFlips.AsReadOnly();
@@ -838,15 +838,15 @@ namespace Tizen.Multimedia
 
         private IList<CameraPtzType> GetSupportedPtzTypes()
         {
-            List<CameraPtzType> ptzTypes = new List<CameraPtzType>();
+            var ptzTypes = new List<CameraPtzType>();
 
-            NativeCapabilities.PtzTypeCallback callback = (CameraPtzType ptzType, IntPtr userData) =>
+            NativeCapabilities.PtzTypeCallback callback = (ptzType, _) =>
             {
                 ptzTypes.Add(ptzType);
                 return true;
             };
 
-            NativeCapabilities.SupportedPtzTypes(_camera.GetHandle(), callback, IntPtr.Zero).
+            NativeCapabilities.SupportedPtzTypes(_camera.GetHandle(), callback).
                 ThrowIfFailed("Failed to get the supported Ptz types.");
 
             return ptzTypes.AsReadOnly();

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2021 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -15,24 +15,35 @@
  */
 
 using System;
+using System.ComponentModel;
 
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Provides data for the <see cref="Camera.Preview"/> event.
+    /// Provides data for the <see cref="Camera.ExtraPreview"/> event.
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
-    public class PreviewEventArgs : EventArgs
+    /// <since_tizen> 9 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class ExtraPreviewEventArgs : EventArgs
     {
-        internal PreviewEventArgs(PreviewFrame preview)
+        internal ExtraPreviewEventArgs(PreviewFrame preview, int streadId)
         {
             Preview = preview;
+            StreamId = streadId;
         }
 
         /// <summary>
         /// Gets the preview frame data.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 9 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PreviewFrame Preview { get; }
+
+        /// <summary>
+        /// Gets the stream ID.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int StreamId { get; }
     }
 }
