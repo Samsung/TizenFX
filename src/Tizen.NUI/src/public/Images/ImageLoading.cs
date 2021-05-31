@@ -259,11 +259,23 @@ namespace Tizen.NUI
         /// Get the size of an original image consider rotation
         /// </summary>
         /// <param name="filename">The name of the image.</param>
+        /// <returns>Dimension of the original image.</returns>
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Size2D GetOriginalImageSize(string filename)
+        {
+            return GetOriginalImageSize(filename, true);
+        }
+
+        /// <summary>
+        /// Get the size of an original image consider rotation
+        /// </summary>
+        /// <param name="filename">The name of the image.</param>
         /// <param name="orientationCorrection">Reorient the image to respect any orientation metadata in its header.</param>
         /// <returns>Dimension of the original image.</returns>
         /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static Size2D GetOriginalImageSize(string filename, bool orientationCorrection = true)
+        public static Size2D GetOriginalImageSize(string filename, bool orientationCorrection)
         {
             var val = new Uint16Pair(Interop.ImageLoading.GetOriginalImageSize(filename, orientationCorrection), true);
             Size2D ret = new Size2D(val.GetWidth(), val.GetHeight());
