@@ -253,31 +253,24 @@ namespace Tizen.NUI.Components
             curTop.InvokeDisappearing();
 
             //TODO: The following transition codes will be replaced with view transition.
-            if (curAnimation)
-            {
-                curAnimation.Stop();
-                curAnimation.Clear();
-            }
-
-            if (newAnimation)
-            {
-                newAnimation.Stop();
-                newAnimation.Clear();
-            }
+            InitializeAnimation();
 
             if (page is DialogPage == false)
             {
                 curAnimation = new Animation(1000);
                 curAnimation.AnimateTo(curTop, "Opacity", 0.0f, 0, 1000);
-                curAnimation.EndAction = Animation.EndActions.Discard;
+                curAnimation.EndAction = Animation.EndActions.StopFinal;
+                curAnimation.Finished += (object sender, EventArgs args) =>
+                {
+                    curTop.SetVisible(false);
+                };
                 curAnimation.Play();
 
-                using (var opacityProp = new Tizen.NUI.PropertyValue(0.0f))
-                {
-                    Tizen.NUI.Object.SetProperty(page.SwigCPtr, Page.Property.OPACITY, opacityProp);
-                }
+                page.Opacity = 0.0f;
+                page.SetVisible(true);
                 newAnimation = new Animation(1000);
                 newAnimation.AnimateTo(page, "Opacity", 1.0f, 0, 1000);
+                newAnimation.EndAction = Animation.EndActions.StopFinal;
                 newAnimation.Play();
             }
         }
@@ -316,35 +309,26 @@ namespace Tizen.NUI.Components
             curTop.InvokeDisappearing();
 
             //TODO: The following transition codes will be replaced with view transition.
-            if (curAnimation)
-            {
-                curAnimation.Stop();
-                curAnimation.Clear();
-            }
-
-            if (newAnimation)
-            {
-                newAnimation.Stop();
-                newAnimation.Clear();
-            }
+            InitializeAnimation();
 
             if (curTop is DialogPage == false)
             {
                 curAnimation = new Animation(1000);
                 curAnimation.AnimateTo(curTop, "Opacity", 0.0f, 0, 1000);
-                curAnimation.Play();
+                curAnimation.EndAction = Animation.EndActions.StopFinal;
                 curAnimation.Finished += (object sender, EventArgs e) =>
                 {
                     //Removes the current top page after transition is finished.
                     Remove(curTop);
+                    curTop.Opacity = 1.0f;
                 };
+                curAnimation.Play();
 
-                using (var opacityProp = new Tizen.NUI.PropertyValue(0.0f))
-                {
-                    Tizen.NUI.Object.SetProperty(newTop.SwigCPtr, Page.Property.OPACITY, opacityProp);
-                }
+                newTop.Opacity = 0.0f;
+                newTop.SetVisible(true);
                 newAnimation = new Animation(1000);
                 newAnimation.AnimateTo(newTop, "Opacity", 1.0f, 0, 1000);
+                newAnimation.EndAction = Animation.EndActions.StopFinal;
                 newAnimation.Play();
             }
             else
@@ -427,6 +411,20 @@ namespace Tizen.NUI.Components
             //Duplicate page is not pushed.
             if (navigationPages.Contains(page)) return;
 
+            //TODO: The following transition codes will be replaced with view transition.
+            InitializeAnimation();
+
+            if (index == PageCount)
+            {
+                page.Opacity = 1.0f;
+                page.SetVisible(true);
+            }
+            else
+            {
+                page.SetVisible(false);
+                page.Opacity = 0.0f;
+            }
+
             navigationPages.Insert(index, page);
             Add(page);
             page.Navigator = this;
@@ -477,6 +475,15 @@ namespace Tizen.NUI.Components
             if (page == null)
             {
                 throw new ArgumentNullException(nameof(page), "page should not be null.");
+            }
+
+            //TODO: The following transition codes will be replaced with view transition.
+            InitializeAnimation();
+
+            if ((page == Peek()) && (PageCount >= 2))
+            {
+                navigationPages[PageCount - 2].Opacity = 1.0f;
+                navigationPages[PageCount - 2].SetVisible(true);
             }
 
             page.Navigator = null;
@@ -680,6 +687,24 @@ namespace Tizen.NUI.Components
         internal void InvokeTransitionFinished()
         {
             TransitionFinished?.Invoke(this, new EventArgs());
+        }
+
+        //TODO: The following transition codes will be replaced with view transition.
+        private void InitializeAnimation()
+        {
+            if (curAnimation != null)
+            {
+                curAnimation.Stop();
+                curAnimation.Clear();
+                curAnimation = null;
+            }
+
+            if (newAnimation != null)
+            {
+                newAnimation.Stop();
+                newAnimation.Clear();
+                newAnimation = null;
+            }
         }
     }
 }
