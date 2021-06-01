@@ -1013,6 +1013,8 @@ namespace Tizen.NUI.BaseComponents
             Children.Remove(child);
             child.InternalParent = null;
 
+            RemoveChildBindableObject(child);
+
             if (ChildRemoved != null)
             {
                 ChildRemovedEventArgs e = new ChildRemovedEventArgs
