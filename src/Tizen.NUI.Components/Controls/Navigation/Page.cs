@@ -36,6 +36,22 @@ namespace Tizen.NUI.Components
     }
 
     /// <summary>
+    /// PageAppearedEventArgs is a class to record page appeared event arguments which will be sent to user.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class PageAppearedEventArgs : EventArgs
+    {
+    }
+
+    /// <summary>
+    /// PageDisappearedEventArgs is a class to record page disappeared event arguments which will be sent to user.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class PageDisappearedEventArgs : EventArgs
+    {
+    }
+
+    /// <summary>
     /// The Page class is a class which is an element of navigation.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
@@ -85,6 +101,18 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<PageDisappearingEventArgs> Disappearing;
 
+        /// <summary>
+        /// An event for the page appeared signal which can be used to subscribe or unsubscribe the event handler provided by the user.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<PageAppearedEventArgs> Appeared;
+
+        /// <summary>
+        /// An event for the page disappeared signal which can be used to subscribe or unsubscribe the event handler provided by the user.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<PageDisappearedEventArgs> Disappeared;
+
         internal void InvokeAppearing()
         {
             Appearing?.Invoke(this, new PageAppearingEventArgs());
@@ -93,6 +121,16 @@ namespace Tizen.NUI.Components
         internal void InvokeDisappearing()
         {
             Disappearing?.Invoke(this, new PageDisappearingEventArgs());
+        }
+
+        internal void InvokeAppeared()
+        {
+            Appeared?.Invoke(this, new PageAppearedEventArgs());
+        }
+
+        internal void InvokeDisappeared()
+        {
+            Disappeared?.Invoke(this, new PageDisappearedEventArgs());
         }
     }
 }
