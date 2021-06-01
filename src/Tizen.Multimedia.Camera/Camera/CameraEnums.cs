@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.ComponentModel;
 
 namespace Tizen.Multimedia
 {
@@ -926,5 +927,26 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         RgbPlane
+    }
+
+    /// <summary>
+    /// Enumeration for camera device type
+    /// </summary>
+    /// <since_tizen> 9 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum CameraDeviceType
+    {
+        /// <summary>
+        /// Buint-in camera.
+        /// </summary>
+        BuintIn,
+        /// <summary>
+        /// USB camera.
+        /// </summary>
+        Usb,
+        /// <summary>
+        /// Network camera.
+        /// </summary>
+        Network
     }
 }
