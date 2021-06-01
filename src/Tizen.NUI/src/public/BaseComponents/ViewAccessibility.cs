@@ -501,6 +501,9 @@ namespace Tizen.NUI.BaseComponents
                     SetSelection = (selectionNumber, startOffset, endOffset) => AccessibilitySetSelection(selectionNumber, startOffset, endOffset),
                     CopyText = (startPosition, endPosition) => AccessibilityCopyText(startPosition, endPosition),
                     CutText = (startPosition, endPosition) => AccessibilityCutText(startPosition, endPosition),
+                    InsertText = (startPosition, text) => AccessibilityInsertText(startPosition, Marshal.PtrToStringAnsi(text)),
+                    SetTextContents = (newContents) => AccessibilitySetTextContents(Marshal.PtrToStringAnsi(newContents)),
+                    DeleteText = (startPosition, endPosition) => AccessibilityDeleteText(startPosition, endPosition),
                 };
 
                 accessibilityDelegatePtr = Marshal.AllocHGlobal(size);
@@ -723,6 +726,24 @@ namespace Tizen.NUI.BaseComponents
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual bool AccessibilityCutText(int startPosition, int endPosition)
+        {
+            return false;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool AccessibilityInsertText(int startPosition, string text)
+        {
+            return false;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool AccessibilitySetTextContents(string newContents)
+        {
+            return false;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool AccessibilityDeleteText(int startPosition, int endPosition)
         {
             return false;
         }
