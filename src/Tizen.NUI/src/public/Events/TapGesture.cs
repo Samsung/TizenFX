@@ -87,6 +87,20 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// The gesture source type of touches property (read-only).
+        /// If you tap with a mouse button, this will tell you which mouse input you tapped.
+        /// Primary(Left), Secondary(Right). Tertiary(Wheel).
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public GestureSourceType SourceType
+        {
+            get
+            {
+                return sourceType;
+            }
+        }
+
         private uint numberOfTaps
         {
             set
@@ -149,6 +163,16 @@ namespace Tizen.NUI
             }
         }
 
+        private GestureSourceType sourceType
+        {
+            get
+            {
+                GestureSourceType ret = (GestureSourceType)Interop.TapGesture.SourceTypeGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TapGesture obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
@@ -172,5 +196,33 @@ namespace Tizen.NUI
         {
             Interop.TapGesture.DeleteTapGesture(swigCPtr);
         }
+    }
+
+    /// <summary>
+    /// Gesture source type.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum GestureSourceType
+    {
+        /// <summary>
+        /// invalid data.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Invalid = -1,
+        /// <summary>
+        /// Primary.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Primary = 1,
+        /// <summary>
+        /// Secondary.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Secondary = 3,
+        /// <summary>
+        /// Third (tertiary)
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Tertiary = 2,
     }
 }
