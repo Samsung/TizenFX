@@ -164,6 +164,10 @@ namespace Tizen.NUI.Components
             transitionSet.Finished += (object sender, EventArgs e) =>
             {
                 topPage.SetVisible(false);
+
+                //Invoke Page events
+                page.InvokeAppeared();
+                topPage.InvokeDisappeared();
             };
             transitionFinished = false;
         }
@@ -207,6 +211,10 @@ namespace Tizen.NUI.Components
             {
                 Remove(topPage);
                 topPage.SetVisible(true);
+
+                //Invoke Page events
+                newTopPage.InvokeAppeared();
+                topPage.InvokeDisappeared();
             };
             transitionFinished = false;
 
@@ -263,6 +271,9 @@ namespace Tizen.NUI.Components
                 curAnimation.Finished += (object sender, EventArgs args) =>
                 {
                     curTop.SetVisible(false);
+
+                    //Invoke Page events
+                    curTop.InvokeDisappeared();
                 };
                 curAnimation.Play();
 
@@ -271,6 +282,11 @@ namespace Tizen.NUI.Components
                 newAnimation = new Animation(1000);
                 newAnimation.AnimateTo(page, "Opacity", 1.0f, 0, 1000);
                 newAnimation.EndAction = Animation.EndActions.StopFinal;
+                newAnimation.Finished += (object sender, EventArgs e) =>
+                {
+                    //Invoke Page events
+                    page.InvokeAppeared();
+                };
                 newAnimation.Play();
             }
         }
@@ -321,6 +337,9 @@ namespace Tizen.NUI.Components
                     //Removes the current top page after transition is finished.
                     Remove(curTop);
                     curTop.Opacity = 1.0f;
+
+                    //Invoke Page events
+                    curTop.InvokeDisappeared();
                 };
                 curAnimation.Play();
 
@@ -329,6 +348,11 @@ namespace Tizen.NUI.Components
                 newAnimation = new Animation(1000);
                 newAnimation.AnimateTo(newTop, "Opacity", 1.0f, 0, 1000);
                 newAnimation.EndAction = Animation.EndActions.StopFinal;
+                newAnimation.Finished += (object sender, EventArgs e) =>
+                {
+                    //Invoke Page events
+                    newTop.InvokeAppeared();
+                };
                 newAnimation.Play();
             }
             else
