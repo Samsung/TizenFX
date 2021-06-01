@@ -84,13 +84,13 @@ namespace Tizen.Multimedia
             return GetDeviceInfo(deviceList);
         }
 
-        private ReadOnlyCollection<CameraDeviceInfo> GetDeviceInfo(Native.CameraDeviceListStruct ptr)
+        internal static ReadOnlyCollection<CameraDeviceInfo> GetDeviceInfo(Native.CameraDeviceListStruct deviceList)
         {
-            var cameraDevice = ptr.device;
+            var cameraDevice = deviceList.device;
 
             var cameraDeviceList = new List<CameraDeviceInfo>();
 
-            for (int i = 0 ; i < ptr.count ; i++)
+            for (int i = 0 ; i < deviceList.count ; i++)
             {
                 var deviceInfo = new CameraDeviceInfo(cameraDevice[i].Type, cameraDevice[i].device,
                     GetString(cameraDevice[i].name), GetString(cameraDevice[i].id));
@@ -103,7 +103,7 @@ namespace Tizen.Multimedia
             return new ReadOnlyCollection<CameraDeviceInfo>(cameraDeviceList);
         }
 
-        private string GetString(char[] word)
+        private static string GetString(char[] word)
         {
             int length = 0;
             while(word[length] != '\0')

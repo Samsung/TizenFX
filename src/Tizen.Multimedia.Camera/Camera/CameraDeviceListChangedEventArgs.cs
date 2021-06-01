@@ -29,9 +29,9 @@ namespace Tizen.Multimedia
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class CameraDeviceListChangedEventArgs : EventArgs
     {
-        internal CameraDeviceListChangedEventArgs(ref CameraDeviceListStruct ptr)
+        internal CameraDeviceListChangedEventArgs(ref CameraDeviceListStruct deviceList)
         {
-            CameraDeviceInfo = GetDeviceInfo(ptr);
+            CameraDeviceInfo = CameraDeviceManager.GetDeviceInfo(deviceList);
         }
 
         /// <summary>
@@ -40,35 +40,5 @@ namespace Tizen.Multimedia
         /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ReadOnlyCollection<CameraDeviceInfo> CameraDeviceInfo { get; }
-
-        private ReadOnlyCollection<CameraDeviceInfo> GetDeviceInfo(CameraDeviceListStruct ptr)
-        {
-            var cameraDevice = ptr.device;
-
-            var cameraDeviceList = new List<CameraDeviceInfo>();
-
-            for (int i = 0 ; i < ptr.count ; i++)
-            {
-                var deviceInfo = new CameraDeviceInfo(cameraDevice[i].Type, cameraDevice[i].device,
-                    GetString(cameraDevice[i].name), GetString(cameraDevice[i].id));
-
-                cameraDeviceList.Add(deviceInfo);
-
-                Log.Info(CameraLog.Tag, deviceInfo.ToString());
-            }
-
-            return new ReadOnlyCollection<CameraDeviceInfo>(cameraDeviceList);
-        }
-
-        private string GetString(char[] word)
-        {
-            int length = 0;
-            while(word[length] != '\0')
-            {
-                length++;
-            }
-
-            return new String(word, 0, length);
-        }
     }
 }
