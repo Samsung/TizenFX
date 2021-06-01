@@ -1,4 +1,3 @@
-using System.Collections.ObjectModel;
 /*
  * Copyright (c) 2021 Samsung Electronics Co., Ltd All Rights Reserved
  *
@@ -18,6 +17,7 @@ using System.Collections.ObjectModel;
 using System;
 using System.ComponentModel;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using static Interop.CameraDeviceManager;
 
 namespace Tizen.Multimedia
