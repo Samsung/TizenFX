@@ -36,13 +36,38 @@ namespace Tizen.NUI.Binding
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty BindingContextProperty =
-            BindableProperty.Create(nameof(BindingContext), typeof(object), typeof(BindableObject), default(object),
-                                    BindingMode.OneWay, null, BindingContextPropertyChanged, null, null, BindingContextPropertyBindingChanging);
+            BindableProperty.Create(nameof(BindingContext), typeof(object), typeof(BindableObject), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+            {
+                var bindableObject = (BindableObject)bindable;
+                if (newValue != null)
+                {
+                    bindableObject.bindingContext = newValue;
+                    bindableObject.FlushBinding();
+                }
+            }),
+            defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+            {
+                if (null != bindable.bindingContext)
+                {
+                    return bindable.bindingContext;
+                }
+
+                if (bindable is Container container)
+                {
+                    return container.Parent?.BindingContext;
+                }
+                else
+                {
+                    return null;
+                }
+            }));
 
         readonly List<BindablePropertyContext> properties = new List<BindablePropertyContext>(4);
 
         bool applying;
         object inheritedContext;
+
+        private object bindingContext;
 
         /// <summary>
         /// Gets or sets object that contains the properties that will be targeted by the bound properties that belong to this BindableObject.
@@ -359,7 +384,7 @@ namespace Tizen.NUI.Binding
         /// Method that is called when a bound property is changed.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual void OnPropertyChangedWithData(BindableProperty property) { }
+        protected virtual void OnPropertyChangedWithData(BindableProperty prop) { }
 
         /// <summary>
         /// Unapplies all previously set bindings.
@@ -521,6 +546,8 @@ namespace Tizen.NUI.Binding
 
             if (fromStyle && !CanBeSetFromStyle(targetProperty))
                 return;
+
+            IsCreateByXaml = true;
 
             var context = GetOrCreateContext(targetProperty);
             if (fromStyle)
@@ -700,13 +727,6 @@ namespace Tizen.NUI.Binding
                 context = oldBinding.Context;
             if (context != null && newBinding != null)
                 newBinding.Context = context;
-        }
-
-        static void BindingContextPropertyChanged(BindableObject bindable, object oldvalue, object newvalue)
-        {
-            bindable.inheritedContext = null;
-            bindable.ApplyBindings(skipBindingContext: true, fromBindingContextChanged: true);
-            bindable.OnBindingContextChanged();
         }
 
         void ClearValue(BindableProperty property, bool fromStyle, bool checkAccess)
@@ -936,6 +956,33 @@ namespace Tizen.NUI.Binding
                 Value = value;
                 CurrentlyApplying = currentlyApplying;
                 Attributes = attributes;
+            }
+        }
+
+        internal void AddChildBindableObject(BindableObject child)
+        {
+            if (null != child)
+            {
+                children.Add(child);
+                child.FlushBinding();
+            }
+        }
+
+        internal void RemoveChildBindableObject(BindableObject child)
+        {
+            children.Remove(child);
+        }
+
+        private List<BindableObject> children = new List<BindableObject>();
+
+        private void FlushBinding()
+        {
+            ApplyBindings(skipBindingContext: true, fromBindingContextChanged: true);
+            OnBindingContextChanged();
+
+            foreach (var child in children)
+            {
+                child.FlushBinding();
             }
         }
     }

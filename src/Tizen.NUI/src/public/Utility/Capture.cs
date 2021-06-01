@@ -333,6 +333,16 @@ namespace Tizen.NUI
             Tizen.Log.Debug("NUI", $"GetNativeImageSource()");
             return new NativeImageSource(Interop.Capture.GetNativeImageSourcePtr(SwigCPtr), true);
         }
+
+        /// <summary>
+        /// Get Captured buffer.
+        /// </summary>
+        /// <returns>PixelBuffer of captured buffer</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PixelBuffer GetCapturedBuffer()
+        {
+            return new PixelBuffer(Interop.Capture.GetCapturedBuffer(SwigCPtr), true);
+        }
     }
 
     /// <summary>
