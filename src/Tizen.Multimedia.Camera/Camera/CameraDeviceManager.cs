@@ -1,4 +1,3 @@
-using System.Collections.ObjectModel;
 /*
  * Copyright (c) 2021 Samsung Electronics Co., Ltd All Rights Reserved
  *
@@ -17,6 +16,7 @@ using System.Collections.ObjectModel;
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using Native = Interop.CameraDeviceManager;
 
