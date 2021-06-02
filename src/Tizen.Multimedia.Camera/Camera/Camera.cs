@@ -52,6 +52,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="device">The camera device to access.</param>
         /// <exception cref="ArgumentException">Invalid CameraDevice type.</exception>
+        /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
         /// <exception cref="NotSupportedException">The camera feature is not supported.</exception>
         /// <since_tizen> 3 </since_tizen>
         /// <feature> http://tizen.org/feature/camera </feature>
@@ -68,6 +69,7 @@ namespace Tizen.Multimedia
         /// <param name="device">The camera device to access.</param>
         /// <param name="type">Indicates whether this is network camera or not.</param>
         /// <exception cref="ArgumentException">Invalid CameraDevice or CameraDeviceType.</exception>
+        /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
         /// <exception cref="NotSupportedException">The camera feature is not supported.</exception>
         /// <since_tizen> 9 </since_tizen>
         /// <feature> http://tizen.org/feature/camera </feature>
