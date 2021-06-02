@@ -23,7 +23,7 @@ using Native = Interop.CameraDeviceManager;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// This CameraDeviceManager class provides methods to controls current camera devices and gets its information.
+    /// This CameraDeviceManager class provides methods to control current camera devices and get its information.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
     /// <feature> http://tizen.org/feature/camera </feature>
