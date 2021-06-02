@@ -43,15 +43,15 @@ namespace Tizen.NUI
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        static internal int GetResult(global::System.IntPtr data)
+        static internal bool GetResult(global::System.IntPtr data)
         {
-            int ret = Interop.DoGestureSignal.GetResult(data);
+            bool ret = Interop.DoGestureSignal.GetResult(data);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        static internal void SetResult(global::System.IntPtr data, int res)
+        static internal void SetResult(global::System.IntPtr data, bool res)
         {
             Interop.DoGestureSignal.SetResult(data, res);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
