@@ -1705,7 +1705,7 @@ namespace Tizen.NUI.BaseComponents
         /// Gets or sets the width resize policy to be used.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated. Please use WidthSpecification instead.")]
+        [Obsolete("Deprecated. Please set Layout and use WidthSpecification instead.")]
         public ResizePolicyType WidthResizePolicy
         {
             get
@@ -1723,7 +1723,7 @@ namespace Tizen.NUI.BaseComponents
         /// Gets or sets the height resize policy to be used.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated. Please use HeightSpecification instead.")]
+        [Obsolete("Deprecated. Please set Layout and use HeightSpecification instead.")]
         public ResizePolicyType HeightResizePolicy
         {
             get
@@ -2160,19 +2160,6 @@ namespace Tizen.NUI.BaseComponents
                         Size2D = new Size2D(widthPolicy, heightPolicy);
                     }
                 }
-                else
-                {
-                    if (value == LayoutParamPolicies.MatchParent)
-                    {
-                        SetValue(WidthResizePolicyProperty, ResizePolicyType.FillToParent);
-                        NotifyPropertyChanged();
-                    }
-                    else if (value == LayoutParamPolicies.WrapContent)
-                    {
-                        SetValue(WidthResizePolicyProperty, ResizePolicyType.FitToChildren);
-                        NotifyPropertyChanged();
-                    }
-                }
                 layout?.RequestLayout();
             }
         }
@@ -2214,19 +2201,6 @@ namespace Tizen.NUI.BaseComponents
                     {
                         // Create Size2D only both _widthPolicy and _heightPolicy are set.
                         Size2D = new Size2D(widthPolicy, heightPolicy);
-                    }
-                }
-                else
-                {
-                    if (value == LayoutParamPolicies.MatchParent)
-                    {
-                        SetValue(HeightResizePolicyProperty, ResizePolicyType.FillToParent);
-                        NotifyPropertyChanged();
-                    }
-                    else if (value == LayoutParamPolicies.WrapContent)
-                    {
-                        SetValue(HeightResizePolicyProperty, ResizePolicyType.FitToChildren);
-                        NotifyPropertyChanged();
                     }
                 }
                 layout?.RequestLayout();

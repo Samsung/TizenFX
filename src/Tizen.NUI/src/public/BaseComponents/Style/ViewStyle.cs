@@ -247,7 +247,7 @@ namespace Tizen.NUI.BaseComponents
         /// Gets or sets the width resize policy to be used.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        [Obsolete("Deprecated. Please use Tizen.NUI.View.WidthSpecification instead.")]
+        [Obsolete("Deprecated. Please set Tizen.NUI.View.Layout and use Tizen.NUI.View.WidthSpecification instead.")]
         public ResizePolicyType? WidthResizePolicy
         {
             get => (ResizePolicyType?)GetValue(WidthResizePolicyProperty);
@@ -258,7 +258,7 @@ namespace Tizen.NUI.BaseComponents
         /// Gets or sets the height resize policy to be used.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        [Obsolete("Deprecated. Please use Tizen.NUI.View.HeightSpecification instead.")]
+        [Obsolete("Deprecated. Please set Tizen.NUI.View.Layout and use Tizen.NUI.View.HeightSpecification instead.")]
         public ResizePolicyType? HeightResizePolicy
         {
             get => (ResizePolicyType?)GetValue(HeightResizePolicyProperty);
