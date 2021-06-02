@@ -35,19 +35,19 @@ namespace Tizen.Multimedia
         /// Gets or sets the various camera settings.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        public CameraSettings Settings { get; }
+        public CameraSettings Settings { get; internal set; }
 
         /// <summary>
         /// Gets the various camera capabilities.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        public CameraCapabilities Capabilities { get; }
+        public CameraCapabilities Capabilities { get; internal set; }
 
         /// <summary>
         /// Get/set various camera display properties.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public CameraDisplaySettings DisplaySettings { get; }
+        public CameraDisplaySettings DisplaySettings { get; internal set; }
 
         private Display _display;
 
