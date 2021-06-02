@@ -65,6 +65,9 @@ internal static partial class Interop
         [DllImport(Libraries.Camera, EntryPoint = "camera_create")]
         internal static extern CameraError Create(CameraDevice device, out IntPtr handle);
 
+        [DllImport(Libraries.Camera, EntryPoint ="camera_create_network")]
+        internal static extern CameraError CreateNetworkCamera(CameraDevice device, out IntPtr handle);
+
         [DllImport(Libraries.Camera, EntryPoint = "camera_change_device")]
         internal static extern CameraError ChangeDevice(IntPtr handle, CameraDevice device);
 
