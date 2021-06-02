@@ -60,13 +60,6 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the native handle of the camera.
-        /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public IntPtr Handle => GetHandle();
-
-        /// <summary>
         /// Gets the current camera device information.
         /// </summary>
         /// <returns></returns>
@@ -74,11 +67,9 @@ namespace Tizen.Multimedia
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ReadOnlyCollection<CameraDeviceInfo> GetDeviceInfo()
         {
-            ValidateNotDisposed();
-
             var deviceList = new Native.CameraDeviceListStruct();
 
-            Native.GetDeviceList(_handle, ref deviceList).
+            Native.GetDeviceList(Handle, ref deviceList).
                 ThrowIfFailed("Failed to get camera device list");
 
             return GetDeviceInfo(deviceList);
@@ -121,10 +112,13 @@ namespace Tizen.Multimedia
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<CameraDeviceListChangedEventArgs> CameraDeviceListChanged;
 
-        internal IntPtr GetHandle()
+        private IntPtr Handle
         {
-            ValidateNotDisposed();
-            return _handle;
+            get
+            {
+                ValidateNotDisposed();
+                return _handle;
+            }
         }
 
         private int callbackId = 0;
@@ -135,7 +129,7 @@ namespace Tizen.Multimedia
                 CameraDeviceListChanged?.Invoke(this, new CameraDeviceListChangedEventArgs(ref deviceList));
             };
 
-            Native.SetDeviceListChangedCallback(_handle, callback, IntPtr.Zero, out callbackId).
+            Native.SetDeviceListChangedCallback(Handle, callback, IntPtr.Zero, out callbackId).
                 ThrowIfFailed("Failed to set device list changed callback");
 
             Log.Info(CameraLog.Tag, $"callback Id : {callbackId}");
@@ -145,7 +139,7 @@ namespace Tizen.Multimedia
         {
             Log.Info(CameraLog.Tag, $"callback Id : {callbackId}");
 
-            Native.UnsetDeviceListChangedCallback(_handle, callbackId).
+            Native.UnsetDeviceListChangedCallback(Handle, callbackId).
                 ThrowIfFailed("Failed to unset device list changed callback");
         }
 
