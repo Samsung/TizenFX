@@ -373,6 +373,11 @@ namespace Tizen.NUI.Components
             if (onAlignAnimation) {
                 onAlignAnimation = false;
                 PageAdjust(e.Position.Y);
+                if (currentValue != ((int)(-e.Position.Y / itemHeight) + 2))
+                {
+                    currentValue = ((int)(-e.Position.Y / itemHeight) + 2);
+                    OnValueChanged();
+                }
 
                 return;
             }
@@ -383,8 +388,11 @@ namespace Tizen.NUI.Components
                 pickerScroller.ScrollTo(-e.Position.Y + offset, true);
             }
             else {
-                currentValue = ((int)(-e.Position.Y / itemHeight) + 2);
-                OnValueChanged();
+                if (currentValue != ((int)(-e.Position.Y / itemHeight) + 2))
+                {
+                    currentValue = ((int)(-e.Position.Y / itemHeight) + 2);
+                    OnValueChanged();
+                }
             }
         }
 
