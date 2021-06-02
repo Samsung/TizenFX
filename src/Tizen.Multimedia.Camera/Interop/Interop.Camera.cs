@@ -169,11 +169,11 @@ internal static partial class Interop
         [DllImport(Libraries.Camera, EntryPoint = "camera_set_state_changed_cb")]
         internal static extern CameraError SetStateChangedCallback(IntPtr handle, StateChangedCallback callback, IntPtr userData = default);
 
-        [DllImport(Libraries.Camera, EntryPoint = "camera_add_device_state_changed_cb")]
-        internal static extern CameraError SetDeviceStateChangedCallback(DeviceStateChangedCallback callback, IntPtr userData, out int callbackId);
-
         [DllImport(Libraries.Camera, EntryPoint = "camera_unset_state_changed_cb")]
         internal static extern CameraError UnsetStateChangedCallback(IntPtr handle);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_add_device_state_changed_cb")]
+        internal static extern CameraError SetDeviceStateChangedCallback(DeviceStateChangedCallback callback, IntPtr userData, out int callbackId);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_remove_device_state_changed_cb")]
         internal static extern CameraError UnsetDeviceStateChangedCallback(int cbId);
@@ -309,6 +309,54 @@ internal static partial class Interop
             internal int NumOfPlanes;
             internal uint TimeStamp;
             internal PreviewPlaneStruct Plane;
+        }
+    }
+
+    internal static partial class CameraDeviceManager
+    {
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void DeviceListChangedCallback(ref CameraDeviceListStruct deviceList, IntPtr userData);
+
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_device_manager_initialize")]
+        internal static extern CameraError Initialize(out IntPtr handle);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_device_manager_deinitialize")]
+        internal static extern CameraError Deinitialize(IntPtr handle);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_device_manager_get_device_list")]
+        internal static extern CameraError GetDeviceList(IntPtr handle, ref CameraDeviceListStruct deviceList);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_device_manager_add_device_list_changed_cb")]
+        internal static extern CameraError SetDeviceListChangedCallback(IntPtr handle, DeviceListChangedCallback callback, IntPtr userData, out int id);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_device_manager_remove_device_list_changed_cb")]
+        internal static extern CameraError UnsetDeviceListChangedCallback(IntPtr handle, int id);
+
+
+        [NativeStruct("camera_device_s", Include="camera_internal.h", PkgConfig="capi-media-camera")]
+        [StructLayout(LayoutKind.Sequential)]
+        internal struct CameraDeviceStruct
+        {
+            internal CameraDeviceType Type;
+
+            internal CameraDevice device;
+
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 64)]
+            internal char[] name;
+
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 64)]
+            internal char[] id;
+        }
+
+        [NativeStruct("camera_device_list_s", Include="camera_internal.h", PkgConfig="capi-media-camera")]
+        [StructLayout(LayoutKind.Sequential)]
+        internal struct CameraDeviceListStruct
+        {
+            internal uint count;
+
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 20)]
+            internal CameraDeviceStruct[] device;
         }
     }
 }
