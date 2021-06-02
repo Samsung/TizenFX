@@ -44,11 +44,11 @@ namespace Tizen.Multimedia.Remoting
         /// 'priority' of type int            : The priority to use for this channel(1:very low, 2:low, 3:medium, 4:high). The default value is 2.<br/>
         /// </remarks>
         /// <param name="webRtc">The owner of this WebRTCDataChannel.</param>
-        /// <param name="bundle">The data channel option. This can be null.</param>
         /// <param name="label">The name of this data channel.</param>
+        /// <param name="bundle">The data channel option. This can be null.</param>
         /// <exception cref="ArgumentNullException">The webRtc or label is null.</exception>
         /// <since_tizen> 9 </since_tizen>
-        public WebRTCDataChannel(WebRTC webRtc, Bundle bundle, string label)
+        public WebRTCDataChannel(WebRTC webRtc, string label, Bundle bundle)
         {
             if (webRtc == null)
             {
