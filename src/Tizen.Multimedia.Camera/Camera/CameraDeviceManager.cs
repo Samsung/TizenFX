@@ -23,10 +23,7 @@ using Native = Interop.CameraDeviceManager;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// This camera class provides methods to capture photos and supports setting up notifications
-    /// for state changes of capturing, previewing, focusing, and informing about the resolution and the binary format,
-    /// and functions for picture manipulations like sepia, negative, and many more.
-    /// It also notifies you when a significant picture parameter changes, (For example, focus).
+    /// This CameraDeviceManager class provides methods to controls current camera devices and gets its information.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
     /// <feature> http://tizen.org/feature/camera </feature>
@@ -39,7 +36,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Initializes a new instance of the <see cref="CameraDeviceManager"/> class.
         /// </summary>
-        /// <exception cref="ArgumentException">Invalid CameraDevice type.</exception>
+        /// <exception cref="InvalidOperationException">Invalid operation.</exception>
         /// <exception cref="NotSupportedException">The camera feature is not supported.</exception>
         /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
