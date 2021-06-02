@@ -15,6 +15,7 @@
  *
  */
 using System;
+using System.IO;
 using System.ComponentModel;
 
 namespace Tizen.NUI
@@ -134,6 +135,217 @@ namespace Tizen.NUI
         {
             PixelBuffer ret = new PixelBuffer(Interop.ImageLoading.LoadImageFromFile(url), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Load an image synchronously from Stream. Load from stream currnet postion to end of stream.
+        /// </summary>
+        /// <param name="stream">The stream of the image file to load.</param>
+        /// <param name="size">The width and height to fit the loaded image to, 0.0 means whole image.</param>
+        /// <param name="fittingMode">The method used to fit the shape of the image before loading to the shape defined by the size parameter.</param>
+        /// <param name="samplingMode">The filtering method used when sampling pixels from the input image while fitting it to desired size.</param>
+        /// <param name="orientationCorrection">Reorient the image to respect any orientation metadata in its header.</param>
+        /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case loading failed.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
+        /// <exception cref="InvalidOperationException"> Thrown when stream don't have any data. </exception>
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static PixelBuffer LoadImageFromMemory(Stream stream, Size2D size, FittingModeType fittingMode, SamplingModeType samplingMode, bool orientationCorrection)
+        {
+            if (null == size)
+            {
+                throw new ArgumentNullException(nameof(size));
+            }
+            long streamLength = stream.Length - stream.Position;
+            if(streamLength <= 0)
+            {
+                throw new InvalidOperationException("stream length is <= 0");
+            }
+            
+            var uSize = new Uint16Pair((uint)size.Width, (uint)size.Height);
+            VectorUnsignedChar buffer = new VectorUnsignedChar();
+
+            buffer.Resize((uint)streamLength);
+            var bufferBegin = buffer.Begin();
+            global::System.Runtime.InteropServices.HandleRef bufferRef = SWIGTYPE_p_unsigned_char.getCPtr(bufferBegin);
+
+            byte[] streamData = new byte[streamLength];
+            stream.Read(streamData, 0, (int)streamLength);
+
+            System.Runtime.InteropServices.Marshal.Copy(streamData, 0, bufferRef.Handle, (int)streamLength);
+
+            PixelBuffer ret = new PixelBuffer(Interop.ImageLoading.LoadImageFromMemory(VectorUnsignedChar.getCPtr(buffer), Uint16Pair.getCPtr(uSize), (int)fittingMode, (int)samplingMode, orientationCorrection), true);
+            uSize.Dispose();
+            buffer.Dispose();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            return ret;
+        }
+
+        /// <summary>
+        /// Load an image synchronously from Stream. Load from stream currnet postion to end of stream.
+        /// </summary>
+        /// <param name="stream">The stream of the image file to load.</param>
+        /// <param name="size">The width and height to fit the loaded image to, 0.0 means whole image.</param>
+        /// <param name="fittingMode">The method used to fit the shape of the image before loading to the shape defined by the size parameter.</param>
+        /// <param name="samplingMode">The filtering method used when sampling pixels from the input image while fitting it to desired size.</param>
+        /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case loading failed.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
+        /// <exception cref="InvalidOperationException"> Thrown when stream don't have any data. </exception>
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static PixelBuffer LoadImageFromMemory(Stream stream, Size2D size, FittingModeType fittingMode, SamplingModeType samplingMode)
+        {
+            if (null == size)
+            {
+                throw new ArgumentNullException(nameof(size));
+            }
+            long streamLength = stream.Length - stream.Position;
+            if(streamLength <= 0)
+            {
+                throw new InvalidOperationException("stream length is <= 0");
+            }
+            
+            var uSize = new Uint16Pair((uint)size.Width, (uint)size.Height);
+            VectorUnsignedChar buffer = new VectorUnsignedChar();
+
+            buffer.Resize((uint)streamLength);
+            var bufferBegin = buffer.Begin();
+            global::System.Runtime.InteropServices.HandleRef bufferRef = SWIGTYPE_p_unsigned_char.getCPtr(bufferBegin);
+
+            byte[] streamData = new byte[streamLength];
+            stream.Read(streamData, 0, (int)streamLength);
+
+            System.Runtime.InteropServices.Marshal.Copy(streamData, 0, bufferRef.Handle, (int)streamLength);
+
+            PixelBuffer ret = new PixelBuffer(Interop.ImageLoading.LoadImageFromMemory(VectorUnsignedChar.getCPtr(buffer), Uint16Pair.getCPtr(uSize), (int)fittingMode, (int)samplingMode), true);
+            uSize.Dispose();
+            buffer.Dispose();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            return ret;
+        }
+
+        /// <summary>
+        /// Load an image synchronously from Stream. Load from stream currnet postion to end of stream.
+        /// </summary>
+        /// <param name="stream">The stream of the image file to load.</param>
+        /// <param name="size">The width and height to fit the loaded image to, 0.0 means whole image.</param>
+        /// <param name="fittingMode">The method used to fit the shape of the image before loading to the shape defined by the size parameter.</param>
+        /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case loading failed.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
+        /// <exception cref="InvalidOperationException"> Thrown when stream don't have any data. </exception>
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static PixelBuffer LoadImageFromMemory(Stream stream, Size2D size, FittingModeType fittingMode)
+        {
+            if (null == size)
+            {
+                throw new ArgumentNullException(nameof(size));
+            }
+            long streamLength = stream.Length - stream.Position;
+            if(streamLength <= 0)
+            {
+                throw new InvalidOperationException("stream length is <= 0");
+            }
+            
+            var uSize = new Uint16Pair((uint)size.Width, (uint)size.Height);
+            VectorUnsignedChar buffer = new VectorUnsignedChar();
+
+            buffer.Resize((uint)streamLength);
+            var bufferBegin = buffer.Begin();
+            global::System.Runtime.InteropServices.HandleRef bufferRef = SWIGTYPE_p_unsigned_char.getCPtr(bufferBegin);
+
+            byte[] streamData = new byte[streamLength];
+            stream.Read(streamData, 0, (int)streamLength);
+
+            System.Runtime.InteropServices.Marshal.Copy(streamData, 0, bufferRef.Handle, (int)streamLength);
+
+            PixelBuffer ret = new PixelBuffer(Interop.ImageLoading.LoadImageFromMemory(VectorUnsignedChar.getCPtr(buffer), Uint16Pair.getCPtr(uSize), (int)fittingMode), true);
+            uSize.Dispose();
+            buffer.Dispose();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            return ret;
+        }
+        
+        /// <summary>
+        /// Load an image synchronously from Stream. Load from stream currnet postion to end of stream.
+        /// </summary>
+        /// <param name="stream">The stream of the image file to load.</param>
+        /// <param name="size">The width and height to fit the loaded image to, 0.0 means whole image.</param>
+        /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case loading failed.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
+        /// <exception cref="InvalidOperationException"> Thrown when stream don't have any data. </exception>
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static PixelBuffer LoadImageFromMemory(Stream stream, Size2D size)
+        {
+            if (null == size)
+            {
+                throw new ArgumentNullException(nameof(size));
+            }
+            long streamLength = stream.Length - stream.Position;
+            if(streamLength <= 0)
+            {
+                throw new InvalidOperationException("stream length is <= 0");
+            }
+            
+            var uSize = new Uint16Pair((uint)size.Width, (uint)size.Height);
+            VectorUnsignedChar buffer = new VectorUnsignedChar();
+
+            buffer.Resize((uint)streamLength);
+            var bufferBegin = buffer.Begin();
+            global::System.Runtime.InteropServices.HandleRef bufferRef = SWIGTYPE_p_unsigned_char.getCPtr(bufferBegin);
+
+            byte[] streamData = new byte[streamLength];
+            stream.Read(streamData, 0, (int)streamLength);
+
+            System.Runtime.InteropServices.Marshal.Copy(streamData, 0, bufferRef.Handle, (int)streamLength);
+
+            PixelBuffer ret = new PixelBuffer(Interop.ImageLoading.LoadImageFromMemory(VectorUnsignedChar.getCPtr(buffer), Uint16Pair.getCPtr(uSize)), true);
+            uSize.Dispose();
+            buffer.Dispose();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            return ret;
+
+            return ret;
+        }
+
+        /// <summary>
+        /// Load an image synchronously from Stream. Load from stream currnet postion to end of stream.
+        /// </summary>
+        /// <param name="stream">The stream of the image file to load.</param>
+        /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case loading failed.</returns>
+        /// <exception cref="InvalidOperationException"> Thrown when stream don't have any data. </exception>
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static PixelBuffer LoadImageFromMemory(Stream stream)
+        {
+            long streamLength = stream.Length - stream.Position;
+            if(streamLength <= 0)
+            {
+                throw new InvalidOperationException("stream length is <= 0");
+            }
+            
+            VectorUnsignedChar buffer = new VectorUnsignedChar();
+
+            buffer.Resize((uint)streamLength);
+            var bufferBegin = buffer.Begin();
+            global::System.Runtime.InteropServices.HandleRef bufferRef = SWIGTYPE_p_unsigned_char.getCPtr(bufferBegin);
+
+            byte[] streamData = new byte[streamLength];
+            stream.Read(streamData, 0, (int)streamLength);
+
+            System.Runtime.InteropServices.Marshal.Copy(streamData, 0, bufferRef.Handle, (int)streamLength);
+
+            PixelBuffer ret = new PixelBuffer(Interop.ImageLoading.LoadImageFromMemory(VectorUnsignedChar.getCPtr(buffer)), true);
+            buffer.Dispose();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+
             return ret;
         }
 
