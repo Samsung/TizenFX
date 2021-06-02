@@ -104,6 +104,8 @@ namespace Tizen.Multimedia
             RegisterCallbacks();
 
             SetState(CameraState.Created);
+
+            _initialized = true;
         }
 
         /// <summary>
