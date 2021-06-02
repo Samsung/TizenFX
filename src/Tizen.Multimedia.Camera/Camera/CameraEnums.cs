@@ -937,9 +937,9 @@ namespace Tizen.Multimedia
     public enum CameraDeviceType
     {
         /// <summary>
-        /// Buint-in camera.
+        /// Built-in camera.
         /// </summary>
-        BuintIn,
+        BuiltIn,
         /// <summary>
         /// USB camera.
         /// </summary>
