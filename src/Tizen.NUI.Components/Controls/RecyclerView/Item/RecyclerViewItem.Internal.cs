@@ -124,7 +124,7 @@ namespace Tizen.NUI.Components
                 case PointStateType.Leave:
                     IsPressed = false;
                     UpdateState();
-                    return true;
+                    return false;
                 case PointStateType.Up:
                     {
                         bool clicked = IsPressed && IsEnabled;
