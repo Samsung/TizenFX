@@ -58,6 +58,8 @@ namespace Tizen.Multimedia
         /// <feature> http://tizen.org/feature/camera </feature>
         public Camera(CameraDevice device)
         {
+            ValidationUtil.ValidateEnum(typeof(CameraDevice), device, nameof(device));
+
             Create(device);
 
             Capabilities = new CameraCapabilities(this);
