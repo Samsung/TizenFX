@@ -44,8 +44,8 @@ namespace Tizen.Multimedia
     {
         private IntPtr _handle = IntPtr.Zero;
         private bool _disposed = false;
-        private bool _initialized = false;
         private CameraState _state = CameraState.None;
+        private CameraDeviceManager _cameraDeviceManager;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Camera"/> class.
@@ -58,46 +58,7 @@ namespace Tizen.Multimedia
         /// <feature> http://tizen.org/feature/camera </feature>
         public Camera(CameraDevice device)
         {
-            Native.Create(device, out _handle).ThrowIfFailed("Failed to create camera instance");
-
-            Initialize();
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Camera"/> class with <see cref="CameraDeviceType"/>.
-        /// </summary>
-        /// <param name="device">The camera device to access.</param>
-        /// <param name="type">Indicates whether this is network camera or not.</param>
-        /// <exception cref="ArgumentException">Invalid CameraDevice or CameraDeviceType.</exception>
-        /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
-        /// <exception cref="NotSupportedException">The camera feature is not supported.</exception>
-        /// <since_tizen> 9 </since_tizen>
-        /// <feature> http://tizen.org/feature/camera </feature>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Camera(CameraDevice device, CameraDeviceType type)
-        {
-            ValidationUtil.ValidateEnum(typeof(CameraDevice), device, nameof(device));
-            ValidationUtil.ValidateEnum(typeof(CameraDeviceType), type, nameof(type));
-
-            if (type == CameraDeviceType.BuiltIn)
-            {
-                Native.Create(device, out _handle).ThrowIfFailed("Failed to create camera instance");
-            }
-            else if (type == CameraDeviceType.Network)
-            {
-                Native.CreateNetworkCamera(device, out _handle).ThrowIfFailed("Failed to create network camera instance");
-            }
-            // USB camera doesn't support here.
-
-            Initialize();
-        }
-
-        private void Initialize()
-        {
-            if (_initialized)
-            {
-                throw new InvalidOperationException("It has already been initialized.");
-            }
+            Create(device);
 
             Capabilities = new CameraCapabilities(this);
             Settings = new CameraSettings(this);
@@ -106,8 +67,37 @@ namespace Tizen.Multimedia
             RegisterCallbacks();
 
             SetState(CameraState.Created);
+        }
 
-            _initialized = true;
+        private void Create(CameraDevice device)
+        {
+            CameraDeviceType cameraDeviceType = CameraDeviceType.BuiltIn;
+
+            try
+            {
+                _cameraDeviceManager = new CameraDeviceManager();
+                cameraDeviceType = _cameraDeviceManager.GetDeviceInfo().First().Type;
+                Tizen.Log.Info(CameraLog.Tag, $"device type:{cameraDeviceType.ToString()}");
+
+                _cameraDeviceManager.CameraDeviceListChanged += CameraDeviceListChanged;
+            }
+            catch (NotSupportedException e)
+            {
+                Tizen.Log.Info(CameraLog.Tag,
+                    $"CameraDeviceManager is not supported. {e.Message}");
+            }
+
+            if (cameraDeviceType == CameraDeviceType.BuiltIn ||
+                cameraDeviceType == CameraDeviceType.Usb)
+            {
+                Native.Create(device, out _handle).
+                    ThrowIfFailed($"Failed to create {cameraDeviceType.ToString()} camera");
+            }
+            else
+            {
+                Native.CreateNetworkCamera(device, out _handle).
+                    ThrowIfFailed($"Failed to create {cameraDeviceType.ToString()} camera");
+            }
         }
 
         /// <summary>
@@ -144,6 +134,7 @@ namespace Tizen.Multimedia
                 if (disposing)
                 {
                     // to be used if there are any other disposable objects
+                    _cameraDeviceManager?.Dispose();
                 }
 
                 if (_handle != IntPtr.Zero)
