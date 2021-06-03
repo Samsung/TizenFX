@@ -28,6 +28,10 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public partial class View : Container, IResourcesProvider
     {
+        private static HashSet<BindableProperty> positionPropertyGroup = new HashSet<BindableProperty>();
+        private static HashSet<BindableProperty> sizePropertyGroup = new HashSet<BindableProperty>();
+        private static HashSet<BindableProperty> scalePropertyGroup = new HashSet<BindableProperty>();
+
         internal BackgroundExtraData backgroundExtraData;
 
         private bool layoutSet = false;
@@ -53,7 +57,23 @@ namespace Tizen.NUI.BaseComponents
             public ViewSelectorData selectorData;
         }
 
-        static View() { }
+        static View()
+        {
+            RegisterPropertyGroup(PositionProperty, positionPropertyGroup);
+            RegisterPropertyGroup(Position2DProperty, positionPropertyGroup);
+            RegisterPropertyGroup(PositionXProperty, positionPropertyGroup);
+            RegisterPropertyGroup(PositionYProperty, positionPropertyGroup);
+
+            RegisterPropertyGroup(SizeProperty, sizePropertyGroup);
+            RegisterPropertyGroup(Size2DProperty, sizePropertyGroup);
+            RegisterPropertyGroup(SizeWidthProperty, sizePropertyGroup);
+            RegisterPropertyGroup(SizeHeightProperty, sizePropertyGroup);
+
+            RegisterPropertyGroup(ScaleProperty, scalePropertyGroup);
+            RegisterPropertyGroup(ScaleXProperty, scalePropertyGroup);
+            RegisterPropertyGroup(ScaleYProperty, scalePropertyGroup);
+            RegisterPropertyGroup(ScaleZProperty, scalePropertyGroup);
+        }
 
         /// <summary>
         /// Creates a new instance of a view.
