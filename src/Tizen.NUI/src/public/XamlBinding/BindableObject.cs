@@ -343,6 +343,17 @@ namespace Tizen.NUI.Binding
         }
 
         /// <summary>
+        /// Register the properties which can effect each other in Binding to same group.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void RegisterPropertyGroup(BindableProperty property, HashSet<BindableProperty> group)
+        {
+            if (!PropertyToGroup.ContainsKey(property))
+            {
+                PropertyToGroup.Add(property, group);
+            }
+        }
+        /// <summary>
         /// Apply the bindings to BindingContext.
         /// </summary>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -662,10 +673,14 @@ namespace Tizen.NUI.Binding
                 context.Attributes &= ~BindableContextAttributes.IsSetFromStyle;
             }
             else
+            {
                 context.Attributes &= ~BindableContextAttributes.IsManuallySet;
+            }
 
             if (fromStyle)
+            {
                 context.Attributes |= BindableContextAttributes.IsSetFromStyle;
+            }
             // else omitted on purpose
 
             bool currentlyApplying = applying;
@@ -878,6 +893,8 @@ namespace Tizen.NUI.Binding
                 }
             }
 
+            PropertyToGroup.TryGetValue(property, out HashSet<BindableProperty> propertyGroup);
+
             if (!silent)
             {
                 if ((!same || raiseOnEqual))
@@ -892,6 +909,27 @@ namespace Tizen.NUI.Binding
                     }
 
                     OnPropertyChanged(property.PropertyName);
+
+                    if (null != propertyGroup)
+                    {
+                        foreach (var relativeProperty in propertyGroup)
+                        {
+                            if (relativeProperty != property)
+                            {
+                                var relativeContext = GetOrCreateContext(relativeProperty);
+                                var relativeBinding = relativeContext.Binding;
+
+                                if (null != relativeBinding)
+                                {
+                                    applying = true;
+                                    relativeBinding.Apply(true);
+                                    applying = false;
+                                }
+
+                                OnPropertyChanged(relativeProperty.PropertyName);
+                            }
+                        }
+                    }
                 }
                 else if (true == same && true == forceSendChangeSignal)
                 {
@@ -903,11 +941,35 @@ namespace Tizen.NUI.Binding
                     }
 
                     OnPropertyChanged(property.PropertyName);
+
+                    if (null != propertyGroup)
+                    {
+                        foreach (var relativeProperty in propertyGroup)
+                        {
+                            if (relativeProperty != property)
+                            {
+                                var relativeContext = GetOrCreateContext(relativeProperty);
+                                var relativeBinding = relativeContext.Binding;
+
+                                if (null != relativeBinding)
+                                {
+                                    applying = true;
+                                    relativeBinding.Apply(true);
+                                    applying = false;
+                                }
+
+                                OnPropertyChanged(relativeProperty.PropertyName);
+                            }
+                        }
+                    }
                 }
 
                 OnPropertyChangedWithData(property);
             }
         }
+
+        private static Dictionary<BindableProperty, HashSet<BindableProperty>> PropertyToGroup { get; }
+            = new Dictionary<BindableProperty, HashSet<BindableProperty>>();
 
         [Flags]
         enum BindableContextAttributes
