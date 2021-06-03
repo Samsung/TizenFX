@@ -458,18 +458,21 @@ namespace Tizen.NUI.Components
         public bool IsGrouped
         {
             get => isGrouped;
-            set
+            internal set
             {
-                isGrouped = value;
-                needInitalizeLayouter = true;
-                //Need to re-intialize Internal Item Source.
-                if (InternalItemSource != null)
+                if (isGrouped != value)
                 {
-                    InternalItemSource.Dispose();
-                    InternalItemSource = null;
+                    isGrouped = value;
+                    //Need to re-intialize Internal Item Source.
+                    if (InternalItemSource != null)
+                    {
+                        InternalItemSource.Dispose();
+                        InternalItemSource = null;
+                    }
+                    if (ItemsSource != null)
+                        InternalItemSource = ItemsSourceFactory.Create(this);
                 }
-                if (ItemsSource != null)
-                    InternalItemSource = ItemsSourceFactory.Create(this);
+                needInitalizeLayouter = true;
                 Init();
             }
         }
@@ -478,7 +481,7 @@ namespace Tizen.NUI.Components
         ///  DataTemplate of group header.
         /// </summary>
         /// <remarks>Please note that, internal index will be increased by group header.
-        /// GroupHeaderTemplate is essential for groupable view.</remarks>        
+        /// GroupHeaderTemplate is essential for groupable view.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public DataTemplate GroupHeaderTemplate
         {
@@ -489,16 +492,8 @@ namespace Tizen.NUI.Components
             set
             {
                 groupHeaderTemplate = value;
-                needInitalizeLayouter = true;
-                //Need to re-intialize Internal Item Source.
-                if (InternalItemSource != null)
-                {
-                    InternalItemSource.Dispose();
-                    InternalItemSource = null;
-                }
-                if (ItemsSource != null)
-                    InternalItemSource = ItemsSourceFactory.Create(this);
-                Init();
+                if (value != null) IsGrouped = true;
+                else IsGrouped = false;
             }
         }
 
