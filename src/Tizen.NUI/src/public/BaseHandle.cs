@@ -521,6 +521,13 @@ namespace Tizen.NUI
         {
             get => swigCPtr;
         }
+
+        /// <summary>
+        /// A flag to check if it is already disposed.
+        /// </summary>
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal bool Disposed => disposed;
     }
 
 }
