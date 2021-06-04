@@ -37,42 +37,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets the duration in milliseconds of the transition.
-        /// </summary>
-        public int Duration
-        {
-            set
-            {
-                Interop.TransitionItemBase.SetDuration(SwigCPtr, MilliSecondsToSeconds(value));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-            get
-            {
-                float ret = Interop.TransitionItemBase.GetDuration(SwigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return SecondsToMilliSeconds(ret);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the delay in milliseconds of the transition.
-        /// </summary>
-        public int Delay
-        {
-            set
-            {
-                Interop.TransitionItemBase.SetDelay(SwigCPtr, MilliSecondsToSeconds(value));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-            get
-            {
-                float ret = Interop.TransitionItemBase.GetDelay(SwigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return SecondsToMilliSeconds(ret);
-            }
-        }
-
-        /// <summary>
         /// Gets or sets the TimePeriod
         /// </summary>
         public TimePeriod TimePeriod
@@ -81,6 +45,12 @@ namespace Tizen.NUI
             {
                 Interop.TransitionItemBase.SetTimePeriod(SwigCPtr, value.SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                TimePeriod ret = new TimePeriod(Interop.TransitionItemBase.GetTimePeriod(SwigCPtr), true);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
             }
         }
 
