@@ -38,9 +38,6 @@ namespace Tizen.NUI
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Transition_Assign")]
             public static extern IntPtr Assign(HandleRef destination, HandleRef source);
-
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Transition_ShowSourceAfterFinished")]
-            public static extern void ShowSourceAfterFinished(HandleRef transition, bool showSourceAfterFinished);
         }
     }
 }
