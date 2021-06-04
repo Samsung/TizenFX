@@ -42,18 +42,6 @@ namespace Tizen.NUI
         {
         }
 
-        /// <summary>
-        /// Sets the source View will be shown after transition finished.
-        /// </summary>
-        public bool ShowSourceAfterFinished
-        {
-            set
-            {
-                Interop.TransitionItem.ShowSourceAfterFinished(SwigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-        }
-
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TransitionItem obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
