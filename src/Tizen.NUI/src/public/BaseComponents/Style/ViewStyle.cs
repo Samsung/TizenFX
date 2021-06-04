@@ -29,6 +29,7 @@ namespace Tizen.NUI.BaseComponents
     {
         private bool disposed = false;
         private bool? focusable;
+        private bool? focusableInTouch;
         private bool? positionUsesPivotPoint;
         private Position parentOrigin;
         private Position pivotPoint;
@@ -97,6 +98,18 @@ namespace Tizen.NUI.BaseComponents
         {
             get => (bool?)GetValue(FocusableProperty);
             set => SetValue(FocusableProperty, value);
+        }
+
+        /// <summary>
+        /// Whether this view can focus by touch.
+        /// If Focusable is false, FocusableInTouch is disabled.
+        /// If you want to have focus on touch, you need to set both Focusable and FocusableInTouch settings to true.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool? FocusableInTouch
+        {
+            get => (bool?)GetValue(FocusableInTouchProperty);
+            set => SetValue(FocusableInTouchProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.

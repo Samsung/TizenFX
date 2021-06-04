@@ -875,6 +875,21 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
+        internal void SetFocusableInTouch(bool enabled)
+        {
+            Interop.ActorInternal.SetFocusableInTouch(SwigCPtr, enabled);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal bool IsFocusableInTouch()
+        {
+            bool ret = Interop.ActorInternal.IsFocusableInTouch(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         internal void SetResizePolicy(ResizePolicyType policy, DimensionType dimension)
         {
             Interop.Actor.SetResizePolicy(SwigCPtr, (int)policy, (int)dimension);

@@ -567,6 +567,21 @@ namespace Tizen.NUI.BaseComponents
         });
 
         /// <summary>
+        /// FocusableInTouchProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty FocusableInTouchProperty = BindableProperty.Create(nameof(FocusableInTouch), typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            if (newValue != null) { view.SetFocusableInTouch((bool)newValue); }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view.IsFocusableInTouch();
+        });
+
+        /// <summary>
         /// Size2DProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -1508,7 +1523,7 @@ namespace Tizen.NUI.BaseComponents
             }
             else
             {
-                view.SetShadow((ImageShadow)newValue);                
+                view.SetShadow((ImageShadow)newValue);
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
@@ -1539,7 +1554,7 @@ namespace Tizen.NUI.BaseComponents
             }
             else
             {
-                view.SetShadow((Shadow)newValue);                
+                view.SetShadow((Shadow)newValue);
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
@@ -1898,7 +1913,7 @@ namespace Tizen.NUI.BaseComponents
                .Add(Visual.Property.BorderlineWidth, new PropertyValue(backgroundExtraData.BorderlineWidth))
                .Add(Visual.Property.BorderlineColor, new PropertyValue(backgroundExtraData.BorderlineColor == null ? new PropertyValue(Color.Black) : new PropertyValue(backgroundExtraData.BorderlineColor)))
                .Add(Visual.Property.BorderlineOffset, new PropertyValue(backgroundExtraData.BorderlineOffset));
- 
+
 
             Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, View.Property.BACKGROUND, new PropertyValue(map));
         }
