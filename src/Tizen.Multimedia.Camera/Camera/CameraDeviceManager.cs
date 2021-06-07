@@ -28,7 +28,7 @@ namespace Tizen.Multimedia
     /// <since_tizen> 9 </since_tizen>
     /// <feature> http://tizen.org/feature/camera </feature>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class CameraDeviceManager : IDisposable
+    internal class CameraDeviceManager : IDisposable
     {
         private IntPtr _handle;
         private bool _disposed;
@@ -40,7 +40,7 @@ namespace Tizen.Multimedia
         /// <exception cref="NotSupportedException">The camera feature is not supported.</exception>
         /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public CameraDeviceManager()
+        internal CameraDeviceManager()
         {
             Native.Initialize(out _handle).ThrowIfFailed("Failed to initialize CameraDeviceManager");
 
@@ -62,7 +62,7 @@ namespace Tizen.Multimedia
         /// <returns></returns>
         /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ReadOnlyCollection<CameraDeviceInfo> GetDeviceInfo()
+        internal ReadOnlyCollection<CameraDeviceInfo> GetDeviceInfo()
         {
             var deviceList = new Native.CameraDeviceListStruct();
 
@@ -103,11 +103,11 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// An event that occurs when there is a change in the camera device list.
+        /// An event that occurs when there is a change in the available camera device.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<CameraDeviceListChangedEventArgs> CameraDeviceListChanged;
+        internal event EventHandler<CameraDeviceListChangedEventArgs> CameraDeviceListChanged;
 
         private IntPtr Handle
         {
@@ -207,7 +207,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentNullException">name of id is null.</exception>
         /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public CameraDeviceInfo(CameraDeviceType type, CameraDevice device, string name, string id)
+        internal CameraDeviceInfo(CameraDeviceType type, CameraDevice device, string name, string id)
         {
             ValidationUtil.ValidateEnum(typeof(CameraDeviceType), type, nameof(type));
             ValidationUtil.ValidateEnum(typeof(CameraDevice), device, nameof(device));
@@ -251,14 +251,5 @@ namespace Tizen.Multimedia
         /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string Id { get; }
-
-        /// <summary>
-        /// Returns a string that represents the current object.
-        /// </summary>
-        /// <returns>A string that represents the current object.</returns>
-        /// <since_tizen> 9 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override string ToString() =>
-            $"Type:{Type.ToString()}, Device:{Device.ToString()}, Name:{Name}, ID:{Id}";
     }
 }
