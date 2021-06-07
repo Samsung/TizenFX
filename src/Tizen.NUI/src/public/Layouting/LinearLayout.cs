@@ -354,7 +354,12 @@ namespace Tizen.NUI
                     {
                         needToMeasure = true;
                     }
-                    else
+                    // RelativeLayout's MatchParent children should not fill to the RelativeLayout.
+                    // Because the children's sizes and positions are calculated by RelativeLayout's APIs.
+                    // Therefore, not to fill the RelativeLayout, the mode is changed from Exactly to AtMost.
+                    //
+                    // Not to print the recursive reference error message for this case, Specification is checked if it is WrapContent.
+                    else if (Owner.HeightSpecification == LayoutParamPolicies.WrapContent)
                     {
                         if (childDesiredHeight == LayoutParamPolicies.MatchParent)
                         {
@@ -378,7 +383,12 @@ namespace Tizen.NUI
                             widthMeasureSpec.SetSize(new LayoutLength((int)(remainingWidth / childrenMatchParentCount) + Padding.Start + Padding.End));
                             needToMeasure = true;
                         }
-                        else
+                        // RelativeLayout's MatchParent children should not fill to the RelativeLayout.
+                        // Because the children's sizes and positions are calculated by RelativeLayout's APIs.
+                        // Therefore, not to fill the RelativeLayout, the mode is changed from Exactly to AtMost.
+                        //
+                        // Not to print the recursive reference error message for this case, Specification is checked if it is WrapContent.
+                        else if (Owner.WidthSpecification == LayoutParamPolicies.WrapContent)
                         {
                             if (childDesiredWidth == LayoutParamPolicies.MatchParent)
                             {
@@ -432,7 +442,12 @@ namespace Tizen.NUI
                                                  widthMeasureSpec, heightMeasureSpec, childState,
                                                  Orientation.Horizontal);
                         }
-                        else
+                        // RelativeLayout's MatchParent children should not fill to the RelativeLayout.
+                        // Because the children's sizes and positions are calculated by RelativeLayout's APIs.
+                        // Therefore, not to fill the RelativeLayout, the mode is changed from Exactly to AtMost.
+                        //
+                        // Not to print the recursive reference error message for this case, Specification is checked if it is WrapContent.
+                        else if (Owner.WidthSpecification == LayoutParamPolicies.WrapContent)
                         {
                             if (childDesiredWidth == LayoutParamPolicies.MatchParent)
                             {
@@ -572,7 +587,12 @@ namespace Tizen.NUI
                     {
                         needToMeasure = true;
                     }
-                    else
+                    // RelativeLayout's MatchParent children should not fill to the RelativeLayout.
+                    // Because the children's sizes and positions are calculated by RelativeLayout's APIs.
+                    // Therefore, not to fill the RelativeLayout, the mode is changed from Exactly to AtMost.
+                    //
+                    // Not to print the recursive reference error message for this case, Specification is checked if it is WrapContent.
+                    else if (Owner.WidthSpecification == LayoutParamPolicies.WrapContent)
                     {
                         if (childDesiredWidth == LayoutParamPolicies.MatchParent)
                         {
@@ -596,7 +616,12 @@ namespace Tizen.NUI
                             heightMeasureSpec.SetSize(new LayoutLength((int)(remainingHeight / childrenMatchParentCount) + Padding.Top + Padding.Bottom));
                             needToMeasure = true;
                         }
-                        else
+                        // RelativeLayout's MatchParent children should not fill to the RelativeLayout.
+                        // Because the children's sizes and positions are calculated by RelativeLayout's APIs.
+                        // Therefore, not to fill the RelativeLayout, the mode is changed from Exactly to AtMost.
+                        //
+                        // Not to print the recursive reference error message for this case, Specification is checked if it is WrapContent.
+                        else if (Owner.HeightSpecification == LayoutParamPolicies.WrapContent)
                         {
                             if (childDesiredHeight == LayoutParamPolicies.MatchParent)
                             {
@@ -650,7 +675,12 @@ namespace Tizen.NUI
                                                  widthMeasureSpec, heightMeasureSpec, childState,
                                                  Orientation.Vertical);
                         }
-                        else
+                        // RelativeLayout's MatchParent children should not fill to the RelativeLayout.
+                        // Because the children's sizes and positions are calculated by RelativeLayout's APIs.
+                        // Therefore, not to fill the RelativeLayout, the mode is changed from Exactly to AtMost.
+                        //
+                        // Not to print the recursive reference error message for this case, Specification is checked if it is WrapContent.
+                        else if (Owner.HeightSpecification == LayoutParamPolicies.WrapContent)
                         {
                             if (childDesiredHeight == LayoutParamPolicies.MatchParent)
                             {
