@@ -272,6 +272,13 @@ namespace Tizen.Multimedia
             }
         }
 
+        /// <summary>
+        /// An event that occurs when there is a change in the camera device list.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<CameraDeviceListChangedEventArgs> CameraDeviceListChanged;
+
         private void RegisterCallbacks()
         {
             RegisterErrorCallback();
