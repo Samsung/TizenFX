@@ -80,6 +80,7 @@ namespace Tizen.NUI.Samples
                     return group;
                 }),
                 Header = myTitle,
+                IsGrouped = true,
                 ScrollingDirection = ScrollableBase.Direction.Vertical,
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 HeightSpecification = LayoutParamPolicies.MatchParent,
