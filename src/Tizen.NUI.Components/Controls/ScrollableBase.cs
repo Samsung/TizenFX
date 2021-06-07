@@ -1325,6 +1325,10 @@ namespace Tizen.NUI.Components
         private void OnPanGestureDetected(object source, PanGestureDetector.DetectedEventArgs e)
         {
             OnPanGesture(e.PanGesture);
+            if(!((SnapToPage && scrollAnimation != null && scrollAnimation.State == Animation.States.Playing) || e.PanGesture.State == Gesture.StateType.Started))
+            {
+                e.Handled = !((int)finalTargetPosition == 0 || -(int)finalTargetPosition == (int)maxScrollDistance);
+            }
         }
 
         private void OnPanGesture(PanGesture panGesture)
@@ -1371,6 +1375,7 @@ namespace Tizen.NUI.Components
                     DragOverShootingShadow(totalDisplacementForPan, panGesture.Displacement.Y);
                 }
                 Debug.WriteLineIf(LayoutDebugScrollableBase, "OnPanGestureDetected Continue totalDisplacementForPan:" + totalDisplacementForPan);
+
             }
             else if (panGesture.State == Gesture.StateType.Finished || panGesture.State == Gesture.StateType.Cancelled)
             {

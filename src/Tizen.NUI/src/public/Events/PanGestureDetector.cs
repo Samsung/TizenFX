@@ -565,6 +565,7 @@ namespace Tizen.NUI
         {
             private View view;
             private PanGesture panGesture;
+            private bool handled = true;
 
             /// <summary>
             /// The attached view.
@@ -599,6 +600,22 @@ namespace Tizen.NUI
                 set
                 {
                     panGesture = value;
+                }
+            }
+
+            /// <summary>
+            /// Gets or sets a value that indicates whether the event handler has completely handled the event or whether the system should continue its own processing.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public bool Handled
+            {
+                get => handled;
+                set
+                {
+                    handled = value;
+                    Interop.Actor.SetNeedGesturePropagation(View.getCPtr(view), !value);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending)
+                        throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
             }
         }
