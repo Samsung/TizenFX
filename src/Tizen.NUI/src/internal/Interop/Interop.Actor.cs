@@ -140,6 +140,9 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_GetSuggestedMinimumHeight")]
             public static extern float GetSuggestedMinimumHeight(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetNeedGesturePropagation")]
+            public static extern float SetNeedGesturePropagation(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
         }
     }
 }
