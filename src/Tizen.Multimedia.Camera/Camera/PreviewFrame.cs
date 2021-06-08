@@ -43,7 +43,8 @@ namespace Tizen.Multimedia
             if (unmanagedStruct.NumOfPlanes == 1)
             {
                 if (unmanagedStruct.Format == CameraPixelFormat.H264 || unmanagedStruct.Format == CameraPixelFormat.Jpeg
-                    || unmanagedStruct.Format == CameraPixelFormat.Mjpeg)
+                    || unmanagedStruct.Format == CameraPixelFormat.Mjpeg || unmanagedStruct.Format == CameraPixelFormat.Vp8
+                    || unmanagedStruct.Format == CameraPixelFormat.Vp9)
                 {
                     return new EncodedPlane(unmanagedStruct.Plane.EncodedPlane);
                 }
@@ -81,7 +82,8 @@ namespace Tizen.Multimedia
             if (unmanagedStruct.NumOfPlanes == 1)
             {
                 if (unmanagedStruct.Format == CameraPixelFormat.H264 || unmanagedStruct.Format == CameraPixelFormat.Jpeg
-                    || unmanagedStruct.Format == CameraPixelFormat.Mjpeg)
+                    || unmanagedStruct.Format == CameraPixelFormat.Mjpeg || unmanagedStruct.Format == CameraPixelFormat.Vp8
+                    || unmanagedStruct.Format == CameraPixelFormat.Vp9)
                 {
                     return PlaneType.EncodedPlane;
                 }
