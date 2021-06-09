@@ -41,6 +41,10 @@ namespace Tizen.NUI.Samples
 
         public void Deactivate()
         {
+            if (title != null){
+                title.Unparent();
+                title.Dispose();
+            }
             if (root != null)
             {
                 NUIApplication.GetDefaultWindow().Remove(root);

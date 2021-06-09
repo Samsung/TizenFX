@@ -17,7 +17,12 @@ namespace Tizen.NUI.Samples
 
         public void Deactivate()
         {
-
+            window.TouchEvent -= Window_TouchEvent;
+            window.KeyEvent -= Window_KeyEvent;
+            root?.Unparent();
+            root?.Dispose();
+            view1?.Unparent();
+            view1?.Dispose();
         }
 
         Window window;
