@@ -47,10 +47,9 @@ namespace Tizen.Applications.Notifications
             ResponseEventHandler?.Invoke(null, eventArgs);
         }
 
-        /// <summary>        
+        /// <summary> 
+        /// The event handler for receiving a response event from the notification viewers
         /// </summary>
-        /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static event EventHandler<NotificationResponseEventArgs> ResponseReceived
