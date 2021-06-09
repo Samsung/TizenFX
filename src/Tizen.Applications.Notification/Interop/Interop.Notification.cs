@@ -23,6 +23,8 @@ internal static partial class Interop
 {
     internal static class Notification
     {
+        internal delegate void ViewerEventCallback(NotificationSafeHandle handle, int type, IntPtr userData);
+
         [DllImport(Libraries.Notification, EntryPoint = "notification_create")]
         internal static extern IntPtr Create(NotificationType type);
 
@@ -130,6 +132,9 @@ internal static partial class Interop
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_post")]
         internal static extern NotificationError Post(NotificationSafeHandle handle);
+
+        [DllImport(Libraries.Notification, EntryPoint = "notification_post_with_event_cb")]
+        internal static extern NotificationError PostWithEventCallback(NotificationSafeHandle handle, ViewerEventCallback cb, IntPtr userdata);
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_get_pkgname")]
         internal static extern NotificationError GetPackageName(NotificationSafeHandle handle, out IntPtr name);
