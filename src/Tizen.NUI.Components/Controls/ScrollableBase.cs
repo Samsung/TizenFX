@@ -260,6 +260,9 @@ namespace Tizen.NUI.Components
             {
                 if (value != mScrollingDirection)
                 {
+                    //Reset scroll position and stop scroll animation
+                    ScrollTo(0, false);
+
                     mScrollingDirection = value;
                     mPanGestureDetector.ClearAngles();
                     mPanGestureDetector.AddDirection(value == Direction.Horizontal ?
@@ -725,12 +728,11 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public override void Remove(View view)
         {
-            if (SnapToPage && CurrentPage == Children.IndexOf(view) && CurrentPage == Children.Count - 1)
+            if (SnapToPage && CurrentPage == Children.IndexOf(view) && CurrentPage == Children.Count - 1 && Children.Count > 1)
             {
                 // Target View is current page and also last child.
                 // CurrentPage should be changed to previous page.
-                CurrentPage = Math.Max(0, CurrentPage - 1);
-                ScrollToIndex(CurrentPage);
+                ScrollToIndex(CurrentPage - 1);
             }
 
             ContentContainer.Remove(view);
@@ -932,6 +934,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public void ScrollTo(float position, bool animate)
         {
+            StopScroll();
             float currentPositionX = ContentContainer.CurrentPosition.X != 0 ? ContentContainer.CurrentPosition.X : ContentContainer.Position.X;
             float currentPositionY = ContentContainer.CurrentPosition.Y != 0 ? ContentContainer.CurrentPosition.Y : ContentContainer.Position.Y;
             float delta = ScrollingDirection == Direction.Horizontal ? currentPositionX : currentPositionY;
@@ -988,6 +991,7 @@ namespace Tizen.NUI.Components
             }
             else
             {
+                StopScroll();
                 finalTargetPosition = BoundScrollPosition(childTargetPosition);
 
                 // Set position of scrolling child without an animation
@@ -1321,6 +1325,10 @@ namespace Tizen.NUI.Components
         private void OnPanGestureDetected(object source, PanGestureDetector.DetectedEventArgs e)
         {
             OnPanGesture(e.PanGesture);
+            if(!((SnapToPage && scrollAnimation != null && scrollAnimation.State == Animation.States.Playing) || e.PanGesture.State == Gesture.StateType.Started))
+            {
+                e.Handled = !((int)finalTargetPosition == 0 || -(int)finalTargetPosition == (int)maxScrollDistance);
+            }
         }
 
         private void OnPanGesture(PanGesture panGesture)
@@ -1367,6 +1375,7 @@ namespace Tizen.NUI.Components
                     DragOverShootingShadow(totalDisplacementForPan, panGesture.Displacement.Y);
                 }
                 Debug.WriteLineIf(LayoutDebugScrollableBase, "OnPanGestureDetected Continue totalDisplacementForPan:" + totalDisplacementForPan);
+
             }
             else if (panGesture.State == Gesture.StateType.Finished || panGesture.State == Gesture.StateType.Cancelled)
             {

@@ -119,6 +119,7 @@ namespace Tizen.NUI.Components
                     notificationWindow = new Window(null, true)
                     {
                         Type = WindowType.Notification,
+                        BackgroundColor = Color.Transparent,
                     };
                     notificationWindow.Show();
                 }

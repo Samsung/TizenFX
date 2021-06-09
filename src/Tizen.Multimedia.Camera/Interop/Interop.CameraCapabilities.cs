@@ -107,54 +107,54 @@ internal static partial class Interop
         internal static extern bool IsAutoContrastSupported(IntPtr handle);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_foreach_supported_preview_resolution")]
-        internal static extern CameraError SupportedPreviewResolutions(IntPtr handle, PreviewResolutionCallback callback, IntPtr userData);
+        internal static extern CameraError SupportedPreviewResolutions(IntPtr handle, PreviewResolutionCallback callback, IntPtr userData = default);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_foreach_supported_capture_resolution")]
-        internal static extern CameraError SupportedCaptureResolutions(IntPtr handle, CaptureResolutionCallback callback, IntPtr userData);
+        internal static extern CameraError SupportedCaptureResolutions(IntPtr handle, CaptureResolutionCallback callback, IntPtr userData = default);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_foreach_supported_capture_format")]
-        internal static extern CameraError SupportedCapturePixelFormats(IntPtr handle, CaptureFormatCallback callback, IntPtr userData);
+        internal static extern CameraError SupportedCapturePixelFormats(IntPtr handle, CaptureFormatCallback callback, IntPtr userData = default);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_foreach_supported_preview_format")]
-        internal static extern CameraError SupportedPreviewPixelFormats(IntPtr handle, PreviewFormatCallback callback, IntPtr userData);
+        internal static extern CameraError SupportedPreviewPixelFormats(IntPtr handle, PreviewFormatCallback callback, IntPtr userData = default);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_foreach_supported_fps")]
-        internal static extern CameraError SupportedPreviewFps(IntPtr handle, FpsCallback callback, IntPtr userData);
+        internal static extern CameraError SupportedPreviewFps(IntPtr handle, FpsCallback callback, IntPtr userData = default);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_foreach_supported_fps_by_resolution")]
-        internal static extern CameraError SupportedPreviewFpsByResolution(IntPtr handle, int width, int height, FpsByResolutionCallback callback, IntPtr userData);
+        internal static extern CameraError SupportedPreviewFpsByResolution(IntPtr handle, int width, int height, FpsByResolutionCallback callback, IntPtr userData = default);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_foreach_supported_af_mode")]
-        internal static extern CameraError SupportedAutoFocusModes(IntPtr handle, AfModeCallback callback, IntPtr userData);
+        internal static extern CameraError SupportedAutoFocusModes(IntPtr handle, AfModeCallback callback, IntPtr userData = default);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_foreach_supported_exposure_mode")]
-        internal static extern CameraError SupportedExposureModes(IntPtr handle, ExposureModeCallback callback, IntPtr userData);
+        internal static extern CameraError SupportedExposureModes(IntPtr handle, ExposureModeCallback callback, IntPtr userData = default);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_foreach_supported_iso")]
-        internal static extern CameraError SupportedIso(IntPtr handle, IsoCallback callback, IntPtr userData);
+        internal static extern CameraError SupportedIso(IntPtr handle, IsoCallback callback, IntPtr userData = default);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_foreach_supported_theater_mode")]
-        internal static extern CameraError SupportedTheaterModes(IntPtr handle, TheaterModeCallback callback, IntPtr userData);
+        internal static extern CameraError SupportedTheaterModes(IntPtr handle, TheaterModeCallback callback, IntPtr userData = default);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_foreach_supported_whitebalance")]
-        internal static extern CameraError SupportedWhitebalance(IntPtr handle, WhitebalanceCallback callback, IntPtr userData);
+        internal static extern CameraError SupportedWhitebalance(IntPtr handle, WhitebalanceCallback callback, IntPtr userData = default);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_foreach_supported_effect")]
-        internal static extern CameraError SupportedEffects(IntPtr handle, EffectCallback callback, IntPtr userData);
+        internal static extern CameraError SupportedEffects(IntPtr handle, EffectCallback callback, IntPtr userData = default);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_foreach_supported_scene_mode")]
-        internal static extern CameraError SupportedSceneModes(IntPtr handle, SceneModeCallback callback, IntPtr userData);
+        internal static extern CameraError SupportedSceneModes(IntPtr handle, SceneModeCallback callback, IntPtr userData = default);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_foreach_supported_flash_mode")]
-        internal static extern CameraError SupportedFlashModes(IntPtr handle, FlashModeCallback callback, IntPtr userData);
+        internal static extern CameraError SupportedFlashModes(IntPtr handle, FlashModeCallback callback, IntPtr userData = default);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_foreach_supported_stream_rotation")]
-        internal static extern CameraError SupportedStreamRotations(IntPtr handle, StreamRotationCallback callback, IntPtr userData);
+        internal static extern CameraError SupportedStreamRotations(IntPtr handle, StreamRotationCallback callback, IntPtr userData = default);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_foreach_supported_stream_flip")]
-        internal static extern CameraError SupportedStreamFlips(IntPtr handle, StreamFlipCallback callback, IntPtr userData);
+        internal static extern CameraError SupportedStreamFlips(IntPtr handle, StreamFlipCallback callback, IntPtr userData = default);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_foreach_supported_ptz_type")]
-        internal static extern CameraError SupportedPtzTypes(IntPtr handle, PtzTypeCallback callback, IntPtr userData);
+        internal static extern CameraError SupportedPtzTypes(IntPtr handle, PtzTypeCallback callback, IntPtr userData = default);
     }
 }

@@ -305,8 +305,26 @@ namespace Tizen.NUI
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilityCutText CutText; // 23
 
-                // RESERVED: 24, 25, 26, 27
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate bool AccessibilityInsertText(int startPosition, IntPtr text);
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilityInsertText InsertText; // 24
 
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate bool AccessibilitySetTextContents(IntPtr newContents);
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilitySetTextContents SetTextContents; // 25
+
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate bool AccessibilityDeleteText(int startPosition, int endPosition);
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilityDeleteText DeleteText; // 26
+
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate bool AccessibilityScrollToChild(IntPtr child);
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilityScrollToChild ScrollToChild; // 27
+  
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
                 public delegate int AccessibilityGetSelectedChildrenCount();
                 [EditorBrowsable(EditorBrowsableState.Never)]

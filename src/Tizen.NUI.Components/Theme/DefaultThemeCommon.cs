@@ -36,8 +36,7 @@ namespace Tizen.NUI.Components
             theme.AddStyleWithoutClone("Tizen.NUI.Components.Button", new ButtonStyle()
             {
                 Size = new Size(339, 96),
-                CornerRadiusPolicy = VisualTransformPolicyType.Relative,
-                CornerRadius = 0.2916f,
+                CornerRadius = 28.0f,
                 ItemAlignment = LinearLayout.Alignment.Center,
                 BackgroundColor = new Selector<Color>()
                 {
@@ -378,7 +377,7 @@ namespace Tizen.NUI.Components
                 },
             });
 
-            theme.AddStyleWithoutClone("Tizen.NUI.Components.Page", new ViewStyle()
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.ContentPage", new ViewStyle()
             {
                 BackgroundColor = new Color("#EEEFF1FF"),
             });

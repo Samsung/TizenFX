@@ -501,7 +501,15 @@ namespace Tizen.NUI.BaseComponents
                     SetSelection = (selectionNumber, startOffset, endOffset) => AccessibilitySetSelection(selectionNumber, startOffset, endOffset),
                     CopyText = (startPosition, endPosition) => AccessibilityCopyText(startPosition, endPosition),
                     CutText = (startPosition, endPosition) => AccessibilityCutText(startPosition, endPosition),
-                    // Place for extra EditableText methods and ScrollToChild
+                    InsertText = (startPosition, text) => AccessibilityInsertText(startPosition, Marshal.PtrToStringAnsi(text)),
+                    SetTextContents = (newContents) => AccessibilitySetTextContents(Marshal.PtrToStringAnsi(newContents)),
+                    DeleteText = (startPosition, endPosition) => AccessibilityDeleteText(startPosition, endPosition),
+                    ScrollToChild = (child) => {
+                        using (var view = new View(child, true))
+                        {
+                            return AccessibilityScrollToChild(view);
+                        }
+                    },
                     GetSelectedChildrenCount = () => AccessibilityGetSelectedChildrenCount(),
                     GetSelectedChild = (selectedChildIndex) => View.getCPtr(AccessibilityGetSelectedChild(selectedChildIndex)).Handle,
                     SelectChild = (childIndex) => AccessibilitySelectChild(childIndex),
@@ -608,7 +616,6 @@ namespace Tizen.NUI.BaseComponents
             FlagSetter(ref states, AccessibilityStates.Highlighted, this.IsHighlighted);
             FlagSetter(ref states, AccessibilityStates.Enabled, this.State != States.Disabled);
             FlagSetter(ref states, AccessibilityStates.Sensitive, this.Sensitive);
-            FlagSetter(ref states, AccessibilityStates.Animated, this.AccessibilityAnimated);
             FlagSetter(ref states, AccessibilityStates.Visible, true);
             FlagSetter(ref states, AccessibilityStates.Showing, this.Visibility);
             FlagSetter(ref states, AccessibilityStates.Defunct, !this.IsOnWindow);
@@ -733,6 +740,30 @@ namespace Tizen.NUI.BaseComponents
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual bool AccessibilityCutText(int startPosition, int endPosition)
+        {
+            return false;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool AccessibilityInsertText(int startPosition, string text)
+        {
+            return false;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool AccessibilitySetTextContents(string newContents)
+        {
+            return false;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool AccessibilityDeleteText(int startPosition, int endPosition)
+        {
+            return false;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool AccessibilityScrollToChild(View child)
         {
             return false;
         }

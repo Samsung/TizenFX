@@ -100,6 +100,57 @@ namespace Tizen.NUI.Components
                     return colView.selectionMode;
                 });
 
+        /// <summary>
+        /// Binding Property of items data source.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ItemsSourceProperty =
+            BindableProperty.Create(nameof(ItemsSource), typeof(IEnumerable), typeof(CollectionView), null,
+                propertyChanged: (bindable, oldValue, newValue) =>
+                {
+                    var colView = (CollectionView)bindable;
+                    oldValue = colView.itemsSource;
+
+                    if (oldValue != null)
+                    {
+                        // Clearing old data!
+                        if (oldValue is INotifyCollectionChanged prevNotifyCollectionChanged)
+                        {
+                            prevNotifyCollectionChanged.CollectionChanged -= colView.CollectionChanged;
+                        }
+                        if (colView.selectedItem != null) colView.selectedItem = null;
+                        colView.selectedItems?.Clear();
+                    }
+
+                    colView.itemsSource = (IEnumerable)newValue;
+
+                    if (newValue == null)
+                    {
+                        colView.InternalItemSource?.Dispose();
+                        colView.InternalItemSource = null;
+                        colView.itemsLayouter?.Clear();
+                        colView.ClearCache();
+                        return;
+                    }
+                    if (newValue is INotifyCollectionChanged newNotifyCollectionChanged)
+                    {
+                        newNotifyCollectionChanged.CollectionChanged += colView.CollectionChanged;
+                    }
+
+                    colView.InternalItemSource?.Dispose();
+                    colView.InternalItemSource = ItemsSourceFactory.Create(colView);
+
+                    if (colView.itemsLayouter == null) return;
+
+                    colView.needInitalizeLayouter = true;
+                    colView.Init();
+                },
+                defaultValueCreator: (bindable) =>
+                {
+                    var colView = (CollectionView)bindable;
+                    return colView.itemsSource;
+                });
+
 
         private static readonly IList<object> selectEmpty = new List<object>(0);
         private DataTemplate itemTemplate = null;
@@ -204,45 +255,8 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 9 </since_tizen>
         public override IEnumerable ItemsSource
         {
-            get
-            {
-                return itemsSource;
-            }
-            set
-            {
-                if (itemsSource != null)
-                {
-                    // Clearing old data!
-                    if (itemsSource is INotifyCollectionChanged prevNotifyCollectionChanged)
-                    {
-                        prevNotifyCollectionChanged.CollectionChanged -= CollectionChanged;
-                    }
-                    itemsLayouter?.Clear();
-                    if (selectedItem != null) selectedItem = null;
-                    selectedItems?.Clear();
-                }
-
-                itemsSource = value;
-                if (value == null)
-                {
-                    InternalItemSource?.Dispose();
-                    InternalItemSource = null;
-                    //layouter.Clear()
-                    return;
-                }
-                if (itemsSource is INotifyCollectionChanged newNotifyCollectionChanged)
-                {
-                    newNotifyCollectionChanged.CollectionChanged += CollectionChanged;
-                }
-
-                InternalItemSource?.Dispose();
-                InternalItemSource = ItemsSourceFactory.Create(this);
-
-                if (itemsLayouter == null) return;
-
-                needInitalizeLayouter = true;
-                Init();
-            }
+            get => (IEnumerable)GetValue(ItemsSourceProperty);
+            set => SetValue(ItemsSourceProperty, value);
         }
 
         /// <summary>
@@ -263,7 +277,6 @@ namespace Tizen.NUI.Components
                 itemTemplate = value;
                 if (value == null)
                 {
-                    //layouter.clear()
                     return;
                 }
 
@@ -288,8 +301,11 @@ namespace Tizen.NUI.Components
             }
             set
             {
+                itemsLayouter?.Clear();
+                ClearCache();
+
                 itemsLayouter = value;
-                base.InternalItemsLayouter = ItemsLayouter;
+                base.InternalItemsLayouter = itemsLayouter;
                 if (value == null)
                 {
                     needInitalizeLayouter = false;
@@ -394,6 +410,10 @@ namespace Tizen.NUI.Components
                     ContentContainer.Add(value);
                 }
                 header = value;
+                if (InternalItemSource != null)
+                {
+                    InternalItemSource.HasHeader = (value != null);
+                }
                 needInitalizeLayouter = true;
                 Init();
             }
@@ -422,6 +442,10 @@ namespace Tizen.NUI.Components
                     ContentContainer.Add(value);
                 }
                 footer = value;
+                if (InternalItemSource != null)
+                {
+                    InternalItemSource.HasFooter = (value != null);
+                }
                 needInitalizeLayouter = true;
                 Init();
             }
@@ -466,6 +490,14 @@ namespace Tizen.NUI.Components
             {
                 groupHeaderTemplate = value;
                 needInitalizeLayouter = true;
+                //Need to re-intialize Internal Item Source.
+                if (InternalItemSource != null)
+                {
+                    InternalItemSource.Dispose();
+                    InternalItemSource = null;
+                }
+                if (ItemsSource != null)
+                    InternalItemSource = ItemsSourceFactory.Create(this);
                 Init();
             }
         }
@@ -485,6 +517,14 @@ namespace Tizen.NUI.Components
             {
                 groupFooterTemplate = value;
                 needInitalizeLayouter = true;
+                //Need to re-intialize Internal Item Source.
+                if (InternalItemSource != null)
+                {
+                    InternalItemSource.Dispose();
+                    InternalItemSource = null;
+                }
+                if (ItemsSource != null)
+                    InternalItemSource = ItemsSourceFactory.Create(this);
                 Init();
             }
         }
@@ -800,6 +840,28 @@ namespace Tizen.NUI.Components
             }
         }
 
+
+        /// <summary>
+        /// Scroll to specified item
+        /// </summary>
+        /// <remarks>
+        /// Make sure that the item that is about to receive the accessibility highlight is visible.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override bool AccessibilityScrollToChild(View child)
+        {
+            foreach (RecyclerViewItem item in ContentContainer.Children.Where((item) => item is RecyclerViewItem))
+            {
+                if (child == item)
+                {
+                    ScrollToIndex(item.Index);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         // Realize and Decorate the item.
         internal override RecyclerViewItem RealizeItem(int index)
         {
@@ -982,6 +1044,24 @@ namespace Tizen.NUI.Components
             return ItemsLayouter?.CalculateCandidateScrollPosition(position) ?? position;
         }
 
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ClearCache()
+        {
+            foreach (RecyclerViewItem item in recycleGroupHeaderCache)
+            {
+                Utility.Dispose(item);
+            }
+            recycleGroupHeaderCache.Clear();
+            foreach (RecyclerViewItem item in recycleGroupFooterCache)
+            {
+                Utility.Dispose(item);
+            }
+            recycleGroupFooterCache.Clear();
+            base.ClearCache();
+        }
+
+
         /// <summary>
         /// OnScroll event callback. Requesting layout to the layouter with given scrollPosition.
         /// </summary>
@@ -1048,22 +1128,6 @@ namespace Tizen.NUI.Components
                 {
                     InternalItemSource.Dispose();
                     InternalItemSource = null;
-                }
-                if (recycleGroupHeaderCache != null)
-                {
-                    foreach(RecyclerViewItem item in recycleGroupHeaderCache)
-                    {
-                        UnrealizeItem(item, false);
-                    }
-                    recycleGroupHeaderCache.Clear();
-                }
-                if (recycleGroupFooterCache != null)
-                {
-                    foreach(RecyclerViewItem item in recycleGroupFooterCache)
-                    {
-                        UnrealizeItem(item, false);
-                    }
-                    recycleGroupFooterCache.Clear();
                 }
             }
 
@@ -1174,6 +1238,9 @@ namespace Tizen.NUI.Components
 
             if (needInitalizeLayouter)
             {
+                itemsLayouter.Clear();
+                ClearCache();
+
                 ItemsLayouter.Initialize(this);
                 needInitalizeLayouter = false;
             }

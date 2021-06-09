@@ -28,6 +28,10 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public partial class View : Container, IResourcesProvider
     {
+        private static HashSet<BindableProperty> positionPropertyGroup = new HashSet<BindableProperty>();
+        private static HashSet<BindableProperty> sizePropertyGroup = new HashSet<BindableProperty>();
+        private static HashSet<BindableProperty> scalePropertyGroup = new HashSet<BindableProperty>();
+
         internal BackgroundExtraData backgroundExtraData;
 
         private bool layoutSet = false;
@@ -53,7 +57,23 @@ namespace Tizen.NUI.BaseComponents
             public ViewSelectorData selectorData;
         }
 
-        static View() { }
+        static View()
+        {
+            RegisterPropertyGroup(PositionProperty, positionPropertyGroup);
+            RegisterPropertyGroup(Position2DProperty, positionPropertyGroup);
+            RegisterPropertyGroup(PositionXProperty, positionPropertyGroup);
+            RegisterPropertyGroup(PositionYProperty, positionPropertyGroup);
+
+            RegisterPropertyGroup(SizeProperty, sizePropertyGroup);
+            RegisterPropertyGroup(Size2DProperty, sizePropertyGroup);
+            RegisterPropertyGroup(SizeWidthProperty, sizePropertyGroup);
+            RegisterPropertyGroup(SizeHeightProperty, sizePropertyGroup);
+
+            RegisterPropertyGroup(ScaleProperty, scalePropertyGroup);
+            RegisterPropertyGroup(ScaleXProperty, scalePropertyGroup);
+            RegisterPropertyGroup(ScaleYProperty, scalePropertyGroup);
+            RegisterPropertyGroup(ScaleZProperty, scalePropertyGroup);
+        }
 
         /// <summary>
         /// Creates a new instance of a view.
@@ -1705,7 +1725,7 @@ namespace Tizen.NUI.BaseComponents
         /// Gets or sets the width resize policy to be used.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated. Please use WidthSpecification instead.")]
+        [Obsolete("Deprecated. Please set Layout and use WidthSpecification instead.")]
         public ResizePolicyType WidthResizePolicy
         {
             get
@@ -1723,7 +1743,7 @@ namespace Tizen.NUI.BaseComponents
         /// Gets or sets the height resize policy to be used.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated. Please use HeightSpecification instead.")]
+        [Obsolete("Deprecated. Please set Layout and use HeightSpecification instead.")]
         public ResizePolicyType HeightResizePolicy
         {
             get
@@ -2160,19 +2180,6 @@ namespace Tizen.NUI.BaseComponents
                         Size2D = new Size2D(widthPolicy, heightPolicy);
                     }
                 }
-                else
-                {
-                    if (value == LayoutParamPolicies.MatchParent)
-                    {
-                        SetValue(WidthResizePolicyProperty, ResizePolicyType.FillToParent);
-                        NotifyPropertyChanged();
-                    }
-                    else if (value == LayoutParamPolicies.WrapContent)
-                    {
-                        SetValue(WidthResizePolicyProperty, ResizePolicyType.FitToChildren);
-                        NotifyPropertyChanged();
-                    }
-                }
                 layout?.RequestLayout();
             }
         }
@@ -2214,19 +2221,6 @@ namespace Tizen.NUI.BaseComponents
                     {
                         // Create Size2D only both _widthPolicy and _heightPolicy are set.
                         Size2D = new Size2D(widthPolicy, heightPolicy);
-                    }
-                }
-                else
-                {
-                    if (value == LayoutParamPolicies.MatchParent)
-                    {
-                        SetValue(HeightResizePolicyProperty, ResizePolicyType.FillToParent);
-                        NotifyPropertyChanged();
-                    }
-                    else if (value == LayoutParamPolicies.WrapContent)
-                    {
-                        SetValue(HeightResizePolicyProperty, ResizePolicyType.FitToChildren);
-                        NotifyPropertyChanged();
                     }
                 }
                 layout?.RequestLayout();

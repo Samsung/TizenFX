@@ -1305,30 +1305,37 @@ namespace Tizen.NUI.BaseComponents
                 if (_resourceUrl != null)
                 {
                     Size2D imageSize = ImageLoading.GetOriginalImageSize(_resourceUrl, true);
-
-                    int adjustedDesiredWidth, adjustedDesiredHeight;
-                    float aspectOfDesiredSize = (float)_desired_height / (float)_desired_width;
-                    float aspectOfImageSize = (float)imageSize.Height / (float)imageSize.Width;
-                    if (aspectOfImageSize > aspectOfDesiredSize)
+                    if( imageSize.Height > 0 && imageSize.Width > 0 && _desired_width > 0  && _desired_height > 0 )
                     {
-                        adjustedDesiredWidth = _desired_width;
-                        adjustedDesiredHeight = imageSize.Height * _desired_width / imageSize.Width;
+                        int adjustedDesiredWidth, adjustedDesiredHeight;
+                        float aspectOfDesiredSize = (float)_desired_height / (float)_desired_width;
+                        float aspectOfImageSize = (float)imageSize.Height / (float)imageSize.Width;
+                        if (aspectOfImageSize > aspectOfDesiredSize)
+                        {
+                            adjustedDesiredWidth = _desired_width;
+                            adjustedDesiredHeight = imageSize.Height * _desired_width / imageSize.Width;
+                        }
+                        else
+                        {
+                            adjustedDesiredWidth = imageSize.Width * _desired_height / imageSize.Height;
+                            adjustedDesiredHeight = _desired_height;
+                        }
+
+                        PropertyValue returnWidth = new PropertyValue(adjustedDesiredWidth);
+                        imageMap?.Insert(ImageVisualProperty.DesiredWidth, returnWidth);
+                        returnWidth?.Dispose();
+                        PropertyValue returnHeight = new PropertyValue(adjustedDesiredHeight);
+                        imageMap?.Insert(ImageVisualProperty.DesiredHeight, returnHeight);
+                        returnHeight?.Dispose();
+                        PropertyValue scaleToFit = new PropertyValue((int)FittingModeType.ScaleToFill);
+                        imageMap?.Insert(ImageVisualProperty.FittingMode, scaleToFit);
+                        scaleToFit?.Dispose();
                     }
                     else
                     {
-                        adjustedDesiredWidth = imageSize.Width * _desired_height / imageSize.Height;
-                        adjustedDesiredHeight = _desired_height;
+                        Tizen.Log.Fatal("NUI", "[ERROR] Can't use DesiredSize when ImageLoading is failed.");
                     }
-
-                    PropertyValue returnWidth = new PropertyValue(adjustedDesiredWidth);
-                    imageMap?.Insert(ImageVisualProperty.DesiredWidth, returnWidth);
-                    returnWidth?.Dispose();
-                    PropertyValue returnHeight = new PropertyValue(adjustedDesiredHeight);
-                    imageMap?.Insert(ImageVisualProperty.DesiredHeight, returnHeight);
-                    returnHeight?.Dispose();
-                    PropertyValue scaleToFit = new PropertyValue((int)FittingModeType.ScaleToFill);
-                    imageMap?.Insert(ImageVisualProperty.FittingMode, scaleToFit);
-                    scaleToFit?.Dispose();
+                    imageSize?.Dispose();
                 }
             }
 

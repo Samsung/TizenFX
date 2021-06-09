@@ -348,7 +348,28 @@ namespace Tizen.NUI
                 LayoutItem childLayout = LayoutChildren[i];
                 if (childLayout != null)
                 {
-                    MeasureChildWithMargins(childLayout, widthMeasureSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0));
+                    var childWidthMeasureSpec = new MeasureSpecification(widthMeasureSpec.Size, widthMeasureSpec.Mode);
+                    var childHeightMeasureSpec = new MeasureSpecification(heightMeasureSpec.Size, heightMeasureSpec.Mode);
+
+                    // RelativeLayout's MatchParent children should not fill to the RelativeLayout.
+                    // Because the children's sizes and positions are calculated by RelativeLayout's APIs.
+                    // Therefore, not to fill the RelativeLayout, the mode is changed from Exactly to AtMost.
+                    if (childLayout.Owner.WidthSpecification == LayoutParamPolicies.MatchParent)
+                    {
+                        childWidthMeasureSpec.SetSize(new LayoutLength(widthMeasureSpec.Size));
+                        childWidthMeasureSpec.SetMode(MeasureSpecification.ModeType.AtMost);
+                    }
+
+                    // RelativeLayout's MatchParent children should not fill to the RelativeLayout.
+                    // Because the children's sizes and positions are calculated by RelativeLayout's APIs.
+                    // Therefore, not to fill the RelativeLayout, the mode is changed from Exactly to AtMost.
+                    if (childLayout.Owner.HeightSpecification == LayoutParamPolicies.MatchParent)
+                    {
+                        childHeightMeasureSpec.SetSize(new LayoutLength(heightMeasureSpec.Size));
+                        childHeightMeasureSpec.SetMode(MeasureSpecification.ModeType.AtMost);
+                    }
+
+                    MeasureChildWithMargins(childLayout, childWidthMeasureSpec, new LayoutLength(0), childHeightMeasureSpec, new LayoutLength(0));
 
                     if (childLayout.MeasuredWidth.State == MeasuredSize.StateType.MeasuredSizeTooSmall)
                     {
@@ -377,6 +398,18 @@ namespace Tizen.NUI
                 {
                     Geometry horizontalGeometry = GetHorizontalLayout(childLayout.Owner);
                     Geometry verticalGeometry = GetVerticalLayout(childLayout.Owner);
+
+                    // MeasureChildWithMargins() is called to assign child's MeasuredWidth/Height to calculate grand children's sizes correctly.
+                    // Grand children's positions are calculated correctly only if their sizes are calculated correctly.
+                    // MeasureChildWithMargins() should be called before childLayout.Layout() to use childLayout's MeasuredWidth/Height
+                    // when the grand children's positions are calculated.
+                    //
+                    // FIXME: It would be better if MeasureChildWithMargins() are called in OnMeasure() to separate Measure and Layout calculations.
+                    //        For now, not to call duplicate GetHorizontalLayout() and GetVerticalLayout() in both OnMeasure() and OnLayout(),
+                    //        MeasureChildWithMargins() is called here.
+                    MeasureChildWithMargins(childLayout,
+                                            new MeasureSpecification(new LayoutLength(horizontalGeometry.Size), MeasureSpecification.ModeType.Exactly), new LayoutLength(0),
+                                            new MeasureSpecification(new LayoutLength(verticalGeometry.Size), MeasureSpecification.ModeType.Exactly), new LayoutLength(0));
 
                     LayoutLength childLeft = new LayoutLength(horizontalGeometry.Position + Padding.Start + childLayout.Margin.Start);
                     LayoutLength childRight = new LayoutLength(horizontalGeometry.Position + horizontalGeometry.Size + Padding.Start - childLayout.Margin.End);
