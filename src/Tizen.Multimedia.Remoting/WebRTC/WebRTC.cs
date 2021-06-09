@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -151,16 +152,62 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <remarks>
         /// The WebRTC must be in the <see cref="WebRTCState.Idle"/> state.<br/>
-        /// The WebRTC state will be <see cref="WebRTCState.Negotiating"/> state.
+        /// The WebRTC state will be <see cref="WebRTCState.Negotiating"/> state.<br/>
+        /// <see cref="StateChanged"/> event will be invoked when the state is changed to <see cref="WebRTCState.Negotiating"/> internally.
         /// </remarks>
         /// <exception cref="InvalidOperationException">The WebRTC is not in the valid state.</exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <see also="WebRTCState"/>
+        /// <see also="StateChanged"/>
+        /// <see also="CreateOffer"/>
+        /// <see also="CreateSetOffer"/>
         /// <since_tizen> 9 </since_tizen>
         public void Start()
         {
             ValidateWebRTCState(WebRTCState.Idle);
 
             NativeWebRTC.Start(Handle).ThrowIfFailed("Failed to start the WebRTC");
+        }
+
+        /// <summary>
+        /// Starts the WebRTC.
+        /// </summary>
+        /// <remarks>
+        /// The WebRTC must be in the <see cref="WebRTCState.Idle"/> state.<br/>
+        /// The WebRTC state will be <see cref="WebRTCState.Negotiating"/> state.<br/>
+        /// This ensures that <see cref="StateChanged" /> event will be invoked with <see cref="WebRTCState.Negotiating"/> state.
+        /// </remarks>
+        /// <exception cref="InvalidOperationException">The WebRTC is not in the valid state.</exception>
+        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <see also="WebRTCState"/>
+        /// <see also="CreateOffer"/>
+        /// <see also="CreateSetOffer"/>
+        /// <since_tizen> 9 </since_tizen>
+        public async Task StartAsync()
+        {
+            ValidateWebRTCState(WebRTCState.Idle);
+
+            var tcs = new TaskCompletionSource<bool>();
+            EventHandler<WebRTCStateChangedEventArgs> stateChangedEventHandler = (s, e) =>
+            {
+                if (e.Current == WebRTCState.Negotiating)
+                {
+                    tcs.TrySetResult(true);
+                }
+            };
+
+            try
+            {
+                StateChanged += stateChangedEventHandler;
+
+                NativeWebRTC.Start(Handle).ThrowIfFailed("Failed to start the WebRTC");
+
+                await tcs.Task;
+            }
+            finally
+            {
+                StateChanged -= stateChangedEventHandler;
+            }
         }
 
         /// <summary>
