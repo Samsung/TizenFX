@@ -43,6 +43,11 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         EditableText = 2,
+        /// <summary>
+        /// Accessibility interface which can store a set of selected items
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Selection = 3,
     }
 
     /// <summary>
