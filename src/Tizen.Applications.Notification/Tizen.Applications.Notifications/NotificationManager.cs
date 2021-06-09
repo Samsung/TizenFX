@@ -25,6 +25,48 @@ namespace Tizen.Applications.Notifications
     /// <since_tizen> 3 </since_tizen>
     public static class NotificationManager
     {
+        private static event EventHandler<NotificationViewerEventArgs> ViewerEventHandler;
+
+        private static Interop.Notification.ViewerEventCallback viewerEventCallback;
+
+        private static void ViewerEventCallback(NotificationSafeHandle handle, int type, IntPtr userData)
+        {
+            NotificationViewerEventArgs eventArgs = new NotificationViewerEventArgs();
+            eventArgs.EventType = (NotificationViewerEventType)type;
+            eventArgs.Notification = new Notification
+            {
+                Handle = handle
+            }.Build();
+            ViewerEventHandler?.Invoke(null, eventArgs);
+        }
+
+        /// <summary>        
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
+        /// <since_tizen> 9 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static event EventHandler<NotificationViewerEventArgs> ViewerEventReceived
+        {
+            add
+            {
+                if (viewerEventCallback == null)
+                {
+                    viewerEventCallback = new Interop.Notification.ViewerEventCallback(ViewerEventCallback);
+                }
+                
+                ViewerEventHandler += value;
+            }
+
+            remove
+            {
+                if (ViewerEventHandler != null && ViewerEventHandler.GetInvocationList().Length > 0)
+                {
+                    ViewerEventHandler -= value;
+                }
+            }
+        }
+
         /// <summary>
         /// Posts a new notification.
         /// </summary>
@@ -65,11 +107,22 @@ namespace Tizen.Applications.Notifications
 
             notification.Make();
 
-            NotificationError ret = Interop.Notification.Post(notification.Handle);
-            if (ret != NotificationError.None)
+            if (ViewerEventHandler != null && ViewerEventHandler.GetInvocationList().Length > 0)
             {
-                throw NotificationErrorFactory.GetException(ret, "post notification failed");
+                NotificationError ret = Interop.Notification.PostWithEventCallback(notification.Handle, viewerEventCallback, IntPtr.Zero);
+                if (ret != NotificationError.None)
+                {
+                    throw NotificationErrorFactory.GetException(ret, "post notification failed");
+                }
             }
+            else
+            {
+                NotificationError ret = Interop.Notification.Post(notification.Handle);
+                if (ret != NotificationError.None)
+                {
+                    throw NotificationErrorFactory.GetException(ret, "post notification failed");
+                }
+            }   
 
             int priv_id, group_id;
             Interop.Notification.GetID(notification.Handle, out group_id, out priv_id);
