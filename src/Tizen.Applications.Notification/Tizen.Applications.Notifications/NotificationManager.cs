@@ -29,13 +29,13 @@ namespace Tizen.Applications.Notifications
 
         private static Interop.Notification.ViewerEventCallback viewerEventCallback;
 
-        private static void ViewerEventCallback(NotificationSafeHandle handle, int type, IntPtr userData)
+        private static void ViewerEventCallback(IntPtr ptr, int type, IntPtr userData)
         {
             NotificationViewerEventArgs eventArgs = new NotificationViewerEventArgs();
             eventArgs.EventType = (NotificationViewerEventType)type;
             eventArgs.Notification = new Notification
             {
-                Handle = handle
+                Handle = new NotificationSafeHandle(ptr, true)
             }.Build();
             ViewerEventHandler?.Invoke(null, eventArgs);
         }

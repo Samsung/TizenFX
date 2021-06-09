@@ -23,7 +23,7 @@ internal static partial class Interop
 {
     internal static class Notification
     {
-        internal delegate void ViewerEventCallback(NotificationSafeHandle handle, int type, IntPtr userData);
+        internal delegate void ViewerEventCallback(IntPtr ptr, int type, IntPtr userData);
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_create")]
         internal static extern IntPtr Create(NotificationType type);
