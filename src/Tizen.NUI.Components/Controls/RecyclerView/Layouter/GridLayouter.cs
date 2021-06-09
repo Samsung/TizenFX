@@ -44,6 +44,7 @@ namespace Tizen.NUI.Components
         private Extents groupFooterMargin;
         private GroupInfo Visited;
         private Timer requestLayoutTimer = null;
+        private bool isSourceEmpty;
 
         /// <summary>
         /// Clean up ItemsLayouter.
@@ -113,6 +114,13 @@ namespace Tizen.NUI.Components
 
                 colView.UnrealizeItem(footer);
             }
+
+            if (pureCount == 0)
+            {
+                isSourceEmpty = true;
+                return;
+            }
+            isSourceEmpty = false;
 
             int firstIndex = header? 1 : 0;
 
@@ -486,6 +494,10 @@ namespace Tizen.NUI.Components
         {
             // Insert Single item.
             if (source == null) throw new ArgumentNullException(nameof(source));
+            if (isSourceEmpty)
+            {
+                Initialize(colView);
+            }
 
             // Will be null if not a group.
             float currentSize = 0;
@@ -633,6 +645,10 @@ namespace Tizen.NUI.Components
         {
              // Insert Group
             if (source == null) throw new ArgumentNullException(nameof(source));
+            if (isSourceEmpty)
+            {
+                Initialize(colView);
+            }
 
             float currentSize = 0;
             // Will be null if not a group.
