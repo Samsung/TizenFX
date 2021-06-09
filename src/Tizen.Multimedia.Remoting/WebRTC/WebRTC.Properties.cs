@@ -195,8 +195,10 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <value>A <see cref="Multimedia.Display"/> that specifies the display.</value>
         /// <remarks>
-        ///     <see cref="Display"/> must be called in <see cref="TrackAdded"/> event.<br/>
-        ///     the display is created with <see cref="MediaView"/>.
+        /// If user set video source with <see cref="TransceiverDirection.SendRecv"/>, <see cref="Display"/> must set.<br/>
+        /// If not, the received video will be covered with entire screen.<br/>
+        /// <see cref="Display"/> must be called in <see cref="TrackAdded"/> event.<br/>
+        /// the display is created with <see cref="MediaView"/>.
         /// </remarks>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed of.</exception>
         /// <exception cref="ArgumentException">The value has already been assigned to another WebRTC.</exception>
