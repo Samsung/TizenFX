@@ -35,7 +35,8 @@ namespace Tizen.Applications.Notifications
             NotificationError ret = Interop.Notification.Clone(ptr, out cloned);
             if (ret != NotificationError.None)
             {
-                throw NotificationErrorFactory.GetException(ret, "clone notification failed");
+                Log.Error(Notification.LogTag, "Fail to clone notification : " + ret.ToString());
+                return;
             }
 
             NotificationResponseEventArgs eventArgs = new NotificationResponseEventArgs();
@@ -118,7 +119,7 @@ namespace Tizen.Applications.Notifications
                 NotificationError ret = Interop.Notification.PostWithEventCallback(notification.Handle, responseEventCallback, IntPtr.Zero);
                 if (ret != NotificationError.None)
                 {
-                    throw NotificationErrorFactory.GetException(ret, "post notification failed");
+                    throw NotificationErrorFactory.GetException(ret, "post notification with event callback failed");
                 }
             }
             else
