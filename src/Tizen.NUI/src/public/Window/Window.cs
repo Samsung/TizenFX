@@ -1553,5 +1553,23 @@ namespace Tizen.NUI
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
+
+        /// <summary>
+        /// Search through this Window for a Layer with the given unique ID.
+        /// </summary>
+        /// <param name="id">The ID of the Layer to find.</param>
+        /// <remarks>Hidden-API</remarks>
+        /// <returns>A handle to the Layer if found, or an empty handle if not.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Layer FindLayerByID(uint id)
+        {
+            Layer defaultLayer = this.GetDefaultLayer();
+            IntPtr cPtr = Interop.Actor.FindChildById(defaultLayer.SwigCPtr, id);
+            Layer ret = this.GetInstanceSafely<Layer>(cPtr);
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
     }
 }

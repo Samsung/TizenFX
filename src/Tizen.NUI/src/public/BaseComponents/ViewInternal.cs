@@ -1013,6 +1013,8 @@ namespace Tizen.NUI.BaseComponents
             Children.Remove(child);
             child.InternalParent = null;
 
+            RemoveChildBindableObject(child);
+
             if (ChildRemoved != null)
             {
                 ChildRemovedEventArgs e = new ChildRemovedEventArgs
@@ -1142,14 +1144,17 @@ namespace Tizen.NUI.BaseComponents
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
-            if (this != null)
+
+            // equivalent to "if (this != null)". more clear to understand.
+            if (this.HasBody())
             {
                 DisConnectFromSignals();
-            }
 
-            foreach (View view in Children)
-            {
-                view.InternalParent = null;
+                foreach (View view in Children)
+                {
+                    view.InternalParent = null;
+                }
+
             }
 
             base.Dispose(type);

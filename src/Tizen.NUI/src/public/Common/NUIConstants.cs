@@ -136,7 +136,7 @@ namespace Tizen.NUI
     /// Enumeration for size negotiation resize policies.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    [Obsolete("Deprecated. Please use Tizen.NUI.BaseComponents.LayoutParamPolicies instead.")]
+    [Obsolete("Deprecated. Please set Tizen.NUI.View.Layout and use Tizen.NUI.BaseComponents.LayoutParamPolicies instead.")]
     public enum ResizePolicyType
     {
         /// <summary>
@@ -156,7 +156,7 @@ namespace Tizen.NUI
         /// Size is to fill up to the actor's parent's bounds. Aspect ratio is not maintained.
         /// </summary>
         [Description("FILL_TO_PARENT")]
-        [Obsolete("Deprecated. Instead, please set Tizen.NUI.BaseComponents.LayoutParamPolicies.MatchParent to Tizen.NUI.View.WidthSpecification or Tizen.NUI.View.HeightSpecification.")]
+        [Obsolete("Deprecated. Instead, please set Tizen.NUI.View.Layout and also set Tizen.NUI.BaseComponents.LayoutParamPolicies.MatchParent to Tizen.NUI.View.WidthSpecification or Tizen.NUI.View.HeightSpecification.")]
         FillToParent,
         /// <summary>
         /// The actors size will be ( ParentSize * SizeRelativeToParentFactor ).
@@ -174,7 +174,7 @@ namespace Tizen.NUI
         /// The size will adjust to wrap around all children.
         /// </summary>
         [Description("FIT_TO_CHILDREN")]
-        [Obsolete("Deprecated. Instead, please set Tizen.NUI.BaseComponents.LayoutParamPolicies.WrapContent to Tizen.NUI.View.WidthSpecification or Tizen.NUI.View.HeightSpecification.")]
+        [Obsolete("Deprecated. Instead, please set Tizen.NUI.View.Layout and also set Tizen.NUI.BaseComponents.LayoutParamPolicies.WrapContent to Tizen.NUI.View.WidthSpecification or Tizen.NUI.View.HeightSpecification.")]
         FitToChildren,
         /// <summary>
         /// One dimension is dependent on the other.

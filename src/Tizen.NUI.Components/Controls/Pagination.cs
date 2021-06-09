@@ -367,9 +367,9 @@ namespace Tizen.NUI.Components
 
                 SelectIn(indicatorList[selectedIndex]);
 
-                if (IsHighlighted) 
+                if (IsHighlighted)
                 {
-                    EmitAccessibilityEvent(ObjectPropertyChangeEvent.Value);
+                    EmitAccessibilityEvent(AccessibilityPropertyChangeEvent.Value);
                 }
             }
         }

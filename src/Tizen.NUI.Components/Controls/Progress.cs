@@ -389,7 +389,7 @@ namespace Tizen.NUI.Components
                 SetValue(CurrentValueProperty, value);
                 if (IsHighlighted)
                 {
-                    EmitAccessibilityEvent(ObjectPropertyChangeEvent.Value);
+                    EmitAccessibilityEvent(AccessibilityPropertyChangeEvent.Value);
                 }
             }
         }

@@ -149,11 +149,14 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 9 </since_tizen>
         public virtual void Clear()
         {
-            foreach (RecyclerViewItem item in VisibleItems)
+            if (VisibleItems != null)
             {
-                if (ItemsView != null) ItemsView.UnrealizeItem(item, false);
+                foreach (RecyclerViewItem item in VisibleItems)
+                {
+                    if (ItemsView != null) ItemsView.UnrealizeItem(item, false);
+               }
+                VisibleItems.Clear();
             }
-            VisibleItems.Clear();
             if (CandidateMargin != null)
             {
                 CandidateMargin.Dispose();
@@ -161,7 +164,7 @@ namespace Tizen.NUI.Components
             }
             if (Container)
             {
-                Container.SizeHeight = 0;
+                Container.Size = ItemsView.Size;
                 Container.Position = new Position(0.0f, 0.0f);
                 Container = null;
             }
