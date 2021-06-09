@@ -25,19 +25,26 @@ namespace Tizen.Applications.Notifications
     /// <since_tizen> 3 </since_tizen>
     public static class NotificationManager
     {
-        private static event EventHandler<NotificationViewerEventArgs> ViewerEventHandler;
+        private static event EventHandler<NotificationResponseEventArgs> ResponseEventHandler;
 
-        private static Interop.Notification.ViewerEventCallback viewerEventCallback;
+        private static Interop.Notification.ResponseEventCallback responseEventCallback;
 
-        private static void ViewerEventCallback(IntPtr ptr, int type, IntPtr userData)
+        private static void ResponseEventCallback(IntPtr ptr, int type, IntPtr userData)
         {
-            NotificationViewerEventArgs eventArgs = new NotificationViewerEventArgs();
-            eventArgs.EventType = (NotificationViewerEventType)type;
+            IntPtr cloned;
+            NotificationError ret = Interop.Notification.Clone(ptr, out cloned);
+            if (ret != NotificationError.None)
+            {
+                throw NotificationErrorFactory.GetException(ret, "clone notification failed");
+            }
+
+            NotificationResponseEventArgs eventArgs = new NotificationResponseEventArgs();
+            eventArgs.EventType = (NotificationResponseEventType)type;
             eventArgs.Notification = new Notification
             {
-                Handle = new NotificationSafeHandle(ptr, true)
+                Handle = new NotificationSafeHandle(cloned, true)
             }.Build();
-            ViewerEventHandler?.Invoke(null, eventArgs);
+            ResponseEventHandler?.Invoke(null, eventArgs);
         }
 
         /// <summary>        
@@ -46,23 +53,23 @@ namespace Tizen.Applications.Notifications
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static event EventHandler<NotificationViewerEventArgs> ViewerEventReceived
+        public static event EventHandler<NotificationResponseEventArgs> ResponseReceived
         {
             add
             {
-                if (viewerEventCallback == null)
+                if (responseEventCallback == null)
                 {
-                    viewerEventCallback = new Interop.Notification.ViewerEventCallback(ViewerEventCallback);
+                    responseEventCallback = new Interop.Notification.ResponseEventCallback(ResponseEventCallback);
                 }
                 
-                ViewerEventHandler += value;
+                ResponseEventHandler += value;
             }
 
             remove
             {
-                if (ViewerEventHandler != null && ViewerEventHandler.GetInvocationList().Length > 0)
+                if (ResponseEventHandler != null && ResponseEventHandler.GetInvocationList().Length > 0)
                 {
-                    ViewerEventHandler -= value;
+                    ResponseEventHandler -= value;
                 }
             }
         }
@@ -107,9 +114,9 @@ namespace Tizen.Applications.Notifications
 
             notification.Make();
 
-            if (ViewerEventHandler != null && ViewerEventHandler.GetInvocationList().Length > 0)
+            if (ResponseEventHandler != null && ResponseEventHandler.GetInvocationList().Length > 0)
             {
-                NotificationError ret = Interop.Notification.PostWithEventCallback(notification.Handle, viewerEventCallback, IntPtr.Zero);
+                NotificationError ret = Interop.Notification.PostWithEventCallback(notification.Handle, responseEventCallback, IntPtr.Zero);
                 if (ret != NotificationError.None)
                 {
                     throw NotificationErrorFactory.GetException(ret, "post notification failed");
