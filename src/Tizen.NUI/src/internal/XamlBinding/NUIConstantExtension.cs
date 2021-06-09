@@ -80,6 +80,7 @@ namespace Tizen.NUI.Binding
             { "ImageVisualProperty.AuxiliaryImageAlpha", ImageVisualProperty.AuxiliaryImageAlpha },
             // MeshVisualProperty
             { "MeshVisualProperty.ObjectURL", MeshVisualProperty.ObjectURL },
+            { "MeshVisualProperty.MaterialURL", MeshVisualProperty.MaterialURL },
             { "MeshVisualProperty.MaterialtURL", MeshVisualProperty.MaterialtURL },
             { "MeshVisualProperty.TexturesPath", MeshVisualProperty.TexturesPath },
             { "MeshVisualProperty.ShadingMode", MeshVisualProperty.ShadingMode },
