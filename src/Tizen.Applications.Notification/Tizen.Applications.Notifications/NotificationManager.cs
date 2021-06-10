@@ -51,7 +51,7 @@ namespace Tizen.Applications.Notifications
         /// <summary> 
         /// The event handler for receiving a response event from the notification viewers
         /// </summary>
-        /// <since_tizen> 9 </since_tizen>
+        /// <since_tizen> 8 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static event EventHandler<NotificationResponseEventArgs> ResponseReceived
         {

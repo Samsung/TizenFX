@@ -6,7 +6,7 @@ namespace Tizen.Applications.Notifications
     /// <summary>
     /// Enumeration for event type on notification.
     /// </summary>
-    /// <since_tizen> 9 </since_tizen>
+    /// <since_tizen> 8 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public enum NotificationResponseEventType
     {
