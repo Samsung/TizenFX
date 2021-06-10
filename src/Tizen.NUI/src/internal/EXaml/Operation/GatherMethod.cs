@@ -27,23 +27,63 @@ namespace Tizen.NUI.EXaml
 {
     internal class GatherMethod : Operation
     {
-        public GatherMethod(GlobalDataList globalDataList, int typeIndex, string methodName)
+        public GatherMethod(GlobalDataList globalDataList, int typeIndex, string methodName, List<object> paramList)
         {
             this.typeIndex = typeIndex;
             this.methodName = methodName;
             this.globalDataList = globalDataList;
+            this.paramList = paramList;
         }
 
         private GlobalDataList globalDataList;
 
         public void Do()
         {
+            List<Type> paramTypeList = new List<Type>();
+
+            foreach (var obj in paramList)
+            {
+                int index = (int)obj;
+
+                if (null == paramTypeList)
+                {
+                    paramTypeList = new List<Type>();
+                }
+
+                if (index >= 0)
+                {
+                    paramTypeList.Add(globalDataList.GatheredTypes[index]);
+                }
+                else
+                {
+                    paramTypeList.Add(GetBaseType.GetBaseTypeByIndex(index));
+                }
+            }
+
+            Func<MethodInfo, bool> isMatch = m =>
+            {
+                if (m.Name != methodName)
+                    return false;
+                var p = m.GetParameters();
+                if (p.Length != paramTypeList.Count)
+                    return false;
+                for (var i = 0; i < p.Length; i++)
+                {
+                    if (p[i].ParameterType != paramTypeList[i])
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            };
+
             var type = globalDataList.GatheredTypes[typeIndex];
-            var method = type.GetRuntimeMethods().FirstOrDefault(mi => mi.Name == methodName);
+            var method = type.GetRuntimeMethods().FirstOrDefault(isMatch);
             globalDataList.GatheredMethods.Add(method);
         }
 
         private int typeIndex;
         private string methodName;
+        private List<object> paramList;
     }
 }

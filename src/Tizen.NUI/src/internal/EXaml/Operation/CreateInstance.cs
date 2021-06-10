@@ -26,14 +26,16 @@ namespace Tizen.NUI.EXaml
 {
     internal class CreateInstance : Operation
     {
-        public CreateInstance(GlobalDataList globalDataList, int typeIndex, List<object> paramList = null)
+        public CreateInstance(GlobalDataList globalDataList, int typeIndex, int xFactoryMethodIndex, List<object> paramList = null)
         {
             this.typeIndex = typeIndex;
             this.paramList = paramList;
             this.globalDataList = globalDataList;
+            this.xFactoryMethodIndex = xFactoryMethodIndex;
         }
 
         private GlobalDataList globalDataList;
+        private int xFactoryMethodIndex;
 
         public void Do()
         {
@@ -45,20 +47,38 @@ namespace Tizen.NUI.EXaml
             {
                 var type = globalDataList.GatheredTypes[typeIndex];
 
+                var xFactoryMethod = (0 <= xFactoryMethodIndex) ? globalDataList.GatheredMethods[xFactoryMethodIndex] : null;
+
                 if (null == paramList)
                 {
-                    globalDataList.GatheredInstances.Add(Activator.CreateInstance(type));
+                    if (null == xFactoryMethod)
+                    {
+                        globalDataList.GatheredInstances.Add(Activator.CreateInstance(type));
+                    }
+                    else
+                    {
+                        globalDataList.GatheredInstances.Add(xFactoryMethod.Invoke(null, Array.Empty<object>()));
+                    }
                 }
                 else
                 {
                     for (int i = 0; i < paramList.Count; i++)
                     {
-                        if (paramList[i] is Instance)
+                        if (paramList[i] is Instance instance)
                         {
-                            paramList[i] = globalDataList.GatheredInstances[(paramList[i] as Instance).Index];
+                            paramList[i] = globalDataList.GatheredInstances[instance.Index];
                         }
+
                     }
-                    globalDataList.GatheredInstances.Add(Activator.CreateInstance(type, paramList.ToArray()));
+
+                    if (null == xFactoryMethod)
+                    {
+                        globalDataList.GatheredInstances.Add(Activator.CreateInstance(type, paramList.ToArray()));
+                    }
+                    else
+                    {
+                        globalDataList.GatheredInstances.Add(xFactoryMethod.Invoke(null, paramList.ToArray()));
+                    }
                 }
             }
 
