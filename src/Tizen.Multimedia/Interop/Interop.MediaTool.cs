@@ -26,6 +26,9 @@ namespace Tizen.Multimedia
             [DllImport(Libraries.MediaTool, EntryPoint = "media_packet_create")]
             internal static extern int Create(IntPtr format, IntPtr finalizeCb, IntPtr cbData, out IntPtr handle);
 
+            [DllImport(Libraries.MediaTool, EntryPoint = "media_packet_create_from_tbm_surface")]
+            internal static extern int CreateFromTbmSurface(IntPtr format, IntPtr tbmSurface, IntPtr finalizeCb, IntPtr cbData, out IntPtr handle);
+
             [DllImport(Libraries.MediaTool, EntryPoint = "media_packet_alloc")]
             internal static extern int Alloc(IntPtr handle);
 

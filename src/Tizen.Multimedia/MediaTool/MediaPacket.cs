@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using Tizen.Internals.Errors;
 using Native = Tizen.Multimedia.Interop.MediaPacket;
@@ -46,6 +47,33 @@ namespace Tizen.Multimedia
             }
 
             Initialize(format);
+
+            _format = format;
+            _buffer = new Lazy<IMediaBuffer>(GetBuffer);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the MediaPacket class with the specified media format and tbm surface.
+        /// </summary>
+        /// <param name="format">The media format containing properties for the packet.</param>
+        /// <param name="handle">The native tbm handle to be used.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="format"/> or <paramref name="handle"/>is null.</exception>
+        /// <exception cref="ArgumentException">
+        ///     The <see cref="MediaFormatType"/> of the specified format is <see cref="MediaFormatType.Container"/>.
+        /// </exception>
+        /// <exception cref="InvalidOperationException">Operation failed.</exception>
+        internal MediaPacket(MediaFormat format, IntPtr handle)
+        {
+            if (format == null)
+            {
+                throw new ArgumentNullException(nameof(format));
+            }
+            if (handle == IntPtr.Zero)
+            {
+                throw new ArgumentNullException(nameof(handle));
+            }
+
+            Initialize(format, handle);
 
             _format = format;
             _buffer = new Lazy<IMediaBuffer>(GetBuffer);
@@ -84,12 +112,18 @@ namespace Tizen.Multimedia
             Dispose(false);
         }
 
+        private void Initialize(MediaFormat format)
+        {
+            Initialize(format, IntPtr.Zero);
+        }
+
         /// <summary>
         /// Creates and initializes a native handle for the current object.
         /// </summary>
         /// <param name="format">The format to be set to the media format.</param>
+        /// <param name="handle">The native tbm handle to be used.</param>
         /// <exception cref="InvalidOperationException">Operation failed.</exception>
-        private void Initialize(MediaFormat format)
+        private void Initialize(MediaFormat format, IntPtr handle)
         {
             if (format.Type == MediaFormatType.Container)
             {
@@ -103,7 +137,16 @@ namespace Tizen.Multimedia
             {
                 formatHandle = format.AsNativeHandle();
 
-                int ret = Native.Create(formatHandle, IntPtr.Zero, IntPtr.Zero, out _handle);
+                int ret = 0;
+                if (handle == IntPtr.Zero)
+                {
+                    ret = Native.Create(formatHandle, IntPtr.Zero, IntPtr.Zero, out _handle);
+                }
+                else
+                {
+                    ret = Native.CreateFromTbmSurface(formatHandle, handle, IntPtr.Zero, IntPtr.Zero, out _handle);
+                }
+
                 MultimediaDebug.AssertNoError(ret);
 
                 Debug.Assert(_handle != IntPtr.Zero, "Created handle must not be null");
@@ -654,6 +697,19 @@ namespace Tizen.Multimedia
             return new SimpleMediaPacket(format);
         }
 
+        /// <summary>
+        /// Creates an object of the MediaPacket with the specified <see cref="MediaFormat"/>.
+        /// </summary>
+        /// <param name="format">The media format for the new packet.</param>
+        /// <param name="handle">The native tbm handle to be used.</param>
+        /// <returns>A new MediaPacket object.</returns>
+        /// <since_tizen> 9 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static MediaPacket Create(MediaFormat format, IntPtr handle)
+        {
+            return new SimpleMediaPacket(format, handle);
+        }
+
         internal static MediaPacket From(IntPtr handle)
         {
             return new SimpleMediaPacket(handle);
@@ -667,6 +723,10 @@ namespace Tizen.Multimedia
     internal class SimpleMediaPacket : MediaPacket
     {
         internal SimpleMediaPacket(MediaFormat format) : base(format)
+        {
+        }
+
+        internal SimpleMediaPacket(MediaFormat format, IntPtr handle) : base(format, handle)
         {
         }
 
