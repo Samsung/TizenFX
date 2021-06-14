@@ -589,7 +589,7 @@ namespace Tizen.NUI.Components
                 BoxShadow = new Shadow(2.0f, new Color("#00000029"), new Vector2(2.0f, 2.0f)),
                 TitleTextLabel = new TextLabelStyle()
                 {
-                    Size = new Size(600, -2),
+                    Size = new Size(720, -2),
                     Margin = new Extents(0, 0, 40, 40),
                     PixelSize = 40,
                     HorizontalAlignment = HorizontalAlignment.Center,
@@ -599,7 +599,7 @@ namespace Tizen.NUI.Components
                 },
                 MessageTextLabel = new TextLabelStyle()
                 {
-                    Size = new Size(600, -2),
+                    Size = new Size(720, -2),
                     Margin = new Extents(0, 0, 0, 64),
                     PixelSize = 32,
                     MultiLine = true,
@@ -610,7 +610,7 @@ namespace Tizen.NUI.Components
                 },
                 ActionContent = new ViewStyle()
                 {
-                    Size = new Size(600, -2),
+                    Size = new Size(720, -2),
                 },
             });
 
