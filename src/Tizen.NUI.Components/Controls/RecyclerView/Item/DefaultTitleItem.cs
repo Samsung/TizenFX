@@ -84,7 +84,16 @@ namespace Tizen.NUI.Components
             }
             set
             {
+                if (itemIcon != null) Remove(itemIcon);
                 itemIcon = value;
+                if (itemIcon != null)
+                {
+                    //FIXME: User applied icon's style can be overwritten!
+                    if (ItemStyle != null) itemIcon.ApplyStyle(ItemStyle.Icon);
+                    Add(itemIcon);
+                    itemIcon.Relayout += OnIconRelayout;
+                }
+                layoutChanged = true;
             }
         }
 
