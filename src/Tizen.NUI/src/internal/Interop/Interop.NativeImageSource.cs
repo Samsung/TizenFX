@@ -41,7 +41,7 @@ namespace Tizen.NUI
             public static extern bool ReleaseBuffer(IntPtr jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageSource_GenerateUrl")]
-            public static extern string GenerateUrl(IntPtr handle);
+            public static extern IntPtr GenerateUrl(IntPtr handle);
         }
     }
 }

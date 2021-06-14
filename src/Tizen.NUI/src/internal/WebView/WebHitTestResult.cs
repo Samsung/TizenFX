@@ -222,7 +222,8 @@ namespace Tizen.NUI
             {
                 IntPtr bufferIntPtr = Interop.WebHitTest.GetImageBuffer(SwigCPtr);
                 PixelData pixelData = new PixelData(bufferIntPtr, true);
-                ImageView image = new ImageView(pixelData.Url);
+                ImageUrl url = pixelData.GenerateUrl();
+                ImageView image = new ImageView(url.ToString());
                 image.Size = new Size(pixelData.GetWidth(), pixelData.GetHeight());
                 pixelData.Dispose();
                 return image;
