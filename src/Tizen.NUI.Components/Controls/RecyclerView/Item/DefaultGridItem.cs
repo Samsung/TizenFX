@@ -113,7 +113,15 @@ namespace Tizen.NUI.Components
             }
             internal set
             {
+                if (itemImage != null) Remove(itemImage);
                 itemImage = value;
+                if (itemImage != null)
+                {
+                    //FIXME: User applied image's style can be overwritten!
+                    if (ItemStyle != null) itemImage.ApplyStyle(ItemStyle.Image);
+                    Add(itemImage);
+                    itemImage.Relayout += OnImageRelayout;
+                }
                 layoutChanged = true;
             }
         }
@@ -132,14 +140,12 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                if (value == null)
-                {
-                    Remove(itemBadge);
-                }
+                if (itemBadge != null) Remove(itemBadge);
                 itemBadge = value;
                 if (itemBadge != null)
                 {
-                    itemBadge.ApplyStyle(ItemStyle.Badge);
+                    //FIXME: User applied badge's style can be overwritten!
+                    if (ItemStyle != null) itemBadge.ApplyStyle(ItemStyle.Badge);
                     Add(itemBadge);
                 }
                 layoutChanged = true;
