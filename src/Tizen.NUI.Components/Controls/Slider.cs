@@ -1460,7 +1460,19 @@ namespace Tizen.NUI.Components
             if (!isFocused && !isPressed)
             {
                 ControlState = ControlState.Normal;
-                thumbImage.ResourceUrl = thumbImageUrlSelector?.Normal;
+
+                if (thumbImageUrlSelector != null)
+                {
+                    thumbImage.ResourceUrl = thumbImageUrlSelector?.Normal;
+                }
+                else
+                {
+                    if (ViewStyle is SliderStyle sliderStyle && sliderStyle.Thumb != null)
+                    {
+                        thumbImage.ResourceUrl = sliderStyle.Thumb.ResourceUrl.Normal;
+                    }
+                }
+                thumbImage.RaiseToTop();
 
                 if (stateChangedHandler != null)
                 {
@@ -1472,7 +1484,19 @@ namespace Tizen.NUI.Components
             else if (isPressed)
             {
                 ControlState = ControlState.Pressed;
-                thumbImage.ResourceUrl = thumbImageUrlSelector?.Pressed;
+
+                if (thumbImageUrlSelector != null)
+                {
+                    thumbImage.ResourceUrl = thumbImageUrlSelector?.Pressed;
+                }
+                else
+                {
+                    if (ViewStyle is SliderStyle sliderStyle && sliderStyle.Thumb != null)
+                    {
+                        thumbImage.ResourceUrl = sliderStyle.Thumb.ResourceUrl.Pressed;
+                    }
+                }
+                thumbImage.RaiseToTop();
 
                 if (stateChangedHandler != null)
                 {
@@ -1484,7 +1508,19 @@ namespace Tizen.NUI.Components
             else if (!isPressed && isFocused)
             {
                 ControlState = ControlState.Focused;
-                thumbImage.ResourceUrl = thumbImageUrlSelector?.Focused;
+
+                if (thumbImageUrlSelector != null)
+                {
+                    thumbImage.ResourceUrl = thumbImageUrlSelector?.Focused;
+                }
+                else
+                {
+                    if (ViewStyle is SliderStyle sliderStyle && sliderStyle.Thumb != null)
+                    {
+                        thumbImage.ResourceUrl = sliderStyle.Thumb.ResourceUrl.Focused;
+                    }
+                }
+                thumbImage.RaiseToTop();
 
                 if (stateChangedHandler != null)
                 {

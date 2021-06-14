@@ -189,7 +189,13 @@ namespace Tizen.NUI.Components
                 Thumb = new ImageViewStyle()
                 {
                     Size = new Size(36, 36),
-                    ResourceUrl = FrameworkInformation.ResourcePath + "IoT_slider_handler_normalW.png",
+                    ResourceUrl = new Selector<string>()
+                    {
+                        Normal = FrameworkInformation.ResourcePath + "IoT_slider_handler_normalW.png",
+                        Pressed = FrameworkInformation.ResourcePath + "IoT_slider_handler_pressedW.png",
+                        Focused = FrameworkInformation.ResourcePath + "IoT_slider_handler_pressedW.png",
+                        Disabled = FrameworkInformation.ResourcePath + "IoT_slider_handler_normalW.png",
+                    },
                 },
                 ValueIndicatorImage = new ImageViewStyle()
                 {

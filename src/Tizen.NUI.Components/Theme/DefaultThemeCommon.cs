@@ -189,7 +189,13 @@ namespace Tizen.NUI.Components
                 Thumb = new ImageViewStyle()
                 {
                     Size = new Size(36, 36),
-                    ResourceUrl = FrameworkInformation.ResourcePath + "IoT_slider_handler_normal.png",
+                    ResourceUrl = new Selector<string>()
+                    {
+                        Normal = FrameworkInformation.ResourcePath + "IoT_slider_handler_normal.png",
+                        Pressed = FrameworkInformation.ResourcePath + "IoT_slider_handler_pressed.png",
+                        Focused = FrameworkInformation.ResourcePath + "IoT_slider_handler_pressed.png",
+                        Disabled = FrameworkInformation.ResourcePath + "IoT_slider_handler_disabled.png",
+                    },
                     // TODO : Should check later when UX guide provides the pressed image
                     /*BackgroundImage = new Selector<string>()
                     {
