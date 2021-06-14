@@ -556,6 +556,9 @@ namespace Tizen.NUI.Components
                 {
                     LinearOrientation = LinearLayout.Orientation.Horizontal,
                     LinearAlignment = LinearLayout.Alignment.Center,
+                    // FIXME: This CellPadding value should be written in AlertDialogStyle.
+                    //        However, if this is called in other place, then flicking issue happens.
+                    CellPadding = new Size2D(80, 0),
                 },
             };
         }
@@ -607,8 +610,6 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            CalculateActionsCellPadding();
-
             var size = Size2D;
             var parent = GetParent();
             Size2D parentSize;
@@ -623,59 +624,6 @@ namespace Tizen.NUI.Components
             }
 
             Position2D = new Position2D((parentSize.Width - size.Width) / 2, (parentSize.Height - size.Height) / 2);
-        }
-
-        // Calculate CellPadding among Actions if ActionContent is LinearLayout.
-        private void CalculateActionsCellPadding()
-        {
-            if ((ActionContent != DefaultActionContent) || (ActionContent.Layout is LinearLayout == false))
-            {
-                return;
-            }
-
-            if (Actions == null)
-            {
-                return;
-            }
-
-            var size = Size2D;
-            var layout = ActionContent.Layout as LinearLayout;
-            int count = 0;
-
-            if (layout.LinearOrientation == LinearLayout.Orientation.Horizontal)
-            {
-                int actionsWidth = 0;
-
-                foreach (var action in Actions)
-                {
-                    actionsWidth += ((View)action).Size2D.Width + ((((View)action).Margin?.Start + ((View)action).Margin?.End) ?? 0);
-                    count++;
-                }
-
-                if (count > 1)
-                {
-                    actionsWidth += (Padding?.Start + Padding?.End) ?? 0;
-                    var cellPaddingWidth = (size.Width - actionsWidth) / (count - 1);
-                    layout.CellPadding = new Size2D(cellPaddingWidth , 0);
-                }
-            }
-            else
-            {
-                int actionsHeight = 0;
-
-                foreach (var action in Actions)
-                {
-                    actionsHeight += ((View)action).Size2D.Height + ((((View)action).Margin?.Top + ((View)action).Margin?.Bottom) ?? 0);
-                    count++;
-                }
-
-                if (count > 1)
-                {
-                    actionsHeight += (Padding?.Top + Padding?.Bottom) ?? 0;
-                    var cellPaddingHeight = (size.Height - actionsHeight) / (count - 1);
-                    layout.CellPadding = new Size2D(0, cellPaddingHeight);
-                }
-            }
         }
     }
 }
