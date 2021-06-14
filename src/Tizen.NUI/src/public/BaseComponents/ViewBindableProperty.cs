@@ -39,8 +39,15 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.StyleName, new Tizen.NUI.PropertyValue(styleName));
 
                 view.styleName = styleName;
-                view.UpdateStyle();
-                view.ThemeChangeSensitive = true;
+
+                if (string.IsNullOrEmpty(styleName)) return;
+
+                var style = ThemeManager.GetUpdateStyleWithoutClone(styleName);
+
+                if (style == null) return;
+
+                view.ApplyStyle(style);
+                view.SetThemeApplied();
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
@@ -1676,20 +1683,24 @@ namespace Tizen.NUI.BaseComponents
 
             if (view.themeData == null) view.themeData = new ThemeData();
 
-            view.themeData.themeChangeSensitive = (bool)newValue;
+            view.themeData.ThemeChangeSensitive = (bool)newValue;
 
-            if (view.themeData.themeChangeSensitive)
+            if (!view.themeData.ThemeApplied) return;
+
+            if (view.themeData.ThemeChangeSensitive && !view.themeData.ListeningThemeChangeEvent)
             {
+                view.themeData.ListeningThemeChangeEvent = true;
                 ThemeManager.ThemeChangedInternal.Add(view.OnThemeChanged);
             }
-            else
+            else if (!view.themeData.ThemeChangeSensitive && view.themeData.ListeningThemeChangeEvent)
             {
+                view.themeData.ListeningThemeChangeEvent = false;
                 ThemeManager.ThemeChangedInternal.Remove(view.OnThemeChanged);
             }
         },
         defaultValueCreator: (bindable) =>
         {
-            return ((View)bindable).themeData?.themeChangeSensitive ?? false;
+            return ((View)bindable).themeData?.ThemeChangeSensitive ?? ThemeManager.ApplicationThemeChangeSensitive;
         });
 
         /// <summary>

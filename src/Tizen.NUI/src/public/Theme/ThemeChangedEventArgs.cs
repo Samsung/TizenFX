@@ -28,15 +28,30 @@ namespace Tizen.NUI
         /// <summary>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ThemeChangedEventArgs(string themeId)
+        public ThemeChangedEventArgs(string themeId, string platformThemeId, bool isPlatformThemeChanged)
         {
             ThemeId = themeId;
+            PlatformThemeId = platformThemeId;
+            IsPlatformThemeChanged = isPlatformThemeChanged;
         }
 
         /// <summary>
-        /// The new theme's ID.
+        /// The new theme's Id.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public string ThemeId { get; }
+
+        /// <summary>
+        /// The platform theme's Id.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string PlatformThemeId { get; }
+
+        /// <summary>
+        /// Whether this event is trigger by platform theme change.
+        /// </summary>
+        /// <seealso cref="NUIApplication.ThemeOptions.PlatformThemeEnabled"/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsPlatformThemeChanged { get; }
     }
 }

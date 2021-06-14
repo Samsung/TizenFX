@@ -189,7 +189,7 @@ namespace Tizen.NUI.Components
 
             if (gravity == null) throw new ArgumentNullException(nameof(gravity));
 
-            var style = ThemeManager.GetStyle("NotificationToast");
+            var style = ThemeManager.GetInitialStyleWithoutClone("NotificationToast");
             if (style != null)
             {
                 textLabel.ApplyStyle(style);
