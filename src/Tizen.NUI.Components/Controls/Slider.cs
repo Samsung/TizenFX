@@ -520,7 +520,6 @@ namespace Tizen.NUI.Components
                 else
                 {
                     thumbImage.ResourceUrlSelector = value;
-                    thumbImageUrlSelector = value;
                 }
             }
         }
@@ -552,7 +551,6 @@ namespace Tizen.NUI.Components
                 else
                 {
                     thumbImage.ResourceUrlSelector = value;
-                    thumbImageUrlSelector = value;
                 }
             }
         }
@@ -1461,19 +1459,6 @@ namespace Tizen.NUI.Components
             {
                 ControlState = ControlState.Normal;
 
-                if (thumbImageUrlSelector != null)
-                {
-                    thumbImage.ResourceUrl = thumbImageUrlSelector?.Normal;
-                }
-                else
-                {
-                    if (ViewStyle is SliderStyle sliderStyle && sliderStyle.Thumb != null)
-                    {
-                        thumbImage.ResourceUrl = sliderStyle.Thumb.ResourceUrl.Normal;
-                    }
-                }
-                thumbImage.RaiseToTop();
-
                 if (stateChangedHandler != null)
                 {
                     StateChangedArgs args = new StateChangedArgs();
@@ -1485,19 +1470,6 @@ namespace Tizen.NUI.Components
             {
                 ControlState = ControlState.Pressed;
 
-                if (thumbImageUrlSelector != null)
-                {
-                    thumbImage.ResourceUrl = thumbImageUrlSelector?.Pressed;
-                }
-                else
-                {
-                    if (ViewStyle is SliderStyle sliderStyle && sliderStyle.Thumb != null)
-                    {
-                        thumbImage.ResourceUrl = sliderStyle.Thumb.ResourceUrl.Pressed;
-                    }
-                }
-                thumbImage.RaiseToTop();
-
                 if (stateChangedHandler != null)
                 {
                     StateChangedArgs args = new StateChangedArgs();
@@ -1508,19 +1480,6 @@ namespace Tizen.NUI.Components
             else if (!isPressed && isFocused)
             {
                 ControlState = ControlState.Focused;
-
-                if (thumbImageUrlSelector != null)
-                {
-                    thumbImage.ResourceUrl = thumbImageUrlSelector?.Focused;
-                }
-                else
-                {
-                    if (ViewStyle is SliderStyle sliderStyle && sliderStyle.Thumb != null)
-                    {
-                        thumbImage.ResourceUrl = sliderStyle.Thumb.ResourceUrl.Focused;
-                    }
-                }
-                thumbImage.RaiseToTop();
 
                 if (stateChangedHandler != null)
                 {
