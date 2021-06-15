@@ -78,9 +78,10 @@ namespace Tizen.Multimedia
             try
             {
                 _cameraDeviceManager = new CameraDeviceManager();
-                cameraDeviceType = _cameraDeviceManager.GetDeviceInfo().First().Type;
-                Tizen.Log.Info(CameraLog.Tag, $"device type:{cameraDeviceType.ToString()}");
+                var deviceInfo = _cameraDeviceManager.GetDeviceInfo();
+                Log.Info(CameraLog.Tag, deviceInfo.ToString());
 
+                cameraDeviceType = deviceInfo.First().Type;
                 _cameraDeviceManager.CameraDeviceListChanged += CameraDeviceListChanged;
             }
             catch (NotSupportedException e)
