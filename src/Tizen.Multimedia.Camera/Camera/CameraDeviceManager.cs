@@ -203,21 +203,19 @@ namespace Tizen.Multimedia
         /// <param name="device"><see cref="CameraDevice"/></param>
         /// <param name="name">The name of camera device</param>
         /// <param name="id">The ID of camera device</param>
-        /// <exception cref="ArgumentException">Invalid enumeration of empty string.</exception>
-        /// <exception cref="ArgumentNullException">name of id is null.</exception>
+        /// <exception cref="ArgumentException">Invalid enumeration.</exception>
+        /// <exception cref="ArgumentNullException">name or id is null.</exception>
         /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal CameraDeviceInfo(CameraDeviceType type, CameraDevice device, string name, string id)
         {
             ValidationUtil.ValidateEnum(typeof(CameraDeviceType), type, nameof(type));
             ValidationUtil.ValidateEnum(typeof(CameraDevice), device, nameof(device));
-            ValidationUtil.ValidateIsNullOrEmpty(name, nameof(name));
-            ValidationUtil.ValidateIsNullOrEmpty(id, nameof(id));
 
             Type = type;
             Device = device;
-            Name = name;
-            Id = id;
+            Name = name ?? throw new ArgumentNullException(nameof(name), "name is null");
+            Id = id ?? throw new ArgumentNullException(nameof(id), "id is null");
         }
 
         /// <summary>
@@ -251,5 +249,14 @@ namespace Tizen.Multimedia
         /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string Id { get; }
+
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <returns>A string that represents the current object.</returns>
+        /// <since_tizen> 9 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override string ToString() =>
+            $"Type:{Type.ToString()}, Device:{Device.ToString()}, Name:{Name}, Id:{Id}";
     }
 }
