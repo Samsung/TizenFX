@@ -38,64 +38,25 @@ namespace Tizen.Multimedia
             Plane = ConvertPlane(unmanagedStruct);
         }
 
-        private IPreviewPlane ConvertPlane(CameraPreviewDataStruct unmanagedStruct)
-        {
-            if (unmanagedStruct.NumOfPlanes == 1)
-            {
-                if (unmanagedStruct.Format == CameraPixelFormat.H264 || unmanagedStruct.Format == CameraPixelFormat.Jpeg
-                    || unmanagedStruct.Format == CameraPixelFormat.Mjpeg)
-                {
-                    return new EncodedPlane(unmanagedStruct.Plane.EncodedPlane);
-                }
-                else if (unmanagedStruct.Format == CameraPixelFormat.Invz)
-                {
-                    return new DepthPlane(unmanagedStruct.Plane.DepthPlane);
-                }
-                else if (unmanagedStruct.Format == CameraPixelFormat.Rgba || unmanagedStruct.Format == CameraPixelFormat.Argb)
-                {
-                    return new RgbPlane(unmanagedStruct.Plane.RgbPlane);
-                }
-                else
-                {
-                    return new SinglePlane(unmanagedStruct.Plane.SinglePlane);
-                }
-            }
-            else if (unmanagedStruct.NumOfPlanes == 2)
-            {
-                var size = Resolution.Width * Resolution.Height;
-                unmanagedStruct.Plane.DoublePlane.YLength = (uint)size;
-                unmanagedStruct.Plane.DoublePlane.UVLength = (uint)size / 2;
-                return new DoublePlane(unmanagedStruct.Plane.DoublePlane);
-            }
-            else if (unmanagedStruct.NumOfPlanes == 3)
-            {
-                return new TriplePlane(unmanagedStruct.Plane.TriplePlane);
-            }
-
-            Debug.Fail("Unknown preview data!");
-            return null;
-        }
-
         private static PlaneType GetPlaneType(CameraPreviewDataStruct unmanagedStruct)
         {
             if (unmanagedStruct.NumOfPlanes == 1)
             {
-                if (unmanagedStruct.Format == CameraPixelFormat.H264 || unmanagedStruct.Format == CameraPixelFormat.Jpeg
-                    || unmanagedStruct.Format == CameraPixelFormat.Mjpeg)
+                switch (unmanagedStruct.Format)
                 {
-                    return PlaneType.EncodedPlane;
-                }
-                else if (unmanagedStruct.Format == CameraPixelFormat.Invz)
-                {
-                    return PlaneType.DepthPlane;
-                }
-                else if (unmanagedStruct.Format == CameraPixelFormat.Rgba || unmanagedStruct.Format == CameraPixelFormat.Argb)
-                {
-                    return PlaneType.RgbPlane;
-                }
-                else
-                {
-                    return PlaneType.SinglePlane;
+                    case CameraPixelFormat.H264:
+                    case CameraPixelFormat.Jpeg:
+                    case CameraPixelFormat.Mjpeg:
+                    case CameraPixelFormat.Vp8:
+                    case CameraPixelFormat.Vp9:
+                        return PlaneType.EncodedPlane;
+                    case CameraPixelFormat.Invz:
+                        return PlaneType.DepthPlane;
+                    case CameraPixelFormat.Rgba:
+                    case CameraPixelFormat.Argb:
+                        return PlaneType.RgbPlane;
+                    default:
+                        return PlaneType.SinglePlane;
                 }
             }
             else if (unmanagedStruct.NumOfPlanes == 2)
@@ -104,6 +65,31 @@ namespace Tizen.Multimedia
             }
 
             return PlaneType.TriplePlane;
+        }
+
+        private IPreviewPlane ConvertPlane(CameraPreviewDataStruct unmanagedStruct)
+        {
+            switch (PlaneType)
+            {
+                case PlaneType.SinglePlane:
+                    return new SinglePlane(unmanagedStruct.Plane.SinglePlane);
+                case PlaneType.DoublePlane:
+                    var size = Resolution.Width * Resolution.Height;
+                    unmanagedStruct.Plane.DoublePlane.YLength = (uint)size;
+                    unmanagedStruct.Plane.DoublePlane.UVLength = (uint)size / 2;
+                    return new DoublePlane(unmanagedStruct.Plane.DoublePlane);
+                case PlaneType.TriplePlane:
+                    return new TriplePlane(unmanagedStruct.Plane.TriplePlane);
+                case PlaneType.EncodedPlane:
+                    return new EncodedPlane(unmanagedStruct.Plane.EncodedPlane);
+                case PlaneType.DepthPlane:
+                    return new DepthPlane(unmanagedStruct.Plane.DepthPlane);
+                case PlaneType.RgbPlane:
+                    return new RgbPlane(unmanagedStruct.Plane.RgbPlane);
+            }
+
+            Debug.Fail("Unknown preview data!");
+            return null;
         }
 
         /// <summary>
