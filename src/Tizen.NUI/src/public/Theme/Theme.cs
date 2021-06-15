@@ -60,7 +60,7 @@ namespace Tizen.NUI
         /// <param name="xamlFile">An absolute path to the xaml file.</param>
         /// <exception cref="ArgumentNullException">Thrown when the given xamlFile is null or empty string.</exception>
         /// <exception cref="global::System.IO.IOException">Thrown when there are file IO problems.</exception>
-        /// <exception cref="Exception">Thrown when the content of the xaml file is not valid xaml form.</exception>
+        /// <exception cref="XamlParseException">Thrown when the content of the xaml file is not valid xaml form.</exception>
         /// <since_tizen> 9 </since_tizen>
         public Theme(string xamlFile) : this()
         {
@@ -78,15 +78,20 @@ namespace Tizen.NUI
             }
             catch (System.IO.IOException)
             {
-                Tizen.Log.Error("NUI", $"Could not load \"{xamlFile}\".\n");
+                Tizen.Log.Info("NUI", $"Could not load \"{xamlFile}\".\n");
                 throw;
             }
-            catch (Exception)
+            catch (XamlParseException)
             {
-                Tizen.Log.Error("NUI", $"Could not parse \"{xamlFile}\".\n");
-                Tizen.Log.Error("NUI", "Make sure the all used assemblies (e.g. Tizen.NUI.Components) are included in the application project.\n");
-                Tizen.Log.Error("NUI", "Make sure the type and namespace are correct.\n");
+                Tizen.Log.Info("NUI", $"Could not parse \"{xamlFile}\".\n");
+                Tizen.Log.Info("NUI", "Make sure the all used assemblies (e.g. Tizen.NUI.Components) are included in the application project.\n");
+                Tizen.Log.Info("NUI", "Make sure the type and namespace are correct.\n");
                 throw;
+            }
+            catch (Exception e)
+            {
+                Tizen.Log.Info("NUI", $"Could not parse \"{xamlFile}\".\n");
+                throw new XamlParseException(e.Message);
             }
         }
 
@@ -116,7 +121,7 @@ namespace Tizen.NUI
 
                 if (string.IsNullOrEmpty(baseTheme)) return;
 
-                var baseThemeInstance = (Theme)ThemeManager.GetBuiltinTheme(baseTheme)?.Clone();
+                var baseThemeInstance = (Theme)ThemeManager.LoadPlatformTheme(baseTheme)?.Clone();
 
                 if (baseThemeInstance != null)
                 {
@@ -315,6 +320,8 @@ namespace Tizen.NUI
 
             if (Id == null) Id = theme.Id;
 
+            if (Version == null) Version = theme.Version;
+
             foreach (var item in theme)
             {
                 if (item.Value == null)
@@ -377,32 +384,7 @@ namespace Tizen.NUI
         /// </summary>
         internal void AddStyleWithoutClone(string styleName, ViewStyle value) => map[styleName] = value;
 
-        internal void ApplyExternalTheme(IExternalTheme externalTheme, HashSet<ExternalThemeKeyList> keyListSet)
-        {
-            Id = externalTheme.Id;
-            Version = externalTheme.Version;
-
-            if (keyListSet == null)
-            {
-                // Nothing to apply
-                return;
-            }
-
-            foreach (var keyList in keyListSet)
-            {
-                keyList?.ApplyKeyActions(externalTheme, this);
-            }
-        }
-
-        internal bool HasSameIdAndVersion(IExternalTheme externalTheme)
-        {
-            if (externalTheme == null)
-            {
-                return false;
-            }
-
-            return string.Equals(Id, externalTheme.Id, StringComparison.OrdinalIgnoreCase) && string.Equals(Version, externalTheme.Version, StringComparison.OrdinalIgnoreCase);
-        }
+        internal bool HasSameIdAndVersion(string id, string version) => string.Equals(Id, id, StringComparison.OrdinalIgnoreCase) && string.Equals(Version, version, StringComparison.OrdinalIgnoreCase);
 
         internal void SetChangedResources(IEnumerable<KeyValuePair<string, string>> changedResources)
         {

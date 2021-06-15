@@ -16,8 +16,8 @@
  */
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using Tizen.Applications;
 
 namespace Tizen.NUI
@@ -25,94 +25,103 @@ namespace Tizen.NUI
     [SuppressMessage("Microsoft.Design", "CA1031: Do not catch general exception types", Justification = "This method is to handle external resources that may throw an exception but ignorable. This method should not interrupt the main stream.")]
     internal static class ExternalThemeManager
     {
-        private static Tizen.Applications.ThemeManager.ThemeLoader themeLoader = InitializeThemeLoader();
+        private static Tizen.Applications.ThemeManager.ThemeLoader themeLoader;
+        private static string id;
+        private static string version;
 
-        private static string sharedResourcePath;
-#if DEBUG
-        private static IExternalTheme theme;
-#endif
         static ExternalThemeManager() { }
 
-        public static string SharedResourcePath
+        public static void Initialize()
         {
-            get
+            if (themeLoader != null)
             {
-                if (themeLoader == null)
-                {
-                    return string.Empty;
-                }
-#if DEBUG
-                if (theme != null)
-                {
-                    return string.Empty;
-                }
-#endif
-                if (sharedResourcePath != null)
-                {
-                    return sharedResourcePath;
-                }
+                return;
+            }
 
-                var tizenTheme = themeLoader.CurrentTheme;
-
-                if (tizenTheme == null || string.IsNullOrEmpty(tizenTheme.Id) || string.IsNullOrEmpty(tizenTheme.Version))
-                {
-                    sharedResourcePath = string.Empty;
-                }
-                else
-                {
-                    ApplicationInfo themePkgInfo;
-                    try
-                    {
-                        themePkgInfo = ApplicationManager.GetInstalledApplication(tizenTheme.Id);
-                    }
-                    catch (ArgumentException e)
-                    {
-                        Tizen.Log.Error("NUI", $"{e.GetType().Name} occurred while getting theme application info.");
-                        throw;
-                    }
-                    catch (InvalidOperationException e)
-                    {
-                        Tizen.Log.Error("NUI", $"{e.GetType().Name} occurred while getting theme application info.");
-                        throw;
-                    }
-
-                    if (themePkgInfo == null)
-                    {
-                        sharedResourcePath = string.Empty;
-                    }
-                    else
-                    {
-                        sharedResourcePath = themePkgInfo.SharedResourcePath;
-                    }
-                }
-
-                return sharedResourcePath;
+            try
+            {
+                themeLoader = new Tizen.Applications.ThemeManager.ThemeLoader();
+                themeLoader.ThemeChanged += OnExternalPlatformThemeChanged;
+            }
+            catch (Exception e)
+            {
+                Tizen.Log.Info("NUI", $"[Ignorable] {e.GetType().Name} occurred while setting Tizen.Applications.ThemeManager: {e.Message}");
             }
         }
 
-        public static void Initialize()
+
+        /// <summary> Returns the theme's shared resource path that is currently loading. </summary>
+        public static string SharedResourcePath { get; set; } = String.Empty;
+
+        // FIXME Please remove this API after fix ThemeLoader.CurrentTheme is fixed.
+        public static string CurrentThemeId
+        {
+            get
+            {
+                if (id == null) UpdateCurrentThemeIdAndVersion();
+                return id;
+            }
+        }
+
+        // FIXME Please remove this API after fix ThemeLoader.CurrentTheme is fixed.
+        public static string CurrentThemeVersion
+        {
+            get
+            {
+                if (version == null) UpdateCurrentThemeIdAndVersion();
+                return version;
+            }
+        }
+
+        public static bool SetTheme(string id)
+        {
+            if (themeLoader != null)
+            {
+                try
+                {
+                    themeLoader.CurrentTheme = themeLoader.LoadTheme(id);
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    Tizen.Log.Info("NUI", $"[Ignorable] {e.GetType().Name} occurred while getting load theme using {themeLoader.GetType().FullName}: {e.Message}");
+                }
+            }
+
+            return false;
+        }
+
+        public static string GetSharedResourcePath(string id)
+        {
+            if (!string.IsNullOrEmpty(id))
+            {
+                try
+                {
+                    using (var themePkgInfo = ApplicationManager.GetInstalledApplication(id))
+                    {
+                        return themePkgInfo.SharedResourcePath;
+                    }
+                }
+                catch (ArgumentException e)
+                {
+                    Tizen.Log.Error("NUI", $"{e.GetType().Name} occurred while getting theme application info.");
+                }
+                catch (InvalidOperationException e)
+                {
+                    Tizen.Log.Error("NUI", $"{e.GetType().Name} occurred while getting theme application info.");
+                }
+            }
+
+            return null;
+        }
+
+        private static void UpdateCurrentThemeIdAndVersion()
         {
             if (themeLoader == null)
             {
                 return;
             }
 
-            themeLoader.ThemeChanged += OnTizenThemeChanged;
-        }
-
-        public static IExternalTheme GetCurrentTheme()
-        {
-            if (themeLoader == null)
-            {
-                return null;
-            }
-
-#if DEBUG
-            if (theme != null)
-            {
-                return theme;
-            }
-#endif
             Tizen.Applications.ThemeManager.Theme tizenTheme = null;
 
             try
@@ -126,94 +135,25 @@ namespace Tizen.NUI
 
             if (tizenTheme == null || string.IsNullOrEmpty(tizenTheme.Id) || string.IsNullOrEmpty(tizenTheme.Version))
             {
-                return null;
+                return;
             }
 
             Tizen.Log.Info("NUI", $"TizenTheme: Id({tizenTheme.Id}), Version({tizenTheme.Version}), Title({tizenTheme.Title})");
 
-            return new TizenExternalTheme(tizenTheme);
+            id = tizenTheme.Id;
+            version = tizenTheme.Version;
         }
 
-        public static IExternalTheme GetTheme(string id)
+        private static void OnExternalPlatformThemeChanged(object sender, Tizen.Applications.ThemeManager.ThemeEventArgs e)
         {
-            if (themeLoader == null)
-            {
-                return null;
-            }
-
-            Tizen.Applications.ThemeManager.Theme tizenTheme = null;
-
-            try
-            {
-                tizenTheme = themeLoader.LoadTheme(id);
-            }
-            catch (Exception e)
-            {
-                Tizen.Log.Info("NUI", $"[Ignorable] {e.GetType().Name} occurred while getting load theme using {themeLoader.GetType().FullName}: {e.Message}");
-            }
-
-            return tizenTheme == null ? null : new TizenExternalTheme(tizenTheme);
-        }
-
-#if DEBUG
-        public static void SetTestTheme(IExternalTheme testTheme)
-        {
-            if (testTheme == null)
-            {
-                throw new ArgumentNullException(nameof(testTheme));
-            }
-
-            if (string.IsNullOrEmpty(testTheme.Id) || string.IsNullOrEmpty(testTheme.Version))
-            {
-                throw new ArgumentException();
-            }
-
-            theme = testTheme;
-            ThemeManager.ApplyExternalTheme(theme);
-        }
-
-        public static void SetTestTheme(string id, string version, Dictionary<string, string> testData)
-        {
-            if (id == null)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
-            if (version == null)
-            {
-                throw new ArgumentNullException(nameof(version));
-            }
-            if (testData == null)
-            {
-                throw new ArgumentNullException(nameof(testData));
-            }
-
-            theme = new DictionaryExternalTheme(id, version, testData);
-            ThemeManager.ApplyExternalTheme(theme);
-        }
-#endif
-
-        private static void OnTizenThemeChanged(object sender, Tizen.Applications.ThemeManager.ThemeEventArgs e)
-        {
-#if DEBUG
-            theme = null;
-#endif
             Tizen.Log.Info("NUI", $"TizenTheme: Id({e.Theme.Id}), Version({e.Theme.Version}), Title({e.Theme.Title})");
-            sharedResourcePath = null;
-            ThemeManager.ApplyExternalTheme(new TizenExternalTheme(e.Theme));
-        }
 
-        private static Tizen.Applications.ThemeManager.ThemeLoader InitializeThemeLoader()
-        {
-            try
-            {
-                return new Tizen.Applications.ThemeManager.ThemeLoader();
-            }
-            catch (Exception e)
-            {
-                Tizen.Log.Info("NUI", $"[Ignorable] {e.GetType().Name} occurred while setting Tizen.Applications.ThemeManager: {e.Message}");
-            }
+            id = e.Theme.Id;
+            version = e.Theme.Version;
 
-            return null;
+            if (!ThemeManager.PlatformThemeEnabled) return;
+
+            ThemeManager.ApplyExternalPlatformTheme(id, version);
         }
     }
 }

@@ -23,6 +23,8 @@ internal static partial class Interop
 {
     internal static class Notification
     {
+        internal delegate void ResponseEventCallback(IntPtr ptr, int type, IntPtr userData);
+
         [DllImport(Libraries.Notification, EntryPoint = "notification_create")]
         internal static extern IntPtr Create(NotificationType type);
 
@@ -131,6 +133,9 @@ internal static partial class Interop
         [DllImport(Libraries.Notification, EntryPoint = "notification_post")]
         internal static extern NotificationError Post(NotificationSafeHandle handle);
 
+        [DllImport(Libraries.Notification, EntryPoint = "notification_post_with_event_cb")]
+        internal static extern NotificationError PostWithEventCallback(NotificationSafeHandle handle, ResponseEventCallback cb, IntPtr userdata);
+
         [DllImport(Libraries.Notification, EntryPoint = "notification_get_pkgname")]
         internal static extern NotificationError GetPackageName(NotificationSafeHandle handle, out IntPtr name);
 
@@ -223,6 +228,9 @@ internal static partial class Interop
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_get_extension_event_handler")]
         internal static extern NotificationError GetExtensionAction(NotificationSafeHandle handle, NotificationEventType type, out SafeAppControlHandle appcontrol);
+
+        [DllImport(Libraries.Notification, EntryPoint = "notification_clone")]
+        internal static extern NotificationError Clone(IntPtr handle, out IntPtr cloned);
 
         internal static NotificationError GetText(NotificationSafeHandle handle, NotificationText type, out string text)
         {

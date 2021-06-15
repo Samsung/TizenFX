@@ -28,6 +28,8 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public sealed class StyleManager
     {
+        private const string defaultName = "DEFAULT";
+
         /// <summary>
         /// StyleManager construct.
         /// </summary>
@@ -67,6 +69,12 @@ namespace Tizen.NUI.Components
 
                 var key = value.ToUpperInvariant();
 
+                if (key.Equals(defaultName))
+                {
+                    ThemeManager.CurrentTheme = null;
+                    return;
+                }
+
                 // Please note that it does not check "key == Theme" here,
                 // because of the font size issue of the Tizen.NUI.StyleManager.
                 // (There are applications to use NUI.Components.StyleManager.ThemeChangedEvent to fix Tizen.NUI.StyleManager font size issue.)
@@ -87,7 +95,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// (Theme name, Theme instance)
         /// </summary>
-        private Dictionary<string, Theme> ThemeMap { get; } = new Dictionary<string, Theme> { ["DEFAULT"] = ThemeManager.DefaultTheme };
+        private Dictionary<string, Theme> ThemeMap { get; } = new Dictionary<string, Theme>();
 
         /// <summary>
         /// Register style in StyleManager.
@@ -107,17 +115,14 @@ namespace Tizen.NUI.Components
 
             if (Activator.CreateInstance(styleType) is StyleBase styleBase)
             {
-                var key = "DEFAULT";
-
-                if (bDefault && theme != null)
+                if (string.IsNullOrEmpty(theme) || defaultName.Equals(theme, StringComparison.CurrentCultureIgnoreCase))
                 {
-                    ThemeMap[key].AddStyleWithoutClone(style, styleBase.GetViewStyle());
+                    ThemeManager.BaseTheme.AddStyleWithoutClone(style, styleBase.GetViewStyle());
+                    ThemeManager.UpdateThemeForInitialize();
+                    return;
                 }
 
-                if (theme != null)
-                {
-                    key = theme.ToUpperInvariant();
-                }
+                var key = theme.ToUpperInvariant();
 
                 if (!ThemeMap.ContainsKey(key) || ThemeMap[key] == null)
                 {
@@ -133,6 +138,12 @@ namespace Tizen.NUI.Components
                 }
 
                 ThemeMap[key].AddStyleWithoutClone(style, styleBase.GetViewStyle());
+
+                if (bDefault)
+                {
+                    ThemeManager.BaseTheme.AddStyleWithoutClone(style, styleBase.GetViewStyle());
+                    ThemeManager.UpdateThemeForInitialize();
+                }
             }
         }
 
@@ -168,17 +179,27 @@ namespace Tizen.NUI.Components
                 throw new ArgumentException("The argument targetTheme must be specified");
             }
 
-            var key = targetTheme.ToUpperInvariant();
-
-            if (!ThemeMap.ContainsKey(key) || ThemeMap[key] == null)
+            if (Activator.CreateInstance(style) is StyleBase styleBase)
             {
-                Tizen.Log.Error("NUI", "The theme name should be a known one.");
-                return;
-            }
+                if (defaultName.Equals(targetTheme, StringComparison.CurrentCultureIgnoreCase))
+                {
+                    ThemeManager.BaseTheme.AddStyleWithoutClone(component.FullName, styleBase.GetViewStyle());
+                    ThemeManager.UpdateThemeForInitialize();
+                    return;
+                }
 
-            if (Activator.CreateInstance(style) as StyleBase != null)
-            {
-                ThemeMap[key].AddStyleWithoutClone(component.FullName, (Activator.CreateInstance(style) as StyleBase).GetViewStyle());
+                var key = targetTheme.ToUpperInvariant();
+
+                if (!ThemeMap.ContainsKey(key) || ThemeMap[key] == null)
+                {
+                    Tizen.Log.Error("NUI", "The theme name should be a known one.");
+                    return;
+                }
+
+                if (Activator.CreateInstance(style) as StyleBase != null)
+                {
+                    ThemeMap[key].AddStyleWithoutClone(component.FullName, styleBase.GetViewStyle());
+                }
             }
         }
 

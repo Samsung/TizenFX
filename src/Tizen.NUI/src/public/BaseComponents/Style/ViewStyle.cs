@@ -77,6 +77,13 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The flag that is used when creating a component with this style.
+        /// If the value is true, it will include default component style defined in the default theme.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IncludeDefaultStyle { get; set; } = false;
+
+        /// <summary>
         /// Gets or sets the image resource url of the background of view.
         /// The mutually exclusive with "BackgroundColor". Setting it overwrites existing "BackgroundColor".
         /// </summary>
@@ -247,7 +254,7 @@ namespace Tizen.NUI.BaseComponents
         /// Gets or sets the width resize policy to be used.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        [Obsolete("Deprecated. Please use Tizen.NUI.View.WidthSpecification instead.")]
+        [Obsolete("Deprecated. Please set Tizen.NUI.View.Layout and use Tizen.NUI.View.WidthSpecification instead.")]
         public ResizePolicyType? WidthResizePolicy
         {
             get => (ResizePolicyType?)GetValue(WidthResizePolicyProperty);
@@ -258,7 +265,7 @@ namespace Tizen.NUI.BaseComponents
         /// Gets or sets the height resize policy to be used.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        [Obsolete("Deprecated. Please use Tizen.NUI.View.HeightSpecification instead.")]
+        [Obsolete("Deprecated. Please set Tizen.NUI.View.Layout and use Tizen.NUI.View.HeightSpecification instead.")]
         public ResizePolicyType? HeightResizePolicy
         {
             get => (ResizePolicyType?)GetValue(HeightResizePolicyProperty);
@@ -538,6 +545,8 @@ namespace Tizen.NUI.BaseComponents
                     SetValue(destinationProperty, sourceValue);
                 }
             }
+
+            IncludeDefaultStyle = source.IncludeDefaultStyle;
         }
 
         /// <summary>

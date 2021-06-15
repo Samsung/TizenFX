@@ -66,7 +66,7 @@ jobs:
     - name: Deploy NuGet packages to MyGet
       if: github.event.inputs.deploy_to_myget == 'true'
       env:
-        NUGET_SOURCE: https://tizen.myget.org/F/dotnet-test/api/v2/package
+        NUGET_SOURCE: https://tizen.myget.org/F/dotnet/api/v2/package
         APIKEY: ${{ secrets.MYGET_APIKEY }}
       run: |
         dotnet nuget push Artifacts/*.nupkg -k $APIKEY -s $NUGET_SOURCE -t 3000

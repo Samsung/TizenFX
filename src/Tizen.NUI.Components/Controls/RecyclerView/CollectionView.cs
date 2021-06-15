@@ -100,6 +100,57 @@ namespace Tizen.NUI.Components
                     return colView.selectionMode;
                 });
 
+        /// <summary>
+        /// Binding Property of items data source.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ItemsSourceProperty =
+            BindableProperty.Create(nameof(ItemsSource), typeof(IEnumerable), typeof(CollectionView), null,
+                propertyChanged: (bindable, oldValue, newValue) =>
+                {
+                    var colView = (CollectionView)bindable;
+                    oldValue = colView.itemsSource;
+
+                    if (oldValue != null)
+                    {
+                        // Clearing old data!
+                        if (oldValue is INotifyCollectionChanged prevNotifyCollectionChanged)
+                        {
+                            prevNotifyCollectionChanged.CollectionChanged -= colView.CollectionChanged;
+                        }
+                        if (colView.selectedItem != null) colView.selectedItem = null;
+                        colView.selectedItems?.Clear();
+                    }
+
+                    colView.itemsSource = (IEnumerable)newValue;
+
+                    if (newValue == null)
+                    {
+                        colView.InternalItemSource?.Dispose();
+                        colView.InternalItemSource = null;
+                        colView.itemsLayouter?.Clear();
+                        colView.ClearCache();
+                        return;
+                    }
+                    if (newValue is INotifyCollectionChanged newNotifyCollectionChanged)
+                    {
+                        newNotifyCollectionChanged.CollectionChanged += colView.CollectionChanged;
+                    }
+
+                    colView.InternalItemSource?.Dispose();
+                    colView.InternalItemSource = ItemsSourceFactory.Create(colView);
+
+                    if (colView.itemsLayouter == null) return;
+
+                    colView.needInitalizeLayouter = true;
+                    colView.Init();
+                },
+                defaultValueCreator: (bindable) =>
+                {
+                    var colView = (CollectionView)bindable;
+                    return colView.itemsSource;
+                });
+
 
         private static readonly IList<object> selectEmpty = new List<object>(0);
         private DataTemplate itemTemplate = null;
@@ -204,45 +255,8 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 9 </since_tizen>
         public override IEnumerable ItemsSource
         {
-            get
-            {
-                return itemsSource;
-            }
-            set
-            {
-                if (itemsSource != null)
-                {
-                    // Clearing old data!
-                    if (itemsSource is INotifyCollectionChanged prevNotifyCollectionChanged)
-                    {
-                        prevNotifyCollectionChanged.CollectionChanged -= CollectionChanged;
-                    }
-                    if (selectedItem != null) selectedItem = null;
-                    selectedItems?.Clear();
-                }
-
-                itemsSource = value;
-                if (value == null)
-                {
-                    InternalItemSource?.Dispose();
-                    InternalItemSource = null;
-                    itemsLayouter?.Clear();
-                    ClearCache();
-                    return;
-                }
-                if (itemsSource is INotifyCollectionChanged newNotifyCollectionChanged)
-                {
-                    newNotifyCollectionChanged.CollectionChanged += CollectionChanged;
-                }
-
-                InternalItemSource?.Dispose();
-                InternalItemSource = ItemsSourceFactory.Create(this);
-
-                if (itemsLayouter == null) return;
-
-                needInitalizeLayouter = true;
-                Init();
-            }
+            get => (IEnumerable)GetValue(ItemsSourceProperty);
+            set => SetValue(ItemsSourceProperty, value);
         }
 
         /// <summary>
@@ -824,6 +838,28 @@ namespace Tizen.NUI.Components
                 if (layouterStyle != null)
                     itemsLayouter.Padding = new Extents(layouterStyle.Padding);
             }
+        }
+
+
+        /// <summary>
+        /// Scroll to specified item
+        /// </summary>
+        /// <remarks>
+        /// Make sure that the item that is about to receive the accessibility highlight is visible.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override bool AccessibilityScrollToChild(View child)
+        {
+            foreach (RecyclerViewItem item in ContentContainer.Children.Where((item) => item is RecyclerViewItem))
+            {
+                if (child == item)
+                {
+                    ScrollToIndex(item.Index);
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         // Realize and Decorate the item.

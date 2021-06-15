@@ -161,7 +161,7 @@ namespace Tizen.NUI.BaseComponents
         /// True if the event is consumed.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public int Consumed { get; set; }
+        public bool Consumed { get; set; }
     }
 
     /// <summary>
@@ -256,7 +256,7 @@ namespace Tizen.NUI.BaseComponents
             };
             gestureInfoHandler?.Invoke(this, arg);
 
-            AccessibilityDoGestureSignal.SetResult(data, Convert.ToInt32(arg.Consumed));
+            AccessibilityDoGestureSignal.SetResult(data, arg.Consumed);
         }
 
         /// <summary>

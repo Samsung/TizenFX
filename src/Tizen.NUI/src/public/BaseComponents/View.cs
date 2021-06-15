@@ -28,6 +28,10 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public partial class View : Container, IResourcesProvider
     {
+        private static HashSet<BindableProperty> positionPropertyGroup = new HashSet<BindableProperty>();
+        private static HashSet<BindableProperty> sizePropertyGroup = new HashSet<BindableProperty>();
+        private static HashSet<BindableProperty> scalePropertyGroup = new HashSet<BindableProperty>();
+
         internal BackgroundExtraData backgroundExtraData;
 
         private bool layoutSet = false;
@@ -44,16 +48,23 @@ namespace Tizen.NUI.BaseComponents
         private TransitionOptions transitionOptions = null;
         private ThemeData themeData;
 
-        internal class ThemeData
+        static View()
         {
-            public bool controlStatePropagation = false;
-            public ViewStyle viewStyle;
-            public bool themeChangeSensitive = false;
-            public ControlState controlStates = ControlState.Normal;
-            public ViewSelectorData selectorData;
-        }
+            RegisterPropertyGroup(PositionProperty, positionPropertyGroup);
+            RegisterPropertyGroup(Position2DProperty, positionPropertyGroup);
+            RegisterPropertyGroup(PositionXProperty, positionPropertyGroup);
+            RegisterPropertyGroup(PositionYProperty, positionPropertyGroup);
 
-        static View() { }
+            RegisterPropertyGroup(SizeProperty, sizePropertyGroup);
+            RegisterPropertyGroup(Size2DProperty, sizePropertyGroup);
+            RegisterPropertyGroup(SizeWidthProperty, sizePropertyGroup);
+            RegisterPropertyGroup(SizeHeightProperty, sizePropertyGroup);
+
+            RegisterPropertyGroup(ScaleProperty, scalePropertyGroup);
+            RegisterPropertyGroup(ScaleXProperty, scalePropertyGroup);
+            RegisterPropertyGroup(ScaleYProperty, scalePropertyGroup);
+            RegisterPropertyGroup(ScaleZProperty, scalePropertyGroup);
+        }
 
         /// <summary>
         /// Creates a new instance of a view.
@@ -156,6 +167,7 @@ namespace Tizen.NUI.BaseComponents
         public static bool LayoutingDisabled { get; set; } = true;
 
         /// <summary>
+        /// Deprecate. Please do not use this.
         /// The style instance applied to this view.
         /// Note that please do not modify the ViewStyle.
         /// Modifying ViewStyle will affect other views with same ViewStyle.
@@ -205,7 +217,7 @@ namespace Tizen.NUI.BaseComponents
 
                 ControlStateChangeEventInternal?.Invoke(this, changeInfo);
 
-                if (themeData.controlStatePropagation)
+                if (themeData.ControlStatePropagation)
                 {
                     foreach (View child in Children)
                     {
@@ -1705,7 +1717,7 @@ namespace Tizen.NUI.BaseComponents
         /// Gets or sets the width resize policy to be used.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated. Please use WidthSpecification instead.")]
+        [Obsolete("Deprecated. Please set Layout and use WidthSpecification instead.")]
         public ResizePolicyType WidthResizePolicy
         {
             get
@@ -1723,7 +1735,7 @@ namespace Tizen.NUI.BaseComponents
         /// Gets or sets the height resize policy to be used.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated. Please use HeightSpecification instead.")]
+        [Obsolete("Deprecated. Please set Layout and use HeightSpecification instead.")]
         public ResizePolicyType HeightResizePolicy
         {
             get
@@ -2160,19 +2172,6 @@ namespace Tizen.NUI.BaseComponents
                         Size2D = new Size2D(widthPolicy, heightPolicy);
                     }
                 }
-                else
-                {
-                    if (value == LayoutParamPolicies.MatchParent)
-                    {
-                        SetValue(WidthResizePolicyProperty, ResizePolicyType.FillToParent);
-                        NotifyPropertyChanged();
-                    }
-                    else if (value == LayoutParamPolicies.WrapContent)
-                    {
-                        SetValue(WidthResizePolicyProperty, ResizePolicyType.FitToChildren);
-                        NotifyPropertyChanged();
-                    }
-                }
                 layout?.RequestLayout();
             }
         }
@@ -2214,19 +2213,6 @@ namespace Tizen.NUI.BaseComponents
                     {
                         // Create Size2D only both _widthPolicy and _heightPolicy are set.
                         Size2D = new Size2D(widthPolicy, heightPolicy);
-                    }
-                }
-                else
-                {
-                    if (value == LayoutParamPolicies.MatchParent)
-                    {
-                        SetValue(HeightResizePolicyProperty, ResizePolicyType.FillToParent);
-                        NotifyPropertyChanged();
-                    }
-                    else if (value == LayoutParamPolicies.WrapContent)
-                    {
-                        SetValue(HeightResizePolicyProperty, ResizePolicyType.FitToChildren);
-                        NotifyPropertyChanged();
                     }
                 }
                 layout?.RequestLayout();
@@ -2513,14 +2499,14 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool EnableControlStatePropagation
         {
-            get => themeData?.controlStatePropagation ?? false;
+            get => themeData?.ControlStatePropagation ?? false;
             set
             {
                 if (EnableControlStatePropagation == value) return;
 
                 if (themeData == null) themeData = new ThemeData();
 
-                themeData.controlStatePropagation = value;
+                themeData.ControlStatePropagation = value;
 
                 foreach (View child in Children)
                 {
@@ -2597,7 +2583,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// If the value is true, the View will change its style as the theme changes.
-        /// It is false by default, but turned to true when setting StyleName (by setting property or using specified constructor).
+        /// The default value is false in normal case but it can be true when the NUIApplication is created with <see cref="NUIApplication.ThemeOptions.ThemeChangeSensitive"/>.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public bool ThemeChangeSensitive
@@ -2629,7 +2615,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnThemeChanged(object sender, ThemeChangedEventArgs e)
         {
-            UpdateStyle();
+            if (string.IsNullOrEmpty(styleName)) ApplyStyle(ThemeManager.GetUpdateStyleWithoutClone(GetType()));
+            else ApplyStyle(ThemeManager.GetUpdateStyleWithoutClone(styleName));
         }
 
         /// <summary>

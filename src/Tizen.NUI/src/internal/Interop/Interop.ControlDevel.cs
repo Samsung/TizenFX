@@ -304,6 +304,66 @@ namespace Tizen.NUI
                 public delegate bool AccessibilityCutText(int startPosition, int endPosition);
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilityCutText CutText; // 23
+
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate bool AccessibilityInsertText(int startPosition, IntPtr text);
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilityInsertText InsertText; // 24
+
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate bool AccessibilitySetTextContents(IntPtr newContents);
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilitySetTextContents SetTextContents; // 25
+
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate bool AccessibilityDeleteText(int startPosition, int endPosition);
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilityDeleteText DeleteText; // 26
+
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate bool AccessibilityScrollToChild(IntPtr child);
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilityScrollToChild ScrollToChild; // 27
+  
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate int AccessibilityGetSelectedChildrenCount();
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilityGetSelectedChildrenCount GetSelectedChildrenCount; // 28
+
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate IntPtr AccessibilityGetSelectedChild(int selectedChildIndex);
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilityGetSelectedChild GetSelectedChild; // 29
+
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate bool AccessibilitySelectChild(int childIndex);
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilitySelectChild SelectChild; // 30
+
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate bool AccessibilityDeselectSelectedChild(int selectedChildIndex);
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilityDeselectSelectedChild DeselectSelectedChild; // 31
+
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate bool AccessibilityIsChildSelected(int childIndex);
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilityIsChildSelected IsChildSelected; // 32
+
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate bool AccessibilitySelectAll();
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilitySelectAll SelectAll; // 33
+
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate bool AccessibilityClearSelection();
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilityClearSelection ClearSelection; // 34
+
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate bool AccessibilityDeselectChild(int childIndex);
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilityDeselectChild DeselectChild; // 35
             }
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_SetAccessibilityConstructor_NUI")]

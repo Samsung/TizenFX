@@ -67,7 +67,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual TextLabel CreateText()
         {
-            return new TextLabel
+            return new TextLabel(new TextLabelStyle())
             {
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
@@ -82,7 +82,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual ImageView CreateIcon()
         {
-            return new ImageView
+            return new ImageView()
             {
                 AccessibilityHighlightable = false
             };
@@ -335,13 +335,17 @@ namespace Tizen.NUI.Components
             buttonText.Unparent();
             overlayImage?.Unparent();
 
+#pragma warning disable CA2000
+            Size2D cellPadding = String.IsNullOrEmpty(buttonText.Text) ? new Size2D(0, 0) : itemSpacing;
+#pragma warning restore CA2000
+
             if (IconRelativeOrientation == IconOrientation.Left)
             {
                 Layout = new LinearLayout()
                 {
                     LinearOrientation = LinearLayout.Orientation.Horizontal,
                     LinearAlignment = itemAlignment,
-                    CellPadding = itemSpacing ?? new Size2D(0, 0)
+                    CellPadding = cellPadding
                 };
 
                 Add(buttonIcon);
@@ -353,7 +357,7 @@ namespace Tizen.NUI.Components
                 {
                     LinearOrientation = LinearLayout.Orientation.Horizontal,
                     LinearAlignment = itemAlignment,
-                    CellPadding = itemSpacing ?? new Size2D(0, 0)
+                    CellPadding = cellPadding
                 };
 
                 Add(buttonText);
@@ -365,7 +369,7 @@ namespace Tizen.NUI.Components
                 {
                     LinearOrientation = LinearLayout.Orientation.Vertical,
                     LinearAlignment = itemAlignment,
-                    CellPadding = itemSpacing ?? new Size2D(0, 0)
+                    CellPadding = cellPadding
                 };
 
                 Add(buttonIcon);
@@ -377,7 +381,7 @@ namespace Tizen.NUI.Components
                 {
                     LinearOrientation = LinearLayout.Orientation.Vertical,
                     LinearAlignment = itemAlignment,
-                    CellPadding = itemSpacing ?? new Size2D(0, 0)
+                    CellPadding = cellPadding
                 };
 
                 Add(buttonText);

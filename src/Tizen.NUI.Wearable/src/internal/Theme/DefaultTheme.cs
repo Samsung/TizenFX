@@ -81,7 +81,5 @@ namespace Tizen.NUI.Wearable
 
             return theme;
         }
-
-        public HashSet<ExternalThemeKeyList> GetExternalThemeKeyListSet() => null;
     }
 }
