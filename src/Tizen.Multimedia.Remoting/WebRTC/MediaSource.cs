@@ -31,6 +31,8 @@ namespace Tizen.Multimedia.Remoting
 
         private MediaType MediaType { get; }
 
+        private bool IsDetached {get; set;} = false;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="MediaSource"/> class.
         /// </summary>
@@ -40,9 +42,21 @@ namespace Tizen.Multimedia.Remoting
             MediaType = mediaType;
         }
 
-        internal void AttachTo(WebRTC webRtc) => OnAttached(webRtc);
+        internal void AttachTo(WebRTC webRtc)
+        {
+            if (IsDetached)
+            {
+                throw new InvalidOperationException("MediaSource was already detached.");
+            }
 
-        internal void DetachFrom(WebRTC webRtc) => OnDetached(webRtc);
+            OnAttached(webRtc);
+        }
+
+        internal void DetachFrom(WebRTC webRtc)
+        {
+            OnDetached(webRtc);
+            IsDetached = true;
+        }
 
         internal abstract void OnAttached(WebRTC webRtc);
 

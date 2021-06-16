@@ -24,7 +24,8 @@ namespace Tizen.Multimedia.Remoting
     /// Represents a camera source.
     /// </summary>
     /// <remarks>The camera privilege(http://tizen.org/privilege/camera) is required.</remarks>
-    /// <seealso cref="WebRTC.SetSource(MediaSource)"/>
+    /// <seealso cref="WebRTC.AddSource"/>
+    /// <seealso cref="WebRTC.AddSources"/>
     /// <since_tizen> 9 </since_tizen>
     public sealed class MediaCameraSource : MediaSource
     {
@@ -53,7 +54,7 @@ namespace Tizen.Multimedia.Remoting
         internal override void OnDetached(WebRTC webRtc)
         {
             NativeWebRTC.RemoveMediaSource(webRtc.Handle, SourceId.Value).
-                ThrowIfFailed("Failed to add media source for camera.");
+                ThrowIfFailed("Failed to remove media source for camera.");
 
             WebRtc = null;
         }

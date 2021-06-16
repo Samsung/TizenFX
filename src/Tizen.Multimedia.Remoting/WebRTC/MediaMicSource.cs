@@ -24,7 +24,8 @@ namespace Tizen.Multimedia.Remoting
     /// Represents a microphone source.
     /// </summary>
     /// <remarks>The recorder privilege(http://tizen.org/privilege/recorder) is required.</remarks>
-    /// <seealso cref="WebRTC.SetSource(MediaSource)"/>
+    /// <seealso cref="WebRTC.AddSource"/>
+    /// <seealso cref="WebRTC.AddSources"/>
     /// <since_tizen> 9 </since_tizen>
     public sealed class MediaMicSource : MediaSource
     {
@@ -53,7 +54,7 @@ namespace Tizen.Multimedia.Remoting
         internal override void OnDetached(WebRTC webRtc)
         {
             NativeWebRTC.RemoveMediaSource(webRtc.Handle, SourceId.Value).
-                ThrowIfFailed("Failed to add media source for mic.");
+                ThrowIfFailed("Failed to remove media source for mic.");
 
             WebRtc = (WebRTC)null;
         }

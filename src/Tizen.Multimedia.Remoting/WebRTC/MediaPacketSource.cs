@@ -25,7 +25,8 @@ namespace Tizen.Multimedia.Remoting
     /// <summary>
     /// Represents a media packet source.
     /// </summary>
-    /// <seealso cref="WebRTC.SetSource(MediaSource)"/>
+    /// <seealso cref="WebRTC.AddSource"/>
+    /// <seealso cref="WebRTC.AddSources"/>
     /// <since_tizen> 9 </since_tizen>
     public sealed class MediaPacketSource : MediaSource
     {
@@ -191,7 +192,8 @@ namespace Tizen.Multimedia.Remoting
         ///     -or-<br/>
         ///     The format of packet is not matched with the specified format in the constructor.
         /// </exception>
-        /// <seealso cref="WebRTC.SetSource(MediaSource)"/>
+        /// <seealso cref="WebRTC.AddSource"/>
+        /// <seealso cref="WebRTC.AddSources"/>
         /// <seealso cref="MediaPacket"/>
         /// <since_tizen> 9 </since_tizen>
         public void Push(MediaPacket packet)

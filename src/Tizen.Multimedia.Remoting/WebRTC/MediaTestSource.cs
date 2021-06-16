@@ -23,7 +23,8 @@ namespace Tizen.Multimedia.Remoting
     /// <summary>
     /// Represents a audio test source.
     /// </summary>
-    /// <seealso cref="WebRTC.SetSource(MediaSource)"/>
+    /// <seealso cref="WebRTC.AddSource"/>
+    /// <seealso cref="WebRTC.AddSources"/>
     /// <since_tizen> 9 </since_tizen>
     public sealed class MediaAudioTestSource : MediaSource
     {
@@ -60,7 +61,8 @@ namespace Tizen.Multimedia.Remoting
     /// <summary>
     /// Represents a video test source.
     /// </summary>
-    /// <seealso cref="WebRTC.SetSource(MediaSource)"/>
+    /// <seealso cref="WebRTC.AddSource"/>
+    /// <seealso cref="WebRTC.AddSources"/>
     /// <since_tizen> 9 </since_tizen>
     public sealed class MediaVideoTestSource : MediaSource
     {

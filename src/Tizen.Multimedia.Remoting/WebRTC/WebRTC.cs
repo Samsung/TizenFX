@@ -477,22 +477,27 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Sets media source.
+        /// Adds media source.
         /// </summary>
-        /// <remarks>The WebRTC must be in the <see cref="WebRTCState.Idle"/>.<br/>
-        /// <see cref="SetSource"/> should be set before <see cref="Start"/>.
-        /// </remarks>
-        /// <param name="source">The media source to set.</param>
+        /// <remarks>The WebRTC must be in the <see cref="WebRTCState.Idle"/>.</remarks>
+        /// <param name="source">The media sources to add.</param>
         /// <exception cref="ArgumentNullException">The media source is null.</exception>
-        /// <exception cref="InvalidOperationException">The WebRTC is not in the valid state.</exception>
+        /// <exception cref="InvalidOperationException">
+        /// The WebRTC is not in the valid state.<br/>
+        /// - or -<br/>
+        /// All or one of <paramref name="source"/> was already detached.
+        /// </exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <seealso cref="MediaCameraSource"/>
         /// <seealso cref="MediaMicSource"/>
         /// <seealso cref="MediaAudioTestSource"/>
         /// <seealso cref="MediaVideoTestSource"/>
         /// <seealso cref="MediaPacketSource"/>
+        /// <seealso cref="AddSources"/>
+        /// <seealso cref="RemoveSource"/>
+        /// <seealso cref="RemoveSources"/>
         /// <since_tizen> 9 </since_tizen>
-        public void SetSource(MediaSource source)
+        public void AddSource(MediaSource source)
         {
             if (source == null)
             {
@@ -504,6 +509,99 @@ namespace Tizen.Multimedia.Remoting
             source?.AttachTo(this);
 
             _source.Add(source);
+        }
+
+        /// <summary>
+        /// Adds media sources.
+        /// </summary>
+        /// <remarks>The WebRTC must be in the <see cref="WebRTCState.Idle"/>.</remarks>
+        /// <param name="sources">The media sources to add.</param>
+        /// <exception cref="ArgumentNullException">The media source is null.</exception>
+        /// <exception cref="InvalidOperationException">
+        /// The WebRTC is not in the valid state.<br/>
+        /// - or -<br/>
+        /// All or one of <paramref name="sources"/> was already detached.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <seealso cref="MediaCameraSource"/>
+        /// <seealso cref="MediaMicSource"/>
+        /// <seealso cref="MediaAudioTestSource"/>
+        /// <seealso cref="MediaVideoTestSource"/>
+        /// <seealso cref="MediaPacketSource"/>
+        /// <seealso cref="AddSource"/>
+        /// <seealso cref="RemoveSource"/>
+        /// <seealso cref="RemoveSources"/>
+        /// <since_tizen> 9 </since_tizen>
+        public void AddSources(params MediaSource[] sources)
+        {
+            foreach (var source in sources)
+            {
+                AddSource(source);
+            }
+        }
+
+        /// <summary>
+        /// Removes media source.
+        /// </summary>
+        /// <remarks>
+        /// The WebRTC must be in the <see cref="WebRTCState.Idle"/>.<br/>
+        /// If user want to use removed MediaSource again, user should create new instance for it.
+        /// </remarks>
+        /// <param name="source">The media source to remove.</param>
+        /// <exception cref="ArgumentNullException">The media source is null.</exception>
+        /// <exception cref="InvalidOperationException">The WebRTC is not in the valid state.</exception>
+        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <seealso cref="MediaCameraSource"/>
+        /// <seealso cref="MediaMicSource"/>
+        /// <seealso cref="MediaAudioTestSource"/>
+        /// <seealso cref="MediaVideoTestSource"/>
+        /// <seealso cref="MediaPacketSource"/>
+        /// <seealso cref="AddSource"/>
+        /// <seealso cref="AddSources"/>
+        /// <seealso cref="RemoveSources"/>
+        /// <since_tizen> 9 </since_tizen>
+        public void RemoveSource(MediaSource source)
+        {
+            if (source == null)
+            {
+                throw new ArgumentNullException(nameof(source), "source is null");
+            }
+
+            ValidateWebRTCState(WebRTCState.Idle);
+
+            source?.DetachFrom(this);
+
+            _source.Remove(source);
+
+            source = null;
+        }
+
+        /// <summary>
+        /// Removes media sources.
+        /// </summary>
+        /// <remarks>
+        /// The WebRTC must be in the <see cref="WebRTCState.Idle"/>.<br/>
+        /// If user want to use removed MediaSource again, user should create new instance for it.
+        /// </remarks>
+        /// <param name="sources">The media source to remove.</param>
+        /// <exception cref="ArgumentNullException">The media source is null.</exception>
+        /// <exception cref="InvalidOperationException">The WebRTC is not in the valid state.</exception>
+        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <seealso cref="MediaCameraSource"/>
+        /// <seealso cref="MediaMicSource"/>
+        /// <seealso cref="MediaAudioTestSource"/>
+        /// <seealso cref="MediaVideoTestSource"/>
+        /// <seealso cref="MediaPacketSource"/>
+        /// <seealso cref="AddSource"/>
+        /// <seealso cref="AddSources"/>
+        /// <seealso cref="RemoveSource"/>
+        /// <since_tizen> 9 </since_tizen>
+        public void RemoveSources(params MediaSource[] sources)
+        {
+            foreach (var source in sources)
+            {
+                RemoveSource(source);
+            }
         }
     }
 }
