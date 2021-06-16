@@ -372,7 +372,10 @@ namespace Tizen.NUI.Components
             onAnimation = false;
             if (onAlignAnimation) {
                 onAlignAnimation = false;
-                PageAdjust(e.Position.Y);
+                if (loopEnabled == true)
+                {
+                    PageAdjust(e.Position.Y);
+                }
                 if (currentValue != ((int)(-e.Position.Y / itemHeight) + 2))
                 {
                     currentValue = ((int)(-e.Position.Y / itemHeight) + 2);
