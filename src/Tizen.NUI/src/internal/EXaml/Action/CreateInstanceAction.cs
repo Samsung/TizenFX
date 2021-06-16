@@ -86,6 +86,7 @@ namespace Tizen.NUI.EXaml
                 else
                 {
                     int xFactoryMethodIndex = (null == getXFactoryMethodIndexOp) ? -1 : (int)getXFactoryMethodIndexOp.ValueList[0];
+                    getXFactoryMethodIndexOp = null;
 
                     if (null == getParamListOp)
                     {
