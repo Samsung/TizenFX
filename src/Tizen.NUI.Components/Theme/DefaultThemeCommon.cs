@@ -129,8 +129,13 @@ namespace Tizen.NUI.Components
                 Size = new Size(200, 25),
                 Track = new ImageViewStyle()
                 {
-                    ResourceUrl = FrameworkInformation.ResourcePath + "IoT_progressindicator_empty.png",
-                    BackgroundColor = new Color(0, 0, 0, 0.1f),
+                    BorderlineWidth = 0.5f,
+                    BorderlineColor = new Color(0.92f, 0.93f, 0.94f, 1.0f),
+                    BackgroundColor = new Selector<Color>()
+                    {
+                        Normal = new Color(1.0f, 1.0f, 1.0f, 0.5f),
+                        Disabled = new Color(0.73f, 0.76f, 0.79f, 1),
+                    },
                 },
                 Buffer = new ImageViewStyle()
                 {
@@ -138,12 +143,7 @@ namespace Tizen.NUI.Components
                 },
                 Progress = new ImageViewStyle()
                 {
-                    ResourceUrl = new Selector<string>()
-                    {
-                        Normal = FrameworkInformation.ResourcePath + "IoT_progressindicator_progress.png",
-                        Disabled = FrameworkInformation.ResourcePath + "IoT_progressindicator_progressdisabled.png",
-                    },
-                    BackgroundColor = new Color(0.05f, 0.63f, 0.9f, 1),
+                    BackgroundColor = new Color(0.03f, 0.05f, 0.29f, 1),
                 },
                 IndeterminateImageUrl = FrameworkInformation.ResourcePath + "nui_component_default_progress_indeterminate.png",
             });
