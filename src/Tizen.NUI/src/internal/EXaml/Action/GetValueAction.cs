@@ -152,7 +152,14 @@ namespace Tizen.NUI.EXaml
                 switch (sign)
                 {
                     case '\"':
-                        Value = GetValueByStrings[0](valueString);
+                        if (null == valueString)
+                        {
+                            Value = "";
+                        }
+                        else
+                        {
+                            Value = GetValueByStrings[0](valueString);
+                        }
                         break;
 
                     case 'z':
