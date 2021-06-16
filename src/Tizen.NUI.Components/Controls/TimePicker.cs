@@ -32,29 +32,20 @@ namespace Tizen.NUI.Components
     {
         /// <summary>
         /// TimeChangedEventArgs default constructor.
-        /// <param name="hour">hour value of TimePicker.</param>
-        /// <param name="minute">minute value of TimePicker.</param>
+        /// <param name="time">time value of TimePicker.</param>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]   
-        public TimeChangedEventArgs(int hour, int minute)
+        public TimeChangedEventArgs(DateTime time)
         {
-            Hour = hour;
-            Minute = minute;
+            Time = time;
         }
 
         /// <summary>
         /// TimeChangedEventArgs default constructor.
-        /// <returns>The current hour value of TimePicker.</returns>
+        /// <returns>The current time value of TimePicker.</returns>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]   
-        public int Hour { get; }
-
-        /// <summary>
-        /// TimeChangedEventArgs default constructor.
-        /// <returns>The current minute value of TimePicker.</returns>
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]   
-        public int Minute { get; }
+        public DateTime Time { get; }
     }
 
     /// <summary>
@@ -67,8 +58,7 @@ namespace Tizen.NUI.Components
     {
         private bool isAm;
         private bool is24HourView;
-        private int hour;
-        private int minute;
+        private DateTime currentTime;
         private String[] ampmText;
         private Picker hourPicker;
         private Picker minutePicker;
@@ -142,53 +132,34 @@ namespace Tizen.NUI.Components
         /// The hour value of TimePicker.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public int Hour
+        public DateTime Time
         {
             get
             {
-                return hour;
+                return currentTime;
             }
             set
             {
-                if (value < 1 || value > 24 || value == hour) return;
-
-                hour = value;
+                currentTime = value;
                 if (!is24HourView)
                 {
-                    if (hour >= 12 && hour <= 23) 
+                    if (currentTime.Hour >= 12 && currentTime.Hour <= 23)
                     {
                         isAm = false;
-                        if (hour == 12) hourPicker.CurrentValue = hour;
-                        else hourPicker.CurrentValue = hour -= 12;
+                        if (currentTime.Hour == 12) hourPicker.CurrentValue = currentTime.Hour;
+                        else hourPicker.CurrentValue = currentTime.Hour - 12;
                         ampmPicker.CurrentValue = 2;
                     }
                     else 
                     {
                         isAm = true;
-                        hourPicker.CurrentValue = hour;
+                        hourPicker.CurrentValue = currentTime.Hour;
                         ampmPicker.CurrentValue = 1;
                     }
                 }
-                else hourPicker.CurrentValue = hour;
-            }
-        }
+                else hourPicker.CurrentValue = currentTime.Hour;
 
-        /// <summary>
-        /// The Minute value of TimePicker.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int Minute
-        {
-            get
-            {
-                return minute;
-            }
-            set
-            {
-                if (value < 1 || value > 60 || value == minute) return;
-
-                minute = value;
-                minutePicker.CurrentValue = minute;
+                minutePicker.CurrentValue = currentTime.Minute;
             }
         }
 
@@ -206,17 +177,26 @@ namespace Tizen.NUI.Components
             {
                 if (is24HourView == value) return;
 
+                Console.WriteLine(" Is 24 Hour View");
                 is24HourView = value;
                 if (value == true)
                 {
                     Remove(ampmPicker);
-                    hourPicker.MaxValue = 24;
+                    hourPicker.MinValue = 0;
+                    hourPicker.MaxValue = 23;
+                    hourPicker.CurrentValue = currentTime.Hour;
                 }
                 else 
                 {
+                    hourPicker.MinValue = 1;
                     hourPicker.MaxValue = 12;
                     PickersOrderSet(true);
                     SetAmpmText();
+                    if (currentTime.Hour > 12)
+                    {
+                        ampmPicker.CurrentValue = 2;
+                        hourPicker.CurrentValue = currentTime.Hour - 12;
+                    }
                 }
             }
         }
@@ -233,7 +213,7 @@ namespace Tizen.NUI.Components
             hourPicker = new Picker()
             {
                 MinValue = 1,
-                MaxValue = 24,
+                MaxValue = 12,
             };
             hourPicker.ValueChanged += OnHourValueChanged;
 
@@ -250,6 +230,18 @@ namespace Tizen.NUI.Components
                 MaxValue = 2,
             };
             ampmPicker.ValueChanged += OnAmpmValueChanged;
+
+            currentTime = DateTime.Now;
+            Console.WriteLine(" Time " + currentTime.Hour + " " + currentTime.Minute);
+            if (currentTime.Hour > 12)
+            {
+                ampmPicker.CurrentValue = 2;
+                hourPicker.CurrentValue = currentTime.Hour - 12;
+            }
+            else
+                hourPicker.CurrentValue = currentTime.Hour;
+
+            minutePicker.CurrentValue = currentTime.Minute;
         }
 
         /// <summary>
@@ -286,46 +278,50 @@ namespace Tizen.NUI.Components
                 LinearOrientation = LinearLayout.Orientation.Horizontal,
                 CellPadding = new Size(timePickerStyle.CellPadding.Width, timePickerStyle.CellPadding.Height),
             };
+            Console.WriteLine("initialize");
 
-            is24HourView = true;
+            is24HourView = false;
 
             PickersOrderSet(false);
+            SetAmpmText();
+        }
 
-            if (!is24HourView) 
-            {
-                SetAmpmText();
-                hourPicker.MaxValue = 12;
-            }
+        private void ChangeTime(int hour, int minute, bool hourUpdate)
+        {
+            if (hourUpdate)
+                currentTime = new DateTime(currentTime.Year, currentTime.Month, currentTime.Day, hour, currentTime.Minute, 0);
+            else
+                currentTime = new DateTime(currentTime.Year, currentTime.Month, currentTime.Day, currentTime.Hour, minute, 0);
         }
 
         private void OnHourValueChanged(object sender, ValueChangedEventArgs e)
         {
-            if (hour == e.Value) return;
+            if (currentTime.Hour == e.Value) return;
 
             if (!is24HourView)
             {
                 if (isAm) 
                 {
-                    if (e.Value == 12) hour = 24;
-                    else hour = e.Value;
+                    if (e.Value == 12) ChangeTime(12, 0, true);
+                    else ChangeTime(e.Value, 0, true);
                 }
                 else 
                 {
-                    if (e.Value == 12) hour = 12;
-                    else hour = e.Value + 12;
+                    if (e.Value == 12) ChangeTime(0, 0, true);
+                    else ChangeTime(e.Value + 12, 0, true);
                 }
             }
             else
-                hour = e.Value;
+                ChangeTime(e.Value, 0, true);
             
             OnTimeChanged();
         }
 
         private void OnMinuteValueChanged(object sender, ValueChangedEventArgs e)
         { 
-            if (minute == e.Value) return;
+            if (currentTime.Minute == e.Value) return;
 
-            minute = e.Value;
+            ChangeTime(0, e.Value, false);
 
             OnTimeChanged();
         }
@@ -336,19 +332,19 @@ namespace Tizen.NUI.Components
 
             if (e.Value == 1)
             { //AM
-                if (hour >= 12 || hour < 24)
+                if (currentTime.Hour > 12 || currentTime.Hour == 0)
                 { 
-                    if (hour == 12) hour += 12;
-                    else hour -= 12;
+                    if (currentTime.Hour == 0) ChangeTime(12, 0, true);
+                    else ChangeTime(currentTime.Hour - 12, 0, true);
                 }
                 isAm = true;
             }
             else 
             { //PM
-                if (hour == 24 || hour < 12) 
+                if (currentTime.Hour > 0 && currentTime.Hour <= 12)
                 {
-                     if (hour == 24) hour -= 12;
-                     else hour += 12; 
+                     if (currentTime.Hour == 12) ChangeTime(0, 0, true);
+                     else ChangeTime(currentTime.Hour + 12, 0, true);
                 }
                 isAm = false;
             }
@@ -358,7 +354,7 @@ namespace Tizen.NUI.Components
 
         private void OnTimeChanged()
         { 
-            TimeChangedEventArgs eventArgs = new TimeChangedEventArgs(hour, minute);
+            TimeChangedEventArgs eventArgs = new TimeChangedEventArgs(currentTime);
             TimeChanged?.Invoke(this, eventArgs);
         }
 
