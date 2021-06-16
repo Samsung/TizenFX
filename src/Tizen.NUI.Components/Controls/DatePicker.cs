@@ -32,38 +32,20 @@ namespace Tizen.NUI.Components
     {
         /// <summary>
         /// DateChangedEventArgs default constructor.
-        /// <param name="month">month value of DatePicker.</param>
-        /// <param name="day">day value of DatePicker.</param>
-        /// <param name="year">year value of DatePicker.</param>
+        /// <param name="date">date value of DatePicker.</param>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]   
-        public DateChangedEventArgs(int month, int day, int year)
+        public DateChangedEventArgs(DateTime date)
         {
-            Month = month;
-            Day = day;
-            Year = year;
+            Date = date;
         }
 
         /// <summary>
         /// DateChangedEventArgs default constructor.
-        /// <returns>The current month value of DatePicker.</returns>
+        /// <returns>The current date value of DatePicker.</returns>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]   
-        public int Month { get; }
-
-        /// <summary>
-        /// DateChangedEventArgs default constructor.
-        /// <returns>The current day value of DatePicker.</returns>
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]   
-        public int Day { get; }
-
-        /// <summary>
-        /// DateChangedEventArgs default constructor.
-        /// <returns>The current year value of DatePicker.</returns>
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]   
-        public int Year { get; }
+        public DateTime Date { get; }
     }
 
     /// <summary>
@@ -75,9 +57,7 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class DatePicker : Control
     {
-        private int day;
-        private int month;
-        private int year;
+        private DateTime currentDate;
         private Picker dayPicker;
         private Picker monthPicker;
         private Picker yearPicker;
@@ -148,63 +128,25 @@ namespace Tizen.NUI.Components
         public event EventHandler<DateChangedEventArgs> DateChanged;
         
         /// <summary>
-        /// The month value of DatePicker.
+        /// The Date value of DatePicker.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public int Month
+        public DateTime Date
         {
             get
             {
-                return month;
+                return currentDate;
             }
             set
             {
-                if (value < 1 || value > 12 || value == month) return;
-
-                month = value;
-                monthPicker.CurrentValue = month;
+                currentDate = value;
+                dayPicker.CurrentValue = currentDate.Day;
+                monthPicker.CurrentValue = currentDate.Month;
+                yearPicker.CurrentValue = currentDate.Year;
             }
         }
 
         /// <summary>
-        /// The day value of DatePicker.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int Day
-        {
-            get
-            {
-                return day;
-            }
-            set
-            {
-                if (value < 1 || value > 31 || value == day) return;
-
-                day = value;
-                dayPicker.CurrentValue = day;
-            }
-        }
-
-        /// <summary>
-        /// The year value of DatePicker.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int Year
-        {
-            get
-            {
-                return year;
-            }
-            set
-            {
-                if (value < 1970 || value > 2038 || value == year) return;
-
-                year = value;
-                yearPicker.CurrentValue = year;
-            }
-        }
-
-                /// <summary>
         /// Initialize TimePicker object.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -230,14 +172,14 @@ namespace Tizen.NUI.Components
             yearPicker = new Picker()
             {
                 MinValue = 1970,
-                MaxValue = 2038,
+                MaxValue = 2100,
             };
             yearPicker.ValueChanged += OnYearValueChanged;
 
-            //FIXME: Changes it to get current system date.
-            day = 1;
-            month = 1;
-            year = 1970;
+            currentDate = DateTime.Now;
+            dayPicker.CurrentValue = currentDate.Day;
+            monthPicker.CurrentValue = currentDate.Month;
+            yearPicker.CurrentValue = currentDate.Year;
         }
     
         [SuppressMessage("Microsoft.Reliability",
@@ -255,52 +197,53 @@ namespace Tizen.NUI.Components
 
             PickersOrderSet();
             SetMonthText();
-            MaxDaySet();
+            MaxDaySet(currentDate.Month);
         }
 
         private void OnDayValueChanged(object sender, ValueChangedEventArgs e)
         {
-            if (day == e.Value) return;
+            if (currentDate.Day == e.Value) return;
 
-            day = e.Value;
+            currentDate = new DateTime(currentDate.Year, currentDate.Month, e.Value);
             
             OnDateChanged();
         }
 
         private void OnMonthValueChanged(object sender, ValueChangedEventArgs e)
         { 
-            if (Month == e.Value) return;
+            if (currentDate.Month == e.Value) return;
 
-            Month = e.Value;
-            MaxDaySet();
+            MaxDaySet(e.Value);
 
             OnDateChanged();
         }
 
         private void OnYearValueChanged(object sender, ValueChangedEventArgs e)
         { 
-            if (Year == e.Value) return;
+            if (currentDate.Year == e.Value) return;
 
-            Year = e.Value;
+            currentDate = new DateTime(e.Value, currentDate.Month, currentDate.Day);
 
             OnDateChanged();
         }
 
         private void OnDateChanged()
         { 
-            DateChangedEventArgs eventArgs = new DateChangedEventArgs(day, month, year);
+            DateChangedEventArgs eventArgs = new DateChangedEventArgs(currentDate);
             DateChanged?.Invoke(this, eventArgs);
         }
 
-        private void MaxDaySet()
+        private void MaxDaySet(int month)
         {
-            int maxDaysInMonth = DateTime.DaysInMonth(year, month);
+            int maxDaysInMonth = DateTime.DaysInMonth(currentDate.Year, month);
             dayPicker.MaxValue = maxDaysInMonth;
-            if (day > maxDaysInMonth) 
+            if (currentDate.Day > maxDaysInMonth)
             {
-                day = maxDaysInMonth;
-                dayPicker.CurrentValue = day;
+                currentDate = new DateTime(currentDate.Year, month, maxDaysInMonth);
+                dayPicker.CurrentValue = maxDaysInMonth;
+                return;
             }
+            currentDate = new DateTime(currentDate.Year, month, currentDate.Day);
         }
 
         //FIXME: There is no way to know when system locale changed in NUI.
