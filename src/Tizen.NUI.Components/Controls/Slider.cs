@@ -520,7 +520,6 @@ namespace Tizen.NUI.Components
                 else
                 {
                     thumbImage.ResourceUrlSelector = value;
-                    thumbImageUrlSelector = value;
                 }
             }
         }
@@ -552,7 +551,6 @@ namespace Tizen.NUI.Components
                 else
                 {
                     thumbImage.ResourceUrlSelector = value;
-                    thumbImageUrlSelector = value;
                 }
             }
         }
@@ -1460,7 +1458,6 @@ namespace Tizen.NUI.Components
             if (!isFocused && !isPressed)
             {
                 ControlState = ControlState.Normal;
-                thumbImage.ResourceUrl = thumbImageUrlSelector?.Normal;
 
                 if (stateChangedHandler != null)
                 {
@@ -1472,7 +1469,6 @@ namespace Tizen.NUI.Components
             else if (isPressed)
             {
                 ControlState = ControlState.Pressed;
-                thumbImage.ResourceUrl = thumbImageUrlSelector?.Pressed;
 
                 if (stateChangedHandler != null)
                 {
@@ -1484,7 +1480,6 @@ namespace Tizen.NUI.Components
             else if (!isPressed && isFocused)
             {
                 ControlState = ControlState.Focused;
-                thumbImage.ResourceUrl = thumbImageUrlSelector?.Focused;
 
                 if (stateChangedHandler != null)
                 {
