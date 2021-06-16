@@ -134,6 +134,7 @@ namespace Tizen.NUI.Components
         /// This needs to be considered more if public-open is necessary.
         private ProgressStatusType state = ProgressStatusType.Determinate;
 
+        private Vector2 size = null;
         private const float round = 0.5f;
         private ImageView trackImage = null;
         private ImageView progressImage = null;
@@ -502,6 +503,21 @@ namespace Tizen.NUI.Components
             ChangeImageState(state);
         }
 
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnRelayout(Vector2 size, RelayoutContainer container)
+        {
+            if (size == null) return;
+
+            if (size.Equals(this.size))
+            {
+                return;
+            }
+
+            this.size = new Vector2(size);
+            UpdateValue();
+        }
+
         /// <summary>
         /// Update progress value
         /// </summary>
@@ -595,7 +611,7 @@ namespace Tizen.NUI.Components
                 {
                     indeterminateImage.Opacity = 0.0f;
                 }
-                bufferImage.Show();
+                bufferImage.Hide();
                 progressImage.Show();
 
                 UpdateValue();
@@ -663,6 +679,7 @@ namespace Tizen.NUI.Components
                     PivotPoint = Tizen.NUI.PivotPoint.TopLeft
                 };
                 Add(bufferImage);
+                bufferImage.Hide(); // At first, buffer image does not show.
             }
         }
 
