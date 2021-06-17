@@ -183,17 +183,17 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "should be not null");
             Assert.IsInstanceOf<Path>(testingTarget, "should be an instance of Path class!");
 
-            Position dummy = new Position(0.5f, 0.0f, 0.8f);
-            testingTarget.AddPoint(dummy);
-           
-            Vector3 vec = new Vector3(0, 0, 0);
-            var result = testingTarget.Points[0].Get(vec);
-            Assert.IsTrue(0.5f == vec.X);
-            Assert.IsTrue(0.0f == vec.Y);
-            Assert.IsTrue(0.8f == vec.Z);
+            using (Position position = new Position(0.5f, 0.0f, 0.8f))
+            {
+                testingTarget.AddPoint(position);
 
-            dummy.Dispose();
-            vec.Dispose();
+                Vector3 vector = new Vector3(0, 0, 0);
+                var result = testingTarget.Points[0].Get(vector);
+                Assert.IsTrue(result);
+
+                vector.Dispose();
+            }
+
             testingTarget.Dispose();
             tlog.Debug(tag, $"PathAddPoints END (OK)");
         }
@@ -213,17 +213,17 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "should be not null");
             Assert.IsInstanceOf<Path>(testingTarget, "should be an instance of Path class!");
 
-            Position dummy = new Vector3(0.5f, 0.0f, 0.8f);
-            testingTarget.AddControlPoint(dummy);
+            using (Position position = new Position(0.5f, 0.0f, 0.8f))
+            {
+                testingTarget.AddControlPoint(position);
 
-            Vector3 vec = new Vector3(0, 0, 0);
-            testingTarget.ControlPoints[0].Get(vec);
-            Assert.IsTrue(0.5f == vec.X);
-            Assert.IsTrue(0.0f == vec.Y);
-            Assert.IsTrue(0.8f == vec.Z);
+                Vector3 vector = new Vector3(0, 0, 0);
+                var result = testingTarget.ControlPoints[0].Get(vector);
+                Assert.IsTrue(result);
 
-            dummy.Dispose();
-            vec.Dispose();
+                vector.Dispose();
+            }
+
             testingTarget.Dispose();
             tlog.Debug(tag, $"PathAddControlPoint END (OK)");
         }
@@ -367,21 +367,28 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "should be not null");
             Assert.IsInstanceOf<Path>(testingTarget, "should be an instance of Path class!");
 
-            var points = new PropertyArray();
-            Assert.IsNotNull(points, "should be not null");
-            Assert.IsInstanceOf<PropertyArray>(points, "should be an instance of PropertyArray class!");
-            points.PushBack(new PropertyValue(new Vector3(1920 * 0.5f, 0.0f, 1920 * 0.5f)));
-            points.PushBack(new PropertyValue(new Vector3(0.0f, 0.0f, 0.0f)));
-            points.PushBack(new PropertyValue(new Vector3(-1920 * 0.5f, 0.0f, 1920 * 0.5f)));
-            testingTarget.Points = points;
+            using (PropertyArray points = new PropertyArray())
+            {
+                Assert.IsNotNull(points, "should be not null");
+                Assert.IsInstanceOf<PropertyArray>(points, "should be an instance of PropertyArray class!");
+                points.PushBack(new PropertyValue(new Vector3(1920 * 0.5f, 0.0f, 1920 * 0.5f)));
+                points.PushBack(new PropertyValue(new Vector3(0.0f, 0.0f, 0.0f)));
+                points.PushBack(new PropertyValue(new Vector3(-1920 * 0.5f, 0.0f, 1920 * 0.5f)));
+                testingTarget.Points = points;
 
-            testingTarget.GenerateControlPoints(0.5f);
-            var result = testingTarget.GetControlPoint(1);
-            Assert.IsTrue(678.8225 == result.X);
-            Assert.IsTrue(0 == result.Y);
-            Assert.IsTrue(0 == result.Z);
+                testingTarget.GenerateControlPoints(0.5f);
 
-            points.Dispose();
+                try
+                {
+                    var result = testingTarget.GetControlPoint(1);
+                }
+                catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught Exception: Failed!");
+                }
+            }
+   
             testingTarget.Dispose();
             tlog.Debug(tag, $"PathGetControlPoint END (OK)");
         }
