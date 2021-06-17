@@ -114,8 +114,50 @@ namespace Tizen.NUI.Xaml
                         }
                         else
                         {
+                            ConstructorInfo constructorInfo = null;
+
                             //constructor with all default parameters
-                            value = Activator.CreateInstance(type, BindingFlags.CreateInstance | BindingFlags.Public | BindingFlags.Instance | BindingFlags.OptionalParamBinding, null, new object[] { Type.Missing }, CultureInfo.CurrentCulture);
+                            foreach (var constructor in type.GetConstructors())
+                            {
+                                if (!constructor.IsStatic)
+                                {
+                                    bool areAllParamsDefault = true;
+
+                                    foreach (var param in constructor.GetParameters())
+                                    {
+                                        if (!param.HasDefaultValue)
+                                        {
+                                            areAllParamsDefault = false;
+                                            break;
+                                        }
+                                    }
+
+                                    if (areAllParamsDefault)
+                                    {
+                                        if (null == constructorInfo)
+                                        {
+                                            constructorInfo = constructor;
+                                        }
+                                        else
+                                        {
+                                            throw new XamlParseException($"{type.FullName} has more than one constructor which params are all default.", node);
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (null == constructorInfo)
+                            {
+                                throw new XamlParseException($"{type.FullName} has no constructor which params are all default.", node);
+                            }
+
+                            List<object> defaultParams = new List<object>();
+                            foreach (var param in constructorInfo.GetParameters())
+                            {
+                                defaultParams.Add(param.DefaultValue);
+                            }
+
+                            value = Activator.CreateInstance(type, defaultParams.ToArray());
                         }
                         if (value is Element)
                         {
