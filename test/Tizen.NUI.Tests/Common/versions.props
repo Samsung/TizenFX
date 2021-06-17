@@ -1,7 +1,7 @@
 <Project>
 
   <PropertyGroup>
-    <!--TizenNETVersion>8.0.0.15596</TizenNETVersion-->
+    <TizenNETVersion>9.0.0.16384</TizenNETVersion>
     <TizenNETSdkVersion>1.0.9</TizenNETSdkVersion>
     <XamarinFormsVersion>4.4.0.991265</XamarinFormsVersion>
   </PropertyGroup>

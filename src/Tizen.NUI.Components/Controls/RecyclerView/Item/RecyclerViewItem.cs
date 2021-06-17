@@ -49,7 +49,7 @@ namespace Tizen.NUI.Components
         /// Property of boolean Selected flag.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public static readonly BindableProperty IsSelectedProperty = BindableProperty.Create(nameof(IsSelected), typeof(bool), typeof(RecyclerViewItem), true, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IsSelectedProperty = BindableProperty.Create(nameof(IsSelected), typeof(bool), typeof(RecyclerViewItem), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (RecyclerViewItem)bindable;
             if (newValue != null)
