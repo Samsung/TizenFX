@@ -326,10 +326,7 @@ namespace Tizen.Network.Bluetooth
                     _taskForDisconnection = null;
                 }
 
-                if (e.Result == (int)BluetoothError.None)
-                {
-                    ConnectionStateChanged?.Invoke(this, e);
-                }
+                ConnectionStateChanged?.Invoke(this, e);
             }
         }
 
