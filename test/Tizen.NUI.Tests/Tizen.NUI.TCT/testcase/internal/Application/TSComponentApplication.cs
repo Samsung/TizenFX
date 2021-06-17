@@ -15,6 +15,7 @@ namespace Tizen.NUI.Devel.Tests
         private const string tag = "NUITEST";
         private string resource = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
         private delegate bool dummyCallback(IntPtr application);
+
         private bool OnDummyCallback(IntPtr data)
         {
             return false;
@@ -33,79 +34,53 @@ namespace Tizen.NUI.Devel.Tests
         }
 
         [Test]
-        [Description("ComponentApplication NewComponentApplication")]
+        [Category("P1")]
+        [Description("ComponentApplication constructor.")]
+        [Property("SPEC", "Tizen.NUI.ComponentApplication.ComponentApplication C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ComponentApplicationNewComponentApplication()
+        public void ComponentApplicationConstructor()
         {
-            tlog.Debug(tag, $"ComponentApplicationNewComponentApplication START");
+            tlog.Debug(tag, $"ComponentApplicationConstructor START");
 
-            var args = new string[] { "Dali-demo" };
-            var stylesheet = resource + "/style/Test_Style_Manager.json";
-            var testingTarget = ComponentApplication.NewComponentApplication(args, stylesheet);
-            Assert.IsNotNull(testingTarget, "should be not null");
-            Assert.IsInstanceOf<ComponentApplication>(testingTarget, "should be an instance of testing target class!");
+            using (Widget widget = new Widget())
+            {
+                var testingTarget = new ComponentApplication(widget.SwigCPtr.Handle, true);
+                Assert.IsNotNull(testingTarget, "should be not null");
+                Assert.IsInstanceOf<ComponentApplication>(testingTarget, "should be an instance of testing target class!");
 
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"ComponentApplicationNewComponentApplication END (OK)");
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"ComponentApplicationConstructor END (OK)");
         }
 
         [Test]
-        [Description("ComponentApplication New")]
+        [Category("P1")]
+        [Description("ComponentApplication CreateNativeSignal.")]
+        [Property("SPEC", "Tizen.NUI.ComponentApplication.CreateNativeSignal M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ComponentApplicationNew()
+        public void ComponentApplicationCreateNativeSignal()
         {
-            tlog.Debug(tag, $"ComponentApplicationNew START");
+            tlog.Debug(tag, $"ComponentApplicationCreateNativeSignal START");
 
-            var args = new string[] { "Dali-demo" };
-            var stylesheet = resource + "/style/Test_Style_Manager.json";
-            var testingTarget = ComponentApplication.New(args, stylesheet);
-            Assert.IsNotNull(testingTarget, "should be not null");
-            Assert.IsInstanceOf<ComponentApplication>(testingTarget, "should be an instance of testing target class!");
+            using (Widget widget = new Widget())
+            {
+                var testingTarget = new ComponentApplication(widget.SwigCPtr.Handle, true);
+                Assert.IsNotNull(testingTarget, "should be not null");
+                Assert.IsInstanceOf<ComponentApplication>(testingTarget, "should be an instance of testing target class!");
 
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"ComponentApplicationNew END (OK)");
-        }
+                var result = testingTarget.CreateNativeSignal();
+                Assert.IsNotNull(result, "should be not null");
+                Assert.IsInstanceOf<ApplicationSignal>(result, "should be an instance of ApplicationSignal class!");
 
-        [Test]
-        [Description("ComponentApplication connection")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ComponentApplicationConnection()
-        {
-            tlog.Debug(tag, $"ComponentApplicationConnection START");
+                testingTarget.Dispose();
+            }
 
-            var args = new string[] { "Dali-demo" };
-            var stylesheet = resource + "/style/Test_Style_Manager.json";
-            var testingTarget = ComponentApplication.NewComponentApplication(args, stylesheet);
-            Assert.IsNotNull(testingTarget, "should be not null");
-            Assert.IsInstanceOf<ComponentApplication>(testingTarget, "should be an instance of testing target class!");
-
-            dummyCallback callback = OnDummyCallback;
-            testingTarget.Connect(callback);
-            testingTarget.Disconnect(callback);
-            testingTarget.Dispose();
-
-            tlog.Debug(tag, $"ComponentApplicationConnection END (OK)");
-        }
-
-        [Test]
-        [Description("ComponentApplication disconnection")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ComponentApplicationDisconnection()
-        {
-            tlog.Debug(tag, $"ComponentApplicationDisconnection START");
-
-            var args = new string[] { "Dali-demo" };
-            var stylesheet = resource + "/style/Test_Style_Manager.json";
-            var testingTarget = ComponentApplication.NewComponentApplication(args, stylesheet);
-            Assert.IsNotNull(testingTarget, "should be not null");
-            Assert.IsInstanceOf<ComponentApplication>(testingTarget, "should be an instance of testing target class!");
-
-            dummyCallback callback = OnDummyCallback;
-            testingTarget.Connect(callback);
-            testingTarget.Disconnect(callback);
-            testingTarget.Dispose();
-
-            tlog.Debug(tag, $"ComponentApplicationDisconnection END (OK)");
+            tlog.Debug(tag, $"ComponentApplicationCreateNativeSignal END (OK)");
         }
     }
 }

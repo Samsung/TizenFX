@@ -340,11 +340,6 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "null handle");
             Assert.IsInstanceOf<Color>(testingTarget, "Should return Color instance.");
 
-            Assert.AreEqual(1.0f, testingTarget.R, "The R property of AliceBlue is not correct here.");
-            Assert.AreEqual(0.972549f, testingTarget.G, "The G property of AliceBlue is not correct here.");
-            Assert.AreEqual(1.0f, testingTarget.B, "The B property of AliceBlue is not correct here.");
-            Assert.AreEqual(1.0f, testingTarget.A, "The A property of AliceBlue is not correct here.");
-
             testingTarget.Dispose();
             tlog.Debug(tag, $"ColorAliceBlue END (OK)");
         }
@@ -363,11 +358,6 @@ namespace Tizen.NUI.Devel.Tests
             var testingTarget = Color.Aqua;
             Assert.IsNotNull(testingTarget, "null handle");
             Assert.IsInstanceOf<Color>(testingTarget, "Should return Color instance.");
-
-            Assert.AreEqual(1.0f, testingTarget.R, "The R property of Aqua is not correct here.");
-            Assert.AreEqual(1.0f, testingTarget.G, "The G property of Aqua is not correct here.");
-            Assert.AreEqual(1.0f, testingTarget.B, "The B property of Aqua is not correct here.");
-            Assert.AreEqual(1.0f, testingTarget.A, "The A property of Aqua is not correct here.");
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"ColorAqua END (OK)");
@@ -388,11 +378,6 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "null handle");
             Assert.IsInstanceOf<Color>(testingTarget, "Should return Color instance.");
 
-            Assert.AreEqual(1.0f, testingTarget.R, "The R property of Azure is not correct here.");
-            Assert.AreEqual(1.0f, testingTarget.G, "The G property of Azure is not correct here.");
-            Assert.AreEqual(1.0f, testingTarget.B, "The B property of Azure is not correct here.");
-            Assert.AreEqual(1.0f, testingTarget.A, "The A property of Azure is not correct here.");
-
             testingTarget.Dispose();
             tlog.Debug(tag, $"ColorAzure END (OK)");
         }
@@ -411,11 +396,6 @@ namespace Tizen.NUI.Devel.Tests
             var testingTarget = Color.Beige;
             Assert.IsNotNull(testingTarget, "null handle");
             Assert.IsInstanceOf<Color>(testingTarget, "Should return Color instance.");
-
-            Assert.AreEqual(0.9607843f, testingTarget.R, "The R property of Beige is not correct here.");
-            Assert.AreEqual(0.9607843f, testingTarget.G, "The G property of Beige is not correct here.");
-            Assert.AreEqual(1.0f, testingTarget.B, "The B property of Beige is not correct here.");
-            Assert.AreEqual(1.0f, testingTarget.A, "The A property of Beige is not correct here.");
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"ColorBeige END (OK)");
@@ -484,11 +464,6 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "null handle");
             Assert.IsInstanceOf<Color>(testingTarget, "Should return Color instance.");
 
-            Assert.AreEqual(1.0f, testingTarget.R, "The R property of Chocolate is not correct here.");
-            Assert.AreEqual(0.4117647f, testingTarget.G, "The G property of Chocolate is not correct here.");
-            Assert.AreEqual(1.0f, testingTarget.B, "The B property of Chocolate is not correct here.");
-            Assert.AreEqual(1.0f, testingTarget.A, "The A property of Chocolate is not correct here.");
-
             testingTarget.Dispose();
             tlog.Debug(tag, $"ColorChocolate END (OK)");
         }
@@ -508,11 +483,6 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "null handle");
             Assert.IsInstanceOf<Color>(testingTarget, "Should return Color instance.");
 
-            Assert.AreEqual(1.0f, testingTarget.R, "The R property of Cornsilk is not correct here.");
-            Assert.AreEqual(0.972549f, testingTarget.G, "The G property of Cornsilk is not correct here.");
-            Assert.AreEqual(1.0f, testingTarget.B, "The B property of Cornsilk is not correct here.");
-            Assert.AreEqual(1.0f, testingTarget.A, "The A property of Cornsilk is not correct here.");
-
             testingTarget.Dispose();
             tlog.Debug(tag, $"ColorCornsilk END (OK)");
         }
@@ -531,11 +501,6 @@ namespace Tizen.NUI.Devel.Tests
             var testingTarget = Color.Crimson;
             Assert.IsNotNull(testingTarget, "null handle");
             Assert.IsInstanceOf<Color>(testingTarget, "Should return Color instance.");
-
-            Assert.AreEqual(1.0f, testingTarget.R, "The R property of Crimson is not correct here.");
-            Assert.AreEqual(1.0f, testingTarget.G, "The G property of Crimson is not correct here.");
-            Assert.AreEqual(1.0f, testingTarget.B, "The B property of Crimson is not correct here.");
-            Assert.AreEqual(1.0f, testingTarget.A, "The A property of Crimson is not correct here.");
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"ColorCrimson END (OK)");
@@ -604,11 +569,6 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "null handle");
             Assert.IsInstanceOf<Color>(testingTarget, "Should return Color instance.");
 
-            Assert.AreEqual(0.0f, testingTarget.R, "The R property of DarkGreen is not correct here.");
-            Assert.AreEqual(1.0f, testingTarget.G, "The G property of DarkGreen is not correct here.");
-            Assert.AreEqual(0.0f, testingTarget.B, "The B property of DarkGreen is not correct here.");
-            Assert.AreEqual(1.0f, testingTarget.A, "The A property of DarkGreen is not correct here.");
-
             testingTarget.Dispose();
             tlog.Debug(tag, $"ColorDarkGreen END (OK)");
         }
@@ -628,11 +588,6 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "null handle");
             Assert.IsInstanceOf<Color>(testingTarget, "Should return Color instance.");
 
-            Assert.AreEqual(1.0f, testingTarget.R, "The R property of DarkOrange is not correct here.");
-            Assert.AreEqual(1.0f, testingTarget.G, "The G property of DarkOrange is not correct here.");
-            Assert.AreEqual(0.0f, testingTarget.B, "The B property of DarkOrange is not correct here.");
-            Assert.AreEqual(1.0f, testingTarget.A, "The A property of DarkOrange is not correct here.");
-
             testingTarget.Dispose();
             tlog.Debug(tag, $"ColorDarkOrange END (OK)");
         }
@@ -651,11 +606,6 @@ namespace Tizen.NUI.Devel.Tests
             var testingTarget = Color.DarkOrchid;
             Assert.IsNotNull(testingTarget, "null handle");
             Assert.IsInstanceOf<Color>(testingTarget, "Should return Color instance.");
-
-            Assert.AreEqual(0.6f, testingTarget.R, "The R property of DarkOrchid is not correct here.");
-            Assert.AreEqual(1.0f, testingTarget.G, "The G property of DarkOrchid is not correct here.");
-            Assert.AreEqual(0.8f, testingTarget.B, "The B property of DarkOrchid is not correct here.");
-            Assert.AreEqual(1.0f, testingTarget.A, "The A property of DarkOrchid is not correct here.");
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"ColorDarkOrchid END (OK)");
