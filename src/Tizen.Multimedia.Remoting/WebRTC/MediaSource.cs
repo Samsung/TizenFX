@@ -137,5 +137,38 @@ namespace Tizen.Multimedia.Remoting
                     ThrowIfFailed("Failed to set pause");
             }
         }
+
+        /// <summary>
+        /// Gets or sets the video resolution of the current media source.
+        /// </summary>
+        /// <value>A value that specifies the mute status.</value>
+        /// <exception cref="ArgumentException">This source is not video source.</exception>
+        /// <exception cref="InvalidOperationException">MediaSource is not attached yet.</exception>
+        /// <since_tizen> 9 </since_tizen>
+        public Size VideoResolution
+        {
+            get
+            {
+                if (MediaType != MediaType.Video)
+                {
+                    throw new ArgumentException("This property is only for video.");
+                }
+
+                NativeWebRTC.GetVideoResolution(WebRtc.Handle, SourceId.Value, out int width, out int height).
+                    ThrowIfFailed("Failed to get video resolution");
+
+                return new Size(width, height);
+            }
+            set
+            {
+                if (MediaType != MediaType.Video)
+                {
+                    throw new ArgumentException("This property is only for video.");
+                }
+
+                NativeWebRTC.SetVideoResolution(WebRtc.Handle, SourceId.Value, value.Width, value.Height).
+                    ThrowIfFailed("Failed to set video resolution");
+            }
+        }
     }
 }

@@ -118,6 +118,12 @@ internal static partial class Interop
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_source_get_mute")]
         internal static extern WebRTCErrorCode GetMute(IntPtr handle, uint sourceId, MediaType type, out bool mute);
 
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_source_set_video_resolution")]
+        internal static extern WebRTCErrorCode SetVideoResolution(IntPtr handle, uint sourceId, int width, int height);
+
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_source_get_video_resolution")]
+        internal static extern WebRTCErrorCode GetVideoResolution(IntPtr handle, uint sourceId, out int width, out int height);
+
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_set_display")]
         internal static extern WebRTCErrorCode SetDisplay(IntPtr handle, uint trackId, WebRTCDisplayType type, IntPtr display);
 
