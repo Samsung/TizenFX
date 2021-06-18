@@ -115,6 +115,11 @@ namespace Tizen.NUI
         {
             get
             {
+                if (cellPadding == null)
+                {
+                    cellPadding = new Size2D(0, 0);
+                }
+
                 return cellPadding;
             }
             set
