@@ -95,7 +95,7 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Pauses or resumes the current media source.
+        /// Gets or sets the pause status of current media source.
         /// </summary>
         /// <value>A value that specifies the pause status.</value>
         /// <exception cref="InvalidOperationException">MediaSource is not attached yet.</exception>
@@ -112,6 +112,28 @@ namespace Tizen.Multimedia.Remoting
             set
             {
                 NativeWebRTC.SetPause(WebRtc.Handle, SourceId.Value, MediaType, value).
+                    ThrowIfFailed("Failed to set pause");
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the mute status of the current media source.
+        /// </summary>
+        /// <value>A value that specifies the mute status.</value>
+        /// <exception cref="InvalidOperationException">MediaSource is not attached yet.</exception>
+        /// <since_tizen> 9 </since_tizen>
+        public bool Mute
+        {
+            get
+            {
+                NativeWebRTC.GetMute(WebRtc.Handle, SourceId.Value, MediaType, out bool isMuted).
+                    ThrowIfFailed("Failed to get pause");
+
+                return isMuted;
+            }
+            set
+            {
+                NativeWebRTC.SetMute(WebRtc.Handle, SourceId.Value, MediaType, value).
                     ThrowIfFailed("Failed to set pause");
             }
         }
