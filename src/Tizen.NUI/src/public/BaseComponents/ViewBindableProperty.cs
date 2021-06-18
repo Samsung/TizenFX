@@ -1822,6 +1822,80 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         });
 
+        /// <summary>
+        /// WidthDimensionProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty WidthDimensionProperty = BindableProperty.Create(
+            propertyName: nameof(WidthDimension),
+            returnType: typeof(LayoutPolicy),
+            declaringType: typeof(View),
+            defaultValue: LayoutPolicy.FixedSize,
+            propertyChanged: (bindable, oldValue, newValue) =>
+            {
+                var view = (View)bindable;
+                if (newValue != null && view.HasBody())
+                {
+                    var widthSpecification = (int)((LayoutPolicy)newValue);
+                    if (widthSpecification == LayoutParamPolicies.MatchParent || widthSpecification == LayoutParamPolicies.WrapContent)
+                    {
+                        view.WidthSpecification = widthSpecification;
+                    }
+                    else
+                    {
+                        view.WidthSpecification = view.Size2D.Width;
+                    }
+                }
+            },
+            defaultValueCreator: (bindable) =>
+            {
+                var view = (View)bindable;
+                var widthSpecification = view.WidthSpecification;
+                if (widthSpecification >= 0)
+                {
+                    return LayoutPolicy.FixedSize;
+                }
+                return (LayoutPolicy)widthSpecification;
+            }
+        );
+
+        /// <summary>
+        /// HeightDimensionProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty HeightDimensionProperty = BindableProperty.Create(
+            propertyName: nameof(HeightDimension),
+            returnType: typeof(LayoutPolicy),
+            declaringType: typeof(View),
+            defaultValue: LayoutPolicy.FixedSize,
+            propertyChanged: (bindable, oldValue, newValue) =>
+            {
+                var view = (View)bindable;
+                if (newValue != null && view.HasBody())
+                {
+                    var heightSpecification = (int)((LayoutPolicy)newValue);
+                    if (heightSpecification == LayoutParamPolicies.MatchParent || heightSpecification == LayoutParamPolicies.WrapContent)
+                    {
+                        view.HeightSpecification = heightSpecification;
+                    }
+                    else
+                    {
+                        view.HeightSpecification = view.Size2D.Height;
+                    }
+                }
+            },
+            defaultValueCreator: (bindable) =>
+            {
+                var view = (View)bindable;
+                var heightSpecification = view.HeightSpecification;
+                if (heightSpecification >= 0)
+                {
+                    return LayoutPolicy.FixedSize;
+                }
+                return (LayoutPolicy)heightSpecification;
+            }
+        );
+
         private void SetBackgroundImage(string value)
         {
             if (string.IsNullOrEmpty(value))

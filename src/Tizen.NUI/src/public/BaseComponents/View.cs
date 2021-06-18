@@ -2721,5 +2721,83 @@ namespace Tizen.NUI.BaseComponents
                 return transitionOptions;
             }
         }
+
+        /// <summary>
+        /// Layout policy to decide the size of View when the View is laid out in its parent View.
+        /// </summary>
+        ///<remarks>
+        /// Hidden API (Inhouse API) : This API is for internal usage, can be changed at any time.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum LayoutPolicy
+        {
+            /// <summary>
+            /// Indicates child size should match parent size.
+            /// </summary>
+            ///<remarks>
+            /// Hidden API (Inhouse API) : This API is for internal usage, can be changed at any time.
+            /// </remarks>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            MatchParent = -1,
+
+            /// <summary>
+            /// Indicates parent should take the smallest size possible to wrap its children with their desired size.
+            /// </summary>
+            ///<remarks>
+            /// Hidden API (Inhouse API) : This API is for internal usage, can be changed at any time.
+            /// </remarks>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            WrapContent = -2,
+            /// <summary>
+            /// Indicates that the Size is fixed so WidthSpecification or HeightSpecification needs be set a specific value. 
+            /// The WidthSpecification or HeightSpecification value should be positive value or zero which represents a fixed size.
+            /// </summary>
+            ///<remarks>
+            /// Hidden API (Inhouse API) : This API is for internal usage, can be changed at any time.
+            /// </remarks>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            FixedSize = -3,
+        }
+
+        /// <summary>
+        /// The required layout policy for width dimension
+        /// </summary>
+        ///<remarks>
+        /// Hidden API (Inhouse API) : This API is for internal usage, can be changed at any time.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public LayoutPolicy WidthDimension
+        {
+            get
+            {
+                return (LayoutPolicy)GetValue(WidthDimensionProperty);
+            }
+            set
+            {
+                SetValue(WidthDimensionProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The required layout policy for height dimension
+        /// </summary>
+        ///<remarks>
+        /// Hidden API (Inhouse API) : This API is for internal usage, can be changed at any time.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public LayoutPolicy HeightDimension
+        {
+            get
+            {
+                return (LayoutPolicy)GetValue(HeightDimensionProperty);
+            }
+            set
+            {
+                SetValue(HeightDimensionProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
     }
 }
