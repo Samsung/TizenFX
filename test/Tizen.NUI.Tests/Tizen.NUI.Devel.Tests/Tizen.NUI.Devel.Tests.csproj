@@ -3,20 +3,17 @@
   <!-- Property Group for .NET Core Project -->
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>tizen90</TargetFramework>
+    <TargetFrameworkIdentifier>Tizen</TargetFrameworkIdentifier>
   </PropertyGroup>
 
   <!-- Property Group for Tizen Project -->
   <PropertyGroup>
     <TizenCreateTpkOnBuild>true</TizenCreateTpkOnBuild>
-    <AssemblyName>Tizen.NUI.Devel.Tests</AssemblyName>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>NuiSample.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>portable</DebugType>
-    <DefineConstants>TRACE;DEBUG;EXAMPLE_OFF</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>None</DebugType>
@@ -26,18 +23,24 @@
 	<Folder Include="lib\" />
   </ItemGroup>
 
-  <!--Import Project="..\Common\dependencies.props" /-->
+  <Import Project="..\Common\dependencies.props" />
   <ItemGroup>
-    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.9" />
+    <PackageReference Include="Tizen.NET" Version="$(TizenNETVersion)">
+      <ExcludeAssets>Runtime</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="Tizen.NET.Sdk" Version="$(TizenNETSdkVersion)" />
   </ItemGroup>
 
   <!-- Include Nuget Package for Tizen Project building -->
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\Tizen.Log\Tizen.Log.csproj" />
-    <ProjectReference Include="..\..\..\src\Tizen.NUI.Components\Tizen.NUI.Components.csproj" />
-    <ProjectReference Include="..\..\..\src\Tizen.NUI\Tizen.NUI.csproj" />
     <ProjectReference Include="..\nunit.framework\nunit.framework.csproj" />
     <ProjectReference Include="..\nunitlite\nunitlite.csproj" />
   </ItemGroup>
+
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>./NuiTest.snk</AssemblyOriginatorKeyFile>
+    <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
+  </PropertyGroup>
 
 </Project>
