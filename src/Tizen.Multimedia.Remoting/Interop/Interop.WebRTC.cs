@@ -100,11 +100,17 @@ internal static partial class Interop
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_packet_source_push_packet")]
         internal static extern WebRTCErrorCode PushMediaPacket(IntPtr handle, uint sourceId, IntPtr packet);
 
-        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_get_transceiver_direction")]
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_source_get_transceiver_direction")]
         internal static extern WebRTCErrorCode GetTransceiverDirection(IntPtr handle, uint sourceId, MediaType type, out TransceiverDirection mode);
 
-        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_set_transceiver_direction")]
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_source_set_transceiver_direction")]
         internal static extern WebRTCErrorCode SetTransceiverDirection(IntPtr handle, uint sourceId, MediaType type, TransceiverDirection mode);
+
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_source_set_pause")]
+        internal static extern WebRTCErrorCode SetPause(IntPtr handle, uint sourceId, MediaType type, bool pause);
+
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_source_get_pause")]
+        internal static extern WebRTCErrorCode GetPause(IntPtr handle, uint sourceId, MediaType type, out bool isPaused);
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_set_display")]
         internal static extern WebRTCErrorCode SetDisplay(IntPtr handle, uint trackId, WebRTCDisplayType type, IntPtr display);

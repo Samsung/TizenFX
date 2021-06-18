@@ -93,5 +93,27 @@ namespace Tizen.Multimedia.Remoting
                     ThrowIfFailed("Failed to get transceiver direction.");
             }
         }
+
+        /// <summary>
+        /// Pauses or resumes the current media source.
+        /// </summary>
+        /// <value>A value that specifies the pause status.</value>
+        /// <exception cref="InvalidOperationException">MediaSource is not attached yet.</exception>
+        /// <since_tizen> 9 </since_tizen>
+        public bool Pause
+        {
+            get
+            {
+                NativeWebRTC.GetPause(WebRtc.Handle, SourceId.Value, MediaType, out bool isPaused).
+                    ThrowIfFailed("Failed to get pause");
+
+                return isPaused;
+            }
+            set
+            {
+                NativeWebRTC.SetPause(WebRtc.Handle, SourceId.Value, MediaType, value).
+                    ThrowIfFailed("Failed to set pause");
+            }
+        }
     }
 }
