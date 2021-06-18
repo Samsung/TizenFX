@@ -60,6 +60,9 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate bool SupportedMediaFormatCallback(int format, IntPtr userData);
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate bool RetrieveTurnServerCallback(string server, IntPtr userData);
+
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_create")]
         internal static extern WebRTCErrorCode Create(out WebRTCHandle handle);
@@ -135,6 +138,12 @@ internal static partial class Interop
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_set_stun_server")]
         internal static extern WebRTCErrorCode SetStunServer(IntPtr handle, string server);
+
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_add_turn_server")]
+        internal static extern WebRTCErrorCode AddTurnServer(IntPtr handle, string server);
+
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_foreach_turn_server")]
+        internal static extern WebRTCErrorCode ForeachTurnServer(IntPtr handle, RetrieveTurnServerCallback callback, IntPtr userData = default);
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_create_offer")]
         internal static extern WebRTCErrorCode CreateSDPOffer(IntPtr handle, SafeBundleHandle bundle, out string offer);

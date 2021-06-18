@@ -16,6 +16,7 @@
 
 using System;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -602,6 +603,68 @@ namespace Tizen.Multimedia.Remoting
             {
                 RemoveSource(source);
             }
+        }
+
+        /// <summary>
+        /// Sets a turn server.
+        /// </summary>
+        /// <exception cref="ArgumentNullException">The <paramref name="turnServer"/> is null.</exception>
+        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <since_tizen> 9 </since_tizen>
+        public void SetTurnServer(string turnServer)
+        {
+            ValidateNotDisposed();
+
+            if (turnServer == null)
+            {
+                throw new ArgumentNullException(nameof(turnServer), "Turn server name is null.");
+            }
+
+            NativeWebRTC.AddTurnServer(Handle, turnServer).
+                ThrowIfFailed("Failed to add turn server");
+        }
+
+        /// <summary>
+        /// Sets turn servers.
+        /// </summary>
+        /// <exception cref="ArgumentNullException">The one of <paramref name="turnServers"/> is null.</exception>
+        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <since_tizen> 9 </since_tizen>
+        public void SetTurnServers(params string[] turnServers)
+        {
+            ValidateNotDisposed();
+
+            foreach (var turnServer in turnServers)
+            {
+                SetTurnServer(turnServer);
+            }
+        }
+
+        /// <summary>
+        /// Gets all turn servers.
+        /// </summary>
+        /// <returns>The turn server list.</returns>
+        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <since_tizen> 9 </since_tizen>
+        public ReadOnlyCollection<string> GetTurnServer()
+        {
+            ValidateNotDisposed();
+
+            var list = new List<string>();
+
+            NativeWebRTC.RetrieveTurnServerCallback callback = (server, _) =>
+            {
+                if (!string.IsNullOrWhiteSpace(server))
+                {
+                    list.Add(server);
+                }
+
+                return true;
+            };
+
+            NativeWebRTC.ForeachTurnServer(Handle, callback).ThrowIfFailed("Failed to retrieve turn server");
+
+            return list.AsReadOnly();
         }
     }
 }
