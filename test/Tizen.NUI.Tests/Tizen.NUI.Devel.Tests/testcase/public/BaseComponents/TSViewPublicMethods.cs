@@ -52,7 +52,7 @@ namespace Tizen.NUI.Devel.Tests
 
             view.Unparent();
             view.Dispose();
-            tlog.Debug(tag, $"ViewAnimateBackgroundColor END ");
+            tlog.Debug(tag, $"ViewAnimateBackgroundColor END (OK)");
         }
 
         [Test]
@@ -80,7 +80,7 @@ namespace Tizen.NUI.Devel.Tests
 
             view.Unparent();
             view.Dispose();
-            tlog.Debug(tag, $"ViewAnimateColor END ");
+            tlog.Debug(tag, $"ViewAnimateColor END (OK)");
         }
 
         [Test]
@@ -115,7 +115,7 @@ namespace Tizen.NUI.Devel.Tests
             {
                 view.Unparent();
                 view.Dispose();
-                tlog.Debug(tag, $"ViewAddArgumentNull END ");
+                tlog.Debug(tag, $"ViewAddArgumentNull END (OK)");
             }
         }
 
@@ -140,7 +140,7 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(view, "should be not null");
 
             Assert.IsFalse(view.HasFocus(), "should be false!");
-            tlog.Debug(tag, $"ViewHasFocus END ");
+            tlog.Debug(tag, $"ViewHasFocus END (OK)");
         }
 
 
