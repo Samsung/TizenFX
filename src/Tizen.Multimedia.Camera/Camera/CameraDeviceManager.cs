@@ -26,6 +26,9 @@ namespace Tizen.Multimedia
     /// <summary>
     /// This CameraDeviceManager class provides methods to control current camera devices and get its information.
     /// </summary>
+    /// <remarks>
+    /// This supports the product infrastructure and is not intended to be used directly from 3rd party application code.
+    /// </remarks>
     /// <since_tizen> 9 </since_tizen>
     /// <feature> http://tizen.org/feature/camera </feature>
     [EditorBrowsable(EditorBrowsableState.Never)]
@@ -38,7 +41,7 @@ namespace Tizen.Multimedia
         /// Initializes a new instance of the <see cref="CameraDeviceManager"/> class.
         /// </summary>
         /// <exception cref="InvalidOperationException">Invalid operation.</exception>
-        /// <exception cref="NotSupportedException">The camera feature is not supported.</exception>
+        /// <exception cref="NotSupportedException">The camera device manager is not supported.</exception>
         /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public CameraDeviceManager()
