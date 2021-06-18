@@ -29,7 +29,7 @@ namespace Tizen.Multimedia
     /// <since_tizen> 9 </since_tizen>
     /// <feature> http://tizen.org/feature/camera </feature>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    internal class CameraDeviceManager : IDisposable
+    public class CameraDeviceManager : IDisposable
     {
         private IntPtr _handle;
         private bool _disposed;
