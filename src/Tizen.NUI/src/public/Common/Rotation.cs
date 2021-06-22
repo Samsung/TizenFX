@@ -249,6 +249,36 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Rotate a vector3 with the Rotation.
+        /// For example, if this Rotation has (0, 1, 0) rotation axis and Math.PI radian angle and the input vector is (1, 0, 0),
+        /// this Rotation method returns (-1, 0, 0) that is rotated along Y axis amount of Math.PI.
+        /// </summary>
+        /// <param name="vector">The vector of vector3 to be rotated with this Rotation</param>
+        /// <returns>Vector3 that is the rotation result of this rotation.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Vector3 Rotate(Vector3 vector)
+        {
+            Vector3 ret = new Vector3(Interop.Rotation.RotateVector3(SwigCPtr, Vector3.getCPtr(vector)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Rotate a vector4 with the Rotation.
+        /// For example, if this Rotation has (0, 1, 0) rotation axis and Math.PI radian angle and the input vector is (1, 0, 0, 0),
+        /// this Rotation method returns (-1, 0, 0, 0) that is rotated along Y axis amount of Math.PI.
+        /// </summary>
+        /// <param name="vector">The vector of vector4 to be rotated with this Rotation</param>
+        /// <returns>Vector4 that is the rotation result of this rotation.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Vector4 Rotate(Vector4 vector)
+        {
+            Vector4 ret = new Vector4(Interop.Rotation.RotateVector4(SwigCPtr, Vector4.getCPtr(vector)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
         /// Helper to check if this is an identity quaternion.
         /// </summary>
         /// <returns>True if this is identity quaternion.</returns>
