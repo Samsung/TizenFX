@@ -318,6 +318,9 @@ internal static partial class Interop
     internal static partial class CameraDeviceManager
     {
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void DeviceConnectionChangedCallback(ref CameraDeviceStruct device, bool status, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void DeviceListChangedCallback(ref CameraDeviceListStruct deviceList, IntPtr userData);
 
 
@@ -335,6 +338,12 @@ internal static partial class Interop
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_device_manager_remove_device_list_changed_cb")]
         internal static extern CameraError UnsetDeviceListChangedCallback(IntPtr handle, int id);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_device_manager_add_device_connection_changed_cb")]
+        internal static extern CameraError SetDeviceConnectionChangedCallback(IntPtr handle, DeviceConnectionChangedCallback callback, IntPtr userData, out int id);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_device_manager_remove_device_connection_changed_cb")]
+        internal static extern CameraError UnsetDeviceConnectionChangedCallback(IntPtr handle, int id);
 
 
         [NativeStruct("camera_device_s", Include="camera_internal.h", PkgConfig="capi-media-camera")]
