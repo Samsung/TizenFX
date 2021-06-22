@@ -125,6 +125,12 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rotation_AngleBetween")]
             public static extern float AngleBetween(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rotation_Rotate_Vector3")]
+            public static extern global::System.IntPtr RotateVector3(global::System.Runtime.InteropServices.HandleRef nuiRotation, global::System.Runtime.InteropServices.HandleRef nuiVector3);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rotation_Rotate_Vector4")]
+            public static extern global::System.IntPtr RotateVector4(global::System.Runtime.InteropServices.HandleRef nuiRotation, global::System.Runtime.InteropServices.HandleRef nuiVector4);
         }
     }
 }
