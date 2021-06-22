@@ -251,6 +251,8 @@ namespace Tizen.Network.Bluetooth
         internal static BluetoothDevice ConvertStructToDeviceClass(BluetoothDeviceStruct device)
         {
             const int DeviceNameLengthMax = 248;
+            const int UuidLengthMax = 50;
+
             BluetoothDevice resultDevice = new BluetoothDevice();
             Collection<string> uuidList = null;
 
@@ -260,8 +262,11 @@ namespace Tizen.Network.Bluetooth
                 Marshal.Copy (device.ServiceUuidList, extensionList, 0, device.ServiceCount);
                 uuidList = new Collection<string> ();
                 foreach (IntPtr extension in extensionList) {
-                    string uuid = Marshal.PtrToStringAnsi (extension);
-                    uuidList.Add (uuid);
+                    if (extension != IntPtr.Zero)
+                    {
+                        string uuid = Marshal.PtrToStringAnsi (extension, UuidLengthMax);
+                        uuidList.Add (uuid);
+                    }
                 }
             }
 
