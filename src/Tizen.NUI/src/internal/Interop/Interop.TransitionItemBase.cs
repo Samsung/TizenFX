@@ -39,20 +39,11 @@ namespace Tizen.NUI
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TransitionBase_Assign")]
             public static extern IntPtr Assign(HandleRef destination, HandleRef source);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TransitionBase_SetDuration")]
-            public static extern void SetDuration(HandleRef transition, float seconds);
-
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TransitionBase_GetDuration")]
-            public static extern float GetDuration(HandleRef transition);
-
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TransitionBase_SetDelay")]
-            public static extern void SetDelay(HandleRef transition, float seconds);
-
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TransitionBase_GetDelay")]
-            public static extern float GetDelay(HandleRef transition);
-
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TransitionBase_SetTimePeriod")]
             public static extern void SetTimePeriod(HandleRef transition, HandleRef seconds);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TransitionBase_GetTimePeriod")]
+            public static extern IntPtr GetTimePeriod(HandleRef transition);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TransitionBase_SetAlphaFunction")]
             public static extern void SetAlphaFunction(HandleRef transition, HandleRef seconds);

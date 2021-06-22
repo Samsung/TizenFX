@@ -18,6 +18,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
 namespace Tizen.NUI.BaseComponents
@@ -29,6 +30,56 @@ namespace Tizen.NUI.BaseComponents
     public partial class View
     {
         internal string styleName;
+
+        internal class ThemeData
+        {
+            [Flags]
+            private enum States : byte
+            {
+                None = 0,
+                ControlStatePropagation = 1 << 0,
+                ThemeChangeSensitive = 1 << 1,
+                ThemeApplied = 1 << 2, // It is true when the view has valid style name or the platform theme has a component style for this view type.
+                                       // That indicates the view can have different styles by theme.
+                                       // Hence if the current state has ThemeApplied and ThemeChangeSensitive, the view will change its style by theme changing.
+                ListeningThemeChangeEvent = 1 << 3,
+            };
+
+            private States states = ThemeManager.ApplicationThemeChangeSensitive ? States.ThemeChangeSensitive : States.None;
+            public ViewStyle viewStyle;
+            public ControlState controlStates = ControlState.Normal;
+            public ViewSelectorData selectorData;
+
+            public bool ControlStatePropagation
+            {
+                get => ((states & States.ControlStatePropagation) != 0);
+                set => SetOption(States.ControlStatePropagation, value);
+            }
+
+            public bool ThemeChangeSensitive
+            {
+                get => ((states & States.ThemeChangeSensitive) != 0);
+                set => SetOption(States.ThemeChangeSensitive, value);
+            }
+
+            public bool ThemeApplied
+            {
+                get => ((states & States.ThemeApplied) != 0);
+                set => SetOption(States.ThemeApplied, value);
+            }
+
+            public bool ListeningThemeChangeEvent
+            {
+                get => ((states & States.ListeningThemeChangeEvent) != 0);
+                set => SetOption(States.ListeningThemeChangeEvent, value);
+            }
+
+            private void SetOption(States option, bool value)
+            {
+                if (value) states |= option;
+                else states &= ~option;
+            }
+        }
 
         /// <summary>
         /// The color mode of View.
@@ -1115,6 +1166,18 @@ namespace Tizen.NUI.BaseComponents
             return value == null ? null : new Selector<T>(value);
         }
 
+        internal void SetThemeApplied()
+        {
+            if (themeData == null) themeData = new ThemeData();
+            themeData.ThemeApplied = true;
+
+            if (ThemeChangeSensitive && !themeData.ListeningThemeChangeEvent)
+            {
+                themeData.ListeningThemeChangeEvent = true;
+                ThemeManager.ThemeChangedInternal.Add(OnThemeChanged);
+            }
+        }
+
         /// <summary>
         /// you can override it to clean-up your own resources.
         /// </summary>
@@ -1134,10 +1197,13 @@ namespace Tizen.NUI.BaseComponents
                 //Called by User
                 //Release your own managed resources here.
                 //You should release all of your own disposable objects here.
-                themeData?.selectorData?.Reset(this);
-                if (ThemeChangeSensitive)
+                if (themeData != null)
                 {
-                    ThemeManager.ThemeChangedInternal.Remove(OnThemeChanged);
+                    themeData.selectorData?.Reset(this);
+                    if (themeData.ListeningThemeChangeEvent)
+                    {
+                        ThemeManager.ThemeChangedInternal.Remove(OnThemeChanged);
+                    }
                 }
             }
 
@@ -1317,10 +1383,23 @@ namespace Tizen.NUI.BaseComponents
         /// Apply initial style to the view.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected void InitializeStyle(ViewStyle style = null)
+        protected virtual void InitializeStyle(ViewStyle style = null)
         {
-            if (style != null) ApplyStyle(style); // Use given style
-            else UpdateStyle(); // Use style in the current theme
+            // First, apply initial style if needs.
+            var initialStyle = ThemeManager.GetInitialStyleWithoutClone(GetType());
+            if (style == null || style.IncludeDefaultStyle)
+            {
+                ApplyStyle(initialStyle);
+            }
+
+            // Then, apply given style.
+            ApplyStyle(style);
+
+            // Listen theme change event if needs.
+            if (ThemeManager.PlatformThemeEnabled && initialStyle != null)
+            {
+                SetThemeApplied();
+            }
         }
 
         private View ConvertIdToView(uint id)
@@ -1398,18 +1477,6 @@ namespace Tizen.NUI.BaseComponents
         private bool EmptyOnTouch(object target, TouchEventArgs args)
         {
             return false;
-        }
-
-        private void UpdateStyle()
-        {
-            ViewStyle newStyle;
-            if (string.IsNullOrEmpty(styleName)) newStyle = ThemeManager.GetStyleWithoutClone(GetType());
-            else newStyle = ThemeManager.GetStyleWithoutClone(styleName);
-
-            if (newStyle != null)
-            {
-                ApplyStyle(newStyle);
-            }
         }
 
         private ViewSelectorData EnsureSelectorData()

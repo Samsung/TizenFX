@@ -121,7 +121,7 @@ namespace Tizen.NUI
 
                 if (string.IsNullOrEmpty(baseTheme)) return;
 
-                var baseThemeInstance = (Theme)ThemeManager.GetBuiltinTheme(baseTheme)?.Clone();
+                var baseThemeInstance = (Theme)ThemeManager.LoadPlatformTheme(baseTheme)?.Clone();
 
                 if (baseThemeInstance != null)
                 {
@@ -320,6 +320,8 @@ namespace Tizen.NUI
 
             if (Id == null) Id = theme.Id;
 
+            if (Version == null) Version = theme.Version;
+
             foreach (var item in theme)
             {
                 if (item.Value == null)
@@ -382,32 +384,7 @@ namespace Tizen.NUI
         /// </summary>
         internal void AddStyleWithoutClone(string styleName, ViewStyle value) => map[styleName] = value;
 
-        internal void ApplyExternalTheme(IExternalTheme externalTheme, HashSet<ExternalThemeKeyList> keyListSet)
-        {
-            Id = externalTheme.Id;
-            Version = externalTheme.Version;
-
-            if (keyListSet == null)
-            {
-                // Nothing to apply
-                return;
-            }
-
-            foreach (var keyList in keyListSet)
-            {
-                keyList?.ApplyKeyActions(externalTheme, this);
-            }
-        }
-
-        internal bool HasSameIdAndVersion(IExternalTheme externalTheme)
-        {
-            if (externalTheme == null)
-            {
-                return false;
-            }
-
-            return string.Equals(Id, externalTheme.Id, StringComparison.OrdinalIgnoreCase) && string.Equals(Version, externalTheme.Version, StringComparison.OrdinalIgnoreCase);
-        }
+        internal bool HasSameIdAndVersion(string id, string version) => string.Equals(Id, id, StringComparison.OrdinalIgnoreCase) && string.Equals(Version, version, StringComparison.OrdinalIgnoreCase);
 
         internal void SetChangedResources(IEnumerable<KeyValuePair<string, string>> changedResources)
         {

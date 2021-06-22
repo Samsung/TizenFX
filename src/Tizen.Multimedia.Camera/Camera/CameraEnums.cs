@@ -240,7 +240,17 @@ namespace Tizen.Multimedia
         /// Encoded pixel format : Motion JPEG
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        Mjpeg
+        Mjpeg,
+        /// <summary>
+        /// Encoded pixel format : VP8
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        Vp8,
+        /// <summary>
+        /// Encoded pixel format : VP9
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        Vp9
     }
 
     /// <summary>

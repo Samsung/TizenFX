@@ -504,6 +504,20 @@ namespace Tizen.NUI.BaseComponents
                     InsertText = (startPosition, text) => AccessibilityInsertText(startPosition, Marshal.PtrToStringAnsi(text)),
                     SetTextContents = (newContents) => AccessibilitySetTextContents(Marshal.PtrToStringAnsi(newContents)),
                     DeleteText = (startPosition, endPosition) => AccessibilityDeleteText(startPosition, endPosition),
+                    ScrollToChild = (child) => {
+                        using (var view = new View(child, true))
+                        {
+                            return AccessibilityScrollToChild(view);
+                        }
+                    },
+                    GetSelectedChildrenCount = () => AccessibilityGetSelectedChildrenCount(),
+                    GetSelectedChild = (selectedChildIndex) => View.getCPtr(AccessibilityGetSelectedChild(selectedChildIndex)).Handle,
+                    SelectChild = (childIndex) => AccessibilitySelectChild(childIndex),
+                    DeselectSelectedChild = (selectedChildIndex) => AccessibilityDeselectSelectedChild(selectedChildIndex),
+                    IsChildSelected = (childIndex) => AccessibilityIsChildSelected(childIndex),
+                    SelectAll = () => AccessibilitySelectAll(),
+                    ClearSelection = () => AccessibilityClearSelection(),
+                    DeselectChild = (childIndex) => AccessibilityDeselectChild(childIndex),
                 };
 
                 accessibilityDelegatePtr = Marshal.AllocHGlobal(size);
@@ -744,6 +758,60 @@ namespace Tizen.NUI.BaseComponents
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual bool AccessibilityDeleteText(int startPosition, int endPosition)
+        {
+            return false;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool AccessibilityScrollToChild(View child)
+        {
+            return false;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual int AccessibilityGetSelectedChildrenCount()
+        {
+            return 0;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual View AccessibilityGetSelectedChild(int selectedChildIndex)
+        {
+            return null;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool AccessibilitySelectChild(int childIndex)
+        {
+            return false;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool AccessibilityDeselectSelectedChild(int selectedChildIndex)
+        {
+            return false;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool AccessibilityIsChildSelected(int childIndex)
+        {
+            return false;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool AccessibilitySelectAll()
+        {
+            return false;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool AccessibilityClearSelection()
+        {
+            return false;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool AccessibilityDeselectChild(int childIndex)
         {
             return false;
         }
