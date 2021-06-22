@@ -63,6 +63,9 @@ namespace Tizen.NUI.Xaml
 
         public static void ParseXaml(RootNode rootNode, XmlReader reader)
         {
+            // Reset xmlnsDefinitions to re-gather them for the new assembly.
+            s_xmlnsDefinitions = null;
+
             IList<KeyValuePair<string, string>> xmlns;
             var attributes = ParseXamlAttributes(reader, out xmlns);
             var prefixes = PrefixesToIgnore(xmlns);
