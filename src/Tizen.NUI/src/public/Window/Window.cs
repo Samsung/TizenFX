@@ -1181,21 +1181,20 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetAvailableOrientations(List<Window.WindowOrientation> orientations)
         {
-            PropertyArray orientationArray = new PropertyArray();
-            if (null != orientations)
+            if (null == orientations)
             {
-                for (int i = 0; i < orientations.Count; i++)
-                {
-                    PropertyValue value = new PropertyValue((int)orientations[i]);
-                    orientationArray.PushBack(value);
-                }
+                throw new ArgumentNullException(nameof(orientations));
             }
 
-            Interop.Window.SetAvailableOrientations(SwigCPtr, PropertyArray.getCPtr(orientationArray));
-            for (uint i = 0; i < orientationArray.Count(); i++)
+            PropertyArray orientationArray = new PropertyArray();
+            for (int i = 0; i < orientations.Count; i++)
             {
-                orientationArray[i].Dispose();
+                PropertyValue value = new PropertyValue((int)orientations[i]);
+                orientationArray.PushBack(value);
+                value.Dispose();
             }
+
+            Interop.Window.SetAvailableOrientations(SwigCPtr, PropertyArray.getCPtr(orientationArray), orientations.Count);
             orientationArray.Dispose();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
