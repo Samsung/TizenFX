@@ -105,22 +105,39 @@ namespace Tizen.NUI
         /// If path is empty string, the captured result is not be saved as a file.</param>
         /// <param name="color">background color of captured scene.</param>
         /// <exception cref="InvalidOperationException">This exception can be due to the invalid size values, of when width or height is lower than zero.</exception>
-        /// <exception cref="ArgumentNullException">This exception is due to the path is null.</exception>
+        /// <exception cref="ArgumentNullException">This exception is due to the some arguments are null.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Start(Container source, Position position, Size size, string path, Color color)
         {
+            if (position == null)
+            {
+                throw new ArgumentNullException(nameof(position));
+            }
+            else if (size == null)
+            {
+                throw new ArgumentNullException(nameof(size));
+            }
+            else if (path == null)
+            {
+                throw new ArgumentNullException(nameof(path));
+            }
+            else if (color == null)
+            {
+                throw new ArgumentNullException(nameof(color));
+            }
             if (size.Width <= 0 || size.Height <= 0)
             {
                 throw new InvalidOperationException("size should larger than zero");
             }
-            else if (null == path)
-            {
-                throw new ArgumentNullException("path should not be null");
-            }
 
             if (source is View || source is Layer)
             {
-                Interop.Capture.Start4(swigCPtr, source.SwigCPtr, new Vector2(position.X, position.Y).SwigCPtr, new Vector2(size.Width, size.Height).SwigCPtr, path, new Vector4(color.R, color.G, color.B, color.A).SwigCPtr);
+                using (Vector2 positionVector = new Vector2(position.X, position.Y))
+                using (Vector2 sizeVector = new Vector2(size.Width, size.Height))
+                using (Vector4 colorVector = new Vector4(color.R, color.G, color.B, color.A))
+                {
+                    Interop.Capture.Start4(swigCPtr, source.SwigCPtr, positionVector.SwigCPtr, sizeVector.SwigCPtr, path, colorVector.SwigCPtr);
+                }
 
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -141,13 +158,21 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Start(Container source, Size size, string path, Color color, uint quality)
         {
+            if (size == null)
+            {
+                throw new ArgumentNullException(nameof(size));
+            }
+            else if (path == null)
+            {
+                throw new ArgumentNullException(nameof(path));
+            }
+            else if (color == null)
+            {
+                throw new ArgumentNullException(nameof(color));
+            }
             if (size.Width <= 0 || size.Height <= 0)
             {
                 throw new InvalidOperationException("size should larger than zero");
-            }
-            else if (null == path)
-            {
-                throw new ArgumentNullException("path should not be null");
             }
             else if (quality > 100)
             {
@@ -156,7 +181,11 @@ namespace Tizen.NUI
 
             if (source is View || source is Layer)
             {
-                Interop.Capture.Start3(swigCPtr, source.SwigCPtr, new Vector2(size.Width, size.Height).SwigCPtr, path, new Vector4(color.R, color.G, color.B, color.A).SwigCPtr, quality);
+                using (Vector2 sizeVector = new Vector2(size.Width, size.Height))
+                using (Vector4 colorVector = new Vector4(color.R, color.G, color.B, color.A))
+                {
+                    Interop.Capture.Start3(swigCPtr, source.SwigCPtr, sizeVector.SwigCPtr, path, colorVector.SwigCPtr, quality);
+                }
 
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -176,18 +205,30 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Start(Container source, Size size, string path, Color color)
         {
+            if (size == null)
+            {
+                throw new ArgumentNullException(nameof(size));
+            }
+            else if (path == null)
+            {
+                throw new ArgumentNullException(nameof(path));
+            }
+            else if (color == null)
+            {
+                throw new ArgumentNullException(nameof(color));
+            }
             if (size.Width <= 0 || size.Height <= 0)
             {
                 throw new InvalidOperationException("size should larger than zero");
             }
-            else if (null == path)
-            {
-                throw new ArgumentNullException("path should not be null");
-            }
 
             if (source is View || source is Layer)
             {
-                Interop.Capture.Start1(swigCPtr, source.SwigCPtr, new Vector2(size.Width, size.Height).SwigCPtr, path, new Vector4(color.R, color.G, color.B, color.A).SwigCPtr);
+                using (Vector2 sizeVector = new Vector2(size.Width, size.Height))
+                using (Vector4 colorVector = new Vector4(color.R, color.G, color.B, color.A))
+                {
+                    Interop.Capture.Start1(swigCPtr, source.SwigCPtr, sizeVector.SwigCPtr, path, colorVector.SwigCPtr);
+                }
 
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -209,18 +250,25 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Start(Container source, Size size, string path)
         {
+            if (size == null)
+            {
+                throw new ArgumentNullException(nameof(size));
+            }
+            else if (path == null)
+            {
+                throw new ArgumentNullException(nameof(path));
+            }
             if (size.Width <= 0 || size.Height <= 0)
             {
                 throw new InvalidOperationException("size should larger than zero");
             }
-            else if (null == path)
-            {
-                throw new ArgumentNullException("path should not be null");
-            }
 
             if (source is View || source is Layer)
             {
-                Interop.Capture.Start2(swigCPtr, source.SwigCPtr, new Vector2(size.Width, size.Height).SwigCPtr, path);
+                using (Vector2 sizeVector = new Vector2(size.Width, size.Height))
+                {
+                    Interop.Capture.Start2(swigCPtr, source.SwigCPtr, sizeVector.SwigCPtr, path);
+                }
 
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -320,6 +368,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>The Url string representing this captured image source</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1056:Uri properties should not be strings", Justification = "<Pending>")]
         public string GenerateUrl()
         {
             string url = "";
@@ -328,6 +377,15 @@ namespace Tizen.NUI
             return url;
         }
 
+        /// <summary>
+        /// Get Captured buffer.
+        /// </summary>
+        /// <returns>PixelBuffer of captured buffer</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PixelBuffer GetCapturedBuffer()
+        {
+            return new PixelBuffer(Interop.Capture.GetCapturedBuffer(SwigCPtr), true);
+        }
     }
 
     /// <summary>
