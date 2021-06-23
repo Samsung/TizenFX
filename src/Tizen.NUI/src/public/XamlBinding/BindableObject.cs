@@ -43,6 +43,11 @@ namespace Tizen.NUI.Binding
                 {
                     bindableObject.bindingContext = newValue;
                     bindableObject.FlushBinding();
+
+                    if (newValue is BindableObject targetBindableObject)
+                    {
+                        targetBindableObject.IsCreateByXaml = true;
+                    }
                 }
             }),
             defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
