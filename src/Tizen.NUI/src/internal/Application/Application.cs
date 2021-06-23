@@ -308,35 +308,12 @@ namespace Tizen.NUI
 
         public delegate void resChangeCb(object sender, ResourcesChangedEventArgs e);
 
-        static private Dictionary<object, Dictionary<resChangeCb, int>> resourceChangeCallbackDict = new Dictionary<object, Dictionary<resChangeCb, int>>();
-        static public void AddResourceChangedCallback(object handle, resChangeCb cb)
-        {
-            Dictionary<resChangeCb, int> cbDict;
-            resourceChangeCallbackDict.TryGetValue(handle, out cbDict);
-
-            if (null == cbDict)
-            {
-                cbDict = new Dictionary<resChangeCb, int>();
-                resourceChangeCallbackDict.Add(handle, cbDict);
-            }
-
-            if (false == cbDict.ContainsKey(cb))
-            {
-                cbDict.Add(cb, 0);
-            }
-        }
+        internal event EventHandler<ResourcesChangedEventArgs> XamlResourceChanged;
 
         internal override void OnResourcesChanged(object sender, ResourcesChangedEventArgs e)
         {
             base.OnResourcesChanged(sender, e);
-
-            foreach (KeyValuePair<object, Dictionary<resChangeCb, int>> resourcePair in resourceChangeCallbackDict)
-            {
-                foreach (KeyValuePair<resChangeCb, int> cbPair in resourcePair.Value)
-                {
-                    cbPair.Key(sender, e);
-                }
-            }
+            XamlResourceChanged?.Invoke(sender, e);
         }
 
         public ResourceDictionary XamlResources
