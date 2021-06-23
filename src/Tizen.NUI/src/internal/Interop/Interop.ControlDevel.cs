@@ -152,7 +152,7 @@ namespace Tizen.NUI
             public static extern global::System.IntPtr DaliAccessibilityEmitTextDeletedEvent(global::System.Runtime.InteropServices.HandleRef arg1, int arg2_pos, int arg3_len, string arg3_content);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_EmitTextCaretMovedEvent")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_EmitTextCursorMovedEvent")]
             public static extern global::System.IntPtr DaliAccessibilityEmitTextCursorMovedEvent(global::System.Runtime.InteropServices.HandleRef arg1, int arg2_pos);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
@@ -324,7 +324,7 @@ namespace Tizen.NUI
                 public delegate bool AccessibilityScrollToChild(IntPtr child);
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilityScrollToChild ScrollToChild; // 27
-  
+
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
                 public delegate int AccessibilityGetSelectedChildrenCount();
                 [EditorBrowsable(EditorBrowsableState.Never)]
