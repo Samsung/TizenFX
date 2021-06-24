@@ -48,7 +48,7 @@ namespace Tizen.Multimedia
         {
             Native.Initialize(out _handle).ThrowIfFailed("Failed to initialize CameraDeviceManager");
 
-            RegisterCallbacks();
+            RegisterDeviceConnectionChangedCallback();
         }
 
         /// <summary>
@@ -116,13 +116,6 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// An event that occurs when there is a change in the available camera device.
-        /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<CameraDeviceListChangedEventArgs> DeviceListChanged;
-
-        /// <summary>
         /// An event that occurs when camera device is connected or disconnected.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
@@ -136,34 +129,6 @@ namespace Tizen.Multimedia
                 ValidateNotDisposed();
                 return _handle;
             }
-        }
-
-        private void RegisterCallbacks()
-        {
-            RegisterDeviceListChangedCallback();
-            RegisterDeviceConnectionChangedCallback();
-        }
-
-        private int listCallbackId = 0;
-        private void RegisterDeviceListChangedCallback()
-        {
-            Native.DeviceListChangedCallback callback = (ref Native.CameraDeviceListStruct deviceList, IntPtr userData) =>
-            {
-                DeviceListChanged?.Invoke(this, new CameraDeviceListChangedEventArgs(ref deviceList));
-            };
-
-            Native.SetDeviceListChangedCallback(Handle, callback, IntPtr.Zero, out listCallbackId).
-                ThrowIfFailed("Failed to set device list changed callback");
-
-            Log.Info(CameraLog.Tag, $"callback Id : {listCallbackId}");
-        }
-
-        private void UnregisterDeviceListChangedCallback()
-        {
-            Log.Info(CameraLog.Tag, $"callback Id : {listCallbackId}");
-
-            Native.UnsetDeviceListChangedCallback(Handle, listCallbackId).
-                ThrowIfFailed("Failed to unset device list changed callback");
         }
 
         private int connectionCallbackId = 0;
@@ -202,7 +167,6 @@ namespace Tizen.Multimedia
 
                 if (_handle != IntPtr.Zero)
                 {
-                    UnregisterDeviceListChangedCallback();
                     UnregisterDeviceConnectionChangedCallback();
 
                     Native.Deinitialize(_handle);
