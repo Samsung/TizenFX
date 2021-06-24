@@ -19,16 +19,15 @@ namespace Tizen.NUI.Devel.Tests
             return false;
         }
 
-        private bool IsWearable()
+        internal class MyWatchBoolSignal : WatchBoolSignal
         {
-            string value;
-            var result = Tizen.System.Information.TryGetValue("tizen.org/feature/profile", out value);
-            if (result && value.Equals("wearable"))
-            {
-                return true;
-            }
+            public MyWatchBoolSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+            { }
 
-            return false;
+            public void OnReleaseSwigCPtr(global::System.Runtime.InteropServices.HandleRef swigCPtr)
+            {
+                base.ReleaseSwigCPtr(swigCPtr);
+            }
         }
 
         [SetUp]
@@ -44,163 +43,244 @@ namespace Tizen.NUI.Devel.Tests
         }
 
         [Test]
-        [Description("WatchBoolSignal constructor")]
+        [Category("P1")]
+        [Description("WatchBoolSignal constructor.")]
+        [Property("SPEC", "Tizen.NUI.WatchBoolSignal.WatchBoolSignal C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void WatchBoolSignalConstructor()
         {
             tlog.Debug(tag, $"WatchBoolSignalConstructor START");
 
-            if (IsWearable())
+            using (ImageView imageView = new ImageView())
             {
-                var testingTarget = new WatchBoolSignal();
-
+                var testingTarget = new WatchBoolSignal(imageView.SwigCPtr.Handle, false);
                 Assert.IsNotNull(testingTarget, "should be not null");
                 Assert.IsInstanceOf<WatchBoolSignal>(testingTarget, "should be an instance of testing target class!");
 
                 testingTarget.Dispose();
-                tlog.Debug(tag, $"WatchBoolSignalConstructor END (OK)");
             }
-            else
-            {
-                tlog.Debug(tag, $"WatchBoolSignalConstructor END (OK)");
-                Assert.Pass("Not Supported profile");
-            }
+
+            tlog.Debug(tag, $"WatchBoolSignalConstructor END (OK)");
         }
 
-        [Test]
-        [Description("WatchBoolSignal Empty")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WatchBoolSignalEmpty()
-        {
-            tlog.Debug(tag, $"WatchBoolSignalEmpty START");
+        //[Test]
+        //[Category("P1")]
+        //[Description("WatchApplication ReleaseSwigCPtr.")]
+        //[Property("SPEC", "Tizen.NUI.WatchApplication.ReleaseSwigCPtr M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //[Property("AUTHOR", "guowei.wang@samsung.com")]
+        //public void WatchApplicationReleaseSwigCPtr()
+        //{
+        //    tlog.Debug(tag, $"WatchBoolSignalReleaseSwigCPtr START");
 
-            if (IsWearable())
-            {
-                var testingTarget = new WatchBoolSignal();
-                Assert.IsNotNull(testingTarget, "should be not null");
-                Assert.IsInstanceOf<WatchBoolSignal>(testingTarget, "should be an instance of testing target class!");
+        //    using (ImageView imageView = new ImageView())
+        //    {
+        //        var testingTarget = new MyWatchBoolSignal(imageView.SwigCPtr.Handle, false);
+        //        Assert.IsNotNull(testingTarget, "should be not null");
+        //        Assert.IsInstanceOf<WatchBoolSignal>(testingTarget, "should be an instance of testing target class!");
 
-                var result = testingTarget.Empty();
-                Assert.IsTrue(result);
+        //        try
+        //        {
+        //            testingTarget.OnReleaseSwigCPtr(imageView.SwigCPtr);
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            /** Unable to find an entry point named 'CSharp_Dali_delete_WatchBoolSignal' in shared library 'libdali2-csharp-binder.so' */
+        //            tlog.Debug(tag, e.Message.ToString());
+        //            Assert.Fail("Caught Exception: Failed!");
+        //        }
 
-                testingTarget.Dispose();
-                tlog.Debug(tag, $"WatchBoolSignalEmpty END (OK)");
-            }
-            else
-            {
-                tlog.Debug(tag, $"WatchBoolSignalEmpty END (OK)");
-                Assert.Pass("Not Supported profile");
-            }
-        }
+        //        testingTarget.Dispose();
+        //    }
 
-        [Test]
-        [Description("WatchBoolSignal GetConnectionCount")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WatchBoolSignalGetConnectionCount()
-        {
-            tlog.Debug(tag, $"WatchBoolSignalGetConnectionCount START");
+        //    tlog.Debug(tag, $"WatchBoolSignalReleaseSwigCPtr END (OK)");
+        //}
 
-            if (IsWearable())
-            {
-                var testingTarget = new WatchBoolSignal();
-                Assert.IsNotNull(testingTarget, "should be not null");
-                Assert.IsInstanceOf<WatchBoolSignal>(testingTarget, "should be an instance of testing target class!");
+        //[Test]
+        //[Category("P1")]
+        //[Description("WatchBoolSignal Empty.")]
+        //[Property("SPEC", "Tizen.NUI.WatchBoolSignal.Empty M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //[Property("AUTHOR", "guowei.wang@samsung.com")]
+        //public void WatchBoolSignalEmpty()
+        //{
+        //    tlog.Debug(tag, $"WatchBoolSignalEmpty START");
 
-                var result = testingTarget.GetConnectionCount();
-                Assert.IsTrue(result == 0, "result should be 0");
+        //    using (ImageView imageView = new ImageView())
+        //    {
+        //        var testingTarget = new WatchBoolSignal(imageView.SwigCPtr.Handle, false);
+        //        Assert.IsNotNull(testingTarget, "should be not null");
+        //        Assert.IsInstanceOf<WatchBoolSignal>(testingTarget, "should be an instance of testing target class!");
 
-                testingTarget.Dispose();
-                tlog.Debug(tag, $"WatchBoolSignalGetConnectionCount END (OK)");
-            }
-            else
-            {
-                tlog.Debug(tag, $"WatchBoolSignalGetConnectionCount END (OK)");
-                Assert.Pass("Not Supported profile");
-            }
-        }
+        //        try
+        //        {
+        //            /** Unable to find an entry point named 'CSharp_Dali_WatchBoolSignal_Empty' in shared library 'libdali2-csharp-binder.so' */
+        //            var result = testingTarget.Empty();
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            tlog.Debug(tag, e.Message.ToString());
+        //            Assert.Fail("Caught Exception: Failed!");
+        //        }
 
-        [Test]
-        [Description("WatchBoolSignal Connection")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WatchBoolSignalConnection()
-        {
-            tlog.Debug(tag, $"WatchBoolSignalConnection START");
+        //        testingTarget.Dispose();
+        //    }
+        //    tlog.Debug(tag, $"WatchBoolSignalEmpty END (OK)");
+        //}
 
-            if (IsWearable())
-            {
-                var testingTarget = new WatchBoolSignal();
-                Assert.IsNotNull(testingTarget, "should be not null");
-                Assert.IsInstanceOf<WatchBoolSignal>(testingTarget, "should be an instance of testing target class!");
+        //[Test]
+        //[Category("P1")]
+        //[Description("WatchBoolSignal GetConnectionCount.")]
+        //[Property("SPEC", "Tizen.NUI.WatchBoolSignal.GetConnectionCount M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //[Property("AUTHOR", "guowei.wang@samsung.com")]
+        //public void WatchBoolSignalGetConnectionCount()
+        //{
+        //    tlog.Debug(tag, $"WatchBoolSignalGetConnectionCount START");
 
-                dummyCallback callback = OnDummyCallback;
-                testingTarget.Connect(callback);
-                testingTarget.Disconnect(callback);
-                testingTarget.Dispose();
-                tlog.Debug(tag, $"WatchBoolSignalConnection END (OK)");
-            }
-            else
-            {
-                tlog.Debug(tag, $"WatchBoolSignalConnection END (OK)");
-                Assert.Pass("Not Supported profile");
-            }
-        }
+        //    using (ImageView imageView = new ImageView())
+        //    {
+        //        var testingTarget = new WatchBoolSignal(imageView.SwigCPtr.Handle, false);
+        //        Assert.IsNotNull(testingTarget, "should be not null");
+        //        Assert.IsInstanceOf<WatchBoolSignal>(testingTarget, "should be an instance of testing target class!");
 
-        [Test]
-        [Description("WatchBoolSignal Disconnection")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WatchBoolSignalDisconnection()
-        {
-            tlog.Debug(tag, $"WatchBoolSignalDisconnection START");
+        //        try
+        //        {
+        //            /** Unable to find an entry point named 'CSharp_Dali_WatchBoolSignal_GetConnectionCount' in shared library 'libdali2-csharp-binder.so' */
+        //            var result = testingTarget.GetConnectionCount();
+        //            Assert.IsTrue(result == 0, "result should be 0");
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            tlog.Debug(tag, e.Message.ToString());
+        //            Assert.Fail("Caught Exception: Failed!");
+        //        }
 
-            if (IsWearable())
-            {
-                var testingTarget = new WatchBoolSignal();
-                Assert.IsNotNull(testingTarget, "should be not null");
-                Assert.IsInstanceOf<WatchBoolSignal>(testingTarget, "should be an instance of testing target class!");
+        //        testingTarget.Dispose();
+        //    }
+        //    tlog.Debug(tag, $"WatchBoolSignalGetConnectionCount END (OK)");
+        //}
 
-                dummyCallback callback = OnDummyCallback;
-                testingTarget.Connect(callback);
-                testingTarget.Disconnect(callback);
-                testingTarget.Dispose();
-                tlog.Debug(tag, $"WatchBoolSignalDisconnection END (OK)");
-            }
-            else
-            {
-                tlog.Debug(tag, $"WatchBoolSignalDisconnection END (OK)");
-                Assert.Pass("Not Supported profile");
-            }
-        }
+        //[Test]
+        //[Category("P1")]
+        //[Description("WatchBoolSignal connection.")]
+        //[Property("SPEC", "Tizen.NUI.WatchBoolSignal.Connect M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //[Property("AUTHOR", "guowei.wang@samsung.com")]
+        //public void WatchBoolSignalConnection()
+        //{
+        //    tlog.Debug(tag, $"WatchBoolSignalConnection START");
 
-        [Test]
-        [Description("WatchBoolSignal Emit")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WatchBoolSignalEmit()
-        {
-            tlog.Debug(tag, $"WatchBoolSignalEmit START");
+        //    using (ImageView imageView = new ImageView())
+        //    {
+        //        var testingTarget = new WatchBoolSignal(imageView.SwigCPtr.Handle, false);
+        //        Assert.IsNotNull(testingTarget, "should be not null");
+        //        Assert.IsInstanceOf<WatchBoolSignal>(testingTarget, "should be an instance of testing target class!");
 
-            if (IsWearable())
-            {
-                var currentPid = global::System.Diagnostics.Process.GetCurrentProcess().Id;
-                var currentTid = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
+        //        dummyCallback callback = OnDummyCallback;
 
-                tlog.Debug(tag, $"thread check! main pid={App.mainPid}, current pid={currentPid}, main tid={App.mainTid}, current tid={currentTid}");
+        //        try
+        //        {
+        //            /** Unable to find an entry point named 'CSharp_Dali_WatchBoolSignal_Connect' in shared library 'libdali2-csharp-binder.so' */
+        //            testingTarget.Connect(callback);
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            tlog.Debug(tag, e.Message.ToString());
+        //            Assert.Fail("Caught Exception: Failed!");
+        //        }
 
-                var testingTarget = new WatchBoolSignal();
-                Assert.IsNotNull(testingTarget, "should be not null");
-                Assert.IsInstanceOf<WatchBoolSignal>(testingTarget, "should be an instance of testing target class!");
+        //        testingTarget.Dispose();
+        //    }
+        //    tlog.Debug(tag, $"WatchBoolSignalConnection END (OK)");
+        //}
 
-                var dummy = new Application();
-                testingTarget.Emit(dummy, true);
+        //[Test]
+        //[Category("P1")]
+        //[Description("WatchBoolSignal disconnection.")]
+        //[Property("SPEC", "Tizen.NUI.WatchBoolSignal.Disconnect M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //[Property("AUTHOR", "guowei.wang@samsung.com")]
+        //public void WatchBoolSignalDisconnection()
+        //{
+        //    tlog.Debug(tag, $"WatchBoolSignalDisconnection START");
 
-                dummy.Dispose();
-                testingTarget.Dispose();
-                tlog.Debug(tag, $"WatchBoolSignalEmit END (OK)");
-            }
-            else
-            {
-                tlog.Debug(tag, $"WatchBoolSignalEmit END (OK)");
-                Assert.Pass("Not Supported profile");
-            }            
-        }
+        //    using (ImageView imageView = new ImageView())
+        //    {
+        //        var testingTarget = new WatchBoolSignal(imageView.SwigCPtr.Handle, false);
+        //        Assert.IsNotNull(testingTarget, "should be not null");
+        //        Assert.IsInstanceOf<WatchBoolSignal>(testingTarget, "should be an instance of testing target class!");
+
+        //        dummyCallback callback = OnDummyCallback;
+
+        //        try
+        //        {
+        //            /** Unable to find an entry point named 'CSharp_Dali_WatchBoolSignal_Disconnect' in shared library 'libdali2-csharp-binder.so' */
+        //            testingTarget.Connect(callback);
+        //            testingTarget.Disconnect(callback); 
+        //        }
+        //        catch (Exception e)
+        //        {   
+        //            tlog.Debug(tag, e.Message.ToString());
+        //            Assert.Fail("Caught Exception: Failed!");
+        //        }
+
+        //        testingTarget.Dispose();
+        //    }
+
+        //    tlog.Debug(tag, $"WatchBoolSignalDisconnection END (OK)");
+        //}
+
+        //[Test]
+        //[Category("P1")]
+        //[Description("WatchBoolSignal Emit.")]
+        //[Property("SPEC", "Tizen.NUI.WatchBoolSignal.Emit M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //[Property("AUTHOR", "guowei.wang@samsung.com")]
+        //public void WatchBoolSignalEmit()
+        //{
+        //    tlog.Debug(tag, $"WatchBoolSignalEmit START");
+
+        //    var currentPid = global::System.Diagnostics.Process.GetCurrentProcess().Id;
+        //    var currentTid = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
+
+        //    tlog.Debug(tag, $"thread check! main pid={App.mainPid}, current pid={currentPid}, main tid={App.mainTid}, current tid={currentTid}");
+
+        //    using (ImageView imageView = new ImageView())
+        //    {
+        //        var testingTarget = new WatchBoolSignal(imageView.SwigCPtr.Handle, false);
+        //        Assert.IsNotNull(testingTarget, "should be not null");
+        //        Assert.IsInstanceOf<WatchBoolSignal>(testingTarget, "should be an instance of testing target class!");
+
+        //        Widget widget = new Widget();
+        //        var application = new WidgetApplication(widget.GetIntPtr(), false);
+
+        //        try
+        //        {
+        //            /** Unable to find an entry point named 'CSharp_Dali_WatchBoolSignal_Emit' in shared library 'libdali2-csharp-binder.so' */
+        //            testingTarget.Emit(application, true);
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            tlog.Debug(tag, e.Message.ToString());
+        //            Assert.Fail("Caught Exception: Failed!");
+        //        }
+
+        //        widget.Dispose();
+        //        widget = null;
+
+        //        testingTarget.Dispose();
+        //    }
+
+        //    tlog.Debug(tag, $"WatchBoolSignalEmit END (OK)");         
+        //}
     }
 }

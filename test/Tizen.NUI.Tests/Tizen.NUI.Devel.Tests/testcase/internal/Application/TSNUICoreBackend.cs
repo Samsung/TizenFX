@@ -13,6 +13,13 @@ namespace Tizen.NUI.Devel.Tests
     {
         private const string tag = "NUITEST";
         private event EventHandler Created;
+
+        private delegate bool dummyCallback(IntPtr nuicorebackend);
+        private bool OnDummyCallback(IntPtr data)
+        {
+            return false;
+        }
+
         protected virtual void OnCreate()
         {
             Created?.Invoke(this, EventArgs.Empty);
@@ -31,7 +38,11 @@ namespace Tizen.NUI.Devel.Tests
         }
 
         [Test]
-        [Description("NUICoreBackend constructor")]
+        [Category("P1")]
+        [Description("NUICoreBackend constructor.")]
+        [Property("SPEC", "Tizen.NUI.NUICoreBackend.NUICoreBackend C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void NUICoreBackendConstructor()
         {
@@ -46,7 +57,11 @@ namespace Tizen.NUI.Devel.Tests
         }
 
         [Test]
-        [Description("NUICoreBackend constructor with stylesheet")]
+        [Category("P1")]
+        [Description("NUICoreBackend constructor. With stylesheet.")]
+        [Property("SPEC", "Tizen.NUI.NUICoreBackend.NUICoreBackend C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void NUICoreBackendConstructorWithStylesheet()
         {
@@ -62,7 +77,11 @@ namespace Tizen.NUI.Devel.Tests
         }
 
         [Test]
-        [Description("NUICoreBackend constructor with stylesheet and windowMode")]
+        [Category("P1")]
+        [Description("NUICoreBackend constructor. With stylesheet and windowMode.")]
+        [Property("SPEC", "Tizen.NUI.NUICoreBackend.NUICoreBackend C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void NUICoreBackendConstructorWithStylesheetAndWindowmode()
         {
@@ -78,11 +97,15 @@ namespace Tizen.NUI.Devel.Tests
         }
 
         [Test]
-        [Description("NUICoreBackend constructor with stylesheet, window mode, window size and window position")]
+        [Category("P1")]
+        [Description("NUICoreBackend constructor. With stylesheet, mode, size, position")]
+        [Property("SPEC", "Tizen.NUI.NUICoreBackend.NUICoreBackend C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void NUICoreBackendConstructorWithMoreArgs()
+        public void NUICoreBackendConstructorWithFourParameters()
         {
-            tlog.Debug(tag, $"NUICoreBackendConstructorWithMoreArgs START");
+            tlog.Debug(tag, $"NUICoreBackendConstructorWithFourParameters START");
 
             var dummy = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "/style/Test_Style_Manager.json";
             var testingTarget = new NUICoreBackend(dummy, NUIApplication.WindowMode.Opaque, new Size(400, 400), new Position(200, 300));
@@ -90,11 +113,15 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<NUICoreBackend>(testingTarget, "should be an instance of testing target class!");
 
             testingTarget.Dispose();
-            tlog.Debug(tag, $"NUICoreBackendConstructorWithMoreArgs END (OK)");
+            tlog.Debug(tag, $"NUICoreBackendConstructorWithFourParameters END (OK)");
         }
 
         [Test]
+        [Category("P1")]
         [Description("NUICoreBackend AddEventHandler")]
+        [Property("SPEC", "Tizen.NUI.NUICoreBackend.AddEventHandler M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void NUICoreBackendAddEventHandler()
         {
@@ -111,7 +138,11 @@ namespace Tizen.NUI.Devel.Tests
         }
 
         [Test]
-        [Description("NUICoreBackend dispose")]
+        [Category("P1")]
+        [Description("NUICoreBackend Dispose.")]
+        [Property("SPEC", "Tizen.NUI.NUICoreBackend.Dispose M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void NUICoreBackendDispose()
         {
@@ -135,7 +166,11 @@ namespace Tizen.NUI.Devel.Tests
         }
 
         [Test]
-        [Description("NUICoreBackend exit")]
+        [Category("P1")]
+        [Description("NUICoreBackend Exit.")]
+        [Property("SPEC", "Tizen.NUI.NUICoreBackend.Exit M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void NUICoreBackendExit()
         {
@@ -157,6 +192,35 @@ namespace Tizen.NUI.Devel.Tests
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"NUICoreBackendExit END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("NUICoreBackend ApplicationHandle.")]
+        [Property("SPEC", "Tizen.NUI.NUICoreBackend.ApplicationHandle A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRO")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void NUICoreBackendApplicationHandle()
+        {
+            tlog.Debug(tag, $"NUICoreBackendApplicationHandle START");
+
+            var testingTarget = new NUICoreBackend();
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<NUICoreBackend>(testingTarget, "should be an instance of testing target class!");
+
+            try
+            {
+                var result = testingTarget.ApplicationHandle;
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception: Failed!");
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"NUICoreBackendApplicationHandle END (OK)");
         }
     }
 }
