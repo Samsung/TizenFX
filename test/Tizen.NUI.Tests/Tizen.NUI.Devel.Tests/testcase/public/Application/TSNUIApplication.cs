@@ -283,42 +283,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("NUIApplication SendLaunchRequest")]
-        [Property("SPEC", "Tizen.NUI.NUIApplication.SendLaunchRequest M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void NUIApplicationSendLaunchRequest()
-        {
-            tlog.Debug(tag, $"NUIApplicationSendLaunchRequest START");
-
-            var testingTarget = new NUIApplication();
-            Assert.IsNotNull(testingTarget, "Should be not null.");
-            Assert.IsInstanceOf<NUIApplication>(testingTarget, "Should be an instance of Window type.");
-
-            TransitionOptions transitionOption = new TransitionOptions(Window.Instance);
-            testingTarget.TransitionOptions = transitionOption;
-            transitionOption.EnableTransition = true;
-
-            var appControl = new Applications.AppControl(true);
-            try
-            {
-                testingTarget.SendLaunchRequest(appControl);
-            }
-            catch (Exception e)
-            {
-                tlog.Error(tag, "Caught Exception" + e.ToString());
-                LogUtils.Write(LogUtils.DEBUG, LogUtils.TAG, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
-            }
-
-            transitionOption.Dispose();
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"NUIApplicationSendLaunchRequest END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("NUIApplication TransitionOptions")]
         [Property("SPEC", "Tizen.NUI.NUIApplication.TransitionOptions A")]
         [Property("SPEC_URL", "-")]
