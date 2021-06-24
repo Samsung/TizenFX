@@ -32,7 +32,11 @@ namespace Tizen.NUI.Devel.Tests
         }
 
         [Test]
-        [Description("ApplicationControlSignal constructor")]
+        [Category("P1")]
+        [Description("ApplicationControlSignal constructor.")]
+        [Property("SPEC", "Tizen.NUI.ApplicationControlSignal.ApplicationControlSignal C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void ApplicationControlSignalConstructor()
         {
@@ -48,7 +52,11 @@ namespace Tizen.NUI.Devel.Tests
         }
 
         [Test]
-        [Description("ApplicationControlSignal Empty")]
+        [Category("P1")]
+        [Description("ApplicationControlSignal Empty.")]
+        [Property("SPEC", "Tizen.NUI.ApplicationControlSignal.Empty M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void ApplicationControlSignalEmpty()
         {
@@ -66,7 +74,11 @@ namespace Tizen.NUI.Devel.Tests
         }
 
         [Test]
-        [Description("ApplicationControlSignal GetConnectionCount")]
+        [Category("P1")]
+        [Description("ApplicationControlSignal GetConnectionCount.")]
+        [Property("SPEC", "Tizen.NUI.ApplicationControlSignal.GetConnectionCount M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void ApplicationControlSignalGetConnectionCount()
         {
@@ -84,7 +96,11 @@ namespace Tizen.NUI.Devel.Tests
         }
 
         [Test]
-        [Description("ApplicationControlSignal Connection")]
+        [Category("P1")]
+        [Description("ApplicationControlSignal connection.")]
+        [Property("SPEC", "Tizen.NUI.ApplicationControlSignal.Connect M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void ApplicationControlSignalConnection()
         {
@@ -103,7 +119,11 @@ namespace Tizen.NUI.Devel.Tests
         }
 
         [Test]
-        [Description("ApplicationControlSignal Disconnection")]
+        [Category("P1")]
+        [Description("ApplicationControlSignal disconnection.")]
+        [Property("SPEC", "Tizen.NUI.ApplicationControlSignal.Disconnect M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void ApplicationControlSignalDisconnection()
         {
@@ -122,7 +142,11 @@ namespace Tizen.NUI.Devel.Tests
         }
 
         [Test]
-        [Description("ApplicationControlSignal Emit")]
+        [Category("P1")]
+        [Description("ApplicationControlSignal Emit.")]
+        [Property("SPEC", "Tizen.NUI.ApplicationControlSignal.Emit M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void ApplicationControlSignalEmit()
         {

@@ -4,6 +4,7 @@ using NUnit.Framework.TUnit;
 using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
 using System.Collections.Generic;
+using Tizen.Applications.CoreBackend;
 
 namespace Tizen.NUI.Devel.Tests
 {
@@ -29,7 +30,11 @@ namespace Tizen.NUI.Devel.Tests
         }
 
         [Test]
-        [Description("NUIWidgetCoreBackend constructor")]
+        [Category("P1")]
+        [Description("NUIWidgetCoreBackend constructor.")]
+        [Property("SPEC", "Tizen.NUI.NUIWidgetCoreBackend.NUIWidgetCoreBackend C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void NUIWidgetCoreBackendConstructor()
         {
@@ -44,13 +49,50 @@ namespace Tizen.NUI.Devel.Tests
         }
 
         [Test]
-        [Description("NUIWidgetCoreBackend constructor with stylesheet")]
+        [Category("P1")]
+        [Description("NUIWidgetCoreBackend AddEventHandler.")]
+        [Property("SPEC", "Tizen.NUI.NUIWidgetCoreBackend.AddEventHandler A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void NUIWidgetCoreBackendAddEventHandler()
+        {
+            tlog.Debug(tag, $"NUIWidgetCoreBackendAddEventHandler START");
+
+            var testingTarget = new NUIWidgetCoreBackend();
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<NUIWidgetCoreBackend>(testingTarget, "should be an instance of testing target class!");
+
+            try
+            {
+                testingTarget.AddEventHandler(EventType.PreCreated, MyOnPreCreate);
+                testingTarget.AddEventHandler<Tizen.Applications.LowBatteryEventArgs>(EventType.LowBattery, MyOnLowBattery);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception: Failed!");
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"NUIWidgetCoreBackendAddEventHandler END (OK)");
+        }
+
+        private void MyOnLowBattery(Tizen.Applications.LowBatteryEventArgs obj) { }
+        private void MyOnPreCreate() { }
+
+        [Test]
+        [Category("P1")]
+        [Description("NUIWidgetCoreBackend constructor. With stylesheet")]
+        [Property("SPEC", "Tizen.NUI.NUIWidgetCoreBackend.NUIWidgetCoreBackend C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void NUIWidgetCoreBackendConstructorWithStylesheet()
         {
             tlog.Debug(tag, $"NUIWidgetCoreBackendConstructorWithStylesheet START");
 
-            var dummy = resource + "/style/Test_Style_Manager.json";
+            var dummy = resource + "style/Test_Style_Manager.json";
             var testingTarget = new NUIWidgetCoreBackend(dummy);
             Assert.IsNotNull(testingTarget, "should be not null");
             Assert.IsInstanceOf<NUIWidgetCoreBackend>(testingTarget, "should be an instance of testing target class!");
@@ -60,7 +102,11 @@ namespace Tizen.NUI.Devel.Tests
         }
 
         [Test]
-        [Description("NUIWidgetCoreBackend dispose")]
+        [Category("P1")]
+        [Description("NUIWidgetCoreBackend dispose.")]
+        [Property("SPEC", "Tizen.NUI.NUIWidgetCoreBackend.Dispose M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void NUIWidgetCoreBackendDispose()
         {
@@ -84,7 +130,11 @@ namespace Tizen.NUI.Devel.Tests
         }
 
         [Test]
-        [Description("NUIWidgetCoreBackend exit")]
+        [Category("P1")]
+        [Description("NUIWidgetCoreBackend exit.")]
+        [Property("SPEC", "Tizen.NUI.NUIWidgetCoreBackend.Exit M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void NUIWidgetCoreBackendExit()
         {
@@ -109,7 +159,11 @@ namespace Tizen.NUI.Devel.Tests
         }
 
         [Test]
-        [Description("NUIWidgetCoreBackend register widget info")]
+        [Category("P1")]
+        [Description("NUIWidgetCoreBackend RegisterWidgetInfo.")]
+        [Property("SPEC", "Tizen.NUI.NUIWidgetCoreBackend.RegisterWidgetInfo M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void NUIWidgetCoreBackendRegisterWidgetInfo()
         {
@@ -127,7 +181,11 @@ namespace Tizen.NUI.Devel.Tests
         }
 
         [Test]
-        [Description("NUIWidgetCoreBackend add widget info")]
+        [Category("P1")]
+        [Description("NUIWidgetCoreBackend AddWidgetInfo.")]
+        [Property("SPEC", "Tizen.NUI.NUIWidgetCoreBackend.AddWidgetInfo M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void NUIWidgetCoreBackendAddWidgetInfo()
         {
@@ -142,6 +200,35 @@ namespace Tizen.NUI.Devel.Tests
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"NUIWidgetCoreBackendAddWidgetInfo END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("NUIWidgetCoreBackend WidgetApplicationHandle.")]
+        [Property("SPEC", "Tizen.NUI.NUIWidgetCoreBackend.WidgetApplicationHandle A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRO")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void NUIWidgetCoreBackendWidgetApplicationHandle()
+        {
+            tlog.Debug(tag, $"NUIWidgetCoreBackendWidgetApplicationHandle START");
+
+            var testingTarget = new NUIWidgetCoreBackend();
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<NUIWidgetCoreBackend>(testingTarget, "should be an instance of testing target class!");
+
+            try
+            {
+                var result = testingTarget.WidgetApplicationHandle;
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception: Failed!");
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"NUIWidgetCoreBackendWidgetApplicationHandle END (OK)");
         }
     }
 }
