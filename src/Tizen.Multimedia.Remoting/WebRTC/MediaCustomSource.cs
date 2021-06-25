@@ -40,19 +40,15 @@ namespace Tizen.Multimedia.Remoting
         internal override void OnAttached(WebRTC webRtc)
         {
             Debug.Assert(webRtc != null);
-            var customType = CustomMediaSourceType.Audio;
 
             if (WebRtc != null)
             {
                 throw new InvalidOperationException("The source is has already been assigned to another WebRTC.");
             }
 
-            if (MediaType == MediaType.Video)
-            {
-                customType = CustomMediaSourceType.Video;
-            }
+            var type = MediaType == MediaType.Video ? CustomMediaSourceType.Video : CustomMediaSourceType.Audio;
 
-            NativeWebRTC.AddCustomMediaSource(webRtc.Handle, customType, out uint sourceId).
+            NativeWebRTC.AddCustomMediaSource(webRtc.Handle, type, out uint sourceId).
                     ThrowIfFailed($"Failed to add {MediaType.ToString()} MediaCustomSource.");
 
             WebRtc = webRtc;
