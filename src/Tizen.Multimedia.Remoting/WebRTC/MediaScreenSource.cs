@@ -44,7 +44,7 @@ namespace Tizen.Multimedia.Remoting
             }
 
             NativeWebRTC.AddMediaSource(webRtc.Handle, MediaSourceType.Screen, out uint sourceId).
-                ThrowIfFailed("Failed to add media source for screen.");
+                ThrowIfFailed("Failed to add MediaScreenSource.");
 
             WebRtc = webRtc;
             SourceId = sourceId;
@@ -53,7 +53,7 @@ namespace Tizen.Multimedia.Remoting
         internal override void OnDetached(WebRTC webRtc)
         {
             NativeWebRTC.RemoveMediaSource(webRtc.Handle, SourceId.Value).
-                ThrowIfFailed("Failed to remove media source for screen.");
+                ThrowIfFailed("Failed to remove MediaScreenSource.");
 
             WebRtc = null;
         }

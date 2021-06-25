@@ -94,6 +94,9 @@ internal static partial class Interop
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_add_media_source")]
         internal static extern WebRTCErrorCode AddMediaSource(IntPtr handle, MediaSourceType type, out uint sourceId);
 
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_add_media_source_internal")]
+        internal static extern WebRTCErrorCode AddCustomMediaSource(IntPtr handle, CustomMediaSourceType type, out uint sourceId);
+
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_remove_media_source")]
         internal static extern WebRTCErrorCode RemoveMediaSource(IntPtr handle, uint sourceId);
 

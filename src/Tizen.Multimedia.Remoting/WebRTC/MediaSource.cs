@@ -29,7 +29,12 @@ namespace Tizen.Multimedia.Remoting
 
         internal WebRTC WebRtc { get; set; }
 
-        private MediaType MediaType { get; }
+        /// <summary>
+        /// Gets the type of MediaSource.
+        /// </summary>
+        /// <value><see cref="MediaType"/></value>
+        /// <since_tizen> 9 </since_tizen>
+        protected MediaType MediaType { get; }
 
         private bool IsDetached {get; set;} = false;
 

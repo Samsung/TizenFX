@@ -21,29 +21,35 @@ using static Interop;
 namespace Tizen.Multimedia.Remoting
 {
     /// <summary>
-    /// Represents a audio test source.
+    /// Represents a audio, video test source.
     /// </summary>
     /// <seealso cref="WebRTC.AddSource"/>
     /// <seealso cref="WebRTC.AddSources"/>
     /// <since_tizen> 9 </since_tizen>
-    public sealed class MediaAudioTestSource : MediaSource
+    public sealed class MediaTestSource : MediaSource
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="MediaAudioTestSource"/> class.
+        /// Initializes a new instance of the <see cref="MediaTestSource"/> class.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public MediaAudioTestSource() : base(MediaType.Audio) {}
+        public MediaTestSource(MediaType type) : base(type) {}
         internal override void OnAttached(WebRTC webRtc)
         {
             Debug.Assert(webRtc != null);
+            var type = MediaSourceType.AudioTest;
 
             if (WebRtc != null)
             {
                 throw new InvalidOperationException("The source is has already been assigned to another WebRTC.");
             }
 
-            NativeWebRTC.AddMediaSource(webRtc.Handle, MediaSourceType.AudioTest, out uint sourceId).
-                ThrowIfFailed("Failed to add media source for audio test.");
+            if (MediaType == MediaType.Video)
+            {
+                type = MediaSourceType.VideoTest;
+            }
+
+            NativeWebRTC.AddMediaSource(webRtc.Handle, type, out uint sourceId).
+                ThrowIfFailed($"Failed to add {MediaType.ToString()} MediaTestSource.");
 
             WebRtc = webRtc;
             SourceId = sourceId;
@@ -52,46 +58,7 @@ namespace Tizen.Multimedia.Remoting
         internal override void OnDetached(WebRTC webRtc)
         {
             NativeWebRTC.RemoveMediaSource(webRtc.Handle, SourceId.Value).
-                ThrowIfFailed("Failed to remove media source for audio test.");
-
-            WebRtc = null;
-        }
-    }
-
-    /// <summary>
-    /// Represents a video test source.
-    /// </summary>
-    /// <seealso cref="WebRTC.AddSource"/>
-    /// <seealso cref="WebRTC.AddSources"/>
-    /// <since_tizen> 9 </since_tizen>
-    public sealed class MediaVideoTestSource : MediaSource
-    {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MediaVideoTestSource"/> class.
-        /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        public MediaVideoTestSource() : base(MediaType.Video) {}
-
-        internal override void OnAttached(WebRTC webRtc)
-        {
-            Debug.Assert(webRtc != null);
-
-            if (WebRtc != null)
-            {
-                throw new InvalidOperationException("The source is has already been assigned to another WebRTC.");
-            }
-
-            NativeWebRTC.AddMediaSource(webRtc.Handle, MediaSourceType.VideoTest, out uint sourceId).
-                ThrowIfFailed("Failed to add media source for video test.");
-
-            WebRtc = webRtc;
-            SourceId = sourceId;
-        }
-
-        internal override void OnDetached(WebRTC webRtc)
-        {
-            NativeWebRTC.RemoveMediaSource(webRtc.Handle, SourceId.Value).
-                ThrowIfFailed("Failed to remove media source for video test.");
+                ThrowIfFailed($"Failed to remove {MediaType.ToString()} MediaTestSource.");
 
             WebRtc = null;
         }

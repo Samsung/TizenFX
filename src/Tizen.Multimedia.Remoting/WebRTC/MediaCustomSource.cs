@@ -15,37 +15,45 @@
  */
 
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using NativeWebRTC = Interop.NativeWebRTC;
 
 namespace Tizen.Multimedia.Remoting
 {
     /// <summary>
-    /// Represents a camera source.
+    /// Represents a audio, video custom source.
     /// </summary>
-    /// <remarks>The camera privilege(http://tizen.org/privilege/camera) is required.</remarks>
     /// <seealso cref="WebRTC.AddSource"/>
     /// <seealso cref="WebRTC.AddSources"/>
     /// <since_tizen> 9 </since_tizen>
-    public sealed class MediaCameraSource : MediaSource
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public sealed class MediaCustomSource : MediaSource
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="MediaCameraSource"/> class.
+        /// Initializes a new instance of the <see cref="MediaCustomSource"/> class.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public MediaCameraSource() : base(MediaType.Video) {}
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public MediaCustomSource(MediaType type) : base(type) {}
 
         internal override void OnAttached(WebRTC webRtc)
         {
             Debug.Assert(webRtc != null);
+            var customType = CustomMediaSourceType.Audio;
 
             if (WebRtc != null)
             {
                 throw new InvalidOperationException("The source is has already been assigned to another WebRTC.");
             }
 
-            NativeWebRTC.AddMediaSource(webRtc.Handle, MediaSourceType.Camera, out uint sourceId).
-                ThrowIfFailed("Failed to add MediaCameraSource.");
+            if (MediaType == MediaType.Video)
+            {
+                customType = CustomMediaSourceType.Video;
+            }
+
+            NativeWebRTC.AddCustomMediaSource(webRtc.Handle, customType, out uint sourceId).
+                    ThrowIfFailed($"Failed to add {MediaType.ToString()} MediaCustomSource.");
 
             WebRtc = webRtc;
             SourceId = sourceId;
@@ -54,7 +62,7 @@ namespace Tizen.Multimedia.Remoting
         internal override void OnDetached(WebRTC webRtc)
         {
             NativeWebRTC.RemoveMediaSource(webRtc.Handle, SourceId.Value).
-                ThrowIfFailed("Failed to remove MediaCameraSource.");
+                ThrowIfFailed($"Failed to remove {MediaType.ToString()} MediaCustomSource.");
 
             WebRtc = null;
         }

@@ -351,17 +351,31 @@ namespace Tizen.Multimedia.Remoting
     internal enum MediaSourceType
     {
         AudioTest,
+
         VideoTest,
+
         Microphone,
+
         Camera,
+
         Screen,
+
         File,
+
         MediaPacket
+    }
+
+    internal enum CustomMediaSourceType
+    {
+        Audio = 7,
+
+        Video
     }
 
     internal enum WebRTCDisplayType
     {
         Overlay,
+
         Evas,
     }
 }
