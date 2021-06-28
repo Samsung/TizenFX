@@ -447,13 +447,16 @@ namespace Tizen.Applications
                 }
                 using (ApplicationRunningContext context = new ApplicationRunningContext(clonedHandle))
                 {
-                    if (state == Interop.ApplicationManager.AppContextEvent.Launched)
+                    lock (s_applicationChangedEventLock)
                     {
-                        s_launchedHandler?.Invoke(null, new ApplicationLaunchedEventArgs { ApplicationRunningContext = context });
-                    }
-                    else if (state == Interop.ApplicationManager.AppContextEvent.Terminated)
-                    {
-                        s_terminatedHandler?.Invoke(null, new ApplicationTerminatedEventArgs { ApplicationRunningContext = context });
+                        if (state == Interop.ApplicationManager.AppContextEvent.Launched)
+                        {
+                            s_launchedHandler?.Invoke(null, new ApplicationLaunchedEventArgs { ApplicationRunningContext = context });
+                        }
+                        else if (state == Interop.ApplicationManager.AppContextEvent.Terminated)
+                        {
+                            s_terminatedHandler?.Invoke(null, new ApplicationTerminatedEventArgs { ApplicationRunningContext = context });
+                        }
                     }
                 }
             };
@@ -488,13 +491,16 @@ namespace Tizen.Applications
 
             s_eventCallback = (string appType, string appId, Interop.ApplicationManager.AppManagerEventType eventType, Interop.ApplicationManager.AppManagerEventState eventState, IntPtr eventHandle, IntPtr UserData) =>
             {
-                if (eventType == Interop.ApplicationManager.AppManagerEventType.Enable)
+                lock (s_eventLock)
                 {
-                    s_enabledHandler?.Invoke(null, new ApplicationEnabledEventArgs(appId, (ApplicationEventState)eventState));
-                }
-                else if (eventType == Interop.ApplicationManager.AppManagerEventType.Disable)
-                {
-                    s_disabledHandler?.Invoke(null, new ApplicationDisabledEventArgs(appId, (ApplicationEventState)eventState));
+                    if (eventType == Interop.ApplicationManager.AppManagerEventType.Enable)
+                    {
+                        s_enabledHandler?.Invoke(null, new ApplicationEnabledEventArgs(appId, (ApplicationEventState)eventState));
+                    }
+                    else if (eventType == Interop.ApplicationManager.AppManagerEventType.Disable)
+                    {
+                        s_disabledHandler?.Invoke(null, new ApplicationDisabledEventArgs(appId, (ApplicationEventState)eventState));
+                    }
                 }
             };
             err = Interop.ApplicationManager.AppManagerSetEventCallback(_eventHandle, s_eventCallback, IntPtr.Zero);
