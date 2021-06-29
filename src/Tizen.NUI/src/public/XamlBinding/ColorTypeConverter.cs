@@ -129,24 +129,23 @@ namespace Tizen.NUI.Binding
 
                     return FromRgb((int)t1, (int)t2, (int)t3);
 
-                case 4: //#argb => aarrggbb
+                case 4: //#rgba => rrggbbaa
                     var f1 = ToHexD(hex[idx++]);
                     var f2 = ToHexD(hex[idx++]);
                     var f3 = ToHexD(hex[idx++]);
                     var f4 = ToHexD(hex[idx]);
-                    return FromRgba((int)f2, (int)f3, (int)f4, (int)f1);
+                    return FromRgba((int)f1, (int)f2, (int)f3, (int)f4);
 
                 case 6: //#rrggbb => ffrrggbb
                     return FromRgb((int)(ToHex(hex[idx++]) << 4 | ToHex(hex[idx++])),
                             (int)(ToHex(hex[idx++]) << 4 | ToHex(hex[idx++])),
                             (int)(ToHex(hex[idx++]) << 4 | ToHex(hex[idx])));
 
-                case 8: //#aarrggbb
-                    var a1 = ToHex(hex[idx++]) << 4 | ToHex(hex[idx++]);
+                case 8: //#rrggbbaa
                     return FromRgba((int)(ToHex(hex[idx++]) << 4 | ToHex(hex[idx++])),
                             (int)(ToHex(hex[idx++]) << 4 | ToHex(hex[idx++])),
-                            (int)(ToHex(hex[idx++]) << 4 | ToHex(hex[idx])),
-                            (int)a1);
+                            (int)(ToHex(hex[idx++]) << 4 | ToHex(hex[idx++])),
+                            (int)(ToHex(hex[idx++]) << 4 | ToHex(hex[idx])));
 
                 default: //everything else will result in unexpected results
                     return Color.Black;
