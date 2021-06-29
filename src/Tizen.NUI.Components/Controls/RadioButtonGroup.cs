@@ -14,7 +14,11 @@
  * limitations under the License.
  *
  */
+
+using System;
 using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
@@ -35,6 +39,14 @@ namespace Tizen.NUI.Components
     public class RadioButtonGroup : SelectGroup
     {
         /// <summary>
+        /// IsGroupHolderProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty IsGroupHolderProperty = BindableProperty.CreateAttached("IsGroupHolder", typeof(bool), typeof(View), false, propertyChanged: OnIsGroupHolderChanged);
+
+        private static readonly BindableProperty RadioButtonGroupProperty = BindableProperty.CreateAttached("RadioButtonGroup", typeof(RadioButtonGroup), typeof(View), null, propertyChanged: OnRadioButtonGroupChanged);
+
+        /// <summary>
         /// Construct RadioButtonGroup
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
@@ -44,6 +56,28 @@ namespace Tizen.NUI.Components
         {
             EnableMultiSelection = false;
         }
+
+        /// <summary>
+        /// Gets a RadioButtonGroup.IsGroupHolder property of a view.
+        /// </summary>
+        /// <param name="view">The group holder.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool GetIsGroupHolder(View view) => (bool)view.GetValue(IsGroupHolderProperty);
+
+        /// <summary>
+        /// Sets a RadioButtonGroup.IsGroupHolder property for a view.
+        /// </summary>
+        /// <param name="view">The group holder.</param>
+        /// <param name="value">The value to set.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetIsGroupHolder(View view, bool value) => view.SetValue(IsGroupHolderProperty, value, false, true);
+
+        /// <summary>
+        /// Gets a attached RadioButtonGroup for a view.
+        /// </summary>
+        /// <param name="view">The group holder.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static RadioButtonGroup GetRadioButtonGroup(View view) => view.GetValue(RadioButtonGroupProperty) as RadioButtonGroup;
 
         /// <summary>
         /// Get the RadioButton object at the specified index.
@@ -56,6 +90,16 @@ namespace Tizen.NUI.Components
         public RadioButton GetItem(int index)
         {
             return ItemGroup[index] as RadioButton;
+        }
+
+        /// <summary>
+        /// Get the RadioButton object at the currently selected. If no item selected, returns null.
+        /// </summary>
+        /// <returns>Currently selected radio button</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public RadioButton GetSelectedItem()
+        {
+            return (SelectedIndex >= 0 && SelectedIndex < ItemGroup.Count) ? ItemGroup[SelectedIndex] as RadioButton : null;
         }
 
         /// <summary>
@@ -84,6 +128,65 @@ namespace Tizen.NUI.Components
             if (null == radio) return;
             base.RemoveSelection(radio);
             radio.ItemGroup = null;
+        }
+
+        private static void OnIsGroupHolderChanged(Binding.BindableObject bindable, object oldValue, object newValue)
+        {
+            var view = bindable as View;
+
+            if (view == null) return;
+
+            if (!(bool)newValue)
+            {
+                view.SetValue(RadioButtonGroupProperty, null, false, true);
+                return;
+            }
+
+            if (view.GetValue(RadioButtonGroupProperty) == null)
+            {
+                view.SetValue(RadioButtonGroupProperty, new RadioButtonGroup(), false, true);
+            }
+        }
+
+        private static void OnRadioButtonGroupChanged(Binding.BindableObject bindable, object oldValue, object newValue)
+        {
+            var view = bindable as View;
+
+            if (view == null) return;
+
+            if (oldValue is RadioButtonGroup oldGroup)
+            {
+                view.ChildAdded -= oldGroup.OnChildChanged;
+                view.ChildRemoved -= oldGroup.OnChildChanged;
+                oldGroup.RemoveAll();
+            }
+
+            if (newValue is RadioButtonGroup newGroup)
+            {
+                view.ChildAdded += newGroup.OnChildChanged;
+                view.ChildRemoved += newGroup.OnChildChanged;
+                newGroup.OnChildChanged(view, null);
+            }
+        }
+
+        private void OnChildChanged(object sender, EventArgs args)
+        {
+            if (sender is View view)
+            {
+                RemoveAll();
+                foreach (var child in view.Children)
+                    if (child is RadioButton radioButton)
+                        Add(radioButton);
+            }
+        }
+
+        private void RemoveAll()
+        {
+            var copied = ItemGroup.ToArray();
+            foreach (var button in copied)
+            {
+                Remove(button as RadioButton);
+            }
         }
     }
 }
