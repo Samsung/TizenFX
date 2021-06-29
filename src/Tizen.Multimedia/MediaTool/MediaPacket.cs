@@ -69,6 +69,8 @@ namespace Tizen.Multimedia
                 {
                     _format = MediaFormat.FromHandle(formatHandle);
                 }
+
+                _buffer = new Lazy<IMediaBuffer>(GetBuffer);
             }
             finally
             {
