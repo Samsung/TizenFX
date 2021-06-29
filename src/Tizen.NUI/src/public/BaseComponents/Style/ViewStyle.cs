@@ -256,7 +256,6 @@ namespace Tizen.NUI.BaseComponents
         /// This view's size is set to the view's size multiplied by or added to this factor, depending on ResizePolicyType.<br />
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        [Obsolete("Deprecated. Since Tizen.NUI.ResizePolicyType is deprecated, OnSetResizePolicy is no longer supported. Instead, please use parent view having Tizen.NUI.RelativeLayout as its Layout.")]
         public Vector3 SizeModeFactor
         {
             get => (Vector3)GetValue(SizeModeFactorProperty);
@@ -267,7 +266,6 @@ namespace Tizen.NUI.BaseComponents
         /// Gets or sets the width resize policy to be used.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        [Obsolete("Deprecated. Please set Tizen.NUI.View.Layout and use Tizen.NUI.View.WidthSpecification instead.")]
         public ResizePolicyType? WidthResizePolicy
         {
             get => (ResizePolicyType?)GetValue(WidthResizePolicyProperty);
@@ -278,7 +276,6 @@ namespace Tizen.NUI.BaseComponents
         /// Gets or sets the height resize policy to be used.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        [Obsolete("Deprecated. Please set Tizen.NUI.View.Layout and use Tizen.NUI.View.HeightSpecification instead.")]
         public ResizePolicyType? HeightResizePolicy
         {
             get => (ResizePolicyType?)GetValue(HeightResizePolicyProperty);
