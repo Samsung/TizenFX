@@ -348,28 +348,7 @@ namespace Tizen.NUI
                 LayoutItem childLayout = LayoutChildren[i];
                 if (childLayout != null)
                 {
-                    var childWidthMeasureSpec = new MeasureSpecification(widthMeasureSpec.Size, widthMeasureSpec.Mode);
-                    var childHeightMeasureSpec = new MeasureSpecification(heightMeasureSpec.Size, heightMeasureSpec.Mode);
-
-                    // RelativeLayout's MatchParent children should not fill to the RelativeLayout.
-                    // Because the children's sizes and positions are calculated by RelativeLayout's APIs.
-                    // Therefore, not to fill the RelativeLayout, the mode is changed from Exactly to AtMost.
-                    if (childLayout.Owner.WidthSpecification == LayoutParamPolicies.MatchParent)
-                    {
-                        childWidthMeasureSpec.SetSize(new LayoutLength(widthMeasureSpec.Size));
-                        childWidthMeasureSpec.SetMode(MeasureSpecification.ModeType.AtMost);
-                    }
-
-                    // RelativeLayout's MatchParent children should not fill to the RelativeLayout.
-                    // Because the children's sizes and positions are calculated by RelativeLayout's APIs.
-                    // Therefore, not to fill the RelativeLayout, the mode is changed from Exactly to AtMost.
-                    if (childLayout.Owner.HeightSpecification == LayoutParamPolicies.MatchParent)
-                    {
-                        childHeightMeasureSpec.SetSize(new LayoutLength(heightMeasureSpec.Size));
-                        childHeightMeasureSpec.SetMode(MeasureSpecification.ModeType.AtMost);
-                    }
-
-                    MeasureChildWithMargins(childLayout, childWidthMeasureSpec, new LayoutLength(0), childHeightMeasureSpec, new LayoutLength(0));
+                    MeasureChildWithMargins(childLayout, widthMeasureSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0));
 
                     if (childLayout.MeasuredWidth.State == MeasuredSize.StateType.MeasuredSizeTooSmall)
                     {
