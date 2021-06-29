@@ -252,7 +252,7 @@ namespace Tizen.NUI.Components
         public override void OnInitialize()
         {
             base.OnInitialize();
-            SetAccessibilityConstructor(Role.List, AccessibilityInterface.Value);
+            SetAccessibilityConstructor(Role.List);
         }
 
         /// <summary>
@@ -289,7 +289,6 @@ namespace Tizen.NUI.Components
                 
         private void Initialize()
         {
-            AccessibilityHighlightable = true;
             HeightSpecification = LayoutParamPolicies.MatchParent;
 
             //Picker Using scroller internally. actually it is a kind of scroller which has infinity loop,
@@ -372,7 +371,10 @@ namespace Tizen.NUI.Components
             onAnimation = false;
             if (onAlignAnimation) {
                 onAlignAnimation = false;
-                PageAdjust(e.Position.Y);
+                if (loopEnabled == true)
+                {
+                    PageAdjust(e.Position.Y);
+                }
                 if (currentValue != ((int)(-e.Position.Y / itemHeight) + 2))
                 {
                     currentValue = ((int)(-e.Position.Y / itemHeight) + 2);

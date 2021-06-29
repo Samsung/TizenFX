@@ -352,6 +352,11 @@ namespace Tizen.NUI.Binding
             {
                 PropertyToGroup.Add(property, group);
             }
+
+            if (null != group && !(group.Contains(property)))
+            {
+                group.Add(property);
+            }
         }
         /// <summary>
         /// Apply the bindings to BindingContext.

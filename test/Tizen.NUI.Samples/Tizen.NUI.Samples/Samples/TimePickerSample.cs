@@ -16,8 +16,8 @@ namespace Tizen.NUI.Samples
 
         private void TimeChanged(object sender, TimeChangedEventArgs e)
         {
-            Console.WriteLine(" Time " + e.Hour + " " + e.Minute);
-        }
+            Console.WriteLine(" Time " + e.Time.Hour + " " + e.Time.Minute);
+        }                                                                      
 
         public void Activate()
         {
@@ -28,9 +28,6 @@ namespace Tizen.NUI.Samples
             {
                 Size = new Size(pickerWidth, pickerHeight),
                 Position = new Position(Window.Instance.Size.Width / 2 - pickerWidth / 2, Window.Instance.Size.Height/ 2 - pickerHeight / 2),
-                Hour = 12,
-                Minute = 30,
-                Is24HourView = false,
             };
             timePicker.TimeChanged += TimeChanged;
             window.Add(timePicker);

@@ -12,7 +12,7 @@ namespace Tizen.NUI.Devel.Tests
     [TestFixture]
     [Description("public/Application/NUIWidgetApplication")]
 
-    public class MyWidget : Widget
+    internal class MyWidget : Widget
     {
         protected override void OnCreate(string contentInfo, Window window)
         {
@@ -118,10 +118,10 @@ namespace Tizen.NUI.Devel.Tests
             }
             catch (InvalidOperationException e)
             {
+                tlog.Debug(tag, e.Message.ToString());
+                tlog.Debug(tag, $"NUIWidgetApplicationConstructorWithNullValue END (OK)");
                 Assert.Pass("Create a NUIWidgetApplication with invalid Dictionary");
             }
-
-            tlog.Debug(tag, $"NUIWidgetApplicationConstructorWithNullValue END (OK)");
         }
 
         [Test]

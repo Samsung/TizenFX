@@ -73,8 +73,6 @@ namespace Tizen.NUI.Components
         private Size thumbSize = null;
         // To store the thumb image url of normal state
         private string thumbImageUrl = null;
-        // To store the thumb image url selector of normal state
-        private Selector<string> thumbImageUrlSelector = null;
         // To store the thumb color of normal state
         private Color thumbColor = Color.White;
         // To store the thumb image url of warning state
@@ -258,7 +256,8 @@ namespace Tizen.NUI.Components
                     HeightResizePolicy = ResizePolicyType.Fixed,
                     ParentOrigin = NUI.ParentOrigin.Center,
                     PivotPoint = NUI.PivotPoint.Center,
-                    PositionUsesPivotPoint = true
+                    PositionUsesPivotPoint = true,
+                    EnableControlState = true
                 };
                 if (bgTrackImage != null)
                 {

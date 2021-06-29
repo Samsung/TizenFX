@@ -85,7 +85,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Gets or sets the number of slices as you go around the shape.<br />
-        /// For spheres and conical frustrums, this determines how many divisions there are as you go around the object.<br />
+        /// For spheres and conical frustums, this determines how many divisions there are as you go around the object.<br />
         /// If not specified, the default is 128.<br />
         /// The range is from 1 to 255.<br />
         /// Optional.
@@ -126,7 +126,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets the scale of the radius of the top circle of a conical frustrum.<br />
+        /// Gets or sets the scale of the radius of the top circle of a conical frustum.<br />
         /// If not specified, the default is 1.0f.<br />
         /// Applies to: - PrimitiveVisualShapeType.ConicalFrustrum<br />
         /// Only values greater than or equal to 0.0f are accepted.<br />
@@ -147,7 +147,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets the scale of the radius of the bottom circle of a conical frustrum.<br />
+        /// Gets or sets the scale of the radius of the bottom circle of a conical frustum.<br />
         /// If not specified, the default is 1.5f.<br />
         /// Applies to:  - PrimitiveVisualShapeType.ConicalFrustrum<br />
         ///              - PrimitiveVisualShapeType.Cone<br />

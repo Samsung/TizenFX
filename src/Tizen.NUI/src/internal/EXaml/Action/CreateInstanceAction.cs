@@ -54,6 +54,10 @@ namespace Tizen.NUI.EXaml
                     getXFactoryMethodIndexOp = new GetValueListAction(']', this);
                     return getXFactoryMethodIndexOp;
 
+                case '{':
+                    getStaticInstanceOp = new GetValueListAction('}', this);
+                    return getStaticInstanceOp;
+
                 default:
                     getTypeIndexOp = new GetValueAction(c, this);
                     return getTypeIndexOp;
@@ -71,17 +75,30 @@ namespace Tizen.NUI.EXaml
             if (null != getTypeIndexOp)
             {
                 int typeIndex = (int)getTypeIndexOp.Value;
-                int xFactoryMethodIndex = (null == getXFactoryMethodIndexOp) ? -1 : (int)getXFactoryMethodIndexOp.ValueList[0];
-
-                if (null == getParamListOp)
+                if (null != getStaticInstanceOp)
                 {
-                    globalDataList.Operations.Add(new CreateInstance(globalDataList, typeIndex, xFactoryMethodIndex));
+                    var propertyName = getStaticInstanceOp.ValueList[0] as string;
+                    var fieldName = getStaticInstanceOp.ValueList[1] as string;
+                    getStaticInstanceOp = null;
+
+                    globalDataList.Operations.Add(new GatherStaticInstance(globalDataList, typeIndex, propertyName, fieldName));
                 }
                 else
                 {
-                    globalDataList.Operations.Add(new CreateInstance(globalDataList, typeIndex, xFactoryMethodIndex, getParamListOp.ValueList));
+                    int xFactoryMethodIndex = (null == getXFactoryMethodIndexOp) ? -1 : (int)getXFactoryMethodIndexOp.ValueList[0];
+                    getXFactoryMethodIndexOp = null;
+
+                    if (null == getParamListOp)
+                    {
+                        globalDataList.Operations.Add(new CreateInstance(globalDataList, typeIndex, xFactoryMethodIndex));
+                    }
+                    else
+                    {
+                        globalDataList.Operations.Add(new CreateInstance(globalDataList, typeIndex, xFactoryMethodIndex, getParamListOp.ValueList));
+                    }
+
+                    getParamListOp = null;
                 }
-                getParamListOp = null;
             }
 
             getTypeIndexOp = null;
@@ -90,6 +107,7 @@ namespace Tizen.NUI.EXaml
         private GetValueAction getTypeIndexOp;
         private GetValueListAction getXFactoryMethodIndexOp;
         private GetValueListAction getParamListOp;
+        private GetValueListAction getStaticInstanceOp;
 
         internal static object Root
         {

@@ -52,6 +52,7 @@ namespace Tizen.NUI.Components
                 Text = new TextLabelStyle()
                 {
                     TextColor = Color.White,
+                    PixelSize = 32,
                 }
             });
 
@@ -77,7 +78,8 @@ namespace Tizen.NUI.Components
                 },
                 Text = new TextLabelStyle()
                 {
-                    TextColor = new Color("#001447")
+                    TextColor = new Color("#001447"),
+                    PixelSize = 32,
                 }
             });
 
@@ -127,8 +129,13 @@ namespace Tizen.NUI.Components
                 Size = new Size(200, 25),
                 Track = new ImageViewStyle()
                 {
-                    ResourceUrl = FrameworkInformation.ResourcePath + "IoT_progressindicator_empty.png",
-                    BackgroundColor = new Color(0, 0, 0, 0.1f),
+                    BorderlineWidth = 0.5f,
+                    BorderlineColor = new Color(0.92f, 0.93f, 0.94f, 1.0f),
+                    BackgroundColor = new Selector<Color>()
+                    {
+                        Normal = new Color(1.0f, 1.0f, 1.0f, 0.5f),
+                        Disabled = new Color(0.73f, 0.76f, 0.79f, 1),
+                    },
                 },
                 Buffer = new ImageViewStyle()
                 {
@@ -136,12 +143,7 @@ namespace Tizen.NUI.Components
                 },
                 Progress = new ImageViewStyle()
                 {
-                    ResourceUrl = new Selector<string>()
-                    {
-                        Normal = FrameworkInformation.ResourcePath + "IoT_progressindicator_progress.png",
-                        Disabled = FrameworkInformation.ResourcePath + "IoT_progressindicator_progressdisabled.png",
-                    },
-                    BackgroundColor = new Color(0.05f, 0.63f, 0.9f, 1),
+                    BackgroundColor = new Color(0.03f, 0.05f, 0.29f, 1),
                 },
                 IndeterminateImageUrl = FrameworkInformation.ResourcePath + "nui_component_default_progress_indeterminate.png",
             });
@@ -168,7 +170,8 @@ namespace Tizen.NUI.Components
                 },
                 Text = new TextLabelStyle()
                 {
-                    TextColor = new Color("#001447")
+                    TextColor = new Color("#001447"),
+                    PixelSize = 32,
                 }
             });
 
@@ -180,29 +183,33 @@ namespace Tizen.NUI.Components
                 Track = new ImageViewStyle()
                 {
                     Size = new Size(100, 8),
-                    ResourceUrl = new Selector<string>()
+                    BorderlineWidth = 0.5f,
+                    BorderlineColor = new Color(0.84f, 0.85f, 0.87f, 1.0f),
+                    BackgroundColor = new Selector<Color>()
                     {
-                        Normal = FrameworkInformation.ResourcePath + "IoT_slider_status_empty_track.png",
-                        Disabled = FrameworkInformation.ResourcePath + "IoT_slider_status_track_disabled.png",
+                        Normal = new Color(1.0f, 1.0f, 1.0f, 0.2f),
+                        Disabled = new Color(0.76f, 0.79f, 0.82f, 1),
                     },
-                    BackgroundColor = new Color(1.0f, 1.0f, 1.0f, 0.1f),
                 },
                 Progress = new ImageViewStyle()
                 {
                     Size = new Size(100, 8),
-                    ResourceUrl = FrameworkInformation.ResourcePath + "IoT_slider_status_track.png",
-                    BackgroundColor = new Color(0.03f, 0.05f, 0.3f, 1),
+                    BackgroundColor = new Selector<Color>()
+                    {
+                        Normal = new Color(0.03f, 0.05f, 0.3f, 1),
+                        Disabled = new Color(0.76f, 0.79f, 0.82f, 1),
+                    },
                 },
                 Thumb = new ImageViewStyle()
                 {
                     Size = new Size(36, 36),
-                    ResourceUrl = FrameworkInformation.ResourcePath + "IoT_slider_handler_normal.png",
-                    // TODO : Should check later when UX guide provides the pressed image
-                    /*BackgroundImage = new Selector<string>()
+                    ResourceUrl = new Selector<string>()
                     {
-                        Normal = FrameworkInformation.ResourcePath + "nui_component_default_slider_thumb_bg_p.png",
-                        Pressed = FrameworkInformation.ResourcePath + "nui_component_default_slider_thumb_bg_p.png",
-                    }*/
+                        Normal = FrameworkInformation.ResourcePath + "IoT_slider_handler_normal.png",
+                        Pressed = FrameworkInformation.ResourcePath + "IoT_slider_handler_pressed.png",
+                        Focused = FrameworkInformation.ResourcePath + "IoT_slider_handler_pressed.png",
+                        Disabled = FrameworkInformation.ResourcePath + "IoT_slider_handler_disabled.png",
+                    },
                 },
                 ValueIndicatorImage = new ImageViewStyle()
                 {
@@ -245,7 +252,8 @@ namespace Tizen.NUI.Components
                 },
                 Text = new TextLabelStyle()
                 {
-                    TextColor = new Color("#001447")
+                    TextColor = new Color("#001447"),
+                    PixelSize = 32,
                 }
             });
 
@@ -589,7 +597,7 @@ namespace Tizen.NUI.Components
                 BoxShadow = new Shadow(2.0f, new Color("#00000029"), new Vector2(2.0f, 2.0f)),
                 TitleTextLabel = new TextLabelStyle()
                 {
-                    Size = new Size(600, -2),
+                    Size = new Size(720, -2),
                     Margin = new Extents(0, 0, 40, 40),
                     PixelSize = 40,
                     HorizontalAlignment = HorizontalAlignment.Center,
@@ -599,7 +607,7 @@ namespace Tizen.NUI.Components
                 },
                 MessageTextLabel = new TextLabelStyle()
                 {
-                    Size = new Size(600, -2),
+                    Size = new Size(720, -2),
                     Margin = new Extents(0, 0, 0, 64),
                     PixelSize = 32,
                     MultiLine = true,
@@ -610,7 +618,7 @@ namespace Tizen.NUI.Components
                 },
                 ActionContent = new ViewStyle()
                 {
-                    Size = new Size(600, -2),
+                    Size = new Size(720, -2),
                 },
             });
 
@@ -672,6 +680,12 @@ namespace Tizen.NUI.Components
                     },
                     StartScrollOffset = new Size2D(0, 12),
                 }
+            });
+
+            // Menu base style
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.Menu", new ViewStyle()
+            {
+                BackgroundColor = new Color("#EEEFF1"),
             });
 
             // MenuItem base style

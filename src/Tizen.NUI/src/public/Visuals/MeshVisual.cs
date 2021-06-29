@@ -15,6 +15,8 @@
  *
  */
 
+using System.ComponentModel;
+
 namespace Tizen.NUI
 {
     /// <summary>
@@ -23,13 +25,13 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class MeshVisual : VisualMap
     {
-        private string _objectURL = null;
-        private string _materialtURL = null;
-        private string _texturesPath = null;
-        private MeshVisualShadingModeValue? _shadingMode = null;
-        private bool? _useMipmapping = null;
-        private bool? _useSoftNormals = null;
-        private Vector3 _lightPosition = null;
+        private string objectURL = null;
+        private string materialURL = null;
+        private string texturesPath = null;
+        private MeshVisualShadingModeValue? shadingMode = null;
+        private bool? useMipmapping = null;
+        private bool? useSoftNormals = null;
+        private Vector3 lightPosition = null;
 
         /// <summary>
         /// Constructor.
@@ -48,11 +50,30 @@ namespace Tizen.NUI
         {
             get
             {
-                return _objectURL;
+                return objectURL;
             }
             set
             {
-                _objectURL = value;
+                objectURL = value;
+                UpdateVisual();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the location of the ".mtl" file.<br />
+        /// If not specified, then a textureless object is assumed.<br />
+        /// Optional.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string MaterialURL
+        {
+            get
+            {
+                return materialURL;
+            }
+            set
+            {
+                materialURL = value;
                 UpdateVisual();
             }
         }
@@ -67,11 +88,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _materialtURL;
+                return materialURL;
             }
             set
             {
-                _materialtURL = value;
+                materialURL = value;
                 UpdateVisual();
             }
         }
@@ -85,11 +106,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _texturesPath;
+                return texturesPath;
             }
             set
             {
-                _texturesPath = value;
+                texturesPath = value;
                 UpdateVisual();
             }
         }
@@ -105,11 +126,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _shadingMode ?? (MeshVisualShadingModeValue.TexturedWithDetailedSpecularLighting);
+                return shadingMode ?? (MeshVisualShadingModeValue.TexturedWithDetailedSpecularLighting);
             }
             set
             {
-                _shadingMode = value;
+                shadingMode = value;
                 UpdateVisual();
             }
         }
@@ -124,11 +145,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _useMipmapping ?? (true);
+                return useMipmapping ?? (true);
             }
             set
             {
-                _useMipmapping = value;
+                useMipmapping = value;
                 UpdateVisual();
             }
         }
@@ -143,11 +164,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _useSoftNormals ?? (true);
+                return useSoftNormals ?? (true);
             }
             set
             {
-                _useSoftNormals = value;
+                useSoftNormals = value;
                 UpdateVisual();
             }
         }
@@ -164,11 +185,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _lightPosition;
+                return lightPosition;
             }
             set
             {
-                _lightPosition = value;
+                lightPosition = value;
                 UpdateVisual();
             }
         }
@@ -179,44 +200,44 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected override void ComposingPropertyMap()
         {
-            if (_objectURL != null)
+            if (objectURL != null)
             {
                 _outputVisualMap = new PropertyMap();
                 PropertyValue temp = new PropertyValue((int)Visual.Type.Mesh);
                 _outputVisualMap.Add(Visual.Property.Type, temp);
                 temp.Dispose();
 
-                temp = new PropertyValue(_objectURL);
+                temp = new PropertyValue(objectURL);
                 _outputVisualMap.Add(MeshVisualProperty.ObjectURL, temp);
                 temp.Dispose();
 
-                if (_materialtURL != null)
+                if (materialURL != null)
                 {
-                    temp = new PropertyValue(_materialtURL);
+                    temp = new PropertyValue(materialURL);
                     _outputVisualMap.Add(MeshVisualProperty.MaterialtURL, temp);
                     temp.Dispose();
                 }
-                if (_texturesPath != null)
+                if (texturesPath != null)
                 {
-                    temp = new PropertyValue(_texturesPath);
+                    temp = new PropertyValue(texturesPath);
                     _outputVisualMap.Add(MeshVisualProperty.TexturesPath, temp);
                     temp.Dispose();
                 }
-                if (_shadingMode != null)
+                if (shadingMode != null)
                 {
-                    temp = new PropertyValue((int)_shadingMode);
+                    temp = new PropertyValue((int)shadingMode);
                     _outputVisualMap.Add(MeshVisualProperty.ShadingMode, temp);
                     temp.Dispose();
                 }
-                if (_useMipmapping != null)
+                if (useMipmapping != null)
                 {
-                    temp = new PropertyValue((bool)_useMipmapping);
+                    temp = new PropertyValue((bool)useMipmapping);
                     _outputVisualMap.Add(MeshVisualProperty.UseMipmapping, temp);
                     temp.Dispose();
                 }
-                if (_useSoftNormals != null)
+                if (useSoftNormals != null)
                 {
-                    temp = new PropertyValue((bool)_useSoftNormals);
+                    temp = new PropertyValue((bool)useSoftNormals);
                     _outputVisualMap.Add(MeshVisualProperty.UseSoftNormals, temp);
                     temp.Dispose();
                 }

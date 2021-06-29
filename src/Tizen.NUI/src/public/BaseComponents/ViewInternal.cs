@@ -926,6 +926,21 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
+        internal void SetFocusableInTouch(bool enabled)
+        {
+            Interop.ActorInternal.SetFocusableInTouch(SwigCPtr, enabled);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal bool IsFocusableInTouch()
+        {
+            bool ret = Interop.ActorInternal.IsFocusableInTouch(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         internal void SetResizePolicy(ResizePolicyType policy, DimensionType dimension)
         {
             Interop.Actor.SetResizePolicy(SwigCPtr, (int)policy, (int)dimension);
@@ -1385,15 +1400,20 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void InitializeStyle(ViewStyle style = null)
         {
-            // First, apply initial style if needs.
             var initialStyle = ThemeManager.GetInitialStyleWithoutClone(GetType());
-            if (style == null || style.IncludeDefaultStyle)
+            if (style == null)
             {
                 ApplyStyle(initialStyle);
             }
-
-            // Then, apply given style.
-            ApplyStyle(style);
+            else
+            {
+                var refinedStyle = style;
+                if (style.IncludeDefaultStyle)
+                {
+                    refinedStyle = initialStyle?.Merge(style);
+                }
+                ApplyStyle(style);
+            }
 
             // Listen theme change event if needs.
             if (ThemeManager.PlatformThemeEnabled && initialStyle != null)

@@ -86,7 +86,16 @@ namespace Tizen.NUI.Components
             }
             set
             {
+                if (itemIcon != null) Remove(itemIcon);
                 itemIcon = value;
+                if (itemIcon != null)
+                {
+                    //FIXME: User applied icon's style can be overwritten!
+                    if (ItemStyle != null) itemIcon.ApplyStyle(ItemStyle.Icon);
+                    Add(itemIcon);
+                    itemIcon.Relayout += OnIconRelayout;
+                }
+                layoutChanged = true;
             }
         }
 
@@ -221,7 +230,13 @@ namespace Tizen.NUI.Components
             {
                 if (itemExtra != null) Remove(itemExtra);
                 itemExtra = value;
-                Add(itemExtra);
+                if (itemExtra != null)
+                {
+                    //FIXME: User applied extra's style can be overwritten!
+                    if (ItemStyle != null) itemExtra.ApplyStyle(ItemStyle.Extra);
+                    Add(itemExtra);
+                }
+                layoutChanged = true;
             }
         }
 
