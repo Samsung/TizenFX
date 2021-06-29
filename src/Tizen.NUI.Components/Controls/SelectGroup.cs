@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019-2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,22 +17,10 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.Components
 {
-    /// <summary>
-    /// Selection group event arguments
-    /// </summary>
-    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public class GroupSelectedChangedEventArgs : EventArgs
-    {
-        /// <summary>The index of selected item</summary>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int SelectedIndex { get; set; }
-    }
-
     /// <summary>
     /// SelectionGroup is the base class of CheckBoxGroup and RadioButtonGroup.
     /// It defines a group that is set of selections and enables the user to choose one or multiple selection.
@@ -51,7 +39,14 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected List<SelectButton> ItemGroup { get; }
 
-        private int selectedIndex;
+        private int selectedIndex = -1;
+        private bool isSelectionChanging = false;
+
+        /// <summary>
+        /// An event for the item selected changed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler SelectedChanged;
 
         /// <summary>
         /// Get the number of items in the SelectionGroup.
@@ -63,6 +58,7 @@ namespace Tizen.NUI.Components
 
         /// <summary>
         /// Get the index of currently or latest selected item.
+        /// If no item is selected, returns -1.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -113,21 +109,35 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Adds all existing items in the group to the View.
+        /// </summary>
+        /// <param name="target">The target view.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void AddAllToView(View target)
+        {
+            if (target == null) throw new global::System.ArgumentNullException(nameof(target));
+
+            foreach (SelectButton button in ItemGroup) target.Add(button);
+        }
+
+        /// <summary>
         /// Adds an selection to the end of the SelectionGroup
         /// </summary>
         /// <param name="selection">The selection to be added to the end of the SelectionGroup</param>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected void AddSelection(SelectButton selection)
+        protected internal void AddSelection(SelectButton selection)
         {
             if (null == selection) return;
             if (ItemGroup.Contains(selection))
             {
                 return;
             }
+
+            selection.RemoveFromGroup();
             ItemGroup.Add(selection);
-            selection.SelectedChanged += OnSelectedChanged;
+            selection.SelectedChanged += GroupSelectionHandler;
         }
 
         /// <summary>
@@ -137,32 +147,38 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected void RemoveSelection(SelectButton selection)
+        protected internal void RemoveSelection(SelectButton selection)
         {
             if (!ItemGroup.Contains(selection))
             {
                 return;
             }
-            selection.SelectedChanged -= OnSelectedChanged;
+            selection.SelectedChanged -= GroupSelectionHandler;
             ItemGroup.Remove(selection);
+            selection.ResetItemGroup();
         }
 
         /// <summary>
         /// Called when the state of Selected is changed.
         /// </summary>
         /// <param name="selection">The selection selected by user</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual void SelectionHandler(SelectButton selection)
+        protected virtual void OnSelectedChanged(SelectButton selection)
         {
+            SelectedChanged?.Invoke(this, new EventArgs());
         }
 
-        private void OnSelectedChanged(object sender, SelectedChangedEventArgs args)
+        private void GroupSelectionHandler(object sender, SelectedChangedEventArgs args)
         {
-            SelectButton selection = sender as SelectButton;
-            if (selection != null)
+            if (isSelectionChanging)
             {
+                return;
+            }
+
+            if (sender is SelectButton selection)
+            {
+                isSelectionChanging = true;
+
                 if (args.IsSelected == true)
                 {
                     selectedIndex = selection.Index;
@@ -177,9 +193,10 @@ namespace Tizen.NUI.Components
                             }
                         }
                     }
-
-                    SelectionHandler(selection);
                 }
+
+                isSelectionChanging = false;
+                OnSelectedChanged(selection);
             }
         }
     }

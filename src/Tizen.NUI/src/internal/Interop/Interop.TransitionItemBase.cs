@@ -53,6 +53,9 @@ namespace Tizen.NUI
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TransitionBase_TransitionWithChild")]
             public static extern void TransitionWithChild(HandleRef transition, bool transitionWithChild);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TransitionBase_SetAppearingTransition")]
+            public static extern void SetAppearingTransition(HandleRef transition, bool appearingTransition);
         }
     }
 }

@@ -60,7 +60,7 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 9 </since_tizen>
     public class Navigator : Control
     {
-        private static readonly int DefaultTransitionDuration = 500;
+        private const int DefaultTransitionDuration = 500;
 
         //This will be replaced with view transition class instance.
         private Animation curAnimation = null;
@@ -656,7 +656,6 @@ namespace Tizen.NUI.Components
                 }
                 newTransitionSet.AddTransition(pairTransition);
             }
-            newTransitionSet.Play();
 
             newTransitionSet.Finished += (object sender, EventArgs e) =>
             {
@@ -666,16 +665,18 @@ namespace Tizen.NUI.Components
                 currentTopPage.Opacity = 1.0f;
             };
 
-            // default entering/exit transition - fast fade (half duration compaired with that of view pair transition)
+            // default appearing/disappearing transition - fast fade (half duration compaired with that of view pair transition)
             int duration = (transition.TimePeriod.DurationMilliseconds + transition.TimePeriod.DelayMilliseconds);
             float durationSeconds = (float)duration / 1000.0f;
-            Animation fade = new Animation(0.8f * durationSeconds);
-            fade.AnimateTo(currentTopPage, "Opacity", 0.0f);
-            KeyFrames keyframes = new KeyFrames();
-            keyframes.Add(0.0f, 0.0f);
-            keyframes.Add(1.0f, 1.0f);
-            fade.AnimateBetween(newTopPage, "Opacity", keyframes);
-            fade.Play();
+
+            TransitionItemBase disappearingTransition = currentTopPage.DisappearingTransition.CreateTransition(currentTopPage, false);
+            TransitionItemBase appearingTransition = newTopPage.AppearingTransition.CreateTransition(newTopPage, true);
+            disappearingTransition.TransitionWithChild = true;
+            appearingTransition.TransitionWithChild = true;
+            newTransitionSet.AddTransition(disappearingTransition);
+            newTransitionSet.AddTransition(appearingTransition);
+
+            newTransitionSet.Play();
 
             return newTransitionSet;
         }
