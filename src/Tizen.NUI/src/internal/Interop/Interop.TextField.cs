@@ -244,6 +244,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextField_Property_ELLIPSIS_get")]
             public static extern int EllipsisGet();
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextField_Property_ELLIPSIS_LOCATION_get")]
+            public static extern int EllipsisLocationGet();
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_SelectWholeText")]
             public static extern void SelectWholeText(global::System.Runtime.InteropServices.HandleRef jarg1);
 

@@ -884,6 +884,31 @@ namespace Tizen.NUI
     }
 
     /// <summary>
+    /// An enum of ellipsis location.
+    /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    public enum EllipsisLocation
+    {
+        /// <summary>
+        /// ellipsis location at end.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        End,
+
+        /// <summary>
+        /// ellipsis location at start.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        Start,
+
+        /// <summary>
+        /// ellipsis location in middle.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        Middle
+    }
+
+    /// <summary>
     /// Enumeration type for the font's slant.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>

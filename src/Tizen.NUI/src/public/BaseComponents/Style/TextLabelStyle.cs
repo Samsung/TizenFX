@@ -267,6 +267,18 @@ namespace Tizen.NUI.BaseComponents
             var textLabelStyle = (TextLabelStyle)bindable;
             return textLabelStyle.verticalLineAlignment;
         });
+        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty EllipsisLocationProperty = BindableProperty.Create(nameof(EllipsisLocation), typeof(EllipsisLocation?), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textLabelStyle = (TextLabelStyle)bindable;
+            textLabelStyle.ellipsisLocation = (EllipsisLocation?)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textLabelStyle = (TextLabelStyle)bindable;
+            return textLabelStyle.ellipsisLocation;
+        });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty MatchSystemLanguageDirectionProperty = BindableProperty.Create(nameof(MatchSystemLanguageDirection), typeof(bool?), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
@@ -318,6 +330,7 @@ namespace Tizen.NUI.BaseComponents
         private AutoScrollStopMode? autoScrollStopMode;
         private LineWrapMode? lineWrapMode;
         private VerticalLineAlignment? verticalLineAlignment;
+        private EllipsisLocation? ellipsisLocation;
         private bool? matchSystemLanguageDirection;
         private Selector<string> translatableTextSelector;
         private Selector<string> fontFamilySelector;
@@ -487,6 +500,14 @@ namespace Tizen.NUI.BaseComponents
         {
             get => (VerticalLineAlignment?)GetValue(VerticalLineAlignmentProperty);
             set => SetValue(VerticalLineAlignmentProperty, value);
+        }
+
+        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public EllipsisLocation? EllipsisLocation
+        {
+            get => (EllipsisLocation?)GetValue(EllipsisLocationProperty);
+            set => SetValue(EllipsisLocationProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
