@@ -1339,6 +1339,47 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The Ellipsis property.<br />
+        /// Enable or disable the ellipsis.<br />
+        /// </summary>
+        /// <since_tizen> 6.5 </since_tizen>
+        /// This will be released at Tizen.NET API Level 6.5, so currently this would be used as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Ellipsis
+        {
+            get
+            {
+                return (bool)GetValue(EllipsisProperty);
+            }
+            set
+            {
+                SetValue(EllipsisProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The ellipsis location of the text.
+        /// The ellipsis location type when the text size over the layout size.<br />
+        /// The ellipsis location: End, Start or Middle.<br />
+        /// </summary>
+        /// <since_tizen> 6.5 </since_tizen>
+        /// This will be released at Tizen.NET API Level 6.5, so currently this would be used as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public EllipsisLocation EllipsisLocation
+        {
+            get
+            {
+                return (EllipsisLocation)GetValue(EllipsisLocationProperty);
+            }
+            set
+            {
+                SetValue(EllipsisLocationProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// The LineWrapMode property.<br />
         /// The line wrap mode when the text lines over the layout width.<br />
         /// </summary>
@@ -1790,6 +1831,8 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int EnableGrabHandle = Interop.TextEditor.EnableGrabHandleGet();
             internal static readonly int EnableGrabHandlePopup = Interop.TextEditor.EnableGrabHandlePopupGet();
             internal static readonly int InputMethodSettings = Interop.TextEditor.InputMethodSettingsGet();
+            internal static readonly int ELLIPSIS = Interop.TextEditor.EllipsisGet();
+            internal static readonly int EllipsisLocation = Interop.TextEditor.EllipsisLocationGet();
         }
 
         internal class InputStyle
