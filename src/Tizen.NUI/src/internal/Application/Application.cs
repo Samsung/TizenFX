@@ -1090,6 +1090,19 @@ namespace Tizen.NUI
             return instance;
         }
 
+        public static Application NewApplication(string stylesheet, NUIApplication.WindowMode windowMode, Rectangle positionSize, WindowType type)
+        {
+            if (instance)
+            {
+                return instance;
+            }
+            Application ret = New(1, stylesheet, windowMode, positionSize, type);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            instance = ret;
+            return instance;
+        }
+
         /// <summary>
         /// Ensures that the function passed in is called from the main loop when it is idle.
         /// </summary>
@@ -1190,6 +1203,13 @@ namespace Tizen.NUI
             ret = new Application(NDalicPINVOKE.ApplicationNewWithWindowSizePosition(argc, argvStr, stylesheet, (int)windowMode, Rectangle.getCPtr(positionSize)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
+            return ret;
+        }
+
+        public static Application New(int argc, string stylesheet, NUIApplication.WindowMode windowMode, Rectangle positionSize, WindowType type)
+        {
+            Application ret = new Application(Interop.Application.New(argc, stylesheet, (int)windowMode, Rectangle.getCPtr(positionSize), (int)type), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
