@@ -246,37 +246,27 @@ namespace Tizen.NUI.Devel.Tests
             Assert.Pass("GLWindowDisconnectNativeSignals");
         }
 
-        [Test]
-        [Category("P1")]
-        [Description("GLWindow GLWindowVisibilityChanged")]
-        [Property("SPEC", "Tizen.NUI.GLWindow.VisibilityChanged A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
-        public void GLWindowVisibilityChanged()
-        {
-            tlog.Debug(tag, $"GLWindowVisibilityChanged START");
-            string name = "myGLWindow";
-            Rectangle rectangle = new Rectangle(20, 20, 100, 100);
-            GLWindow a1 = new GLWindow(name, rectangle, true);
+        //[Test]
+        //[Category("P1")]
+        //[Description("GLWindow GLWindowVisibilityChanged")]
+        //[Property("SPEC", "Tizen.NUI.GLWindow.VisibilityChanged A")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "PRW")]
+        //public void GLWindowVisibilityChanged()
+        //{
+        //    tlog.Debug(tag, $"GLWindowVisibilityChanged START");
+        //    string name = "myGLWindow";
+        //    Rectangle rectangle = new Rectangle(20, 20, 100, 100);
+        //    GLWindow a1 = new GLWindow(name, rectangle, true);
 
-            a1.VisibilityChanged += A1_VisibilityChanged;
-            a1.VisibilityChanged -= A1_VisibilityChanged;
+        //    a1.VisibilityChanged += A1_VisibilityChanged;
+        //    a1.VisibilityChanged -= A1_VisibilityChanged;
 
-            GLWindow.VisibilityChangedEventArgs e1 = new GLWindow.VisibilityChangedEventArgs();
-            A1_VisibilityChanged(null, e1);
+        //    a1.Destroy();
+        //    tlog.Debug(tag, $"GLWindowVisibilityChanged END (OK)");
+        //}
 
-            a1.Destroy();
-            tlog.Debug(tag, $"GLWindowVisibilityChanged END (OK)");
-            Assert.Pass("GLWindowVisibilityChanged");
-        }
-
-        private void A1_VisibilityChanged(object sender, GLWindow.VisibilityChangedEventArgs e)
-        {
-            bool b1 = e.Visibility;
-            e.Visibility = b1;
-
-            return;
-        }
+        private void A1_VisibilityChanged(object sender, GLWindow.VisibilityChangedEventArgs e) { }
 
         [Test]
         [Category("P1")]
