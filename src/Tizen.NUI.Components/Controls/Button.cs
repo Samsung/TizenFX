@@ -482,6 +482,16 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Icon image's size in Button.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Size IconSize
+        {
+            get => Icon.Size;
+            set => Icon.Size = value;
+        }
+
+        /// <summary>
         /// Text string selector in Button.
         /// Getter returns copied selector value if exist, null otherwise.
         /// <exception cref="NullReferenceException">Thrown when setting null value.</exception>
