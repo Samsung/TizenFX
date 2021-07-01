@@ -1,4 +1,9 @@
-﻿using NUnit.Framework;
+﻿using global::System;
+using NUnit.Framework;
+using NUnit.Framework.TUnit;
+using Tizen.NUI.Components;
+using Tizen.NUI.BaseComponents;
+using System.Collections.Generic;
 
 namespace Tizen.NUI.Devel.Tests
 {
@@ -33,10 +38,24 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"ThemeChangedEventArgsConstructor START");
 
-            ThemeChangedEventArgs a1 = new ThemeChangedEventArgs("themeid");
+            Theme theme = new Theme()
+            {
+                Id = "1"
+            };
+
+            try
+            {
+                var testingTarget = new ThemeChangedEventArgs(theme.Id, ThemeManager.PlatformThemeId, false);
+                Assert.IsNotNull(testingTarget, "Can't create success object ThemeChangedEventArgs.");
+                Assert.IsInstanceOf<ThemeChangedEventArgs>(testingTarget, "Should return ThemeChangedEventArgs instance.");
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception: Failed!");
+            }
 
             tlog.Debug(tag, $"ThemeChangedEventArgsConstructor END (OK)");
-            Assert.Pass("ThemeChangedEventArgsConstructor");
         }
 
         [Test]
@@ -50,11 +69,26 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"ThemeChangedEventArgsThemeId START");
 
-            ThemeChangedEventArgs a1 = new ThemeChangedEventArgs("themeid");
-            string b1 = a1.ThemeId;
+            Theme theme = new Theme()
+            {
+                Id = "1"
+            };
+            var testingTarget = new ThemeChangedEventArgs(theme.Id, ThemeManager.PlatformThemeId, false);
+            Assert.IsNotNull(testingTarget, "Can't create success object ThemeChangedEventArgs.");
+            Assert.IsInstanceOf<ThemeChangedEventArgs>(testingTarget, "Should return ThemeChangedEventArgs instance.");
+
+            try
+            {
+                var result = testingTarget.ThemeId;
+                tlog.Debug(tag, "themeId :" + result);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception: Failed!");
+            }
 
             tlog.Debug(tag, $"ThemeChangedEventArgsThemeId END (OK)");
-            Assert.Pass("ThemeChangedEventArgsThemeId");
         }
     }
 }
