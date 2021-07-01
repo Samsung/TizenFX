@@ -154,8 +154,11 @@ namespace Tizen.Multimedia
         private int connectionCallbackId = 0;
         private void RegisterDeviceConnectionChangedCallback()
         {
+            Log.Debug(CameraLog.Tag, "Enter");
+
             _deviceConnectionChangedCallback = (ref Native.CameraDeviceStruct device, bool status, IntPtr userData) =>
             {
+                Log.Debug(CameraLog.Tag, "Invoke DeviceConnectionChanged event");
                 _deviceConnectionChanged?.Invoke(this, new CameraDeviceConnectionChangedEventArgs(ref device, status));
             };
 
@@ -165,6 +168,8 @@ namespace Tizen.Multimedia
 
         private void UnregisterDeviceConnectionChangedCallback()
         {
+            Log.Debug(CameraLog.Tag, "Enter");
+
             Native.UnsetDeviceConnectionChangedCallback(Handle, connectionCallbackId).
                 ThrowIfFailed("Failed to unset device connection changed callback");
         }
@@ -180,6 +185,8 @@ namespace Tizen.Multimedia
         {
             if (!_disposed)
             {
+                Log.Debug(CameraLog.Tag, $"Enter. disposing:{disposing.ToString()}");
+
                 if (disposing)
                 {
                     // to be used if there are any other disposable objects
