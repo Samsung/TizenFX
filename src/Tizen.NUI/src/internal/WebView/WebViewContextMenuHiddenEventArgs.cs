@@ -21,18 +21,18 @@ using System.ComponentModel;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// Event arguments that passed via the WebView.ContextMenuCustomized.
+    /// Event arguments that passed via the WebView.ContextMenuHidden.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class WebViewContextMenuCustomizedEventArgs : EventArgs
+    public class WebViewContextMenuHiddenEventArgs : EventArgs
     {
-        internal WebViewContextMenuCustomizedEventArgs(WebContextMenu menu)
+        internal WebViewContextMenuHiddenEventArgs(WebContextMenu menu)
         {
             ContextMenu = menu;
         }
 
         /// <summary>
-        /// The context menu.
+        /// The context menu that is hidden.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public WebContextMenu ContextMenu { get; }

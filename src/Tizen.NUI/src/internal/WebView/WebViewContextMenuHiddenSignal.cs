@@ -17,22 +17,22 @@
 
 namespace Tizen.NUI
 {
-    internal class WebViewContextMenuCustomizedSignal : Disposable
+    internal class WebViewContextMenuHiddenSignal : Disposable
     {
-        public WebViewContextMenuCustomizedSignal(global::System.IntPtr cPtr) : base(cPtr, true)
+        public WebViewContextMenuHiddenSignal(global::System.IntPtr cPtr) : base(cPtr, true)
         {
         }
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.WebView.DeleteWebViewContextMenuCustomizedSignal(swigCPtr);
+            Interop.WebView.DeleteWebViewContextMenuHiddenSignal(swigCPtr);
         }
 
         public void Connect(System.Delegate func)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
             {
-                Interop.WebView.WebViewContextMenuCustomizedSignalConnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.WebView.WebViewContextMenuHiddenSignalConnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                 {
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -44,7 +44,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.WebView.WebViewContextMenuCustomizedSignalDisconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.WebView.WebViewContextMenuHiddenSignalDisconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                 {
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();

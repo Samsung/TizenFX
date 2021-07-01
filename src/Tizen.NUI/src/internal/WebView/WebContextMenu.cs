@@ -64,19 +64,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets position of the context menu.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Vector2 Position
-        {
-            get
-            {
-                IntPtr result = Interop.WebContextMenu.GetPosition(SwigCPtr);
-                return new Vector2(result, true);
-            }
-        }
-
-        /// <summary>
         /// Returns the nth item in a context menu.
         /// <param name="index">The position of the item</param>
         /// </summary>

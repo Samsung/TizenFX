@@ -16,13 +16,49 @@
  */
 using System;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Components;
 
 namespace Tizen.NUI.WebViewTest
 {
+    internal class MenuView : View
+    {
+        private WebContextMenu contextMenu;
+        private TextLabel[] texts;
+
+        internal MenuView(WebContextMenu menu)
+        {
+            contextMenu = menu;
+
+            Layout = new LinearLayout()
+            {
+                LinearOrientation = LinearLayout.Orientation.Vertical,
+                LinearAlignment = LinearLayout.Alignment.Center
+            };
+
+            texts = new TextLabel[menu.ItemList.ItemCount];
+
+            for (uint i = 0; i < menu.ItemList.ItemCount; i++)
+            {
+                WebContextMenuItem item = menu.ItemList.GetItemAtIndex(i);
+                texts[i] = new TextLabel()
+                {
+                    Size = new Size(200, 80),
+                    PointSize = 30.0f,
+                    TextColor = Color.Black,
+                    Text = item.Title,
+                };
+                Add(texts[i]);
+            }
+        }
+
+        internal void HideMenu()
+        {
+            contextMenu.Hide();
+        }
+    }
+
     public class SimpleWebViewApplication : NUIApplication
     {
-        private WebView simpleWebView = null;
+        private BaseComponents.WebView simpleWebView = null;
         private TextField addressBar = null;
 
         private int index = 0;
@@ -45,6 +81,9 @@ namespace Tizen.NUI.WebViewTest
 
         private const int WEBVIEW_WIDTH = SCREEN_WIDTH;
         private const int WEBVIEW_HEIGHT = SCREEN_HEIGHT - ADDRESSBAR_HEIGHT;
+
+        private Vector2 menuPosition;
+        private MenuView menuView;
 
         private int blueKeyPressedCount = 0;
         private int yellowKeyPressedCount = 0;
@@ -84,7 +123,7 @@ namespace Tizen.NUI.WebViewTest
                 Log.Info("WebView", $"arg {i} is {runtimeArgs[i]}");
             }
 
-            simpleWebView = new WebView(runtimeArgs)
+            simpleWebView = new BaseComponents.WebView(runtimeArgs)
             {
                 Position = new Position(0, ADDRESSBAR_HEIGHT),
                 Size = new Size(WEBVIEW_WIDTH, WEBVIEW_HEIGHT),
@@ -102,12 +141,12 @@ namespace Tizen.NUI.WebViewTest
             simpleWebView.PageLoading += OnPageLoading;
             simpleWebView.PageLoadFinished += OnPageLoadFinished;
             simpleWebView.PageLoadError += OnPageLoadError;
-            simpleWebView.ContextMenuCustomized += OnContextMenuCustomized;
+            simpleWebView.ContextMenuShown += OnContextMenuShown;
+            simpleWebView.ContextMenuHidden += OnContextMenuHidden;
             simpleWebView.ScrollEdgeReached += OnScrollEdgeReached;
             simpleWebView.UrlChanged += OnUrlChanged;
             simpleWebView.FormRepostPolicyDecided += OnFormRepostPolicyDecided;
             //simpleWebView.FrameRendered += OnFrameRendered;
-            simpleWebView.ContextMenuItemSelected += OnContextMenuItemSelected;
             simpleWebView.ConsoleMessageReceived += OnConsoleMessageReceived;
             simpleWebView.CertificateConfirmed += OnCertificateConfirmed;
             simpleWebView.ResponsePolicyDecided += OnResponsePolicyDecided;
@@ -124,6 +163,11 @@ namespace Tizen.NUI.WebViewTest
 
         protected override void OnTerminate()
         {
+            if (menuView != null)
+            {
+                GetDefaultWindow().Remove(menuView);
+            }
+
             GetDefaultWindow().Remove(simpleWebView);
             GetDefaultWindow().Remove(addressBar);
 
@@ -151,6 +195,22 @@ namespace Tizen.NUI.WebViewTest
             if (!simpleWebView.HasFocus())
             {
                 FocusManager.Instance.SetCurrentFocusView(simpleWebView);
+            }
+
+            if (args.Touch.GetState(0) == PointStateType.Up)
+            {
+                if (menuView == null && menuPosition == null)
+                {
+                    menuPosition = args.Touch.GetScreenPosition(0);
+                }
+
+                if (menuView != null)
+                {
+                    menuView.HideMenu();
+                    GetDefaultWindow().Remove(menuView);
+                    menuView = null;
+                    menuPosition = null;
+                }
             }
             return false;
         }
@@ -221,56 +281,55 @@ namespace Tizen.NUI.WebViewTest
 
         private void OnFrameRendered(object sender, EventArgs e)
         {
-            for (int i = 0; i < 10; i++)
-            {
-                Log.Info("WebView", $"------------frame rendered-------");
-            }
+            Log.Info("WebView", $"------------frame rendered-------");
         }
 
-        private void OnContextMenuCustomized(object sender, WebViewContextMenuCustomizedEventArgs e)
+        private void OnContextMenuShown(object sender, WebViewContextMenuShownEventArgs e)
         {
-            Log.Info("WebView", $"------------context menu customized, ItemCount: {e.ContextMenu.ItemCount}-------");
-            Log.Info("WebView", $"------------context menu customized, ItemList ItemCount: {e.ContextMenu.ItemList.ItemCount}-------");
+            Log.Info("WebView", $"------------context menu is shown, -------");
+
+            if (menuPosition != null)
+            {
+                menuView = new MenuView(e.ContextMenu)
+                {
+                    BackgroundColor = Color.Cyan,
+                    Position = new Position(menuPosition),
+                    Size = new Size(200, e.ContextMenu.ItemCount * 80),
+                };
+                GetDefaultWindow().Add(menuView);
+            }
+
+            Log.Info("WebView", $"------------context menu shown, ItemList ItemCount: {e.ContextMenu.ItemList.ItemCount}-------");
             if (e.ContextMenu.ItemList.ItemCount > 0)
             {
                 WebContextMenuItem item = e.ContextMenu.ItemList.GetItemAtIndex(0);
-                Log.Info("WebView", $"------------context menu customized, Item Tag: {item.Tag}-------");
-                Log.Info("WebView", $"------------context menu customized, Item Type: {item.Type}-------");
-                Log.Info("WebView", $"------------context menu customized, Item IsEnabled: {item.IsEnabled}-------");
-                Log.Info("WebView", $"------------context menu customized, Item LinkUrl: {item.LinkUrl}-------");
-                Log.Info("WebView", $"------------context menu customized, Item ImageUrl: {item.ImageUrl}-------");
-                Log.Info("WebView", $"------------context menu customized, Item Title: {item.Title}-------");
+                Log.Info("WebView", $"------------context menu shown, Item Tag: {item.Tag}-------");
+                Log.Info("WebView", $"------------context menu shown, Item Type: {item.Type}-------");
+                Log.Info("WebView", $"------------context menu shown, Item IsEnabled: {item.IsEnabled}-------");
+                Log.Info("WebView", $"------------context menu shown, Item LinkUrl: {item.LinkUrl}-------");
+                Log.Info("WebView", $"------------context menu shown, Item ImageUrl: {item.ImageUrl}-------");
+                Log.Info("WebView", $"------------context menu shown, Item Title: {item.Title}-------");
                 if (item.ParentMenu != null)
                 {
-                    Log.Info("WebView", $"------------context menu customized, Item ParentMenu: {item.ParentMenu.ItemCount}-------");
+                    Log.Info("WebView", $"------------context menu shown, ParentMenu item count: {item.ParentMenu.ItemCount}-------");
                 }
             }
-            Log.Info("WebView", $"------------context menu customized, ItemCount: {e.ContextMenu.ItemCount}-------");
-            Log.Info("WebView", $"------------context menu customized, Position: {e.ContextMenu.Position}-------");
+            Log.Info("WebView", $"------------context menu shown, ItemCount: {e.ContextMenu.ItemCount}-------");
+            //Log.Info("WebView", $"------------context menu shown, Position: {e.ContextMenu.Position}-------");
             e.ContextMenu.AppendItem(WebContextMenuItem.ItemTag.NoAction, "test1", true);
             e.ContextMenu.AppendItem(WebContextMenuItem.ItemTag.NoAction, "test2", "", true);
-            e.ContextMenu.Hide();
+            //e.ContextMenu.Hide();
             if (e.ContextMenu.ItemCount > 0)
             {
-                WebContextMenuItem item = e.ContextMenu.GetItemAtIndex(0);
-                e.ContextMenu.SelectItem(item);
-                e.ContextMenu.RemoveItem(item);
+                //WebContextMenuItem item = e.ContextMenu.GetItemAtIndex(0);
+                //e.ContextMenu.SelectItem(item);
+                //e.ContextMenu.RemoveItem(item);
             }
         }
 
-        private void OnContextMenuItemSelected(object sender, WebViewContextMenuItemSelectedEventArgs e)
+        private void OnContextMenuHidden(object sender, WebViewContextMenuHiddenEventArgs e)
         {
-            Log.Info("WebView", $"------------context menu item selected, -------");
-            Log.Info("WebView", $"------------context menu customized, Item Tag: {e.ContextMenuItem.Tag}-------");
-            Log.Info("WebView", $"------------context menu customized, Item Type: {e.ContextMenuItem.Type}-------");
-            Log.Info("WebView", $"------------context menu customized, Item IsEnabled: {e.ContextMenuItem.IsEnabled}-------");
-            Log.Info("WebView", $"------------context menu customized, Item LinkUrl: {e.ContextMenuItem.LinkUrl}-------");
-            Log.Info("WebView", $"------------context menu customized, Item ImageUrl: {e.ContextMenuItem.ImageUrl}-------");
-            Log.Info("WebView", $"------------context menu customized, Item Title: {e.ContextMenuItem.Title}-------");
-            if (e.ContextMenuItem.ParentMenu != null)
-            {
-                Log.Info("WebView", $"------------context menu customized, Item ParentMenu: {e.ContextMenuItem.ParentMenu.ItemCount}-------");
-            }
+            Log.Info("WebView", $"------------context menu is hidden, -------");
         }
 
         private void OnConsoleMessageReceived(object sender, WebViewConsoleMessageReceivedEventArgs e)
@@ -325,6 +384,25 @@ namespace Tizen.NUI.WebViewTest
         private void OnHitTestFinished(WebHitTestResult test)
         {
             Log.Info("WebView", $"------------hit test finished-------");
+            Log.Info("WebView", $"WebHitTestResult, TestResultContext: {test.TestResultContext}");
+            Log.Info("WebView", $"WebHitTestResult, LinkUrl: {test.LinkUrl}");
+            Log.Info("WebView", $"WebHitTestResult, LinkTitle: {test.LinkTitle}");
+            Log.Info("WebView", $"WebHitTestResult, LinkLabel: {test.LinkLabel}");
+            Log.Info("WebView", $"WebHitTestResult, ImageUrl: {test.ImageUrl}");
+            Log.Info("WebView", $"WebHitTestResult, MediaUrl: {test.MediaUrl}");
+            Log.Info("WebView", $"WebHitTestResult, TagName: {test.TagName}");
+            Log.Info("WebView", $"WebHitTestResult, NodeValue: {test.NodeValue}");
+            if (test.Attributes != null)
+            {
+                Log.Info("WebView", $"WebHitTestResult, Attributes: {test.Attributes}");
+            }
+            Log.Info("WebView", $"WebHitTestResult, ImageFileNameExtension: {test.ImageFileNameExtension}");
+            ImageView imageView = test.Image;
+            if (imageView != null)
+            {
+                imageView.Position = new Position(500, 500);
+                GetDefaultWindow().Add(imageView);
+            }
         }
 
         private void OnJavaScriptAlert(string message)
@@ -354,7 +432,7 @@ namespace Tizen.NUI.WebViewTest
         {
             Log.Info("WebView", $"------------password data list, count: {list.ItemCount}-------");
             string[] passwords = new string[list.ItemCount];
-            for(uint i=0; i< list.ItemCount; i++)
+            for (uint i = 0; i < list.ItemCount; i++)
             {
                 WebPasswordData data = list.GetItemAtIndex(i);
                 passwords[i] = data.Url;
@@ -550,7 +628,7 @@ namespace Tizen.NUI.WebViewTest
                         Log.Info("WebView", $"web view, here");
                         simpleWebView.GoForward();
                         Log.Info("WebView", $"web view, here");
-                        simpleWebView.HighlightText("test", WebView.FindOption.CaseInsensitive, 2);
+                        simpleWebView.HighlightText("test", BaseComponents.WebView.FindOption.CaseInsensitive, 2);
                         Log.Info("WebView", $"web view, here");
                         WebHitTestResult test = null;//simpleWebView.HitTest(100, 100, WebView.HitTestMode.Default);
                         if (test != null)
@@ -576,7 +654,7 @@ namespace Tizen.NUI.WebViewTest
                             }
                         }
 
-                        succeeded = simpleWebView.HitTestAsynchronously(100, 100, WebView.HitTestMode.Default, OnHitTestFinished);
+                        succeeded = simpleWebView.HitTestAsynchronously(100, 100, BaseComponents.WebView.HitTestMode.Default, OnHitTestFinished);
                         Log.Info("WebView", $"HitTestAsynchronously, {succeeded}");
                         simpleWebView.RegisterGeolocationPermissionCallback(OnGeolocationPermission);
                         Log.Info("WebView", $"web view, here");
