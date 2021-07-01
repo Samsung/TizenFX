@@ -755,7 +755,15 @@ namespace Tizen.NUI
         /// <summary>
         /// Used for simple dialog windows.
         /// </summary>
-        Dialog
+        Dialog,
+        /// <summary>
+        /// Used for IME window that is used for keyboard window.
+        /// It should be set in Application's New input param when application is created.
+        /// In addition, it is only for internal keyboard application.
+        /// This should be hidden.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Ime
     }
 
     /// <since_tizen> 3 </since_tizen>
