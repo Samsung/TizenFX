@@ -16,14 +16,15 @@
  */
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Text;
+using Tizen.NUI.Binding;
+using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI.EXaml
 {
-    internal class GatherBindablePropertiesBlock : Action
+    internal class OtherActions : Action
     {
-        public GatherBindablePropertiesBlock(GlobalDataList globalDataList, Action parent)
+        internal OtherActions(GlobalDataList globalDataList, Action parent)
         {
             this.parent = parent;
             this.globalDataList = globalDataList;
@@ -41,31 +42,45 @@ namespace Tizen.NUI.EXaml
                 case '\r':
                     break;
 
-                case '(':
-                    childOp = new GetValueListAction(')', this);
-                    return childOp;
-
-                case '>':
+                case 'a':
                     parent?.OnActive();
                     return parent;
+
+                case '(':
+                    getValues = new GetValueListAction(')', this);
+                    return getValues;
             }
 
             return this;
         }
 
-        private GetValueListAction childOp;
-
         public void Init()
         {
-            childOp = null;
         }
 
         public void OnActive()
         {
-            int typeIndex = int.Parse(childOp.ValueList[0] as string);
-            string propertyName = childOp.ValueList[1] as string;
+            if (null != getValues)
+            {
+                int index = (int)getValues.ValueList[0];
 
-            globalDataList.PreLoadOperations.Add(new GatherBindableProperties(globalDataList, typeIndex, propertyName));
+                switch (index)
+                {
+                    case 0:
+                        int typeIndex = (int)getValues.ValueList[1];
+                        var items = getValues.ValueList[2] as List<object>;
+                        var createArrayInstanceOp = new CreateArrayInstance(globalDataList, typeIndex, items);
+                        globalDataList.Operations.Add(createArrayInstanceOp);
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+
+            getValues = null;
         }
+
+        private GetValueListAction getValues;
     }
 }

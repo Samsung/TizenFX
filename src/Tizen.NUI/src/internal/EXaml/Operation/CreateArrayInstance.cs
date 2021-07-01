@@ -15,22 +15,23 @@
  *
  */
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
 using Tizen.NUI.Binding.Internals;
+using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.EXaml
 {
-    internal class SetBindalbeProperty : Operation
+    internal class CreateArrayInstance : Operation
     {
-        public SetBindalbeProperty(GlobalDataList globalDataList, int instanceIndex, int bindalbePropertyIndex, object value)
+        public CreateArrayInstance(GlobalDataList globalDataList, int typeIndex, List<object> items)
         {
-            this.instanceIndex = instanceIndex;
-            this.bindalbePropertyIndex = bindalbePropertyIndex;
-            this.value = value;
+            this.typeIndex = typeIndex;
+            this.items = items;
             this.globalDataList = globalDataList;
         }
 
@@ -38,24 +39,21 @@ namespace Tizen.NUI.EXaml
 
         public void Do()
         {
-            var instance = globalDataList.GatheredInstances[instanceIndex] as BindableObject;
+            var type = globalDataList.GatheredTypes[typeIndex];
+            var array = Array.CreateInstance(type, items.Count);
 
-            if (null != instance)
+            for (int i = 0; i < items.Count; i++)
             {
-                var property = globalDataList.GatheredBindableProperties[bindalbePropertyIndex];
-
-                if (value is Instance valueInstance)
+                if (items[i] is Instance instance)
                 {
-                    int valueIndex = valueInstance.Index;
-                    value = globalDataList.GatheredInstances[valueIndex];
+                    ((IList)array)[i] = globalDataList.GatheredInstances[instance.Index];
                 }
-
-                instance.SetValue(property, value);
             }
+
+            globalDataList.GatheredInstances.Add(array);
         }
 
-        private int instanceIndex;
-        private int bindalbePropertyIndex;
-        private object value;
+        private int typeIndex;
+        private List<object> items;
     }
 }
