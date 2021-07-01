@@ -78,6 +78,43 @@ namespace Tizen.NUI.EXaml
             return view;
         }
 
+        /// Internal used, will never be opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static T LoadFromEXamlByRelativePath<T>(this T view, string eXamlPath)
+        {
+            if (null == eXamlPath)
+            {
+                return view;
+            }
+
+            MainAssembly = view.GetType().Assembly;
+
+            string resource = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
+
+            Tizen.Log.Fatal("NUI", "the resource path: " + resource);
+            int windowWidth = NUIApplication.GetDefaultWindow().Size.Width;
+            int windowHeight = NUIApplication.GetDefaultWindow().Size.Height;
+
+            string likelyResourcePath = resource + eXamlPath;
+
+            //Find the xaml file in the layout folder
+            if (File.Exists(likelyResourcePath))
+            {
+                StreamReader reader = new StreamReader(likelyResourcePath);
+                var xaml = reader.ReadToEnd();
+                reader.Close();
+                reader.Dispose();
+
+                LoadEXaml.Load(view, xaml);
+            }
+            else
+            {
+                throw new Exception($"Can't find examl file {eXamlPath}");
+            }
+
+            return view;
+        }
+
         /// Used for TCT and TC coverage, will never be opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static T LoadFromEXaml<T>(this T view, string eXamlStr)

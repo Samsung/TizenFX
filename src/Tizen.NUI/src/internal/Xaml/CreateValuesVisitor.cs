@@ -322,7 +322,19 @@ namespace Tizen.NUI.Xaml
             };
             var mi = nodeType.GetRuntimeMethods().FirstOrDefault(isMatch);
             if (mi == null)
+            {
+                if (node is ElementNode elementNode)
+                {
+                    var nodeTypeExtension = XamlParser.GetElementTypeExtension(node.XmlType, elementNode, Context.RootElement?.GetType().GetTypeInfo().Assembly);
+                    mi = nodeTypeExtension?.GetRuntimeMethods().FirstOrDefault(isMatch);
+                }
+            }
+
+            if (mi == null)
+            {
                 throw new MissingMemberException($"No static method found for {nodeType.FullName}::{factoryMethod} ({string.Join(", ", types.Select(t => t.FullName))})");
+            }
+
             return mi.Invoke(null, arguments);
         }
 
