@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 
 namespace Tizen.NUI.Devel.Tests
@@ -25,7 +26,7 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("Create a GLWindow object.")]
+        [Description("GLWindow constructor.")]
         [Property("SPEC", "Tizen.NUI.GLWindow.GLWindow C")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "CONSTR")]
@@ -33,18 +34,55 @@ namespace Tizen.NUI.Devel.Tests
         public void GLWindowConstructor()
         {
             tlog.Debug(tag, $"GLWindowConstructor START");
+
+            var testingTarget = new GLWindow();
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<GLWindow>(testingTarget, "should be an instance of testing target class!");
+
+            testingTarget.Destroy();
+            tlog.Debug(tag, $"GLWindowConstructor END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("GLWindow constructor. With name.")]
+        [Property("SPEC", "Tizen.NUI.GLWindow.GLWindow C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("COVPARAM", "")]
+        public void GLWindowConstructorWithName()
+        {
+            tlog.Debug(tag, $"GLWindowConstructorWithName START");
+
             string name = "myGLWindow";
             Rectangle rectangle = new Rectangle(20, 20, 100, 100);
             GLWindow a1 = new GLWindow(name, rectangle, true);
 
-            GLWindow a2 = new GLWindow();
-            GLWindow a3 = new GLWindow(GLWindow.getCPtr(a1).Handle, true);
-
             a1.Destroy();
-            a2.Destroy();
-            a3.Destroy();
-            tlog.Debug(tag, $"GLWindowConstructor END (OK)");
-            Assert.Pass("GLWindowConstructor");
+            tlog.Debug(tag, $"GLWindowConstructorWithName END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("GLWindow constructor. With GLWindow.")]
+        [Property("SPEC", "Tizen.NUI.GLWindow.GLWindow C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("COVPARAM", "")]
+        public void GLWindowConstructorWithGLWindow()
+        {
+            tlog.Debug(tag, $"GLWindowConstructorWithGLWindow START");
+
+            using (GLWindow glwindow = new GLWindow())
+            {
+                var testingTarget = new GLWindow(glwindow.SwigCPtr.Handle, false);
+                Assert.IsNotNull(testingTarget, "should be not null");
+                Assert.IsInstanceOf<GLWindow>(testingTarget, "should be an instance of testing target class!");
+
+                testingTarget.Destroy();
+            }
+
+            tlog.Debug(tag, $"GLWindowConstructorWithGLWindow END (OK)");
         }
 
         [Test]
@@ -56,39 +94,46 @@ namespace Tizen.NUI.Devel.Tests
         public void GLWindowWindowSize()
         {
             tlog.Debug(tag, $"GLWindowWindowSize START");
-            string name = "myGLWindow";
-            Rectangle rectangle = new Rectangle(20, 20, 100, 100);
-            GLWindow a1 = new GLWindow(name, rectangle, true);
 
-            Size2D b1 = a1.WindowSize;
-            a1.WindowSize = b1;
-            a1.WindowSize = null;
+            var testingTarget = new GLWindow();
+            Assert.IsNotNull(testingTarget, "Can't create success object GLWindow");
+            Assert.IsInstanceOf<GLWindow>(testingTarget, "Should be an instance of GLWindow type.");
 
-            a1.Destroy();
+            testingTarget.WindowSize = new Size2D(50, 30);
+            Assert.AreEqual(50, testingTarget.WindowSize.Width, "Should be equal!");
+            Assert.AreEqual(30, testingTarget.WindowSize.Height, "Should be equal!");
+
+            testingTarget.Destroy();
             tlog.Debug(tag, $"GLWindowWindowSize END (OK)");
-            Assert.Pass("GLWindowWindowSize");
         }
 
-        [Test]
-        [Category("P1")]
-        [Description("GLWindow SetEglConfig")]
-        [Property("SPEC", "Tizen.NUI.GLWindow.SetEglConfig M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        public void GLWindowSetEglConfig()
-        {
-            tlog.Debug(tag, $"GLWindowSetEglConfig START");
-            string name = "myGLWindow";
-            Rectangle rectangle = new Rectangle(20, 20, 100, 100);
-            GLWindow a1 = new GLWindow(name, rectangle, true);
+        //[Test]
+        //[Category("P1")]
+        //[Description("GLWindow SetEglConfig")]
+        //[Property("SPEC", "Tizen.NUI.GLWindow.SetEglConfig M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //public void GLWindowSetEglConfig()
+        //{
+        //    tlog.Debug(tag, $"GLWindowSetEglConfig START");
 
-            GLWindow.GLESVersion b1 = new GLWindow.GLESVersion();
-            a1.SetEglConfig(true, true, 10, b1);
+        //    var testingTarget = new GLWindow();
+        //    Assert.IsNotNull(testingTarget, "Can't create success object GLWindow");
+        //    Assert.IsInstanceOf<GLWindow>(testingTarget, "Should be an instance of GLWindow type.");
 
-            a1.Destroy();
-            tlog.Debug(tag, $"GLWindowSetEglConfig END (OK)");
-            Assert.Pass("GLWindowSetEglConfig");
-        }
+        //    try
+        //    {
+        //        testingTarget.SetEglConfig(true, true, 10, GLESVersion.Version20);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        tlog.Debug(tag, e.Message.ToString());
+        //        Assert.Fail("Caught Exception: Failed!");
+        //    }
+
+        //    testingTarget.Destroy();
+        //    tlog.Debug(tag, $"GLWindowSetEglConfig END (OK)");
+        //}
 
         [Test]
         [Category("P1")]
@@ -106,7 +151,6 @@ namespace Tizen.NUI.Devel.Tests
             a1.Show();
             a1.Destroy();
             tlog.Debug(tag, $"GLWindowShow END (OK)");
-            Assert.Pass("GLWindowShow");
         }
 
         [Test]
@@ -124,8 +168,8 @@ namespace Tizen.NUI.Devel.Tests
 
             a1.Hide();
 
+            a1.Destroy();
             tlog.Debug(tag, $"GLWindowHide END (OK)");
-            Assert.Pass("GLWindowHide");
         }
 
 
@@ -144,8 +188,8 @@ namespace Tizen.NUI.Devel.Tests
 
             a1.Raise();
 
+            a1.Destroy();
             tlog.Debug(tag, $"GLWindowRaise END (OK)");
-            Assert.Pass("GLWindowRaise");
         }
 
         [Test]
@@ -163,8 +207,8 @@ namespace Tizen.NUI.Devel.Tests
 
             a1.Lower();
 
+            a1.Destroy();
             tlog.Debug(tag, $"GLWindowLower END (OK)");
-            Assert.Pass("GLWindowLower");
         }
 
         [Test]
@@ -182,8 +226,8 @@ namespace Tizen.NUI.Devel.Tests
 
             a1.Activate();
 
+            a1.Destroy();
             tlog.Debug(tag, $"GLWindowActivate END (OK)");
-            Assert.Pass("GLWindowActivate");
         }
 
         [Test]
@@ -199,11 +243,14 @@ namespace Tizen.NUI.Devel.Tests
             Rectangle rectangle = new Rectangle(20, 20, 100, 100);
             GLWindow a1 = new GLWindow(name, rectangle, true);
 
-            Rectangle b1 = a1.WindowPositionSize;
-            a1.WindowPositionSize = b1;
+            a1.WindowPositionSize = new Rectangle(30, 40, 50, 60);
+            Assert.AreEqual(30, a1.WindowPositionSize.X, "Should be equal!");
+            Assert.AreEqual(40, a1.WindowPositionSize.Y, "Should be equal!");
+            Assert.AreEqual(50, a1.WindowPositionSize.Width, "Should be equal!");
+            Assert.AreEqual(60, a1.WindowPositionSize.Height, "Should be equal!");
 
+            a1.Destroy();
             tlog.Debug(tag, $"GLWindowWindowPositionSize END (OK)");
-            Assert.Pass("GLWindowWindowPositionSize");
         }
 
         [Test]
@@ -219,10 +266,11 @@ namespace Tizen.NUI.Devel.Tests
             Rectangle rectangle = new Rectangle(20, 20, 100, 100);
             GLWindow a1 = new GLWindow(name, rectangle, true);
 
-            a1.GetSupportedAuxiliaryHintCount();
+            var result =  a1.GetSupportedAuxiliaryHintCount();
+            tlog.Debug(tag, "SupportedAuxiliaryHintCount : " + result);
 
+            a1.Destroy();
             tlog.Debug(tag, $"GLWindowGetSupportedAuxiliaryHintCount END (OK)");
-            Assert.Pass("GLWindowGetSupportedAuxiliaryHintCount");
         }
 
         [Test]
@@ -238,10 +286,11 @@ namespace Tizen.NUI.Devel.Tests
             Rectangle rectangle = new Rectangle(20, 20, 100, 100);
             GLWindow a1 = new GLWindow(name, rectangle, true);
 
-            a1.GetSupportedAuxiliaryHint(1);
+            var result = a1.GetSupportedAuxiliaryHint(1);
+            tlog.Debug(tag, "GetSupportedAuxiliaryHint : " + result);
 
+            a1.Destroy();
             tlog.Debug(tag, $"GLWindowGetSupportedAuxiliaryHint END (OK)");
-            Assert.Pass("GLWindowGetSupportedAuxiliaryHint");
         }
 
         [Test]
@@ -259,8 +308,8 @@ namespace Tizen.NUI.Devel.Tests
 
             a1.AddAuxiliaryHint("myHint", "myValue");
 
+            a1.Destroy();
             tlog.Debug(tag, $"GLWindowAddAuxiliaryHint END (OK)");
-            Assert.Pass("GLWindowAddAuxiliaryHint");
         }
 
         [Test]
@@ -279,8 +328,8 @@ namespace Tizen.NUI.Devel.Tests
             uint pos = a1.AddAuxiliaryHint("myHint", "myValue");
             a1.RemoveAuxiliaryHint(pos);
 
+            a1.Destroy();
             tlog.Debug(tag, $"GLWindowRemoveAuxiliaryHint END (OK)");
-            Assert.Pass("GLWindowRemoveAuxiliaryHint");
         }
 
         [Test]
@@ -299,9 +348,8 @@ namespace Tizen.NUI.Devel.Tests
             uint pos = a1.AddAuxiliaryHint("myHint", "myValue");
             a1.SetAuxiliaryHintValue(pos, "myValue");
 
-
+            a1.Destroy();
             tlog.Debug(tag, $"GLWindowSetAuxiliaryHintValue END (OK)");
-            Assert.Pass("GLWindowSetAuxiliaryHintValue");
         }
 
         [Test]
@@ -320,9 +368,8 @@ namespace Tizen.NUI.Devel.Tests
             uint pos = a1.AddAuxiliaryHint("myHint", "myValue");
             a1.GetAuxiliaryHintValue(pos);
 
-
+            a1.Destroy();
             tlog.Debug(tag, $"GLWindowGetAuxiliaryHintValue END (OK)");
-            Assert.Pass("GLWindowGetAuxiliaryHintValue");
         }
 
         [Test]
@@ -341,8 +388,8 @@ namespace Tizen.NUI.Devel.Tests
             uint pos = a1.AddAuxiliaryHint("myHint", "myValue");
             a1.GetAuxiliaryHintId("myHint");
 
+            a1.Destroy();
             tlog.Debug(tag, $"GLWindowGetAuxiliaryHintId END (OK)");
-            Assert.Pass("GLWindowGetAuxiliaryHintId");
         }
 
         [Test]
@@ -359,8 +406,9 @@ namespace Tizen.NUI.Devel.Tests
             GLWindow a1 = new GLWindow(name, rectangle, true);
 
             a1.SetInputRegion(rectangle);
+
+            a1.Destroy();
             tlog.Debug(tag, $"GLWindowGetAuxiliaryHintId END (OK)");
-            Assert.Pass("GLWindowGetAuxiliaryHintId");
         }
 
         [Test]
@@ -377,8 +425,9 @@ namespace Tizen.NUI.Devel.Tests
             GLWindow a1 = new GLWindow(name, rectangle, true);
 
             a1.SetOpaqueState(true);
+
+            a1.Destroy();
             tlog.Debug(tag, $"GLWindowSetOpaqueState END (OK)");
-            Assert.Pass("GLWindowSetOpaqueState");
         }
 
         [Test]
@@ -394,9 +443,11 @@ namespace Tizen.NUI.Devel.Tests
             Rectangle rectangle = new Rectangle(20, 20, 100, 100);
             GLWindow a1 = new GLWindow(name, rectangle, true);
 
-            a1.IsOpaqueState();
+            var result = a1.IsOpaqueState();
+            tlog.Debug(tag, "IsOpaqueState : " + result);
+
+            a1.Destroy();
             tlog.Debug(tag, $"GLWindowIsOpaqueState END (OK)");
-            Assert.Pass("GLWindowIsOpaqueState");
         }
 
         [Test]
@@ -414,8 +465,9 @@ namespace Tizen.NUI.Devel.Tests
 
             GLWindow.GLWindowOrientation o1 = new GLWindow.GLWindowOrientation();
             a1.SetPreferredOrientation(o1);
+
+            a1.Destroy();
             tlog.Debug(tag, $"GLWindowSetPreferredOrientation END (OK)");
-            Assert.Pass("GLWindowSetPreferredOrientation");
         }
 
         [Test]
@@ -431,10 +483,11 @@ namespace Tizen.NUI.Devel.Tests
             Rectangle rectangle = new Rectangle(20, 20, 100, 100);
             GLWindow a1 = new GLWindow(name, rectangle, true);
 
+            var result =  a1.GetCurrentOrientation();
+            tlog.Debug(tag, "CurrentOrientation : " + result);
 
-            a1.GetCurrentOrientation();
+            a1.Destroy();
             tlog.Debug(tag, $"GLWindowGetCurrentOrientation END (OK)");
-            Assert.Pass("GLWindowGetCurrentOrientation");
         }
 
         [Test]
@@ -458,8 +511,8 @@ namespace Tizen.NUI.Devel.Tests
 
             a1.SetAvailableOrientations(l1);
 
+            a1.Destroy();
             tlog.Debug(tag, $"GLWindowSetAvailableOrientations END (OK)");
-            Assert.Pass("GLWindowSetAvailableOrientations");
         }
 
         [Test]
@@ -476,8 +529,9 @@ namespace Tizen.NUI.Devel.Tests
             GLWindow a1 = new GLWindow(name, rectangle, true);
 
             a1.RenderOnce();
+
+            a1.Destroy();
             tlog.Debug(tag, $"GLWindowRenderOnce END (OK)");
-            Assert.Pass("GLWindowRenderOnce");
         }
 
         [Test]
@@ -493,33 +547,15 @@ namespace Tizen.NUI.Devel.Tests
             Rectangle rectangle = new Rectangle(20, 20, 100, 100);
             GLWindow a1 = new GLWindow(name, rectangle, true);
 
-
-            a1.RegisterGlCallback(b1, c1, d1);
-            tlog.Debug(tag, $"GLWindowRegisterGlCallback END (OK)");
-            Assert.Pass("GLWindowRegisterGlCallback");
-        }
-
-        public void b1() { }
-        public int c1() { return 0; }
-        public void d1() { }
-
-        [Test]
-        [Category("P1")]
-        [Description("GLWindow Destroy")]
-        [Property("SPEC", "Tizen.NUI.GLWindow.Destroy M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        public void GLWindowDestroy()
-        {
-            tlog.Debug(tag, $"GLWindowDestroy START");
-            string name = "myGLWindow";
-            Rectangle rectangle = new Rectangle(20, 20, 100, 100);
-            GLWindow a1 = new GLWindow(name, rectangle, true);
+            a1.RegisterGlCallback(GLInit, GLRenderFrame, GLTerminate);
 
             a1.Destroy();
-            tlog.Debug(tag, $"GLWindowDestroy END (OK)");
-            Assert.Pass("GLWindowDestroy");
+            tlog.Debug(tag, $"GLWindowRegisterGlCallback END (OK)");
         }
+
+        public void GLInit() { }
+        public int GLRenderFrame() { return 0; }
+        public void GLTerminate() { }
     }
 }
 
