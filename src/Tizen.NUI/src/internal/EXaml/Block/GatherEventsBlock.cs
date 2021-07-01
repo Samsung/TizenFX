@@ -65,7 +65,7 @@ namespace Tizen.NUI.EXaml
             int typeIndex = int.Parse(childOp.ValueList[0] as string);
             string eventName = childOp.ValueList[1] as string;
 
-            globalDataList.Operations.Add(new GatherEvent(globalDataList, typeIndex, eventName));
+            globalDataList.PreLoadOperations.Add(new GatherEvent(globalDataList, typeIndex, eventName));
         }
     }
 }

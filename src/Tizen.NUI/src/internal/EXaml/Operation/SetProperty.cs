@@ -48,7 +48,7 @@ namespace Tizen.NUI.EXaml
 
             if (null == property)
             {
-                throw new Exception(String.Format("Can't find property in type {0}", instance.GetType().FullName));
+                throw new Exception(String.Format("Can't find property {0} in type {1}", property.Name, instance.GetType().FullName));
             }
 
             if (null == property.SetMethod)
@@ -56,22 +56,18 @@ namespace Tizen.NUI.EXaml
                 throw new Exception(String.Format("Property {0} hasn't set method", property.Name));
             }
 
-            if (value is Instance)
+            if (value is Instance valueInstance)
             {
-                int valueIndex = (value as Instance).Index;
-                object realValue = globalDataList.GatheredInstances[valueIndex];
+                int valueIndex = valueInstance.Index;
+                value = globalDataList.GatheredInstances[valueIndex];
 
-                if (null == realValue)
+                if (null == value)
                 {
                     throw new Exception(String.Format("Can't get instance of value by index {0}", valueIndex));
                 }
+            }
 
-                property.SetMethod.Invoke(instance, new object[] { realValue });
-            }
-            else
-            {
-                property.SetMethod.Invoke(instance, new object[] { value });
-            }
+            property.SetMethod.Invoke(instance, new object[] { value });
         }
 
         private int instanceIndex;
