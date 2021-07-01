@@ -280,6 +280,54 @@ namespace Tizen.NUI
             NotSupported,
         }
 
+        /// <summary>
+        /// Enumeration for window resized mode by display server.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum ResizeDirection
+        {
+            /// <summary>
+            /// Start resizing window to the top-left edge.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            TopLeft = 1,
+            /// <summary>
+            /// Start resizing window to the top side.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Top = 2,
+            /// <summary>
+            /// Start resizing window to the top-right edge.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            TopRight = 3,
+            /// <summary>
+            /// Start resizing window to the left side.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Left = 4,
+            /// <summary>
+            /// Start resizing window to the right side.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Right = 5,
+            /// <summary>
+            /// Start resizing window to the bottom-left edge.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            BottomLeft = 6,
+            /// <summary>
+            /// Start resizing window to the bottom side.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Bottom = 7,
+            /// <summary>
+            /// Start resizing window to the bottom-right edge.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            BottomRight = 8,
+        }
+
 
         /// <summary>
         /// The stage instance property (read-only).<br />
@@ -1200,6 +1248,24 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Sets window position and size for specific orientation.
+        /// This api reserves the position and size per orientation to display server.
+        /// When the device is rotated, the window is moved/resized with the reserved position/size by display server.
+        /// Currently, it only works when the window's type is WindowType::Ime.
+        /// It means this function is only for IME window of internal keyboard application.
+        /// It is only for internal keyboard application.
+        /// This should be hidden.
+        /// </summary>
+        /// <param name="positionSize">The reserved position and size for the orientation.</param>
+        /// <param name="orientation">The orientation.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetPositionSizeWithOrientation(Rectangle positionSize, Window.WindowOrientation orientation)
+        {
+            Interop.Window.SetPositionSizeWithOrientation(SwigCPtr, Rectangle.getCPtr(positionSize), (int)orientation);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// Get native window ID
         /// </summary>
         /// <returns>native window ID</returns>
@@ -1379,6 +1445,45 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             // Setting Position of the window should request a relayout of the tree.
+        }
+
+        /// <summary>
+        /// Enables the floating mode of window.
+        /// The floating mode is to support window is moved or resized by display server.
+        /// For example, if the video-player window sets the floating mode,
+        /// then display server changes its geometry and handles it like a popup.
+        /// The way of handling floating mode window is decided by display server.
+        /// A special display server(as a Tizen display server) supports this mode.
+        /// </summary>
+        /// <param name="enable">Enable floating mode or not.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void EnableFloatingMode(bool enable)
+        {
+            Interop.Window.EnableFloatingMode(SwigCPtr, enable);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Requests to display server for the window is moved by display server.
+        /// It can be work with setting window floating mode.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RequestMoveToServer()
+        {
+            Interop.Window.RequestMoveToServer(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        ///  Requests to display server for the window is resized by display server.
+        /// It can be work with setting window floating mode.
+        /// </summary>
+        /// <param name="direction">It is indicated the window's side or edge for starting point.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RequestResizeToServer(ResizeDirection direction)
+        {
+            Interop.Window.RequestResizeToServer(SwigCPtr, (int)direction);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
