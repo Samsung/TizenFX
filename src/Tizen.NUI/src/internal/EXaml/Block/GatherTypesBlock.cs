@@ -62,7 +62,7 @@ namespace Tizen.NUI.EXaml
 
         public void OnActive()
         {
-            globalDataList.Operations.Add(GatherType(childOp.ValueList));
+            globalDataList.PreLoadOperations.Add(GatherType(childOp.ValueList));
             childOp = null;
         }
 
