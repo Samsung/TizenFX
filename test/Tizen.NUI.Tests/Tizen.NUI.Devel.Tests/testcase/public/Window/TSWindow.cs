@@ -26,7 +26,7 @@ namespace Tizen.NUI.Devel.Tests
         {
             if (myWin != null)
             {
-                myWin.Dispose();
+                myWin.Destroy();
                 myWin = null;
             }
             tlog.Info(tag, "Destroy() is called!");
@@ -41,66 +41,65 @@ namespace Tizen.NUI.Devel.Tests
         public void WindowWindowPositionSize()
         {
             tlog.Debug(tag, $"WindowWindowPositionSize START");
+
             try
             {
-                Rectangle r1 = myWin.WindowPositionSize;
-                myWin.WindowPositionSize = r1;
+                myWin.WindowPositionSize = new Rectangle(1, 2, 3, 4);
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
+
             tlog.Debug(tag, $"WindowWindowPositionSize END (OK)");
-            Assert.Pass("WindowWindowPositionSize");
         }
 
-        [Test]
-        [Category("P1")]
-        [Description("Window DEFAULT_BACKGROUND_COLOR")]
-        [Property("SPEC", "Tizen.NUI.Window.DEFAULT_BACKGROUND_COLOR A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
-        public void WindowDEFAULT_BACKGROUND_COLOR()
-        {
-            tlog.Debug(tag, $"WindowDEFAULT_BACKGROUND_COLOR START");
-            try
-            {
-                Vector4 v1 = Window.DEFAULT_BACKGROUND_COLOR;
-            }
-            catch (Exception e)
-            {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
+        //[Test]
+        //[Category("P1")]
+        //[Description("Window DEFAULT_BACKGROUND_COLOR")]
+        //[Property("SPEC", "Tizen.NUI.Window.DEFAULT_BACKGROUND_COLOR A")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "PRW")]
+        //public void WindowDEFAULT_BACKGROUND_COLOR()
+        //{
+        //    tlog.Debug(tag, $"WindowDEFAULT_BACKGROUND_COLOR START");
+        //    try
+        //    {
+        //        Vector4 v1 = Window.DEFAULT_BACKGROUND_COLOR;
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
 
-                Assert.Fail("Caught Exception" + e.ToString());
-            }
-            tlog.Debug(tag, $"WindowDEFAULT_BACKGROUND_COLOR END (OK)");
-            Assert.Pass("WindowDEFAULT_BACKGROUND_COLOR");
-        }
+        //        Assert.Fail("Caught Exception" + e.ToString());
+        //    }
+        //    tlog.Debug(tag, $"WindowDEFAULT_BACKGROUND_COLOR END (OK)");
+        //    Assert.Pass("WindowDEFAULT_BACKGROUND_COLOR");
+        //}
 
-        [Test]
-        [Category("P1")]
-        [Description("Window DEBUG_BACKGROUND_COLOR")]
-        [Property("SPEC", "Tizen.NUI.Window.DEBUG_BACKGROUND_COLOR A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
-        public void WindowDEBUG_BACKGROUND_COLOR()
-        {
-            tlog.Debug(tag, $"WindowDEBUG_BACKGROUND_COLOR START");
-            try
-            {
-                Vector4 v1 = Window.DEBUG_BACKGROUND_COLOR;
-            }
-            catch (Exception e)
-            {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
+        //[Test]
+        //[Category("P1")]
+        //[Description("Window DEBUG_BACKGROUND_COLOR")]
+        //[Property("SPEC", "Tizen.NUI.Window.DEBUG_BACKGROUND_COLOR A")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "PRW")]
+        //public void WindowDEBUG_BACKGROUND_COLOR()
+        //{
+        //    tlog.Debug(tag, $"WindowDEBUG_BACKGROUND_COLOR START");
+        //    try
+        //    {
+        //        Vector4 v1 = Window.DEBUG_BACKGROUND_COLOR;
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
 
-                Assert.Fail("Caught Exception" + e.ToString());
-            }
-            tlog.Debug(tag, $"WindowDEBUG_BACKGROUND_COLOR END (OK)");
-            Assert.Pass("WindowDEBUG_BACKGROUND_COLOR");
-        }
+        //        Assert.Fail("Caught Exception" + e.ToString());
+        //    }
+        //    tlog.Debug(tag, $"WindowDEBUG_BACKGROUND_COLOR END (OK)");
+        //    Assert.Pass("WindowDEBUG_BACKGROUND_COLOR");
+        //}
 
         [Test]
         [Category("P1")]
@@ -111,45 +110,17 @@ namespace Tizen.NUI.Devel.Tests
         public void WindowGetLayer()
         {
             tlog.Debug(tag, $"WindowGetLayer START");
+            
             try
             {
-                myWin.GetLayer(65535);
+                myWin.GetLayer(0);
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
             tlog.Debug(tag, $"WindowGetLayer END (OK)");
-            Assert.Pass("WindowGetLayer");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("Window Destroy")]
-        [Property("SPEC", "Tizen.NUI.Window.Destroy M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        public void WindowDestroy()
-        {
-            tlog.Debug(tag, $"WindowDestroy START");
-            try
-            {
-                Rectangle r2 = new Rectangle(0, 0, 20, 20);
-                Window w1 = new Window(r2);
-
-                w1.Destroy();
-                w1 = null;
-            }
-            catch (Exception e)
-            {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-
-                Assert.Fail("Caught Exception" + e.ToString());
-            }
-            tlog.Debug(tag, $"WindowDestroy END (OK)");
-            Assert.Pass("WindowDestroy");
         }
 
         [Test]
@@ -161,46 +132,50 @@ namespace Tizen.NUI.Devel.Tests
         public void WindowGetCurrentOrientation()
         {
             tlog.Debug(tag, $"WindowGetCurrentOrientation START");
+            
             try
             {
                 myWin.GetCurrentOrientation();
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
+
             tlog.Debug(tag, $"WindowGetCurrentOrientation END (OK)");
-            Assert.Pass("WindowGetCurrentOrientation");
         }
 
-        [Test]
-        [Category("P1")]
-        [Description("Window SetAvailableOrientations")]
-        [Property("SPEC", "Tizen.NUI.Window.SetAvailableOrientations M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        public void WindowSetAvailableOrientations()
-        {
-            tlog.Debug(tag, $"WindowSetAvailableOrientations START");
-            try
-            {
-                List<Window.WindowOrientation> l1 = new List<Window.WindowOrientation>();
-                Window.WindowOrientation o1 = new Window.WindowOrientation();
+        //[Test]
+        //[Category("P1")]
+        //[Description("Window SetAvailableOrientations")]
+        //[Property("SPEC", "Tizen.NUI.Window.SetAvailableOrientations M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //public void WindowSetAvailableOrientations()
+        //{
+        //    tlog.Debug(tag, $"WindowSetAvailableOrientations START");
+        //    try
+        //    {
+        //        List<Window.WindowOrientation> l1 = new List<Window.WindowOrientation>();
 
-                l1.Add(o1);
-                myWin.SetAvailableOrientations(l1);
-            }
-            catch (Exception e)
-            {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
+        //        l1.Add(Window.WindowOrientation.Landscape);
+        //        l1.Add(Window.WindowOrientation.LandscapeInverse);
+        //        l1.Add(Window.WindowOrientation.NoOrientationPreference);
+        //        l1.Add(Window.WindowOrientation.Portrait);
+        //        l1.Add(Window.WindowOrientation.PortraitInverse);
 
-                Assert.Fail("Caught Exception" + e.ToString());
-            }
-            tlog.Debug(tag, $"WindowSetAvailableOrientations END (OK)");
-            Assert.Pass("WindowSetAvailableOrientations");
-        }
+        //        myWin.SetAvailableOrientations(l1);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
+        //        Assert.Fail("Caught Exception" + e.ToString());
+        //    }
+
+        //    tlog.Debug(tag, $"WindowSetAvailableOrientations END (OK)");
+        //    Assert.Pass("WindowSetAvailableOrientations");
+        //}
 
         [Test]
         [Category("P1")]
@@ -211,18 +186,18 @@ namespace Tizen.NUI.Devel.Tests
         public void WindowGetNativeId()
         {
             tlog.Debug(tag, $"WindowGetNativeId START");
+            
             try
             {
                 myWin.GetNativeId();
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
+
             tlog.Debug(tag, $"WindowGetNativeId END (OK)");
-            Assert.Pass("WindowGetNativeId");
         }
 
         [Test]
@@ -234,18 +209,18 @@ namespace Tizen.NUI.Devel.Tests
         public void WindowGetNativeHandle()
         {
             tlog.Debug(tag, $"WindowGetNativeHandle START");
+            
             try
             {
                 myWin.GetNativeHandle();
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
+
             tlog.Debug(tag, $"WindowGetNativeHandle END (OK)");
-            Assert.Pass("WindowGetNativeHandle");
         }
 
         [Test]
@@ -257,19 +232,18 @@ namespace Tizen.NUI.Devel.Tests
         public void WindowAdd()
         {
             tlog.Debug(tag, $"WindowAdd START");
+
             try
             {
                 Layer layer = null;
                 myWin.Add(layer);
             }
-            catch (Exception e)
+            catch (ArgumentNullException e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                tlog.Debug(tag, $"WindowAdd END (OK)");
+                Assert.Pass("Caught ArgumentNullException : Passed!");
             }
-            tlog.Debug(tag, $"WindowAdd END (OK)");
-            Assert.Pass("WindowAdd");
         }
 
         [Test]
@@ -281,19 +255,18 @@ namespace Tizen.NUI.Devel.Tests
         public void WindowRemove()
         {
             tlog.Debug(tag, $"WindowRemove START");
+
             try
             {
                 Layer layer = null;
                 myWin.Remove(layer);
             }
-            catch (Exception e)
+            catch (ArgumentNullException e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                tlog.Debug(tag, $"WindowRemove END (OK)");
+                Assert.Pass("Caught ArgumentNullException : Passed!");
             }
-            tlog.Debug(tag, $"WindowRemove END (OK)");
-            Assert.Pass("WindowRemove");
         }
 
         [Test]
@@ -311,36 +284,35 @@ namespace Tizen.NUI.Devel.Tests
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
+
             tlog.Debug(tag, $"WindowGetRenderTaskList END (OK)");
-            Assert.Pass("WindowGetRenderTaskList");
         }
 
-        [Test]
-        [Category("P1")]
-        [Description("Window GetObjectRegistry")]
-        [Property("SPEC", "Tizen.NUI.Window.GetObjectRegistry M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        public void WindowGetObjectRegistry()
-        {
-            tlog.Debug(tag, $"WindowGetObjectRegistry START");
-            try
-            {
-                myWin.GetObjectRegistry();
-            }
-            catch (Exception e)
-            {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
+        //[Test]
+        //[Category("P1")]
+        //[Description("Window GetObjectRegistry")]
+        //[Property("SPEC", "Tizen.NUI.Window.GetObjectRegistry M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //public void WindowGetObjectRegistry()
+        //{
+        //    tlog.Debug(tag, $"WindowGetObjectRegistry START");
+        //    try
+        //    {
+        //        myWin.GetObjectRegistry();
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
 
-                Assert.Fail("Caught Exception" + e.ToString());
-            }
-            tlog.Debug(tag, $"WindowGetObjectRegistry END (OK)");
-            Assert.Pass("WindowGetObjectRegistry");
-        }
+        //        Assert.Fail("Caught Exception" + e.ToString());
+        //    }
+        //    tlog.Debug(tag, $"WindowGetObjectRegistry END (OK)");
+        //    Assert.Pass("WindowGetObjectRegistry");
+        //}
 
         [Test]
         [Category("P1")]
@@ -351,19 +323,18 @@ namespace Tizen.NUI.Devel.Tests
         public void WindowSetWindowSize()
         {
             tlog.Debug(tag, $"WindowSetWindowSize START");
+
             try
             {
                 Size2D s1 = null;
                 myWin.SetWindowSize(s1);
             }
-            catch (Exception e)
+            catch (ArgumentNullException e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                tlog.Debug(tag, $"WindowSetWindowSize END (OK)");
+                Assert.Pass("Caught ArgumentNullException : Passed!");
             }
-            tlog.Debug(tag, $"WindowSetWindowSize END (OK)");
-            Assert.Pass("WindowSetWindowSize");
         }
 
         [Test]
@@ -375,19 +346,18 @@ namespace Tizen.NUI.Devel.Tests
         public void WindowSetPosition()
         {
             tlog.Debug(tag, $"WindowSetPosition START");
+
             try
             {
                 Position2D p1 = null;
                 myWin.SetPosition(p1);
             }
-            catch (Exception e)
+            catch (ArgumentNullException e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                tlog.Debug(tag, $"WindowSetPosition END (OK)");
+                Assert.Pass("Caught ArgumentNullException : Passed!");
             }
-            tlog.Debug(tag, $"WindowSetPosition END (OK)");
-            Assert.Pass("WindowSetPosition");
         }
 
         [Test]
@@ -406,12 +376,10 @@ namespace Tizen.NUI.Devel.Tests
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
             tlog.Debug(tag, $"WindowSetPositionSize END (OK)");
-            Assert.Pass("WindowSetPositionSize");
         }
 
         [Test]
@@ -430,12 +398,11 @@ namespace Tizen.NUI.Devel.Tests
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
+
             tlog.Debug(tag, $"WindowAddFrameUpdateCallback END (OK)");
-            Assert.Pass("WindowAddFrameUpdateCallback");
         }
 
         [Test]
@@ -454,12 +421,11 @@ namespace Tizen.NUI.Devel.Tests
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
+
             tlog.Debug(tag, $"WindowRemoveFrameUpdateCallback END (OK)");
-            Assert.Pass("WindowRemoveFrameUpdateCallback");
         }
 
         [Test]
@@ -471,19 +437,18 @@ namespace Tizen.NUI.Devel.Tests
         public void WindowAddFrameRenderedCallback()
         {
             tlog.Debug(tag, $"WindowAddFrameRenderedCallback START");
+            
             try
             {
                 FrameCallbackType f1 = null;
                 myWin.AddFrameRenderedCallback(f1, 1);
             }
-            catch (Exception e)
+            catch (ArgumentNullException e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                tlog.Debug(tag, $"WindowAddFrameRenderedCallback END (OK)");
+                Assert.Pass("Caught ArgumentNullException : Passed!");
             }
-            tlog.Debug(tag, $"WindowAddFrameRenderedCallback END (OK)");
-            Assert.Pass("WindowAddFrameRenderedCallback");
         }
 
         [Test]
@@ -495,19 +460,18 @@ namespace Tizen.NUI.Devel.Tests
         public void WindowAddFramePresentedCallback()
         {
             tlog.Debug(tag, $"WindowAddFramePresentedCallback START");
+            
             try
             {
                 FrameCallbackType f1 = null;
                 myWin.AddFramePresentedCallback(f1, 1);
             }
-            catch (Exception e)
+            catch (ArgumentNullException e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                tlog.Debug(tag, $"WindowAddFramePresentedCallback END (OK)");
+                Assert.Pass("Caught ArgumentNullException : Passed!");
             }
-            tlog.Debug(tag, $"WindowAddFramePresentedCallback END (OK)");
-            Assert.Pass("WindowAddFramePresentedCallback");
         }
     }
 }

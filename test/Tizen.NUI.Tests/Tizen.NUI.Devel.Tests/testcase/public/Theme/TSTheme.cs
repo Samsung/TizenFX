@@ -27,22 +27,26 @@ namespace Tizen.NUI.Devel.Tests
         }
 
         [Test]
-        [Category("P1")]
-        [Description("Create a Theme object.")]
+        [Category("P2")]
+        [Description("Theme construcotr. xaml file path is null.")]
         [Property("SPEC", "Tizen.NUI.Theme.Theme C")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "CONSTR")]
         [Property("COVPARAM", "")]
-        public void ThemeConstructor()
+        public void ThemeConstructorWithUnavailablePath()
         {
-            tlog.Debug(tag, $"ThemeConstructor START");
+            tlog.Debug(tag, $"ThemeConstructorWithUnavailablePath START");
 
-            Theme a1 = new Theme("");
-            Theme b1 = new Theme("/root/noexist.xml");
-            Theme C1 = new Theme("/etc/info.ini");
-
-            tlog.Debug(tag, $"ThemeConstructor END (OK)");
-            Assert.Pass("ThemeConstructor");
+            try
+            {
+                Theme a1 = new Theme("");
+            }
+            catch (ArgumentNullException e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                tlog.Debug(tag, $"ThemeConstructorWithUnavailablePath END (OK)");
+                Assert.Pass("Caught ArgumentNullException : Passed!");
+            }
         }
 
         [Test]
@@ -100,24 +104,6 @@ namespace Tizen.NUI.Devel.Tests
             Assert.Pass("ThemeResources");
         }
 
-        //[Test]
-        //[Category("P1")]
-        //[Description("test Theme this .")]
-        //[Property("SPEC", "Tizen.NUI.Theme.this A")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "PRW")]
-        //[Property("COVPARAM", "")]
-        //public void Themethis()
-        //{
-        //    tlog.Debug(tag, $"Themethis START");
-        //    Theme a1 = new Theme();
-
-        //    ViewStyle b1 = a1.styleName;
-
-        //    tlog.Debug(tag, $"Themethis END (OK)");
-        //    Assert.Pass("Themethis");
-        //}
-
         [Test]
         [Category("P1")]
         [Description("test Theme Clear .")]
@@ -174,27 +160,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("test Theme AddStyle .")]
-        [Property("SPEC", "Tizen.NUI.Theme.AddStyle  M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("COVPARAM", "")]
-        public void ThemeAddStyle()
-        {
-            tlog.Debug(tag, $"ThemeAddStyle START");
-            Theme a1 = new Theme();
-
-            ViewStyle v1 = new ViewStyle();
-            a1.AddStyle("red", v1);
-
-            a1.AddStyle(null, v1);
-
-            tlog.Debug(tag, $"ThemeAddStyle END (OK)");
-            Assert.Pass("ThemeAddStyle");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("test Theme Clone .")]
         [Property("SPEC", "Tizen.NUI.Theme.Clone  M")]
         [Property("SPEC_URL", "-")]
@@ -213,7 +178,7 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("test Theme Merge .")]
+        [Description("Theme Merge .")]
         [Property("SPEC", "Tizen.NUI.Theme.Merge  M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
@@ -221,34 +186,63 @@ namespace Tizen.NUI.Devel.Tests
         public void ThemeMerge()
         {
             tlog.Debug(tag, $"ThemeMerge START");
+
+            ViewStyle style = new ViewStyle()
+            {
+                Size = new Size2D(100, 30),
+                Focusable = true
+            };
             Theme a1 = new Theme();
+            a1.Version = "0.1";
+            a1.AddStyle("myStyle", style);
 
-            a1.Merge("./opt/etc/skel/apps_rw/mobilebff/tizen-manifest.xml");
+            ViewStyle style1 = new ViewStyle() 
+            {
+                Margin = new Extents(4, 2, 3, 7)
+            };
             Theme t1 = new Theme();
-            a1.Merge(t1);
+            t1.Id = "t1";
+            t1.Version = "1.0";
+            t1.AddStyle("myStyle", style1);
 
-            Theme t2 = null;
-            a1.Merge(t2);
+            try
+            {
+                a1.Merge(t1);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception: Failed!");
+            }
 
             tlog.Debug(tag, $"ThemeMerge END (OK)");
-            Assert.Pass("ThemeMerge");
         }
 
         [Test]
-        [Category("P1")]
-        [Description("test Theme MergeWithoutClone .")]
-        [Property("SPEC", "Tizen.NUI.Theme.MergeWithoutClone  M")]
+        [Category("P2")]
+        [Description("Theme Merge. Parameter is null.")]
+        [Property("SPEC", "Tizen.NUI.Theme.Merge  M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
-        public void ThemeMergeWithoutClone()
+        public void ThemeMergeWithNullParameter()
         {
-            tlog.Debug(tag, $"ThemeMergeWithoutClone START");
+            tlog.Debug(tag, $"ThemeMergeWithNullParameter START");
             Theme a1 = new Theme();
             Theme b1 = new Theme();
 
             Theme t2 = null;
-            a1.Merge(t2);
+            try
+            {
+                a1.Merge(t2);
+            }
+            catch (ArgumentNullException e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                tlog.Debug(tag, $"ThemeMergeWithNullParameter END (OK)");
+                Assert.Pass("Caught ArgumentNullException: Passed!");
+            }
+            
 
             string tmp = a1.Id;
             a1.Id = null;
@@ -259,46 +253,46 @@ namespace Tizen.NUI.Devel.Tests
             tmp = a1.Version;
             a1.Version = null;
             a1.Merge(b1);
-
-            tlog.Debug(tag, $"ThemeMergeWithoutClone END (OK)");
-            Assert.Pass("ThemeMergeWithoutClone");
         }
 
         [Test]
-        [Category("P1")]
-        [Description("test Theme ApplyExternalTheme .")]
-        [Property("SPEC", "Tizen.NUI.Theme.ApplyExternalTheme  M")]
+        [Category("P2")]
+        [Description("Theme Merge. Id is null.")]
+        [Property("SPEC", "Tizen.NUI.Theme.Merge  M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
-        public void ThemeApplyExternalTheme()
+        public void ThemeMergeWithNullId()
         {
-            tlog.Debug(tag, $"ThemeApplyExternalTheme START");
+            tlog.Debug(tag, $"ThemeMergeWithNullId START");
             Theme a1 = new Theme();
             Theme b1 = new Theme();
 
-            Dictionary<string, string> theme = new Dictionary<string, string>
-            {
-                { "aaa", "111" },
-                { "bbb", "222" }
-            };
+            a1.Id = null;
+            a1.Merge(b1);
+            Assert.AreEqual(a1.Id, b1.Id, "Should be equal!");
 
-            DictionaryExternalTheme c1 = new DictionaryExternalTheme("myid", "myversion", theme);
+            tlog.Debug(tag, $"ThemeMergeWithNullId END (OK)");
+        }
 
-            Type componentType = typeof(string);
-            Type styleType = typeof(string);
-            ExternalThemeKeyList e1 = new ExternalThemeKeyList(componentType, styleType);
+        [Test]
+        [Category("P2")]
+        [Description("Theme Merge. Version is null.")]
+        [Property("SPEC", "Tizen.NUI.Theme.Merge  M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        public void ThemeMergeWithNullVersion()
+        {
+            tlog.Debug(tag, $"ThemeMergeWithNullVersion START");
+            Theme a1 = new Theme();
+            Theme b1 = new Theme();
 
-            HashSet<ExternalThemeKeyList> keyListSet = new HashSet<ExternalThemeKeyList>
-            {
-                e1
-            };
+            a1.Version = null;
+            a1.Merge(b1);
+            Assert.AreEqual(a1.Version, b1.Version, "Should be equal!");
 
-            a1.ApplyExternalTheme(c1, keyListSet);
-            a1.ApplyExternalTheme(c1, null);
-
-            tlog.Debug(tag, $"ThemeApplyExternalTheme END (OK)");
-            Assert.Pass("ThemeApplyExternalTheme");
+            tlog.Debug(tag, $"ThemeMergeWithNullVersion END (OK)");
         }
 
         [Test]
@@ -312,7 +306,7 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"ThemeHasSameIdAndVersion START");
             Theme a1 = new Theme();
-            a1.HasSameIdAndVersion(null);
+            a1.HasSameIdAndVersion("themeid", "1.0");
 
             tlog.Debug(tag, $"ThemeHasSameIdAndVersion END (OK)");
             Assert.Pass("ThemeHasSameIdAndVersion");
