@@ -36,6 +36,7 @@ namespace Tizen.Multimedia
     {
         private IntPtr _handle;
         private bool _disposed;
+        private Native.DeviceConnectionChangedCallback _deviceConnectionChangedCallback;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CameraDeviceManager"/> class.
@@ -47,8 +48,6 @@ namespace Tizen.Multimedia
         public CameraDeviceManager()
         {
             Native.Initialize(out _handle).ThrowIfFailed("Failed to initialize CameraDeviceManager");
-
-            RegisterDeviceConnectionChangedCallback();
         }
 
         /// <summary>
@@ -115,12 +114,33 @@ namespace Tizen.Multimedia
             return new String(word, 0, length);
         }
 
+        private event EventHandler<CameraDeviceConnectionChangedEventArgs> _deviceConnectionChanged;
         /// <summary>
         /// An event that occurs when camera device is connected or disconnected.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<CameraDeviceConnectionChangedEventArgs> DeviceConnectionChanged;
+        public event EventHandler<CameraDeviceConnectionChangedEventArgs> DeviceConnectionChanged
+        {
+            add
+            {
+                if (_deviceConnectionChanged == null)
+                {
+                    RegisterDeviceConnectionChangedCallback();
+                }
+
+                _deviceConnectionChanged += value;
+            }
+            remove
+            {
+                _deviceConnectionChanged -= value;
+
+                if (_deviceConnectionChanged == null)
+                {
+                    UnregisterDeviceConnectionChangedCallback();
+                }
+            }
+        }
 
         private IntPtr Handle
         {
@@ -134,17 +154,22 @@ namespace Tizen.Multimedia
         private int connectionCallbackId = 0;
         private void RegisterDeviceConnectionChangedCallback()
         {
-            Native.DeviceConnectionChangedCallback callback = (ref Native.CameraDeviceStruct device, bool status, IntPtr userData) =>
+            Log.Debug(CameraLog.Tag, "Enter");
+
+            _deviceConnectionChangedCallback = (ref Native.CameraDeviceStruct device, bool status, IntPtr userData) =>
             {
-                DeviceConnectionChanged?.Invoke(this, new CameraDeviceConnectionChangedEventArgs(ref device, status));
+                Log.Debug(CameraLog.Tag, "Invoke DeviceConnectionChanged event");
+                _deviceConnectionChanged?.Invoke(this, new CameraDeviceConnectionChangedEventArgs(ref device, status));
             };
 
-            Native.SetDeviceConnectionChangedCallback(Handle, callback, IntPtr.Zero, out connectionCallbackId).
+            Native.SetDeviceConnectionChangedCallback(Handle, _deviceConnectionChangedCallback, IntPtr.Zero, out connectionCallbackId).
                 ThrowIfFailed("Failed to set device connection changed callback");
         }
 
         private void UnregisterDeviceConnectionChangedCallback()
         {
+            Log.Debug(CameraLog.Tag, "Enter");
+
             Native.UnsetDeviceConnectionChangedCallback(Handle, connectionCallbackId).
                 ThrowIfFailed("Failed to unset device connection changed callback");
         }
@@ -160,6 +185,8 @@ namespace Tizen.Multimedia
         {
             if (!_disposed)
             {
+                Log.Debug(CameraLog.Tag, $"Enter. disposing:{disposing.ToString()}");
+
                 if (disposing)
                 {
                     // to be used if there are any other disposable objects
