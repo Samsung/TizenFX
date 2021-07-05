@@ -789,15 +789,15 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 6.5 </since_tizen>
         /// This will be released at Tizen.NET API Level 6.5, so currently this would be used as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public EllipsisLocation EllipsisLocation
+        public EllipsisPosition EllipsisPosition
         {
             get
             {
-                return (EllipsisLocation)GetValue(EllipsisLocationProperty);
+                return (EllipsisPosition)GetValue(EllipsisPositionProperty);
             }
             set
             {
-                SetValue(EllipsisLocationProperty, value);
+                SetValue(EllipsisPositionProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -1177,7 +1177,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int TextFit = Interop.TextLabel.TextFitGet();
             internal static readonly int MinLineSize = Interop.TextLabel.MinLineSizeGet();
             internal static readonly int FontSizeScale = Interop.TextLabel.FontSizeScaleGet();
-            internal static readonly int EllipsisLocation = Interop.TextLabel.EllipsisLocationGet();
+            internal static readonly int EllipsisPosition = Interop.TextLabel.EllipsisPositionGet();
         }
 
         private void OnShadowColorChanged(float x, float y, float z, float w)
