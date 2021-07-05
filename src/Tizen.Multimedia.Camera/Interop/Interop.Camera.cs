@@ -355,11 +355,11 @@ internal static partial class Interop
 
             internal CameraDevice device;
 
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 64)]
-            internal char[] name;
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 64)]
+            internal string name;
 
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 64)]
-            internal char[] id;
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 64)]
+            internal string id;
 
             internal int extraStreamNum;
         }

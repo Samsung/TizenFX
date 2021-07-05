@@ -101,7 +101,7 @@ namespace Tizen.Multimedia
         }
 
         internal static CameraDeviceInformation GetDeviceInformation(Native.CameraDeviceStruct device) =>
-            new CameraDeviceInformation(device.Type, device.device, GetString(device.name), GetString(device.id), device.extraStreamNum);
+            new CameraDeviceInformation(device.Type, device.device, device.name, device.id, device.extraStreamNum);
 
         private static string GetString(char[] word)
         {
