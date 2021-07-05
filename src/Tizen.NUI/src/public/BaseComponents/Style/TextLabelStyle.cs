@@ -269,15 +269,15 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty EllipsisLocationProperty = BindableProperty.Create(nameof(EllipsisLocation), typeof(EllipsisLocation?), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty EllipsisPositionProperty = BindableProperty.Create(nameof(EllipsisPosition), typeof(EllipsisPosition?), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textLabelStyle = (TextLabelStyle)bindable;
-            textLabelStyle.ellipsisLocation = (EllipsisLocation?)newValue;
+            textLabelStyle.ellipsisPosition = (EllipsisPosition?)newValue;
         },
         defaultValueCreator: (bindable) =>
         {
             var textLabelStyle = (TextLabelStyle)bindable;
-            return textLabelStyle.ellipsisLocation;
+            return textLabelStyle.ellipsisPosition;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -330,7 +330,7 @@ namespace Tizen.NUI.BaseComponents
         private AutoScrollStopMode? autoScrollStopMode;
         private LineWrapMode? lineWrapMode;
         private VerticalLineAlignment? verticalLineAlignment;
-        private EllipsisLocation? ellipsisLocation;
+        private EllipsisPosition? ellipsisPosition;
         private bool? matchSystemLanguageDirection;
         private Selector<string> translatableTextSelector;
         private Selector<string> fontFamilySelector;
@@ -504,10 +504,10 @@ namespace Tizen.NUI.BaseComponents
 
         /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public EllipsisLocation? EllipsisLocation
+        public EllipsisPosition? EllipsisPosition
         {
-            get => (EllipsisLocation?)GetValue(EllipsisLocationProperty);
-            set => SetValue(EllipsisLocationProperty, value);
+            get => (EllipsisPosition?)GetValue(EllipsisPositionProperty);
+            set => SetValue(EllipsisPositionProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.

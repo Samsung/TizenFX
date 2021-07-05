@@ -883,28 +883,11 @@ namespace Tizen.NUI
         Bottom
     }
 
-    /// <summary>
-    /// An enum of ellipsis location.
-    /// </summary>
-    /// <since_tizen> 6 </since_tizen>
-    public enum EllipsisLocation
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum EllipsisPosition
     {
-        /// <summary>
-        /// ellipsis location at end.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
         End,
-
-        /// <summary>
-        /// ellipsis location at start.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
         Start,
-
-        /// <summary>
-        /// ellipsis location in middle.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
         Middle
     }
 
