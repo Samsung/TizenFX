@@ -1348,6 +1348,21 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// This will be released at Tizen.NET API Level 9, so currently this would be used as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public EllipsisPosition EllipsisPosition
+        {
+            get
+            {
+                return (EllipsisPosition)GetValue(EllipsisPositionProperty);
+            }
+            set
+            {
+                SetValue(EllipsisPositionProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
         /// <summary>
         /// The Placeholder property.
         /// The placeholder map contains the following keys :<br />
@@ -1833,6 +1848,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int PrimaryCursorPosition = Interop.TextField.PrimaryCursorPositionGet();
             internal static readonly int FontSizeScale = Interop.TextField.FontSizeScaleGet();
             internal static readonly int GrabHandleColor = Interop.TextField.GrabHandleColorGet();
+            internal static readonly int EllipsisPosition = Interop.TextField.EllipsisPositionGet();
         }
 
         internal class InputStyle
