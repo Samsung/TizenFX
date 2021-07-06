@@ -103,17 +103,6 @@ namespace Tizen.Multimedia
         internal static CameraDeviceInformation GetDeviceInformation(Native.CameraDeviceStruct device) =>
             new CameraDeviceInformation(device.Type, device.device, device.name, device.id, device.extraStreamNum);
 
-        private static string GetString(char[] word)
-        {
-            int length = 0;
-            while(word[length] != '\0')
-            {
-                length++;
-            }
-
-            return new String(word, 0, length);
-        }
-
         private event EventHandler<CameraDeviceConnectionChangedEventArgs> _deviceConnectionChanged;
         /// <summary>
         /// An event that occurs when camera device is connected or disconnected.
