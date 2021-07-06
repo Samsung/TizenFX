@@ -61,7 +61,6 @@ namespace Tizen.NUI.Components
         private Picker dayPicker;
         private Picker monthPicker;
         private Picker yearPicker;
-        private DatePickerStyle datePickerStyle => ViewStyle as DatePickerStyle;
         
         /// <summary>
         /// Creates a new instance of DatePicker.
@@ -69,7 +68,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public DatePicker()
         {
-            Initialize();
         }
         
         /// <summary>
@@ -79,7 +77,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public DatePicker(string style) : base(style)
         {
-            Initialize();
         }
 
         /// <summary>
@@ -89,7 +86,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public DatePicker(DatePickerStyle datePickerStyle) : base(datePickerStyle)
         {
-            Initialize();
         }
 
 
@@ -180,18 +176,35 @@ namespace Tizen.NUI.Components
             dayPicker.CurrentValue = currentDate.Day;
             monthPicker.CurrentValue = currentDate.Month;
             yearPicker.CurrentValue = currentDate.Year;
+
+            Initialize();
         }
-    
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [SuppressMessage("Microsoft.Reliability",
                          "CA2000:DisposeObjectsBeforeLosingScope",
                          Justification = "The CellPadding will be dispose when the date picker disposed")]
+        public override void ApplyStyle(ViewStyle viewStyle)
+        {
+            base.ApplyStyle(viewStyle);
+
+            if (viewStyle is DatePickerStyle datePickerStyle && Layout is LinearLayout linearLayout)
+            {
+                linearLayout.CellPadding = new Size(datePickerStyle.CellPadding.Width, datePickerStyle.CellPadding.Height);
+
+                yearPicker.ApplyStyle(datePickerStyle.Pickers);
+                monthPicker.ApplyStyle(datePickerStyle.Pickers);
+                dayPicker.ApplyStyle(datePickerStyle.Pickers);
+            }
+        }
+
         private void Initialize()
         {
             HeightSpecification = LayoutParamPolicies.MatchParent;
 
             Layout = new LinearLayout() { 
                 LinearOrientation = LinearLayout.Orientation.Horizontal,
-                CellPadding = new Size(datePickerStyle.CellPadding.Width, datePickerStyle.CellPadding.Height),
             };
 
             PickersOrderSet();

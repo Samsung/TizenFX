@@ -79,7 +79,8 @@ namespace Tizen.NUI.Components
         private View upLine;
         private View downLine;
         private IList<TextLabel> itemList;
-        private PickerStyle pickerStyle => ViewStyle as PickerStyle;
+        private Vector2 size;
+        private TextLabelStyle itemTextLabel;
 
         /// <summary>
         /// Creates a new instance of Picker.
@@ -87,7 +88,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Picker()
         {
-            Initialize();
         }
 
         /// <summary>
@@ -97,7 +97,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Picker(string style) : base(style)
         {
-            Initialize();
         }
 
         /// <summary>
@@ -107,7 +106,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Picker(PickerStyle pickerStyle) : base(pickerStyle)
         {
-            Initialize();
         }
 
         /// <summary>
@@ -253,6 +251,8 @@ namespace Tizen.NUI.Components
         {
             base.OnInitialize();
             SetAccessibilityConstructor(Role.List);
+
+            Initialize();
         }
 
         /// <summary>
@@ -264,13 +264,30 @@ namespace Tizen.NUI.Components
         {
             base.ApplyStyle(viewStyle);
 
+            var pickerStyle = viewStyle as PickerStyle;
+
+            if (pickerStyle == null) return;
+
+            pickerScroller?.SetPickerStyle(pickerStyle);
+
             //Apply StartScrollOffset style.
-            if (pickerStyle?.StartScrollOffset != null)
+            if (pickerStyle.StartScrollOffset != null)
+            {
                 startScrollOffset = (int)pickerStyle.StartScrollOffset.Height;
+            }
 
             //Apply ItemTextLabel style.
-            if (pickerStyle?.ItemTextLabel != null)
+            if (pickerStyle.ItemTextLabel != null)
             {
+                if (itemTextLabel == null)
+                {
+                    itemTextLabel = (TextLabelStyle)pickerStyle.ItemTextLabel.Clone();
+                }
+                else
+                {
+                    itemTextLabel.MergeDirectly(pickerStyle.ItemTextLabel);
+                }
+
                 itemHeight = (int)pickerStyle.ItemTextLabel.Size.Height;
 
                 if (itemList != null)
@@ -279,11 +296,33 @@ namespace Tizen.NUI.Components
             }
 
             //Apply PickerCenterLine style.
-            if (pickerStyle?.Divider != null && upLine != null && downLine != null)
+            if (pickerStyle.Divider != null && upLine != null && downLine != null)
             {
                 upLine.ApplyStyle(pickerStyle.Divider);
                 downLine.ApplyStyle(pickerStyle.Divider);
                 downLine.PositionY = (int)pickerStyle.Divider.PositionY + itemHeight;
+            }
+
+            startScrollY = (itemHeight * dummyItemsForLoop) + startScrollOffset;
+            startY = startScrollOffset;
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnRelayout(Vector2 size, RelayoutContainer container)
+        {
+            if (size == null) return;
+
+            if (size.Equals(this.size))
+            {
+                return;
+            }
+
+            this.size = new Vector2(size);
+
+            if (pickerScroller != null && itemList != null)
+            {
+                pickerScroller.ScrollAvailableArea = new Vector2(0, (itemList.Count * itemHeight) - size.Height);
             }
         }
                 
@@ -293,9 +332,10 @@ namespace Tizen.NUI.Components
 
             //Picker Using scroller internally. actually it is a kind of scroller which has infinity loop,
             //and item center align features.
-            pickerScroller = new PickerScroller(pickerStyle)
+            pickerScroller = new PickerScroller()
             {
-                Size = new Size(-1, pickerStyle.Size.Height),
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                HeightSpecification = LayoutParamPolicies.MatchParent,
                 ScrollingDirection = ScrollableBase.Direction.Vertical,
                 Layout = new LinearLayout()
                 {
@@ -306,6 +346,7 @@ namespace Tizen.NUI.Components
                 ScrollAvailableArea = new Vector2(0, 10000),
                 Name = "pickerScroller",
             };
+
             pickerScroller.Scrolling += OnScroll;
             pickerScroller.ScrollAnimationEnded += OnScrollAnimationEnded;
             pickerScroller.ScrollAnimationStarted += OnScrollAnimationStarted;
@@ -319,11 +360,6 @@ namespace Tizen.NUI.Components
             displayedValuesUpdate = false;
             onAnimation = false;
             loopEnabled = false;
-
-            startScrollOffset = (int)pickerStyle.StartScrollOffset.Height;
-            itemHeight = (int)pickerStyle.ItemTextLabel.Size.Height;
-            startScrollY = (itemHeight * dummyItemsForLoop) + startScrollOffset;
-            startY = startScrollOffset;
 
             Add(pickerScroller);
             AddLine();
@@ -401,11 +437,8 @@ namespace Tizen.NUI.Components
         //This is UI requirement. It helps where exactly center item is.
         private void AddLine()
         {
-            upLine = new View(pickerStyle.Divider);
-            downLine = new View(pickerStyle.Divider)
-            {
-                Position = new Position(0, (int)pickerStyle.Divider.PositionY + itemHeight),
-            };
+            upLine = new View();
+            downLine = new View();
 
             Add(upLine);
             Add(downLine);
@@ -433,7 +466,7 @@ namespace Tizen.NUI.Components
                          Justification = "The items are added to itemList and are disposed in Picker.Dispose().")]
         private void AddPickerItem(bool loopEnabled, int idx)
         {
-            TextLabel temp = new TextLabel(pickerStyle.ItemTextLabel)
+            TextLabel temp = new TextLabel(itemTextLabel)
             {
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 Text = GetItemText(loopEnabled, idx),
@@ -514,7 +547,10 @@ namespace Tizen.NUI.Components
             UpdateCurrentValue();
 
             //Give a correct scroll area.
-            pickerScroller.ScrollAvailableArea = new Vector2(0, (itemList.Count * itemHeight) - pickerStyle.Size.Height);
+            if (size != null)
+            {
+                pickerScroller.ScrollAvailableArea = new Vector2(0, (itemList.Count * itemHeight) - size.Height);
+            }
 
             needItemUpdate = false;
         }
@@ -531,13 +567,29 @@ namespace Tizen.NUI.Components
             private delegate float UserAlphaFunctionDelegate(float progress);
             private UserAlphaFunctionDelegate customScrollAlphaFunction;
 
-            public PickerScroller(PickerStyle pickerStyle) : base()
+            public PickerScroller() : base()
             {
                 //Default rate is 0.998. this is for reduce scroll animation length.
                 decelerationRate = 0.991f;
-                startScrollOffset = (int)pickerStyle.StartScrollOffset.Height;
-                itemHeight = (int)pickerStyle.ItemTextLabel.Size.Height;
                 logValueOfDeceleration = (float)Math.Log(decelerationRate);
+            }
+
+            public void SetPickerStyle(PickerStyle pickerStyle)
+            {
+                if (pickerStyle.StartScrollOffset != null)
+                {
+                    startScrollOffset = (int)pickerStyle.StartScrollOffset.Height;
+                }
+
+                if (pickerStyle.ItemTextLabel?.Size != null)
+                {
+                    itemHeight = (int)pickerStyle.ItemTextLabel.Size.Height;
+                }
+
+                if (pickerStyle.Size != null)
+                {
+                    Size = new Size(-1, pickerStyle.Size.Height);
+                }
             }
 
             private float CustomScrollAlphaFunction(float progress)
