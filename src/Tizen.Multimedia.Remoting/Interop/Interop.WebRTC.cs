@@ -18,6 +18,7 @@ using System;
 using System.Runtime.InteropServices;
 using Tizen;
 using Tizen.Applications;
+using Tizen.Multimedia;
 using Tizen.Multimedia.Remoting;
 
 internal static partial class Interop
@@ -129,6 +130,12 @@ internal static partial class Interop
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_source_get_video_resolution")]
         internal static extern WebRTCErrorCode GetVideoResolution(IntPtr handle, uint sourceId, out int width, out int height);
+
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_mic_source_set_sound_stream_info")]
+        internal static extern WebRTCErrorCode SetAudioStreamPolicyToMicSource(IntPtr handle, uint sourceId, AudioStreamPolicyHandle streamInfo);
+
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_set_sound_stream_info")]
+        internal static extern WebRTCErrorCode SetAudioStreamPolicyToRemoteTrack(IntPtr handle, uint sourceId, AudioStreamPolicyHandle streamInfo);
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_set_display")]
         internal static extern WebRTCErrorCode SetDisplay(IntPtr handle, uint trackId, WebRTCDisplayType type, IntPtr display);

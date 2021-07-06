@@ -273,11 +273,8 @@ namespace Tizen.Multimedia.Remoting
         {
             _webRtcTrackAddedCallback = (handle, type, id, _) =>
             {
-                if (type == MediaType.Video)
-                {
-                    Log.Info(WebRTCLog.Tag, $"track id : {id}");
-                    _trackId = id;
-                }
+                Log.Info(WebRTCLog.Tag, $"track id : {id}");
+                _trackId = id;
 
                 TrackAdded?.Invoke(this, new WebRTCTrackAddedEventArgs(type, id));
             };

@@ -58,5 +58,47 @@ namespace Tizen.Multimedia.Remoting
 
             WebRtc = (WebRTC)null;
         }
+
+        /// <summary>
+        /// Applies the audio stream policy to <see cref="MediaMicSource"/>.
+        /// </summary>
+        /// <param name="policy">The <see cref="AudioStreamPolicy"/> to apply.</param>
+        /// <remarks>
+        /// The WebRTC must be in the <see cref="WebRTCState.Idle"/> state.<br/>
+        /// <br/>
+        /// <see cref="WebRTC"/> does not support all <see cref="AudioStreamType"/>.<br/>
+        /// Supported types are <see cref="AudioStreamType.Media"/>, <see cref="AudioStreamType.VoiceRecognition"/>,
+        /// <see cref="AudioStreamType.Voip"/>, <see cref="AudioStreamType.MediaExternalOnly"/>.
+        /// </remarks>
+        /// <exception cref="ObjectDisposedException">
+        ///     The WebRTC has already been disposed.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="policy"/> has already been disposed.
+        /// </exception>
+        /// <exception cref="InvalidOperationException">The WebRTC is not in the valid state.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="policy"/> is null.</exception>
+        /// <exception cref="NotSupportedException">
+        ///     <see cref="AudioStreamType"/> of <paramref name="policy"/> is not supported on the current platform.
+        /// </exception>
+        /// <seealso cref="AudioStreamPolicy"/>
+        /// <since_tizen> 9 </since_tizen>
+        public void ApplyAudioStreamPolicy(AudioStreamPolicy policy)
+        {
+            if (policy == null)
+            {
+                throw new ArgumentNullException(nameof(policy), "policy is null");
+            }
+
+            WebRtc.ValidateWebRTCState(WebRTCState.Idle);
+
+            var ret = NativeWebRTC.SetAudioStreamPolicyToMicSource(WebRtc.Handle, SourceId.Value, policy.Handle);
+
+            if (ret == WebRTCErrorCode.InvalidArgument)
+            {
+                throw new NotSupportedException("The specified policy is not supported on the current system.");
+            }
+
+            ret.ThrowIfFailed("Failed to set the audio stream policy to the WebRTC");
+        }
     }
 }
