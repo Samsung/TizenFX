@@ -15,9 +15,7 @@
  */
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using static Interop;
 
 namespace Tizen.Multimedia.Remoting
@@ -32,74 +30,6 @@ namespace Tizen.Multimedia.Remoting
     {
         private readonly MediaFormat _audioMediaFormat;
         private readonly MediaFormat _videoMediaFormat;
-        private static List<MediaFormatAudioMimeType> _supportedAudioFormats;
-        private static List<MediaFormatVideoMimeType> _supportedVideoFormats;
-
-        /// <summary>
-        /// Gets all supported audio types.
-        /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        public static IEnumerable<MediaFormatAudioMimeType> SupportedAudioTypes
-        {
-            get
-            {
-                GetSupportedTypes();
-                return _supportedAudioFormats.AsReadOnly();
-            }
-        }
-
-        /// <summary>
-        /// Gets all supported video types.
-        /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        public static IEnumerable<MediaFormatVideoMimeType> SupportedVideoTypes
-        {
-            get
-            {
-                GetSupportedTypes();
-                return _supportedVideoFormats.AsReadOnly();
-            }
-        }
-
-        private static void GetSupportedTypes()
-        {
-            if (_supportedAudioFormats != null || _supportedVideoFormats != null)
-            {
-                return;
-            }
-
-            NativeWebRTC.Create(out WebRTCHandle webRtcHandle).ThrowIfFailed("Failed to create WebRTC");
-            IntPtr handle = webRtcHandle.DangerousGetHandle();
-            Debug.Assert(handle != IntPtr.Zero);
-
-            try
-            {
-                _supportedAudioFormats = new List<MediaFormatAudioMimeType>();
-                _supportedVideoFormats = new List<MediaFormatVideoMimeType>();
-                NativeWebRTC.SupportedMediaFormatCallback callback = (format, _) =>
-                {
-                    if (Enum.IsDefined(typeof(MediaFormatAudioMimeType), (object)format))
-                    {
-                        Log.Debug(WebRTCLog.Tag, "supported audio : " + ((MediaFormatAudioMimeType)format).ToString());
-                        _supportedAudioFormats.Add((MediaFormatAudioMimeType)format);
-                    }
-                    else if (Enum.IsDefined(typeof(MediaFormatVideoMimeType), (object)format))
-                    {
-                        Log.Debug(WebRTCLog.Tag, "supported video : " + ((MediaFormatVideoMimeType)format).ToString());
-                        _supportedVideoFormats.Add((MediaFormatVideoMimeType)format);
-                    }
-                    else
-                        Log.Debug(WebRTCLog.Tag, "skipped : " + format.ToString());
-                    return true;
-                };
-
-                NativeWebRTC.SupportedMediaSourceFormat(handle, callback, IntPtr.Zero).ThrowIfFailed("Failed to get the list");
-            }
-            finally
-            {
-                webRtcHandle.Dispose();
-            }
-        }
 
         private MediaPacketSourceConfiguration CreateAudioConfiguration(AudioMediaFormat format)
         {
@@ -107,12 +37,6 @@ namespace Tizen.Multimedia.Remoting
             {
                 return null;
             }
-
-            // FIXME: Will be enabled, if native implementation supports this functionality.
-            // if (!SupportedAudioTypes.Contains<MediaFormatAudioMimeType>(format.MimeType))
-            // {
-            //     throw new ArgumentException($"The audio format is not supported, Type : {format.MimeType}.");
-            // }
 
             return new MediaPacketSourceConfiguration(this);
         }
@@ -124,11 +48,6 @@ namespace Tizen.Multimedia.Remoting
                 return null;
             }
 
-            // FIXME: Will be enabled, if native implementation supports this functionality.
-            // if (!SupportedVideoTypes.Contains(format.MimeType))
-            // {
-            //     throw new ArgumentException($"The video format is not supported, Type : {format.MimeType}.");
-            // }
             return new MediaPacketSourceConfiguration(this);
         }
 
@@ -138,7 +57,6 @@ namespace Tizen.Multimedia.Remoting
         /// <param name="audioMediaFormat">The <see cref="AudioMediaFormat"/> for this source.</param>
         /// <exception cref="ArgumentNullException"><paramref name="audioMediaFormat"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="audioMediaFormat"/> is not supported.</exception>
-        /// <seealso cref="SupportedAudioTypes"/>
         /// <since_tizen> 9 </since_tizen>
         public MediaPacketSource(AudioMediaFormat audioMediaFormat) : base(MediaType.Audio)
         {
@@ -152,7 +70,6 @@ namespace Tizen.Multimedia.Remoting
         /// <param name="videoMediaFormat">The <see cref="VideoMediaFormat"/> for this source.</param>
         /// <exception cref="ArgumentNullException"><paramref name="videoMediaFormat"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="videoMediaFormat"/> is not supported.</exception>
-        /// <seealso cref="SupportedVideoTypes"/>
         /// <since_tizen> 9 </since_tizen>
         public MediaPacketSource(VideoMediaFormat videoMediaFormat) : base(MediaType.Video)
         {

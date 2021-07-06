@@ -15,8 +15,6 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.ComponentModel;
 
 namespace Tizen.Multimedia.Remoting
@@ -106,7 +104,6 @@ namespace Tizen.Multimedia.Remoting
     /// <remarks>This state is related in SDP offer/answer.</remarks>
     /// <seealso cref="WebRTC.SetLocalDescription"/>
     /// <seealso cref="WebRTC.SetRemoteDescription"/>
-    /// <seealso cref="WebRTC.CreateSetOffer()"/>
     /// <seealso cref="WebRTC.CreateAnswer()"/>
     /// <since_tizen> 9 </since_tizen>
     public enum WebRTCSignalingState

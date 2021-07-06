@@ -229,99 +229,6 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Creates SDP offer to start a new WebRTC connection to a remote peer and set it to local.
-        /// </summary>
-        /// <remarks>
-        /// This API is helper method to create offer, set local description in one shot.<br/>
-        /// The WebRTC must be in the <see cref="WebRTCState.Negotiating"/>
-        /// </remarks>
-        /// <returns>The SDP offer.</returns>
-        /// <exception cref="InvalidOperationException">The WebRTC is not in the valid state.</exception>
-        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
-        /// <seealso cref="CreateOffer()"/>
-        /// <seealso cref="CreateOffer(Bundle)"/>
-        /// <seealso cref="SetLocalDescription"/>
-        /// <since_tizen> 9 </since_tizen>
-        public string CreateSetOffer() => CreateSetOffer(null);
-
-        /// <summary>
-        /// Creates SDP offer to start a new WebRTC connection to a remote peer and set it to local.
-        /// </summary>
-        /// <remarks>
-        /// This API is helper method to create offer, set local description in one shot.<br/>
-        /// The WebRTC must be in the <see cref="WebRTCState.Negotiating"/>
-        /// </remarks>
-        /// <param name="bundle">Configuration options for the offer.</param>
-        /// <returns>The SDP offer.</returns>
-        /// <exception cref="InvalidOperationException">The WebRTC is not in the valid state.</exception>
-        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
-        /// <seealso cref="CreateOffer()"/>
-        /// <seealso cref="CreateOffer(Bundle)"/>
-        /// <seealso cref="SetLocalDescription"/>
-        /// <since_tizen> 9 </since_tizen>
-        public string CreateSetOffer(Bundle bundle)
-        {
-            ValidateWebRTCState(WebRTCState.Negotiating);
-
-            var bundle_ = bundle?.SafeBundleHandle ?? new SafeBundleHandle();
-            NativeWebRTC.CreateSDPOffer(Handle, bundle_, out string offer).ThrowIfFailed("Failed to create offer");
-
-            NativeWebRTC.SetLocalDescription(Handle, offer).ThrowIfFailed("Failed to set description.");
-
-            return offer;
-        }
-
-        /// <summary>
-        /// Creates SDP answer with option to an offer received from a remote peer and set it to local.
-        /// </summary>
-        /// <remarks>
-        /// This API is helper method to set remote description, create answer, set local description in one shot.<br/>
-        /// The WebRTC must be in the <see cref="WebRTCState.Negotiating"/>.
-        /// </remarks>
-        /// <param name="offer">The remote session description.</param>
-        /// <returns>The SDP answer.</returns>
-        /// <exception cref="InvalidOperationException">The WebRTC is not in the valid state.</exception>
-        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
-        /// <seealso cref="SetRemoteDescription(string)"/>
-        /// <seealso cref="CreateAnswer()"/>
-        /// <seealso cref="CreateAnswer(Bundle)"/>
-        /// <seealso cref="SetLocalDescription"/>
-        /// <since_tizen> 9 </since_tizen>
-        public string CreateSetAnswer(string offer) => CreateSetAnswer(offer, null);
-
-        /// <summary>
-        /// Creates SDP answer with option to an offer received from a remote peer and set it to local.
-        /// </summary>
-        /// <remarks>
-        /// This API is helper method to set remote description, create answer, set local description in one shot.<br/>
-        /// The WebRTC must be in the <see cref="WebRTCState.Negotiating"/>.
-        /// </remarks>
-        /// <param name="offer">The remote session description.</param>
-        /// <param name="bundle">Configuration options for the answer.</param>
-        /// <returns>The SDP answer.</returns>
-        /// <exception cref="InvalidOperationException">The WebRTC is not in the valid state.</exception>
-        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
-        /// <seealso cref="SetRemoteDescription(string)"/>
-        /// <seealso cref="CreateAnswer()"/>
-        /// <seealso cref="CreateAnswer(Bundle)"/>
-        /// <seealso cref="SetLocalDescription"/>
-        /// <since_tizen> 9 </since_tizen>
-        public string CreateSetAnswer(string offer, Bundle bundle)
-        {
-            ValidateWebRTCState(WebRTCState.Negotiating);
-            ValidationUtil.ValidateIsNullOrEmpty(offer, nameof(offer));
-
-            NativeWebRTC.SetRemoteDescription(Handle, offer).ThrowIfFailed("Failed to set offer.");
-
-            var bundle_ = bundle?.SafeBundleHandle ?? new SafeBundleHandle();
-            NativeWebRTC.CreateSDPAnswer(Handle, bundle_, out string answer).ThrowIfFailed("Failed to create answer");
-
-            NativeWebRTC.SetLocalDescription(Handle, answer).ThrowIfFailed("Failed to set description.");
-
-            return answer;
-        }
-
-        /// <summary>
         /// Creates SDP offer to start a new WebRTC connection to a remote peer.
         /// </summary>
         /// <remarks>The WebRTC must be in the <see cref="WebRTCState.Negotiating"/></remarks>
@@ -491,8 +398,7 @@ namespace Tizen.Multimedia.Remoting
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <seealso cref="MediaCameraSource"/>
         /// <seealso cref="MediaMicSource"/>
-        /// <seealso cref="MediaAudioTestSource"/>
-        /// <seealso cref="MediaVideoTestSource"/>
+        /// <seealso cref="MediaTestSource"/>
         /// <seealso cref="MediaPacketSource"/>
         /// <seealso cref="AddSources"/>
         /// <seealso cref="RemoveSource"/>
@@ -526,8 +432,7 @@ namespace Tizen.Multimedia.Remoting
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <seealso cref="MediaCameraSource"/>
         /// <seealso cref="MediaMicSource"/>
-        /// <seealso cref="MediaAudioTestSource"/>
-        /// <seealso cref="MediaVideoTestSource"/>
+        /// <seealso cref="MediaTestSource"/>
         /// <seealso cref="MediaPacketSource"/>
         /// <seealso cref="AddSource"/>
         /// <seealso cref="RemoveSource"/>
@@ -554,8 +459,7 @@ namespace Tizen.Multimedia.Remoting
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <seealso cref="MediaCameraSource"/>
         /// <seealso cref="MediaMicSource"/>
-        /// <seealso cref="MediaAudioTestSource"/>
-        /// <seealso cref="MediaVideoTestSource"/>
+        /// <seealso cref="MediaTestSource"/>
         /// <seealso cref="MediaPacketSource"/>
         /// <seealso cref="AddSource"/>
         /// <seealso cref="AddSources"/>
@@ -590,8 +494,7 @@ namespace Tizen.Multimedia.Remoting
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <seealso cref="MediaCameraSource"/>
         /// <seealso cref="MediaMicSource"/>
-        /// <seealso cref="MediaAudioTestSource"/>
-        /// <seealso cref="MediaVideoTestSource"/>
+        /// <seealso cref="MediaTestSource"/>
         /// <seealso cref="MediaPacketSource"/>
         /// <seealso cref="AddSource"/>
         /// <seealso cref="AddSources"/>
