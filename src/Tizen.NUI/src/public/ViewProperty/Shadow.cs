@@ -70,7 +70,7 @@ namespace Tizen.NUI
         /// </summary>
         internal Shadow(PropertyMap propertyMap) : base(propertyMap)
         {
-            Color = noColor;
+            Color = new Color(noColor);
             PropertyValue pValue = propertyMap.Find(ColorVisualProperty.MixColor);
             pValue?.Get(Color);
             pValue?.Dispose();
