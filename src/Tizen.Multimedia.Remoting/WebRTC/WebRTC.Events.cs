@@ -269,14 +269,18 @@ namespace Tizen.Multimedia.Remoting
                 ThrowIfFailed("Failed to set ice candidate callback.");
         }
 
+        object _trackAddedLock = new object();
         private void RegisterTrackAddedCallback()
         {
             _webRtcTrackAddedCallback = (handle, type, id, _) =>
             {
-                Log.Info(WebRTCLog.Tag, $"track id : {id}");
+                Log.Info(WebRTCLog.Tag, $"Track type[{type}], id[{id}]");
                 _trackId = id;
 
-                TrackAdded?.Invoke(this, new WebRTCTrackAddedEventArgs(type, id));
+                lock (_trackAddedLock)
+                {
+                    TrackAdded?.Invoke(this, new WebRTCTrackAddedEventArgs(type, id));
+                }
             };
 
             NativeWebRTC.SetTrackAddedCb(Handle, _webRtcTrackAddedCallback).
