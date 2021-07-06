@@ -65,7 +65,7 @@ namespace Tizen.NUI.EXaml
             int typeIndex = int.Parse(childOp.ValueList[0] as string);
             string propertyName = childOp.ValueList[1] as string;
 
-            globalDataList.Operations.Add(new GatherBindableProperties(globalDataList, typeIndex, propertyName));
+            globalDataList.PreLoadOperations.Add(new GatherBindableProperties(globalDataList, typeIndex, propertyName));
         }
     }
 }

@@ -57,7 +57,22 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 9 </since_tizen>
     public abstract class Page : Control
     {
+        private const int DefaultTransitionDuration = 500;
+
         private Navigator navigator = null;
+
+        // Default transition is Fade.
+        private TransitionBase appearingTransition = new Fade()
+        {
+            TimePeriod = new TimePeriod(DefaultTransitionDuration),
+            AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default),
+        };
+
+        private TransitionBase disappearingTransition = new Fade()
+        {
+            TimePeriod = new TimePeriod(DefaultTransitionDuration),
+            AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default),
+        };
 
         /// <summary>
         /// Creates a new instance of a Page.
@@ -86,6 +101,38 @@ namespace Tizen.NUI.Components
                 }
 
                 navigator = value;
+            }
+        }
+
+        /// <summary>
+        /// Transition properties for the transition of Views in this page during this page is pushed to Navigator.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TransitionBase AppearingTransition
+        {
+            set
+            {
+                appearingTransition = value;
+            }
+            get
+            {
+                return appearingTransition;
+            }
+        }
+
+        /// <summary>
+        /// Transition properties for the transition of Views in this page during this page is popped from Navigator.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TransitionBase DisappearingTransition
+        {
+            set
+            {
+                disappearingTransition = value;
+            }
+            get
+            {
+                return disappearingTransition;
             }
         }
 

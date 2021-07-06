@@ -521,6 +521,11 @@ namespace Tizen.NUI
             }
 
             disposed = true;
+
+            if (null != Application.Current)
+            {
+                Application.Current.XamlResourceChanged -= OnResourcesChanged;
+            }
         }
 
         /// <summary>

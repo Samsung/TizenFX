@@ -43,6 +43,11 @@ namespace Tizen.NUI.Binding
                 {
                     bindableObject.bindingContext = newValue;
                     bindableObject.FlushBinding();
+
+                    if (newValue is BindableObject targetBindableObject)
+                    {
+                        targetBindableObject.IsCreateByXaml = true;
+                    }
                 }
             }),
             defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
@@ -261,6 +266,16 @@ namespace Tizen.NUI.Binding
                 {
                     throw new ArgumentNullException(nameof(property));
                 }
+
+                if (null == property.DefaultValueCreator)
+                {
+                    BindablePropertyContext context = GetOrCreateContext(property);
+                    if (null != context)
+                    {
+                        context.Value = value;
+                    }
+                }
+
                 property.PropertyChanged?.Invoke(this, null, value);
 
                 OnPropertyChanged(property.PropertyName);
@@ -845,7 +860,7 @@ namespace Tizen.NUI.Binding
             context.Binding = null;
         }
 
-        void SetValue(BindableProperty property, object value, bool fromStyle, bool checkAccess)
+        internal void SetValue(BindableProperty property, object value, bool fromStyle, bool checkAccess)
         {
             if (property == null)
                 throw new ArgumentNullException(nameof(property));

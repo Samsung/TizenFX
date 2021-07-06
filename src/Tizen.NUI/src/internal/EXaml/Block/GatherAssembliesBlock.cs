@@ -63,7 +63,7 @@ namespace Tizen.NUI.EXaml
         public void OnActive()
         {
             var readedAssemblyName = childOp.Value as string;
-            globalDataList.Operations.Add(new GatherAssembly(globalDataList, readedAssemblyName));
+            globalDataList.PreLoadOperations.Add(new GatherAssembly(globalDataList, readedAssemblyName));
             childOp = null;
         }
     }

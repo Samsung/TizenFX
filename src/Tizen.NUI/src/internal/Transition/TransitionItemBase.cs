@@ -26,9 +26,12 @@ namespace Tizen.NUI
         /// <summary>
         /// Creates an initialized TransitionItemBase.<br />
         /// </summary>
-        public TransitionItemBase(View target, bool isEntering, TimePeriod timePeriod, AlphaFunction alphaFunction) : this(Interop.TransitionItemBase.New(/*target.SwigCPtr, isEntering, timePeriod.SwigCPtr*/), true)
+        public TransitionItemBase(View target, bool isAppearing, TimePeriod timePeriod, AlphaFunction alphaFunction) : this(Interop.TransitionItemBase.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            
+            AppearingTransition = isAppearing;
+            TimePeriod = timePeriod;
             AlphaFunction = alphaFunction;
         }
 
@@ -80,6 +83,18 @@ namespace Tizen.NUI
             set
             {
                 Interop.TransitionItemBase.TransitionWithChild(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets whether this transition is appearing transition or not.
+        /// </summary>
+        public bool AppearingTransition
+        {
+            set
+            {
+                Interop.TransitionItemBase.SetAppearingTransition(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }

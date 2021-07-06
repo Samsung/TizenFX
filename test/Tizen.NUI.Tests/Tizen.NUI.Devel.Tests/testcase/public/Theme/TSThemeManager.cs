@@ -1,5 +1,8 @@
-﻿using NUnit.Framework;
-using System;
+﻿using global::System;
+using NUnit.Framework;
+using NUnit.Framework.TUnit;
+using Tizen.NUI.Components;
+using Tizen.NUI.BaseComponents;
 using System.Collections.Generic;
 
 namespace Tizen.NUI.Devel.Tests
@@ -22,24 +25,6 @@ namespace Tizen.NUI.Devel.Tests
         public void Destroy()
         {
             tlog.Info(tag, "Destroy() is called!");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("Test ThemeManager DefaultTheme.")]
-        [Property("SPEC", "Tizen.NUI.ThemeManager.DefaultTheme  A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
-        [Property("COVPARAM", "")]
-        public void ThemeManagerDefaultTheme()
-        {
-            tlog.Debug(tag, $"ThemeManagerDefaultTheme START");
-
-            Theme a1 = ThemeManager.DefaultTheme;
-            ThemeManager.DefaultTheme = a1;
-
-            tlog.Debug(tag, $"ThemeManagerDefaultTheme END (OK)");
-            Assert.Pass("ThemeManagerDefaultTheme");
         }
 
         [Test]
@@ -83,24 +68,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("Test ThemeManager ApplyBaseTheme.")]
-        [Property("SPEC", "Tizen.NUI.ThemeManager.ApplyBaseTheme  M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("COVPARAM", "")]
-        public void ThemeManagerApplyBaseTheme()
-        {
-            tlog.Debug(tag, $"ThemeManagerApplyBaseTheme START");
-
-
-            ThemeManager.ApplyBaseTheme("mythemeid");
-
-            tlog.Debug(tag, $"ThemeManagerApplyBaseTheme END (OK)");
-            Assert.Pass("ThemeManagerApplyBaseTheme");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("Test ThemeManager GetStyle.")]
         [Property("SPEC", "Tizen.NUI.ThemeManager.GetStyle  M")]
         [Property("SPEC_URL", "-")]
@@ -122,24 +89,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("Test ThemeManager GetBuiltinTheme.")]
-        [Property("SPEC", "Tizen.NUI.ThemeManager.GetBuiltinTheme  M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("COVPARAM", "")]
-        public void ThemeManagerGetBuiltinTheme()
-        {
-            tlog.Debug(tag, $"ThemeManagerGetBuiltinTheme START");
-
-
-            ThemeManager.GetBuiltinTheme("myThemeID");
-
-            tlog.Debug(tag, $"ThemeManagerGetBuiltinTheme END (OK)");
-            Assert.Pass("ThemeManagerGetBuiltinTheme");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("Test ThemeManager ApplyFallbackTheme.")]
         [Property("SPEC", "Tizen.NUI.ThemeManager.ApplyFallbackTheme  M")]
         [Property("SPEC_URL", "-")]
@@ -155,32 +104,6 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"ThemeManagerApplyFallbackTheme END (OK)");
             Assert.Pass("ThemeManagerApplyFallbackTheme");
         }
-
-        [Test]
-        [Category("P1")]
-        [Description("Test ThemeManager ApplyExternalTheme.")]
-        [Property("SPEC", "Tizen.NUI.ThemeManager.ApplyExternalTheme  M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("COVPARAM", "")]
-        public void ThemeManagerApplyExternalTheme()
-        {
-            tlog.Debug(tag, $"ThemeManagerApplyExternalTheme START");
-
-            Dictionary<string, string> b1 = new Dictionary<string, string>
-            {
-                { "test1", "test2" }
-            };
-
-
-            DictionaryExternalTheme c1 = new DictionaryExternalTheme("myid", "myVersion", b1);
-
-            ThemeManager.ApplyExternalTheme(c1);
-
-            tlog.Debug(tag, $"ThemeManagerApplyExternalTheme END (OK)");
-            Assert.Pass("ThemeManagerApplyExternalTheme");
-        }
-
     }
 }
 

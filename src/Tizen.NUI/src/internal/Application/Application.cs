@@ -308,35 +308,12 @@ namespace Tizen.NUI
 
         public delegate void resChangeCb(object sender, ResourcesChangedEventArgs e);
 
-        static private Dictionary<object, Dictionary<resChangeCb, int>> resourceChangeCallbackDict = new Dictionary<object, Dictionary<resChangeCb, int>>();
-        static public void AddResourceChangedCallback(object handle, resChangeCb cb)
-        {
-            Dictionary<resChangeCb, int> cbDict;
-            resourceChangeCallbackDict.TryGetValue(handle, out cbDict);
-
-            if (null == cbDict)
-            {
-                cbDict = new Dictionary<resChangeCb, int>();
-                resourceChangeCallbackDict.Add(handle, cbDict);
-            }
-
-            if (false == cbDict.ContainsKey(cb))
-            {
-                cbDict.Add(cb, 0);
-            }
-        }
+        internal event EventHandler<ResourcesChangedEventArgs> XamlResourceChanged;
 
         internal override void OnResourcesChanged(object sender, ResourcesChangedEventArgs e)
         {
             base.OnResourcesChanged(sender, e);
-
-            foreach (KeyValuePair<object, Dictionary<resChangeCb, int>> resourcePair in resourceChangeCallbackDict)
-            {
-                foreach (KeyValuePair<resChangeCb, int> cbPair in resourcePair.Value)
-                {
-                    cbPair.Key(sender, e);
-                }
-            }
+            XamlResourceChanged?.Invoke(sender, e);
         }
 
         public ResourceDictionary XamlResources
@@ -1113,6 +1090,19 @@ namespace Tizen.NUI
             return instance;
         }
 
+        public static Application NewApplication(string stylesheet, NUIApplication.WindowMode windowMode, Rectangle positionSize, WindowType type)
+        {
+            if (instance)
+            {
+                return instance;
+            }
+            Application ret = New(1, stylesheet, windowMode, positionSize, type);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            instance = ret;
+            return instance;
+        }
+
         /// <summary>
         /// Ensures that the function passed in is called from the main loop when it is idle.
         /// </summary>
@@ -1213,6 +1203,13 @@ namespace Tizen.NUI
             ret = new Application(NDalicPINVOKE.ApplicationNewWithWindowSizePosition(argc, argvStr, stylesheet, (int)windowMode, Rectangle.getCPtr(positionSize)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
+            return ret;
+        }
+
+        public static Application New(int argc, string stylesheet, NUIApplication.WindowMode windowMode, Rectangle positionSize, WindowType type)
+        {
+            Application ret = new Application(Interop.Application.New(argc, stylesheet, (int)windowMode, Rectangle.getCPtr(positionSize), (int)type), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

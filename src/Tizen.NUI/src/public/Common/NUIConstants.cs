@@ -136,57 +136,48 @@ namespace Tizen.NUI
     /// Enumeration for size negotiation resize policies.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    [Obsolete("Deprecated. Please set Tizen.NUI.View.Layout and use Tizen.NUI.BaseComponents.LayoutParamPolicies instead.")]
     public enum ResizePolicyType
     {
         /// <summary>
         /// Size is fixed as set by SetSize.
         /// </summary>
         [Description("FIXED")]
-        [Obsolete("Deprecated. Instead, please set a positive integer value to Tizen.NUI.View.WidthSpecification or Tizen.NUI.View.HeightSpecification.")]
         Fixed,
         /// <summary>
         /// Size is to use the actor's natural size.
         /// </summary>
         /// <see cref="ViewImpl.GetNaturalSize"/>
         [Description("USE_NATURAL_SIZE")]
-        [Obsolete("Deprecated. Instead, please set a positive integer value to Tizen.NUI.View.WidthSpecification or Tizen.NUI.View.HeightSpecification.")]
         UseNaturalSize,
         /// <summary>
         /// Size is to fill up to the actor's parent's bounds. Aspect ratio is not maintained.
         /// </summary>
         [Description("FILL_TO_PARENT")]
-        [Obsolete("Deprecated. Instead, please set Tizen.NUI.View.Layout and also set Tizen.NUI.BaseComponents.LayoutParamPolicies.MatchParent to Tizen.NUI.View.WidthSpecification or Tizen.NUI.View.HeightSpecification.")]
         FillToParent,
         /// <summary>
         /// The actors size will be ( ParentSize * SizeRelativeToParentFactor ).
         /// </summary>
         [Description("SIZE_RELATIVE_TO_PARENT")]
-        [Obsolete("Deprecated. Instead, please use parent view having Tizen.NUI.RelativeLayout as its Layout.")]
         SizeRelativeToParent,
         /// <summary>
         /// The actors size will be ( ParentSize + SizeRelativeToParentFactor ).
         /// </summary>
         [Description("SIZE_FIXED_OFFSET_FROM_PARENT")]
-        [Obsolete("Deprecated. Instead, please use parent view having Tizen.NUI.RelativeLayout as its Layout.")]
         SizeFixedOffsetFromParent,
         /// <summary>
         /// The size will adjust to wrap around all children.
         /// </summary>
         [Description("FIT_TO_CHILDREN")]
-        [Obsolete("Deprecated. Instead, please set Tizen.NUI.View.Layout and also set Tizen.NUI.BaseComponents.LayoutParamPolicies.WrapContent to Tizen.NUI.View.WidthSpecification or Tizen.NUI.View.HeightSpecification.")]
         FitToChildren,
         /// <summary>
         /// One dimension is dependent on the other.
         /// </summary>
         [Description("DIMENSION_DEPENDENCY")]
-        [Obsolete("Deprecated. Instead, please set positive integer values with aspect ratio to Tizen.NUI.View.WidthSpecification and Tizen.NUI.View.HeightSpecification.")]
         DimensionDependency,
         /// <summary>
         /// The size will be assigned to the actor.
         /// </summary>
         [Description("USE_ASSIGNED_SIZE")]
-        [Obsolete("Deprecated. Instead, please set a positive integer value to Tizen.NUI.View.WidthSpecification or Tizen.NUI.View.HeightSpecification.")]
         UseAssignedSize
     }
 
@@ -764,7 +755,15 @@ namespace Tizen.NUI
         /// <summary>
         /// Used for simple dialog windows.
         /// </summary>
-        Dialog
+        Dialog,
+        /// <summary>
+        /// Used for IME window that is used for keyboard window.
+        /// It should be set in Application's New input param when application is created.
+        /// In addition, it is only for internal keyboard application.
+        /// This should be hidden.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Ime
     }
 
     /// <since_tizen> 3 </since_tizen>

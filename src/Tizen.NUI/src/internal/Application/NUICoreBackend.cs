@@ -16,6 +16,7 @@
  */
 
 using System;
+using System.ComponentModel;
 using System.Collections.Generic;
 using Tizen.Applications.CoreBackend;
 using Tizen.Applications;
@@ -31,6 +32,7 @@ namespace Tizen.NUI
         private string stylesheet = "";
         private NUIApplication.WindowMode windowMode = NUIApplication.WindowMode.Opaque;
         private Rectangle windowRectangle = null;
+        private WindowType defaultWindowType = WindowType.Normal;
 
         /// <summary>
         /// The Dictionary to contain each type of event callback.
@@ -72,6 +74,22 @@ namespace Tizen.NUI
             {
                 this.windowRectangle = new Rectangle(windowPosition.X, windowPosition.Y, windowSize.Width, windowSize.Height);
             }
+        }
+
+        /// <summary>
+        /// The constructor with stylesheet, window mode, window size, window position and default window type.
+        /// This will be hidden as inhouse API. Because it is only for internal IME window.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public NUICoreBackend(string stylesheet, NUIApplication.WindowMode windowMode, Size2D windowSize, Position2D windowPosition, WindowType type)
+        {
+            this.stylesheet = stylesheet;
+            this.windowMode = windowMode;
+            if (windowSize != null && windowPosition != null)
+            {
+                this.windowRectangle = new Rectangle(windowPosition.X, windowPosition.Y, windowSize.Width, windowSize.Height);
+            }
+            this.defaultWindowType = type;
         }
 
         /// <summary>
@@ -147,13 +165,20 @@ namespace Tizen.NUI
                 args[0] = this.GetType().Assembly.FullName.Replace(" ", "");
             }
 
-            if (windowRectangle != null)
+            if(defaultWindowType != WindowType.Normal)
             {
-                application = Application.NewApplication(args, stylesheet, windowMode, windowRectangle);
+                application = Application.NewApplication(stylesheet, windowMode, windowRectangle, defaultWindowType);
             }
             else
             {
-                application = Application.NewApplication(args, stylesheet, windowMode);
+                if (windowRectangle != null)
+                {
+                    application = Application.NewApplication(args, stylesheet, windowMode, windowRectangle);
+                }
+                else
+                {
+                    application = Application.NewApplication(args, stylesheet, windowMode);
+                }
             }
 
             application.BatteryLow += OnBatteryLow;

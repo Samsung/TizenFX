@@ -44,15 +44,13 @@ namespace Tizen.NUI.EXaml
             {
                 var property = globalDataList.GatheredBindableProperties[bindalbePropertyIndex];
 
-                if (value is Instance)
+                if (value is Instance valueInstance)
                 {
-                    int valueIndex = (value as Instance).Index;
-                    instance.SetValue(property, globalDataList.GatheredInstances[valueIndex]);
+                    int valueIndex = valueInstance.Index;
+                    value = globalDataList.GatheredInstances[valueIndex];
                 }
-                else
-                {
-                    instance.SetValue(property, value);
-                }
+
+                instance.SetValue(property, value);
             }
         }
 

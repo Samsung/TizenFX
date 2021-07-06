@@ -151,6 +151,15 @@ internal static partial class Interop
         [DllImport(Libraries.Camera, EntryPoint = "camera_get_flash_state")]
         internal static extern CameraError GetFlashState(CameraDevice device, out CameraFlashState state);
 
+        [DllImport(Libraries.Camera, EntryPoint = "camera_set_extra_preview_stream_format")]
+        internal static extern CameraError SetExtraPreviewStreamFormat(IntPtr handle, int streamId, CameraPixelFormat format,
+            int width, int height, int fps);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_get_extra_preview_stream_format")]
+        internal static extern CameraError GetExtraPreviewStreamFormat(IntPtr handle, int streamId, out CameraPixelFormat format,
+            out int width, out int height, out int fps);
+
+
         [DllImport(Libraries.Camera, EntryPoint = "camera_set_preview_cb")]
         internal static extern CameraError SetPreviewCallback(IntPtr handle, PreviewCallback callback, IntPtr userData = default);
 
@@ -210,6 +219,7 @@ internal static partial class Interop
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_unset_hdr_capture_progress_cb")]
         internal static extern CameraError UnsetHdrCaptureProgressCallback(IntPtr handle);
+
 
         [NativeStruct("camera_image_data_s", Include="camera.h", PkgConfig="capi-media-camera")]
         [StructLayout(LayoutKind.Sequential)]
@@ -345,11 +355,13 @@ internal static partial class Interop
 
             internal CameraDevice device;
 
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 64)]
-            internal char[] name;
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 64)]
+            internal string name;
 
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 64)]
-            internal char[] id;
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 64)]
+            internal string id;
+
+            internal int extraStreamNum;
         }
 
         [NativeStruct("camera_device_list_s", Include="camera_internal.h", PkgConfig="capi-media-camera")]

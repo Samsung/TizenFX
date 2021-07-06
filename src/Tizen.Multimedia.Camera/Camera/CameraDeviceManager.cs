@@ -36,6 +36,7 @@ namespace Tizen.Multimedia
     {
         private IntPtr _handle;
         private bool _disposed;
+        private Native.DeviceConnectionChangedCallback _deviceConnectionChangedCallback;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CameraDeviceManager"/> class.
@@ -47,8 +48,6 @@ namespace Tizen.Multimedia
         public CameraDeviceManager()
         {
             Native.Initialize(out _handle).ThrowIfFailed("Failed to initialize CameraDeviceManager");
-
-            RegisterDeviceConnectionChangedCallback();
         }
 
         /// <summary>
@@ -102,25 +101,35 @@ namespace Tizen.Multimedia
         }
 
         internal static CameraDeviceInformation GetDeviceInformation(Native.CameraDeviceStruct device) =>
-            new CameraDeviceInformation(device.Type, device.device, GetString(device.name), GetString(device.id));
+            new CameraDeviceInformation(device.Type, device.device, device.name, device.id, device.extraStreamNum);
 
-        private static string GetString(char[] word)
-        {
-            int length = 0;
-            while(word[length] != '\0')
-            {
-                length++;
-            }
-
-            return new String(word, 0, length);
-        }
-
+        private event EventHandler<CameraDeviceConnectionChangedEventArgs> _deviceConnectionChanged;
         /// <summary>
         /// An event that occurs when camera device is connected or disconnected.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<CameraDeviceConnectionChangedEventArgs> DeviceConnectionChanged;
+        public event EventHandler<CameraDeviceConnectionChangedEventArgs> DeviceConnectionChanged
+        {
+            add
+            {
+                if (_deviceConnectionChanged == null)
+                {
+                    RegisterDeviceConnectionChangedCallback();
+                }
+
+                _deviceConnectionChanged += value;
+            }
+            remove
+            {
+                _deviceConnectionChanged -= value;
+
+                if (_deviceConnectionChanged == null)
+                {
+                    UnregisterDeviceConnectionChangedCallback();
+                }
+            }
+        }
 
         private IntPtr Handle
         {
@@ -134,17 +143,22 @@ namespace Tizen.Multimedia
         private int connectionCallbackId = 0;
         private void RegisterDeviceConnectionChangedCallback()
         {
-            Native.DeviceConnectionChangedCallback callback = (ref Native.CameraDeviceStruct device, bool status, IntPtr userData) =>
+            Log.Debug(CameraLog.Tag, "Enter");
+
+            _deviceConnectionChangedCallback = (ref Native.CameraDeviceStruct device, bool status, IntPtr userData) =>
             {
-                DeviceConnectionChanged?.Invoke(this, new CameraDeviceConnectionChangedEventArgs(ref device, status));
+                Log.Debug(CameraLog.Tag, "Invoke DeviceConnectionChanged event");
+                _deviceConnectionChanged?.Invoke(this, new CameraDeviceConnectionChangedEventArgs(ref device, status));
             };
 
-            Native.SetDeviceConnectionChangedCallback(Handle, callback, IntPtr.Zero, out connectionCallbackId).
+            Native.SetDeviceConnectionChangedCallback(Handle, _deviceConnectionChangedCallback, IntPtr.Zero, out connectionCallbackId).
                 ThrowIfFailed("Failed to set device connection changed callback");
         }
 
         private void UnregisterDeviceConnectionChangedCallback()
         {
+            Log.Debug(CameraLog.Tag, "Enter");
+
             Native.UnsetDeviceConnectionChangedCallback(Handle, connectionCallbackId).
                 ThrowIfFailed("Failed to unset device connection changed callback");
         }
@@ -160,6 +174,8 @@ namespace Tizen.Multimedia
         {
             if (!_disposed)
             {
+                Log.Debug(CameraLog.Tag, $"Enter. disposing:{disposing.ToString()}");
+
                 if (disposing)
                 {
                     // to be used if there are any other disposable objects
@@ -204,7 +220,7 @@ namespace Tizen.Multimedia
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class CameraDeviceInformation
+    public struct CameraDeviceInformation
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CameraDeviceInformation"/> class.
@@ -213,11 +229,12 @@ namespace Tizen.Multimedia
         /// <param name="device"><see cref="CameraDevice"/></param>
         /// <param name="name">The name of camera device</param>
         /// <param name="id">The ID of camera device</param>
+        /// <param name="numberOfExtraStream">The number of extra stream</param>
         /// <exception cref="ArgumentException">Invalid enumeration.</exception>
         /// <exception cref="ArgumentNullException">name or id is null.</exception>
         /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal CameraDeviceInformation(CameraDeviceType type, CameraDevice device, string name, string id)
+        internal CameraDeviceInformation(CameraDeviceType type, CameraDevice device, string name, string id, int numberOfExtraStream)
         {
             ValidationUtil.ValidateEnum(typeof(CameraDeviceType), type, nameof(type));
             ValidationUtil.ValidateEnum(typeof(CameraDevice), device, nameof(device));
@@ -226,6 +243,7 @@ namespace Tizen.Multimedia
             Device = device;
             Name = name ?? throw new ArgumentNullException(nameof(name), "name is null");
             Id = id ?? throw new ArgumentNullException(nameof(id), "id is null");
+            NumberOfExtraStream = numberOfExtraStream;
         }
 
         /// <summary>
@@ -261,12 +279,20 @@ namespace Tizen.Multimedia
         public string Id { get; }
 
         /// <summary>
+        /// Gets the number of extra stream.
+        /// </summary>
+        /// <value>The number of extra stream.</value>
+        /// <since_tizen> 9 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int NumberOfExtraStream { get; }
+
+        /// <summary>
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>A string that represents the current object.</returns>
         /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override string ToString() =>
-            $"Type:{Type.ToString()}, Device:{Device.ToString()}, Name:{Name}, Id:{Id}";
+            $"Type:{Type.ToString()}, Device:{Device.ToString()}, Name:{Name}, Id:{Id}, NumberOfExtraStream:{NumberOfExtraStream}";
     }
 }
