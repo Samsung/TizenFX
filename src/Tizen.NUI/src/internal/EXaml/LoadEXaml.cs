@@ -22,11 +22,9 @@ namespace Tizen.NUI.EXaml
 {
     internal static class LoadEXaml
     {
-        internal static void Load(object view, string xaml)
+        internal static GlobalDataList GatherDataList(string xaml)
         {
             var globalDataList = new GlobalDataList();
-
-            CreateInstanceAction.Root = view;
 
             int index = 0;
 
@@ -42,6 +40,7 @@ namespace Tizen.NUI.EXaml
             var setDynamicResourceAction = new SetDynamicResourceAction(globalDataList, null);
             var addToResourceDictionaryAction = new AddToResourceDictionaryAction(globalDataList, null);
             var setBindingAction = new SetBindingAction(globalDataList, null);
+            var otherActions = new OtherActions(globalDataList, null);
 
             foreach (char c in xaml)
             {
@@ -147,6 +146,11 @@ namespace Tizen.NUI.EXaml
                             currentOp = setBindingAction;
                             currentOp.Init();
                             break;
+
+                        case 'a':
+                            currentOp = otherActions;
+                            currentOp.Init();
+                            break;
                     }
                 }
                 else
@@ -154,6 +158,37 @@ namespace Tizen.NUI.EXaml
                     currentOp = currentOp.DealChar(c);
                 }
             }
+
+            foreach (var op in globalDataList.PreLoadOperations)
+            {
+                op.Do();
+            }
+
+            return globalDataList;
+        }
+
+        internal static void Load(object view, string xaml)
+        {
+            var globalDataList = GatherDataList(xaml);
+
+            CreateInstanceAction.Root = view;
+
+            foreach (var op in globalDataList.Operations)
+            {
+                op.Do();
+            }
+        }
+
+        internal static void Load(object view, object preloadData)
+        {
+            var globalDataList = preloadData as GlobalDataList;
+
+            if (null == globalDataList)
+            {
+                return;
+            }
+
+            CreateInstanceAction.Root = view;
 
             foreach (var op in globalDataList.Operations)
             {

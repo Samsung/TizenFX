@@ -159,17 +159,14 @@ namespace Tizen.NUI.Xaml
 
                             value = Activator.CreateInstance(type, defaultParams.ToArray());
                         }
-                        if (value is Element)
+                        if (value is Element element)
                         {
                             if (null != Application.Current)
                             {
-                                Application.AddResourceChangedCallback(value, (value as Element).OnResourcesChanged);
+                                Application.Current.XamlResourceChanged += element.OnResourcesChanged;
                             }
 
-                            if (value is BindableObject)
-                            {
-                                ((BindableObject)value).IsCreateByXaml = true;
-                            }
+                            element.IsCreateByXaml = true;
                         }
                     }
                 }
@@ -287,17 +284,14 @@ namespace Tizen.NUI.Xaml
             {
                 //non-default ctor
                 object ret = Activator.CreateInstance(nodeType, BindingFlags.CreateInstance | BindingFlags.Public | BindingFlags.Instance | BindingFlags.OptionalParamBinding, null, arguments, CultureInfo.CurrentCulture);
-                if (ret is Element)
+                if (ret is Element element)
                 {
                     if (null != Application.Current)
                     {
-                        Application.AddResourceChangedCallback(ret, (ret as Element).OnResourcesChanged);
+                        Application.Current.XamlResourceChanged += element.OnResourcesChanged;
                     }
 
-                    if (ret is BindableObject)
-                    {
-                        ((BindableObject)ret).IsCreateByXaml = true;
-                    }
+                    element.IsCreateByXaml = true;
                 }
                 return ret;
             }
@@ -328,7 +322,19 @@ namespace Tizen.NUI.Xaml
             };
             var mi = nodeType.GetRuntimeMethods().FirstOrDefault(isMatch);
             if (mi == null)
+            {
+                if (node is ElementNode elementNode)
+                {
+                    var nodeTypeExtension = XamlParser.GetElementTypeExtension(node.XmlType, elementNode, Context.RootElement?.GetType().GetTypeInfo().Assembly);
+                    mi = nodeTypeExtension?.GetRuntimeMethods().FirstOrDefault(isMatch);
+                }
+            }
+
+            if (mi == null)
+            {
                 throw new MissingMemberException($"No static method found for {nodeType.FullName}::{factoryMethod} ({string.Join(", ", types.Select(t => t.FullName))})");
+            }
+
             return mi.Invoke(null, arguments);
         }
 
@@ -418,17 +424,14 @@ namespace Tizen.NUI.Xaml
             else
             {
                 value = Activator.CreateInstance(nodeType);
-                if (value is Element)
+                if (value is Element element)
                 {
                     if (null != Application.Current)
                     {
-                        Application.AddResourceChangedCallback(value, (value as Element).OnResourcesChanged);
+                        Application.Current.XamlResourceChanged += element.OnResourcesChanged;
                     }
 
-                    if (value is BindableObject)
-                    {
-                        ((BindableObject)value).IsCreateByXaml = true;
-                    }
+                    element.IsCreateByXaml = true;
                 }
             }
 

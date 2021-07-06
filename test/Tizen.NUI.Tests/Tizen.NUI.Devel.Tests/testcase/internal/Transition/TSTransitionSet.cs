@@ -117,6 +117,34 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"TransitionSetAddTransition END (OK)");
         }
 
+        //[Test]
+        //[Category("P1")]
+        //[Description("TransitionSet Finished.")]
+        //[Property("SPEC", "Tizen.NUI.TransitionSet.Finished A")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "PRW")]
+        //[Property("AUTHOR", "guowei.wang@samsung.com")]
+        //public void TransitionSetFinished()
+        //{
+        //    tlog.Debug(tag, $"TransitionSetFinished START");
+
+        //    using (View view = new View())
+        //    {
+        //        var testingTarget = new TransitionSet(view.SwigCPtr.Handle, false);
+        //        Assert.IsNotNull(testingTarget, "Should be not null!");
+        //        Assert.IsInstanceOf<TransitionSet>(testingTarget, "Should be an Instance of TransitionSet!");
+
+        //        testingTarget.Finished += MyOnFinished;
+        //        testingTarget.Finished -= MyOnFinished;
+
+        //        testingTarget.Dispose();
+        //    }
+
+        //    tlog.Debug(tag, $"TransitionSetFinished END (OK)");
+        //}
+
+        //private void MyOnFinished(object sender, EventArgs e) { }
+
         [Test]
         [Category("P1")]
         [Description("TransitionSet GetTransitionAt.")]
@@ -128,36 +156,24 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"TransitionSetGetTransitionAt START");
 
-            View view = new View()
+            using (View view = new View())
             {
-                Name = "view",
-                TransitionOptions = new TransitionOptions(Window.Instance)
-            };
-            view.TransitionOptions.TransitionTag = "Transition";
-            view.TransitionOptions.EnableTransition = true;
+                var testingTarget = new TransitionSet(view.SwigCPtr.Handle, false);
+                Assert.IsNotNull(testingTarget, "Should be not null!");
+                Assert.IsInstanceOf<TransitionSet>(testingTarget, "Should be an Instance of TransitionSet!");
 
-            TransitionItemBase transitionItemBase = null;
-            using (TimePeriod timePeriod = new TimePeriod(500))
-            {
-                using (AlphaFunction alphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default))
+                try
                 {
-                    transitionItemBase = new TransitionItemBase(view, true, timePeriod, alphaFunction);
+                    testingTarget.GetTransitionAt(0);
+                }
+                catch (Exception e)
+                {
+                    tlog.Error(tag, "Caught Exception" + e.ToString());
+                    LogUtils.Write(LogUtils.DEBUG, LogUtils.TAG, "Caught Exception" + e.ToString());
+                    Assert.Fail("Caught Exception" + e.ToString());
                 }
             }
 
-            var testingTarget = new TransitionSet();
-            Assert.IsNotNull(testingTarget, "Should be not null!");
-            Assert.IsInstanceOf<TransitionSet>(testingTarget, "Should be an Instance of TransitionSet!");
-
-            testingTarget.AddTransition(transitionItemBase);
-
-            var result = testingTarget.GetTransitionAt(1);
-            Assert.IsNotNull(result, "Should be not null!");
-            Assert.IsInstanceOf<TransitionItemBase>(result, "Should be an Instance of TransitionItemBase!");
-
-            view.Dispose();
-            transitionItemBase.Dispose();
-            testingTarget.Dispose();
             tlog.Debug(tag, $"TransitionSetGetTransitionAt END (OK)");
         }
 
@@ -172,35 +188,24 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"TransitionSetGetTransitionCount START");
 
-            View view = new View()
+            using (View view = new View())
             {
-                Name = "view",
-                TransitionOptions = new TransitionOptions(Window.Instance)
-            };
-            view.TransitionOptions.TransitionTag = "Transition";
-            view.TransitionOptions.EnableTransition = true;
+                var testingTarget = new TransitionSet(view.SwigCPtr.Handle, false);
+                Assert.IsNotNull(testingTarget, "Should be not null!");
+                Assert.IsInstanceOf<TransitionSet>(testingTarget, "Should be an Instance of TransitionSet!");
 
-            TransitionItemBase transitionItemBase = null;
-            using (TimePeriod timePeriod = new TimePeriod(500))
-            {
-                using (AlphaFunction alphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default))
+                try
                 {
-                    transitionItemBase = new TransitionItemBase(view, true, timePeriod, alphaFunction);
+                    testingTarget.GetTransitionCount();
+                }
+                catch (Exception e)
+                {
+                    tlog.Error(tag, "Caught Exception" + e.ToString());
+                    LogUtils.Write(LogUtils.DEBUG, LogUtils.TAG, "Caught Exception" + e.ToString());
+                    Assert.Fail("Caught Exception" + e.ToString());
                 }
             }
 
-            var testingTarget = new TransitionSet();
-            Assert.IsNotNull(testingTarget, "Should be not null!");
-            Assert.IsInstanceOf<TransitionSet>(testingTarget, "Should be an Instance of TransitionSet!");
-
-            testingTarget.AddTransition(transitionItemBase);
-
-            var result = testingTarget.GetTransitionCount();
-            Assert.IsTrue(1 == result);
-
-            view.Dispose();
-            transitionItemBase.Dispose();
-            testingTarget.Dispose();
             tlog.Debug(tag, $"TransitionSetGetTransitionCount END (OK)");
         }
 
@@ -215,43 +220,24 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"TransitionSetPlay START");
 
-            View view = new View()
+            using (View view = new View())
             {
-                Name = "view",
-                TransitionOptions = new TransitionOptions(Window.Instance)
-            };
-            view.TransitionOptions.TransitionTag = "Transition";
-            view.TransitionOptions.EnableTransition = true;
+                var testingTarget = new TransitionSet(view.SwigCPtr.Handle, false);
+                Assert.IsNotNull(testingTarget, "Should be not null!");
+                Assert.IsInstanceOf<TransitionSet>(testingTarget, "Should be an Instance of TransitionSet!");
 
-            TransitionItemBase transitionItemBase = null;
-            using (TimePeriod timePeriod = new TimePeriod(500))
-            {
-                using (AlphaFunction alphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default))
+                try
                 {
-                    transitionItemBase = new TransitionItemBase(view, true, timePeriod, alphaFunction);
+                    testingTarget.Play();
+                }
+                catch (Exception e)
+                {
+                    tlog.Error(tag, "Caught Exception" + e.ToString());
+                    LogUtils.Write(LogUtils.DEBUG, LogUtils.TAG, "Caught Exception" + e.ToString());
+                    Assert.Fail("Caught Exception" + e.ToString());
                 }
             }
 
-            var testingTarget = new TransitionSet();
-            Assert.IsNotNull(testingTarget, "Should be not null!");
-            Assert.IsInstanceOf<TransitionSet>(testingTarget, "Should be an Instance of TransitionSet!");
-
-            testingTarget.AddTransition(transitionItemBase);
-
-            try
-            {
-                testingTarget.Play();
-            }
-            catch (Exception e)
-            {
-                tlog.Error(tag, "Caught Exception" + e.ToString());
-                LogUtils.Write(LogUtils.DEBUG, LogUtils.TAG, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
-            }
-
-            view.Dispose();
-            transitionItemBase.Dispose();
-            testingTarget.Dispose();
             tlog.Debug(tag, $"TransitionSetPlay END (OK)");
         }
 
@@ -266,37 +252,24 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"TransitionSetAssign START");
 
-            View view = new View()
+            using (View view = new View())
             {
-                Name = "view",
-                TransitionOptions = new TransitionOptions(Window.Instance)
-            };
-            view.TransitionOptions.TransitionTag = "Transition";
-            view.TransitionOptions.EnableTransition = true;
+                var testingTarget = new TransitionSet(view.SwigCPtr.Handle, false);
+                Assert.IsNotNull(testingTarget, "Should be not null!");
+                Assert.IsInstanceOf<TransitionSet>(testingTarget, "Should be an Instance of TransitionSet!");
 
-            TransitionItemBase transitionItemBase = null;
-            using (TimePeriod timePeriod = new TimePeriod(500))
-            {
-                using (AlphaFunction alphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default))
+                try
                 {
-                    transitionItemBase = new TransitionItemBase(view, true, timePeriod, alphaFunction);
+                    testingTarget.Assign(testingTarget);
+                }
+                catch (Exception e)
+                {
+                    tlog.Error(tag, "Caught Exception" + e.ToString());
+                    LogUtils.Write(LogUtils.DEBUG, LogUtils.TAG, "Caught Exception" + e.ToString());
+                    Assert.Fail("Caught Exception" + e.ToString());
                 }
             }
 
-            var transitionSet = new TransitionSet();
-            Assert.IsNotNull(transitionSet, "Should be not null!");
-            Assert.IsInstanceOf<TransitionSet>(transitionSet, "Should be an Instance of TransitionSet!");
-
-            transitionSet.AddTransition(transitionItemBase);
-
-            var testingTarget = new TransitionSet();
-            var result = transitionSet.Assign(testingTarget);
-            Assert.IsNotNull(result, "Should be not null!");
-            Assert.IsInstanceOf<TransitionSet>(result, "Should be an Instance of TransitionSet!");
-
-            view.Dispose();
-            transitionItemBase.Dispose();
-            testingTarget.Dispose();
             tlog.Debug(tag, $"TransitionSetAssign END (OK)");
         }
 
@@ -311,66 +284,25 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"TransitionSetFinishedSignal START");
 
-            View view = new View()
+            using (View view = new View())
             {
-                Name = "view",
-                TransitionOptions = new TransitionOptions(Window.Instance)
-            };
-            view.TransitionOptions.TransitionTag = "Transition";
-            view.TransitionOptions.EnableTransition = true;
+                var testingTarget = new TransitionSet(view.SwigCPtr.Handle, false);
+                Assert.IsNotNull(testingTarget, "Should be not null!");
+                Assert.IsInstanceOf<TransitionSet>(testingTarget, "Should be an Instance of TransitionSet!");
 
-            TransitionItemBase transitionItemBase = null;
-            using (TimePeriod timePeriod = new TimePeriod(500))
-            {
-                using (AlphaFunction alphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default))
+                try
                 {
-                    transitionItemBase = new TransitionItemBase(view, true, timePeriod, alphaFunction);
+                    testingTarget.FinishedSignal();
+                }
+                catch (Exception e)
+                {
+                    tlog.Error(tag, "Caught Exception" + e.ToString());
+                    LogUtils.Write(LogUtils.DEBUG, LogUtils.TAG, "Caught Exception" + e.ToString());
+                    Assert.Fail("Caught Exception" + e.ToString());
                 }
             }
 
-            var transitionSet = new TransitionSet();
-            Assert.IsNotNull(transitionSet, "Should be not null!");
-            Assert.IsInstanceOf<TransitionSet>(transitionSet, "Should be an Instance of TransitionSet!");
-
-            transitionSet.AddTransition(transitionItemBase);
-
-            var testingTarget = transitionSet.FinishedSignal();
-            Assert.IsNotNull(testingTarget, "Should be not null!");
-            Assert.IsInstanceOf<TransitionSetFinishedSignal>(testingTarget, "Should be an Instance of TransitionSet!");
-
-            view.Dispose();
-            transitionItemBase.Dispose();
             tlog.Debug(tag, $"TransitionSetFinishedSignal END (OK)");
-        }
-
-
-        [Test]
-        [Category("P1")]
-        [Description("TransitionSet Dispose.")]
-        [Property("SPEC", "Tizen.NUI.TransitionSet.Dispose M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void TransitionSetDispose()
-        {
-            tlog.Debug(tag, $"TransitionSetDispose START");
-
-            var testingTarget = new TransitionSet();
-            Assert.IsNotNull(testingTarget, "Should be not null!");
-            Assert.IsInstanceOf<TransitionSet>(testingTarget, "Should be an Instance of TransitionSet!");
-
-            try
-            {
-                testingTarget.Dispose();
-            }
-            catch (Exception e)
-            {
-                tlog.Error(tag, "Caught Exception" + e.ToString());
-                LogUtils.Write(LogUtils.DEBUG, LogUtils.TAG, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
-            }
-
-            tlog.Debug(tag, $"TransitionSetDispose END (OK)");
         }
     }
 }
