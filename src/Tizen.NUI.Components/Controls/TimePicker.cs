@@ -14,7 +14,6 @@
  *
  */
 using System;
-using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -63,7 +62,6 @@ namespace Tizen.NUI.Components
         private Picker hourPicker;
         private Picker minutePicker;
         private Picker ampmPicker;
-        private TimePickerStyle timePickerStyle => ViewStyle as TimePickerStyle;
 
         /// <summary>
         /// Creates a new instance of TimePicker.
@@ -71,7 +69,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TimePicker()
         {
-            Initialize();
         }
 
         /// <summary>
@@ -81,7 +78,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TimePicker(string style) : base(style)
         {
-            Initialize();
         }
 
         /// <summary>
@@ -91,7 +87,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TimePicker(TimePickerStyle timePickerStyle) : base(timePickerStyle)
         {
-            Initialize();
         }
 
         /// <summary>
@@ -242,6 +237,8 @@ namespace Tizen.NUI.Components
                 hourPicker.CurrentValue = currentTime.Hour;
 
             minutePicker.CurrentValue = currentTime.Minute;
+
+            Initialize();
         }
 
         /// <summary>
@@ -252,6 +249,10 @@ namespace Tizen.NUI.Components
         public override void ApplyStyle(ViewStyle viewStyle)
         {
             base.ApplyStyle(viewStyle);
+
+            var timePickerStyle = viewStyle as TimePickerStyle;
+
+            if (timePickerStyle == null) return;
 
             //Apply CellPadding.
             if (timePickerStyle?.CellPadding != null && Layout != null)
@@ -275,7 +276,6 @@ namespace Tizen.NUI.Components
 
             Layout = new LinearLayout() { 
                 LinearOrientation = LinearLayout.Orientation.Horizontal,
-                CellPadding = new Size(timePickerStyle.CellPadding.Width, timePickerStyle.CellPadding.Height),
             };
             Console.WriteLine("initialize");
 
