@@ -21,6 +21,7 @@ using System.Text;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
 using Tizen.NUI.Binding.Internals;
+using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.EXaml
 {
@@ -65,6 +66,11 @@ namespace Tizen.NUI.EXaml
                 {
                     throw new Exception(String.Format("Can't get instance of value by index {0}", valueIndex));
                 }
+            }
+
+            if (value is ApplicationResourcePathExtension applicationResourcePath)
+            {
+                value = applicationResourcePath.ProvideValue(null);
             }
 
             property.SetMethod.Invoke(instance, new object[] { value });
