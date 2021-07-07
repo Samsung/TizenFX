@@ -142,6 +142,7 @@ namespace Tizen.NUI.Devel.Tests
             try
             {
                 testingTarget.OnDispose(DisposeTypes.Explicit);
+                testingTarget.OnDispose(DisposeTypes.Explicit);
             }
             catch (Exception e)
             {
