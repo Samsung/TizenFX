@@ -378,22 +378,24 @@ namespace Tizen.NUI
                     Geometry horizontalGeometry = GetHorizontalLayout(childLayout.Owner);
                     Geometry verticalGeometry = GetVerticalLayout(childLayout.Owner);
 
-                    // MeasureChildWithMargins() is called to assign child's MeasuredWidth/Height to calculate grand children's sizes correctly.
-                    // Grand children's positions are calculated correctly only if their sizes are calculated correctly.
-                    // MeasureChildWithMargins() should be called before childLayout.Layout() to use childLayout's MeasuredWidth/Height
-                    // when the grand children's positions are calculated.
-                    //
-                    // FIXME: It would be better if MeasureChildWithMargins() are called in OnMeasure() to separate Measure and Layout calculations.
-                    //        For now, not to call duplicate GetHorizontalLayout() and GetVerticalLayout() in both OnMeasure() and OnLayout(),
-                    //        MeasureChildWithMargins() is called here.
-                    MeasureChildWithMargins(childLayout,
-                                            new MeasureSpecification(new LayoutLength(horizontalGeometry.Size), MeasureSpecification.ModeType.Exactly), new LayoutLength(0),
-                                            new MeasureSpecification(new LayoutLength(verticalGeometry.Size), MeasureSpecification.ModeType.Exactly), new LayoutLength(0));
-
                     LayoutLength childLeft = new LayoutLength(horizontalGeometry.Position + Padding.Start + childLayout.Margin.Start);
                     LayoutLength childRight = new LayoutLength(horizontalGeometry.Position + horizontalGeometry.Size + Padding.Start - childLayout.Margin.End);
                     LayoutLength childTop = new LayoutLength(verticalGeometry.Position + Padding.Top + childLayout.Margin.Top);
                     LayoutLength childBottom = new LayoutLength(verticalGeometry.Position + verticalGeometry.Size + Padding.Top - childLayout.Margin.Bottom);
+
+                    // Children's MeasuredWidth/Height are set based on their position calculated by RelativeLayout.
+                    // Because children's MeasuredWidth/Height might be small value unlike their View's Size if children have WrapContent Width/HeightSpecification.
+                    // This causes the grand children's position is calculated incorrectly by using the children's small MeasuredWidth/Height.
+                    // Therefore, children's MeasuredWidth/Height are set before calling Layout() to calculate grand children's position correctly.
+                    // e.g.
+                    // Let Parent use RelativeLayout and its View Size be 1920 x 1080.
+                    // Let Child use RelativeLayout and its Width/HeightSpecification be WrapContent.
+                    // Then Child's View Size is 1920 x 1080 and MeasuredWidth/Height is 0 x 0 with SetFillHorizontal/Vertical true.
+                    // Grand child's View Size is 0 x 0 with SetFillHorizontal/Vertical true and WrapContent Width/HeightSpecification.
+                    // (Because Child's MeasuredWidth/Height 0 x 0 is used in GetHorizontal/VerticalLayout())
+                    childLayout.MeasuredWidth = new MeasuredSize(new LayoutLength(childRight.AsDecimal() - childLeft.AsDecimal()), MeasuredSize.StateType.MeasuredSizeOK);
+                    childLayout.MeasuredHeight = new MeasuredSize(new LayoutLength(childBottom.AsDecimal() - childTop.AsDecimal()), MeasuredSize.StateType.MeasuredSizeOK);
+
                     childLayout.Layout(childLeft, childTop, childRight, childBottom);
                 }
             }
