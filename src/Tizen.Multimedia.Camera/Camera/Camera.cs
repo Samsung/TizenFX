@@ -136,7 +136,6 @@ namespace Tizen.Multimedia
                 if (disposing)
                 {
                     // to be used if there are any other disposable objects
-                    _cameraDeviceManager?.Dispose();
                 }
 
                 if (_handle != IntPtr.Zero)
