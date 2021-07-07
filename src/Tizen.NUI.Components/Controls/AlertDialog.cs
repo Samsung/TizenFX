@@ -43,8 +43,6 @@ namespace Tizen.NUI.Components
         //        Until the bug is fixed, padding view is added after action content.
         private View defaultActionContentPadding = null;
 
-        private AlertDialogStyle alertDialogStyle => ViewStyle as AlertDialogStyle;
-
         private bool styleApplied = false;
 
         /// <summary>
@@ -124,20 +122,27 @@ namespace Tizen.NUI.Components
 
             base.ApplyStyle(viewStyle);
 
+            var alertDialogStyle = viewStyle as AlertDialogStyle;
+
+            if (alertDialogStyle == null)
+            {
+                return;
+            }
+
             // Apply Title style.
-            if ((alertDialogStyle?.TitleTextLabel != null) && (DefaultTitleContent is TextLabel))
+            if ((alertDialogStyle.TitleTextLabel != null) && (DefaultTitleContent is TextLabel))
             {
                 ((TextLabel)DefaultTitleContent)?.ApplyStyle(alertDialogStyle.TitleTextLabel);
             }
 
             // Apply Message style.
-            if ((alertDialogStyle?.MessageTextLabel != null) && (DefaultContent is TextLabel))
+            if ((alertDialogStyle.MessageTextLabel != null) && (DefaultContent is TextLabel))
             {
                 ((TextLabel)DefaultContent)?.ApplyStyle(alertDialogStyle.MessageTextLabel);
             }
 
             // Apply ActionContent style.
-            if (alertDialogStyle?.ActionContent != null)
+            if (alertDialogStyle.ActionContent != null)
             {
                 DefaultActionContent?.ApplyStyle(alertDialogStyle.ActionContent);
             }
