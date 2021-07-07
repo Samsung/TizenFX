@@ -690,32 +690,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("Application AddResourceChangedCallback.")]
-        [Property("SPEC", "Tizen.NUI.Application.AddResourceChangedCallback A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRO")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ApplicationAddResourceChangedCallback()
-        {
-            tlog.Debug(tag, $"ApplicationAddResourceChangedCallback START");
-
-            try
-            {
-                Application.AddResourceChangedCallback(new ImageView() as object, AddResourceChangedCallback);      
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception: Failed!");
-            }
-
-            tlog.Debug(tag, $"ApplicationAddResourceChangedCallback END (OK)");
-        }
-
-        private void AddResourceChangedCallback(object sender, ResourcesChangedEventArgs e) { }
-
-        [Test]
-        [Category("P1")]
         [Description("Application Paused.")]
         [Property("SPEC", "Tizen.NUI.Application.Paused A")]
         [Property("SPEC_URL", "-")]
