@@ -155,6 +155,7 @@ namespace Tizen.NUI.Components
 
             navigationPages.Add(page);
             Add(page);
+            page.Navigator = this;
 
             //Invoke Page events
             page.InvokeAppearing();
