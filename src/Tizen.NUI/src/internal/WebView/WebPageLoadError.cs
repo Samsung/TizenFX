@@ -30,6 +30,14 @@ namespace Tizen.NUI
         {
         }
 
+        /// This will not be public opened.
+        /// <param name="swigCPtr"></param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.WebPageLoadError.DeleteWebPageLoadError(swigCPtr);
+        }
+
         /// <summary>
         /// Enumeration for the load error type
         /// </summary>
