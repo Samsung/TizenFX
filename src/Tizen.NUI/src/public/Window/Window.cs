@@ -59,6 +59,25 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// A helper method to get the current window where the view is added
+        /// </summary>
+        /// <param name="view">The View added to the window</param>
+        /// <returns>A Window.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        static public Window Get(View view)
+        {
+            if(view == null)
+            {
+                NUILog.Error("if there is no view, it can not get a window");
+                return null;
+            }
+
+            Window ret = Registry.GetManagedBaseHandleFromNativePtr(Interop.Window.Get(View.getCPtr(view))) as Window;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
         /// Creates a new Window.<br />
         /// This creates an extra window in addition to the default main window<br />
         /// </summary>

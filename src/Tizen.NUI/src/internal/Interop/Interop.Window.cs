@@ -246,7 +246,8 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_RequestResizeToServer")]
             public static extern void RequestResizeToServer(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
-
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_GetWindow")]
+            public static extern global::System.IntPtr Get(global::System.Runtime.InteropServices.HandleRef jarg1);
         }
     }
 }
