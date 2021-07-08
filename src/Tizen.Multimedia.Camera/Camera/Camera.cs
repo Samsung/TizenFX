@@ -79,7 +79,7 @@ namespace Tizen.Multimedia
             {
                 _cameraDeviceManager = new CameraDeviceManager();
                 var deviceInfo = _cameraDeviceManager.GetDeviceInformation();
-                Log.Info(CameraLog.Tag, deviceInfo.ToString());
+                Log.Info(CameraLog.Tag, deviceInfo?.ToString());
 
                 cameraDeviceType = deviceInfo.First().Type;
             }

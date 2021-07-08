@@ -63,10 +63,16 @@ namespace Tizen.Multimedia
         /// Gets the status whether camera device(usb, network) is connected or not.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool IsExternalCameraConnected =>
-            GetDeviceInformation().Where(d => d.Type == CameraDeviceType.Usb ||
-                                              d.Type == CameraDeviceType.Network)
-                                  .Any();
+        public bool IsExternalCameraConnected
+        {
+            get
+            {
+                var deviceList = GetDeviceInformation();
+
+                return deviceList == null ? false : deviceList.Where(d => d.Type == CameraDeviceType.Usb ||
+                                                                          d.Type == CameraDeviceType.Network).Any();
+            }
+        }
 
         /// <summary>
         /// Gets the current camera device information.
@@ -86,6 +92,11 @@ namespace Tizen.Multimedia
 
         internal static ReadOnlyCollection<CameraDeviceInformation> GetDeviceInformation(Native.CameraDeviceListStruct list)
         {
+            if (list.count == 0)
+            {
+                return null;
+            }
+
             var devices = list.device;
             var deviceList = new List<CameraDeviceInformation>();
 
@@ -208,7 +219,7 @@ namespace Tizen.Multimedia
         {
             if (_disposed)
             {
-                Log.Error(CameraLog.Tag, "Camera handle is disposed.");
+                Log.Error(CameraLog.Tag, "CameraDeviceManager handle is disposed.");
                 throw new ObjectDisposedException(nameof(Camera));
             }
         }
