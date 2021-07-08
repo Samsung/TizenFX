@@ -45,7 +45,6 @@ namespace Tizen.Multimedia
         private IntPtr _handle = IntPtr.Zero;
         private bool _disposed = false;
         private CameraState _state = CameraState.None;
-        private CameraDeviceManager _cameraDeviceManager;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Camera"/> class.
@@ -77,15 +76,20 @@ namespace Tizen.Multimedia
 
             try
             {
-                _cameraDeviceManager = new CameraDeviceManager();
-                var deviceInfo = _cameraDeviceManager.GetDeviceInformation();
-                Log.Info(CameraLog.Tag, deviceInfo?.ToString());
+                using (var cameraDeviceManager = new CameraDeviceManager())
+                {
+                    var deviceInfo = cameraDeviceManager.GetDeviceInformation();
+                    if (!deviceInfo.Any())
+                    {
+                        throw new InvalidOperationException("There's no available camera device.");
+                    }
 
-                cameraDeviceType = deviceInfo.First().Type;
+                    cameraDeviceType = deviceInfo.First().Type;
+                }
             }
             catch (NotSupportedException e)
             {
-                Tizen.Log.Info(CameraLog.Tag,
+                Log.Info(CameraLog.Tag,
                     $"CameraDeviceManager is not supported. {e.Message}. Not error.");
             }
 

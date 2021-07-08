@@ -17,7 +17,6 @@ using System.Linq;
 
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using Native = Interop.CameraDeviceManager;
 
@@ -63,16 +62,10 @@ namespace Tizen.Multimedia
         /// Gets the status whether camera device(usb, network) is connected or not.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool IsExternalCameraConnected
-        {
-            get
-            {
-                var deviceList = GetDeviceInformation();
-
-                return deviceList == null ? false : deviceList.Where(d => d.Type == CameraDeviceType.Usb ||
-                                                                          d.Type == CameraDeviceType.Network).Any();
-            }
-        }
+        public bool IsExternalCameraConnected =>
+            GetDeviceInformation().Where(d => d.Type == CameraDeviceType.Usb ||
+                                              d.Type == CameraDeviceType.Network)
+                                  .Any();
 
         /// <summary>
         /// Gets the current camera device information.
@@ -80,7 +73,7 @@ namespace Tizen.Multimedia
         /// <returns></returns>
         /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ReadOnlyCollection<CameraDeviceInformation> GetDeviceInformation()
+        public IEnumerable<CameraDeviceInformation> GetDeviceInformation()
         {
             var deviceList = new Native.CameraDeviceListStruct();
 
@@ -90,25 +83,21 @@ namespace Tizen.Multimedia
             return GetDeviceInformation(deviceList);
         }
 
-        internal static ReadOnlyCollection<CameraDeviceInformation> GetDeviceInformation(Native.CameraDeviceListStruct list)
+        internal static IEnumerable<CameraDeviceInformation> GetDeviceInformation(Native.CameraDeviceListStruct list)
         {
             if (list.count == 0)
             {
-                return null;
+                return Enumerable.Empty<CameraDeviceInformation>();
             }
 
-            var devices = list.device;
             var deviceList = new List<CameraDeviceInformation>();
 
             for (int i = 0 ; i < list.count ; i++)
             {
-                var deviceInfo = GetDeviceInformation(devices[i]);
-                deviceList.Add(deviceInfo);
-
-                Log.Info(CameraLog.Tag, deviceInfo.ToString());
+                deviceList.Add(GetDeviceInformation(list.device[i]));
             }
 
-            return new ReadOnlyCollection<CameraDeviceInformation>(deviceList);
+            return deviceList.AsReadOnly();
         }
 
         internal static CameraDeviceInformation GetDeviceInformation(Native.CameraDeviceStruct device) =>
@@ -151,7 +140,7 @@ namespace Tizen.Multimedia
             }
         }
 
-        private int connectionCallbackId = 0;
+        private int _connectionCallbackId = -1;
         private void RegisterDeviceConnectionChangedCallback()
         {
             Log.Debug(CameraLog.Tag, "Enter");
@@ -162,16 +151,21 @@ namespace Tizen.Multimedia
                 _deviceConnectionChanged?.Invoke(this, new CameraDeviceConnectionChangedEventArgs(ref device, status));
             };
 
-            Native.SetDeviceConnectionChangedCallback(Handle, _deviceConnectionChangedCallback, IntPtr.Zero, out connectionCallbackId).
+            Native.SetDeviceConnectionChangedCallback(Handle, _deviceConnectionChangedCallback, IntPtr.Zero, out _connectionCallbackId).
                 ThrowIfFailed("Failed to set device connection changed callback");
+
+            Log.Debug(CameraLog.Tag, $"Leave. callbackId[{_connectionCallbackId}]");
         }
 
         private void UnregisterDeviceConnectionChangedCallback()
         {
-            Log.Debug(CameraLog.Tag, "Enter");
+            Log.Debug(CameraLog.Tag, $"Enter. callbackId[{_connectionCallbackId}]");
 
-            Native.UnsetDeviceConnectionChangedCallback(Handle, connectionCallbackId).
-                ThrowIfFailed("Failed to unset device connection changed callback");
+            if (_connectionCallbackId >= 0)
+            {
+                Native.UnsetDeviceConnectionChangedCallback(Handle, _connectionCallbackId).
+                    ThrowIfFailed("Failed to unset device connection changed callback");
+            }
         }
 
         #region Dispose support
@@ -255,6 +249,8 @@ namespace Tizen.Multimedia
             Name = name ?? throw new ArgumentNullException(nameof(name), "name is null");
             Id = id ?? throw new ArgumentNullException(nameof(id), "id is null");
             NumberOfExtraStream = numberOfExtraStream;
+
+            Log.Debug(CameraLog.Tag, this.ToString());
         }
 
         /// <summary>
