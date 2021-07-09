@@ -75,9 +75,11 @@ namespace Tizen.NUI
             public static extern uint GlWindowAddAuxiliaryHint(HandleRef jarg1, string jarg2, string jarg3);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_RemoveAuxiliaryHint")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool GlWindowRemoveAuxiliaryHint(HandleRef jarg1, uint jarg2);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_SetAuxiliaryHintValue")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool GlWindowSetAuxiliaryHintValue(HandleRef jarg1, uint jarg2, string jarg3);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_GetAuxiliaryHintValue")]
@@ -93,6 +95,7 @@ namespace Tizen.NUI
             public static extern void GlWindowSetOpaqueState(HandleRef jarg1, bool jarg2);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_IsOpaqueState")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool GlWindowIsOpaqueState(HandleRef jarg1);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_GetCurrentOrientation")]
