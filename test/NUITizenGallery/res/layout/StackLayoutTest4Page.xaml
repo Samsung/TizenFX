@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<base:View x:Class="NUITizenGallery.StackLayoutTest4Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:base="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  BackgroundColor="White"
+  PositionUsesPivotPoint="True" ParentOrigin="Center" PivotPoint="Center" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent">
+
+    <View.Layout>
+        <LinearLayout LinearOrientation="Vertical"/>
+    </View.Layout>
+
+    <View x:Name="layout"
+          WidthSpecification="{Static LayoutParamPolicies.MatchParent}" >
+
+        <View.Layout>
+            <LinearLayout LinearOrientation="Vertical"/>
+        </View.Layout>
+
+        <Button x:Name="addButton"
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                Text="Add label"/>
+
+    </View>
+
+    <TextLabel Text="End"/>
+
+</base:View>

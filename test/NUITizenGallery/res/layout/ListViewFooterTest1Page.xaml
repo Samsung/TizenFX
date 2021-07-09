@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<base:View x:Class="NUITizenGallery.ListViewFooterTest1Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:base="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+  xmlns:comp="clr-namespace:Tizen.NUI.Components;assembly=Tizen.NUI.Components"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  PositionUsesPivotPoint="True" ParentOrigin="Center" 
+  PivotPoint="Center" WidthResizePolicy="FillToParent" 
+  HeightResizePolicy="FillToParent" BackgroundColor="#FFFFFF">
+
+  <base:View.Layout>
+    <LinearLayout LinearOrientation="Vertical" CellPadding="0,10" LinearAlignment="Center"/>
+  </base:View.Layout>
+
+  <base:TextLabel x:Name="Footer" Text="No selected item" Size2D="720, 50" BackgroundColor="#6c6c6c"/>
+
+  <comp:ScrollableBase x:Name="ListView" Size2D="720, 1180">
+    <comp:ScrollableBase.Layout>
+      <LinearLayout LinearOrientation="Vertical" CellPadding="0,10" LinearAlignment="Center"/>
+    </comp:ScrollableBase.Layout>
+  </comp:ScrollableBase>
+</base:View>

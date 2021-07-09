@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<base:View x:Class="NUITizenGallery.PerformanceTest3Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:base="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+  xmlns:comp="clr-namespace:Tizen.NUI.Components;assembly=Tizen.NUI.Components"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+  <base:View x:Name="ButtonBox">
+    <comp:Button x:Name="ScrollBegin" Text="Scroll to 0" Size2D="220,70"/>
+    <comp:Button x:Name="ScrollMiddle" Text="Scroll to 100" Size2D="220,70"/>
+    <comp:Button x:Name="ScrollEnd" Text="Scroll to 199" Size2D="220,70"/>
+  </base:View>
+  
+  <comp:ScrollableBase x:Name="LabelsListView"/>
+</base:View>

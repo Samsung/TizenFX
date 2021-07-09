@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<base:View x:Class="NUITizenGallery.BrushViewerTestPage"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:base="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+  xmlns:comp="clr-namespace:Tizen.NUI.Components;assembly=Tizen.NUI.Components"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    PositionUsesPivotPoint="True" ParentOrigin="Center" 
+    PivotPoint="Center" WidthResizePolicy="FillToParent" 
+    HeightResizePolicy="FillToParent" BackgroundColor="#FFFFFF"
+    x:Name="MainView">
+
+    <comp:Button x:Name="ButtonSolid" Text="Set solid color" WidthResizePolicy="FillToParent"/>
+    <comp:Button x:Name="ButtonGradientLinear" Text="Set linear gradient" WidthResizePolicy="FillToParent"/>
+    <comp:Button x:Name="ButtonGradientRadial" Text="Set radial gradient" WidthResizePolicy="FillToParent"/>
+    <base:VisualView x:Name="BrushViewer" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent"/>
+</base:View>

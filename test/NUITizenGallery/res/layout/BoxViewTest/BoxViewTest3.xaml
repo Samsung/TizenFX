@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<b:View x:Class="NUITizenGallery.BoxViewTest3"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:b="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:nui="clr-namespace:Tizen.NUI.Components;assembly=Tizen.NUI.Components"
+  HeightResizePolicy="FillToParent" 
+  WidthResizePolicy="FillToParent" 
+  ParentOrigin="Center" 
+  PivotPoint="Center"
+  PositionUsesPivotPoint="true"
+  BackgroundColor="White">
+
+    <View.Layout>
+        <LinearLayout LinearOrientation="Vertical" LinearAlignment="Top" CellPadding="10,10"/>
+    </View.Layout>
+
+    <TextLabel Text="Normal colors"/>
+
+    <View x:Name="colorBox"
+          WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+          SizeHeight="80"/>
+
+    <TextLabel Text="Pre-multiplied alpha colors" />
+
+    <View x:Name="preColorBox"
+          WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+          SizeHeight="80"/>
+
+    <TextLabel Text="R"/>
+
+    <nui:Slider x:Name="red"
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                CurrentValue="176.0"
+                MinValue="0.0"
+                MaxValue="255.0"/>
+
+    <TextLabel Text="G"/>
+
+    <nui:Slider x:Name="green"
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                CurrentValue="255.0"
+                MinValue="0.0"
+                MaxValue="255.0"/>
+
+    <TextLabel Text="B"/>
+
+    <nui:Slider x:Name="blue"
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                CurrentValue="35.0"
+                MinValue="0.0"
+                MaxValue="255.0"/>
+
+    <TextLabel Text="A"/>
+
+    <nui:Slider x:Name="alpha"
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                CurrentValue="255.0"
+                MinValue="0.0"
+                MaxValue="255.0"/>
+
+    <TextLabel x:Name="output"/>
+
+</b:View>

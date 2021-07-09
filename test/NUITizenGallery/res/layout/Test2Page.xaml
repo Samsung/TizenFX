@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<b:View x:Class="NUITizenGallery.Test2Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:b="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <b:TextLabel x:Name="test2PageText"  Text="Test2Page" Size2D="500,300" Position2D="50,50" PointSize="20" TextColor="Blue"/>
+
+</b:View>

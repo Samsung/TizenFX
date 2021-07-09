@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<comp:ContentPage x:Class="NUITizenGallery.SetColorTestPage"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:base="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+  xmlns:comp="clr-namespace:Tizen.NUI.Components;assembly=Tizen.NUI.Components"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    PositionUsesPivotPoint="True" ParentOrigin="Center" 
+    PivotPoint="Center" WidthResizePolicy="FillToParent" 
+    HeightResizePolicy="FillToParent" BackgroundColor="#FFFFFF">
+
+    <comp:ContentPage.AppBar>
+        <comp:AppBar x:Name="appBar" Title="CarouselPageTest1"/>
+    </comp:ContentPage.AppBar>
+
+    <comp:ContentPage.Content>
+      <base:View x:Name="ContentView"
+          WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+          HeightSpecification="{Static LayoutParamPolicies.MatchParent}" >
+
+        <View.Layout>
+          <LinearLayout LinearOrientation="Vertical" LinearAlignment="Top" CellPadding="5,5" />
+        </View.Layout>
+    
+        <comp:Button x:Name="ChangeColorButton" Text="ChangeColor" 
+                     WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                     HeightSpecification="{Static LayoutParamPolicies.WrapContent}"/>
+
+        <base:TextLabel x:Name="ButtonColorName" Text="" WidthSpecification="{Static LayoutParamPolicies.WrapContent}"
+                        HeightSpecification="{Static LayoutParamPolicies.WrapContent}" MultiLine="true"/>
+    
+        <base:View WidthSpecification="{Static LayoutParamPolicies.WrapContent}" HeightSpecification="{Static LayoutParamPolicies.WrapContent}">
+          <View.Layout> 
+            <LinearLayout LinearOrientation="Horizontal" CellPadding="50,0"/>
+          </View.Layout>
+
+          <comp:CheckBox x:Name="CheckBox1" Size2D="30,30" IsSelected="false"/>
+          <comp:CheckBox x:Name="CheckBox2" Size2D="30,30" IsSelected="true"/>
+        </base:View>
+
+        <base:TextLabel x:Name="CheckBoxColorName" Text="" WidthSpecification="{Static LayoutParamPolicies.WrapContent}" 
+                        HeightSpecification="{Static LayoutParamPolicies.WrapContent}" MultiLine="true"/>
+
+        <comp:Progress x:Name="ProgressBar" WidthSpecification="{Static LayoutParamPolicies.MatchParent}"  HeightSpecification="{Static LayoutParamPolicies.WrapContent}" CurrentValue="50.0"/>
+        <base:TextLabel x:Name="ProgressBarColorName" Text="" WidthSpecification="{Static LayoutParamPolicies.WrapContent}" HeightSpecification="{Static LayoutParamPolicies.WrapContent}" MultiLine="true"/>
+
+        <base:View WidthSpecification="{Static LayoutParamPolicies.WrapContent}" HeightSpecification="{Static LayoutParamPolicies.WrapContent}">
+          <View.Layout> 
+            <LinearLayout LinearOrientation="Horizontal" CellPadding="50,0"/>
+          </View.Layout>
+
+          <comp:RadioButton x:Name="RadioButton1" Size2D="30,30" IsSelected="false"/>
+          <comp:RadioButton x:Name="RadioButton2" Size2D="30,30" IsSelected="true"/>
+        </base:View>
+
+        <base:TextLabel x:Name="RadioColorName" Text="" Size2D="0,120" WidthResizePolicy="FillToParent" MultiLine="true"/>
+      </base:View>
+    </comp:ContentPage.Content>
+</comp:ContentPage>

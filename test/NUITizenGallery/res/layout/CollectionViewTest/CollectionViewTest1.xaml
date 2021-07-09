@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<comp:ContentPage x:Class="NUITizenGallery.CollectionViewTest1"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:base="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+  xmlns:comp="clr-namespace:Tizen.NUI.Components;assembly=Tizen.NUI.Components"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}" 
+  ParentOrigin="Center"
+  PivotPoint="Center"
+  PositionUsesPivotPoint="true"
+  BackgroundColor="White">
+
+    <comp:ContentPage.AppBar>
+        <comp:AppBar x:Name="appBar"
+                    Title="CollectionViewTest1"/>
+    </comp:ContentPage.AppBar>
+
+    <comp:ContentPage.Content>
+        <base:View x:Name="ContentView"
+          WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+          HeightSpecification="{Static LayoutParamPolicies.MatchParent}" >
+            <View.Layout>
+                <LinearLayout LinearOrientation="Vertical" LinearAlignment="Top" CellPadding="10,10" />
+            </View.Layout>
+            <base:View x:Name="TopBox"
+              WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+              HeightSpecification="100"
+              BackgroundColor="#D3D3D3">
+                <base:View.Layout>
+                    <LinearLayout LinearOrientation="Vertical" LinearAlignment="Center" CellPadding="10,10" />
+                </base:View.Layout>
+                <base:TextLabel x:Name="Title"
+                  WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                  PixelSize="30"
+                  HorizontalAlignment="Begin"
+                  Text="ScrollBar"/>
+                <base:View x:Name="RadioBox"
+                  WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                  HeightSpecification="60">
+                    <base:View.Layout>
+                        <LinearLayout LinearOrientation="Horizontal" LinearAlignment="Center" CellPadding="10,10" />
+                    </base:View.Layout>
+                    <comp:RadioButton x:Name="ShowBar" Text="Show" SelectedChanged="OnShowBarRadioChanged"/>
+                    <comp:RadioButton x:Name="HideBar" Text="Hide" IsSelected="true"/>
+                </base:View>
+            </base:View>
+
+            <comp:CollectionView x:Name="ColView"
+              WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+              HeightSpecification="{Static LayoutParamPolicies.MatchParent}" 
+              ScrollingDirection="Horizontal"
+              ItemsSource="{Binding TestSource}"
+              SelectionMode="None">
+                <comp:CollectionView.ItemsLayouter>
+                      <comp:LinearLayouter />
+                </comp:CollectionView.ItemsLayouter>
+            </comp:CollectionView>
+        </base:View>
+    </comp:ContentPage.Content>
+</comp:ContentPage>
