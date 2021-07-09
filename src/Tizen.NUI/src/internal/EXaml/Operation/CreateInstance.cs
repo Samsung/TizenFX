@@ -70,9 +70,9 @@ namespace Tizen.NUI.EXaml
                             paramList[i] = globalDataList.GatheredInstances[instance.Index];
                         }
 
-                        if (paramList[i] is ApplicationResourcePathExtension applicationResourcePath)
+                        if (paramList[i] is ResourcePathExtension resourcePath)
                         {
-                            paramList[i] = applicationResourcePath.ProvideValue(null);
+                            paramList[i] = resourcePath.ProvideValue(null);
                         }
                     }
 

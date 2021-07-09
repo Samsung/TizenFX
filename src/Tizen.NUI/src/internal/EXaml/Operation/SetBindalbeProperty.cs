@@ -51,9 +51,9 @@ namespace Tizen.NUI.EXaml
                     value = globalDataList.GatheredInstances[valueIndex];
                 }
 
-                if (value is ApplicationResourcePathExtension applicationResourcePath)
+                if (value is ResourcePathExtension resourcePath)
                 {
-                    value = applicationResourcePath.ProvideValue(null);
+                    value = resourcePath.ProvideValue(null);
                 }
 
                 instance.SetValue(property, value);
