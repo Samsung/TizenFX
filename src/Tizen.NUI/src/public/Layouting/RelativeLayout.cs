@@ -391,8 +391,8 @@ namespace Tizen.NUI
 
                     if (childLayout.Owner.WidthSpecification == LayoutParamPolicies.MatchParent)
                     {
-                        childLeft = new LayoutLength(Padding.Start + childLayout.Margin.Start);
-                        childRight = new LayoutLength(MeasuredWidth.Size.AsDecimal() - Padding.End - childLayout.Margin.End);
+                        childLeft = new LayoutLength(childLayout.Margin.Start);
+                        childRight = new LayoutLength(MeasuredWidth.Size.AsDecimal() - childLayout.Margin.End);
                     }
                     else
                     {
@@ -404,8 +404,8 @@ namespace Tizen.NUI
 
                     if (childLayout.Owner.HeightSpecification == LayoutParamPolicies.MatchParent)
                     {
-                        childTop = new LayoutLength(Padding.Top + childLayout.Margin.Top);
-                        childBottom = new LayoutLength(MeasuredHeight.Size.AsDecimal() - Padding.Bottom - childLayout.Margin.Bottom);
+                        childTop = new LayoutLength(childLayout.Margin.Top);
+                        childBottom = new LayoutLength(MeasuredHeight.Size.AsDecimal() - childLayout.Margin.Bottom);
                     }
                     else
                     {
@@ -415,11 +415,9 @@ namespace Tizen.NUI
                         childBottom = new LayoutLength(verticalGeometry.Position + verticalGeometry.Size + Padding.Top - childLayout.Margin.Bottom);
                     }
 
-                    childLayout.MeasuredWidth = new MeasuredSize(new LayoutLength(childRight.AsDecimal() - childLeft.AsDecimal()), MeasuredSize.StateType.MeasuredSizeOK);
-                    childLayout.MeasuredHeight = new MeasuredSize(new LayoutLength(childBottom.AsDecimal() - childTop.AsDecimal()), MeasuredSize.StateType.MeasuredSizeOK);
-
-                    MeasureSpecification childWidthMeasureSpec = new MeasureSpecification(new LayoutLength(childRight.AsDecimal() - childLeft.AsDecimal()), MeasureSpecification.ModeType.Exactly);
-                    MeasureSpecification childHeightMeasureSpec = new MeasureSpecification(new LayoutLength(childBottom.AsDecimal() - childTop.AsDecimal()), MeasureSpecification.ModeType.Exactly);
+                    // Padding sizes are added because Padding sizes will be subtracted in MeasureChild().
+                    MeasureSpecification childWidthMeasureSpec = new MeasureSpecification(new LayoutLength(childRight.AsDecimal() - childLeft.AsDecimal() + Padding.Start + Padding.End), MeasureSpecification.ModeType.Exactly);
+                    MeasureSpecification childHeightMeasureSpec = new MeasureSpecification(new LayoutLength(childBottom.AsDecimal() - childTop.AsDecimal() + Padding.Top + Padding.Bottom), MeasureSpecification.ModeType.Exactly);
 
                     int origWidthSpecification = childLayout.Owner.WidthSpecification;
                     int origHeightSpecification = childLayout.Owner.HeightSpecification;
@@ -440,7 +438,8 @@ namespace Tizen.NUI
                         childLayout.Owner.HeightSpecification = LayoutParamPolicies.MatchParent;
                     }
 
-                    MeasureChildWithMargins(childLayout, childWidthMeasureSpec, new LayoutLength(0), childHeightMeasureSpec, new LayoutLength(0));
+                    // Use MeasureChild() because Margin sizes were already subtracted from childWidth/HeightMeasureSpec.
+                    MeasureChild(childLayout, childWidthMeasureSpec, childHeightMeasureSpec);
 
                     childLayout.Owner.WidthSpecification = origWidthSpecification;
                     childLayout.Owner.HeightSpecification = origHeightSpecification;
