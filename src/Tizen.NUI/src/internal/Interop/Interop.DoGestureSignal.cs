@@ -31,6 +31,7 @@ namespace Tizen.NUI
             public static extern void Delete(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Signal_GesturePairToVoid_Empty")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool Empty(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Signal_GesturePairToVoid_GetConnectionCount")]
@@ -49,6 +50,7 @@ namespace Tizen.NUI
             public static extern uint GetSizeOfGestureInfo();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Signal_GesturePairToVoid_GetResult")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool GetResult(global::System.IntPtr jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Signal_GesturePairToVoid_SetResult")]

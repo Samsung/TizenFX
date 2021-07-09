@@ -208,6 +208,7 @@ namespace Tizen.NUI
             public static extern float PanGestureGetScreenDistance(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGestureDetectedSignal_Empty")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool PanGestureDetectedSignalEmpty(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGestureDetectedSignal_GetConnectionCount")]

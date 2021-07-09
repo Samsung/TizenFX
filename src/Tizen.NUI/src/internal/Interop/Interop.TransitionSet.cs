@@ -54,6 +54,7 @@ namespace Tizen.NUI
             public static extern IntPtr FinishedSignal(HandleRef nuiTransitionSet);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TransitionSet_Signal_Empty")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool TransitionSetFinishedSignalEmpty(HandleRef transitionSet);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TransitionSet_Signal_GetConnectionCount")]
