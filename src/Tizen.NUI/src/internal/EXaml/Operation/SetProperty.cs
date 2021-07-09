@@ -68,9 +68,9 @@ namespace Tizen.NUI.EXaml
                 }
             }
 
-            if (value is ApplicationResourcePathExtension applicationResourcePath)
+            if (value is ResourcePathExtension resourcePath)
             {
-                value = applicationResourcePath.ProvideValue(null);
+                value = resourcePath.ProvideValue(null);
             }
 
             property.SetMethod.Invoke(instance, new object[] { value });
