@@ -24,6 +24,7 @@ namespace Tizen.NUI
         internal static partial class GLWindowFocusSignalType
         {
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_FocusSignalType_Empty")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool GlWindowFocusSignalTypeEmpty(HandleRef jarg1);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_FocusSignalType_GetConnectionCount")]
