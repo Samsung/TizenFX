@@ -41,22 +41,6 @@ namespace Tizen.NUI
         private WidgetUpdatePeriodChangedEventCallbackType widgetUpdatePeriodChangedEventCallback;
         private EventHandler<WidgetViewEventArgs> widgetFaultedEventHandler;
         private WidgetFaultedEventCallbackType widgetFaultedEventCallback;
-
-        /// <summary>
-        /// Used in xaml as factory method to create WidgetView.
-        /// </summary>
-        /// <param name="widgetId"></param>
-        /// <param name="contentInfo"></param>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
-        /// <param name="updatePeriod"></param>
-        /// <returns></returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static WidgetView CreateWidgetView(string widgetId, string contentInfo, int width, int height, float updatePeriod)
-        {
-            return WidgetViewManager.Instance.AddWidget(widgetId, contentInfo, width, height, updatePeriod);
-        }
-
         /// <summary>
         /// Creates a new WidgetView.
         /// </summary>
