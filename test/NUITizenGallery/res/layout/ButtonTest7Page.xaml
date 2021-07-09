@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<b:View x:Class="NUITizenGallery.ButtonTest7Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:b="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+  xmlns:nui="clr-namespace:Tizen.NUI.Components;assembly=Tizen.NUI.Components"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <b:View x:Name="rootView"
+            HeightResizePolicy="FillToParent"
+            WidthResizePolicy="FillToParent"
+            BackgroundColor="#ffffff">
+        <View.Layout>
+            <LinearLayout LinearOrientation="Vertical" LinearAlignment="Center" CellPadding="30,30"/>
+        </View.Layout>
+
+
+        <b:TextLabel x:Name="text1"
+                     WidthResizePolicy="FillToParent"
+                     HeightResizePolicy="UseNaturalSize"
+                     PointSize="8"
+                     Text="Button Press and release event trigger test"
+                     />
+
+        <nui:Button x:Name="button1"
+                    WidthResizePolicy="FillToParent"
+                    SizeHeight="70"
+                    BackgroundColor="#3db9cc"
+                    PointSize="5"
+                    Opacity="1"
+                    Text="Click me"/>
+
+        <b:TextLabel x:Name="text2"
+                     WidthResizePolicy="FillToParent"
+                     HeightResizePolicy="UseNaturalSize"
+                     PointSize="8"
+                     Text=""
+                     />
+
+    </b:View>
+</b:View>
+

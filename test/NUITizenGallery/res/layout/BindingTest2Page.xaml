@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<base:View x:Class="NUITizenGallery.BindingTest2Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:vm="clr-namespace:NUITizenGallery.ViewModels"
+  xmlns:base="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+  xmlns:nui="clr-namespace:Tizen.NUI.Components;assembly=Tizen.NUI.Components"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  BackgroundColor="White"
+  PositionUsesPivotPoint="True" ParentOrigin="Center" PivotPoint="Center" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent">
+    
+    <View.BindingContext>
+        <vm:BindingTest2ViewModel x:Name="context"/>
+    </View.BindingContext>
+    
+    <View.Layout>
+        <LinearLayout LinearOrientation="Vertical" CellPadding="10,10" LinearAlignment="CenterHorizontal"/>
+    </View.Layout>
+
+    <TextLabel BindingContext="{Binding Source={x:Reference context}"
+               WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+               HorizontalAlignment="Center"
+               MultiLine="True"
+               Text="{Binding BoxSizeText}"/>
+
+    <Slider BindingContext="{Binding Source={x:Reference context}}"
+            WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+            MinValue="0"
+            MaxValue="300"
+            CurrentValue="{Binding BoxSize}"/>
+    
+    <View BindingContext="{Binding Source={x:Reference context}}"
+          BackgroundColor="Red"
+          SizeWidth="{Binding BoxSize}"
+          SizeHeight="{Binding BoxSize}"/>
+
+    <View BindingContext="{Binding Source={x:Reference context}}"
+          BackgroundColor="Blue"
+          SizeWidth="{Binding BoxSize}"
+          SizeHeight="{Binding BoxSize}"/>
+
+</base:View>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<comp:ContentPage x:Class="NUITizenGallery.ScrollViewTest7Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:base="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+  xmlns:comp="clr-namespace:Tizen.NUI.Components;assembly=Tizen.NUI.Components"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+           WidthSpecification="-1"
+           HeightSpecification="-1"
+           BackgroundColor="White"
+           PositionUsesPivotPoint="True"
+           ParentOrigin="Center"
+           PivotPoint="Center">
+
+	<comp:ContentPage.AppBar>
+		<comp:AppBar x:Name="appBar" Title="ScrollViewTest7"/>
+	</comp:ContentPage.AppBar>
+
+	<comp:ContentPage.Content>
+		<base:View x:Name="rootView" WidthSpecification="-1" HeightSpecification="-1">
+			<base:View.Layout>
+				<LinearLayout LinearOrientation="Vertical" LinearAlignment="Begin" CellPadding="10, 10"/>
+			</base:View.Layout>
+			<base:TextLabel x:Name="scrollInfo" Text="scroll X:0, Y:0" Size2D="{Binding Source={x:Static Window.Instance}, Path=Size }" HeightSpecification="70" />
+			<comp:Button x:Name="btn" Text="Random vertical scroll" Size2D="{Binding Source={x:Static Window.Instance}, Path=Size }" HeightSpecification="100" />
+			<base:View x:Name="lblView">
+				<comp:ScrollableBase x:Name="Scroller" ScrollingDirection="Vertical" HideScrollbar="false" WidthSpecification="-1" HeightSpecification="-1">
+					<comp:ScrollableBase.Layout>
+						<LinearLayout LinearOrientation="Vertical" CellPadding="10, 10"/>
+					</comp:ScrollableBase.Layout>
+				</comp:ScrollableBase>
+			</base:View>
+		</base:View>
+	</comp:ContentPage.Content>
+</comp:ContentPage>
+

@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<comp:ContentPage x:Class="NUITizenGallery.NavigatorTest1Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:nui="clr-namespace:Tizen.NUI;assembly=Tizen.NUI"
+  xmlns:base="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+  xmlns:comp="clr-namespace:Tizen.NUI.Components;assembly=Tizen.NUI.Components"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}" >
+
+    <ContentPage.AppBar>
+        <AppBar x:Name="appBar"
+                Title="NavigatorTest1Page1"/>
+    </ContentPage.AppBar>
+
+    <ContentPage.Content>
+        <View x:Name="content"
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                HeightSpecification="{Static LayoutParamPolicies.MatchParent}" >
+            <View.Layout>
+                <LinearLayout LinearOrientation="Vertical"
+                                CellPadding="0, 10"/>
+            </View.Layout>
+
+            <Button x:Name="buttonPush"
+                        Text="Push"
+                        WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                        HeightSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                        Clicked="ButtonPushClicked"/>
+
+            <Button x:Name="buttonPop"
+                        Text="Pop"
+                        WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                        HeightSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                        Clicked="ButtonPopClicked"/>
+
+            <Button x:Name="buttonInsert"
+                        Text="Insert"
+                        WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                        HeightSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                        Clicked="ButtonInsertClicked"/>
+
+            <Button x:Name="buttonInsertBefore"
+                        Text="InsertBefore"
+                        WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                        HeightSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                        Clicked="ButtonInsertBeforeClicked"/>
+
+            <Button x:Name="buttonRemove"
+                        Text="Remove"
+                        WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                        HeightSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                        Clicked="ButtonRemoveClicked"/>
+
+            <Button x:Name="buttonRemoveAt"
+                        Text="RemoveAt"
+                        WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                        HeightSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                        Clicked="ButtonRemoveAtClicked"/>
+        </View>
+    </ContentPage.Content>
+
+</comp:ContentPage>

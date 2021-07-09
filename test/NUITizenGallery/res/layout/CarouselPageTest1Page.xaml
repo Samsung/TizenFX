@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<comp:ContentPage x:Class="NUITizenGallery.CarouselPageTest1Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:base="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+  xmlns:comp="clr-namespace:Tizen.NUI.Components;assembly=Tizen.NUI.Components"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    PositionUsesPivotPoint="True" ParentOrigin="Center"
+    PivotPoint="Center" WidthResizePolicy="FillToParent"
+    HeightResizePolicy="FillToParent" BackgroundColor="#FFFFFF">
+
+    <comp:ContentPage.AppBar>
+        <comp:AppBar x:Name="appBar"
+                    Title="CarouselPageTest1"/>
+    </comp:ContentPage.AppBar>
+
+    <comp:ContentPage.Content>
+        <base:View x:Name="ContentView"
+          WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+          HeightSpecification="{Static LayoutParamPolicies.MatchParent}" >
+            <View.Layout>
+                <LinearLayout LinearOrientation="Vertical" LinearAlignment="Center" CellPadding="10,10" />
+            </View.Layout>
+
+            <comp:ScrollableBase x:Name="Scroller" SnapToPage="true" ScrollingDirection="Horizontal" BackgroundColor="Yellow" SizeWidth="600">
+              <ScrollableBase.Layout>
+                <LinearLayout LinearOrientation="Horizontal" LinearAlignment="Top" CellPadding="5,5" />
+              </ScrollableBase.Layout>
+
+              <base:View x:Name="Page1" Size2D="{Binding Source={x:Static Window.Instance}, Path=Size }" HeightSpecification="500">
+                <View.Layout>
+                  <LinearLayout LinearOrientation="Vertical" LinearAlignment="Center" CellPadding="5,5" />
+                </View.Layout> -->
+
+                <base:TextLabel Text="Page 0" WidthSpecification="{Static LayoutParamPolicies.WrapContent}" HeightSpecification="{Static LayoutParamPolicies.WrapContent}" HorizontalAlignment="Center"/>
+                <base:View Size2D="400,400" BackgroundColor="Red"/>
+              </base:View>
+              <base:View x:Name="Page2" Size2D="{Binding Source={x:Static Window.Instance}, Path=Size }" HeightSpecification="500">
+                <View.Layout>
+                  <LinearLayout LinearOrientation="Vertical" LinearAlignment="Center" CellPadding="5,5" />
+                </View.Layout> -->
+
+                <base:TextLabel Text="Page 0" WidthSpecification="{Static LayoutParamPolicies.WrapContent}" HeightSpecification="{Static LayoutParamPolicies.WrapContent}" HorizontalAlignment="Center"/>
+                <base:View Size2D="400,400" BackgroundColor="Green"/>
+              </base:View>
+              <base:View x:Name="Page3" Size2D="{Binding Source={x:Static Window.Instance}, Path=Size }" HeightSpecification="500">
+                <View.Layout>
+                  <LinearLayout LinearOrientation="Vertical" LinearAlignment="Center" CellPadding="5,5" />
+                </View.Layout> -->
+
+                <base:TextLabel Text="Page 0"  WidthSpecification="{Static LayoutParamPolicies.WrapContent}" HeightSpecification="{Static LayoutParamPolicies.WrapContent}" HorizontalAlignment="Center"/>
+                <base:View Size2D="400,400" BackgroundColor="Blue"/>
+              </base:View>
+            </comp:ScrollableBase>
+
+            <comp:Pagination x:Name="Index" Size2D="250,50"/>
+        </base:View>
+    </comp:ContentPage.Content>
+</comp:ContentPage>

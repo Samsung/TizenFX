@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<b:View x:Class="NUITizenGallery.IconTestPage"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:b="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+  xmlns:nui="clr-namespace:Tizen.NUI.Components;assembly=Tizen.NUI.Components"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <b:View x:Name="rootView"
+            HeightResizePolicy="FillToParent"
+            WidthResizePolicy="FillToParent"
+            BackgroundColor="#ffffff">
+        <View.Layout>
+            <LinearLayout LinearOrientation="Vertical" LinearAlignment="Begin" />
+        </View.Layout>
+
+        <b:ImageView x:Name="image1"
+                     SizeWidth="200"
+                     SizeHeight="200"/>
+        <b:ImageView x:Name="image2"
+                     SizeWidth="200"
+                     SizeHeight="200"/>
+        <b:ImageView x:Name="image3"
+                     SizeWidth="200"
+                     SizeHeight="200"/>
+
+    </b:View>
+</b:View>
+

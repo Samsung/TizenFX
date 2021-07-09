@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<base:View x:Class="NUITizenGallery.RecalculateTest1Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:base="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+  xmlns:comp="clr-namespace:Tizen.NUI.Components;assembly=Tizen.NUI.Components"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+           BackgroundColor="White"
+           PositionUsesPivotPoint="True" 
+           ParentOrigin="Center"
+           PivotPoint="Center"          
+           WidthResizePolicy="FillToParent"
+           HeightResizePolicy="FillToParent">
+
+    <base:View x:Name="rootView" HeightResizePolicy="FillToParent" >
+        <base:View.Layout>
+            <LinearLayout LinearOrientation="Vertical" LinearAlignment="CenterHorizontal" CellPadding="10, 10"/>
+        </base:View.Layout>
+        <base:View x:Name="lblView">
+            <base:View.Layout>
+                <LinearLayout LinearOrientation="Vertical" LinearAlignment="CenterHorizontal" CellPadding="10, 10"/>
+            </base:View.Layout>
+            <base:TextLabel Text="abc1" CellHorizontalAlignment="Center"/>
+            <base:TextLabel Text="abc2" CellHorizontalAlignment="Center"/>
+            <base:TextLabel Text="abc3" CellHorizontalAlignment="Center"/>
+            <base:TextLabel Text="abc4" CellHorizontalAlignment="Center"/>
+            <base:TextLabel Text="abc5" CellHorizontalAlignment="Center"/>
+            <base:TextLabel Text="abc6" CellHorizontalAlignment="Center"/>
+            <base:TextLabel Text="abc7" CellHorizontalAlignment="Center"/>
+            <base:TextLabel Text="abc8" CellHorizontalAlignment="Center"/>
+            <base:TextLabel Text="abc9" CellHorizontalAlignment="Center"/>
+            <base:TextLabel Text="abc0" CellHorizontalAlignment="Center"/>
+        </base:View>
+        <comp:Button x:Name="btn1" Text="clear" SizeWidth="720" CellHorizontalAlignment="Center"/>
+    </base:View>
+</base:View>
+
