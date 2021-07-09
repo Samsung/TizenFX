@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<comp:ContentPage x:Class="NUITizenGallery.PerformanceTest1Page"
+                  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+                  xmlns:base="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+                  xmlns:comp="clr-namespace:Tizen.NUI.Components;assembly=Tizen.NUI.Components"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"  HeightSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                  ParentOrigin="Center" PivotPoint="Center"
+                  PositionUsesPivotPoint="true" BackgroundColor="White">
+
+    <comp:ContentPage.AppBar>
+        <comp:AppBar x:Name="appBar" Title="PerformanceTest1Page"/>
+    </comp:ContentPage.AppBar>
+
+    <comp:ContentPage.Content>
+        <base:View x:Name="ContentView"
+          WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+          HeightSpecification="{Static LayoutParamPolicies.MatchParent}" >
+            <View.Layout>
+                <LinearLayout LinearOrientation="Vertical" LinearAlignment="Top" CellPadding="10,10" />
+            </View.Layout>
+
+            <comp:Button x:Name="StartButton" Text="Scroll to 999" WidthSpecification="{Static LayoutParamPolicies.MatchParent}"  HeightSpecification="80"/>
+
+            <base:TextLabel x:Name="FPSLabel" WidthSpecification="{Static LayoutParamPolicies.MatchParent}"  HeightSpecification="60" PointSize="8"
+                         Text="Click scroll button to measure FPS"/>
+
+            <comp:ScrollableBase x:Name="Scroller" SnapToPage="true" ScrollingDirection="Vertical" 
+                                 WidthSpecification="{Static LayoutParamPolicies.MatchParent}"  HeightSpecification="{Static LayoutParamPolicies.MatchParent}"  BackgroundColor="Blue">
+              <comp:ScrollableBase.Layout>
+                <LinearLayout LinearOrientation="Vertical" LinearAlignment="Center" CellPadding="5,5"/>
+              </comp:ScrollableBase.Layout>
+            </comp:ScrollableBase>
+        </base:View>
+    </comp:ContentPage.Content>
+</comp:ContentPage>

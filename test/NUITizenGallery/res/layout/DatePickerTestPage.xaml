@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<comp:ContentPage x:Class="NUITizenGallery.DatePickerTestPage"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:base="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+  xmlns:comp="clr-namespace:Tizen.NUI.Components;assembly=Tizen.NUI.Components"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}" 
+  ParentOrigin="Center"
+  PivotPoint="Center"
+  PositionUsesPivotPoint="true"
+  BackgroundColor="White">
+
+    <comp:ContentPage.AppBar>
+        <comp:AppBar x:Name="appBar"
+                    Title="DatePickerTestPage"/>
+    </comp:ContentPage.AppBar>
+
+    <comp:ContentPage.Content>
+        <base:View x:Name="ContentView"
+          WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+          HeightSpecification="{Static LayoutParamPolicies.MatchParent}" >
+            <View.Layout>
+              <LinearLayout LinearOrientation="Vertical" LinearAlignment="CenterHorizontal" CellPadding="30,30"/>
+            </View.Layout>
+              <base:TextLabel x:Name="text1"
+                              WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                              HeightSpecification="100"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center"
+                              PointSize="20"
+                              />
+              <comp:Button x:Name="dateButton"
+                              WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                              HeightSpecification="80"
+                              Text="Date Picker"
+                              PointSize="20"
+                              />
+              <comp:Button x:Name="setMinButton"
+                              WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                              HeightSpecification="80"
+                              Text="Set Min Date"
+                              PointSize="20"
+                              />
+              <comp:Button x:Name="setMaxButton"
+                              WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                              HeightSpecification="80"
+                              Text="Set Max Date"
+                              PointSize="20"
+                              />
+        </base:View>
+    </comp:ContentPage.Content>
+</comp:ContentPage>

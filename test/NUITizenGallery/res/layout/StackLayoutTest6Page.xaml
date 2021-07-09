@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<base:View x:Class="NUITizenGallery.StackLayoutTest6Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:base="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:vm="clr-namespace:NUITizenGallery"
+  BackgroundColor="White"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}" >
+
+    <View.Layout>
+        <LinearLayout LinearOrientation="Vertical" LinearAlignment="Begin" CellPadding="20,20"/>
+    </View.Layout>
+
+    <Button x:Name="changeOrientationButton"
+            Text="Change orientation"
+            WidthSpecification="{Static LayoutParamPolicies.MatchParent}"  HeightSpecification="{Static LayoutParamPolicies.WrapContent}"/>
+
+    <View WidthSpecification="{Static LayoutParamPolicies.MatchParent}"  HeightSpecification="{Static LayoutParamPolicies.WrapContent}">
+
+        <View.Layout>
+            <LinearLayout LinearOrientation="Horizontal" LinearAlignment="Begin" CellPadding="20,20"/>
+        </View.Layout>
+
+        <TextLabel Text="Padding"/>
+
+        <Slider x:Name="paddingSlider"
+                Weight="1.0"
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                MinValue="0.0"
+                MaxValue="100.0"/>
+
+    </View>
+
+    <View WidthSpecification="{Static LayoutParamPolicies.MatchParent}"  HeightSpecification="{Static LayoutParamPolicies.WrapContent}">
+
+        <View.Layout>
+            <LinearLayout LinearAlignment="Begin" CellPadding="20,20"/>
+        </View.Layout>
+
+        <TextLabel Text="CellPadding"/>
+
+        <Slider x:Name="cellPaddingSlider"
+                Weight="1.0"
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                MinValue="0.0"
+                MaxValue="100.0"/>
+
+    </View>
+
+    <View BackgroundColor="Black"
+              WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+              HeightSpecification="20"/>
+
+    <View x:Name="layout"
+          WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+          HeightSpecification="{Static LayoutParamPolicies.MatchParent}" >
+
+        <View.Layout>
+            <LinearLayout LinearOrientation="Vertical" LinearAlignment="Begin"/>
+        </View.Layout>
+
+        <TextLabel x:Name="firstLabel"
+                   WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                   Text="this is first label with loooooooong and loooooooong and loooooooongand loooooooongand loooooooong text"
+                   MultiLine="True"
+                   PointSize="6"/>
+
+        <View x:Name="switchView"
+              WidthSpecification="{Static LayoutParamPolicies.MatchParent}" >
+
+            <View.Layout>
+                <LinearLayout LinearAlignment="Center" />
+            </View.Layout>
+
+            <Switch IsSelectable="True"
+                    IsSelected="False"/>
+
+        </View>
+
+        <View x:Name="blueBox"
+              BackgroundColor="Blue"
+              WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+              HeightSpecification="300"/>
+
+        <TextLabel x:Name="lastLabel"
+                   WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                   Text="this is first label with loooooooong and loooooooong and loooooooongand loooooooongand loooooooong text"
+                   MultiLine="True"
+                   PointSize="6"/>
+
+    </View>
+
+
+</base:View>

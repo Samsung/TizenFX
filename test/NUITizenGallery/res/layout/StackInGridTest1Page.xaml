@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="NUITizenGallery.StackInGridTest1Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:b="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  BackgroundColor="White"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}" >
+
+    <ContentPage.AppBar>
+        <AppBar Title="StackInGridTest1"/>
+    </ContentPage.AppBar>
+
+    <ContentPage.Content>
+        <View WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+            HeightSpecification="{Static LayoutParamPolicies.MatchParent}" >
+
+            <View.Layout>
+                <LinearLayout LinearOrientation="Horizontal" CellPadding="10,10" LinearAlignment="Begin"/>
+            </View.Layout>
+
+            <View WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                HeightSpecification="700"
+                Weight="0.25">
+
+                <View.Layout>
+                    <GridLayout GridOrientation="Horizontal" Rows="4" Columns="3" RowSpacing="5" ColumnSpacing="5"/>
+                </View.Layout>
+
+                <View BackgroundColor="Red"
+                    GridLayout.Row="0"
+                    GridLayout.Column="0"
+                    GridLayout.ColumnSpan="3"
+                    GridLayout.VerticalStretch="ExpandAndFill"
+                    GridLayout.HorizontalStretch="ExpandAndFill"/>
+
+                <View BackgroundColor="Green"
+                    GridLayout.Row="1"
+                    GridLayout.Column="0"
+                    GridLayout.VerticalStretch="ExpandAndFill"
+                    GridLayout.HorizontalStretch="ExpandAndFill"/>
+
+                <View BackgroundColor="Blue"
+                    GridLayout.Row="1"
+                    GridLayout.Column="1"
+                    GridLayout.VerticalStretch="ExpandAndFill"
+                    GridLayout.HorizontalStretch="ExpandAndFill"/>
+
+                <View BackgroundColor="Yellow"
+                    GridLayout.Row="2"
+                    GridLayout.Column="0"
+                    GridLayout.VerticalStretch="ExpandAndFill"
+                    GridLayout.HorizontalStretch="ExpandAndFill"/>
+
+                <View BackgroundColor="Cyan"
+                    GridLayout.Row="2"
+                    GridLayout.Column="1"
+                    GridLayout.VerticalStretch="ExpandAndFill"
+                    GridLayout.HorizontalStretch="ExpandAndFill"/>
+
+                <View BackgroundColor="Red"
+                    GridLayout.Row="1"
+                    GridLayout.Column="2"
+                    GridLayout.RowSpan="2"
+                    GridLayout.VerticalStretch="ExpandAndFill"
+                    GridLayout.HorizontalStretch="ExpandAndFill"/>
+
+                <View BackgroundColor="Blue"
+                    GridLayout.Row="3"
+                    GridLayout.Column="0"
+                    GridLayout.ColumnSpan="2"
+                    GridLayout.VerticalStretch="ExpandAndFill"
+                    GridLayout.HorizontalStretch="ExpandAndFill"/>
+
+                <View BackgroundColor="Green"
+                    GridLayout.Row="3"
+                    GridLayout.Column="2"
+                    GridLayout.VerticalStretch="ExpandAndFill"
+                    GridLayout.HorizontalStretch="ExpandAndFill"/>
+
+            </View>
+
+
+            <View WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                HeightSpecification="700"
+                Weight="0.25">
+
+                <View.Layout>
+                    <GridLayout GridOrientation="Horizontal" Rows="4" Columns="3" RowSpacing="5" ColumnSpacing="5"/>
+                </View.Layout>
+
+                <View BackgroundColor="Red"
+                    GridLayout.Row="0"
+                    GridLayout.Column="0"
+                    GridLayout.ColumnSpan="3"
+                    GridLayout.VerticalStretch="ExpandAndFill"
+                    GridLayout.HorizontalStretch="ExpandAndFill"/>
+
+                <View BackgroundColor="Green"
+                    GridLayout.Row="1"
+                    GridLayout.Column="0"
+                    GridLayout.VerticalStretch="ExpandAndFill"
+                    GridLayout.HorizontalStretch="ExpandAndFill"/>
+
+                <View BackgroundColor="Blue"
+                    GridLayout.Row="1"
+                    GridLayout.Column="1"
+                    GridLayout.VerticalStretch="ExpandAndFill"
+                    GridLayout.HorizontalStretch="ExpandAndFill"/>
+
+                <View BackgroundColor="Yellow"
+                    GridLayout.Row="2"
+                    GridLayout.Column="0"
+                    GridLayout.VerticalStretch="ExpandAndFill"
+                    GridLayout.HorizontalStretch="ExpandAndFill"/>
+
+                <View BackgroundColor="Cyan"
+                    GridLayout.Row="2"
+                    GridLayout.Column="1"
+                    GridLayout.VerticalStretch="ExpandAndFill"
+                    GridLayout.HorizontalStretch="ExpandAndFill"/>
+
+                <View BackgroundColor="Red"
+                    GridLayout.Row="1"
+                    GridLayout.Column="2"
+                    GridLayout.RowSpan="2"
+                    GridLayout.VerticalStretch="ExpandAndFill"
+                    GridLayout.HorizontalStretch="ExpandAndFill"/>
+
+                <View BackgroundColor="Blue"
+                    GridLayout.Row="3"
+                    GridLayout.Column="0"
+                    GridLayout.ColumnSpan="2"
+                    GridLayout.VerticalStretch="ExpandAndFill"
+                    GridLayout.HorizontalStretch="ExpandAndFill"/>
+
+                <View BackgroundColor="Green"
+                    GridLayout.Row="3"
+                    GridLayout.Column="2"
+                    GridLayout.VerticalStretch="ExpandAndFill"
+                    GridLayout.HorizontalStretch="ExpandAndFill"/>
+
+            </View>
+
+            <TextLabel Weight="0.25"
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                Text="Third Row - I'm on left"
+                MultiLine="True"/>
+
+            <TextLabel Weight="0.25"
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                Text="Fourth Row - I'm on right"
+                MultiLine="True"/>
+
+        </View>
+
+    </ContentPage.Content>
+
+</ContentPage>
