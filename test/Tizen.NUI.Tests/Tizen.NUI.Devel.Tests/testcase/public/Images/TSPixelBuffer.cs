@@ -11,7 +11,7 @@ namespace Tizen.NUI.Devel.Tests
     using tlog = Tizen.Log;
 
     [TestFixture]
-    [Description("public/Common/PixelBuffer")]
+    [Description("public/Images/PixelBuffer")]
     public class PublicPixelBufferTest
     {
         private const string tag = "NUITEST";

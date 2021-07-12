@@ -11,7 +11,7 @@ namespace Tizen.NUI.Devel.Tests
     using tlog = Tizen.Log;
 
     [TestFixture]
-    [Description("public/Common/NativeImageSource")]
+    [Description("public/Images/NativeImageSource")]
     public class PublicNativeImageSourceTest
     {
         private const string tag = "NUITEST";
@@ -49,24 +49,24 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("NativeImageSource Url.")]
-        [Property("SPEC", "Tizen.NUI.NativeImageSource.Url A")]
+        [Description("NativeImageSource GenerateUrl.")]
+        [Property("SPEC", "Tizen.NUI.NativeImageSource.GenerateUrl M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void NativeImageSourceUrl()
+        public void NativeImageSourceGenerateUrl()
         {
-            tlog.Debug(tag, $"NativeImageSourceUrl START");
+            tlog.Debug(tag, $"NativeImageSourceGenerateUrl START");
 
             var testingTarget = new NativeImageSource(100, 50, NativeImageSource.ColorDepth.Bits16);
             Assert.IsNotNull(testingTarget, "Can't create success object NativeImageSource");
             Assert.IsInstanceOf<NativeImageSource>(testingTarget, "Should be an instance of NativeImageSource type.");
 
-            var result = testingTarget.Url;
+            var result = testingTarget.GenerateUrl();
             Assert.IsNotNull(result);
 
             testingTarget.Dispose();
-            tlog.Debug(tag, $"NativeImageSourceUrl END (OK)");
+            tlog.Debug(tag, $"NativeImageSourceGenerateUrl END (OK)");
         }
 
         [Test]
