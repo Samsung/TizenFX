@@ -108,17 +108,5 @@ namespace Tizen.NUI.EXaml
         private GetValueListAction getXFactoryMethodIndexOp;
         private GetValueListAction getParamListOp;
         private GetValueListAction getStaticInstanceOp;
-
-        internal static object Root
-        {
-            get
-            {
-                return CreateInstance.Root;
-            }
-            set
-            {
-                CreateInstance.Root = value;
-            }
-        }
     }
 }

@@ -40,9 +40,9 @@ namespace Tizen.NUI.EXaml
 
         public void Do()
         {
-            if (0 == globalDataList.GatheredInstances.Count && null != Root)
+            if (0 == globalDataList.GatheredInstances.Count && null != globalDataList.Root)
             {
-                globalDataList.GatheredInstances.Add(Root);
+                globalDataList.GatheredInstances.Add(globalDataList.Root);
             }
             else
             {
@@ -100,8 +100,6 @@ namespace Tizen.NUI.EXaml
         }
 
         private int typeIndex;
-
-        internal static object Root;
 
         private List<object> paramList;
     }
