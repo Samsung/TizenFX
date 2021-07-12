@@ -48,6 +48,9 @@ namespace Tizen.NUI.BaseComponents
         private TransitionOptions transitionOptions = null;
         private ThemeData themeData;
 
+        // List of constraints
+        private Constraint widthConstraint = null;
+        private Constraint heightConstraint = null;
         static View()
         {
             RegisterPropertyGroup(PositionProperty, positionPropertyGroup);
