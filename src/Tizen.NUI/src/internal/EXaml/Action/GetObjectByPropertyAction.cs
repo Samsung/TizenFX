@@ -71,17 +71,5 @@ namespace Tizen.NUI.EXaml
         }
 
         private GetValueListAction childOp;
-
-        internal static object Root
-        {
-            get
-            {
-                return CreateInstance.Root;
-            }
-            set
-            {
-                CreateInstance.Root = value;
-            }
-        }
     }
 }
