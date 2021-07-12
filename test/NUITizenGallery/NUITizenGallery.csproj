@@ -158,6 +158,9 @@
         <EmbeddedResource Include="res\layout\ListViewFooterTest1Page.xaml">
             <Generator>MSBuild:Compile</Generator>
         </EmbeddedResource>
+        <EmbeddedResource Include="res\layout\ShadowFrameTest1Page.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </EmbeddedResource>
         <EmbeddedResource Include="res\layout\SliderTest2Page.xaml">
             <Generator>MSBuild:Compile</Generator>
         </EmbeddedResource>

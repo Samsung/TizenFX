@@ -1,0 +1,673 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<b:View x:Class="NUITizenGallery.ShadowFrameTest1Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:b="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+  xmlns:nui="clr-namespace:Tizen.NUI.Components;assembly=Tizen.NUI.Components"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+<b:View x:Name="rootView"
+            HeightResizePolicy="FillToParent"
+            WidthResizePolicy="FillToParent"
+            BackgroundColor="#fcedf0">
+        <View.Layout>
+            <LinearLayout LinearOrientation="Vertical" LinearAlignment="Begin" CellPadding="30,30"/>
+        </View.Layout>
+
+        <b:View
+            x:Name="UpperView"
+            WidthSpecification="-1"
+            HeightSpecification="-2"
+        >
+            <View.Layout>
+                <LinearLayout LinearOrientation="Vertical" LinearAlignment="Center" CellPadding="30,30"/>
+            </View.Layout>
+            <b:TextLabel x:Name="UpperViewHeader"
+                        WidthSpecification="-1"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        PointSize="25"
+                        Text="ShadowFrameTest1"
+                        />
+            <b:View x:Name="target"
+                        Size2D="125,100"
+                        BackgroundColor="#ffffff"
+                        BorderlineWidth="10"
+                        BorderlineColor="#fac07f"
+                        BorderlineOffset="0"
+                        CornerRadiusPolicy="Relative"
+                        CornerRadius="0.25, 0.25, 0.25, 0.25"
+                        BoxShadow = "10.0 | #00000030 | -20, 20"
+                        />
+        </b:View>
+
+        <b:View
+            x:Name="BelowView"
+            WidthSpecification="-1"
+            HeightSpecification="-1"
+        >
+            <nui:ScrollableBase x:Name="Scroller" ScrollingDirection="Vertical" HideScrollbar="false"
+                WidthSpecification="-1"
+            >
+                <nui:ScrollableBase.Layout>
+                    <LinearLayout LinearOrientation="Vertical" CellPadding="10, 10" LinearAlignment="Begin"/>
+                </nui:ScrollableBase.Layout>
+
+                <!-- Corner Radius -->
+                <b:View
+                    x:Name="CornerRadiusView"
+                    WidthSpecification="-1"
+                    HeightSpecification="-2"
+                >
+                    <View.Layout>
+                        <LinearLayout LinearOrientation="Vertical" LinearAlignment="Begin" CellPadding="5,5"/>
+                    </View.Layout>
+                    <b:TextLabel
+                        x:Name="CornerRadiusViewHeader"
+                        WidthSpecification="-1"
+                        HorizontalAlignment="Begin"
+                        VerticalAlignment="Center"
+                        PointSize="25"
+                        TextColor="#fe7c57"
+                        Text="CornerRadius"
+                    />
+                    <b:View
+                        x:Name="CornerRadiusViewContent"
+                        WidthSpecification="-1"
+                        HeightSpecification="-2"
+                    >
+                        <View.Layout>
+                            <LinearLayout LinearOrientation="Vertical" LinearAlignment="Begin" CellPadding="5,5"/>
+                        </View.Layout>
+                        <b:View
+                            x:Name="CornerRadiusView1"
+                            WidthSpecification="-1"
+                            HeightSpecification="-2"
+                        >
+                            <View.Layout>
+                                <LinearLayout LinearOrientation="Horizontal" LinearAlignment="CenterVertical" CellPadding="5,5"/>
+                            </View.Layout>
+                            <b:TextLabel
+                                x:Name="CornerTopLeftT"
+                                Weight = "0.15"
+                                PointSize="15"
+                                HorizontalAlignment="Begin"
+                                VerticalAlignment="Center"
+                                Text="Top L : "
+                            />
+                            <nui:Slider x:Name="CornerTopLeft"
+                                        MinValue="0"
+                                        MaxValue="0.5"
+                                        CurrentValue="0.25"
+                                        ThumbSize="8,8"
+                                        WidthSpecification="-1"
+                            />
+                            <b:TextLabel
+                                x:Name="CornerTopRightT"
+                                Weight = "0.15"
+                                PointSize="15"
+                                HorizontalAlignment="Begin"
+                                VerticalAlignment="Center"
+                                Text="Top R : "
+                            />
+                            <nui:Slider x:Name="CornerTopRight"
+                                        MinValue="0"
+                                        MaxValue="0.5"
+                                        CurrentValue="0.25"
+                                        ThumbSize="8,8"
+                                        WidthSpecification="-1"
+                            />
+                        </b:View>
+                        <b:View
+                            x:Name="CornerRadiusView2"
+                            WidthSpecification="-1"
+                            HeightSpecification="-2"
+                        >
+                            <View.Layout>
+                                <LinearLayout LinearOrientation="Horizontal" LinearAlignment="CenterVertical" CellPadding="5,5"/>
+                            </View.Layout>
+                            <b:TextLabel
+                                x:Name="CornerBottomLeftT"
+                                Weight = "0.15"
+                                PointSize="15"
+                                HorizontalAlignment="Begin"
+                                VerticalAlignment="Center"
+                                Text="Bot L : "
+                            />
+                            <nui:Slider x:Name="CornerBottomLeft"
+                                        MinValue="0"
+                                        MaxValue="0.5"
+                                        CurrentValue="0.25"
+                                        ThumbSize="8,8"
+                                        WidthSpecification="-1"
+                            />
+                            <b:TextLabel
+                                x:Name="CornerBottomRightT"
+                                Weight = "0.15"
+                                PointSize="15"
+                                HorizontalAlignment="Begin"
+                                VerticalAlignment="Center"
+                                Text="Bot R : "
+                            />
+                            <nui:Slider x:Name="CornerBottomRight"
+                                        MinValue="0"
+                                        MaxValue="0.5"
+                                        CurrentValue="0.25"
+                                        ThumbSize="8,8"
+                                        WidthSpecification="-1"
+                            />
+                        </b:View>
+                     </b:View>
+                </b:View>
+
+
+                <!-- Shadow Offset -->
+                <b:View
+                    x:Name="ShadowOffsetView"
+                    WidthSpecification="-1"
+                    HeightSpecification="-2"
+                >
+                    <View.Layout>
+                        <LinearLayout LinearOrientation="Vertical" LinearAlignment="Begin" CellPadding="5,5"/>
+                    </View.Layout>
+                    <b:TextLabel
+                        x:Name="ShadowOffsetViewHeader"
+                        WidthSpecification="-1"
+                        HorizontalAlignment="Begin"
+                        VerticalAlignment="Center"
+                        PointSize="25"
+                        TextColor="#fe7c57"
+                        Text="ShadowOffset"
+                    />
+                    <b:View
+                        x:Name="ShadowOffsetViewContent"
+                        WidthSpecification="-1"
+                        HeightSpecification="-2"
+                    >
+                        <View.Layout>
+                            <LinearLayout LinearOrientation="Vertical" LinearAlignment="Begin" CellPadding="5,5"/>
+                        </View.Layout>
+                        <b:View
+                            x:Name="ShadowOffsetView1"
+                            WidthSpecification="-1"
+                            HeightSpecification="-2"
+                        >
+                            <View.Layout>
+                                <LinearLayout LinearOrientation="Horizontal" LinearAlignment="CenterVertical" CellPadding="5,5"/>
+                            </View.Layout>
+                            <b:TextLabel
+                                x:Name="ShadowOffsetXT"
+                                Weight="0.15"
+                                PointSize="15"
+                                HorizontalAlignment="Begin"
+                                VerticalAlignment="Center"
+                                Text="Off X : "
+                            />
+                            <nui:Slider x:Name="ShadowOffsetX"
+                                        MinValue="-40"
+                                        MaxValue="40"
+                                        CurrentValue="-20"
+                                        ThumbSize="8,8"
+                                        WidthSpecification="-1"
+                            />
+                            <b:TextLabel
+                                x:Name="ShadowOffsetYT"
+                                Weight="0.15"
+                                PointSize="15"
+                                HorizontalAlignment="Begin"
+                                VerticalAlignment="Center"
+                                Text="Off Y : "
+                            />
+                            <nui:Slider x:Name="ShadowOffsetY"
+                                        MinValue="-30"
+                                        MaxValue="30"
+                                        CurrentValue="20"
+                                        ThumbSize="8,8"
+                                        WidthSpecification="-1"
+                            />
+                        </b:View>
+                     </b:View>
+                </b:View>
+
+                <!-- Shadow Toggle -->
+                <b:View
+                    x:Name="ShadowToggleView"
+                    WidthSpecification="-1"
+                    HeightSpecification="-2"
+                >
+                    <View.Layout>
+                        <LinearLayout LinearOrientation="Vertical" LinearAlignment="Begin" CellPadding="5,5"/>
+                    </View.Layout>
+                    <b:TextLabel
+                        x:Name="ShadowToggleViewHeader"
+                        WidthSpecification="-1"
+                        HorizontalAlignment="Begin"
+                        VerticalAlignment="Center"
+                        PointSize="25"
+                        TextColor="#fe7c57"
+                        Text="ShadowOpacity/BlurRadius"
+                    />
+                    <b:View
+                        x:Name="ShadowToggleViewContent"
+                        WidthSpecification="-1"
+                        HeightSpecification="-2"
+                    >
+                        <View.Layout>
+                            <LinearLayout LinearOrientation="Vertical" LinearAlignment="Begin" CellPadding="5,5"/>
+                        </View.Layout>
+                        <b:View
+                            x:Name="ShadowToggleView1"
+                            WidthSpecification="-1"
+                            HeightSpecification="-2"
+                        >
+                            <View.Layout>
+                                <LinearLayout LinearOrientation="Horizontal" LinearAlignment="CenterVertical" CellPadding="5,5"/>
+                            </View.Layout>
+                            <b:TextLabel
+                                x:Name="ShadowOpacityT"
+                                Weight="0.15"
+                                PointSize="15"
+                                HorizontalAlignment="Begin"
+                                VerticalAlignment="Center"
+                                Text="Opacity"
+                            />
+                            <nui:Slider x:Name="ShadowOpacity"
+                                        MinValue="0"
+                                        MaxValue="255"
+                                        CurrentValue="48"
+                                        ThumbSize="8,8"
+                                        WidthSpecification="-1"
+                            />
+                            <b:TextLabel
+                                x:Name="ShadowBlurRadiusT"
+                                Weight="0.15"
+                                PointSize="15"
+                                HorizontalAlignment="Begin"
+                                VerticalAlignment="Center"
+                                Text="Blur R"
+                            />
+                            <nui:Slider x:Name="ShadowBlurRadius"
+                                        MinValue="0"
+                                        MaxValue="50"
+                                        CurrentValue="10"
+                                        ThumbSize="8,8"
+                                        WidthSpecification="-1"
+                            />
+                        </b:View>
+
+                        <b:View
+                            x:Name="ShadowToggleView2"
+                            WidthSpecification="-1"
+                            HeightSpecification="-2"
+                        >
+                            <View.Layout>
+                                <LinearLayout LinearOrientation="Horizontal" LinearAlignment="CenterVertical" CellPadding="5,5"/>
+                            </View.Layout>
+                            <b:TextLabel
+                                x:Name="ShadowToggleButtonT"
+                                PointSize="15"
+                                HorizontalAlignment="Begin"
+                                VerticalAlignment="Center"
+                                Text="Toggle HasShadow:"
+                            />
+                            <nui:CheckBox x:Name="ShadowToggleButton"
+                                          IsSelected="True"
+                            />
+                        </b:View>
+                     </b:View>
+                </b:View>
+
+                <!-- Shadow Color -->
+                <b:View
+                    x:Name="ShadowColorView"
+                    WidthSpecification="-1"
+                    HeightSpecification="-2"
+                >
+                    <View.Layout>
+                        <LinearLayout LinearOrientation="Vertical" LinearAlignment="Begin" CellPadding="5,5"/>
+                    </View.Layout>
+                    <b:TextLabel
+                        x:Name="ShadowColorViewHeader"
+                        WidthSpecification="-1"
+                        HorizontalAlignment="Begin"
+                        VerticalAlignment="Center"
+                        PointSize="25"
+                        TextColor="#fe7c57"
+                        Text="ShadowColor"
+                    />
+                    <b:View
+                        x:Name="ShadowColorViewContent"
+                        WidthSpecification="-1"
+                        HeightSpecification="-2"
+                    >
+                        <View.Layout>
+                            <LinearLayout LinearOrientation="Vertical" LinearAlignment="Begin" CellPadding="5,5"/>
+                        </View.Layout>
+                        <b:View
+                            x:Name="ShadowColorView1"
+                            WidthSpecification="-1"
+                            HeightSpecification="-2"
+                        >
+                            <View.Layout>
+                                <LinearLayout LinearOrientation="Horizontal" LinearAlignment="CenterVertical" CellPadding="5,5"/>
+                            </View.Layout>
+                            <b:TextLabel
+                                x:Name="ShadowColorRedT"
+                                Weight="0.05"
+                                PointSize="15"
+                                HorizontalAlignment="Begin"
+                                VerticalAlignment="Center"
+                                TextColor="#ef1010"
+                                Text="R:"
+                            />
+                            <nui:Slider x:Name="ShadowColorRed"
+                                        MinValue="0"
+                                        MaxValue="255"
+                                        CurrentValue="0"
+                                        ThumbSize="8,8"
+                                        WidthSpecification="-1"
+                            />
+                            <b:TextLabel
+                                x:Name="ShadowColorGreenT"
+                                Weight="0.05"
+                                PointSize="15"
+                                HorizontalAlignment="Begin"
+                                VerticalAlignment="Center"
+                                TextColor="#10ef10"
+                                Text="G:"
+                            />
+                            <nui:Slider x:Name="ShadowColorGreen"
+                                        MinValue="0"
+                                        MaxValue="255"
+                                        CurrentValue="0"
+                                        ThumbSize="8,8"
+                                        WidthSpecification="-1"
+                            />
+                            <b:TextLabel
+                                x:Name="ShadowColorBlueT"
+                                Weight="0.05"
+                                PointSize="15"
+                                HorizontalAlignment="Begin"
+                                VerticalAlignment="Center"
+                                TextColor="#1010ef"
+                                Text="B:"
+                            />
+                            <nui:Slider x:Name="ShadowColorBlue"
+                                        MinValue="0"
+                                        MaxValue="255"
+                                        CurrentValue="0"
+                                        ThumbSize="8,8"
+                                        WidthSpecification="-1"
+                            />
+                        </b:View>
+                     </b:View>
+                </b:View>
+
+                <!-- Borderline Control -->
+                <b:View
+                    x:Name="BorderlineView"
+                    WidthSpecification="-1"
+                    HeightSpecification="-2"
+                >
+                    <View.Layout>
+                        <LinearLayout LinearOrientation="Vertical" LinearAlignment="Begin" CellPadding="5,5"/>
+                    </View.Layout>
+                    <b:TextLabel
+                        x:Name="BorderlineViewHeader"
+                        WidthSpecification="-1"
+                        HorizontalAlignment="Begin"
+                        VerticalAlignment="Center"
+                        PointSize="25"
+                        TextColor="#fe7c57"
+                        Text="BorderlineWidth/Offset/Color"
+                    />
+                    <b:View
+                        x:Name="BorderlineViewContent"
+                        WidthSpecification="-1"
+                        HeightSpecification="-2"
+                    >
+                        <View.Layout>
+                            <LinearLayout LinearOrientation="Vertical" LinearAlignment="Begin" CellPadding="5,5"/>
+                        </View.Layout>
+                        <b:View
+                            x:Name="BorderlineView1"
+                            WidthSpecification="-1"
+                            HeightSpecification="-2"
+                        >
+                            <View.Layout>
+                                <LinearLayout LinearOrientation="Horizontal" LinearAlignment="CenterVertical" CellPadding="5,5"/>
+                            </View.Layout>
+                            <b:TextLabel
+                                x:Name="BorderlineWidthT"
+                                Weight="0.15"
+                                PointSize="15"
+                                HorizontalAlignment="Begin"
+                                VerticalAlignment="Center"
+                                Text="Width : "
+                            />
+                            <nui:Slider x:Name="BorderlineWidthSlider"
+                                        MinValue="0"
+                                        MaxValue="50"
+                                        CurrentValue="10"
+                                        ThumbSize="8,8"
+                                        WidthSpecification="-1"
+                            />
+                            <b:TextLabel
+                                x:Name="BorderlineOffsetT"
+                                Weight="0.15"
+                                PointSize="15"
+                                HorizontalAlignment="Begin"
+                                VerticalAlignment="Center"
+                                Text="Offset : "
+                            />
+                            <nui:Slider x:Name="BorderlineOffsetSlider"
+                                        MinValue="-1"
+                                        MaxValue="1"
+                                        CurrentValue="0"
+                                        ThumbSize="8,8"
+                                        WidthSpecification="-1"
+                            />
+                        </b:View>
+
+                        <b:View
+                            x:Name="BorderlineView2"
+                            WidthSpecification="-1"
+                            HeightSpecification="-2"
+                        >
+                            <View.Layout>
+                                <LinearLayout LinearOrientation="Horizontal" LinearAlignment="CenterVertical" CellPadding="5,5"/>
+                            </View.Layout>
+                            <b:TextLabel
+                                x:Name="BorderlineRedT"
+                                Weight="0.05"
+                                PointSize="15"
+                                HorizontalAlignment="Begin"
+                                VerticalAlignment="Center"
+                                TextColor="#ef1010"
+                                Text="R:"
+                            />
+                            <nui:Slider x:Name="BorderlineRed"
+                                        MinValue="0"
+                                        MaxValue="255"
+                                        CurrentValue="250"
+                                        ThumbSize="8,8"
+                                        WidthSpecification="-1"
+                            />
+                            <b:TextLabel
+                                x:Name="BorderlineGreenT"
+                                Weight="0.05"
+                                PointSize="15"
+                                HorizontalAlignment="Begin"
+                                VerticalAlignment="Center"
+                                TextColor="#10ef10"
+                                Text="G:"
+                            />
+                            <nui:Slider x:Name="BorderlineGreen"
+                                        MinValue="0"
+                                        MaxValue="255"
+                                        CurrentValue="192"
+                                        ThumbSize="8,8"
+                                        WidthSpecification="-1"
+                            />
+                        </b:View>
+
+                        <b:View
+                            x:Name="BorderlineView3"
+                            WidthSpecification="-1"
+                            HeightSpecification="-2"
+                        >
+                            <View.Layout>
+                                <LinearLayout LinearOrientation="Horizontal" LinearAlignment="CenterVertical" CellPadding="5,5"/>
+                            </View.Layout>
+                            <b:TextLabel
+                                x:Name="BorderlineBlueT"
+                                Weight="0.05"
+                                PointSize="15"
+                                HorizontalAlignment="Begin"
+                                VerticalAlignment="Center"
+                                TextColor="#1010ef"
+                                Text="B:"
+                            />
+                            <nui:Slider x:Name="BorderlineBlue"
+                                        MinValue="0"
+                                        MaxValue="255"
+                                        CurrentValue="127"
+                                        ThumbSize="8,8"
+                                        WidthSpecification="-1"
+                            />
+                            <b:TextLabel
+                                x:Name="BorderlineAlphaT"
+                                Weight="0.05"
+                                PointSize="15"
+                                HorizontalAlignment="Begin"
+                                VerticalAlignment="Center"
+                                TextColor="#101010"
+                                Text="A:"
+                            />
+                            <nui:Slider x:Name="BorderlineAlpha"
+                                        MinValue="0"
+                                        MaxValue="255"
+                                        CurrentValue="255"
+                                        ThumbSize="8,8"
+                                        WidthSpecification="-1"
+                            />
+                        </b:View>
+                     </b:View>
+                </b:View>
+
+
+                <!-- View Control -->
+                <b:View
+                    x:Name="TargetColorView"
+                    WidthSpecification="-1"
+                    HeightSpecification="-2"
+                >
+                    <View.Layout>
+                        <LinearLayout LinearOrientation="Vertical" LinearAlignment="Begin" CellPadding="5,5"/>
+                    </View.Layout>
+                    <b:TextLabel
+                        x:Name="TargetColorViewHeader"
+                        WidthSpecification="-1"
+                        HorizontalAlignment="Begin"
+                        VerticalAlignment="Center"
+                        PointSize="25"
+                        TextColor="#fe7c57"
+                        Text="ViewBackgroundColor"
+                    />
+                    <b:View
+                        x:Name="TargetColorViewContent"
+                        WidthSpecification="-1"
+                        HeightSpecification="-2"
+                    >
+                        <View.Layout>
+                            <LinearLayout LinearOrientation="Vertical" LinearAlignment="Begin" CellPadding="5,5"/>
+                        </View.Layout>
+                        <b:View
+                            x:Name="TargetColorView1"
+                            WidthSpecification="-1"
+                            HeightSpecification="-2"
+                        >
+                            <View.Layout>
+                                <LinearLayout LinearOrientation="Horizontal" LinearAlignment="CenterVertical" CellPadding="5,5"/>
+                            </View.Layout>
+                            <b:TextLabel
+                                x:Name="ViewRedT"
+                                Weight="0.05"
+                                PointSize="15"
+                                HorizontalAlignment="Begin"
+                                VerticalAlignment="Center"
+                                TextColor="#ef1010"
+                                Text="R:"
+                            />
+                            <nui:Slider x:Name="ViewRed"
+                                        MinValue="0"
+                                        MaxValue="255"
+                                        CurrentValue="255"
+                                        ThumbSize="8,8"
+                                        WidthSpecification="-1"
+                            />
+                            <b:TextLabel
+                                x:Name="ViewGreenT"
+                                Weight="0.05"
+                                PointSize="15"
+                                HorizontalAlignment="Begin"
+                                VerticalAlignment="Center"
+                                TextColor="#10ef10"
+                                Text="G:"
+                            />
+                            <nui:Slider x:Name="ViewGreen"
+                                        MinValue="0"
+                                        MaxValue="255"
+                                        CurrentValue="255"
+                                        ThumbSize="8,8"
+                                        WidthSpecification="-1"
+                            />
+                        </b:View>
+
+                        <b:View
+                            x:Name="TargetColorView2"
+                            WidthSpecification="-1"
+                            HeightSpecification="-2"
+                        >
+                            <View.Layout>
+                                <LinearLayout LinearOrientation="Horizontal" LinearAlignment="CenterVertical" CellPadding="5,5"/>
+                            </View.Layout>
+                            <b:TextLabel
+                                x:Name="ViewBlueT"
+                                Weight="0.05"
+                                PointSize="15"
+                                HorizontalAlignment="Begin"
+                                VerticalAlignment="Center"
+                                TextColor="#1010ef"
+                                Text="B:"
+                            />
+                            <nui:Slider x:Name="ViewBlue"
+                                        MinValue="0"
+                                        MaxValue="255"
+                                        CurrentValue="255"
+                                        ThumbSize="8,8"
+                                        WidthSpecification="-1"
+                            />
+                            <b:TextLabel
+                                x:Name="ViewAlphaT"
+                                Weight="0.05"
+                                PointSize="15"
+                                HorizontalAlignment="Begin"
+                                VerticalAlignment="Center"
+                                TextColor="#101010"
+                                Text="A:"
+                            />
+                            <nui:Slider x:Name="ViewAlpha"
+                                        MinValue="0"
+                                        MaxValue="255"
+                                        CurrentValue="255"
+                                        ThumbSize="8,8"
+                                        WidthSpecification="-1"
+                            />
+                        </b:View>
+                     </b:View>
+                </b:View>
+
+            </nui:ScrollableBase>
+        </b:View>
+    </b:View>
+</b:View>
