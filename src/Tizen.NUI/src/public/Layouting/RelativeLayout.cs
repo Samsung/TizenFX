@@ -364,6 +364,88 @@ namespace Tizen.NUI
             (float childrenWidth, float childrenHeight) = CalculateChildrenSize(widthMeasureSpec.Size.AsDecimal(), heightMeasureSpec.Size.AsDecimal());
             SetMeasuredDimensions(ResolveSizeAndState(new LayoutLength(childrenWidth), widthMeasureSpec, childWidthState),
                                   ResolveSizeAndState(new LayoutLength(childrenHeight), heightMeasureSpec, childHeightState));
+
+            // RelativeLayout sets its children's size in OnLayout().
+            // Therefore, the children's MeasuredWidth/Height are not the same with the children's size.
+            // This causes that the grand children's MeasuredWidth/Height are calculated incorrectly.
+            // To resolve the above, RelativeLayout updates its children's MeasuredWidth/Height after
+            // the RelativeLayout's MeasuredWidth/Height are calculated.
+            //
+            // e.g.
+            // Let parent have RelativeLayout and parent's size be 1920x1080.
+            // Let child have WrapContent with SetFillHorizontal/Vertical true.
+            // Let grand child have MatchParent.
+            // Then, child's size is 1920x1080 but child's MeasuredWidth/Height is 0x0.
+            // Then, grand child's MeasuredWidth/Height is 0x0 and size is 0x0.
+            //
+            // TODO: Not to do the following operation in OnLayout() again.
+            for (int i = 0; i < LayoutChildren.Count; i++)
+            {
+                LayoutItem childLayout = LayoutChildren[i];
+                if (childLayout != null)
+                {
+                    LayoutLength childLeft;
+                    LayoutLength childRight;
+                    LayoutLength childTop;
+                    LayoutLength childBottom;
+
+                    if (childLayout.Owner.WidthSpecification == LayoutParamPolicies.MatchParent)
+                    {
+                        childLeft = new LayoutLength(Padding.Start + childLayout.Margin.Start);
+                        childRight = new LayoutLength(MeasuredWidth.Size.AsDecimal() - Padding.End - childLayout.Margin.End);
+                    }
+                    else
+                    {
+                        Geometry horizontalGeometry = GetHorizontalLayout(childLayout.Owner);
+
+                        childLeft = new LayoutLength(horizontalGeometry.Position + Padding.Start + childLayout.Margin.Start);
+                        childRight = new LayoutLength(horizontalGeometry.Position + horizontalGeometry.Size + Padding.Start - childLayout.Margin.End);
+                    }
+
+                    if (childLayout.Owner.HeightSpecification == LayoutParamPolicies.MatchParent)
+                    {
+                        childTop = new LayoutLength(Padding.Top + childLayout.Margin.Top);
+                        childBottom = new LayoutLength(MeasuredHeight.Size.AsDecimal() - Padding.Bottom - childLayout.Margin.Bottom);
+                    }
+                    else
+                    {
+                        Geometry verticalGeometry = GetVerticalLayout(childLayout.Owner);
+
+                        childTop = new LayoutLength(verticalGeometry.Position + Padding.Top + childLayout.Margin.Top);
+                        childBottom = new LayoutLength(verticalGeometry.Position + verticalGeometry.Size + Padding.Top - childLayout.Margin.Bottom);
+                    }
+
+                    childLayout.MeasuredWidth = new MeasuredSize(new LayoutLength(childRight.AsDecimal() - childLeft.AsDecimal()), MeasuredSize.StateType.MeasuredSizeOK);
+                    childLayout.MeasuredHeight = new MeasuredSize(new LayoutLength(childBottom.AsDecimal() - childTop.AsDecimal()), MeasuredSize.StateType.MeasuredSizeOK);
+
+                    MeasureSpecification childWidthMeasureSpec = new MeasureSpecification(new LayoutLength(childRight.AsDecimal() - childLeft.AsDecimal()), MeasureSpecification.ModeType.Exactly);
+                    MeasureSpecification childHeightMeasureSpec = new MeasureSpecification(new LayoutLength(childBottom.AsDecimal() - childTop.AsDecimal()), MeasureSpecification.ModeType.Exactly);
+
+                    int origWidthSpecification = childLayout.Owner.WidthSpecification;
+                    int origHeightSpecification = childLayout.Owner.HeightSpecification;
+
+                    // To calculate the grand children's Measure() with the mode type Exactly,
+                    // children's Measure() is called with MatchParent if the children have WrapContent.
+                    //
+                    // i.e.
+                    // If children have Wrapcontent and the grand children have MatchParent,
+                    // then grand children's MeasuredWidth/Height do not fill the children
+                    // because the grand children's Measure() is called with the mode type AtMost.
+                    if (childLayout.Owner.WidthSpecification == LayoutParamPolicies.WrapContent)
+                    {
+                        childLayout.Owner.WidthSpecification = LayoutParamPolicies.MatchParent;
+                    }
+                    if (childLayout.Owner.HeightSpecification == LayoutParamPolicies.WrapContent)
+                    {
+                        childLayout.Owner.HeightSpecification = LayoutParamPolicies.MatchParent;
+                    }
+
+                    MeasureChildWithMargins(childLayout, childWidthMeasureSpec, new LayoutLength(0), childHeightMeasureSpec, new LayoutLength(0));
+
+                    childLayout.Owner.WidthSpecification = origWidthSpecification;
+                    childLayout.Owner.HeightSpecification = origHeightSpecification;
+                }
+            }
         }
 
         /// <inheritdoc/>
@@ -378,22 +460,11 @@ namespace Tizen.NUI
                     Geometry horizontalGeometry = GetHorizontalLayout(childLayout.Owner);
                     Geometry verticalGeometry = GetVerticalLayout(childLayout.Owner);
 
-                    // MeasureChildWithMargins() is called to assign child's MeasuredWidth/Height to calculate grand children's sizes correctly.
-                    // Grand children's positions are calculated correctly only if their sizes are calculated correctly.
-                    // MeasureChildWithMargins() should be called before childLayout.Layout() to use childLayout's MeasuredWidth/Height
-                    // when the grand children's positions are calculated.
-                    //
-                    // FIXME: It would be better if MeasureChildWithMargins() are called in OnMeasure() to separate Measure and Layout calculations.
-                    //        For now, not to call duplicate GetHorizontalLayout() and GetVerticalLayout() in both OnMeasure() and OnLayout(),
-                    //        MeasureChildWithMargins() is called here.
-                    MeasureChildWithMargins(childLayout,
-                                            new MeasureSpecification(new LayoutLength(horizontalGeometry.Size), MeasureSpecification.ModeType.Exactly), new LayoutLength(0),
-                                            new MeasureSpecification(new LayoutLength(verticalGeometry.Size), MeasureSpecification.ModeType.Exactly), new LayoutLength(0));
-
                     LayoutLength childLeft = new LayoutLength(horizontalGeometry.Position + Padding.Start + childLayout.Margin.Start);
                     LayoutLength childRight = new LayoutLength(horizontalGeometry.Position + horizontalGeometry.Size + Padding.Start - childLayout.Margin.End);
                     LayoutLength childTop = new LayoutLength(verticalGeometry.Position + Padding.Top + childLayout.Margin.Top);
                     LayoutLength childBottom = new LayoutLength(verticalGeometry.Position + verticalGeometry.Size + Padding.Top - childLayout.Margin.Bottom);
+
                     childLayout.Layout(childLeft, childTop, childRight, childBottom);
                 }
             }

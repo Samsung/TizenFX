@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,14 +17,18 @@
 
 namespace Tizen.NUI
 {
+    using global::System;
+    using global::System.Runtime.InteropServices;
+
     internal static partial class Interop
     {
-        internal static partial class WebFrame
+        internal static partial class ImageUrl
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebFrame_IsMainFrame")]
-            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool IsMainFrame(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_ImageUrl")]
+            public static extern void Delete(HandleRef jarg1);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageUrl_Get")]
+            public static extern string GetUrl(HandleRef jarg1);
         }
     }
 }
-

@@ -155,6 +155,7 @@ namespace Tizen.NUI.Components
 
             navigationPages.Add(page);
             Add(page);
+            page.Navigator = this;
 
             //Invoke Page events
             page.InvokeAppearing();
@@ -163,7 +164,10 @@ namespace Tizen.NUI.Components
             transitionSet = CreateTransition(topPage, page, true);
             transitionSet.Finished += (object sender, EventArgs e) =>
             {
-                topPage.SetVisible(false);
+                if (page is DialogPage == false)
+                {
+                   topPage.SetVisible(false);	   
+                }
 
                 //Invoke Page events
                 page.InvokeAppeared();
@@ -669,12 +673,18 @@ namespace Tizen.NUI.Components
             int duration = (transition.TimePeriod.DurationMilliseconds + transition.TimePeriod.DelayMilliseconds);
             float durationSeconds = (float)duration / 1000.0f;
 
-            TransitionItemBase disappearingTransition = currentTopPage.DisappearingTransition.CreateTransition(currentTopPage, false);
-            TransitionItemBase appearingTransition = newTopPage.AppearingTransition.CreateTransition(newTopPage, true);
-            disappearingTransition.TransitionWithChild = true;
-            appearingTransition.TransitionWithChild = true;
-            newTransitionSet.AddTransition(disappearingTransition);
-            newTransitionSet.AddTransition(appearingTransition);
+            if (!pushTransition || newTopPage is DialogPage == false)
+            {
+                TransitionItemBase disappearingTransition = currentTopPage.DisappearingTransition.CreateTransition(currentTopPage, false);
+                newTransitionSet.AddTransition(disappearingTransition);
+                disappearingTransition.TransitionWithChild = true;
+            }
+            if (pushTransition || currentTopPage is DialogPage == false)
+            {
+                TransitionItemBase appearingTransition = newTopPage.AppearingTransition.CreateTransition(newTopPage, true);
+                appearingTransition.TransitionWithChild = true;
+                newTransitionSet.AddTransition(appearingTransition);
+            }
 
             newTransitionSet.Play();
 

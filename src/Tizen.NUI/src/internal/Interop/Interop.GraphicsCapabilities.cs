@@ -22,6 +22,7 @@ namespace Tizen.NUI
         internal static partial class GraphicsCapabilities
         {
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IsBlendEquationSupported")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool IsBlendEquationSupported(int blendEquation);
         }
     }

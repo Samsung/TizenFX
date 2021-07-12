@@ -21,6 +21,7 @@ using System.Text;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
 using Tizen.NUI.Binding.Internals;
+using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.EXaml
 {
@@ -48,6 +49,11 @@ namespace Tizen.NUI.EXaml
                 {
                     int valueIndex = valueInstance.Index;
                     value = globalDataList.GatheredInstances[valueIndex];
+                }
+
+                if (value is ResourcePathExtension resourcePath)
+                {
+                    value = resourcePath.ProvideValue(null);
                 }
 
                 instance.SetValue(property, value);

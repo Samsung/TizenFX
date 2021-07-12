@@ -27,6 +27,7 @@ namespace Tizen.NUI
             public static extern global::System.IntPtr GetSignal(HandleRef glWindow);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_Visibility_Changed_Signal_Empty")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool Empty(HandleRef signalType);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_Visibility_Changed_Signal_GetConnectionCount")]

@@ -21,6 +21,7 @@ using System.Text;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
 using Tizen.NUI.Binding.Internals;
+using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.EXaml
 {
@@ -69,6 +70,10 @@ namespace Tizen.NUI.EXaml
                             paramList[i] = globalDataList.GatheredInstances[instance.Index];
                         }
 
+                        if (paramList[i] is ResourcePathExtension resourcePath)
+                        {
+                            paramList[i] = resourcePath.ProvideValue(null);
+                        }
                     }
 
                     if (null == xFactoryMethod)
