@@ -11,7 +11,7 @@ namespace Tizen.NUI.Devel.Tests
     using tlog = Tizen.Log;
 
     [TestFixture]
-    [Description("public/Common/ImageLoading")]
+    [Description("public/Images/ImageLoading")]
     public class PublicImageLoadingTest
     {
         private const string tag = "NUITEST";
