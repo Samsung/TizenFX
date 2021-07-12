@@ -21,20 +21,20 @@ using System.ComponentModel;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// Event arguments that passed via the WebView.ContextMenuItemSelected.
+    /// Event arguments that passed via the WebView.ContextMenuShown.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class WebViewContextMenuItemSelectedEventArgs : EventArgs
+    public class WebViewContextMenuShownEventArgs : EventArgs
     {
-        internal WebViewContextMenuItemSelectedEventArgs(WebContextMenuItem item)
+        internal WebViewContextMenuShownEventArgs(WebContextMenu menu)
         {
-            ContextMenuItem = item;
+            ContextMenu = menu;
         }
 
         /// <summary>
-        /// The selected context menu item.
+        /// The context menu that is shown.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public WebContextMenuItem ContextMenuItem { get; }
+        public WebContextMenu ContextMenu { get; }
     }
 }
