@@ -220,8 +220,6 @@ namespace Tizen.NUI.Components
         public override void OnInitialize()
         {
             base.OnInitialize();
-            //FIXME!
-            IsCreateByXaml = true;
             Layout = new AbsoluteLayout();
             UpdateState();
 
