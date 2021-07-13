@@ -270,7 +270,7 @@ namespace Tizen.NUI.Components
             if (page is DialogPage == false)
             {
                 curAnimation = new Animation(1000);
-                curAnimation.AnimateTo(curTop, "Opacity", 0.0f, 0, 1000);
+                curAnimation.AnimateTo(curTop, "Opacity", 1.0f, 0, 1000);
                 curAnimation.EndAction = Animation.EndActions.StopFinal;
                 curAnimation.Finished += (object sender, EventArgs args) =>
                 {
@@ -347,7 +347,7 @@ namespace Tizen.NUI.Components
                 };
                 curAnimation.Play();
 
-                newTop.Opacity = 0.0f;
+                newTop.Opacity = 1.0f;
                 newTop.SetVisible(true);
                 newAnimation = new Animation(1000);
                 newAnimation.AnimateTo(newTop, "Opacity", 1.0f, 0, 1000);
