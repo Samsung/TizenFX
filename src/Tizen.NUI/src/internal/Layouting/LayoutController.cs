@@ -30,10 +30,11 @@ namespace Tizen.NUI
     /// </summary>
     internal class LayoutController : Disposable
     {
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        internal delegate void Callback(int id);
+        private static int layoutControllerID = 1;
 
-        event Callback instance;
+        private int id;
+
+        private ProcessorController.ProcessorCallback LayoutProcessorCallback = null;
 
         private Window window;
 
@@ -47,14 +48,11 @@ namespace Tizen.NUI
         /// Constructs a LayoutController which controls the measuring and layouting.<br />
         /// <param name="window">Window attach this LayoutController to.</param>
         /// </summary>
-        public LayoutController(Window window) : this(Interop.LayoutController.New(), true)
+        public LayoutController(Window window)
         {
             this.window = window;
             layoutTransitionDataQueue = new List<LayoutData>();
-        }
-
-        internal LayoutController(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
-        {
+            id = layoutControllerID++;
         }
 
         /// <summary>
@@ -62,7 +60,7 @@ namespace Tizen.NUI
         /// </summary>
         public int GetId()
         {
-            return Interop.LayoutController.GetId(SwigCPtr);
+            return id;
         }
 
         /// <summary>
@@ -107,10 +105,9 @@ namespace Tizen.NUI
         /// </summary>
         internal void CreateProcessCallback()
         {
-            if (instance == null)
+            if (LayoutProcessorCallback == null)
             {
-                instance = new Callback(Process);
-                Interop.LayoutController.SetCallback(SwigCPtr, instance);
+                ProcessorController.Instance.LayoutProcessorEvent += Process;
             }
         }
 
@@ -146,13 +143,18 @@ namespace Tizen.NUI
                 return;
             }
 
+            if(LayoutProcessorCallback != null)
+            {
+                ProcessorController.Instance.LayoutProcessorEvent -= Process;
+                LayoutProcessorCallback = null;
+            }
+
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
             if (SwigCPtr.Handle != global::System.IntPtr.Zero)
             {
-                Interop.LayoutController.DeleteLayoutController(SwigCPtr);
                 SwigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
 
@@ -247,7 +249,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Entry point into the C# Layouting that starts the Processing
         /// </summary>
-        private void Process(int id)
+        public void Process(object source, EventArgs e)
         {
             Vector2 windowSize = window.GetSize();
             float width = windowSize.Width;

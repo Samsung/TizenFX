@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<comp:ContentPage x:Class="NUITizenGallery.TimePickerTestPage"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:base="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+  xmlns:comp="clr-namespace:Tizen.NUI.Components;assembly=Tizen.NUI.Components"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}" 
+  ParentOrigin="Center"
+  PivotPoint="Center"
+  PositionUsesPivotPoint="true"
+  BackgroundColor="White">
+
+    <comp:ContentPage.AppBar>
+        <comp:AppBar x:Name="appBar"
+                    Title="TimePickerTestPage"/>
+    </comp:ContentPage.AppBar>
+
+    <comp:ContentPage.Content>
+        <base:View x:Name="ContentView"
+          WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+          HeightSpecification="{Static LayoutParamPolicies.MatchParent}" >
+            <View.Layout>
+              <LinearLayout LinearOrientation="Vertical" LinearAlignment="CenterHorizontal" CellPadding="30,30"/>
+            </View.Layout>
+              <base:TextLabel x:Name="text1"
+                              WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                              HeightSpecification="100"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center"
+                              PointSize="20"
+                              />
+              <comp:Button x:Name="timeButton"
+                              WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                              HeightSpecification="80"
+                              Text="Time Picker"
+                              PointSize="20"
+                              />
+              <comp:Button x:Name="setNowButton"
+                              WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                              HeightSpecification="80"
+                              Text="Set Now Time"
+                              PointSize="20"
+                              />
+              <comp:Button x:Name="changePickerStyleButton"
+                              WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                              HeightSpecification="80"
+                              Text="Change TimePicker Style"
+                              PointSize="20"
+                              />
+        </base:View>
+    </comp:ContentPage.Content>
+</comp:ContentPage>

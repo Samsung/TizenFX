@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<base:View x:Class="NUITizenGallery.BindingTest1Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:vm="clr-namespace:NUITizenGallery.ViewModels"
+  xmlns:base="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+  xmlns:nui="clr-namespace:Tizen.NUI.Components;assembly=Tizen.NUI.Components"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:behaviors="clr-namespace:NUITizenGallery.Behaviors"
+  BackgroundColor="White"
+  PositionUsesPivotPoint="True" ParentOrigin="Center" PivotPoint="Center" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent">
+    
+    <View.BindingContext>
+        <vm:BindingTest1ViewModel x:Name="context"/>
+    </View.BindingContext>
+    
+    <View.Layout>
+        <LinearLayout LinearOrientation="Vertical" CellPadding="10,10"/>
+    </View.Layout>
+
+    <View BindingContext="{Binding Source={x:Reference context}}"
+          WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+          HeightSpecification="150"
+          BackgroundColor="Red"
+          behaviors:VisibilitySetter.IsVisible="{Binding IsBoxVisible}"/>
+
+    <View BindingContext="{Binding Source={x:Reference context}}"
+          WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+          HeightSpecification="150"
+          BackgroundColor="Blue"
+          behaviors:VisibilitySetter.IsVisible="{Binding IsBoxVisible}"/>
+
+    <Button BindingContext="{Binding Source={x:Reference context}}"
+            Command="{Binding ChangeVisibility}"
+            WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+            Text="Visibility"/>
+
+
+</base:View>

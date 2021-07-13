@@ -47,7 +47,7 @@ namespace Tizen.NUI.EXaml
                 realInstance = instance;
             }
 
-            var namescope = NameScope.GetNameScope(CreateInstance.Root as BindableObject);
+            var namescope = NameScope.GetNameScope(globalDataList.Root as BindableObject);
             namescope?.RegisterName(name, realInstance);
         }
 

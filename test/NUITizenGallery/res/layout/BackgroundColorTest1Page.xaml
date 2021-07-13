@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<b:View x:Class="NUITizenGallery.BackgroundColorTest1Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:b="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+  xmlns:nui="clr-namespace:Tizen.NUI.Components;assembly=Tizen.NUI.Components"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  HeightResizePolicy="FillToParent" 
+  WidthResizePolicy="FillToParent" 
+  ParentOrigin="Center" 
+  PivotPoint="Center"
+  PositionUsesPivotPoint="true"
+  BackgroundColor="White">
+
+    <View.Layout>
+        <LinearLayout LinearOrientation="Vertical" LinearAlignment="Center"/>
+    </View.Layout>
+
+    <View x:Name="mainView"
+          WidthResizePolicy="FillToParent"
+          HeightResizePolicy="FillToParent"
+          BackgroundColor="#00ffff"
+          Opacity="0.9"
+          Weight="1.0">
+
+        <View.Layout>
+            <LinearLayout LinearOrientation="Vertical" LinearAlignment="Top" CellPadding="10,10"/>
+        </View.Layout>
+        
+        <nui:Button x:Name="button1"
+                    WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                    PointSize="8"
+                    Text="Change BackgroundColor"
+                    TextColor="White"
+                    BackgroundColor="Black"/>
+
+        <nui:Button x:Name="button2"
+                    WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                    PointSize="8"
+                    Text="Button1 (Red)"
+                    TextColor="White"
+                    BackgroundColor="Red"/>
+
+        <nui:Button x:Name="button3"
+                    WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                    PointSize="8"
+                    Text="Button2 (Blue/0.5)"
+                    TextColor="White"
+                    BackgroundColor = "Blue"
+                    Opacity="0.5"/>
+
+        <nui:Button x:Name="button4"
+                    WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                    PointSize="8"
+                    Text="Button3 (0,0,1,.5)"
+                    TextColor="White"
+                    BackgroundColor="0,0,1,.5"
+                    Opacity="0.4"/>
+
+        <TextLabel WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                   PointSize="8"
+                   Text="Label1 (Silver)"
+                   BackgroundColor="#C0C0C0"/>
+
+        <TextLabel WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                   PointSize="8"
+                   Text="Label2 (Pink/0.5)"
+                   BackgroundColor="#FF66FF"
+                   Opacity="0.4"/>
+
+        <TextField WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                   PointSize="8"
+                   Text="This is a Entry with very looooooooooooong looooooooooooooong text,  (Background color : Color.Lime)"
+                   BackgroundColor="#00FF00" 
+                   Weight="1.0"/>
+
+        <TextField WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                   PointSize="8"
+                   Text="Formatted entry (Background color : Color.Maroon)"
+                   BackgroundColor="#800000" 
+                   Weight="1.0"/>
+
+        <Progress WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                  MinValue="0.0"
+                  MaxValue="1.0"
+                  BufferColor="#FF66FF"
+                  CurrentValue="0.5"
+                  Weight="1.0"/>
+
+        <Slider WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                MinValue="0"
+                MaxValue="1.0"
+                BgTrackColor="#800080" 
+                Weight="1.0"/>
+        
+    </View>
+
+    <View x:Name="loadingView"
+          BackgroundColor="Blue"
+          WidthSpecification="{Static LayoutParamPolicies.MatchParent}" >
+
+        <Loading x:Name="loading"
+                 PositionUsesPivotPoint="True"
+                 ParentOrigin="Center"
+                 PivotPoint="Center"
+                 Size2D="50,50"/>
+
+    </View>
+
+</b:View>

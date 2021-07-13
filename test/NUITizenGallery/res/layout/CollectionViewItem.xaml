@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<base:View x:Class="NUITizenGallery.CollectionViewItem"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:base="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" Size2D="340, 900">
+
+  <base:View x:Name="ItemBackground" BackgroundColor="#ff0000" PositionUsesPivotPoint="True" ParentOrigin="Center" PivotPoint="Center" Size2D="300, 700">
+    <base:View.Layout>
+      <LinearLayout LinearOrientation="Vertical" LinearAlignment="Center"/>
+    </base:View.Layout>
+
+    <base:ImageView x:Name="ItemPoster" Size2D="300, 438"/>
+    <base:TextLabel x:Name="ItemTitle"  Size2D="300, 50" BackgroundColor="#5c5c5c" Opacity="0.7" TextColor="#ffffff"/>
+    <base:TextLabel x:Name="ItemDescription" Size2D="300, 150" BackgroundColor="#5c5c5c" Opacity="0.7"/>
+  </base:View>
+
+</base:View>

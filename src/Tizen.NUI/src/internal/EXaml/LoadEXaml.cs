@@ -42,6 +42,8 @@ namespace Tizen.NUI.EXaml
             var setBindingAction = new SetBindingAction(globalDataList, null);
             var otherActions = new OtherActions(globalDataList, null);
 
+            Action currentOp = null;
+
             foreach (char c in xaml)
             {
                 if (null == currentOp)
@@ -171,7 +173,7 @@ namespace Tizen.NUI.EXaml
         {
             var globalDataList = GatherDataList(xaml);
 
-            CreateInstanceAction.Root = view;
+            globalDataList.Root = view;
 
             foreach (var op in globalDataList.Operations)
             {
@@ -188,14 +190,12 @@ namespace Tizen.NUI.EXaml
                 return;
             }
 
-            CreateInstanceAction.Root = view;
+            globalDataList.Root = view;
 
             foreach (var op in globalDataList.Operations)
             {
                 op.Do();
             }
         }
-
-        private static Action currentOp = null;
     }
 }
