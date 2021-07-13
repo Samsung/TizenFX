@@ -293,12 +293,10 @@ namespace Tizen.NUI.Components
                     if (mScrollEnabled)
                     {
                         mPanGestureDetector.Detected += OnPanGestureDetected;
-                        this.InterceptTouchEvent += OnInterruptTouchingChildTouched;
                     }
                     else
                     {
                         mPanGestureDetector.Detected -= OnPanGestureDetected;
-                        this.InterceptTouchEvent -= OnInterruptTouchingChildTouched;
                     }
                 }
             }
@@ -587,7 +585,6 @@ namespace Tizen.NUI.Components
         private PropertyNotification propertyNotification;
         private float noticeAnimationEndBeforePosition = 0.0f;
         private bool readyToNotice = false;
-        private bool shouldIntercept = false;
 
         /// <summary>
         /// Notice before animation is finished.
@@ -638,8 +635,6 @@ namespace Tizen.NUI.Components
             mPanGestureDetector.AddDirection(PanGestureDetector.DirectionVertical);
             if (mPanGestureDetector.GetMaximumTouchesRequired() < 2) mPanGestureDetector.SetMaximumTouchesRequired(2);
             mPanGestureDetector.Detected += OnPanGestureDetected;
-            //Interrupt touching when panning is started
-            this.InterceptTouchEvent += OnInterruptTouchingChildTouched;
 
             ClippingMode = ClippingModeType.ClipToBoundingBox;
 
@@ -708,7 +703,7 @@ namespace Tizen.NUI.Components
                     StopScroll();
                 }
             }
-            return shouldIntercept;
+            return true;
         }
 
         private void OnPropertyChanged(object source, PropertyNotification.NotifyEventArgs args)
@@ -853,6 +848,8 @@ namespace Tizen.NUI.Components
         private void OnScrollAnimationEnded()
         {
             scrolling = false;
+            this.InterceptTouchEvent -= OnInterruptTouchingChildTouched;
+
             ScrollEventArgs eventArgs = new ScrollEventArgs(ContentContainer.CurrentPosition);
             ScrollAnimationEnded?.Invoke(this, eventArgs);
         }
@@ -1033,7 +1030,6 @@ namespace Tizen.NUI.Components
                     mPanGestureDetector.Dispose();
                     mPanGestureDetector = null;
                 }
-                this.InterceptTouchEvent -= OnInterruptTouchingChildTouched;
 
                 propertyNotification.Dispose();
             }
@@ -1344,8 +1340,9 @@ namespace Tizen.NUI.Components
 
             if (panGesture.State == Gesture.StateType.Started)
             {
-                shouldIntercept = false;
                 readyToNotice = false;
+                //Interrupt touching when panning is started
+                this.InterceptTouchEvent += OnInterruptTouchingChildTouched;
                 AttachOverShootingShadowView();
                 Debug.WriteLineIf(LayoutDebugScrollableBase, "Gesture Start");
                 if (scrolling && !SnapToPage)
@@ -1357,7 +1354,6 @@ namespace Tizen.NUI.Components
             }
             else if (panGesture.State == Gesture.StateType.Continuing)
             {
-                shouldIntercept = true;
                 if (ScrollingDirection == Direction.Horizontal)
                 {
                     // if vertical shadow is shown, does not scroll.
@@ -1418,7 +1414,6 @@ namespace Tizen.NUI.Components
                 totalDisplacementForPan = 0;
                 scrolling = true;
                 readyToNotice = true;
-                shouldIntercept = false;
                 OnScrollAnimationStarted();
             }
         }
