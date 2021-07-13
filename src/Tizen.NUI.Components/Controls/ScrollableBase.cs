@@ -1344,7 +1344,7 @@ namespace Tizen.NUI.Components
 
             if (panGesture.State == Gesture.StateType.Started)
             {
-                shouldIntercept = true;
+                shouldIntercept = false;
                 readyToNotice = false;
                 AttachOverShootingShadowView();
                 Debug.WriteLineIf(LayoutDebugScrollableBase, "Gesture Start");
@@ -1357,6 +1357,7 @@ namespace Tizen.NUI.Components
             }
             else if (panGesture.State == Gesture.StateType.Continuing)
             {
+                shouldIntercept = true;
                 if (ScrollingDirection == Direction.Horizontal)
                 {
                     // if vertical shadow is shown, does not scroll.
