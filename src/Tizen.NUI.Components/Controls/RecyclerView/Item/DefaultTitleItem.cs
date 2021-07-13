@@ -285,17 +285,8 @@ namespace Tizen.NUI.Components
 
             RelativeLayout.SetLeftTarget(itemLabel, this);
             RelativeLayout.SetLeftRelativeOffset(itemLabel, 0.0F);
-            if (itemIcon)
-            {
-                RelativeLayout.SetRightTarget(itemLabel, itemIcon);
-                RelativeLayout.SetRightRelativeOffset(itemLabel, 0.0F);
-            }
-            else
-            {
-                RelativeLayout.SetRightTarget(itemLabel, this);
-                RelativeLayout.SetRightRelativeOffset(itemLabel, 1.0F);
-            }
-
+            RelativeLayout.SetRightTarget(itemLabel, ((itemIcon != null)? itemIcon: this));
+            RelativeLayout.SetRightRelativeOffset(itemLabel, ((itemIcon != null)? 0.0F: 1.0F));
             RelativeLayout.SetTopTarget(itemLabel, this);
             RelativeLayout.SetTopRelativeOffset(itemLabel, 0.0F);
             RelativeLayout.SetBottomTarget(itemLabel, this);

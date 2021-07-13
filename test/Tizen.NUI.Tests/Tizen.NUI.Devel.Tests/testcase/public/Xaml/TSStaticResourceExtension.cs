@@ -137,7 +137,6 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Pass("Caught XamlParseException : passed!");
             }
         }
-
         private class XmlLineInfoImplent : IXmlLineInfo
         {
             public int LineNumber => 16;

@@ -622,9 +622,9 @@ namespace Tizen.NUI.Components
             newTopPage.SetVisible(true);
 
             List<View> taggedViewsInNewTopPage = new List<View>();
-            RetrieveTaggedViews(taggedViewsInNewTopPage, newTopPage);
+            RetrieveTaggedViews(taggedViewsInNewTopPage, newTopPage, true);
             List<View> taggedViewsInCurrentTopPage = new List<View>();
-            RetrieveTaggedViews(taggedViewsInCurrentTopPage, currentTopPage);
+            RetrieveTaggedViews(taggedViewsInCurrentTopPage, currentTopPage, true);
 
             List<KeyValuePair<View, View>> sameTaggedViewPair = new List<KeyValuePair<View, View>>();
             foreach(View currentTopPageView in taggedViewsInCurrentTopPage)
@@ -651,6 +651,7 @@ namespace Tizen.NUI.Components
             }
 
             TransitionSet newTransitionSet = new TransitionSet();
+            sameTaggedViewPair.Reverse();
             foreach(KeyValuePair<View, View> pair in sameTaggedViewPair)
             {
                 TransitionItem pairTransition = transition.CreateTransition(pair.Key, pair.Value);
@@ -696,26 +697,29 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="taggedViews">Returned tagged view list..</param>
         /// <param name="view">Root View to get tagged child View.</param>
-        private void RetrieveTaggedViews(List<View> taggedViews, View view)
+        /// <param name="isPage">Flag to check current View is page or not</param>
+        private void RetrieveTaggedViews(List<View> taggedViews, View view, bool isPage)
         {
-            if (!string.IsNullOrEmpty(view.TransitionOptions?.TransitionTag))
+            if (!isPage)
             {
-                taggedViews.Add((view as View));
-            }
+                if (!string.IsNullOrEmpty(view.TransitionOptions?.TransitionTag))
+                {
+                    taggedViews.Add((view as View));
+                }
 
-            if (view.ChildCount == 0)
-            {
-                return;
-            }
+                if (view.ChildCount == 0)
+                {
+                    return;
+                }
 
-            if (view.TransitionOptions?.TransitionWithChild ?? false)
-            {
-                return;
+                if (view.TransitionOptions?.TransitionWithChild ?? false)
+                {
+                    return;
+                }
             }
-
             foreach (View child in view.Children)
             {
-                RetrieveTaggedViews(taggedViews, child);
+                RetrieveTaggedViews(taggedViews, child, false);
             }
         }
 

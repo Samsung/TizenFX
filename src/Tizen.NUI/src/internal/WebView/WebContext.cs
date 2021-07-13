@@ -290,7 +290,7 @@ namespace Tizen.NUI
         {
             get
             {
-                return Interop.WebContext.GetContextDefaultZoomFactor(SwigCPtr);
+                return Interop.WebContext.GetDefaultZoomFactor(SwigCPtr);
             }
             set
             {

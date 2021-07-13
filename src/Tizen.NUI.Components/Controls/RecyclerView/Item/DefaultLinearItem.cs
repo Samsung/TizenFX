@@ -380,71 +380,27 @@ namespace Tizen.NUI.Components
 
             if (itemSubLabel != null)
             {
-                if (itemIcon != null)
-                {
-                    RelativeLayout.SetLeftTarget(itemSubLabel, itemIcon);
-                    RelativeLayout.SetLeftRelativeOffset(itemSubLabel, 1.0F);
-                }
-                else
-                {
-                    RelativeLayout.SetLeftTarget(itemSubLabel, this);
-                    RelativeLayout.SetLeftRelativeOffset(itemSubLabel, 0.0F);
-                }
-                if (itemExtra != null)
-                {
-                    RelativeLayout.SetRightTarget(itemSubLabel, itemExtra);
-                    RelativeLayout.SetRightRelativeOffset(itemSubLabel, 0.0F);
-                }
-                else
-                {
-                    RelativeLayout.SetRightTarget(itemSubLabel, this);
-                    RelativeLayout.SetRightRelativeOffset(itemSubLabel, 1.0F);
-                }
-
+                RelativeLayout.SetLeftTarget(itemSubLabel,  ((itemIcon != null)? itemIcon : this));
+                RelativeLayout.SetLeftRelativeOffset(itemSubLabel, ( (itemIcon != null)? 1.0F : 0.0F));
+                RelativeLayout.SetRightTarget(itemSubLabel, ((itemExtra != null)? itemExtra : this));
+                RelativeLayout.SetRightRelativeOffset(itemSubLabel, ((itemExtra != null)? 0.0F : 1.0F));
                 RelativeLayout.SetTopTarget(itemSubLabel, this);
                 RelativeLayout.SetTopRelativeOffset(itemSubLabel, 1.0F);
                 RelativeLayout.SetBottomTarget(itemSubLabel, this);
                 RelativeLayout.SetBottomRelativeOffset(itemSubLabel, 1.0F);
                 RelativeLayout.SetVerticalAlignment(itemSubLabel, RelativeLayout.Alignment.End);
-
                 RelativeLayout.SetHorizontalAlignment(itemSubLabel, RelativeLayout.Alignment.Center);
                 RelativeLayout.SetFillHorizontal(itemSubLabel, true);
             }
 
-            if (itemIcon != null)
-            {
-                RelativeLayout.SetLeftTarget(itemLabel, itemIcon);
-                RelativeLayout.SetLeftRelativeOffset(itemLabel, 1.0F);
-            }
-            else
-            {
-                RelativeLayout.SetLeftTarget(itemLabel, this);
-                RelativeLayout.SetLeftRelativeOffset(itemLabel, 0.0F);
-            }
-            if (itemExtra != null)
-            {
-                RelativeLayout.SetRightTarget(itemLabel, itemExtra);
-                RelativeLayout.SetRightRelativeOffset(itemLabel, 0.0F);
-            }
-            else
-            {
-                RelativeLayout.SetRightTarget(itemLabel, this);
-                RelativeLayout.SetRightRelativeOffset(itemLabel, 1.0F);
-            }
-
+            RelativeLayout.SetLeftTarget(itemLabel, ((itemIcon != null)? itemIcon : this));
+            RelativeLayout.SetLeftRelativeOffset(itemLabel, ((itemIcon != null)? 1.0F : 0.0F));
+            RelativeLayout.SetRightTarget(itemLabel, ((itemExtra != null)? itemExtra : this));
+            RelativeLayout.SetRightRelativeOffset(itemLabel, ((itemExtra != null)? 0.0F : 1.0F));
             RelativeLayout.SetTopTarget(itemLabel, this);
             RelativeLayout.SetTopRelativeOffset(itemLabel, 0.0F);
-
-            if (itemSubLabel != null)
-            {
-                RelativeLayout.SetBottomTarget(itemLabel, itemSubLabel);
-                RelativeLayout.SetBottomRelativeOffset(itemLabel, 0.0F);
-            }
-            else
-            {
-                RelativeLayout.SetBottomTarget(itemLabel, this);
-                RelativeLayout.SetBottomRelativeOffset(itemLabel, 1.0F);
-            }
+            RelativeLayout.SetBottomTarget(itemLabel, ((itemSubLabel != null)? (View)itemSubLabel : this));
+            RelativeLayout.SetBottomRelativeOffset(itemLabel, ((itemSubLabel != null)? 0.0F : 1.0F));
             RelativeLayout.SetVerticalAlignment(itemLabel, RelativeLayout.Alignment.Center);
             RelativeLayout.SetHorizontalAlignment(itemLabel, RelativeLayout.Alignment.Center);
             RelativeLayout.SetFillHorizontal(itemLabel, true);

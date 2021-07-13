@@ -1,12 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest package="Tizen.NUI.WebViewTest" version="1.0.0" api-version="4" xmlns="http://tizen.org/ns/packages">
-    <profile name="common" />
-    <ui-application appid="Tizen.NUI.WebViewTest" exec="Tizen.NUI.WebViewTest.dll" multiple="false" nodisplay="false" taskmanage="true" splash-screen-display="true" type="dotnet" launch_mode="single">
-        <label>WebViewTest</label>
-        <icon>Tizen.NUI.WebViewTest.png</icon>
-        <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
-        <splash-screens />
-    </ui-application>
-    <shortcut-list />
-    <provides-appdefined-privileges />
+  <profile name="tv" />
+  <ui-application appid="Tizen.NUI.WebViewTest" exec="Tizen.NUI.WebViewTest.dll" multiple="false" nodisplay="false" taskmanage="true"
+                  splash-screen-display="true"
+                  type="dotnet-inhouse-apitest"
+                  launch_mode="single">
+    <label>WebViewTest</label>
+    <icon>Tizen.NUI.WebViewTest.png</icon>
+    <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
+    <splash-screens />
+  </ui-application>
+  <shortcut-list />
+  <privileges>
+    <privilege>http://tizen.org/privilege/internet</privilege>
+  </privileges>
+  <feature> http://tizen.org/feature/opengles.surfaceless_context </feature>
 </manifest>

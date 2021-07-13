@@ -278,7 +278,6 @@ namespace Tizen.NUI.Devel.Tests
             catch (Exception e)
             {
                 tlog.Debug(tag, e.Message.ToString());
-                tlog.Debug(tag, $"ApplyPropertiesVisitorVisitWithValueNode END (OK)");
                 Assert.Pass("Caught Exception : passed!");
             }
         }
