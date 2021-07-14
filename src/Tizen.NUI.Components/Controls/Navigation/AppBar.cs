@@ -609,7 +609,6 @@ namespace Tizen.NUI.Components
             return new TextLabel()
             {
                 HeightSpecification = LayoutParamPolicies.MatchParent,
-                Weight = 1.0f,
             };
         }
 
@@ -620,8 +619,10 @@ namespace Tizen.NUI.Components
                 Layout = new LinearLayout()
                 {
                     LinearOrientation = LinearLayout.Orientation.Horizontal,
+                    LinearAlignment = LinearLayout.Alignment.End,
                 },
-                Weight = 0.0f,
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                HeightSpecification = LayoutParamPolicies.MatchParent,
             };
         }
 
