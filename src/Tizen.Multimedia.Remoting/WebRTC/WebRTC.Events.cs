@@ -32,7 +32,7 @@ namespace Tizen.Multimedia.Remoting
         private NativeWebRTC.PeerConnectionStateChangedCallback _webRtcPeerConnectionStateChangedCallback;
         private NativeWebRTC.IceConnectionStateChangedCallback _webRtcIceConnectionStateChangedCallback;
         private NativeWebRTC.NegotiationNeededCallback _webRtcNegotiationNeededCallback;
-        private NativeWebRTC.IceCandidateCallback _webRtcIceCandicateCallback;
+        private NativeWebRTC.IceCandidateCallback _webRtcIceCandidateCallback;
         private NativeWebRTC.TrackAddedCallback _webRtcTrackAddedCallback;
         private NativeWebRTC.FrameEncodedCallback _webRtcAudioFrameEncodedCallback;
         private NativeWebRTC.FrameEncodedCallback _webRtcVideoFrameEncodedCallback;
@@ -85,7 +85,7 @@ namespace Tizen.Multimedia.Remoting
         /// Occurs when the WebRTC needs to send the ICE candidate message to the remote peer.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public event EventHandler<WebRTCIceCandicateEventArgs> IceCandidate;
+        public event EventHandler<WebRTCIceCandidateEventArgs> IceCandidate;
 
         /// <summary>
         /// Occurs when a new track has been added to the WebRTC.
@@ -260,12 +260,12 @@ namespace Tizen.Multimedia.Remoting
 
         private void RegisterIceCandidateCallback()
         {
-            _webRtcIceCandicateCallback = (handle, candidate, _) =>
+            _webRtcIceCandidateCallback = (handle, candidate, _) =>
             {
-                IceCandidate?.Invoke(this, new WebRTCIceCandicateEventArgs(candidate));
+                IceCandidate?.Invoke(this, new WebRTCIceCandidateEventArgs(candidate));
             };
 
-            NativeWebRTC.SetIceCandidateCb(Handle, _webRtcIceCandicateCallback).
+            NativeWebRTC.SetIceCandidateCb(Handle, _webRtcIceCandidateCallback).
                 ThrowIfFailed("Failed to set ice candidate callback.");
         }
 

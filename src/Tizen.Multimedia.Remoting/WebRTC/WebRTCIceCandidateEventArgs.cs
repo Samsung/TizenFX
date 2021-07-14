@@ -22,11 +22,11 @@ namespace Tizen.Multimedia.Remoting
     /// Provides data for the <see cref="WebRTC.IceCandidate"/> event.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
-    public class WebRTCIceCandicateEventArgs : EventArgs
+    public class WebRTCIceCandidateEventArgs : EventArgs
     {
-        internal WebRTCIceCandicateEventArgs(string iceCandidate)
+        internal WebRTCIceCandidateEventArgs(string iceCandidate)
         {
-            ICECandicate = iceCandidate;
+            ICECandidate = iceCandidate;
         }
 
         /// <summary>
@@ -34,13 +34,13 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <value>The ICE candidate.</value>
         /// <since_tizen> 9 </since_tizen>
-        public string ICECandicate { get; }
+        public string ICECandidate { get; }
 
         /// <summary>
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>A string that represents the current object.</returns>
         /// <since_tizen> 9 </since_tizen>
-        public override string ToString() => $"ICE candidate={ICECandicate}";
+        public override string ToString() => $"ICE candidate={ICECandidate}";
     }
 }
