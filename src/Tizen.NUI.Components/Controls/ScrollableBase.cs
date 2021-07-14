@@ -692,6 +692,8 @@ namespace Tizen.NUI.Components
             };
 
             AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "ScrollableBase");
+
+            SetKeyboardNavigationSupport(true);
         }
 
         private bool OnInterruptTouchingChildTouched(object source, View.TouchEventArgs args)
@@ -1623,6 +1625,81 @@ namespace Tizen.NUI.Components
             }
         }
 
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override View GetNextFocusableView(View currentFocusedView, View.FocusDirection direction, bool loopEnabled)
+        {
+            View nextFocusedView = null;
+
+            int currentIndex = ContentContainer.Children.IndexOf(currentFocusedView);
+
+            switch (direction)
+            {
+                case View.FocusDirection.Left:
+                case View.FocusDirection.Up:
+                {
+                    if (currentIndex > 0)
+                    {
+                        nextFocusedView = ContentContainer.Children[--currentIndex];
+                    }
+                    break;
+                }
+                case View.FocusDirection.Right:
+                case View.FocusDirection.Down:
+                {
+                    if (currentIndex < ContentContainer.Children.Count - 1)
+                    {
+                        nextFocusedView =  ContentContainer.Children[++currentIndex];
+                    }
+                    break;
+                }
+            }
+
+            if (nextFocusedView != null)
+            {
+                // Check next focused view is inside of visible area.
+                // If it is not, move scroll position to make it visible.
+                Position scrollPosition = ContentContainer.CurrentPosition;
+                float targetPosition = -(ScrollingDirection == Direction.Horizontal ? scrollPosition.X : scrollPosition.Y);
+
+                float left = nextFocusedView.Position.X;
+                float right = nextFocusedView.Position.X + nextFocusedView.Size.Width;
+                float top = nextFocusedView.Position.Y;
+                float bottom = nextFocusedView.Position.Y + nextFocusedView.Size.Height;
+
+                float visibleRectangleLeft = -scrollPosition.X;
+                float visibleRectangleRight = -scrollPosition.X + Size.Width;
+                float visibleRectangleTop = -scrollPosition.Y;
+                float visibleRectangleBottom = -scrollPosition.Y + Size.Height;
+
+                if (ScrollingDirection == Direction.Horizontal)
+                {
+                    if (left < visibleRectangleLeft)
+                    {
+                        targetPosition = left;
+                    }
+                    else if (right > visibleRectangleRight)
+                    {
+                        targetPosition = right - Size.Width;
+                    }
+                }
+                else
+                {
+                    if (top < visibleRectangleTop)
+                    {
+                        targetPosition = top;
+                    }
+                    else if (bottom > visibleRectangleBottom)
+                    {
+                        targetPosition = bottom - Size.Height;
+                    }
+                }
+                ScrollTo(targetPosition, true);
+            }
+
+            return nextFocusedView;
+        }
     }
 
 } // namespace
