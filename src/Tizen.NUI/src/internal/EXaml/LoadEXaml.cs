@@ -169,7 +169,7 @@ namespace Tizen.NUI.EXaml
             return globalDataList;
         }
 
-        internal static void Load(object view, string xaml)
+        internal static void Load(object view, string xaml, out object xamlData)
         {
             var globalDataList = GatherDataList(xaml);
 
@@ -179,6 +179,8 @@ namespace Tizen.NUI.EXaml
             {
                 op.Do();
             }
+
+            xamlData = globalDataList;
         }
 
         internal static void Load(object view, object preloadData)
@@ -195,6 +197,17 @@ namespace Tizen.NUI.EXaml
             foreach (var op in globalDataList.Operations)
             {
                 op.Do();
+            }
+        }
+
+        internal static void RemoveEventsInXaml(object eXamlData)
+        {
+            if (eXamlData is GlobalDataList globalDataList)
+            {
+                foreach (var op in globalDataList.RemoveEventOperations)
+                {
+                    op.Do();
+                }
             }
         }
     }
