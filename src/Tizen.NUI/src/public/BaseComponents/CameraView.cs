@@ -23,10 +23,10 @@ namespace Tizen.NUI.BaseComponents
     /// <summary>
     /// CameraView is a view for camera preview.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class CameraView : View
     {
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public enum DisplayType
         {
             Window = 0,   //  HW overlay
@@ -38,7 +38,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="handle">Multimedia Camera handle</param>
         /// <param name="type">DisplayType</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public CameraView(global::System.IntPtr handle, DisplayType type = DisplayType.Window) : this(Interop.CameraView.New(handle, (int)type), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -59,9 +59,18 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Called when the camera view needs to be updated if the camera setting is changed..
+        /// Called when the camera view needs to be updated if the camera setting is changed.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <example>
+        /// <code>
+        ///  camera = new Tizen.Multimedia.Camera(Tizen.Multimedia.CameraDevice.Front);
+        ///  cameraView = new CameraView(overlayCamera.Handle);
+        ///  cameraView.Size = new Size(300, 400);
+        ///  camera.DisplaySettings.Rotation = Tizen.Multimedia.Rotation.Rotate90;
+        ///  cameraView.Update();
+        /// </code>
+        /// </example>
+        /// <since_tizen> 9 </since_tizen>
         public void Update()
         {
             Interop.CameraView.Update(SwigCPtr);
