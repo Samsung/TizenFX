@@ -68,6 +68,10 @@ namespace Tizen.NUI.EXaml
 
         public void Init()
         {
+            getTypeIndexOp = null;
+            getXFactoryMethodIndexOp = null;
+            getParamListOp = null;
+            getStaticInstanceOp = null;
         }
 
         public void OnActive()
