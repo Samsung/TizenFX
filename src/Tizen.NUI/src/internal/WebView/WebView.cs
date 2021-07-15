@@ -2029,6 +2029,18 @@ namespace Tizen.NUI.BaseComponents
             CookieManager.ClearCookies();
         }
 
+        /// <summary>
+        /// Sets the tts focus to the webview.
+        /// Please note that it only works when the webview does not have keyinput focus.
+        /// If the webview has a keyinput focus, it also has tts focus so calling SetTtsFocus(false) is ignored.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetTtsFocus(bool focused)
+        {
+            Interop.WebView.SetTtsFocus(SwigCPtr, focused);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
         internal static WebView DownCast(BaseHandle handle)
         {
             WebView ret = new WebView(Interop.WebView.DownCast(BaseHandle.getCPtr(handle)), true);

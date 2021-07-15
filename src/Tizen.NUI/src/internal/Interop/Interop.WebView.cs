@@ -250,6 +250,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_SWIGUpcast")]
             public static extern global::System.IntPtr Upcast(global::System.IntPtr jarg1);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_SetTtsFocus")]
+            public static extern void SetTtsFocus(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_WebViewPageLoadSignal_PageLoadStarted")]
             public static extern global::System.IntPtr NewWebViewPageLoadSignalPageLoadStarted(global::System.Runtime.InteropServices.HandleRef jarg1);
 
