@@ -20,6 +20,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Reflection;
 using System.Text;
+using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.EXaml
 {
@@ -36,6 +37,33 @@ namespace Tizen.NUI.EXaml
             string xamlScript = GetXamlFromPath(path);
             LoadEXaml.Load(view, xamlScript);
             return view;
+        }
+
+        /// Internal used, will never be opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void RemoveEventsInXaml(object eXamlData)
+        {
+            LoadEXaml.RemoveEventsInXaml(eXamlData);
+        }
+
+        /// Internal used, will never be opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void DisposeXamlElements(object view)
+        {
+            if (view is Container container)
+            {
+                for (int i = (int)container.ChildCount - 1; i >= 0; i--)
+                {
+                    var child = container.Children[i];
+
+                    if (child.IsCreateByXaml)
+                    {
+                        child.Unparent();
+                        DisposeXamlElements(child);
+                        child.Dispose();
+                    }
+                }
+            }
         }
 
         /// Internal used, will never be opened.
@@ -80,11 +108,13 @@ namespace Tizen.NUI.EXaml
 
         /// Internal used, will never be opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static T LoadFromEXamlByRelativePath<T>(this T view, string eXamlPath)
+        public static object LoadFromEXamlByRelativePath<T>(this T view, string eXamlPath)
         {
+            object eXamlData = null;
+
             if (null == eXamlPath)
             {
-                return view;
+                return eXamlData;
             }
 
             MainAssembly = view.GetType().Assembly;
@@ -105,14 +135,14 @@ namespace Tizen.NUI.EXaml
                 reader.Close();
                 reader.Dispose();
 
-                LoadEXaml.Load(view, xaml);
+                LoadEXaml.Load(view, xaml, out eXamlData);
             }
             else
             {
-                throw new Exception($"Can't find examl file {eXamlPath}");
+                throw new Exception($"Can't find examl file {likelyResourcePath}");
             }
 
-            return view;
+            return eXamlData;
         }
 
         /// Used for TCT and TC coverage, will never be opened.

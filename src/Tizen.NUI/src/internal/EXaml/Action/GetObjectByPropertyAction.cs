@@ -56,6 +56,7 @@ namespace Tizen.NUI.EXaml
 
         public void Init()
         {
+            childOp = null;
         }
 
         public void OnActive()
