@@ -682,12 +682,6 @@ namespace Tizen.NUI.Components
                 }
             });
 
-            // Menu base style
-            theme.AddStyleWithoutClone("Tizen.NUI.Components.Menu", new ViewStyle()
-            {
-                BackgroundColor = new Color("#EEEFF1"),
-            });
-
             // MenuItem base style
             theme.AddStyleWithoutClone("Tizen.NUI.Components.MenuItem", new ButtonStyle()
             {
