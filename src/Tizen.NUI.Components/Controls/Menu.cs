@@ -387,6 +387,8 @@ namespace Tizen.NUI.Components
             WidthSpecification = LayoutParamPolicies.WrapContent;
             HeightSpecification = LayoutParamPolicies.WrapContent;
 
+            BackgroundColor = Color.Transparent;
+
             // Menu is added to Anchor so Menu should exclude layouting because
             // if Anchor has Layout, then Menu is displayed at an incorrect position.
             ExcludeLayouting = true;
@@ -412,6 +414,9 @@ namespace Tizen.NUI.Components
                 ScrollingDirection = ScrollableBase.Direction.Vertical,
                 ScrollEnabled = true,
                 HideScrollbar = false,
+
+                // FIXME: This color should be in DefaultThemeCommon.cs.
+                BackgroundColor = new Color("#EEEFF1"),
             };
         }
 
