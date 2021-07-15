@@ -61,6 +61,7 @@ namespace Tizen.NUI.EXaml
 
         public void Init()
         {
+            getValueListOp = null;
         }
 
         public void OnActive()

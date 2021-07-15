@@ -45,7 +45,26 @@ namespace Tizen.NUI.EXaml
             try
             {
                 var methodInfo = globalDataList.GatheredMethods[valueIndex];
-                eventInfo.AddEventHandler(instance, methodInfo.CreateDelegate(eventInfo.EventHandlerType, element));
+                Delegate eventDelegate = null;
+
+                if (methodInfo.IsStatic)
+                {
+                    eventDelegate = methodInfo.CreateDelegate(eventInfo.EventHandlerType);
+                }
+                else
+                {
+                    eventDelegate = methodInfo.CreateDelegate(eventInfo.EventHandlerType, element);
+                }
+
+                if (null != eventDelegate)
+                {
+                    eventInfo.AddEventHandler(instance, eventDelegate);
+                    globalDataList.RemoveEventOperations.Add(new RemoveEvent(eventDelegate, instance, eventInfo));
+                }
+                else
+                {
+                    throw new Exception($"Can't create delegate for method {methodInfo.DeclaringType.FullName}.{methodInfo.Name}");
+                }
             }
             catch (ArgumentException ae)
             {

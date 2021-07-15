@@ -40,9 +40,11 @@ namespace Tizen.NUI.EXaml
 
         public void Do()
         {
+            object obj = null;
+
             if (0 == globalDataList.GatheredInstances.Count && null != globalDataList.Root)
             {
-                globalDataList.GatheredInstances.Add(globalDataList.Root);
+                obj = globalDataList.Root;
             }
             else
             {
@@ -54,11 +56,11 @@ namespace Tizen.NUI.EXaml
                 {
                     if (null == xFactoryMethod)
                     {
-                        globalDataList.GatheredInstances.Add(Activator.CreateInstance(type));
+                        obj = Activator.CreateInstance(type);
                     }
                     else
                     {
-                        globalDataList.GatheredInstances.Add(xFactoryMethod.Invoke(null, Array.Empty<object>()));
+                        obj = xFactoryMethod.Invoke(null, Array.Empty<object>());
                     }
                 }
                 else
@@ -78,24 +80,33 @@ namespace Tizen.NUI.EXaml
 
                     if (null == xFactoryMethod)
                     {
-                        globalDataList.GatheredInstances.Add(Activator.CreateInstance(type, paramList.ToArray()));
+                        obj = Activator.CreateInstance(type, paramList.ToArray());
                     }
                     else
                     {
-                        globalDataList.GatheredInstances.Add(xFactoryMethod.Invoke(null, paramList.ToArray()));
+                        obj = xFactoryMethod.Invoke(null, paramList.ToArray());
                     }
                 }
             }
 
-            if (1 == globalDataList.GatheredInstances.Count)
+            if (null != obj)
             {
-                var rootObject = globalDataList.GatheredInstances[0] as BindableObject;
-                if (null != rootObject)
+                globalDataList.GatheredInstances.Add(obj);
+
+                if (obj is BindableObject bindableObject)
                 {
-                    rootObject.IsCreateByXaml = true;
-                    NameScope nameScope = new NameScope();
-                    NameScope.SetNameScope(rootObject, nameScope);
+                    bindableObject.IsCreateByXaml = true;
+
+                    if (1 == globalDataList.GatheredInstances.Count)
+                    {
+                        NameScope nameScope = new NameScope();
+                        NameScope.SetNameScope(bindableObject, nameScope);
+                    }
                 }
+            }
+            else
+            {
+                throw new Exception($"Can't create instance typeIndex:{typeIndex}");
             }
         }
 

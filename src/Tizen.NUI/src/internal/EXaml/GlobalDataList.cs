@@ -40,6 +40,11 @@ namespace Tizen.NUI.EXaml
             get;
         } = new List<Operation>();
 
+        internal List<Operation> RemoveEventOperations
+        {
+            get;
+        } = new List<Operation>();
+
         internal List<object> GatheredInstances
         {
             get;
