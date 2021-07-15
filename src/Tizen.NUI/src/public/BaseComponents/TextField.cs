@@ -1348,7 +1348,11 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        /// This will be released at Tizen.NET API Level 9, so currently this would be used as inhouse API.
+        /// <summary>
+        /// The ellipsis position of the text.
+        /// The ellipsis position type when the text size over the layout size.<br />
+        /// The ellipsis position: End, Start or Middle.<br />
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public EllipsisPosition EllipsisPosition
         {
