@@ -116,7 +116,7 @@ namespace Tizen.NUI.Binding
 
                 if (source is BindableObject bindableObject)
                 {
-                    bindableObject.IsCreateByXaml = true;
+                    bindableObject.IsBinded = true;
                 }
             }
         }
