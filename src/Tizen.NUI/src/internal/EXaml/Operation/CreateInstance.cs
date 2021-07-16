@@ -72,9 +72,9 @@ namespace Tizen.NUI.EXaml
                             paramList[i] = globalDataList.GatheredInstances[instance.Index];
                         }
 
-                        if (paramList[i] is ResourcePathExtension resourcePath)
+                        if (paramList[i] is IMarkupExtension markupExtension)
                         {
-                            paramList[i] = resourcePath.ProvideValue(null);
+                            paramList[i] = markupExtension.ProvideValue(null);
                         }
                     }
 
