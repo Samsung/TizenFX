@@ -243,6 +243,7 @@ namespace Tizen.NUI.Samples
             source.SlidedTrackColor = new Color(0.05f, 0.63f, 0.9f, 1);
             source.Direction = dir;
             source.Focusable = true;
+            source.FocusableInTouch =  true;
             source.MinValue = MIN_VALUE;
             source.MaxValue = MAX_VALUE;
             source.StateChangedEvent += OnStateChanged;
@@ -260,6 +261,7 @@ namespace Tizen.NUI.Samples
             Slider source = new Slider(st);
             source.Direction = dir;
             source.Focusable = true;
+            source.FocusableInTouch = true;
             source.MinValue = MIN_VALUE;
             source.MaxValue = MAX_VALUE;
             source.StateChangedEvent += OnStateChanged;
