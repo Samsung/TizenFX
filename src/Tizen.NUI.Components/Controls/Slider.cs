@@ -190,6 +190,26 @@ namespace Tizen.NUI.Components
             }
         );
 
+        /// <summary>
+        /// IsEnabledProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty IsEnabledProperty = BindableProperty.Create(nameof(IsEnabled), typeof(bool), typeof(Slider), true, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Slider)bindable;
+            if (newValue != null)
+            {
+                bool newEnabled = (bool)newValue;
+                if (instance.isEnabled != newEnabled)
+                {
+                    instance.isEnabled = newEnabled;
+                    instance.Sensitive = newEnabled;
+                    instance.UpdateValue();
+                }
+            }
+        },
+        defaultValueCreator: (bindable) => ((Slider)bindable).isEnabled);
+
         static Slider() { }
 
         /// <summary>
@@ -957,6 +977,22 @@ namespace Tizen.NUI.Components
             }
         }
 
+        /// <summary>
+        /// Flag to decide enable or disable in Slider.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsEnabled
+        {
+            get
+            {
+                return (bool)GetValue(IsEnabledProperty);
+            }
+            set
+            {
+                SetValue(IsEnabledProperty, value);
+            }
+        }
+
         private Extents spaceBetweenTrackAndIndicator
         {
             get
@@ -1105,8 +1141,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool OnKey(Key key)
         {
-            // TODO : Add IsEnabled conditional later.
-            if (null == key)
+            if (!IsEnabled || null == key)
             {
                 return false;
             }
@@ -1408,6 +1443,11 @@ namespace Tizen.NUI.Components
 
         private bool OnTouchEventForTrack(object source, TouchEventArgs e)
         {
+            if (!IsEnabled)
+            {
+                return false;
+            }
+
             PointStateType state = e.Touch.GetState(0);
             if (state == PointStateType.Down)
             {
@@ -1512,7 +1552,18 @@ namespace Tizen.NUI.Components
             isFocused = isFocusedNew;
             isPressed = isPressedNew;
 
-            if (!isFocused && !isPressed)
+            if(!IsEnabled) // Disabled
+            {
+                ControlState = ControlState.Disabled;
+
+                if (stateChangedHandler != null)
+                {
+                    StateChangedArgs args = new StateChangedArgs();
+                    args.CurrentState = (ControlStates)ControlStates.Disabled;
+                    stateChangedHandler(this, args);
+                }
+            }
+            else if (!isFocused && !isPressed)
             {
                 ControlState = ControlState.Normal;
 
