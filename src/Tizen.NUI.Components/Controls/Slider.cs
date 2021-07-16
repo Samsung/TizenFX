@@ -1101,6 +1101,63 @@ namespace Tizen.NUI.Components
             base.OnFocusLost();
         }
 
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool OnKey(Key key)
+        {
+            // TODO : Add IsEnabled conditional later.
+            if (null == key)
+            {
+                return false;
+            }
+
+            if (key.State == Key.StateType.Down)
+            {
+                if ((direction == DirectionType.Horizontal && key.KeyPressedName == "Left") ||
+                    (direction == DirectionType.Vertical && key.KeyPressedName == "Down"))
+                {
+                    if (MinValue < CurrentValue)
+                    {
+                        isPressed = true;
+                        if (IsDiscrete)
+                        {
+                            float value = CurrentValue - discreteValue;
+                            CurrentValue = value < MinValue ? MinValue : value;
+                        }
+                        else
+                        {
+                            CurrentValue -= 1;
+                        }
+                        return true; // Consumed
+                    }
+                }
+                else if ((direction == DirectionType.Horizontal && key.KeyPressedName == "Right") ||
+                         (direction == DirectionType.Vertical && key.KeyPressedName == "Up"))
+                {
+                    if (MaxValue > CurrentValue)
+                    {
+                        isPressed = true;
+                        if (IsDiscrete)
+                        {
+                            float value = CurrentValue + discreteValue;
+                            CurrentValue = value > MaxValue ? MaxValue : value;
+                        }
+                        else
+                        {
+                            CurrentValue += 1;
+                        }
+                        return true; // Consumed
+                    }
+                }
+            }
+            else if (key.State == Key.StateType.Up)
+            {
+                isPressed = false;
+            }
+
+            return false;
+        }
+
         /// <summary>
         /// Apply style to scrollbar.
         /// </summary>
@@ -1170,7 +1227,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Minimum value.
+        /// Gets minimum value for Accessibility.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override double AccessibilityGetMinimum()
@@ -1179,7 +1236,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Current value.
+        /// Gets the current value for Accessibility.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override double AccessibilityGetCurrent()
@@ -1188,7 +1245,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Maximum value.
+        /// Gets maximum value for Accessibility.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override double AccessibilityGetMaximum()
@@ -1197,19 +1254,19 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Current value.
+        /// Sets the current value using Accessibility.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override bool AccessibilitySetCurrent(double value)
         {
-            var f = (float)value;
+            var current = (float)value;
 
-            if (f >= MinValue && f <= MaxValue)
+            if (current >= MinValue && current <= MaxValue)
             {
-                CurrentValue = f;
+                CurrentValue = current;
                 if (sliderValueChangedHandler != null)
                 {
-                    sliderValueChangedHandler(this, new SliderValueChangedEventArgs { CurrentValue = f });
+                    sliderValueChangedHandler(this, new SliderValueChangedEventArgs { CurrentValue = current });
                 }
                 return true;
             }
@@ -1218,7 +1275,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Minimum increment.
+        /// Gets minimum increment for Accessibility.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override double AccessibilityGetMinimumIncrement()
