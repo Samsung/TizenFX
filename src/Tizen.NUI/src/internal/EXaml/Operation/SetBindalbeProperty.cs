@@ -51,9 +51,9 @@ namespace Tizen.NUI.EXaml
                     value = globalDataList.GatheredInstances[valueIndex];
                 }
 
-                if (value is ResourcePathExtension resourcePath)
+                if (value is IMarkupExtension markupExtension)
                 {
-                    value = resourcePath.ProvideValue(null);
+                    value = markupExtension.ProvideValue(null);
                 }
 
                 instance.SetValue(property, value);
