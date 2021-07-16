@@ -68,9 +68,9 @@ namespace Tizen.NUI.EXaml
                 }
             }
 
-            if (value is ResourcePathExtension resourcePath)
+            if (value is IMarkupExtension markupExtension)
             {
-                value = resourcePath.ProvideValue(null);
+                value = markupExtension.ProvideValue(null);
             }
 
             property.SetMethod.Invoke(instance, new object[] { value });
