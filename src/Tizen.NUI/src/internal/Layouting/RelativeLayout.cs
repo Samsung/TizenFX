@@ -233,6 +233,10 @@ namespace Tizen.NUI
             return (ChildrenWidth, ChildrenHeight);
         }
 
+        private Geometry GetHorizontalSpace(View view) => GetHorizontalRelative(view, MeasuredWidth.Size.AsDecimal() - (Padding.Start + Padding.End)).spaceGeometry;
+
+        private Geometry GetVerticalSpace(View view) => GetVerticalRelative(view, MeasuredHeight.Size.AsDecimal() - (Padding.Top + Padding.Bottom)).spaceGeometry;
+
         private Geometry GetHorizontalLayout(View view) => GetHorizontalRelative(view, MeasuredWidth.Size.AsDecimal() - (Padding.Start + Padding.End)).viewGeometry;
 
         private Geometry GetVerticalLayout(View view) => GetVerticalRelative(view, MeasuredHeight.Size.AsDecimal() - (Padding.Top + Padding.Bottom)).viewGeometry;
