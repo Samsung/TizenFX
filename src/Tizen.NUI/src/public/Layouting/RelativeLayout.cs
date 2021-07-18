@@ -60,7 +60,7 @@ namespace Tizen.NUI
         /// RightRelativeOffsetProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty RightRelativeOffsetProperty = BindableProperty.CreateAttached("RightRelativeOffset", typeof(float), typeof(RelativeLayout), 0.0f, propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty RightRelativeOffsetProperty = BindableProperty.CreateAttached("RightRelativeOffset", typeof(float), typeof(RelativeLayout), 1.0f, propertyChanged: OnChildPropertyChanged);
 
         /// <summary>
         /// TopRelativeOffsetProperty
@@ -72,7 +72,7 @@ namespace Tizen.NUI
         /// BottomRelativeOffsetProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BottomRelativeOffsetProperty = BindableProperty.CreateAttached("BottomRelativeOffset", typeof(float), typeof(RelativeLayout), 0.0f, propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty BottomRelativeOffsetProperty = BindableProperty.CreateAttached("BottomRelativeOffset", typeof(float), typeof(RelativeLayout), 1.0f, propertyChanged: OnChildPropertyChanged);
 
         /// <summary>
         /// HorizontalAlignmentProperty
