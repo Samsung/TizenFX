@@ -249,7 +249,7 @@ namespace Tizen.NUI.Devel.Tests
                 testingTarget.Dispose();
                 testingTarget = null;
                 tlog.Debug(tag, $"BuilderLoadFromFileParseFailed END (OK)");
-                Assert.Fail("Caught InvalidOperationException: Failed!");
+                Assert.Pass("Caught InvalidOperationException: Passed!");
             }
         }
 
