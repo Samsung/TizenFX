@@ -49,6 +49,20 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// The constructor of Rotation which describes minimum rotation to align v0 with v1.
+        /// </summary>
+        /// <param name="v0">The first normalized vector.</param>
+        /// <param name="v1">The second normalized vector.</param>
+        /// <remarks>
+        /// v0 and v1 should be normalized.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Rotation(Vector3 v0, Vector3 v1) : this(Interop.Rotation.NewRotation2(Vector3.getCPtr(v0), Vector3.getCPtr(v1)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// (0.0f,0.0f,0.0f,1.0f).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
