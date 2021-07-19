@@ -651,7 +651,6 @@ namespace Tizen.NUI.Components
             }
 
             TransitionSet newTransitionSet = new TransitionSet();
-            sameTaggedViewPair.Reverse();
             foreach(KeyValuePair<View, View> pair in sameTaggedViewPair)
             {
                 TransitionItem pairTransition = transition.CreateTransition(pair.Key, pair.Value);
