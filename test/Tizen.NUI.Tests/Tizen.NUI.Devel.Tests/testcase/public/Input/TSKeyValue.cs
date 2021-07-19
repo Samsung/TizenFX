@@ -36,10 +36,7 @@ namespace Tizen.NUI.Devel.Tests
         public void KeyValueOriginalKey()
         {
             tlog.Debug(tag, $"KeyValueOriginalKey START");
-            KeyValue a1 = new KeyValue
-            {
-                OriginalKey = null
-            };
+            KeyValue a1 = new KeyValue();
             a1.OriginalKey = 10;
 
             a1.Dispose();

@@ -342,7 +342,7 @@ namespace Tizen.NUI.Devel.Tests
                 tlog.Debug(tag, e.Message.ToString());
                 testingTarget.Dispose();
                 tlog.Debug(tag, $"ItemIdCollectionCopyToWithNullArray END (OK)");
-                Assert.Fail("Caught ArgumentNullException : Failed!");
+                Assert.Pass("Caught ArgumentNullException : Passed!");
             }
         }
 
@@ -374,7 +374,7 @@ namespace Tizen.NUI.Devel.Tests
                 tlog.Debug(tag, e.Message.ToString());
                 testingTarget.Dispose();
                 tlog.Debug(tag, $"ItemIdCollectionCopyToWithIndexLessThan0 END (OK)");
-                Assert.Fail("Caught ArgumentOutOfRangeException : Failed!");
+                Assert.Pass("Caught ArgumentOutOfRangeException : Passed!");
             }
         }
 
@@ -406,7 +406,7 @@ namespace Tizen.NUI.Devel.Tests
                 tlog.Debug(tag, e.Message.ToString());
                 testingTarget.Dispose();
                 tlog.Debug(tag, $"ItemIdCollectionCopyToWithArrayIndexLessThan0 END (OK)");
-                Assert.Fail("Caught ArgumentOutOfRangeException : Failed!");
+                Assert.Pass("Caught ArgumentOutOfRangeException : Passed!");
             }
         }
 
@@ -438,7 +438,7 @@ namespace Tizen.NUI.Devel.Tests
                 tlog.Debug(tag, e.Message.ToString());
                 testingTarget.Dispose();
                 tlog.Debug(tag, $"ItemIdCollectionCopyToWithCountLessThan0 END (OK)");
-                Assert.Fail("Caught ArgumentOutOfRangeException : Failed!");
+                Assert.Pass("Caught ArgumentOutOfRangeException : Passed!");
             }
         }
 
