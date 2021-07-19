@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<base:View x:Class="NUITizenGallery.ScrollViewTest1Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:base="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+  xmlns:comp="clr-namespace:Tizen.NUI.Components;assembly=Tizen.NUI.Components"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+           BackgroundColor="White"
+           PositionUsesPivotPoint="True" 
+           ParentOrigin="Center"
+           PivotPoint="Center"          
+           WidthResizePolicy="FillToParent"
+           HeightResizePolicy="FillToParent">
+
+    <base:View x:Name="rootView" HeightResizePolicy="FillToParent" >
+
+        <base:View.Layout>
+            <LinearLayout LinearOrientation="Vertical" LinearAlignment="Begin" CellPadding="10, 10"/>
+        </base:View.Layout>
+
+        <base:View x:Name="lblView">
+            <comp:ScrollableBase x:Name="Scroller" ScrollingDirection="Vertical" HideScrollbar="false" >
+                <comp:ScrollableBase.Layout>
+                    <LinearLayout LinearOrientation="Vertical" CellPadding="10, 10" LinearAlignment="CenterHorizontal"/>
+                </comp:ScrollableBase.Layout>
+                <comp:Button x:Name="btn" Text="Test ScrollTo" Size2D="700,100" />
+            </comp:ScrollableBase>
+        </base:View>
+    </base:View>
+
+</base:View>

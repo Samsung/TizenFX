@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<comp:ContentPage x:Class="NUITizenGallery.ToolbarItemTest1Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:base="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:comp="clr-namespace:Tizen.NUI.Components;assembly=Tizen.NUI.Components"
+  BackgroundColor="White"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}" >
+
+    <comp:ContentPage.AppBar>
+        <comp:AppBar x:Name="appBar"
+                     Title="ToolbarItemTest1Page"/>
+    </comp:ContentPage.AppBar>
+
+    <comp:ContentPage.Content>
+        <View WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+              HeightSpecification="{Static LayoutParamPolicies.MatchParent}" >
+
+            <View.Layout>
+                <LinearLayout LinearOrientation="Vertical" CellPadding="10,10" LinearAlignment="CenterHorizontal"/>
+            </View.Layout>
+
+            <TextLabel Text="ToolbarItemTest" />
+
+            <Button x:Name="addPage1Button"
+                Text="Add Page 1"/>
+
+            <Button x:Name="addPage2Button"
+                Text="Add Page 2"/>
+
+            <Button x:Name="addPage3Button"
+                Text="Add Page 3"/>
+
+            <Button x:Name="addPage4Button"
+                Text="Add Page 4"/>
+
+        </View>
+
+    </comp:ContentPage.Content>
+
+
+</comp:ContentPage>

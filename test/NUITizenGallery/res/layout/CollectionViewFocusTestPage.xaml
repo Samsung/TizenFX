@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<base:View x:Class="NUITizenGallery.CollectionViewFocusTestPage"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:base="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+  xmlns:comp="clr-namespace:Tizen.NUI.Components;assembly=Tizen.NUI.Components"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    PositionUsesPivotPoint="True" ParentOrigin="Center" 
+    PivotPoint="Center" WidthResizePolicy="FillToParent" 
+    HeightResizePolicy="FillToParent" BackgroundColor="#FFFFFF">
+
+    <!-- <base:View.Layout>
+        <LinearLayout LinearOrientation="Vertical" CellPadding="40,0" LinearAlignment="Center"/>
+    </base:View.Layout> -->
+
+    <comp:ScrollableBase x:Name="Scroller" ScrollingDirection="Horizontal" Size2D="720, 900">
+      <comp:ScrollableBase.Layout>
+        <LinearLayout LinearOrientation="Horizontal" LinearAlignment="Center" CellPadding="120,0"/>
+      </comp:ScrollableBase.Layout>
+    </comp:ScrollableBase>
+
+</base:View>

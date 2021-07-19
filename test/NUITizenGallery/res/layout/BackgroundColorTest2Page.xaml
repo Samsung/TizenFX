@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<b:View x:Class="NUITizenGallery.BackgroundColorTest2Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:b="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+  xmlns:nui="clr-namespace:Tizen.NUI.Components;assembly=Tizen.NUI.Components"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  BackgroundColor="Yellow"
+  HeightResizePolicy="FillToParent"
+  WidthResizePolicy="FillToParent"
+  ParentOrigin="Center" 
+  PivotPoint="Center"
+  PositionUsesPivotPoint="true">
+
+    <View.Layout>
+        <LinearLayout LinearOrientation="Vertical" LinearAlignment="Begin" CellPadding="10,0"/>
+    </View.Layout>
+
+    <View x:Name="layout1"
+           WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+           BackgroundColor="Red"
+           Weight="1.0"
+           Opacity="0.5">
+
+        <Button x:Name="button1"
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                PointSize="6"
+                Text="Change Layout 1 Background Color"
+                TextColor="White"
+                BackgroundColor="Black"/>
+
+    </View>
+
+    <View x:Name="layout2"
+          WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+          BackgroundColor="Green"
+          Weight="1.0"
+          Opacity="0.5">
+
+        <Button x:Name="button2"
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                PointSize="6"
+                Text="Change Layout 2 Background Color &amp; Opacity"
+                TextColor="White"
+                BackgroundColor="#800000"/>
+
+    </View>
+
+</b:View>

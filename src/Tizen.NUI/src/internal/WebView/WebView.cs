@@ -96,13 +96,13 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler<WebViewConsoleMessageReceivedEventArgs> consoleMessageReceivedEventHandler;
         private WebViewConsoleMessageReceivedCallbackDelegate consoleMessageReceivedCallback;
 
-        private readonly WebViewContextMenuCustomizedSignal contextMenuCustomizedSignal;
-        private EventHandler<WebViewContextMenuCustomizedEventArgs> contextMenuCustomizedEventHandler;
-        private WebViewContextMenuCustomizedCallbackDelegate contextMenuCustomizedCallback;
+        private readonly WebViewContextMenuShownSignal contextMenuShownSignal;
+        private EventHandler<WebViewContextMenuShownEventArgs> contextMenuShownEventHandler;
+        private WebViewContextMenuShownCallbackDelegate contextMenuShownCallback;
 
-        private readonly WebViewContextMenuItemSelectedSignal contextMenuItemSelectedSignal;
-        private EventHandler<WebViewContextMenuItemSelectedEventArgs> contextMenuItemSelectedEventHandler;
-        private WebViewContextMenuItemSelectedCallbackDelegate contextMenuItemSelectedCallback;
+        private readonly WebViewContextMenuHiddenSignal contextMenuHiddenSignal;
+        private EventHandler<WebViewContextMenuHiddenEventArgs> contextMenuHiddenEventHandler;
+        private WebViewContextMenuHiddenCallbackDelegate contextMenuHiddenCallback;
 
         /// <summary>
         /// Creates a WebView.
@@ -160,8 +160,8 @@ namespace Tizen.NUI.BaseComponents
             httpAuthRequestedSignal = new WebViewHttpAuthRequestedSignal(Interop.WebView.NewWebViewHttpAuthHandlerSignalHttpAuthHandler(SwigCPtr));
             httpRequestInterceptedSignal = new WebViewHttpRequestInterceptedSignal(Interop.WebView.NewWebViewRequestInterceptorSignalRequestInterceptor(SwigCPtr));
             consoleMessageReceivedSignal = new WebViewConsoleMessageReceivedSignal(Interop.WebView.NewWebViewConsoleMessageSignalConsoleMessage(SwigCPtr));
-            contextMenuCustomizedSignal = new WebViewContextMenuCustomizedSignal(Interop.WebView.NewWebViewContextMenuCustomizedSignalContextMenuCustomized(SwigCPtr));
-            contextMenuItemSelectedSignal = new WebViewContextMenuItemSelectedSignal(Interop.WebView.NewWebViewContextMenuItemSelectedSignalContextMenuItemSelected(SwigCPtr));
+            contextMenuShownSignal = new WebViewContextMenuShownSignal(Interop.WebView.NewWebViewContextMenuShownSignalContextMenuShown(SwigCPtr));
+            contextMenuHiddenSignal = new WebViewContextMenuHiddenSignal(Interop.WebView.NewWebViewContextMenuHiddenSignalContextMenuHidden(SwigCPtr));
 
             screenshotAcquiredProxyCallback = OnScreenshotAcquired;
             hitTestFinishedProxyCallback = OnHitTestFinished;
@@ -202,8 +202,8 @@ namespace Tizen.NUI.BaseComponents
                 httpAuthRequestedSignal.Dispose();
                 httpRequestInterceptedSignal.Dispose();
                 consoleMessageReceivedSignal.Dispose();
-                contextMenuCustomizedSignal.Dispose();
-                contextMenuItemSelectedSignal.Dispose();
+                contextMenuShownSignal.Dispose();
+                contextMenuHiddenSignal.Dispose();
 
                 BackForwardList.Dispose();
                 Context.Dispose();
@@ -318,10 +318,10 @@ namespace Tizen.NUI.BaseComponents
         private delegate void WebViewConsoleMessageReceivedCallbackDelegate(IntPtr data, IntPtr message);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void WebViewContextMenuCustomizedCallbackDelegate(IntPtr data, IntPtr menu);
+        private delegate void WebViewContextMenuShownCallbackDelegate(IntPtr data, IntPtr menu);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void WebViewContextMenuItemSelectedCallbackDelegate(IntPtr data, IntPtr item);
+        private delegate void WebViewContextMenuHiddenCallbackDelegate(IntPtr data, IntPtr item);
 
         /// <summary>
         /// Event for the PageLoadStarted signal which can be used to subscribe or unsubscribe the event handler.<br />
@@ -688,53 +688,53 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Event for the ContextMenuCustomized signal which can be used to subscribe or unsubscribe the event handler.<br />
-        /// This signal is emitted when context menu is customized.<br />
+        /// Event for the ContextMenuShown signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted when context menu is shown.<br />
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<WebViewContextMenuCustomizedEventArgs> ContextMenuCustomized
+        public event EventHandler<WebViewContextMenuShownEventArgs> ContextMenuShown
         {
             add
             {
-                if (contextMenuCustomizedEventHandler == null)
+                if (contextMenuShownEventHandler == null)
                 {
-                    contextMenuCustomizedCallback = OnContextMenuCustomized;
-                    contextMenuCustomizedSignal.Connect(contextMenuCustomizedCallback);
+                    contextMenuShownCallback = OnContextMenuShown;
+                    contextMenuShownSignal.Connect(contextMenuShownCallback);
                 }
-                contextMenuCustomizedEventHandler += value;
+                contextMenuShownEventHandler += value;
             }
             remove
             {
-                contextMenuCustomizedEventHandler -= value;
-                if (contextMenuCustomizedEventHandler == null && contextMenuCustomizedCallback != null)
+                contextMenuShownEventHandler -= value;
+                if (contextMenuShownEventHandler == null && contextMenuShownCallback != null)
                 {
-                    contextMenuCustomizedSignal.Disconnect(contextMenuCustomizedCallback);
+                    contextMenuShownSignal.Disconnect(contextMenuShownCallback);
                 }
             }
         }
 
         /// <summary>
-        /// Event for the ContextMenuItemSelected signal which can be used to subscribe or unsubscribe the event handler.<br />
-        /// This signal is emitted when context menu item is selected.<br />
+        /// Event for the ContextMenuHidden signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted when context menu item is hidden.<br />
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<WebViewContextMenuItemSelectedEventArgs> ContextMenuItemSelected
+        public event EventHandler<WebViewContextMenuHiddenEventArgs> ContextMenuHidden
         {
             add
             {
-                if (contextMenuItemSelectedEventHandler == null)
+                if (contextMenuHiddenEventHandler == null)
                 {
-                    contextMenuItemSelectedCallback = OnContextMenuItemSelected;
-                    contextMenuItemSelectedSignal.Connect(contextMenuItemSelectedCallback);
+                    contextMenuHiddenCallback = OnContextMenuHidden;
+                    contextMenuHiddenSignal.Connect(contextMenuHiddenCallback);
                 }
-                contextMenuItemSelectedEventHandler += value;
+                contextMenuHiddenEventHandler += value;
             }
             remove
             {
-                contextMenuItemSelectedEventHandler -= value;
-                if (contextMenuItemSelectedEventHandler == null && contextMenuItemSelectedCallback != null)
+                contextMenuHiddenEventHandler -= value;
+                if (contextMenuHiddenEventHandler == null && contextMenuHiddenCallback != null)
                 {
-                    contextMenuItemSelectedSignal.Disconnect(contextMenuItemSelectedCallback);
+                    contextMenuHiddenSignal.Disconnect(contextMenuHiddenCallback);
                 }
             }
         }
@@ -2135,14 +2135,14 @@ namespace Tizen.NUI.BaseComponents
             consoleMessageReceivedEventHandler?.Invoke(this, new WebViewConsoleMessageReceivedEventArgs(new WebConsoleMessage(message, false)));
         }
 
-        private void OnContextMenuCustomized(IntPtr data, IntPtr menu)
+        private void OnContextMenuShown(IntPtr data, IntPtr menu)
         {
-            contextMenuCustomizedEventHandler?.Invoke(this, new WebViewContextMenuCustomizedEventArgs(new WebContextMenu(menu, false)));
+            contextMenuShownEventHandler?.Invoke(this, new WebViewContextMenuShownEventArgs(new WebContextMenu(menu, false)));
         }
 
-        private void OnContextMenuItemSelected(IntPtr data, IntPtr item)
+        private void OnContextMenuHidden(IntPtr data, IntPtr menu)
         {
-            contextMenuItemSelectedEventHandler?.Invoke(this, new WebViewContextMenuItemSelectedEventArgs(new WebContextMenuItem(item, false)));
+            contextMenuHiddenEventHandler?.Invoke(this, new WebViewContextMenuHiddenEventArgs(new WebContextMenu(menu, false)));
         }
 
         private void OnHitTestFinished(IntPtr test)

@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<base:View x:Class="NUITizenGallery.FrameLayoutTest1Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:base="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  BackgroundColor="White"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}" >
+
+    <View.Layout>
+        <RelativeLayout />
+    </View.Layout>
+
+    <View x:Name="topLeft"
+          BackgroundColor="#FF66FF"
+          RelativeLayout.RightRelativeOffset="0.5"
+          RelativeLayout.BottomRelativeOffset="0.5"
+          RelativeLayout.FillHorizontal="True"
+          RelativeLayout.FillVertical="True"/>
+
+    <View x:Name="topRight"
+          BackgroundColor="Blue"
+          RelativeLayout.LeftRelativeOffset="0.5"
+          RelativeLayout.RightRelativeOffset="1.0"
+          RelativeLayout.BottomRelativeOffset="0.5"
+          RelativeLayout.FillHorizontal="True"
+          RelativeLayout.FillVertical="True"/>
+
+    <View x:Name="bottomRight"
+          BackgroundColor="Red"
+          RelativeLayout.RightRelativeOffset="0.5"
+          RelativeLayout.BottomRelativeOffset="1.0"
+          RelativeLayout.TopRelativeOffset="0.5"
+          RelativeLayout.FillHorizontal="True"
+          RelativeLayout.FillVertical="True"/>
+
+    <View x:Name="bottomLeft"
+          BackgroundColor="Yellow"
+          RelativeLayout.LeftRelativeOffset="0.5"
+          RelativeLayout.RightRelativeOffset="1.0"
+          RelativeLayout.BottomRelativeOffset="1.0"
+          RelativeLayout.TopRelativeOffset="0.5"
+          RelativeLayout.FillHorizontal="True"
+          RelativeLayout.FillVertical="True"/>
+
+    <View x:Name="parentBox"
+          BackgroundColor="1.0, 0.3, 0.4, 0.3"
+          RelativeLayout.LeftRelativeOffset="0.25"
+          RelativeLayout.RightRelativeOffset="0.75"
+          RelativeLayout.TopRelativeOffset="0.25"
+          RelativeLayout.BottomRelativeOffset="0.75"
+          RelativeLayout.FillHorizontal="True"
+          RelativeLayout.FillVertical="True"/>
+
+    <TextLabel x:Name="label"
+               Text="I'm button &amp; Center Label"
+               MultiLine="True"
+               LineWrapMode="Word"
+               HorizontalAlignment="Center"
+               RelativeLayout.LeftRelativeOffset="0.25"
+               RelativeLayout.RightRelativeOffset="0.75"
+               RelativeLayout.TopRelativeOffset="0.9"
+               RelativeLayout.BottomRelativeOffset="1.0"
+               RelativeLayout.FillHorizontal="True"
+               RelativeLayout.FillVertical="True"/>
+
+    <Button x:Name="button"
+            RelativeLayout.LeftRelativeOffset="0.033"
+            RelativeLayout.RightRelativeOffset="0.967"
+            RelativeLayout.TopRelativeOffset="0.25"
+            RelativeLayout.BottomRelativeOffset="0.75"
+            RelativeLayout.FillHorizontal="True"
+            RelativeLayout.FillVertical="True"
+            Text="I'm centered Button"
+            TextAlignment="Center"
+            PointSize="8"/>
+
+</base:View>

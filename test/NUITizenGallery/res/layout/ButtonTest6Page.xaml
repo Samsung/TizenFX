@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<comp:ContentPage x:Class="NUITizenGallery.ButtonTest6Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:base="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+  xmlns:comp="clr-namespace:Tizen.NUI.Components;assembly=Tizen.NUI.Components"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  HeightResizePolicy="FillToParent"
+  WidthResizePolicy="FillToParent"
+  ParentOrigin="Center"
+  PivotPoint="Center"
+  PositionUsesPivotPoint="true"
+  BackgroundColor="White">
+
+    <comp:ContentPage.AppBar>
+        <comp:AppBar x:Name="appBar"
+                    Title="ButtonTest6"/>
+    </comp:ContentPage.AppBar>
+
+    <comp:ContentPage.Content>
+      <base:View x:Name="ContentView"
+        WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+        HeightSpecification="{Static LayoutParamPolicies.MatchParent}" >
+
+        <View.Layout>
+            <LinearLayout LinearOrientation="Vertical" LinearAlignment="Center" CellPadding="60,60"/>
+        </View.Layout>
+
+        <View WidthResizePolicy="FillToParent">
+
+            <comp:Button x:Name="button1"
+                            WidthResizePolicy="FillToParent"
+                            SizeHeight="70"
+                            BackgroundColor="#3db9cc"
+                            PointSize="5"
+                            Opacity="1"
+                            Text="BackgroundColor"/>
+
+        </View>
+
+        <View Weight="1.0">
+            <View.Layout>
+                <LinearLayout LinearOrientation="Horizontal" LinearAlignment="Center" CellPadding="30,30"/>
+            </View.Layout>
+
+            <TextLabel x:Name="redText"
+                        HorizontalAlignment="Center"
+                        SizeWidth="100"
+                        SizeHeight="180"
+                        PointSize="8"
+                        BackgroundColor="Red"
+                        Text="RED"
+                        />
+            <TextLabel x:Name="greenText"
+                        HorizontalAlignment="Center"
+                        SizeWidth="100"
+                        SizeHeight="180"
+                        PointSize="8"
+                        BackgroundColor="Green"
+                        Text="GREEN"
+                        />
+
+            <TextLabel x:Name="grayText"
+                        HorizontalAlignment="Center"
+                        SizeWidth="100"
+                        SizeHeight="180"
+                        PointSize="8"
+                        BackgroundColor="#8C8C8C"
+                        Text="GRAY"
+                        />
+        </View>
+
+      </base:View>
+    </comp:ContentPage.Content>
+</comp:ContentPage>
+

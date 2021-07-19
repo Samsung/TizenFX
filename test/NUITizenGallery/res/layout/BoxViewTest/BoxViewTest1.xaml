@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<b:View x:Class="NUITizenGallery.BoxViewTest1"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:b="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  HeightResizePolicy="FillToParent" 
+  WidthResizePolicy="FillToParent" 
+  ParentOrigin="Center" 
+  PivotPoint="Center"
+  PositionUsesPivotPoint="true"
+  BackgroundColor="White">
+
+    <View.Layout>
+        <LinearLayout LinearOrientation="Vertical" LinearAlignment="Top" CellPadding="10,10" />
+    </View.Layout>
+
+    <View WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+          SizeHeight="80"
+          BackgroundColor="1,0,0,1"
+          />
+
+    <View WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+          SizeHeight="80"
+          BackgroundColor="0,1,0,1"
+          />
+
+    <View WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+          SizeHeight="80"
+          BackgroundColor="0,0,1,1"
+          />
+    
+</b:View>

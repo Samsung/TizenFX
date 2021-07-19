@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<base:View x:Class="NUITizenGallery.IndicatorViewTest1Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:base="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+  xmlns:comp="clr-namespace:Tizen.NUI.Components;assembly=Tizen.NUI.Components"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    PositionUsesPivotPoint="True" ParentOrigin="Center"
+    PivotPoint="Center" WidthResizePolicy="FillToParent"
+    HeightResizePolicy="FillToParent" BackgroundColor="#FFFFFF">
+
+    <comp:ScrollableBase x:Name="Scroller" SnapToPage="true" ScrollingDirection="Horizontal" WidthSpecification="{Static LayoutParamPolicies.MatchParent}"  HeightSpecification="{Static LayoutParamPolicies.MatchParent}" >
+      <comp:ScrollableBase.Layout>
+        <LinearLayout LinearOrientation="Horizontal" LinearAlignment="Center"/>
+      </comp:ScrollableBase.Layout>
+
+      <base:View x:Name="Page0" Size="{Binding Source={x:Static Window.Instance}, Path=WindowSize }" BackgroundColor="#ff0000">
+        <base:TextLabel Text="Page 0" PositionUsesPivotPoint="True" ParentOrigin="Center" PivotPoint="Center"/>
+      </base:View>
+      <base:View x:Name="Page1" Size="{Binding Source={x:Static Window.Instance}, Path=WindowSize }" BackgroundColor="#00ff00">
+        <base:TextLabel Text="Page 1" PositionUsesPivotPoint="True" ParentOrigin="Center" PivotPoint="Center"/>
+      </base:View>
+      <base:View x:Name="Page2" Size="{Binding Source={x:Static Window.Instance}, Path=WindowSize }" BackgroundColor="#0000ff">
+        <base:TextLabel Text="Page 2" PositionUsesPivotPoint="True" ParentOrigin="Center" PivotPoint="Center"/>
+      </base:View>
+      <base:View x:Name="Page3" Size="{Binding Source={x:Static Window.Instance}, Path=WindowSize }" BackgroundColor="#ff00ff">
+        <base:TextLabel Text="Page 3" PositionUsesPivotPoint="True" ParentOrigin="Center" PivotPoint="Center"/>
+      </base:View>
+      <base:View x:Name="Page4" Size="{Binding Source={x:Static Window.Instance}, Path=WindowSize }" BackgroundColor="#00ff00">
+        <base:TextLabel Text="Page 4" PositionUsesPivotPoint="True" ParentOrigin="Center" PivotPoint="Center"/>
+      </base:View>
+    </comp:ScrollableBase>
+
+    <comp:Pagination x:Name="Index" Size2D="186,50"/>
+</base:View>

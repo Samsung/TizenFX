@@ -11,7 +11,7 @@ namespace Tizen.NUI.Devel.Tests
     using tlog = Tizen.Log;
 
     [TestFixture]
-    [Description("public/Common/PixelData")]
+    [Description("public/Images/PixelData")]
     public class PublicPixelDataTest
     {
         private const string tag = "NUITEST";
@@ -78,14 +78,14 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("PixelData Url.")]
-        [Property("SPEC", "Tizen.NUI.PixelData.Url A")]
+        [Description("PixelData GenerateUrl.")]
+        [Property("SPEC", "Tizen.NUI.PixelData.GenerateUrl M")]
         [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
+        [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void PixelDataUrl()
         {
-            tlog.Debug(tag, $"PixelDataUrl START");
+            tlog.Debug(tag, $"PixelDataGenerateUrl START");
 
             byte[] buffer = new byte[1024];
 
@@ -93,12 +93,12 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Can't create success object PixelData");
             Assert.IsInstanceOf<PixelData>(testingTarget, "Should be an instance of PixelData type.");
 
-            var result = testingTarget.Url;
+            var result = testingTarget.GenerateUrl();
             Assert.IsNotNull(result);
 
             buffer = null;
             testingTarget.Dispose();
-            tlog.Debug(tag, $"PixelDataUrl END (OK)");
+            tlog.Debug(tag, $"PixelDataGenerateUrl END (OK)");
         }
 
         [Test]

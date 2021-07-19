@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<b:View x:Class="NUITizenGallery.FlexTest1Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:b="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+  xmlns:nui="clr-namespace:Tizen.NUI.Components;assembly=Tizen.NUI.Components"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <b:View x:Name="rootView"
+            HeightResizePolicy="FillToParent"
+            WidthResizePolicy="FillToParent"
+            BackgroundColor="#ffffff">
+        <View.Layout>
+            <FlexLayout Direction="Column" Justification="FlexStart" Alignment="FlexStart"/>
+            
+        </View.Layout>
+
+
+        <b:TextLabel x:Name="text1"
+                     SizeWidth="720"
+                     SizeHeight="120"
+                     PointSize="8"
+                     Text="label1"
+                     BackgroundColor="#ff0000"
+                     />
+
+        <b:TextLabel x:Name="text2"
+                     SizeWidth="720"
+                     SizeHeight="100"
+                     PointSize="8"
+                     Text="label2"
+                     BackgroundColor="#aaaaaa"
+                     />
+
+        <b:TextLabel x:Name="text3"
+                     SizeWidth="720"
+                     SizeHeight="80"
+                     PointSize="8"
+                     Text="label3"
+                     BackgroundColor="#ffff00"
+                     />
+
+        <b:TextLabel x:Name="text4"
+                     SizeWidth="720"
+                     SizeHeight="60"
+                     PointSize="8"
+                     Text="label4"
+                     BackgroundColor="#00aaff"
+                     />
+
+        <b:TextLabel x:Name="text5"
+                     SizeWidth="720"
+                     SizeHeight="40"
+                     PointSize="8"
+                     Text="label5"
+                     BackgroundColor="#00ffff"
+                     />
+    </b:View>
+</b:View>
+
