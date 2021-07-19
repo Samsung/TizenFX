@@ -21,6 +21,9 @@ namespace Tizen.NUI
     {
         internal static partial class WebCertificate
         {
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WebCertificate")]
+            public static extern void DeleteWebCertificate(global::System.Runtime.InteropServices.HandleRef jarg1);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebCertificate_Allow")]
             public static extern void Allow(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
 

@@ -21,6 +21,9 @@ namespace Tizen.NUI
     {
         internal static partial class WebFormRepostPolicyDecisionMaker
         {
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WebFormRepostDecision")]
+            public static extern void DeleteWebFormRepostDecision(global::System.Runtime.InteropServices.HandleRef jarg1);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebFormRepostDecision_Reply")]
             public static extern void Reply(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
         }

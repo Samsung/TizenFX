@@ -29,6 +29,14 @@ namespace Tizen.NUI
         {
         }
 
+        /// This will not be public opened.
+        /// <param name="swigCPtr"></param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.WebHttpAuthHandler.DeleteWebHttpAuthHandler(swigCPtr);
+        }
+
         /// <summary>
         /// Gets the realm of authentication challenge received.
         /// </summary>

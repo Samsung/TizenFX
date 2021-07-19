@@ -30,6 +30,14 @@ namespace Tizen.NUI
         {
         }
 
+        /// This will not be public opened.
+        /// <param name="swigCPtr"></param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.WebConsoleMessage.DeleteWebConsoleMessage(swigCPtr);
+        }
+
         /// <summary>
         /// Enumeration for level of log severity.
         /// </summary>
