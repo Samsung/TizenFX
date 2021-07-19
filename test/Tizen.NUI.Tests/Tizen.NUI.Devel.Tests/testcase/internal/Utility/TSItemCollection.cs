@@ -361,7 +361,7 @@ namespace Tizen.NUI.Devel.Tests
                 tlog.Debug(tag, e.Message.ToString());
                 testingTarget.Dispose();
                 tlog.Debug(tag, $"ItemCollectionCopyToWithNullArray END (OK)");
-                Assert.Fail("Caught ArgumentNullException: Failed!");
+                Assert.Pass("Caught ArgumentNullException: Passed!");
             }
         }
 
@@ -392,7 +392,7 @@ namespace Tizen.NUI.Devel.Tests
                 tlog.Debug(tag, e.Message.ToString());
                 testingTarget.Dispose();
                 tlog.Debug(tag, $"ItemCollectionCopyToWithArrayIndexLessThan0 END (OK)");
-                Assert.Fail("Caught ArgumentOutOfRangeException: Failed!");
+                Assert.Pass("Caught ArgumentOutOfRangeException: Passed!");
             }
         }
 
@@ -424,7 +424,7 @@ namespace Tizen.NUI.Devel.Tests
                 tlog.Debug(tag, e.Message.ToString());
                 testingTarget.Dispose();
                 tlog.Debug(tag, $"ItemCollectionCopyToWithLargerElements END (OK)");
-                Assert.Fail("Caught ArgumentException: Failed!");
+                Assert.Pass("Caught ArgumentException: Passed!");
             }
         }
 
@@ -455,7 +455,7 @@ namespace Tizen.NUI.Devel.Tests
                 tlog.Debug(tag, e.Message.ToString());
                 testingTarget.Dispose();
                 tlog.Debug(tag, $"ItemCollectionCopyToWithIndexLessThan0 END (OK)");
-                Assert.Fail("Caught ArgumentOutOfRangeException: Failed!");
+                Assert.Pass("Caught ArgumentOutOfRangeException: Passed!");
             }
         }
 
@@ -486,7 +486,7 @@ namespace Tizen.NUI.Devel.Tests
                 tlog.Debug(tag, e.Message.ToString());
                 testingTarget.Dispose();
                 tlog.Debug(tag, $"ItemCollectionCopyToWithCountLessThan0 END (OK)");
-                Assert.Fail("Caught ArgumentOutOfRangeException: Failed!");
+                Assert.Pass("Caught ArgumentOutOfRangeException: Passed!");
             }
         }
 

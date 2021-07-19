@@ -1063,8 +1063,16 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.IsNotNull(testingTarget, "Can't create success object CaptureSignal");
                 Assert.IsInstanceOf<CaptureSignal>(testingTarget, "Should be an instance of CaptureSignal type.");
 
-                var result = testingTarget.Empty();
-                Assert.IsTrue(result);
+                try
+                {
+                    var result = testingTarget.Empty();
+                    tlog.Debug(tag, "Empty : " +  result);
+                }
+                catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught Exception : Failed!");
+                }
 
                 testingTarget.Dispose();
             }

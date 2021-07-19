@@ -66,10 +66,10 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Can't create success object ScrollView");
             Assert.IsInstanceOf<ScrollView>(testingTarget, "Should be an instance of ScrollView type.");
 
-            testingTarget.WrapEnabled = true;
+            testingTarget.PanningEnabled = true;
             Assert.AreEqual(true, testingTarget.PanningEnabled);
 
-            testingTarget.WrapEnabled = false;
+            testingTarget.PanningEnabled = false;
             Assert.AreEqual(false, testingTarget.PanningEnabled);
 
             testingTarget.Dispose();
