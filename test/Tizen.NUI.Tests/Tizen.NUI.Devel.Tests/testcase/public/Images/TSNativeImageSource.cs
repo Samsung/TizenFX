@@ -113,8 +113,15 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Can't create success object NativeImageSource");
             Assert.IsInstanceOf<NativeImageSource>(testingTarget, "Should be an instance of NativeImageSource type.");
 
-            var result = testingTarget.ReleaseBuffer();
-            Assert.IsTrue(result);
+            try
+            {
+                testingTarget.ReleaseBuffer();
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"NativeImageSourceReleaseBuffer END (OK)");
