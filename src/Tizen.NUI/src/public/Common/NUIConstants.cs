@@ -884,6 +884,31 @@ namespace Tizen.NUI
     }
 
     /// <summary>
+    /// An enum of ellipsis position.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum EllipsisPosition
+    {
+        /// <summary>
+        /// ellipsis position at end.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        End,
+
+        /// <summary>
+        /// ellipsis position at start.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Start,
+
+        /// <summary>
+        /// ellipsis position in middle.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Middle
+    }
+
+    /// <summary>
     /// Enumeration type for the font's slant.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>

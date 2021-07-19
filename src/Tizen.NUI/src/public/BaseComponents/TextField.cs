@@ -1349,6 +1349,25 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The ellipsis position of the text.
+        /// The ellipsis position type when the text size over the layout size.<br />
+        /// The ellipsis position: End, Start or Middle.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public EllipsisPosition EllipsisPosition
+        {
+            get
+            {
+                return (EllipsisPosition)GetValue(EllipsisPositionProperty);
+            }
+            set
+            {
+                SetValue(EllipsisPositionProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// The Placeholder property.
         /// The placeholder map contains the following keys :<br />
         /// <list type="table">
@@ -1764,6 +1783,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int PrimaryCursorPosition = Interop.TextField.PrimaryCursorPositionGet();
             internal static readonly int FontSizeScale = Interop.TextField.FontSizeScaleGet();
             internal static readonly int GrabHandleColor = Interop.TextField.GrabHandleColorGet();
+            internal static readonly int EllipsisPosition = Interop.TextField.EllipsisPositionGet();
         }
 
         internal class InputStyle
