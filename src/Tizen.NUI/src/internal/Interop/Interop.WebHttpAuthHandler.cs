@@ -21,6 +21,9 @@ namespace Tizen.NUI
     {
         internal static partial class WebHttpAuthHandler
         {
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WebHttpAuthHandler")]
+            public static extern void DeleteWebHttpAuthHandler(global::System.Runtime.InteropServices.HandleRef jarg1);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebHttpAuthHandler_GetRealm")]
             public static extern string GetRealm(global::System.Runtime.InteropServices.HandleRef jarg1);
 
