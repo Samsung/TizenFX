@@ -21,6 +21,9 @@ namespace Tizen.NUI
     {
         internal static partial class WebPolicyDecisionMaker
         {
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WebPolicyDecision")]
+            public static extern void DeleteWebPolicyDecision(global::System.Runtime.InteropServices.HandleRef jarg1);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebPolicyDecision_GetUrl")]
             public static extern string GetUrl(global::System.Runtime.InteropServices.HandleRef jarg1);
 
