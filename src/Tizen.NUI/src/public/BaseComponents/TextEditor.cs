@@ -1222,6 +1222,67 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The InputFilter property. <br />
+        /// The inputFilter map contains the following keys :<br />
+        /// <list type="table">
+        /// <item><term>accepted (string)</term><description>A regular expression in the set of characters to be accepted by the inputFilter. (the default value is empty string)</description></item>
+        /// <item><term>rejected (string)</term><description>A regular expression in the set of characters to be rejected by the inputFilter. (the default value is empty string)</description></item>
+        /// </list>
+        /// </summary>
+        /// <remarks>
+        /// InputFilter filters input based on regular expressions. <br />
+        /// Users can set the "accepted" or "rejected" character set, or both. <br />
+        /// If both are used, "rejected" has higher priority. <br />
+        /// The character set must follow the regular expression rules. <br />
+        /// Behaviour can not be guaranteed for incorrect grammars. <br />
+        /// Refer the link below for detailed rules. <br />
+        /// This function uses the ECMAScript grammar: <br />
+        /// http://cplusplus.com/reference/regex/ECMAScript/ <br />
+        /// Users can use enums instead of "accepted" and "rejected" strings. <br />
+        /// See <see cref="InputFilterType"/> for a detailed description. <br />
+        /// InputFiltered signal is emitted when the input is filtered by input filter. <br />
+        /// See <see cref="InputFiltered"/> and <see cref="InputFilteredEventArgs"/> for a detailed description. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to set the InputFilter property.
+        /// <code>
+        /// PropertyMap map = new PropertyMap();
+        /// map.Add("accepted", new PropertyValue(@"[\d]")); // accept whole digits
+        /// map.Add("rejected", new PropertyValue("[0-3]")); // reject 0, 1, 2, 3
+        /// // Users can use enums instead of "accepted" and "rejected" strings.
+        /// //map.Add((int)InputFilterType.Accepted, new PropertyValue(@"[\d]"));
+        /// //map.Add((int)InputFilterType.Rejected, new PropertyValue("[0-3]"));
+        ///
+        /// editor.InputFilter = map; // acceptable inputs are 4, 5, 6, 7, 8, 9
+        ///
+        /// editor.InputFiltered += (s, e) =>
+        /// {
+        ///     if (e.Type == InputFilterType.Accepted)
+        ///     {
+        ///         Tizen.Log.Info("NUI", "Only follow character set is accepted " + e.Accepted + "\n");
+        ///     }
+        ///     else if (e.Type == InputFilterType.Rejected)
+        ///     {
+        ///         Tizen.Log.Info("NUI", "Follow character set is rejected " + e.Rejected + "\n");
+        ///     }
+        /// };
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyMap InputFilter
+        {
+            get
+            {
+                return (PropertyMap)GetValue(InputFilterProperty);
+            }
+            set
+            {
+                SetValue(InputFilterProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// The Placeholder property.
         /// The placeholder map contains the following keys :<br />
         /// <list type="table">
@@ -1721,6 +1782,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int EnableGrabHandle = Interop.TextEditor.EnableGrabHandleGet();
             internal static readonly int EnableGrabHandlePopup = Interop.TextEditor.EnableGrabHandlePopupGet();
             internal static readonly int InputMethodSettings = Interop.TextEditor.InputMethodSettingsGet();
+            internal static readonly int InputFilter = Interop.TextEditor.InputFilterGet();
         }
 
         internal class InputStyle

@@ -1024,5 +1024,22 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.InputMethodSettings).Get(temp);
             return temp;
         }));
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty InputFilterProperty = BindableProperty.Create(nameof(TextEditor.InputFilter), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        {
+            var textEditor = (TextEditor)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.InputFilter, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+            }
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        {
+            var textEditor = (TextEditor)bindable;
+            Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.InputFilter).Get(temp);
+            return temp;
+        }));
     }
 }

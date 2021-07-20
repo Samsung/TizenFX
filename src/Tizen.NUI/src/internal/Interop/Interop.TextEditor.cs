@@ -301,6 +301,12 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_Property_INPUT_METHOD_SETTINGS_get")]
             public static extern int InputMethodSettingsGet();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_Property_INPUT_FILTER_get")]
+            public static extern int InputFilterGet();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_InputFilteredSignal")]
+            public static extern global::System.IntPtr InputFilteredSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
         }
     }
 }

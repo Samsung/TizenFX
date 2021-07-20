@@ -33,6 +33,8 @@ namespace Tizen.NUI.BaseComponents
         private MaxLengthReachedCallbackDelegate textFieldMaxLengthReachedCallbackDelegate;
         private EventHandler<AnchorClickedEventArgs> textFieldAnchorClickedEventHandler;
         private AnchorClickedCallbackDelegate textFieldAnchorClickedCallbackDelegate;
+        private EventHandler<InputFilteredEventArgs> textFieldInputFilteredEventHandler;
+        private InputFilteredCallbackDelegate textFieldInputFilteredCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void TextChangedCallbackDelegate(IntPtr textField);
@@ -42,6 +44,9 @@ namespace Tizen.NUI.BaseComponents
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void AnchorClickedCallbackDelegate(IntPtr textField, IntPtr href, uint hrefLength);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void InputFilteredCallbackDelegate(IntPtr textField, InputFilterType type);
 
         /// <summary>
         /// The TextChanged event.
@@ -118,6 +123,31 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// The InputFiltered signal is emitted when the input is filtered.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<InputFilteredEventArgs> InputFiltered
+        {
+            add
+            {
+                if (textFieldInputFilteredEventHandler == null)
+                {
+                    textFieldInputFilteredCallbackDelegate = (OnInputFiltered);
+                    InputFilteredSignal().Connect(textFieldInputFilteredCallbackDelegate);
+                }
+                textFieldInputFilteredEventHandler += value;
+            }
+            remove
+            {
+                textFieldInputFilteredEventHandler -= value;
+                if (textFieldInputFilteredEventHandler == null && InputFilteredSignal().Empty() == false)
+                {
+                    InputFilteredSignal().Disconnect(textFieldInputFilteredCallbackDelegate);
+                }
+            }
+        }
+
         internal TextFieldSignal TextChangedSignal()
         {
             TextFieldSignal ret = new TextFieldSignal(Interop.TextField.TextChangedSignal(SwigCPtr), false);
@@ -135,6 +165,13 @@ namespace Tizen.NUI.BaseComponents
         internal TextFieldSignal AnchorClickedSignal()
         {
             TextFieldSignal ret = new TextFieldSignal(Interop.TextField.AnchorClickedSignal(SwigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal TextFieldSignal InputFilteredSignal()
+        {
+            TextFieldSignal ret = new TextFieldSignal(Interop.TextField.InputFilteredSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -175,6 +212,22 @@ namespace Tizen.NUI.BaseComponents
             e.Href = Marshal.PtrToStringAnsi(href);
             //here we send all data to user event handlers
             textFieldAnchorClickedEventHandler?.Invoke(this, e);
+        }
+
+        private void OnInputFiltered(IntPtr textField, InputFilterType type)
+        {
+            InputFilteredEventArgs e = new InputFilteredEventArgs();
+
+            // Populate all members of "e" (InputFilteredEventArgs) with real data
+            TextField field = Registry.GetManagedBaseHandleFromNativePtr(textField) as TextField;
+            string regex;
+            field.InputFilter.Find((int)InputFilterType.Accepted).Get(out regex);
+            e.Accepted = regex;
+            field.InputFilter.Find((int)InputFilterType.Rejected).Get(out regex);
+            e.Rejected = regex;
+            e.Type = type;
+            //here we send all data to user event handlers
+            textFieldInputFilteredEventHandler?.Invoke(this, e);
         }
 
         /// <summary>

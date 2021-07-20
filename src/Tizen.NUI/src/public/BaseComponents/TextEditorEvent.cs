@@ -39,6 +39,9 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler<AnchorClickedEventArgs> textEditorAnchorClickedEventHandler;
         private AnchorClickedCallbackDelegate textEditorAnchorClickedCallbackDelegate;
 
+        private EventHandler<InputFilteredEventArgs> textEditorInputFilteredEventHandler;
+        private InputFilteredCallbackDelegate textEditorInputFilteredCallbackDelegate;
+
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void TextChangedCallbackDelegate(IntPtr textEditor);
 
@@ -50,6 +53,9 @@ namespace Tizen.NUI.BaseComponents
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void AnchorClickedCallbackDelegate(IntPtr textEditor, IntPtr href, uint hrefLength);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void InputFilteredCallbackDelegate(IntPtr textEditor, InputFilterType type);
 
         /// <summary>
         /// An event for the TextChanged signal which can be used to subscribe or unsubscribe the event handler
@@ -154,6 +160,31 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// The InputFiltered signal is emitted when the input is filtered.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<InputFilteredEventArgs> InputFiltered
+        {
+            add
+            {
+                if (textEditorInputFilteredEventHandler == null)
+                {
+                    textEditorInputFilteredCallbackDelegate = (OnInputFiltered);
+                    InputFilteredSignal().Connect(textEditorInputFilteredCallbackDelegate);
+                }
+                textEditorInputFilteredEventHandler += value;
+            }
+            remove
+            {
+                textEditorInputFilteredEventHandler -= value;
+                if (textEditorInputFilteredEventHandler == null && InputFilteredSignal().Empty() == false)
+                {
+                    InputFilteredSignal().Disconnect(textEditorInputFilteredCallbackDelegate);
+                }
+            }
+        }
+
         internal TextEditorSignal TextChangedSignal()
         {
             TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.TextChangedSignal(SwigCPtr), false);
@@ -178,6 +209,13 @@ namespace Tizen.NUI.BaseComponents
         internal TextEditorSignal AnchorClickedSignal()
         {
             TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.AnchorClickedSignal(SwigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal TextEditorSignal InputFilteredSignal()
+        {
+            TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.InputFilteredSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -235,6 +273,22 @@ namespace Tizen.NUI.BaseComponents
             e.Href = Marshal.PtrToStringAnsi(href);
             //here we send all data to user event handlers
             textEditorAnchorClickedEventHandler?.Invoke(this, e);
+        }
+
+        private void OnInputFiltered(IntPtr textEditor, InputFilterType type)
+        {
+            InputFilteredEventArgs e = new InputFilteredEventArgs();
+
+            // Populate all members of "e" (InputFilteredEventArgs) with real data
+            TextEditor editor = Registry.GetManagedBaseHandleFromNativePtr(textEditor) as TextEditor;
+            string regex;
+            editor.InputFilter.Find((int)InputFilterType.Accepted).Get(out regex);
+            e.Accepted = regex;
+            editor.InputFilter.Find((int)InputFilterType.Rejected).Get(out regex);
+            e.Rejected = regex;
+            e.Type = type;
+            //here we send all data to user event handlers
+            textEditorInputFilteredEventHandler?.Invoke(this, e);
         }
 
         /// <summary>
