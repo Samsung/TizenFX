@@ -70,7 +70,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public KeyboardRepeatSettingsChangedSignal(Window window) : this(Interop.KeyboardRepeatSettingsChangedSignal.GetSignal(Window.getCPtr(window)), true)
+        public KeyboardRepeatSettingsChangedSignal(Window window) : this(Interop.KeyboardRepeatSettingsChangedSignal.GetSignal(Window.getCPtr(window)), false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

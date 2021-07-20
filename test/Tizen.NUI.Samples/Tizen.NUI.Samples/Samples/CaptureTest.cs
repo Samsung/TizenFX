@@ -60,9 +60,11 @@ namespace Tizen.NUI.Samples
                 log.Debug(tag, $"sender is Capture \n");
                 PixelBuffer pixelBuffer = capture.GetCapturedBuffer();
                 PixelData pixelData = PixelBuffer.Convert(pixelBuffer);
-                var imageUrl = pixelData.GenerateUrl();//capture.GetNativeImageSource().Url;
-                capturedImage = new ImageView(imageUrl.ToString());
-                log.Debug(tag, $"url={imageUrl.ToString()} \n");
+                //var imageUrl = pixelData.GenerateUrl();//capture.GetNativeImageSource().Url;
+                //capturedImage = new ImageView(imageUrl.ToString());
+                var url = pixelData.GenerateUrl();
+                capturedImage = new ImageView(url.ToString());
+                log.Debug(tag, $"url={url} \n");
 
                 capturedImage.Size = new Size(510, 510);
                 capturedImage.Position = new Position(10, 10);
