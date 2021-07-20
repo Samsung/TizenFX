@@ -29,6 +29,7 @@ namespace Tizen.NUI.BaseComponents
     {
         private bool disposed = false;
         private bool? focusable;
+        private bool? focusableInTouch;
         private bool? positionUsesPivotPoint;
         private Position parentOrigin;
         private Position pivotPoint;
@@ -48,6 +49,9 @@ namespace Tizen.NUI.BaseComponents
         private Extents margin;
         private bool? themeChangeSensitive;
         private Vector4 cornerRadius;
+        private float? borderlineWidth;
+        private Color borderlineColor;
+        private float? borderlineOffset;
 
         private Selector<ImageShadow> imageShadow;
         private Selector<Shadow> boxShadow;
@@ -74,6 +78,13 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The flag that is used when creating a component with this style.
+        /// If the value is true, it will include default component style defined in the default theme.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IncludeDefaultStyle { get; set; } = false;
+
+        /// <summary>
         /// Gets or sets the image resource url of the background of view.
         /// The mutually exclusive with "BackgroundColor". Setting it overwrites existing "BackgroundColor".
         /// </summary>
@@ -94,6 +105,18 @@ namespace Tizen.NUI.BaseComponents
         {
             get => (bool?)GetValue(FocusableProperty);
             set => SetValue(FocusableProperty, value);
+        }
+
+        /// <summary>
+        /// Whether this view can focus by touch.
+        /// If Focusable is false, FocusableInTouch is disabled.
+        /// If you want to have focus on touch, you need to set both Focusable and FocusableInTouch settings to true.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool? FocusableInTouch
+        {
+            get => (bool?)GetValue(FocusableInTouchProperty);
+            set => SetValue(FocusableInTouchProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -419,6 +442,40 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The width for the borderline of the View.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float? BorderlineWidth
+        {
+            get => (float?)GetValue(BorderlineWidthProperty);
+            set => SetValue(BorderlineWidthProperty, value);
+        }
+
+        /// <summary>
+        /// The color for the borderline of the View.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color BorderlineColor
+        {
+            get => (Color)GetValue(BorderlineColorProperty);
+            set => SetValue(BorderlineColorProperty, value);
+        }
+
+        /// <summary>
+        /// The Relative offset for the borderline of the View.
+        /// recommand [-1.0f to 1.0f] range.
+        /// If -1.0f, borderline draw inside of View.
+        /// If 1.0f, borderline draw outside of View.
+        /// If 0.0f, borderline draw half at inside and half at outside.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float? BorderlineOffset
+        {
+            get => (float?)GetValue(BorderlineOffsetProperty);
+            set => SetValue(BorderlineOffsetProperty, value);
+        }
+
+        /// <summary>
         /// The ThemeChangeSensitive value of the View.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -498,6 +555,8 @@ namespace Tizen.NUI.BaseComponents
                     SetValue(destinationProperty, sourceValue);
                 }
             }
+
+            IncludeDefaultStyle = source.IncludeDefaultStyle;
         }
 
         /// <summary>
@@ -525,6 +584,8 @@ namespace Tizen.NUI.BaseComponents
                 position?.Dispose();
                 size?.Dispose();
                 sizeModeFactor?.Dispose();
+                cornerRadius?.Dispose();
+                borderlineColor?.Dispose();
             }
 
             disposed = true;
@@ -568,7 +629,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var newStyle = value.Clone() as TOut;
 
-            newStyle.CopyFrom(other);
+            newStyle?.CopyFrom(other);
 
             return newStyle;
         }

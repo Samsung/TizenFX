@@ -49,6 +49,13 @@ namespace Tizen.NUI.BaseComponents
             defaultValueCreator: (bindable) => ((ViewStyle)bindable).focusable
         );
 
+        /// <summary> Bindable property of FocusableInTouch. Please do not open it. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty FocusableInTouchProperty = BindableProperty.Create(nameof(FocusableInTouch), typeof(bool?), typeof(ViewStyle), null,
+            propertyChanged: (bindable, oldValue, newValue) => ((ViewStyle)bindable).focusableInTouch = (bool?)newValue,
+            defaultValueCreator: (bindable) => ((ViewStyle)bindable).focusableInTouch
+        );
+
         /// <summary> Bindable property of Focusable. Please do not open it. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty Size2DProperty = BindableProperty.Create(nameof(Size2D), typeof(Size2D), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
@@ -384,6 +391,27 @@ namespace Tizen.NUI.BaseComponents
             propertyChanged: (bindable, oldValue, newValue) => ((ViewStyle)bindable).cornerRadiusPolicy = (VisualTransformPolicyType?)newValue,
             defaultValueCreator: (bindable) => ((ViewStyle)bindable).cornerRadiusPolicy
         );
+
+        /// <summary> Bindable property of BorderlineWidth. Please do not open it. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty BorderlineWidthProperty = BindableProperty.Create(nameof(BorderlineWidth), typeof(float?), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            ((ViewStyle)bindable).borderlineWidth = (float?)newValue;
+        }, defaultValueCreator: (bindable) => ((ViewStyle)bindable).borderlineWidth);
+
+        /// <summary> Bindable property of BorderlineColor. Please do not open it. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty BorderlineColorProperty = BindableProperty.Create(nameof(BorderlineColor), typeof(Color), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            ((ViewStyle)bindable).borderlineColor = (Color)newValue;
+        }, defaultValueCreator: (bindable) => ((ViewStyle)bindable).borderlineColor ?? Tizen.NUI.Color.Black);
+
+        /// <summary> Bindable property of BorderlineOffset. Please do not open it. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty BorderlineOffsetProperty = BindableProperty.Create(nameof(BorderlineOffset), typeof(float?), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            ((ViewStyle)bindable).borderlineOffset = (float?)newValue;
+        }, defaultValueCreator: (bindable) => ((ViewStyle)bindable).borderlineOffset);
 
         /// <summary> Bindable property of ThemeChangeSensitive. Please do not open it. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]

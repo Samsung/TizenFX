@@ -16,7 +16,7 @@ namespace Tizen.NUI.Samples
 
         private void OnValueChanged(object sender, DateChangedEventArgs e)
         {
-            Console.WriteLine(" Date is " + e.Day + " " + e.Month + " " + e.Year);
+            Console.WriteLine(" Date is " + e.Date.Day + " " + e.Date.Month + " " + e.Date.Year);
         }
 
         public void Activate()
@@ -28,10 +28,6 @@ namespace Tizen.NUI.Samples
             {
                 Size = new Size(pickerWidth, pickerHeight),
                 Position = new Position(Window.Instance.Size.Width / 2 - pickerWidth / 2, Window.Instance.Size.Height/ 2 - pickerHeight / 2),
-
-                Day = 1,
-                Month = 10,
-                Year = 2021,
             };
             datePicker.DateChanged += OnValueChanged;
             window.Add(datePicker);

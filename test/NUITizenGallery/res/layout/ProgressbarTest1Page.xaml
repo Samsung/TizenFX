@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<base:View x:Class="NUITizenGallery.ProgressbarTest1Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:base="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+  xmlns:comp="clr-namespace:Tizen.NUI.Components;assembly=Tizen.NUI.Components"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent"
+    BackgroundColor="#FFFFFF">
+
+    <base:View.Layout>
+      <LinearLayout LinearOrientation="Vertical" LinearAlignment="Center" CellPadding="10,20"/>
+    </base:View.Layout>
+
+    <comp:Progress x:Name="TestProgress" WidthResizePolicy="FillToParent"/>
+    <comp:Slider x:Name="TestSlider" WidthResizePolicy="FillToParent"/>
+    <comp:Button x:Name="AnimateButton" Text="Animate"/>
+    <comp:Button x:Name="ChangeColorButton" Text="ChangeColor"/>
+</base:View>

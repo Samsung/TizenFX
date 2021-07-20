@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<comp:ContentPage x:Class="NUITizenGallery.TapGestureTest3Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:base="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+  xmlns:comp="clr-namespace:Tizen.NUI.Components;assembly=Tizen.NUI.Components"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  HeightResizePolicy="FillToParent"
+  WidthResizePolicy="FillToParent"
+  ParentOrigin="Center"
+  PivotPoint="Center"
+  PositionUsesPivotPoint="true"
+  BackgroundColor="White">
+
+    <comp:ContentPage.AppBar>
+        <comp:AppBar x:Name="appBar"
+                    Title="TapGestureTest3"/>
+    </comp:ContentPage.AppBar>
+
+    <comp:ContentPage.Content>
+      <base:View x:Name="ContentView"
+        WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+        HeightSpecification="{Static LayoutParamPolicies.MatchParent}" >
+
+        <View.Layout>
+            <LinearLayout LinearOrientation="Vertical" LinearAlignment="Center" CellPadding="30,30"/>
+        </View.Layout>
+
+
+        <View x:Name="imgView" BackgroundColor="#ffffff">
+            <View.Layout>
+                <LinearLayout LinearOrientation="Vertical" LinearAlignment="CenterHorizontal"/>
+            </View.Layout>
+            <ImageView x:Name="imageView" ResourceUrl="*Resource*/images/picture.png" />
+        </View>
+
+        <TextLabel x:Name="text1"
+                    PointSize="8"
+                    Text="Tap the photo!" />
+
+        <comp:Button x:Name="button1"
+            SizeHeight="70"
+            BackgroundColor="#3db9cc"
+            PointSize="8"
+            Text="Change the number of taps required"/>
+
+        <TextLabel x:Name="text2"
+                    PointSize="8"/>
+
+      </base:View>
+    </comp:ContentPage.Content>
+</comp:ContentPage>
+

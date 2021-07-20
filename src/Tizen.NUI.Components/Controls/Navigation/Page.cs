@@ -36,12 +36,43 @@ namespace Tizen.NUI.Components
     }
 
     /// <summary>
+    /// PageAppearedEventArgs is a class to record page appeared event arguments which will be sent to user.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class PageAppearedEventArgs : EventArgs
+    {
+    }
+
+    /// <summary>
+    /// PageDisappearedEventArgs is a class to record page disappeared event arguments which will be sent to user.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class PageDisappearedEventArgs : EventArgs
+    {
+    }
+
+    /// <summary>
     /// The Page class is a class which is an element of navigation.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
     public abstract class Page : Control
     {
+        private const int DefaultTransitionDuration = 500;
+
         private Navigator navigator = null;
+
+        // Default transition is Fade.
+        private TransitionBase appearingTransition = new Fade()
+        {
+            TimePeriod = new TimePeriod(DefaultTransitionDuration),
+            AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default),
+        };
+
+        private TransitionBase disappearingTransition = new Fade()
+        {
+            TimePeriod = new TimePeriod(DefaultTransitionDuration),
+            AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default),
+        };
 
         /// <summary>
         /// Creates a new instance of a Page.
@@ -74,6 +105,38 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Transition properties for the transition of Views in this page during this page is pushed to Navigator.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TransitionBase AppearingTransition
+        {
+            set
+            {
+                appearingTransition = value;
+            }
+            get
+            {
+                return appearingTransition;
+            }
+        }
+
+        /// <summary>
+        /// Transition properties for the transition of Views in this page during this page is popped from Navigator.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TransitionBase DisappearingTransition
+        {
+            set
+            {
+                disappearingTransition = value;
+            }
+            get
+            {
+                return disappearingTransition;
+            }
+        }
+
+        /// <summary>
         /// An event for the page appearing signal which can be used to subscribe or unsubscribe the event handler provided by the user.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -85,6 +148,18 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<PageDisappearingEventArgs> Disappearing;
 
+        /// <summary>
+        /// An event for the page appeared signal which can be used to subscribe or unsubscribe the event handler provided by the user.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<PageAppearedEventArgs> Appeared;
+
+        /// <summary>
+        /// An event for the page disappeared signal which can be used to subscribe or unsubscribe the event handler provided by the user.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<PageDisappearedEventArgs> Disappeared;
+
         internal void InvokeAppearing()
         {
             Appearing?.Invoke(this, new PageAppearingEventArgs());
@@ -93,6 +168,16 @@ namespace Tizen.NUI.Components
         internal void InvokeDisappearing()
         {
             Disappearing?.Invoke(this, new PageDisappearingEventArgs());
+        }
+
+        internal void InvokeAppeared()
+        {
+            Appeared?.Invoke(this, new PageAppearedEventArgs());
+        }
+
+        internal void InvokeDisappeared()
+        {
+            Disappeared?.Invoke(this, new PageDisappearedEventArgs());
         }
     }
 }

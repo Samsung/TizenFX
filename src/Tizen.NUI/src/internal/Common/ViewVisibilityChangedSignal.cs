@@ -61,9 +61,9 @@ namespace Tizen.NUI
             }
         }
 
-        public void Emit(View arg)
+        public void Emit(View arg, bool visibility, int visibilityChangeType)
         {
-            Interop.ViewVisibilityChangedSignal.Emit(SwigCPtr, View.getCPtr(arg));
+            Interop.ViewVisibilityChangedSignal.Emit(SwigCPtr, View.getCPtr(arg), visibility, visibilityChangeType);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

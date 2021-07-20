@@ -20,6 +20,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Reflection;
 using System.Text;
+using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.EXaml
 {
@@ -36,6 +37,33 @@ namespace Tizen.NUI.EXaml
             string xamlScript = GetXamlFromPath(path);
             LoadEXaml.Load(view, xamlScript);
             return view;
+        }
+
+        /// Internal used, will never be opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void RemoveEventsInXaml(object eXamlData)
+        {
+            LoadEXaml.RemoveEventsInXaml(eXamlData);
+        }
+
+        /// Internal used, will never be opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void DisposeXamlElements(object view)
+        {
+            if (view is Container container)
+            {
+                for (int i = (int)container.ChildCount - 1; i >= 0; i--)
+                {
+                    var child = container.Children[i];
+
+                    if (child.IsCreateByXaml)
+                    {
+                        child.Unparent();
+                        DisposeXamlElements(child);
+                        child.Dispose();
+                    }
+                }
+            }
         }
 
         /// Internal used, will never be opened.
@@ -76,6 +104,45 @@ namespace Tizen.NUI.EXaml
             }
                 
             return view;
+        }
+
+        /// Internal used, will never be opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static object LoadFromEXamlByRelativePath<T>(this T view, string eXamlPath)
+        {
+            object eXamlData = null;
+
+            if (null == eXamlPath)
+            {
+                return eXamlData;
+            }
+
+            MainAssembly = view.GetType().Assembly;
+
+            string resource = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
+
+            Tizen.Log.Fatal("NUI", "the resource path: " + resource);
+            int windowWidth = NUIApplication.GetDefaultWindow().Size.Width;
+            int windowHeight = NUIApplication.GetDefaultWindow().Size.Height;
+
+            string likelyResourcePath = resource + eXamlPath;
+
+            //Find the xaml file in the layout folder
+            if (File.Exists(likelyResourcePath))
+            {
+                StreamReader reader = new StreamReader(likelyResourcePath);
+                var xaml = reader.ReadToEnd();
+                reader.Close();
+                reader.Dispose();
+
+                LoadEXaml.Load(view, xaml, out eXamlData);
+            }
+            else
+            {
+                throw new Exception($"Can't find examl file {likelyResourcePath}");
+            }
+
+            return eXamlData;
         }
 
         /// Used for TCT and TC coverage, will never be opened.

@@ -43,8 +43,6 @@ namespace Tizen.NUI.Components
         //        Until the bug is fixed, padding view is added after action content.
         private View defaultActionContentPadding = null;
 
-        private AlertDialogStyle alertDialogStyle => ViewStyle as AlertDialogStyle;
-
         private bool styleApplied = false;
 
         /// <summary>
@@ -124,20 +122,27 @@ namespace Tizen.NUI.Components
 
             base.ApplyStyle(viewStyle);
 
+            var alertDialogStyle = viewStyle as AlertDialogStyle;
+
+            if (alertDialogStyle == null)
+            {
+                return;
+            }
+
             // Apply Title style.
-            if ((alertDialogStyle?.TitleTextLabel != null) && (DefaultTitleContent is TextLabel))
+            if ((alertDialogStyle.TitleTextLabel != null) && (DefaultTitleContent is TextLabel))
             {
                 ((TextLabel)DefaultTitleContent)?.ApplyStyle(alertDialogStyle.TitleTextLabel);
             }
 
             // Apply Message style.
-            if ((alertDialogStyle?.MessageTextLabel != null) && (DefaultContent is TextLabel))
+            if ((alertDialogStyle.MessageTextLabel != null) && (DefaultContent is TextLabel))
             {
                 ((TextLabel)DefaultContent)?.ApplyStyle(alertDialogStyle.MessageTextLabel);
             }
 
             // Apply ActionContent style.
-            if (alertDialogStyle?.ActionContent != null)
+            if (alertDialogStyle.ActionContent != null)
             {
                 DefaultActionContent?.ApplyStyle(alertDialogStyle.ActionContent);
             }
@@ -392,6 +397,30 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Initialize AT-SPI object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnInitialize()
+        {
+            base.OnInitialize();
+            SetAccessibilityConstructor(Role.Dialog);
+            AppendAccessibilityAttribute("sub-role", "Alert");
+            Show(); // calls AddPopup()
+        }
+
+        /// <summary>
+        /// Informs AT-SPI bridge about the set of AT-SPI states associated with this object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override AccessibilityStates AccessibilityCalculateStates()
+        {
+            var states = base.AccessibilityCalculateStates();
+            FlagSetter(ref states, AccessibilityStates.Modal, true);
+            return states;
+        }
+
+
+        /// <summary>
         /// Default title content of AlertDialog.
         /// If Title is set, then default title content is automatically displayed.
         /// </summary>
@@ -457,6 +486,7 @@ namespace Tizen.NUI.Components
             Layout = new LinearLayout()
             {
                 LinearOrientation = LinearLayout.Orientation.Vertical,
+                LinearAlignment = LinearLayout.Alignment.CenterHorizontal,
             };
 
             this.Relayout += OnRelayout;
@@ -530,6 +560,10 @@ namespace Tizen.NUI.Components
                 Layout = new LinearLayout()
                 {
                     LinearOrientation = LinearLayout.Orientation.Horizontal,
+                    LinearAlignment = LinearLayout.Alignment.Center,
+                    // FIXME: This CellPadding value should be written in AlertDialogStyle.
+                    //        However, if this is called in other place, then flicking issue happens.
+                    CellPadding = new Size2D(80, 0),
                 },
             };
         }
@@ -581,8 +615,6 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            CalculateActionsCellPadding();
-
             var size = Size2D;
             var parent = GetParent();
             Size2D parentSize;
@@ -597,59 +629,6 @@ namespace Tizen.NUI.Components
             }
 
             Position2D = new Position2D((parentSize.Width - size.Width) / 2, (parentSize.Height - size.Height) / 2);
-        }
-
-        // Calculate CellPadding among Actions if ActionContent is LinearLayout.
-        private void CalculateActionsCellPadding()
-        {
-            if ((ActionContent != DefaultActionContent) || (ActionContent.Layout is LinearLayout == false))
-            {
-                return;
-            }
-
-            if (Actions == null)
-            {
-                return;
-            }
-
-            var size = Size2D;
-            var layout = ActionContent.Layout as LinearLayout;
-            int count = 0;
-
-            if (layout.LinearOrientation == LinearLayout.Orientation.Horizontal)
-            {
-                int actionsWidth = 0;
-
-                foreach (var action in Actions)
-                {
-                    actionsWidth += ((View)action).Size2D.Width + ((((View)action).Margin?.Start + ((View)action).Margin?.End) ?? 0);
-                    count++;
-                }
-
-                if (count > 1)
-                {
-                    actionsWidth += (Padding?.Start + Padding?.End) ?? 0;
-                    var cellPaddingWidth = (size.Width - actionsWidth) / (count - 1);
-                    layout.CellPadding = new Size2D(cellPaddingWidth , 0);
-                }
-            }
-            else
-            {
-                int actionsHeight = 0;
-
-                foreach (var action in Actions)
-                {
-                    actionsHeight += ((View)action).Size2D.Height + ((((View)action).Margin?.Top + ((View)action).Margin?.Bottom) ?? 0);
-                    count++;
-                }
-
-                if (count > 1)
-                {
-                    actionsHeight += (Padding?.Top + Padding?.Bottom) ?? 0;
-                    var cellPaddingHeight = (size.Height - actionsHeight) / (count - 1);
-                    layout.CellPadding = new Size2D(0, cellPaddingHeight);
-                }
-            }
         }
     }
 }

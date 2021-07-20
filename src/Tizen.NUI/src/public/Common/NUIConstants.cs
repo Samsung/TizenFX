@@ -178,7 +178,15 @@ namespace Tizen.NUI
         /// The size will be assigned to the actor.
         /// </summary>
         [Description("USE_ASSIGNED_SIZE")]
-        UseAssignedSize
+        UseAssignedSize,
+
+        /// <summary>
+        /// The size always equal with parent even parent has size animation.
+        /// Note : This Property only working without layout. If layout is setup, Undefined Behavior
+        /// </summary>
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        KeepSizeFollowingParent
     }
 
     /// <summary>
@@ -755,7 +763,15 @@ namespace Tizen.NUI
         /// <summary>
         /// Used for simple dialog windows.
         /// </summary>
-        Dialog
+        Dialog,
+        /// <summary>
+        /// Used for IME window that is used for keyboard window.
+        /// It should be set in Application's New input param when application is created.
+        /// In addition, it is only for internal keyboard application.
+        /// This should be hidden.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Ime
     }
 
     /// <since_tizen> 3 </since_tizen>
@@ -807,7 +823,20 @@ namespace Tizen.NUI
         /// character will move character by character to the next line.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        Character
+        Character,
+
+        /// <summary>
+        /// Hyphenation mode will move part of the word (at possible hyphen locations)
+        /// to the next line and draw a hyphen at the end of the line.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Hyphenation,
+
+        /// <summary>
+        /// Mixed mode will try word wrap, if failed, it will try hyphenation wrap.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Mixed
     }
 
     /// <summary>
@@ -1884,5 +1913,50 @@ namespace Tizen.NUI
     internal struct FrameworkInformation
     {
         public readonly static string ResourcePath = "/usr/share/dotnet.tizen/framework/res/";
+    }
+
+    /// <summary>
+    /// This Enumeration is used the GLES version for EGL configuration.<br />
+    /// If the device can not support GLES version 3.0 over, the version will be chosen with GLES version 2.0.<br />
+    /// It is for GLWindow and GLView.<br />
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum GLESVersion
+    {
+      /// <summary>
+      /// GLES version 2.0
+      /// </summary>
+      [EditorBrowsable(EditorBrowsableState.Never)]
+      Version20 = 0,
+
+      /// <summary>
+      /// GLES version 3.0
+      /// </summary>
+      [EditorBrowsable(EditorBrowsableState.Never)]
+      Version30
+    }
+
+    /// <summary>
+    /// Enumeration for rendering mode
+    /// This Enumeration is used to choose the rendering mode.
+    /// It has two options.
+    /// One of them is continuous mode. It is rendered continuously.
+    /// The other is on demand mode. It is rendered by application.
+    /// It is for GLWindow and GLView.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum GLRenderingMode
+    {
+      /// <summary>
+      /// continuous mode
+      /// </summary>
+      [EditorBrowsable(EditorBrowsableState.Never)]
+      Continuous = 0,
+
+      /// <summary>
+      /// on demand by application
+      /// </summary>
+      [EditorBrowsable(EditorBrowsableState.Never)]
+      OnDemand = 1
     }
 }

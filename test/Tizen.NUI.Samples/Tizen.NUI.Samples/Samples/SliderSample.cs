@@ -49,7 +49,7 @@ namespace Tizen.NUI.Samples
             // Style construction
             SliderStyle st = new SliderStyle
             {
-                TrackThickness = 4,
+                TrackThickness = 5,
                 Track = new ImageViewStyle
                 {
                     BackgroundColor = new Selector<Color>
@@ -76,7 +76,7 @@ namespace Tizen.NUI.Samples
                     },
                     BackgroundImage = new Selector<string>
                     {
-                        Normal = "",
+                        Normal = CommonResource.GetFHResourcePath() + "9. Controller/controller_btn_slide_handler_normal.png",
                         Pressed = CommonResource.GetFHResourcePath() + "9. Controller/controller_btn_slide_handler_effect.png",
                     }
                 }
@@ -93,7 +93,7 @@ namespace Tizen.NUI.Samples
 
         private void CreateTopView()
         {
-            top_parent = new View() { Size = new Size(1920, 240) };
+            top_parent = new View() { Size = new Size(1920, 340) };
             top_parent.Layout = new GridLayout() { Rows = 2, GridOrientation = GridLayout.Orientation.Horizontal };
             root.Add(top_parent);
 
@@ -128,29 +128,26 @@ namespace Tizen.NUI.Samples
 
         private void CreateBottomView()
         {
-            bottom_parent = new View() { Size = new Size(1920, 840) };
-            bottom_parent.Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Vertical, CellPadding = new Size2D(0, 0) };
+            bottom_parent = new View() { Size = new Size(1920, 740) };
+            bottom_parent.Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Horizontal, CellPadding = new Size2D(0, 0) };
             root.Add(bottom_parent);
 
             // Init Sliders
             InitSliders();
 
             // Add Horizontal Slider
-            hori_slider_parent = new View() { Size = new Size(1920, 160) };
-            hori_slider_parent.Layout = new GridLayout() { Rows = 2, GridOrientation = GridLayout.Orientation.Horizontal };
+            hori_slider_parent = new View() { Size = new Size(960, 740) };
+            hori_slider_parent.Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Vertical, LinearAlignment = LinearLayout.Alignment.Bottom, CellPadding = new Size2D(0, 50) };
             bottom_parent.Add(hori_slider_parent);
-            slider_null_style[0].Margin = new Extents(100, 0, 30, 0);
             hori_slider_parent.Add(slider_null_style[0]);
             hori_slider_parent.Add(slider_null_style[1]);
             hori_slider_parent.Add(slider_style[0]);
             hori_slider_parent.Add(slider_style[1]);
 
             // Add vertical Slider
-            ver_slider_parent = new View() { Size = new Size(1920, 680) };
-            ver_slider_parent.Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Horizontal, LinearAlignment = LinearLayout.Alignment.CenterVertical, CellPadding = new Size2D(200, 0) };
+            ver_slider_parent = new View() { Size = new Size(960, 740) };
+            ver_slider_parent.Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Horizontal, LinearAlignment = LinearLayout.Alignment.Center, CellPadding = new Size2D(100, 0) };
             bottom_parent.Add(ver_slider_parent);
-            slider_null_style[2].Margin = new Extents(350, 0, 0, 0);
-            slider_style[2].Margin = new Extents(400, 0, 0, 0);
             ver_slider_parent.Add(slider_null_style[2]);
             ver_slider_parent.Add(slider_null_style[3]);
             ver_slider_parent.Add(slider_style[2]);
@@ -234,18 +231,19 @@ namespace Tizen.NUI.Samples
                     },
                     BackgroundImage = new Selector<string>
                     {
-                        Normal = "",
+                        Normal = CommonResource.GetFHResourcePath() + "9. Controller/controller_btn_slide_handler_normal.png",
                         Pressed = CommonResource.GetFHResourcePath() + "9. Controller/controller_btn_slide_handler_effect.png",
                     }
                 }
             };
             Slider source = new Slider(st);
-            source.TrackThickness = 4;
+            source.TrackThickness = 5;
             source.ThumbSize = new Size(60, 60);
             source.BgTrackColor = new Color(0, 0, 0, 0.1f);
             source.SlidedTrackColor = new Color(0.05f, 0.63f, 0.9f, 1);
             source.Direction = dir;
             source.Focusable = true;
+            source.FocusableInTouch =  true;
             source.MinValue = MIN_VALUE;
             source.MaxValue = MAX_VALUE;
             source.StateChangedEvent += OnStateChanged;
@@ -262,8 +260,8 @@ namespace Tizen.NUI.Samples
             // input style in construction
             Slider source = new Slider(st);
             source.Direction = dir;
-            root.Add(source);
             source.Focusable = true;
+            source.FocusableInTouch = true;
             source.MinValue = MIN_VALUE;
             source.MaxValue = MAX_VALUE;
             source.StateChangedEvent += OnStateChanged;

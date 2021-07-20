@@ -126,6 +126,7 @@ namespace Tizen.NUI.Components
 
             if (type == DisposeTypes.Explicit)
             {
+                RemoveFromGroup();
             }
 
             base.Dispose(type);
@@ -215,7 +216,7 @@ namespace Tizen.NUI.Components
             {
                 if (IsHighlighted)
                 {
-                    EmitAccessibilityStateChangedEvent(AccessibilityState.Checked, info.CurrentState.Contains(ControlState.Selected));
+                    EmitAccessibilityStatesChangedEvent(AccessibilityStates.Checked, info.CurrentState.Contains(ControlState.Selected));
                 }
 
                 // SelectedChanged is invoked when button or key is unpressed.
@@ -234,5 +235,9 @@ namespace Tizen.NUI.Components
                 }
             }
         }
+
+        internal void RemoveFromGroup() => itemGroup?.RemoveSelection(this);
+
+        internal void ResetItemGroup() => itemGroup = null;
     }
 }

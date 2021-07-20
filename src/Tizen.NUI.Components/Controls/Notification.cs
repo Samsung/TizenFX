@@ -84,10 +84,16 @@ namespace Tizen.NUI.Components
         /// Create a notification with a content View.
         /// </summary>
         /// <param name="contentView">The content view instance to display in the notification window.</param>
+        /// <exception cref="NotSupportedException">Thrown when the device does not support a notification feature.</exception>
         /// <exception cref="ArgumentNullException">Thrown when a given contentView is null.</exception>
+        /// <remark>Since the notification creates a new window, the system should support a multi-window feature. Otherwise it will throw a NotSupportedException.</remark>
         /// <since_tizen> 8 </since_tizen>
         public Notification(View contentView) : base()
         {
+            if (!Window.IsSupportedMultiWindow())
+            {
+                throw new NotSupportedException("This device does not support multi-window. Notification can not be created. ");
+            }
             ContentView = contentView ?? throw new ArgumentNullException(nameof(contentView));
         }
 
@@ -113,6 +119,7 @@ namespace Tizen.NUI.Components
                     notificationWindow = new Window(null, true)
                     {
                         Type = WindowType.Notification,
+                        BackgroundColor = Color.Transparent,
                     };
                     notificationWindow.Show();
                 }
@@ -157,8 +164,10 @@ namespace Tizen.NUI.Components
         /// <param name="text">The string content.</param>
         /// <param name="gravity">The location at which the toast should appear. It's one of the notification constants: ToastTop, ToastCenter and ToastBottom.</param>
         /// <returns>The created Notification instance.</returns>
+        /// <exception cref="NotSupportedException">Thrown when the device does not support a notification feature.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the given text or gravity is null.</exception>
         /// <remark>Application need to set http://tizen.org/privilege/window.priority.set to post a notification.</remark>
+        /// <remark>Since the notification creates a new window, the system should support a multi-window feature. Otherwise it will throw a NotSupportedException.</remark>
         /// <example>
         /// The following example demonstrates how to make a toast at the bottom and show it for a short period time.
         /// <code>
@@ -168,6 +177,11 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 9 </since_tizen>
         public static Notification MakeToast(string text, Position gravity)
         {
+            if (!Window.IsSupportedMultiWindow())
+            {
+                throw new NotSupportedException("This device does not support multi-window. Notification can not be created. ");
+            }
+
             var textLabel = new TextLabel(text ?? throw new ArgumentNullException(nameof(text)))
             {
                 Opacity = 0.0f
@@ -175,7 +189,7 @@ namespace Tizen.NUI.Components
 
             if (gravity == null) throw new ArgumentNullException(nameof(gravity));
 
-            var style = ThemeManager.GetStyle("NotificationToast");
+            var style = ThemeManager.GetInitialStyleWithoutClone("NotificationToast");
             if (style != null)
             {
                 textLabel.ApplyStyle(style);
@@ -217,9 +231,16 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            if (!ApplyLevel(level))
+            var applyLevelResult = ApplyLevel(level);
+
+            if (applyLevelResult == Window.OperationResult.PermissionDenied)
             {
-                throw new UnauthorizedAccessException("Cannot post a Notification: Permission Denied");
+                throw new UnauthorizedAccessException("Cannot post a Notification: Permission Denied. The privilege http://tizen.org/privilege/window.priority.set is needed.");
+            }
+
+            if (applyLevelResult != Window.OperationResult.Succeed)
+            {
+                Tizen.Log.Info("NUI", "The notification window may not have proper notification level.");
             }
 
             ApplyPositionSize(positionSize);
@@ -253,9 +274,19 @@ namespace Tizen.NUI.Components
         {
             this.level = level;
 
-            if (state == NotificationState.Post && !ApplyLevel(level))
+            if (state == NotificationState.Post)
             {
-                throw new UnauthorizedAccessException("Cannot set notification level: Permission Denied");
+                var result = ApplyLevel(level);
+
+                if (result == Window.OperationResult.PermissionDenied)
+                {
+                    throw new UnauthorizedAccessException("Cannot set notification level: Permission Denied. The privilege http://tizen.org/privilege/window.priority.set is needed.");
+                }
+
+                if (result != Window.OperationResult.Succeed)
+                {
+                    Tizen.Log.Info("NUI", "Cannot set notification level: Unknown reason. The notification window may not have proper notification level.");
+                }
             }
 
             return this;
@@ -427,9 +458,11 @@ namespace Tizen.NUI.Components
             notificationWindow = null;
         }
 
-        private bool ApplyLevel(NotificationLevel level)
+        private Window.OperationResult ApplyLevel(NotificationLevel level)
         {
-            return NotificationWindow.SetNotificationLevel(level);
+            var ret = (Window.OperationResult)Interop.Window.SetNotificationLevel(NotificationWindow.SwigCPtr, (int)level);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         private void ApplyPositionSize(Rectangle positionSize)

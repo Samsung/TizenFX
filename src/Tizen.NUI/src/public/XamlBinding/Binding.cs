@@ -113,6 +113,11 @@ namespace Tizen.NUI.Binding
             {
                 ThrowIfApplied();
                 source = value;
+
+                if (source is BindableObject bindableObject)
+                {
+                    bindableObject.IsBinded = true;
+                }
             }
         }
 

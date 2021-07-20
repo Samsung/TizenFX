@@ -24,7 +24,23 @@ namespace Tizen.NUI.EXaml
 {
     internal class GlobalDataList
     {
+        internal object Root
+        {
+            get;
+            set;
+        }
+
+        internal List<Operation> PreLoadOperations
+        {
+            get;
+        } = new List<Operation>();
+
         internal List<Operation> Operations
+        {
+            get;
+        } = new List<Operation>();
+
+        internal List<Operation> RemoveEventOperations
         {
             get;
         } = new List<Operation>();

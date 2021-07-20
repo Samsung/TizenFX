@@ -41,7 +41,7 @@ namespace Tizen.NUI.EXaml
             var instance = globalDataList.GatheredInstances[instanceIndex] as ResourceDictionary;
             var realValue = (value is Instance) ? globalDataList.GatheredInstances[(value as Instance).Index] : value;
 
-            instance.Add(key, realValue);
+            instance?.Add(key, realValue);
         }
 
         private int instanceIndex;

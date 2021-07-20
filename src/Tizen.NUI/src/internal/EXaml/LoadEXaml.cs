@@ -22,11 +22,9 @@ namespace Tizen.NUI.EXaml
 {
     internal static class LoadEXaml
     {
-        internal static void Load(object view, string xaml)
+        internal static GlobalDataList GatherDataList(string xaml)
         {
             var globalDataList = new GlobalDataList();
-
-            CreateInstanceAction.Root = view;
 
             int index = 0;
 
@@ -42,6 +40,9 @@ namespace Tizen.NUI.EXaml
             var setDynamicResourceAction = new SetDynamicResourceAction(globalDataList, null);
             var addToResourceDictionaryAction = new AddToResourceDictionaryAction(globalDataList, null);
             var setBindingAction = new SetBindingAction(globalDataList, null);
+            var otherActions = new OtherActions(globalDataList, null);
+
+            Action currentOp = null;
 
             foreach (char c in xaml)
             {
@@ -147,6 +148,11 @@ namespace Tizen.NUI.EXaml
                             currentOp = setBindingAction;
                             currentOp.Init();
                             break;
+
+                        case 'a':
+                            currentOp = otherActions;
+                            currentOp.Init();
+                            break;
                     }
                 }
                 else
@@ -155,12 +161,54 @@ namespace Tizen.NUI.EXaml
                 }
             }
 
+            foreach (var op in globalDataList.PreLoadOperations)
+            {
+                op.Do();
+            }
+
+            return globalDataList;
+        }
+
+        internal static void Load(object view, string xaml, out object xamlData)
+        {
+            var globalDataList = GatherDataList(xaml);
+
+            globalDataList.Root = view;
+
+            foreach (var op in globalDataList.Operations)
+            {
+                op.Do();
+            }
+
+            xamlData = globalDataList;
+        }
+
+        internal static void Load(object view, object preloadData)
+        {
+            var globalDataList = preloadData as GlobalDataList;
+
+            if (null == globalDataList)
+            {
+                return;
+            }
+
+            globalDataList.Root = view;
+
             foreach (var op in globalDataList.Operations)
             {
                 op.Do();
             }
         }
 
-        private static Action currentOp = null;
+        internal static void RemoveEventsInXaml(object eXamlData)
+        {
+            if (eXamlData is GlobalDataList globalDataList)
+            {
+                foreach (var op in globalDataList.RemoveEventOperations)
+                {
+                    op.Do();
+                }
+            }
+        }
     }
 }

@@ -23,10 +23,11 @@ namespace Tizen.NUI
     /// <summary>
     /// Loading an image.
     /// </summary>
-    /// <since_tizen> 5 </since_tizen>
-    /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
+    /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public static class ImageLoading
+    // in API6 ~ API8, this has been "public class", not "public static class". to support not-rebuilt API6~API8's Application, this is reverted bact to "public class".
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1052:Static holder types should be Static or NotInheritable", Justification = "<Pending>")]
+    public class ImageLoading
     {
         /// <summary>
         /// Load an image synchronously from local file.
@@ -38,8 +39,7 @@ namespace Tizen.NUI
         /// <param name="orientationCorrection">Reorient the image to respect any orientation metadata in its header.</param>
         /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case loading failed.</returns>
         /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static PixelBuffer LoadImageFromFile(string url, Size2D size, FittingModeType fittingMode, SamplingModeType samplingMode, bool orientationCorrection)
         {
@@ -63,8 +63,7 @@ namespace Tizen.NUI
         /// <param name="samplingMode">The filtering method used when sampling pixels from the input image while fitting it to desired size.</param>
         /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case loading failed.</returns>
         /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static PixelBuffer LoadImageFromFile(string url, Size2D size, FittingModeType fittingMode, SamplingModeType samplingMode)
         {
@@ -87,8 +86,7 @@ namespace Tizen.NUI
         /// <param name="fittingMode">The method used to fit the shape of the image before loading to the shape defined by the size parameter.</param>
         /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case loading failed.</returns>
         /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static PixelBuffer LoadImageFromFile(string url, Size2D size, FittingModeType fittingMode)
         {
@@ -110,8 +108,7 @@ namespace Tizen.NUI
         /// <param name="size">The width and height to fit the loaded image to, 0.0 means whole image.</param>
         /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case loading failed.</returns>
         /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static PixelBuffer LoadImageFromFile(string url, Size2D size)
         {
@@ -131,12 +128,250 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="url">The URL of the image file to load.</param>
         /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case loading failed.</returns>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static PixelBuffer LoadImageFromFile(string url)
         {
             PixelBuffer ret = new PixelBuffer(Interop.ImageLoading.LoadImageFromFile(url), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Load an image synchronously from Stream. Load from current position to end of stream.
+        /// </summary>
+        /// <param name="stream">The Stream of the image file to load.</param>
+        /// <param name="size">The width and height to fit the loaded image to, 0.0 means whole image.</param>
+        /// <param name="fittingMode">The method used to fit the shape of the image before loading to the shape defined by the size parameter.</param>
+        /// <param name="samplingMode">The filtering method used when sampling pixels from the input image while fitting it to desired size.</param>
+        /// <param name="orientationCorrection">Reorient the image to respect any orientation metadata in its header.</param>
+        /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case loading failed.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when stream or size is null. </exception>
+        /// <exception cref="InvalidOperationException"> Thrown when stream don't have any data. </exception>
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static PixelBuffer LoadImageFromBuffer(System.IO.Stream stream, Size2D size, FittingModeType fittingMode, SamplingModeType samplingMode, bool orientationCorrection)
+        {
+            if(stream == null)
+            {
+                throw new ArgumentNullException(nameof(stream));
+            }
+            if(size == null)
+            {
+                throw new ArgumentNullException(nameof(size));
+            }
+            long streamLength = stream.Length - stream.Position;
+            if(streamLength <= 0)
+            {
+                throw new InvalidOperationException("stream lenght is <= 0");
+            }
+
+            // Read data from stream
+            byte[] streamData = new byte[streamLength];
+            stream.Read(streamData, 0, (int)streamLength);
+
+            // Allocate buffer that internal DALi engine can read
+            VectorUnsignedChar buffer = new VectorUnsignedChar();
+
+            buffer.Resize((uint)streamLength);
+            var bufferBegin = buffer.Begin();
+            global::System.Runtime.InteropServices.HandleRef bufferRef = SWIGTYPE_p_unsigned_char.getCPtr(bufferBegin);
+
+            // Copy data from stream to buffer
+            System.Runtime.InteropServices.Marshal.Copy(streamData, 0, bufferRef.Handle, (int)streamLength);
+
+            var uSize = new Uint16Pair((uint)size.Width, (uint)size.Height);
+            PixelBuffer ret = new PixelBuffer(Interop.ImageLoading.LoadImageFromBuffer(VectorUnsignedChar.getCPtr(buffer), Uint16Pair.getCPtr(uSize), (int)fittingMode, (int)samplingMode, orientationCorrection), true);
+            uSize.Dispose();
+            buffer.Dispose();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Load an image synchronously from Stream. Load from current position to end of stream.
+        /// </summary>
+        /// <param name="stream">The Stream of the image file to load.</param>
+        /// <param name="size">The width and height to fit the loaded image to, 0.0 means whole image.</param>
+        /// <param name="fittingMode">The method used to fit the shape of the image before loading to the shape defined by the size parameter.</param>
+        /// <param name="samplingMode">The filtering method used when sampling pixels from the input image while fitting it to desired size.</param>
+        /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case loading failed.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when stream or size is null. </exception>
+        /// <exception cref="InvalidOperationException"> Thrown when stream don't have any data. </exception>
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static PixelBuffer LoadImageFromBuffer(System.IO.Stream stream, Size2D size, FittingModeType fittingMode, SamplingModeType samplingMode)
+        {
+            if(stream == null)
+            {
+                throw new ArgumentNullException(nameof(stream));
+            }
+            if(size == null)
+            {
+                throw new ArgumentNullException(nameof(size));
+            }
+            long streamLength = stream.Length - stream.Position;
+            if(streamLength <= 0)
+            {
+                throw new InvalidOperationException("stream lenght is <= 0");
+            }
+
+            // Read data from stream
+            byte[] streamData = new byte[streamLength];
+            stream.Read(streamData, 0, (int)streamLength);
+
+            // Allocate buffer that internal DALi engine can read
+            VectorUnsignedChar buffer = new VectorUnsignedChar();
+
+            buffer.Resize((uint)streamLength);
+            var bufferBegin = buffer.Begin();
+            global::System.Runtime.InteropServices.HandleRef bufferRef = SWIGTYPE_p_unsigned_char.getCPtr(bufferBegin);
+
+            // Copy data from stream to buffer
+            System.Runtime.InteropServices.Marshal.Copy(streamData, 0, bufferRef.Handle, (int)streamLength);
+
+            var uSize = new Uint16Pair((uint)size.Width, (uint)size.Height);
+            PixelBuffer ret = new PixelBuffer(Interop.ImageLoading.LoadImageFromBuffer(VectorUnsignedChar.getCPtr(buffer), Uint16Pair.getCPtr(uSize), (int)fittingMode, (int)samplingMode), true);
+            uSize.Dispose();
+            buffer.Dispose();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Load an image synchronously from Stream. Load from current position to end of stream.
+        /// </summary>
+        /// <param name="stream">The Stream of the image file to load.</param>
+        /// <param name="size">The width and height to fit the loaded image to, 0.0 means whole image.</param>
+        /// <param name="fittingMode">The method used to fit the shape of the image before loading to the shape defined by the size parameter.</param>
+        /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case loading failed.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when stream or size is null. </exception>
+        /// <exception cref="InvalidOperationException"> Thrown when stream don't have any data. </exception>
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static PixelBuffer LoadImageFromBuffer(System.IO.Stream stream, Size2D size, FittingModeType fittingMode)
+        {
+            if(stream == null)
+            {
+                throw new ArgumentNullException(nameof(stream));
+            }
+            if(size == null)
+            {
+                throw new ArgumentNullException(nameof(size));
+            }
+            long streamLength = stream.Length - stream.Position;
+            if(streamLength <= 0)
+            {
+                throw new InvalidOperationException("stream lenght is <= 0");
+            }
+
+            // Read data from stream
+            byte[] streamData = new byte[streamLength];
+            stream.Read(streamData, 0, (int)streamLength);
+
+            // Allocate buffer that internal DALi engine can read
+            VectorUnsignedChar buffer = new VectorUnsignedChar();
+
+            buffer.Resize((uint)streamLength);
+            var bufferBegin = buffer.Begin();
+            global::System.Runtime.InteropServices.HandleRef bufferRef = SWIGTYPE_p_unsigned_char.getCPtr(bufferBegin);
+
+            // Copy data from stream to buffer
+            System.Runtime.InteropServices.Marshal.Copy(streamData, 0, bufferRef.Handle, (int)streamLength);
+
+            var uSize = new Uint16Pair((uint)size.Width, (uint)size.Height);
+            PixelBuffer ret = new PixelBuffer(Interop.ImageLoading.LoadImageFromBuffer(VectorUnsignedChar.getCPtr(buffer), Uint16Pair.getCPtr(uSize), (int)fittingMode), true);
+            uSize.Dispose();
+            buffer.Dispose();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Load an image synchronously from Stream. Load from current position to end of stream.
+        /// </summary>
+        /// <param name="stream">The Stream of the image file to load.</param>
+        /// <param name="size">The width and height to fit the loaded image to, 0.0 means whole image.</param>
+        /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case loading failed.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when stream or size is null. </exception>
+        /// <exception cref="InvalidOperationException"> Thrown when stream don't have any data. </exception>
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static PixelBuffer LoadImageFromBuffer(System.IO.Stream stream, Size2D size)
+        {
+            if(stream == null)
+            {
+                throw new ArgumentNullException(nameof(stream));
+            }
+            if(size == null)
+            {
+                throw new ArgumentNullException(nameof(size));
+            }
+            long streamLength = stream.Length - stream.Position;
+            if(streamLength <= 0)
+            {
+                throw new InvalidOperationException("stream lenght is <= 0");
+            }
+
+            // Read data from stream
+            byte[] streamData = new byte[streamLength];
+            stream.Read(streamData, 0, (int)streamLength);
+
+            // Allocate buffer that internal DALi engine can read
+            VectorUnsignedChar buffer = new VectorUnsignedChar();
+
+            buffer.Resize((uint)streamLength);
+            var bufferBegin = buffer.Begin();
+            global::System.Runtime.InteropServices.HandleRef bufferRef = SWIGTYPE_p_unsigned_char.getCPtr(bufferBegin);
+
+            // Copy data from stream to buffer
+            System.Runtime.InteropServices.Marshal.Copy(streamData, 0, bufferRef.Handle, (int)streamLength);
+
+            var uSize = new Uint16Pair((uint)size.Width, (uint)size.Height);
+            PixelBuffer ret = new PixelBuffer(Interop.ImageLoading.LoadImageFromBuffer(VectorUnsignedChar.getCPtr(buffer), Uint16Pair.getCPtr(uSize)), true);
+            uSize.Dispose();
+            buffer.Dispose();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Load an image synchronously from Stream. Load from current position to end of stream.
+        /// </summary>
+        /// <param name="stream">The Stream of the image file to load.</param>
+        /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case loading failed.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when stream is null. </exception>
+        /// <exception cref="InvalidOperationException"> Thrown when stream don't have any data. </exception>
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static PixelBuffer LoadImageFromBuffer(System.IO.Stream stream)
+        {
+            if(stream == null)
+            {
+                throw new ArgumentNullException(nameof(stream));
+            }
+            long streamLength = stream.Length - stream.Position;
+            if(streamLength <= 0)
+            {
+                throw new InvalidOperationException("stream lenght is <= 0");
+            }
+
+            // Read data from stream
+            byte[] streamData = new byte[streamLength];
+            stream.Read(streamData, 0, (int)streamLength);
+
+            // Allocate buffer that internal DALi engine can read
+            VectorUnsignedChar buffer = new VectorUnsignedChar();
+
+            buffer.Resize((uint)streamLength);
+            var bufferBegin = buffer.Begin();
+            global::System.Runtime.InteropServices.HandleRef bufferRef = SWIGTYPE_p_unsigned_char.getCPtr(bufferBegin);
+
+            // Copy data from stream to buffer
+            System.Runtime.InteropServices.Marshal.Copy(streamData, 0, bufferRef.Handle, (int)streamLength);
+
+            PixelBuffer ret = new PixelBuffer(Interop.ImageLoading.LoadImageFromBuffer(VectorUnsignedChar.getCPtr(buffer)), true);
+            buffer.Dispose();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -151,8 +386,7 @@ namespace Tizen.NUI
         /// <param name="orientationCorrection">Whether to use image metadata to rotate or flip the image, for example, from portrait to landscape.</param>
         /// <returns>Dimensions that image will have if it is loaded with given parameters.</returns>
         /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Size2D GetClosestImageSize(string filename, Size2D size, FittingModeType fittingMode, SamplingModeType samplingMode, bool orientationCorrection)
         {
@@ -178,8 +412,7 @@ namespace Tizen.NUI
         /// <param name="samplingMode">The image filter to use if the image needs to be downsampled to the requested size.</param>
         /// <returns>Dimensions that image will have if it is loaded with given parameters.</returns>
         /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Size2D GetClosestImageSize(string filename, Size2D size, FittingModeType fittingMode, SamplingModeType samplingMode)
         {
@@ -204,8 +437,7 @@ namespace Tizen.NUI
         /// <param name="fittingMode">The method to use to map the source image to the desired dimensions.</param>
         /// <returns>Dimensions that image will have if it is loaded with given parameters.</returns>
         /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Size2D GetClosestImageSize(string filename, Size2D size, FittingModeType fittingMode)
         {
@@ -229,8 +461,7 @@ namespace Tizen.NUI
         /// <param name="size">The requested size for the image</param>
         /// <returns>Dimensions that image will have if it is loaded with given parameters.</returns>
         /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Size2D GetClosestImageSize(string filename, Size2D size)
         {
@@ -252,8 +483,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="filename">The name of the image.</param>
         /// <returns>Dimensions that image will have if it is loaded with given parameters.</returns>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Size2D GetClosestImageSize(string filename)
         {
@@ -268,12 +498,23 @@ namespace Tizen.NUI
         /// Get the size of an original image consider rotation
         /// </summary>
         /// <param name="filename">The name of the image.</param>
+        /// <returns>Dimension of the original image.</returns>
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Size2D GetOriginalImageSize(string filename)
+        {
+            return GetOriginalImageSize(filename, true);
+        }
+
+        /// <summary>
+        /// Get the size of an original image consider rotation
+        /// </summary>
+        /// <param name="filename">The name of the image.</param>
         /// <param name="orientationCorrection">Reorient the image to respect any orientation metadata in its header.</param>
         /// <returns>Dimension of the original image.</returns>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be released at Tizen.NET API Level 9. Therefore, currently this would be used as an in-house API.
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static Size2D GetOriginalImageSize(string filename, bool orientationCorrection = true)
+        public static Size2D GetOriginalImageSize(string filename, bool orientationCorrection)
         {
             var val = new Uint16Pair(Interop.ImageLoading.GetOriginalImageSize(filename, orientationCorrection), true);
             Size2D ret = new Size2D(val.GetWidth(), val.GetHeight());
@@ -292,8 +533,7 @@ namespace Tizen.NUI
         /// <param name="orientationCorrection">Reorient the image to respect any orientation metadata in its header.</param>
         /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case downloading or decoding failed.</returns>
         /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static PixelBuffer DownloadImageSynchronously(string url, Size2D size, FittingModeType fittingMode, SamplingModeType samplingMode, bool orientationCorrection)
         {
@@ -317,8 +557,7 @@ namespace Tizen.NUI
         /// <param name="samplingMode">The filtering method used when sampling pixels from the input image while fitting it to desired size.</param>
         /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case downloading or decoding failed.</returns>
         /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static PixelBuffer DownloadImageSynchronously(string url, Size2D size, FittingModeType fittingMode, SamplingModeType samplingMode)
         {
@@ -341,8 +580,7 @@ namespace Tizen.NUI
         /// <param name="fittingMode">The method used to fit the shape of the image before loading to the shape defined by the size parameter.</param>
         /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case downloading or decoding failed.</returns>
         /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static PixelBuffer DownloadImageSynchronously(string url, Size2D size, FittingModeType fittingMode)
         {
@@ -368,6 +606,7 @@ namespace Tizen.NUI
         /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case downloading or decoding failed.</returns>
         /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
         /// <exception cref="ArgumentNullException">Thrown when uri is null.</exception>
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static PixelBuffer DownloadImageSynchronously(Uri uri, Size2D size, FittingModeType fittingMode)
         {
@@ -394,8 +633,7 @@ namespace Tizen.NUI
         /// <param name="size">The width and height to fit the loaded image to, 0.0 means whole image.</param>
         /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case downloading or decoding failed.</returns>
         /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static PixelBuffer DownloadImageSynchronously(string url, Size2D size)
         {
@@ -415,8 +653,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="url">The URL of the image file to load.</param>
         /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case downloading or decoding failed.</returns>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static PixelBuffer DownloadImageSynchronously(string url)
         {

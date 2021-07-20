@@ -52,12 +52,17 @@ namespace Tizen.NUI.Binding
         {
             var parts = value.Split(',');
 
-            if (parts.Length != 2)
+            if (parts.Length == 2)
             {
-                throw new InvalidOperationException($"Cannot convert \"{value}\" into {typeof(Vector2)}");
+                return new Vector2(Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture), Single.Parse(parts[1].Trim(), CultureInfo.InvariantCulture));
+            }
+            else if (parts.Length == 1)
+            {
+                var x = Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture);
+                return new Vector2(x, x);
             }
 
-            return new Vector2(Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture), Single.Parse(parts[1].Trim(), CultureInfo.InvariantCulture));
+            throw new InvalidOperationException($"Cannot convert \"{value}\" into {typeof(Vector2)}");
         }
 
         internal static string ToString(Vector2 value)
@@ -89,6 +94,19 @@ namespace Tizen.NUI.Binding
                     return new Vector3(Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture),
                                        Single.Parse(parts[1].Trim(), CultureInfo.InvariantCulture),
                                        Single.Parse(parts[2].Trim(), CultureInfo.InvariantCulture));
+                }
+                else if (parts.Length == 2)
+                {
+                    var vector2 = new Vector2(Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture),
+                                              Single.Parse(parts[1].Trim(), CultureInfo.InvariantCulture));
+                    var vector3 = new Vector3(vector2);
+                    vector2.Dispose();
+                    return vector3;
+                }
+                else if (parts.Length == 1)
+                {
+                    var floatValue = Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture);
+                    return new Vector3(floatValue, floatValue, floatValue);
                 }
             }
 
@@ -129,6 +147,28 @@ namespace Tizen.NUI.Binding
                                        Single.Parse(parts[2].Trim(), CultureInfo.InvariantCulture),
                                        Single.Parse(parts[3].Trim(), CultureInfo.InvariantCulture));
                 }
+                else if (parts.Length == 3)
+                {
+                    var vector3 = new Vector3(Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture),
+                                              Single.Parse(parts[1].Trim(), CultureInfo.InvariantCulture),
+                                              Single.Parse(parts[2].Trim(), CultureInfo.InvariantCulture));
+                    var vector4 = new Vector4(vector3);
+                    vector3.Dispose();
+                    return vector4;
+                }
+                else if (parts.Length == 2)
+                {
+                    var vector2 = new Vector2(Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture),
+                                              Single.Parse(parts[1].Trim(), CultureInfo.InvariantCulture));
+                    var vector4 = new Vector4(vector2);
+                    vector2.Dispose();
+                    return vector4;
+                }
+                else if (parts.Length == 1)
+                {
+                    Vector4 ret = Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture);
+                    return ret;
+                }
             }
 
             throw new InvalidOperationException($"Cannot convert \"{value}\" into {typeof(Vector4)}");
@@ -165,6 +205,11 @@ namespace Tizen.NUI.Binding
                 {
                     return new RelativeVector2(Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture),
                                                Single.Parse(parts[1].Trim(), CultureInfo.InvariantCulture));
+                }
+                else if (parts.Length == 1)
+                {
+                    var x = Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture);
+                    return new RelativeVector2(x, x);
                 }
             }
 
@@ -204,6 +249,19 @@ namespace Tizen.NUI.Binding
                                                Single.Parse(parts[1].Trim(), CultureInfo.InvariantCulture),
                                                Single.Parse(parts[2].Trim(), CultureInfo.InvariantCulture));
                 }
+                else if (parts.Length == 2)
+                {
+                    var vector2 = new RelativeVector2(Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture),
+                                                      Single.Parse(parts[1].Trim(), CultureInfo.InvariantCulture));
+                    var vector3 = new RelativeVector3(vector2);
+                    vector2.Dispose();
+                    return vector3;
+                }
+                else if (parts.Length == 1)
+                {
+                    var x = Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture);
+                    return new RelativeVector3(x, x, x);
+                }
             }
 
             throw new InvalidOperationException($"Cannot convert \"{value}\" into {typeof(RelativeVector3)}");
@@ -242,6 +300,28 @@ namespace Tizen.NUI.Binding
                                                Single.Parse(parts[1].Trim(), CultureInfo.InvariantCulture),
                                                Single.Parse(parts[2].Trim(), CultureInfo.InvariantCulture),
                                                Single.Parse(parts[3].Trim(), CultureInfo.InvariantCulture));
+                }
+                else if (parts.Length == 3)
+                {
+                    var vector3 = new RelativeVector3(Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture),
+                                                      Single.Parse(parts[1].Trim(), CultureInfo.InvariantCulture),
+                                                      Single.Parse(parts[2].Trim(), CultureInfo.InvariantCulture));
+                    var vector4 = new RelativeVector4(vector3);
+                    vector3.Dispose();
+                    return vector4;
+                }
+                else if (parts.Length == 2)
+                {
+                    var vector2 = new RelativeVector2(Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture),
+                                                      Single.Parse(parts[1].Trim(), CultureInfo.InvariantCulture));
+                    var vector4 = new RelativeVector4(vector2);
+                    vector2.Dispose();
+                    return vector4;
+                }
+                else if (parts.Length == 1)
+                {
+                    var x = Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture);
+                    return new RelativeVector4(x, x, x, x);
                 }
             }
 

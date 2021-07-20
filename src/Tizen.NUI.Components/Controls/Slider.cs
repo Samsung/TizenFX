@@ -178,7 +178,7 @@ namespace Tizen.NUI.Components
                     instance.curValue = (float)newValue;
                     if (instance.IsHighlighted)
                     {
-                        instance.EmitAccessibilityEvent(ObjectPropertyChangeEvent.Value);
+                        instance.EmitAccessibilityEvent(AccessibilityPropertyChangeEvent.Value);
                     }
                     instance.UpdateValue();
                 }
@@ -520,7 +520,6 @@ namespace Tizen.NUI.Components
                 else
                 {
                     thumbImage.ResourceUrlSelector = value;
-                    thumbImageUrlSelector = value;
                 }
             }
         }
@@ -552,7 +551,6 @@ namespace Tizen.NUI.Components
                 else
                 {
                     thumbImage.ResourceUrlSelector = value;
-                    thumbImageUrlSelector = value;
                 }
             }
         }
@@ -929,7 +927,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Flag to decide whether the thumb snap to the nearest discrete value when the user drags the thumb or taps.
+        /// Flag to decide whether the thumb snaps to the nearest discrete value when the user drags the thumb or taps.
         ///
         /// The default value is false.
         /// </summary>
@@ -938,12 +936,13 @@ namespace Tizen.NUI.Components
 
         /// <summary>
         /// Gets or sets the discrete value of slider.
-        ///
+        /// </summary>
+        /// <remarks>
         /// The discrete value is evenly spaced between MinValue and MaxValue.
         /// For example, MinValue is 0, MaxValue is 100, and DiscreteValue is 20.
         /// Then, the thumb can only go to 0, 20, 40, 60, 80, and 100.
         /// The default is 0.
-        /// </summary>
+        /// </remarks>
         /// <since_tizen> 9 </since_tizen>
         public float DiscreteValue
         {
@@ -1102,6 +1101,63 @@ namespace Tizen.NUI.Components
             base.OnFocusLost();
         }
 
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool OnKey(Key key)
+        {
+            // TODO : Add IsEnabled conditional later.
+            if (null == key)
+            {
+                return false;
+            }
+
+            if (key.State == Key.StateType.Down)
+            {
+                if ((direction == DirectionType.Horizontal && key.KeyPressedName == "Left") ||
+                    (direction == DirectionType.Vertical && key.KeyPressedName == "Down"))
+                {
+                    if (MinValue < CurrentValue)
+                    {
+                        isPressed = true;
+                        if (IsDiscrete)
+                        {
+                            float value = CurrentValue - discreteValue;
+                            CurrentValue = value < MinValue ? MinValue : value;
+                        }
+                        else
+                        {
+                            CurrentValue -= 1;
+                        }
+                        return true; // Consumed
+                    }
+                }
+                else if ((direction == DirectionType.Horizontal && key.KeyPressedName == "Right") ||
+                         (direction == DirectionType.Vertical && key.KeyPressedName == "Up"))
+                {
+                    if (MaxValue > CurrentValue)
+                    {
+                        isPressed = true;
+                        if (IsDiscrete)
+                        {
+                            float value = CurrentValue + discreteValue;
+                            CurrentValue = value > MaxValue ? MaxValue : value;
+                        }
+                        else
+                        {
+                            CurrentValue += 1;
+                        }
+                        return true; // Consumed
+                    }
+                }
+            }
+            else if (key.State == Key.StateType.Up)
+            {
+                isPressed = false;
+            }
+
+            return false;
+        }
+
         /// <summary>
         /// Apply style to scrollbar.
         /// </summary>
@@ -1171,7 +1227,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Minimum value.
+        /// Gets minimum value for Accessibility.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override double AccessibilityGetMinimum()
@@ -1180,7 +1236,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Current value.
+        /// Gets the current value for Accessibility.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override double AccessibilityGetCurrent()
@@ -1189,7 +1245,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Maximum value.
+        /// Gets maximum value for Accessibility.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override double AccessibilityGetMaximum()
@@ -1198,19 +1254,19 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Current value.
+        /// Sets the current value using Accessibility.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override bool AccessibilitySetCurrent(double value)
         {
-            var f = (float)value;
+            var current = (float)value;
 
-            if (f >= MinValue && f <= MaxValue)
+            if (current >= MinValue && current <= MaxValue)
             {
-                CurrentValue = f;
+                CurrentValue = current;
                 if (sliderValueChangedHandler != null)
                 {
-                    sliderValueChangedHandler(this, new SliderValueChangedEventArgs { CurrentValue = f });
+                    sliderValueChangedHandler(this, new SliderValueChangedEventArgs { CurrentValue = current });
                 }
                 return true;
             }
@@ -1219,7 +1275,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Minimum increment.
+        /// Gets minimum increment for Accessibility.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override double AccessibilityGetMinimumIncrement()
@@ -1278,17 +1334,15 @@ namespace Tizen.NUI.Components
                 Utility.Dispose(warningSlidedTrackImage);
                 Utility.Dispose(warningTrackImage);
                 Utility.Dispose(slidedTrackImage);
-                if (null != bgTrackImage)
-                {
-                    bgTrackImage.TouchEvent -= OnTouchEventForBgTrack;
-                    Utility.Dispose(bgTrackImage);
-                }
+                Utility.Dispose(bgTrackImage);
                 Utility.Dispose(lowIndicatorImage);
                 Utility.Dispose(highIndicatorImage);
                 Utility.Dispose(lowIndicatorText);
                 Utility.Dispose(highIndicatorText);
                 Utility.Dispose(valueIndicatorImage);
                 Utility.Dispose(valueIndicatorText);
+
+                this.TouchEvent -= OnTouchEventForTrack;
             }
 
             base.Dispose(type);
@@ -1352,7 +1406,7 @@ namespace Tizen.NUI.Components
             }
         }
 
-        private bool OnTouchEventForBgTrack(object source, TouchEventArgs e)
+        private bool OnTouchEventForTrack(object source, TouchEventArgs e)
         {
             PointStateType state = e.Touch.GetState(0);
             if (state == PointStateType.Down)
@@ -1461,7 +1515,6 @@ namespace Tizen.NUI.Components
             if (!isFocused && !isPressed)
             {
                 ControlState = ControlState.Normal;
-                thumbImage.ResourceUrl = thumbImageUrlSelector?.Normal;
 
                 if (stateChangedHandler != null)
                 {
@@ -1473,7 +1526,6 @@ namespace Tizen.NUI.Components
             else if (isPressed)
             {
                 ControlState = ControlState.Pressed;
-                thumbImage.ResourceUrl = thumbImageUrlSelector?.Pressed;
 
                 if (stateChangedHandler != null)
                 {
@@ -1485,7 +1537,6 @@ namespace Tizen.NUI.Components
             else if (!isPressed && isFocused)
             {
                 ControlState = ControlState.Focused;
-                thumbImage.ResourceUrl = thumbImageUrlSelector?.Focused;
 
                 if (stateChangedHandler != null)
                 {

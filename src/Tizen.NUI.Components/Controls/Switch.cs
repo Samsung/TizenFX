@@ -23,13 +23,12 @@ using Tizen.NUI.Components.Extension;
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// Switch is one kind of common component, it can be used as selector.
-    /// User can handle Navigation by adding/inserting/deleting NavigationItem.
+    /// Switch is a kind of <see cref="Button"/> component that uses icon part as a toggle shape.
+    /// The icon part consists of track and thumb.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     public class Switch : Button
     {
-        private ImageView track = null;
         private ImageView thumb = null;
 
         static Switch() { }
@@ -66,13 +65,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnInitialize()
         {
-            track = new ImageView()
-            {
-                EnableControlStatePropagation = true
-            };
-            thumb = new ImageView();
-            track.Add(thumb);
-
             base.OnInitialize();
             SetAccessibilityConstructor(Role.ToggleButton);
 
@@ -89,7 +81,7 @@ namespace Tizen.NUI.Components
         protected override AccessibilityStates AccessibilityCalculateStates()
         {
             var states = base.AccessibilityCalculateStates();
-            states.Set(AccessibilityState.Checked, this.IsSelected);
+            FlagSetter(ref states, AccessibilityStates.Checked, this.IsSelected);
             return states;
         }
 
@@ -126,11 +118,12 @@ namespace Tizen.NUI.Components
             {
                 if (Extension is SwitchExtension extension)
                 {
-                    track.Unparent();
+                    Icon.Unparent();
                     thumb.Unparent();
-                    track = extension.OnCreateTrack(this, track);
+                    Icon = extension.OnCreateTrack(this, Icon);
                     thumb = extension.OnCreateThumb(this, thumb);
-                    track.Add(thumb);
+                    Icon.Add(thumb);
+                    LayoutItems();
                 }
 
                 if (switchStyle.Track != null)
@@ -153,10 +146,10 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public ImageView Track
         {
-            get => track;
+            get => Icon;
             internal set
             {
-                track = value;
+                Icon = value;
             }
         }
 
@@ -174,16 +167,16 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Background image's resource url selector in Switch.
+        /// Switch's track part image url selector.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public StringSelector SwitchBackgroundImageURLSelector
         {
-            get => new StringSelector(track.ResourceUrlSelector);
+            get => new StringSelector(Icon.ResourceUrlSelector);
             set
             {
-                Debug.Assert(track != null);
-                track.ResourceUrlSelector = value;
+                Debug.Assert(Icon != null);
+                Icon.ResourceUrlSelector = value;
             }
         }
 
@@ -245,8 +238,7 @@ namespace Tizen.NUI.Components
 
             if (type == DisposeTypes.Explicit)
             {
-                Utility.Dispose(Thumb);
-                Utility.Dispose(Track);
+                Utility.Dispose(thumb);
             }
 
             base.Dispose(type);
@@ -290,6 +282,22 @@ namespace Tizen.NUI.Components
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override ImageView CreateIcon()
+        {
+            var icon = new ImageView()
+            {
+                AccessibilityHighlightable = false,
+                EnableControlStatePropagation = true
+            };
+
+            thumb = new ImageView();
+            icon.Add(thumb);
+
+            return icon;
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnControlStateChanged(ControlStateChangedEventArgs controlStateChangedInfo)
         {
             base.OnControlStateChanged(controlStateChangedInfo);
@@ -307,21 +315,11 @@ namespace Tizen.NUI.Components
             }
         }
 
-        /// <inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void LayoutItems()
-        {
-            base.LayoutItems();
-            track.Unparent();
-            Add(track);
-            track.LowerToBottom();
-        }
-
         private void OnSelect()
         {
             if (IsHighlighted)
             {
-                EmitAccessibilityStateChangedEvent(AccessibilityState.Checked, IsSelected);
+                EmitAccessibilityStatesChangedEvent(AccessibilityStates.Checked, IsSelected);
             }
 
             ((SwitchExtension)Extension)?.OnSelectedChanged(this);

@@ -30,6 +30,14 @@ namespace Tizen.NUI
         {
         }
 
+        /// This will not be public opened.
+        /// <param name="swigCPtr"></param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.WebFormRepostPolicyDecisionMaker.DeleteWebFormRepostDecision(swigCPtr);
+        }
+
         /// <summary>
         /// Reply whether form repost decision is allowed or not.
         /// <param name="allowed">allowed or not</param>

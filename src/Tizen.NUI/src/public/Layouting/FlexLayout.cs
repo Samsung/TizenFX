@@ -811,7 +811,7 @@ namespace Tizen.NUI
                 {
                     // Get the frame for the child, start, top, end, bottom.
                     Vector4 frame = new Vector4(Interop.FlexLayout.GetNodeFrame(swigCPtr, childIndex), true);
-                    childLayout.Layout(new LayoutLength(frame.X), new LayoutLength(frame.Y), new LayoutLength(frame.Z), new LayoutLength(frame.W));
+                    childLayout?.Layout(new LayoutLength(frame.X), new LayoutLength(frame.Y), new LayoutLength(frame.Z), new LayoutLength(frame.W));
                     frame.Dispose();
                 }
             }

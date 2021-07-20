@@ -194,6 +194,12 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The FontStyle property.
+        /// The fontStyle map contains the following keys :<br />
+        /// <list type="table">
+        /// <item><term>width (string)</term><description>The width key defines occupied by each glyph. (values: ultraCondensed, extraCondensed, condensed, semiCondensed, normal, semiExpanded, expanded, extraExpanded, ultraExpanded)</description></item>
+        /// <item><term>weight (string)</term><description>The weight key defines the thickness or darkness of the glyphs. (values: thin, ultraLight, extraLight, light, demiLight, semiLight, book, normal, regular, medium, demiBold, semiBold, bold, ultraBold, extraBold, black, heavy, extraBlack)</description></item>
+        /// <item><term>slant (string)</term><description>The slant key defines whether to use italics. (values: normal, roman, italic, oblique)</description></item>
+        /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PropertyMap FontStyle
@@ -423,6 +429,10 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The SelectionHandleImageLeft property.
+        /// The selectionHandleImageLeft map contains the following key :<br />
+        /// <list type="table">
+        /// <item><term>filename (string)</term><description>The path of image file</description></item>
+        /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PropertyMap SelectionHandleImageLeft
@@ -440,6 +450,10 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The SelectionHandleImageRight property.
+        /// The selectionHandleImageRight map contains the following key :<br />
+        /// <list type="table">
+        /// <item><term>filename (string)</term><description>The path of image file</description></item>
+        /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PropertyMap SelectionHandleImageRight
@@ -457,6 +471,10 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The SelectionHandlePressedImageLeft property.
+        /// The selectionHandlePressedImageLeft map contains the following key :<br />
+        /// <list type="table">
+        /// <item><term>filename (string)</term><description>The path of image file</description></item>
+        /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PropertyMap SelectionHandlePressedImageLeft
@@ -474,6 +492,10 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The SelectionHandlePressedImageRight property.
+        /// The selectionHandlePressedImageRight map contains the following key :<br />
+        /// <list type="table">
+        /// <item><term>filename (string)</term><description>The path of image file</description></item>
+        /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PropertyMap SelectionHandlePressedImageRight
@@ -491,6 +513,10 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The SelectionHandleMarkerImageLeft property.
+        /// The selectionHandleMarkerImageLeft map contains the following key :<br />
+        /// <list type="table">
+        /// <item><term>filename (string)</term><description>The path of image file</description></item>
+        /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PropertyMap SelectionHandleMarkerImageLeft
@@ -508,6 +534,10 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The SelectionHandleMarkerImageRight property.
+        /// The selectionHandleMarkerImageRight map contains the following key :<br />
+        /// <list type="table">
+        /// <item><term>filename (string)</term><description>The path of image file</description></item>
+        /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PropertyMap SelectionHandleMarkerImageRight
@@ -622,6 +652,12 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The InputFontStyle property.
+        /// The inputFontStyle map contains the following keys :<br />
+        /// <list type="table">
+        /// <item><term>width (string)</term><description>The width key defines occupied by each glyph. (values: ultraCondensed, extraCondensed, condensed, semiCondensed, normal, semiExpanded, expanded, extraExpanded, ultraExpanded)</description></item>
+        /// <item><term>weight (string)</term><description>The weight key defines the thickness or darkness of the glyphs. (values: thin, ultraLight, extraLight, light, demiLight, semiLight, book, normal, regular, medium, demiBold, semiBold, bold, ultraBold, extraBold, black, heavy, extraBlack)</description></item>
+        /// <item><term>slant (string)</term><description>The slant key defines whether to use italics. (values: normal, roman, italic, oblique)</description></item>
+        /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PropertyMap InputFontStyle
@@ -690,6 +726,12 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The Underline property.
+        /// The underline map contains the following keys :<br />
+        /// <list type="table">
+        /// <item><term>enable (bool)</term><description>Whether the underline is enabled (the default value is false)</description></item>
+        /// <item><term>color (Color)</term><description>The color of the underline (If not provided then the color of the text is used)</description></item>
+        /// <item><term>height (float)</term><description>The height in pixels of the underline (the default value is 1.f)</description></item>
+        /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PropertyMap Underline
@@ -724,6 +766,12 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The Shadow property.
+        /// The shadow map contains the following keys :<br />
+        /// <list type="table">
+        /// <item><term>color (Color)</term><description>The color of the shadow (the default color is Color.Black)</description></item>
+        /// <item><term>offset (Vector2)</term><description>The offset in pixels of the shadow (If not provided then the shadow is not enabled)</description></item>
+        /// <item><term>blurRadius (float)</term><description>The radius of the Gaussian blur for the soft shadow (If not provided then the soft shadow is not enabled)</description></item>
+        /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PropertyMap Shadow
@@ -792,6 +840,11 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The Outline property.
+        /// The outline map contains the following keys :<br />
+        /// <list type="table">
+        /// <item><term>color (Color)</term><description>The color of the outline (the default color is Color.White)</description></item>
+        /// <item><term>width (float)</term><description>The width in pixels of the outline (If not provided then the outline is not enabled)</description></item>
+        /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PropertyMap Outline
@@ -1170,7 +1223,17 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The Placeholder property.
-        /// Gets or sets the placeholder: text, color, font family, font style, point size, and pixel size.
+        /// The placeholder map contains the following keys :<br />
+        /// <list type="table">
+        /// <item><term>text (string)</term><description>The text to display when the TextEditor is empty and inactive</description></item>
+        /// <item><term>textFocused (string)</term><description>The text to display when the placeholder has focus</description></item>
+        /// <item><term>color (Color)</term><description>The color of the placeholder text</description></item>
+        /// <item><term>fontFamily (string)</term><description>The fontFamily of the placeholder text</description></item>
+        /// <item><term>fontStyle (PropertyMap)</term><description>The fontStyle of the placeholder text</description></item>
+        /// <item><term>pointSize (float)</term><description>The pointSize of the placeholder text</description></item>
+        /// <item><term>pixelSize (float)</term><description>The pixelSize of the placeholder text</description></item>
+        /// <item><term>ellipsis (bool)</term><description>The ellipsis of the placeholder text</description></item>
+        /// </list>
         /// </summary>
         /// <example>
         /// The following example demonstrates how to set the placeholder property.
@@ -1347,6 +1410,37 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The InputMethodSettings property.
+        /// </summary>
+        /// <remarks>
+        /// <see cref="InputMethod"/> is a class encapsulating the input method map. Please use the <see cref="InputMethod"/> class for this property.
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to set the InputMethodSettings property.
+        /// <code>
+        /// InputMethod method = new InputMethod();
+        /// method.PanelLayout = InputMethod.PanelLayoutType.Normal;
+        /// method.ActionButton = InputMethod.ActionButtonTitleType.Default;
+        /// method.AutoCapital = InputMethod.AutoCapitalType.Word;
+        /// method.Variation = 1;
+        /// textEditor.InputMethodSettings = method.OutputMap;
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyMap InputMethodSettings
+        {
+            get
+            {
+                return (PropertyMap)GetValue(InputMethodSettingsProperty);
+            }
+            set
+            {
+                SetValue(InputMethodSettingsProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// Scroll the text control by specific amount..
         /// </summary>
         /// <param name="scroll">The amount (in pixels) of scrolling in horizontal &amp; vertical directions.</param>
@@ -1391,6 +1485,40 @@ namespace Tizen.NUI.BaseComponents
         {
             _ = Interop.TextEditor.SelectNone(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Enable grab handle property.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool EnableGrabHandle
+        {
+            get
+            {
+                return (bool)GetValue(EnableGrabHandleProperty);
+            }
+            set
+            {
+                SetValue(EnableGrabHandleProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Enable grab handle popup property.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool EnableGrabHandlePopup
+        {
+            get
+            {
+                return (bool)GetValue(EnableGrabHandlePopupProperty);
+            }
+            set
+            {
+                SetValue(EnableGrabHandlePopupProperty, value);
+                NotifyPropertyChanged();
+            }
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TextEditor obj)
@@ -1590,6 +1718,9 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int PrimaryCursorPosition = Interop.TextEditor.PrimaryCursorPositionGet();
             internal static readonly int FontSizeScale = Interop.TextEditor.FontSizeScaleGet();
             internal static readonly int GrabHandleColor = Interop.TextEditor.GrabHandleColorGet();
+            internal static readonly int EnableGrabHandle = Interop.TextEditor.EnableGrabHandleGet();
+            internal static readonly int EnableGrabHandlePopup = Interop.TextEditor.EnableGrabHandlePopupGet();
+            internal static readonly int InputMethodSettings = Interop.TextEditor.InputMethodSettingsGet();
         }
 
         internal class InputStyle

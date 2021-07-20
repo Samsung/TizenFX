@@ -41,7 +41,10 @@ namespace Tizen.NUI.Components
         private View defaultTitleContent = null;
         private View defaultActionContent = null;
 
-        private AppBarStyle appBarStyle => ViewStyle as AppBarStyle;
+        private Extents navigationPadding;
+        private Extents actionPadding;
+        private ViewStyle actionViewStyle;
+        private ButtonStyle actionButtonStyle;
 
         private bool styleApplied = false;
 
@@ -297,13 +300,13 @@ namespace Tizen.NUI.Components
                 foreach (var action in actionContentViews)
                 {
                     // Apply Action and ActionButton styles.
-                    if ((action is Button) && (appBarStyle?.ActionButton != null))
+                    if ((action is Button) && (actionButtonStyle != null))
                     {
-                        action.ApplyStyle(appBarStyle.ActionButton);
+                        action.ApplyStyle(actionButtonStyle);
                     }
-                    else if (appBarStyle?.ActionView != null)
+                    else if (actionViewStyle != null)
                     {
-                        action.ApplyStyle(appBarStyle.ActionView);
+                        action.ApplyStyle(actionViewStyle);
                     }
 
                     ActionContent.Add(action);
@@ -341,13 +344,13 @@ namespace Tizen.NUI.Components
                     foreach (var action in Actions)
                     {
                         // Apply Action and ActionButton styles.
-                        if ((action is Button) && (appBarStyle?.ActionButton != null))
+                        if ((action is Button) && (actionButtonStyle != null))
                         {
-                            action.ApplyStyle(appBarStyle.ActionButton);
+                            action.ApplyStyle(actionButtonStyle);
                         }
-                        else if (appBarStyle?.ActionView != null)
+                        else if (actionViewStyle != null)
                         {
-                            action.ApplyStyle(appBarStyle.ActionView);
+                            action.ApplyStyle(actionViewStyle);
                         }
 
                         actionContent.Add(action);
@@ -465,6 +468,15 @@ namespace Tizen.NUI.Components
             }
         }
 
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnInitialize()
+        {
+            base.OnInitialize();
+
+            SetAccessibilityConstructor(Role.TitleBar);
+        }
+
         /// <summary>
         /// Applies style to AppBar.
         /// </summary>
@@ -476,22 +488,39 @@ namespace Tizen.NUI.Components
 
             base.ApplyStyle(viewStyle);
 
+            var appBarStyle = viewStyle as AppBarStyle;
+
+            if (appBarStyle == null)
+            {
+                return;
+            }
+
+            if (appBarStyle.NavigationPadding != null)
+            {
+                navigationPadding = new Extents(appBarStyle.NavigationPadding);
+            }
+
+            if (appBarStyle.ActionPadding != null)
+            {
+                actionPadding = new Extents(appBarStyle.ActionPadding);
+            }
+
             // Apply Back Button style.
-            if ((appBarStyle?.BackButton != null) && (DefaultNavigationContent is Button button))
+            if ((appBarStyle.BackButton != null) && (DefaultNavigationContent is Button button))
             {
                 button.ApplyStyle(appBarStyle.BackButton);
             }
 
             // Apply Title style.
-            if ((appBarStyle?.TitleTextLabel != null) && (DefaultTitleContent is TextLabel textLabel))
+            if ((appBarStyle.TitleTextLabel != null) && (DefaultTitleContent is TextLabel textLabel))
             {
                 textLabel.ApplyStyle(appBarStyle.TitleTextLabel);
             }
 
             // Apply ActionCellPadding style.
-            if (DefaultActionContent?.Layout is LinearLayout linearLayout)
+            if (DefaultActionContent?.Layout is LinearLayout linearLayout && appBarStyle.ActionCellPadding != null)
             {
-                linearLayout.CellPadding = new Size2D(appBarStyle?.ActionCellPadding?.Width ?? 0, appBarStyle?.ActionCellPadding?.Height ?? 0);
+                linearLayout.CellPadding = new Size2D(appBarStyle.ActionCellPadding.Width, appBarStyle.ActionCellPadding.Height);
             }
 
             // Apply Action and ActionButton styles.
@@ -499,16 +528,23 @@ namespace Tizen.NUI.Components
             {
                 foreach (var action in DefaultActionContent?.Children)
                 {
-                    if ((action is Button) && (appBarStyle?.ActionButton != null))
+                    if ((action is Button) && (appBarStyle.ActionButton != null))
                     {
                         action.ApplyStyle(appBarStyle.ActionButton);
                     }
-                    else if (appBarStyle?.ActionView != null)
+                    else if (appBarStyle.ActionView != null)
                     {
                         action.ApplyStyle(appBarStyle.ActionView);
                     }
                 }
             }
+
+            if (actionButtonStyle == null) actionButtonStyle = (ButtonStyle)appBarStyle.ActionButton.Clone();
+            else actionButtonStyle.MergeDirectly(appBarStyle.ActionButton);
+
+            if (actionViewStyle == null) actionViewStyle = (ViewStyle)appBarStyle.ActionView.Clone();
+            else actionViewStyle.MergeDirectly(appBarStyle.ActionView);
+            
 
             styleApplied = true;
 
@@ -549,7 +585,7 @@ namespace Tizen.NUI.Components
 
         private View CreateDefaultNavigationContent()
         {
-            var backButton = new Button(appBarStyle?.BackButton ?? null);
+            var backButton = new Button();
 
             backButton.Clicked += (object sender, ClickedEventArgs args) =>
             {
@@ -570,10 +606,9 @@ namespace Tizen.NUI.Components
 
         private View CreateDefaultTitleContent()
         {
-            return new TextLabel(appBarStyle?.TitleTextLabel ?? null)
+            return new TextLabel()
             {
                 HeightSpecification = LayoutParamPolicies.MatchParent,
-                Weight = 1.0f,
             };
         }
 
@@ -584,11 +619,10 @@ namespace Tizen.NUI.Components
                 Layout = new LinearLayout()
                 {
                     LinearOrientation = LinearLayout.Orientation.Horizontal,
-
-                    // Apply ActionCellPadding style.
-                    CellPadding = new Size2D(appBarStyle?.ActionCellPadding?.Width ?? 0, appBarStyle?.ActionCellPadding?.Height ?? 0),
+                    LinearAlignment = LinearLayout.Alignment.End,
                 },
-                Weight = 0.0f,
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                HeightSpecification = LayoutParamPolicies.MatchParent,
             };
         }
 
@@ -638,20 +672,20 @@ namespace Tizen.NUI.Components
             }
 
             // Apply NavigationPadding style.
-            if ((NavigationContent != null) && (appBarStyle?.NavigationPadding != null))
+            if ((NavigationContent != null) && (navigationPadding != null))
             {
-                if (NavigationContent.Margin.NotEqualTo(appBarStyle.NavigationPadding))
+                if (NavigationContent.Margin.NotEqualTo(navigationPadding))
                 {
-                    NavigationContent.Margin.CopyFrom(appBarStyle.NavigationPadding);
+                    NavigationContent.Margin.CopyFrom(navigationPadding);
                 }
             }
 
             // Apply ActionPadding style.
-            if ((ActionContent != null) && (appBarStyle?.ActionPadding != null))
+            if ((ActionContent != null) && (actionPadding != null))
             {
-                if (ActionContent.Margin.NotEqualTo(appBarStyle.ActionPadding))
+                if (ActionContent.Margin.NotEqualTo(actionPadding))
                 {
-                    ActionContent.Margin.CopyFrom(appBarStyle.ActionPadding);
+                    ActionContent.Margin.CopyFrom(actionPadding);
                 }
             }
         }

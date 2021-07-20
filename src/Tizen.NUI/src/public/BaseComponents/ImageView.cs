@@ -890,9 +890,12 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 VisualFittingModeType ret = CovertFittingModetoVisualFittingMode(value);
-                _fittingMode = ret;
                 PropertyValue setValue = new PropertyValue((int)ret);
-                UpdateImage(Visual.Property.VisualFittingMode, setValue);
+                if(_fittingMode != ret)
+                {
+                    _fittingMode = ret;
+                    UpdateImage(Visual.Property.VisualFittingMode, setValue);
+                }
                 setValue?.Dispose();
             }
         }
@@ -1116,6 +1119,32 @@ namespace Tizen.NUI.BaseComponents
             UpdateImage(0, null);
         }
 
+        internal override void ApplyBorderline()
+        {
+            // Ignore BACKGROUND borderline property. only apply borderline to IMAGE.
+            if (backgroundExtraData != null)
+            {
+                var borderlineColor = backgroundExtraData.BorderlineColor == null ? new PropertyValue(Color.Black) : new PropertyValue(backgroundExtraData.BorderlineColor);
+
+                // Apply to the image visual
+                PropertyMap imageMap = new PropertyMap();
+                PropertyValue imageValue = Tizen.NUI.Object.GetProperty(SwigCPtr, ImageView.Property.IMAGE);
+                if (imageValue.Get(imageMap) && !imageMap.Empty())
+                {
+                    imageMap[Visual.Property.BorderlineWidth] = new PropertyValue(backgroundExtraData.BorderlineWidth);
+                    imageMap[Visual.Property.BorderlineColor] = borderlineColor;
+                    imageMap[Visual.Property.BorderlineOffset] = new PropertyValue(backgroundExtraData.BorderlineOffset);
+                    var temp = new PropertyValue(imageMap);
+                    Tizen.NUI.Object.SetProperty(SwigCPtr, ImageView.Property.IMAGE, temp);
+                    temp.Dispose();
+                }
+                imageMap.Dispose();
+                imageValue.Dispose();
+                borderlineColor.Dispose();
+            }
+            UpdateImage(0, null);
+        }
+
         internal ResourceLoadingStatusType GetResourceStatus()
         {
             return (ResourceLoadingStatusType)Interop.View.GetVisualResourceStatus(this.SwigCPtr, Property.IMAGE);
@@ -1276,30 +1305,37 @@ namespace Tizen.NUI.BaseComponents
                 if (_resourceUrl != null)
                 {
                     Size2D imageSize = ImageLoading.GetOriginalImageSize(_resourceUrl, true);
-
-                    int adjustedDesiredWidth, adjustedDesiredHeight;
-                    float aspectOfDesiredSize = (float)_desired_height / (float)_desired_width;
-                    float aspectOfImageSize = (float)imageSize.Height / (float)imageSize.Width;
-                    if (aspectOfImageSize > aspectOfDesiredSize)
+                    if( imageSize.Height > 0 && imageSize.Width > 0 && _desired_width > 0  && _desired_height > 0 )
                     {
-                        adjustedDesiredWidth = _desired_width;
-                        adjustedDesiredHeight = imageSize.Height * _desired_width / imageSize.Width;
+                        int adjustedDesiredWidth, adjustedDesiredHeight;
+                        float aspectOfDesiredSize = (float)_desired_height / (float)_desired_width;
+                        float aspectOfImageSize = (float)imageSize.Height / (float)imageSize.Width;
+                        if (aspectOfImageSize > aspectOfDesiredSize)
+                        {
+                            adjustedDesiredWidth = _desired_width;
+                            adjustedDesiredHeight = imageSize.Height * _desired_width / imageSize.Width;
+                        }
+                        else
+                        {
+                            adjustedDesiredWidth = imageSize.Width * _desired_height / imageSize.Height;
+                            adjustedDesiredHeight = _desired_height;
+                        }
+
+                        PropertyValue returnWidth = new PropertyValue(adjustedDesiredWidth);
+                        imageMap?.Insert(ImageVisualProperty.DesiredWidth, returnWidth);
+                        returnWidth?.Dispose();
+                        PropertyValue returnHeight = new PropertyValue(adjustedDesiredHeight);
+                        imageMap?.Insert(ImageVisualProperty.DesiredHeight, returnHeight);
+                        returnHeight?.Dispose();
+                        PropertyValue scaleToFit = new PropertyValue((int)FittingModeType.ScaleToFill);
+                        imageMap?.Insert(ImageVisualProperty.FittingMode, scaleToFit);
+                        scaleToFit?.Dispose();
                     }
                     else
                     {
-                        adjustedDesiredWidth = imageSize.Width * _desired_height / imageSize.Height;
-                        adjustedDesiredHeight = _desired_height;
+                        Tizen.Log.Fatal("NUI", "[ERROR] Can't use DesiredSize when ImageLoading is failed.");
                     }
-
-                    PropertyValue returnWidth = new PropertyValue(adjustedDesiredWidth);
-                    imageMap?.Insert(ImageVisualProperty.DesiredWidth, returnWidth);
-                    returnWidth?.Dispose();
-                    PropertyValue returnHeight = new PropertyValue(adjustedDesiredHeight);
-                    imageMap?.Insert(ImageVisualProperty.DesiredHeight, returnHeight);
-                    returnHeight?.Dispose();
-                    PropertyValue scaleToFit = new PropertyValue((int)FittingModeType.ScaleToFill);
-                    imageMap?.Insert(ImageVisualProperty.FittingMode, scaleToFit);
-                    scaleToFit?.Dispose();
+                    imageSize?.Dispose();
                 }
             }
 

@@ -21,6 +21,7 @@ using System.Text;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
 using Tizen.NUI.Binding.Internals;
+using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.EXaml
 {
@@ -44,15 +45,18 @@ namespace Tizen.NUI.EXaml
             {
                 var property = globalDataList.GatheredBindableProperties[bindalbePropertyIndex];
 
-                if (value is Instance)
+                if (value is Instance valueInstance)
                 {
-                    int valueIndex = (value as Instance).Index;
-                    instance.SetValue(property, globalDataList.GatheredInstances[valueIndex]);
+                    int valueIndex = valueInstance.Index;
+                    value = globalDataList.GatheredInstances[valueIndex];
                 }
-                else
+
+                if (value is IMarkupExtension markupExtension)
                 {
-                    instance.SetValue(property, value);
+                    value = markupExtension.ProvideValue(null);
                 }
+
+                instance.SetValue(property, value);
             }
         }
 

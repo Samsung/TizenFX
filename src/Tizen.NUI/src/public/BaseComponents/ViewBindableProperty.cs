@@ -39,8 +39,15 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.StyleName, new Tizen.NUI.PropertyValue(styleName));
 
                 view.styleName = styleName;
-                view.UpdateStyle();
-                view.ThemeChangeSensitive = true;
+
+                if (string.IsNullOrEmpty(styleName)) return;
+
+                var style = ThemeManager.GetUpdateStyleWithoutClone(styleName);
+
+                if (style == null) return;
+
+                view.ApplyStyle(style);
+                view.SetThemeApplied();
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
@@ -82,7 +89,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 
-            view.selectorData?.ClearBackground(view);
+            view.themeData?.selectorData?.ClearBackground(view);
 
             if (newValue is Selector<Color> selector)
             {
@@ -118,7 +125,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 
-            view.selectorData?.Color?.Reset(view);
+            view.themeData?.selectorData?.Color?.Reset(view);
 
             if (newValue is Selector<Color> selector)
             {
@@ -143,10 +150,10 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 
-            if (view.selectorData != null)
+            if (view.themeData?.selectorData != null)
             {
-                view.selectorData.BackgroundColor?.Reset(view);
-                view.selectorData.BackgroundImage?.Reset(view);
+                view.themeData.selectorData.BackgroundColor?.Reset(view);
+                view.themeData.selectorData.BackgroundImage?.Reset(view);
             }
 
             if (newValue is Selector<string> selector)
@@ -175,7 +182,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 
-            view.selectorData?.BackgroundImageBorder?.Reset(view);
+            view.themeData?.selectorData?.BackgroundImageBorder?.Reset(view);
 
             if (newValue is Selector<Rectangle> selector)
             {
@@ -567,6 +574,21 @@ namespace Tizen.NUI.BaseComponents
         });
 
         /// <summary>
+        /// FocusableInTouchProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty FocusableInTouchProperty = BindableProperty.Create(nameof(FocusableInTouch), typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            if (newValue != null) { view.SetFocusableInTouch((bool)newValue); }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view.IsFocusableInTouch();
+        });
+
+        /// <summary>
         /// Size2DProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -599,7 +621,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 
-            view.selectorData?.Opacity?.Reset(view);
+            view.themeData?.selectorData?.Opacity?.Reset(view);
 
             if (newValue is Selector<float?> selector)
             {
@@ -1123,7 +1145,22 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.WidthResizePolicy, new Tizen.NUI.PropertyValue((int)newValue));
+                if((ResizePolicyType)newValue == ResizePolicyType.KeepSizeFollowingParent)
+                {
+                    if(view.widthConstraint == null)
+                    {
+                        view.widthConstraint = new EqualConstraintWithParentFloat((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.SizeWidth, View.Property.SizeWidth);
+                        view.widthConstraint.Apply();
+                    }
+                    Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.WidthResizePolicy, new Tizen.NUI.PropertyValue((int)ResizePolicyType.FillToParent));
+                }
+                else
+                {
+                    view.widthConstraint?.Remove();
+                    view.widthConstraint?.Dispose();
+                    view.widthConstraint = null;
+                    Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.WidthResizePolicy, new Tizen.NUI.PropertyValue((int)newValue));
+                }
                 // Match ResizePolicy to new Layouting.
                 // Parent relative policies can not be mapped at this point as parent size unknown.
                 switch ((ResizePolicyType)newValue)
@@ -1168,7 +1205,22 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.HeightResizePolicy, new Tizen.NUI.PropertyValue((int)newValue));
+                if((ResizePolicyType)newValue == ResizePolicyType.KeepSizeFollowingParent)
+                {
+                    if(view.heightConstraint == null)
+                    {
+                        view.heightConstraint = new EqualConstraintWithParentFloat((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.SizeHeight, View.Property.SizeHeight);
+                        view.heightConstraint.Apply();
+                    }
+                    Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.HeightResizePolicy, new Tizen.NUI.PropertyValue((int)ResizePolicyType.FillToParent));
+                }
+                else
+                {
+                    view.heightConstraint?.Remove();
+                    view.heightConstraint?.Dispose();
+                    view.heightConstraint = null;
+                    Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.HeightResizePolicy, new Tizen.NUI.PropertyValue((int)newValue));
+                }
                 // Match ResizePolicy to new Layouting.
                 // Parent relative policies can not be mapped at this point as parent size unknown.
                 switch ((ResizePolicyType)newValue)
@@ -1499,7 +1551,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 
-            view.selectorData?.ClearShadow(view);
+            view.themeData?.selectorData?.ClearShadow(view);
 
             if (newValue is Selector<ImageShadow> selector)
             {
@@ -1508,7 +1560,7 @@ namespace Tizen.NUI.BaseComponents
             }
             else
             {
-                view.SetShadow((ImageShadow)newValue);                
+                view.SetShadow((ImageShadow)newValue);
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
@@ -1530,7 +1582,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 
-            view.selectorData?.ClearShadow(view);
+            view.themeData?.selectorData?.ClearShadow(view);
 
             if (newValue is Selector<Shadow> selector)
             {
@@ -1539,7 +1591,7 @@ namespace Tizen.NUI.BaseComponents
             }
             else
             {
-                view.SetShadow((Shadow)newValue);                
+                view.SetShadow((Shadow)newValue);
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
@@ -1566,7 +1618,7 @@ namespace Tizen.NUI.BaseComponents
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
-            return view.backgroundExtraData == null ? 0 : view.backgroundExtraData.CornerRadius;
+            return view.backgroundExtraData == null ? 0.0f : view.backgroundExtraData.CornerRadius;
         });
 
         /// <summary>
@@ -1587,6 +1639,54 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             return view.backgroundExtraData == null ? VisualTransformPolicyType.Absolute : view.backgroundExtraData.CornerRadiusPolicy;
+        });
+
+        /// <summary>
+        /// BorderlineWidth Property
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty BorderlineWidthProperty = BindableProperty.Create(nameof(BorderlineWidth), typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            (view.backgroundExtraData ?? (view.backgroundExtraData = new BackgroundExtraData())).BorderlineWidth = (float)newValue;
+            view.ApplyBorderline();
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view.backgroundExtraData == null ? 0.0f : view.backgroundExtraData.BorderlineWidth;
+        });
+
+        /// <summary>
+        /// BorderlineColor Property
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty BorderlineColorProperty = BindableProperty.Create(nameof(BorderlineColor), typeof(Color), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            (view.backgroundExtraData ?? (view.backgroundExtraData = new BackgroundExtraData())).BorderlineColor = (Color)newValue;
+            view.ApplyBorderline();
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view.backgroundExtraData == null ? Color.Black : view.backgroundExtraData.BorderlineColor;
+        });
+
+        /// <summary>
+        /// BorderlineOffset Property
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty BorderlineOffsetProperty = BindableProperty.Create(nameof(BorderlineOffset), typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            (view.backgroundExtraData ?? (view.backgroundExtraData = new BackgroundExtraData())).BorderlineOffset = (float)newValue;
+            view.ApplyBorderline();
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view.backgroundExtraData == null ? 0.0f : view.backgroundExtraData.BorderlineOffset;
         });
 
         /// <summary>
@@ -1624,22 +1724,28 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 
-            if (view.themeChangeSensitive == (bool)newValue) return;
+            if (view.ThemeChangeSensitive == (bool)newValue) return;
 
-            view.themeChangeSensitive = (bool)newValue;
+            if (view.themeData == null) view.themeData = new ThemeData();
 
-            if (view.themeChangeSensitive)
+            view.themeData.ThemeChangeSensitive = (bool)newValue;
+
+            if (!view.themeData.ThemeApplied) return;
+
+            if (view.themeData.ThemeChangeSensitive && !view.themeData.ListeningThemeChangeEvent)
             {
+                view.themeData.ListeningThemeChangeEvent = true;
                 ThemeManager.ThemeChangedInternal.Add(view.OnThemeChanged);
             }
-            else
+            else if (!view.themeData.ThemeChangeSensitive && view.themeData.ListeningThemeChangeEvent)
             {
+                view.themeData.ListeningThemeChangeEvent = false;
                 ThemeManager.ThemeChangedInternal.Remove(view.OnThemeChanged);
             }
         },
         defaultValueCreator: (bindable) =>
         {
-            return ((View)bindable).themeChangeSensitive;
+            return ((View)bindable).themeData?.ThemeChangeSensitive ?? ThemeManager.ApplicationThemeChangeSensitive;
         });
 
         /// <summary>
@@ -1746,26 +1852,6 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         });
 
-        /// <summary>
-        /// AccessibilityAnimatedProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty AccessibilityAnimatedProperty = BindableProperty.Create(nameof(AccessibilityAnimated), typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var view = (View)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.AccessibilityAnimated, new Tizen.NUI.PropertyValue((bool)newValue));
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var view = (View)bindable;
-            bool temp = false;
-            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.AccessibilityAnimated).Get(out temp);
-            return temp;
-        });
-
         private void SetBackgroundImage(string value)
         {
             if (string.IsNullOrEmpty(value))
@@ -1794,6 +1880,9 @@ namespace Tizen.NUI.BaseComponents
             map.Add(ImageVisualProperty.URL, new PropertyValue(value))
                .Add(Visual.Property.CornerRadius, new PropertyValue(backgroundExtraData.CornerRadius == null ? new PropertyValue() : new PropertyValue(backgroundExtraData.CornerRadius)))
                .Add(Visual.Property.CornerRadiusPolicy, new PropertyValue((int)(backgroundExtraData.CornerRadiusPolicy)))
+               .Add(Visual.Property.BorderlineWidth, new PropertyValue(backgroundExtraData.BorderlineWidth))
+               .Add(Visual.Property.BorderlineColor, new PropertyValue(backgroundExtraData.BorderlineColor == null ? new PropertyValue(Color.Black) : new PropertyValue(backgroundExtraData.BorderlineColor)))
+               .Add(Visual.Property.BorderlineOffset, new PropertyValue(backgroundExtraData.BorderlineOffset))
                .Add(ImageVisualProperty.SynchronousLoading, new PropertyValue(backgroundImageSynchronosLoading));
 
             if (backgroundExtraData.BackgroundImageBorder != null)
@@ -1859,9 +1948,13 @@ namespace Tizen.NUI.BaseComponents
             PropertyMap map = new PropertyMap();
 
             map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Color))
-                .Add(ColorVisualProperty.MixColor, new PropertyValue(value))
-                .Add(Visual.Property.CornerRadius, new PropertyValue(new PropertyValue(backgroundExtraData.CornerRadius == null ? new PropertyValue() : new PropertyValue(backgroundExtraData.CornerRadius))))
-                .Add(Visual.Property.CornerRadiusPolicy, new PropertyValue((int)(backgroundExtraData.CornerRadiusPolicy)));
+               .Add(ColorVisualProperty.MixColor, new PropertyValue(value))
+               .Add(Visual.Property.CornerRadius, new PropertyValue(new PropertyValue(backgroundExtraData.CornerRadius == null ? new PropertyValue() : new PropertyValue(backgroundExtraData.CornerRadius))))
+               .Add(Visual.Property.CornerRadiusPolicy, new PropertyValue((int)(backgroundExtraData.CornerRadiusPolicy)))
+               .Add(Visual.Property.BorderlineWidth, new PropertyValue(backgroundExtraData.BorderlineWidth))
+               .Add(Visual.Property.BorderlineColor, new PropertyValue(backgroundExtraData.BorderlineColor == null ? new PropertyValue(Color.Black) : new PropertyValue(backgroundExtraData.BorderlineColor)))
+               .Add(Visual.Property.BorderlineOffset, new PropertyValue(backgroundExtraData.BorderlineOffset));
+
 
             Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, View.Property.BACKGROUND, new PropertyValue(map));
         }

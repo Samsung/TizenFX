@@ -284,6 +284,12 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The FontStyle property.
+        /// The fontStyle map contains the following keys :<br />
+        /// <list type="table">
+        /// <item><term>width (string)</term><description>The width key defines occupied by each glyph. (values: ultraCondensed, extraCondensed, condensed, semiCondensed, normal, semiExpanded, expanded, extraExpanded, ultraExpanded)</description></item>
+        /// <item><term>weight (string)</term><description>The weight key defines the thickness or darkness of the glyphs. (values: thin, ultraLight, extraLight, light, demiLight, semiLight, book, normal, regular, medium, demiBold, semiBold, bold, ultraBold, extraBold, black, heavy, extraBlack)</description></item>
+        /// <item><term>slant (string)</term><description>The slant key defines whether to use italics. (values: normal, roman, italic, oblique)</description></item>
+        /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PropertyMap FontStyle
@@ -663,6 +669,10 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The SelectionHandleImageLeft property.
+        /// The selectionHandleImageLeft map contains the following key :<br />
+        /// <list type="table">
+        /// <item><term>filename (string)</term><description>The path of image file</description></item>
+        /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PropertyMap SelectionHandleImageLeft
@@ -680,6 +690,10 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The SelectionHandleImageRight property.
+        /// The selectionHandleImageRight map contains the following key :<br />
+        /// <list type="table">
+        /// <item><term>filename (string)</term><description>The path of image file</description></item>
+        /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PropertyMap SelectionHandleImageRight
@@ -697,6 +711,10 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The SelectionHandlePressedImageLeft property.
+        /// The selectionHandlePressedImageLeft map contains the following key :<br />
+        /// <list type="table">
+        /// <item><term>filename (string)</term><description>The path of image file</description></item>
+        /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PropertyMap SelectionHandlePressedImageLeft
@@ -714,6 +732,10 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The SelectionHandlePressedImageRight property.
+        /// The selectionHandlePressedImageRight map contains the following key :<br />
+        /// <list type="table">
+        /// <item><term>filename (string)</term><description>The path of image file</description></item>
+        /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PropertyMap SelectionHandlePressedImageRight
@@ -731,6 +753,10 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The SelectionHandleMarkerImageLeft property.
+        /// The selectionHandleMarkerImageLeft map contains the following key :<br />
+        /// <list type="table">
+        /// <item><term>filename (string)</term><description>The path of image file</description></item>
+        /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PropertyMap SelectionHandleMarkerImageLeft
@@ -748,6 +774,10 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The SelectionHandleMarkerImageRight property.
+        /// The selectionHandleMarkerImageRight map contains the following key :<br />
+        /// <list type="table">
+        /// <item><term>filename (string)</term><description>The path of image file</description></item>
+        /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PropertyMap SelectionHandleMarkerImageRight
@@ -808,6 +838,20 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The InputMethodSettings property.
         /// </summary>
+        /// <remarks>
+        /// <see cref="InputMethod"/> is a class encapsulating the input method map. Please use the <see cref="InputMethod"/> class for this property.
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to set the InputMethodSettings property.
+        /// <code>
+        /// InputMethod method = new InputMethod();
+        /// method.PanelLayout = InputMethod.PanelLayoutType.Normal;
+        /// method.ActionButton = InputMethod.ActionButtonTitleType.Default;
+        /// method.AutoCapital = InputMethod.AutoCapitalType.Word;
+        /// method.Variation = 1;
+        /// textField.InputMethodSettings = method.OutputMap;
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public PropertyMap InputMethodSettings
         {
@@ -879,6 +923,12 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The InputFontStyle property.
+        /// The inputFontStyle map contains the following keys :<br />
+        /// <list type="table">
+        /// <item><term>width (string)</term><description>The width key defines occupied by each glyph. (values: ultraCondensed, extraCondensed, condensed, semiCondensed, normal, semiExpanded, expanded, extraExpanded, ultraExpanded)</description></item>
+        /// <item><term>weight (string)</term><description>The weight key defines the thickness or darkness of the glyphs. (values: thin, ultraLight, extraLight, light, demiLight, semiLight, book, normal, regular, medium, demiBold, semiBold, bold, ultraBold, extraBold, black, heavy, extraBlack)</description></item>
+        /// <item><term>slant (string)</term><description>The slant key defines whether to use italics. (values: normal, roman, italic, oblique)</description></item>
+        /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PropertyMap InputFontStyle
@@ -913,6 +963,12 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The Underline property.
+        /// The underline map contains the following keys :<br />
+        /// <list type="table">
+        /// <item><term>enable (bool)</term><description>Whether the underline is enabled (the default value is false)</description></item>
+        /// <item><term>color (Color)</term><description>The color of the underline (If not provided then the color of the text is used)</description></item>
+        /// <item><term>height (float)</term><description>The height in pixels of the underline (the default value is 1.f)</description></item>
+        /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PropertyMap Underline
@@ -947,6 +1003,12 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The Shadow property.
+        /// The shadow map contains the following keys :<br />
+        /// <list type="table">
+        /// <item><term>color (Color)</term><description>The color of the shadow (the default color is Color.Black)</description></item>
+        /// <item><term>offset (Vector2)</term><description>The offset in pixels of the shadow (If not provided then the shadow is not enabled)</description></item>
+        /// <item><term>blurRadius (float)</term><description>The radius of the Gaussian blur for the soft shadow (If not provided then the soft shadow is not enabled)</description></item>
+        /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PropertyMap Shadow
@@ -1015,6 +1077,11 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The Outline property.
+        /// The outline map contains the following keys :<br />
+        /// <list type="table">
+        /// <item><term>color (Color)</term><description>The color of the outline (the default color is Color.White)</description></item>
+        /// <item><term>width (float)</term><description>The width in pixels of the outline (If not provided then the outline is not enabled)</description></item>
+        /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PropertyMap Outline
@@ -1049,7 +1116,27 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The HiddenInputSettings property.
+        /// The hiddenInputSettings map contains the following keys :<br />
+        /// <list type="table">
+        /// <item><term>HiddenInputProperty.Mode (int)</term><description>The mode for input text display (Use HiddenInputModeType)</description></item>
+        /// <item><term>HiddenInputProperty.SubstituteCharacter (int)</term><description>All input characters are substituted by this character</description></item>
+        /// <item><term>HiddenInputProperty.SubstituteCount (int)</term><description>Length of text to show or hide, available when HideCount/ShowCount mode is used</description></item>
+        /// <item><term>HiddenInputProperty.ShowLastCharacterDuration (int)</term><description>Hide last character after this duration, available when ShowLastCharacter mode</description></item>
+        /// </list>
         /// </summary>
+        /// <remarks>
+        /// See <see cref="HiddenInputProperty"/> and <see cref="HiddenInputModeType"/> for a detailed description.
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to set the HiddenInputSettings property.
+        /// <code>
+        /// PropertyMap map = new PropertyMap();
+        /// map.Add(HiddenInputProperty.Mode, new PropertyValue((int)HiddenInputModeType.ShowLastCharacter));
+        /// map.Add(HiddenInputProperty.ShowLastCharacterDuration, new PropertyValue(500));
+        /// map.Add(HiddenInputProperty.SubstituteCharacter, new PropertyValue(0x2A));
+        /// textField.HiddenInputSettings = map;
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public Tizen.NUI.PropertyMap HiddenInputSettings
         {
@@ -1263,7 +1350,17 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The Placeholder property.
-        /// Gets or sets the placeholder: text, color, font family, font style, point size, and pixel size.
+        /// The placeholder map contains the following keys :<br />
+        /// <list type="table">
+        /// <item><term>text (string)</term><description>The text to display when the TextField is empty and inactive</description></item>
+        /// <item><term>textFocused (string)</term><description>The text to display when the placeholder has focus</description></item>
+        /// <item><term>color (Color)</term><description>The color of the placeholder text</description></item>
+        /// <item><term>fontFamily (string)</term><description>The fontFamily of the placeholder text</description></item>
+        /// <item><term>fontStyle (PropertyMap)</term><description>The fontStyle of the placeholder text</description></item>
+        /// <item><term>pointSize (float)</term><description>The pointSize of the placeholder text</description></item>
+        /// <item><term>pixelSize (float)</term><description>The pixelSize of the placeholder text</description></item>
+        /// <item><term>ellipsis (bool)</term><description>The ellipsis of the placeholder text</description></item>
+        /// </list>
         /// </summary>
         /// <example>
         /// The following example demonstrates how to set the Placeholder property.

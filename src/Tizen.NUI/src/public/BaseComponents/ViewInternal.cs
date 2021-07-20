@@ -18,6 +18,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
 namespace Tizen.NUI.BaseComponents
@@ -28,9 +29,57 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public partial class View
     {
-        private ViewSelectorData selectorData;
-
         internal string styleName;
+
+        internal class ThemeData
+        {
+            [Flags]
+            private enum States : byte
+            {
+                None = 0,
+                ControlStatePropagation = 1 << 0,
+                ThemeChangeSensitive = 1 << 1,
+                ThemeApplied = 1 << 2, // It is true when the view has valid style name or the platform theme has a component style for this view type.
+                                       // That indicates the view can have different styles by theme.
+                                       // Hence if the current state has ThemeApplied and ThemeChangeSensitive, the view will change its style by theme changing.
+                ListeningThemeChangeEvent = 1 << 3,
+            };
+
+            private States states = ThemeManager.ApplicationThemeChangeSensitive ? States.ThemeChangeSensitive : States.None;
+            public ViewStyle viewStyle;
+            public ControlState controlStates = ControlState.Normal;
+            public ViewSelectorData selectorData;
+
+            public bool ControlStatePropagation
+            {
+                get => ((states & States.ControlStatePropagation) != 0);
+                set => SetOption(States.ControlStatePropagation, value);
+            }
+
+            public bool ThemeChangeSensitive
+            {
+                get => ((states & States.ThemeChangeSensitive) != 0);
+                set => SetOption(States.ThemeChangeSensitive, value);
+            }
+
+            public bool ThemeApplied
+            {
+                get => ((states & States.ThemeApplied) != 0);
+                set => SetOption(States.ThemeApplied, value);
+            }
+
+            public bool ListeningThemeChangeEvent
+            {
+                get => ((states & States.ListeningThemeChangeEvent) != 0);
+                set => SetOption(States.ListeningThemeChangeEvent, value);
+            }
+
+            private void SetOption(States option, bool value)
+            {
+                if (value) states |= option;
+                else states &= ~option;
+            }
+        }
 
         /// <summary>
         /// The color mode of View.
@@ -877,6 +926,21 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
+        internal void SetFocusableInTouch(bool enabled)
+        {
+            Interop.ActorInternal.SetFocusableInTouch(SwigCPtr, enabled);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal bool IsFocusableInTouch()
+        {
+            bool ret = Interop.ActorInternal.IsFocusableInTouch(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         internal void SetResizePolicy(ResizePolicyType policy, DimensionType dimension)
         {
             Interop.Actor.SetResizePolicy(SwigCPtr, (int)policy, (int)dimension);
@@ -1015,6 +1079,8 @@ namespace Tizen.NUI.BaseComponents
             Children.Remove(child);
             child.InternalParent = null;
 
+            RemoveChildBindableObject(child);
+
             if (ChildRemoved != null)
             {
                 ChildRemovedEventArgs e = new ChildRemovedEventArgs
@@ -1048,6 +1114,7 @@ namespace Tizen.NUI.BaseComponents
             // Apply to the background visual
             PropertyMap backgroundMap = new PropertyMap();
             PropertyValue background = Tizen.NUI.Object.GetProperty(SwigCPtr, View.Property.BACKGROUND);
+
             if (background.Get(backgroundMap) && !backgroundMap.Empty())
             {
                 backgroundMap[Visual.Property.CornerRadius] = cornerRadius;
@@ -1058,7 +1125,6 @@ namespace Tizen.NUI.BaseComponents
             }
             backgroundMap.Dispose();
             background.Dispose();
-            cornerRadius.Dispose();
 
             // Apply to the shadow visual
             PropertyMap shadowMap = new PropertyMap();
@@ -1073,6 +1139,31 @@ namespace Tizen.NUI.BaseComponents
             }
             shadowMap.Dispose();
             shadow.Dispose();
+            cornerRadius.Dispose();
+        }
+
+        /// TODO open as a protected level
+        internal virtual void ApplyBorderline()
+        {
+            if (backgroundExtraData == null) return;
+
+            var borderlineColor = backgroundExtraData.BorderlineColor == null ? new PropertyValue(Color.Black) : new PropertyValue(backgroundExtraData.BorderlineColor);
+
+            // Apply to the background visual
+            PropertyMap backgroundMap = new PropertyMap();
+            PropertyValue background = Tizen.NUI.Object.GetProperty(SwigCPtr, View.Property.BACKGROUND);
+            if (background.Get(backgroundMap) && !backgroundMap.Empty())
+            {
+                backgroundMap[Visual.Property.BorderlineWidth] = new PropertyValue(backgroundExtraData.BorderlineWidth);
+                backgroundMap[Visual.Property.BorderlineColor] = borderlineColor;
+                backgroundMap[Visual.Property.BorderlineOffset] = new PropertyValue(backgroundExtraData.BorderlineOffset);
+                var temp = new PropertyValue(backgroundMap);
+                Tizen.NUI.Object.SetProperty(SwigCPtr, View.Property.BACKGROUND, temp);
+                temp.Dispose();
+            }
+            backgroundMap.Dispose();
+            background.Dispose();
+            borderlineColor.Dispose();
         }
 
         /// <summary>
@@ -1088,6 +1179,18 @@ namespace Tizen.NUI.BaseComponents
 
             var value = (T)GetValue(relatedProperty);
             return value == null ? null : new Selector<T>(value);
+        }
+
+        internal void SetThemeApplied()
+        {
+            if (themeData == null) themeData = new ThemeData();
+            themeData.ThemeApplied = true;
+
+            if (ThemeChangeSensitive && !themeData.ListeningThemeChangeEvent)
+            {
+                themeData.ListeningThemeChangeEvent = true;
+                ThemeManager.ThemeChangedInternal.Add(OnThemeChanged);
+            }
         }
 
         /// <summary>
@@ -1109,24 +1212,40 @@ namespace Tizen.NUI.BaseComponents
                 //Called by User
                 //Release your own managed resources here.
                 //You should release all of your own disposable objects here.
-                selectorData?.Reset(this);
-                if (themeChangeSensitive)
+                if (themeData != null)
                 {
-                    ThemeManager.ThemeChangedInternal.Remove(OnThemeChanged);
+                    themeData.selectorData?.Reset(this);
+                    if (themeData.ListeningThemeChangeEvent)
+                    {
+                        ThemeManager.ThemeChangedInternal.Remove(OnThemeChanged);
+                    }
+                }
+                if(widthConstraint != null)
+                {
+                    widthConstraint.Remove();
+                    widthConstraint.Dispose();
+                }
+                if(heightConstraint != null)
+                {
+                    heightConstraint.Remove();
+                    heightConstraint.Dispose();
                 }
             }
 
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
-            if (this != null)
+
+            // equivalent to "if (this != null)". more clear to understand.
+            if (this.HasBody())
             {
                 DisConnectFromSignals();
-            }
 
-            foreach (View view in Children)
-            {
-                view.InternalParent = null;
+                foreach (View view in Children)
+                {
+                    view.InternalParent = null;
+                }
+
             }
 
             base.Dispose(type);
@@ -1289,10 +1408,28 @@ namespace Tizen.NUI.BaseComponents
         /// Apply initial style to the view.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected void InitializeStyle(ViewStyle style = null)
+        protected virtual void InitializeStyle(ViewStyle style = null)
         {
-            if (style != null) ApplyStyle(style); // Use given style
-            else UpdateStyle(); // Use style in the current theme
+            var initialStyle = ThemeManager.GetInitialStyleWithoutClone(GetType());
+            if (style == null)
+            {
+                ApplyStyle(initialStyle);
+            }
+            else
+            {
+                var refinedStyle = style;
+                if (style.IncludeDefaultStyle)
+                {
+                    refinedStyle = initialStyle?.Merge(style);
+                }
+                ApplyStyle(style);
+            }
+
+            // Listen theme change event if needs.
+            if (ThemeManager.PlatformThemeEnabled && initialStyle != null)
+            {
+                SetThemeApplied();
+            }
         }
 
         private View ConvertIdToView(uint id)
@@ -1372,18 +1509,11 @@ namespace Tizen.NUI.BaseComponents
             return false;
         }
 
-        private void UpdateStyle()
+        private ViewSelectorData EnsureSelectorData()
         {
-            ViewStyle newStyle;
-            if (string.IsNullOrEmpty(styleName)) newStyle = ThemeManager.GetStyleWithoutClone(GetType());
-            else newStyle = ThemeManager.GetStyleWithoutClone(styleName);
+            if (themeData == null) themeData = new ThemeData();
 
-            if (newStyle != null)
-            {
-                ApplyStyle(newStyle);
-            }
+            return themeData.selectorData ?? (themeData.selectorData = new ViewSelectorData());
         }
-
-        private ViewSelectorData EnsureSelectorData() => selectorData ?? (selectorData = new ViewSelectorData());
     }
 }

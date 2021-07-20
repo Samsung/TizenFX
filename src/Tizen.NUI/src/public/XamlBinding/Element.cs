@@ -515,7 +515,10 @@ namespace Tizen.NUI.Binding
             if (this.TryGetResource(key, out value))
                 OnResourceChanged(property, value);
 
-            Tizen.NUI.Application.AddResourceChangedCallback(this, (this as Element).OnResourcesChanged);
+            if (null != Application.Current)
+            {
+                Application.Current.XamlResourceChanged += OnResourcesChanged;
+            }
         }
 
         internal event EventHandler ParentSet;

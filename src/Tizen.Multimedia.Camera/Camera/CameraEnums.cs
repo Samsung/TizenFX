@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.ComponentModel;
 
 namespace Tizen.Multimedia
 {
@@ -239,7 +240,17 @@ namespace Tizen.Multimedia
         /// Encoded pixel format : Motion JPEG
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        Mjpeg
+        Mjpeg,
+        /// <summary>
+        /// Encoded pixel format : VP8
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        Vp8,
+        /// <summary>
+        /// Encoded pixel format : VP9
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        Vp9
     }
 
     /// <summary>
@@ -926,5 +937,26 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         RgbPlane
+    }
+
+    /// <summary>
+    /// Enumeration for camera device type
+    /// </summary>
+    /// <since_tizen> 9 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum CameraDeviceType
+    {
+        /// <summary>
+        /// Built-in camera.
+        /// </summary>
+        BuiltIn,
+        /// <summary>
+        /// USB camera.
+        /// </summary>
+        Usb,
+        /// <summary>
+        /// Network camera.
+        /// </summary>
+        Network
     }
 }

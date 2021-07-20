@@ -72,9 +72,9 @@ namespace Tizen.NUI
             }
         }
 
-        internal TransitionItemBase CreateTransition(View target, bool isEntering)
+        internal virtual TransitionItemBase CreateTransition(View view, bool isAppearing)
         {
-            return new TransitionItemBase(target, isEntering, timePeriod, alphaFunction);
+            return new TransitionItemBase(view, isAppearing, timePeriod, alphaFunction);
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]

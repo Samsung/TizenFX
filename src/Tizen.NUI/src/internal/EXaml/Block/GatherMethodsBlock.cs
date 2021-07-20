@@ -71,7 +71,8 @@ namespace Tizen.NUI.EXaml
         {
             int typeIndex = int.Parse(childOp.ValueList[0] as string);
             string name = childOp.ValueList[1] as string;
-            globalDataList.Operations.Add(new GatherMethod(globalDataList, typeIndex, name));
+            var paramList = childOp.ValueList[2] as List<object>;
+            globalDataList.PreLoadOperations.Add(new GatherMethod(globalDataList, typeIndex, name, paramList));
         }
     }
 }

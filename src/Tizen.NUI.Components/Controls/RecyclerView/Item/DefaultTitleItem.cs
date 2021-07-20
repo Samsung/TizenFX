@@ -84,7 +84,16 @@ namespace Tizen.NUI.Components
             }
             set
             {
+                if (itemIcon != null) Remove(itemIcon);
                 itemIcon = value;
+                if (itemIcon != null)
+                {
+                    //FIXME: User applied icon's style can be overwritten!
+                    if (ItemStyle != null) itemIcon.ApplyStyle(ItemStyle.Icon);
+                    Add(itemIcon);
+                    itemIcon.Relayout += OnIconRelayout;
+                }
+                layoutChanged = true;
             }
         }
 
@@ -276,17 +285,8 @@ namespace Tizen.NUI.Components
 
             RelativeLayout.SetLeftTarget(itemLabel, this);
             RelativeLayout.SetLeftRelativeOffset(itemLabel, 0.0F);
-            if (itemIcon)
-            {
-                RelativeLayout.SetRightTarget(itemLabel, itemIcon);
-                RelativeLayout.SetRightRelativeOffset(itemLabel, 0.0F);
-            }
-            else
-            {
-                RelativeLayout.SetRightTarget(itemLabel, this);
-                RelativeLayout.SetRightRelativeOffset(itemLabel, 1.0F);
-            }
-
+            RelativeLayout.SetRightTarget(itemLabel, ((itemIcon != null)? itemIcon: this));
+            RelativeLayout.SetRightRelativeOffset(itemLabel, ((itemIcon != null)? 0.0F: 1.0F));
             RelativeLayout.SetTopTarget(itemLabel, this);
             RelativeLayout.SetTopRelativeOffset(itemLabel, 0.0F);
             RelativeLayout.SetBottomTarget(itemLabel, this);

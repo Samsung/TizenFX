@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.ComponentModel;
 using System.Runtime.InteropServices;
 using Native = Interop.CameraSettings;
 using static Interop.Camera;
@@ -1231,5 +1232,99 @@ namespace Tizen.Multimedia
             }
         }
         #endregion EXIF tag
+
+        /// <summary>
+        /// Gets the information of extra preview stream.
+        /// </summary>
+        /// <param name="streamId">The stream id.</param>
+        /// <since_tizen> 9 </since_tizen>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ExtraPreviewStreamInfo GetExtraPreviewStreamInfo(int streamId)
+        {
+            GetExtraPreviewStreamFormat(_camera.GetHandle(), streamId, out CameraPixelFormat format,
+                out int width, out int height, out int fps).ThrowIfFailed("Failed to get extra preview stream foramt");
+
+            return new ExtraPreviewStreamInfo(streamId, format, new Size(width, height), fps);
+        }
+
+        /// <summary>
+        /// Sets the information of extra preview stream.
+        /// </summary>
+        /// <param name="info">The extra preview stream information.</param>
+        /// <since_tizen> 9 </since_tizen>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetExtraPreviewStreamInfo(ExtraPreviewStreamInfo info)
+        {
+            SetExtraPreviewStreamFormat(_camera.GetHandle(), info.StreamId, info.Format,
+                info.Size.Width, info.Size.Height, info.Fps).ThrowIfFailed("Failed to set extra preview stream foramt");
+        }
+    }
+
+    /// <summary>
+    /// Provides the ability to get the information of extra preview stream.
+    /// </summary>
+    /// <since_tizen> 9 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public struct ExtraPreviewStreamInfo
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ExtraPreviewStreamInfo"/> class.
+        /// </summary>
+        /// <param name="streamId">The stream id.</param>
+        /// <param name="format">The preview format.</param>
+        /// <param name="size">The preview resolution.</param>
+        /// <param name="fps">The fps.</param>
+        /// <since_tizen> 9 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ExtraPreviewStreamInfo(int streamId, CameraPixelFormat format, Size size, int fps)
+        {
+            StreamId = streamId;
+            Format = format;
+            Size = size;
+            Fps = fps;
+        }
+
+        /// <summary>
+        /// Gets the stream Id.
+        /// </summary>
+        /// <value>The stream Id.</value>
+        /// <since_tizen> 9 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int StreamId { get; set;}
+
+        /// <summary>
+        /// Gets the extra preview format.
+        /// </summary>
+        /// <value></value>
+        /// <since_tizen> 9 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public CameraPixelFormat Format { get; }
+
+        /// <summary>
+        /// Gets the extra preview resolution.
+        /// </summary>
+        /// <value></value>
+        /// <since_tizen> 9 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Size Size { get; }
+
+        /// <summary>
+        /// Gets the fps.
+        /// </summary>
+        /// <value></value>
+        /// <since_tizen> 9 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int Fps { get; }
+
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <returns>A string that represents the current object.</returns>
+        /// <since_tizen> 9 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override string ToString() =>
+            $"StreamId:{StreamId}, Format:{Format.ToString()}, Resolution:{Size.Width}x{Size.Height}, Fps:{Fps}";
     }
 }

@@ -115,16 +115,16 @@ namespace Tizen.NUI.EXaml
                         return Double.Parse(value);
                     };
 
-                    //l Boolean
+                    //l TimeSpan
                     getValueByStrings[12] = (string value) =>
                     {
-                        return Boolean.Parse(value);
+                        return TimeSpan.Parse(value);
                     };
 
-                    //m TimeSpan
+                    //m Boolean
                     getValueByStrings[13] = (string value) =>
                     {
-                        return TimeSpan.Parse(value);
+                        return Boolean.Parse(value);
                     };
 
                     //n decimal
@@ -152,7 +152,14 @@ namespace Tizen.NUI.EXaml
                 switch (sign)
                 {
                     case '\"':
-                        Value = GetValueByStrings[0](valueString);
+                        if (null == valueString)
+                        {
+                            Value = "";
+                        }
+                        else
+                        {
+                            Value = GetValueByStrings[0](valueString);
+                        }
                         break;
 
                     case 'z':
@@ -200,6 +207,7 @@ namespace Tizen.NUI.EXaml
 
         public void Init()
         {
+            getValueList = null;
             valueString = "";
         }
 

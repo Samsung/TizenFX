@@ -15,13 +15,10 @@
  *
  */
 
-using System.Collections.Generic;
-
 namespace Tizen.NUI
 {
     internal interface IThemeCreator
     {
         Theme Create();
-        HashSet<ExternalThemeKeyList> GetExternalThemeKeyListSet();
     }
 }

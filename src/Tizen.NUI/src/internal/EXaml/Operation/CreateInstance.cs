@@ -21,62 +21,96 @@ using System.Text;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
 using Tizen.NUI.Binding.Internals;
+using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.EXaml
 {
     internal class CreateInstance : Operation
     {
-        public CreateInstance(GlobalDataList globalDataList, int typeIndex, List<object> paramList = null)
+        public CreateInstance(GlobalDataList globalDataList, int typeIndex, int xFactoryMethodIndex, List<object> paramList = null)
         {
             this.typeIndex = typeIndex;
             this.paramList = paramList;
             this.globalDataList = globalDataList;
+            this.xFactoryMethodIndex = xFactoryMethodIndex;
         }
 
         private GlobalDataList globalDataList;
+        private int xFactoryMethodIndex;
 
         public void Do()
         {
-            if (0 == globalDataList.GatheredInstances.Count && null != Root)
+            object obj = null;
+
+            if (0 == globalDataList.GatheredInstances.Count && null != globalDataList.Root)
             {
-                globalDataList.GatheredInstances.Add(Root);
+                obj = globalDataList.Root;
             }
             else
             {
                 var type = globalDataList.GatheredTypes[typeIndex];
 
+                var xFactoryMethod = (0 <= xFactoryMethodIndex) ? globalDataList.GatheredMethods[xFactoryMethodIndex] : null;
+
                 if (null == paramList)
                 {
-                    globalDataList.GatheredInstances.Add(Activator.CreateInstance(type));
+                    if (null == xFactoryMethod)
+                    {
+                        obj = Activator.CreateInstance(type);
+                    }
+                    else
+                    {
+                        obj = xFactoryMethod.Invoke(null, Array.Empty<object>());
+                    }
                 }
                 else
                 {
                     for (int i = 0; i < paramList.Count; i++)
                     {
-                        if (paramList[i] is Instance)
+                        if (paramList[i] is Instance instance)
                         {
-                            paramList[i] = globalDataList.GatheredInstances[(paramList[i] as Instance).Index];
+                            paramList[i] = globalDataList.GatheredInstances[instance.Index];
+                        }
+
+                        if (paramList[i] is IMarkupExtension markupExtension)
+                        {
+                            paramList[i] = markupExtension.ProvideValue(null);
                         }
                     }
-                    globalDataList.GatheredInstances.Add(Activator.CreateInstance(type, paramList.ToArray()));
+
+                    if (null == xFactoryMethod)
+                    {
+                        obj = Activator.CreateInstance(type, paramList.ToArray());
+                    }
+                    else
+                    {
+                        obj = xFactoryMethod.Invoke(null, paramList.ToArray());
+                    }
                 }
             }
 
-            if (1 == globalDataList.GatheredInstances.Count)
+            if (null != obj)
             {
-                var rootObject = globalDataList.GatheredInstances[0] as BindableObject;
-                if (null != rootObject)
+                globalDataList.GatheredInstances.Add(obj);
+
+                if (obj is BindableObject bindableObject)
                 {
-                    rootObject.IsCreateByXaml = true;
-                    NameScope nameScope = new NameScope();
-                    NameScope.SetNameScope(rootObject, nameScope);
+                    bindableObject.IsCreateByXaml = true;
+
+                    if (1 == globalDataList.GatheredInstances.Count)
+                    {
+                        NameScope nameScope = new NameScope();
+                        NameScope.SetNameScope(bindableObject, nameScope);
+                    }
                 }
+            }
+            else
+            {
+                throw new Exception($"Can't create instance typeIndex:{typeIndex}");
             }
         }
 
         private int typeIndex;
-
-        internal static object Root;
 
         private List<object> paramList;
     }

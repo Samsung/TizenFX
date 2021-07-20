@@ -113,7 +113,7 @@ namespace Tizen.TV.NUI.Example
         private void Instance_SayFinished(object sender, Accessibility.SayFinishedEventArgs e)
         {
             tlog.Fatal(tag, $"Instance_SayFinished()! State={e.State}");
-            if (e.State == Accessibility.SayFinishedStates.Stopped)
+            if (e.State == Accessibility.SayFinishedState.Stopped)
             {
                 Accessibility.Instance.Say("이건 콜백 테스트 입니다. this is callback test!  콜백을 빼려면 확인키를 누르세요. to remove callback please push Return key", true);
             }

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<comp:ContentPage x:Class="NUITizenGallery.SwipeViewTest1Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:base="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+  xmlns:comp="clr-namespace:Tizen.NUI.Components;assembly=Tizen.NUI.Components"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  HeightResizePolicy="FillToParent"
+  WidthResizePolicy="FillToParent"
+  ParentOrigin="Center"
+  PivotPoint="Center"
+  PositionUsesPivotPoint="true"
+  BackgroundColor="White">
+
+    <comp:ContentPage.AppBar>
+        <comp:AppBar x:Name="appBar"
+                    Title="SwipeViewTest1"/>
+    </comp:ContentPage.AppBar>
+
+    <comp:ContentPage.Content>
+      <base:View x:Name="ContentView"
+        WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+        HeightSpecification="{Static LayoutParamPolicies.MatchParent}" >
+
+        <View.Layout>
+            <LinearLayout LinearOrientation="Vertical" LinearAlignment="CenterHorizontal" CellPadding="30,30"/>
+        </View.Layout>
+
+        <View x:Name="table" >
+            <base:View.Layout >
+                <GridLayout Columns="3" Rows="4" GridOrientation="Horizontal" ColumnSpacing="2" RowSpacing="2" />
+            </base:View.Layout>
+
+            <TextLabel x:Name="text1"
+                        GridLayout.Column="1" GridLayout.Row="0"
+                        HorizontalAlignment="Center"
+                        PointSize="8"
+                        SizeHeight="70"
+                        Text="SwipeGestureRecognizer" />
+
+            <TextLabel x:Name="text2"
+                    GridLayout.Column="1" GridLayout.Row="1"
+                    WidthSpecification="200"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    PointSize="8"/>
+
+            <TextLabel x:Name="text3"
+                    GridLayout.Column="1" GridLayout.Row="3"
+                    WidthSpecification="200"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    PointSize="8"/>
+
+            <View x:Name="img1View" GridLayout.Column="0" GridLayout.Row="2" SizeWidth="100" SizeHeight="100">
+              <ImageView x:Name="image1"
+                      SizeWidth="1" SizeHeight="1"
+                      ResourceUrl="*Resource*/images/tizen.png" />
+            </View>
+
+            <View x:Name="img2View" GridLayout.Column="2" GridLayout.Row="2" SizeWidth="100" SizeHeight="100">
+              <ImageView x:Name="image2"
+                      SizeWidth="1" SizeHeight="1"
+                      ResourceUrl="*Resource*/images/tizen.png" />
+            </View>
+
+            <View x:Name="imgView" BackgroundColor="#ffffff" GridLayout.Column="1" GridLayout.Row="2">
+              <View.Layout>
+                  <LinearLayout LinearOrientation="Vertical" LinearAlignment="CenterHorizontal"/>
+              </View.Layout>
+
+              <ImageView x:Name="imageView"
+                        SizeWidth="200"
+                        SizeHeight="200"
+                        ResourceUrl="*Resource*/images/Boston.png" />
+
+            </View>
+
+        </View>
+      </base:View>
+    </comp:ContentPage.Content>
+</comp:ContentPage>
+

@@ -57,8 +57,8 @@ namespace Tizen.NUI
         {
             Debug.Assert(propertyMap != null);
 
-            Offset = noOffset;
-            Extents = noExtents;
+            Offset = new Vector2(noOffset);
+            Extents = new Vector2(noExtents);
 
             var transformProperty = propertyMap.Find(Visual.Property.Transform);
 

@@ -19,7 +19,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-	<PackageReference Include="Tizen.NET" Version="8.0.0.15722" />
+	<PackageReference Include="Tizen.NET" Version="9.0.0.16181" />
 	<PackageReference Include="Tizen.NET.Sdk" Version="1.0.9" />
   </ItemGroup>
 

@@ -58,6 +58,7 @@ namespace Tizen.NUI
             public static extern void SetImageQuality(HandleRef capture, uint quality);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_Signal_Empty")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool SignalEmpty(HandleRef jarg1);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_Signal_GetConnectionCount")]
@@ -85,7 +86,10 @@ namespace Tizen.NUI
             public static extern IntPtr GetNativeImageSourcePtr(HandleRef jarg1);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_GenerateUrl")]
-            public static extern string GenerateUrl(HandleRef capture);
+            public static extern IntPtr GenerateUrl(HandleRef capture);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_GetCapturedBuffer")]
+            public static extern IntPtr GetCapturedBuffer(HandleRef capture);
 
         }
     }

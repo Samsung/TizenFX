@@ -49,7 +49,7 @@ namespace Tizen.NUI.Components
         /// Property of boolean Selected flag.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public static readonly BindableProperty IsSelectedProperty = BindableProperty.Create(nameof(IsSelected), typeof(bool), typeof(RecyclerViewItem), true, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IsSelectedProperty = BindableProperty.Create(nameof(IsSelected), typeof(bool), typeof(RecyclerViewItem), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (RecyclerViewItem)bindable;
             if (newValue != null)
@@ -215,9 +215,8 @@ namespace Tizen.NUI.Components
                     if (IsSelectable)
                     {
                         // Extension : Extension?.SetTouchInfo(touch);
-                        if (ParentItemsView as CollectionView)
+                        if (ParentItemsView is CollectionView colView)
                         {
-                            CollectionView colView = ParentItemsView as CollectionView;
                             switch (colView.SelectionMode)
                             {
                                 case ItemSelectionMode.Single:
@@ -237,16 +236,14 @@ namespace Tizen.NUI.Components
                             }
                         }
                     }
-                    else
-                    {
-                        UpdateState();
-                    }
 
                     if (clicked)
                     {
                         ClickedEventArgs eventArgs = new ClickedEventArgs();
                         OnClickedInternal(eventArgs);
                     }
+
+                    UpdateState();
                 }
             }
             return base.OnKey(key);

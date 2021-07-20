@@ -26,50 +26,17 @@ namespace Tizen.NUI
         /// <summary>
         /// Creates an initialized TransitionItemBase.<br />
         /// </summary>
-        public TransitionItemBase(View target, bool isEntering, TimePeriod timePeriod, AlphaFunction alphaFunction) : this(Interop.TransitionItemBase.New(/*target.SwigCPtr, isEntering, timePeriod.SwigCPtr*/), true)
+        public TransitionItemBase(View target, bool isAppearing, TimePeriod timePeriod, AlphaFunction alphaFunction) : this(Interop.TransitionItemBase.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            
+            AppearingTransition = isAppearing;
+            TimePeriod = timePeriod;
             AlphaFunction = alphaFunction;
         }
 
         internal TransitionItemBase(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-        }
-
-        /// <summary>
-        /// Gets or sets the duration in milliseconds of the transition.
-        /// </summary>
-        public int Duration
-        {
-            set
-            {
-                Interop.TransitionItemBase.SetDuration(SwigCPtr, MilliSecondsToSeconds(value));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-            get
-            {
-                float ret = Interop.TransitionItemBase.GetDuration(SwigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return SecondsToMilliSeconds(ret);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the delay in milliseconds of the transition.
-        /// </summary>
-        public int Delay
-        {
-            set
-            {
-                Interop.TransitionItemBase.SetDelay(SwigCPtr, MilliSecondsToSeconds(value));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-            get
-            {
-                float ret = Interop.TransitionItemBase.GetDelay(SwigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return SecondsToMilliSeconds(ret);
-            }
         }
 
         /// <summary>
@@ -81,6 +48,12 @@ namespace Tizen.NUI
             {
                 Interop.TransitionItemBase.SetTimePeriod(SwigCPtr, value.SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                TimePeriod ret = new TimePeriod(Interop.TransitionItemBase.GetTimePeriod(SwigCPtr), true);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
             }
         }
 
@@ -110,6 +83,18 @@ namespace Tizen.NUI
             set
             {
                 Interop.TransitionItemBase.TransitionWithChild(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets whether this transition is appearing transition or not.
+        /// </summary>
+        public bool AppearingTransition
+        {
+            set
+            {
+                Interop.TransitionItemBase.SetAppearingTransition(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }

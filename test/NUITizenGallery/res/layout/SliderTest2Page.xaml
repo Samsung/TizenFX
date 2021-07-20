@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<b:View x:Class="NUITizenGallery.SliderTest2Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:b="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+  xmlns:nui="clr-namespace:Tizen.NUI.Components;assembly=Tizen.NUI.Components"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+<b:View x:Name="rootView"
+            HeightResizePolicy="FillToParent"
+            WidthResizePolicy="FillToParent"
+            BackgroundColor="#ffffff">
+        <View.Layout>
+            <LinearLayout LinearOrientation="Vertical" LinearAlignment="Center" CellPadding="30,30"/>
+        </View.Layout>
+
+       
+        <b:TextLabel x:Name="text1"
+                     WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center"
+                     PointSize="8"
+                     Text="slider value: 50.0"
+                     />
+
+        <nui:Slider x:Name="slider1"
+                    MinValue="0"
+                    MaxValue="100"
+                    CurrentValue="50"
+                    WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                    TrackThickness="5"
+                    BgTrackColor="#b1b1b1"
+                    SlidedTrackColor="#3db9cc"
+                    Direction="Horizontal"
+                    />
+        <nui:Button x:Name="button1"
+            SizeHeight="100"
+            WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+            BackgroundColor="#3db9cc"
+            PointSize="6"
+            Text="Change orientation" />
+
+
+    </b:View>
+</b:View>
+

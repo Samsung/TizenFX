@@ -274,15 +274,15 @@ namespace Tizen.NUI
         /// </summary>
         ConicalFrustrum,
         /// <summary>
-        /// Equivalent to a conical frustrum with the top radius of zero.
-        /// </summary>Equivalent to a conical frustrum with the top radius of zero.
+        /// Equivalent to a conical frustum with the top radius of zero.
+        /// </summary>Equivalent to a conical frustum with the top radius of zero.
         Cone,
         /// <summary>
-        /// Equivalent to a conical frustrum with the top radius of zero.
+        /// Equivalent to a conical frustum with the top radius of zero.
         /// </summary>
         Cylinder,
         /// <summary>
-        /// Equivalent to a conical frustrum with equal radii for the top and bottom circles.
+        /// Equivalent to a conical frustum with equal radii for the top and bottom circles.
         /// </summary>
         Cube,
         /// <summary>
@@ -500,6 +500,25 @@ namespace Tizen.NUI
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int CornerRadiusPolicy = NDalic.VisualPropertyMixColor + 4;
+            /// <summary>
+            /// The borderline width of the visual.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int BorderlineWidth = NDalic.VisualPropertyMixColor + 5;
+            /// <summary>
+            /// The borderline color of the visual.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int BorderlineColor = NDalic.VisualPropertyMixColor + 6;
+            /// <summary>
+            /// The borderline offset of the visual.
+            /// Relative position of borderline. (percentage [-1.0f to 1.0f]).
+            /// If -1.0f, borderline draw inside of visual
+            /// If 1.0f, borderline draw outside of visual
+            /// If 0.0f, half draw inside and half draw outside of visual
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int BorderlineOffset = NDalic.VisualPropertyMixColor + 7;
         }
 
         /// <summary>
@@ -942,6 +961,11 @@ namespace Tizen.NUI
         /// <summary>
         /// The location of the ".mtl" file.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly int MaterialURL = NDalic.MeshVisualMaterialUrl;
+        /// <summary>
+        /// The location of the ".mtl" file.
+        /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static readonly int MaterialtURL = NDalic.MeshVisualMaterialUrl;
         /// <summary>
@@ -998,12 +1022,12 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static readonly int Stacks = NDalic.PrimitiveVisualStacks;
         /// <summary>
-        /// The scale of the radius of the top circle of a conical frustrum.
+        /// The scale of the radius of the top circle of a conical frustum.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static readonly int ScaleTopRadius = NDalic.PrimitiveVisualScaleTopRadius;
         /// <summary>
-        /// The scale of the radius of the bottom circle of a conical frustrum.
+        /// The scale of the radius of the bottom circle of a conical frustum.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static readonly int ScaleBottomRadius = NDalic.PrimitiveVisualScaleBottomRadius;

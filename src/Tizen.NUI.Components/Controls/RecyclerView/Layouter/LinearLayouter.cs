@@ -44,6 +44,7 @@ namespace Tizen.NUI.Components
         private Extents groupFooterMargin;
         private GroupInfo Visited;
         private Timer requestLayoutTimer = null;
+        private bool isSourceEmpty;
 
         /// <summary>
         /// Clean up ItemsLayouter.
@@ -109,7 +110,12 @@ namespace Tizen.NUI.Components
             else hasFooter = false;
 
             //No Internal Source exist.
-            if (count == (hasHeader? (hasFooter? 2 : 1) : 0)) return;
+            if (count == (hasHeader? (hasFooter? 2 : 1) : 0))
+            {
+                isSourceEmpty = true;
+                return;
+            }
+            isSourceEmpty = false;
 
             int firstIndex = hasHeader? 1 : 0;
 
@@ -247,6 +253,7 @@ namespace Tizen.NUI.Components
             float Current = IsHorizontal? Padding.Start : Padding.Top;
             IGroupableItemSource source = colView.InternalItemSource;
             GroupInfo currentGroup = null;
+            object currentParent = null;
             for (int i = 0; i < count; i++)
             {
                 if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
@@ -263,12 +270,12 @@ namespace Tizen.NUI.Components
                 }
                 if (isGrouped)
                 {
-                    if (i == 0 && hasHeader)
+                    if (source.IsHeader(i))
                     {
                         //ItemPosition.Add(Current);
                         Current += headerSize;
                     }
-                    else if (i == count - 1 && hasFooter)
+                    else if (source.IsFooter(i))
                     {
                         //ItemPosition.Add(Current);
                         Current += footerSize;
@@ -276,22 +283,26 @@ namespace Tizen.NUI.Components
                     else
                     {
                         //GroupHeader must always exist in group usage.
-                        if (source.IsGroupHeader(i))
+                        //if (source.IsGroupHeader(i))
+                        if (source.GetGroupParent(i) != currentParent)
                         {
+                            currentParent = source.GetGroupParent(i);
+                            float currentSize = (source.IsGroupHeader(i)? groupHeaderSize :
+                                                    (source.IsGroupFooter(i)? groupFooterSize: StepCandidate));
                             currentGroup = new GroupInfo()
                             {
-                                GroupParent = source.GetGroupParent(i),
+                                GroupParent = currentParent,
                                 //hasHeader = true,
                                 //hasFooter = false,
                                 StartIndex = i,
                                 Count = 1,
-                                GroupSize = groupHeaderSize,
+                                GroupSize = currentSize,
                                 GroupPosition = Current
                             };
                             if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
                                 currentGroup.ItemPosition.Add(0);
                             groups.Add(currentGroup);
-                            Current += groupHeaderSize;
+                            if (source.IsGroupHeader(i)) Current += currentSize;
                         }
                         //optional
                         else if (source.IsGroupFooter(i))
@@ -409,14 +420,27 @@ namespace Tizen.NUI.Components
                 // 5. Placing item.
                 (float posX, float posY) = GetItemPosition(i);
                 item.Position = new Position(posX, posY);
-            
+
+                var size = (IsHorizontal? item.SizeWidth: item.SizeHeight);
+
+                if (colView.SizingStrategy == ItemSizingStrategy.MeasureFirst)
+                {
+                    if (item.IsHeader || item.IsFooter || item.isGroupHeader || item.isGroupFooter)
+                    {
+                        if (item.IsHeader) size = headerSize;
+                        else if (item.IsFooter) size = footerSize;
+                        else if (item.isGroupHeader) size = groupHeaderSize;
+                        else if (item.isGroupFooter) size = groupFooterSize;
+                    }
+                    else size = StepCandidate;
+                }
                 if (IsHorizontal && item.HeightSpecification == LayoutParamPolicies.MatchParent)
                 {
-                    item.Size = new Size(item.Size.Width, Container.Size.Height - Padding.Top - Padding.Bottom - item.Margin.Top - item.Margin.Bottom);
+                    item.Size = new Size(size, Container.Size.Height - Padding.Top - Padding.Bottom - item.Margin.Top - item.Margin.Bottom);
                 }
                 else if (!IsHorizontal && item.WidthSpecification == LayoutParamPolicies.MatchParent)
                 {
-                    item.Size = new Size(Container.Size.Width - Padding.Start - Padding.End - item.Margin.Start - item.Margin.End, item.Size.Height);
+                    item.Size = new Size(Container.Size.Width - Padding.Start - Padding.End - item.Margin.Start - item.Margin.End, size);
                 }
             }
             return;
@@ -522,6 +546,11 @@ namespace Tizen.NUI.Components
         {
             // Insert Single item.
             if (source == null) throw new ArgumentNullException(nameof(source));
+
+            if (isSourceEmpty)
+            {
+                Initialize(colView);
+            }
 
             // Will be null if not a group.
             float currentSize = StepCandidate;
@@ -673,6 +702,11 @@ namespace Tizen.NUI.Components
              // Insert Group
             if (source == null) throw new ArgumentNullException(nameof(source));
 
+            if (isSourceEmpty)
+            {
+                Initialize(colView);
+            }
+
             float currentSize = StepCandidate;
             // Will be null if not a group.
             IGroupableItemSource gSource = source as IGroupableItemSource;
@@ -700,16 +734,9 @@ namespace Tizen.NUI.Components
                 object groupParent = gSource.GetGroupParent(startIndex);
                 int parentIndex = gSource.GetPosition(groupParent);
                 if (gSource.HasHeader) parentIndex--;
-                int groupStartIndex = 0;
-                if (gSource.IsGroupHeader(startIndex))
-                {
-                    groupStartIndex = startIndex;
-                }
-                else
-                {
-                    //exception case!
-                    throw new Exception("Inserted wrong groups!");
-                }
+
+                // We guess here that range inserted from GroupStartIndex.
+                int groupStartIndex = startIndex;
 
                 for (int current = startIndex; current - startIndex < count; current++)
                 {
@@ -717,13 +744,15 @@ namespace Tizen.NUI.Components
                     // if group parent, add new gorupinfo
                     if (groupStartIndex == current)
                     {
+                        currentSize = (gSource.IsGroupHeader(current)? groupHeaderSize :
+                                            (gSource.IsGroupFooter(current)? groupFooterSize: currentSize));
                         //create new groupInfo!
                         groupInfo = new GroupInfo()
                         {
                             GroupParent = groupParent,
                             StartIndex = current,
                             Count = 1,
-                            GroupSize = groupHeaderSize,
+                            GroupSize = currentSize,
                         };
 
                     }
@@ -1325,7 +1354,7 @@ namespace Tizen.NUI.Components
             if (targetSibling > -1 && targetSibling < Container.Children.Count)
             {
                 RecyclerViewItem candidate = Container.Children[targetSibling] as RecyclerViewItem;
-                if (candidate.Index >= 0 && candidate.Index < colView.InternalItemSource.Count)
+                if (candidate != null && candidate.Index >= 0 && candidate.Index < colView.InternalItemSource.Count)
                 {
                     nextFocusedView = candidate;
                 }
@@ -1495,7 +1524,7 @@ namespace Tizen.NUI.Components
             else
             {
                 int adjustIndex = index - (hasHeader ? 1 : 0);
-                float current = (hasHeader? headerSize : 0) + adjustIndex * StepCandidate;
+                float current = (IsHorizontal ? spaceStartX : spaceStartY) + (hasHeader? headerSize : 0) + adjustIndex * StepCandidate;
                 //FIXME : CandidateMargin need to be actual itemMargin
                 return ((IsHorizontal? current + CandidateMargin.Start : spaceStartX + CandidateMargin.Start),
                         (IsHorizontal? spaceStartY + CandidateMargin.Top : current + CandidateMargin.Top));

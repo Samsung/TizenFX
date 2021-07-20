@@ -166,7 +166,8 @@ namespace Tizen.NUI.BaseComponents
                     };
                     ChildAdded(this, e);
                 }
-                BindableObject.SetInheritedBindingContext(child, this?.BindingContext);
+
+                AddChildBindableObject(child);
             }
         }
 
@@ -302,8 +303,10 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void Show()
         {
-            if (AccessibilityCalculateStates().Get(AccessibilityState.Modal))
-                AddPopup();
+            if ((AccessibilityCalculateStates() & AccessibilityStates.Modal) != 0)
+            {
+                RegisterPopup();
+            }
 
             SetVisible(true);
         }
@@ -321,8 +324,10 @@ namespace Tizen.NUI.BaseComponents
         {
             SetVisible(false);
 
-            if (AccessibilityCalculateStates().Get(AccessibilityState.Modal))
+            if ((AccessibilityCalculateStates() & AccessibilityStates.Modal) != 0)
+            {
                 RemovePopup();
+            }
         }
 
         /// <summary>
@@ -475,7 +480,6 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="width">The width to use.</param>
         /// <returns>The height based on the width.</returns>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API9, will be removed in API11. Please use HeightForWidth property instead!")]
         public float GetHeightForWidth(float width)
         {
             float ret = Interop.Actor.GetHeightForWidth(SwigCPtr, width);
@@ -492,7 +496,6 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="height">The height to use.</param>
         /// <returns>The width based on the height.</returns>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API9, will be removed in API11. Please use WidthForHeight property instead!")]
         public float GetWidthForHeight(float height)
         {
             float ret = Interop.Actor.GetWidthForHeight(SwigCPtr, height);

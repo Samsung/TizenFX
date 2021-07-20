@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 using System;
 using System.Runtime.InteropServices;
 using Tizen.Internals;
@@ -51,6 +51,9 @@ internal static partial class Interop
         internal delegate void PreviewCallback(IntPtr frame, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void ExtraPreviewCallback(IntPtr frame, int streamId, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void MediaPacketPreviewCallback(IntPtr mediaPacketHandle, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -61,6 +64,9 @@ internal static partial class Interop
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_create")]
         internal static extern CameraError Create(CameraDevice device, out IntPtr handle);
+
+        [DllImport(Libraries.Camera, EntryPoint ="camera_create_network")]
+        internal static extern CameraError CreateNetworkCamera(CameraDevice device, out IntPtr handle);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_change_device")]
         internal static extern CameraError ChangeDevice(IntPtr handle, CameraDevice device);
@@ -82,11 +88,11 @@ internal static partial class Interop
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_start_capture")]
         internal static extern CameraError StartCapture(IntPtr handle, CapturingCallback captureCallback,
-                                                CaptureCompletedCallback completedCallback, IntPtr userData);
+                                                CaptureCompletedCallback completedCallback, IntPtr userData = default);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_start_continuous_capture")]
         internal static extern CameraError StartContinuousCapture(IntPtr handle, int count, int interval,
-                                                          CapturingCallback captureCallback, CaptureCompletedCallback completedCallback, IntPtr userData);
+                                                          CapturingCallback captureCallback, CaptureCompletedCallback completedCallback, IntPtr userData = default);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_stop_continuous_capture")]
         internal static extern CameraError StopContinuousCapture(IntPtr handle);
@@ -110,7 +116,7 @@ internal static partial class Interop
         internal static extern CameraError GetRecommendedPreviewResolution(IntPtr handle, out int width, out int height);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_start_face_detection")]
-        internal static extern CameraError StartFaceDetection(IntPtr handle, FaceDetectedCallback callback, IntPtr userData);
+        internal static extern CameraError StartFaceDetection(IntPtr handle, FaceDetectedCallback callback, IntPtr userData = default);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_stop_face_detection")]
         internal static extern CameraError StopFaceDetection(IntPtr handle);
@@ -145,59 +151,75 @@ internal static partial class Interop
         [DllImport(Libraries.Camera, EntryPoint = "camera_get_flash_state")]
         internal static extern CameraError GetFlashState(CameraDevice device, out CameraFlashState state);
 
+        [DllImport(Libraries.Camera, EntryPoint = "camera_set_extra_preview_stream_format")]
+        internal static extern CameraError SetExtraPreviewStreamFormat(IntPtr handle, int streamId, CameraPixelFormat format,
+            int width, int height, int fps);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_get_extra_preview_stream_format")]
+        internal static extern CameraError GetExtraPreviewStreamFormat(IntPtr handle, int streamId, out CameraPixelFormat format,
+            out int width, out int height, out int fps);
+
+
         [DllImport(Libraries.Camera, EntryPoint = "camera_set_preview_cb")]
-        internal static extern CameraError SetPreviewCallback(IntPtr handle, PreviewCallback callback, IntPtr userData);
+        internal static extern CameraError SetPreviewCallback(IntPtr handle, PreviewCallback callback, IntPtr userData = default);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_unset_preview_cb")]
         internal static extern CameraError UnsetPreviewCallback(IntPtr handle);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_set_media_packet_preview_cb")]
-        internal static extern CameraError SetMediaPacketPreviewCallback(IntPtr handle, MediaPacketPreviewCallback callback, IntPtr userData);
+        internal static extern CameraError SetMediaPacketPreviewCallback(IntPtr handle, MediaPacketPreviewCallback callback, IntPtr userData = default);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_unset_media_packet_preview_cb")]
         internal static extern CameraError UnsetMediaPacketPreviewCallback(IntPtr handle);
 
-        [DllImport(Libraries.Camera, EntryPoint = "camera_set_state_changed_cb")]
-        internal static extern CameraError SetStateChangedCallback(IntPtr handle, StateChangedCallback callback, IntPtr userData);
+        [DllImport(Libraries.Camera, EntryPoint = "camera_set_extra_preview_cb")]
+        internal static extern CameraError SetExtraPreviewCallback(IntPtr handle, ExtraPreviewCallback callback, IntPtr userData = default);
 
-        [DllImport(Libraries.Camera, EntryPoint = "camera_add_device_state_changed_cb")]
-        internal static extern CameraError SetDeviceStateChangedCallback(DeviceStateChangedCallback callback, IntPtr userData, out int callbackId);
+        [DllImport(Libraries.Camera, EntryPoint = "camera_unset_extra_preview_cb")]
+        internal static extern CameraError UnsetExtraPreviewCallback(IntPtr handle);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_set_state_changed_cb")]
+        internal static extern CameraError SetStateChangedCallback(IntPtr handle, StateChangedCallback callback, IntPtr userData = default);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_unset_state_changed_cb")]
         internal static extern CameraError UnsetStateChangedCallback(IntPtr handle);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_add_device_state_changed_cb")]
+        internal static extern CameraError SetDeviceStateChangedCallback(DeviceStateChangedCallback callback, IntPtr userData, out int callbackId);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_remove_device_state_changed_cb")]
         internal static extern CameraError UnsetDeviceStateChangedCallback(int cbId);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_set_interrupt_started_cb")]
-        internal static extern CameraError SetInterruptStartedCallback(IntPtr handle, InterruptStartedCallback callback, IntPtr userData);
+        internal static extern CameraError SetInterruptStartedCallback(IntPtr handle, InterruptStartedCallback callback, IntPtr userData = default);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_unset_interrupt_started_cb")]
         internal static extern CameraError UnsetInterruptStartedCallback(IntPtr handle);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_set_interrupted_cb")]
-        internal static extern CameraError SetInterruptedCallback(IntPtr handle, InterruptedCallback callback, IntPtr userData);
+        internal static extern CameraError SetInterruptedCallback(IntPtr handle, InterruptedCallback callback, IntPtr userData = default);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_unset_interrupted_cb")]
         internal static extern CameraError UnsetInterruptedCallback(IntPtr handle);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_set_focus_changed_cb")]
-        internal static extern CameraError SetFocusStateChangedCallback(IntPtr handle, FocusStateChangedCallback callback, IntPtr userData);
+        internal static extern CameraError SetFocusStateChangedCallback(IntPtr handle, FocusStateChangedCallback callback, IntPtr userData = default);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_unset_focus_changed_cb")]
         internal static extern CameraError UnsetFocusChangedCallback(IntPtr handle);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_set_error_cb")]
-        internal static extern CameraError SetErrorCallback(IntPtr handle, ErrorCallback callback, IntPtr userData);
+        internal static extern CameraError SetErrorCallback(IntPtr handle, ErrorCallback callback, IntPtr userData = default);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_unset_error_cb")]
         internal static extern CameraError UnsetErrorCallback(IntPtr handle);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_hdr_capture_progress_cb")]
-        internal static extern CameraError SetHdrCaptureProgressCallback(IntPtr handle, HdrCaptureProgressCallback callback, IntPtr userData);
+        internal static extern CameraError SetHdrCaptureProgressCallback(IntPtr handle, HdrCaptureProgressCallback callback, IntPtr userData = default);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_unset_hdr_capture_progress_cb")]
         internal static extern CameraError UnsetHdrCaptureProgressCallback(IntPtr handle);
+
 
         [NativeStruct("camera_image_data_s", Include="camera.h", PkgConfig="capi-media-camera")]
         [StructLayout(LayoutKind.Sequential)]
@@ -300,6 +322,56 @@ internal static partial class Interop
             internal int NumOfPlanes;
             internal uint TimeStamp;
             internal PreviewPlaneStruct Plane;
+        }
+    }
+
+    internal static partial class CameraDeviceManager
+    {
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void DeviceConnectionChangedCallback(ref CameraDeviceStruct device, bool status, IntPtr userData);
+
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_device_manager_initialize")]
+        internal static extern CameraError Initialize(out IntPtr handle);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_device_manager_deinitialize")]
+        internal static extern CameraError Deinitialize(IntPtr handle);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_device_manager_get_device_list")]
+        internal static extern CameraError GetDeviceList(IntPtr handle, ref CameraDeviceListStruct deviceList);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_device_manager_add_device_connection_changed_cb")]
+        internal static extern CameraError SetDeviceConnectionChangedCallback(IntPtr handle, DeviceConnectionChangedCallback callback, IntPtr userData, out int id);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_device_manager_remove_device_connection_changed_cb")]
+        internal static extern CameraError UnsetDeviceConnectionChangedCallback(IntPtr handle, int id);
+
+
+        [NativeStruct("camera_device_s", Include="camera_internal.h", PkgConfig="capi-media-camera")]
+        [StructLayout(LayoutKind.Sequential)]
+        internal struct CameraDeviceStruct
+        {
+            internal CameraDeviceType Type;
+
+            internal CameraDevice device;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 64)]
+            internal string name;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 64)]
+            internal string id;
+
+            internal int extraStreamNum;
+        }
+
+        [NativeStruct("camera_device_list_s", Include="camera_internal.h", PkgConfig="capi-media-camera")]
+        [StructLayout(LayoutKind.Sequential)]
+        internal struct CameraDeviceListStruct
+        {
+            internal uint count;
+
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 20)]
+            internal CameraDeviceStruct[] device;
         }
     }
 }

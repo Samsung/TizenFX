@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="NUITizenGallery.TextAnchorTestPage"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:b="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}" >
+
+  <ContentPage.AppBar>
+      <AppBar x:Name="appBar"
+              Title="TextAnchorTestPage"/>
+  </ContentPage.AppBar>
+
+  <ContentPage.Content>
+      <View WidthSpecification="{Static LayoutParamPolicies.MatchParent}"  HeightSpecification="{Static LayoutParamPolicies.MatchParent}" >
+
+        <View.Layout>
+          <LinearLayout LinearOrientation="Vertical" />
+        </View.Layout>
+
+        <TextField x:Name="field" Text="Text Anchor Test" WidthSpecification="{Static LayoutParamPolicies.MatchParent}"  HeightSpecification="80" />
+        <TextLabel x:Name="anchorLabel" WidthSpecification="{Static LayoutParamPolicies.MatchParent}"  HeightSpecification="80" />
+        <TextField x:Name="anchorField" WidthSpecification="{Static LayoutParamPolicies.MatchParent}"  HeightSpecification="80" />
+        <TextEditor x:Name="anchorEditor" WidthSpecification="{Static LayoutParamPolicies.MatchParent}"  HeightSpecification="80" />
+
+      </View>
+  </ContentPage.Content>
+
+</ContentPage>

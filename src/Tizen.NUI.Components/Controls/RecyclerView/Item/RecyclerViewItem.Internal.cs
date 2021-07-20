@@ -120,9 +120,11 @@ namespace Tizen.NUI.Components
                     UpdateState();
                     return true;
                 case PointStateType.Interrupted:
+                case PointStateType.Motion:
+                case PointStateType.Leave:
                     IsPressed = false;
                     UpdateState();
-                    return true;
+                    return false;
                 case PointStateType.Up:
                     {
                         bool clicked = IsPressed && IsEnabled;
@@ -132,9 +134,8 @@ namespace Tizen.NUI.Components
 
                         if (IsSelectable)
                         {
-                            if (ParentItemsView as CollectionView)
+                            if (ParentItemsView is CollectionView colView)
                             {
-                                CollectionView colView = ParentItemsView as CollectionView;
                                 switch (colView.SelectionMode)
                                 {
                                     case ItemSelectionMode.Single:
@@ -156,17 +157,14 @@ namespace Tizen.NUI.Components
                                 }
                             }
                         }
-                        else
-                        {
-                            // Extension : Extension?.SetTouchInfo(touch);
-                            UpdateState();
-                        }
 
                         if (clicked)
                         {
                             ClickedEventArgs eventArgs = new ClickedEventArgs();
                             OnClickedInternal(eventArgs);
                         }
+
+                        UpdateState();
 
                         return true;
                     }
@@ -222,8 +220,6 @@ namespace Tizen.NUI.Components
         public override void OnInitialize()
         {
             base.OnInitialize();
-            //FIXME!
-            IsCreateByXaml = true;
             Layout = new AbsoluteLayout();
             UpdateState();
 

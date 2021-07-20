@@ -63,6 +63,9 @@ namespace Tizen.NUI.Xaml
 
         public static void ParseXaml(RootNode rootNode, XmlReader reader)
         {
+            // Reset xmlnsDefinitions to re-gather them for the new assembly.
+            s_xmlnsDefinitions = null;
+
             IList<KeyValuePair<string, string>> xmlns;
             var attributes = ParseXamlAttributes(reader, out xmlns);
             var prefixes = PrefixesToIgnore(xmlns);
@@ -376,6 +379,11 @@ namespace Tizen.NUI.Xaml
             var typeArguments = xmlType.TypeArguments;
             exception = null;
 
+            if (elementName.Contains("-"))
+            {
+                elementName = elementName.Replace('-', '+');
+            }
+
             var lookupAssemblies = new List<XmlnsDefinitionAttribute>();
             var lookupNames = new List<string>();
 
@@ -462,6 +470,106 @@ namespace Tizen.NUI.Xaml
                 message += "\n  - Make sure the all used assemblies (e.g. Tizen.NUI.Components) are included in the application project.";
                 message += "\n  - Make sure the type and namespace are correct.\n";
                 exception = new XamlParseException($"message", xmlInfo);
+            }
+
+            return type;
+        }
+
+        public static Type GetElementTypeExtension(XmlType xmlType, IXmlLineInfo xmlInfo, Assembly currentAssembly)
+        {
+            if (s_xmlnsDefinitions == null)
+                GatherXmlnsDefinitionAttributes(currentAssembly);
+
+            var namespaceURI = xmlType.NamespaceUri;
+            var elementName = xmlType.Name;
+            var typeArguments = xmlType.TypeArguments;
+
+            if (elementName.Contains("-"))
+            {
+                elementName = elementName.Replace('-', '+');
+            }
+
+            var lookupAssemblies = new List<XmlnsDefinitionAttribute>();
+            var lookupNames = new List<string>();
+
+            foreach (var xmlnsDef in s_xmlnsDefinitions)
+            {
+                if (xmlnsDef.XmlNamespace != namespaceURI)
+                    continue;
+                lookupAssemblies.Add(xmlnsDef);
+            }
+
+            if (lookupAssemblies.Count == 0)
+            {
+                string ns, asmstring, _;
+                XmlnsHelper.ParseXmlns(namespaceURI, out _, out ns, out asmstring);
+                lookupAssemblies.Add(new XmlnsDefinitionAttribute(namespaceURI, ns)
+                {
+                    AssemblyName = asmstring ?? currentAssembly.FullName
+                });
+            }
+
+            lookupNames.Add(elementName + "Extension");
+
+            for (var i = 0; i < lookupNames.Count; i++)
+            {
+                var name = lookupNames[i];
+                if (name.Contains(":"))
+                    name = name.Substring(name.LastIndexOf(':') + 1);
+                if (typeArguments != null)
+                    name += "`" + typeArguments.Count; //this will return an open generic Type
+                lookupNames[i] = name;
+            }
+
+            Type type = null;
+            foreach (var asm in lookupAssemblies)
+            {
+                foreach (var name in lookupNames)
+                {
+                    if ((type = Type.GetType($"{asm.ClrNamespace}.{name}, {asm.AssemblyName}")) != null)
+                        break;
+
+                    if ((type = currentAssembly.GetType($"{asm.ClrNamespace}.{name}")) != null)
+                    {
+                        break;
+                    }
+
+                    if ('?' == name.Last())
+                    {
+                        string nameOfNotNull = name.Substring(0, name.Length - 1);
+                        Type typeofNotNull = Type.GetType($"{asm.ClrNamespace}.{nameOfNotNull}, {asm.AssemblyName}");
+
+                        if (null != typeofNotNull)
+                        {
+                            type = typeof(Nullable<>).MakeGenericType(new Type[] { typeofNotNull });
+                            break;
+                        }
+                    }
+                }
+
+                if (type != null)
+                    break;
+            }
+
+            if (type != null && typeArguments != null)
+            {
+                XamlParseException innerexception = null;
+                var args = typeArguments.Select(delegate (XmlType xmltype)
+                {
+                    XamlParseException xpe;
+                    var t = GetElementType(xmltype, xmlInfo, currentAssembly, out xpe);
+                    if (xpe != null)
+                    {
+                        innerexception = xpe;
+                        return null;
+                    }
+                    return t;
+                }).ToArray();
+                if (innerexception != null)
+                {
+                    return null;
+                }
+                type = type.MakeGenericType(args);
             }
 
             return type;

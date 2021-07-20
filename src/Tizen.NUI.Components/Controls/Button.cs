@@ -83,7 +83,7 @@ namespace Tizen.NUI.Components
         defaultValueCreator: (bindable) => ((Button)bindable).isEnabled);
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IsSelectedProperty = BindableProperty.Create(nameof(IsSelected), typeof(bool), typeof(Button), true, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IsSelectedProperty = BindableProperty.Create(nameof(IsSelected), typeof(bool), typeof(Button), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Button)bindable;
             if (newValue != null)
@@ -100,7 +100,7 @@ namespace Tizen.NUI.Components
 
                     if (instance.IsHighlighted)
                     {
-                        instance.EmitAccessibilityStateChangedEvent(AccessibilityState.Checked, newSelected);
+                        instance.EmitAccessibilityStatesChangedEvent(AccessibilityStates.Checked, newSelected);
                     }
                 }
             }
@@ -163,7 +163,7 @@ namespace Tizen.NUI.Components
             if (instance.itemAlignment != newAlignment)
             {
                 instance.itemAlignment = newAlignment;
-                instance.LayoutItems();   
+                instance.LayoutItems();
             }
         },
         defaultValueCreator: (bindable) => ((Button)bindable).itemAlignment);
@@ -220,8 +220,8 @@ namespace Tizen.NUI.Components
         protected override AccessibilityStates AccessibilityCalculateStates()
         {
             var states = base.AccessibilityCalculateStates();
-            states.Set(AccessibilityState.Checked, this.IsSelected);
-            states.Set(AccessibilityState.Enabled, this.IsEnabled);
+            FlagSetter(ref states, AccessibilityStates.Checked, this.IsSelected);
+            FlagSetter(ref states, AccessibilityStates.Enabled, this.IsEnabled);
             return states;
         }
 
@@ -340,7 +340,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Return currently applied style.
+        /// The last applied style object copy.
         /// </summary>
         /// <remarks>
         /// Modifying contents in style may cause unexpected behaviour.
@@ -364,7 +364,7 @@ namespace Tizen.NUI.Components
 
                 if (IsHighlighted && String.IsNullOrEmpty(AccessibilityName) && GetAccessibilityNameSignal().Empty())
                 {
-                    EmitAccessibilityEvent(ObjectPropertyChangeEvent.Name);
+                    EmitAccessibilityEvent(AccessibilityPropertyChangeEvent.Name);
                 }
             }
         }
@@ -479,6 +479,16 @@ namespace Tizen.NUI.Components
             {
                 Icon.ResourceUrl = value;
             }
+        }
+
+        /// <summary>
+        /// Icon image's size in Button.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Size IconSize
+        {
+            get => Icon.Size;
+            set => Icon.Size = value;
         }
 
         /// <summary>
@@ -782,7 +792,7 @@ namespace Tizen.NUI.Components
                 Extension = buttonStyle.CreateExtension();
 
                 if (buttonStyle.Overlay != null)
-                {   
+                {
                     OverlayImage?.ApplyStyle(buttonStyle.Overlay);
                 }
 
@@ -799,6 +809,7 @@ namespace Tizen.NUI.Components
 
                 if (buttonStyle.Text != null)
                 {
+                    buttonText.ThemeChangeSensitive = false;
                     buttonText.ApplyStyle(buttonStyle.Text);
                 }
 
