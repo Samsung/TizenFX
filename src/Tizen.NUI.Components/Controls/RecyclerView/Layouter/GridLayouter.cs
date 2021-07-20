@@ -1290,6 +1290,7 @@ namespace Tizen.NUI.Components
                             {
                                 found.start = gInfo.StartIndex - adds;
                                 failed = false;
+                                break;
                             }
                             //can be step in spanSize...
                             for (int i = 1; i < gInfo.Count; i++)
@@ -1310,6 +1311,7 @@ namespace Tizen.NUI.Components
                                     break;
                                 }
                             }
+                            if (!failed) break;
                         }
                     }
                     //footer only shows?
@@ -1348,6 +1350,7 @@ namespace Tizen.NUI.Components
                             {
                                 found.end = gInfo.StartIndex + adds;
                                 failed = false;
+                                break;
                             }
                             //can be step in spanSize...
                             for (int i = 1; i < gInfo.Count; i++)
@@ -1367,12 +1370,13 @@ namespace Tizen.NUI.Components
                                     break;
                                 }
                             }
+                            if (!failed) break;
                         }
                     }
                     //footer only shows?
                     if (failed)
                     {
-                        found.start = MaxIndex;
+                        found.end = MaxIndex;
                     }
                 }
                 else
