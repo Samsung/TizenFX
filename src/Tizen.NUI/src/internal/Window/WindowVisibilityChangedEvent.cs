@@ -23,7 +23,7 @@ namespace Tizen.NUI
         {
         }
 
-        public WindowVisibilityChangedEvent(Window window) : this(Interop.WindowVisibilityChangedSignal.GetSignal(Window.getCPtr(window)), true)
+        public WindowVisibilityChangedEvent(Window window) : this(Interop.WindowVisibilityChangedSignal.GetSignal(Window.getCPtr(window)), false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
