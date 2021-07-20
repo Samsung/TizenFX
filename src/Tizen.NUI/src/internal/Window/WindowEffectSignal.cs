@@ -70,7 +70,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public WindowTransitionEffectSignal(Window window) : this(Interop.WindowTransitionEffectSignal.GetSignal(Window.getCPtr(window)), true)
+        public WindowTransitionEffectSignal(Window window) : this(Interop.WindowTransitionEffectSignal.GetSignal(Window.getCPtr(window)), false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
