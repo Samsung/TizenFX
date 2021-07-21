@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Xml;
 using Tizen.NUI.Xaml;
 
@@ -13,19 +14,21 @@ namespace Tizen.NUI.Devel.Tests
     internal class PublicApplyPropertiesVisitorTest
     {
         private const string tag = "NUITEST";
-        private static ApplyPropertiesVisitor a1;
+        public const string NUI2018Uri = "http://tizen.org/Tizen.NUI/2018/XAML";
+        private string xaml_path = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "simpleXaml.xaml";
+        private static ApplyPropertiesVisitor visitor;
         [SetUp]
         public void Init()
         {
             tlog.Info(tag, "Init() is called!");
             HydrationContext context = new HydrationContext();
-            a1 = new ApplyPropertiesVisitor(context, false);
+            visitor = new ApplyPropertiesVisitor(context, false);
         }
 
         [TearDown]
         public void Destroy()
         {
-            a1 = null;
+            visitor = null;
             tlog.Info(tag, "Destroy() is called!");
         }
 
@@ -35,64 +38,84 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC", "Tizen.NUI.ApplyPropertiesVisitor.ApplyPropertiesVisitor C")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void ApplyPropertiesVisitorConstructor()
         {
             tlog.Debug(tag, $"ApplyPropertiesVisitorConstructor START");
 
-            HydrationContext context = new HydrationContext();
-
-            ApplyPropertiesVisitor applyPropertiesVisitor = new ApplyPropertiesVisitor(context, false);
+            var testingTarget = new ApplyPropertiesVisitor(new HydrationContext(), false);
+            Assert.IsNotNull(testingTarget, "Can't create success object ApplyPropertiesVisitor");
+            Assert.IsInstanceOf<ApplyPropertiesVisitor>(testingTarget, "Should be an instance of ApplyPropertiesVisitor type.");
 
             tlog.Debug(tag, $"ApplyPropertiesVisitorConstructor END (OK)");
-            Assert.Pass("ApplyPropertiesVisitorConstructor");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("ApplyPropertiesVisitor Skips.")]
+        [Property("SPEC", "Tizen.NUI.ApplyPropertiesVisitor.Skips M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ApplyPropertiesVisitorSkips()
+        {
+            tlog.Debug(tag, $"ApplyPropertiesVisitorSkips START");
+
+            var testingTarget = ApplyPropertiesVisitor.Skips;
+            Assert.IsNotNull(testingTarget, "Can't create success object ApplyPropertiesVisitor");
+            Assert.IsInstanceOf<IList<XmlName>>(testingTarget, "Should be an instance of IList<XmlName> type.");
+
+            tlog.Debug(tag, $"ApplyPropertiesVisitorSkips END (OK)");
         }
 
         [Test]
         [Category("P1")]
         [Description("ApplyPropertiesVisitor VisitingMode")]
-        [Property("SPEC", "Tizen.NUI.ApplyPropertiesVisitor.VisitingMode A")]
+        [Property("SPEC", "Tizen.NUI.ApplyPropertiesVisitor.VisitingMode M")]
         [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void ApplyPropertiesVisitorVisitingMode()
         {
             tlog.Debug(tag, $"ApplyPropertiesVisitorVisitingMode START");
 
             try
             {
-                TreeVisitingMode t1 = a1.VisitingMode;
+                var result = visitor.VisitingMode;
+                tlog.Debug(tag, "VisitingMode : " + result);
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
             tlog.Debug(tag, $"ApplyPropertiesVisitorVisitingMode END (OK)");
-            Assert.Pass("ApplyPropertiesVisitorVisitingMode");
         }
 
         [Test]
         [Category("P1")]
         [Description("ApplyPropertiesVisitor StopOnDataTemplate")]
-        [Property("SPEC", "Tizen.NUI.ApplyPropertiesVisitor.StopOnDataTemplate A")]
+        [Property("SPEC", "Tizen.NUI.ApplyPropertiesVisitor.StopOnDataTemplate M")]
         [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void ApplyPropertiesVisitorStopOnDataTemplate()
         {
             tlog.Debug(tag, $"ApplyPropertiesVisitorStopOnDataTemplate START");
 
             try
             {
-                bool b1 = a1.StopOnDataTemplate;
+                var result = visitor.StopOnDataTemplate;
+                tlog.Debug(tag, "StopOnDataTemplate : " + result);
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
             tlog.Debug(tag, $"ApplyPropertiesVisitorStopOnDataTemplate END (OK)");
-            Assert.Pass("ApplyPropertiesVisitorStopOnDataTemplate");
         }
 
         [Test]
@@ -101,64 +124,63 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC", "Tizen.NUI.ApplyPropertiesVisitor.StopOnResourceDictionary A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void ApplyPropertiesVisitorStopOnResourceDictionary()
         {
             tlog.Debug(tag, $"ApplyPropertiesVisitorStopOnResourceDictionary START");
 
             try
             {
-                bool b1 = a1.StopOnResourceDictionary;
+                var result = visitor.StopOnResourceDictionary;
+                tlog.Debug(tag, "StopOnResourceDictionary : " + result);
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
             tlog.Debug(tag, $"ApplyPropertiesVisitorStopOnResourceDictionary END (OK)");
-            Assert.Pass("ApplyPropertiesVisitorStopOnResourceDictionary");
         }
 
         [Test]
         [Category("P1")]
         [Description("ApplyPropertiesVisitor VisitNodeOnDataTemplate ")]
-        [Property("SPEC", "Tizen.NUI.ApplyPropertiesVisitor.VisitNodeOnDataTemplate A")]
+        [Property("SPEC", "Tizen.NUI.ApplyPropertiesVisitor.VisitNodeOnDataTemplate M")]
         [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void ApplyPropertiesVisitorVisitNodeOnDataTemplate()
         {
             tlog.Debug(tag, $"ApplyPropertiesVisitorVisitNodeOnDataTemplate START");
 
             try
             {
-                bool b1 = a1.VisitNodeOnDataTemplate;
+                var result = visitor.VisitNodeOnDataTemplate;
+                tlog.Debug(tag, "VisitNodeOnDataTemplate : " + result);
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
             tlog.Debug(tag, $"ApplyPropertiesVisitorVisitNodeOnDataTemplate END (OK)");
-            Assert.Pass("ApplyPropertiesVisitorVisitNodeOnDataTemplate");
         }
 
         public class INodeImplement : INode
         {
-            public global::System.Collections.Generic.List<string> IgnorablePrefixes { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+            public global::System.Collections.Generic.List<string> IgnorablePrefixes { get; set; }
 
-            public global::System.Xml.IXmlNamespaceResolver NamespaceResolver => throw new NotImplementedException();
+            public global::System.Xml.IXmlNamespaceResolver NamespaceResolver => new XmlNamespaceResolver();
 
-            public INode Parent { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+            public INode Parent { get; set; }
 
-            public void Accept(IXamlNodeVisitor visitor, INode parentNode)
-            {
-                throw new NotImplementedException();
-            }
+            public void Accept(IXamlNodeVisitor visitor, INode parentNode) { }
 
             public INode Clone()
             {
-                throw new NotImplementedException();
+                return null;
             }
         }
 
@@ -176,7 +198,7 @@ namespace Tizen.NUI.Devel.Tests
             {
                 INodeImplement n1 = new INodeImplement();
                 INodeImplement n2 = new INodeImplement();
-                bool b1 = a1.SkipChildren(n1, n2);
+                bool b1 = visitor.SkipChildren(n1, n2);
             }
             catch (Exception e)
             {
@@ -223,7 +245,7 @@ namespace Tizen.NUI.Devel.Tests
 
                 IXmlNamespaceResolverImplement i1 = new IXmlNamespaceResolverImplement();
                 ElementNode n1 = new ElementNode(xmlType, "myNameSpace", i1);
-                bool b1 = a1.IsResourceDictionary(n1);
+                bool b1 = visitor.IsResourceDictionary(n1);
             }
             catch (Exception e)
             {
@@ -236,13 +258,13 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("ApplyPropertiesVisitor Visit")]
+        [Description("ApplyPropertiesVisitor Visit. With ValueNode.")]
         [Property("SPEC", "Tizen.NUI.ApplyPropertiesVisitor.Visit M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
-        public void ApplyPropertiesVisitorVisit1()
+        public void ApplyPropertiesVisitorVisitWithValueNode()
         {
-            tlog.Debug(tag, $"ApplyPropertiesVisitorVisit START");
+            tlog.Debug(tag, $"ApplyPropertiesVisitorVisitWithValueNode START");
 
             try
             {
@@ -251,25 +273,24 @@ namespace Tizen.NUI.Devel.Tests
                 ValueNode valueNode = new ValueNode(o1, i1);
 
                 INodeImplement nodeImplement = new INodeImplement();
-                a1.Visit(valueNode, nodeImplement);
+                visitor.Visit(valueNode, nodeImplement);
             }
             catch (Exception e)
             {
                 tlog.Debug(tag, e.Message.ToString());
-                tlog.Debug(tag, $"ApplyPropertiesVisitorVisit END (OK)");
                 Assert.Pass("Caught Exception : passed!");
             }
         }
 
         [Test]
         [Category("P1")]
-        [Description("ApplyPropertiesVisitor Visit")]
+        [Description("ApplyPropertiesVisitor Visit. With ElementNode.")]
         [Property("SPEC", "Tizen.NUI.ApplyPropertiesVisitor.Visit M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
-        public void ApplyPropertiesVisitorVisit2()
+        public void ApplyPropertiesVisitorVisitWithElementNode()
         {
-            tlog.Debug(tag, $"ApplyPropertiesVisitorVisit START");
+            tlog.Debug(tag, $"ApplyPropertiesVisitorVisitWithElementNode START");
 
             try
             {
@@ -281,7 +302,7 @@ namespace Tizen.NUI.Devel.Tests
                 IXmlNamespaceResolverImplement ix1 = new IXmlNamespaceResolverImplement();
                 ElementNode n1 = new ElementNode(xmlType, "myNameSpace", ix1);
 
-                a1.Visit(n1, nodeImplement);
+                visitor.Visit(n1, nodeImplement);
             }
             catch (Exception e)
             {
@@ -289,7 +310,6 @@ namespace Tizen.NUI.Devel.Tests
                 tlog.Debug(tag, $"ApplyPropertiesVisitorVisit END (OK)");
                 Assert.Pass("Caught Exception : passed!");
             }
-
         }
 
         [Test]
@@ -346,30 +366,30 @@ namespace Tizen.NUI.Devel.Tests
             Assert.Pass("ApplyPropertiesVisitorIsCollectionItem");
         }
 
-        //[Test]
-        //[Category("P1")]
-        //[Description("ApplyPropertiesVisitor GetContentPropertyName")]
-        //[Property("SPEC", "Tizen.NUI.ApplyPropertiesVisitor.GetContentPropertyName M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //public void ApplyPropertiesVisitorGetContentPropertyName()
-        //{
-        //    tlog.Debug(tag, $"ApplyPropertiesVisitorGetContentPropertyName START");
+        [Test]
+        [Category("P1")]
+        [Description("ApplyPropertiesVisitor GetContentPropertyName")]
+        [Property("SPEC", "Tizen.NUI.ApplyPropertiesVisitor.GetContentPropertyName M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ApplyPropertiesVisitorGetContentPropertyName()
+        {
+            tlog.Debug(tag, $"ApplyPropertiesVisitorGetContentPropertyName START");
 
-        //    try
-        //    {
-        //        System.Reflection.TypeInfo typeInfo = new System.Reflection.TypeInfo();
-        //        ApplyPropertiesVisitor.GetContentPropertyName(typeInfo);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-        //        Assert.Fail("Caught Exception" + e.ToString());
-        //    }
+            try
+            {
+                var typeInfo = new BindingExtension().GetType().GetTypeInfo();
+                ApplyPropertiesVisitor.GetContentPropertyName(typeInfo);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
 
-        //    tlog.Debug(tag, $"ApplyPropertiesVisitorGetContentPropertyName END (OK)");
-        //    Assert.Pass("ApplyPropertiesVisitorGetContentPropertyName");
-        //}
+            tlog.Debug(tag, $"ApplyPropertiesVisitorGetContentPropertyName END (OK)");
+        }
 
         public class IXmlLineInfoImplement : IXmlLineInfo
         {

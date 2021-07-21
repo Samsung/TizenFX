@@ -131,15 +131,16 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                bool b1 = f1.VisitNodeOnDataTemplate;
+                var result = f1.VisitNodeOnDataTemplate;
+                tlog.Debug(tag, "VisitNodeOnDataTemplate : " + result);
             }
             catch (Exception e)
             {
                 tlog.Debug(tag, e.Message.ToString());
-                tlog.Debug(tag, $"FillResourceDictionariesVisitorVisitNodeOnDataTemplate END (OK)");
-                Assert.Pass("Caught Exception : passed!");
+                Assert.Fail("Caught Exception : falied!");
             }
 
+            tlog.Debug(tag, $"FillResourceDictionariesVisitorVisitNodeOnDataTemplate END (OK)");
         }
 
         public class IXmlNamespaceResolverImplement : IXmlNamespaceResolver

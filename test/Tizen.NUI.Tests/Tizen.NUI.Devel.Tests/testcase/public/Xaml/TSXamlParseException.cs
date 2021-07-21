@@ -17,7 +17,7 @@ namespace Tizen.NUI.Devel.Tests
         public void Init()
         {
             tlog.Info(tag, "Init() is called!");
-            xamlParseException = new XamlParseException("myMessage");
+            xamlParseException = new XamlParseException("Parse Exception!");
         }
 
         [TearDown]
@@ -27,16 +27,13 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Info(tag, "Destroy() is called!");
         }
 
-        private class XmlLineInfoImplent : IXmlLineInfo
+        internal class XmlLineInfoImplement : IXmlLineInfo
         {
-            public int LineNumber => throw new NotImplementedException();
+            public int LineNumber => 0;
 
-            public int LinePosition => throw new NotImplementedException();
+            public int LinePosition => 0;
 
-            public bool HasLineInfo()
-            {
-                throw new NotImplementedException();
-            }
+            public bool HasLineInfo() => false;
         }
 
         [Test]
@@ -45,72 +42,70 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC", "Tizen.NUI.XamlParseException.XamlParseException C")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "CONSTR")]
-        public void XamlParseExceptionConstructor1()
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void XamlParseExceptionConstructor()
         {
             tlog.Debug(tag, $"XamlParseExceptionConstructor START");
 
-            XamlParseException x1 = new XamlParseException("myMessage");
-
-            x1 = null;
+            var testingTarget = new XamlParseException();
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<XamlParseException>(testingTarget, "should be an instance of XamlParseException class!");
 
             tlog.Debug(tag, $"XamlParseExceptionConstructor END (OK)");
-            Assert.Pass("XamlParseExceptionConstructor");
         }
 
         [Test]
         [Category("P1")]
-        [Description("XamlParseException XamlParseException")]
+        [Description("XamlParseException constructor. With message.")]
         [Property("SPEC", "Tizen.NUI.XamlParseException.XamlParseException C")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "CONSTR")]
-        public void XamlParseExceptionConstructor2()
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void XamlParseExceptionConstructorWithMessage()
         {
-            tlog.Debug(tag, $"XamlParseExceptionConstructor START");
+            tlog.Debug(tag, $"XamlParseExceptionConstructorWithMessage START");
 
-            XamlParseException x2 = new XamlParseException();
+            var testingTarget = new XamlParseException("Xaml Parsed Failed!");
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<XamlParseException>(testingTarget, "should be an instance of XamlParseException class!");
 
-            x2 = null;
-
-            tlog.Debug(tag, $"XamlParseExceptionConstructor END (OK)");
-            Assert.Pass("XamlParseExceptionConstructor");
+            tlog.Debug(tag, $"XamlParseExceptionConstructorWithMessage END (OK)");
         }
 
         [Test]
         [Category("P1")]
-        [Description("XamlParseException XamlParseException")]
+        [Description("XamlParseException constructor. With innerException.")]
         [Property("SPEC", "Tizen.NUI.XamlParseException.XamlParseException C")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "CONSTR")]
-        public void XamlParseExceptionConstructor3()
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void XamlParseExceptionConstructorWithInnerException()
         {
-            tlog.Debug(tag, $"XamlParseExceptionConstructor START");
+            tlog.Debug(tag, $"XamlParseExceptionConstructorWithInnerException START");
 
-            Exception e1 = new Exception();
-            XamlParseException x3 = new XamlParseException("myMessage", e1);
+            var testingTarget = new XamlParseException("myMessage", new Exception());
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<XamlParseException>(testingTarget, "should be an instance of XamlParseException class!");
 
-            x3 = null;
-            tlog.Debug(tag, $"XamlParseExceptionConstructor END (OK)");
-            Assert.Pass("XamlParseExceptionConstructor");
+            tlog.Debug(tag, $"XamlParseExceptionConstructorWithInnerException END (OK)");
         }
 
         [Test]
         [Category("P1")]
-        [Description("XamlParseException XamlParseException")]
+        [Description("XamlParseException constructor. With IXmlLineInfo.")]
         [Property("SPEC", "Tizen.NUI.XamlParseException.XamlParseException C")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "CONSTR")]
-        public void XamlParseExceptionConstructor4()
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void XamlParseExceptionConstructorWithIXmlLineInfo()
         {
-            tlog.Debug(tag, $"XamlParseExceptionConstructor START");
+            tlog.Debug(tag, $"XamlParseExceptionConstructorWithIXmlLineInfo START");
 
-            Exception e1 = new Exception();
-            XmlLineInfoImplent xmlLineInfoImplent = new XmlLineInfoImplent();
-            XamlParseException x4 = new XamlParseException("myMessage", xmlLineInfoImplent, e1);
+            var testingTarget = new XamlParseException("Xaml Parsed Failed!", new XmlLineInfoImplement(), new Exception());
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<XamlParseException>(testingTarget, "should be an instance of XamlParseException class!");
 
-            x4 = null;
-
-            tlog.Debug(tag, $"XamlParseExceptionConstructor END (OK)");
-            Assert.Pass("XamlParseExceptionConstructor");
+            tlog.Debug(tag, $"XamlParseExceptionConstructorWithIXmlLineInfo END (OK)");
         }
 
         [Test]
@@ -119,20 +114,23 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC", "Tizen.NUI.XamlParseException.XmlInfo A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void XamlParseExceptionXmlInfo()
         {
             tlog.Debug(tag, $"XamlParseExceptionXmlInfo START");
+
             try
             {
-                XmlLineInfoImplent xml1 = (XmlLineInfoImplent)xamlParseException.XmlInfo;
+                var result = xamlParseException.XmlInfo;
+                tlog.Debug(tag, "XmlInfo :" + result);
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
                 Assert.Fail("Caught Exception" + e.ToString());
             }
+
             tlog.Debug(tag, $"XamlParseExceptionXmlInfo END (OK)");
-            Assert.Pass("XamlParseExceptionXmlInfo");
         }
 
         [Test]
@@ -141,20 +139,23 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC", "Tizen.NUI.XamlParseException.UnformattedMessage A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void XamlParseExceptionUnformattedMessage()
         {
             tlog.Debug(tag, $"XamlParseExceptionUnformattedMessage START");
+            
             try
             {
-                string s1 = xamlParseException.UnformattedMessage;
+                var result = xamlParseException.UnformattedMessage;
+                tlog.Debug(tag, "UnformattedMessage :" + result);
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
+
             tlog.Debug(tag, $"XamlParseExceptionUnformattedMessage END (OK)");
-            Assert.Pass("XamlParseExceptionUnformattedMessage");
         }
     }
 }

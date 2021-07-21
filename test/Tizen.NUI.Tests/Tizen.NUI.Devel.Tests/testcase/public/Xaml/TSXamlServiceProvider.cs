@@ -30,16 +30,12 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Info(tag, "Destroy() is called!");
         }
 
-        private class INodeImplement : INode
+        internal class INodeImplement : INode
         {
             public List<string> IgnorablePrefixes { get; set; }
-            public IXmlNamespaceResolver NamespaceResolver { get; }
+            public IXmlNamespaceResolver NamespaceResolver => new XmlNamespaceResolver();
             public INode Parent { get; set; }
-
-            public void Accept(IXamlNodeVisitor visitor, INode parentNode)
-            {
-
-            }
+            public void Accept(IXamlNodeVisitor visitor, INode parentNode) { }
             public INode Clone()
             {
                 return null;
@@ -52,32 +48,45 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC", "Tizen.NUI.XamlServiceProvider.XamlServiceProvider C")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "CONSTR")]
-        public void XamlServiceProviderConstructor1()
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void XamlServiceProviderConstructor()
         {
             tlog.Debug(tag, $"XamlServiceProviderConstructor START");
 
-            XamlServiceProvider xamlServiceProvider1 = new XamlServiceProvider();
+            var testingTarget = new XamlServiceProvider();
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<XamlServiceProvider>(testingTarget, "should be an instance of XamlServiceProvider class!");
 
             tlog.Debug(tag, $"XamlServiceProviderConstructor END (OK)");
-            Assert.Pass("XamlServiceProviderConstructor");
         }
 
         [Test]
         [Category("P1")]
-        [Description("XamlServiceProvider XamlServiceProvider")]
+        [Description("XamlServiceProvider XamlServiceProvider. With parameters.")]
         [Property("SPEC", "Tizen.NUI.XamlServiceProvider.XamlServiceProvider C")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "CONSTR")]
-        public void XamlServiceProviderConstructor2()
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void XamlServiceProviderConstructorWithParameters()
         {
-            tlog.Debug(tag, $"XamlServiceProviderConstructor START");
+            tlog.Debug(tag, $"XamlServiceProviderConstructorWithParameters START");
 
             HydrationContext hydrationContext = new HydrationContext();
             INodeImplement nodeImplement = new INodeImplement();
-            XamlServiceProvider xamlServiceProvider2 = new XamlServiceProvider(nodeImplement, hydrationContext);
 
-            tlog.Debug(tag, $"XamlServiceProviderConstructor END (OK)");
-            Assert.Pass("XamlServiceProviderConstructor");
+            try
+            {
+                var testingTarget = new XamlServiceProvider(nodeImplement, hydrationContext);
+                Assert.IsNotNull(testingTarget, "should be not null");
+                Assert.IsInstanceOf<XamlServiceProvider>(testingTarget, "should be an instance of XamlServiceProvider class!");
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            tlog.Debug(tag, $"XamlServiceProviderConstructorWithParameters END (OK)");
         }
 
         [Test]
@@ -376,6 +385,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC", "Tizen.NUI.XamlServiceProvider.SimpleValueTargetProvider M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
+        [Obsolete]
         public void XamlServiceProviderSimpleValueTargetProvider1()
         {
             tlog.Debug(tag, $"XamlServiceProviderTargetProperty START");
