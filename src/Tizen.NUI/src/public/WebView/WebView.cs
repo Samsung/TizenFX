@@ -26,7 +26,6 @@ namespace Tizen.NUI.BaseComponents
     /// <summary>
     /// WebView
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
     public class WebView : View
     {
         private Color contentBackgroundColor;
@@ -91,7 +90,6 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Creates a WebView.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public WebView() : this(Interop.WebView.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -102,7 +100,6 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="locale">The locale language of Web</param>
         /// <param name="timezoneId">The time zone Id of Web</param>
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public WebView(string locale, string timezoneId) : this(Interop.WebView.New2(locale, timezoneId), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -112,7 +109,6 @@ namespace Tizen.NUI.BaseComponents
         /// Creates a WebView with an args list.
         /// <param name="args">args array. The first value of array must be program's name.</param>
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public WebView(string[] args) : this(Interop.WebView.New3(args?.Length ?? 0, args), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -122,7 +118,6 @@ namespace Tizen.NUI.BaseComponents
         /// Copy constructor.
         /// <param name="webView">WebView to copy. The copied WebView will point at the same implementation</param>
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public WebView(WebView webView) : this(Interop.WebView.NewWebView(WebView.getCPtr(webView)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -176,49 +171,42 @@ namespace Tizen.NUI.BaseComponents
         /// The callback function that is invoked when the message is received from the script.
         /// </summary>
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void JavaScriptMessageHandler(string message);
 
         /// <summary>
         /// The callback function that is invoked when the message is received from the script.
         /// </summary>
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void JavaScriptAlertCallback(string message);
 
         /// <summary>
         /// The callback function that is invoked when the message is received from the script.
         /// </summary>
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void JavaScriptConfirmCallback(string message);
 
         /// <summary>
         /// The callback function that is invoked when the message is received from the script.
         /// </summary>
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void JavaScriptPromptCallback(string message1, string message2);
 
         /// <summary>
         /// The callback function that is invoked when screen shot is acquired asynchronously.
         /// </summary>
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void ScreenshotAcquiredCallback(ImageView image);
 
         /// <summary>
         /// The callback function that is invoked when video playing is checked asynchronously.
         /// </summary>
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void VideoPlayingCallback(bool isPlaying);
 
         /// <summary>
         /// The callback function that is invoked when geolocation permission is requested.
         /// </summary>
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void GeolocationPermissionCallback(string host, string protocol);
 
         /// <summary>
@@ -277,7 +265,6 @@ namespace Tizen.NUI.BaseComponents
         /// Event for the PageLoadStarted signal which can be used to subscribe or unsubscribe the event handler.<br />
         /// This signal is emitted when page loading has started.<br />
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<WebViewPageLoadEventArgs> PageLoadStarted
         {
             add
@@ -300,7 +287,6 @@ namespace Tizen.NUI.BaseComponents
         /// Event for the PageLoading signal which can be used to subscribe or unsubscribe the event handler.<br />
         /// This signal is emitted when page loading is in progress.<br />
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<WebViewPageLoadEventArgs> PageLoading
         {
             add
@@ -323,7 +309,6 @@ namespace Tizen.NUI.BaseComponents
         /// Event for the PageLoadFinished signal which can be used to subscribe or unsubscribe the event handler.<br />
         /// This signal is emitted when page loading has finished.<br />
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<WebViewPageLoadEventArgs> PageLoadFinished
         {
             add
@@ -369,7 +354,6 @@ namespace Tizen.NUI.BaseComponents
         /// Event for the ScrollEdgeReached signal which can be used to subscribe or unsubscribe the event handler.<br />
         /// This signal is emitted when web view is scrolled to edge.<br />
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<WebViewScrollEdgeReachedEventArgs> ScrollEdgeReached
         {
             add
@@ -438,7 +422,6 @@ namespace Tizen.NUI.BaseComponents
         /// Event for the FrameRendered signal which can be used to subscribe or unsubscribe the event handler.<br />
         /// This signal is emitted when frame is rendered off-screen.<br />
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<EventArgs> FrameRendered
         {
             add
@@ -644,7 +627,6 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Options for searching texts.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public enum FindOption
         {
             /// <summary>
@@ -705,7 +687,6 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Enumeration for mode of hit test.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public enum HitTestMode
         {
             /// <summary>
@@ -736,31 +717,26 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// BackForwardList.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public WebBackForwardList BackForwardList { get; }
 
         /// <summary>
         /// Context.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public WebContext Context { get; }
 
         /// <summary>
         /// CookieManager.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public WebCookieManager CookieManager { get; }
 
         /// <summary>
         /// BackForwardList.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public WebSettings Settings { get; }
 
         /// <summary>
         /// The url to load.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public string Url
         {
             get
@@ -809,7 +785,6 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The user agent string.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public string UserAgent
         {
             get
@@ -856,7 +831,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The default text encoding name.<br />
+        /// Deprecated. The default text encoding name.<br />
         /// e.g. "UTF-8"<br />
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -873,7 +848,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The default font size in pixel.
+        /// Deprecated. The default font size in pixel.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int DefaultFontSize
@@ -891,7 +866,6 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The position of scroll.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public Position ScrollPosition
         {
             get
@@ -914,7 +888,6 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The size of scroll, read-only.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public Size ScrollSize
         {
             get
@@ -927,7 +900,6 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The size of content, read-only.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public Size ContentSize
         {
             get
@@ -940,7 +912,6 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Whether video hole is enabled or not.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool VideoHoleEnabled
         {
             get
@@ -957,7 +928,6 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Whether mouse events are enabled or not.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool MouseEventsEnabled
         {
             get
@@ -974,7 +944,6 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Whether key events are enabled or not.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool KeyEventsEnabled
         {
             get
@@ -991,7 +960,6 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Background color of web page.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public Color ContentBackgroundColor
         {
             get
@@ -1008,7 +976,6 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Whether tiles are cleared or not when hidden.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool TilesClearedWhenHidden
         {
             get
@@ -1025,7 +992,6 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Multiplier of cover area of tile when web page is rendered.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public float TileCoverAreaMultiplier
         {
             get
@@ -1042,7 +1008,6 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Whether cursor is enabled or not by client.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool CursorEnabledByClient
         {
             get
@@ -1059,7 +1024,6 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets selected text in web page.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public string SelectedText
         {
             get
@@ -1071,7 +1035,6 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets title of web page.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public string Title
         {
             get
@@ -1083,7 +1046,6 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets favicon of web page.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public ImageView Favicon
         {
             get
@@ -1098,7 +1060,6 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Zoom factor of web page.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public float PageZoomFactor
         {
             get
@@ -1115,7 +1076,6 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Zoom factor of text in web page.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public float TextZoomFactor
         {
             get
@@ -1132,7 +1092,6 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets percentage of loading progress.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public float LoadProgressPercentage
         {
             get
@@ -1397,7 +1356,6 @@ namespace Tizen.NUI.BaseComponents
         /// Loads a html.
         /// <param name="url">The path of Web</param>
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void LoadUrl(string url)
         {
             Interop.WebView.LoadUrl(SwigCPtr, url);
@@ -1419,7 +1377,6 @@ namespace Tizen.NUI.BaseComponents
         /// Loads a html by string.
         /// <param name="data">The data of Web</param>
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void LoadHtmlString(string data)
         {
             Interop.WebView.LoadHtmlString(SwigCPtr, data);
@@ -1432,7 +1389,6 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="baseUri">Base URL used for relative paths to external objects</param>
         /// <param name="unreachableUri">URL that could not be reached</param>
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool LoadHtmlStringOverrideCurrentEntry(string html, string baseUri, string unreachableUri)
         {
             bool result = Interop.WebView.LoadHtmlStringOverrideCurrentEntry(SwigCPtr, html, baseUri, unreachableUri);
@@ -1448,7 +1404,6 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="encoding">The encoding for contents, "UTF-8" is assumed if null</param>
         /// <param name="baseUri">The base URI to use for relative resources</param>
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool LoadContents(string contents, uint contentSize, string mimeType, string encoding, string baseUri)
         {
             bool result = Interop.WebView.LoadContents(SwigCPtr, contents, contentSize, mimeType, encoding, baseUri);
@@ -1457,9 +1412,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Reloads the Web
+        /// Reloads the web page
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Reload()
         {
             Interop.WebView.Reload(SwigCPtr);
@@ -1469,7 +1423,6 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Reloads the current page's document without cache
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ReloadWithoutCache()
         {
             bool result = Interop.WebView.ReloadWithoutCache(SwigCPtr);
@@ -1480,7 +1433,6 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Stops loading the Web
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void StopLoading()
         {
             Interop.WebView.StopLoading(SwigCPtr);
@@ -1490,7 +1442,6 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Suspends the operation.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Suspend()
         {
             Interop.WebView.Suspend(SwigCPtr);
@@ -1500,7 +1451,6 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Resumes the operation after calling Suspend()
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Resume()
         {
             Interop.WebView.Resume(SwigCPtr);
@@ -1510,7 +1460,6 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Suspends all network loading.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SuspendNetworkLoading()
         {
             Interop.WebView.SuspendNetworkLoading(SwigCPtr);
@@ -1520,7 +1469,6 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Resumes all network loading.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void ResumeNetworkLoading()
         {
             Interop.WebView.ResumeNetworkLoading(SwigCPtr);
@@ -1532,7 +1480,6 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="name">The name of custom header</param>
         /// <param name="value">The value of custom header</param>
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool AddCustomHeader(string name, string value)
         {
             bool result = Interop.WebView.AddCustomHeader(SwigCPtr, name, value);
@@ -1544,7 +1491,6 @@ namespace Tizen.NUI.BaseComponents
         /// Removes custom header.
         /// <param name="name">The name of custom header</param>
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool RemoveCustomHeader(string name)
         {
             bool result = Interop.WebView.RemoveCustomHeader(SwigCPtr, name);
@@ -1556,7 +1502,6 @@ namespace Tizen.NUI.BaseComponents
         /// Starts the inspector server.
         /// <param name="port">The port number</param>
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint StartInspectorServer(uint port)
         {
             uint result = Interop.WebView.StartInspectorServer(SwigCPtr, port);
@@ -1567,7 +1512,6 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Stops the inspector server.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool StopInspectorServer()
         {
             bool result = Interop.WebView.StopInspectorServer(SwigCPtr);
@@ -1580,7 +1524,6 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="deltaX">The deltaX of scroll</param>
         /// <param name="deltaY">The deltaY of scroll</param>
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void ScrollBy(int deltaX, int deltaY)
         {
             Interop.WebView.ScrollBy(SwigCPtr, deltaX, deltaY);
@@ -1592,7 +1535,6 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="deltaX">The deltaX of scroll</param>
         /// <param name="deltaY">The deltaY of scroll</param>
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ScrollEdgeBy(int deltaX, int deltaY)
         {
             bool result = Interop.WebView.ScrollEdgeBy(SwigCPtr, deltaX, deltaY);
@@ -1603,7 +1545,6 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Goes to the back
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void GoBack()
         {
             Interop.WebView.GoBack(SwigCPtr);
@@ -1613,7 +1554,6 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Goes to the forward
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void GoForward()
         {
             Interop.WebView.GoForward(SwigCPtr);
@@ -1624,7 +1564,6 @@ namespace Tizen.NUI.BaseComponents
         /// Returns whether backward is possible.
         /// <returns>True if backward is possible, false otherwise</returns>
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool CanGoBack()
         {
             bool ret = Interop.WebView.CanGoBack(SwigCPtr);
@@ -1636,7 +1575,6 @@ namespace Tizen.NUI.BaseComponents
         /// Returns whether forward is possible.
         /// <returns>True if forward is possible, false otherwise</returns>
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool CanGoForward()
         {
             bool ret = Interop.WebView.CanGoForward(SwigCPtr);
@@ -1648,7 +1586,6 @@ namespace Tizen.NUI.BaseComponents
         /// Evaluates JavaScript code represented as a string.
         /// <param name="script">The JavaScript code</param>
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void EvaluateJavaScript(string script)
         {
             Interop.WebView.EvaluateJavaScript(SwigCPtr, script, new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero));
@@ -1660,7 +1597,6 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="objectName">The name of exposed object</param>
         /// <param name="handler">The callback function</param>
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddJavaScriptMessageHandler(string objectName, JavaScriptMessageHandler handler)
         {
             if (handlerRootMap.ContainsKey(objectName))
@@ -1680,7 +1616,6 @@ namespace Tizen.NUI.BaseComponents
         /// Add a message handler into the WebView.
         /// <param name="callback">The callback function</param>
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void RegisterJavaScriptAlertCallback(JavaScriptAlertCallback callback)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(callback);
@@ -1692,7 +1627,6 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Reply for alert popup.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void JavaScriptAlertReply()
         {
             Interop.WebView.JavaScriptAlertReply(SwigCPtr);
@@ -1703,7 +1637,6 @@ namespace Tizen.NUI.BaseComponents
         /// Add a message handler into the WebView.
         /// <param name="callback">The callback function</param>
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void RegisterJavaScriptConfirmCallback(JavaScriptConfirmCallback callback)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(callback);
@@ -1716,7 +1649,6 @@ namespace Tizen.NUI.BaseComponents
         /// Reply for confirm popup.
         /// <param name="confirmed">confirmed or not</param>
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void JavaScriptConfirmReply(bool confirmed)
         {
             Interop.WebView.JavaScriptConfirmReply(SwigCPtr, confirmed);
@@ -1727,7 +1659,6 @@ namespace Tizen.NUI.BaseComponents
         /// Add a message handler into the WebView.
         /// <param name="callback">The callback function</param>
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void RegisterJavaScriptPromptCallback(JavaScriptPromptCallback callback)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(callback);
@@ -1740,7 +1671,6 @@ namespace Tizen.NUI.BaseComponents
         /// Reply for prompt popup.
         /// <param name="result">text in prompt input field.</param>
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void JavaScriptPromptReply(string result)
         {
             Interop.WebView.JavaScriptPromptReply(SwigCPtr, result);
@@ -1750,7 +1680,6 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Clears title resources of current WebView.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void ClearAllTilesResources()
         {
             Interop.WebView.ClearAllTilesResources(SwigCPtr);
@@ -1760,7 +1689,6 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Clears the history of current WebView.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void ClearHistory()
         {
             Interop.WebView.ClearHistory(SwigCPtr);
@@ -1772,7 +1700,6 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="scaleFactor">The new factor to be scaled</param>
         /// <param name="point">The center coordinate</param>
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetScaleFactor(float scaleFactor, Vector2 point)
         {
             Interop.WebView.SetScaleFactor(SwigCPtr, scaleFactor, Vector2.getCPtr(point));
@@ -1782,7 +1709,6 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets the current scale factor of the page.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public float GetScaleFactor()
         {
             float result = Interop.WebView.GetScaleFactor(SwigCPtr);
@@ -1794,7 +1720,6 @@ namespace Tizen.NUI.BaseComponents
         /// Requests to activate/deactivate the accessibility usage set by web app.
         /// <param name="activated">The new factor to be scaled</param>
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void ActivateAccessibility(bool activated)
         {
             Interop.WebView.ActivateAccessibility(SwigCPtr, activated);
@@ -1807,7 +1732,6 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="options">The options to search</param>
         /// <param name="maxMatchCount">The maximum match count to search</param>
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool HighlightText(string text, FindOption options, uint maxMatchCount)
         {
             bool result = Interop.WebView.HighlightText(SwigCPtr, text, (int)options, maxMatchCount);
@@ -1820,7 +1744,6 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="host">Host that required client authentication</param>
         /// <param name="certPath">The file path stored certificate</param>
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddDynamicCertificatePath(string host, string certPath)
         {
             Interop.WebView.AddDynamicCertificatePath(SwigCPtr, host, certPath);
@@ -1832,7 +1755,6 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="viewArea">Host that required client authentication</param>
         /// <param name="scaleFactor">The file path stored certificate</param>
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public ImageView GetScreenshot(Rectangle viewArea, float scaleFactor)
         {
             IntPtr image = Interop.WebView.GetScreenshot(SwigCPtr, Rectangle.getCPtr(viewArea), scaleFactor);
@@ -1847,7 +1769,6 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="scaleFactor">The file path stored certificate</param>
         /// <param name="callback">The callback for getting screen shot</param>
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool GetScreenshotAsynchronously(Rectangle viewArea, float scaleFactor, ScreenshotAcquiredCallback callback)
         {
             screenshotAcquiredCallback = callback;
@@ -1861,7 +1782,6 @@ namespace Tizen.NUI.BaseComponents
         /// Asynchronous requests to check if there is a video playing in the given view.
         /// <param name="callback">The callback called after checking if video is playing or not</param>
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool CheckVideoPlayingAsynchronously(VideoPlayingCallback callback)
         {
             System.IntPtr ip = Marshal.GetFunctionPointerForDelegate(callback);
@@ -1874,7 +1794,6 @@ namespace Tizen.NUI.BaseComponents
         /// Registers callback which will be called upon geolocation permission request.
         /// <param name="callback">The callback for requesting geolocation permission</param>
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void RegisterGeolocationPermissionCallback(GeolocationPermissionCallback callback)
         {
             System.IntPtr ip = Marshal.GetFunctionPointerForDelegate(callback);
@@ -1936,7 +1855,6 @@ namespace Tizen.NUI.BaseComponents
         /// Please note that it only works when the webview does not have keyinput focus.
         /// If the webview has a keyinput focus, it also has tts focus so calling SetTtsFocus(false) is ignored.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetTtsFocus(bool focused)
         {
             Interop.WebView.SetTtsFocus(SwigCPtr, focused);

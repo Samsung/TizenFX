@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,43 +17,48 @@
 
 using System;
 using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
     /// <summary>
-    /// Event arguments that passed via the WebView.ScrollEdgeReached.
+    /// Event arguments that passed via the WebView.PageLoadStarted or WebView.PageLoadFinished.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public class WebViewScrollEdgeReachedEventArgs : EventArgs
+    public class WebViewPageLoadEventArgs : EventArgs
     {
-        internal WebViewScrollEdgeReachedEventArgs(Edge e)
+        private WebView _webView;
+        private string _pageUrl;
+
+        /// <summary>
+        /// Deprecated. The view for displaying webpages.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public WebView WebView
         {
-            ScrollEdge = e;
+            get
+            {
+                return _webView;
+            }
+            set
+            {
+                _webView = value;
+            }
         }
 
         /// <summary>
-        /// The enumeration for edge.
+        /// Deprecated. The url string of current webpage.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public enum Edge
+        public string PageUrl
         {
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            Left,
-
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            Right,
-
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            Top,
-
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            Bottom,
+            get
+            {
+                return _pageUrl;
+            }
+            set
+            {
+                _pageUrl = value;
+            }
         }
-
-        /// <summary>
-        /// The edge, e.g. left, right, etc.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Edge ScrollEdge { get; }
     }
 }

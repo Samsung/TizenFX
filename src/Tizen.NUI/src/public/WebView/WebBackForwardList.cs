@@ -23,7 +23,6 @@ namespace Tizen.NUI
     /// <summary>
     /// WebBackForwardListItem is a class for back-forward list item of web view.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
     public class WebBackForwardListItem : Disposable
     {
         internal WebBackForwardListItem(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
@@ -36,9 +35,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get uri.
+        /// Get url.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public string Url
         {
             get
@@ -50,7 +48,6 @@ namespace Tizen.NUI
         /// <summary>
         /// Get title.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public string Title
         {
             get
@@ -62,7 +59,6 @@ namespace Tizen.NUI
         /// <summary>
         /// Get original url.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public string OriginalUrl
         {
             get
@@ -75,7 +71,6 @@ namespace Tizen.NUI
     /// <summary>
     /// WebBackForwardSubList is a class for back-forward copied list item of web view.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
     public class WebBackForwardSubList : Disposable
     {
         internal WebBackForwardSubList(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
@@ -90,7 +85,6 @@ namespace Tizen.NUI
         /// <summary>
         /// Get item count.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint ItemCount
         {
             get
@@ -103,7 +97,6 @@ namespace Tizen.NUI
         /// Get item with index.
         /// </summary>
         /// <param name="index">The index of list item.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public WebBackForwardListItem GetItemAtIndex(uint index)
         {
             System.IntPtr itemPtr = Interop.WebBackForwardSubList.GetItemAtIndex(SwigCPtr, index);
@@ -116,7 +109,6 @@ namespace Tizen.NUI
     /// <summary>
     /// WebBackForwardList is a class for back-forward list of web view.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
     public class WebBackForwardList : Disposable
     {
         internal WebBackForwardList(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
@@ -126,7 +118,6 @@ namespace Tizen.NUI
         /// <summary>
         /// Get item count.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint ItemCount
         {
             get
@@ -138,7 +129,6 @@ namespace Tizen.NUI
         /// <summary>
         /// Get current item.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public WebBackForwardListItem GetCurrentItem()
         {
             System.IntPtr itemPtr = Interop.WebBackForwardList.GetCurrentItem(SwigCPtr);
@@ -150,7 +140,6 @@ namespace Tizen.NUI
         /// <summary>
         /// Get previous item.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public WebBackForwardListItem GetPreviousItem()
         {
             System.IntPtr itemPtr = Interop.WebBackForwardList.GetPreviousItem(SwigCPtr);
@@ -162,7 +151,6 @@ namespace Tizen.NUI
         /// <summary>
         /// Get next item.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public WebBackForwardListItem GetNextItem()
         {
             System.IntPtr itemPtr = Interop.WebBackForwardList.GetNextItem(SwigCPtr);
@@ -175,7 +163,6 @@ namespace Tizen.NUI
         /// Get item with index.
         /// </summary>
         /// <param name="index">The index of list item.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public WebBackForwardListItem GetItemAtIndex(int index)
         {
             System.IntPtr itemPtr = Interop.WebBackForwardList.GetItemAtIndex(SwigCPtr, index);
@@ -188,7 +175,6 @@ namespace Tizen.NUI
         /// Get copied backward items.
         /// </summary>
         /// <param name="index">limit The number of items to retrieve.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public WebBackForwardSubList GetBackwardItems(int index)
         {
             System.IntPtr itemPtr = Interop.WebBackForwardList.GetBackwardItems(SwigCPtr, index);
@@ -201,7 +187,6 @@ namespace Tizen.NUI
         /// Get copied forward items.
         /// </summary>
         /// <param name="index">limit The number of items to retrieve.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public WebBackForwardSubList GetForwardItems(int index)
         {
             System.IntPtr itemPtr = Interop.WebBackForwardList.GetBackwardItems(SwigCPtr, index);

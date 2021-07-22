@@ -24,7 +24,6 @@ namespace Tizen.NUI
     /// <summary>
     /// WebCookieManager is a class for cookie manager of web view.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
     public class WebCookieManager : Disposable
     {
         private EventHandler<EventArgs> cookieChangedEventHandler;
@@ -40,7 +39,6 @@ namespace Tizen.NUI
         /// <summary>
         /// Event for cookie changed when cookies are added, removed or modified.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<EventArgs> CookieChanged
         {
             add
@@ -62,7 +60,6 @@ namespace Tizen.NUI
         /// <summary>
         /// Enumeration for cookie accept policy
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public enum CookieAcceptPolicyType
         {
             /// <summary>
@@ -87,7 +84,6 @@ namespace Tizen.NUI
         /// <summary>
         /// Enumeration for cookie persistent storage type.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public enum CookiePersistentStorageType
         {
             /// <summary>
@@ -106,7 +102,6 @@ namespace Tizen.NUI
         /// <summary>
         /// Cookie accept policy
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public CookieAcceptPolicyType CookieAcceptPolicy
         {
             get
@@ -120,9 +115,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sets the proxy uri.
+        /// Sets the persistent storage.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetPersistentStorage(string path, CookiePersistentStorageType storageType)
         {
             Interop.WebCookieManager.SetPersistentStorage(SwigCPtr, path, (int)storageType);
@@ -132,7 +126,6 @@ namespace Tizen.NUI
         /// <summary>
         /// Clears cookies.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void ClearCookies()
         {
             Interop.WebCookieManager.ClearCookies(SwigCPtr);
