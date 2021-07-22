@@ -118,6 +118,7 @@ namespace Tizen.NUI.Components
             if (pureCount == 0)
             {
                 isSourceEmpty = true;
+                base.Initialize(colView);
                 return;
             }
             isSourceEmpty = false;
