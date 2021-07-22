@@ -12,9 +12,9 @@ namespace Tizen.NUI.Samples
         private void Popped(object sender, PoppedEventArgs args)
         {
             global::System.Console.WriteLine("Page is popped!");
-            args.page.Dispose();
+            args.Page.Dispose();
 
-            if (args.page == firstPage)
+            if (args.Page == firstPage)
             {
                 firstPage = null;
             }
