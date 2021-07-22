@@ -35,7 +35,6 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class EncodedImageBuffer : BaseHandle
     {
-        private ImageUrl mCachedImageUrl = null; // cached Generated Url.
         private VectorUnsignedChar mCachedBuffer = null; // cached encoded raw buffer
 
         /// <summary>
@@ -76,8 +75,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ImageUrl GenerateUrl()
         {
-            mCachedImageUrl ??= new ImageUrl(Interop.EncodedImageBuffer.GenerateUrl(this.SwigCPtr.Handle), true);
-            return mCachedImageUrl;
+            return new ImageUrl(Interop.EncodedImageBuffer.GenerateUrl(this.SwigCPtr.Handle), true);
         }
 
         /// <summary>
@@ -110,7 +108,6 @@ namespace Tizen.NUI
                 //Called by User
                 //Release your own managed resources here.
                 //You should release all of your own disposable objects here.
-                mCachedImageUrl?.Dispose();
                 mCachedBuffer?.Dispose();
             }
 
