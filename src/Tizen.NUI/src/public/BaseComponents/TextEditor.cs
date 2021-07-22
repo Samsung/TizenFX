@@ -1260,7 +1260,76 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (PropertyMap)GetValue(PlaceholderProperty);
+                PropertyMap map = (PropertyMap)GetValue(PlaceholderProperty);
+                PropertyValue value = null;
+
+                // text
+                value = map.Find(0);
+                if (null != value)
+                {
+                    value.Get(out string text);
+                    map.Add("text", new PropertyValue(text));
+                }
+
+                // textFocused
+                value = map.Find(1);
+                if (null != value)
+                {
+                    value.Get(out string textFocused);
+                    map.Add("textFocused", new PropertyValue(textFocused));
+                }
+
+                // color
+                value = map.Find(2);
+                if (null != value)
+                {
+                    Color color = new Color();
+                    value.Get(color);
+                    map.Add("color", new PropertyValue(color));
+                }
+
+                // fontFamily
+                value = map.Find(3);
+                if (null != value)
+                {
+                    value.Get(out string fontFamily);
+                    map.Add("fontFamily", new PropertyValue(fontFamily));
+                }
+
+                // fontStyle
+                value = map.Find(4);
+                if (null != value)
+                {
+                    PropertyMap fontStyle = new PropertyMap();
+                    value.Get(fontStyle);
+                    map.Add("fontStyle", new PropertyValue(fontStyle));
+                }
+
+                // pointSize
+                value = map.Find(5);
+                if (null != value)
+                {
+                    value.Get(out float pointSize);
+                    map.Add("pointSize", new PropertyValue(pointSize));
+                }
+
+                // pixelSize
+                value = map.Find(6);
+                if (null != value)
+                {
+                    value.Get(out float pixelSize);
+                    map.Add("pixelSize", new PropertyValue(pixelSize));
+                }
+
+                // ellipsis
+                value = map.Find(7);
+                if (null != value)
+                {
+                    value.Get(out bool ellipsis);
+                    map.Add("ellipsis", new PropertyValue(ellipsis));
+                }
+
+                return map;
             }
             set
             {
