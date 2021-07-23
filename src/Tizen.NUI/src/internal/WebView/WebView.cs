@@ -88,6 +88,8 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler<WebViewContextMenuHiddenEventArgs> contextMenuHiddenEventHandler;
         private WebViewContextMenuHiddenCallbackDelegate contextMenuHiddenCallback;
 
+        private PlainTextReceivedCallback plainTextReceivedCallback;
+
         /// <summary>
         /// Creates a WebView.
         /// </summary>
@@ -227,6 +229,13 @@ namespace Tizen.NUI.BaseComponents
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void HitTestFinishedCallback(WebHitTestResult test);
+
+        /// <summary>
+        /// The callback function that is invoked when the plain text of the current page is received.
+        /// </summary>
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public delegate void PlainTextReceivedCallback(string plainText);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WebViewPageLoadCallbackDelegate(string pageUrl);
@@ -1940,6 +1949,20 @@ namespace Tizen.NUI.BaseComponents
         public void SetTtsFocus(bool focused)
         {
             Interop.WebView.SetTtsFocus(SwigCPtr, focused);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Get a plain text of current web page asynchronously.
+        /// Please note that it gets plain text of currently loaded page so please call this method after page load finished.
+        /// <param name="callback">The callback for getting plain text</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void GetPlainTextAsynchronously(PlainTextReceivedCallback callback)
+        {
+            plainTextReceivedCallback = callback;
+            System.IntPtr ip = Marshal.GetFunctionPointerForDelegate(plainTextReceivedCallback);
+            Interop.WebView.GetPlainTextAsynchronously(SwigCPtr, new HandleRef(this, ip));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
