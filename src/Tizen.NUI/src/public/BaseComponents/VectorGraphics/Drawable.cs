@@ -36,6 +36,22 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         }
 
         /// <summary>
+        /// Enumeration indicating the type used in the masking of two objects - the mask drawable and the own drawable.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum MaskType
+        {
+            /// <summary>
+            /// The pixels of the own drawable and the mask drawable are alpha blended. As a result, only the part of the own drawable, which intersects with the mask drawable is visible.
+            /// </summary>
+            Alpha = 0,
+            /// <summary>
+            /// The pixels of the own drawable and the complement to the mask drawable's pixels are alpha blended. As a result, only the part of the own which is not covered by the mask is visible.
+            /// </summary>
+            AlphaInverse
+        }
+
+        /// <summary>
         /// The transparency level [0 ~ 1.0], 0 means totally transparent, while 1 means opaque.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
@@ -82,6 +98,43 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
                 global::System.IntPtr cPtr = Interop.Drawable.GetBoundingBox(BaseHandle.getCPtr(this));
                 return Vector4.GetVector4FromPtr(cPtr);
             }
+        }
+
+        /// <summary>
+        /// The intersection with clip drawable is determined and only the resulting pixels from own drawable are rendered.
+        /// </summary>
+        /// <param name="clip">The clip drawable object.</param>
+        /// <returns>True when it's successful. False otherwise.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when drawable is null. </exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ClipPath(Drawable clip)
+        {
+            if (clip == null)
+            {
+                throw new ArgumentNullException(nameof(clip));
+            }
+            bool ret = Interop.Drawable.SetClipPath(View.getCPtr(this), BaseHandle.getCPtr(clip));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// The pixels of mask drawable and own drawable are blended according to MaskType.
+        /// </summary>
+        /// <param name="mask">The mask drawable object.</param>
+        /// <param name="type">The masking type.</param>
+        /// <returns>True when it's successful. False otherwise.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when drawable is null. </exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Mask(Drawable mask, MaskType type)
+        {
+            if (mask == null)
+            {
+                throw new ArgumentNullException(nameof(mask));
+            }
+            bool ret = Interop.Drawable.SetMask(View.getCPtr(this), BaseHandle.getCPtr(mask), (int)type);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         /// <summary>
