@@ -155,6 +155,9 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebViewScrollEdgeReachedSignal_Disconnect")]
             public static extern void WebViewScrollEdgeReachedSignalDisconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_GetPlainTextAsynchronously")]
+            public static extern void GetPlainTextAsynchronously(global::System.Runtime.InteropServices.HandleRef webViewRef, global::System.Runtime.InteropServices.HandleRef callbackRef);
         }
     }
 }
