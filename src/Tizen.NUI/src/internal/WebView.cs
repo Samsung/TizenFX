@@ -53,6 +53,14 @@ namespace Tizen.NUI
         private readonly WebViewScrollEdgeReachedSignal scrollEdgeReachedSignal;
         private EventHandler<WebViewScrollEdgeReachedEventArgs> scrollEdgeReachedEventHandler;
         private WebViewScrollEdgeReachedCallbackDelegate scrollEdgeReachedCallback;
+        private PlainTextReceivedCallback plainTextReceivedCallback;
+
+        /// <summary>
+        /// The callback function that is invoked when the plain text of the current page is received.
+        /// </summary>
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public delegate void PlainTextReceivedCallback(string plainText);
 
         internal WebView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.WebView.WebView_SWIGUpcast(cPtr), cMemoryOwn)
         {
@@ -869,6 +877,20 @@ namespace Tizen.NUI
         public void SetTtsFocus(bool focused)
         {
             Interop.WebView.SetTtsFocus(SwigCPtr, focused);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Get a plain text of current web page asynchronously.
+        /// Please note that it gets plain text of currently loaded page so please call this method after page load finished.
+        /// <param name="callback">The callback for getting plain text</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void GetPlainTextAsynchronously(PlainTextReceivedCallback callback)
+        {
+            plainTextReceivedCallback = callback;
+            System.IntPtr ip = Marshal.GetFunctionPointerForDelegate(plainTextReceivedCallback);
+            Interop.WebView.GetPlainTextAsynchronously(SwigCPtr, new HandleRef(this, ip));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
     }
