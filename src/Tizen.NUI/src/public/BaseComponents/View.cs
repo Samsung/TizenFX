@@ -48,6 +48,9 @@ namespace Tizen.NUI.BaseComponents
         private TransitionOptions transitionOptions = null;
         private ThemeData themeData;
 
+        // List of constraints
+        private Constraint widthConstraint = null;
+        private Constraint heightConstraint = null;
         static View()
         {
             RegisterPropertyGroup(PositionProperty, positionPropertyGroup);
@@ -467,6 +470,9 @@ namespace Tizen.NUI.BaseComponents
         /// <remarks>
         /// <para>
         /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// <code>
+        /// animation.AnimateTo(view, "CornerRadius", new Vector4(10, 10, 10, 10));
+        /// </code>
         /// </para>
         /// </remarks>
         /// <since_tizen> 9 </since_tizen>
@@ -994,6 +1000,14 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Retrieves and sets the view's opacity.<br />
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// <code>
+        /// animation.AnimateTo(view, "Opacity", 0.5f);
+        /// </code>
+        /// </para>
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public float Opacity
         {
@@ -1241,6 +1255,9 @@ namespace Tizen.NUI.BaseComponents
         /// <remarks>
         /// <para>
         /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// <code>
+        /// animation.AnimateTo(view, "SizeWidth", 500.0f);
+        /// </code>
         /// </para>
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
@@ -1264,6 +1281,9 @@ namespace Tizen.NUI.BaseComponents
         /// <para>
         /// Animatable - This property can be animated using <c>Animation</c> class.
         /// </para>
+        /// <code>
+        /// animation.AnimateTo(view, "SizeHeight", 500.0f);
+        /// </code>
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public float SizeHeight
@@ -1287,6 +1307,9 @@ namespace Tizen.NUI.BaseComponents
         /// <remarks>
         /// <para>
         /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// <code>
+        /// animation.AnimateTo(view, "Position", new Position(50, 0));
+        /// </code>
         /// </para>
         /// The property cascade chaining set is possible. For example, this (view.Position.X = 1.0f;) is possible.
         /// </remarks>
@@ -1311,6 +1334,9 @@ namespace Tizen.NUI.BaseComponents
         /// <remarks>
         /// <para>
         /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// <code>
+        /// animation.AnimateTo(view, "PositionX", 50.0f);
+        /// </code>
         /// </para>
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
@@ -1333,6 +1359,9 @@ namespace Tizen.NUI.BaseComponents
         /// <remarks>
         /// <para>
         /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// <code>
+        /// animation.AnimateTo(view, "PositionY", 50.0f);
+        /// </code>
         /// </para>
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
@@ -1355,6 +1384,9 @@ namespace Tizen.NUI.BaseComponents
         /// <remarks>
         /// <para>
         /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// <code>
+        /// animation.AnimateTo(view, "PositionZ", 50.0f);
+        /// </code>
         /// </para>
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
@@ -1397,6 +1429,9 @@ namespace Tizen.NUI.BaseComponents
         /// </para>
         /// <para>
         /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// <code>
+        /// animation.AnimateTo(view, "Orientation", new Rotation(new Radian((float)Math.PI), Vector3.XAxis));
+        /// </code>
         /// </para>
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
@@ -1435,6 +1470,9 @@ namespace Tizen.NUI.BaseComponents
         /// <remarks>
         /// <para>
         /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// <code>
+        /// animation.AnimateTo(view, "Scale", new Vector3(1.5f, 1.5f, 1.0f));
+        /// </code>
         /// </para>
         /// The property cascade chaining set is possible. For example, this (view.Scale.X = 0.1f;) is possible.
         /// </remarks>
@@ -1459,6 +1497,9 @@ namespace Tizen.NUI.BaseComponents
         /// <remarks>
         /// <para>
         /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// <code>
+        /// animation.AnimateTo(view, "ScaleX", 1.5f);
+        /// </code>
         /// </para>
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
@@ -1481,6 +1522,9 @@ namespace Tizen.NUI.BaseComponents
         /// <remarks>
         /// <para>
         /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// <code>
+        /// animation.AnimateTo(view, "ScaleY", 1.5f);
+        /// </code>
         /// </para>
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
@@ -1503,6 +1547,9 @@ namespace Tizen.NUI.BaseComponents
         /// <remarks>
         /// <para>
         /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// <code>
+        /// animation.AnimateTo(view, "ScaleZ", 1.5f);
+        /// </code>
         /// </para>
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
@@ -1545,6 +1592,9 @@ namespace Tizen.NUI.BaseComponents
         /// </para>
         /// <para>
         /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// <code>
+        /// animation.AnimateTo(view, "Visibility", false);
+        /// </code>
         /// </para>
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
@@ -2014,6 +2064,9 @@ namespace Tizen.NUI.BaseComponents
         /// <remarks>
         /// <para>
         /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// <code>
+        /// animation.AnimateTo(view, "Size", new Size(100, 100));
+        /// </code>
         /// </para>
         /// The property cascade chaining set is possible. For example, this (view.Size.Width = 1.0f;) is possible.
         /// </remarks>

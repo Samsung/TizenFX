@@ -42,9 +42,11 @@ namespace Tizen.NUI.EXaml
 
         public void Do()
         {
+            object obj = null;
+
             if (0 == globalDataList.GatheredInstances.Count && null != globalDataList.Root)
             {
-                globalDataList.GatheredInstances.Add(globalDataList.Root);
+                obj = globalDataList.Root;
             }
             else
             {
@@ -52,25 +54,42 @@ namespace Tizen.NUI.EXaml
 
                 if (null != fieldName)
                 {
-                    var instance = type.GetField(fieldName, BindingFlags.Static | BindingFlags.Public).GetValue(null);
-                    globalDataList.GatheredInstances.Add(instance);
+                    obj = type.GetField(fieldName, BindingFlags.Static | BindingFlags.Public).GetValue(null);
                 }
                 else
                 {
-                    var instance = type.GetProperty(propertyName, BindingFlags.Static | BindingFlags.Public).GetValue(null);
-                    globalDataList.GatheredInstances.Add(instance);
+                    obj = type.GetProperty(propertyName, BindingFlags.Static | BindingFlags.Public).GetValue(null);
                 }
             }
 
-            if (1 == globalDataList.GatheredInstances.Count)
+            if (null != obj)
             {
-                var rootObject = globalDataList.GatheredInstances[0] as BindableObject;
-                if (null != rootObject)
+                globalDataList.GatheredInstances.Add(obj);
+
+                if (obj is BindableObject bindableObject)
                 {
-                    rootObject.IsCreateByXaml = true;
-                    NameScope nameScope = new NameScope();
-                    NameScope.SetNameScope(rootObject, nameScope);
+                    bindableObject.IsCreateByXaml = true;
+
+                    if (1 == globalDataList.GatheredInstances.Count)
+                    {
+                        NameScope nameScope = new NameScope();
+                        NameScope.SetNameScope(bindableObject, nameScope);
+                    }
                 }
+            }
+            else
+            {
+                string name = null;
+                if (null != fieldName)
+                {
+                    name = fieldName;
+                }
+                else
+                {
+                    name = propertyName;
+                }
+
+                throw new Exception($"Can't gather static instance typeIndex:{typeIndex}, name:{name}");
             }
         }
 

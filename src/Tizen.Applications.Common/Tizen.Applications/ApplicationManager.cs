@@ -660,6 +660,40 @@ namespace Tizen.Applications
                 }
             }
         }
+
+        /// <summary>
+        /// Attaches the window of the child application below the window of the parent application.
+        /// </summary>
+        /// <remarks>
+        /// This method is only available for platform level signed applications.
+        /// </remarks>
+        /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when failed because of permission denied.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
+        /// <since_tizen> 9 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void AttachWindowBelow(string parentAppId, string childAppId)
+        {
+            Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.ErrorCode.None;
+
+            err = Interop.ApplicationManager.AppManagerAttachWindow(parentAppId, childAppId);
+            if (err != Interop.ApplicationManager.ErrorCode.None)
+            {
+                switch (err)
+                {
+                    case Interop.ApplicationManager.ErrorCode.InvalidParameter:
+                        throw new ArgumentException("Invalid argument.");
+                    case Interop.ApplicationManager.ErrorCode.PermissionDenied:
+                        throw new UnauthorizedAccessException("Permission denied.");
+                    case Interop.ApplicationManager.ErrorCode.IoError:
+                        throw new InvalidOperationException("IO error at unmanaged code.");
+                    case Interop.ApplicationManager.ErrorCode.OutOfMemory:
+                        throw new InvalidOperationException("Out-of-memory at unmanaged code.");
+                    case Interop.ApplicationManager.ErrorCode.NoSuchApp:
+                        throw new InvalidOperationException("No such application.");
+                }
+            }
+        }
     }
 
     internal static class FilterExtension

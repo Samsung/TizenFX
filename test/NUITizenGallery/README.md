@@ -18,5 +18,6 @@
 ![](./.pic/csproj-file.png)
 
 ### Start debugging
+- Open VS Code by the command, **"$ code NUITizenGallery.code-workspace"** in /TizenFX/test/NUITizenGallery/ folder.
 - Do run and debug by clicking "play button" as shown below
 ![](./.pic/run.png)

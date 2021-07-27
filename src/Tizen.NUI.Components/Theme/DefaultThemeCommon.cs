@@ -449,13 +449,13 @@ namespace Tizen.NUI.Components
                 },
                 ActionView = new ViewStyle()
                 {
-                    Size = new Size(-1, 120),
+                    Size = new Size(48, 120),
                     CornerRadius = 0,
                     BackgroundColor = new Color(0, 0, 0, 0),
                 },
                 ActionButton = new ButtonStyle()
                 {
-                    Size = new Size(-1, 120),
+                    Size = new Size(-2, 120),
                     CornerRadius = 0,
                     BackgroundColor = new Color(0, 0, 0, 0),
                     Text = new TextLabelStyle()
@@ -471,7 +471,7 @@ namespace Tizen.NUI.Components
                     },
                     Icon = new ImageViewStyle()
                     {
-                        Size = new Size(-1, 48),
+                        Size = new Size(48, 48),
                         Color = new Selector<Color>()
                         {
                             Normal = new Color("#0A0E4A"),
@@ -680,12 +680,6 @@ namespace Tizen.NUI.Components
                     },
                     StartScrollOffset = new Size2D(0, 12),
                 }
-            });
-
-            // Menu base style
-            theme.AddStyleWithoutClone("Tizen.NUI.Components.Menu", new ViewStyle()
-            {
-                BackgroundColor = new Color("#EEEFF1"),
             });
 
             // MenuItem base style

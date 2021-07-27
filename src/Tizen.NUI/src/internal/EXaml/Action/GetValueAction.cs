@@ -207,6 +207,7 @@ namespace Tizen.NUI.EXaml
 
         public void Init()
         {
+            getValueList = null;
             valueString = "";
         }
 

@@ -14,10 +14,10 @@ for meta_child in root.iter():
             if depen_child.tag == "{http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd}dependencies":
                 for group in depen_child:
                     tfm = group.attrib["targetFramework"].lower()
-                    tfm = tfm.replace(".", "")
-                    tfm = tfm.replace("20", "2.0")
-                    if tfm.strip():
-                        tfm_list.append(tfm)
+                    if tfm.startswith("tizen"):
+                        tfm = tfm.replace(".", "")
+                        if tfm.strip():
+                            tfm_list.append(tfm)
 
 tfm_list = list(set(tfm_list))
 tfm_list.sort(reverse=True)

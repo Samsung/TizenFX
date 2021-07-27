@@ -46,7 +46,7 @@ namespace Tizen.NUI.Binding
 
                     if (newValue is BindableObject targetBindableObject)
                     {
-                        targetBindableObject.IsCreateByXaml = true;
+                        targetBindableObject.IsBinded = true;
                     }
                 }
             }),
@@ -256,7 +256,7 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetValue(BindableProperty property, object value)
         {
-            if (true == isCreateByXaml)
+            if (true == IsBinded)
             {
                 SetValue(property, value, false, true);
             }
@@ -578,7 +578,7 @@ namespace Tizen.NUI.Binding
             if (fromStyle && !CanBeSetFromStyle(targetProperty))
                 return;
 
-            IsCreateByXaml = true;
+            IsBinded = true;
 
             var context = GetOrCreateContext(targetProperty);
             if (fromStyle)
@@ -751,6 +751,12 @@ namespace Tizen.NUI.Binding
                 binding.Apply(BindingContext, this, context.Property, fromBindingContextChanged: fromBindingContextChanged);
             }
         }
+
+        internal bool IsBinded
+        {
+            get;
+            set;
+        } = false;
 
         static void BindingContextPropertyBindingChanging(BindableObject bindable, BindingBase oldBindingBase, BindingBase newBindingBase)
         {

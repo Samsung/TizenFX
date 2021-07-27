@@ -23,6 +23,19 @@ using Tizen.NUI.BaseComponents;
 namespace Tizen.NUI.Components
 {
     /// <summary>
+    /// PoppedEventArgs is a class to record popped event arguments which will be sent to user.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class PoppedEventArgs : EventArgs
+    {
+        /// <summary>
+        /// Page popped by Navigator.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Page Page { get; internal set; }
+    }
+
+    /// <summary>
     /// The Navigator is a class which navigates pages with stack methods such as Push and Pop.
     /// </summary>
     /// <remarks>
@@ -99,6 +112,13 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public event EventHandler<EventArgs> TransitionFinished;
+
+        /// <summary>
+        /// An event fired when Pop of a page has been finished.
+        /// Notice that Popped event handler should be removed when it is called not to call it duplicate.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<PoppedEventArgs> Popped;
 
         /// <summary>
         /// Returns the count of pages in Navigator.
@@ -200,6 +220,10 @@ namespace Tizen.NUI.Components
             if (navigationPages.Count == 1)
             {
                 Remove(topPage);
+
+                //Invoke Popped event
+                Popped?.Invoke(this, new PoppedEventArgs() { Page = topPage });
+
                 return topPage;
             }
             var newTopPage = navigationPages[navigationPages.Count - 2];
@@ -219,6 +243,9 @@ namespace Tizen.NUI.Components
                 //Invoke Page events
                 newTopPage.InvokeAppeared();
                 topPage.InvokeDisappeared();
+
+                //Invoke Popped event
+                Popped?.Invoke(this, new PoppedEventArgs() { Page = topPage });
             };
             transitionFinished = false;
 
@@ -319,6 +346,10 @@ namespace Tizen.NUI.Components
             if (navigationPages.Count == 1)
             {
                 Remove(curTop);
+
+                //Invoke Popped event
+                Popped?.Invoke(this, new PoppedEventArgs() { Page = curTop });
+
                 return curTop;
             }
 
@@ -344,6 +375,9 @@ namespace Tizen.NUI.Components
 
                     //Invoke Page events
                     curTop.InvokeDisappeared();
+
+                    //Invoke Popped event
+                    Popped?.Invoke(this, new PoppedEventArgs() { Page = curTop });
                 };
                 curAnimation.Play();
 
@@ -651,7 +685,6 @@ namespace Tizen.NUI.Components
             }
 
             TransitionSet newTransitionSet = new TransitionSet();
-            sameTaggedViewPair.Reverse();
             foreach(KeyValuePair<View, View> pair in sameTaggedViewPair)
             {
                 TransitionItem pairTransition = transition.CreateTransition(pair.Key, pair.Value);

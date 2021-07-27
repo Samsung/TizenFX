@@ -21,6 +21,9 @@ namespace Tizen.NUI
     {
         internal static partial class WebConsoleMessage
         {
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WebConsoleMessage")]
+            public static extern void DeleteWebConsoleMessage(global::System.Runtime.InteropServices.HandleRef jarg1);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebConsoleMessage_GetSource")]
             public static extern string GetSource(global::System.Runtime.InteropServices.HandleRef jarg1);
 

@@ -288,7 +288,7 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.ForwardAnimation = forwordAnimation;
 
             var result = testingTarget.ForwardAnimation;    
-            Assert.AreEqual(300 == result.DurationMilliSeconds, "should be eaqual!");
+            Assert.AreEqual(300, result.DurationMilliSeconds, "should be eaqual!");
 
             view.Dispose();
             forwordAnimation.Dispose();
@@ -323,7 +323,7 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.ForwardAnimation = forwordAnimation;
 
             var result = testingTarget.ForwardAnimation;
-            Assert.AreEqual(300 == result.DurationMilliSeconds, "should be eaqual!");
+            Assert.AreEqual(300, result.DurationMilliSeconds, "should be eaqual!");
 
             view.Dispose();
             forwordAnimation.Dispose();
@@ -358,7 +358,7 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.BackwardAnimation = backwordAnimation;
 
             var result = testingTarget.BackwardAnimation;
-            Assert.AreEqual(300 == result.DurationMilliSeconds, "should be eaqual!");
+            Assert.AreEqual(300, result.DurationMilliSeconds, "should be eaqual!");
 
             view.Dispose();
             backwordAnimation.Dispose();
@@ -393,7 +393,7 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.BackwardAnimation = backwordAnimation;
 
             var result = testingTarget.BackwardAnimation;
-            Assert.AreEqual(300 == result.DurationMilliSeconds, "should be eaqual!");
+            Assert.AreEqual(300, result.DurationMilliSeconds, "should be eaqual!");
 
             view.Dispose();
             backwordAnimation.Dispose();

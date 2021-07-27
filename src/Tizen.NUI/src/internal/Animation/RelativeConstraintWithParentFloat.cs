@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,16 +17,18 @@
 
 namespace Tizen.NUI
 {
-    internal static partial class Interop
+    using global::System.Runtime.InteropServices;
+    
+    /// <summary>
+    /// Specialized Constraint.
+    /// Make handle's targetIndex value always equal with handle's parent's parentIndex value
+    /// </summary>
+    internal class RelativeConstraintWithParentFloat : Constraint
     {
-        internal static partial class WebFormRepostPolicyDecisionMaker
+        internal RelativeConstraintWithParentFloat(HandleRef handle, int targetIndex, int parentIndex, float rate)
+         : base(Interop.Constraint.NewRelativeConstraintWithParentFloat(handle, targetIndex, parentIndex, rate), true)
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WebFormRepostDecision")]
-            public static extern void DeleteWebFormRepostDecision(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebFormRepostDecision_Reply")]
-            public static extern void Reply(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
     }
 }
-

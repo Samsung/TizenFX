@@ -694,11 +694,16 @@ namespace Tizen.NUI.Devel.Tests
         public void InputMethodContextDownCast()
         {
             tlog.Debug(tag, $"InputMethodContextDownCast START");
-            BaseHandle handle = new BaseHandle();
 
-            InputMethodContext a1 = InputMethodContext.DownCast(handle);
+            using (InputMethodContext context = new InputMethodContext())
+            {
+                var testingTarget = InputMethodContext.DownCast(context);
+                Assert.IsNotNull(testingTarget, "Can't create success object InputMethodContext");
+                Assert.IsInstanceOf<InputMethodContext>(testingTarget, "Should be an instance of InputMethodContext type.");
 
-            a1.Dispose();
+                testingTarget.Dispose();
+            }
+
             tlog.Debug(tag, $"InputMethodContextDownCast END (OK)");
             Assert.Pass("InputMethodContextDownCast");
         }

@@ -1,7 +1,7 @@
 # Auto-generated from csapi-tizenfx.spec.in by makespec.sh
 
 %define TIZEN_NET_API_VERSION 9
-%define TIZEN_NET_RPM_VERSION 9.0.0.999+nui22034
+%define TIZEN_NET_RPM_VERSION 9.0.0.999+nui22036
 %define TIZEN_NET_NUGET_VERSION 9.0.0.99999
 
 %define DOTNET_ASSEMBLY_PATH /usr/share/dotnet.tizen/framework
@@ -12,7 +12,7 @@
 %define DOTNET_NUGET_SOURCE /nuget
 
 %define TIZEN_NET_RUNTIME_IDENTIFIERS 4.0.0:5.0.0:5.5.0:6.0.0:6.5.0
-%define TIZEN_NET_TARGET_FRAMEWORK_MONIKERS tizen90:tizen80:tizen70:tizen60:tizen50:tizen40:netstandard2.0
+%define TIZEN_NET_TARGET_FRAMEWORK_MONIKERS tizen90:tizen80:tizen70:tizen60:tizen50:tizen40
 
 %define UPGRADE_SCRIPT_PATH /usr/share/upgrade/scripts
 

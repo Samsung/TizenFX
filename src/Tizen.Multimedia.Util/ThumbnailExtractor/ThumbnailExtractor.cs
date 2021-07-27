@@ -357,7 +357,8 @@ namespace Tizen.Multimedia.Util
         /// <privilege>http://tizen.org/privilege/externalstorage</privilege>
         /// <param name="path">The path of the media file to extract the thumbnail.</param>
         /// <param name="resultThumbnailPath">The path to save the generated thumbnail.</param>
-        /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
+        /// <exception cref="ArgumentException"><paramref name="path"/> or <paramref name="resultThumbnailPath"/> is invalid.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="path"/> or <paramref name="resultThumbnailPath"/> is null.</exception>
         /// <exception cref="FileNotFoundException"><paramref name="path"/> does not exist.</exception>
         /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
         /// <exception cref="FileFormatException">The specified file is not supported.</exception>
@@ -387,7 +388,8 @@ namespace Tizen.Multimedia.Util
         /// <param name="path">The path of the media file to extract the thumbnail.</param>
         /// <param name="size">The size of the thumbnail.</param>
         /// <param name="resultThumbnailPath">The path to save the generated thumbnail.</param>
-        /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
+        /// <exception cref="ArgumentException"><paramref name="path"/> or <paramref name="resultThumbnailPath"/> is invalid.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="path"/> or <paramref name="resultThumbnailPath"/> is null.</exception>
         /// <exception cref="FileNotFoundException"><paramref name="path"/> does not exist.</exception>
         /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
@@ -398,10 +400,8 @@ namespace Tizen.Multimedia.Util
         /// <since_tizen> 6 </since_tizen>
         public static void Extract(string path, Size size, string resultThumbnailPath)
         {
-            if (path == null)
-            {
-                throw new ArgumentNullException(nameof(path));
-            }
+            ValidationUtil.ValidateIsNullOrEmpty(path, nameof(path));
+            ValidationUtil.ValidateIsNullOrEmpty(resultThumbnailPath, nameof(resultThumbnailPath));
 
             if (File.Exists(path) == false)
             {

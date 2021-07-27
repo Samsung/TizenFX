@@ -9,6 +9,23 @@ namespace Tizen.NUI.Samples
         private ContentPage firstPage, secondPage;
         private Button firstButton, secondButton;
 
+        private void Popped(object sender, PoppedEventArgs args)
+        {
+            global::System.Console.WriteLine("Page is popped!");
+            args.Page.Dispose();
+
+            if (args.Page == firstPage)
+            {
+                firstPage = null;
+            }
+            else
+            {
+                secondPage = null;
+            }
+
+            navigator.Popped -= Popped;
+        }
+
         public void Activate()
         {
             Window window = NUIApplication.GetDefaultWindow();
@@ -38,6 +55,11 @@ namespace Tizen.NUI.Samples
 
             firstPage = new ContentPage()
             {
+                AppBar = new AppBar()
+                {
+                    AutoNavigationContent = false,
+                    Title = "FirstPage",
+                },
                 Content = firstButton,
             };
             firstPage.Appearing += (object sender, PageAppearingEventArgs e) =>
@@ -67,6 +89,10 @@ namespace Tizen.NUI.Samples
 
             secondPage = new ContentPage()
             {
+                AppBar = new AppBar()
+                {
+                    Title = "SecondPage",
+                },
                 Content = secondButton,
             };
             secondPage.Appearing += (object sender, PageAppearingEventArgs e) =>
