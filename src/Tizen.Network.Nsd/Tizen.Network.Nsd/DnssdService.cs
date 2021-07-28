@@ -18,6 +18,8 @@ using System;
 using System.Text;
 using System.Threading;
 using System.Net;
+using System.Runtime.InteropServices;
+using System.Collections.Generic;
 
 namespace Tizen.Network.Nsd
 {
@@ -218,14 +220,30 @@ namespace Tizen.Network.Nsd
             }
         }
 
-        private void GetTxtRecord(out ushort length, out byte[] value)
+        /// <summary>
+        /// Returns raw TXT records.
+        /// </summary>
+        /// <returns>Returns empty bytes array in case TXT record has not been set, else returns raw TXT record.</returns>
+        /// <since_tizen> 9 </since_tizen>
+        /// <feature>http://tizen.org/feature/network.service_discovery.dnssd</feature>
+        /// <exception cref="NotSupportedException">Thrown when DNS-SD is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when any other error occurred.</exception>
+        public byte[] GetRawTXTRecords()
         {
-            int ret = Interop.Nsd.Dnssd.GetAllTxtRecord(_serviceHandle, out length, out value);
+            int ret = Interop.Nsd.Dnssd.GetAllTxtRecord(_serviceHandle, out ushort length, out IntPtr data);
             if (ret != (int)DnssdError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to get the TXT record, Error: " + (DnssdError)ret);
                 NsdErrorFactory.ThrowDnssdException(ret);
             }
+            byte[] value = Array.Empty<byte>();
+            if (length > 0)
+            {
+                value = new byte[length];
+                Marshal.Copy(data, value, 0, length);
+                Interop.Libc.Free(data);
+            }
+            return value;
         }
 
         /// <summary>
@@ -251,19 +269,16 @@ namespace Tizen.Network.Nsd
                 Log.Error(Globals.LogTag, "Failed to add the TXT record, Error: " + (DnssdError)ret);
                 NsdErrorFactory.ThrowDnssdException(ret);
             }
-
             byte[] txtValue;
-            ushort txtLength;
-            GetTxtRecord(out txtLength, out txtValue);
-
-            ret = Interop.Nsd.Dnssd.SetRecord(_serviceHandle, _dnsRecordtype, txtLength, txtValue);
+            txtValue = GetRawTXTRecords();
+            ret = Interop.Nsd.Dnssd.SetRecord(_serviceHandle, _dnsRecordtype, (ushort)txtValue.Length, txtValue);
             if (ret != (int)DnssdError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to set the DNS resource record, Error: " + (DnssdError)ret);
                 NsdErrorFactory.ThrowDnssdException(ret);
             }
         }
-
+        
         /// <summary>
         /// Removes the TXT record.
         /// </summary>
@@ -280,19 +295,6 @@ namespace Tizen.Network.Nsd
             {
                 Log.Error(Globals.LogTag, "Failed to remove the TXT record, Error: " + (DnssdError)ret);
                 NsdErrorFactory.ThrowDnssdException(ret);
-            }
-
-            byte[] txtValue;
-            ushort txtLength;
-            GetTxtRecord(out txtLength, out txtValue);
-            if (txtLength == 0)
-            {
-                ret = Interop.Nsd.Dnssd.UnsetRecord(_serviceHandle, _dnsRecordtype);
-                if (ret != (int)DnssdError.None)
-                {
-                    Log.Error(Globals.LogTag, "Failed to unset the DNS resource record, Error: " + (DnssdError)ret);
-                    NsdErrorFactory.ThrowDnssdException(ret);
-                }
             }
         }
 
@@ -376,7 +378,7 @@ namespace Tizen.Network.Nsd
         /// <summary>
         /// Destroys the DnssdService object.
         /// </summary>
-         ~DnssdService()
+        ~DnssdService()
         {
             Dispose(false);
         }
