@@ -131,11 +131,17 @@ internal static partial class Interop
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_source_get_video_resolution")]
         internal static extern WebRTCErrorCode GetVideoResolution(IntPtr handle, uint sourceId, out int width, out int height);
 
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_source_set_audio_loopback")]
+        internal static extern WebRTCErrorCode SetAudioLoopback(IntPtr handle, uint sourceId, AudioStreamPolicyHandle streamInfo, out uint trackId);
+
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_source_set_video_loopback")]
+        internal static extern WebRTCErrorCode SetVideoLoopback(IntPtr handle, uint sourceId, WebRTCDisplayType type, IntPtr display, out uint trackId);
+
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_mic_source_set_sound_stream_info")]
         internal static extern WebRTCErrorCode SetAudioStreamPolicyToMicSource(IntPtr handle, uint sourceId, AudioStreamPolicyHandle streamInfo);
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_set_sound_stream_info")]
-        internal static extern WebRTCErrorCode SetAudioStreamPolicyToRemoteTrack(IntPtr handle, uint sourceId, AudioStreamPolicyHandle streamInfo);
+        internal static extern WebRTCErrorCode SetAudioStreamPolicyToRemoteTrack(IntPtr handle, uint trackId, AudioStreamPolicyHandle streamInfo);
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_set_display")]
         internal static extern WebRTCErrorCode SetDisplay(IntPtr handle, uint trackId, WebRTCDisplayType type, IntPtr display);
@@ -154,6 +160,12 @@ internal static partial class Interop
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_foreach_turn_server")]
         internal static extern WebRTCErrorCode ForeachTurnServer(IntPtr handle, RetrieveTurnServerCallback callback, IntPtr userData = default);
+
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_set_ice_transport_policy")]
+        internal static extern WebRTCErrorCode SetIceTransportPolicy(IntPtr handle, IceTransportPolicy policy);
+
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_get_ice_transport_policy")]
+        internal static extern WebRTCErrorCode GetIceTransportPolicy(IntPtr handle, out IceTransportPolicy policy);
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_create_offer")]
         internal static extern WebRTCErrorCode CreateSDPOffer(IntPtr handle, SafeBundleHandle bundle, out string offer);

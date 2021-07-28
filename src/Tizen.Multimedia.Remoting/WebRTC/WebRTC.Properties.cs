@@ -174,6 +174,32 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
+        /// Gets or sets the ICE transport policy.
+        /// </summary>
+        /// <value>The policy of ICE transport</value>
+        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <since_tizen> 9 </since_tizen>
+        public IceTransportPolicy IceTransportPolicy
+        {
+            get
+            {
+                ValidateNotDisposed();
+
+                NativeWebRTC.GetIceTransportPolicy(Handle, out IceTransportPolicy policy).
+                    ThrowIfFailed("Failed to get ICE transport policy");
+
+                return policy;
+            }
+            set
+            {
+                ValidateNotDisposed();
+
+                NativeWebRTC.SetIceTransportPolicy(Handle, value).
+                    ThrowIfFailed("Failed to set ICE transport policy");
+            }
+        }
+
+        /// <summary>
         /// Gets the display settings.
         /// </summary>
         /// <value>A <see cref="WebRTCDisplaySettings"/> that specifies the display settings.</value>

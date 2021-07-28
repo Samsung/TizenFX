@@ -304,6 +304,24 @@ namespace Tizen.Multimedia.Remoting
     }
 
     /// <summary>
+    /// Specifies the policy of Ice transport.
+    /// </summary>
+    /// <seealso aref="https://www.w3.org/TR/webrtc/#rtcicetransportpolicy-enum"/>
+    /// <since_tizen> 9 </since_tizen>
+    public enum IceTransportPolicy
+    {
+        /// <summary>
+        /// All.
+        /// </summary>
+        All,
+
+        /// <summary>
+        /// Relay.
+        /// </summary>
+        Relay
+    }
+
+    /// <summary>
     /// Specifies the signaling message type.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
