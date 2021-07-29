@@ -34,6 +34,15 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// <summary>
         /// Creates an initialized CanvasView.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public CanvasView() : this(Interop.CanvasView.New(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Creates an initialized CanvasView.
+        /// </summary>
         /// <param name="viewBox">The size of viewbox.</param>
         /// <exception cref="ArgumentNullException"> Thrown when viewBox is null. </exception>
         /// <since_tizen> 9 </since_tizen>
