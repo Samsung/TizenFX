@@ -1547,6 +1547,18 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Select text from start to end index.
+        /// </summary>
+        /// <param name="start">The start index for selection.</param>
+        /// <param name="end">The end index for selection.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SelectText(uint start, uint end)
+        {
+            Interop.TextEditor.SelectText(SwigCPtr, start, end);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// Clear selection of the text.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
