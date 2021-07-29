@@ -104,10 +104,10 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// The intersection with clip drawable is determined and only the resulting pixels from own drawable are rendered.
         /// </summary>
         /// <param name="clip">The clip drawable object.</param>
-        /// <returns>True when it's successful. False otherwise.</returns>
+        /// <exception cref="Exception"> Drawable clpping failed. </exception>
         /// <exception cref="ArgumentNullException"> Thrown when drawable is null. </exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool ClipPath(Drawable clip)
+        public void ClipPath(Drawable clip)
         {
             if (clip == null)
             {
@@ -115,7 +115,10 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
             }
             bool ret = Interop.Drawable.SetClipPath(View.getCPtr(this), BaseHandle.getCPtr(clip));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            if (!ret)
+            {
+                throw new Exception("Drawable clipping failed or clip drawable is already added other drawable or canvas.");
+            }
         }
 
         /// <summary>
@@ -123,10 +126,10 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// </summary>
         /// <param name="mask">The mask drawable object.</param>
         /// <param name="type">The masking type.</param>
-        /// <returns>True when it's successful. False otherwise.</returns>
+        /// <exception cref="Exception"> Drawable masking failed. </exception>
         /// <exception cref="ArgumentNullException"> Thrown when drawable is null. </exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool Mask(Drawable mask, MaskType type)
+        public void Mask(Drawable mask, MaskType type)
         {
             if (mask == null)
             {
@@ -134,7 +137,10 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
             }
             bool ret = Interop.Drawable.SetMask(View.getCPtr(this), BaseHandle.getCPtr(mask), (int)type);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            if (!ret)
+            {
+                throw new Exception("Drawable masking failed or mask drawable is already added other drawable or canvas.");
+            }
         }
 
         /// <summary>
