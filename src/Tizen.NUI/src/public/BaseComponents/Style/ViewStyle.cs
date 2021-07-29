@@ -557,6 +557,7 @@ namespace Tizen.NUI.BaseComponents
             }
 
             IncludeDefaultStyle = source.IncludeDefaultStyle;
+            SolidNull = source.SolidNull;
         }
 
         /// <summary>
