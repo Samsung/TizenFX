@@ -218,9 +218,6 @@ namespace Tizen.Network.Bluetooth
     {
         internal static BluetoothDevice ConvertStructToDeviceClass(BluetoothDeviceStruct device)
         {
-            const int DeviceNameLengthMax = 248;
-            const int UuidLengthMax = 50;
-
             BluetoothDevice resultDevice = new BluetoothDevice();
             Collection<string> uuidList = null;
 
@@ -232,7 +229,7 @@ namespace Tizen.Network.Bluetooth
                 Log.Info(Globals.LogTag, "UUID Count: " + device.ServiceCount);
                 foreach (IntPtr extension in extensionList) {
                     if (extension != IntPtr.Zero) {
-                        string uuid = Marshal.PtrToStringAnsi (extension, UuidLengthMax);
+                        string uuid = Marshal.PtrToStringAnsi (extension);
                         Log.Info(Globals.LogTag, "UUID: " + uuid);
                         uuidList.Add (uuid);
                     }
@@ -241,7 +238,7 @@ namespace Tizen.Network.Bluetooth
 
             resultDevice.RemoteDeviceAddress = device.Address;
             if (device.Name != IntPtr.Zero) {
-                resultDevice.RemoteDeviceName = Marshal.PtrToStringAnsi(device.Name, DeviceNameLengthMax);
+                resultDevice.RemoteDeviceName = Marshal.PtrToStringAnsi(device.Name);
                 Log.Info(Globals.LogTag, "Device Name: " + resultDevice.RemoteDeviceName);
             }
             resultDevice.RemoteDeviceClass = new BluetoothClass();
@@ -263,8 +260,6 @@ namespace Tizen.Network.Bluetooth
         {
             BluetoothDevice resultDevice = new BluetoothDevice();
             Collection<string> uuidList = null;
-            const int DeviceNameLengthMax = 248;
-            const int UuidLengthMax = 50;
 
             if (structDevice.ServiceCount > 0) {
                 IntPtr[] extensionList = new IntPtr[structDevice.ServiceCount];
@@ -273,7 +268,7 @@ namespace Tizen.Network.Bluetooth
                 Log.Info(Globals.LogTag, "UUID Count: " + structDevice.ServiceCount);
                 foreach (IntPtr extension in extensionList) {
                     if (extension != IntPtr.Zero) {
-                        string uuid = Marshal.PtrToStringAnsi(extension, UuidLengthMax);
+                        string uuid = Marshal.PtrToStringAnsi(extension);
                         Log.Info(Globals.LogTag, "UUID: " + uuid);
                         uuidList.Add(uuid);
                     }
@@ -282,7 +277,7 @@ namespace Tizen.Network.Bluetooth
 
             resultDevice.RemoteDeviceAddress = structDevice.Address;
             if (structDevice.Name != IntPtr.Zero) {
-                resultDevice.RemoteDeviceName = Marshal.PtrToStringAnsi(structDevice.Name, DeviceNameLengthMax);
+                resultDevice.RemoteDeviceName = Marshal.PtrToStringAnsi(structDevice.Name);
                 Log.Info(Globals.LogTag, "Device Name: " + resultDevice.RemoteDeviceName);
             }
 
