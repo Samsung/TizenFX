@@ -47,7 +47,16 @@ namespace Tizen.NUI.EXaml
 
                 for (int i = 0; i < genericTypeIndexs.Count; i++)
                 {
-                    args[i] = globalDataList.GatheredTypes[genericTypeIndexs[i]];
+                    int typeIndex = genericTypeIndexs[i];
+
+                    if (typeIndex >= 0)
+                    {
+                        args[i] = globalDataList.GatheredTypes[typeIndex];
+                    }
+                    else
+                    {
+                        args[i] = GetBaseType.GetBaseTypeByIndex(typeIndex);
+                    }
                 }
 
                 type = type.MakeGenericType(args);
