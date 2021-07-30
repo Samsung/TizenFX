@@ -422,6 +422,35 @@ namespace Tizen.Applications
         }
 
         /// <summary>
+        /// Gets the resource controls.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public IEnumerable<ResControl> ResControls
+        {
+            get
+            {
+                List<ResControl> resControls = new List<ResControl>();
+                Interop.ApplicationManager.AppInfoResControlCallback cb = (string resType, string minResVersion, string maxResVersion, string isAutoClose, IntPtr userData) =>
+                {
+                    resControls.Add(new ResControl(resType, minResVersion, maxResVersion, isAutoClose == "true"));
+                    return true;
+                };
+
+                IntPtr infoHandle = GetInfoHandle();
+                if (infoHandle != null)
+                {
+                    err = Interop.ApplicationManager.AppInfoForeachResControl(infoHandle, cb, IntPtr.Zero);
+                    if (err != Interop.ApplicationManager.ErrorCode.None)
+                    {
+                        Log.Warn(LogTag, "Failed to get the resource controls of " + _applicationId + ". err = " + err);
+                    }
+                }
+
+                return resControls;
+            }
+        }
+
+        /// <summary>
         /// Gets the localized label of the application for the given locale.
         /// </summary>
         /// <param name="locale">Locale.</param>
