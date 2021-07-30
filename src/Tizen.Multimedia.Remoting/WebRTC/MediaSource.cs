@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
+using ElmSharp;
 using System;
+using System.Diagnostics;
 using static Interop;
 
 namespace Tizen.Multimedia.Remoting
@@ -23,7 +25,7 @@ namespace Tizen.Multimedia.Remoting
     /// MediaSource is a base class for <see cref="WebRTC"/> sources.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
-    public abstract class MediaSource
+    public abstract class MediaSource : IDisplayable<uint>
     {
         internal uint? SourceId { get; set; }
 
@@ -174,6 +176,76 @@ namespace Tizen.Multimedia.Remoting
                 NativeWebRTC.SetVideoResolution(WebRtc.Handle, SourceId.Value, value.Width, value.Height).
                     ThrowIfFailed("Failed to set video resolution");
             }
+        }
+
+        /// <summary>
+        /// Enables the audio loopback.
+        /// </summary>
+        /// <param name="policy">The <see cref="AudioStreamPolicy"/> to apply.</param>
+        /// <remarks>
+        /// <see cref="MediaSource"/> does not support all <see cref="AudioStreamType"/>.<br/>
+        /// Supported types are <see cref="AudioStreamType.Media"/>, <see cref="AudioStreamType.Voip"/>,
+        /// <see cref="AudioStreamType.MediaExternalOnly"/>.<br/>
+        /// </remarks>
+        /// <returns>The track ID.</returns>
+        public uint SetAudioLoopback(AudioStreamPolicy policy)
+        {
+            if (policy == null)
+            {
+                throw new ArgumentNullException(nameof(policy));
+            }
+
+            if (MediaType != MediaType.Audio)
+            {
+                throw new InvalidOperationException("AudioLoopback is only for Audio MediaSource");
+            }
+
+            NativeWebRTC.SetAudioLoopback(WebRtc.Handle, SourceId.Value, policy.Handle, out uint trackId).
+                ThrowIfFailed("Failed to set audio loopback");
+
+            return trackId;
+        }
+
+        /// <summary>
+        /// Enables the video loopback. The local video will be diaplayed in <paramref name="display"/>.
+        /// </summary>
+        /// <param name="display">The <see cref="Display"/> to apply.</param>
+        /// <returns>The track ID.</returns>
+        public uint SetVideoLoopback(Display display)
+        {
+            if (display == null)
+            {
+                throw new ArgumentNullException(nameof(display));
+            }
+
+            if (MediaType != MediaType.Video)
+            {
+                throw new InvalidOperationException("VideoLoopback is only for Video MediaSource");
+            }
+
+            return display.ApplyTo(this);;
+        }
+
+        uint IDisplayable<uint>.ApplyEvasDisplay(DisplayType type, EvasObject evasObject)
+        {
+            Debug.Assert(Enum.IsDefined(typeof(DisplayType), type));
+            Debug.Assert(type != DisplayType.None);
+
+            NativeWebRTC.SetVideoLoopback(WebRtc.Handle, SourceId.Value,
+                type == DisplayType.Overlay ? WebRTCDisplayType.Overlay : WebRTCDisplayType.Evas, evasObject,
+                out uint trackId).ThrowIfFailed("Failed to set video loopback");
+
+            return trackId;
+        }
+
+        uint IDisplayable<uint>.ApplyEcoreWindow(IntPtr windowHandle)
+        {
+            // The following code will be uncommented when native function is ready.
+            // NativeWebRTC.SetVideoLoopback(WebRtc.Handle, SourceId.Value, windowHandle, out uint trackId).
+            //     ThrowIfFailed("Failed to set video loopback");
+
+            // return trackId;
+            throw new NotImplementedException("Eocre window is not implemented yet");
         }
     }
 }
