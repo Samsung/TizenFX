@@ -90,6 +90,29 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         }
 
         /// <summary>
+        /// The viewbox of the CanvasView.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Size2D ViewBox
+        {
+            get
+            {
+                Size2D retVal = new Size2D(0, 0);
+                PropertyValue viewBoxPropertyValue = GetProperty(Interop.CanvasView.PropertyViewBoxGet());
+                viewBoxPropertyValue?.Get(retVal);
+                viewBoxPropertyValue?.Dispose();
+                return retVal;
+            }
+            set
+            {
+                PropertyValue setVal = new Tizen.NUI.PropertyValue(value);
+                SetProperty(Interop.CanvasView.PropertyViewBoxGet(), setVal);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                setVal?.Dispose();
+            }
+        }
+
+        /// <summary>
         /// Add drawable object to the CanvasView.
         /// This method is similar to registration. The added shape is drawn on the inner canvas.
         /// </summary>
