@@ -100,5 +100,34 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
                 drawables.Add(drawable);
             }
         }
+
+        /// <summary>
+        /// Remove drawable object to the CanvasView.
+        /// This method is similar to deregistration.
+        /// </summary>
+        /// <param name="drawable">Drawable object</param>
+        /// <exception cref="ArgumentNullException"> Thrown when drawable is null. </exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemoveDrawable(Drawable drawable)
+        {
+            if (drawable == null)
+            {
+                throw new ArgumentNullException(nameof(drawable));
+            }
+            Interop.CanvasView.RemoveDrawable(View.getCPtr(this), BaseHandle.getCPtr(drawable));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            drawables.Remove(drawable);
+        }
+
+        /// <summary>
+        /// Remove all drawable objects added to the CanvasView.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemoveAllDrawables()
+        {
+            Interop.CanvasView.RemoveAllDrawables(View.getCPtr(this));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            drawables.Clear();
+        }
     }
 }
