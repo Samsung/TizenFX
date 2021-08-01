@@ -1368,6 +1368,39 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Copy and return the selected text.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string CopyText()
+        {
+            string copiedText = Interop.TextField.CopyText(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return copiedText;
+        }
+
+        /// <summary>
+        /// Cut and return the selected text.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string CutText()
+        {
+            string cutText = Interop.TextField.CutText(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return cutText;
+        }
+
+        /// <summary>
+        /// Paste the most recently copied/cut text.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void PasteText()
+        {
+            Interop.TextField.PasteText(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+
+        /// <summary>
         /// The Placeholder property.
         /// The placeholder map contains the following keys :<br />
         /// <list type="table">

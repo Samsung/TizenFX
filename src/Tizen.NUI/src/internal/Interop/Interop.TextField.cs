@@ -279,6 +279,15 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_GRAB_HANDLE_COLOR_get")]
             public static extern int GrabHandleColorGet();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_CopyText")]
+            public static extern string CopyText(global::System.Runtime.InteropServices.HandleRef textFieldRef);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_CutText")]
+            public static extern string CutText(global::System.Runtime.InteropServices.HandleRef textFieldRef);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_PasteText")]
+            public static extern void PasteText(global::System.Runtime.InteropServices.HandleRef textFieldRef);
         }
     }
 }

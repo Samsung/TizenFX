@@ -1612,6 +1612,38 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Copy and return the selected text (read-only).
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string CopyText()
+        {
+            string copiedText = Interop.TextEditor.CopyText(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return copiedText;
+        }
+
+        /// <summary>
+        /// Cut and return the selected text.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string CutText()
+        {
+            string cutText = Interop.TextEditor.CutText(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return cutText;
+        }
+
+        /// <summary>
+        /// Paste the most recently copied/cut text.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void PasteText()
+        {
+            Interop.TextEditor.PasteText(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// Enable grab handle popup property.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
