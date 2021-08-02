@@ -251,7 +251,7 @@ namespace Tizen.NUI
             public static extern void SelectWholeText(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_SelectText")]
-            public static extern void SelectText(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, uint jarg3);
+            public static extern void SelectText(global::System.Runtime.InteropServices.HandleRef textFieldRef, uint start, uint end);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextField_Property_ENABLE_GRAB_HANDLE_get")]
             public static extern int EnableGrabHandleGet();
