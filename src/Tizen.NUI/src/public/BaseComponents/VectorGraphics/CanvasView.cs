@@ -90,26 +90,36 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         }
 
         /// <summary>
-        /// The viewbox of the CanvasView.
+        /// Set size of CanvasView's viewbox.
         /// </summary>
+        /// <param name="viewBox">The size of viewBox</param>
+        /// <exception cref="ArgumentNullException"> Thrown when drawable is null. </exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Size2D ViewBox
+        public void SetViewBoxSize(Size2D viewBox)
         {
-            get
+            if (viewBox == null)
             {
-                Size2D retVal = new Size2D(0, 0);
-                PropertyValue viewBoxPropertyValue = GetProperty(Interop.CanvasView.PropertyViewBoxGet());
-                viewBoxPropertyValue?.Get(retVal);
-                viewBoxPropertyValue?.Dispose();
-                return retVal;
+                throw new ArgumentNullException(nameof(viewBox));
             }
-            set
-            {
-                PropertyValue setVal = new Tizen.NUI.PropertyValue(value);
-                SetProperty(Interop.CanvasView.PropertyViewBoxGet(), setVal);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                setVal?.Dispose();
-            }
+            PropertyValue setVal = new Tizen.NUI.PropertyValue(viewBox);
+            SetProperty(Interop.CanvasView.PropertyViewBoxGet(), setVal);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            setVal?.Dispose();
+        }
+
+        /// <summary>
+        /// Get size of CanvasView's viewbox.
+        /// </summary>
+        /// <returns>The size of viewBox</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Size2D GetViewBoxSize()
+        {
+            Size2D retVal = new Size2D(0, 0);
+            PropertyValue viewBoxPropertyValue = GetProperty(Interop.CanvasView.PropertyViewBoxGet());
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            viewBoxPropertyValue?.Get(retVal);
+            viewBoxPropertyValue?.Dispose();
+            return retVal;
         }
 
         /// <summary>
