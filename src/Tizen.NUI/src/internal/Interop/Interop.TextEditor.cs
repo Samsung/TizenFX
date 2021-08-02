@@ -236,7 +236,7 @@ namespace Tizen.NUI
             public static extern void SelectWholeText(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_SelectText")]
-            public static extern void SelectText(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, uint jarg3);
+            public static extern void SelectText(global::System.Runtime.InteropServices.HandleRef textEditorRef, uint start, uint end);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_Property_SELECTED_TEXT_get")]
             public static extern int SelectedTextGet();
