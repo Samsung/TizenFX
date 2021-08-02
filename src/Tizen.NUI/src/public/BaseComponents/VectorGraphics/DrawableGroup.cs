@@ -69,9 +69,9 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// </summary>
         /// <returns>True when it's successful. False otherwise.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool Clear()
+        public bool RemoveAllDrawables()
         {
-            bool ret = Interop.DrawableGroup.Clear(BaseHandle.getCPtr(this));
+            bool ret = Interop.DrawableGroup.RemoveAllDrawables(BaseHandle.getCPtr(this));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             if (ret)
             {
