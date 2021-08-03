@@ -43,15 +43,11 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"KeyboardRepeatSettingsChangedSignalConstructor START");
 
-            using (View view = new View())
-            {
-                var testingTarget = new KeyboardRepeatSettingsChangedSignal(view.SwigCPtr.Handle, false);
-                Assert.IsNotNull(testingTarget, "Should be not null!");
-                Assert.IsInstanceOf<KeyboardRepeatSettingsChangedSignal>(testingTarget, "Should be an Instance of KeyboardRepeatSettingsChangedSignal!");
+            var testingTarget = new KeyboardRepeatSettingsChangedSignal(Window.Instance);
+            Assert.IsNotNull(testingTarget, "Should be not null!");
+            Assert.IsInstanceOf<KeyboardRepeatSettingsChangedSignal>(testingTarget, "Should be an Instance of KeyboardRepeatSettingsChangedSignal!");
 
-                testingTarget.Dispose();
-            }
-
+            testingTarget.Dispose();
             tlog.Debug(tag, $"KeyboardRepeatSettingsChangedSignalConstructor END (OK)");
         }
 
@@ -66,25 +62,21 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"KeyboardRepeatSettingsChangedSignalEmpty START");
 
-            using (View view = new View())
+            var testingTarget = new KeyboardRepeatSettingsChangedSignal(Window.Instance);
+            Assert.IsNotNull(testingTarget, "Should be not null!");
+            Assert.IsInstanceOf<KeyboardRepeatSettingsChangedSignal>(testingTarget, "Should be an Instance of KeyboardRepeatSettingsChangedSignal!");
+
+            try
             {
-                var testingTarget = new KeyboardRepeatSettingsChangedSignal(view.SwigCPtr.Handle, false);
-                Assert.IsNotNull(testingTarget, "Should be not null!");
-                Assert.IsInstanceOf<KeyboardRepeatSettingsChangedSignal>(testingTarget, "Should be an Instance of KeyboardRepeatSettingsChangedSignal!");
-
-                try
-                {
-                    testingTarget.Empty();
-                }
-                catch (Exception e)
-                {
-                    tlog.Debug(tag, e.Message.ToString());
-                    Assert.Fail("Caught Exception: Failed!");
-                }
-
-                testingTarget.Dispose();
+                testingTarget.Empty();
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception: Failed!");
             }
 
+            testingTarget.Dispose();
             tlog.Debug(tag, $"KeyboardRepeatSettingsChangedSignalEmpty END (OK)");
         }
 
@@ -99,99 +91,87 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"KeyboardRepeatSettingsChangedSignalGetConnectionCount START");
 
-            using (View view = new View())
+            var testingTarget = new KeyboardRepeatSettingsChangedSignal(Window.Instance);
+            Assert.IsNotNull(testingTarget, "Should be not null!");
+            Assert.IsInstanceOf<KeyboardRepeatSettingsChangedSignal>(testingTarget, "Should be an Instance of KeyboardRepeatSettingsChangedSignal!");
+
+            try
             {
-                var testingTarget = new KeyboardRepeatSettingsChangedSignal(view.SwigCPtr.Handle, false);
-                Assert.IsNotNull(testingTarget, "Should be not null!");
-                Assert.IsInstanceOf<KeyboardRepeatSettingsChangedSignal>(testingTarget, "Should be an Instance of KeyboardRepeatSettingsChangedSignal!");
-
-                try
-                {
-                    testingTarget.GetConnectionCount();
-                }
-                catch (Exception e)
-                {
-                    tlog.Debug(tag, e.Message.ToString());
-                    Assert.Fail("Caught Exception: Failed!");
-                }
-
-                testingTarget.Dispose();
+                testingTarget.GetConnectionCount();
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception: Failed!");
             }
 
+            testingTarget.Dispose();
             tlog.Debug(tag, $"KeyboardRepeatSettingsChangedSignalGetConnectionCount END (OK)");
         }
 
-        //[Test]
-        //[Category("P1")]
-        //[Description("KeyboardRepeatSettingsChangedSignal Connect.")]
-        //[Property("SPEC", "Tizen.NUI.KeyboardRepeatSettingsChangedSignal.Connect M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void KeyboardRepeatSettingsChangedSignalConnect()
-        //{
-        //    tlog.Debug(tag, $"KeyboardRepeatSettingsChangedSignalConnect START");
+        [Test]
+        [Category("P1")]
+        [Description("KeyboardRepeatSettingsChangedSignal Connect.")]
+        [Property("SPEC", "Tizen.NUI.KeyboardRepeatSettingsChangedSignal.Connect M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void KeyboardRepeatSettingsChangedSignalConnect()
+        {
+            tlog.Debug(tag, $"KeyboardRepeatSettingsChangedSignalConnect START");
 
-        //    using (View view = new View())
-        //    {
-        //        var testingTarget = new KeyboardRepeatSettingsChangedSignal(view.SwigCPtr.Handle, false);
-        //        Assert.IsNotNull(testingTarget, "Should be not null!");
-        //        Assert.IsInstanceOf<KeyboardRepeatSettingsChangedSignal>(testingTarget, "Should be an Instance of KeyboardRepeatSettingsChangedSignal!");
+            var testingTarget = new KeyboardRepeatSettingsChangedSignal(Window.Instance);
+            Assert.IsNotNull(testingTarget, "Should be not null!");
+            Assert.IsInstanceOf<KeyboardRepeatSettingsChangedSignal>(testingTarget, "Should be an Instance of KeyboardRepeatSettingsChangedSignal!");
 
-        //        try
-        //        {
-        //            dummyCallback callback = OnDummyCallback;
-        //            testingTarget.Connect(callback);
-        //            testingTarget.Disconnect(callback);
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            tlog.Debug(tag, e.Message.ToString());
-        //            Assert.Fail("Caught Exception: Failed!");
-        //        }
+            try
+            {
+                dummyCallback callback = OnDummyCallback;
+                testingTarget.Connect(callback);
+                testingTarget.Disconnect(callback);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception: Failed!");
+            }
 
-        //        testingTarget.Dispose();
-        //    }
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"KeyboardRepeatSettingsChangedSignalConnect END (OK)");
+        }
 
-        //    tlog.Debug(tag, $"KeyboardRepeatSettingsChangedSignalConnect END (OK)");
-        //}
+        [Test]
+        [Category("P1")]
+        [Description("KeyboardRepeatSettingsChangedSignal Emit.")]
+        [Property("SPEC", "Tizen.NUI.KeyboardRepeatSettingsChangedSignal.Emit M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
+        public void KeyboardRepeatSettingsChangedSignalEmit()
+        {
+            tlog.Debug(tag, $"KeyboardRepeatSettingsChangedSignalEmit START");
+            var currentPid = global::System.Diagnostics.Process.GetCurrentProcess().Id;
+            var currentTid = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
 
-        //[Test]
-        //[Category("P1")]
-        //[Description("KeyboardRepeatSettingsChangedSignal Emit.")]
-        //[Property("SPEC", "Tizen.NUI.KeyboardRepeatSettingsChangedSignal.Emit M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //[Obsolete]
-        //public void KeyboardRepeatSettingsChangedSignalEmit()
-        //{
-        //    tlog.Debug(tag, $"KeyboardRepeatSettingsChangedSignalEmit START");
-        //    var currentPid = global::System.Diagnostics.Process.GetCurrentProcess().Id;
-        //    var currentTid = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
+            tlog.Debug(tag, $"thread check! main pid={App.mainPid}, current pid={currentPid}, main tid={App.mainTid}, current tid={currentTid}");
 
-        //    tlog.Debug(tag, $"thread check! main pid={App.mainPid}, current pid={currentPid}, main tid={App.mainTid}, current tid={currentTid}");
+            var testingTarget = new KeyboardRepeatSettingsChangedSignal(Window.Instance);
+            Assert.IsNotNull(testingTarget, "Should be not null!");
+            Assert.IsInstanceOf<KeyboardRepeatSettingsChangedSignal>(testingTarget, "Should be an Instance of KeyboardRepeatSettingsChangedSignal!");
 
-        //    using (View view = new View())
-        //    {
-        //        var testingTarget = new KeyboardRepeatSettingsChangedSignal(view.SwigCPtr.Handle, false);
-        //        Assert.IsNotNull(testingTarget, "Should be not null!");
-        //        Assert.IsInstanceOf<KeyboardRepeatSettingsChangedSignal>(testingTarget, "Should be an Instance of KeyboardRepeatSettingsChangedSignal!");
+            try
+            {
+                testingTarget.Emit();
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception: Failed!");
+            }
 
-        //        try
-        //        {
-        //            testingTarget.Emit();
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            tlog.Debug(tag, e.Message.ToString());
-        //            Assert.Fail("Caught Exception: Failed!");
-        //        }
-
-        //        testingTarget.Dispose();
-        //    }
-
-        //    tlog.Debug(tag, $"KeyboardRepeatSettingsChangedSignalEmit END (OK)");
-        //}
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"KeyboardRepeatSettingsChangedSignalEmit END (OK)");
+        }
     }
 }

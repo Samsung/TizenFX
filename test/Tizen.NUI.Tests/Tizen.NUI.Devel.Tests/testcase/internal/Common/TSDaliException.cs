@@ -45,27 +45,27 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"DaliExceptionConstructor END (OK)");
         }
 
-        [Test]
-        [Category("P1")]
-        [Description("DaliException location.")]
-        [Property("SPEC", "Tizen.NUI.DaliException.location A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void DaliExceptionLocation()
-        {
-            tlog.Debug(tag, $"DaliExceptionLocation START");
+        //[Test]
+        //[Category("P1")]
+        //[Description("DaliException location.")]
+        //[Property("SPEC", "Tizen.NUI.DaliException.location A")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "PRW")]
+        //[Property("AUTHOR", "guowei.wang@samsung.com")]
+        //public void DaliExceptionLocation()
+        //{
+        //    tlog.Debug(tag, $"DaliExceptionLocation START");
 
-            var testingTarget = new DaliException("China", "Chinese speaking!");
-            Assert.IsNotNull(testingTarget, "Can't create success object DaliException.");
-            Assert.IsInstanceOf<DaliException>(testingTarget, "Should return DaliException instance.");
+        //    var testingTarget = new DaliException("China", "Chinese speaking!");
+        //    Assert.IsNotNull(testingTarget, "Can't create success object DaliException.");
+        //    Assert.IsInstanceOf<DaliException>(testingTarget, "Should return DaliException instance.");
 
-            testingTarget.location = "Korea";
-            tlog.Debug(tag, "location : " + testingTarget.location);
+        //    testingTarget.location = "Korea";
+        //    tlog.Debug(tag, "location : " + testingTarget.location);
 
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"DaliExceptionLocation END (OK)");
-        }
+        //    testingTarget.Dispose();
+        //    tlog.Debug(tag, $"DaliExceptionLocation END (OK)");
+        //}
 
         [Test]
         [Category("P1")]

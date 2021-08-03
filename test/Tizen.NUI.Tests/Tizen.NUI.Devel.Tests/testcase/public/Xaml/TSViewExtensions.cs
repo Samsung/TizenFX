@@ -7,10 +7,12 @@ namespace Tizen.NUI.Devel.Tests
 
     [TestFixture]
     [Description("public/xaml/ViewExtensions")]
-    internal class PublicViewExtensionsTest
+
+    public class PublicViewExtensionsTest
     {
         private const string tag = "NUITEST";
-
+        private string path = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "picture.png";
+        
         [SetUp]
         public void Init()
         {
@@ -77,18 +79,18 @@ namespace Tizen.NUI.Devel.Tests
         public void ExtensionsLoadObject()
         {
             tlog.Debug(tag, $"ExtensionsLoadObject START");
+
             try
             {
-                Tizen.NUI.Xaml.Extensions.LoadObject<string>("mypath");
+                Tizen.NUI.Xaml.Extensions.LoadObject<string>(path);
 
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                tlog.Debug(tag, $"ExtensionsLoadObject END (OK)");
+                Assert.Pass("Caught Exception : passed!");
             }
-            tlog.Debug(tag, $"ExtensionsLoadObject END (OK)");
-            Assert.Pass("ExtensionsLoadObject");
         }
 
         [Test]
