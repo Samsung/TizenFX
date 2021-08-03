@@ -36,7 +36,7 @@ namespace Tizen.NUI.Samples
             };
             playButton.Clicked += (object source, ClickedEventArgs args) =>
             {
-                rav.PlayAnimation();
+                rav.Play();
             };
 
             stopButton = new Button()
@@ -47,7 +47,7 @@ namespace Tizen.NUI.Samples
             };
             stopButton.Clicked += (object source, ClickedEventArgs args) =>
             {
-                rav.StopAnimation();
+                rav.Stop();
             };
 
             bounceButton = new Button()
