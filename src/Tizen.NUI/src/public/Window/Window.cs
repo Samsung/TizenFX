@@ -357,6 +357,8 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Gets or sets a window type.
+        /// Most of window type can be set to use WindowType, except for IME type.
+        /// IME type can be set to use one of NUIApplication's constrcutors.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public WindowType Type
@@ -1267,20 +1269,18 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sets window position and size for specific orientation.
-        /// This api reserves the position and size per orientation to display server.
-        /// When the device is rotated, the window is moved/resized with the reserved position/size by display server.
-        /// Currently, it only works when the window's type is WindowType::Ime.
-        /// It means this function is only for IME window of internal keyboard application.
-        /// It is only for internal keyboard application.
-        /// This should be hidden.
+        /// Reserves IME window's size for specific orientation to Tizen display server.
+        /// It only works special window that has IME WindowType.
+        /// If application uses this method to reserve window's size, WindowSize, WindowPosition and WindowPositionSize don't work.
+        /// In addition, the window's position is set by Tizen display server, if application uses this method.
         /// </summary>
-        /// <param name="positionSize">The reserved position and size for the orientation.</param>
+        /// <param name="size">The reserved size for the orientation.</param>
         /// <param name="orientation">The orientation.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetPositionSizeWithOrientation(Rectangle positionSize, Window.WindowOrientation orientation)
+        /// <since_tizen> 9 </since_tizen>
+        public void ReserveSizePerOrientationForIME(Size2D size, Window.WindowOrientation orientation)
         {
-            Interop.Window.SetPositionSizeWithOrientation(SwigCPtr, Rectangle.getCPtr(positionSize), (int)orientation);
+            Rectangle rectangle = new Rectangle(0, 0, (int)size.Width, (int)size.Height);
+            Interop.Window.ReserveSizePerOrientationForIME(SwigCPtr, Rectangle.getCPtr(rectangle), (int)orientation);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
