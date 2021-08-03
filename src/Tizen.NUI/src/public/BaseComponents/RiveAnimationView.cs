@@ -62,27 +62,27 @@ namespace Tizen.NUI.BaseComponents
         /// Play animation.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void PlayAnimation()
+        public void Play()
         {
-            Interop.RiveAnimationView.PlayAnimation(SwigCPtr);
+            Interop.RiveAnimationView.Play(SwigCPtr);
         }
 
         /// <summary>
         /// Pause animation.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void PauseAnimation()
+        public void Pause()
         {
-            Interop.RiveAnimationView.PauseAnimation(SwigCPtr);
+            Interop.RiveAnimationView.Pause(SwigCPtr);
         }
 
         /// <summary>
         /// Stop animation.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void StopAnimation()
+        public void Stop()
         {
-            Interop.RiveAnimationView.StopAnimation(SwigCPtr);
+            Interop.RiveAnimationView.Stop(SwigCPtr);
         }
 
         /// <summary>
