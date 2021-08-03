@@ -37,12 +37,33 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"RotationGestureDetectorConstructor START");
             RotationGestureDetector a1 = new RotationGestureDetector();
-            RotationGestureDetector a2 = new RotationGestureDetector(a1);
 
-            a2.Dispose();
             a1.Dispose();
-            
             tlog.Debug(tag, $"RotationGestureDetectorConstructor END (OK)");
+            Assert.Pass("RotationGestureDetectorConstructor");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("RotationGestureDetector constructor")]
+        [Property("SPEC", "Tizen.NUI.RotationGestureDetector.RotationGestureDetector C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void RotationGestureDetectorConstructorWithRotationGestureDetector()
+        {
+            tlog.Debug(tag, $"RotationGestureDetectorConstructorWithRotationGestureDetector START");
+
+            using (RotationGestureDetector detector = new RotationGestureDetector())
+            {
+                var testingTarget = new RotationGestureDetector(detector);
+                Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+                Assert.IsInstanceOf<RotationGestureDetector>(testingTarget, "Should be an instance of RotationGestureDetector type.");
+
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"RotationGestureDetectorConstructorWithRotationGestureDetector END (OK)");
             Assert.Pass("RotationGestureDetectorConstructor");
         }
 
@@ -75,14 +96,17 @@ namespace Tizen.NUI.Devel.Tests
         public void RotationGestureDetectorDownCast()
         {
             tlog.Debug(tag, $"RotationGestureDetectorDownCast START");
-            BaseHandle handle = new BaseHandle();
 
-            RotationGestureDetector a1 = RotationGestureDetector.DownCast(handle);
+            using (RotationGestureDetector detector = new RotationGestureDetector())
+            {
+                var testingTarget = RotationGestureDetector.DownCast(detector);
+                Assert.IsNotNull(testingTarget, "Can't create success object RotationGestureDetector");
+                Assert.IsInstanceOf<RotationGestureDetector>(testingTarget, "Should be an instance of RotationGestureDetector type.");
 
-            a1.Dispose();
-            
+                testingTarget.Dispose();
+            }
+
             tlog.Debug(tag, $"RotationGestureDetectorDownCast END (OK)");
-            Assert.Pass("RotationGestureDetectorDownCast");
         }
 
         [Test]

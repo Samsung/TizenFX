@@ -30,16 +30,12 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Info(tag, "Destroy() is called!");
         }
 
-        private class INodeImplement : INode
+        internal class INodeImplement : INode
         {
             public List<string> IgnorablePrefixes { get; set; }
-            public IXmlNamespaceResolver NamespaceResolver { get; }
+            public IXmlNamespaceResolver NamespaceResolver => new XmlNamespaceResolver();
             public INode Parent { get; set; }
-
-            public void Accept(IXamlNodeVisitor visitor, INode parentNode)
-            {
-
-            }
+            public void Accept(IXamlNodeVisitor visitor, INode parentNode) { }
             public INode Clone()
             {
                 return null;
@@ -52,32 +48,45 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC", "Tizen.NUI.XamlServiceProvider.XamlServiceProvider C")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "CONSTR")]
-        public void XamlServiceProviderConstructor1()
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void XamlServiceProviderConstructor()
         {
             tlog.Debug(tag, $"XamlServiceProviderConstructor START");
 
-            XamlServiceProvider xamlServiceProvider1 = new XamlServiceProvider();
+            var testingTarget = new XamlServiceProvider();
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<XamlServiceProvider>(testingTarget, "should be an instance of XamlServiceProvider class!");
 
             tlog.Debug(tag, $"XamlServiceProviderConstructor END (OK)");
-            Assert.Pass("XamlServiceProviderConstructor");
         }
 
         [Test]
         [Category("P1")]
-        [Description("XamlServiceProvider XamlServiceProvider")]
+        [Description("XamlServiceProvider XamlServiceProvider. With parameters.")]
         [Property("SPEC", "Tizen.NUI.XamlServiceProvider.XamlServiceProvider C")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "CONSTR")]
-        public void XamlServiceProviderConstructor2()
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void XamlServiceProviderConstructorWithParameters()
         {
-            tlog.Debug(tag, $"XamlServiceProviderConstructor START");
+            tlog.Debug(tag, $"XamlServiceProviderConstructorWithParameters START");
 
             HydrationContext hydrationContext = new HydrationContext();
             INodeImplement nodeImplement = new INodeImplement();
-            XamlServiceProvider xamlServiceProvider2 = new XamlServiceProvider(nodeImplement, hydrationContext);
 
-            tlog.Debug(tag, $"XamlServiceProviderConstructor END (OK)");
-            Assert.Pass("XamlServiceProviderConstructor");
+            try
+            {
+                var testingTarget = new XamlServiceProvider(nodeImplement, hydrationContext);
+                Assert.IsNotNull(testingTarget, "should be not null");
+                Assert.IsInstanceOf<XamlServiceProvider>(testingTarget, "should be an instance of XamlServiceProvider class!");
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            tlog.Debug(tag, $"XamlServiceProviderConstructorWithParameters END (OK)");
         }
 
         [Test]
@@ -376,6 +385,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC", "Tizen.NUI.XamlServiceProvider.SimpleValueTargetProvider M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
+        [Obsolete]
         public void XamlServiceProviderSimpleValueTargetProvider1()
         {
             tlog.Debug(tag, $"XamlServiceProviderTargetProperty START");
@@ -456,323 +466,323 @@ namespace Tizen.NUI.Devel.Tests
             Assert.Pass("XamlServiceProviderFindByName");
         }
 
-        public class IXmlNamespaceResolverImplement : IXmlNamespaceResolver
-        {
-            public IDictionary<string, string> GetNamespacesInScope(XmlNamespaceScope scope)
-            {
-                return null;
-            }
+        //public class IXmlNamespaceResolverImplement : IXmlNamespaceResolver
+        //{
+        //    public IDictionary<string, string> GetNamespacesInScope(XmlNamespaceScope scope)
+        //    {
+        //        return null;
+        //    }
 
-            public string LookupNamespace(string prefix)
-            {
-                return "mySpace";
-            }
+        //    public string LookupNamespace(string prefix)
+        //    {
+        //        return "mySpace";
+        //    }
 
-            public string LookupPrefix(string namespaceName)
-            {
-                return "myPrefix";
-            }
-        }
+        //    public string LookupPrefix(string namespaceName)
+        //    {
+        //        return "myPrefix";
+        //    }
+        //}
 
-        public class AssemblyImplement : Assembly
-        {
+        //public class AssemblyImplement : Assembly
+        //{
 
-        }
+        //}
 
-        [Test]
-        [Category("P1")]
-        [Description("XamlServiceProvider XamlTypeResolver")]
-        [Property("SPEC", "Tizen.NUI.XamlServiceProvider.XamlTypeResolver M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        public void XamlServiceProviderXamlTypeResolver()
-        {
-            tlog.Debug(tag, $"XamlServiceProviderXamlTypeResolver START");
+        //[Test]
+        //[Category("P1")]
+        //[Description("XamlServiceProvider XamlTypeResolver")]
+        //[Property("SPEC", "Tizen.NUI.XamlServiceProvider.XamlTypeResolver M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //public void XamlServiceProviderXamlTypeResolver()
+        //{
+        //    tlog.Debug(tag, $"XamlServiceProviderXamlTypeResolver START");
 
-            try
-            {
-                IXmlNamespaceResolverImplement xmlNamespaceResolverImplement = new IXmlNamespaceResolverImplement();
-                AssemblyImplement currentAssembly = new AssemblyImplement();
-                XamlTypeResolver xamlTypeResolver = new XamlTypeResolver(xmlNamespaceResolverImplement, currentAssembly);
+        //    try
+        //    {
+        //        IXmlNamespaceResolverImplement xmlNamespaceResolverImplement = new IXmlNamespaceResolverImplement();
+        //        AssemblyImplement currentAssembly = new AssemblyImplement();
+        //        XamlTypeResolver xamlTypeResolver = new XamlTypeResolver(xmlNamespaceResolverImplement, currentAssembly);
 
-            }
-            catch (Exception e)
-            {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
-            }
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
+        //        Assert.Fail("Caught Exception" + e.ToString());
+        //    }
 
-            tlog.Debug(tag, $"XamlServiceProviderXamlTypeResolver END (OK)");
-            Assert.Pass("XamlServiceProviderXamlTypeResolver");
-        }
+        //    tlog.Debug(tag, $"XamlServiceProviderXamlTypeResolver END (OK)");
+        //    Assert.Pass("XamlServiceProviderXamlTypeResolver");
+        //}
 
-        [Test]
-        [Category("P1")]
-        [Description("XamlServiceProvider RootObject")]
-        [Property("SPEC", "Tizen.NUI.XamlServiceProvider.RootObject A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
-        public void XamlServiceProviderRootObject()
-        {
-            tlog.Debug(tag, $"XamlServiceProviderRootObject START");
+        //[Test]
+        //[Category("P1")]
+        //[Description("XamlServiceProvider RootObject")]
+        //[Property("SPEC", "Tizen.NUI.XamlServiceProvider.RootObject A")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "PRW")]
+        //public void XamlServiceProviderRootObject()
+        //{
+        //    tlog.Debug(tag, $"XamlServiceProviderRootObject START");
 
-            try
-            {
-                object o1 = new object();
-                XamlRootObjectProvider x1 = new XamlRootObjectProvider(o1);
-                object o2 = x1.RootObject;
-            }
-            catch (Exception e)
-            {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
-            }
+        //    try
+        //    {
+        //        object o1 = new object();
+        //        XamlRootObjectProvider x1 = new XamlRootObjectProvider(o1);
+        //        object o2 = x1.RootObject;
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
+        //        Assert.Fail("Caught Exception" + e.ToString());
+        //    }
 
-            tlog.Debug(tag, $"XamlServiceProviderRootObject END (OK)");
-            Assert.Pass("XamlServiceProviderRootObject");
-        }
+        //    tlog.Debug(tag, $"XamlServiceProviderRootObject END (OK)");
+        //    Assert.Pass("XamlServiceProviderRootObject");
+        //}
 
-        public class IXmlLineInfoImplement : IXmlLineInfo
-        {
-            public int LineNumber
-            {
-                get => 1;
-                set { }
-            }
+        //public class IXmlLineInfoImplement : IXmlLineInfo
+        //{
+        //    public int LineNumber
+        //    {
+        //        get => 1;
+        //        set { }
+        //    }
 
 
-            public int LinePosition => throw new NotImplementedException();
+        //    public int LinePosition => throw new NotImplementedException();
 
-            public bool HasLineInfo()
-            {
-                return true;
-            }
-        }
+        //    public bool HasLineInfo()
+        //    {
+        //        return true;
+        //    }
+        //}
 
-        [Test]
-        [Category("P1")]
-        [Description("XamlServiceProvider XmlLineInfoProvider")]
-        [Property("SPEC", "Tizen.NUI.XamlServiceProvider.XmlLineInfoProvider M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        public void XamlServiceProviderXmlLineInfoProvider()
-        {
-            tlog.Debug(tag, $"XamlServiceProviderXmlLineInfoProvider START");
+        //[Test]
+        //[Category("P1")]
+        //[Description("XamlServiceProvider XmlLineInfoProvider")]
+        //[Property("SPEC", "Tizen.NUI.XamlServiceProvider.XmlLineInfoProvider M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //public void XamlServiceProviderXmlLineInfoProvider()
+        //{
+        //    tlog.Debug(tag, $"XamlServiceProviderXmlLineInfoProvider START");
 
-            try
-            {
-                IXmlLineInfoImplement xmlLineInfo = new IXmlLineInfoImplement();
-                XmlLineInfoProvider x1 = new XmlLineInfoProvider(xmlLineInfo);
-            }
-            catch (Exception e)
-            {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
-            }
+        //    try
+        //    {
+        //        IXmlLineInfoImplement xmlLineInfo = new IXmlLineInfoImplement();
+        //        XmlLineInfoProvider x1 = new XmlLineInfoProvider(xmlLineInfo);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
+        //        Assert.Fail("Caught Exception" + e.ToString());
+        //    }
 
-            tlog.Debug(tag, $"XamlServiceProviderXmlLineInfoProvider END (OK)");
-            Assert.Pass("XamlServiceProviderXmlLineInfoProvider");
-        }
+        //    tlog.Debug(tag, $"XamlServiceProviderXmlLineInfoProvider END (OK)");
+        //    Assert.Pass("XamlServiceProviderXmlLineInfoProvider");
+        //}
 
-        [Test]
-        [Category("P1")]
-        [Description("XamlServiceProvider XmlLineInfo")]
-        [Property("SPEC", "Tizen.NUI.XamlServiceProvider.XmlLineInfo A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
-        public void XamlServiceProviderXmlLineInfo()
-        {
-            tlog.Debug(tag, $"XamlServiceProviderXmlLineInfo START");
+        //[Test]
+        //[Category("P1")]
+        //[Description("XamlServiceProvider XmlLineInfo")]
+        //[Property("SPEC", "Tizen.NUI.XamlServiceProvider.XmlLineInfo A")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "PRW")]
+        //public void XamlServiceProviderXmlLineInfo()
+        //{
+        //    tlog.Debug(tag, $"XamlServiceProviderXmlLineInfo START");
 
-            try
-            {
-                IXmlLineInfoImplement xmlLineInfo = new IXmlLineInfoImplement();
-                XmlLineInfoProvider x1 = new XmlLineInfoProvider(xmlLineInfo);
+        //    try
+        //    {
+        //        IXmlLineInfoImplement xmlLineInfo = new IXmlLineInfoImplement();
+        //        XmlLineInfoProvider x1 = new XmlLineInfoProvider(xmlLineInfo);
 
-                IXmlLineInfo i1 = x1.XmlLineInfo;
-            }
-            catch (Exception e)
-            {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
-            }
+        //        IXmlLineInfo i1 = x1.XmlLineInfo;
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
+        //        Assert.Fail("Caught Exception" + e.ToString());
+        //    }
 
-            tlog.Debug(tag, $"XamlServiceProviderXmlLineInfo END (OK)");
-            Assert.Pass("XamlServiceProviderXmlLineInfo");
-        }
+        //    tlog.Debug(tag, $"XamlServiceProviderXmlLineInfo END (OK)");
+        //    Assert.Pass("XamlServiceProviderXmlLineInfo");
+        //}
 
-        [Test]
-        [Category("P1")]
-        [Description("XamlServiceProvider ReferenceProvider")]
-        [Property("SPEC", "Tizen.NUI.XamlServiceProvider.ReferenceProvider A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
-        public void XamlServiceProviderReferenceProvider()
-        {
-            tlog.Debug(tag, $"XamlServiceProviderReferenceProvider START");
+        //[Test]
+        //[Category("P1")]
+        //[Description("XamlServiceProvider ReferenceProvider")]
+        //[Property("SPEC", "Tizen.NUI.XamlServiceProvider.ReferenceProvider A")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "PRW")]
+        //public void XamlServiceProviderReferenceProvider()
+        //{
+        //    tlog.Debug(tag, $"XamlServiceProviderReferenceProvider START");
 
-            try
-            {
-                INodeImplement i1 = new INodeImplement();
-                ReferenceProvider referenceProvider = new ReferenceProvider(i1);
-            }
-            catch (Exception e)
-            {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
-            }
+        //    try
+        //    {
+        //        INodeImplement i1 = new INodeImplement();
+        //        ReferenceProvider referenceProvider = new ReferenceProvider(i1);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
+        //        Assert.Fail("Caught Exception" + e.ToString());
+        //    }
 
-            tlog.Debug(tag, $"XamlServiceProviderReferenceProvider END (OK)");
-            Assert.Pass("XamlServiceProviderReferenceProvider");
-        }
+        //    tlog.Debug(tag, $"XamlServiceProviderReferenceProvider END (OK)");
+        //    Assert.Pass("XamlServiceProviderReferenceProvider");
+        //}
 
-        [Test]
-        [Category("P1")]
-        [Description("XamlServiceProvider FindByName")]
-        [Property("SPEC", "Tizen.NUI.XamlServiceProvider.FindByName M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        public void XamlServiceProviderReferenceProviderFindByName()
-        {
-            tlog.Debug(tag, $"XamlServiceProviderReferenceProviderFindByName START");
+        //[Test]
+        //[Category("P1")]
+        //[Description("XamlServiceProvider FindByName")]
+        //[Property("SPEC", "Tizen.NUI.XamlServiceProvider.FindByName M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //public void XamlServiceProviderReferenceProviderFindByName()
+        //{
+        //    tlog.Debug(tag, $"XamlServiceProviderReferenceProviderFindByName START");
 
-            try
-            {
-                INodeImplement i1 = new INodeImplement();
-                ReferenceProvider referenceProvider = new ReferenceProvider(i1);
-                referenceProvider.FindByName("myName");
-            }
-            catch (Exception e)
-            {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
-            }
+        //    try
+        //    {
+        //        INodeImplement i1 = new INodeImplement();
+        //        ReferenceProvider referenceProvider = new ReferenceProvider(i1);
+        //        referenceProvider.FindByName("myName");
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
+        //        Assert.Fail("Caught Exception" + e.ToString());
+        //    }
 
-            tlog.Debug(tag, $"XamlServiceProviderReferenceProviderFindByName END (OK)");
-            Assert.Pass("XamlServiceProviderReferenceProviderFindByName");
-        }
+        //    tlog.Debug(tag, $"XamlServiceProviderReferenceProviderFindByName END (OK)");
+        //    Assert.Pass("XamlServiceProviderReferenceProviderFindByName");
+        //}
 
-        [Test]
-        [Category("P1")]
-        [Description("XamlServiceProvider NameScope")]
-        [Property("SPEC", "Tizen.NUI.XamlServiceProvider.NameScope A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
-        public void XamlServiceProviderNameScope()
-        {
-            tlog.Debug(tag, $"XamlServiceProviderNameScope START");
+        //[Test]
+        //[Category("P1")]
+        //[Description("XamlServiceProvider NameScope")]
+        //[Property("SPEC", "Tizen.NUI.XamlServiceProvider.NameScope A")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "PRW")]
+        //public void XamlServiceProviderNameScope()
+        //{
+        //    tlog.Debug(tag, $"XamlServiceProviderNameScope START");
 
-            try
-            {
-                NameScopeProvider n1 = new NameScopeProvider();
-                INameScope i1 = n1.NameScope;
-                n1.NameScope = i1;
-            }
-            catch (Exception e)
-            {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
-            }
+        //    try
+        //    {
+        //        NameScopeProvider n1 = new NameScopeProvider();
+        //        INameScope i1 = n1.NameScope;
+        //        n1.NameScope = i1;
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
+        //        Assert.Fail("Caught Exception" + e.ToString());
+        //    }
 
-            tlog.Debug(tag, $"XamlServiceProviderNameScope END (OK)");
-            Assert.Pass("XamlServiceProviderNameScope");
-        }
+        //    tlog.Debug(tag, $"XamlServiceProviderNameScope END (OK)");
+        //    Assert.Pass("XamlServiceProviderNameScope");
+        //}
 
-        [Test]
-        [Category("P1")]
-        [Description("XamlServiceProvider GetNamespacesInScope")]
-        [Property("SPEC", "Tizen.NUI.XamlServiceProvider.GetNamespacesInScope M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        public void XamlServiceProviderGetNamespacesInScope()
-        {
-            tlog.Debug(tag, $"XamlServiceProviderGetNamespacesInScope START");
+        //[Test]
+        //[Category("P1")]
+        //[Description("XamlServiceProvider GetNamespacesInScope")]
+        //[Property("SPEC", "Tizen.NUI.XamlServiceProvider.GetNamespacesInScope M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //public void XamlServiceProviderGetNamespacesInScope()
+        //{
+        //    tlog.Debug(tag, $"XamlServiceProviderGetNamespacesInScope START");
 
-            try
-            {
-                XmlNamespaceResolver xmlNamespaceResolver = new XmlNamespaceResolver();
-                XmlNamespaceScope xmlNamespaceScope = new XmlNamespaceScope();
-                xmlNamespaceResolver.GetNamespacesInScope(xmlNamespaceScope);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                tlog.Debug(tag, $"XamlServiceProviderGetNamespacesInScope END (OK)");
-                Assert.Pass("Caught Exception : passed!");
-            }
-        }
+        //    try
+        //    {
+        //        XmlNamespaceResolver xmlNamespaceResolver = new XmlNamespaceResolver();
+        //        XmlNamespaceScope xmlNamespaceScope = new XmlNamespaceScope();
+        //        xmlNamespaceResolver.GetNamespacesInScope(xmlNamespaceScope);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        tlog.Debug(tag, e.Message.ToString());
+        //        tlog.Debug(tag, $"XamlServiceProviderGetNamespacesInScope END (OK)");
+        //        Assert.Pass("Caught Exception : passed!");
+        //    }
+        //}
 
-        [Test]
-        [Category("P1")]
-        [Description("XamlServiceProvider LookupNamespace")]
-        [Property("SPEC", "Tizen.NUI.XamlServiceProvider.LookupNamespace M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        public void XamlServiceProviderLookupNamespace()
-        {
-            tlog.Debug(tag, $"XamlServiceProviderLookupNamespace START");
+        //[Test]
+        //[Category("P1")]
+        //[Description("XamlServiceProvider LookupNamespace")]
+        //[Property("SPEC", "Tizen.NUI.XamlServiceProvider.LookupNamespace M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //public void XamlServiceProviderLookupNamespace()
+        //{
+        //    tlog.Debug(tag, $"XamlServiceProviderLookupNamespace START");
 
-            try
-            {
-                XmlNamespaceResolver xmlNamespaceResolver = new XmlNamespaceResolver();
-                xmlNamespaceResolver.LookupNamespace("myPrefix");
-            }
-            catch (Exception e)
-            {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
-            }
+        //    try
+        //    {
+        //        XmlNamespaceResolver xmlNamespaceResolver = new XmlNamespaceResolver();
+        //        xmlNamespaceResolver.LookupNamespace("myPrefix");
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
+        //        Assert.Fail("Caught Exception" + e.ToString());
+        //    }
 
-            tlog.Debug(tag, $"XamlServiceProviderLookupNamespace END (OK)");
-            Assert.Pass("XamlServiceProviderLookupNamespace");
-        }
+        //    tlog.Debug(tag, $"XamlServiceProviderLookupNamespace END (OK)");
+        //    Assert.Pass("XamlServiceProviderLookupNamespace");
+        //}
 
-        [Test]
-        [Category("P1")]
-        [Description("XamlServiceProvider LookupPrefix")]
-        [Property("SPEC", "Tizen.NUI.XamlServiceProvider.LookupPrefix M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        public void XamlServiceProviderLookupPrefix()
-        {
-            tlog.Debug(tag, $"XamlServiceProviderLookupPrefix START");
+        //[Test]
+        //[Category("P1")]
+        //[Description("XamlServiceProvider LookupPrefix")]
+        //[Property("SPEC", "Tizen.NUI.XamlServiceProvider.LookupPrefix M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //public void XamlServiceProviderLookupPrefix()
+        //{
+        //    tlog.Debug(tag, $"XamlServiceProviderLookupPrefix START");
 
-            try
-            {
-                XmlNamespaceResolver xmlNamespaceResolver = new XmlNamespaceResolver();
-                xmlNamespaceResolver.LookupPrefix("mynameSpaceName");
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                tlog.Debug(tag, $"XamlServiceProviderLookupPrefix END (OK)");
-                Assert.Pass("Caught Exception : passed!");
-            }
-        }
+        //    try
+        //    {
+        //        XmlNamespaceResolver xmlNamespaceResolver = new XmlNamespaceResolver();
+        //        xmlNamespaceResolver.LookupPrefix("mynameSpaceName");
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        tlog.Debug(tag, e.Message.ToString());
+        //        tlog.Debug(tag, $"XamlServiceProviderLookupPrefix END (OK)");
+        //        Assert.Pass("Caught Exception : passed!");
+        //    }
+        //}
 
-        [Test]
-        [Category("P1")]
-        [Description("XamlServiceProvider Add")]
-        [Property("SPEC", "Tizen.NUI.XamlServiceProvider.Add M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        public void XamlServiceProviderXmlNamespaceResolverAdd()
-        {
-            tlog.Debug(tag, $"XamlServiceProviderXmlNamespaceResolverAdd START");
+        //[Test]
+        //[Category("P1")]
+        //[Description("XamlServiceProvider Add")]
+        //[Property("SPEC", "Tizen.NUI.XamlServiceProvider.Add M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //public void XamlServiceProviderXmlNamespaceResolverAdd()
+        //{
+        //    tlog.Debug(tag, $"XamlServiceProviderXmlNamespaceResolverAdd START");
 
-            try
-            {
-                XmlNamespaceResolver xmlNamespaceResolver = new XmlNamespaceResolver();
-                xmlNamespaceResolver.Add("myPrefix", "myNs");
-            }
-            catch (Exception e)
-            {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
-            }
+        //    try
+        //    {
+        //        XmlNamespaceResolver xmlNamespaceResolver = new XmlNamespaceResolver();
+        //        xmlNamespaceResolver.Add("myPrefix", "myNs");
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
+        //        Assert.Fail("Caught Exception" + e.ToString());
+        //    }
 
-            tlog.Debug(tag, $"XamlServiceProviderXmlNamespaceResolverAdd END (OK)");
-            Assert.Pass("XamlServiceProviderXmlNamespaceResolverAdd");
-        }
+        //    tlog.Debug(tag, $"XamlServiceProviderXmlNamespaceResolverAdd END (OK)");
+        //    Assert.Pass("XamlServiceProviderXmlNamespaceResolverAdd");
+        //}
     }
 }

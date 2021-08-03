@@ -43,15 +43,11 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"KeyboardResizedSignalTypeConstructor START");
 
-            using (View view = new View())
-            {
-                var testingTarget = new KeyboardResizedSignalType(view.SwigCPtr.Handle, false);
-                Assert.IsNotNull(testingTarget, "Should be not null!");
-                Assert.IsInstanceOf<KeyboardResizedSignalType>(testingTarget, "Should be an Instance of KeyboardResizedSignalType!");
+            var testingTarget = new KeyboardResizedSignalType();
+            Assert.IsNotNull(testingTarget, "Should be not null!");
+            Assert.IsInstanceOf<KeyboardResizedSignalType>(testingTarget, "Should be an Instance of KeyboardResizedSignalType!");
 
-                testingTarget.Dispose();
-            }
-
+            testingTarget.Dispose();
             tlog.Debug(tag, $"KeyboardResizedSignalTypeConstructor END (OK)");
         }
 

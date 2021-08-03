@@ -9,7 +9,7 @@ namespace Tizen.NUI.Devel.Tests
 
     [TestFixture]
     [Description("public/xaml/MarkupExtensions/TemplateBindingExtension")]
-    internal class PublicTemplateBindingExtensionTest
+    public class PublicTemplateBindingExtensionTest
     {
         private const string tag = "NUITEST";
         private static TemplateBindingExtension t1;
