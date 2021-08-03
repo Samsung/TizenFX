@@ -10,7 +10,7 @@ namespace Tizen.NUI.Devel.Tests
 
     [TestFixture]
     [Description("Internal/Transition/TransitionItem")]
-    class TSTransitionItem
+    public class InternalTransitionItemTest
     {
         private const string tag = "NUITEST";
 

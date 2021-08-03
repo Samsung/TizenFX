@@ -103,31 +103,31 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"DataTemplateExtensionsCreateContentWithNullSelector END (OK)");
         }
 
-        [Test]
-        [Category("P2")]
-        [Description("DataTemplateExtensions CreateContent. With LoadTemplate.")]
-        [Property("SPEC", "Tizen.NUI.DataTemplateExtensions.CreateContent M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void DataTemplateExtensionsCreateContentWithNullLoadTemplate()
-        {
-            tlog.Debug(tag, $"DataTemplateExtensionsCreateContentWithNullLoadTemplate START");
+        //[Test]
+        //[Category("P2")]
+        //[Description("DataTemplateExtensions CreateContent. With LoadTemplate.")]
+        //[Property("SPEC", "Tizen.NUI.DataTemplateExtensions.CreateContent M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //[Property("AUTHOR", "guowei.wang@samsung.com")]
+        //public void DataTemplateExtensionsCreateContentWithNullLoadTemplate()
+        //{
+        //    tlog.Debug(tag, $"DataTemplateExtensionsCreateContentWithNullLoadTemplate START");
 
-            var testingTarget = new DataTemplate();
+        //    var testingTarget = new DataTemplate();
 
-            try
-            {
-                DataTemplateExtensions.CreateContent(testingTarget, "Color", new View());
-            }
-            catch (NotSupportedException e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                tlog.Debug(tag, $"DataTemplateExtensionsCreateContentWithNullLoadTemplate END (OK)");
-                Assert.Pass("Caught NotSupportedException: Pass!");
-            }
+        //    try
+        //    {
+        //        DataTemplateExtensions.CreateContent(testingTarget, "Color", new View());
+        //    }
+        //    catch (NotSupportedException e)
+        //    {
+        //        tlog.Debug(tag, e.Message.ToString());
+        //        tlog.Debug(tag, $"DataTemplateExtensionsCreateContentWithNullLoadTemplate END (OK)");
+        //        Assert.Pass("Caught NotSupportedException: Pass!");
+        //    }
 
-            tlog.Debug(tag, $"DataTemplateExtensionsCreateContentWithNullLoadTemplate END (OK)");
-        }
+        //    tlog.Debug(tag, $"DataTemplateExtensionsCreateContentWithNullLoadTemplate END (OK)");
+        //}
     }
 }

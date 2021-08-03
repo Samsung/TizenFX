@@ -10,7 +10,7 @@ namespace Tizen.NUI.Devel.Tests
 
     [TestFixture]
     [Description("Internal/Transition/TransitionSetSignal")]
-    class TSTransitionSetSignal
+    public class InternalTransitionSetSignalTest
     {
         private const string tag = "NUITEST";
         private global::System.IntPtr OnIntPtrCallback;

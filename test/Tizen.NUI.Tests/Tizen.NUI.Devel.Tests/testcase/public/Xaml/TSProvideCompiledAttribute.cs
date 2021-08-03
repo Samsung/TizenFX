@@ -8,7 +8,7 @@ namespace Tizen.NUI.Devel.Tests
 
     [TestFixture]
     [Description("public/xaml/ProvideCompiledAttribute")]
-    internal class PublicProvideCompiledAttributeTest
+    public class PublicProvideCompiledAttributeTest
     {
         private const string tag = "NUITEST";
         private static ProvideCompiledAttribute p1;

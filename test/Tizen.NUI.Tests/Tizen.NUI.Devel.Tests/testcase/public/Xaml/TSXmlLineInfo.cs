@@ -8,21 +8,22 @@ namespace Tizen.NUI.Devel.Tests
 
     [TestFixture]
     [Description("public/xaml/XmlLineInfo ")]
-    internal class PublicXmlLineInfoTest
+    public class PublicXmlLineInfoTest
     {
         private const string tag = "NUITEST";
-        private XmlLineInfo x1;
+        private XmlLineInfo xamlInfo;
+
         [SetUp]
         public void Init()
         {
             tlog.Info(tag, "Init() is called!");
-            x1 = new XmlLineInfo();
+            xamlInfo = new XmlLineInfo();
         }
 
         [TearDown]
         public void Destroy()
         {
-            x1 = null;
+            xamlInfo = null;
             tlog.Info(tag, "Destroy() is called!");
         }
 
@@ -70,7 +71,7 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                x1.HasLineInfo();
+                xamlInfo.HasLineInfo();
             }
             catch (Exception e)
             {
@@ -94,7 +95,7 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                int i = x1.LineNumber;
+                int i = xamlInfo.LineNumber;
             }
             catch (Exception e)
             {
@@ -118,7 +119,7 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                int i = x1.LinePosition;
+                int i = xamlInfo.LinePosition;
             }
             catch (Exception e)
             {

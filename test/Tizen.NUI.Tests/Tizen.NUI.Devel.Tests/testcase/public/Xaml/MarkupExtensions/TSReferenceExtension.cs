@@ -8,10 +8,18 @@ namespace Tizen.NUI.Devel.Tests
 
     [TestFixture]
     [Description("public/xaml/MarkupExtensions/ReferenceExtension")]
-    internal class PublicReferenceExtensionTest
+    public class PublicReferenceExtensionTest
     {
         private const string tag = "NUITEST";
         private static ReferenceExtension r1;
+
+        internal class IServiceProviderimplement : IServiceProvider
+        {
+            public object GetService(Type serviceType)
+            {
+                return null;
+            }
+        }
 
         [SetUp]
         public void Init()
@@ -50,14 +58,6 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"ReferenceExtensionName END (OK)");
             Assert.Pass("ReferenceExtensionName");
-        }
-
-        private class IServiceProviderimplement : IServiceProvider
-        {
-            public object GetService(Type serviceType)
-            {
-                return null;
-            }
         }
 
         [Test]

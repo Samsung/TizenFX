@@ -99,42 +99,18 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Should be not null.");
             Assert.IsInstanceOf<NUIFrameComponent>(testingTarget, "Should be an instance of NUIFrameComponent type.");
 
-            testingTarget.Window = new Window(new Rectangle(0, 0, 1920, 1080), false);
-            tlog.Debug(tag, "testingTarget.Window : " + testingTarget.Window);
-            Assert.IsNotNull(testingTarget.Window);
-
-            tlog.Debug(tag, $"NUIFrameComponentWindow END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("NUIFrameComponent CreateWindowInfo")]
-        [Property("SPEC", "Tizen.NUI.NUIFrameComponent.CreateWindowInfo M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void NUIFrameComponentCreateWindowInfo()
-        {
-            tlog.Debug(tag, $"NUIFrameComponentCreateWindowInfo START");
-
-            var testingTarget = new NUIFrameComponent();
-            Assert.IsNotNull(testingTarget, "Should be not null.");
-            Assert.IsInstanceOf<NUIFrameComponent>(testingTarget, "Should be an instance of NUIFrameComponent type.");
-
             try
             {
-                testingTarget.NUIWindowInfo = new NUIWindowInfo(Window.Instance);
-                testingTarget.Window = new Window(new Rectangle(0, 0, 1920, 1080), false);
-                
-                testingTarget.CreateWindowInfo();
+                testingTarget.Window = NUIApplication.GetDefaultWindow();
+                tlog.Debug(tag, "Window :" + testingTarget.Window);
             }
             catch (Exception e)
             {
                 tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception: Failed!");
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"NUIFrameComponentCreateWindowInfo END (OK)");
+            tlog.Debug(tag, $"NUIFrameComponentWindow END (OK)");
         }
 
         [Test]

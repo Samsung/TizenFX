@@ -42,8 +42,6 @@ namespace Tizen.NUI.Devel.Tests
             RotationGesture a2 = new RotationGesture(state);
 
             a2.Dispose();            
-
-            
             tlog.Debug(tag, $"RotationGestureConstructor END (OK)");
             Assert.Pass("RotationGesture");
         }

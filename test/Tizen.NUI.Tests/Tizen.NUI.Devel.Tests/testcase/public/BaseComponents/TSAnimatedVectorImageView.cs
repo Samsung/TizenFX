@@ -191,44 +191,44 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"AnimatedVectorImageViewTotalFrame END (OK)");
         }
 
-        [Test]
-        [Category("P1")]
-        [Description("AnimatedVectorImageView CurrentFrame.")]
-        [Property("SPEC", "Tizen.NUI.AnimatedVectorImageView.CurrentFrame A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void AnimatedVectorImageViewCurrentFrame()
-        {
-            tlog.Debug(tag, $"AnimatedVectorImageViewCurrentFrame START");
+        //[Test]
+        //[Category("P1")]
+        //[Description("AnimatedVectorImageView CurrentFrame.")]
+        //[Property("SPEC", "Tizen.NUI.AnimatedVectorImageView.CurrentFrame A")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "PRW")]
+        //[Property("AUTHOR", "guowei.wang@samsung.com")]
+        //public void AnimatedVectorImageViewCurrentFrame()
+        //{
+        //    tlog.Debug(tag, $"AnimatedVectorImageViewCurrentFrame START");
 
-            var testingTarget = new AnimatedVectorImageView();
-            Assert.IsNotNull(testingTarget, "Can't create success object AnimatedVectorImageView");
-            Assert.IsInstanceOf<AnimatedVectorImageView>(testingTarget, "Should be an instance of AnimatedVectorImageView type.");
+        //    var testingTarget = new AnimatedVectorImageView();
+        //    Assert.IsNotNull(testingTarget, "Can't create success object AnimatedVectorImageView");
+        //    Assert.IsInstanceOf<AnimatedVectorImageView>(testingTarget, "Should be an instance of AnimatedVectorImageView type.");
 
-            testingTarget.ResourceUrl = url;
-            NUIApplication.GetDefaultWindow().GetDefaultLayer().Add(testingTarget);
+        //    testingTarget.ResourceUrl = url;
+        //    NUIApplication.GetDefaultWindow().GetDefaultLayer().Add(testingTarget);
 
-            try
-            {
-                testingTarget.CurrentFrame = 200;
-                var result = testingTarget.CurrentFrame;
+        //    try
+        //    {
+        //        testingTarget.CurrentFrame = 200;
+        //        var result = testingTarget.CurrentFrame;
 
-                /** value < 0 */
-                testingTarget.CurrentFrame = -3;
-                Assert.AreEqual(0, testingTarget.CurrentFrame, "Should be equal!");
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception: Failed!");
-            }
+        //        /** value < 0 */
+        //        testingTarget.CurrentFrame = -3;
+        //        Assert.AreEqual(0, testingTarget.CurrentFrame, "Should be equal!");
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        tlog.Debug(tag, e.Message.ToString());
+        //        Assert.Fail("Caught Exception: Failed!");
+        //    }
 
-            NUIApplication.GetDefaultWindow().GetDefaultLayer().Remove(testingTarget);
+        //    NUIApplication.GetDefaultWindow().GetDefaultLayer().Remove(testingTarget);
 
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"AnimatedVectorImageViewCurrentFrame END (OK)");
-        }
+        //    testingTarget.Dispose();
+        //    tlog.Debug(tag, $"AnimatedVectorImageViewCurrentFrame END (OK)");
+        //}
 
         [Test]
         [Category("P2")]

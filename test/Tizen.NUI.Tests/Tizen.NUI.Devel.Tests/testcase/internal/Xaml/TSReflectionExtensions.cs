@@ -8,7 +8,7 @@ namespace Tizen.NUI.Devel.Tests
 
     [TestFixture]
     [Description("internal/Xaml/ReflectionExtensions")]
-    internal class PublicReflectionExtensionsTest
+    public class InternalXamlReflectionExtensionsTest
     {
         private const string tag = "NUITEST";
 

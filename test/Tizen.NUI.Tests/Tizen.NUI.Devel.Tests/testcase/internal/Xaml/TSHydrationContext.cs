@@ -9,10 +9,10 @@ namespace Tizen.NUI.Devel.Tests
 
     [TestFixture]
     [Description("internal/Xaml/HydrationContext")]
-    internal class PublicHydrationContextTest
+    public class InternalXamlHydrationContextTest
     {
         private const string tag = "NUITEST";
-        private static HydrationContext h1;
+        private HydrationContext h1;
 
         [SetUp]
         public void Init()
