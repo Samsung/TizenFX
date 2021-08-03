@@ -612,44 +612,44 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"RenderTaskSetScreenToFrameBufferFunction END (OK)");
         }
 
-        [Test]
-        [Category("P1")]
-        [Description("RenderTask SetScreenToFrameBufferMappingView.")]
-        [Property("SPEC", "Tizen.NUI.RenderTask.SetScreenToFrameBufferMappingView M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void RenderTaskSetScreenToFrameBufferMappingView()
-        {
-            tlog.Debug(tag, $"RenderTaskSetScreenToFrameBufferMappingView START");
+        //[Test]
+        //[Category("P1")]
+        //[Description("RenderTask SetScreenToFrameBufferMappingView.")]
+        //[Property("SPEC", "Tizen.NUI.RenderTask.SetScreenToFrameBufferMappingView M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //[Property("AUTHOR", "guowei.wang@samsung.com")]
+        //public void RenderTaskSetScreenToFrameBufferMappingView()
+        //{
+        //    tlog.Debug(tag, $"RenderTaskSetScreenToFrameBufferMappingView START");
 
-            using (Animatable ani = new Animatable())
-            {
-                var testingTarget = new RenderTask(ani.SwigCPtr.Handle, false);
-                Assert.IsNotNull(testingTarget, "Can't create success object RenderTask.");
-                Assert.IsInstanceOf<RenderTask>(testingTarget, "Should return RenderTask instance.");
+        //    using (Animatable ani = new Animatable())
+        //    {
+        //        var testingTarget = new RenderTask(ani.SwigCPtr.Handle, false);
+        //        Assert.IsNotNull(testingTarget, "Can't create success object RenderTask.");
+        //        Assert.IsInstanceOf<RenderTask>(testingTarget, "Should return RenderTask instance.");
 
-                using (View view = new View())
-                {
-                    try
-                    {
-                        testingTarget.SetScreenToFrameBufferMappingView(view);
+        //        using (View view = new View())
+        //        {
+        //            try
+        //            {
+        //                testingTarget.SetScreenToFrameBufferMappingView(view);
 
-                        var result = testingTarget.GetScreenToFrameBufferMappingView();
-                        tlog.Debug(tag, "ScreenToFrameBufferMappingView : " + result);
-                    }
-                    catch (Exception e)
-                    {
-                        tlog.Debug(tag, e.Message.ToString());
-                        Assert.Fail("Caught Exception :  Failed!");
-                    }
-                }
+        //                var result = testingTarget.GetScreenToFrameBufferMappingView();
+        //                tlog.Debug(tag, "ScreenToFrameBufferMappingView : " + result);
+        //            }
+        //            catch (Exception e)
+        //            {
+        //                tlog.Debug(tag, e.Message.ToString());
+        //                Assert.Fail("Caught Exception :  Failed!");
+        //            }
+        //        }
 
-                testingTarget.Dispose();
-            }
+        //        testingTarget.Dispose();
+        //    }
 
-            tlog.Debug(tag, $"RenderTaskSetScreenToFrameBufferMappingView END (OK)");
-        }
+        //    tlog.Debug(tag, $"RenderTaskSetScreenToFrameBufferMappingView END (OK)");
+        //}
 
         //[Test]
         //[Category("P1")]

@@ -12,17 +12,20 @@ namespace Tizen.NUI.Devel.Tests
     [Description("public/Events/Gesture")]
     class PublicGestureTest
     {
-        private const string tag = "NUITEST";
+        private const string tag = "NUITEST"; 
+        private LongPressGesture longPressGesture;
 
         [SetUp]
         public void Init()
         {
             tlog.Info(tag, "Init() is called!");
+            longPressGesture = new LongPressGesture(Gesture.StateType.Started);
         }
 
         [TearDown]
         public void Destroy()
         {
+            longPressGesture?.Dispose();
             tlog.Info(tag, "Destroy() is called!");
         }
 
@@ -37,11 +40,11 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"GestureConstructor START");
             
-            var longPressGesture = new LongPressGesture(Gesture.StateType.Cancelled);
-            var gesture = new Gesture(longPressGesture);
-			
-            longPressGesture.Dispose();
-            gesture.Dispose();
+            var testingTarget = new Gesture(longPressGesture);
+            Assert.IsNotNull(testingTarget, "Can't create success object Gesture");
+            Assert.IsInstanceOf<Gesture>(testingTarget, "Should be an instance of Gesture type.");
+
+            testingTarget.Dispose();
             tlog.Debug(tag, $"GestureConstructor END (OK)");
             Assert.Pass("GestureConstructor");
         }
@@ -56,24 +59,23 @@ namespace Tizen.NUI.Devel.Tests
         public void GestureType()
         {
             tlog.Debug(tag, $"GestureType START");
+
+            var testingTarget = new Gesture(longPressGesture);
+            Assert.IsNotNull(testingTarget, "Can't create success object Gesture");
+            Assert.IsInstanceOf<Gesture>(testingTarget, "Should be an instance of Gesture type.");
+
             try
             {
-                var longPressGesture = new LongPressGesture(Gesture.StateType.Cancelled);
-                Assert.IsNotNull(longPressGesture, "Can't create success object LongPressGesture");
-                var gesture = new Gesture(longPressGesture);
-                Assert.IsNotNull(gesture, "Can't create success object Gesture");
-                Assert.IsInstanceOf<Gesture>(gesture, "Should be an instance of Gesture type.");
-                Gesture.GestureType type = gesture.Type;
-                Assert.AreEqual(Gesture.GestureType.LongPress, type, "Should be same value");
-
-                gesture.Dispose();
-                longPressGesture.Dispose();
+                var type = testingTarget.Type;
+                tlog.Debug(tag, "type : " + type);
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());                
+                tlog.Debug(tag, "Caught Exception" + e.ToString());                
                 Assert.Fail("Caught Exception" + e.ToString());
             }
+
+            testingTarget.Dispose();
             tlog.Debug(tag, $"GestureType END (OK)");
             Assert.Pass("GestureType");
         }
@@ -88,26 +90,23 @@ namespace Tizen.NUI.Devel.Tests
         public void GestureState()
         {
             tlog.Debug(tag, $"GestureState START");
+
+            var testingTarget = new Gesture(longPressGesture);
+            Assert.IsNotNull(testingTarget, "Can't create success object Gesture");
+            Assert.IsInstanceOf<Gesture>(testingTarget, "Should be an instance of Gesture type.");
+
             try
             {
-                var longPressGesture = new LongPressGesture(Gesture.StateType.Cancelled);
-                Assert.IsNotNull(longPressGesture, "Can't create success object LongPressGesture");
-                var gesture = new Gesture(longPressGesture);
-                Assert.IsNotNull(gesture, "Can't create success object Gesture");
-                Assert.IsInstanceOf<Gesture>(gesture, "Should be an instance of Gesture type.");
-                Gesture.StateType state = gesture.State;
-                Assert.AreEqual(Gesture.StateType.Cancelled, state, "Should be same value");
-
-                gesture.Dispose();
-                longPressGesture.Dispose();
-
+                var state = testingTarget.State;
+                tlog.Debug(tag, "state : " + state);
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                
+                tlog.Debug(tag, "Caught Exception" + e.ToString());
                 Assert.Fail("Caught Exception" + e.ToString());
             }
+
+            testingTarget.Dispose();
             tlog.Debug(tag, $"GestureState END (OK)");
             Assert.Pass("GestureState");
         }
@@ -122,25 +121,23 @@ namespace Tizen.NUI.Devel.Tests
         public void GestureTime()
         {
             tlog.Debug(tag, $"GestureTime START");
+
+            var testingTarget = new Gesture(longPressGesture);
+            Assert.IsNotNull(testingTarget, "Can't create success object Gesture");
+            Assert.IsInstanceOf<Gesture>(testingTarget, "Should be an instance of Gesture type.");
+
             try
             {
-                var longPressGesture = new LongPressGesture(Gesture.StateType.Cancelled);
-                Assert.IsNotNull(longPressGesture, "Can't create success object LongPressGesture");
-                var gesture = new Gesture(longPressGesture);
-                Assert.IsNotNull(gesture, "Can't create success object Gesture");
-                Assert.IsInstanceOf<Gesture>(gesture, "Should be an instance of Gesture type.");
-                uint time = gesture.Time;
-                Assert.GreaterOrEqual(time, 0, "Should be greater or equal 0");
-
-                gesture.Dispose();
-                longPressGesture.Dispose();
+                var time = testingTarget.Time;
+                tlog.Debug(tag, "time : " + time);
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                
+                tlog.Debug(tag, "Caught Exception" + e.ToString());
                 Assert.Fail("Caught Exception" + e.ToString());
             }
+
+            testingTarget.Dispose();
             tlog.Debug(tag, $"GestureTime END (OK)");
             Assert.Pass("GestureTime");
         }
@@ -156,19 +153,13 @@ namespace Tizen.NUI.Devel.Tests
         public void GetstureGetGestureFromPtr()
         {
             tlog.Debug(tag, $"GetstureGetGestureFromPtr START");
-			
-            var longPressGesture = new LongPressGesture(Gesture.StateType.Cancelled);            
-            var gesture = new Gesture(longPressGesture);
-			
-            Gesture ret = Gesture.GetGestureFromPtr(Gesture.getCPtr(gesture).Handle);
 
-            Assert.IsNotNull(ret, "Can't create success object Gesture");
-            Assert.IsInstanceOf<Gesture>(ret, "Should be an instance of Gesture type.");
-			
-            ret.Dispose();
-            gesture.Dispose();
-            longPressGesture.Dispose();
-			
+            var testingTarget = Gesture.GetGestureFromPtr(longPressGesture.SwigCPtr.Handle);
+            Assert.IsNotNull(testingTarget, "Can't create success object Gesture");
+            Assert.IsInstanceOf<Gesture>(testingTarget, "Should be an instance of Gesture type.");
+
+            testingTarget.Dispose();
+
             tlog.Debug(tag, $"GetstureGetGestureFromPtr END (OK)");
             Assert.Pass("GetstureGetGestureFromPtr");
         }

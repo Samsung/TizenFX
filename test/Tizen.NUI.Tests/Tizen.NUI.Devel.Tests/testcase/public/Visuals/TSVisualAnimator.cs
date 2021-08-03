@@ -210,7 +210,8 @@ namespace Tizen.NUI.Devel.Tests
                 StartTime = 10,
                 EndTime = 200,
                 Target = "IconVisual",
-                PropertyIndex = "MixColor"
+                PropertyIndex = "MixColor",
+                DestinationValue = 0.3f
             };
             Assert.IsInstanceOf<VisualAnimator>(testingTarget, "Should be an instance of VisualAnimator type.");
             PropertyMap propertyMap = testingTarget.OutputVisualMap;

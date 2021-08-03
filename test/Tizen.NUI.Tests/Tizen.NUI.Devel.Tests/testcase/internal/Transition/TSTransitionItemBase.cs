@@ -10,7 +10,7 @@ namespace Tizen.NUI.Devel.Tests
 
     [TestFixture]
     [Description("Internal/Transition/TransitionItemBase")]
-    class TSTransitionItemBase
+    public class InternalTransitionItemBaseTest
     {
         private const string tag = "NUITEST";
 
@@ -49,31 +49,31 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"TransitionItemBaseConstructor END (OK)");
         }
 
-        [Test]
-        [Category("P1")]
-        [Description("TransitionItemBase TimePeriod.")]
-        [Property("SPEC", "Tizen.NUI.TransitionItemBase.TimePeriod A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PW")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void TransitionItemBaseTimePeriod()
-        {
-            tlog.Debug(tag, $"TransitionItemBaseTimePeriod START");
+        //[Test]
+        //[Category("P1")]
+        //[Description("TransitionItemBase TimePeriod.")]
+        //[Property("SPEC", "Tizen.NUI.TransitionItemBase.TimePeriod A")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "PW")]
+        //[Property("AUTHOR", "guowei.wang@samsung.com")]
+        //public void TransitionItemBaseTimePeriod()
+        //{
+        //    tlog.Debug(tag, $"TransitionItemBaseTimePeriod START");
 
-            using (View view = new View())
-            {
-                var testingTarget = new TransitionItemBase(view.SwigCPtr.Handle, false);
-                Assert.IsNotNull(testingTarget, "Should be not null!");
-                Assert.IsInstanceOf<TransitionItemBase>(testingTarget, "Should be an Instance of TransitionItemBase!");
+        //    using (View view = new View())
+        //    {
+        //        var testingTarget = new TransitionItemBase(view.SwigCPtr.Handle, false);
+        //        Assert.IsNotNull(testingTarget, "Should be not null!");
+        //        Assert.IsInstanceOf<TransitionItemBase>(testingTarget, "Should be an Instance of TransitionItemBase!");
 
-                testingTarget.TimePeriod = new TimePeriod(300);
-                tlog.Debug(tag, "TiemPeriod : " + testingTarget.TimePeriod);
+        //        testingTarget.TimePeriod = new TimePeriod(300);
+        //        tlog.Debug(tag, "TiemPeriod : " + testingTarget.TimePeriod);
 
-                testingTarget.Dispose();
-            }
+        //        testingTarget.Dispose();
+        //    }
 
-            tlog.Debug(tag, $"TransitionItemBaseTimePeriod END (OK)");
-        }
+        //    tlog.Debug(tag, $"TransitionItemBaseTimePeriod END (OK)");
+        //}
 
         //[Test]
         //[Category("P1")]
