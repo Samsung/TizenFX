@@ -154,6 +154,21 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
+        [Description("dali NUIApplication constructor test for IME Window type. Check whether object which set WindowType with IME is successfully created or not.")]
+        [Property("SPEC", "Tizen.NUI.NUIApplication.NUIApplication C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("COVPARAM", "string,WindowMode,WindowType")]
+        [Property("AUTHOR", "Wonsik Jung, sidein@samsung.com")]
+        public void NUIApplication_INIT_WITH_STRING_WINDOWMODE_IMEWINDOWTYPE()
+        {
+            /* TEST CODE */
+            var application = new NUIApplication("stylesheet", NUIApplication.WindowMode.Opaque, NUIApplication.WindowType.Ime);
+            Assert.IsNotNull(application, "NUIApplication Should return NUIApplication instance.");
+        }
+
+        [Test]
+        [Category("P1")]
         [Description("NUIApplication RegisterAssembly.")]
         [Property("SPEC", "Tizen.NUI.NUIApplication.RegisterAssembly M")]
         [Property("SPEC_URL", "-")]

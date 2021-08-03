@@ -473,5 +473,44 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Pass("Caught ArgumentNullException : Passed!");
             }
         }
+
+        [Test]
+        [Category("P3")]
+        [Description("NUI IME Window Reserve Size per Orientation Test)]
+        [Property("SPEC", "Tizen.NUI.Window.ReserveSizePerOrientationForIME M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "Wonsik Jung, sidein@samsung.com")]
+        public void ReserveSizePerOrientationForIME_TEST()
+        {
+            /* TEST CODE */
+            var application = new NUIApplication("stylesheet", NUIApplication.WindowMode.Opaque, NUIApplication.WindowType.Ime);
+
+            var window = Window.Instance;
+            try
+            {
+                List<Window.WindowOrientation> avaialbleList = new List<Window.WindowOrientation>();
+                avaialbleList.Add(Window.WindowOrientation.Portrait);
+                avaialbleList.Add(Window.WindowOrientation.Landscape);
+                avaialbleList.Add(Window.WindowOrientation.PortraitInverse);
+                avaialbleList.Add(Window.WindowOrientation.LandscapeInverse);
+                window.SetAvailableOrientations(avaialbleList);
+
+                Size2D portlateSize = new Size2D(720, 442);
+                Size2D landscapeSize = new Size2D(318, 1280);
+
+                window.ReserveSizePerOrientationForIME(portlateSize, Window.WindowOrientation.Portrait);
+                window.ReserveSizePerOrientationForIME(landscapeSize, Window.WindowOrientation.Landscape);
+                window.ReserveSizePerOrientationForIME(portlateSize, Window.WindowOrientation.PortraitInverse);
+                window.ReserveSizePerOrientationForIME(landscapeSize, Window.WindowOrientation.LandscapeInverse);
+            }
+            catch (Exception e)
+            {
+                Tizen.Log.Error(TAG, "Caught Exception" + e.ToString());
+                LogUtils.Write(LogUtils.DEBUG, LogUtils.TAG, "Caught Exception" + e.ToString());
+                Assert.Fail("Caught Exception" + e.ToString());
+            }
+        }
+
     }
 }
