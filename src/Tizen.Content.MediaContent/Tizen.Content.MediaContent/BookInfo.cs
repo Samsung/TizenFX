@@ -36,9 +36,9 @@ namespace Tizen.Content.MediaContent
                 Debug.Assert(bookHandle != IntPtr.Zero);
 
                 Subject = InteropHelper.GetString(bookHandle, Interop.BookInfo.GetSubject);
-                Author = InteropHelper.GetString(bookHandle, Interop.BookInfo.GetSubject);
-                DatePublished = InteropHelper.GetString(bookHandle, Interop.BookInfo.GetSubject);
-                Publisher = InteropHelper.GetString(bookHandle, Interop.BookInfo.GetSubject);
+                Author = InteropHelper.GetString(bookHandle, Interop.BookInfo.GetAuthor);
+                DatePublished = InteropHelper.GetString(bookHandle, Interop.BookInfo.GetDate);
+                Publisher = InteropHelper.GetString(bookHandle, Interop.BookInfo.GetPublisher);
             }
             finally
             {
