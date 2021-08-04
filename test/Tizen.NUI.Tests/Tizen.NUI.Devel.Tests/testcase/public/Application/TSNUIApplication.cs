@@ -163,7 +163,7 @@ namespace Tizen.NUI.Devel.Tests
         public void NUIApplication_INIT_WITH_STRING_WINDOWMODE_IMEWINDOWTYPE()
         {
             /* TEST CODE */
-            var application = new NUIApplication("stylesheet", NUIApplication.WindowMode.Opaque, NUIApplication.WindowType.Ime);
+            var application = new NUIApplication("stylesheet", NUIApplication.WindowMode.Opaque, WindowType.Ime);
             Assert.IsNotNull(application, "NUIApplication Should return NUIApplication instance.");
         }
 

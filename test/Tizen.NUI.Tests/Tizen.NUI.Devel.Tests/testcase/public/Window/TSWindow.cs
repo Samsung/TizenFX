@@ -476,7 +476,7 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P3")]
-        [Description("NUI IME Window Reserve Size per Orientation Test)]
+        [Description("NUI IME Window Reserve Size per Orientation Test")]
         [Property("SPEC", "Tizen.NUI.Window.ReserveSizePerOrientationForIME M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
@@ -484,7 +484,7 @@ namespace Tizen.NUI.Devel.Tests
         public void ReserveSizePerOrientationForIME_TEST()
         {
             /* TEST CODE */
-            var application = new NUIApplication("stylesheet", NUIApplication.WindowMode.Opaque, NUIApplication.WindowType.Ime);
+            var application = new NUIApplication("stylesheet", NUIApplication.WindowMode.Opaque, WindowType.Ime);
 
             var window = Window.Instance;
             try
