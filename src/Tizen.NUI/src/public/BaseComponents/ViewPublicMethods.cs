@@ -662,17 +662,141 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Search through this View's hierarchy for a View with the given unique ID.
-        /// The View itself is also considered in the search.
         /// </summary>
-        /// <param name="id">The ID of the View to find</param>
-        /// <returns>A View if found or a null if not</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public View FindChildByID(uint id)
+        /// <param name="id">The ID of the View to find.</param>
+        /// <returns>A handle to the View if found, or an empty handle if not.</returns>
+        /// <since_tizen> 9 </since_tizen>
+        public View FindDescendantByID(uint id)
         {
-            IntPtr cPtr = Interop.Actor.FindChildById(SwigCPtr, id);
-            View ret = this.GetInstanceSafely<View>(cPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            return FindChildById(id);
+        }
+
+        /// <summary>
+        /// Raise view above the next sibling view.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public void Raise()
+        {
+            var parentChildren = GetParent()?.Children;
+
+            if (parentChildren != null)
+            {
+                int currentIndex = parentChildren.IndexOf(this);
+
+                // If the view is not already the last item in the list.
+                if (currentIndex >= 0 && currentIndex < parentChildren.Count - 1)
+                {
+                    View temp = parentChildren[currentIndex + 1];
+                    parentChildren[currentIndex + 1] = this;
+                    parentChildren[currentIndex] = temp;
+
+                    Interop.NDalic.Raise(SwigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending)
+                        throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Lower the view below the previous sibling view.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public void Lower()
+        {
+            var parentChildren = GetParent()?.Children;
+
+            if (parentChildren != null)
+            {
+                int currentIndex = parentChildren.IndexOf(this);
+
+                // If the view is not already the first item in the list.
+                if (currentIndex > 0 && currentIndex < parentChildren.Count)
+                {
+                    View temp = parentChildren[currentIndex - 1];
+                    parentChildren[currentIndex - 1] = this;
+                    parentChildren[currentIndex] = temp;
+
+                    Interop.NDalic.Lower(SwigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending)
+                        throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Raises the view to above the target view.
+        /// </summary>
+        /// <remarks>The sibling order of views within the parent will be updated automatically.
+        /// Views on the level above the target view will still be shown above this view.
+        /// Once a raise or lower API is used then that view will have an exclusive sibling order independent of insertion.
+        /// </remarks>
+        /// <param name="target">Will be raised above this view.</param>
+        /// <since_tizen> 9 </since_tizen>
+        public void RaiseAbove(View target)
+        {
+            var parentChildren = GetParent()?.Children;
+
+            if (parentChildren != null)
+            {
+                int currentIndex = parentChildren.IndexOf(this);
+                int targetIndex = parentChildren.IndexOf(target);
+
+                if (currentIndex < 0 || targetIndex < 0 ||
+                    currentIndex >= parentChildren.Count || targetIndex >= parentChildren.Count)
+                {
+                    NUILog.Error("index should be bigger than 0 and less than children of layer count");
+                    return;
+                }
+                // If the currentIndex is less than the target index and the target has the same parent.
+                if (currentIndex < targetIndex)
+                {
+                    parentChildren.Remove(this);
+                    parentChildren.Insert(targetIndex, this);
+
+                    Interop.NDalic.RaiseAbove(SwigCPtr, View.getCPtr(target));
+                    if (NDalicPINVOKE.SWIGPendingException.Pending)
+                        throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+            }
+
+        }
+
+        /// <summary>
+        /// Lowers the view to below the target view.
+        /// </summary>
+        /// <remarks>The sibling order of views within the parent will be updated automatically.
+        /// Once a raise or lower API is used then that view will have an exclusive sibling order independent of insertion.
+        /// </remarks>
+        /// <param name="target">Will be lowered below this view.</param>
+        /// <since_tizen> 9 </since_tizen>
+        public void LowerBelow(View target)
+        {
+            var parentChildren = GetParent()?.Children;
+
+            if (parentChildren != null)
+            {
+                int currentIndex = parentChildren.IndexOf(this);
+                int targetIndex = parentChildren.IndexOf(target);
+                if (currentIndex < 0 || targetIndex < 0 ||
+                   currentIndex >= parentChildren.Count || targetIndex >= parentChildren.Count)
+                {
+                    NUILog.Error("index should be bigger than 0 and less than children of layer count");
+                    return;
+                }
+
+                // If the currentIndex is not already the 0th index and the target has the same parent.
+                if ((currentIndex != 0) && (targetIndex != -1) &&
+                    (currentIndex > targetIndex))
+                {
+                    parentChildren.Remove(this);
+                    parentChildren.Insert(targetIndex, this);
+
+                    Interop.NDalic.LowerBelow(SwigCPtr, View.getCPtr(target));
+                    if (NDalicPINVOKE.SWIGPendingException.Pending)
+                        throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+            }
+
         }
 
     }
