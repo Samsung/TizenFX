@@ -638,6 +638,9 @@ internal static partial class Interop
         [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
         internal delegate void BtGattServerAttMtuChangedCallback(IntPtr clientHandle, ref AttMtuInfoStruct mtuInfo, IntPtr userData);
 
+        [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
+        internal delegate void BtClientServiceChangedCallback(IntPtr clientHandle, BluetoothGattServiceChangedType changedType, string serviceUuid, IntPtr userData);
+
         // Gatt Attribute
 
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_gatt_destroy")]
@@ -703,6 +706,12 @@ internal static partial class Interop
 
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_gatt_characteristic_foreach_descriptors")]
         internal static extern int BtGattCharacteristicForeachDescriptors(BluetoothGattAttributeHandle characteristicHandle, BtGattForeachCallback callback, IntPtr userData);
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_gatt_client_set_service_changed_cb")]
+        internal static extern int BtGattClientSetServiceChangedCallback(BluetoothGattClientHandle clientHandle, BtClientServiceChangedCallback cb, IntPtr userData);
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_gatt_client_unset_service_changed_cb")]
+        internal static extern int BtGattClientUnsetServiceChangedCallback(BluetoothGattClientHandle clientHandle);
 
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_gatt_client_set_characteristic_value_changed_cb")]
         internal static extern int BtGattClientSetCharacteristicValueChangedCallback(BluetoothGattAttributeHandle characteristicHandle, BtClientCharacteristicValueChangedCallback cb, IntPtr userData);
@@ -820,6 +829,9 @@ internal static partial class Interop
 
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_gatt_server_notify_characteristic_changed_value")]
         internal static extern int BtGattServerNotify(BluetoothGattAttributeHandle characteristicHandle, BtGattServerNotificationSentCallback callback, string clientAddress, IntPtr userData);
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_gatt_server_get_device_mtu")]
+        internal static extern int BtGattServerGetDeviceMtu(string remoteAddress, out int mtu);
     }
 }
 
