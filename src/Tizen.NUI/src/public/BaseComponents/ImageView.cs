@@ -1369,7 +1369,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (_resourceUrl != null)
                 {
-                    Size2D imageSize = ImageLoading.GetOriginalImageSize(_resourceUrl, true);
+                    Size2D imageSize = ImageLoader.GetOriginalImageSize(_resourceUrl, true);
                     if( imageSize.Height > 0 && imageSize.Width > 0 && _desired_width > 0  && _desired_height > 0 )
                     {
                         int adjustedDesiredWidth, adjustedDesiredHeight;

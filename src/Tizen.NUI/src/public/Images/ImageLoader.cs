@@ -21,13 +21,11 @@ namespace Tizen.NUI
 {
 
     /// <summary>
-    /// Loading an image.
+    /// A class containing methods providing image loading
     /// </summary>
-    /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    // in API6 ~ API8, this has been "public class", not "public static class". to support not-rebuilt API6~API8's Application, this is reverted bact to "public class".
+    /// <since_tizen> 9 </since_tizen>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1052:Static holder types should be Static or NotInheritable", Justification = "<Pending>")]
-    public class ImageLoading
+    public class ImageLoader
     {
         /// <summary>
         /// Load an image synchronously from local file.
@@ -495,25 +493,23 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get the size of an original image consider rotation
+        /// Get the size of an original image rotated according to image metadata
         /// </summary>
         /// <param name="filename">The name of the image.</param>
         /// <returns>Dimension of the original image.</returns>
-        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static Size2D GetOriginalImageSize(string filename)
         {
             return GetOriginalImageSize(filename, true);
         }
 
         /// <summary>
-        /// Get the size of an original image consider rotation
+        /// Get the size of an original image rotated according to image metadata
         /// </summary>
         /// <param name="filename">The name of the image.</param>
         /// <param name="orientationCorrection">Reorient the image to respect any orientation metadata in its header.</param>
         /// <returns>Dimension of the original image.</returns>
-        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static Size2D GetOriginalImageSize(string filename, bool orientationCorrection)
         {
             var val = new Uint16Pair(Interop.ImageLoading.GetOriginalImageSize(filename, orientationCorrection), true);
