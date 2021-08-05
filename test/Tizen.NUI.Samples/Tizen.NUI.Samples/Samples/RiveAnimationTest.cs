@@ -18,7 +18,7 @@ namespace Tizen.NUI.Samples
             window = NUIApplication.GetDefaultWindow();
             defaultLayer = window.GetDefaultLayer();
 
-            rav = new RiveAnimationView(Tizen.Applications.Application.Current.DirectoryInfo.Resource + "buggy.riv")
+            rav = new RiveAnimationView(Tizen.Applications.Application.Current.DirectoryInfo.Resource + "rive/buggy.riv")
             {
                 Size = new Size(500, 500),
                 ParentOrigin = ParentOrigin.Center,
