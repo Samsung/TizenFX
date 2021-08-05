@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.BaseComponents.VectorGraphics;
 
+using System.Collections.ObjectModel;
+
 namespace Tizen.NUI.Samples
 {
     using log = Tizen.Log;
@@ -43,11 +45,24 @@ namespace Tizen.NUI.Samples
                 PositionUsesPivotPoint = true,
             };
 
+            RadialGradient roundedRectFillRadialGradient = new RadialGradient()
+            {
+                ColorStops = new List<ColorStop>()
+                {
+                    new ColorStop(0.0f, new Color(1.0f,0.0f,0.0f,1.0f)),
+                    new ColorStop(0.5f, new Color(0.0f,1.0f,0.0f,1.0f)),
+                    new ColorStop(1.0f, new Color(0.0f,0.0f,1.0f,1.0f))
+                }.AsReadOnly(),
+                Spread = Gradient.SpreadType.Reflect,
+            };
+            roundedRectFillRadialGradient.SetBounds(new Position2D(0, 0), 30);
+
             roundedRectShape = new Shape()
             {
                 FillColor = new Color(0.5f, 1.0f, 0.0f, 1.0f),
                 StrokeColor = new Color(0.5f, 0.0f, 0.0f, 0.5f),
                 StrokeWidth = 10.0f,
+                FillGradient = roundedRectFillRadialGradient,
             };
             roundedRectShape.Translate(100.0f, 100.0f);
             roundedRectShape.Scale(1.2f);
@@ -110,6 +125,27 @@ namespace Tizen.NUI.Samples
             starClipper.AddCircle(0.0f, 0.0f, 160.0f, 160.0f);
             starClipper.Translate(250.0f, 550.0f);
 
+            LinearGradient starFillLinearGradient = new LinearGradient()
+            {
+                ColorStops = new List<ColorStop>()
+                {
+                    new ColorStop(0.0f, new Color(1.0f,0.0f,0.0f,1.0f)),
+                    new ColorStop(0.5f, new Color(0.0f,1.0f,0.0f,1.0f)),
+                    new ColorStop(1.0f, new Color(0.0f,0.0f,1.0f,1.0f))
+                }.AsReadOnly()
+            };
+            starFillLinearGradient.SetBounds(new Position2D(-50, -50), new Position2D(50, 50));
+
+            LinearGradient starStrokeLinearGradient = new LinearGradient()
+            {
+                ColorStops = new List<ColorStop>()
+                {
+                    new ColorStop(0.0f, new Color(1.0f,0.0f,1.0f,1.0f)),
+                    new ColorStop(1.0f, new Color(0.0f,1.0f,1.0f,1.0f))
+                }.AsReadOnly()
+            };
+            starStrokeLinearGradient.SetBounds(new Position2D(0, -50), new Position2D(50, 50));
+
             starShape = new Shape()
             {
                 Opacity = 0.5f,
@@ -117,7 +153,10 @@ namespace Tizen.NUI.Samples
                 StrokeColor = new Color(0.5f, 1.0f, 0.5f, 1.0f),
                 StrokeWidth = 30.0f,
                 StrokeCap = Shape.StrokeCapType.Round,
+                FillGradient = starFillLinearGradient,
+                StrokeGradient = starStrokeLinearGradient,
             };
+
             starShape.Translate(250.0f, 550.0f);
             starShape.Scale(0.5f);
             starShape.AddMoveTo(-1.0f, -165.0f);
@@ -146,6 +185,16 @@ namespace Tizen.NUI.Samples
             canvasView.AddDrawable(group2);
 
             // Test Getter
+            Position2D p1 = new Position2D(9, 9), p2 = new Position2D(8, 8);
+            starFillLinearGradient.GetBounds(ref p1, ref p2);
+            log.Debug(tag, "Gradient Bounds : P1 :" + p1.X + " " + p1.Y + " / P2 :" + p2.X + " " + p2.Y + "\n");
+
+            ReadOnlyCollection<ColorStop> stops = starShape.FillGradient.ColorStops;
+            for (int i = 0; i < stops.Count; i++)
+            {
+                log.Debug(tag, "Gradient Stops :" + i + " " + stops[i].Offset + " " + stops[i].Color.R + " " + stops[i].Color.G + " " + stops[i].Color.B + " " + stops[i].Color.A + "\n");
+            }
+
             log.Debug(tag, "circleShape Color : " + circleShape.FillColor.R + " " + circleShape.FillColor.G + " " + circleShape.FillColor.B + " " + circleShape.FillColor.A + "\n");
             log.Debug(tag, "circleShape StrokeColor : " + circleShape.StrokeColor.R + " " + circleShape.StrokeColor.G + " " + circleShape.StrokeColor.B + " " + circleShape.StrokeColor.A + "\n");
 
