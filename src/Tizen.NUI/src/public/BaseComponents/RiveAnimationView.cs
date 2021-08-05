@@ -160,5 +160,16 @@ namespace Tizen.NUI.BaseComponents
                  throw new ArgumentNullException(nameof(position));
             Interop.RiveAnimationView.SetNodePosition(SwigCPtr, nodeName, position.SwigCPtr);
         }
+
+        /// <summary>
+        /// Sets the animation elapsed time.
+        /// </summary>
+        /// <param name="animationName">The animation name</param>
+        /// <param name="elapsed">The elapsed time</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetAnimationElapsedTime(string animationName, float elapsed)
+        {
+            Interop.RiveAnimationView.SetAnimationElapsedTime(SwigCPtr, animationName, elapsed);
+        }
     }
 }
