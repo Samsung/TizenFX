@@ -80,6 +80,7 @@ namespace Tizen.NUI
         /// The constructor with stylesheet, window mode, window size, window position and default window type.
         /// This will be hidden as inhouse API. Because it is only for internal IME window.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public NUICoreBackend(string stylesheet, NUIApplication.WindowMode windowMode, WindowType type)
         {
             this.stylesheet = stylesheet;

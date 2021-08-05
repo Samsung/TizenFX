@@ -477,11 +477,11 @@ namespace Tizen.NUI.Devel.Tests
         [Test]
         [Category("P3")]
         [Description("NUI IME Window Reserve Size per Orientation Test")]
-        [Property("SPEC", "Tizen.NUI.Window.ReserveSizePerOrientationForIME M")]
+        [Property("SPEC", "Tizen.NUI.Window.ReserveSizePerOrientationForIme M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "Wonsik Jung, sidein@samsung.com")]
-        public void ReserveSizePerOrientationForIME_TEST()
+        public void ReserveSizePerOrientationForIme_TEST()
         {
             /* TEST CODE */
             var application = new NUIApplication("stylesheet", NUIApplication.WindowMode.Opaque, WindowType.Ime);
@@ -499,10 +499,10 @@ namespace Tizen.NUI.Devel.Tests
                 Size2D portlateSize = new Size2D(720, 442);
                 Size2D landscapeSize = new Size2D(318, 1280);
 
-                window.ReserveSizePerOrientationForIME(portlateSize, Window.WindowOrientation.Portrait);
-                window.ReserveSizePerOrientationForIME(landscapeSize, Window.WindowOrientation.Landscape);
-                window.ReserveSizePerOrientationForIME(portlateSize, Window.WindowOrientation.PortraitInverse);
-                window.ReserveSizePerOrientationForIME(landscapeSize, Window.WindowOrientation.LandscapeInverse);
+                window.ReserveSizePerOrientationForIme(portlateSize, Window.WindowOrientation.Portrait);
+                window.ReserveSizePerOrientationForIme(landscapeSize, Window.WindowOrientation.Landscape);
+                window.ReserveSizePerOrientationForIme(portlateSize, Window.WindowOrientation.PortraitInverse);
+                window.ReserveSizePerOrientationForIme(landscapeSize, Window.WindowOrientation.LandscapeInverse);
             }
             catch (Exception e)
             {

@@ -1277,10 +1277,10 @@ namespace Tizen.NUI
         /// <param name="size">The reserved size for the orientation.</param>
         /// <param name="orientation">The orientation.</param>
         /// <since_tizen> 9 </since_tizen>
-        public void ReserveSizePerOrientationForIME(Size2D size, Window.WindowOrientation orientation)
+        public void ReserveSizePerOrientationForIme(Size2D size, Window.WindowOrientation orientation)
         {
             Rectangle rectangle = new Rectangle(0, 0, (int)size.Width, (int)size.Height);
-            Interop.Window.ReserveSizePerOrientationForIME(SwigCPtr, Rectangle.getCPtr(rectangle), (int)orientation);
+            Interop.Window.ReserveSizePerOrientationForIme(SwigCPtr, Rectangle.getCPtr(rectangle), (int)orientation);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
