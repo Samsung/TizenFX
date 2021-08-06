@@ -576,14 +576,15 @@ namespace Tizen.NUI.Devel.Tests
             try
             {
                 Window.Instance.EnableFloatingMode(true);
+
             }
             catch (Exception e)
             {
                 tlog.Debug(tag, e.Message.ToString());
                 Assert.Fail("Caught Exception : Failed!");
             }
-            
-            tlog.Debug(tag, $"WindowEnableFloatingMode END (OK)");
+            tlog.Debug(tag, $"AddInputRegionTest END (OK)");
+            }
         }
 
         [Test]
@@ -605,7 +606,6 @@ namespace Tizen.NUI.Devel.Tests
                 tlog.Debug(tag, e.Message.ToString());
                 Assert.Fail("Caught Exception : Failed!");
             }
-
             tlog.Debug(tag, $"WindowRequestMoveToServer END (OK)");
         }
 
@@ -628,8 +628,56 @@ namespace Tizen.NUI.Devel.Tests
                 tlog.Debug(tag, e.Message.ToString());
                 Assert.Fail("Caught Exception : Failed!");
             }
+            tlog.Debug(tag, $"WindowRequestMoveToServer END (OK)");
+        }
 
-            tlog.Debug(tag, $"WindowRequestResizeToServer END (OK)");
+        [Test]
+        [Category("P1")]
+        [Description("Window AddInputRegion Test")]
+        [Property("SPEC", "Tizen.NUI.Window.AddInputRegion M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void AddInputRegionTest()
+        {
+            tlog.Debug(tag, $"AddInputRegionTest START");
+            try
+            {
+                Rectangle inputRegion = new Rectangle(0, 0, 720, 640);
+                myWin.AddInputRegionTest(inputRegion);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+            tlog.Debug(tag, $"AddInputRegionTest END (OK)");
+        }
+
+
+        [Test]
+        [Category("P1")]
+        [Description("Window SubtractInputRegion Test")]
+        [Property("SPEC", "Tizen.NUI.Window.SubtractInputRegion M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void SubtractInputRegionTest()
+        {
+            tlog.Debug(tag, $"SubtractInputRegionTest START");
+            try
+            {
+                Rectangle addInputRegion = new Rectangle(0, 0, 720, 1280);
+                myWin.AddInputRegionTest(addInputRegion);
+
+                Rectangle subtractInputRegion = new Rectangle(0, 641, 720, 640);
+                myWin.AddInputRegionTest(subtractInputRegion);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            tlog.Debug(tag, $"SubtractInputRegionTest END (OK)");
         }
     }
 }
