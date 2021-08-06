@@ -1506,6 +1506,28 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Adds input region.
+        /// </summary>
+        /// <param name="inputRegion">The added region to accept input events.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void AddInputRegion(Rectangle inputRegion)
+        {
+            Interop.Window.AddInputRegion(SwigCPtr, Rectangle.getCPtr(inputRegion));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Subtracts input region.
+        /// </summary>
+        /// <param name="inputRegion">The subtracted region to except input events.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SubtractInputRegion(Rectangle inputRegion)
+        {
+            Interop.Window.SubtractInputRegion(SwigCPtr, Rectangle.getCPtr(inputRegion));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// Add FrameUpdateCallback
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
