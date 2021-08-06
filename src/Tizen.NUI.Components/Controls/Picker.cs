@@ -288,7 +288,7 @@ namespace Tizen.NUI.Components
                     itemTextLabel.MergeDirectly(pickerStyle.ItemTextLabel);
                 }
 
-                itemHeight = (int)pickerStyle.ItemTextLabel.Size.Height;
+                itemHeight = (int)(pickerStyle.ItemTextLabel.Size?.Height ?? 0);
 
                 if (itemList != null)
                     foreach (TextLabel textLabel in itemList)
