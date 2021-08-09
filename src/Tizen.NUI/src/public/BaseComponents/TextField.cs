@@ -308,6 +308,45 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Set FontStyle to TextField. <br />
+        /// </summary>
+        /// <param name="fontStyle">The FontStyle</param>
+        /// <remarks>
+        /// SetFontStyle specifies the requested font style through <see cref="Tizen.NUI.Text.FontStyle"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetFontStyle method.
+        /// <code>
+        /// var fontStyle = new Tizen.NUI.Text.FontStyle();
+        /// fontStyle.Width = FontWidthType.Expanded;
+        /// fontStyle.Weight = FontWeightType.Bold;
+        /// fontStyle.Slant = FontSlantType.Italic;
+        /// field.SetFontStyle(fontStyle);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetFontStyle(FontStyle fontStyle)
+        {
+            SetProperty(TextField.Property.FontStyle, new PropertyValue(TextUtils.GetFontStyleMap(fontStyle)));
+            NotifyPropertyChanged();
+        }
+
+        /// <summary>
+        /// Get FontStyle from TextField. <br />
+        /// </summary>
+        /// <returns>The FontStyle</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.FontStyle"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public FontStyle GetFontStyle()
+        {
+            var map = new PropertyMap();
+            GetProperty(TextField.Property.FontStyle).Get(map);
+            return TextUtils.GetFontStyleStruct(map);
+        }
+
+        /// <summary>
         /// The PointSize property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -944,6 +983,45 @@ namespace Tizen.NUI.BaseComponents
                 SetValue(InputFontStyleProperty, value);
                 NotifyPropertyChanged();
             }
+        }
+
+        /// <summary>
+        /// Set InputFontStyle to TextField. <br />
+        /// </summary>
+        /// <param name="fontStyle">The FontStyle</param>
+        /// <remarks>
+        /// SetInputFontStyle specifies the requested font style for new input text through <see cref="Tizen.NUI.Text.FontStyle"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetInputFontStyle method.
+        /// <code>
+        /// var fontStyle = new Tizen.NUI.Text.FontStyle();
+        /// fontStyle.Width = FontWidthType.Expanded;
+        /// fontStyle.Weight = FontWeightType.Bold;
+        /// fontStyle.Slant = FontSlantType.Italic;
+        /// field.SetInputFontStyle(fontStyle);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetInputFontStyle(FontStyle fontStyle)
+        {
+            SetProperty(TextField.Property.InputFontStyle, new PropertyValue(TextUtils.GetFontStyleMap(fontStyle)));
+            NotifyPropertyChanged();
+        }
+
+        /// <summary>
+        /// Get InputFontStyle from TextField. <br />
+        /// </summary>
+        /// <returns>The FontStyle</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.FontStyle"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public FontStyle GetInputFontStyle()
+        {
+            var map = new PropertyMap();
+            GetProperty(TextField.Property.InputFontStyle).Get(map);
+            return TextUtils.GetFontStyleStruct(map);
         }
 
         /// <summary>
