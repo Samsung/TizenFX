@@ -702,6 +702,44 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Set Underline to TextLabel. <br />
+        /// </summary>
+        /// <param name="underline">The Underline</param>
+        /// <remarks>
+        /// SetUnderline specifies the underline of the text through <see cref="Tizen.NUI.Text.Underline"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetUnderline method.
+        /// <code>
+        /// var underline = new Tizen.NUI.Text.Underline();
+        /// underline.Enable = true;
+        /// underline.Color = new Color("#3498DB");
+        /// underline.Height = 2.0f;
+        /// label.SetUnderline(underline);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetUnderline(Underline underline)
+        {
+            SetProperty(TextLabel.Property.UNDERLINE, new PropertyValue(TextUtils.GetUnderlineMap(underline)));
+        }
+
+        /// <summary>
+        /// Get Underline from TextLabel. <br />
+        /// </summary>
+        /// <returns>The Underline</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.Underline"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Underline GetUnderline()
+        {
+            var map = new PropertyMap();
+            GetProperty(TextLabel.Property.UNDERLINE).Get(map);
+            return TextUtils.GetUnderlineStruct(map);
+        }
+
+        /// <summary>
         /// The Shadow property.<br />
         /// The default shadow parameters.<br />
         /// The shadow map contains the following keys :<br />
