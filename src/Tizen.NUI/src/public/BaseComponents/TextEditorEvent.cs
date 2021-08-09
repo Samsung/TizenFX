@@ -33,6 +33,9 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler<ScrollStateChangedEventArgs> textEditorScrollStateChangedEventHandler;
         private ScrollStateChangedCallbackDelegate textEditorScrollStateChangedCallbackDelegate;
 
+        private EventHandler<CursorMovedEventArgs> textEditorCursorMovedEventHandler;
+        private CursorMovedCallbackDelegate textEditorCursorMovedCallbackDelegate;
+
         private EventHandler<MaxLengthReachedEventArgs> textEditorMaxLengthReachedEventHandler;
         private MaxLengthReachedCallbackDelegate textEditorMaxLengthReachedCallbackDelegate;
 
@@ -47,6 +50,9 @@ namespace Tizen.NUI.BaseComponents
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void ScrollStateChangedCallbackDelegate(IntPtr textEditor, ScrollState state);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void CursorMovedCallbackDelegate(IntPtr textEditor, uint oldPosition, uint newPosition);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void MaxLengthReachedCallbackDelegate(IntPtr textEditor);
@@ -106,6 +112,32 @@ namespace Tizen.NUI.BaseComponents
                 {
                     ScrollStateChangedSignal(this).Disconnect(textEditorScrollStateChangedCallbackDelegate);
                 }
+            }
+        }
+
+        /// <summary>
+        /// The CursorMoved event.
+        /// </summary>
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<CursorMovedEventArgs> CursorMoved
+        {
+            add
+            {
+                if (textEditorCursorMovedEventHandler == null)
+                {
+                    textEditorCursorMovedCallbackDelegate = (OnCursorMoved);
+                    CursorMovedSignal().Connect(textEditorCursorMovedCallbackDelegate);
+                }
+                textEditorCursorMovedEventHandler += value;
+            }
+            remove
+            {
+                if (textEditorCursorMovedEventHandler == null && CursorMovedSignal().Empty() == false)
+                {
+                    this.CursorMovedSignal().Disconnect(textEditorCursorMovedCallbackDelegate);
+                }
+                textEditorCursorMovedEventHandler -= value;
             }
         }
 
@@ -218,6 +250,13 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
+        internal TextEditorSignal CursorMovedSignal()
+        {
+            TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.CursorMovedSignal(SwigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         internal TextEditorSignal MaxLengthReachedSignal()
         {
             TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.MaxLengthReachedSignal(SwigCPtr), false);
@@ -266,6 +305,22 @@ namespace Tizen.NUI.BaseComponents
                 }
                 //here we send all data to user event handlers
                 textEditorScrollStateChangedEventHandler(this, e);
+            }
+        }
+
+        private void OnCursorMoved(IntPtr textEditor, uint oldPosition, uint newPosition)
+        {
+            if (textEditorCursorMovedEventHandler != null)
+            {
+                CursorMovedEventArgs e = new CursorMovedEventArgs();
+
+                // Populate all members of "e" (CursorMovedEventArgs) with real data
+                e.TextEditor = Registry.GetManagedBaseHandleFromNativePtr(textEditor) as TextEditor;
+                e.OldCursorPosition = oldPosition;
+                e.NewCursorPosition = newPosition;
+
+                //here we send all data to user event handlers
+                textEditorCursorMovedEventHandler(this, e);
             }
         }
 
@@ -369,6 +424,27 @@ namespace Tizen.NUI.BaseComponents
                     scrollState = value;
                 }
             }
+        }
+
+        /// <summary>
+        /// The CursorMoved event arguments.
+        /// </summary>
+        public class CursorMovedEventArgs : EventArgs
+        {
+            /// <summary>
+            /// TextEditor.
+            /// </summary>
+            public TextEditor TextEditor { get; set;}
+
+            /// <summary>
+            /// cursor postion before the move.
+            /// </summary>
+            public uint OldCursorPosition { get; set;}
+
+            /// <summary>
+            /// cursor postion after the move.
+            /// </summary>
+            public uint NewCursorPosition { get; set;}
         }
 
         /// <summary>

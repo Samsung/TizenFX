@@ -29,6 +29,8 @@ namespace Tizen.NUI.BaseComponents
     {
         private EventHandler<TextChangedEventArgs> textFieldTextChangedEventHandler;
         private TextChangedCallbackDelegate textFieldTextChangedCallbackDelegate;
+        private EventHandler<CursorMovedEventArgs> textFieldCursorMovedEventHandler;
+        private CursorMovedCallbackDelegate textFieldCursorMovedCallbackDelegate;
         private EventHandler<MaxLengthReachedEventArgs> textFieldMaxLengthReachedEventHandler;
         private MaxLengthReachedCallbackDelegate textFieldMaxLengthReachedCallbackDelegate;
         private EventHandler<AnchorClickedEventArgs> textFieldAnchorClickedEventHandler;
@@ -38,6 +40,9 @@ namespace Tizen.NUI.BaseComponents
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void TextChangedCallbackDelegate(IntPtr textField);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void CursorMovedCallbackDelegate(IntPtr textField, uint oldPosition, uint newPosition);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void MaxLengthReachedCallbackDelegate(IntPtr textField);
@@ -70,6 +75,32 @@ namespace Tizen.NUI.BaseComponents
                 {
                     TextChangedSignal().Disconnect(textFieldTextChangedCallbackDelegate);
                 }
+            }
+        }
+
+        /// <summary>
+        /// The CursorMoved event.
+        /// </summary>
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<CursorMovedEventArgs> CursorMoved
+        {
+            add
+            {
+                if (textFieldCursorMovedEventHandler == null)
+                {
+                    textFieldCursorMovedCallbackDelegate = (OnCursorMoved);
+                    CursorMovedSignal().Connect(textFieldCursorMovedCallbackDelegate);
+                }
+                textFieldCursorMovedEventHandler += value;
+            }
+            remove
+            {
+                if (textFieldCursorMovedEventHandler == null && CursorMovedSignal().Empty() == false)
+                {
+                    this.CursorMovedSignal().Disconnect(textFieldCursorMovedCallbackDelegate);
+                }
+                textFieldCursorMovedEventHandler -= value;
             }
         }
 
@@ -174,6 +205,13 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
+        internal TextFieldSignal CursorMovedSignal()
+        {
+            TextFieldSignal ret = new TextFieldSignal(Interop.TextField.CursorMovedSignal(SwigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         internal TextFieldSignal MaxLengthReachedSignal()
         {
             TextFieldSignal ret = new TextFieldSignal(Interop.TextField.MaxLengthReachedSignal(SwigCPtr), false);
@@ -205,6 +243,22 @@ namespace Tizen.NUI.BaseComponents
                 e.TextField = Registry.GetManagedBaseHandleFromNativePtr(textField) as TextField;
                 //here we send all data to user event handlers
                 textFieldTextChangedEventHandler(this, e);
+            }
+        }
+
+        private void OnCursorMoved(IntPtr textField, uint oldPosition, uint newPosition)
+        {
+            if (textFieldCursorMovedEventHandler != null)
+            {
+                CursorMovedEventArgs e = new CursorMovedEventArgs();
+
+                // Populate all members of "e" (CursorMovedEventArgs) with real data
+                e.TextField = Registry.GetManagedBaseHandleFromNativePtr(textField) as TextField;
+                e.OldCursorPosition = oldPosition;
+                e.NewCursorPosition = newPosition;
+
+                //here we send all data to user event handlers
+                textFieldCursorMovedEventHandler(this, e);
             }
         }
 
@@ -266,6 +320,27 @@ namespace Tizen.NUI.BaseComponents
                     textField = value;
                 }
             }
+        }
+
+        /// <summary>
+        /// The CursorMoved event arguments.
+        /// </summary>
+        public class CursorMovedEventArgs : EventArgs
+        {
+            /// <summary>
+            /// TextField.
+            /// </summary>
+            public TextField TextField { get; set;}
+
+            /// <summary>
+            /// cursor postion before the move.
+            /// </summary>
+            public uint OldCursorPosition { get; set;}
+
+            /// <summary>
+            /// cursor postion after the move.
+            /// </summary>
+            public uint NewCursorPosition { get; set;}
         }
 
         /// <summary>
