@@ -367,25 +367,25 @@ namespace Tizen.NUI.BaseComponents
             public TextField TextField { get; set; }
 
             /// <summary>
-            /// Anchor href(hypertext reference).
+            /// selection start before the change.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public uint OldSelectionStart { get; set; }
 
             /// <summary>
-            /// Anchor href(hypertext reference).
+            /// selection end before the change.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public uint OldSelectionEnd { get; set; }
 
             /// <summary>
-            /// Anchor href(hypertext reference).
+            /// selection start after the change.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public uint NewSelectionStart { get; set; }
 
             /// <summary>
-            /// Anchor href(hypertext reference).
+            /// selection end after the change.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public uint NewSelectionEnd { get; set; }
