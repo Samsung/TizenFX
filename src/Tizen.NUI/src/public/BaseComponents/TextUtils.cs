@@ -19,6 +19,7 @@ extern alias TizenSystemSettings;
 using TizenSystemSettings.Tizen.System;
 using System;
 using System.ComponentModel;
+using Tizen.NUI.Text;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -1151,6 +1152,321 @@ namespace Tizen.NUI.BaseComponents
             }
 
             return ret;
+        }
+
+        /// <summary>
+        /// It returns a string value according to FontWidthType.
+        /// The returned value can be used for FontStyle PropertyMap.
+        /// <param name="fontWidthType">The FontWidthType enum value.</param>
+        /// <returns> A string value for FontStyle.Width property. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static string GetFontWidthString(FontWidthType fontWidthType)
+        {
+            string value = "none";
+
+            switch (fontWidthType)
+            {
+                default:
+                case FontWidthType.None:
+                    value = "none";
+                    break;
+                case FontWidthType.UltraCondensed:
+                    value = "ultraCondensed";
+                    break;
+                case FontWidthType.ExtraCondensed:
+                    value = "extraCondensed";
+                    break;
+                case FontWidthType.Condensed:
+                    value = "condensed";
+                    break;
+                case FontWidthType.SemiCondensed:
+                    value = "semiCondensed";
+                    break;
+                case FontWidthType.Normal:
+                    value = "normal";
+                    break;
+                case FontWidthType.SemiExpanded:
+                    value = "semiExpanded";
+                    break;
+                case FontWidthType.Expanded:
+                    value = "expanded";
+                    break;
+                case FontWidthType.ExtraExpanded:
+                    value = "extraExpanded";
+                    break;
+                case FontWidthType.UltraExpanded:
+                    value = "ultraExpanded";
+                    break;
+            }
+
+            return value;
+        }
+
+        /// <summary>
+        /// It returns a string value according to FontWeightType.
+        /// The returned value can be used for FontStyle PropertyMap.
+        /// <param name="fontWeightType">The FontWeightType enum value.</param>
+        /// <returns> A string value for FontStyle.Weight property. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static string GetFontWeightString(FontWeightType fontWeightType)
+        {
+            string value = "none";
+
+            switch (fontWeightType)
+            {
+                default:
+                case FontWeightType.None:
+                    value = "none";
+                    break;
+                case FontWeightType.Thin:
+                    value = "thin";
+                    break;
+                case FontWeightType.UltraLight:
+                    value = "ultraLight";
+                    break;
+                case FontWeightType.Light:
+                    value = "light";
+                    break;
+                case FontWeightType.DemiLight:
+                    value = "demiLight";
+                    break;
+                case FontWeightType.Book:
+                    value = "book";
+                    break;
+                case FontWeightType.Normal:
+                    value = "normal";
+                    break;
+                case FontWeightType.Medium:
+                    value = "medium";
+                    break;
+                case FontWeightType.DemiBold:
+                    value = "demiBold";
+                    break;
+                case FontWeightType.Bold:
+                    value = "bold";
+                    break;
+                case FontWeightType.UltraBold:
+                    value = "ultraBold";
+                    break;
+                case FontWeightType.Black:
+                    value = "black";
+                    break;
+            }
+
+            return value;
+        }
+
+        /// <summary>
+        /// It returns a string value according to FontSlantType.
+        /// The returned value can be used for FontStyle PropertyMap.
+        /// <param name="fontSlantType">The FontSlantType enum value.</param>
+        /// <returns> A string value for FontStyle.Slant property. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static string GetFontSlantString(FontSlantType fontSlantType)
+        {
+            string value = "none";
+
+            switch (fontSlantType)
+            {
+                default:
+                case FontSlantType.None:
+                    value = "none";
+                    break;
+                case FontSlantType.Normal:
+                    value = "normal";
+                    break;
+                case FontSlantType.Italic:
+                    value = "italic";
+                    break;
+                case FontSlantType.Oblique:
+                    value = "oblique";
+                    break;
+            }
+
+            return value;
+        }
+
+        /// <summary>
+        /// It returns a FontWidthType value according to fontWidthString.
+        /// The returned value can be used for FontStyle PropertyMap.
+        /// <param name="fontWidthString">The FontWidth string value.</param>
+        /// <returns> A FontWidthType value for FontStyle.Width property. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static FontWidthType GetFontWidthType(string fontWidthString)
+        {
+            FontWidthType value = FontWidthType.None;
+
+            switch (fontWidthString)
+            {
+                default:
+                case "none":
+                    value = FontWidthType.None;
+                    break;
+                case "ultraCondensed":
+                    value = FontWidthType.UltraCondensed;
+                    break;
+                case "extraCondensed":
+                    value = FontWidthType.ExtraCondensed;
+                    break;
+                case "condensed":
+                    value = FontWidthType.Condensed;
+                    break;
+                case "semiCondensed":
+                    value = FontWidthType.SemiCondensed;
+                    break;
+                case "normal":
+                    value = FontWidthType.Normal;
+                    break;
+                case "semiExpanded":
+                    value = FontWidthType.SemiExpanded;
+                    break;
+                case "expanded":
+                    value = FontWidthType.Expanded;
+                    break;
+                case "extraExpanded":
+                    value = FontWidthType.ExtraExpanded;
+                    break;
+                case "ultraExpanded":
+                    value = FontWidthType.UltraExpanded;
+                    break;
+            }
+
+            return value;
+        }
+
+        /// <summary>
+        /// It returns a FontWeightType value according to fontWeightString.
+        /// The returned value can be used for FontStyle PropertyMap.
+        /// <param name="fontWeightString">The FontWeight string value.</param>
+        /// <returns> A FontWeightType value for FontStyle.Weight property. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static FontWeightType GetFontWeightType(string fontWeightString)
+        {
+            FontWeightType value = FontWeightType.None;
+
+            switch (fontWeightString)
+            {
+                default:
+                case "none":
+                    value = FontWeightType.None;
+                    break;
+                case "thin":
+                    value = FontWeightType.Thin;
+                    break;
+                case "ultraLight":
+                    value = FontWeightType.UltraLight;
+                    break;
+                case "light":
+                    value = FontWeightType.Light;
+                    break;
+                case "demiLight":
+                    value = FontWeightType.DemiLight;
+                    break;
+                case "book":
+                    value = FontWeightType.Book;
+                    break;
+                case "normal":
+                    value = FontWeightType.Normal;
+                    break;
+                case "medium":
+                    value = FontWeightType.Medium;
+                    break;
+                case "demiBold":
+                    value = FontWeightType.DemiBold;
+                    break;
+                case "bold":
+                    value = FontWeightType.Bold;
+                    break;
+                case "ultraBold":
+                    value = FontWeightType.UltraBold;
+                    break;
+                case "black":
+                    value = FontWeightType.Black;
+                    break;
+            }
+
+            return value;
+        }
+
+        /// <summary>
+        /// It returns a FontSlantType value according to fontSlantString.
+        /// The returned value can be used for FontStyle PropertyMap.
+        /// <param name="fontSlantString">The FontSlant string value.</param>
+        /// <returns> A FontSlantType value for FontStyle.Slant property. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static FontSlantType GetFontSlantType(string fontSlantString)
+        {
+            FontSlantType value = FontSlantType.None;
+
+            switch (fontSlantString)
+            {
+                default:
+                case "none":
+                    value = FontSlantType.None;
+                    break;
+                case "normal":
+                    value = FontSlantType.Normal;
+                    break;
+                case "italic":
+                    value = FontSlantType.Italic;
+                    break;
+                case "oblique":
+                    value = FontSlantType.Oblique;
+                    break;
+            }
+
+            return value;
+        }
+
+        /// <summary>
+        /// This method converts a FontStyle struct to a PropertyMap and returns it.
+        /// The returned map can be used for set FontStyle PropertyMap in the SetFontStyle method.
+        /// <param name="fontStyle">The FontStyle struct value.</param>
+        /// <returns> A PropertyMap for FontStyle property. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static PropertyMap GetFontStyleMap(FontStyle fontStyle)
+        {
+            var map = new PropertyMap();
+            var width = new PropertyValue(GetFontWidthString(fontStyle.Width));
+            var weight = new PropertyValue(GetFontWeightString(fontStyle.Weight));
+            var slant = new PropertyValue(GetFontSlantString(fontStyle.Slant));
+
+            map.Add("width", width);
+            map.Add("weight", weight);
+            map.Add("slant", slant);
+
+            return map;
+        }
+
+        /// <summary>
+        /// This method converts a FontStyle map to a struct and returns it.
+        /// The returned struct can be returned to the user as a FontStyle in the GetFontStyle method.
+        /// <param name="map">The FontStyle PropertyMap.</param>
+        /// <returns> A FontStyle struct. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static FontStyle GetFontStyleStruct(PropertyMap map)
+        {
+            string width = "none";
+            string weight = "none";
+            string slant = "none";
+            map.Find(0, "width")?.Get(out width);
+            map.Find(0, "weight")?.Get(out weight);
+            map.Find(0, "slant")?.Get(out slant);
+
+            var fontStyle = new FontStyle();
+            fontStyle.Width = GetFontWidthType(width);
+            fontStyle.Weight = GetFontWeightType(weight);
+            fontStyle.Slant = GetFontSlantType(slant);
+
+            return fontStyle;
         }
     }
 }

@@ -21,6 +21,7 @@ using TizenSystemSettings.Tizen.System;
 using System;
 using System.Globalization;
 using System.ComponentModel;
+using Tizen.NUI.Text;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -278,6 +279,44 @@ namespace Tizen.NUI.BaseComponents
                 SetValue(FontStyleProperty, value);
                 NotifyPropertyChanged();
             }
+        }
+
+        /// <summary>
+        /// Set FontStyle to TextLabel. <br />
+        /// </summary>
+        /// <param name="fontStyle">The FontStyle</param>
+        /// <remarks>
+        /// SetFontStyle specifies the requested font style through <see cref="Tizen.NUI.Text.FontStyle"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetFontStyle method.
+        /// <code>
+        /// var fontStyle = new Tizen.NUI.Text.FontStyle();
+        /// fontStyle.Width = FontWidthType.Expanded;
+        /// fontStyle.Weight = FontWeightType.Bold;
+        /// fontStyle.Slant = FontSlantType.Italic;
+        /// label.SetFontStyle(fontStyle);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetFontStyle(FontStyle fontStyle)
+        {
+            SetProperty(TextLabel.Property.FontStyle, new PropertyValue(TextUtils.GetFontStyleMap(fontStyle)));
+        }
+
+        /// <summary>
+        /// Get FontStyle from TextLabel. <br />
+        /// </summary>
+        /// <returns>The FontStyle</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.FontStyle"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public FontStyle GetFontStyle()
+        {
+            var map = new PropertyMap();
+            GetProperty(TextLabel.Property.FontStyle).Get(map);
+            return TextUtils.GetFontStyleStruct(map);
         }
 
         /// <summary>
