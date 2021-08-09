@@ -19,6 +19,7 @@ extern alias TizenSystemSettings;
 using TizenSystemSettings.Tizen.System;
 using System;
 using System.ComponentModel;
+using System.Text.RegularExpressions;
 using Tizen.NUI.Text;
 
 namespace Tizen.NUI.BaseComponents
@@ -1467,6 +1468,46 @@ namespace Tizen.NUI.BaseComponents
             fontStyle.Slant = GetFontSlantType(slant);
 
             return fontStyle;
+        }
+
+        /// <summary>
+        /// This method converts a InputFilter struct to a PropertyMap and returns it.
+        /// The returned map can be used for set InputFilter PropertyMap in the SetInputFilter method.
+        /// <param name="inputFilter">The InputFilter struct value.</param>
+        /// <returns> A PropertyMap for InputFilter property. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static PropertyMap GetInputFilterMap(InputFilter inputFilter)
+        {
+            var map = new PropertyMap();
+            var accepted = inputFilter.Accepted != null ? new PropertyValue(inputFilter.Accepted.ToString()) : new PropertyValue("");
+            var rejected = inputFilter.Rejected != null ? new PropertyValue(inputFilter.Rejected.ToString()) : new PropertyValue("");
+            map.Add(0, accepted);
+            map.Add(1, rejected);
+
+            return map;
+        }
+
+        /// <summary>
+        /// This method converts a InputFilter map to a struct and returns it.
+        /// The returned struct can be returned to the user as a InputFilter in the GetInputFilter method.
+        /// <param name="map">The InputFilter PropertyMap.</param>
+        /// <returns> A InputFilter struct. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static InputFilter GetInputFilterStruct(PropertyMap map)
+        {
+            string accepted = "";
+            string rejected = "";
+            map.Find(0)?.Get(out accepted);
+            map.Find(1)?.Get(out rejected);
+
+            var inputFilter = new InputFilter();
+            inputFilter.Accepted = new Regex(accepted);
+            inputFilter.Rejected = new Regex(rejected);
+
+            return inputFilter;
+
         }
     }
 }

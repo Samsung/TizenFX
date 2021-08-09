@@ -17,7 +17,6 @@
 
 extern alias TizenSystemSettings;
 using TizenSystemSettings.Tizen.System;
-using System.Text.RegularExpressions;
 
 using System;
 using System.Globalization;
@@ -1323,12 +1322,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetInputFilter(InputFilter inputFilter)
         {
-            var map = new PropertyMap();
-            var accepted = inputFilter.Accepted != null ? new PropertyValue(inputFilter.Accepted.ToString()) : new PropertyValue("");
-            var rejected = inputFilter.Rejected != null ? new PropertyValue(inputFilter.Rejected.ToString()) : new PropertyValue("");
-            map.Add(0, accepted);
-            map.Add(1, rejected);
-            SetProperty(TextEditor.Property.InputFilter, new PropertyValue(map));
+            SetProperty(TextEditor.Property.InputFilter, new PropertyValue(TextUtils.GetInputFilterMap(inputFilter)));
         }
 
         /// <summary>
@@ -1343,16 +1337,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var map = new PropertyMap();
             GetProperty(TextEditor.Property.InputFilter).Get(map);
-            string accepted = "";
-            string rejected = "";
-            map.Find(0)?.Get(out accepted);
-            map.Find(1)?.Get(out rejected);
-
-            var inputFilter = new InputFilter();
-            inputFilter.Accepted = new Regex(accepted);
-            inputFilter.Rejected = new Regex(rejected);
-
-            return inputFilter;
+            return TextUtils.GetInputFilterStruct(map);
         }
 
         /// <summary>
