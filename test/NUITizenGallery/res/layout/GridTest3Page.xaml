@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<comp:ContentPage x:Class="NUITizenGallery.GridTest3Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:base="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+  xmlns:comp="clr-namespace:Tizen.NUI.Components;assembly=Tizen.NUI.Components"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+           WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+           HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+           BackgroundColor="White"
+           PositionUsesPivotPoint="True" 
+           ParentOrigin="Center"
+           PivotPoint="Center">
+
+    <comp:ContentPage.AppBar>
+        <comp:AppBar x:Name="appBar" Title="ScrollViewTest6"/>
+    </comp:ContentPage.AppBar>
+
+    <comp:ContentPage.Content>
+        <View x:Name="textView" WidthSpecification="{Static LayoutParamPolicies.MatchParent}" HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+            <base:View.Layout>
+                <LinearLayout LinearOrientation="Vertical" CellPadding="10,10" LinearAlignment="Top"/>
+            </base:View.Layout>
+
+            <base:View x:Name="operationView" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent" Weight="0.5">
+                <base:View.Layout>
+                    <LinearLayout LinearOrientation="Vertical" LinearAlignment="Bottom" CellPadding="10,10"/>
+                </base:View.Layout>
+                <TextField x:Name="textPlaceholder" Text="0.00" />
+            </base:View>
+
+            <base:View x:Name="btnView" Weight="0.5" >
+                <base:View.Layout >
+                    <GridLayout Columns="4" Rows="5" GridOrientation="Horizontal" ColumnSpacing="2" RowSpacing="2" />
+                </base:View.Layout>
+                <comp:Button GridLayout.Column="0" Text="C"  x:Name="btnClear"     HeightSpecification="100" WidthSpecification="180"/>
+                <comp:Button GridLayout.Column="1" Text="^"  x:Name="btnUp"        HeightSpecification="100" WidthSpecification="180"/>
+                <comp:Button GridLayout.Column="2" Text="%"  x:Name="btnProc"      HeightSpecification="100" WidthSpecification="180"/>
+                <comp:Button GridLayout.Column="3" Text="/"  x:Name="btnDiv"       HeightSpecification="100" WidthSpecification="180"/>
+                <comp:Button GridLayout.Column="0" Text="7"  x:Name="btn7"         HeightSpecification="100" WidthSpecification="180"/>
+                <comp:Button GridLayout.Column="1" Text="8"  x:Name="btn8"         HeightSpecification="100" WidthSpecification="180"/>
+                <comp:Button GridLayout.Column="2" Text="9"  x:Name="btn9"         HeightSpecification="100" WidthSpecification="180"/>
+                <comp:Button GridLayout.Column="3" Text="*"  x:Name="btnMultiply"  HeightSpecification="100" WidthSpecification="180"/>
+                <comp:Button GridLayout.Column="0" Text="4"  x:Name="btn4"         HeightSpecification="100" WidthSpecification="180"/>
+                <comp:Button GridLayout.Column="1" Text="5"  x:Name="btn5"         HeightSpecification="100" WidthSpecification="180"/>
+                <comp:Button GridLayout.Column="2" Text="6"  x:Name="btn6"         HeightSpecification="100" WidthSpecification="180"/>
+                <comp:Button GridLayout.Column="3" Text="-"  x:Name="btnMinus"     HeightSpecification="100" WidthSpecification="180"/>
+                <comp:Button GridLayout.Column="0" Text="1"  x:Name="btn1"         HeightSpecification="100" WidthSpecification="180"/>
+                <comp:Button GridLayout.Column="1" Text="2"  x:Name="btn2"         HeightSpecification="100" WidthSpecification="180"/>
+                <comp:Button GridLayout.Column="2" Text="3"  x:Name="btn3"         HeightSpecification="100" WidthSpecification="180"/>
+                <comp:Button GridLayout.Column="3" Text="+"  x:Name="btnPlus"      HeightSpecification="100" WidthSpecification="180"/>
+                <comp:Button GridLayout.Column="0" Text="0"  x:Name="btn0"         HeightSpecification="100" WidthSpecification="360" GridLayout.ColumnSpan="2"/>
+                <comp:Button GridLayout.Column="2" Text="."  x:Name="btnDot"       HeightSpecification="100" WidthSpecification="180"/>
+                <comp:Button GridLayout.Column="3" Text="="  x:Name="btnEqual"     HeightSpecification="100" WidthSpecification="180"/>
+            </base:View>
+        </View>
+    </comp:ContentPage.Content>
+</comp:ContentPage>

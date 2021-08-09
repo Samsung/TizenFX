@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="NUITizenGallery.ActivityIndicatorTestPage"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+    <!-- AppBar is top-side bar with navigation content, title, and action. If you not set any contents, back button is automatically added. -->
+    <ContentPage.AppBar>
+        <AppBar x:Name="appBar" Title="ActivityIndicatorTestPage"/>
+    </ContentPage.AppBar>
+
+    <!-- Content is main placdeholder of ContentPage. Add your content into this view. -->
+    <ContentPage.Content>
+        <Loading x:Name="Spinner" Size2D="100, 100" Position2D="10, 10"/>
+    </ContentPage.Content>
+
+</ContentPage>

@@ -24,7 +24,6 @@ namespace NUITizenGallery
     {
         Window window;
         Navigator navigator;
-        AlertDialogTestPage page;
         int pageCount = 0;
 
         public void Activate()
@@ -35,9 +34,7 @@ namespace NUITizenGallery
             navigator = window.GetDefaultNavigator();
 
             pageCount = navigator.PageCount;
-
-            page = new AlertDialogTestPage();
-            navigator.Push(page);
+            navigator.Push(new AlertDialogTestPage());
         }
 
         public void Deactivate()

@@ -1,39 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<base:View x:Class="NUITizenGallery.ImageTest5Page"
+<comp:ContentPage x:Class="NUITizenGallery.ImageTest5Page"
   xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
   xmlns:base="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
   xmlns:comp="clr-namespace:Tizen.NUI.Components;assembly=Tizen.NUI.Components"
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    PositionUsesPivotPoint="True" 
-	ParentOrigin="Center" 
-    PivotPoint="Center" 
-	WidthResizePolicy="FillToParent" 
-    HeightResizePolicy="FillToParent" 
-	BackgroundColor="#FFFFFF">
+           WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+           HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+           BackgroundColor="White"
+           PositionUsesPivotPoint="True"
+           ParentOrigin="Center"
+           PivotPoint="Center">
 
-    <View.Layout>
-        <LinearLayout LinearOrientation="Vertical" CellPadding="10,10" LinearAlignment="Top"/>
-    </View.Layout>
+	<comp:ContentPage.AppBar>
+		<comp:AppBar x:Name="appBar" Title="ImageTest5"/>
+	</comp:ContentPage.AppBar>
 
-    <View x:Name="imgView" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent" Weight="0.5">
-        <View.Layout>
-            <LinearLayout LinearOrientation="Vertical" LinearAlignment="CenterHorizontal" CellPadding="10,10"/>
-        </View.Layout>
-        <ImageView x:Name="imageView" ResourceUrl="*Resource*/images/a.jpg" />
-    </View>
-
-    <View x:Name="btnView" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent" Weight="0.5">
-        <View.Layout>
-            <LinearLayout LinearOrientation="Vertical" LinearAlignment="Center" CellPadding="10,10" />
-        </View.Layout>
-        <base:TextLabel x:Name="desc1"  Text="" PointSize="5" TextColor="Black"/>
-        <comp:Button x:Name="image1Btn" Text="size + 100" WidthResizePolicy="FillToParent" />
-        <comp:Button x:Name="image2Btn" Text="size - 100" WidthResizePolicy="FillToParent" />
-        <comp:Button x:Name="image3Btn" Text="height + 100" WidthResizePolicy="FillToParent" />
-        <comp:Button x:Name="image4Btn" Text="height - 100" WidthResizePolicy="FillToParent" />
-        <comp:Button x:Name="image5Btn" Text="change mode" WidthResizePolicy="FillToParent"/>
-    </View>
-    
-    
-</base:View>
+	<comp:ContentPage.Content>
+		<base:View x:Name="rootView" WidthSpecification="{Static LayoutParamPolicies.MatchParent}" HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+			<View.Layout>
+				<LinearLayout LinearOrientation="Vertical" CellPadding="10,10" LinearAlignment="CenterHorizontal"/>
+			</View.Layout>
+			<ImageView x:Name="imageView" ResourceUrl="*Resource*/images/a.jpg" />
+			<base:TextLabel x:Name="desc1"  Text="" PointSize="7" TextColor="Black" WidthSpecification="{Static LayoutParamPolicies.MatchParent}" HeightSpecification="{Static LayoutParamPolicies.MatchParent}"/>
+			<comp:Button x:Name="image1Btn" Text="size + 100" WidthSpecification="{Static LayoutParamPolicies.MatchParent}" HeightSpecification="{Static LayoutParamPolicies.MatchParent}" />
+			<comp:Button x:Name="image2Btn" Text="size - 100" WidthSpecification="{Static LayoutParamPolicies.MatchParent}" HeightSpecification="{Static LayoutParamPolicies.MatchParent}" />
+			<comp:Button x:Name="image3Btn" Text="height + 100" WidthSpecification="{Static LayoutParamPolicies.MatchParent}" HeightSpecification="{Static LayoutParamPolicies.MatchParent}" />
+			<comp:Button x:Name="image4Btn" Text="height - 100" WidthSpecification="{Static LayoutParamPolicies.MatchParent}" HeightSpecification="{Static LayoutParamPolicies.MatchParent}" />
+			<comp:Button x:Name="image5Btn" Text="change mode" WidthSpecification="{Static LayoutParamPolicies.MatchParent}" HeightSpecification="{Static LayoutParamPolicies.MatchParent}"/>
+		</base:View>
+	</comp:ContentPage.Content>
+</comp:ContentPage>
 
