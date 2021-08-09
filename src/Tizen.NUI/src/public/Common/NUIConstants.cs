@@ -2064,5 +2064,34 @@ namespace Tizen.NUI
             [EditorBrowsable(EditorBrowsableState.Never)]
             public FontSlantType Slant { get; set; }
         }
+
+        /// <summary>
+        /// A struct to pass data of Underline PropertyMap. <br />
+        /// </summary>
+        /// <remarks>
+        /// The Underline struct is used as an argument to SetUnderline and GetUnderline methods. <br />
+        /// See <see cref="Tizen.NUI.BaseComponents.TextLabel.SetUnderline"/>, <see cref="Tizen.NUI.BaseComponents.TextLabel.GetUnderline"/>, <see cref="Tizen.NUI.BaseComponents.TextField.SetUnderline"/>, <see cref="Tizen.NUI.BaseComponents.TextField.GetUnderline"/>, <see cref="Tizen.NUI.BaseComponents.TextEditor.SetUnderline"/> and <see cref="Tizen.NUI.BaseComponents.TextEditor.GetUnderline"/>. <br />
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public struct Underline
+        {
+            /// <summary>
+            /// Whether the underline is enabled (the default value is false).
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public bool Enable { get; set; }
+
+            /// <summary>
+            /// The color of the underline (if not provided then the color of the text is used).
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public Color Color { get; set; }
+
+            /// <summary>
+            /// The height in pixels of the underline (the default value is 1.0f, value can not be set to 0.0f, if set to 0.0f then the height is set to 1.0f).
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public float Height { get; set; }
+        }
     }
 }

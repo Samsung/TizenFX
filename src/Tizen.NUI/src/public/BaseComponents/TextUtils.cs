@@ -1509,5 +1509,48 @@ namespace Tizen.NUI.BaseComponents
             return inputFilter;
 
         }
+
+        /// <summary>
+        /// This method converts a Underline struct to a PropertyMap and returns it.
+        /// The returned map can be used for set Underline PropertyMap in the SetUnderline method.
+        /// <param name="underline">The Underline struct value.</param>
+        /// <returns> A PropertyMap for Underline property. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static PropertyMap GetUnderlineMap(Underline underline)
+        {
+            var map = new PropertyMap();
+
+            if (underline.Color != null)
+                map.Add("color", new PropertyValue(underline.Color));
+
+            map.Add("enable", new PropertyValue(underline.Enable));
+            map.Add("height", new PropertyValue(underline.Height));
+
+            return map;
+        }
+
+        /// <summary>
+        /// This method converts a Underline map to a struct and returns it.
+        /// The returned struct can be returned to the user as a Underline in the GetUnderline method.
+        /// <param name="map">The Underline PropertyMap.</param>
+        /// <returns> A Underline struct. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Underline GetUnderlineStruct(PropertyMap map)
+        {
+            Color color = new Color();
+            map.Find(0, "enable").Get(out bool enable);
+            map.Find(0, "color").Get(color);
+            map.Find(0, "height").Get(out float height);
+
+            var underline = new Underline();
+            underline.Enable = enable;
+            underline.Color = color;
+            underline.Height = height;
+
+            return underline;
+        }
+
     }
 }
