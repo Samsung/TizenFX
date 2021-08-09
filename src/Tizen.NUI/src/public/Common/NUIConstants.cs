@@ -2035,5 +2035,34 @@ namespace Tizen.NUI
             [EditorBrowsable(EditorBrowsableState.Never)]
             public Regex Rejected { get; set; }
         }
+
+        /// <summary>
+        /// A struct to pass data of FontStyle PropertyMap. <br />
+        /// </summary>
+        /// <remarks>
+        /// The FontStyle struct is used as an argument to SetFontStyle and GetFontStyle methods. <br />
+        /// See <see cref="Tizen.NUI.BaseComponents.TextLabel.SetFontStyle"/>, <see cref="Tizen.NUI.BaseComponents.TextLabel.GetFontStyle"/>, <see cref="Tizen.NUI.BaseComponents.TextField.SetFontStyle"/>, <see cref="Tizen.NUI.BaseComponents.TextField.GetFontStyle"/>, <see cref="Tizen.NUI.BaseComponents.TextEditor.SetFontStyle"/> and <see cref="Tizen.NUI.BaseComponents.TextEditor.GetFontStyle"/>. <br />
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public struct FontStyle
+        {
+            /// <summary>
+            /// The Width defines occupied by each glyph.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public FontWidthType Width { get; set; }
+
+            /// <summary>
+            /// The Weight defines the thickness or darkness of the glyphs.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public FontWeightType Weight { get; set; }
+
+            /// <summary>
+            /// The Slant defines whether to use italics.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public FontSlantType Slant { get; set; }
+        }
     }
 }
