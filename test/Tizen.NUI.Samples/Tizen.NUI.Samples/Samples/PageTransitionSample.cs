@@ -84,16 +84,19 @@ namespace Tizen.NUI.Samples
 
             mainPage = new ContentPage()
             {
+                BackgroundColor = Color.Transparent,
                 Content = mainRoot,
-                AppearingTransition = new FadeTransition()
+                DisappearingTransition = new SlideTransition()
                 {
                     TimePeriod = new TimePeriod(500),
                     AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default),
+                    Direction = SlideTransitionDirection.Top
                 },
-                DisappearingTransition = new FadeTransition()
+                AppearingTransition = new SlideTransition()
                 {
                     TimePeriod = new TimePeriod(500),
                     AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default),
+                    Direction = SlideTransitionDirection.Right
                 },
             };
             navigator.Push(mainPage);
@@ -189,6 +192,7 @@ namespace Tizen.NUI.Samples
 
             totalPage = new ContentPage()
             {
+                BackgroundColor = Color.Transparent,
                 Content = totalPageRoot,
                 AppearingTransition = new FadeTransition()
                 {
@@ -326,6 +330,7 @@ namespace Tizen.NUI.Samples
 
             Page page = new ContentPage()
             {
+                BackgroundColor = Color.Transparent,
                 Content = pageRoot,
                 AppearingTransition = new FadeTransition()
                 {
