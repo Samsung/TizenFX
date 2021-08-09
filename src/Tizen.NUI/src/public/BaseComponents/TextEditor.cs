@@ -826,6 +826,44 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Set Underline to TextEditor. <br />
+        /// </summary>
+        /// <param name="underline">The Underline</param>
+        /// <remarks>
+        /// SetUnderline specifies the underline of the text through <see cref="Tizen.NUI.Text.Underline"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetUnderline method.
+        /// <code>
+        /// var underline = new Tizen.NUI.Text.Underline();
+        /// underline.Enable = true;
+        /// underline.Color = new Color("#3498DB");
+        /// underline.Height = 2.0f;
+        /// editor.SetUnderline(underline);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetUnderline(Underline underline)
+        {
+            SetProperty(TextEditor.Property.UNDERLINE, new PropertyValue(TextUtils.GetUnderlineMap(underline)));
+        }
+
+        /// <summary>
+        /// Get Underline from TextEditor. <br />
+        /// </summary>
+        /// <returns>The Underline</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.Underline"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Underline GetUnderline()
+        {
+            var map = new PropertyMap();
+            GetProperty(TextEditor.Property.UNDERLINE).Get(map);
+            return TextUtils.GetUnderlineStruct(map);
+        }
+
+        /// <summary>
         /// The InputUnderline property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
