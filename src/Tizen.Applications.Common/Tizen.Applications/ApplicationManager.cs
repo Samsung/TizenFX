@@ -676,7 +676,7 @@ namespace Tizen.Applications
         {
             Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.ErrorCode.None;
 
-            err = Interop.ApplicationManager.AppManagerAttachWindow(parentAppId, childAppId);
+            err = Interop.ApplicationManager.AppManagerAttachWindowBelow(parentAppId, childAppId);
             if (err != Interop.ApplicationManager.ErrorCode.None)
             {
                 switch (err)

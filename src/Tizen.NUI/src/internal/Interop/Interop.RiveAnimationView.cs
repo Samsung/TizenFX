@@ -53,6 +53,9 @@ namespace Tizen.NUI
             
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RiveAnimationView_StopAnimation")]
             public static extern void Stop(global::System.Runtime.InteropServices.HandleRef handle);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RiveAnimationView_SetAnimationElapsedTime")]
+            public static extern void SetAnimationElapsedTime(global::System.Runtime.InteropServices.HandleRef handle, string animationName, float elapsed);
         }
     }
 }

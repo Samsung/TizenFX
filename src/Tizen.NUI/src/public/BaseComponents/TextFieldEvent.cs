@@ -33,8 +33,12 @@ namespace Tizen.NUI.BaseComponents
         private MaxLengthReachedCallbackDelegate textFieldMaxLengthReachedCallbackDelegate;
         private EventHandler<AnchorClickedEventArgs> textFieldAnchorClickedEventHandler;
         private AnchorClickedCallbackDelegate textFieldAnchorClickedCallbackDelegate;
+
         private EventHandler<SelectionChangedEventArgs> textFieldSelectionChangedEventHandler;
         private SelectionChangedCallbackDelegate textFieldSelectionChangedCallbackDelegate;
+
+        private EventHandler<InputFilteredEventArgs> textFieldInputFilteredEventHandler;
+        private InputFilteredCallbackDelegate textFieldInputFilteredCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void TextChangedCallbackDelegate(IntPtr textField);
@@ -47,6 +51,9 @@ namespace Tizen.NUI.BaseComponents
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void SelectionChangedCallbackDelegate(IntPtr textField, uint oldStart, uint oldEnd, uint newStart, uint newEnd);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void InputFilteredCallbackDelegate(IntPtr textField, InputFilterType type);
 
         /// <summary>
         /// The TextChanged event.
@@ -149,6 +156,50 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// The InputFiltered signal is emitted when the input is filtered by InputFilter. <br />
+        /// </summary>
+        /// <remarks>
+        /// See <see cref="InputFilterType"/> and <see cref="InputFilteredEventArgs"/> for a detailed description. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the InputFiltered event.
+        /// <code>
+        /// field.InputFiltered += (s, e) =>
+        /// {
+        ///     if (e.Type == InputFilterType.Accept)
+        ///     {
+        ///         // If input is filtered by InputFilter of Accept type.
+        ///     }
+        ///     else if (e.Type == InputFilterType.Reject)
+        ///     {
+        ///         // If input is filtered by InputFilter of Reject type.
+        ///     }
+        /// };
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<InputFilteredEventArgs> InputFiltered
+        {
+            add
+            {
+                if (textFieldInputFilteredEventHandler == null)
+                {
+                    textFieldInputFilteredCallbackDelegate = (OnInputFiltered);
+                    InputFilteredSignal().Connect(textFieldInputFilteredCallbackDelegate);
+                }
+                textFieldInputFilteredEventHandler += value;
+            }
+            remove
+            {
+                textFieldInputFilteredEventHandler -= value;
+                if (textFieldInputFilteredEventHandler == null && InputFilteredSignal().Empty() == false)
+                {
+                    InputFilteredSignal().Disconnect(textFieldInputFilteredCallbackDelegate);
+                }
+            }
+        }
+
         internal TextFieldSignal TextChangedSignal()
         {
             TextFieldSignal ret = new TextFieldSignal(Interop.TextField.TextChangedSignal(SwigCPtr), false);
@@ -173,6 +224,13 @@ namespace Tizen.NUI.BaseComponents
         internal TextFieldSignal SelectionChangedSignal()
         {
             TextFieldSignal ret = new TextFieldSignal(Interop.TextField.SelectionChangedSignal(SwigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal TextFieldSignal InputFilteredSignal()
+        {
+            TextFieldSignal ret = new TextFieldSignal(Interop.TextField.InputFilteredSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -232,6 +290,16 @@ namespace Tizen.NUI.BaseComponents
                 //here we send all data to user event handlers
                 textFieldSelectionChangedEventHandler(this, e);
             }
+        }
+
+        private void OnInputFiltered(IntPtr textField, InputFilterType type)
+        {
+            InputFilteredEventArgs e = new InputFilteredEventArgs();
+
+            // Populate all members of "e" (InputFilteredEventArgs) with real data
+            e.Type = type;
+            //here we send all data to user event handlers
+            textFieldInputFilteredEventHandler?.Invoke(this, e);
         }
 
         /// <summary>

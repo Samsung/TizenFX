@@ -20,33 +20,15 @@ using Tizen.NUI.Components;
 
 namespace NUITizenGallery
 {
-    public partial class CustomCellTestPage : View
+    public partial class CustomCellTestPage : ContentPage
     {
         private readonly int ScrollTime = 500;
         private readonly int TestItems = 20;
+
         public CustomCellTestPage()
         {
             InitializeComponent();
-
-            //Application Linear Layout
-            LinearLayout layout = new LinearLayout();
-            layout.LinearOrientation = LinearLayout.Orientation.Vertical;
-            layout.LinearAlignment = LinearLayout.Alignment.Center;
-            layout.Padding = new Extents(5, 5, 5, 5);
-            layout.CellPadding = new Size2D(5, 5);
-            this.Layout = layout;
-
-            ListView.BackgroundColor = Color.White;
-            ListView.Size2D = new Size2D(720, 1280);
-
-            //Set linear layout for scrollable widget
-            LinearLayout scrollLayout = new LinearLayout();
-            scrollLayout.LinearOrientation = LinearLayout.Orientation.Vertical;
-            scrollLayout.LinearAlignment = LinearLayout.Alignment.Center;
-            scrollLayout.CellPadding = new Size2D(5, 5);
-            ListView.Layout = scrollLayout;
             ListView.ScrollDuration = ScrollTime;
-            this.Add(ListView);
 
             var items = new CustomCellListItem[TestItems];
             for (int i = 0; i < TestItems; i++) {
