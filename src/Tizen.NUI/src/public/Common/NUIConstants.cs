@@ -2345,4 +2345,71 @@ namespace Tizen.NUI
             public string RightImageUrl { get; set; }
         }
     }
+
+
+    /// <summary>
+    /// Pre-defined SlideTransition Direction
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public struct SlideTransitionDirection
+    {
+        /// <summary>
+        /// Top
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Vector2 Top
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.SlideTransitionDirection.SlideTransitionDirectionTopGet();
+                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
+                return ret;
+            }
+        }
+        /// <summary>
+        /// Bottom
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Vector2 Bottom
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.SlideTransitionDirection.SlideTransitionDirectionBottomGet();
+                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
+                return ret;
+            }
+        }
+
+        /// <summary>
+        /// Right
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Vector2 Right
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.SlideTransitionDirection.SlideTransitionDirectionRightGet();
+                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
+                return ret;
+            }
+        }
+
+        /// <summary>
+        /// Left
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Vector2 Left
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.SlideTransitionDirection.SlideTransitionDirectionLeftGet();
+                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
+                return ret;
+            }
+        }
+    }
 }
