@@ -21,24 +21,20 @@ using Tizen.NUI.Components;
 
 namespace NUITizenGallery
 {
-    internal class CustomCellTestP: IExample
+    internal class CustomCellTest : IExample
     {
         Window window;
-        CustomCellTestPage page;
 
         public void Activate()
         {
             Console.WriteLine($"@@@ this.GetType().Name={this.GetType().Name}, Activate()");
             window = NUIApplication.GetDefaultWindow();
-
-            page = new CustomCellTestPage();
-            window.Add(page);
+            window.GetDefaultNavigator().Push(new CustomCellTestPage());
         }
         public void Deactivate()
         {
             Console.WriteLine($"@@@ this.GetType().Name={this.GetType().Name}, Deactivate()");
-            page.Unparent();
-            page.Dispose();
+            window.GetDefaultNavigator().Pop();
         }
     }
 }

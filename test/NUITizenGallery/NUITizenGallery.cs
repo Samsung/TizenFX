@@ -62,6 +62,7 @@ namespace NUITizenGallery
                 PlaceholderText = "Search",
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 HeightSpecification = LayoutParamPolicies.WrapContent,
+                MinimumSize = new Size2D(0, 40),
             };
         }
 

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="NUITizenGallery.BackgroundTestPage"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+    <!-- AppBar is top-side bar with navigation content, title, and action. If you not set any contents, back button is automatically added. -->
+    <ContentPage.AppBar>
+        <AppBar x:Name="appBar" Title="BackgroundTestPage"/>
+    </ContentPage.AppBar>
+
+    <!-- Content is main placdeholder of ContentPage. Add your content into this view. -->
+    <ContentPage.Content>
+        <View x:Name="BackgroundView"
+          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+          HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+          PositionUsesPivotPoint="True"
+          ParentOrigin="Center"
+          PivotPoint="Center">
+
+            <Button Text="Change Background" x:Name="ChangeBackgroundButton"
+                    WidthSpecification="{Static LayoutParamPolicies.MatchParent}"/>
+        </View>
+    </ContentPage.Content>
+
+</ContentPage>
