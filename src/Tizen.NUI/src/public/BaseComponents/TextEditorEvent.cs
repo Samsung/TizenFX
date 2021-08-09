@@ -39,6 +39,9 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler<AnchorClickedEventArgs> textEditorAnchorClickedEventHandler;
         private AnchorClickedCallbackDelegate textEditorAnchorClickedCallbackDelegate;
 
+        private EventHandler<SelectionChangedEventArgs> textEditorSelectionChangedEventHandler;
+        private SelectionChangedCallbackDelegate textEditorSelectionChangedCallbackDelegate;
+
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void TextChangedCallbackDelegate(IntPtr textEditor);
 
@@ -50,6 +53,9 @@ namespace Tizen.NUI.BaseComponents
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void AnchorClickedCallbackDelegate(IntPtr textEditor, IntPtr href, uint hrefLength);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void SelectionChangedCallbackDelegate(IntPtr textEditor, uint oldStart, uint oldEnd, uint newStart, uint newEnd);
 
         /// <summary>
         /// An event for the TextChanged signal which can be used to subscribe or unsubscribe the event handler
@@ -154,6 +160,32 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// The SelectionChanged event.
+        /// </summary>
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<SelectionChangedEventArgs> SelectionChanged
+        {
+            add
+            {
+                if (textEditorSelectionChangedEventHandler == null)
+                {
+                    textEditorSelectionChangedCallbackDelegate = (OnSelectionChanged);
+                    SelectionChangedSignal().Connect(textEditorSelectionChangedCallbackDelegate);
+                }
+                textEditorSelectionChangedEventHandler += value;
+            }
+            remove
+            {
+                if (textEditorSelectionChangedEventHandler == null && SelectionChangedSignal().Empty() == false)
+                {
+                    this.SelectionChangedSignal().Disconnect(textEditorSelectionChangedCallbackDelegate);
+                }
+                textEditorSelectionChangedEventHandler -= value;
+            }
+        }
+
         internal TextEditorSignal TextChangedSignal()
         {
             TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.TextChangedSignal(SwigCPtr), false);
@@ -178,6 +210,13 @@ namespace Tizen.NUI.BaseComponents
         internal TextEditorSignal AnchorClickedSignal()
         {
             TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.AnchorClickedSignal(SwigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal TextEditorSignal SelectionChangedSignal()
+        {
+            TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.SelectionChangedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -235,6 +274,25 @@ namespace Tizen.NUI.BaseComponents
             e.Href = Marshal.PtrToStringAnsi(href);
             //here we send all data to user event handlers
             textEditorAnchorClickedEventHandler?.Invoke(this, e);
+        }
+
+        private void OnSelectionChanged(IntPtr textEditor, uint oldStart, uint oldEnd, uint newStart, uint newEnd)
+        {
+            if (textEditorSelectionChangedEventHandler != null)
+            {
+                SelectionChangedEventArgs e = new SelectionChangedEventArgs();
+
+                // Populate all members of "e" (SelectionChangedEventArgs) with real data
+                e.TextEditor = Registry.GetManagedBaseHandleFromNativePtr(textEditor) as TextEditor;
+
+                e.OldSelectionStart = oldStart;
+                e.OldSelectionEnd = oldEnd;
+                e.NewSelectionStart = newStart;
+                e.NewSelectionEnd = newEnd;
+
+                //here we send all data to user event handlers
+                textEditorSelectionChangedEventHandler(this, e);
+            }
         }
 
         /// <summary>
@@ -329,6 +387,45 @@ namespace Tizen.NUI.BaseComponents
                     textEditor = value;
                 }
             }
+        }
+
+        /// <summary>
+        /// The SelectionChanged event arguments.
+        /// </summary>
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public class SelectionChangedEventArgs : EventArgs
+        {
+            /// <summary>
+            /// TextEditor.
+            /// </summary>
+            /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public TextEditor TextEditor { get; set; }
+
+            /// <summary>
+            /// Anchor href(hypertext reference).
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public uint OldSelectionStart { get; set; }
+
+            /// <summary>
+            /// Anchor href(hypertext reference).
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public uint OldSelectionEnd { get; set; }
+
+            /// <summary>
+            /// Anchor href(hypertext reference).
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public uint NewSelectionStart { get; set; }
+
+            /// <summary>
+            /// Anchor href(hypertext reference).
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public uint NewSelectionEnd { get; set; }
         }
     }
 }
