@@ -639,18 +639,16 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         public void AddInputRegionTest()
         {
-            tlog.Debug(tag, $"AddInputRegionTest START");
             try
             {
+                var window = Window.Instance;
                 Rectangle inputRegion = new Rectangle(0, 0, 720, 640);
-                myWin.AddInputRegionTest(inputRegion);
+                window.AddInputRegion(inputRegion);
             }
             catch (Exception e)
             {
-                tlog.Debug(tag, e.Message.ToString());
                 Assert.Fail("Caught Exception : Failed!");
             }
-            tlog.Debug(tag, $"AddInputRegionTest END (OK)");
         }
 
 
@@ -662,18 +660,17 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         public void SubtractInputRegionTest()
         {
-            tlog.Debug(tag, $"SubtractInputRegionTest START");
             try
             {
+                var window = Window.Instance;
                 Rectangle addInputRegion = new Rectangle(0, 0, 720, 1280);
-                myWin.AddInputRegionTest(addInputRegion);
+                window.AddInputRegion(addInputRegion);
 
                 Rectangle subtractInputRegion = new Rectangle(0, 641, 720, 640);
-                myWin.AddInputRegionTest(subtractInputRegion);
+                window.SubtractInputRegion(subtractInputRegion);
             }
             catch (Exception e)
             {
-                tlog.Debug(tag, e.Message.ToString());
                 Assert.Fail("Caught Exception : Failed!");
             }
 
