@@ -24,7 +24,6 @@ namespace NUITizenGallery
     {
         Window window;
         Navigator navigator;
-        ContentPageTestPage1 page;
         int pageCount = 0;
 
         public void Activate()
@@ -33,11 +32,8 @@ namespace NUITizenGallery
 
             window = NUIApplication.GetDefaultWindow();
             navigator = window.GetDefaultNavigator();
-
             pageCount = navigator.PageCount;
-
-            page = new ContentPageTestPage1();
-            navigator.Push(page);
+            window.GetDefaultNavigator().Push(new ContentPageTestPage1());
         }
 
         public void Deactivate()

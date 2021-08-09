@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="NUITizenGallery.KeyboardTest1Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:base="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  BackgroundColor="White"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+    <ContentPage.AppBar>
+        <AppBar Title="KeyboardTest1Page"/>
+    </ContentPage.AppBar>
+
+    <ContentPage.Content>
+
+        <ScrollableBase WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                    HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+            <View.Layout>
+                <LinearLayout LinearOrientation="Vertical" CellPadding="10,10" LinearAlignment="Begin"/>
+            </View.Layout>
+
+            <TextLabel WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+               Text="TextField"
+               HorizontalAlignment="Center"/>
+
+
+            <View WidthSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+                <View.Layout>
+                    <LinearLayout LinearOrientation="Horizontal" CellPadding="20,20"/>
+                </View.Layout>
+
+                <TextLabel Text="TextField"/>
+
+                <TextField x:Name="textField"
+                       Weight="1.0"
+                       PlaceholderText="Type Text Here"/>
+
+            </View>
+
+            <Button x:Name="dateTimeKeyboardButton"
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                Text="Datetime keyboard"/>
+
+            <Button x:Name="emailKeyboardButton"
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                Text="Email keyboard"/>
+
+            <Button x:Name="emoticonKeyboardButton"
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                Text="Emoticon keyboard"/>
+
+            <Button x:Name="hexKeyboardButton"
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                Text="Hexadecimal keyboard"/>
+
+            <Button x:Name="ipLayoutKeyboardButton"
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                Text="IP keyboard"/>
+
+            <Button x:Name="monthKeyboardButton"
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                Text="Month keyboard"/>
+
+            <Button x:Name="normalKeyboardButton"
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                Text="Default keyboard"/>
+
+            <Button x:Name="numberKeyboardButton"
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                Text="Number keyboard"/>
+
+            <Button x:Name="numberOnlyKeyboardButton"
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                Text="Number only keyboard"/>
+
+            <Button x:Name="passworKeyboarddButton"
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                Text="Password keyboard"/>
+
+            <Button x:Name="phoneNumberKeyboardButton"
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                Text="Phone number keyboard"/>
+
+            <Button x:Name="terminalKeyboardButton"
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                Text="Terminal keyboard"/>
+
+            <Button x:Name="urlKeyboarddButton"
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                Text="URL keyboard"/>
+
+        </ScrollableBase>
+
+    </ContentPage.Content>
+
+</ContentPage>

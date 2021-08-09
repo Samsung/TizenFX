@@ -250,6 +250,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_SelectWholeText")]
             public static extern void SelectWholeText(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_SelectText")]
+            public static extern void SelectText(global::System.Runtime.InteropServices.HandleRef textFieldRef, uint start, uint end);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextField_Property_ENABLE_GRAB_HANDLE_get")]
             public static extern int EnableGrabHandleGet();
 
@@ -279,6 +282,12 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_GRAB_HANDLE_COLOR_get")]
             public static extern int GrabHandleColorGet();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_INPUT_FILTER_get")]
+            public static extern int InputFilterGet();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_InputFilteredSignal")]
+            public static extern global::System.IntPtr InputFilteredSignal(global::System.Runtime.InteropServices.HandleRef textFieldRef);
         }
     }
 }

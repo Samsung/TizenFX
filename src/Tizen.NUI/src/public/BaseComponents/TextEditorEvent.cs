@@ -39,6 +39,9 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler<AnchorClickedEventArgs> textEditorAnchorClickedEventHandler;
         private AnchorClickedCallbackDelegate textEditorAnchorClickedCallbackDelegate;
 
+        private EventHandler<InputFilteredEventArgs> textEditorInputFilteredEventHandler;
+        private InputFilteredCallbackDelegate textEditorInputFilteredCallbackDelegate;
+
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void TextChangedCallbackDelegate(IntPtr textEditor);
 
@@ -50,6 +53,9 @@ namespace Tizen.NUI.BaseComponents
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void AnchorClickedCallbackDelegate(IntPtr textEditor, IntPtr href, uint hrefLength);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void InputFilteredCallbackDelegate(IntPtr textEditor, InputFilterType type);
 
         /// <summary>
         /// An event for the TextChanged signal which can be used to subscribe or unsubscribe the event handler
@@ -154,6 +160,50 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// The InputFiltered signal is emitted when the input is filtered by InputFilter. <br />
+        /// </summary>
+        /// <remarks>
+        /// See <see cref="InputFilterType"/> and <see cref="InputFilteredEventArgs"/> for a detailed description. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the InputFiltered event.
+        /// <code>
+        /// editor.InputFiltered += (s, e) =>
+        /// {
+        ///     if (e.Type == InputFilterType.Accept)
+        ///     {
+        ///         // If input is filtered by InputFilter of Accept type.
+        ///     }
+        ///     else if (e.Type == InputFilterType.Reject)
+        ///     {
+        ///         // If input is filtered by InputFilter of Reject type.
+        ///     }
+        /// };
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<InputFilteredEventArgs> InputFiltered
+        {
+            add
+            {
+                if (textEditorInputFilteredEventHandler == null)
+                {
+                    textEditorInputFilteredCallbackDelegate = (OnInputFiltered);
+                    InputFilteredSignal().Connect(textEditorInputFilteredCallbackDelegate);
+                }
+                textEditorInputFilteredEventHandler += value;
+            }
+            remove
+            {
+                textEditorInputFilteredEventHandler -= value;
+                if (textEditorInputFilteredEventHandler == null && InputFilteredSignal().Empty() == false)
+                {
+                    InputFilteredSignal().Disconnect(textEditorInputFilteredCallbackDelegate);
+                }
+            }
+        }
+
         internal TextEditorSignal TextChangedSignal()
         {
             TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.TextChangedSignal(SwigCPtr), false);
@@ -178,6 +228,13 @@ namespace Tizen.NUI.BaseComponents
         internal TextEditorSignal AnchorClickedSignal()
         {
             TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.AnchorClickedSignal(SwigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal TextEditorSignal InputFilteredSignal()
+        {
+            TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.InputFilteredSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -235,6 +292,16 @@ namespace Tizen.NUI.BaseComponents
             e.Href = Marshal.PtrToStringAnsi(href);
             //here we send all data to user event handlers
             textEditorAnchorClickedEventHandler?.Invoke(this, e);
+        }
+
+        private void OnInputFiltered(IntPtr textEditor, InputFilterType type)
+        {
+            InputFilteredEventArgs e = new InputFilteredEventArgs();
+
+            // Populate all members of "e" (InputFilteredEventArgs) with real data
+            e.Type = type;
+            //here we send all data to user event handlers
+            textEditorInputFilteredEventHandler?.Invoke(this, e);
         }
 
         /// <summary>
