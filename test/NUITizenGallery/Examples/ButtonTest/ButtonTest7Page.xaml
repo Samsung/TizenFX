@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="NUITizenGallery.ButtonTest7Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}" >
+
+    <!-- AppBar is top-side bar with navigation content, title, and action. If you not set any contents, back button is automatically added. -->
+    <ContentPage.AppBar>
+        <AppBar x:Name="appBar" Title="ButtonTest7Page"/>
+    </ContentPage.AppBar>
+
+    <!-- Content is main placdeholder of ContentPage. Add your content into this view. -->
+    <ContentPage.Content>
+        <View x:Name="ContentView"
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                HeightSpecification="{Static LayoutParamPolicies.MatchParent}" >
+            <View.Layout>
+                <LinearLayout LinearOrientation="Vertical" LinearAlignment="Center" CellPadding="30,30"/>
+            </View.Layout>
+
+            <TextLabel x:Name="text1"
+                         WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                         HeightSpecification="{Static LayoutParamPolicies.WrapContent}"
+                         PointSize="8"
+                         Text="Button Press and release event trigger test" />
+
+            <Button x:Name="button1"
+                      WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                      SizeHeight="70"
+                      BackgroundColor="#3db9cc"
+                      PointSize="5"
+                      Opacity="1"
+                      Text="Click me"/>
+
+            <TextLabel x:Name="text2"
+                         WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                         HeightSpecification="{Static LayoutParamPolicies.WrapContent}"
+                         PointSize="8"
+                         Text="Normal" />
+        </View>
+    </ContentPage.Content>
+
+</ContentPage>

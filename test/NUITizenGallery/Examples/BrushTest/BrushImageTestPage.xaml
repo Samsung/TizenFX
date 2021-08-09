@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="NUITizenGallery.BrushImageTestPage"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}" >
+
+  <ContentPage.AppBar>
+    <AppBar x:Name="appBar" Title="BrushImageTest" />
+  </ContentPage.AppBar>
+
+  <ContentPage.Content>
+        <View x:Name="ContentView"
+          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+          HeightSpecification="{Static LayoutParamPolicies.MatchParent}" >
+
+            <View.Layout>
+                <LinearLayout LinearOrientation="Vertical" LinearAlignment="Top" CellPadding="10,10" />
+            </View.Layout>
+
+            <Button x:Name="ButtonSolid" Text="Set solid color"  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"/>
+            <Button x:Name="ButtonGradientLinear" Text="Set linear gradient"  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"/>
+            <Button x:Name="ButtonGradientRadial" Text="Set radial gradient"  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"/>
+
+            <ImageView x:Name="Image1" WidthSpecification="{Static LayoutParamPolicies.WrapContent}" HeightSpecification="{Static LayoutParamPolicies.WrapContent}"/>
+            <ImageView x:Name="Image2" WidthSpecification="{Static LayoutParamPolicies.WrapContent}" HeightSpecification="{Static LayoutParamPolicies.WrapContent}"/>
+        </View>
+    </ContentPage.Content>
+</ContentPage>

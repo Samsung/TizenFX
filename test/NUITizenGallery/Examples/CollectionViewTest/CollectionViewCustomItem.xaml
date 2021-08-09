@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<RecyclerViewItem x:Class="NUITizenGallery.CollectionViewCustomItem"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+  HeightSpecification="120"
+  BackgroundColor="White">
+
+    <!-- Vertical Linear Laoyout to add Bottom Line -->
+    <RecyclerViewItem.Layout>
+        <LinearLayout LinearOrientation="Vertical" LinearAlignment="CenterHorizontal" />
+    </RecyclerViewItem.Layout>
+
+    <!-- Main View with Horizontal Linear Layout. -->
+    <View x:Name="HorizBox"
+            WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+            HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+            Padding="20,20,0,0" >
+
+        <RecyclerViewItem.Layout>
+            <LinearLayout LinearOrientation="Horizontal" LinearAlignment="CenterVertical" CellPadding="10,10" />
+        </RecyclerViewItem.Layout>
+
+        <ImageView x:Name="FlagIcon" Size2D="100,80"
+                     ResourceUrl="{Binding FlagIconPath}"
+                     Padding="20,20,0,0"/>
+
+        <TextLabel x:Name="MainLabel"
+                     WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                     HeightSpecification="{Static LayoutParamPolicies.WrapContent}"
+                     CellHorizontalAlignment="Left"
+                     CellVerticalAlignment="Center"
+                     Text="{Binding Name}"/>
+
+        <CheckBox x:Name="Checkbox"
+                    Padding="20,20,0,0"
+                    IsSelected="{Binding IsSelected}"/>
+
+        <View x:Name="VerticalBox"
+                WidthSpecification="100"
+                HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+            <View.Layout>
+                <LinearLayout LinearOrientation="Vertical" LinearAlignment="CenterHorizontal" CellPadding="10,10" />
+            </View.Layout>
+
+            <TextLabel x:Name="IndexLebel"
+                         CellVerticalAlignment="Center"
+                         CellHorizontalAlignment="Center"
+                         Text="{Binding Index}"
+                         TextColor="{Binding BgColor}"/>
+            <ImageView x:Name="SubIcon"
+                         Size2D="70,50"
+                         ResourceUrl="{Binding FlagIconPath}" />
+        </View>
+    </View>
+    <View x:Name="BottomLine"
+            WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+            HeightSpecification="1"
+            BackgroundColor="{Binding BgColor}" />
+
+</RecyclerViewItem>
