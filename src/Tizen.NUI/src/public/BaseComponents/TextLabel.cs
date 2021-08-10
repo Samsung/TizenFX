@@ -764,6 +764,44 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Set Shadow to TextLabel. <br />
+        /// </summary>
+        /// <param name="shadow">The Shadow</param>
+        /// <remarks>
+        /// SetShadow specifies the shadow of the text through <see cref="Tizen.NUI.Text.Shadow"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetShadow method.
+        /// <code>
+        /// var shadow = new Tizen.NUI.Text.Shadow();
+        /// shadow.Offset = new Vector2(3, 3);
+        /// shadow.Color = new Color("#F1C40F");
+        /// shadow.BlurRadius = 4.0f;
+        /// label.SetShadow(shadow);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetShadow(Tizen.NUI.Text.Shadow shadow)
+        {
+            SetProperty(TextLabel.Property.SHADOW, new PropertyValue(TextUtils.GetShadowMap(shadow)));
+        }
+
+        /// <summary>
+        /// Get Shadow from TextLabel. <br />
+        /// </summary>
+        /// <returns>The Shadow</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.Shadow"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Tizen.NUI.Text.Shadow GetShadow()
+        {
+            var map = new PropertyMap();
+            GetProperty(TextLabel.Property.SHADOW).Get(map);
+            return TextUtils.GetShadowStruct(map);
+        }
+
+        /// <summary>
         /// Describes a text shadow for a TextLabel.
         /// It is null by default.
         /// </summary>
