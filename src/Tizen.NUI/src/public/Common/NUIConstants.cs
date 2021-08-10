@@ -2093,5 +2093,34 @@ namespace Tizen.NUI
             [EditorBrowsable(EditorBrowsableState.Never)]
             public float Height { get; set; }
         }
+
+        /// <summary>
+        /// A struct to pass data of Shadow PropertyMap. <br />
+        /// </summary>
+        /// <remarks>
+        /// The Shadow struct is used as an argument to SetShadow and GetShadow methods. <br />
+        /// See <see cref="Tizen.NUI.BaseComponents.TextLabel.SetShadow"/>, <see cref="Tizen.NUI.BaseComponents.TextLabel.GetShadow"/>, <see cref="Tizen.NUI.BaseComponents.TextField.SetShadow"/>, <see cref="Tizen.NUI.BaseComponents.TextField.GetShadow"/>, <see cref="Tizen.NUI.BaseComponents.TextEditor.SetShadow"/> and <see cref="Tizen.NUI.BaseComponents.TextEditor.GetShadow"/>. <br />
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public struct Shadow
+        {
+            /// <summary>
+            /// The color of the shadow (the default color is Color.Black).
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public Color Color { get; set; }
+
+            /// <summary>
+            /// The offset in pixels of the shadow (If not provided then the shadow is not enabled).
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public Vector2 Offset { get; set; }
+
+            /// <summary>
+            /// The radius of the Gaussian blur for the soft shadow (If not provided then the soft shadow is not enabled).
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public float BlurRadius { get; set; }
+        }
     }
 }
