@@ -1670,6 +1670,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Gets or sets the status of whether the view should emit touch or hover signals.
+        /// If a View is made insensitive, then the View and its children are not hittable.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public bool Sensitive
