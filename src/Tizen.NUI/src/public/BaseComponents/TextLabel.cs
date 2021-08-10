@@ -861,6 +861,43 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Set Outline to TextLabel. <br />
+        /// </summary>
+        /// <param name="outline">The Outline</param>
+        /// <remarks>
+        /// SetOutline specifies the outline of the text through <see cref="Tizen.NUI.Text.Outline"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetOutline method.
+        /// <code>
+        /// var outline = new Tizen.NUI.Text.Outline();
+        /// outline.Width = 2.0f;
+        /// outline.Color = new Color("#45B39D");
+        /// label.SetOutline(outline);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetOutline(Outline outline)
+        {
+            SetProperty(TextLabel.Property.OUTLINE, new PropertyValue(TextUtils.GetOutlineMap(outline)));
+        }
+
+        /// <summary>
+        /// Get Outline from TextLabel. <br />
+        /// </summary>
+        /// <returns>The Outline</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.Outline"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Outline GetOutline()
+        {
+            var map = new PropertyMap();
+            GetProperty(TextLabel.Property.OUTLINE).Get(map);
+            return TextUtils.GetOutlineStruct(map);
+        }
+
+        /// <summary>
         /// The PixelSize property.<br />
         /// The size of font in pixels.<br />
         /// </summary>

@@ -1596,5 +1596,44 @@ namespace Tizen.NUI.BaseComponents
 
             return shadow;
         }
+
+        /// <summary>
+        /// This method converts a Outline struct to a PropertyMap and returns it.
+        /// The returned map can be used for set Outline PropertyMap in the SetOutline method.
+        /// <param name="outline">The Outline struct value.</param>
+        /// <returns> A PropertyMap for Outline property. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static PropertyMap GetOutlineMap(Outline outline)
+        {
+            var map = new PropertyMap();
+
+            if (outline.Color != null)
+                map.Add("color", new PropertyValue(outline.Color));
+
+            map.Add("width", new PropertyValue(outline.Width));
+
+            return map;
+        }
+
+        /// <summary>
+        /// This method converts a Outline map to a struct and returns it.
+        /// The returned struct can be returned to the user as a Outline in the GetOutline method.
+        /// <param name="map">The Outline PropertyMap.</param>
+        /// <returns> A Outline struct. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Outline GetOutlineStruct(PropertyMap map)
+        {
+            Color color = new Color();
+            map.Find(0, "color").Get(color);
+            map.Find(0, "width").Get(out float width);
+
+            var outline = new Outline();
+            outline.Color = color;
+            outline.Width = width;
+
+            return outline;
+        }
     }
 }

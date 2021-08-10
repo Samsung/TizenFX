@@ -1014,6 +1014,43 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Set Outline to TextEditor. <br />
+        /// </summary>
+        /// <param name="outline">The Outline</param>
+        /// <remarks>
+        /// SetOutline specifies the outline of the text through <see cref="Tizen.NUI.Text.Outline"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetOutline method.
+        /// <code>
+        /// var outline = new Tizen.NUI.Text.Outline();
+        /// outline.Width = 2.0f;
+        /// outline.Color = new Color("#45B39D");
+        /// editor.SetOutline(outline);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetOutline(Outline outline)
+        {
+            SetProperty(TextEditor.Property.OUTLINE, new PropertyValue(TextUtils.GetOutlineMap(outline)));
+        }
+
+        /// <summary>
+        /// Get Outline from TextEditor. <br />
+        /// </summary>
+        /// <returns>The Outline</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.Outline"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Outline GetOutline()
+        {
+            var map = new PropertyMap();
+            GetProperty(TextEditor.Property.OUTLINE).Get(map);
+            return TextUtils.GetOutlineStruct(map);
+        }
+
+        /// <summary>
         /// The InputOutline property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
