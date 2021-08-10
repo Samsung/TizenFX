@@ -1635,5 +1635,99 @@ namespace Tizen.NUI.BaseComponents
 
             return outline;
         }
+
+        /// <summary>
+        /// It returns a string value according to FontSizeType.
+        /// The returned value can be used for TextFit PropertyMap.
+        /// <param name="fontSizeType">The FontSizeType enum value.</param>
+        /// <returns> A string value for TextFit.FontSizeType property. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static string GetFontSizeString(FontSizeType fontSizeType)
+        {
+            string value = "pointSize";
+
+            switch (fontSizeType)
+            {
+                default:
+                case FontSizeType.PointSize:
+                    value = "pointSize";
+                    break;
+                case FontSizeType.PixelSize:
+                    value = "pixelSize";
+                    break;
+            }
+
+            return value;
+        }
+
+        /// <summary>
+        /// It returns a FontSizeType value according to fontSizeString.
+        /// The returned value can be used for FontStyle PropertyMap.
+        /// <param name="fontSizeString">The FontSizeType string value.</param>
+        /// <returns> A FontSizeType value for TextFit.FontSizeType property. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static FontSizeType GetFontSizeType(string fontSizeString)
+        {
+            FontSizeType value = FontSizeType.PointSize;
+
+            switch (fontSizeString)
+            {
+                default:
+                case "pointSize":
+                    value = FontSizeType.PointSize;
+                    break;
+                case "pixelSize":
+                    value = FontSizeType.PixelSize;
+                    break;
+            }
+
+            return value;
+        }
+
+        /// <summary>
+        /// This method converts a TextFit struct to a PropertyMap and returns it.
+        /// The returned map can be used for set TextFit PropertyMap in the SetTextFit method.
+        /// <param name="textFit">The TextFit struct value.</param>
+        /// <returns> A PropertyMap for TextFit property. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static PropertyMap GetTextFitMap(TextFit textFit)
+        {
+            var map = new PropertyMap();
+            map.Add("enable", new PropertyValue(textFit.Enable));
+            map.Add("minSize", new PropertyValue(textFit.MinSize));
+            map.Add("maxSize", new PropertyValue(textFit.MaxSize));
+            map.Add("stepSize", new PropertyValue(textFit.StepSize));
+            map.Add("fontSizeType", new PropertyValue(GetFontSizeString(textFit.FontSizeType)));
+
+            return map;
+        }
+
+        /// <summary>
+        /// This method converts a TextFit map to a struct and returns it.
+        /// The returned struct can be returned to the user as a TextFit in the GetTextFit method.
+        /// <param name="map">The TextFit PropertyMap.</param>
+        /// <returns> A TextFit struct. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static TextFit GetTextFitStruct(PropertyMap map)
+        {
+            map.Find(0, "enable").Get(out bool enable);
+            map.Find(0, "minSize").Get(out float minSize);
+            map.Find(0, "maxSize").Get(out float maxSize);
+            map.Find(0, "stepSize").Get(out float stepSize);
+            map.Find(0, "fontSizeType").Get(out string fontSizeType);
+
+            var textFit = new TextFit();
+            textFit.Enable = enable;
+            textFit.MinSize = minSize;
+            textFit.MaxSize = maxSize;
+            textFit.StepSize = stepSize;
+            textFit.FontSizeType = GetFontSizeType(fontSizeType);
+
+            return textFit;
+        }
     }
 }
