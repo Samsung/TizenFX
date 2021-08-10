@@ -2122,5 +2122,28 @@ namespace Tizen.NUI
             [EditorBrowsable(EditorBrowsableState.Never)]
             public float BlurRadius { get; set; }
         }
+
+        /// <summary>
+        /// A struct to pass data of Outline PropertyMap. <br />
+        /// </summary>
+        /// <remarks>
+        /// The Outline struct is used as an argument to SetOutline and GetOutline methods. <br />
+        /// See <see cref="Tizen.NUI.BaseComponents.TextLabel.SetOutline"/>, <see cref="Tizen.NUI.BaseComponents.TextLabel.GetOutline"/>, <see cref="Tizen.NUI.BaseComponents.TextField.SetOutline"/>, <see cref="Tizen.NUI.BaseComponents.TextField.GetOutline"/>, <see cref="Tizen.NUI.BaseComponents.TextEditor.SetOutline"/> and <see cref="Tizen.NUI.BaseComponents.TextEditor.GetOutline"/>. <br />
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public struct Outline
+        {
+            /// <summary>
+            /// The color of the outline (the default color is Color.White).
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public Color Color { get; set; }
+
+            /// <summary>
+            /// The width in pixels of the outline (If not provided then the outline is not enabled).
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public float Width { get; set; }
+        }
     }
 }
