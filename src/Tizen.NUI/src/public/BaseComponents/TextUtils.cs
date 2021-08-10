@@ -1552,5 +1552,49 @@ namespace Tizen.NUI.BaseComponents
             return underline;
         }
 
+        /// <summary>
+        /// This method converts a Shadow struct to a PropertyMap and returns it.
+        /// The returned map can be used for set Shadow PropertyMap in the SetShadow method.
+        /// <param name="shadow">The Shadow struct value.</param>
+        /// <returns> A PropertyMap for Shadow property. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static PropertyMap GetShadowMap(Tizen.NUI.Text.Shadow shadow)
+        {
+            var map = new PropertyMap();
+
+            if (shadow.Offset != null)
+                map.Add("offset", new PropertyValue(shadow.Offset));
+
+            if (shadow.Color != null)
+                map.Add("color", new PropertyValue(shadow.Color));
+
+            map.Add("blurRadius", new PropertyValue(shadow.BlurRadius));
+
+            return map;
+        }
+
+        /// <summary>
+        /// This method converts a Shadow map to a struct and returns it.
+        /// The returned struct can be returned to the user as a Shadow in the GetShadow method.
+        /// <param name="map">The Shadow PropertyMap.</param>
+        /// <returns> A Shadow struct. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Tizen.NUI.Text.Shadow GetShadowStruct(PropertyMap map)
+        {
+            Vector2 offset = new Vector2();
+            Color color = new Color();
+            map.Find(0, "offset").Get(offset);
+            map.Find(0, "color").Get(color);
+            map.Find(0, "blurRadius").Get(out float blurRadius);
+
+            var shadow = new Tizen.NUI.Text.Shadow();
+            shadow.Offset = offset;
+            shadow.Color = color;
+            shadow.BlurRadius = blurRadius;
+
+            return shadow;
+        }
     }
 }

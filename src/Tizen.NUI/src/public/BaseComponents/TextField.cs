@@ -1142,6 +1142,43 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Set Shadow to TextField. <br />
+        /// </summary>
+        /// <param name="shadow">The Shadow</param>
+        /// <remarks>
+        /// SetShadow specifies the shadow of the text through <see cref="Tizen.NUI.Text.Shadow"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetShadow method.
+        /// <code>
+        /// var shadow = new Tizen.NUI.Text.Shadow();
+        /// shadow.Offset = new Vector2(3, 3);
+        /// shadow.Color = new Color("#F1C40F");
+        /// field.SetShadow(shadow);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetShadow(Tizen.NUI.Text.Shadow shadow)
+        {
+            SetProperty(TextField.Property.SHADOW, new PropertyValue(TextUtils.GetShadowMap(shadow)));
+        }
+
+        /// <summary>
+        /// Get Shadow from TextField. <br />
+        /// </summary>
+        /// <returns>The Shadow</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.Shadow"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Tizen.NUI.Text.Shadow GetShadow()
+        {
+            var map = new PropertyMap();
+            GetProperty(TextField.Property.SHADOW).Get(map);
+            return TextUtils.GetShadowStruct(map);
+        }
+
+        /// <summary>
         /// The InputShadow property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
