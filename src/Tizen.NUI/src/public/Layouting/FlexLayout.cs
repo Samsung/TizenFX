@@ -729,12 +729,12 @@ namespace Tizen.NUI
             float width = FlexUndefined; // Behaves as WrapContent (Flex Auto)
             float height = FlexUndefined; // Behaves as WrapContent (Flex Auto)
 
-            if (widthMeasureSpec.Mode == MeasureSpecification.ModeType.Exactly || widthMeasureSpec.Mode == MeasureSpecification.ModeType.AtMost)
+            if (widthMeasureSpec.Mode == MeasureSpecification.ModeType.Exactly)
             {
                 width = widthMeasureSpec.Size.AsDecimal();
             }
 
-            if (heightMeasureSpec.Mode == MeasureSpecification.ModeType.Exactly || heightMeasureSpec.Mode == MeasureSpecification.ModeType.AtMost)
+            if (heightMeasureSpec.Mode == MeasureSpecification.ModeType.Exactly)
             {
                 height = heightMeasureSpec.Size.AsDecimal();
             }
