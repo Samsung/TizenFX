@@ -811,7 +811,19 @@ namespace Tizen.NUI
                 {
                     // Get the frame for the child, start, top, end, bottom.
                     Vector4 frame = new Vector4(Interop.FlexLayout.GetNodeFrame(swigCPtr, childIndex), true);
-                    childLayout?.Layout(new LayoutLength(frame.X), new LayoutLength(frame.Y), new LayoutLength(frame.Z), new LayoutLength(frame.W));
+
+                    // Child view's size is calculated in OnLayout() without considering child layout's measured size unlike other layouts' OnLayout().
+                    // This causes that the grand child view's size is calculated incorrectly if the child and grand child have MatchParent Specification.
+                    // e.g. Let parent view's width be 200 and parent has 2 children.
+                    //      Then, child layout's measured width becomes 200 and child view's width becomes 100. (by dali-toolkit's YOGA APIs)
+                    //      Then, grand child layout's measured width becomes 200 and grand child view's width becomes 200. (by NUI Layout)
+                    //
+                    // To resolve the above issue, child layout's measured size is set with the child view's size calculated by dali-toolkit's YOGA APIs.
+                    MeasureSpecification widthSpec = new MeasureSpecification(new LayoutLength(frame.Z - frame.X), MeasureSpecification.ModeType.Exactly);
+                    MeasureSpecification heightSpec = new MeasureSpecification(new LayoutLength(frame.W - frame.Y), MeasureSpecification.ModeType.Exactly);
+                    MeasureChildWithMargins(childLayout, widthSpec, new LayoutLength(0), heightSpec, new LayoutLength(0));
+
+                    childLayout.Layout(new LayoutLength(frame.X), new LayoutLength(frame.Y), new LayoutLength(frame.Z), new LayoutLength(frame.W));
                     frame.Dispose();
                 }
             }
