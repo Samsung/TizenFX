@@ -40,7 +40,7 @@ internal static partial class Interop
         [DllImport(Libraries.MediaContent, EntryPoint = "book_meta_get_publisher")]
         internal static extern MediaContentError GetPublisher(IntPtr handle, out IntPtr publisher);
 
-        [DllImport(Libraries.MediaContent, EntryPoint = "book_meta_get_path_with_keyword(")]
-        internal static extern MediaContentError GetPathByKeyword(IntPtr handle, ref string[] path, out uint count);
+        [DllImport(Libraries.MediaContent, EntryPoint = "book_meta_get_path_with_keyword")]
+        internal static extern MediaContentError GetPathByKeyword(string keyword, out IntPtr path, out uint length);
     }
 }
