@@ -1099,6 +1099,48 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Set TextFit to TextLabel. <br />
+        /// </summary>
+        /// <param name="textFit">The TextFit</param>
+        /// <remarks>
+        /// SetTextFit specifies the textFit of the text through <see cref="Tizen.NUI.Text.TextFit"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetTextFit method.
+        /// <code>
+        /// var textFit = new Tizen.NUI.Text.TextFit();
+        /// textFit.Enable = true;
+        /// textFit.MinSize = 10.0f;
+        /// textFit.MaxSize = 100.0f;
+        /// textFit.StepSize = 5.0f;
+        /// textFit.FontSizeType = FontSizeType.PointSize;
+        /// label.SetTextFit(textFit);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetTextFit(TextFit textFit)
+        {
+            SetProperty(TextLabel.Property.TextFit, new PropertyValue(TextUtils.GetTextFitMap(textFit)));
+        }
+
+        /// <summary>
+        /// Get TextFit from TextLabel. <br />
+        /// </summary>
+        /// <returns>The TextFit</returns>
+        /// <remarks>
+        /// TextFit is always returned based on PointSize. <br />
+        /// If the user sets FontSizeType to PixelSize, then MinSize, MaxSize, and StepSize are converted based on PointSize and returned. <br />
+        /// <see cref="Tizen.NUI.Text.TextFit"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextFit GetTextFit()
+        {
+            var map = new PropertyMap();
+            GetProperty(TextLabel.Property.TextFit).Get(map);
+            return TextUtils.GetTextFitStruct(map);
+        }
+
+        /// <summary>
         /// The MinLineSize property.<br />
         /// </summary>
         /// <since_tizen> 8 </since_tizen>

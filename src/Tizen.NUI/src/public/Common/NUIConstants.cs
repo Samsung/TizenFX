@@ -2008,6 +2008,28 @@ namespace Tizen.NUI
         Reject
     }
 
+    /// <summary>
+    /// Enumeration for the size type of font. <br />
+    /// </summary>
+    /// <remarks>
+    /// The size type of font used as a property of <see cref="Tizen.NUI.Text.TextFit"/>. <br />
+    /// </remarks>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum FontSizeType
+    {
+        /// <summary>
+        /// The PointSize.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        PointSize,
+
+        /// <summary>
+        /// The PixelSize.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        PixelSize
+    }
+
     namespace Text
     {
         /// <summary>
@@ -2144,6 +2166,47 @@ namespace Tizen.NUI
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public float Width { get; set; }
+        }
+
+        /// <summary>
+        /// A struct to pass data of TextFit PropertyMap. <br />
+        /// </summary>
+        /// <remarks>
+        /// The TextFit struct is used as an argument to SetTextFit and GetTextFit methods. <br />
+        /// See <see cref="Tizen.NUI.BaseComponents.TextLabel.SetTextFit"/> and <see cref="Tizen.NUI.BaseComponents.TextLabel.GetTextFit"/>. <br />
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public struct TextFit
+        {
+            /// <summary>
+            /// True to enable the text fit or false to disable (the default value is false).
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public bool Enable { get; set; }
+
+            /// <summary>
+            /// Minimum Size for text fit.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public float MinSize { get; set; }
+
+            /// <summary>
+            /// Maximum Size for text fit.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public float MaxSize { get; set; }
+
+            /// <summary>
+            /// Step Size for font increase.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public float StepSize { get; set; }
+
+            /// <summary>
+            /// The size type of font, PointSize or PixelSize (the default value is PointSize).
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public FontSizeType FontSizeType { get; set; }
         }
     }
 }
