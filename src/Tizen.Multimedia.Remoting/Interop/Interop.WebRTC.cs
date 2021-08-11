@@ -155,6 +155,18 @@ internal static partial class Interop
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_set_ecore_wl_display")]
         internal static extern WebRTCErrorCode SetEcoreDisplay(IntPtr handle, uint trackId, IntPtr display);
 
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_set_display_mode")]
+        internal static extern WebRTCErrorCode SetDisplayMode(IntPtr handle, uint trackId, WebRTCDisplayMode mode);
+
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_get_display_mode")]
+        internal static extern WebRTCErrorCode GetDisplayMode(IntPtr handle, uint trackId, out WebRTCDisplayMode mode);
+
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_set_display_visible")]
+        internal static extern WebRTCErrorCode SetDisplayVisible(IntPtr handle, uint trackId, bool isVisible);
+
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_get_display_visible")]
+        internal static extern WebRTCErrorCode GetDisplayVisible(IntPtr handle, uint trackId, out bool isVisible);
+
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_get_stun_server")]
         internal static extern WebRTCErrorCode GetStunServer(IntPtr handle, out string server);
 

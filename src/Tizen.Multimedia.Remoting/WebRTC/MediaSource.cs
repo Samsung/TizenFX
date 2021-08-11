@@ -187,6 +187,14 @@ namespace Tizen.Multimedia.Remoting
         /// Supported types are <see cref="AudioStreamType.Media"/>, <see cref="AudioStreamType.Voip"/>,
         /// <see cref="AudioStreamType.MediaExternalOnly"/>.<br/>
         /// </remarks>
+        /// <exception cref="ArgumentNullException"><paramref name="policy"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">This MediaSource is not Audio</exception>
+        /// <exception cref="NotSupportedException">
+        ///     <see cref="AudioStreamType"/> of <paramref name="policy"/> is not supported on the current platform.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">
+        ///     <paramref name="policy"/> has already been disposed.
+        /// </exception>
         /// <returns>The track ID.</returns>
         public MediaStreamTrack EnableAudioLoopback(AudioStreamPolicy policy)
         {
@@ -200,8 +208,14 @@ namespace Tizen.Multimedia.Remoting
                 throw new InvalidOperationException("AudioLoopback is only for Audio MediaSource");
             }
 
-            NativeWebRTC.SetAudioLoopback(WebRtc.Handle, SourceId.Value, policy.Handle, out uint trackId).
-                ThrowIfFailed("Failed to set audio loopback");
+            var ret = NativeWebRTC.SetAudioLoopback(WebRtc.Handle, SourceId.Value, policy.Handle, out uint trackId);
+
+            if (ret == WebRTCErrorCode.InvalidArgument)
+            {
+                throw new NotSupportedException("The specified policy is not supported on the current system.");
+            }
+
+            ret.ThrowIfFailed("Failed to set the audio stream policy to the WebRTC");
 
             return new MediaStreamTrack(WebRtc, MediaType, trackId);
         }

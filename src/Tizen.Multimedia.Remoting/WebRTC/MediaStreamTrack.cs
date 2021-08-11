@@ -109,6 +109,57 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
+        /// Gets or sets the display mode.
+        /// </summary>
+        /// <remarks>
+        /// This property is meaningful only in overlay or EVAS surface display type.
+        /// </remarks>
+        /// <value>A <see cref="WebRTCDisplayMode"/> that specifies the display mode.</value>
+        /// <exception cref="ArgumentException">Display mode type is incorrect.</exception>
+        /// <since_tizen> 9 </since_tizen>
+        public WebRTCDisplayMode DisplayMode
+        {
+            get
+            {
+                NativeWebRTC.GetDisplayMode(_webRtc.Handle, _trackId, out var val).
+                    ThrowIfFailed("Failed to get WebRTC display mode");
+
+                return val;
+            }
+            set
+            {
+                ValidationUtil.ValidateEnum(typeof(WebRTCDisplayMode), value, nameof(value));
+
+                NativeWebRTC.SetDisplayMode(_webRtc.Handle, _trackId, value).
+                    ThrowIfFailed("Failed to set WebRTC display mode.");
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the display visibility.
+        /// </summary>
+        /// <value>true if WebRTC display is visible, otherwise false.</value>
+        /// <remarks>
+        /// This property is meaningful only in overlay or EVAS surface display type.
+        /// </remarks>
+        /// <since_tizen> 9 </since_tizen>
+        public bool DisplayVisible
+        {
+            get
+            {
+                NativeWebRTC.GetDisplayVisible(_webRtc.Handle, _trackId,out bool val).
+                    ThrowIfFailed("Failed to get visible status");
+
+                return val;
+            }
+            set
+            {
+                NativeWebRTC.SetDisplayVisible(_webRtc.Handle, _trackId, value).
+                    ThrowIfFailed("Failed to set display status.");
+            }
+        }
+
+        /// <summary>
         /// Applies the audio stream policy to remote track.
         /// </summary>
         /// <param name="policy">The <see cref="AudioStreamPolicy"/> to apply.</param>
@@ -119,19 +170,19 @@ namespace Tizen.Multimedia.Remoting
         /// Supported types are <see cref="AudioStreamType.Media"/>, <see cref="AudioStreamType.Voip"/>,
         /// <see cref="AudioStreamType.MediaExternalOnly"/>.
         /// </remarks>
-        /// <exception cref="ObjectDisposedException">
-        ///     The WebRTC has already been disposed.<br/>
-        ///     -or-<br/>
-        ///     <paramref name="policy"/> has already been disposed.
-        /// </exception>
+        /// <exception cref="ArgumentNullException"><paramref name="policy"/> is null.</exception>
         /// <exception cref="InvalidOperationException">
         /// <see cref="WebRTC.AudioFrameEncoded"/> was set <br/>.
         /// -or-<br/>
         /// This method was not called in <see cref="WebRTC.TrackAdded"/> event.
         /// </exception>
-        /// <exception cref="ArgumentNullException"><paramref name="policy"/> is null.</exception>
         /// <exception cref="NotSupportedException">
         ///     <see cref="AudioStreamType"/> of <paramref name="policy"/> is not supported on the current platform.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">
+        ///     The WebRTC has already been disposed.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="policy"/> has already been disposed.
         /// </exception>
         /// <seealso cref="AudioStreamPolicy"/>
         /// <seealso cref="WebRTC.TrackAdded"/>

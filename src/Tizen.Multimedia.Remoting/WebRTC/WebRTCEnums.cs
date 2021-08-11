@@ -322,6 +322,28 @@ namespace Tizen.Multimedia.Remoting
     }
 
     /// <summary>
+    /// Specifies the display type.
+    /// </summary>
+    /// <since_tizen> 9 </since_tizen>
+    public enum WebRTCDisplayMode
+    {
+        /// <summary>
+        /// Letter box.
+        /// </summary>
+        LetterBox,
+
+        /// <summary>
+        /// Original size.
+        /// </summary>
+        OriginSize,
+
+        /// <summary>
+        /// Full screen.
+        /// </summary>
+        Full
+    }
+
+    /// <summary>
     /// Specifies the signaling message type.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
