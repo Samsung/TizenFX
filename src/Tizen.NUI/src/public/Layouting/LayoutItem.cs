@@ -584,12 +584,34 @@ namespace Tizen.NUI
                         // the size of the owner view must be reset even the ExcludeLayouting is true.
                         if (Owner.HeightSpecification < 0 || Owner.WidthSpecification < 0)
                         {
-                            Owner.SetSize(right - left, bottom - top);
+                            if (Owner.WidthResizePolicy == ResizePolicyType.DimensionDependency && Owner.HeightResizePolicy != ResizePolicyType.DimensionDependency)
+                            {
+                                Owner.SetSize(Owner.SizeWidth, bottom - top);
+                            }
+                            else if (Owner.WidthResizePolicy != ResizePolicyType.DimensionDependency && Owner.HeightResizePolicy == ResizePolicyType.DimensionDependency)
+                            {
+                                Owner.SetSize(right - left, Owner.SizeHeight);
+                            }
+                            else if (Owner.WidthResizePolicy != ResizePolicyType.DimensionDependency && Owner.HeightResizePolicy != ResizePolicyType.DimensionDependency)
+                            {
+                                Owner.SetSize(right - left, bottom - top);
+                            }
                         }
                     }
                     else
                     {
-                        Owner.SetSize(right - left, bottom - top);
+                        if (Owner.WidthResizePolicy == ResizePolicyType.DimensionDependency && Owner.HeightResizePolicy != ResizePolicyType.DimensionDependency)
+                        {
+                            Owner.SetSize(Owner.SizeWidth, bottom - top);
+                        }
+                        else if (Owner.WidthResizePolicy != ResizePolicyType.DimensionDependency && Owner.HeightResizePolicy == ResizePolicyType.DimensionDependency)
+                        {
+                            Owner.SetSize(right - left, Owner.SizeHeight);
+                        }
+                        else if (Owner.WidthResizePolicy != ResizePolicyType.DimensionDependency && Owner.HeightResizePolicy != ResizePolicyType.DimensionDependency)
+                        {
+                            Owner.SetSize(right - left, bottom - top);
+                        }
                         Owner.SetPosition(left, top);
                     }
                 }

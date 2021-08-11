@@ -830,6 +830,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 onRelayoutEventHandler(this, null);
             }
+
+            Layout?.RequestLayout();
         }
 
         // Callback for View TouchSignal
