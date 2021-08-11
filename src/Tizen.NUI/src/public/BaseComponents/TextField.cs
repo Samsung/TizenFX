@@ -1759,9 +1759,9 @@ namespace Tizen.NUI.BaseComponents
             //because the execution order of Finalizes is non-deterministic.
             if (this.HasBody())
             {
-                if (textFieldCursorMovedCallbackDelegate != null)
+                if (textFieldCursorPositionChangedCallbackDelegate != null)
                 {
-                    this.CursorMovedSignal().Disconnect(textFieldCursorMovedCallbackDelegate);
+                    this.CursorPositionChangedSignal().Disconnect(textFieldCursorPositionChangedCallbackDelegate);
                 }
 
                 if (textFieldMaxLengthReachedCallbackDelegate != null)

@@ -1743,9 +1743,9 @@ namespace Tizen.NUI.BaseComponents
                     this.MaxLengthReachedSignal().Disconnect(textEditorMaxLengthReachedCallbackDelegate);
                 }
 
-                if (textEditorCursorMovedCallbackDelegate != null)
+                if (textEditorCursorPositionChangedCallbackDelegate != null)
                 {
-                    this.CursorMovedSignal().Disconnect(textEditorCursorMovedCallbackDelegate);
+                    this.CursorPositionChangedSignal().Disconnect(textEditorCursorPositionChangedCallbackDelegate);
                 }
             }
 

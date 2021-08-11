@@ -29,8 +29,8 @@ namespace Tizen.NUI.BaseComponents
     {
         private EventHandler<TextChangedEventArgs> textFieldTextChangedEventHandler;
         private TextChangedCallbackDelegate textFieldTextChangedCallbackDelegate;
-        private EventHandler<CursorMovedEventArgs> textFieldCursorMovedEventHandler;
-        private CursorMovedCallbackDelegate textFieldCursorMovedCallbackDelegate;
+        private EventHandler<CursorPositionChangedEventArgs> textFieldCursorPositionChangedEventHandler;
+        private CursorPositionChangedCallbackDelegate textFieldCursorPositionChangedCallbackDelegate;
         private EventHandler<MaxLengthReachedEventArgs> textFieldMaxLengthReachedEventHandler;
         private MaxLengthReachedCallbackDelegate textFieldMaxLengthReachedCallbackDelegate;
         private EventHandler<AnchorClickedEventArgs> textFieldAnchorClickedEventHandler;
@@ -42,7 +42,7 @@ namespace Tizen.NUI.BaseComponents
         private delegate void TextChangedCallbackDelegate(IntPtr textField);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void CursorMovedCallbackDelegate(IntPtr textField, uint oldPosition, uint newPosition);
+        private delegate void CursorPositionChangedCallbackDelegate(IntPtr textField, uint oldPosition, uint newPosition);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void MaxLengthReachedCallbackDelegate(IntPtr textField);
@@ -79,28 +79,28 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The CursorMoved event.
+        /// The CursorPositionChanged event.
         /// </summary>
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<CursorMovedEventArgs> CursorMoved
+        public event EventHandler<CursorPositionChangedEventArgs> CursorPositionChanged
         {
             add
             {
-                if (textFieldCursorMovedEventHandler == null)
+                if (textFieldCursorPositionChangedEventHandler == null)
                 {
-                    textFieldCursorMovedCallbackDelegate = (OnCursorMoved);
-                    CursorMovedSignal().Connect(textFieldCursorMovedCallbackDelegate);
+                    textFieldCursorPositionChangedCallbackDelegate = (OnCursorPositionChanged);
+                    CursorPositionChangedSignal().Connect(textFieldCursorPositionChangedCallbackDelegate);
                 }
-                textFieldCursorMovedEventHandler += value;
+                textFieldCursorPositionChangedEventHandler += value;
             }
             remove
             {
-                if (textFieldCursorMovedEventHandler == null && CursorMovedSignal().Empty() == false)
+                if (textFieldCursorPositionChangedEventHandler == null && CursorPositionChangedSignal().Empty() == false)
                 {
-                    this.CursorMovedSignal().Disconnect(textFieldCursorMovedCallbackDelegate);
+                    this.CursorPositionChangedSignal().Disconnect(textFieldCursorPositionChangedCallbackDelegate);
                 }
-                textFieldCursorMovedEventHandler -= value;
+                textFieldCursorPositionChangedEventHandler -= value;
             }
         }
 
@@ -205,9 +205,9 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        internal TextFieldSignal CursorMovedSignal()
+        internal TextFieldSignal CursorPositionChangedSignal()
         {
-            TextFieldSignal ret = new TextFieldSignal(Interop.TextField.CursorMovedSignal(SwigCPtr), false);
+            TextFieldSignal ret = new TextFieldSignal(Interop.TextField.CursorPositionChangedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -246,19 +246,18 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        private void OnCursorMoved(IntPtr textField, uint oldPosition, uint newPosition)
+        private void OnCursorPositionChanged(IntPtr textField, uint oldPosition, uint newPosition)
         {
-            if (textFieldCursorMovedEventHandler != null)
+            if (textFieldCursorPositionChangedEventHandler != null)
             {
-                CursorMovedEventArgs e = new CursorMovedEventArgs();
+                CursorPositionChangedEventArgs e = new CursorPositionChangedEventArgs();
 
-                // Populate all members of "e" (CursorMovedEventArgs) with real data
-                e.TextField = Registry.GetManagedBaseHandleFromNativePtr(textField) as TextField;
+                // Populate all members of "e" (CursorPositionChangedEventArgs) with real data
                 e.OldCursorPosition = oldPosition;
-                e.NewCursorPosition = newPosition;
+                e.CursorPosition = newPosition;
 
                 //here we send all data to user event handlers
-                textFieldCursorMovedEventHandler(this, e);
+                textFieldCursorPositionChangedEventHandler(this, e);
             }
         }
 
@@ -320,27 +319,6 @@ namespace Tizen.NUI.BaseComponents
                     textField = value;
                 }
             }
-        }
-
-        /// <summary>
-        /// The CursorMoved event arguments.
-        /// </summary>
-        public class CursorMovedEventArgs : EventArgs
-        {
-            /// <summary>
-            /// TextField.
-            /// </summary>
-            public TextField TextField { get; set;}
-
-            /// <summary>
-            /// cursor postion before the move.
-            /// </summary>
-            public uint OldCursorPosition { get; set;}
-
-            /// <summary>
-            /// cursor postion after the move.
-            /// </summary>
-            public uint NewCursorPosition { get; set;}
         }
 
         /// <summary>

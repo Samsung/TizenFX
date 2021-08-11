@@ -47,4 +47,23 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public InputFilterType Type { get; set; }
     }
+
+    /// <summary>
+    /// The CursorPositionChanged event arguments.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class CursorPositionChangedEventArgs : EventArgs
+    {
+        /// <summary>
+        /// cursor postion before the change.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint OldCursorPosition { get; set;}
+
+        /// <summary>
+        /// cursor postion after the change.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint CursorPosition { get; set;}
+    }
 }
