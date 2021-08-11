@@ -1379,11 +1379,13 @@ namespace Tizen.NUI.BaseComponents
         {
             var map = new PropertyMap();
 
+            map.Add("enable", new PropertyValue(underline.Enable));
+
             if (underline.Color != null)
                 map.Add("color", new PropertyValue(underline.Color));
 
-            map.Add("enable", new PropertyValue(underline.Enable));
-            map.Add("height", new PropertyValue(underline.Height));
+            if (underline.Height != null)
+                map.Add("height", new PropertyValue((float)underline.Height));
 
             return map;
         }
@@ -1427,7 +1429,8 @@ namespace Tizen.NUI.BaseComponents
             if (shadow.Color != null)
                 map.Add("color", new PropertyValue(shadow.Color));
 
-            map.Add("blurRadius", new PropertyValue(shadow.BlurRadius));
+            if (shadow.BlurRadius != null)
+                map.Add("blurRadius", new PropertyValue((float)shadow.BlurRadius));
 
             return map;
         }
@@ -1469,7 +1472,8 @@ namespace Tizen.NUI.BaseComponents
             if (outline.Color != null)
                 map.Add("color", new PropertyValue(outline.Color));
 
-            map.Add("width", new PropertyValue(outline.Width));
+            if (outline.Width != null)
+                map.Add("width", new PropertyValue((float)outline.Width));
 
             return map;
         }
@@ -1548,10 +1552,16 @@ namespace Tizen.NUI.BaseComponents
         {
             var map = new PropertyMap();
             map.Add("enable", new PropertyValue(textFit.Enable));
-            map.Add("minSize", new PropertyValue(textFit.MinSize));
-            map.Add("maxSize", new PropertyValue(textFit.MaxSize));
-            map.Add("stepSize", new PropertyValue(textFit.StepSize));
             map.Add("fontSizeType", new PropertyValue(GetFontSizeString(textFit.FontSizeType)));
+
+            if (textFit.MinSize != null)
+                map.Add("minSize", new PropertyValue((float)textFit.MinSize));
+
+            if (textFit.MaxSize != null)
+                map.Add("maxSize", new PropertyValue((float)textFit.MaxSize));
+
+            if (textFit.StepSize != null)
+                map.Add("stepSize", new PropertyValue((float)textFit.StepSize));
 
             return map;
         }
