@@ -53,7 +53,7 @@ namespace Tizen.NUI
         internal Vector4 CornerRadius { get; set; }
 
         /// <summary>
-        /// Whether the CornerRadius value is relative (percentage [0.0f to 1.0f] of the view size) or absolute (in world units).
+        /// Whether the CornerRadius value is relative (percentage [0.0f to 0.5f] of the view size) or absolute (in world units).
         /// </summary>
         internal VisualTransformPolicyType CornerRadiusPolicy { get; set; } = VisualTransformPolicyType.Absolute;
 

@@ -421,6 +421,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The radius for the rounded corners of the View.
         /// The values in Vector4 are used in clockwise order from top-left to bottom-left : Vector4(top-left-corner, top-right-corner, bottom-right-corner, bottom-left-corner).
+        /// Each radius will clamp internally to the half of smaller of the view's width or height.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public Vector4 CornerRadius
@@ -430,7 +431,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Whether the CornerRadius property value is relative (percentage [0.0f to 1.0f] of the view size) or absolute (in world units).
+        /// Whether the CornerRadius property value is relative (percentage [0.0f to 0.5f] of the view size) or absolute (in world units).
         /// It is absolute by default.
         /// When the policy is relative, the corner radius is relative to the smaller of the view's width and height.
         /// </summary>
@@ -453,6 +454,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The color for the borderline of the View.
+        /// This color is affected by View Opacity.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Color BorderlineColor
