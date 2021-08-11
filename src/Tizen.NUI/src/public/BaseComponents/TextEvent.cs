@@ -58,12 +58,12 @@ namespace Tizen.NUI.BaseComponents
         /// cursor postion before the change.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint OldCursorPosition { get; set;}
+        public uint OldCursorPosition { get; set; }
 
         /// <summary>
         /// cursor postion after the change.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint CursorPosition { get; set;}
+        public uint CursorPosition { get; set; }
     }
 }
