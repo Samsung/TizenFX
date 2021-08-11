@@ -19,7 +19,6 @@ extern alias TizenSystemSettings;
 using TizenSystemSettings.Tizen.System;
 using System;
 using System.ComponentModel;
-using System.Text.RegularExpressions;
 using Tizen.NUI.Text;
 
 namespace Tizen.NUI.BaseComponents
@@ -1330,8 +1329,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// This method converts a InputFilter struct to a PropertyMap and returns it.
-        /// The returned map can be used for set InputFilter PropertyMap in the SetInputFilter method.
+        /// This method converts a InputFilter struct to a PropertyMap and returns it. <br />
+        /// The returned map can be used for set InputFilter PropertyMap in the SetInputFilter method. <br />
         /// <param name="inputFilter">The InputFilter struct value.</param>
         /// <returns> A PropertyMap for InputFilter property. </returns>
         /// </summary>
@@ -1339,8 +1338,8 @@ namespace Tizen.NUI.BaseComponents
         public static PropertyMap GetInputFilterMap(InputFilter inputFilter)
         {
             var map = new PropertyMap();
-            var accepted = inputFilter.Accepted != null ? new PropertyValue(inputFilter.Accepted.ToString()) : new PropertyValue("");
-            var rejected = inputFilter.Rejected != null ? new PropertyValue(inputFilter.Rejected.ToString()) : new PropertyValue("");
+            var accepted = inputFilter.Accepted != null ? new PropertyValue(inputFilter.Accepted) : new PropertyValue("");
+            var rejected = inputFilter.Rejected != null ? new PropertyValue(inputFilter.Rejected) : new PropertyValue("");
             map.Add(0, accepted);
             map.Add(1, rejected);
 
@@ -1348,8 +1347,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// This method converts a InputFilter map to a struct and returns it.
-        /// The returned struct can be returned to the user as a InputFilter in the GetInputFilter method.
+        /// This method converts a InputFilter map to a struct and returns it. <br />
+        /// The returned struct can be returned to the user as a InputFilter in the GetInputFilter method. <br />
         /// <param name="map">The InputFilter PropertyMap.</param>
         /// <returns> A InputFilter struct. </returns>
         /// </summary>
@@ -1362,8 +1361,8 @@ namespace Tizen.NUI.BaseComponents
             map.Find(1)?.Get(out rejected);
 
             var inputFilter = new InputFilter();
-            inputFilter.Accepted = new Regex(accepted);
-            inputFilter.Rejected = new Regex(rejected);
+            inputFilter.Accepted = accepted;
+            inputFilter.Rejected = rejected;
 
             return inputFilter;
 
