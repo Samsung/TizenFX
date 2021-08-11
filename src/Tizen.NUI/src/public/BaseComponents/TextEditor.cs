@@ -203,6 +203,7 @@ namespace Tizen.NUI.BaseComponents
         /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1721: Property names should not match get methods")]
         public PropertyMap FontStyle
         {
             get
@@ -699,6 +700,7 @@ namespace Tizen.NUI.BaseComponents
         /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1721: Property names should not match get methods")]
         public PropertyMap InputFontStyle
         {
             get
@@ -812,6 +814,7 @@ namespace Tizen.NUI.BaseComponents
         /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1721: Property names should not match get methods")]
         public PropertyMap Underline
         {
             get
@@ -890,6 +893,7 @@ namespace Tizen.NUI.BaseComponents
         /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1721: Property names should not match get methods")]
         public PropertyMap Shadow
         {
             get
@@ -1000,6 +1004,7 @@ namespace Tizen.NUI.BaseComponents
         /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1721: Property names should not match get methods")]
         public PropertyMap Outline
         {
             get
