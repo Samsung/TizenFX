@@ -36,7 +36,7 @@ namespace Tizen.Multimedia.Remoting
             }
             else
             {
-                NativeDataChannel.GetData(message, out IntPtr data, out uint size).
+                NativeDataChannel.GetData(message, out IntPtr data, out ulong size).
                     ThrowIfFailed("Failed to get data");
 
                 Data = new byte[(int)size];
