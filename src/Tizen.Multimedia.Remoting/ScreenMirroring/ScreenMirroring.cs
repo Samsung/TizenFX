@@ -276,13 +276,13 @@ namespace Tizen.Multimedia.Remoting
         /// </remarks>
         /// <returns>A task that represents the asynchronous operation.</returns>
         /// <privilege>http://tizen.org/privilege/internet</privilege>
+        /// <exception cref="ArgumentException"><paramref name="sourceIp"/> is a zero-length string, contains only white space.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="sourceIp"/> is null.</exception>
         /// <exception cref="InvalidOperationException">
         ///     The current state is not in the valid.<br/>
         ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
-        /// <exception cref="ArgumentException"><paramref name="sourceIp"/> is a zero-length string, contains only white space.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
         /// <exception cref="UnauthorizedAccessException">Caller does not have required permission.</exception>
         /// <seealso cref="ConnectAsync(string, uint)"/>
@@ -303,13 +303,17 @@ namespace Tizen.Multimedia.Remoting
         /// </remarks>
         /// <returns>A task that represents the asynchronous operation.</returns>
         /// <privilege>http://tizen.org/privilege/internet</privilege>
+        /// <exception cref="ArgumentException">
+        ///     <paramref name="sourceIp"/> is a zero-length string, contains only white space.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="port"/> is greater than port max value(65535).
+        /// </exception>
         /// <exception cref="ArgumentNullException"><paramref name="sourceIp"/> is null.</exception>
         /// <exception cref="InvalidOperationException">
         ///     The current state is not in the valid.<br/>
         ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
-        /// <exception cref="ArgumentException"><paramref name="sourceIp"/> is a zero-length string, contains only white space.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
         /// <exception cref="UnauthorizedAccessException">Caller does not have required permission.</exception>
         /// <since_tizen> 9 </since_tizen>
