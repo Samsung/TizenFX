@@ -268,6 +268,7 @@ namespace Tizen.NUI.BaseComponents
         /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1721: Property names should not match get methods")]
         public PropertyMap FontStyle
         {
             get
@@ -688,6 +689,7 @@ namespace Tizen.NUI.BaseComponents
         /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1721: Property names should not match get methods")]
         public PropertyMap Underline
         {
             get
@@ -750,6 +752,7 @@ namespace Tizen.NUI.BaseComponents
         /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1721: Property names should not match get methods")]
         public PropertyMap Shadow
         {
             get
@@ -847,6 +850,7 @@ namespace Tizen.NUI.BaseComponents
         /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1721: Property names should not match get methods")]
         public PropertyMap Outline
         {
             get
@@ -1085,6 +1089,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1721: Property names should not match get methods")]
         public PropertyMap TextFit
         {
             get
