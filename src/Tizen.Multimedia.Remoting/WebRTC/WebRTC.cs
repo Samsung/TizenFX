@@ -34,12 +34,10 @@ namespace Tizen.Multimedia.Remoting
     /// Provides the ability to control WebRTC.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
-    public partial class WebRTC : IDisposable, IDisplayable<WebRTCErrorCode>
+    public partial class WebRTC : IDisposable
     {
         private readonly WebRTCHandle _handle;
         private List<MediaSource> _source;
-
-        private Display _display;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="WebRTC"/> class.
@@ -111,8 +109,6 @@ namespace Tizen.Multimedia.Remoting
         {
             if (_disposed || !disposing)
                 return;
-
-            ReplaceDisplay(null);
 
             if (_source != null && _source.Count > 0)
             {
@@ -568,51 +564,6 @@ namespace Tizen.Multimedia.Remoting
             NativeWebRTC.ForeachTurnServer(Handle, callback).ThrowIfFailed("Failed to retrieve turn server");
 
             return list.AsReadOnly();
-        }
-
-        /// <summary>
-        /// Applies the audio stream policy to remote track.
-        /// </summary>
-        /// <param name="policy">The <see cref="AudioStreamPolicy"/> to apply.</param>
-        /// <remarks>
-        /// This must be called in <see cref="TrackAdded"/> event.<br/>
-        /// <br/>
-        /// <see cref="WebRTC"/> does not support all <see cref="AudioStreamType"/>.<br/>
-        /// Supported types are <see cref="AudioStreamType.Media"/>, <see cref="AudioStreamType.Voip"/>,
-        /// <see cref="AudioStreamType.MediaExternalOnly"/>.
-        /// </remarks>
-        /// <exception cref="ObjectDisposedException">
-        ///     The WebRTC has already been disposed.<br/>
-        ///     -or-<br/>
-        ///     <paramref name="policy"/> has already been disposed.
-        /// </exception>
-        /// <exception cref="InvalidOperationException">
-        /// <see cref="AudioFrameEncoded"/> was set <br/>.
-        /// -or-<br/>
-        /// This method was not called in <see cref="TrackAdded"/> event.
-        /// </exception>
-        /// <exception cref="ArgumentNullException"><paramref name="policy"/> is null.</exception>
-        /// <exception cref="NotSupportedException">
-        ///     <see cref="AudioStreamType"/> of <paramref name="policy"/> is not supported on the current platform.
-        /// </exception>
-        /// <seealso cref="AudioStreamPolicy"/>
-        /// <seealso cref="TrackAdded"/>
-        /// <since_tizen> 9 </since_tizen>
-        public void ApplyAudioStreamPolicy(AudioStreamPolicy policy)
-        {
-            if (policy == null)
-            {
-                throw new ArgumentNullException(nameof(policy));
-            }
-
-            var ret = NativeWebRTC.SetAudioStreamPolicyToRemoteTrack(Handle, _trackId.Value, policy.Handle);
-
-            if (ret == WebRTCErrorCode.InvalidArgument)
-            {
-                throw new NotSupportedException("The specified policy is not supported on the current system.");
-            }
-
-            ret.ThrowIfFailed("Failed to set the audio stream policy to the WebRTC");
         }
     }
 }

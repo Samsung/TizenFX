@@ -27,9 +27,9 @@ namespace Tizen.Multimedia.Remoting
     /// <since_tizen> 9 </since_tizen>
     public abstract class MediaSource : IDisplayable<uint>
     {
-        internal uint? SourceId { get; set; }
-
         internal WebRTC WebRtc { get; set; }
+        internal uint? SourceId { get; set; }
+        private Display _display;
 
         /// <summary>
         /// Gets the type of MediaSource.
@@ -134,14 +134,14 @@ namespace Tizen.Multimedia.Remoting
             get
             {
                 NativeWebRTC.GetMute(WebRtc.Handle, SourceId.Value, MediaType, out bool isMuted).
-                    ThrowIfFailed("Failed to get pause");
+                    ThrowIfFailed("Failed to get mute");
 
                 return isMuted;
             }
             set
             {
                 NativeWebRTC.SetMute(WebRtc.Handle, SourceId.Value, MediaType, value).
-                    ThrowIfFailed("Failed to set pause");
+                    ThrowIfFailed("Failed to set mute");
             }
         }
 
@@ -179,7 +179,7 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Enables the audio loopback.
+        /// Enables the audio loopback. The local audio will be played with <paramref name="policy"/>.
         /// </summary>
         /// <param name="policy">The <see cref="AudioStreamPolicy"/> to apply.</param>
         /// <remarks>
@@ -188,7 +188,7 @@ namespace Tizen.Multimedia.Remoting
         /// <see cref="AudioStreamType.MediaExternalOnly"/>.<br/>
         /// </remarks>
         /// <returns>The track ID.</returns>
-        public uint SetAudioLoopback(AudioStreamPolicy policy)
+        public MediaStreamTrack EnableAudioLoopback(AudioStreamPolicy policy)
         {
             if (policy == null)
             {
@@ -203,7 +203,17 @@ namespace Tizen.Multimedia.Remoting
             NativeWebRTC.SetAudioLoopback(WebRtc.Handle, SourceId.Value, policy.Handle, out uint trackId).
                 ThrowIfFailed("Failed to set audio loopback");
 
-            return trackId;
+            return new MediaStreamTrack(WebRtc, MediaType, SourceId.Value, trackId);
+        }
+
+        private uint SetDisplay(Display display)
+            => display.ApplyTo(this);
+
+        private void ReplaceDisplay(Display newDisplay)
+        {
+            _display?.SetOwner(null);
+            _display = newDisplay;
+            _display?.SetOwner(this);
         }
 
         /// <summary>
@@ -211,11 +221,13 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <param name="display">The <see cref="Display"/> to apply.</param>
         /// <returns>The track ID.</returns>
-        public uint SetVideoLoopback(Display display)
+        public MediaStreamTrack EnableVideoLoopback(Display display)
         {
+            uint trackId = 0;
+
             if (display == null)
             {
-                throw new ArgumentNullException(nameof(display));
+                throw new ArgumentNullException(nameof(display), "Display cannot be null.");
             }
 
             if (MediaType != MediaType.Video)
@@ -223,7 +235,20 @@ namespace Tizen.Multimedia.Remoting
                 throw new InvalidOperationException("VideoLoopback is only for Video MediaSource");
             }
 
-            return display.ApplyTo(this);;
+            if (display?.Owner != null)
+            {
+                if (ReferenceEquals(this, display.Owner))
+                {
+                    throw new ArgumentException("The display has already been assigned to another.");
+                }
+            }
+            else
+            {
+                trackId = SetDisplay(display);
+                ReplaceDisplay(display);
+            }
+
+            return new MediaStreamTrack(WebRtc, MediaType, SourceId.Value, trackId);
         }
 
         uint IDisplayable<uint>.ApplyEvasDisplay(DisplayType type, EvasObject evasObject)
@@ -240,12 +265,10 @@ namespace Tizen.Multimedia.Remoting
 
         uint IDisplayable<uint>.ApplyEcoreWindow(IntPtr windowHandle)
         {
-            // The following code will be uncommented when native function is ready.
-            // NativeWebRTC.SetVideoLoopback(WebRtc.Handle, SourceId.Value, windowHandle, out uint trackId).
-            //     ThrowIfFailed("Failed to set video loopback");
+            NativeWebRTC.SetEcoreVideoLoopback(WebRtc.Handle, SourceId.Value, windowHandle, out uint trackId).
+                ThrowIfFailed("Failed to set ecore video loopback");
 
-            // return trackId;
-            throw new NotImplementedException("Eocre window is not implemented yet");
+            return trackId;
         }
     }
 }
