@@ -47,4 +47,36 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public InputFilterType Type { get; set; }
     }
+
+    /// <summary>
+    /// The SelectionChanged event arguments.
+    /// </summary>
+    /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class SelectionChangedEventArgs : EventArgs
+    {
+        /// <summary>
+        /// selection start before the change.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint OldSelectionStart { get; set; }
+
+        /// <summary>
+        /// selection end before the change.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint OldSelectionEnd { get; set; }
+
+        /// <summary>
+        /// selection start after the change.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint NewSelectionStart { get; set; }
+
+        /// <summary>
+        /// selection end after the change.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint NewSelectionEnd { get; set; }
+    }
 }
