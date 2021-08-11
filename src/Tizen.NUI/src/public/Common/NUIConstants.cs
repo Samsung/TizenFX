@@ -2114,10 +2114,10 @@ namespace Tizen.NUI
             public Color Color { get; set; }
 
             /// <summary>
-            /// The height in pixels of the underline (the default value is 1.0f, value can not be set to 0.0f, if set to 0.0f then the height is set to 1.0f).
+            /// The height in pixels of the underline (if null, the default value is 1.0f).
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public float Height { get; set; }
+            public float? Height { get; set; }
         }
 
         /// <summary>
@@ -2137,16 +2137,19 @@ namespace Tizen.NUI
             public Color Color { get; set; }
 
             /// <summary>
-            /// The offset in pixels of the shadow (If not provided then the shadow is not enabled).
+            /// The offset in pixels of the shadow (if null, the default value is 0, 0). <br />
+            /// If not provided then the shadow is not enabled. <br />
+            ///  
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public Vector2 Offset { get; set; }
 
             /// <summary>
-            /// The radius of the Gaussian blur for the soft shadow (If not provided then the soft shadow is not enabled).
+            /// The radius of the Gaussian blur for the soft shadow (if null, the default value is 0.0f). <br />
+            /// If not provided then the soft shadow is not enabled. <br />
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public float BlurRadius { get; set; }
+            public float? BlurRadius { get; set; }
         }
 
         /// <summary>
@@ -2166,10 +2169,11 @@ namespace Tizen.NUI
             public Color Color { get; set; }
 
             /// <summary>
-            /// The width in pixels of the outline (If not provided then the outline is not enabled).
+            /// The width in pixels of the outline (if null, the default value is 0.0f). <br />
+            /// If not provided then the outline is not enabled. <br />
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public float Width { get; set; }
+            public float? Width { get; set; }
         }
 
         /// <summary>
@@ -2189,22 +2193,22 @@ namespace Tizen.NUI
             public bool Enable { get; set; }
 
             /// <summary>
-            /// Minimum Size for text fit.
+            /// Minimum Size for text fit (if null, the default value is 10.0f).
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public float MinSize { get; set; }
+            public float? MinSize { get; set; }
 
             /// <summary>
-            /// Maximum Size for text fit.
+            /// Maximum Size for text fit (if null, the default value is 100.0f).
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public float MaxSize { get; set; }
+            public float? MaxSize { get; set; }
 
             /// <summary>
-            /// Step Size for font increase.
+            /// Step Size for font increase (if null, the default value is 1.0f).
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public float StepSize { get; set; }
+            public float? StepSize { get; set; }
 
             /// <summary>
             /// The size type of font, PointSize or PixelSize (the default value is PointSize).
