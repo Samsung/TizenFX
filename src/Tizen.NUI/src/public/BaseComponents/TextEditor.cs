@@ -1424,15 +1424,20 @@ namespace Tizen.NUI.BaseComponents
         /// <see cref="Tizen.NUI.Text.InputFilter"/> filters input based on regular expressions. <br />
         /// Users can set the Accepted or Rejected regular expression set, or both. <br />
         /// If both are used, Rejected has higher priority. <br />
+        /// The character set must follow the regular expression rules. <br />
+        /// Behaviour can not be guaranteed for incorrect grammars. <br />
+        /// Refer the link below for detailed rules. <br />
+        /// The functions in std::regex library use the ECMAScript grammar: <br />
+        /// http://cplusplus.com/reference/regex/ECMAScript/ <br />
         /// InputFiltered signal is emitted when the input is filtered by InputFilter <br />
         /// See <see cref="InputFiltered"/>, <see cref="InputFilterType"/> and <see cref="InputFilteredEventArgs"/> for a detailed description. <br />
         /// </remarks>
         /// <example>
         /// The following example demonstrates how to use the SetInputFilter method.
         /// <code>
-        /// Tizen.NUI.Text.InputFilter inputFilter;
-        /// inputFilter.Accepted = new Regex(@"[\d]"); // accept whole digits
-        /// inputFilter.Rejected = new Regex("[0-3]"); // reject 0, 1, 2, 3
+        /// var inputFilter = new Tizen.NUI.Text.InputFilter();
+        /// inputFilter.Accepted = @"[\d]"; // accept whole digits
+        /// inputFilter.Rejected = "[0-3]"; // reject 0, 1, 2, 3
         /// editor.SetInputFilter(inputFilter); // acceptable inputs are 4, 5, 6, 7, 8, 9
         /// </code>
         /// </example>
