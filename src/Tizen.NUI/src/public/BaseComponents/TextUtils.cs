@@ -1164,41 +1164,16 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static string GetFontWidthString(FontWidthType fontWidthType)
         {
-            string value = "none";
-
-            switch (fontWidthType)
+            string value = fontWidthType.ToString();
+            if (!string.IsNullOrEmpty(value))
             {
-                default:
-                case FontWidthType.None:
-                    value = "none";
-                    break;
-                case FontWidthType.UltraCondensed:
-                    value = "ultraCondensed";
-                    break;
-                case FontWidthType.ExtraCondensed:
-                    value = "extraCondensed";
-                    break;
-                case FontWidthType.Condensed:
-                    value = "condensed";
-                    break;
-                case FontWidthType.SemiCondensed:
-                    value = "semiCondensed";
-                    break;
-                case FontWidthType.Normal:
-                    value = "normal";
-                    break;
-                case FontWidthType.SemiExpanded:
-                    value = "semiExpanded";
-                    break;
-                case FontWidthType.Expanded:
-                    value = "expanded";
-                    break;
-                case FontWidthType.ExtraExpanded:
-                    value = "extraExpanded";
-                    break;
-                case FontWidthType.UltraExpanded:
-                    value = "ultraExpanded";
-                    break;
+                char[] charArray = value.ToCharArray();
+                charArray[0] = Char.ToLower(charArray[0]);
+                value = new string(charArray);
+            }
+            else
+            {
+                value = "none"; // The default value.
             }
 
             return value;
@@ -1213,47 +1188,16 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static string GetFontWeightString(FontWeightType fontWeightType)
         {
-            string value = "none";
-
-            switch (fontWeightType)
+            string value = fontWeightType.ToString();
+            if (!string.IsNullOrEmpty(value))
             {
-                default:
-                case FontWeightType.None:
-                    value = "none";
-                    break;
-                case FontWeightType.Thin:
-                    value = "thin";
-                    break;
-                case FontWeightType.UltraLight:
-                    value = "ultraLight";
-                    break;
-                case FontWeightType.Light:
-                    value = "light";
-                    break;
-                case FontWeightType.DemiLight:
-                    value = "demiLight";
-                    break;
-                case FontWeightType.Book:
-                    value = "book";
-                    break;
-                case FontWeightType.Normal:
-                    value = "normal";
-                    break;
-                case FontWeightType.Medium:
-                    value = "medium";
-                    break;
-                case FontWeightType.DemiBold:
-                    value = "demiBold";
-                    break;
-                case FontWeightType.Bold:
-                    value = "bold";
-                    break;
-                case FontWeightType.UltraBold:
-                    value = "ultraBold";
-                    break;
-                case FontWeightType.Black:
-                    value = "black";
-                    break;
+                char[] charArray = value.ToCharArray();
+                charArray[0] = Char.ToLower(charArray[0]);
+                value = new string(charArray);
+            }
+            else
+            {
+                value = "none"; // The default value.
             }
 
             return value;
@@ -1268,23 +1212,16 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static string GetFontSlantString(FontSlantType fontSlantType)
         {
-            string value = "none";
-
-            switch (fontSlantType)
+            string value = fontSlantType.ToString();
+            if (!string.IsNullOrEmpty(value))
             {
-                default:
-                case FontSlantType.None:
-                    value = "none";
-                    break;
-                case FontSlantType.Normal:
-                    value = "normal";
-                    break;
-                case FontSlantType.Italic:
-                    value = "italic";
-                    break;
-                case FontSlantType.Oblique:
-                    value = "oblique";
-                    break;
+                char[] charArray = value.ToCharArray();
+                charArray[0] = Char.ToLower(charArray[0]);
+                value = new string(charArray);
+            }
+            else
+            {
+                value = "none"; // The default value.
             }
 
             return value;
@@ -1299,41 +1236,11 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static FontWidthType GetFontWidthType(string fontWidthString)
         {
-            FontWidthType value = FontWidthType.None;
+            FontWidthType value;
 
-            switch (fontWidthString)
+            if (!(Enum.TryParse(fontWidthString, true, out value) && Enum.IsDefined(typeof(FontWidthType), value)))
             {
-                default:
-                case "none":
-                    value = FontWidthType.None;
-                    break;
-                case "ultraCondensed":
-                    value = FontWidthType.UltraCondensed;
-                    break;
-                case "extraCondensed":
-                    value = FontWidthType.ExtraCondensed;
-                    break;
-                case "condensed":
-                    value = FontWidthType.Condensed;
-                    break;
-                case "semiCondensed":
-                    value = FontWidthType.SemiCondensed;
-                    break;
-                case "normal":
-                    value = FontWidthType.Normal;
-                    break;
-                case "semiExpanded":
-                    value = FontWidthType.SemiExpanded;
-                    break;
-                case "expanded":
-                    value = FontWidthType.Expanded;
-                    break;
-                case "extraExpanded":
-                    value = FontWidthType.ExtraExpanded;
-                    break;
-                case "ultraExpanded":
-                    value = FontWidthType.UltraExpanded;
-                    break;
+                value = FontWidthType.None; // If parsing fails, set a default value.
             }
 
             return value;
@@ -1348,47 +1255,11 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static FontWeightType GetFontWeightType(string fontWeightString)
         {
-            FontWeightType value = FontWeightType.None;
+            FontWeightType value;
 
-            switch (fontWeightString)
+            if (!(Enum.TryParse(fontWeightString, true, out value) && Enum.IsDefined(typeof(FontWeightType), value)))
             {
-                default:
-                case "none":
-                    value = FontWeightType.None;
-                    break;
-                case "thin":
-                    value = FontWeightType.Thin;
-                    break;
-                case "ultraLight":
-                    value = FontWeightType.UltraLight;
-                    break;
-                case "light":
-                    value = FontWeightType.Light;
-                    break;
-                case "demiLight":
-                    value = FontWeightType.DemiLight;
-                    break;
-                case "book":
-                    value = FontWeightType.Book;
-                    break;
-                case "normal":
-                    value = FontWeightType.Normal;
-                    break;
-                case "medium":
-                    value = FontWeightType.Medium;
-                    break;
-                case "demiBold":
-                    value = FontWeightType.DemiBold;
-                    break;
-                case "bold":
-                    value = FontWeightType.Bold;
-                    break;
-                case "ultraBold":
-                    value = FontWeightType.UltraBold;
-                    break;
-                case "black":
-                    value = FontWeightType.Black;
-                    break;
+                value = FontWeightType.None; // If parsing fails, set a default value.
             }
 
             return value;
@@ -1403,23 +1274,11 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static FontSlantType GetFontSlantType(string fontSlantString)
         {
-            FontSlantType value = FontSlantType.None;
+            FontSlantType value;
 
-            switch (fontSlantString)
+            if (!(Enum.TryParse(fontSlantString, true, out value) && Enum.IsDefined(typeof(FontSlantType), value)))
             {
-                default:
-                case "none":
-                    value = FontSlantType.None;
-                    break;
-                case "normal":
-                    value = FontSlantType.Normal;
-                    break;
-                case "italic":
-                    value = FontSlantType.Italic;
-                    break;
-                case "oblique":
-                    value = FontSlantType.Oblique;
-                    break;
+                value = FontSlantType.None; // If parsing fails, set a default value.
             }
 
             return value;
@@ -1645,17 +1504,16 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static string GetFontSizeString(FontSizeType fontSizeType)
         {
-            string value = "pointSize";
-
-            switch (fontSizeType)
+            string value = fontSizeType.ToString();
+            if (!string.IsNullOrEmpty(value))
             {
-                default:
-                case FontSizeType.PointSize:
-                    value = "pointSize";
-                    break;
-                case FontSizeType.PixelSize:
-                    value = "pixelSize";
-                    break;
+                char[] charArray = value.ToCharArray();
+                charArray[0] = Char.ToLower(charArray[0]);
+                value = new string(charArray);
+            }
+            else
+            {
+                value = "pointSize"; // The default value.
             }
 
             return value;
@@ -1670,17 +1528,11 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static FontSizeType GetFontSizeType(string fontSizeString)
         {
-            FontSizeType value = FontSizeType.PointSize;
+            FontSizeType value;
 
-            switch (fontSizeString)
+            if (!(Enum.TryParse(fontSizeString, true, out value) && Enum.IsDefined(typeof(FontSizeType), value)))
             {
-                default:
-                case "pointSize":
-                    value = FontSizeType.PointSize;
-                    break;
-                case "pixelSize":
-                    value = FontSizeType.PixelSize;
-                    break;
+                value = FontSizeType.PointSize; // If parsing fails, set a default value.
             }
 
             return value;
