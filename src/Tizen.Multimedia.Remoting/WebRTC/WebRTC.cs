@@ -64,8 +64,6 @@ namespace Tizen.Multimedia.Remoting
 
             RegisterEvents();
 
-            DisplaySettings = new WebRTCDisplaySettings(this);
-
             _source = new List<MediaSource>();
         }
 

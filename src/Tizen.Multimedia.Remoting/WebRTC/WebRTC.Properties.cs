@@ -198,13 +198,5 @@ namespace Tizen.Multimedia.Remoting
                     ThrowIfFailed("Failed to set ICE transport policy");
             }
         }
-
-        /// <summary>
-        /// Gets the display settings.
-        /// </summary>
-        /// <value>A <see cref="WebRTCDisplaySettings"/> that specifies the display settings.</value>
-        /// <since_tizen> 9 </since_tizen>
-        public WebRTCDisplaySettings DisplaySettings { get; }
-
     }
 }
