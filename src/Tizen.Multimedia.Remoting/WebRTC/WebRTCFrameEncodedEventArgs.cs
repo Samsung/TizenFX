@@ -43,5 +43,12 @@ namespace Tizen.Multimedia.Remoting
         /// <value>The media packet which has a frame data.</value>
         /// <since_tizen> 9 </since_tizen>
         public MediaPacket Packet { get; }
+
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <returns>A string that represents the current object.</returns>
+        /// <since_tizen> 9 </since_tizen>
+        public override string ToString() => $"MediaType={MediaStreamTrack.Type}";
     }
 }

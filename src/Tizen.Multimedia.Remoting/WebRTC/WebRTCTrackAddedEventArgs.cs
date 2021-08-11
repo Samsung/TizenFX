@@ -35,5 +35,12 @@ namespace Tizen.Multimedia.Remoting
         /// <value>The media type.</value>
         /// <since_tizen> 9 </since_tizen>
         public MediaStreamTrack MediaStreamTrack { get; }
+
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <returns>A string that represents the current object.</returns>
+        /// <since_tizen> 9 </since_tizen>
+        public override string ToString() => $"MediaType={MediaStreamTrack.Type}";
     }
 }
