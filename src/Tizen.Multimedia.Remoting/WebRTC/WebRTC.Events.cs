@@ -37,7 +37,6 @@ namespace Tizen.Multimedia.Remoting
         private NativeWebRTC.FrameEncodedCallback _webRtcAudioFrameEncodedCallback;
         private NativeWebRTC.FrameEncodedCallback _webRtcVideoFrameEncodedCallback;
         private NativeDataChannel.CreatedCallback _webRtcDataChannelCreatedCallback;
-        private uint? _trackId;
 
         /// <summary>
         /// Occurs when any error occurs.
@@ -269,18 +268,13 @@ namespace Tizen.Multimedia.Remoting
                 ThrowIfFailed("Failed to set ice candidate callback.");
         }
 
-        object _trackAddedLock = new object();
         private void RegisterTrackAddedCallback()
         {
             _webRtcTrackAddedCallback = (handle, type, id, _) =>
             {
                 Log.Info(WebRTCLog.Tag, $"Track type[{type}], id[{id}]");
-                _trackId = id;
 
-                lock (_trackAddedLock)
-                {
-                    TrackAdded?.Invoke(this, new WebRTCTrackAddedEventArgs(type, id));
-                }
+                TrackAdded?.Invoke(this, new WebRTCTrackAddedEventArgs(new MediaStreamTrack(this, type, id)));
             };
 
             NativeWebRTC.SetTrackAddedCb(Handle, _webRtcTrackAddedCallback).
@@ -291,7 +285,10 @@ namespace Tizen.Multimedia.Remoting
         {
             _webRtcAudioFrameEncodedCallback = (handle, type, id, packet, _) =>
             {
-                _audioFrameEncoded?.Invoke(this, new WebRTCFrameEncodedEventArgs(type, id, MediaPacket.From(packet)));
+                Log.Info(WebRTCLog.Tag, $"Track type[{type}], id[{id}]");
+
+                _audioFrameEncoded?.Invoke(this,
+                    new WebRTCFrameEncodedEventArgs(new MediaStreamTrack(this, type, id), MediaPacket.From(packet)));
             };
 
             NativeWebRTC.SetAudioFrameEncodedCb(Handle, _webRtcAudioFrameEncodedCallback).
@@ -308,7 +305,10 @@ namespace Tizen.Multimedia.Remoting
         {
             _webRtcVideoFrameEncodedCallback = (handle, type, id, packet, _) =>
             {
-                _videoFrameEncoded?.Invoke(this, new WebRTCFrameEncodedEventArgs(type, id, MediaPacket.From(packet)));
+                Log.Info(WebRTCLog.Tag, $"Track type[{type}], id[{id}]");
+
+                _videoFrameEncoded?.Invoke(this,
+                    new WebRTCFrameEncodedEventArgs(new MediaStreamTrack(this, type, id), MediaPacket.From(packet)));
             };
 
             NativeWebRTC.SetVideoFrameEncodedCb(Handle, _webRtcVideoFrameEncodedCallback).
@@ -325,7 +325,7 @@ namespace Tizen.Multimedia.Remoting
         {
             _webRtcDataChannelCreatedCallback = (handle, dataChannelHandle, _) =>
             {
-                Log.Debug(WebRTCLog.Tag, "Enter");
+                Log.Debug(WebRTCLog.Tag, "Invoked");
 
                 DataChannel?.Invoke(this, new WebRTCDataChannelEventArgs(dataChannelHandle));
             };

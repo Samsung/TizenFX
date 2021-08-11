@@ -28,14 +28,12 @@ namespace Tizen.Multimedia.Remoting
     public sealed class MediaStreamTrack : IDisplayable<WebRTCErrorCode>
     {
         private WebRTC _webRtc;
-        private uint _sourceId;
         private uint _trackId;
         private Display _display;
 
-        internal MediaStreamTrack(WebRTC webRtc, MediaType type, uint sourceId, uint trackId)
+        internal MediaStreamTrack(WebRTC webRtc, MediaType type, uint trackId)
         {
             _webRtc = webRtc;
-            _sourceId = sourceId;
             _trackId = trackId;
             Type = type;
         }

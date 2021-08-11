@@ -203,7 +203,7 @@ namespace Tizen.Multimedia.Remoting
             NativeWebRTC.SetAudioLoopback(WebRtc.Handle, SourceId.Value, policy.Handle, out uint trackId).
                 ThrowIfFailed("Failed to set audio loopback");
 
-            return new MediaStreamTrack(WebRtc, MediaType, SourceId.Value, trackId);
+            return new MediaStreamTrack(WebRtc, MediaType, trackId);
         }
 
         private uint SetDisplay(Display display)
@@ -248,7 +248,7 @@ namespace Tizen.Multimedia.Remoting
                 ReplaceDisplay(display);
             }
 
-            return new MediaStreamTrack(WebRtc, MediaType, SourceId.Value, trackId);
+            return new MediaStreamTrack(WebRtc, MediaType, trackId);
         }
 
         uint IDisplayable<uint>.ApplyEvasDisplay(DisplayType type, EvasObject evasObject)
