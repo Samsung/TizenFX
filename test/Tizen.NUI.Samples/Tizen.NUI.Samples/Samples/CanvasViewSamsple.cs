@@ -184,6 +184,12 @@ namespace Tizen.NUI.Samples
             group2.AddDrawable(circleShape);
             canvasView.AddDrawable(group2);
 
+            Picture picture  = new Picture();
+            picture.Load(CommonResource.GetDaliResourcePath() + "DaliDemo/Kid1.svg");
+            picture.SetSize(new Size2D(150, 150));
+            picture.Translate(300.0f, 550.0f);
+            canvasView.AddDrawable(picture);
+
             // Test Getter
             Position2D p1 = new Position2D(9, 9), p2 = new Position2D(8, 8);
             starFillLinearGradient.GetBounds(ref p1, ref p2);
@@ -194,6 +200,8 @@ namespace Tizen.NUI.Samples
             {
                 log.Debug(tag, "Gradient Stops :" + i + " " + stops[i].Offset + " " + stops[i].Color.R + " " + stops[i].Color.G + " " + stops[i].Color.B + " " + stops[i].Color.A + "\n");
             }
+
+            log.Debug(tag, "picture size : " + picture.GetSize().Width + " " + picture.GetSize().Height + "\n");
 
             log.Debug(tag, "circleShape Color : " + circleShape.FillColor.R + " " + circleShape.FillColor.G + " " + circleShape.FillColor.B + " " + circleShape.FillColor.A + "\n");
             log.Debug(tag, "circleShape StrokeColor : " + circleShape.StrokeColor.R + " " + circleShape.StrokeColor.G + " " + circleShape.StrokeColor.B + " " + circleShape.StrokeColor.A + "\n");
