@@ -425,14 +425,14 @@ namespace Tizen.Applications
         /// Gets the resource controls.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public IEnumerable<ResControl> ResControls
+        public IEnumerable<ResourceControl> ResourceControls
         {
             get
             {
-                List<ResControl> resControls = new List<ResControl>();
-                Interop.ApplicationManager.AppInfoResControlCallback cb = (string resType, string minResVersion, string maxResVersion, string isAutoClose, IntPtr userData) =>
+                List<ResourceControl> resourceControls = new List<ResourceControl>();
+                Interop.ApplicationManager.AppInfoResControlCallback cb = (string resType, string minResourceVersion, string maxResourceVersion, string isAutoClose, IntPtr userData) =>
                 {
-                    resControls.Add(new ResControl(resType, minResVersion, maxResVersion, isAutoClose == "true"));
+                    resourceControls.Add(new ResourceControl(resType, minResourceVersion, maxResourceVersion, isAutoClose == "true"));
                     return true;
                 };
 
@@ -446,7 +446,7 @@ namespace Tizen.Applications
                     }
                 }
 
-                return resControls;
+                return resourceControls;
             }
         }
 

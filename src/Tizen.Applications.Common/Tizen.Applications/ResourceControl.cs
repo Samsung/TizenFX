@@ -24,13 +24,13 @@ namespace Tizen.Applications
     /// Resource control.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
-    public class ResControl
+    public class ResourceControl
     {
-        internal ResControl(string resType, string minResVersion, string maxResVersion, bool isAutoClose)
+        internal ResourceControl(string resourceType, string minResourceVersion, string maxResourceVersion, bool isAutoClose)
         {
-            ResType = resType;
-            MinResVersion = minResVersion;
-            MaxResVersion = maxResVersion;
+            ResourceType = resourceType;
+            MinResourceVersion = minResourceVersion;
+            MaxResourceVersion = maxResourceVersion;
             IsAutoClose = isAutoClose;
         }
 
@@ -38,19 +38,19 @@ namespace Tizen.Applications
         /// The resource type.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public string ResType { get; }
+        public string ResourceType { get; }
 
         /// <summary>
         /// The minimum version of required resource package.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public string MinResVersion { get; }
+        public string MinResourceVersion { get; }
 
         /// <summary>
         /// The maximum version of required resource package.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public string MaxResVersion { get; }
+        public string MaxResourceVersion { get; }
 
         /// <summary>
         /// The auto close property.
