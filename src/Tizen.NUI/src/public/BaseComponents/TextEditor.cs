@@ -1497,6 +1497,7 @@ namespace Tizen.NUI.BaseComponents
         /// </code>
         /// </example>
         /// <since_tizen> 3 </since_tizen>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1721: Property names should not match get methods")]
         public Tizen.NUI.PropertyMap Placeholder
         {
             get
@@ -1577,6 +1578,54 @@ namespace Tizen.NUI.BaseComponents
                 SetValue(PlaceholderProperty, value);
                 NotifyPropertyChanged();
             }
+        }
+
+        /// <summary>
+        /// Set Placeholder to TextEditor. <br />
+        /// </summary>
+        /// <param name="placeholder">The Placeholder</param>
+        /// <remarks>
+        /// SetPlaceholder specifies the attributes of the placeholder property through <see cref="Tizen.NUI.Text.Placeholder"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetPlaceholder method.
+        /// <code>
+        /// var placeholder = new Tizen.NUI.Text.Placeholder();
+        /// placeholder.Text = "placeholder text";
+        /// placeholder.TextFocused = "placeholder textFocused";
+        /// placeholder.Color = new Color("#45B39D");
+        /// placeholder.FontFamily = "BreezeSans";
+        /// placeholder.FontStyle = new Tizen.NUI.Text.FontStyle()
+        /// {
+        ///     Width = FontWidthType.Expanded,
+        ///     Weight = FontWeightType.ExtraLight,
+        ///     Slant = FontSlantType.Italic,
+        /// };
+        /// placeholder.PointSize = 25.0f;
+        /// //placeholder.PixelSize = 50.0f;
+        /// placeholder.Ellipsis = true;
+        /// editor.SetPlaceholder(placeholder);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetPlaceholder(Placeholder placeholder)
+        {
+            SetProperty(TextEditor.Property.PLACEHOLDER, new PropertyValue(TextUtils.GetPlaceholderMap(placeholder)));
+        }
+
+        /// <summary>
+        /// Get Placeholder from TextEditor. <br />
+        /// </summary>
+        /// <returns>The Placeholder</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.Placeholder"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Placeholder GetPlaceholder()
+        {
+            var map = new PropertyMap();
+            GetProperty(TextEditor.Property.PLACEHOLDER).Get(map);
+            return TextUtils.GetPlaceholderStruct(map);
         }
 
         /// <summary>
