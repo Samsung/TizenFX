@@ -767,10 +767,9 @@ namespace Tizen.NUI
         /// <summary>
         /// Used for IME window that is used for keyboard window.
         /// It should be set in Application's New input param when application is created.
-        /// In addition, it is only for internal keyboard application.
-        /// This should be hidden.
+        /// Because IME window type can not change in runtime.
+        /// So, It does not work with Window.Type.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         Ime
     }
 
