@@ -122,6 +122,9 @@ namespace Tizen.NUI.BaseComponents
             onWindowSendEventCallback = SendViewAddedEventToWindow;
             this.OnWindowSignal().Connect(onWindowSendEventCallback);
 
+            onRelayoutEventCallback = OnRelayout;
+            this.OnRelayoutSignal().Connect(onRelayoutEventCallback);
+
             if (!shown)
             {
                 SetVisible(false);
