@@ -2216,5 +2216,68 @@ namespace Tizen.NUI
             [EditorBrowsable(EditorBrowsableState.Never)]
             public FontSizeType FontSizeType { get; set; }
         }
+
+        /// <summary>
+        /// A struct to pass data of Placeholder PropertyMap. <br />
+        /// </summary>
+        /// <remarks>
+        /// The Placeholder struct is used as an argument to SetPlaceholder and GetPlaceholder methods. <br />
+        /// See <see cref="Tizen.NUI.BaseComponents.TextField.SetPlaceholder"/>, <see cref="Tizen.NUI.BaseComponents.TextField.SetPlaceholder"/>, <see cref="Tizen.NUI.BaseComponents.TextEditor.SetPlaceholder"/> and <see cref="Tizen.NUI.BaseComponents.TextEditor.SetPlaceholder"/>. <br />
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public struct Placeholder
+        {
+            /// <summary>
+            /// The text to display when the TextField is empty and inactive.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public string Text { get; set; }
+
+            /// <summary>
+            /// The text to display when the placeholder has focus.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public string TextFocused { get; set; }
+
+            /// <summary>
+            /// The color of the placeholder text.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public Color Color { get; set; }
+
+            /// <summary>
+            /// The FontFamily of the placeholder text.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public string FontFamily { get; set; }
+
+            /// <summary>
+            /// The FontStyle of the placeholder text (if null, the text control FontStyle is used).
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public FontStyle? FontStyle { get; set; }
+
+            /// <summary>
+            /// The PointSize of the placeholder text. <br />
+            /// Not required if PixelSize provided. <br />
+            /// If both provided or neither provided then the text control point size is used. <br />
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public float? PointSize { get; set; }
+
+            /// <summary>
+            /// The PiexSize of the placeholder text.
+            /// Not required if PointSize provided. <br />
+            /// If both provided or neither provided then the text control point size is used. <br />
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public float? PixelSize { get; set; }
+
+            /// <summary>
+            /// The ellipsis of the placeholder text (the default value is false).
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public bool Ellipsis { get; set; }
+        }
     }
 }
