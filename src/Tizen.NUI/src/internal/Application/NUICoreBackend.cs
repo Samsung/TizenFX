@@ -81,14 +81,10 @@ namespace Tizen.NUI
         /// This will be hidden as inhouse API. Because it is only for internal IME window.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public NUICoreBackend(string stylesheet, NUIApplication.WindowMode windowMode, Size2D windowSize, Position2D windowPosition, WindowType type)
+        public NUICoreBackend(string stylesheet, NUIApplication.WindowMode windowMode, WindowType type)
         {
             this.stylesheet = stylesheet;
             this.windowMode = windowMode;
-            if (windowSize != null && windowPosition != null)
-            {
-                this.windowRectangle = new Rectangle(windowPosition.X, windowPosition.Y, windowSize.Width, windowSize.Height);
-            }
             this.defaultWindowType = type;
         }
 
@@ -167,7 +163,7 @@ namespace Tizen.NUI
 
             if(defaultWindowType != WindowType.Normal)
             {
-                application = Application.NewApplication(stylesheet, windowMode, windowRectangle, defaultWindowType);
+                application = Application.NewApplication(stylesheet, windowMode, defaultWindowType);
             }
             else
             {
