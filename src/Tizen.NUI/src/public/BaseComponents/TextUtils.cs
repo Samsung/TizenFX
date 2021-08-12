@@ -1592,6 +1592,96 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// This method converts a Placeholder struct to a PropertyMap and returns it.
+        /// The returned map can be used for set Placeholder PropertyMap in the SetPlaceholder method.
+        /// <param name="placeholder">The Placeholder struct value.</param>
+        /// <returns> A PropertyMap for Placeholder property. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static PropertyMap GetPlaceholderMap(Placeholder placeholder)
+        {
+            var map = new PropertyMap();
+
+            if (placeholder.Text != null)
+                map.Add("text", new PropertyValue(placeholder.Text));
+
+            if (placeholder.TextFocused != null)
+                map.Add("textFocused", new PropertyValue(placeholder.TextFocused));
+
+            if (placeholder.Color != null)
+                map.Add("color", new PropertyValue(placeholder.Color));
+
+            if (placeholder.FontFamily != null)
+                map.Add("fontFamily", new PropertyValue(placeholder.FontFamily));
+
+            if (placeholder.FontStyle != null)
+                map.Add("fontStyle", new PropertyValue(GetFontStyleMap((FontStyle)placeholder.FontStyle)));
+
+            if (placeholder.PointSize != null && placeholder.PixelSize != null)
+                map.Add("pointSize", new PropertyValue((float)placeholder.PointSize));
+
+            else if (placeholder.PointSize != null)
+                map.Add("pointSize", new PropertyValue((float)placeholder.PointSize));
+
+            else if (placeholder.PixelSize != null)
+                map.Add("pixelSize", new PropertyValue((float)placeholder.PixelSize));
+            
+            map.Add("ellipsis", new PropertyValue(placeholder.Ellipsis));
+
+            return map;
+        }
+
+        /// <summary>
+        /// This method converts a Placeholder map to a struct and returns it.
+        /// The returned struct can be returned to the user as a Placeholder in the GetPlaceholder method.
+        /// <param name="map">The Placeholder PropertyMap.</param>
+        /// <returns> A Placeholder struct. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Placeholder GetPlaceholderStruct(PropertyMap map)
+        {
+            string text = "";
+            string textFocused = "";
+            Color color = new Color();
+            string fontFamily = null;
+            var fontStyle = new PropertyMap();
+            PropertyValue pointSizeValue = null;
+            PropertyValue pixelSizeValue = null;
+            bool ellipsis = false;
+
+            map.Find(0)?.Get(out text);
+            map.Find(1)?.Get(out textFocused);
+            map.Find(2).Get(color);
+            map.Find(3)?.Get(out fontFamily);
+            map.Find(4).Get(fontStyle);
+            pointSizeValue = map.Find(5);
+            pixelSizeValue = map.Find(6);
+            map.Find(7)?.Get(out ellipsis);
+
+            var placeholder = new Placeholder();
+            placeholder.Text = text;
+            placeholder.TextFocused = textFocused;
+            placeholder.Color = color;
+            placeholder.FontFamily = fontFamily;
+            placeholder.Ellipsis = ellipsis;
+            placeholder.FontStyle = GetFontStyleStruct(fontStyle);
+
+            if (pointSizeValue != null)
+            {
+                pointSizeValue.Get(out float pointSize);
+                placeholder.PointSize = pointSize;
+            }
+
+            if (pixelSizeValue != null)
+            {
+                pixelSizeValue.Get(out float pixelSize);
+                placeholder.PixelSize = pixelSize;
+            }
+
+            return placeholder;
+        }
+
+        /// <summary>
         /// Copy the previously selected text into the clipboard and return the copied value.
         /// </summary>
         /// <param name="textEditor">The textEditor control from which the text is copied.</param>
