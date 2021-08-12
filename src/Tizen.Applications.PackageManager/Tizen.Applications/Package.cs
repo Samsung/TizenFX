@@ -50,7 +50,7 @@ namespace Tizen.Applications
         private int _callbackId = 0;
         private List<PackageDependencyInformation> _dependencyTo;
         private List<PackageDependencyInformation> _dependencyFrom;
-        private IReadOnlyDictionary<string, List<string>> _allowedPackagesAndPrivilegesList;
+        private IReadOnlyDictionary<string, IEnumerable<string>> _allowedPackagesAndPrivilegesList;
 
         private Package(string pkgId)
         {
@@ -293,7 +293,7 @@ namespace Tizen.Applications
         /// The allowed packages and required privileges information.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public IReadOnlyDictionary<string, List<string>> AllowedPackagesAndPrivileges
+        public IReadOnlyDictionary<string, IEnumerable<string>> AllowedPackagesAndPrivileges
         {
             get { return _allowedPackagesAndPrivilegesList; }
         }
@@ -486,10 +486,10 @@ namespace Tizen.Applications
             return dependencies;
         }
 
-        private static IReadOnlyDictionary<string, List<string>> GetAllowedPackagesAndPrivileges(IntPtr packageInfoHandle)
+        private static Dictionary<string, IEnumerable<string>> GetAllowedPackagesAndPrivileges(IntPtr packageInfoHandle)
         {
             Interop.PackageManager.ErrorCode err;
-            Dictionary<string, List<string>> allowedPackagesAndPrivileges = new Dictionary<string, List<string>>();
+            Dictionary<string, IEnumerable<string>> allowedPackagesAndPrivileges = new Dictionary<string, IEnumerable<string>>();
             Interop.Package.PackageInfoResAllowedPackageCallback allowedPackageCallback = (allowedPackage, requiredPrivileges, userData) =>
             {
                 List<string> requiredPrivilegesList = new List<string>();
