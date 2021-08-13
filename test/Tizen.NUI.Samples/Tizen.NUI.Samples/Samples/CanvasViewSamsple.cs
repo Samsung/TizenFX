@@ -107,14 +107,23 @@ namespace Tizen.NUI.Samples
                 FillRule = Shape.FillRuleType.EvenOdd,
                 StrokeJoin = Shape.StrokeJoinType.Round,
             };
+
             shape.Scale(0.5f);
             shape.Translate(350.0f, 300.0f);
-            shape.AddMoveTo(0.0f, -160.0f);
-            shape.AddLineTo(125.0f, 160.0f);
-            shape.AddLineTo(-180.0f, -45.0f);
-            shape.AddLineTo(180.0f, -45.0f);
-            shape.AddLineTo(-125.0f, 160.0f);
-            shape.Close();
+
+            shape.AddPath(new PathCommands(new PathCommands.PathCommandType[] { PathCommands.PathCommandType.MoveTo,
+                                                                                PathCommands.PathCommandType.LineTo,
+                                                                                PathCommands.PathCommandType.LineTo,
+                                                                                PathCommands.PathCommandType.LineTo,
+                                                                                PathCommands.PathCommandType.LineTo,
+                                                                                PathCommands.PathCommandType.Close },
+                                            6,
+                                            new float[] {0.0f, -160.0f,
+                                                        125.0f, 160.0f,
+                                                        -180.0f, -45.0f,
+                                                        180.0f, -45.0f,
+                                                        -125.0f, 160.0f },
+                                            10));
 
             canvasView.AddDrawable(shape);
 
@@ -184,7 +193,7 @@ namespace Tizen.NUI.Samples
             group2.AddDrawable(circleShape);
             canvasView.AddDrawable(group2);
 
-            Picture picture  = new Picture();
+            Picture picture = new Picture();
             picture.Load(CommonResource.GetDaliResourcePath() + "DaliDemo/Kid1.svg");
             picture.SetSize(new Size2D(150, 150));
             picture.Translate(300.0f, 550.0f);

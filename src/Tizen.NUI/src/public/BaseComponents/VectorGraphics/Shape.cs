@@ -138,7 +138,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
                     Interop.Shape.SetFillGradient(BaseHandle.getCPtr(this), BaseHandle.getCPtr(value));
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                     fillGradient = value;
-                }       
+                }
             }
         }
 
@@ -214,7 +214,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
                     Interop.Shape.SetStrokeGradient(BaseHandle.getCPtr(this), BaseHandle.getCPtr(value));
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                     strokeGradient = value;
-                }       
+                }
             }
         }
 
@@ -397,6 +397,26 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
             bool ret = Interop.Shape.AddCubicTo(BaseHandle.getCPtr(this), controlPoint1X, controlPoint1Y, controlPoint2X, controlPoint2Y, endPointX, endPointY);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+
+        /// <summary>
+        /// Appends a given sub-path to the path.
+        /// The current point value is set to the last point from the sub-path.
+        /// @note The interface is designed for optimal path setting if the caller has a completed path commands already.
+        /// </summary>
+        /// <param name="pathCommands">The command object that contain sub-path information. (This command information is copied internally.)</param>
+        /// <exception cref="ArgumentNullException"> Thrown when pathCommands is null. </exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void AddPath(PathCommands pathCommands)
+        {
+            if (pathCommands == null)
+            {
+                throw new ArgumentNullException(nameof(pathCommands));
+            }
+
+            Interop.Shape.AddPath(BaseHandle.getCPtr(this), pathCommands.GetCommands(), pathCommands.GetCommandCount(), pathCommands.GetPoints(), pathCommands.GetPointCount());
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
