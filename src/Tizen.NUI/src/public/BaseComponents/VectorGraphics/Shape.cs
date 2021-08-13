@@ -348,13 +348,30 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
             return ret;
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pathCommands"> </param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void AddPath(PathCommands pathCommands)
+        {
+            if (pathCommands == null)
+            {
+                throw new ArgumentNullException(nameof(pathCommands));
+            }
+
+            Interop.Shape.AddPath(BaseHandle.getCPtr(this), pathCommands.Commands, pathCommands.CommandCount, pathCommands.Points, pathCommands.PointCount);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
         /// <summary>
         /// Closes the current subpath by drawing a line to the beginning of the
         /// subpath, automatically starting a new path. The current point of the
         /// new path is (0, 0).
         /// If the subpath does not contain any points, this function does nothing.
         /// </summary>
-        /// <returns>True when it's successful. False otherwise.</returns>
+        /// <returns>True when it's successful. False otherwise.</returns>s
         /// <since_tizen> 9 </since_tizen>
         public bool Close()
         {
