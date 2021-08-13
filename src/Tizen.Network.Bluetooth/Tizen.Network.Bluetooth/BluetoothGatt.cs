@@ -226,7 +226,6 @@ namespace Tizen.Network.Bluetooth
         /// <exception cref="InvalidOperationException">Thrown when the BT/BLE is not enabled
         /// or when the remote device is disconnected, or when other specific error occurs.</exception>
         /// <since_tizen> 9 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public int GetAttMtu(string clientAddress)
         {
             return _impl.GetAttMtu(clientAddress);
@@ -595,7 +594,6 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         /// <feature>http://tizen.org/feature/network.bluetooth.le.gatt.client</feature>
         /// <since_tizen> 8 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<ServiceChangedEventArgs> ServiceChanged;
 
         internal bool Isvalid()

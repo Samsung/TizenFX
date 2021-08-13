@@ -1244,7 +1244,6 @@ namespace Tizen.Network.Bluetooth
     /// An extended EventArgs class contains the service changed information.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
-    [EditorBrowsable(EditorBrowsableState.Never)]
     public class ServiceChangedEventArgs : EventArgs
     {
         internal ServiceChangedEventArgs(BluetoothGattServiceChangedType changedType, string serviceUuid)
