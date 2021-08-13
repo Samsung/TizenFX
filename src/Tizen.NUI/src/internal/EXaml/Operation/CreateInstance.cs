@@ -93,6 +93,11 @@ namespace Tizen.NUI.EXaml
             {
                 globalDataList.GatheredInstances.Add(obj);
 
+                if (globalDataList.Root == null)
+                {
+                    globalDataList.Root = obj;
+                }
+
                 if (obj is BindableObject bindableObject)
                 {
                     bindableObject.IsCreateByXaml = true;

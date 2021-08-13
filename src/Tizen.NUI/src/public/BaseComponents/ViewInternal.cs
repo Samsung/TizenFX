@@ -1230,6 +1230,8 @@ namespace Tizen.NUI.BaseComponents
                     heightConstraint.Remove();
                     heightConstraint.Dispose();
                 }
+
+                Unparent();
             }
 
             //Release your own unmanaged resources here.
@@ -1422,7 +1424,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     refinedStyle = initialStyle?.Merge(style);
                 }
-                ApplyStyle(style);
+                ApplyStyle(refinedStyle);
             }
 
             // Listen theme change event if needs.

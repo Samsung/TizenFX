@@ -48,7 +48,6 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<StringToVoidSignal>(testingTarget, "Should be an Instance of StringToVoidSignal!");
 
             testingTarget.Dispose();
-
             tlog.Debug(tag, $"StringToVoidSignalConstructor END (OK)");
         }
 

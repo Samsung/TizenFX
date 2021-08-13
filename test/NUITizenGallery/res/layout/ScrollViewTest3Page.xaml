@@ -4,8 +4,8 @@
   xmlns:base="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
   xmlns:comp="clr-namespace:Tizen.NUI.Components;assembly=Tizen.NUI.Components"
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-           WidthSpecification="-1"
-           HeightSpecification="-1"
+           WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+           HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
            BackgroundColor="White"
            PositionUsesPivotPoint="True"
            ParentOrigin="Center"
@@ -16,7 +16,7 @@
 	</comp:ContentPage.AppBar>
 
 	<comp:ContentPage.Content>
-		<base:View x:Name="rootView" WidthSpecification="-1" HeightSpecification="-1">
+		<base:View x:Name="rootView" WidthSpecification="{Static LayoutParamPolicies.MatchParent}" HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
 
 			<base:View.Layout>
 				<LinearLayout LinearOrientation="Vertical" LinearAlignment="Begin" CellPadding="10, 10"/>

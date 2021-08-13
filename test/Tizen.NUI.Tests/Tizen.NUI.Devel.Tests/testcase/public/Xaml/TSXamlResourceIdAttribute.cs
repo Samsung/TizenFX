@@ -9,10 +9,19 @@ namespace Tizen.NUI.Devel.Tests
 
     [TestFixture]
     [Description("public/xaml/XamlResourceIdAttribute ")]
-    internal class PublicXamlResourceIdAttributeTest
+    public class PublicXamlResourceIdAttributeTest
     {
         private const string tag = "NUITEST";
         private static XamlResourceIdAttribute resourceIdAttribute;
+
+        internal class AssemblyImplent : Assembly
+        {
+            public override object[] GetCustomAttributes(bool inherit)
+            {
+                return null;
+            }
+        }
+
         [SetUp]
         public void Init()
         {
@@ -164,14 +173,6 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"XamlResourceIdAttributeGetPathForType END (OK)");
             Assert.Pass("XamlResourceIdAttributeGetPathForType");
-        }
-
-        private class AssemblyImplent : Assembly
-        {
-            public override object[] GetCustomAttributes(bool inherit)
-            {
-                return null;
-            }
         }
 
         [Test]

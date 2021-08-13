@@ -54,6 +54,13 @@ namespace Tizen.NUI.Samples
             roundedRectShape.Rotate(45.0f);
             roundedRectShape.AddRect(-50.0f, -50.0f, 100.0f, 100.0f, 0.0f, 0.0f);
 
+            Shape circleMask = new Shape()
+            {
+                FillColor = new Color(1.0f, 1.0f, 1.0f, 1.0f),
+            };
+            circleMask.AddRect(-50.0f, -50.0f, 100.0f, 100.0f, 0.0f, 0.0f);
+            circleMask.Translate(350.0f, 100.0f);
+
             circleShape = new Shape()
             {
                 Opacity = 0.5f,
@@ -64,6 +71,8 @@ namespace Tizen.NUI.Samples
             };
             circleShape.AddCircle(0.0f, 0.0f, 150.0f, 100.0f);
             circleShape.Transform(new float[] { 0.6f, 0.0f, 350.0f, 0.0f, 0.6f, 100.0f, 0.0f, 0.0f, 1.0f });
+
+            circleShape.Mask(circleMask, Drawable.MaskType.Alpha);
 
             arcShape = new Shape()
             {
@@ -94,6 +103,13 @@ namespace Tizen.NUI.Samples
 
             canvasView.AddDrawable(shape);
 
+            Shape starClipper = new Shape()
+            {
+                FillColor = new Color(1.0f, 1.0f, 1.0f, 1.0f),
+            };
+            starClipper.AddCircle(0.0f, 0.0f, 160.0f, 160.0f);
+            starClipper.Translate(250.0f, 550.0f);
+
             starShape = new Shape()
             {
                 Opacity = 0.5f,
@@ -116,8 +132,9 @@ namespace Tizen.NUI.Samples
             starShape.AddLineTo(-54.0f, -56.0f);
             starShape.Close();
 
-            canvasView.AddDrawable(starShape);
+            starShape.ClipPath(starClipper);
 
+            canvasView.AddDrawable(starShape);
 
             group1 = new DrawableGroup();
             group1.AddDrawable(roundedRectShape);

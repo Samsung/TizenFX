@@ -8,7 +8,7 @@ namespace Tizen.NUI.Devel.Tests
 
     [TestFixture]
     [Description("internal/Xaml/DesignMode")]
-    internal class PublicDesignModeTest
+    public class InternalXamlDesignModeTest
     {
         private const string tag = "NUITEST";
 

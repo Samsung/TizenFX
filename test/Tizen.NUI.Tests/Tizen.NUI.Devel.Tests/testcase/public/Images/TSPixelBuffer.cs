@@ -39,7 +39,7 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"PixelBufferConstructor START");
 
-            var testingTarget = new PixelBuffer(100, 50, PixelFormat.L8);
+            var testingTarget = new PixelBuffer(10, 5, PixelFormat.L8);
             Assert.IsNotNull(testingTarget, "Can't create success object PixelBuffer");
             Assert.IsInstanceOf<PixelBuffer>(testingTarget, "Should be an instance of PixelBuffer type.");
 
@@ -58,7 +58,7 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"PixelBufferConstructorByPixelBuffer START");
 
-            using (PixelBuffer pixelBuffer = new PixelBuffer(100, 50, PixelFormat.L8))
+            using (PixelBuffer pixelBuffer = new PixelBuffer(10, 5, PixelFormat.L8))
             {
                 var testingTarget = new PixelBuffer(pixelBuffer);
                 Assert.IsNotNull(testingTarget, "Can't create success object PixelBuffer");
@@ -81,9 +81,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"PixelBufferConstructorByIntPtr START");
 
-            using (PixelBuffer pixelBuffer = new PixelBuffer(100, 50, PixelFormat.BGR8888))
+            using (PixelBuffer pixelBuffer = new PixelBuffer(10, 5, PixelFormat.BGR8888))
             {
-                var testingTarget = new PixelBuffer(PixelBuffer.getCPtr(pixelBuffer).Handle, true);
+                var testingTarget = new PixelBuffer(PixelBuffer.getCPtr(pixelBuffer).Handle, false);
                 Assert.IsNotNull(testingTarget, "Can't create success object PixelBuffer");
                 Assert.IsInstanceOf<PixelBuffer>(testingTarget, "Should be an instance of PixelBuffer type.");
 
@@ -104,7 +104,7 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"PixelBufferConvert START");
 
-            using (PixelBuffer pixelBuffer = new PixelBuffer(100, 50, PixelFormat.BGR8888))
+            using (PixelBuffer pixelBuffer = new PixelBuffer(1, 2, PixelFormat.BGR8888))
             {
                 var testingTarget = PixelBuffer.Convert(pixelBuffer);
                 Assert.IsNotNull(testingTarget, "Can't create success object PixelData");
@@ -127,7 +127,7 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"PixelBufferCreatePixelData START");
 
-            using (PixelBuffer pixelBuffer = new PixelBuffer(100, 50, PixelFormat.BGR8888))
+            using (PixelBuffer pixelBuffer = new PixelBuffer(10, 5, PixelFormat.BGR8888))
             {
                 var testingTarget = pixelBuffer.CreatePixelData();
                 Assert.IsNotNull(testingTarget, "Can't create success object PixelData");
@@ -150,12 +150,12 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"PixelBufferGetWidth START");
 
-            var testingTarget = new PixelBuffer(100, 50, PixelFormat.BGR8888);
+            var testingTarget = new PixelBuffer(10, 5, PixelFormat.BGR8888);
             Assert.IsNotNull(testingTarget, "Can't create success object PixelBuffer");
             Assert.IsInstanceOf<PixelBuffer>(testingTarget, "Should be an instance of PixelBuffer type.");
 
             var result = testingTarget.GetWidth();
-            Assert.AreEqual(100, result, "Should be equal!");
+            Assert.AreEqual(10, result, "Should be equal!");
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"PixelBufferGetWidth END (OK)");
@@ -172,12 +172,12 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"PixelBufferGetHeight START");
 
-            var testingTarget = new PixelBuffer(100, 50, PixelFormat.BGR8888);
+            var testingTarget = new PixelBuffer(10, 5, PixelFormat.BGR8888);
             Assert.IsNotNull(testingTarget, "Can't create success object PixelBuffer");
             Assert.IsInstanceOf<PixelBuffer>(testingTarget, "Should be an instance of PixelBuffer type.");
 
             var result = testingTarget.GetHeight();
-            Assert.AreEqual(50, result, "Should be equal!");
+            Assert.AreEqual(5, result, "Should be equal!");
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"PixelBufferGetHeight END (OK)");
@@ -194,7 +194,7 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"PixelBufferGetPixelFormat START");
 
-            var testingTarget = new PixelBuffer(100, 50, PixelFormat.BGR8888);
+            var testingTarget = new PixelBuffer(10, 5, PixelFormat.BGR8888);
             Assert.IsNotNull(testingTarget, "Can't create success object PixelBuffer");
             Assert.IsInstanceOf<PixelBuffer>(testingTarget, "Should be an instance of PixelBuffer type.");
 
@@ -216,7 +216,7 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"PixelBufferAssign START");
 
-            using (PixelBuffer pixelBuffer = new PixelBuffer(100, 50, PixelFormat.BGR8888))
+            using (PixelBuffer pixelBuffer = new PixelBuffer(10, 5, PixelFormat.BGR8888))
             {
                 var testingTarget = pixelBuffer.Assign(pixelBuffer);
                 Assert.IsNotNull(testingTarget, "Can't create success object PixelData");
@@ -242,7 +242,7 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"PixelBufferGetBuffer START");
 
-            var testingTarget = new PixelBuffer(100, 50, PixelFormat.BGR8888);
+            var testingTarget = new PixelBuffer(10, 5, PixelFormat.BGR8888);
             Assert.IsNotNull(testingTarget, "Can't create success object PixelData");
             Assert.IsInstanceOf<PixelBuffer>(testingTarget, "Should be an instance of PixelData type.");
 
@@ -266,7 +266,7 @@ namespace Tizen.NUI.Devel.Tests
 
             using (Degree degree = new Degree(30))
             {
-                var testingTarget = new PixelBuffer(100, 50, PixelFormat.BGR8888);
+                var testingTarget = new PixelBuffer(10, 5, PixelFormat.BGR8888);
                 Assert.IsNotNull(testingTarget, "Can't create success object PixelData");
                 Assert.IsInstanceOf<PixelBuffer>(testingTarget, "Should be an instance of PixelData type.");
 
@@ -290,16 +290,16 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"PixelBufferResize START");
 
-            var testingTarget = new PixelBuffer(100, 50, PixelFormat.BGR8888);
+            var testingTarget = new PixelBuffer(10, 5, PixelFormat.BGR8888);
             Assert.IsNotNull(testingTarget, "Can't create success object PixelData");
             Assert.IsInstanceOf<PixelBuffer>(testingTarget, "Should be an instance of PixelData type.");
 
-            Assert.AreEqual(100, testingTarget.GetWidth(), "Shoule be equal!");
-            Assert.AreEqual(50, testingTarget.GetHeight(), "Shoule be equal!");
+            Assert.AreEqual(10, testingTarget.GetWidth(), "Shoule be equal!");
+            Assert.AreEqual(5, testingTarget.GetHeight(), "Shoule be equal!");
 
-            testingTarget.Resize(50, 100);
-            Assert.AreEqual(50, testingTarget.GetWidth(), "Shoule be equal!");
-            Assert.AreEqual(100, testingTarget.GetHeight(), "Shoule be equal!");
+            testingTarget.Resize(5, 10);
+            Assert.AreEqual(5, testingTarget.GetWidth(), "Shoule be equal!");
+            Assert.AreEqual(10, testingTarget.GetHeight(), "Shoule be equal!");
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"PixelBufferResize END (OK)");
@@ -316,16 +316,16 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"PixelBufferCrop START");
 
-            var testingTarget = new PixelBuffer(100, 50, PixelFormat.BGR8888);
+            var testingTarget = new PixelBuffer(10, 5, PixelFormat.BGR8888);
             Assert.IsNotNull(testingTarget, "Can't create success object PixelData");
             Assert.IsInstanceOf<PixelBuffer>(testingTarget, "Should be an instance of PixelData type.");
 
-            Assert.AreEqual(100, testingTarget.GetWidth(), "Shoule be equal!");
-            Assert.AreEqual(50, testingTarget.GetHeight(), "Shoule be equal!");
+            Assert.AreEqual(10, testingTarget.GetWidth(), "Shoule be equal!");
+            Assert.AreEqual(5, testingTarget.GetHeight(), "Shoule be equal!");
 
-            testingTarget.Crop(150, 100, 50, 100);
-            Assert.AreEqual(50, testingTarget.GetWidth(), "Shoule be equal!");
-            Assert.AreEqual(100, testingTarget.GetHeight(), "Shoule be equal!");
+            testingTarget.Crop(15, 10, 5, 10);
+            Assert.AreEqual(5, testingTarget.GetWidth(), "Shoule be equal!");
+            Assert.AreEqual(10, testingTarget.GetHeight(), "Shoule be equal!");
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"PixelBufferCrop END (OK)");
@@ -342,7 +342,7 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"PixelBufferApplyGaussianBlur START");
 
-            var testingTarget = new PixelBuffer(100, 50, PixelFormat.BGR8888);
+            var testingTarget = new PixelBuffer(10, 5, PixelFormat.BGR8888);
             Assert.IsNotNull(testingTarget, "Can't create success object PixelData");
             Assert.IsInstanceOf<PixelBuffer>(testingTarget, "Should be an instance of PixelData type.");
 
@@ -370,7 +370,7 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"PixelBufferApplyMask START");
 
-            var testingTarget = new PixelBuffer(100, 50, PixelFormat.BGR8888);
+            var testingTarget = new PixelBuffer(10, 5, PixelFormat.BGR8888);
             Assert.IsNotNull(testingTarget, "Can't create success object PixelData");
             Assert.IsInstanceOf<PixelBuffer>(testingTarget, "Should be an instance of PixelData type.");
 
@@ -401,7 +401,7 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"PixelBufferApplyMaskWithScaling START");
 
-            var testingTarget = new PixelBuffer(100, 50, PixelFormat.BGR8888);
+            var testingTarget = new PixelBuffer(10, 5, PixelFormat.BGR8888);
             Assert.IsNotNull(testingTarget, "Can't create success object PixelData");
             Assert.IsInstanceOf<PixelBuffer>(testingTarget, "Should be an instance of PixelData type.");
 
@@ -432,15 +432,15 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"PixelBufferApplyMaskWithCropOrNot START");
 
-            var testingTarget = new PixelBuffer(100, 50, PixelFormat.BGR8888);
+            var testingTarget = new PixelBuffer(10, 5, PixelFormat.BGR8888);
             Assert.IsNotNull(testingTarget, "Can't create success object PixelData");
             Assert.IsInstanceOf<PixelBuffer>(testingTarget, "Should be an instance of PixelData type.");
 
             try
             {
-                using (PixelBuffer pixelBuffer = new PixelBuffer(50, 100, PixelFormat.A8))
+                using (PixelBuffer pixelBuffer = new PixelBuffer(2, 3, PixelFormat.A8))
                 {
-                    testingTarget.ApplyMask(pixelBuffer, 0.5f, true);
+                    testingTarget.ApplyMask(pixelBuffer, 0.5f, false);
                 }
             }
             catch (Exception e)

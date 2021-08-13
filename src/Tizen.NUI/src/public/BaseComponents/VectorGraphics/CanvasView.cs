@@ -34,6 +34,15 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// <summary>
         /// Creates an initialized CanvasView.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public CanvasView() : this(Interop.CanvasView.New(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Creates an initialized CanvasView.
+        /// </summary>
         /// <param name="viewBox">The size of viewbox.</param>
         /// <exception cref="ArgumentNullException"> Thrown when viewBox is null. </exception>
         /// <since_tizen> 9 </since_tizen>
@@ -81,6 +90,39 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         }
 
         /// <summary>
+        /// Set size of CanvasView's viewbox.
+        /// </summary>
+        /// <param name="viewBox">The size of viewBox</param>
+        /// <exception cref="ArgumentNullException"> Thrown when drawable is null. </exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetViewBoxSize(Size2D viewBox)
+        {
+            if (viewBox == null)
+            {
+                throw new ArgumentNullException(nameof(viewBox));
+            }
+            PropertyValue setVal = new Tizen.NUI.PropertyValue(viewBox);
+            SetProperty(Interop.CanvasView.PropertyViewBoxGet(), setVal);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            setVal?.Dispose();
+        }
+
+        /// <summary>
+        /// Get size of CanvasView's viewbox.
+        /// </summary>
+        /// <returns>The size of viewBox</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Size2D GetViewBoxSize()
+        {
+            Size2D retVal = new Size2D(0, 0);
+            PropertyValue viewBoxPropertyValue = GetProperty(Interop.CanvasView.PropertyViewBoxGet());
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            viewBoxPropertyValue?.Get(retVal);
+            viewBoxPropertyValue?.Dispose();
+            return retVal;
+        }
+
+        /// <summary>
         /// Add drawable object to the CanvasView.
         /// This method is similar to registration. The added shape is drawn on the inner canvas.
         /// </summary>
@@ -99,6 +141,35 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
             {
                 drawables.Add(drawable);
             }
+        }
+
+        /// <summary>
+        /// Remove drawable object to the CanvasView.
+        /// This method is similar to deregistration.
+        /// </summary>
+        /// <param name="drawable">Drawable object</param>
+        /// <exception cref="ArgumentNullException"> Thrown when drawable is null. </exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemoveDrawable(Drawable drawable)
+        {
+            if (drawable == null)
+            {
+                throw new ArgumentNullException(nameof(drawable));
+            }
+            Interop.CanvasView.RemoveDrawable(View.getCPtr(this), BaseHandle.getCPtr(drawable));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            drawables.Remove(drawable);
+        }
+
+        /// <summary>
+        /// Remove all drawable objects added to the CanvasView.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemoveAllDrawables()
+        {
+            Interop.CanvasView.RemoveAllDrawables(View.getCPtr(this));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            drawables.Clear();
         }
     }
 }

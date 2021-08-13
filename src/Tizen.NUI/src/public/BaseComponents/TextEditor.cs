@@ -17,10 +17,12 @@
 
 extern alias TizenSystemSettings;
 using TizenSystemSettings.Tizen.System;
+using System.Text.RegularExpressions;
 
 using System;
 using System.Globalization;
 using System.ComponentModel;
+using Tizen.NUI.Text;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -1222,6 +1224,61 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Set InputFilter to TextEditor. <br />
+        /// </summary>
+        /// <param name="inputFilter">The InputFilter</param>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.InputFilter"/> filters input based on regular expressions. <br />
+        /// Users can set the Accepted or Rejected regular expression set, or both. <br />
+        /// If both are used, Rejected has higher priority. <br />
+        /// InputFiltered signal is emitted when the input is filtered by InputFilter <br />
+        /// See <see cref="InputFiltered"/>, <see cref="InputFilterType"/> and <see cref="InputFilteredEventArgs"/> for a detailed description. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetInputFilter method.
+        /// <code>
+        /// Tizen.NUI.Text.InputFilter inputFilter;
+        /// inputFilter.Accepted = new Regex(@"[\d]"); // accept whole digits
+        /// inputFilter.Rejected = new Regex("[0-3]"); // reject 0, 1, 2, 3
+        /// editor.SetInputFilter(inputFilter); // acceptable inputs are 4, 5, 6, 7, 8, 9
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetInputFilter(InputFilter inputFilter)
+        {
+            var map = new PropertyMap();
+            var accepted = inputFilter.Accepted != null ? new PropertyValue(inputFilter.Accepted.ToString()) : new PropertyValue("");
+            var rejected = inputFilter.Rejected != null ? new PropertyValue(inputFilter.Rejected.ToString()) : new PropertyValue("");
+            map.Add(0, accepted);
+            map.Add(1, rejected);
+            SetProperty(TextEditor.Property.InputFilter, new PropertyValue(map));
+        }
+
+        /// <summary>
+        /// Get InputFilter from TextEditor. <br />
+        /// </summary>
+        /// <returns>The InputFilter</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.InputFilter"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public InputFilter GetInputFilter()
+        {
+            var map = new PropertyMap();
+            GetProperty(TextEditor.Property.InputFilter).Get(map);
+            string accepted = "";
+            string rejected = "";
+            map.Find(0)?.Get(out accepted);
+            map.Find(1)?.Get(out rejected);
+
+            var inputFilter = new InputFilter();
+            inputFilter.Accepted = new Regex(accepted);
+            inputFilter.Rejected = new Regex(rejected);
+
+            return inputFilter;
+        }
+
+        /// <summary>
         /// The Placeholder property.
         /// The placeholder map contains the following keys :<br />
         /// <list type="table">
@@ -1334,6 +1391,44 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(PlaceholderProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The Ellipsis property.<br />
+        /// Enable or disable the ellipsis.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Ellipsis
+        {
+            get
+            {
+                return (bool)GetValue(EllipsisProperty);
+            }
+            set
+            {
+                SetValue(EllipsisProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+
+        /// <summary>
+        /// The ellipsis position of the text.
+        /// The ellipsis position type when the text size over the layout size.<br />
+        /// The ellipsis position: End, Start or Middle.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public EllipsisPosition EllipsisPosition
+        {
+            get
+            {
+                return (EllipsisPosition)GetValue(EllipsisPositionProperty);
+            }
+            set
+            {
+                SetValue(EllipsisPositionProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -1543,6 +1638,18 @@ namespace Tizen.NUI.BaseComponents
         public void SelectWholeText()
         {
             Interop.TextEditor.SelectWholeText(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Select text from start to end index.
+        /// </summary>
+        /// <param name="start">The start index for selection.</param>
+        /// <param name="end">The end index for selection.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SelectText(uint start, uint end)
+        {
+            Interop.TextEditor.SelectText(SwigCPtr, start, end);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1790,6 +1897,9 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int EnableGrabHandle = Interop.TextEditor.EnableGrabHandleGet();
             internal static readonly int EnableGrabHandlePopup = Interop.TextEditor.EnableGrabHandlePopupGet();
             internal static readonly int InputMethodSettings = Interop.TextEditor.InputMethodSettingsGet();
+            internal static readonly int ELLIPSIS = Interop.TextEditor.EllipsisGet();
+            internal static readonly int EllipsisPosition = Interop.TextEditor.EllipsisPositionGet();
+            internal static readonly int InputFilter = Interop.TextEditor.InputFilterGet();
         }
 
         internal class InputStyle

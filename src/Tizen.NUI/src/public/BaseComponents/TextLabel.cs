@@ -782,6 +782,25 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The ellipsis position of the text.
+        /// The ellipsis position type when the text size over the layout size.<br />
+        /// The ellipsis position: End, Start or Middle.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public EllipsisPosition EllipsisPosition
+        {
+            get
+            {
+                return (EllipsisPosition)GetValue(EllipsisPositionProperty);
+            }
+            set
+            {
+                SetValue(EllipsisPositionProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// The AutoScrollLoopDelay property.<br />
         /// Do something.<br />
         /// </summary>
@@ -1156,6 +1175,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int TextFit = Interop.TextLabel.TextFitGet();
             internal static readonly int MinLineSize = Interop.TextLabel.MinLineSizeGet();
             internal static readonly int FontSizeScale = Interop.TextLabel.FontSizeScaleGet();
+            internal static readonly int EllipsisPosition = Interop.TextLabel.EllipsisPositionGet();
         }
 
         private void OnShadowColorChanged(float x, float y, float z, float w)

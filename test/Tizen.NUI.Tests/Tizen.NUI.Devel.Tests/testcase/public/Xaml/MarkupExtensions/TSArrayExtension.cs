@@ -9,10 +9,19 @@ namespace Tizen.NUI.Devel.Tests
 
     [TestFixture]
     [Description("public/xaml/MarkupExtensions/ArrayExtension")]
-    internal class PublicArrayExtensionTest
+    public class PublicArrayExtensionTest
     {
         private const string tag = "NUITEST";
         private static ArrayExtension a1;
+
+        internal class IServiceProviderimplement : IServiceProvider
+        {
+            public object GetService(Type serviceType)
+            {
+                return null;
+            }
+        }
+
         [SetUp]
         public void Init()
         {
@@ -90,14 +99,6 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"ArrayExtensionType END (OK)");
             Assert.Pass("ArrayExtensionType");
-        }
-
-        private class IServiceProviderimplement : IServiceProvider
-        {
-            public object GetService(Type serviceType)
-            {
-                return null;
-            }
         }
 
         [Test]
