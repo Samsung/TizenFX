@@ -600,6 +600,17 @@ namespace Tizen.Network.Bluetooth
             }
         }
 
+        internal string GetUuidSpecificationName(string uuid)
+        {
+            int ret = Interop.Bluetooth.BtGattGetUuidSpecificationName(uuid, out string name);
+            if (ret != (int)BluetoothError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to get uuid specification name, Error - " + (BluetoothError)ret);
+                BluetoothErrorFactory.ThrowBluetoothException(ret);
+            }
+            return name;
+        }
+
         internal static BluetoothAdapterImpl Instance
         {
             get

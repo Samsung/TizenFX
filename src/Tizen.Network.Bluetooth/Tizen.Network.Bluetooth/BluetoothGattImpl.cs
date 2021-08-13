@@ -31,6 +31,8 @@ namespace Tizen.Network.Bluetooth
         Dictionary<int, TaskCompletionSource<bool>> _sendIndicationTaskSource = new Dictionary<int, TaskCompletionSource<bool>>();
         private Interop.Bluetooth.BtGattServerNotificationSentCallback _sendIndicationCallback;
         private Interop.Bluetooth.BtGattForeachCallback _serviceForeachCallback;
+        private Interop.Bluetooth.BtGattServerAttMtuChangedCallback _attMtuChangedCallback;
+        private event EventHandler<AttMtuChangedEventArgs> _attMtuChanged;
 
         internal BluetoothGattServerImpl()
         {
@@ -151,6 +153,48 @@ namespace Tizen.Network.Bluetooth
                 BluetoothErrorFactory.ThrowBluetoothException(err);
             }
             return task.Task;
+        }
+
+        internal event EventHandler<AttMtuChangedEventArgs> AttMtuChanged
+        {
+            add
+            {
+                if (_attMtuChanged == null)
+                {
+                    RegisterMtuChangedEvent();
+                }
+                _attMtuChanged += value;
+            }
+            remove
+            {
+                _attMtuChanged -= value;
+                if (_attMtuChanged == null)
+                {
+                    UnregisterMtuChangedEvent();
+                }
+            }
+        }
+
+        private void RegisterMtuChangedEvent()
+        {
+            _attMtuChangedCallback = (IntPtr clientHandle, ref AttMtuInfoStruct mtuInfoStruct, IntPtr userData) =>
+            {
+                _attMtuChanged?.Invoke(null, new AttMtuChangedEventArgs(mtuInfoStruct.RemoteAddress, mtuInfoStruct.Mtu));
+            };
+            int ret = Interop.Bluetooth.BtGattServerSetMtuChangedCallback(_handle, _attMtuChangedCallback, IntPtr.Zero);
+            if (ret != (int)BluetoothError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to set MTU changed callback, Error - " + (BluetoothError)ret);
+            }
+        }
+
+        private void UnregisterMtuChangedEvent()
+        {
+            int ret = Interop.Bluetooth.BtGattServerUnsetMtuChangedCallback(_handle);
+            if (ret != (int)BluetoothError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to unset MTU changed callback, Error - " + (BluetoothError)ret);
+            }
         }
 
         internal BluetoothGattServerHandle GetHandle()
