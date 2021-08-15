@@ -52,7 +52,7 @@ namespace Tizen.NUI.BaseComponents
         private delegate void ScrollStateChangedCallbackDelegate(IntPtr textEditor, ScrollState state);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void CursorPositionChangedCallbackDelegate(IntPtr textEditor, uint oldPosition, uint newPosition);
+        private delegate void CursorPositionChangedCallbackDelegate(IntPtr textEditor, uint oldPosition);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void MaxLengthReachedCallbackDelegate(IntPtr textEditor);
@@ -308,15 +308,14 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        private void OnCursorPositionChanged(IntPtr textEditor, uint oldPosition, uint newPosition)
+        private void OnCursorPositionChanged(IntPtr textEditor, uint oldPosition)
         {
             if (textEditorCursorPositionChangedEventHandler != null)
             {
                 CursorPositionChangedEventArgs e = new CursorPositionChangedEventArgs();
 
                 // Populate all members of "e" (CursorPositionChangedEventArgs) with real data
-                e.OldCursorPosition = oldPosition;
-                e.CursorPosition = newPosition;
+                e.CursorPosition = oldPosition;
 
                 //here we send all data to user event handlers
                 textEditorCursorPositionChangedEventHandler(this, e);

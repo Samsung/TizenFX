@@ -42,7 +42,7 @@ namespace Tizen.NUI.BaseComponents
         private delegate void TextChangedCallbackDelegate(IntPtr textField);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void CursorPositionChangedCallbackDelegate(IntPtr textField, uint oldPosition, uint newPosition);
+        private delegate void CursorPositionChangedCallbackDelegate(IntPtr textField, uint oldPosition);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void MaxLengthReachedCallbackDelegate(IntPtr textField);
@@ -246,15 +246,14 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        private void OnCursorPositionChanged(IntPtr textField, uint oldPosition, uint newPosition)
+        private void OnCursorPositionChanged(IntPtr textField, uint oldPosition)
         {
             if (textFieldCursorPositionChangedEventHandler != null)
             {
                 CursorPositionChangedEventArgs e = new CursorPositionChangedEventArgs();
 
                 // Populate all members of "e" (CursorPositionChangedEventArgs) with real data
-                e.OldCursorPosition = oldPosition;
-                e.CursorPosition = newPosition;
+                e.CursorPosition = oldPosition;
 
                 //here we send all data to user event handlers
                 textFieldCursorPositionChangedEventHandler(this, e);
