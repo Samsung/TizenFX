@@ -59,24 +59,12 @@ namespace Tizen.NUI.BaseComponents
         /// selection start before the change.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint OldSelectionStart { get; set; }
+        public uint SelectionStart { get; set; }
 
         /// <summary>
         /// selection end before the change.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint OldSelectionEnd { get; set; }
-
-        /// <summary>
-        /// selection start after the change.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint NewSelectionStart { get; set; }
-
-        /// <summary>
-        /// selection end after the change.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint NewSelectionEnd { get; set; }
+        public uint SelectionEnd { get; set; }
     }
 }

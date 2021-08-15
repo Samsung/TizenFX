@@ -50,7 +50,7 @@ namespace Tizen.NUI.BaseComponents
         private delegate void AnchorClickedCallbackDelegate(IntPtr textField, IntPtr href, uint hrefLength);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void SelectionChangedCallbackDelegate(IntPtr textField, uint oldStart, uint oldEnd, uint newStart, uint newEnd);
+        private delegate void SelectionChangedCallbackDelegate(IntPtr textField, uint oldStart, uint oldEnd);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void InputFilteredCallbackDelegate(IntPtr textField, InputFilterType type);
@@ -273,17 +273,15 @@ namespace Tizen.NUI.BaseComponents
             textFieldAnchorClickedEventHandler?.Invoke(this, e);
         }
 
-        private void OnSelectionChanged(IntPtr textField, uint oldStart, uint oldEnd, uint newStart, uint newEnd)
+        private void OnSelectionChanged(IntPtr textField, uint oldStart, uint oldEnd)
         {
             if (textFieldSelectionChangedEventHandler != null)
             {
                 SelectionChangedEventArgs e = new SelectionChangedEventArgs();
 
                 // Populate all members of "e" (SelectionChangedEventArgs) with real data
-                e.OldSelectionStart = oldStart;
-                e.OldSelectionEnd = oldEnd;
-                e.NewSelectionStart = newStart;
-                e.NewSelectionEnd = newEnd;
+                e.SelectionStart = oldStart;
+                e.SelectionEnd = oldEnd;
 
                 //here we send all data to user event handlers
                 textFieldSelectionChangedEventHandler(this, e);
