@@ -284,7 +284,7 @@ namespace Tizen.NUI.BaseComponents
                 e.SelectionEnd = oldEnd;
 
                 //here we send all data to user event handlers
-                textFieldSelectionChangedEventHandler(this, e);
+                textFieldSelectionChangedEventHandler?.Invoke(this, e);
             }
         }
 
