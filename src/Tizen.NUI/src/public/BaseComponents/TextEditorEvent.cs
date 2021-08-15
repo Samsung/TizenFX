@@ -318,7 +318,7 @@ namespace Tizen.NUI.BaseComponents
                 e.CursorPosition = oldPosition;
 
                 //here we send all data to user event handlers
-                textEditorCursorPositionChangedEventHandler(this, e);
+                textEditorCursorPositionChangedEventHandler?.Invoke(this, e);
             }
         }
 
