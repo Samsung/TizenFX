@@ -593,7 +593,7 @@ namespace Tizen.Network.Bluetooth
         /// The ServiceChanged event is raised when the service is changed from the remote device(GATT server).
         /// </summary>
         /// <feature>http://tizen.org/feature/network.bluetooth.le.gatt.client</feature>
-        /// <since_tizen> 8 </since_tizen>
+        /// <since_tizen> 9 </since_tizen>
         public event EventHandler<ServiceChangedEventArgs> ServiceChanged;
 
         internal bool Isvalid()

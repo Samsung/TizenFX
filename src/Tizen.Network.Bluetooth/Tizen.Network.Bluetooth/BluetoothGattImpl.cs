@@ -464,9 +464,9 @@ namespace Tizen.Network.Bluetooth
 
         private void RegisterServiceChangedEvent()
         {
-            _serviceChangedCallback = (IntPtr clientHandle, BluetoothGattServiceChangedType changedType, string serviceUuid, IntPtr userData) =>
+            _serviceChangedCallback = (IntPtr clientHandle, BluetoothGattServiceChangeType changeType, string serviceUuid, IntPtr userData) =>
             {
-                _serviceChanged?.Invoke(null, new ServiceChangedEventArgs(changedType, serviceUuid));
+                _serviceChanged?.Invoke(null, new ServiceChangedEventArgs(changeType, serviceUuid));
             };
             int ret = Interop.Bluetooth.BtGattClientSetServiceChangedCallback(_handle, _serviceChangedCallback, IntPtr.Zero);
             if (ret != (int)BluetoothError.None)

@@ -639,7 +639,7 @@ internal static partial class Interop
         internal delegate void BtGattServerAttMtuChangedCallback(IntPtr clientHandle, ref AttMtuInfoStruct mtuInfo, IntPtr userData);
 
         [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
-        internal delegate void BtClientServiceChangedCallback(IntPtr clientHandle, BluetoothGattServiceChangedType changedType, string serviceUuid, IntPtr userData);
+        internal delegate void BtClientServiceChangedCallback(IntPtr clientHandle, BluetoothGattServiceChangeType changeType, string serviceUuid, IntPtr userData);
 
         // Gatt Attribute
 

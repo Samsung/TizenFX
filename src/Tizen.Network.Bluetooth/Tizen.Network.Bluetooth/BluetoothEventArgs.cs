@@ -1246,9 +1246,9 @@ namespace Tizen.Network.Bluetooth
     /// <since_tizen> 9 </since_tizen>
     public class ServiceChangedEventArgs : EventArgs
     {
-        internal ServiceChangedEventArgs(BluetoothGattServiceChangedType changedType, string serviceUuid)
+        internal ServiceChangedEventArgs(BluetoothGattServiceChangeType changeType, string serviceUuid)
         {
-            ChangedType = changedType;
+            ChangeType = changeType;
             ServiceUuid = serviceUuid;
         }
 
@@ -1256,7 +1256,7 @@ namespace Tizen.Network.Bluetooth
         /// The service changed type.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public BluetoothGattServiceChangedType ChangedType { get; }
+        public BluetoothGattServiceChangeType ChangeType { get; }
 
         /// <summary>
         /// The service UUID.

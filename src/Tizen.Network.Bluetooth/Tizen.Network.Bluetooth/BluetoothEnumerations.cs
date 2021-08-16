@@ -1308,10 +1308,10 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
-    /// Enumeration for the GATT service changed type.
+    /// Enumeration for the GATT service change type.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
-    public enum BluetoothGattServiceChangedType
+    public enum BluetoothGattServiceChangeType
     {
         /// <summary>
         /// Service added.
