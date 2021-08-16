@@ -41,7 +41,10 @@ namespace Tizen.NUI.EXaml
             BindableObject bindableObject = globalDataList.GatheredInstances[instanceIndex] as BindableObject;
             var property = globalDataList.GatheredBindableProperties[bindablePropertyIndex];
             var value = globalDataList.GatheredInstances[valueIndex] as BindingBase;
-            bindableObject?.SetBinding(property, value);
+            if (value != null)
+            {
+                bindableObject?.SetBinding(property, value);
+            }
         }
 
         private int instanceIndex;
