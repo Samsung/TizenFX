@@ -22,18 +22,18 @@ namespace Tizen.NUI
     using Tizen.NUI.BaseComponents;
 
     /// <summary>
-    /// Fade class is a cluster of properties for the fade transition of a View.
+    /// FadeTransition class is a cluster of properties for the fade transition of a View.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class Fade : TransitionBase
+    public class FadeTransition : TransitionBase
     {
         private float opacity = 0.0f;
 
         /// <summary>
-        /// Create a Fade for the View pair.
+        /// Create a FadeTransition for the View pair.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Fade()
+        public FadeTransition()
         {
         }
 
@@ -41,6 +41,7 @@ namespace Tizen.NUI
         /// Set Opacity for this fade transition.
         /// If this transition is for appearing, the opacity of target View is animated from this property.
         /// If this transition is for disappearing, the opacity of target View is animated to this property.
+        /// Default Opacity is 0.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float Opacity
@@ -57,7 +58,7 @@ namespace Tizen.NUI
 
         internal override TransitionItemBase CreateTransition(View view, bool isAppearing)
         {
-            FadeItem fade = new FadeItem(view, Opacity, isAppearing, TimePeriod, AlphaFunction);
+            FadeTransitionItem fade = new FadeTransitionItem(view, Opacity, isAppearing, GetTimePeriod(), GetAlphaFunction());
             return fade;
         }
     }
