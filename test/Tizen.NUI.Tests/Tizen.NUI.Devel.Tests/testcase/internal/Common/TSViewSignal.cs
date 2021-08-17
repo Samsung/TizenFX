@@ -88,7 +88,7 @@ namespace Tizen.NUI.Devel.Tests
         [Test]
         [Category("P1")]
         [Description("ViewSignal GetConnectionCount.")]
-        [Property("SPEC", "Tizen.NUI.ViewSignal.ViewSignal M")]
+        [Property("SPEC", "Tizen.NUI.ViewSignal.GetConnectionCount M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]

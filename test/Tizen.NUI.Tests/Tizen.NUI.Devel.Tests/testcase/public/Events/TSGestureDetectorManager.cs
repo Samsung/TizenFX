@@ -37,40 +37,68 @@ namespace Tizen.NUI.Devel.Tests
         public void GestureDetectorManagerConstructor()
         {
             tlog.Debug(tag, $"GestureDetectorManagerConstructor START");
-            View view = new View();
 
-            GestureDetectorManager a1 = new GestureDetectorManager(view, new GestureDetectorManager.GestureListener());
-            a1.Dispose();
+            using (View view = new View())
+            {
+                var testingTarget = new GestureDetectorManager(view, new GestureDetectorManager.GestureListener());
+                Assert.IsNotNull(testingTarget, "should be not null");
+                Assert.IsInstanceOf<GestureDetectorManager>(testingTarget, "should be an instance of testing target class!");
 
-            GestureDetectorManager b1 = new GestureDetectorManager(null, new GestureDetectorManager.GestureListener());
-            GestureDetectorManager c1 = new GestureDetectorManager(view, null);
-            view.Dispose();
+                testingTarget.Dispose();
+            }
 
             tlog.Debug(tag, $"GestureDetectorManagerConstructor END (OK)");
             Assert.Pass("GestureDetectorManagerConstructor");
         }
 
         [Test]
-        [Category("P1")]
-        [Description("GestureDetectorManager FeedTouchEvent")]
-        [Property("SPEC", "Tizen.NUI.GestureDetectorManager.FeedTouchEvent M")]
+        [Category("P2")]
+        [Description("GestureDetectorManager constructor")]
+        [Property("SPEC", "Tizen.NUI.GestureDetectorManager.GestureDetectorManager C")]
         [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
+        [Property("CRITERIA", "CONSTR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void GestrueFeedTouchEvent()
+        public void GestureDetectorManagerConstructorWithNullView()
         {
-            tlog.Debug(tag, $"GestrueFeedTouchEvent START");
-            object sender = new object();
-            View view = new View();
-            View.TouchEventArgs e = new View.TouchEventArgs();
-            GestureDetectorManager a1 = new GestureDetectorManager(view, new GestureDetectorManager.GestureListener());
+            tlog.Debug(tag, $"GestureDetectorManagerConstructorWithNullView START");
 
-            a1.FeedTouchEvent(sender, e);
+            try
+            {
+                var testingTarget = new GestureDetectorManager(null, new GestureDetectorManager.GestureListener());
+            }
+            catch (ArgumentNullException e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                tlog.Debug(tag, $"GestureDetectorManagerConstructorWithNullView END (OK)");
+                Assert.Pass("Caught ArgumentNullException : Passed!");
+            }
+        }
 
-            a1.Dispose();
-            tlog.Debug(tag, $"GestrueFeedTouchEvent END (OK)");
-            Assert.Pass("GestrueFeedTouchEvent");
+        [Test]
+        [Category("P2")]
+        [Description("GestureDetectorManager constructor")]
+        [Property("SPEC", "Tizen.NUI.GestureDetectorManager.GestureDetectorManager C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void GestureDetectorManagerConstructorWithNullListener()
+        {
+            tlog.Debug(tag, $"GestureDetectorManagerConstructorWithNullListener START");
+
+            try
+            {
+                using (View view = new View())
+                {
+                    var testingTarget = new GestureDetectorManager(view, null);
+
+                }
+            }
+            catch (ArgumentNullException e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                tlog.Debug(tag, $"GestureDetectorManagerConstructorWithNullListener END (OK)");
+                Assert.Pass("Caught ArgumentNullException : Passed!");
+            }
         }
     }
-
 }

@@ -750,5 +750,33 @@ namespace Tizen.Network.Bluetooth
                 BluetoothAdapterImpl.Instance.DestroyServerSocket(socket);
             }
         }
+
+        /// <summary>
+        /// Select the A2DP source/sink role.
+        /// </summary>
+        /// <param name="role">The A2DP source/sink role.</param>
+        /// <since_tizen> 9 </since_tizen>
+        /// <feature>http://tizen.org/feature/network.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.bluetooth.audio.call</feature>
+        /// <feature>http://tizen.org/feature/network.bluetooth.audio.media</feature>
+        /// <privilege>http://tizen.org/privilege/bluetooth</privilege>
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        static public void SelectRole(BluetoothAudioRole role)
+        {
+            BluetoothAudioImpl.Instance.SelectRole(role);
+        }
+
+        /// <summary>
+        /// Gets the name of the specification UUID.
+        /// </summary>
+        /// <param name="uuid">The UUID.</param>
+        /// <since_tizen> 9 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        static public string GetUuidSpecificationName(string uuid)
+        {
+            return BluetoothAdapterImpl.Instance.GetUuidSpecificationName(uuid);
+        }
     }
 }

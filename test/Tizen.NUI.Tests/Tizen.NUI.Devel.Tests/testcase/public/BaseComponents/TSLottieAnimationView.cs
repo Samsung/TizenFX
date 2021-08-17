@@ -127,6 +127,7 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception: Failed!");
             }
 
+            testingTarget.Dispose();
             tlog.Debug(tag, $"LottieAnimationViewSetMinMaxFrameByMarker END (OK)");
         }
 
@@ -167,6 +168,7 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception: Failed!");
             }
 
+            testingTarget.Dispose();
             tlog.Debug(tag, $"LottieAnimationViewGetMinMaxFrame END (OK)");
         }
 

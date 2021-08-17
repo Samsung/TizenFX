@@ -10,7 +10,7 @@ namespace Tizen.NUI.Devel.Tests
 
     [TestFixture]
     [Description("Internal/Transition/TransitionSet")]
-    class TSTransitionSet
+    public class InternalTransitionSetTest
     {
         private const string tag = "NUITEST";
 
@@ -117,33 +117,48 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"TransitionSetAddTransition END (OK)");
         }
 
-        //[Test]
-        //[Category("P1")]
-        //[Description("TransitionSet Finished.")]
-        //[Property("SPEC", "Tizen.NUI.TransitionSet.Finished A")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "PRW")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void TransitionSetFinished()
-        //{
-        //    tlog.Debug(tag, $"TransitionSetFinished START");
+        [Test]
+        [Category("P1")]
+        [Description("TransitionSet Finished.")]
+        [Property("SPEC", "Tizen.NUI.TransitionSet.Finished A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void TransitionSetFinished()
+        {
+            tlog.Debug(tag, $"TransitionSetFinished START");
 
-        //    using (View view = new View())
-        //    {
-        //        var testingTarget = new TransitionSet(view.SwigCPtr.Handle, false);
-        //        Assert.IsNotNull(testingTarget, "Should be not null!");
-        //        Assert.IsInstanceOf<TransitionSet>(testingTarget, "Should be an Instance of TransitionSet!");
+            View view = new View()
+            {
+                Name = "view",
+                TransitionOptions = new TransitionOptions(Window.Instance)
+            };
+            view.TransitionOptions.TransitionTag = "Transition";
+            view.TransitionOptions.EnableTransition = true;
 
-        //        testingTarget.Finished += MyOnFinished;
-        //        testingTarget.Finished -= MyOnFinished;
+            TransitionItemBase transitionItemBase = null;
+            using (TimePeriod timePeriod = new TimePeriod(500))
+            {
+                using (AlphaFunction alphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default))
+                {
+                    transitionItemBase = new TransitionItemBase(view, true, timePeriod, alphaFunction);
+                }
+            }
 
-        //        testingTarget.Dispose();
-        //    }
+            var testingTarget = new TransitionSet();
+            Assert.IsNotNull(testingTarget, "Should be not null!");
+            Assert.IsInstanceOf<TransitionSet>(testingTarget, "Should be an Instance of TransitionSet!");
 
-        //    tlog.Debug(tag, $"TransitionSetFinished END (OK)");
-        //}
+            testingTarget.AddTransition(transitionItemBase);
 
-        //private void MyOnFinished(object sender, EventArgs e) { }
+            testingTarget.Finished += MyOnFinished;
+            testingTarget.Finished -= MyOnFinished;
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"TransitionSetFinished END (OK)");
+        }
+
+        private void MyOnFinished(object sender, EventArgs e) { }
 
         [Test]
         [Category("P1")]

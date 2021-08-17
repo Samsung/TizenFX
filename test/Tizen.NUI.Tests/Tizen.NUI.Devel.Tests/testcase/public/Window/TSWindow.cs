@@ -12,18 +12,21 @@ namespace Tizen.NUI.Devel.Tests
     internal class PublicWindowTest
     {
         private const string tag = "NUITEST";
-        private static Window myWin;
+        private Window myWin = null;
+        private Rectangle rec = null;
+
         [SetUp]
         public void Init()
         {
-            Rectangle r1 = new Rectangle(0, 0, 20, 20);
-            myWin = new Window(r1);
+            rec = new Rectangle(0, 0, 2, 2);
+            myWin = new Window(rec);
             tlog.Info(tag, "Init() is called!");
         }
 
         [TearDown]
         public void Destroy()
         {
+            rec.Dispose();
             if (myWin != null)
             {
                 myWin.Destroy();
@@ -146,36 +149,36 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"WindowGetCurrentOrientation END (OK)");
         }
 
-        //[Test]
-        //[Category("P1")]
-        //[Description("Window SetAvailableOrientations")]
-        //[Property("SPEC", "Tizen.NUI.Window.SetAvailableOrientations M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //public void WindowSetAvailableOrientations()
-        //{
-        //    tlog.Debug(tag, $"WindowSetAvailableOrientations START");
-        //    try
-        //    {
-        //        List<Window.WindowOrientation> l1 = new List<Window.WindowOrientation>();
+        [Test]
+        [Category("P1")]
+        [Description("Window SetAvailableOrientations")]
+        [Property("SPEC", "Tizen.NUI.Window.SetAvailableOrientations M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void WindowSetAvailableOrientations()
+        {
+            tlog.Debug(tag, $"WindowSetAvailableOrientations START");
+            try
+            {
+                List<Window.WindowOrientation> l1 = new List<Window.WindowOrientation>();
 
-        //        l1.Add(Window.WindowOrientation.Landscape);
-        //        l1.Add(Window.WindowOrientation.LandscapeInverse);
-        //        l1.Add(Window.WindowOrientation.NoOrientationPreference);
-        //        l1.Add(Window.WindowOrientation.Portrait);
-        //        l1.Add(Window.WindowOrientation.PortraitInverse);
+                l1.Add(Window.WindowOrientation.Landscape);
+                l1.Add(Window.WindowOrientation.LandscapeInverse);
+                l1.Add(Window.WindowOrientation.NoOrientationPreference);
+                l1.Add(Window.WindowOrientation.Portrait);
+                l1.Add(Window.WindowOrientation.PortraitInverse);
 
-        //        myWin.SetAvailableOrientations(l1);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-        //        Assert.Fail("Caught Exception" + e.ToString());
-        //    }
+                myWin.SetAvailableOrientations(l1);
+            }
+            catch (Exception e)
+            {
+                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
+                Assert.Fail("Caught Exception" + e.ToString());
+            }
 
-        //    tlog.Debug(tag, $"WindowSetAvailableOrientations END (OK)");
-        //    Assert.Pass("WindowSetAvailableOrientations");
-        //}
+            tlog.Debug(tag, $"WindowSetAvailableOrientations END (OK)");
+            Assert.Pass("WindowSetAvailableOrientations");
+        }
 
         [Test]
         [Category("P1")]

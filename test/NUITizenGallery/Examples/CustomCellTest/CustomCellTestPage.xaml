@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="NUITizenGallery.CustomCellTestPage"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+    <!-- AppBar is top-side bar with navigation content, title, and action. If you not set any contents, back button is automatically added. -->
+    <ContentPage.AppBar>
+        <AppBar x:Name="appBar" Title="CustomCellTestPage"/>
+    </ContentPage.AppBar>
+
+    <!-- Content is main placdeholder of ContentPage. Add your content into this view. -->
+    <ContentPage.Content>
+        <ScrollableBase x:Name="ListView"
+                          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                          HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+            <ScrollableBase.Layout>
+                <LinearLayout LinearOrientation="Vertical" CellPadding="5,5" LinearAlignment="Center"/>
+            </ScrollableBase.Layout>
+
+        </ScrollableBase>
+    </ContentPage.Content>
+
+</ContentPage>

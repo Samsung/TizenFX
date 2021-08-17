@@ -8,9 +8,17 @@ namespace Tizen.NUI.Devel.Tests
 
     [TestFixture]
     [Description("public/xaml/MarkupExtensions/NullExtension")]
-    internal class PublicNullExtensionTest
+    public class PublicNullExtensionTest
     {
         private const string tag = "NUITEST";
+
+        internal class IServiceProviderimplement : IServiceProvider
+        {
+            public object GetService(Type serviceType)
+            {
+                return null;
+            }
+        }
 
         [SetUp]
         public void Init()
@@ -22,14 +30,6 @@ namespace Tizen.NUI.Devel.Tests
         public void Destroy()
         {
             tlog.Info(tag, "Destroy() is called!");
-        }
-
-        private class IServiceProviderimplement : IServiceProvider
-        {
-            public object GetService(Type serviceType)
-            {
-                return null;
-            }
         }
 
         [Test]
