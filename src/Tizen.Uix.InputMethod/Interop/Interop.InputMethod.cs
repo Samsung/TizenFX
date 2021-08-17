@@ -294,6 +294,9 @@ internal static partial class Interop
         [DllImport(Libraries.InputMethod, EntryPoint = "ime_commit_content")]
         internal static extern ErrorCode ImeCommitContent(string content, string description, string mimeType);
 
+        [DllImport(Libraries.InputMethod, EntryPoint = "ime_set_native_window_size")]
+        internal static extern ErrorCode ImeSetNativeWindowSize(IntPtr window, int portraitWidth, int portraitHeight, int landscapeWidth, int landscapeHeight);
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void ImeCreateCb(IntPtr userData);
 
