@@ -168,6 +168,20 @@ namespace Tizen.NUI.Components
             SelectedChanged?.Invoke(this, new EventArgs());
         }
 
+        /// <summary>
+        /// Remove all existing items in the group.
+        /// </summary>
+        private protected void RemoveAll()
+        {
+            foreach (var item in ItemGroup)
+            {
+                item.SelectedChanged -= GroupSelectionHandler;
+                item.ResetItemGroup();
+            }
+
+            ItemGroup.Clear();
+        }
+
         private void GroupSelectionHandler(object sender, SelectedChangedEventArgs args)
         {
             if (isSelectionChanging)
