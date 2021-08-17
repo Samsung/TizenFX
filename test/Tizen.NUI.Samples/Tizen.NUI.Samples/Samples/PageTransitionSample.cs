@@ -85,6 +85,16 @@ namespace Tizen.NUI.Samples
             mainPage = new ContentPage()
             {
                 Content = mainRoot,
+                AppearingTransition = new FadeTransition()
+                {
+                    TimePeriod = new TimePeriod(500),
+                    AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default),
+                },
+                DisappearingTransition = new FadeTransition()
+                {
+                    TimePeriod = new TimePeriod(500),
+                    AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default),
+                },
             };
             navigator.Push(mainPage);
 
@@ -180,6 +190,16 @@ namespace Tizen.NUI.Samples
             totalPage = new ContentPage()
             {
                 Content = totalPageRoot,
+                AppearingTransition = new FadeTransition()
+                {
+                    TimePeriod = new TimePeriod(500),
+                    AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default),
+                },
+                DisappearingTransition = new FadeTransition()
+                {
+                    TimePeriod = new TimePeriod(500),
+                    AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default),
+                },
             };
         }
 
@@ -307,6 +327,16 @@ namespace Tizen.NUI.Samples
             Page page = new ContentPage()
             {
                 Content = pageRoot,
+                AppearingTransition = new FadeTransition()
+                {
+                    TimePeriod = new TimePeriod(500),
+                    AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default),
+                },
+                DisappearingTransition = new FadeTransition()
+                {
+                    TimePeriod = new TimePeriod(500),
+                    AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default),
+                },
             };
             return page;
         }
