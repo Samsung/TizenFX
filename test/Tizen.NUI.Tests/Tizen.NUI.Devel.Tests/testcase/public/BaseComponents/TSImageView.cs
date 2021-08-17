@@ -65,6 +65,49 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
+        [Description("ImageView constructor.")]
+        [Property("SPEC", "Tizen.NUI.ImageView.ImageView C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ImageViewConstructorWithStyle()
+        {
+            tlog.Debug(tag, $"ImageViewConstructorWithStyle START");
+
+            ViewStyle style = new ViewStyle()
+            {
+                Color = Color.Cyan,
+            };
+
+            var testingTarget = new ImageView(style);
+            Assert.IsNotNull(testingTarget, "Can't create success object ImageView");
+            Assert.IsInstanceOf<ImageView>(testingTarget, "Should be an instance of ImageView type.");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ImageViewConstructorWithStyle END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("ImageView constructor.")]
+        [Property("SPEC", "Tizen.NUI.ImageView.ImageView C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ImageViewConstructorWhetherShown()
+        {
+            tlog.Debug(tag, $"ImageViewConstructorWhetherShown START");
+
+            var testingTarget = new ImageView(false);
+            Assert.IsNotNull(testingTarget, "Can't create success object ImageView");
+            Assert.IsInstanceOf<ImageView>(testingTarget, "Should be an instance of ImageView type.");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ImageViewConstructorWhetherShown END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
         [Description("ImageView constructor. With size.")]
         [Property("SPEC", "Tizen.NUI.ImageView.ImageView C")]
         [Property("SPEC_URL", "-")]
@@ -93,9 +136,9 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ImageViewConstructorResourceReady()
+        public void ImageViewResourceReady()
         {
-            tlog.Debug(tag, $"ImageViewConstructorResourceReady START");
+            tlog.Debug(tag, $"ImageViewResourceReady START");
 
             using (Uint16Pair size = new Uint16Pair(40, 60))
             {
@@ -109,7 +152,7 @@ namespace Tizen.NUI.Devel.Tests
                 testingTarget.Dispose();
             }
 
-            tlog.Debug(tag, $"ImageViewConstructorResourceReady END (OK)");
+            tlog.Debug(tag, $"ImageViewResourceReady END (OK)");
         }
 
         [Test]
@@ -119,9 +162,9 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ImageViewConstructorResourceLoaded()
+        public void ImageViewResourceLoaded()
         {
-            tlog.Debug(tag, $"ImageViewConstructorResourceLoaded START");
+            tlog.Debug(tag, $"ImageViewResourceLoaded START");
 
             var testingTarget = new MyImageView();
             Assert.IsNotNull(testingTarget, "Can't create success object ImageView");
@@ -131,7 +174,7 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.ResourceLoaded -= testingTarget.OnResourceLoaded;
 
             testingTarget.Dispose();
-            tlog.Debug(tag, $"ImageViewConstructorResourceLoaded END (OK)");
+            tlog.Debug(tag, $"ImageViewResourceLoaded END (OK)");
         }
 
         [Test]
@@ -142,9 +185,9 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         [Obsolete]
-        public void ImageViewConstructorDownCast()
+        public void ImageViewDownCast()
         {
-            tlog.Debug(tag, $"ImageViewConstructorDownCast START");
+            tlog.Debug(tag, $"ImageViewDownCast START");
 
             using (BaseHandle handle = new ImageView(url))
             {
@@ -155,7 +198,7 @@ namespace Tizen.NUI.Devel.Tests
                 testingTarget.Dispose();
             }
 
-            tlog.Debug(tag, $"ImageViewConstructorDownCast END (OK)");
+            tlog.Debug(tag, $"ImageViewDownCast END (OK)");
         }
 
         [Test]
@@ -166,9 +209,9 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         [Obsolete]
-        public void ImageViewConstructorDownCastWithNullHandle()
+        public void ImageViewDownCastWithNullHandle()
         {
-            tlog.Debug(tag, $"ImageViewConstructorDownCast START");
+            tlog.Debug(tag, $"ImageViewDownCast START");
 
             try
             {
@@ -177,7 +220,40 @@ namespace Tizen.NUI.Devel.Tests
             catch (ArgumentNullException e)
             {
                 tlog.Debug(tag, e.Message.ToString());
-                tlog.Debug(tag, $"ImageViewConstructorDownCast END (OK)");
+                tlog.Debug(tag, $"ImageViewDownCast END (OK)");
+                Assert.Pass("Caught ArgumentNullException: Passed!");
+            }
+        }
+
+        [Test]
+        [Category("P2")]
+        [Description("ImageView SetImage. Url is null.")]
+        [Property("SPEC", "Tizen.NUI.ImageView.SetImage M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
+        public void ImageViewSetImage()
+        {
+            tlog.Debug(tag, $"ImageViewSetImage START");
+
+            ViewStyle style = new ViewStyle()
+            {
+                Color = Color.Cyan,
+            };
+
+            var testingTarget = new ImageView(style);
+            Assert.IsNotNull(testingTarget, "Can't create success object ImageView");
+            Assert.IsInstanceOf<ImageView>(testingTarget, "Should be an instance of ImageView type.");
+
+            try
+            {
+                testingTarget.SetImage(null);
+            }
+            catch (ArgumentNullException e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                tlog.Debug(tag, $"ImageViewSetImage END (OK)");
                 Assert.Pass("Caught ArgumentNullException: Passed!");
             }
         }
@@ -189,9 +265,9 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ImageViewConstructorIsResourceReady()
+        public void ImageViewIsResourceReady()
         {
-            tlog.Debug(tag, $"ImageViewConstructorIsResourceReady START");
+            tlog.Debug(tag, $"ImageViewIsResourceReady START");
 
             var testingTarget = new ImageView();
             Assert.IsNotNull(testingTarget, "Can't create success object ImageView");
@@ -209,7 +285,7 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception: Failed!");
             }
 
-            tlog.Debug(tag, $"ImageViewConstructorIsResourceReady END (OK)");
+            tlog.Debug(tag, $"ImageViewIsResourceReady END (OK)");
         }
 
         [Test]
@@ -219,9 +295,9 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ImageViewConstructorAlphaMaskURL()
+        public void ImageViewAlphaMaskURL()
         {
-            tlog.Debug(tag, $"ImageViewConstructorAlphaMaskURL START");
+            tlog.Debug(tag, $"ImageViewAlphaMaskURL START");
 
             var testingTarget = new ImageView();
             Assert.IsNotNull(testingTarget, "Can't create success object ImageView");
@@ -243,7 +319,156 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception: Failed!");
             }
 
-            tlog.Debug(tag, $"ImageViewConstructorAlphaMaskURL END (OK)");
+            tlog.Debug(tag, $"ImageViewAlphaMaskURL END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("ImageView FittingMode.")]
+        [Property("SPEC", "Tizen.NUI.ImageView.FittingMode A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ImageViewFittingMode()
+        {
+            tlog.Debug(tag, $"ImageViewFittingMode START");
+
+            var testingTarget = new ImageView();
+            Assert.IsNotNull(testingTarget, "Can't create success object ImageView");
+            Assert.IsInstanceOf<ImageView>(testingTarget, "Should be an instance of ImageView type.");
+
+            tlog.Debug(tag, "FittingMode : " + testingTarget.FittingMode);
+
+            testingTarget.FittingMode = FittingModeType.ScaleToFill;
+            tlog.Debug(tag, "FittingMode : " + testingTarget.FittingMode);
+
+            testingTarget.FittingMode = FittingModeType.ShrinkToFit;
+            tlog.Debug(tag, "FittingMode : " + testingTarget.FittingMode);
+
+            testingTarget.FittingMode = FittingModeType.Center;
+            tlog.Debug(tag, "FittingMode : " + testingTarget.FittingMode);
+
+            testingTarget.FittingMode = FittingModeType.Fill;
+            tlog.Debug(tag, "FittingMode : " + testingTarget.FittingMode);
+
+            testingTarget.FittingMode = FittingModeType.FitHeight;
+            tlog.Debug(tag, "FittingMode : " + testingTarget.FittingMode);
+
+            testingTarget.FittingMode = FittingModeType.FitWidth;
+            tlog.Debug(tag, "FittingMode : " + testingTarget.FittingMode);
+
+            tlog.Debug(tag, $"ImageViewFittingMode END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("ImageView DesiredWidth.")]
+        [Property("SPEC", "Tizen.NUI.ImageView.DesiredWidth A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ImageViewDesiredWidth()
+        {
+            tlog.Debug(tag, $"ImageViewDesiredWidth START");
+
+            var testingTarget = new ImageView();
+            Assert.IsNotNull(testingTarget, "Can't create success object ImageView");
+            Assert.IsInstanceOf<ImageView>(testingTarget, "Should be an instance of ImageView type.");
+
+            testingTarget.DesiredWidth = 20;
+            tlog.Debug(tag, "DesiredWidth : " + testingTarget.DesiredWidth);
+
+            testingTarget.DesiredHeight = 30;
+            tlog.Debug(tag, "DesiredHeight : " + testingTarget.DesiredHeight);
+
+            tlog.Debug(tag, $"ImageViewDesiredWidth END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("ImageView ReleasePolicy.")]
+        [Property("SPEC", "Tizen.NUI.ImageView.ReleasePolicy A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ImageViewReleasePolicy()
+        {
+            tlog.Debug(tag, $"ImageViewReleasePolicy START");
+
+            var testingTarget = new ImageView();
+            Assert.IsNotNull(testingTarget, "Can't create success object ImageView");
+            Assert.IsInstanceOf<ImageView>(testingTarget, "Should be an instance of ImageView type.");
+
+            testingTarget.ReleasePolicy = ReleasePolicyType.Never;
+            tlog.Debug(tag, "ReleasePolicy : " + testingTarget.ReleasePolicy);
+
+            testingTarget.ReleasePolicy = ReleasePolicyType.Detached;
+            tlog.Debug(tag, "ReleasePolicy : " + testingTarget.ReleasePolicy);
+
+            testingTarget.ReleasePolicy = ReleasePolicyType.Destroyed;
+            tlog.Debug(tag, "ReleasePolicy : " + testingTarget.ReleasePolicy);
+
+            tlog.Debug(tag, $"ImageViewReleasePolicy END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("ImageView WrapModeU.")]
+        [Property("SPEC", "Tizen.NUI.ImageView.WrapModeU A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ImageViewWrapModeU()
+        {
+            tlog.Debug(tag, $"ImageViewWrapModeU START");
+
+            var testingTarget = new ImageView();
+            Assert.IsNotNull(testingTarget, "Can't create success object ImageView");
+            Assert.IsInstanceOf<ImageView>(testingTarget, "Should be an instance of ImageView type.");
+
+            testingTarget.WrapModeU = WrapModeType.MirroredRepeat;
+            tlog.Debug(tag, "WrapModeU : " + testingTarget.WrapModeU);
+
+            testingTarget.WrapModeU = WrapModeType.Repeat;
+            tlog.Debug(tag, "WrapModeU : " + testingTarget.WrapModeU);
+
+            testingTarget.WrapModeU = WrapModeType.ClampToEdge;
+            tlog.Debug(tag, "WrapModeU : " + testingTarget.WrapModeU);
+
+            testingTarget.WrapModeU = WrapModeType.Default;
+            tlog.Debug(tag, "WrapModeU : " + testingTarget.WrapModeU);
+
+            tlog.Debug(tag, $"ImageViewWrapModeU END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("ImageView WrapModeV.")]
+        [Property("SPEC", "Tizen.NUI.ImageView.WrapModeV A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ImageViewWrapModeV()
+        {
+            tlog.Debug(tag, $"ImageViewWrapModeV START");
+
+            var testingTarget = new ImageView();
+            Assert.IsNotNull(testingTarget, "Can't create success object ImageView");
+            Assert.IsInstanceOf<ImageView>(testingTarget, "Should be an instance of ImageView type.");
+
+            testingTarget.WrapModeV = WrapModeType.MirroredRepeat;
+            tlog.Debug(tag, "WrapModeV : " + testingTarget.WrapModeV);
+
+            testingTarget.WrapModeV = WrapModeType.Repeat;
+            tlog.Debug(tag, "WrapModeV : " + testingTarget.WrapModeV);
+
+            testingTarget.WrapModeV = WrapModeType.ClampToEdge;
+            tlog.Debug(tag, "WrapModeV : " + testingTarget.WrapModeV);
+
+            testingTarget.WrapModeV = WrapModeType.Default;
+            tlog.Debug(tag, "WrapModeV : " + testingTarget.WrapModeV);
+
+            tlog.Debug(tag, $"ImageViewWrapModeV END (OK)");
         }
     }
 }
