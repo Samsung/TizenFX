@@ -33,6 +33,18 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Initializes a new instance of the <see cref="WebRTCDataChannel"/> class.
         /// </summary>
+        /// <param name="webRtc">The owner of this WebRTCDataChannel.</param>
+        /// <param name="label">The name of this data channel.</param>
+        /// <exception cref="ArgumentNullException">The webRtc or label is null.</exception>
+        /// <since_tizen> 9 </since_tizen>
+        public WebRTCDataChannel(WebRTC webRtc, string label)
+            : this(webRtc, label, null)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WebRTCDataChannel"/> class.
+        /// </summary>
         /// <remarks>
         /// The bundle is similar format as the RTCDataChannelInit members outlined https://www.w3.org/TR/webrtc/#dom-rtcdatachannelinit.<br/>
         /// The following attributes can be set to options by using <see cref="Bundle"/> API:<br/>
@@ -45,7 +57,7 @@ namespace Tizen.Multimedia.Remoting
         /// </remarks>
         /// <param name="webRtc">The owner of this WebRTCDataChannel.</param>
         /// <param name="label">The name of this data channel.</param>
-        /// <param name="bundle">The data channel option. This can be null.</param>
+        /// <param name="bundle">The data channel option.</param>
         /// <exception cref="ArgumentNullException">The webRtc or label is null.</exception>
         /// <since_tizen> 9 </since_tizen>
         public WebRTCDataChannel(WebRTC webRtc, string label, Bundle bundle)
