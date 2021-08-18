@@ -42,6 +42,26 @@ internal static partial class Interop
 
         internal static partial class Parcel
         {
+            /// <summary>
+            /// This structure represents the struct timespec.
+            /// </summary>
+            /// <since_tizen> 9 </since_tizen>
+            [StructLayout(LayoutKind.Sequential)]
+            public struct TimeStamp
+            {
+                /// <summary>
+                /// The second of timestamp
+                /// </summary>
+                /// <since_tizen> 9 </since_tizen>
+                public uint sec;
+
+                /// <summary>
+                /// The nano second of timestamp
+                /// </summary>
+                /// <since_tizen> 9 </since_tizen>
+                public uint nsec;
+            }
+
             //int rpc_port_parcel_create(rpc_port_parcel_h *h);
             [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_create")]
             internal static extern ErrorCode Create(out IntPtr handle);
@@ -145,6 +165,30 @@ internal static partial class Interop
             //int rpc_port_parcel_burst_write(rpc_port_parcel_h h, const unsigned char *buf, unsigned int size);
             [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_burst_write")]
             internal static extern ErrorCode Write(IntPtr parcelHandle, byte[] buf, int size);
+
+            //int rpc_port_parcel_get_header(rpc_port_parcel_h h, rpc_port_parcel_header_h *header);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_get_header")]
+            internal static extern ErrorCode GetHeader(IntPtr parcelHandle, out IntPtr ParcelHeaderHandle);
+
+            //int rpc_port_parcel_header_set_tag(rpc_port_parcel_header_h header, const char *tag);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_header_set_tag")]
+            internal static extern ErrorCode SetTag(IntPtr parcelHeaderHandle, string tag);
+
+            //int rpc_port_parcel_header_get_tag(rpc_port_parcel_header_h header, char **tag);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_header_get_tag")]
+            internal static extern ErrorCode GetTag(IntPtr parcelHeaderHandle, out string tag);
+
+            //int rpc_port_parcel_header_set_seq_num(rpc_port_parcel_header_h header, int seq_num);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_header_set_seq_num")]
+            internal static extern ErrorCode SetSeqNum(IntPtr parcelHeaderHandle, int seq_num);
+
+            //int rpc_port_parcel_header_get_seq_num(rpc_port_parcel_header_h header, int *seq_num);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_header_get_seq_num")]
+            internal static extern ErrorCode GetSeqNum(IntPtr parcelHeaderHandle, out int seq_num);
+
+            //int rpc_port_parcel_header_get_timestamp(rpc_port_parcel_header_h header, struct timespec *timestamp);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_header_get_timestamp")]
+            internal static extern ErrorCode GetTimeStamp(IntPtr parcelHeaderHandle, ref TimeStamp time);
         }
 
         internal static partial class Proxy
@@ -266,6 +310,10 @@ internal static partial class Interop
             //int rpc_port_unset_private_sharing(rpc_port_h port);
             [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_unset_private_sharing")]
             internal static extern ErrorCode UnsetPrivateSharing(IntPtr handle);
+
+            //int rpc_port_disconnect(rpc_port_h h);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_disconnect")]
+            internal static extern ErrorCode Disconnect(IntPtr handle);
         }
     }
 }
