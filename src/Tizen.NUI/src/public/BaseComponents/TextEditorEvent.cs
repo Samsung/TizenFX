@@ -315,7 +315,7 @@ namespace Tizen.NUI.BaseComponents
                 CursorPositionChangedEventArgs e = new CursorPositionChangedEventArgs();
 
                 // Populate all members of "e" (CursorPositionChangedEventArgs) with real data
-                e.CursorPosition = oldPosition;
+                e.OldCursorPosition = oldPosition;
 
                 //here we send all data to user event handlers
                 textEditorCursorPositionChangedEventHandler?.Invoke(this, e);
