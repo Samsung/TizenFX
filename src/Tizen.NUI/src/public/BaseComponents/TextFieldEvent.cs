@@ -280,8 +280,8 @@ namespace Tizen.NUI.BaseComponents
                 SelectionChangedEventArgs e = new SelectionChangedEventArgs();
 
                 // Populate all members of "e" (SelectionChangedEventArgs) with real data
-                e.SelectionStart = oldStart;
-                e.SelectionEnd = oldEnd;
+                e.OldSelectionStart = oldStart;
+                e.OldSelectionEnd = oldEnd;
 
                 //here we send all data to user event handlers
                 textFieldSelectionChangedEventHandler?.Invoke(this, e);
