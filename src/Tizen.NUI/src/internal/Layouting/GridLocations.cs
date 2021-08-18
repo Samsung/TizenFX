@@ -293,9 +293,20 @@ namespace Tizen.NUI
 
             for (int i = 0; i < edgeList.Length; i++)
             {
-                float newLocation = locations[edgeList[i].Start] + edgeList[i].Edge + edgeList[i].ExpandedSize;
-                if (edgeList[i].Edge + edgeList[i].ExpandedSize > 0)
-                    newLocation += space;
+                float newLocation = locations[edgeList[i].Start];
+                // view's size is set to be the bigger one between its measured size and its expanded size.
+                if (edgeList[i].Edge > edgeList[i].ExpandedSize)
+                {
+                    newLocation += edgeList[i].Edge;
+                    if (edgeList[i].Edge > 0)
+                        newLocation += space;
+                }
+                else
+                {
+                    newLocation += edgeList[i].ExpandedSize;
+                    if (edgeList[i].ExpandedSize > 0)
+                        newLocation += space;
+                }
 
                 if (locations[edgeList[i].End] < newLocation)
                 {
