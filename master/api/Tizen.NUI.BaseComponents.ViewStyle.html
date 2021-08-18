@@ -240,12 +240,13 @@ The mutually exclusive with &quot;BackgroundColor&quot;. Setting it overwrites e
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/Style/ViewStyle.cs/#L426">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/Style/ViewStyle.cs/#L427">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_ViewStyle_CornerRadius_" data-uid="Tizen.NUI.BaseComponents.ViewStyle.CornerRadius*"></a>
   <h4 id="Tizen_NUI_BaseComponents_ViewStyle_CornerRadius" data-uid="Tizen.NUI.BaseComponents.ViewStyle.CornerRadius">CornerRadius</h4>
   <div class="markdown level1 summary"><p>The radius for the rounded corners of the View.
-The values in Vector4 are used in clockwise order from top-left to bottom-left : Vector4(top-left-corner, top-right-corner, bottom-right-corner, bottom-left-corner).</p>
+The values in Vector4 are used in clockwise order from top-left to bottom-left : Vector4(top-left-corner, top-right-corner, bottom-right-corner, bottom-left-corner).
+Each radius will clamp internally to the half of smaller of the view&apos;s width or height.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -273,11 +274,11 @@ The values in Vector4 are used in clockwise order from top-left to bottom-left :
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/Style/ViewStyle.cs/#L438">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/Style/ViewStyle.cs/#L439">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_ViewStyle_CornerRadiusPolicy_" data-uid="Tizen.NUI.BaseComponents.ViewStyle.CornerRadiusPolicy*"></a>
   <h4 id="Tizen_NUI_BaseComponents_ViewStyle_CornerRadiusPolicy" data-uid="Tizen.NUI.BaseComponents.ViewStyle.CornerRadiusPolicy">CornerRadiusPolicy</h4>
-  <div class="markdown level1 summary"><p>Whether the CornerRadius property value is relative (percentage [0.0f to 1.0f] of the view size) or absolute (in world units).
+  <div class="markdown level1 summary"><p>Whether the CornerRadius property value is relative (percentage [0.0f to 0.5f] of the view size) or absolute (in world units).
 It is absolute by default.
 When the policy is relative, the corner radius is relative to the smaller of the view&apos;s width and height.</p>
 </div>
@@ -798,7 +799,7 @@ This view&apos;s size is set to the view&apos;s size multiplied by or added to t
   <h3 id="methods">Methods
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/Style/ViewStyle.cs/#L518">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/Style/ViewStyle.cs/#L520">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_ViewStyle_Dispose_" data-uid="Tizen.NUI.BaseComponents.ViewStyle.Dispose*"></a>
   <h4 id="Tizen_NUI_BaseComponents_ViewStyle_Dispose" data-uid="Tizen.NUI.BaseComponents.ViewStyle.Dispose">Dispose()</h4>
@@ -815,7 +816,7 @@ This view&apos;s size is set to the view&apos;s size multiplied by or added to t
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/Style/ViewStyle.cs/#L568">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/Style/ViewStyle.cs/#L570">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_ViewStyle_Dispose_" data-uid="Tizen.NUI.BaseComponents.ViewStyle.Dispose*"></a>
   <h4 id="Tizen_NUI_BaseComponents_ViewStyle_Dispose_System_Boolean_" data-uid="Tizen.NUI.BaseComponents.ViewStyle.Dispose(System.Boolean)">Dispose(Boolean)</h4>
