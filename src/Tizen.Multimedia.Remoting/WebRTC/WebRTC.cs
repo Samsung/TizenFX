@@ -383,6 +383,10 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <remarks>The WebRTC must be in the <see cref="WebRTCState.Idle"/>.</remarks>
         /// <param name="source">The media sources to add.</param>
+        /// <privilege>http://tizen.org/privilege/camera</privilege>
+        /// <privilege>http://tizen.org/privilege/mediastorage</privilege>
+        /// <privilege>http://tizen.org/privilege/externalstorage</privilege>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
         /// <exception cref="ArgumentNullException">The media source is null.</exception>
         /// <exception cref="InvalidOperationException">
         /// The WebRTC is not in the valid state.<br/>
@@ -390,6 +394,7 @@ namespace Tizen.Multimedia.Remoting
         /// All or one of <paramref name="source"/> was already detached.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
         /// <seealso cref="MediaCameraSource"/>
         /// <seealso cref="MediaMicSource"/>
         /// <seealso cref="MediaTestSource"/>
@@ -417,6 +422,10 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <remarks>The WebRTC must be in the <see cref="WebRTCState.Idle"/>.</remarks>
         /// <param name="sources">The media sources to add.</param>
+        /// <privilege>http://tizen.org/privilege/camera</privilege>
+        /// <privilege>http://tizen.org/privilege/mediastorage</privilege>
+        /// <privilege>http://tizen.org/privilege/externalstorage</privilege>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
         /// <exception cref="ArgumentNullException">The media source is null.</exception>
         /// <exception cref="InvalidOperationException">
         /// The WebRTC is not in the valid state.<br/>
@@ -424,6 +433,7 @@ namespace Tizen.Multimedia.Remoting
         /// All or one of <paramref name="sources"/> was already detached.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
         /// <seealso cref="MediaCameraSource"/>
         /// <seealso cref="MediaMicSource"/>
         /// <seealso cref="MediaTestSource"/>
