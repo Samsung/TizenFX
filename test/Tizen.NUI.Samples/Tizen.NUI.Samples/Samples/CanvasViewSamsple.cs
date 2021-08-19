@@ -53,7 +53,7 @@ namespace Tizen.NUI.Samples
                     new ColorStop(0.5f, new Color(0.0f,1.0f,0.0f,1.0f)),
                     new ColorStop(1.0f, new Color(0.0f,0.0f,1.0f,1.0f))
                 }.AsReadOnly(),
-                Spread = Gradient.SpreadType.Reflect,
+                Spread = SpreadType.Reflect,
             };
             roundedRectFillRadialGradient.SetBounds(new Position2D(0, 0), 30);
 
@@ -87,7 +87,7 @@ namespace Tizen.NUI.Samples
             circleShape.AddCircle(0.0f, 0.0f, 150.0f, 100.0f);
             circleShape.Transform(new float[] { 0.6f, 0.0f, 350.0f, 0.0f, 0.6f, 100.0f, 0.0f, 0.0f, 1.0f });
 
-            circleShape.Mask(circleMask, Drawable.MaskType.Alpha);
+            circleShape.Mask(circleMask, MaskType.Alpha);
 
             arcShape = new Shape()
             {
