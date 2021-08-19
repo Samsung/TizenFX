@@ -48,6 +48,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// Enumeration for The fill rule of shape.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("Please do not use this Shape.StrokeJoinType(Will be changed.).")]
         public enum FillRuleType
         {
             /// <summary>
@@ -64,6 +65,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// Enumeration for The cap style to be used for stroking the path.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("Please do not use this Shape.StrokeCapType(Will be changed.).")]
         public enum StrokeCapType
         {
             /// <summary>
@@ -84,6 +86,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// numeration for The join style to be used for stroking the path.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("Please do not use this Shape.StrokeJoinType(Will be changed.).")]
         public enum StrokeJoinType
         {
             /// <summary>
