@@ -21,11 +21,11 @@ using System.Globalization;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// GraphicsTypeConverter class to convert types.
+    /// DpTypeConverter class to convert types.
     /// </summary>
     /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public abstract class GraphicsTypeConverter
+    public class DpTypeConverter : GraphicsTypeConverter
     {
         /// <summary>
         /// Converts script to px
@@ -33,40 +33,51 @@ namespace Tizen.NUI
         /// <returns>Pixel value that is converted from input string</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public virtual float ConvertScriptToPixel(string scriptValue)
+        public override float ConvertScriptToPixel(string scriptValue)
         {
             float convertedValue = 0;
             if (scriptValue != null)
             {
-                if (!float.TryParse(scriptValue, NumberStyles.Any, CultureInfo.InvariantCulture, out convertedValue))
+                if (scriptValue.EndsWith("dp"))
                 {
-                    NUILog.Error("Cannot convert the script {scriptValue}\n");
-                    convertedValue = 0;
+                    convertedValue = ConvertToPixel(float.Parse(scriptValue.Substring(0, scriptValue.LastIndexOf("dp")), CultureInfo.InvariantCulture));
+                }
+                else if (scriptValue.EndsWith("px"))
+                {
+                    convertedValue = float.Parse(scriptValue.Substring(0, scriptValue.LastIndexOf("px")), CultureInfo.InvariantCulture);
+                }
+                else
+                {
+                    if (!float.TryParse(scriptValue, NumberStyles.Any, CultureInfo.InvariantCulture, out convertedValue))
+                    {
+                        NUILog.Error("Cannot convert the script {scriptValue}\n");
+                        convertedValue = 0;
+                    }
                 }
             }
             return convertedValue;
         }
 
         /// <summary>
-        /// Converts other type to px
+        /// Converts dp type to px
         /// </summary>
         /// <returns>Pixel value that is converted by the the display matric</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public virtual float ConvertToPixel(float value)
+        public override float ConvertToPixel(float value)
         {
-            return value;
+            return value * (GraphicsTypeManager.Dpi / GraphicsTypeManager.DefaultDpi);
         }
 
         /// <summary>
-        /// Converts px to other type
+        /// Converts px to dp type
         /// </summary>
         /// <returns>An converted value from pixel</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public virtual float ConvertFromPixel(float value)
+        public override float ConvertFromPixel(float value)
         {
-            return value;
+            return value * (GraphicsTypeManager.DefaultDpi / GraphicsTypeManager.Dpi);
         }
     }
 }

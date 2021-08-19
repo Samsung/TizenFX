@@ -15,6 +15,9 @@
  *
  */
 
+extern alias TizenSystemInformation;
+using TizenSystemInformation.Tizen.System;
+using System;
 using System.ComponentModel;
 
 namespace Tizen.NUI
@@ -28,13 +31,107 @@ namespace Tizen.NUI
     {
         private volatile static GraphicsTypeManager graphicsTypeManager;
         private GraphicsTypeConverter typeConverter;
+        private float scaleFactor = 1.0f;
+        private static int defaultDensityDpi = DensityMedium;
 
         /// <summary>
-        /// Creates private GraphicsTypeManager object.
+        /// Constant of low(120) density dpi.
         /// </summary>
-        private GraphicsTypeManager()
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public const int DensityLow = 120;
+
+        /// <summary>
+        /// Constant of mkedium(160) density dpi. Default dpi.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public const int DensityMedium = 160;
+
+        /// <summary>
+        /// Constant of high(240) density dpi.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public const int DensityHigh = 240;
+
+        /// <summary>
+        /// Constant of extra high(320) density dpi.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public const int DensityXHigh = 320;
+
+        /// <summary>
+        /// Constant of double extra high(480) density dpi.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public const int DensityXXHigh = 480;
+
+        /// <summary>
+        /// Constant of triple extra high(640) density dpi.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public const int DensityXXXHigh = 640;
+
+        /// <summary>
+        /// Custom scale factor of display metrics.
+        /// ScaleFactor scale Dpi on DpiStable.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float ScaleFactor
         {
-            typeConverter = new GraphicsTypeConverter();
+            get => scaleFactor;
+            internal set => scaleFactor = value;
+        }
+
+        /// <summary>
+        /// Stable dpi value from system.
+        /// See Vector Dpi in <see cref="Tizen.NUI.Window" /> also.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int DpiStable
+        {
+            get
+            {
+               Vector2 screenDpi = NUIApplication.GetDefaultWindow().Dpi;
+
+               // Currently Dpi.X and Dpi.Y is all same value from ecore_wl2_output_dpi_get
+               // Also Diagonal Dpi should be same as X, Y Dpi in normal rectangle-pixels display
+               // so for the convenience, we use Dpi.X
+               return Convert.ToInt32(Math.Round(screenDpi.X));
+            }
+        }
+
+        /// <summary>
+        /// Dpi for GraphicsTypeManager.
+        /// Dpi is scaled from DpiStable with custom ScaleFactor.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int Dpi
+        {
+            get
+            {
+                return Convert.ToInt32(Math.Round(DpiStable * GraphicsTypeManager.Instance.ScaleFactor));
+            }
+        }
+
+        /// <summary>
+        /// Default dpi. Medium(160) density dpi is origianlly provided.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int DefaultDpi
+        {
+            get => defaultDensityDpi;
+            internal set
+            {
+                defaultDensityDpi = value;
+            }
+        }
+
+        /// <summary>
+        /// Density of display.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static float Density
+        {
+            get => ((float)DefaultDpi / (float)Dpi);
         }
 
         /// <summary>
@@ -56,6 +153,17 @@ namespace Tizen.NUI
             }
 
         }
+
+        /// <summary>
+        /// Creates private GraphicsTypeManager object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        private GraphicsTypeManager()
+        {
+            // Get default type converter
+            typeConverter = new DpTypeConverter();
+        }
+
 
         /// <summary>
         /// Sets the custom GraphicsTypeConverter.
