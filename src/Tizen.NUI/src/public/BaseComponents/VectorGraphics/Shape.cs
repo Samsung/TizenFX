@@ -28,6 +28,9 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
     /// <since_tizen> 9 </since_tizen>
     public class Shape : Drawable
     {
+        private Gradient fillGradient; //Added gradient
+        private Gradient strokeGradient; //Added gradient
+
         /// <summary>
         /// Creates an initialized Shape.
         /// </summary>
@@ -116,6 +119,30 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         }
 
         /// <summary>
+        /// The gradient to use for filling the path.
+        /// Even if FillColor is set, Gradient setting takes precedence.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Gradient FillGradient
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.Shape.GetFillGradient(BaseHandle.getCPtr(this));
+                Gradient ret = new Gradient(cPtr, true);
+                return ret;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    Interop.Shape.SetFillGradient(BaseHandle.getCPtr(this), BaseHandle.getCPtr(value));
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    fillGradient = value;
+                }       
+            }
+        }
+
+        /// <summary>
         /// The current fill rule of the shape.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
@@ -164,6 +191,30 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
             {
                 Interop.Shape.SetStrokeColor(BaseHandle.getCPtr(this), Vector4.getCPtr(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+        /// <summary>
+        /// The gradient to use for stroking the path.
+        /// Even if StrokeColor is set, Gradient setting takes precedence.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Gradient StrokeGradient
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.Shape.GetStrokeGradient(BaseHandle.getCPtr(this));
+                Gradient ret = new Gradient(cPtr, true);
+                return ret;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    Interop.Shape.SetStrokeGradient(BaseHandle.getCPtr(this), BaseHandle.getCPtr(value));
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    strokeGradient = value;
+                }       
             }
         }
 
