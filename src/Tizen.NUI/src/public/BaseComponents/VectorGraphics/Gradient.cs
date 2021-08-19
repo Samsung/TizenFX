@@ -43,26 +43,6 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         }
 
         /// <summary>
-        /// Enumeration specifying how to fill the area outside the gradient bounds.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public enum SpreadType
-        {
-            /// <summary>
-            /// The remaining area is filled with the closest stop color.
-            /// </summary>
-            Pad = 0,
-            /// <summary>
-            /// The gradient pattern is reflected outside the gradient area until the expected region is filled.
-            /// </summary>
-            Reflect,
-            /// <summary>
-            /// The gradient pattern is repeated continuously beyond the gradient area until the expected region is filled.
-            /// </summary>
-            Repeat
-        };
-
-        /// <summary>
         /// Specifying how to fill the area outside the gradient bounds.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
