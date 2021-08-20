@@ -19,6 +19,7 @@ using System;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Tizen.NUI.BaseComponents.VectorGraphics
 {
@@ -415,7 +416,27 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
                 throw new ArgumentNullException(nameof(pathCommands));
             }
 
-            Interop.Shape.AddPath(BaseHandle.getCPtr(this), pathCommands.GetCommands(), pathCommands.GetCommandCount(), pathCommands.GetPoints(), pathCommands.GetPointCount());
+            PathCommandType[] commands = null;
+            if (pathCommands.Commands is PathCommandType[] commandArray)
+            {
+                commands = commandArray;
+            }
+            else
+            {
+                commands = pathCommands.Commands.ToArray();        
+            }
+
+            float[] points = null;            
+            if (pathCommands.Points is float[] pointArray)
+            {
+                points = pointArray;
+            }
+            else
+            {
+                points = pathCommands.Points.ToArray();    
+            }
+            
+            Interop.Shape.AddPath(BaseHandle.getCPtr(this), commands, (uint)commands.Length, points, (uint)points.Length);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
