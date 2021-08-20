@@ -204,6 +204,13 @@ namespace Tizen.NUI
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool IsKeyboardFocusable(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetKeyboardFocusableChildren")]
+            public static extern void SetKeyboardFocusableChildren(global::System.Runtime.InteropServices.HandleRef manager, bool focusable);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_AreChildrenKeyBoardFocusable")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
+            public static extern bool AreChildrenKeyBoardFocusable(global::System.Runtime.InteropServices.HandleRef manager);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetTouchFocusable")]
             public static extern void SetFocusableInTouch(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
 
