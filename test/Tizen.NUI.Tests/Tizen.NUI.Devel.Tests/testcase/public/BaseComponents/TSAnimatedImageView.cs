@@ -323,84 +323,52 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"AnimatedImageViewCurrentFrame END (OK)");
         }
 
-        //[Test]
-        //[Category("P1")]
-        //[Description("AnimatedImageView SetValues.")]
-        //[Property("SPEC", "Tizen.NUI.AnimatedImageView.SetValues M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void AnimatedImageViewSetValues()
-        //{
-        //    tlog.Debug(tag, $"AnimatedImageViewSetValues START");
+        [Test]
+        [Category("P1")]
+        [Description("AnimatedImageView Play.")]
+        [Property("SPEC", "Tizen.NUI.AnimatedImageView.Play M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void AnimatedImageViewPlay()
+        {
+            tlog.Debug(tag, $"AnimatedImageViewPlay START");
 
-        //    var testingTarget = new AnimatedImageView();
-        //    Assert.IsNotNull(testingTarget, "Can't create success object AnimatedImageView");
-        //    Assert.IsInstanceOf<AnimatedImageView>(testingTarget, "Should be an instance of AnimatedImageView type.");
+            var testingTarget = new AnimatedImageView();
+            Assert.IsNotNull(testingTarget, "Can't create success object AnimatedImageView");
+            Assert.IsInstanceOf<AnimatedImageView>(testingTarget, "Should be an instance of AnimatedImageView type.");
 
-        //    using (PropertyMap map = new PropertyMap())
-        //    {
-        //        map.Insert(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
-        //        map.Insert(ImageVisualProperty.URL, new PropertyValue(url));
-        //        map.Insert(ImageVisualProperty.Border, new PropertyValue(new Extents(4, 4, 4, 4)));
-        //        map.Insert(ImageVisualProperty.TotalFrameNumber, new PropertyValue(30));
-        //        map.Insert(ImageVisualProperty.CurrentFrameNumber, new PropertyValue(0));
+            using (PropertyMap map = new PropertyMap())
+            {
+                map.Insert(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
+                map.Insert(ImageVisualProperty.URL, new PropertyValue(url));
+                map.Insert(ImageVisualProperty.AlphaMaskURL, new PropertyValue(url));
+                map.Insert(ImageVisualProperty.AuxiliaryImageURL, new PropertyValue(url));
+                map.Insert(ImageVisualProperty.Border, new PropertyValue(new Extents(4, 4, 4, 4)));
+                map.Insert(ImageVisualProperty.TotalFrameNumber, new PropertyValue(30));
+                map.Insert(ImageVisualProperty.CurrentFrameNumber, new PropertyValue(0));
 
-        //        testingTarget.Image = map;
+                testingTarget.Image = map;
 
-        //        try
-        //        {
-        //            testingTarget.SetValues();
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            tlog.Debug(tag, e.Message.ToString());
-        //            Assert.Fail("Caught Exception: Failed!");
-        //        }
+                testingTarget.BatchSize = 2;
+                testingTarget.CacheSize = 2;
+                testingTarget.LoopCount = 3;
+                testingTarget.StopBehavior = AnimatedImageView.StopBehaviorType.MinimumFrame;
 
-        //        testingTarget.Dispose();
-        //        tlog.Debug(tag, $"AnimatedImageViewSetValues END (OK)");
-        //    }
-        //}
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("AnimatedImageView Play.")]
-        //[Property("SPEC", "Tizen.NUI.AnimatedImageView.Play M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void AnimatedImageViewPlay()
-        //{
-        //    tlog.Debug(tag, $"AnimatedImageViewPlay START");
-
-        //    var testingTarget = new AnimatedImageView();
-        //    Assert.IsNotNull(testingTarget, "Can't create success object AnimatedImageView");
-        //    Assert.IsInstanceOf<AnimatedImageView>(testingTarget, "Should be an instance of AnimatedImageView type.");
-
-        //    using (PropertyMap map = new PropertyMap())
-        //    {
-        //        map.Insert(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
-        //        map.Insert(ImageVisualProperty.URL, new PropertyValue(url));
-        //        map.Insert(ImageVisualProperty.Border, new PropertyValue(new Extents(4, 4, 4, 4)));
-        //        map.Insert(ImageVisualProperty.TotalFrameNumber, new PropertyValue(30));
-        //        map.Insert(ImageVisualProperty.CurrentFrameNumber, new PropertyValue(0));
-
-        //        testingTarget.Image = map;
-
-        //        try
-        //        {
-        //            testingTarget.Play();
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            tlog.Debug(tag, e.Message.ToString());
-        //            Assert.Fail("Caught Exception: Failed!");
-        //        }
-
-        //        testingTarget.Dispose();
-        //        tlog.Debug(tag, $"AnimatedImageViewPlay END (OK)");
-        //    }
-        //}
+                try
+                {
+                    testingTarget.Play();
+                }
+                catch (Exception e)
+                {
+                    testingTarget.Dispose();
+                    tlog.Debug(tag, e.Message.ToString());
+                    tlog.Debug(tag, $"AnimatedImageViewPlay END (OK)");
+                    Assert.Pass("Passed!");
+                }
+            }
+            testingTarget?.Dispose();
+            tlog.Debug(tag, $"AnimatedImageViewPlay END (OK)");
+        }
     }
 }
