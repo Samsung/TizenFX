@@ -39,9 +39,6 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler<AnchorClickedEventArgs> textEditorAnchorClickedEventHandler;
         private AnchorClickedCallbackDelegate textEditorAnchorClickedCallbackDelegate;
 
-        private EventHandler<SelectionChangedEventArgs> textEditorSelectionChangedEventHandler;
-        private SelectionChangedCallbackDelegate textEditorSelectionChangedCallbackDelegate;
-
         private EventHandler<InputFilteredEventArgs> textEditorInputFilteredEventHandler;
         private InputFilteredCallbackDelegate textEditorInputFilteredCallbackDelegate;
 
@@ -56,9 +53,6 @@ namespace Tizen.NUI.BaseComponents
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void AnchorClickedCallbackDelegate(IntPtr textEditor, IntPtr href, uint hrefLength);
-
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void SelectionChangedCallbackDelegate(IntPtr textEditor, uint oldStart, uint oldEnd);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void InputFilteredCallbackDelegate(IntPtr textEditor, InputFilterType type);
@@ -167,32 +161,6 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The SelectionChanged event.
-        /// </summary>
-        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<SelectionChangedEventArgs> SelectionChanged
-        {
-            add
-            {
-                if (textEditorSelectionChangedEventHandler == null)
-                {
-                    textEditorSelectionChangedCallbackDelegate = (OnSelectionChanged);
-                    SelectionChangedSignal().Connect(textEditorSelectionChangedCallbackDelegate);
-                }
-                textEditorSelectionChangedEventHandler += value;
-            }
-            remove
-            {
-                if (textEditorSelectionChangedEventHandler == null && SelectionChangedSignal().Empty() == false)
-                {
-                    this.SelectionChangedSignal().Disconnect(textEditorSelectionChangedCallbackDelegate);
-                }
-                textEditorSelectionChangedEventHandler -= value;
-            }
-        }
-
-        /// <summary>
         /// The InputFiltered signal is emitted when the input is filtered by InputFilter. <br />
         /// </summary>
         /// <remarks>
@@ -264,13 +232,6 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        internal TextEditorSignal SelectionChangedSignal()
-        {
-            TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.SelectionChangedSignal(SwigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         internal TextEditorSignal InputFilteredSignal()
         {
             TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.InputFilteredSignal(SwigCPtr), false);
@@ -331,21 +292,6 @@ namespace Tizen.NUI.BaseComponents
             e.Href = Marshal.PtrToStringAnsi(href);
             //here we send all data to user event handlers
             textEditorAnchorClickedEventHandler?.Invoke(this, e);
-        }
-
-        private void OnSelectionChanged(IntPtr textEditor, uint oldStart, uint oldEnd)
-        {
-            if (textEditorSelectionChangedEventHandler != null)
-            {
-                SelectionChangedEventArgs e = new SelectionChangedEventArgs();
-
-                // Populate all members of "e" (SelectionChangedEventArgs) with real data
-                e.OldSelectionStart = oldStart;
-                e.OldSelectionEnd = oldEnd;
-
-                //here we send all data to user event handlers
-                textEditorSelectionChangedEventHandler?.Invoke(this, e);
-            }
         }
 
         private void OnInputFiltered(IntPtr textEditor, InputFilterType type)
