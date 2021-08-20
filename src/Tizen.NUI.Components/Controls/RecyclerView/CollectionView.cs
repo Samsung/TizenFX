@@ -971,7 +971,7 @@ namespace Tizen.NUI.Components
             if (item == null) return;
             if (item == Header)
             {
-                item.Hide();
+                item?.Hide();
                 return;
             }
             if (item == Footer)

@@ -393,6 +393,8 @@ internal static partial class Interop
         internal static extern int SetAudioConnectionStateChangedCallback(AudioConnectionStateChangedCallback audioStateChangedCb, IntPtr userData);
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_audio_unset_connection_state_changed_cb")]
         internal static extern int UnsetAudioConnectionStateChangedCallback();
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_audio_select_role")]
+        internal static extern int SelectAudioRole(BluetoothAudioRole role);
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_ag_open_sco")]
         internal static extern int OpenAgSco();
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_ag_close_sco")]
@@ -633,6 +635,9 @@ internal static partial class Interop
         [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
         internal delegate void BtGattClientAttMtuChangedCallback(IntPtr clientHandle, ref AttMtuInfoStruct mtuInfo, IntPtr userData);
 
+        [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
+        internal delegate void BtGattServerAttMtuChangedCallback(IntPtr clientHandle, ref AttMtuInfoStruct mtuInfo, IntPtr userData);
+
         // Gatt Attribute
 
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_gatt_destroy")]
@@ -658,6 +663,9 @@ internal static partial class Interop
 
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_gatt_set_float_value")]
         internal static extern int BtGattSetFloatValue(BluetoothGattAttributeHandle gattHandle, int type, int mantissa, int exponent, int offset);
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_gatt_get_uuid_specification_name")]
+        internal static extern int BtGattGetUuidSpecificationName(string uuid, out string name);
 
         // GATT Descriptor
 
@@ -773,6 +781,12 @@ internal static partial class Interop
 
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_gatt_server_deinitialize")]
         internal static extern int BtGattServerDeinitialize();
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_gatt_server_set_att_mtu_changed_cb")]
+        internal static extern int BtGattServerSetMtuChangedCallback(BluetoothGattServerHandle serverHandle, BtGattServerAttMtuChangedCallback callback, IntPtr userData);
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_gatt_server_unset_att_mtu_changed_cb")]
+        internal static extern int BtGattServerUnsetMtuChangedCallback(BluetoothGattServerHandle serverHandle);
 
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_gatt_server_set_read_value_requested_cb")]
         internal static extern int BtGattServerSetReadValueRequestedCallback(BluetoothGattAttributeHandle gattHandle, BtGattServerReadValueRequestedCallback callback, IntPtr userData);

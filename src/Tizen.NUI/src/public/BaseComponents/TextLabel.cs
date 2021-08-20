@@ -21,6 +21,7 @@ using TizenSystemSettings.Tizen.System;
 using System;
 using System.Globalization;
 using System.ComponentModel;
+using Tizen.NUI.Text;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -267,6 +268,7 @@ namespace Tizen.NUI.BaseComponents
         /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1721: Property names should not match get methods")]
         public PropertyMap FontStyle
         {
             get
@@ -278,6 +280,44 @@ namespace Tizen.NUI.BaseComponents
                 SetValue(FontStyleProperty, value);
                 NotifyPropertyChanged();
             }
+        }
+
+        /// <summary>
+        /// Set FontStyle to TextLabel. <br />
+        /// </summary>
+        /// <param name="fontStyle">The FontStyle</param>
+        /// <remarks>
+        /// SetFontStyle specifies the requested font style through <see cref="Tizen.NUI.Text.FontStyle"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetFontStyle method.
+        /// <code>
+        /// var fontStyle = new Tizen.NUI.Text.FontStyle();
+        /// fontStyle.Width = FontWidthType.Expanded;
+        /// fontStyle.Weight = FontWeightType.Bold;
+        /// fontStyle.Slant = FontSlantType.Italic;
+        /// label.SetFontStyle(fontStyle);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetFontStyle(FontStyle fontStyle)
+        {
+            SetProperty(TextLabel.Property.FontStyle, new PropertyValue(TextUtils.GetFontStyleMap(fontStyle)));
+        }
+
+        /// <summary>
+        /// Get FontStyle from TextLabel. <br />
+        /// </summary>
+        /// <returns>The FontStyle</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.FontStyle"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public FontStyle GetFontStyle()
+        {
+            var map = new PropertyMap();
+            GetProperty(TextLabel.Property.FontStyle).Get(map);
+            return TextUtils.GetFontStyleStruct(map);
         }
 
         /// <summary>
@@ -649,6 +689,7 @@ namespace Tizen.NUI.BaseComponents
         /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1721: Property names should not match get methods")]
         public PropertyMap Underline
         {
             get
@@ -663,6 +704,44 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Set Underline to TextLabel. <br />
+        /// </summary>
+        /// <param name="underline">The Underline</param>
+        /// <remarks>
+        /// SetUnderline specifies the underline of the text through <see cref="Tizen.NUI.Text.Underline"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetUnderline method.
+        /// <code>
+        /// var underline = new Tizen.NUI.Text.Underline();
+        /// underline.Enable = true;
+        /// underline.Color = new Color("#3498DB");
+        /// underline.Height = 2.0f;
+        /// label.SetUnderline(underline);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetUnderline(Underline underline)
+        {
+            SetProperty(TextLabel.Property.UNDERLINE, new PropertyValue(TextUtils.GetUnderlineMap(underline)));
+        }
+
+        /// <summary>
+        /// Get Underline from TextLabel. <br />
+        /// </summary>
+        /// <returns>The Underline</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.Underline"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Underline GetUnderline()
+        {
+            var map = new PropertyMap();
+            GetProperty(TextLabel.Property.UNDERLINE).Get(map);
+            return TextUtils.GetUnderlineStruct(map);
+        }
+
+        /// <summary>
         /// The Shadow property.<br />
         /// The default shadow parameters.<br />
         /// The shadow map contains the following keys :<br />
@@ -673,6 +752,7 @@ namespace Tizen.NUI.BaseComponents
         /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1721: Property names should not match get methods")]
         public PropertyMap Shadow
         {
             get
@@ -684,6 +764,44 @@ namespace Tizen.NUI.BaseComponents
                 SetValue(ShadowProperty, value);
                 NotifyPropertyChanged();
             }
+        }
+
+        /// <summary>
+        /// Set Shadow to TextLabel. <br />
+        /// </summary>
+        /// <param name="shadow">The Shadow</param>
+        /// <remarks>
+        /// SetShadow specifies the shadow of the text through <see cref="Tizen.NUI.Text.Shadow"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetShadow method.
+        /// <code>
+        /// var shadow = new Tizen.NUI.Text.Shadow();
+        /// shadow.Offset = new Vector2(3, 3);
+        /// shadow.Color = new Color("#F1C40F");
+        /// shadow.BlurRadius = 4.0f;
+        /// label.SetShadow(shadow);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetShadow(Tizen.NUI.Text.Shadow shadow)
+        {
+            SetProperty(TextLabel.Property.SHADOW, new PropertyValue(TextUtils.GetShadowMap(shadow)));
+        }
+
+        /// <summary>
+        /// Get Shadow from TextLabel. <br />
+        /// </summary>
+        /// <returns>The Shadow</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.Shadow"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Tizen.NUI.Text.Shadow GetShadow()
+        {
+            var map = new PropertyMap();
+            GetProperty(TextLabel.Property.SHADOW).Get(map);
+            return TextUtils.GetShadowStruct(map);
         }
 
         /// <summary>
@@ -732,6 +850,7 @@ namespace Tizen.NUI.BaseComponents
         /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1721: Property names should not match get methods")]
         public PropertyMap Outline
         {
             get
@@ -743,6 +862,43 @@ namespace Tizen.NUI.BaseComponents
                 SetValue(OutlineProperty, value);
                 NotifyPropertyChanged();
             }
+        }
+
+        /// <summary>
+        /// Set Outline to TextLabel. <br />
+        /// </summary>
+        /// <param name="outline">The Outline</param>
+        /// <remarks>
+        /// SetOutline specifies the outline of the text through <see cref="Tizen.NUI.Text.Outline"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetOutline method.
+        /// <code>
+        /// var outline = new Tizen.NUI.Text.Outline();
+        /// outline.Width = 2.0f;
+        /// outline.Color = new Color("#45B39D");
+        /// label.SetOutline(outline);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetOutline(Outline outline)
+        {
+            SetProperty(TextLabel.Property.OUTLINE, new PropertyValue(TextUtils.GetOutlineMap(outline)));
+        }
+
+        /// <summary>
+        /// Get Outline from TextLabel. <br />
+        /// </summary>
+        /// <returns>The Outline</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.Outline"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Outline GetOutline()
+        {
+            var map = new PropertyMap();
+            GetProperty(TextLabel.Property.OUTLINE).Get(map);
+            return TextUtils.GetOutlineStruct(map);
         }
 
         /// <summary>
@@ -933,6 +1089,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1721: Property names should not match get methods")]
         public PropertyMap TextFit
         {
             get
@@ -944,6 +1101,48 @@ namespace Tizen.NUI.BaseComponents
                 SetValue(TextFitProperty, value);
                 NotifyPropertyChanged();
             }
+        }
+
+        /// <summary>
+        /// Set TextFit to TextLabel. <br />
+        /// </summary>
+        /// <param name="textFit">The TextFit</param>
+        /// <remarks>
+        /// SetTextFit specifies the textFit of the text through <see cref="Tizen.NUI.Text.TextFit"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetTextFit method.
+        /// <code>
+        /// var textFit = new Tizen.NUI.Text.TextFit();
+        /// textFit.Enable = true;
+        /// textFit.MinSize = 10.0f;
+        /// textFit.MaxSize = 100.0f;
+        /// textFit.StepSize = 5.0f;
+        /// textFit.FontSizeType = FontSizeType.PointSize;
+        /// label.SetTextFit(textFit);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetTextFit(TextFit textFit)
+        {
+            SetProperty(TextLabel.Property.TextFit, new PropertyValue(TextUtils.GetTextFitMap(textFit)));
+        }
+
+        /// <summary>
+        /// Get TextFit from TextLabel. <br />
+        /// </summary>
+        /// <returns>The TextFit</returns>
+        /// <remarks>
+        /// TextFit is always returned based on PointSize. <br />
+        /// If the user sets FontSizeType to PixelSize, then MinSize, MaxSize, and StepSize are converted based on PointSize and returned. <br />
+        /// <see cref="Tizen.NUI.Text.TextFit"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextFit GetTextFit()
+        {
+            var map = new PropertyMap();
+            GetProperty(TextLabel.Property.TextFit).Get(map);
+            return TextUtils.GetTextFitStruct(map);
         }
 
         /// <summary>

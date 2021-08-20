@@ -202,6 +202,23 @@ namespace Tizen.Network.Bluetooth
             }
         }
 
+        internal void SelectRole(BluetoothAudioRole role)
+        {
+            if (Globals.IsAudioInitialize)
+            {
+                int ret = Interop.Bluetooth.SelectAudioRole(role);
+                if (ret != (int)BluetoothError.None && ret != (int)BluetoothError.AlreadyDone)
+                {
+                    Log.Error(Globals.LogTag, "Failed to select audio role, Error - " + (BluetoothError)ret);
+                    BluetoothErrorFactory.ThrowBluetoothException(ret);
+                }
+            }
+            else
+            {
+                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NotInitialized);
+            }
+        }
+
         internal static BluetoothAudioImpl Instance
         {
             get
