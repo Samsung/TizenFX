@@ -111,19 +111,17 @@ namespace Tizen.NUI.Samples
             shape.Scale(0.5f);
             shape.Translate(350.0f, 300.0f);
 
-            shape.AddPath(new PathCommands(new PathCommands.PathCommandType[] { PathCommands.PathCommandType.MoveTo,
-                                                                                PathCommands.PathCommandType.LineTo,
-                                                                                PathCommands.PathCommandType.LineTo,
-                                                                                PathCommands.PathCommandType.LineTo,
-                                                                                PathCommands.PathCommandType.LineTo,
-                                                                                PathCommands.PathCommandType.Close },
-                                            6,
+            shape.AddPath(new PathCommands(new PathCommandType[] { PathCommandType.MoveTo,
+                                                                   PathCommandType.LineTo,
+                                                                   PathCommandType.LineTo,
+                                                                   PathCommandType.LineTo,
+                                                                   PathCommandType.LineTo,
+                                                                   PathCommandType.Close },
                                             new float[] {0.0f, -160.0f,
                                                         125.0f, 160.0f,
                                                         -180.0f, -45.0f,
                                                         180.0f, -45.0f,
-                                                        -125.0f, 160.0f },
-                                            10));
+                                                        -125.0f, 160.0f }));
 
             canvasView.AddDrawable(shape);
 

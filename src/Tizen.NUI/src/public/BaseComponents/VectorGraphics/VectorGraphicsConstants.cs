@@ -15,8 +15,8 @@
 *
 */
 using System;
-using System.ComponentModel;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.NUI.BaseComponents.VectorGraphics
@@ -111,5 +111,30 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// The gradient pattern is repeated continuously beyond the gradient area until the expected region is filled.
         /// </summary>
         Repeat
-    };
+    }
+
+    /// <summary>
+    /// Enumeration specifying the values of the path commands.
+    /// Not to be confused with the path commands from the svg path element (like M, L, Q, H and many others).
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum PathCommandType
+    {
+        /// <summary>
+        /// Ends the current sub-path and connects it with its initial point. This command doesn't expect any points.
+        /// </summary>
+        Close = 0,
+        /// <summary>
+        /// Sets a new initial point of the sub-path and a new current point. This command expects 1 point: the starting position.
+        /// </summary>
+        MoveTo,
+        /// <summary>
+        /// Draws a line from the current point to the given point and sets a new value of the current point. This command expects 1 point: the end-position of the line.
+        /// </summary>
+        LineTo,
+        /// <summary>
+        /// Draws a cubic Bezier curve from the current point to the given point using two given control points and sets a new value of the current point. This command expects 3 points: the 1st control-point, the 2nd control-point, the end-point of the curve.
+        /// </summary>
+        CubicTo
+    }
 }
