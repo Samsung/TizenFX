@@ -29,6 +29,8 @@ namespace Tizen.NUI.BaseComponents
     {
         private EventHandler<TextChangedEventArgs> textFieldTextChangedEventHandler;
         private TextChangedCallbackDelegate textFieldTextChangedCallbackDelegate;
+        private EventHandler<CursorPositionChangedEventArgs> textFieldCursorPositionChangedEventHandler;
+        private CursorPositionChangedCallbackDelegate textFieldCursorPositionChangedCallbackDelegate;
         private EventHandler<MaxLengthReachedEventArgs> textFieldMaxLengthReachedEventHandler;
         private MaxLengthReachedCallbackDelegate textFieldMaxLengthReachedCallbackDelegate;
         private EventHandler<AnchorClickedEventArgs> textFieldAnchorClickedEventHandler;
@@ -38,6 +40,9 @@ namespace Tizen.NUI.BaseComponents
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void TextChangedCallbackDelegate(IntPtr textField);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void CursorPositionChangedCallbackDelegate(IntPtr textField, uint oldPosition);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void MaxLengthReachedCallbackDelegate(IntPtr textField);
@@ -70,6 +75,32 @@ namespace Tizen.NUI.BaseComponents
                 {
                     TextChangedSignal().Disconnect(textFieldTextChangedCallbackDelegate);
                 }
+            }
+        }
+
+        /// <summary>
+        /// The CursorPositionChanged event.
+        /// </summary>
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<CursorPositionChangedEventArgs> CursorPositionChanged
+        {
+            add
+            {
+                if (textFieldCursorPositionChangedEventHandler == null)
+                {
+                    textFieldCursorPositionChangedCallbackDelegate = (OnCursorPositionChanged);
+                    CursorPositionChangedSignal().Connect(textFieldCursorPositionChangedCallbackDelegate);
+                }
+                textFieldCursorPositionChangedEventHandler += value;
+            }
+            remove
+            {
+                if (textFieldCursorPositionChangedEventHandler == null && CursorPositionChangedSignal().Empty() == false)
+                {
+                    this.CursorPositionChangedSignal().Disconnect(textFieldCursorPositionChangedCallbackDelegate);
+                }
+                textFieldCursorPositionChangedEventHandler -= value;
             }
         }
 
@@ -174,6 +205,13 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
+        internal TextFieldSignal CursorPositionChangedSignal()
+        {
+            TextFieldSignal ret = new TextFieldSignal(Interop.TextField.CursorPositionChangedSignal(SwigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         internal TextFieldSignal MaxLengthReachedSignal()
         {
             TextFieldSignal ret = new TextFieldSignal(Interop.TextField.MaxLengthReachedSignal(SwigCPtr), false);
@@ -205,6 +243,20 @@ namespace Tizen.NUI.BaseComponents
                 e.TextField = Registry.GetManagedBaseHandleFromNativePtr(textField) as TextField;
                 //here we send all data to user event handlers
                 textFieldTextChangedEventHandler(this, e);
+            }
+        }
+
+        private void OnCursorPositionChanged(IntPtr textField, uint oldPosition)
+        {
+            if (textFieldCursorPositionChangedEventHandler != null)
+            {
+                CursorPositionChangedEventArgs e = new CursorPositionChangedEventArgs();
+
+                // Populate all members of "e" (CursorPositionChangedEventArgs) with real data
+                e.OldCursorPosition = oldPosition;
+
+                //here we send all data to user event handlers
+                textFieldCursorPositionChangedEventHandler?.Invoke(this, e);
             }
         }
 

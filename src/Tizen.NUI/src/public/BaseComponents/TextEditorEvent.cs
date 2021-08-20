@@ -33,6 +33,9 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler<ScrollStateChangedEventArgs> textEditorScrollStateChangedEventHandler;
         private ScrollStateChangedCallbackDelegate textEditorScrollStateChangedCallbackDelegate;
 
+        private EventHandler<CursorPositionChangedEventArgs> textEditorCursorPositionChangedEventHandler;
+        private CursorPositionChangedCallbackDelegate textEditorCursorPositionChangedCallbackDelegate;
+
         private EventHandler<MaxLengthReachedEventArgs> textEditorMaxLengthReachedEventHandler;
         private MaxLengthReachedCallbackDelegate textEditorMaxLengthReachedCallbackDelegate;
 
@@ -47,6 +50,9 @@ namespace Tizen.NUI.BaseComponents
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void ScrollStateChangedCallbackDelegate(IntPtr textEditor, ScrollState state);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void CursorPositionChangedCallbackDelegate(IntPtr textEditor, uint oldPosition);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void MaxLengthReachedCallbackDelegate(IntPtr textEditor);
@@ -106,6 +112,32 @@ namespace Tizen.NUI.BaseComponents
                 {
                     ScrollStateChangedSignal(this).Disconnect(textEditorScrollStateChangedCallbackDelegate);
                 }
+            }
+        }
+
+        /// <summary>
+        /// The CursorPositionChanged event.
+        /// </summary>
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<CursorPositionChangedEventArgs> CursorPositionChanged
+        {
+            add
+            {
+                if (textEditorCursorPositionChangedEventHandler == null)
+                {
+                    textEditorCursorPositionChangedCallbackDelegate = (OnCursorPositionChanged);
+                    CursorPositionChangedSignal().Connect(textEditorCursorPositionChangedCallbackDelegate);
+                }
+                textEditorCursorPositionChangedEventHandler += value;
+            }
+            remove
+            {
+                if (textEditorCursorPositionChangedEventHandler == null && CursorPositionChangedSignal().Empty() == false)
+                {
+                    this.CursorPositionChangedSignal().Disconnect(textEditorCursorPositionChangedCallbackDelegate);
+                }
+                textEditorCursorPositionChangedEventHandler -= value;
             }
         }
 
@@ -218,6 +250,13 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
+        internal TextEditorSignal CursorPositionChangedSignal()
+        {
+            TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.CursorPositionChangedSignal(SwigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         internal TextEditorSignal MaxLengthReachedSignal()
         {
             TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.MaxLengthReachedSignal(SwigCPtr), false);
@@ -266,6 +305,20 @@ namespace Tizen.NUI.BaseComponents
                 }
                 //here we send all data to user event handlers
                 textEditorScrollStateChangedEventHandler(this, e);
+            }
+        }
+
+        private void OnCursorPositionChanged(IntPtr textEditor, uint oldPosition)
+        {
+            if (textEditorCursorPositionChangedEventHandler != null)
+            {
+                CursorPositionChangedEventArgs e = new CursorPositionChangedEventArgs();
+
+                // Populate all members of "e" (CursorPositionChangedEventArgs) with real data
+                e.OldCursorPosition = oldPosition;
+
+                //here we send all data to user event handlers
+                textEditorCursorPositionChangedEventHandler?.Invoke(this, e);
             }
         }
 
