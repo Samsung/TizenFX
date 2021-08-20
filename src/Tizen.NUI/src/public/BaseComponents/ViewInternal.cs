@@ -926,6 +926,21 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
+        internal void SetKeyboardFocusableChildren(bool focusable)
+        {
+            Interop.ActorInternal.SetKeyboardFocusableChildren(SwigCPtr, focusable);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal bool AreChildrenKeyBoardFocusable()
+        {
+            bool ret = Interop.ActorInternal.AreChildrenKeyBoardFocusable(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         internal void SetFocusableInTouch(bool enabled)
         {
             Interop.ActorInternal.SetFocusableInTouch(SwigCPtr, enabled);
