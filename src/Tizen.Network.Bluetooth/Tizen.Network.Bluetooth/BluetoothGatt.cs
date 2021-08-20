@@ -40,6 +40,12 @@ namespace Tizen.Network.Bluetooth
                 e.Server = this;
                 NotificationSent?.Invoke(this, e);
             };
+            _impl.AttMtuChanged += OnAttMtuChanged;
+        }
+
+        private void OnAttMtuChanged(object s, AttMtuChangedEventArgs e)
+        {
+            AttMtuChanged?.Invoke(this, e);
         }
 
         /// <summary>
@@ -209,6 +215,13 @@ namespace Tizen.Network.Bluetooth
         {
             _impl.SendResponse(requestId, (int)type, status, value, offset);
         }
+
+        /// <summary>
+        /// The AttMtuChanged event is raised when the MTU value changed.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<AttMtuChangedEventArgs> AttMtuChanged;
 
         internal bool IsValid()
         {

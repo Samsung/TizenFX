@@ -95,7 +95,7 @@ namespace Tizen.NUI.Binding
 
             foreach (Tuple<object, MethodInfo> tuple in toRaise)
             {
-                tuple.Item2.Invoke(tuple.Item1, new[] { sender, args });
+                tuple.Item2?.Invoke(tuple.Item1, new[] { sender, args });
             }
         }
 

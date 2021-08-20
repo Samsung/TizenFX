@@ -15,7 +15,6 @@
 using System;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
-using System.Text.RegularExpressions;
 
 namespace Tizen.NUI
 {
@@ -2008,6 +2007,28 @@ namespace Tizen.NUI
         Reject
     }
 
+    /// <summary>
+    /// Enumeration for the size type of font. <br />
+    /// </summary>
+    /// <remarks>
+    /// The size type of font used as a property of <see cref="Tizen.NUI.Text.TextFit"/>. <br />
+    /// </remarks>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum FontSizeType
+    {
+        /// <summary>
+        /// The PointSize.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        PointSize,
+
+        /// <summary>
+        /// The PixelSize.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        PixelSize
+    }
+
     namespace Text
     {
         /// <summary>
@@ -2017,6 +2038,11 @@ namespace Tizen.NUI
         /// InputFilter filters input based on regular expressions. <br />
         /// Users can set the Accepted or Rejected regular expression set, or both. <br />
         /// If both are used, Rejected has higher priority. <br />
+        /// The character set must follow the regular expression rules. <br />
+        /// Behaviour can not be guaranteed for incorrect grammars. <br />
+        /// Refer the link below for detailed rules. <br />
+        /// The functions in std::regex library use the ECMAScript grammar: <br />
+        /// http://cplusplus.com/reference/regex/ECMAScript/ <br />
         /// The InputFilter struct is used as an argument to SetInputFilter and GetInputFilter methods. <br />
         /// See <see cref="Tizen.NUI.BaseComponents.TextField.SetInputFilter"/>, <see cref="Tizen.NUI.BaseComponents.TextField.GetInputFilter"/>, <see cref="Tizen.NUI.BaseComponents.TextEditor.SetInputFilter"/> and <see cref="Tizen.NUI.BaseComponents.TextEditor.GetInputFilter"/>. <br />
         /// </remarks>
@@ -2027,13 +2053,168 @@ namespace Tizen.NUI
             /// A regular expression in the set of characters to be accepted by the inputFilter.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public Regex Accepted { get; set; }
+            public string Accepted { get; set; }
 
             /// <summary>
             /// A regular expression in the set of characters to be rejected by the inputFilter.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public Regex Rejected { get; set; }
+            public string Rejected { get; set; }
+        }
+
+        /// <summary>
+        /// A struct to pass data of FontStyle PropertyMap. <br />
+        /// </summary>
+        /// <remarks>
+        /// The FontStyle struct is used as an argument to SetFontStyle and GetFontStyle methods. <br />
+        /// See <see cref="Tizen.NUI.BaseComponents.TextLabel.SetFontStyle"/>, <see cref="Tizen.NUI.BaseComponents.TextLabel.GetFontStyle"/>, <see cref="Tizen.NUI.BaseComponents.TextField.SetFontStyle"/>, <see cref="Tizen.NUI.BaseComponents.TextField.GetFontStyle"/>, <see cref="Tizen.NUI.BaseComponents.TextEditor.SetFontStyle"/> and <see cref="Tizen.NUI.BaseComponents.TextEditor.GetFontStyle"/>. <br />
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public struct FontStyle
+        {
+            /// <summary>
+            /// The Width defines occupied by each glyph.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public FontWidthType Width { get; set; }
+
+            /// <summary>
+            /// The Weight defines the thickness or darkness of the glyphs.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public FontWeightType Weight { get; set; }
+
+            /// <summary>
+            /// The Slant defines whether to use italics.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public FontSlantType Slant { get; set; }
+        }
+
+        /// <summary>
+        /// A struct to pass data of Underline PropertyMap. <br />
+        /// </summary>
+        /// <remarks>
+        /// The Underline struct is used as an argument to SetUnderline and GetUnderline methods. <br />
+        /// See <see cref="Tizen.NUI.BaseComponents.TextLabel.SetUnderline"/>, <see cref="Tizen.NUI.BaseComponents.TextLabel.GetUnderline"/>, <see cref="Tizen.NUI.BaseComponents.TextField.SetUnderline"/>, <see cref="Tizen.NUI.BaseComponents.TextField.GetUnderline"/>, <see cref="Tizen.NUI.BaseComponents.TextEditor.SetUnderline"/> and <see cref="Tizen.NUI.BaseComponents.TextEditor.GetUnderline"/>. <br />
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public struct Underline
+        {
+            /// <summary>
+            /// Whether the underline is enabled (the default value is false).
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public bool Enable { get; set; }
+
+            /// <summary>
+            /// The color of the underline (if not provided then the color of the text is used).
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public Color Color { get; set; }
+
+            /// <summary>
+            /// The height in pixels of the underline (if null, the default value is 1.0f).
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public float? Height { get; set; }
+        }
+
+        /// <summary>
+        /// A struct to pass data of Shadow PropertyMap. <br />
+        /// </summary>
+        /// <remarks>
+        /// The Shadow struct is used as an argument to SetShadow and GetShadow methods. <br />
+        /// See <see cref="Tizen.NUI.BaseComponents.TextLabel.SetShadow"/>, <see cref="Tizen.NUI.BaseComponents.TextLabel.GetShadow"/>, <see cref="Tizen.NUI.BaseComponents.TextField.SetShadow"/>, <see cref="Tizen.NUI.BaseComponents.TextField.GetShadow"/>, <see cref="Tizen.NUI.BaseComponents.TextEditor.SetShadow"/> and <see cref="Tizen.NUI.BaseComponents.TextEditor.GetShadow"/>. <br />
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public struct Shadow
+        {
+            /// <summary>
+            /// The color of the shadow (the default color is Color.Black).
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public Color Color { get; set; }
+
+            /// <summary>
+            /// The offset in pixels of the shadow (if null, the default value is 0, 0). <br />
+            /// If not provided then the shadow is not enabled. <br />
+            ///  
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public Vector2 Offset { get; set; }
+
+            /// <summary>
+            /// The radius of the Gaussian blur for the soft shadow (if null, the default value is 0.0f). <br />
+            /// If not provided then the soft shadow is not enabled. <br />
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public float? BlurRadius { get; set; }
+        }
+
+        /// <summary>
+        /// A struct to pass data of Outline PropertyMap. <br />
+        /// </summary>
+        /// <remarks>
+        /// The Outline struct is used as an argument to SetOutline and GetOutline methods. <br />
+        /// See <see cref="Tizen.NUI.BaseComponents.TextLabel.SetOutline"/>, <see cref="Tizen.NUI.BaseComponents.TextLabel.GetOutline"/>, <see cref="Tizen.NUI.BaseComponents.TextField.SetOutline"/>, <see cref="Tizen.NUI.BaseComponents.TextField.GetOutline"/>, <see cref="Tizen.NUI.BaseComponents.TextEditor.SetOutline"/> and <see cref="Tizen.NUI.BaseComponents.TextEditor.GetOutline"/>. <br />
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public struct Outline
+        {
+            /// <summary>
+            /// The color of the outline (the default color is Color.White).
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public Color Color { get; set; }
+
+            /// <summary>
+            /// The width in pixels of the outline (if null, the default value is 0.0f). <br />
+            /// If not provided then the outline is not enabled. <br />
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public float? Width { get; set; }
+        }
+
+        /// <summary>
+        /// A struct to pass data of TextFit PropertyMap. <br />
+        /// </summary>
+        /// <remarks>
+        /// The TextFit struct is used as an argument to SetTextFit and GetTextFit methods. <br />
+        /// See <see cref="Tizen.NUI.BaseComponents.TextLabel.SetTextFit"/> and <see cref="Tizen.NUI.BaseComponents.TextLabel.GetTextFit"/>. <br />
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public struct TextFit
+        {
+            /// <summary>
+            /// True to enable the text fit or false to disable (the default value is false).
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public bool Enable { get; set; }
+
+            /// <summary>
+            /// Minimum Size for text fit (if null, the default value is 10.0f).
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public float? MinSize { get; set; }
+
+            /// <summary>
+            /// Maximum Size for text fit (if null, the default value is 100.0f).
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public float? MaxSize { get; set; }
+
+            /// <summary>
+            /// Step Size for font increase (if null, the default value is 1.0f).
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public float? StepSize { get; set; }
+
+            /// <summary>
+            /// The size type of font, PointSize or PixelSize (the default value is PointSize).
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public FontSizeType FontSizeType { get; set; }
         }
     }
 }

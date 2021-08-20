@@ -64,6 +64,24 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         }
 
         /// <summary>
+        /// Remove drawable object to the DrawableGroup.
+        /// This method is similar to deregistration.
+        /// </summary>
+        /// <param name="drawable">Drawable object</param>
+        /// <exception cref="ArgumentNullException"> Thrown when drawable is null. </exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemoveDrawable(Drawable drawable)
+        {
+            if (drawable == null)
+            {
+                throw new ArgumentNullException(nameof(drawable));
+            }
+            Interop.DrawableGroup.RemoveDrawable(View.getCPtr(this), BaseHandle.getCPtr(drawable));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            drawables.Remove(drawable);
+        }
+
+        /// <summary>
         /// Clears the drawable object added to the DrawableGroup. 
         /// This method does not free the memory of the added drawable object.
         /// </summary>
