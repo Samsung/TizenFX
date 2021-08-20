@@ -1351,11 +1351,11 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
                 Size size = (Size)newValue;
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.SIZE, new Tizen.NUI.PropertyValue(size));
                 // Set Specification so when layouts measure this View it matches the value set here.
                 // All Views are currently Layouts.
                 view.WidthSpecification = (int)System.Math.Ceiling(size.Width);
                 view.HeightSpecification = (int)System.Math.Ceiling(size.Height);
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.SIZE, new Tizen.NUI.PropertyValue(size));
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
