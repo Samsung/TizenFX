@@ -222,47 +222,47 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"AccessibilityBridgeDisableAutoInit END (OK)");
         }
 
-        //[Test]
-        //[Category("P1")]
-        //[Description("Accessibility SetHighlightFrameView.")]
-        //[Property("SPEC", "Tizen.NUI.Accessibility.SetHighlightFrameView M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void AccessibilitySetHighlightFrameView()
-        //{
-        //    tlog.Debug(tag, $"AccessibilitySetHighlightFrameView START");
+        [Test]
+        [Category("P1")]
+        [Description("Accessibility SetHighlightFrameView.")]
+        [Property("SPEC", "Tizen.NUI.Accessibility.SetHighlightFrameView M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void AccessibilitySetHighlightFrameView()
+        {
+            tlog.Debug(tag, $"AccessibilitySetHighlightFrameView START");
 
-        //    var testingTarget = Accessibility.Accessibility.Instance; ;
-        //    Assert.IsNotNull(testingTarget, "Can't create success object Accessibility");
-        //    Assert.IsInstanceOf<Accessibility.Accessibility>(testingTarget, "Should be an instance of Accessibility type.");
+            var testingTarget = Accessibility.Accessibility.Instance; ;
+            Assert.IsNotNull(testingTarget, "Can't create success object Accessibility");
+            Assert.IsInstanceOf<Accessibility.Accessibility>(testingTarget, "Should be an instance of Accessibility type.");
 
-        //    using (View view = new View())
-        //    {
-        //        view.Size = new Size(100, 50);
-        //        view.Color = Color.Cyan;
+            using (View view = new View())
+            {
+                view.Size = new Size(100, 50);
+                view.Color = Color.Cyan;
 
-        //        NUIApplication.GetDefaultWindow().Add(view);
+                NUIApplication.GetDefaultWindow().Add(view);
 
-        //        try
-        //        {
-        //            testingTarget.SetHighlightFrameView(view);
-                    
-        //            var result = testingTarget.GetHighlightFrameView();
-        //            tlog.Debug(tag, "HighlightFrameView : " + result);
-        //            tlog.Debug(tag, "ClearCurrentlyHighlightedView : " + testingTarget.ClearCurrentlyHighlightedView());
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            tlog.Debug(tag, e.Message.ToString());
-        //            Assert.Fail("Caught Exception : Failed");
-        //        }
+                try
+                {
+                    testingTarget.SetHighlightFrameView(view);
 
-        //        NUIApplication.GetDefaultWindow().Remove(view);
-        //    };
+                    var result = testingTarget.GetHighlightFrameView();
+                    tlog.Debug(tag, "HighlightFrameView : " + result);
+                    tlog.Debug(tag, "ClearCurrentlyHighlightedView : " + testingTarget.ClearCurrentlyHighlightedView());
+                }
+                catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught Exception : Failed");
+                }
 
-        //    tlog.Debug(tag, $"AccessibilitySetHighlightFrameView END (OK)");
-        //}
+                NUIApplication.GetDefaultWindow().Remove(view);
+            };
+
+            tlog.Debug(tag, $"AccessibilitySetHighlightFrameView END (OK)");
+        }
 
         [Test]
         [Category("P1")]
