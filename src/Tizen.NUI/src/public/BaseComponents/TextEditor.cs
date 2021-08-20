@@ -1943,6 +1943,11 @@ namespace Tizen.NUI.BaseComponents
                 {
                     this.MaxLengthReachedSignal().Disconnect(textEditorMaxLengthReachedCallbackDelegate);
                 }
+
+                if (textEditorSelectionChangedCallbackDelegate != null)
+                {
+                    this.SelectionChangedSignal().Disconnect(textEditorSelectionChangedCallbackDelegate);
+                }
             }
 
             base.Dispose(type);
