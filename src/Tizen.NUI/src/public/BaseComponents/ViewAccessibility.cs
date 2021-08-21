@@ -554,7 +554,15 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(bool disposing)
         {
-            base.Dispose(disposing);
+            if (disposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                Unparent();
+            }
 
             if (accessibilityDelegate != null)
             {
@@ -562,6 +570,8 @@ namespace Tizen.NUI.BaseComponents
                 Marshal.FreeHGlobal(accessibilityDelegatePtr);
                 accessibilityDelegate = null;
             }
+
+            base.Dispose(disposing);
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]

@@ -1230,8 +1230,6 @@ namespace Tizen.NUI.BaseComponents
                     heightConstraint.Remove();
                     heightConstraint.Dispose();
                 }
-
-                Unparent();
             }
 
             //Release your own unmanaged resources here.
