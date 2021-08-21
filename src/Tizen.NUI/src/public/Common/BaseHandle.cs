@@ -109,6 +109,7 @@ namespace Tizen.NUI
         /// Dispose.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        // following this guide: https://docs.microsoft.com/ko-kr/dotnet/fundamentals/code-analysis/quality-rules/ca1063?view=vs-2019 (CA1063)
         ~BaseHandle() => Dispose(false);
 
         /// <summary>
