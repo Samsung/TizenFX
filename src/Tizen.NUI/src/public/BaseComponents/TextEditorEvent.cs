@@ -42,6 +42,9 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler<AnchorClickedEventArgs> textEditorAnchorClickedEventHandler;
         private AnchorClickedCallbackDelegate textEditorAnchorClickedCallbackDelegate;
 
+        private EventHandler<EventArgs> textEditorSelectionClearedEventHandler;
+        private SelectionClearedCallbackDelegate textEditorSelectionClearedCallbackDelegate;
+
         private EventHandler<SelectionChangedEventArgs> textEditorSelectionChangedEventHandler;
         private SelectionChangedCallbackDelegate textEditorSelectionChangedCallbackDelegate;
 
@@ -59,6 +62,9 @@ namespace Tizen.NUI.BaseComponents
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void MaxLengthReachedCallbackDelegate(IntPtr textEditor);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void SelectionClearedCallbackDelegate(IntPtr textEditor);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void AnchorClickedCallbackDelegate(IntPtr textEditor, IntPtr href, uint hrefLength);
@@ -199,6 +205,32 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The SelectionCleared signal is emitted when selection is cleared.
+        /// </summary>
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<EventArgs> SelectionCleared
+        {
+            add
+            {
+                if (textEditorSelectionClearedEventHandler == null)
+                {
+                    textEditorSelectionClearedCallbackDelegate = (OnSelectionCleared);
+                    SelectionClearedSignal().Connect(textEditorSelectionClearedCallbackDelegate);
+                }
+                textEditorSelectionClearedEventHandler += value;
+            }
+            remove
+            {
+                if (textEditorSelectionClearedEventHandler == null && SelectionClearedSignal().Empty() == false)
+                {
+                    this.SelectionClearedSignal().Disconnect(textEditorSelectionClearedCallbackDelegate);
+                }
+                textEditorSelectionClearedEventHandler -= value;
+            }
+        }
+
+        /// <summary>
         /// The SelectionChanged event.
         /// </summary>
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -268,6 +300,13 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        internal TextEditorSignal SelectionClearedSignal()
+        {
+            TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.SelectionClearedSignal(SwigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         internal TextEditorSignal TextChangedSignal()
         {
             TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.TextChangedSignal(SwigCPtr), false);
@@ -327,6 +366,17 @@ namespace Tizen.NUI.BaseComponents
                 e.TextEditor = Registry.GetManagedBaseHandleFromNativePtr(textEditor) as TextEditor;
                 //here we send all data to user event handlers
                 textEditorTextChangedEventHandler(this, e);
+            }
+        }
+
+        private void OnSelectionCleared(IntPtr textEditor)
+        {
+            if (textEditorSelectionClearedEventHandler != null)
+            {
+                EventArgs e = new EventArgs();
+
+                //here we send all data to user event handlers
+                textEditorSelectionClearedEventHandler?.Invoke(this, e);
             }
         }
 
