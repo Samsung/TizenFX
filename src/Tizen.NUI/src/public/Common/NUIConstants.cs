@@ -887,7 +887,7 @@ namespace Tizen.NUI
     /// <summary>
     /// An enum of ellipsis position.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public enum EllipsisPosition
     {
         /// <summary>
