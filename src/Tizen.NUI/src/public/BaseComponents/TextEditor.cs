@@ -1758,7 +1758,7 @@ namespace Tizen.NUI.BaseComponents
         /// The ellipsis position type when the text size over the layout size.<br />
         /// The ellipsis position: End, Start or Middle.<br />
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public EllipsisPosition EllipsisPosition
         {
             get
