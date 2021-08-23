@@ -29,11 +29,6 @@ namespace Tizen.System
     public static class SystemSettings
     {
         /// <summary>
-        /// Lock for EventHandlers.
-        /// </summary>
-        private static readonly object LockObj = new object();
-
-        /// <summary>
         /// The file path of the current ringtone.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
@@ -1192,6 +1187,7 @@ namespace Tizen.System
             s_incomingCallRingtoneChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<IncomingCallRingtoneChangedEventArgs> s_incomingCallRingtoneChanged;
+        private static readonly object s_incomingCallRingtoneChangedLockObj = new object();
         /// <summary>
         /// The IncomingCallRingtoneChanged event is triggered when the file path of the incoming ringtone is changed.
         /// </summary>
@@ -1208,7 +1204,7 @@ namespace Tizen.System
         {
             add
             {
-                lock (LockObj)
+                lock (s_incomingCallRingtoneChangedLockObj)
                 {
                     if (s_incomingCallRingtoneChanged == null)
                     {
@@ -1224,7 +1220,7 @@ namespace Tizen.System
 
             remove
             {
-                lock (LockObj)
+                lock (s_incomingCallRingtoneChangedLockObj)
                 {
                     if (s_incomingCallRingtoneChanged == null) {
                         Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
@@ -1250,6 +1246,7 @@ namespace Tizen.System
             s_wallpaperHomeScreenChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<WallpaperHomeScreenChangedEventArgs> s_wallpaperHomeScreenChanged;
+        private static readonly object s_wallpaperHomeScreenChangedLockObj = new object();
         /// <summary>
         /// THe WallpaperHomeScreenChanged event is triggered when the file path of the current home screen wallpaper is changed.
         /// </summary>
@@ -1266,7 +1263,7 @@ namespace Tizen.System
         {
             add
             {
-                lock (LockObj)
+                lock (s_wallpaperHomeScreenChangedLockObj)
                 {
                     if (s_wallpaperHomeScreenChanged == null)
                     {
@@ -1282,7 +1279,7 @@ namespace Tizen.System
 
             remove
             {
-                lock (LockObj)
+                lock (s_wallpaperHomeScreenChangedLockObj)
                 {
                     if (s_wallpaperHomeScreenChanged == null) {
                         Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
@@ -1308,6 +1305,7 @@ namespace Tizen.System
             s_wallpaperLockScreenChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<WallpaperLockScreenChangedEventArgs> s_wallpaperLockScreenChanged;
+        private static readonly object s_wallpaperLockScreenChangedLockObj = new object();
         /// <summary>
         /// The WallpaperLockScreenChanged event is triggered when the file path of the current lock screen wallpaper is changed.
         /// </summary>
@@ -1324,7 +1322,7 @@ namespace Tizen.System
         {
             add
             {
-                lock (LockObj)
+                lock (s_wallpaperLockScreenChangedLockObj)
                 {
                     if (s_wallpaperLockScreenChanged == null)
                     {
@@ -1340,7 +1338,7 @@ namespace Tizen.System
 
             remove
             {
-                lock (LockObj)
+                lock (s_wallpaperLockScreenChangedLockObj)
                 {
                     if (s_wallpaperLockScreenChanged == null) {
                         Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
@@ -1366,6 +1364,7 @@ namespace Tizen.System
             s_fontSizeChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<FontSizeChangedEventArgs> s_fontSizeChanged;
+        private static readonly object s_fontSizeChangedLockObj = new object();
         /// <summary>
         /// The FontSizeChanged event is triggered when the current system font size is changed.
         /// </summary>
@@ -1381,7 +1380,7 @@ namespace Tizen.System
         {
             add
             {
-                lock (LockObj)
+                lock (s_fontSizeChangedLockObj)
                 {
                     if (s_fontSizeChanged == null)
                     {
@@ -1397,7 +1396,7 @@ namespace Tizen.System
 
             remove
             {
-                lock (LockObj)
+                lock (s_fontSizeChangedLockObj)
                 {
                     if (s_fontSizeChanged == null) {
                         Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
@@ -1423,6 +1422,7 @@ namespace Tizen.System
             s_fontTypeChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<FontTypeChangedEventArgs> s_fontTypeChanged;
+        private static readonly object s_fontTypeChangedLockObj = new object();
         /// <summary>
         /// The FontTypeChanged event is triggered when the current system font type is changed.
         /// </summary>
@@ -1438,7 +1438,7 @@ namespace Tizen.System
         {
             add
             {
-                lock (LockObj)
+                lock (s_fontTypeChangedLockObj)
                 {
                     if (s_fontTypeChanged == null)
                     {
@@ -1454,7 +1454,7 @@ namespace Tizen.System
 
             remove
             {
-                lock (LockObj)
+                lock (s_fontTypeChangedLockObj)
                 {
                     if (s_fontTypeChanged == null) {
                         Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
@@ -1480,6 +1480,7 @@ namespace Tizen.System
             s_motionActivationChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<MotionActivationSettingChangedEventArgs> s_motionActivationChanged;
+        private static readonly object s_motionActivationChangedLockObj = new object();
         /// <summary>
         /// The MotionActivationChanged event is triggered when the motion service status is changed.
         /// </summary>
@@ -1495,7 +1496,7 @@ namespace Tizen.System
         {
             add
             {
-                lock (LockObj)
+                lock (s_motionActivationChangedLockObj)
                 {
                     if (s_motionActivationChanged == null)
                     {
@@ -1511,7 +1512,7 @@ namespace Tizen.System
 
             remove
             {
-                lock (LockObj)
+                lock (s_motionActivationChangedLockObj)
                 {
                     if (s_motionActivationChanged == null) {
                         Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
@@ -1537,6 +1538,7 @@ namespace Tizen.System
             s_emailAlertRingtoneChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<EmailAlertRingtoneChangedEventArgs> s_emailAlertRingtoneChanged;
+        private static readonly object s_emailAlertRingtoneChangedLockObj = new object();
         /// <summary>
         /// The EmailAlertRingtoneChanged event is triggered when the file path of the current email alert ringtone is changed.
         /// </summary>
@@ -1553,7 +1555,7 @@ namespace Tizen.System
         {
             add
             {
-                lock (LockObj)
+                lock (s_emailAlertRingtoneChangedLockObj)
                 {
                     if (s_emailAlertRingtoneChanged == null)
                     {
@@ -1569,7 +1571,7 @@ namespace Tizen.System
 
             remove
             {
-                lock (LockObj)
+                lock (s_emailAlertRingtoneChangedLockObj)
                 {
                     if (s_emailAlertRingtoneChanged == null) {
                         Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
@@ -1595,6 +1597,7 @@ namespace Tizen.System
             s_usbDebuggingSettingChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<UsbDebuggingSettingChangedEventArgs> s_usbDebuggingSettingChanged;
+        private static readonly object s_usbDebuggingSettingChangedLockObj = new object();
         /// <summary>
         /// The UsbDebuggingSettingChangedEventArgs event is triggered when the USB debugging status is changed.
         /// </summary>
@@ -1610,7 +1613,7 @@ namespace Tizen.System
         {
             add
             {
-                lock (LockObj)
+                lock (s_usbDebuggingSettingChangedLockObj)
                 {
                     if (s_usbDebuggingSettingChanged == null)
                     {
@@ -1626,7 +1629,7 @@ namespace Tizen.System
 
             remove
             {
-                lock (LockObj)
+                lock (s_usbDebuggingSettingChangedLockObj)
                 {
                     if (s_usbDebuggingSettingChanged == null) {
                         Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
@@ -1652,6 +1655,7 @@ namespace Tizen.System
             s_data3GNetworkSettingChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<Data3GNetworkSettingChangedEventArgs> s_data3GNetworkSettingChanged;
+        private static readonly object s_data3GNetworkSettingChangedLockObj = new object();
         /// <summary>
         /// The Data3GNetworkSettingChanged event is triggered when the 3G data network status is changed.
         /// </summary>
@@ -1667,7 +1671,7 @@ namespace Tizen.System
         {
             add
             {
-                lock (LockObj)
+                lock (s_data3GNetworkSettingChangedLockObj)
                 {
                     if (s_data3GNetworkSettingChanged == null)
                     {
@@ -1683,7 +1687,7 @@ namespace Tizen.System
 
             remove
             {
-                lock (LockObj)
+                lock (s_data3GNetworkSettingChangedLockObj)
                 {
                     if (s_data3GNetworkSettingChanged == null) {
                         Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
@@ -1709,6 +1713,7 @@ namespace Tizen.System
             s_lockscreenAppChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<LockScreenAppChangedEventArgs> s_lockscreenAppChanged;
+        private static readonly object s_lockscreenAppChangedLockObj = new object();
         /// <summary>
         /// The LockScreenAppChanged event is triggered when the lockscreen application package name is changed.
         /// </summary>
@@ -1725,7 +1730,7 @@ namespace Tizen.System
         {
             add
             {
-                lock (LockObj)
+                lock (s_lockscreenAppChangedLockObj)
                 {
                     if (s_lockscreenAppChanged == null)
                     {
@@ -1741,7 +1746,7 @@ namespace Tizen.System
 
             remove
             {
-                lock (LockObj)
+                lock (s_lockscreenAppChangedLockObj)
                 {
                     if (s_lockscreenAppChanged == null) {
                         Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
@@ -1768,6 +1773,7 @@ namespace Tizen.System
             s_localeCountryChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<LocaleCountryChangedEventArgs> s_localeCountryChanged;
+        private static readonly object s_localeCountryChangedLockObj = new object();
         /// <summary>
         /// The LocaleCountryChanged event is triggered when the current country setting in the &lt;LANGUAGE&gt;_&lt;REGION&gt; syntax, is changed.
         /// </summary>
@@ -1783,7 +1789,7 @@ namespace Tizen.System
         {
             add
             {
-                lock (LockObj)
+                lock (s_localeCountryChangedLockObj)
                 {
                     if (s_localeCountryChanged == null)
                     {
@@ -1799,7 +1805,7 @@ namespace Tizen.System
 
             remove
             {
-                lock (LockObj)
+                lock (s_localeCountryChangedLockObj)
                 {
                     if (s_localeCountryChanged == null) {
                         Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
@@ -1825,6 +1831,7 @@ namespace Tizen.System
             s_localeLanguageChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<LocaleLanguageChangedEventArgs> s_localeLanguageChanged;
+        private static readonly object s_localeLanguageChangedLockObj = new object();
         /// <summary>
         /// The LocaleLanguageChanged event is triggered when the current language setting in the &lt;LANGUAGE&gt;_&lt;REGION&gt; syntax, is changed.
         /// </summary>
@@ -1840,7 +1847,7 @@ namespace Tizen.System
         {
             add
             {
-                lock (LockObj)
+                lock (s_localeLanguageChangedLockObj)
                 {
                     if (null == value)
                         throw SystemSettingsExceptionFactory.CreateException(SystemSettingsError.InvalidParameter, "Error invalid callback");
@@ -1859,7 +1866,7 @@ namespace Tizen.System
 
             remove
             {
-                lock (LockObj)
+                lock (s_localeLanguageChangedLockObj)
                 {
                     if (null == value)
                         throw SystemSettingsExceptionFactory.CreateException(SystemSettingsError.InvalidParameter, "Error invalid callback");
@@ -1888,6 +1895,7 @@ namespace Tizen.System
             s_localeTimeFormat24HourChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<LocaleTimeFormat24HourSettingChangedEventArgs> s_localeTimeFormat24HourChanged;
+        private static readonly object s_localeTimeFormat24HourChangedLockObj = new object();
         /// <summary>
         /// The LocaleTimeFormat24HourChanged event is triggered when the time format is changed.
         /// </summary>
@@ -1903,7 +1911,7 @@ namespace Tizen.System
         {
             add
             {
-                lock (LockObj)
+                lock (s_localeTimeFormat24HourChangedLockObj)
                 {
                     if (s_localeTimeFormat24HourChanged == null)
                     {
@@ -1919,7 +1927,7 @@ namespace Tizen.System
 
             remove
             {
-                lock (LockObj)
+                lock (s_localeTimeFormat24HourChangedLockObj)
                 {
                     if (s_localeTimeFormat24HourChanged == null) {
                         Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
@@ -1945,6 +1953,7 @@ namespace Tizen.System
             s_localeTimeZoneChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<LocaleTimeZoneChangedEventArgs> s_localeTimeZoneChanged;
+        private static readonly object s_localeTimeZoneChangedLockObj = new object();
         /// <summary>
         /// The LocaleTimeZoneChanged event is triggered when the current time zone is changed.
         /// </summary>
@@ -1960,7 +1969,7 @@ namespace Tizen.System
         {
             add
             {
-                lock (LockObj)
+                lock (s_localeTimeZoneChangedLockObj)
                 {
                     if (s_localeTimeZoneChanged == null)
                     {
@@ -1976,7 +1985,7 @@ namespace Tizen.System
 
             remove
             {
-                lock (LockObj)
+                lock (s_localeTimeZoneChangedLockObj)
                 {
                     if (s_localeTimeZoneChanged == null) {
                         Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
@@ -2003,6 +2012,7 @@ namespace Tizen.System
             s_timeChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<TimeChangedEventArgs> s_timeChanged;
+        private static readonly object s_timeChangedLockObj = new object();
         /// <summary>
         /// The TimeChanged event is triggered when the system time is changed.
         /// </summary>
@@ -2018,7 +2028,7 @@ namespace Tizen.System
         {
             add
             {
-                lock (LockObj)
+                lock (s_timeChangedLockObj)
                 {
                     if (s_timeChanged == null)
                     {
@@ -2034,7 +2044,7 @@ namespace Tizen.System
 
             remove
             {
-                lock (LockObj)
+                lock (s_timeChangedLockObj)
                 {
                     if (s_timeChanged == null) {
                         Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
@@ -2060,6 +2070,7 @@ namespace Tizen.System
             s_soundLockChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<SoundLockSettingChangedEventArgs> s_soundLockChanged;
+        private static readonly object s_soundLockChangedLockObj = new object();
         /// <summary>
         /// The SoundLockChanged event is triggered when the screen lock sound enabled status is changed.
         /// </summary>
@@ -2075,7 +2086,7 @@ namespace Tizen.System
         {
             add
             {
-                lock (LockObj)
+                lock (s_soundLockChangedLockObj)
                 {
                     if (s_soundLockChanged == null)
                     {
@@ -2091,7 +2102,7 @@ namespace Tizen.System
 
             remove
             {
-                lock (LockObj)
+                lock (s_soundLockChangedLockObj)
                 {
                     if (s_soundLockChanged == null) {
                         Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
@@ -2117,6 +2128,7 @@ namespace Tizen.System
             s_soundSilentModeChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<SoundSilentModeSettingChangedEventArgs> s_soundSilentModeChanged;
+        private static readonly object s_soundSilentModeChangedLockObj = new object();
         /// <summary>
         /// The SoundSilentModeChanged event is triggered when the silent mode status is changed.
         /// </summary>
@@ -2132,7 +2144,7 @@ namespace Tizen.System
         {
             add
             {
-                lock (LockObj)
+                lock (s_soundSilentModeChangedLockObj)
                 {
                     if (s_soundSilentModeChanged == null)
                     {
@@ -2148,7 +2160,7 @@ namespace Tizen.System
 
             remove
             {
-                lock (LockObj)
+                lock (s_soundSilentModeChangedLockObj)
                 {
                     if (s_soundSilentModeChanged == null) {
                         Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
@@ -2174,6 +2186,7 @@ namespace Tizen.System
             s_soundTouchChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<SoundTouchSettingChangedEventArgs> s_soundTouchChanged;
+        private static readonly object s_soundTouchChangedLockObj = new object();
         /// <summary>
         /// THe SoundTouchChanged event is triggered when the screen touch sound enabled status is changed.
         /// </summary>
@@ -2189,7 +2202,7 @@ namespace Tizen.System
         {
             add
             {
-                lock (LockObj)
+                lock (s_soundTouchChangedLockObj)
                 {
                     if (s_soundTouchChanged == null)
                     {
@@ -2205,7 +2218,7 @@ namespace Tizen.System
 
             remove
             {
-                lock (LockObj)
+                lock (s_soundTouchChangedLockObj)
                 {
                     if (s_soundTouchChanged == null) {
                         Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
@@ -2232,6 +2245,7 @@ namespace Tizen.System
             s_displayScreenRotationAutoChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<DisplayScreenRotationAutoSettingChangedEventArgs> s_displayScreenRotationAutoChanged;
+        private static readonly object s_displayScreenRotationAutoChangedLockObj = new object();
         /// <summary>
         /// The DisplayScreenRotationAutoChanged event is triggered when the automatic rotation control status is changed.
         /// </summary>
@@ -2247,7 +2261,7 @@ namespace Tizen.System
         {
             add
             {
-                lock (LockObj)
+                lock (s_displayScreenRotationAutoChangedLockObj)
                 {
                     if (s_displayScreenRotationAutoChanged == null)
                     {
@@ -2263,7 +2277,7 @@ namespace Tizen.System
 
             remove
             {
-                lock (LockObj)
+                lock (s_displayScreenRotationAutoChangedLockObj)
                 {
                     if (s_displayScreenRotationAutoChanged == null) {
                         Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
@@ -2289,6 +2303,7 @@ namespace Tizen.System
             s_deviceNameChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<DeviceNameChangedEventArgs> s_deviceNameChanged;
+        private static readonly object s_deviceNameChangedLockObj = new object();
         /// <summary>
         /// The DeviceNameChanged event is triggered when the device name is changed.
         /// </summary>
@@ -2304,7 +2319,7 @@ namespace Tizen.System
         {
             add
             {
-                lock (LockObj)
+                lock (s_deviceNameChangedLockObj)
                 {
                     if (s_deviceNameChanged == null)
                     {
@@ -2320,7 +2335,7 @@ namespace Tizen.System
 
             remove
             {
-                lock (LockObj)
+                lock (s_deviceNameChangedLockObj)
                 {
                     if (s_deviceNameChanged == null) {
                         Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
@@ -2346,6 +2361,7 @@ namespace Tizen.System
             s_motionSettingChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<MotionSettingChangedEventArgs> s_motionSettingChanged;
+        private static readonly object s_motionSettingChangedLockObj = new object();
         /// <summary>
         /// The MotionSettingChanged event is triggered when the motion feature enabled status is changed.
         /// </summary>
@@ -2361,7 +2377,7 @@ namespace Tizen.System
         {
             add
             {
-                lock (LockObj)
+                lock (s_motionSettingChangedLockObj)
                 {
                     if (s_motionSettingChanged == null)
                     {
@@ -2377,7 +2393,7 @@ namespace Tizen.System
 
             remove
             {
-                lock (LockObj)
+                lock (s_motionSettingChangedLockObj)
                 {
                     if (s_motionSettingChanged == null) {
                         Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
@@ -2403,6 +2419,7 @@ namespace Tizen.System
             s_networkWifiNotificationChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<NetworkWifiNotificationSettingChangedEventArgs> s_networkWifiNotificationChanged;
+        private static readonly object s_networkWifiNotificationChangedLockObj = new object();
         /// <summary>
         /// The NetworkWifiNotificationChanged event is triggered when the WiFi-related notifications enabled status is changed.
         /// </summary>
@@ -2419,7 +2436,7 @@ namespace Tizen.System
         {
             add
             {
-                lock (LockObj)
+                lock (s_networkWifiNotificationChangedLockObj)
                 {
                     if (s_networkWifiNotificationChanged == null)
                     {
@@ -2435,7 +2452,7 @@ namespace Tizen.System
 
             remove
             {
-                lock (LockObj)
+                lock (s_networkWifiNotificationChangedLockObj)
                 {
                     if (s_networkWifiNotificationChanged == null) {
                         Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
@@ -2461,6 +2478,7 @@ namespace Tizen.System
             s_networkFlightModeChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<NetworkFlightModeSettingChangedEventArgs> s_networkFlightModeChanged;
+        private static readonly object s_networkFlightModeChangedLockObj = new object();
         /// <summary>
         /// The NetworkFlightModeChanged event is triggered when the flight mode status is changed.
         /// </summary>
@@ -2476,7 +2494,7 @@ namespace Tizen.System
         {
             add
             {
-                lock (LockObj)
+                lock (s_networkFlightModeChangedLockObj)
                 {
                     if (s_networkFlightModeChanged == null)
                     {
@@ -2492,7 +2510,7 @@ namespace Tizen.System
 
             remove
             {
-                lock (LockObj)
+                lock (s_networkFlightModeChangedLockObj)
                 {
                     if (s_networkFlightModeChanged == null) {
                         Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
@@ -2518,6 +2536,7 @@ namespace Tizen.System
             s_screenBacklightTimeChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<ScreenBacklightTimeChangedEventArgs> s_screenBacklightTimeChanged;
+        private static readonly object s_screenBacklightTimeChangedLockObj = new object();
         /// <summary>
         /// THe ScreenBacklightTimeChanged event is triggered when the backlight time is changed.
         /// </summary>
@@ -2533,7 +2552,7 @@ namespace Tizen.System
         {
             add
             {
-                lock (LockObj)
+                lock (s_screenBacklightTimeChangedLockObj)
                 {
                     if (s_screenBacklightTimeChanged == null)
                     {
@@ -2549,7 +2568,7 @@ namespace Tizen.System
 
             remove
             {
-                lock (LockObj)
+                lock (s_screenBacklightTimeChangedLockObj)
                 {
                     if (s_screenBacklightTimeChanged == null) {
                         Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
@@ -2575,6 +2594,7 @@ namespace Tizen.System
             s_soundNotificationChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<SoundNotificationChangedEventArgs> s_soundNotificationChanged;
+        private static readonly object s_soundNotificationChangedLockObj = new object();
         /// <summary>
         /// The SoundNotificationChanged event is triggered when the file path of the current notification tone set by the user is changed.
         /// </summary>
@@ -2591,7 +2611,7 @@ namespace Tizen.System
         {
             add
             {
-                lock (LockObj)
+                lock (s_soundNotificationChangedLockObj)
                 {
                     if (s_soundNotificationChanged == null)
                     {
@@ -2607,7 +2627,7 @@ namespace Tizen.System
 
             remove
             {
-                lock (LockObj)
+                lock (s_soundNotificationChangedLockObj)
                 {
                     if (s_soundNotificationChanged == null) {
                         Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
@@ -2633,6 +2653,7 @@ namespace Tizen.System
             s_soundNotificationRepetitionPeriodChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<SoundNotificationRepetitionPeriodChangedEventArgs> s_soundNotificationRepetitionPeriodChanged;
+        private static readonly object s_soundNotificationRepetitionPeriodChangedLockObj = new object();
         /// <summary>
         /// The SoundNotificationRepetitionPeriodChanged event is triggered when the time period for notification repetitions is changed.
         /// </summary>
@@ -2648,7 +2669,7 @@ namespace Tizen.System
         {
             add
             {
-                lock (LockObj)
+                lock (s_soundNotificationRepetitionPeriodChangedLockObj)
                 {
                     if (s_soundNotificationRepetitionPeriodChanged == null)
                     {
@@ -2664,7 +2685,7 @@ namespace Tizen.System
 
             remove
             {
-                lock (LockObj)
+                lock (s_soundNotificationRepetitionPeriodChangedLockObj)
                 {
                     if (s_soundNotificationRepetitionPeriodChanged == null) {
                         Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
@@ -2690,6 +2711,7 @@ namespace Tizen.System
             s_lockStateChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<LockStateChangedEventArgs> s_lockStateChanged;
+        private static readonly object s_lockStateChangedLockObj = new object();
         /// <summary>
         /// The LockStateChanged event is triggered when the current lock state is changed.
         /// </summary>
@@ -2705,7 +2727,7 @@ namespace Tizen.System
         {
             add
             {
-                lock (LockObj)
+                lock (s_lockStateChangedLockObj)
                 {
                     if (s_lockStateChanged == null)
                     {
@@ -2721,7 +2743,7 @@ namespace Tizen.System
 
             remove
             {
-                lock (LockObj)
+                lock (s_lockStateChangedLockObj)
                 {
                     if (s_lockStateChanged == null) {
                         Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
@@ -2747,6 +2769,7 @@ namespace Tizen.System
             s_adsIdChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<AdsIdChangedEventArgs> s_adsIdChanged;
+        private static readonly object s_adsIdChangedLockObj = new object();
         /// <summary>
         /// The AdsIdChanged event is triggered when the current ADS ID state is changed.
         /// </summary>
@@ -2762,7 +2785,7 @@ namespace Tizen.System
         {
             add
             {
-                lock (LockObj)
+                lock (s_adsIdChangedLockObj)
                 {
                     if (s_adsIdChanged == null)
                     {
@@ -2778,7 +2801,7 @@ namespace Tizen.System
 
             remove
             {
-                lock (LockObj)
+                lock (s_adsIdChangedLockObj)
                 {
                     if (s_adsIdChanged == null) {
                         Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
@@ -2804,6 +2827,7 @@ namespace Tizen.System
             s_ultraDataSaveChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<UltraDataSaveChangedEventArgs> s_ultraDataSaveChanged;
+        private static readonly object s_ultraDataSaveChangedLockObj = new object();
         /// <summary>
         /// The UltraDataSaveChanged event is triggered when the current Ultra Data Save state is changed.
         /// </summary>
@@ -2820,7 +2844,7 @@ namespace Tizen.System
         {
             add
             {
-                lock (LockObj)
+                lock (s_ultraDataSaveChangedLockObj)
                 {
                     if (s_ultraDataSaveChanged == null)
                     {
@@ -2836,7 +2860,7 @@ namespace Tizen.System
 
             remove
             {
-                lock (LockObj)
+                lock (s_ultraDataSaveChangedLockObj)
                 {
                     if (s_ultraDataSaveChanged == null) {
                         Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
@@ -2862,6 +2886,7 @@ namespace Tizen.System
             s_ultraDataSavePackageListChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<UltraDataSavePackageListChangedEventArgs> s_ultraDataSavePackageListChanged;
+        private static readonly object s_ultraDataSavePackageListChangedLockObj = new object();
         /// <summary>
         /// The UltraDataSavePackageListChanged event is triggered when the current ADS ID state is changed.
         /// </summary>
@@ -2878,7 +2903,7 @@ namespace Tizen.System
         {
             add
             {
-                lock (LockObj)
+                lock (s_ultraDataSavePackageListChangedLockObj)
                 {
                     if (s_ultraDataSavePackageListChanged == null)
                     {
@@ -2894,7 +2919,7 @@ namespace Tizen.System
 
             remove
             {
-                lock (LockObj)
+                lock (s_ultraDataSavePackageListChangedLockObj)
                 {
                     if (s_ultraDataSavePackageListChanged == null) {
                         Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
@@ -2920,6 +2945,7 @@ namespace Tizen.System
             s_accessibilityTtsChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<AccessibilityTtsSettingChangedEventArgs> s_accessibilityTtsChanged;
+        private static readonly object s_accessibilityTtsChangedLockObj = new object();
         /// <summary>
         /// THe AccessibilityTtsChanged event is triggered when the screen touch sound enabled status is changed.
         /// </summary>
@@ -2935,7 +2961,7 @@ namespace Tizen.System
         {
             add
             {
-                lock (LockObj)
+                lock (s_accessibilityTtsChangedLockObj)
                 {
                     if (s_accessibilityTtsChanged == null)
                     {
@@ -2951,7 +2977,7 @@ namespace Tizen.System
 
             remove
             {
-                lock (LockObj)
+                lock (s_accessibilityTtsChangedLockObj)
                 {
                     if (s_accessibilityTtsChanged == null) {
                         Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
@@ -2978,6 +3004,7 @@ namespace Tizen.System
             s_vibrationChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<VibrationChangedEventArgs> s_vibrationChanged;
+        private static readonly object s_vibrationChangedLockObj = new object();
         /// <summary>
         /// The VibrationChanged event is triggered when the vibration value is changed.
         /// </summary>
@@ -2993,7 +3020,7 @@ namespace Tizen.System
         {
             add
             {
-                lock (LockObj)
+                lock (s_vibrationChangedLockObj)
                 {
                     if (s_vibrationChanged == null)
                     {
@@ -3009,7 +3036,7 @@ namespace Tizen.System
 
             remove
             {
-                lock (LockObj)
+                lock (s_vibrationChangedLockObj)
                 {
                     s_vibrationChanged -= value;
                     if (s_vibrationChanged == null)
@@ -3031,6 +3058,7 @@ namespace Tizen.System
             s_automaticTimeUpdateChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<AutomaticTimeUpdateChangedEventArgs> s_automaticTimeUpdateChanged;
+        private static readonly object s_automaticTimeUpdateChangedLockObj = new object();
         /// <summary>
         /// The AutomaticTimeUpdateChanged event is triggered when the AutomaticTimeUpdate value is changed.
         /// </summary>
@@ -3046,7 +3074,7 @@ namespace Tizen.System
         {
             add
             {
-                lock (LockObj)
+                lock (s_automaticTimeUpdateChangedLockObj)
                 {
                     if (s_automaticTimeUpdateChanged == null)
                     {
@@ -3062,7 +3090,7 @@ namespace Tizen.System
 
             remove
             {
-                lock (LockObj)
+                lock (s_automaticTimeUpdateChangedLockObj)
                 {
                     s_automaticTimeUpdateChanged -= value;
                     if (s_automaticTimeUpdateChanged == null)
@@ -3084,6 +3112,7 @@ namespace Tizen.System
             s_developerOptionStateChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<DeveloperOptionStateChangedEventArgs> s_developerOptionStateChanged;
+        private static readonly object s_developerOptionStateChangedLockObj = new object();
         /// <summary>
         /// The DeveloperOptionStateChanged event is triggered when the DeveloperOptionState value is changed.
         /// </summary>
@@ -3099,7 +3128,7 @@ namespace Tizen.System
         {
             add
             {
-                lock (LockObj)
+                lock (s_developerOptionStateChangedLockObj)
                 {
                     if (s_developerOptionStateChanged == null)
                     {
@@ -3115,7 +3144,7 @@ namespace Tizen.System
 
             remove
             {
-                lock (LockObj)
+                lock (s_developerOptionStateChangedLockObj)
                 {
                     s_developerOptionStateChanged -= value;
                     if (s_developerOptionStateChanged == null)
@@ -3137,6 +3166,7 @@ namespace Tizen.System
             s_accessibilityGrayscaleChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<AccessibilityGrayscaleChangedEventArgs> s_accessibilityGrayscaleChanged;
+        private static readonly object s_accessibilityGrayscaleChangedLockObj = new object();
         /// <summary>
         /// The AccessibilityGrayscaleChanged event is triggered when the AccessibilityGrayscale value is changed.
         /// </summary>
@@ -3153,7 +3183,7 @@ namespace Tizen.System
         {
             add
             {
-                lock (LockObj)
+                lock (s_accessibilityGrayscaleChangedLockObj)
                 {
                     if (s_accessibilityGrayscaleChanged == null)
                     {
@@ -3169,7 +3199,7 @@ namespace Tizen.System
 
             remove
             {
-                lock (LockObj)
+                lock (s_accessibilityGrayscaleChangedLockObj)
                 {
                     s_accessibilityGrayscaleChanged -= value;
                     if (s_accessibilityGrayscaleChanged == null)
@@ -3191,6 +3221,7 @@ namespace Tizen.System
             s_accessibilityNegativeColorChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<AccessibilityNegativeColorChangedEventArgs> s_accessibilityNegativeColorChanged;
+        private static readonly object s_accessibilityNegativeColorChangedLockObj = new object();
         /// <summary>
         /// The AccessibilityNegativeColorChanged event is triggered when the AccessibilityNegativeColor value is changed.
         /// </summary>
@@ -3207,7 +3238,7 @@ namespace Tizen.System
         {
             add
             {
-                lock (LockObj)
+                lock (s_accessibilityNegativeColorChangedLockObj)
                 {
                     if (s_accessibilityNegativeColorChanged == null)
                     {
@@ -3223,7 +3254,7 @@ namespace Tizen.System
 
             remove
             {
-                lock (LockObj)
+                lock (s_accessibilityNegativeColorChangedLockObj)
                 {
                     s_accessibilityNegativeColorChanged -= value;
                     if (s_accessibilityNegativeColorChanged == null)
@@ -3245,6 +3276,7 @@ namespace Tizen.System
             s_rotaryEventEnabledChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<RotaryEventEnabledChangedEventArgs> s_rotaryEventEnabledChanged;
+        private static readonly object s_rotaryEventEnabledChangedLockObj = new object();
         /// <summary>
         /// The RotaryEventEnabledChanged event is triggered when the RotaryEventEnabled value is changed.
         /// </summary>
@@ -3262,7 +3294,7 @@ namespace Tizen.System
         {
             add
             {
-                lock (LockObj)
+                lock (s_rotaryEventEnabledChangedLockObj)
                 {
                     if (s_rotaryEventEnabledChanged == null)
                     {
@@ -3278,7 +3310,7 @@ namespace Tizen.System
 
             remove
             {
-                lock (LockObj)
+                lock (s_rotaryEventEnabledChangedLockObj)
                 {
                     s_rotaryEventEnabledChanged -= value;
                     if (s_rotaryEventEnabledChanged == null)

@@ -61,9 +61,9 @@ namespace Tizen.NUI.EXaml
 
         public void OnActive()
         {
-            if (null != childOp)
+            if (null != childOp && childOp.ValueList[0] is Instance valueList0)
             {
-                int instanceIndex = (childOp.ValueList[0] as Instance).Index;
+                int instanceIndex = valueList0.Index;
                 string propertyName = childOp.ValueList[1] as string;
                 globalDataList.Operations.Add(new GetObjectByProperty(globalDataList, instanceIndex, propertyName));
             }

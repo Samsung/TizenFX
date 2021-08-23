@@ -179,14 +179,5 @@ namespace Tizen.NUI.Components
                         Add(radioButton);
             }
         }
-
-        private void RemoveAll()
-        {
-            var copied = ItemGroup.ToArray();
-            foreach (var button in copied)
-            {
-                Remove(button as RadioButton);
-            }
-        }
     }
 }

@@ -17,7 +17,6 @@
 
 extern alias TizenSystemSettings;
 using TizenSystemSettings.Tizen.System;
-using System.Text.RegularExpressions;
 
 using System;
 using System.Globalization;
@@ -204,6 +203,7 @@ namespace Tizen.NUI.BaseComponents
         /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1721: Property names should not match get methods")]
         public PropertyMap FontStyle
         {
             get
@@ -215,6 +215,44 @@ namespace Tizen.NUI.BaseComponents
                 SetValue(FontStyleProperty, value);
                 NotifyPropertyChanged();
             }
+        }
+
+        /// <summary>
+        /// Set FontStyle to TextEditor. <br />
+        /// </summary>
+        /// <param name="fontStyle">The FontStyle</param>
+        /// <remarks>
+        /// SetFontStyle specifies the requested font style through <see cref="Tizen.NUI.Text.FontStyle"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetFontStyle method.
+        /// <code>
+        /// var fontStyle = new Tizen.NUI.Text.FontStyle();
+        /// fontStyle.Width = FontWidthType.Expanded;
+        /// fontStyle.Weight = FontWeightType.Bold;
+        /// fontStyle.Slant = FontSlantType.Italic;
+        /// editor.SetFontStyle(fontStyle);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetFontStyle(FontStyle fontStyle)
+        {
+            SetProperty(TextEditor.Property.FontStyle, new PropertyValue(TextUtils.GetFontStyleMap(fontStyle)));
+        }
+
+        /// <summary>
+        /// Get FontStyle from TextEditor. <br />
+        /// </summary>
+        /// <returns>The FontStyle</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.FontStyle"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public FontStyle GetFontStyle()
+        {
+            var map = new PropertyMap();
+            GetProperty(TextEditor.Property.FontStyle).Get(map);
+            return TextUtils.GetFontStyleStruct(map);
         }
 
         /// <summary>
@@ -662,6 +700,7 @@ namespace Tizen.NUI.BaseComponents
         /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1721: Property names should not match get methods")]
         public PropertyMap InputFontStyle
         {
             get
@@ -673,6 +712,45 @@ namespace Tizen.NUI.BaseComponents
                 SetValue(InputFontStyleProperty, value);
                 NotifyPropertyChanged();
             }
+        }
+
+        /// <summary>
+        /// Set InputFontStyle to TextEditor. <br />
+        /// </summary>
+        /// <param name="fontStyle">The FontStyle</param>
+        /// <remarks>
+        /// SetInputFontStyle specifies the requested font style for new input text through <see cref="Tizen.NUI.Text.FontStyle"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetInputFontStyle method.
+        /// <code>
+        /// var fontStyle = new Tizen.NUI.Text.FontStyle();
+        /// fontStyle.Width = FontWidthType.Expanded;
+        /// fontStyle.Weight = FontWeightType.Bold;
+        /// fontStyle.Slant = FontSlantType.Italic;
+        /// editor.SetInputFontStyle(fontStyle);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetInputFontStyle(FontStyle fontStyle)
+        {
+            SetProperty(TextEditor.Property.InputFontStyle, new PropertyValue(TextUtils.GetFontStyleMap(fontStyle)));
+            NotifyPropertyChanged();
+        }
+
+        /// <summary>
+        /// Get InputFontStyle from TextEditor. <br />
+        /// </summary>
+        /// <returns>The FontStyle</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.FontStyle"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public FontStyle GetInputFontStyle()
+        {
+            var map = new PropertyMap();
+            GetProperty(TextEditor.Property.InputFontStyle).Get(map);
+            return TextUtils.GetFontStyleStruct(map);
         }
 
         /// <summary>
@@ -736,6 +814,7 @@ namespace Tizen.NUI.BaseComponents
         /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1721: Property names should not match get methods")]
         public PropertyMap Underline
         {
             get
@@ -747,6 +826,44 @@ namespace Tizen.NUI.BaseComponents
                 SetValue(UnderlineProperty, value);
                 NotifyPropertyChanged();
             }
+        }
+
+        /// <summary>
+        /// Set Underline to TextEditor. <br />
+        /// </summary>
+        /// <param name="underline">The Underline</param>
+        /// <remarks>
+        /// SetUnderline specifies the underline of the text through <see cref="Tizen.NUI.Text.Underline"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetUnderline method.
+        /// <code>
+        /// var underline = new Tizen.NUI.Text.Underline();
+        /// underline.Enable = true;
+        /// underline.Color = new Color("#3498DB");
+        /// underline.Height = 2.0f;
+        /// editor.SetUnderline(underline);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetUnderline(Underline underline)
+        {
+            SetProperty(TextEditor.Property.UNDERLINE, new PropertyValue(TextUtils.GetUnderlineMap(underline)));
+        }
+
+        /// <summary>
+        /// Get Underline from TextEditor. <br />
+        /// </summary>
+        /// <returns>The Underline</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.Underline"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Underline GetUnderline()
+        {
+            var map = new PropertyMap();
+            GetProperty(TextEditor.Property.UNDERLINE).Get(map);
+            return TextUtils.GetUnderlineStruct(map);
         }
 
         /// <summary>
@@ -776,6 +893,7 @@ namespace Tizen.NUI.BaseComponents
         /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1721: Property names should not match get methods")]
         public PropertyMap Shadow
         {
             get
@@ -787,6 +905,43 @@ namespace Tizen.NUI.BaseComponents
                 SetValue(ShadowProperty, value);
                 NotifyPropertyChanged();
             }
+        }
+
+        /// <summary>
+        /// Set Shadow to TextEditor. <br />
+        /// </summary>
+        /// <param name="shadow">The Shadow</param>
+        /// <remarks>
+        /// SetShadow specifies the shadow of the text through <see cref="Tizen.NUI.Text.Shadow"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetShadow method.
+        /// <code>
+        /// var shadow = new Tizen.NUI.Text.Shadow();
+        /// shadow.Offset = new Vector2(3, 3);
+        /// shadow.Color = new Color("#F1C40F");
+        /// editor.SetShadow(shadow);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetShadow(Tizen.NUI.Text.Shadow shadow)
+        {
+            SetProperty(TextEditor.Property.SHADOW, new PropertyValue(TextUtils.GetShadowMap(shadow)));
+        }
+
+        /// <summary>
+        /// Get Shadow from TextEditor. <br />
+        /// </summary>
+        /// <returns>The Shadow</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.Shadow"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Tizen.NUI.Text.Shadow GetShadow()
+        {
+            var map = new PropertyMap();
+            GetProperty(TextEditor.Property.SHADOW).Get(map);
+            return TextUtils.GetShadowStruct(map);
         }
 
         /// <summary>
@@ -849,6 +1004,7 @@ namespace Tizen.NUI.BaseComponents
         /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1721: Property names should not match get methods")]
         public PropertyMap Outline
         {
             get
@@ -860,6 +1016,43 @@ namespace Tizen.NUI.BaseComponents
                 SetValue(OutlineProperty, value);
                 NotifyPropertyChanged();
             }
+        }
+
+        /// <summary>
+        /// Set Outline to TextEditor. <br />
+        /// </summary>
+        /// <param name="outline">The Outline</param>
+        /// <remarks>
+        /// SetOutline specifies the outline of the text through <see cref="Tizen.NUI.Text.Outline"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetOutline method.
+        /// <code>
+        /// var outline = new Tizen.NUI.Text.Outline();
+        /// outline.Width = 2.0f;
+        /// outline.Color = new Color("#45B39D");
+        /// editor.SetOutline(outline);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetOutline(Outline outline)
+        {
+            SetProperty(TextEditor.Property.OUTLINE, new PropertyValue(TextUtils.GetOutlineMap(outline)));
+        }
+
+        /// <summary>
+        /// Get Outline from TextEditor. <br />
+        /// </summary>
+        /// <returns>The Outline</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.Outline"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Outline GetOutline()
+        {
+            var map = new PropertyMap();
+            GetProperty(TextEditor.Property.OUTLINE).Get(map);
+            return TextUtils.GetOutlineStruct(map);
         }
 
         /// <summary>
@@ -1231,27 +1424,27 @@ namespace Tizen.NUI.BaseComponents
         /// <see cref="Tizen.NUI.Text.InputFilter"/> filters input based on regular expressions. <br />
         /// Users can set the Accepted or Rejected regular expression set, or both. <br />
         /// If both are used, Rejected has higher priority. <br />
+        /// The character set must follow the regular expression rules. <br />
+        /// Behaviour can not be guaranteed for incorrect grammars. <br />
+        /// Refer the link below for detailed rules. <br />
+        /// The functions in std::regex library use the ECMAScript grammar: <br />
+        /// http://cplusplus.com/reference/regex/ECMAScript/ <br />
         /// InputFiltered signal is emitted when the input is filtered by InputFilter <br />
         /// See <see cref="InputFiltered"/>, <see cref="InputFilterType"/> and <see cref="InputFilteredEventArgs"/> for a detailed description. <br />
         /// </remarks>
         /// <example>
         /// The following example demonstrates how to use the SetInputFilter method.
         /// <code>
-        /// Tizen.NUI.Text.InputFilter inputFilter;
-        /// inputFilter.Accepted = new Regex(@"[\d]"); // accept whole digits
-        /// inputFilter.Rejected = new Regex("[0-3]"); // reject 0, 1, 2, 3
+        /// var inputFilter = new Tizen.NUI.Text.InputFilter();
+        /// inputFilter.Accepted = @"[\d]"; // accept whole digits
+        /// inputFilter.Rejected = "[0-3]"; // reject 0, 1, 2, 3
         /// editor.SetInputFilter(inputFilter); // acceptable inputs are 4, 5, 6, 7, 8, 9
         /// </code>
         /// </example>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetInputFilter(InputFilter inputFilter)
         {
-            var map = new PropertyMap();
-            var accepted = inputFilter.Accepted != null ? new PropertyValue(inputFilter.Accepted.ToString()) : new PropertyValue("");
-            var rejected = inputFilter.Rejected != null ? new PropertyValue(inputFilter.Rejected.ToString()) : new PropertyValue("");
-            map.Add(0, accepted);
-            map.Add(1, rejected);
-            SetProperty(TextEditor.Property.InputFilter, new PropertyValue(map));
+            SetProperty(TextEditor.Property.InputFilter, new PropertyValue(TextUtils.GetInputFilterMap(inputFilter)));
         }
 
         /// <summary>
@@ -1266,16 +1459,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var map = new PropertyMap();
             GetProperty(TextEditor.Property.InputFilter).Get(map);
-            string accepted = "";
-            string rejected = "";
-            map.Find(0)?.Get(out accepted);
-            map.Find(1)?.Get(out rejected);
-
-            var inputFilter = new InputFilter();
-            inputFilter.Accepted = new Regex(accepted);
-            inputFilter.Rejected = new Regex(rejected);
-
-            return inputFilter;
+            return TextUtils.GetInputFilterStruct(map);
         }
 
         /// <summary>
