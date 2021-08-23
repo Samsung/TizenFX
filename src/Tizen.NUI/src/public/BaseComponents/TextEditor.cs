@@ -1948,6 +1948,11 @@ namespace Tizen.NUI.BaseComponents
                 {
                     this.CursorPositionChangedSignal().Disconnect(textEditorCursorPositionChangedCallbackDelegate);
                 }
+
+                if (textEditorSelectionChangedCallbackDelegate != null)
+                {
+                    this.SelectionChangedSignal().Disconnect(textEditorSelectionChangedCallbackDelegate);
+                }
             }
 
             base.Dispose(type);
