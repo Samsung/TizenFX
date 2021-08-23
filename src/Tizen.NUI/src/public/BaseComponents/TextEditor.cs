@@ -1399,7 +1399,7 @@ namespace Tizen.NUI.BaseComponents
         /// The Ellipsis property.<br />
         /// Enable or disable the ellipsis.<br />
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public bool Ellipsis
         {
             get

@@ -893,19 +893,19 @@ namespace Tizen.NUI
         /// <summary>
         /// ellipsis position at end.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         End,
 
         /// <summary>
         /// ellipsis position at start.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         Start,
 
         /// <summary>
         /// ellipsis position in middle.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         Middle
     }
 
