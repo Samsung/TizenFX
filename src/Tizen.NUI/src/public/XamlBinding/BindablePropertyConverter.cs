@@ -141,7 +141,7 @@ namespace Tizen.NUI.Binding
             var vsTarget = parents[3];
 
             // Are these Visual States directly on a VisualElement?
-            if (vsTarget is /*VisualElement*/BaseHandle)
+            if (vsTarget is BaseHandle)
             {
                 return vsTarget.GetType();
             }
