@@ -1590,5 +1590,85 @@ namespace Tizen.NUI.BaseComponents
 
             return textFit;
         }
+
+        /// <summary>
+        /// Copy the previously selected text into the clipboard and return the copied value.
+        /// </summary>
+        /// <param name="textEditor">The textEditor control from which the text is copied.</param>
+        /// <returns>The copied text.</returns>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static string CopyToClipboard(TextEditor textEditor)
+		{
+            string copiedText = Interop.TextEditor.CopyText(textEditor.SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return copiedText;
+        }
+
+        /// <summary>
+        /// Copy the previously selected text into the clipboard and return the copied value.
+        /// </summary>
+        /// <param name="textField">The textField control from which the text is copied.</param>
+        /// <returns>The copied text.</returns>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static string CopyToClipboard(TextField textField)
+        {
+            string copiedText = Interop.TextField.CopyText(textField.SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return copiedText;
+        }
+
+        /// <summary>
+        /// Cut the previously selected text from the text control and into the clipboard and return the cut value.
+        /// </summary>
+        /// <param name="textEditor">The textEditor control from which the text is cut.</param>
+        /// <returns>The cut text.</returns>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static string CutToClipboard(TextEditor textEditor)
+        {
+            string cutText = Interop.TextEditor.CutText(textEditor.SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return cutText;
+        }
+
+        /// <summary>
+        /// Cut the previously selected text from the text control and into the clipboard and return the cut value.
+        /// </summary>
+        /// <param name="textField">The textField control from which the text is cut.</param>
+        /// <returns>The cut text.</returns>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static string CutToClipboard(TextField textField)
+        {
+            string cutText = Interop.TextField.CutText(textField.SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return cutText;
+        }
+
+        /// <summary>
+        /// Paste the most recently copied/cut text from the clipboard and into the text control.
+        /// </summary>
+        /// <param name="textEditor">The textEditor control into which the text is pasted.</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void PasteTo(TextEditor textEditor)
+        {
+            Interop.TextEditor.PasteText(textEditor.SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Paste the most recently copied/cut text from the clipboard and into the text control.
+        /// </summary>
+        /// <param name="textField">The textField control into which the text is pasted.</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void PasteTo(TextField textField)
+        {
+            Interop.TextField.PasteText(textField.SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
     }
 }

@@ -294,6 +294,15 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_InputFilteredSignal")]
             public static extern global::System.IntPtr InputFilteredSignal(global::System.Runtime.InteropServices.HandleRef textFieldRef);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_CopyText")]
+            public static extern string CopyText(global::System.Runtime.InteropServices.HandleRef textFieldRef);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_CutText")]
+            public static extern string CutText(global::System.Runtime.InteropServices.HandleRef textFieldRef);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_PasteText")]
+            public static extern void PasteText(global::System.Runtime.InteropServices.HandleRef textFieldRef);
         }
     }
 }
