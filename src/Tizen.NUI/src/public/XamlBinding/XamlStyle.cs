@@ -6,8 +6,6 @@ using System.ComponentModel;
 
 namespace Tizen.NUI.Binding
 {
-    /// <since_tizen> 6 </since_tizen>
-    /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     [ContentProperty("Setters")]
     public sealed class XamlStyle : IStyle
@@ -27,8 +25,6 @@ namespace Tizen.NUI.Binding
 
         IList<TriggerBase> _triggers;
 
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public XamlStyle([TypeConverter(typeof(TypeTypeConverter))][Parameter("TargetType")] Type targetType)
         {
@@ -39,13 +35,9 @@ namespace Tizen.NUI.Binding
             Setters = new List<Setter>();
         }
 
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ApplyToDerivedTypes { get; set; }
 
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public XamlStyle BasedOn
         {
@@ -64,8 +56,6 @@ namespace Tizen.NUI.Binding
             }
         }
 
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string BaseResourceKey
         {
@@ -95,19 +85,15 @@ namespace Tizen.NUI.Binding
             get { return _behaviors ?? (_behaviors = new AttachedCollection<Behavior>()); }
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool CanCascade { get; set; }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string Class { get; set; }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public IList<Setter> Setters { get; }
 
-        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public IList<TriggerBase> Triggers
         {
@@ -122,8 +108,6 @@ namespace Tizen.NUI.Binding
             ApplyCore(bindable, BasedOn ?? GetBasedOnResource(bindable));
         }
 
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Type TargetType { get; }
 
@@ -184,7 +168,7 @@ namespace Tizen.NUI.Binding
 
         static void OnBasedOnResourceChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            // Style style = (bindable as /*VisualElement*/BaseHandle).Style;
+            // Style style = (bindable as BaseHandle).Style;
             // if (style == null)
             // 	return;
             // style.UnApplyCore(bindable, (Style)oldValue);

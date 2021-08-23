@@ -35,7 +35,7 @@ namespace Tizen.NUI.Xaml
 
         private static VisualStateGroupList visualStateGroups;
         public static readonly BindableProperty VisualStateGroupsProperty =
-            BindableProperty.CreateAttached("VisualStateGroups", typeof(VisualStateGroupList), typeof(/*VisualElement*/BaseHandle),
+            BindableProperty.CreateAttached("VisualStateGroups", typeof(VisualStateGroupList), typeof(BaseHandle),
                 defaultValue: null, propertyChanged: VisualStateGroupsPropertyChanged,
                 defaultValueCreator: (BindableObject obj)=>
                 {
@@ -49,20 +49,20 @@ namespace Tizen.NUI.Xaml
 
         static void VisualStateGroupsPropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            GoToState((/*VisualElement*/BaseHandle)bindable, CommonStates.Normal);
+            GoToState((BaseHandle)bindable, CommonStates.Normal);
         }
 
-        public static IList<VisualStateGroup> GetVisualStateGroups(/*VisualElement*/BaseHandle visualElement)
+        public static IList<VisualStateGroup> GetVisualStateGroups(BaseHandle visualElement)
         {
             return (IList<VisualStateGroup>)visualElement.GetValue(VisualStateGroupsProperty);
         }
 
-        public static void SetVisualStateGroups(/*VisualElement*/BaseHandle visualElement, VisualStateGroupList value)
+        public static void SetVisualStateGroups(BaseHandle visualElement, VisualStateGroupList value)
         {
             visualElement.SetValue(VisualStateGroupsProperty, value);
         }
 
-        public static bool GoToState(/*VisualElement*/BaseHandle visualElement, string name)
+        public static bool GoToState(BaseHandle visualElement, string name)
         {
             if (!visualElement.IsSet(VisualStateGroupsProperty))
             {
@@ -110,7 +110,7 @@ namespace Tizen.NUI.Xaml
             return false;
         }
 
-        public static bool HasVisualStateGroups(this /*VisualElement*/BaseHandle element)
+        public static bool HasVisualStateGroups(this BaseHandle element)
         {
             return element.IsSet(VisualStateGroupsProperty);
         }
