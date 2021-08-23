@@ -373,10 +373,8 @@ namespace Tizen.NUI.BaseComponents
         {
             if (textEditorSelectionClearedEventHandler != null)
             {
-                EventArgs e = new EventArgs();
-
-                //here we send all data to user event handlers
-                textEditorSelectionClearedEventHandler?.Invoke(this, e);
+                //no data to be sent to the user
+                textEditorSelectionClearedEventHandler?.Invoke(this, EventArgs.Empty);
             }
         }
 

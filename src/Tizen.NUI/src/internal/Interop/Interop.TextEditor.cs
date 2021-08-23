@@ -184,7 +184,7 @@ namespace Tizen.NUI
             public static extern global::System.IntPtr MaxLengthReachedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_SelectionClearedSignal")]
-            public static extern global::System.IntPtr SelectionClearedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern global::System.IntPtr SelectionClearedSignal(global::System.Runtime.InteropServices.HandleRef pTextEditor);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_AnchorClickedSignal")]
             public static extern global::System.IntPtr AnchorClickedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
