@@ -414,4 +414,24 @@ namespace Tizen.Multimedia.Util
 
         internal override byte[] Header => _header;
     }
+
+    /// <summary>
+    /// Provides the ability to decode the HEIF (High Efficiency Image File Format) encoded images.
+    /// </summary>
+    /// <since_tizen> 9 </since_tizen>
+    public class HeifDecoder : ImageDecoder
+    {
+        private static readonly byte[] _header = { (byte)'f', (byte)'t', (byte)'y', (byte)'p'};
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HeifDecoder"/> class.
+        /// </summary>
+        /// <remarks><see cref="ImageDecoder.InputFormat"/> will be the <see cref="ImageFormat.Heif"/>.</remarks>
+        /// <since_tizen> 9 </since_tizen>
+        public HeifDecoder() : base(ImageFormat.Heif)
+        {
+        }
+
+        internal override byte[] Header => _header;
+    }
 }

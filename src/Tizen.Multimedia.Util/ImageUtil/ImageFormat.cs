@@ -43,5 +43,11 @@ namespace Tizen.Multimedia.Util
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         WebP,
+        /// <summary>
+        /// The HEIF format.
+        /// </summary>
+        /// <remarks>ImageUtil support Heif decoder only.</remarks>
+        /// <since_tizen> 9 </since_tizen>
+        Heif
     }
 }
