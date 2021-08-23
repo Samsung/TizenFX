@@ -46,7 +46,7 @@ namespace Tizen.Multimedia.Util
         /// <summary>
         /// The HEIF format.
         /// </summary>
-        /// <remarks>ImageUtil support Heif decoder only.</remarks>
+        /// <remarks>ImageUtil supports Heif decoder only.</remarks>
         /// <since_tizen> 9 </since_tizen>
         Heif
     }
