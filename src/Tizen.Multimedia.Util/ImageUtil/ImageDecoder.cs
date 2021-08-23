@@ -195,7 +195,7 @@ namespace Tizen.Multimedia.Util
             {
                 byte[] fileHeader = new byte[Header.Length];
 
-                if (fs.Read(fileHeader, 0, fileHeader.Length) < Header.Length)
+                if (fs.Read(fileHeader, HeaderOffset, fileHeader.Length) < Header.Length)
                 {
                     return false;
                 }
@@ -250,6 +250,8 @@ namespace Tizen.Multimedia.Util
 
         internal abstract byte[] Header { get; }
 
+        internal abstract int HeaderOffset { get; }
+
         #region IDisposable Support
         private bool _disposed = false;
 
@@ -299,6 +301,8 @@ namespace Tizen.Multimedia.Util
         }
 
         internal override byte[] Header => _header;
+
+        internal override int HeaderOffset => 0;
     }
 
     /// <summary>
@@ -319,6 +323,8 @@ namespace Tizen.Multimedia.Util
         }
 
         internal override byte[] Header => _header;
+
+        internal override int HeaderOffset => 0;
     }
 
     /// <summary>
@@ -373,6 +379,8 @@ namespace Tizen.Multimedia.Util
         }
 
         internal override byte[] Header => _header;
+
+        internal override int HeaderOffset => 0;
     }
 
     /// <summary>
@@ -393,6 +401,8 @@ namespace Tizen.Multimedia.Util
         }
 
         internal override byte[] Header => _header;
+
+        internal override int HeaderOffset => 0;
     }
 
     /// <summary>
@@ -413,6 +423,8 @@ namespace Tizen.Multimedia.Util
         }
 
         internal override byte[] Header => _header;
+
+        internal override int HeaderOffset => 8;
     }
 
     /// <summary>
@@ -433,5 +445,7 @@ namespace Tizen.Multimedia.Util
         }
 
         internal override byte[] Header => _header;
+
+        internal override int HeaderOffset => 4;
     }
 }
