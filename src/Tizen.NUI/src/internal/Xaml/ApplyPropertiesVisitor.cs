@@ -632,21 +632,14 @@ namespace Tizen.NUI.Xaml
 
         static private object GetConvertedValue(Type valueType, object value, Func<MemberInfo> minfoRetriever, XamlServiceProvider serviceProvider)
         {
-            try
-            {
-                object convertedValue = value.ConvertTo(valueType, minfoRetriever, serviceProvider);
+            object convertedValue = value.ConvertTo(valueType, minfoRetriever, serviceProvider);
 
-                if (convertedValue != null && !valueType.IsInstanceOfType(convertedValue))
-                {
-                    return null;
-                }
-
-                return convertedValue;
-            }
-            catch
+            if (convertedValue != null && !valueType.IsInstanceOfType(convertedValue))
             {
-                return null;
+                convertedValue = null;
             }
+
+            return convertedValue;
         }
 
         static bool TryGetProperty(object element, string localName, out object value, HydrationContext context, out Exception exception, out object targetProperty)
