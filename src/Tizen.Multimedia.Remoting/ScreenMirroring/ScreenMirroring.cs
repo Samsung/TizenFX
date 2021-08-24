@@ -134,7 +134,7 @@ namespace Tizen.Multimedia.Remoting
 
         ScreenMirroringErrorCode IDisplayable<ScreenMirroringErrorCode>.ApplyEcoreWindow(IntPtr windowHandle)
         {
-            return Native.SetEcoreDisplay(Handle, windowHandle);
+            throw new NotSupportedException("ScreenMirroring does not support NUI.Window display.");
         }
         #endregion
 
