@@ -381,8 +381,16 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Adds media source.
         /// </summary>
-        /// <remarks>The WebRTC must be in the <see cref="WebRTCState.Idle"/>.</remarks>
+        /// <remarks>
+        /// The WebRTC must be in the <see cref="WebRTCState.Idle"/>.<br/>
+        /// Each MediaSource requires different feature or privilege.<br/>
+        /// <see cref="MediaCameraSource"/> needs camera feature and privilege.<br/>
+        /// <see cref="MediaFileSource"/> needs mediastorage or externalstorage privilege.<br/>
+        /// <see cref="MediaMicSource"/> needs microphone feature and recorder privilege.<br/>
+        /// </remarks>
         /// <param name="source">The media sources to add.</param>
+        /// <feature>http://tizen.org/feature/camera</feature>
+        /// <feature>http://tizen.org/feature/microphone</feature>
         /// <privilege>http://tizen.org/privilege/camera</privilege>
         /// <privilege>http://tizen.org/privilege/mediastorage</privilege>
         /// <privilege>http://tizen.org/privilege/externalstorage</privilege>
@@ -393,6 +401,7 @@ namespace Tizen.Multimedia.Remoting
         /// - or -<br/>
         /// All or one of <paramref name="source"/> was already detached.
         /// </exception>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
         /// <seealso cref="MediaCameraSource"/>
@@ -420,8 +429,16 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Adds media sources.
         /// </summary>
-        /// <remarks>The WebRTC must be in the <see cref="WebRTCState.Idle"/>.</remarks>
+        /// <remarks>
+        /// The WebRTC must be in the <see cref="WebRTCState.Idle"/>.<br/>
+        /// Each MediaSource requires different feature or privilege.<br/>
+        /// <see cref="MediaCameraSource"/> needs camera feature and privilege.<br/>
+        /// <see cref="MediaFileSource"/> needs mediastorage or externalstorage privilege.<br/>
+        /// <see cref="MediaMicSource"/> needs microphone feature and recorder privilege.<br/>
+        /// </remarks>
         /// <param name="sources">The media sources to add.</param>
+        /// <feature>http://tizen.org/feature/camera</feature>
+        /// <feature>http://tizen.org/feature/microphone</feature>
         /// <privilege>http://tizen.org/privilege/camera</privilege>
         /// <privilege>http://tizen.org/privilege/mediastorage</privilege>
         /// <privilege>http://tizen.org/privilege/externalstorage</privilege>
@@ -432,6 +449,7 @@ namespace Tizen.Multimedia.Remoting
         /// - or -<br/>
         /// All or one of <paramref name="sources"/> was already detached.
         /// </exception>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
         /// <seealso cref="MediaCameraSource"/>
