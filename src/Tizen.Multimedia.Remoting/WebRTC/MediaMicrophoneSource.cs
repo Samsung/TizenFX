@@ -27,13 +27,13 @@ namespace Tizen.Multimedia.Remoting
     /// <seealso cref="WebRTC.AddSource"/>
     /// <seealso cref="WebRTC.AddSources"/>
     /// <since_tizen> 9 </since_tizen>
-    public sealed class MediaMicSource : MediaSource
+    public sealed class MediaMicrophoneSource : MediaSource
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="MediaMicSource"/> class.
+        /// Initializes a new instance of the <see cref="MediaMicrophoneSource"/> class.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public MediaMicSource() : base(MediaType.Audio) {}
+        public MediaMicrophoneSource() : base(MediaType.Audio) {}
 
         internal override void OnAttached(WebRTC webRtc)
         {
@@ -45,7 +45,7 @@ namespace Tizen.Multimedia.Remoting
             }
 
             NativeWebRTC.AddMediaSource(webRtc.Handle, MediaSourceType.Microphone, out uint sourceId).
-                ThrowIfFailed("Failed to add MediaMicSource.");
+                ThrowIfFailed("Failed to add MediaMicrophoneSource.");
 
             WebRtc = webRtc;
             SourceId = sourceId;
@@ -54,13 +54,13 @@ namespace Tizen.Multimedia.Remoting
         internal override void OnDetached(WebRTC webRtc)
         {
             NativeWebRTC.RemoveMediaSource(webRtc.Handle, SourceId.Value).
-                ThrowIfFailed("Failed to remove MediaMicSource.");
+                ThrowIfFailed("Failed to remove MediaMicrophoneSource.");
 
             WebRtc = (WebRTC)null;
         }
 
         /// <summary>
-        /// Applies the audio stream policy to <see cref="MediaMicSource"/>.
+        /// Applies the audio stream policy to <see cref="MediaMicrophoneSource"/>.
         /// </summary>
         /// <param name="policy">The <see cref="AudioStreamPolicy"/> to apply.</param>
         /// <remarks>
@@ -91,7 +91,7 @@ namespace Tizen.Multimedia.Remoting
 
             WebRtc.ValidateWebRTCState(WebRTCState.Idle);
 
-            var ret = NativeWebRTC.SetAudioStreamPolicyToMicSource(WebRtc.Handle, SourceId.Value, policy.Handle);
+            var ret = NativeWebRTC.SetAudioStreamPolicyToMicrophoneSource(WebRtc.Handle, SourceId.Value, policy.Handle);
 
             if (ret == WebRTCErrorCode.InvalidArgument)
             {

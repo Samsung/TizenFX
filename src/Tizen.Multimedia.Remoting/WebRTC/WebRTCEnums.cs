@@ -76,7 +76,7 @@ namespace Tizen.Multimedia.Remoting
     }
 
     /// <summary>
-    /// Specifies states that a <see cref="WebRTC"/> can have.
+    /// Specifies ICE gathering states that a <see cref="WebRTC"/> can have.
     /// </summary>
     /// <seealso cref="WebRTC.IceCandidate"/>
     /// <since_tizen> 9 </since_tizen>
@@ -99,7 +99,7 @@ namespace Tizen.Multimedia.Remoting
     }
 
     /// <summary>
-    /// Specifies states that a <see cref="WebRTC"/> can have.
+    /// Specifies signaling states that a <see cref="WebRTC"/> can have.
     /// </summary>
     /// <remarks>This state is related in SDP offer/answer.</remarks>
     /// <seealso cref="WebRTC.SetLocalDescription"/>
@@ -141,7 +141,7 @@ namespace Tizen.Multimedia.Remoting
     }
 
     /// <summary>
-    /// Specifies states that a <see cref="WebRTC"/> can have.
+    /// Specifies peer connection states that a <see cref="WebRTC"/> can have.
     /// </summary>
     /// <remarks>This state is related in peer connection.</remarks>
     /// <since_tizen> 9 </since_tizen>
@@ -179,7 +179,7 @@ namespace Tizen.Multimedia.Remoting
     }
 
     /// <summary>
-    /// Specifies states that a <see cref="WebRTC"/> can have.
+    /// Specifies ICE connection states that a <see cref="WebRTC"/> can have.
     /// </summary>
     /// <remarks>This state describe the current state of local and its connection to the ICE server(STUN or TURN).</remarks>
     /// <since_tizen> 9 </since_tizen>
@@ -306,7 +306,9 @@ namespace Tizen.Multimedia.Remoting
     /// <summary>
     /// Specifies the policy of Ice transport.
     /// </summary>
-    /// <seealso aref="https://www.w3.org/TR/webrtc/#rtcicetransportpolicy-enum"/>
+    /// <remarks>
+    /// See also https://www.w3.org/TR/webrtc/#rtcicetransportpolicy-enum
+    /// </remarks>
     /// <since_tizen> 9 </since_tizen>
     public enum IceTransportPolicy
     {

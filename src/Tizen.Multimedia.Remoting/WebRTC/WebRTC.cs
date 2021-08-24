@@ -187,7 +187,9 @@ namespace Tizen.Multimedia.Remoting
             {
                 if (e.Current == WebRTCState.Negotiating)
                 {
+                    Log.Info(WebRTCLog.Tag, "tcs.TrySetResult..");
                     tcs.TrySetResult(true);
+                    Log.Info(WebRTCLog.Tag, "tcs.TrySetResult.. DONE!!!!");
                 }
             };
 
@@ -195,9 +197,13 @@ namespace Tizen.Multimedia.Remoting
             {
                 StateChanged += stateChangedEventHandler;
 
+                Log.Info(WebRTCLog.Tag, "NativeWebRTC.Start");
+
                 NativeWebRTC.Start(Handle).ThrowIfFailed("Failed to start the WebRTC");
 
+                Log.Info(WebRTCLog.Tag, "await tcs.Task..");
                 await tcs.Task;
+                Log.Info(WebRTCLog.Tag, "await tcs.Task.. DONE!!!!");
             }
             finally
             {
@@ -386,7 +392,7 @@ namespace Tizen.Multimedia.Remoting
         /// Each MediaSource requires different feature or privilege.<br/>
         /// <see cref="MediaCameraSource"/> needs camera feature and privilege.<br/>
         /// <see cref="MediaFileSource"/> needs mediastorage or externalstorage privilege.<br/>
-        /// <see cref="MediaMicSource"/> needs microphone feature and recorder privilege.<br/>
+        /// <see cref="MediaMicrophoneSource"/> needs microphone feature and recorder privilege.<br/>
         /// </remarks>
         /// <param name="source">The media sources to add.</param>
         /// <feature>http://tizen.org/feature/camera</feature>
@@ -405,7 +411,7 @@ namespace Tizen.Multimedia.Remoting
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
         /// <seealso cref="MediaCameraSource"/>
-        /// <seealso cref="MediaMicSource"/>
+        /// <seealso cref="MediaMicrophoneSource"/>
         /// <seealso cref="MediaTestSource"/>
         /// <seealso cref="MediaPacketSource"/>
         /// <seealso cref="AddSources"/>
@@ -434,7 +440,7 @@ namespace Tizen.Multimedia.Remoting
         /// Each MediaSource requires different feature or privilege.<br/>
         /// <see cref="MediaCameraSource"/> needs camera feature and privilege.<br/>
         /// <see cref="MediaFileSource"/> needs mediastorage or externalstorage privilege.<br/>
-        /// <see cref="MediaMicSource"/> needs microphone feature and recorder privilege.<br/>
+        /// <see cref="MediaMicrophoneSource"/> needs microphone feature and recorder privilege.<br/>
         /// </remarks>
         /// <param name="sources">The media sources to add.</param>
         /// <feature>http://tizen.org/feature/camera</feature>
@@ -453,7 +459,7 @@ namespace Tizen.Multimedia.Remoting
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
         /// <seealso cref="MediaCameraSource"/>
-        /// <seealso cref="MediaMicSource"/>
+        /// <seealso cref="MediaMicrophoneSource"/>
         /// <seealso cref="MediaTestSource"/>
         /// <seealso cref="MediaPacketSource"/>
         /// <seealso cref="AddSource"/>
@@ -480,7 +486,7 @@ namespace Tizen.Multimedia.Remoting
         /// <exception cref="InvalidOperationException">The WebRTC is not in the valid state.</exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <seealso cref="MediaCameraSource"/>
-        /// <seealso cref="MediaMicSource"/>
+        /// <seealso cref="MediaMicrophoneSource"/>
         /// <seealso cref="MediaTestSource"/>
         /// <seealso cref="MediaPacketSource"/>
         /// <seealso cref="AddSource"/>
@@ -515,7 +521,7 @@ namespace Tizen.Multimedia.Remoting
         /// <exception cref="InvalidOperationException">The WebRTC is not in the valid state.</exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <seealso cref="MediaCameraSource"/>
-        /// <seealso cref="MediaMicSource"/>
+        /// <seealso cref="MediaMicrophoneSource"/>
         /// <seealso cref="MediaTestSource"/>
         /// <seealso cref="MediaPacketSource"/>
         /// <seealso cref="AddSource"/>

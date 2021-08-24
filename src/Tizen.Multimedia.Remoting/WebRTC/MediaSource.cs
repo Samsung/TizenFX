@@ -74,6 +74,7 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <value>A <see cref="TransceiverDirection"/> that specifies the transceiver direction.</value>
         /// <exception cref="InvalidOperationException">MediaSource is not attached yet.</exception>
+        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <since_tizen> 9 </since_tizen>
         public TransceiverDirection TransceiverDirection
         {
@@ -106,6 +107,7 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <value>A value that specifies the pause status.</value>
         /// <exception cref="InvalidOperationException">MediaSource is not attached yet.</exception>
+        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <since_tizen> 9 </since_tizen>
         public bool Pause
         {
@@ -128,6 +130,7 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <value>A value that specifies the mute status.</value>
         /// <exception cref="InvalidOperationException">MediaSource is not attached yet.</exception>
+        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <since_tizen> 9 </since_tizen>
         public bool Mute
         {
@@ -151,6 +154,7 @@ namespace Tizen.Multimedia.Remoting
         /// <value>A value that specifies the mute status.</value>
         /// <exception cref="ArgumentException">This source is not video source.</exception>
         /// <exception cref="InvalidOperationException">MediaSource is not attached yet.</exception>
+        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <since_tizen> 9 </since_tizen>
         public Size VideoResolution
         {
@@ -193,9 +197,9 @@ namespace Tizen.Multimedia.Remoting
         ///     <see cref="AudioStreamType"/> of <paramref name="policy"/> is not supported on the current platform.
         /// </exception>
         /// <exception cref="ObjectDisposedException">
-        ///     <paramref name="policy"/> has already been disposed.
+        ///     <paramref name="policy"/> or WebRTC has already been disposed.
         /// </exception>
-        /// <returns>The track ID.</returns>
+        /// <returns><see cref="MediaStreamTrack"/></returns>
         public MediaStreamTrack EnableAudioLoopback(AudioStreamPolicy policy)
         {
             if (policy == null)
@@ -234,7 +238,11 @@ namespace Tizen.Multimedia.Remoting
         /// Enables the video loopback. The local video will be diaplayed in <paramref name="display"/>.
         /// </summary>
         /// <param name="display">The <see cref="Display"/> to apply.</param>
-        /// <returns>The track ID.</returns>
+        /// <exception cref="ArgumentException">The display has already been assigned to another.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="display"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">This MediaSource is not Video</exception>
+        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <returns><see cref="MediaStreamTrack"/></returns>
         public MediaStreamTrack EnableVideoLoopback(Display display)
         {
             uint trackId = 0;

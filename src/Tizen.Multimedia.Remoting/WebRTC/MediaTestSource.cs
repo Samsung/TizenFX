@@ -21,7 +21,7 @@ using static Interop;
 namespace Tizen.Multimedia.Remoting
 {
     /// <summary>
-    /// Represents a audio, video test source.
+    /// Represents an audio or a video test source.
     /// </summary>
     /// <seealso cref="WebRTC.AddSource"/>
     /// <seealso cref="WebRTC.AddSources"/>

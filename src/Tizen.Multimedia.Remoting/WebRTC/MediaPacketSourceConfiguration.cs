@@ -20,7 +20,7 @@ using static Interop;
 namespace Tizen.Multimedia.Remoting
 {
     /// <summary>
-    /// Provides a means to configure properties and handle events for <see cref="MediaPacketSource"/>.
+    /// Provides means to configure properties and handle events for <see cref="MediaPacketSource"/>.
     /// </summary>
     /// <seealso cref="MediaPacketSource"/>
     /// <since_tizen> 9 </since_tizen>

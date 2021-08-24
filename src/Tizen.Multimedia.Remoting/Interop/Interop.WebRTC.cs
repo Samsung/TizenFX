@@ -144,7 +144,7 @@ internal static partial class Interop
         internal static extern WebRTCErrorCode SetEcoreVideoLoopback(IntPtr handle, uint sourceId, IntPtr display, out uint trackId);
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_mic_source_set_sound_stream_info")]
-        internal static extern WebRTCErrorCode SetAudioStreamPolicyToMicSource(IntPtr handle, uint sourceId, AudioStreamPolicyHandle streamInfo);
+        internal static extern WebRTCErrorCode SetAudioStreamPolicyToMicrophoneSource(IntPtr handle, uint sourceId, AudioStreamPolicyHandle streamInfo);
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_set_sound_stream_info")]
         internal static extern WebRTCErrorCode SetAudioStreamPolicy(IntPtr handle, uint trackId, AudioStreamPolicyHandle streamInfo);

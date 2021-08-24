@@ -61,6 +61,7 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 9 </since_tizen>
         public string Message { get; }
 
+        #pragma warning disable CA1819 // the purpose of this member is to pass received data to user, no need to protect it from changes
         /// <summary>
         /// Gets the byte data from remote peer.
         /// </summary>
@@ -70,6 +71,7 @@ namespace Tizen.Multimedia.Remoting
         /// <value>The message.</value>
         /// <since_tizen> 9 </since_tizen>
         public byte[] Data { get; }
+        #pragma warning restore CA1819
 
         /// <summary>
         /// Returns a string that represents the current object.
