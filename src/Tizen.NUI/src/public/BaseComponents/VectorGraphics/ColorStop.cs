@@ -22,7 +22,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
     /// <summary>
     /// A data storing the information about the color and its relative position inside the gradient bounds.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class ColorStop
     {
         private float offset; //The relative position of the color. 
@@ -31,7 +31,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// <summary>
         /// Initialize ColorStop.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public ColorStop(float offset, Color color)
         {
             this.offset = offset;
@@ -41,7 +41,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// <summary>
         /// The relative position of the color. 
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public float Offset
         {
             set
@@ -57,7 +57,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// <summary>
         /// The color value.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public Color Color
         {
             set {
