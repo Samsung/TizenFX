@@ -24,13 +24,13 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
     /// Besides the class inherited from the Gradient class, it enables setting and getting the linear gradient bounds.
     /// The behavior outside the gradient bounds depends on the value specified in the spread API.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class LinearGradient : Gradient
     {
         /// <summary>
         /// Creates an initialized linear gradient.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public LinearGradient() : this(Interop.LinearGradient.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -43,13 +43,12 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// <summary>
         /// Sets the linear gradient bounds.
         /// 
-        /// The bounds of the linear gradient are defined as a surface constrained by two parallel lines crossing
-        /// the given points firstPoint and secondPoint, respectively. Both lines are perpendicular to the line linking
-        /// firstPoint and secondPoint.
+        /// The bounds of the linear gradient are defined by two parallel lines crossing the given points firstPoint and secondPoint, respectively.
+        /// Both lines are perpendicular to the line linking firstPoint and secondPoint.
         /// </summary>
         /// <param name="firstPoint">The first point used to determine the gradient bounds.</param>
         /// <param name="secondPoint">The second point used to determine the gradient bounds.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public void SetBounds(Position2D firstPoint, Position2D secondPoint)
         {
             Interop.LinearGradient.SetBounds(BaseHandle.getCPtr(this), Position2D.getCPtr(firstPoint), Position2D.getCPtr(secondPoint));
@@ -61,7 +60,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// </summary>
         /// <param name="firstPoint">The first point used to determine the gradient bounds.</param>
         /// <param name="secondPoint">The second point used to determine the gradient bounds.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public void GetBounds(ref Position2D firstPoint, ref Position2D secondPoint)
         {
             Interop.LinearGradient.GetBounds(BaseHandle.getCPtr(this), Position2D.getCPtr(firstPoint), Position2D.getCPtr(secondPoint));
