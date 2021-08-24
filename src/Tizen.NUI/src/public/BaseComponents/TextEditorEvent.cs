@@ -371,11 +371,8 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnSelectionCleared(IntPtr textEditor)
         {
-            if (textEditorSelectionClearedEventHandler != null)
-            {
-                //no data to be sent to the user
-                textEditorSelectionClearedEventHandler?.Invoke(this, EventArgs.Empty);
-            }
+            //no data to be sent to the user
+            textEditorSelectionClearedEventHandler?.Invoke(this, EventArgs.Empty);
         }
 
         private void OnScrollStateChanged(IntPtr textEditor, ScrollState state)

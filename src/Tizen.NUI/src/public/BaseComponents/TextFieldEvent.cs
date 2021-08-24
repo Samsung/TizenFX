@@ -313,11 +313,8 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnSelectionCleared(IntPtr textField)
         {
-            if (textFieldSelectionClearedEventHandler != null)
-            {
-                //no data to be sent to the user
-                textFieldSelectionClearedEventHandler?.Invoke(this, EventArgs.Empty);
-            }
+            //no data to be sent to the user
+            textFieldSelectionClearedEventHandler?.Invoke(this, EventArgs.Empty);
         }
 
         private void OnTextChanged(IntPtr textField)
