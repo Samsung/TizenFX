@@ -187,9 +187,7 @@ namespace Tizen.Multimedia.Remoting
             {
                 if (e.Current == WebRTCState.Negotiating)
                 {
-                    Log.Info(WebRTCLog.Tag, "tcs.TrySetResult..");
                     tcs.TrySetResult(true);
-                    Log.Info(WebRTCLog.Tag, "tcs.TrySetResult.. DONE!!!!");
                 }
             };
 
@@ -197,13 +195,9 @@ namespace Tizen.Multimedia.Remoting
             {
                 StateChanged += stateChangedEventHandler;
 
-                Log.Info(WebRTCLog.Tag, "NativeWebRTC.Start");
-
                 NativeWebRTC.Start(Handle).ThrowIfFailed("Failed to start the WebRTC");
 
-                Log.Info(WebRTCLog.Tag, "await tcs.Task..");
                 await tcs.Task;
-                Log.Info(WebRTCLog.Tag, "await tcs.Task.. DONE!!!!");
             }
             finally
             {
