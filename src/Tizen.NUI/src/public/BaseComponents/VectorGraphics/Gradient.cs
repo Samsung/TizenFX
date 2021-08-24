@@ -26,10 +26,8 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
     /// It contains the information about the gradient colors and their arrangement
     /// inside the gradient bounds. The gradients bounds are defined in the LinearGradient
     /// or RadialGradient class, depending on the type of the gradient to be used.
-    /// It specifies the gradient behavior in case the area defined by the gradient bounds
-    /// is smaller than the area to be filled.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class Gradient : BaseHandle
     {
         /// <summary>
@@ -45,7 +43,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// <summary>
         /// Specifying how to fill the area outside the gradient bounds.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public SpreadType Spread
         {
             get
@@ -63,7 +61,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// The parameters list of the colors of the gradient and their position.
         /// </summary>
         /// <exception cref="ArgumentNullException"> Thrown when value is null. </exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public ReadOnlyCollection<ColorStop> ColorStops
         {
             get
