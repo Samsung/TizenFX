@@ -1599,7 +1599,7 @@ namespace Tizen.NUI.BaseComponents
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static string CopyToClipboard(TextEditor textEditor)
-		{
+        {
             string copiedText = Interop.TextEditor.CopyText(textEditor.SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return copiedText;
