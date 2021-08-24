@@ -36,7 +36,7 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler<AnchorClickedEventArgs> textFieldAnchorClickedEventHandler;
         private AnchorClickedCallbackDelegate textFieldAnchorClickedCallbackDelegate;
 
-        private EventHandler<SelectionChangedEventArgs> textFieldSelectionChangedEventHandler;
+        private EventHandler<TextSelectionChangedEventArgs> textFieldSelectionChangedEventHandler;
         private SelectionChangedCallbackDelegate textFieldSelectionChangedCallbackDelegate;
 
         private EventHandler<InputFilteredEventArgs> textFieldInputFilteredEventHandler;
@@ -166,7 +166,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<SelectionChangedEventArgs> SelectionChanged
+        public event EventHandler<TextSelectionChangedEventArgs> SelectionChanged
         {
             add
             {
@@ -329,9 +329,9 @@ namespace Tizen.NUI.BaseComponents
         {
             if (textFieldSelectionChangedEventHandler != null)
             {
-                SelectionChangedEventArgs e = new SelectionChangedEventArgs();
+                TextSelectionChangedEventArgs e = new TextSelectionChangedEventArgs();
 
-                // Populate all members of "e" (SelectionChangedEventArgs) with real data
+                // Populate all members of "e" (TextSelectionChangedEventArgs) with real data
                 e.OldSelectionStart = oldStart;
                 e.OldSelectionEnd = oldEnd;
 
