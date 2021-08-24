@@ -66,7 +66,7 @@ namespace Tizen.NUI.BaseComponents
     /// </summary>
     /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class SelectionChangedEventArgs : EventArgs
+    public class TextSelectionChangedEventArgs : EventArgs
     {
         /// <summary>
         /// selection start before the change.
