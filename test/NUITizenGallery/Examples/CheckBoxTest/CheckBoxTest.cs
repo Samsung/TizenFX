@@ -17,24 +17,27 @@
 
 using System;
 using Tizen.NUI;
+using Tizen.NUI.Components;
+
 
 namespace NUITizenGallery
 {
     internal class CheckBoxTest : IExample
     {
         private Window window;
-        private CheckBoxTestPage page;
+
         public void Activate()
         {
+            Console.WriteLine($"@@@ this.GetType().Name={this.GetType().Name}, Activate()");
+
             window = NUIApplication.GetDefaultWindow();
-            page = new CheckBoxTestPage();
-            window.Add(page);
+            window.GetDefaultNavigator().Push(new CheckBoxTestPage());
         }
 
         public void Deactivate()
         {
-            page.Unparent();
-            page.Dispose();
+            Console.WriteLine($"@@@ this.GetType().Name={this.GetType().Name}, Deactivate()");
+            window.GetDefaultNavigator().Pop();
         }
     }
 }

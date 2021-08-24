@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="NUITizenGallery.AnimationTest1Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+    <!-- AppBar is top-side bar with navigation content, title, and action. If you not set any contents, back button is automatically added. -->
+    <ContentPage.AppBar>
+        <AppBar x:Name="appBar" Title="AnimationTest1Page"/>
+    </ContentPage.AppBar>
+
+    <!-- Content is main placdeholder of ContentPage. Add your content into this view. -->
+    <ContentPage.Content>
+        <View x:Name="ContentView"
+          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+          HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+            <View.Layout>
+                <LinearLayout LinearOrientation="Vertical" CellPadding="10,10" LinearAlignment="Top"/>
+            </View.Layout>
+
+            <View x:Name="imgView"
+             WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+             HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+             Weight="0.3">
+
+                <View.Layout>
+                    <LinearLayout LinearOrientation="Vertical" LinearAlignment="CenterHorizontal" CellPadding="10,10"/>
+                </View.Layout>
+
+                <ImageView x:Name="imageView" ResourceUrl="*Resource*/images/a.jpg" />
+            </View>
+
+            <View x:Name="btnView"
+             WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+             HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+             Weight="0.7">
+
+                <View.Layout>
+                    <LinearLayout LinearOrientation="Vertical" LinearAlignment="CenterHorizontal" CellPadding="10,10" />
+                </View.Layout>
+
+                <Button x:Name="image1Btn" Text="Start Animation" Size2D="680,100"/>
+                <Button x:Name="image2Btn" Text="Stop Animation"  Size2D="680,100"/>
+                <TextLabel x:Name="desc1"  Text="" PointSize="15" TextColor="Black"/>
+            </View>
+        </View>
+    </ContentPage.Content>
+
+</ContentPage>

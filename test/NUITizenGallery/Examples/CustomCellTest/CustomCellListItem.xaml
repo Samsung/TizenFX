@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<View x:Class="NUITizenGallery.CustomCellListItem"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  Size2D="720, 250">
+
+    <ImageView x:Name="Image" Size2D="50,50" Position2D="25,50"/>
+    <TextLabel x:Name="Title" Text="Not set" PointSize="14" Size2D="550, 70" Position2D="100,0"/>
+    <TextLabel x:Name="TextContent" Text="Not set" PointSize="10" Size2D="550, 180" Position2D="100, 70"/>
+    <CheckBox x:Name="Check" Position2D="640, 50"/>
+</View>

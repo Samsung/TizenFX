@@ -10,7 +10,7 @@ namespace Tizen.NUI.Devel.Tests
 
     [TestFixture]
     [Description("public/xaml/MarkupExtensions/BindingExtension")]
-    internal class PublicBindingExtensionTest
+    public class PublicBindingExtensionTest
     {
         private const string tag = "NUITEST";
         private BindingExtension b1;

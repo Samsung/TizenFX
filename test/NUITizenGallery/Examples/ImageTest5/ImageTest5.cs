@@ -17,6 +17,7 @@
 
 using System;
 using Tizen.NUI;
+using Tizen.NUI.Components;
 
 namespace NUITizenGallery
 {
@@ -26,18 +27,16 @@ namespace NUITizenGallery
         private ImageTest5Page page;
         public void Activate()
         {
-            Console.WriteLine($"@@@ this.GetType().Name={this.GetType().Name}, Activate()");
-
             window = NUIApplication.GetDefaultWindow();
             page = new ImageTest5Page();
-            window.Add(page);
+            window.GetDefaultNavigator().Push(page);
         }
 
         public void Deactivate()
         {
-            Console.WriteLine($"@@@ this.GetType().Name={this.GetType().Name}, Deactivate()");
-            page.Unparent();
-            page.Dispose();
+            window.GetDefaultNavigator().Pop();
+            page = null; ;
         }
     }
 }
+

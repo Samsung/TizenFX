@@ -8,10 +8,18 @@ namespace Tizen.NUI.Devel.Tests
 
     [TestFixture]
     [Description("public/xaml/MarkupExtensions/StaticExtension")]
-    internal class PublicStaticExtensionTest
+    public class PublicStaticExtensionTest
     {
         private const string tag = "NUITEST";
         private static StaticExtension s1;
+
+        internal class IServiceProviderimplement : IServiceProvider
+        {
+            public object GetService(Type serviceType)
+            {
+                return null;
+            }
+        }
 
         [SetUp]
         public void Init()
@@ -50,14 +58,6 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"StaticExtensionMember END (OK)");
             Assert.Pass("StaticExtensionMember");
-        }
-
-        private class IServiceProviderimplement : IServiceProvider
-        {
-            public object GetService(Type serviceType)
-            {
-                return null;
-            }
         }
 
         [Test]

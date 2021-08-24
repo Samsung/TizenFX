@@ -255,39 +255,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("PropertyNotification Notified")]
-        [Property("SPEC", "Tizen.NUI.PropertyNotification.Notified E")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "EVL")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public async Task PropertyNotificationNotified()
-        {
-            tlog.Debug(tag, $"PropertyNotificationNotified START");
-
-            View view = new View();
-            Window.Instance.Add(view);
-            var testingTarget = view.AddPropertyNotification("positionX", PropertyCondition.GreaterThan(100.0f));
-            Assert.IsNotNull(testingTarget, "should not be null.");
-            Assert.IsInstanceOf<PropertyNotification>(testingTarget, "should be an instance of PropertyNotification class!");
-
-            testingTarget.SetNotifyMode(PropertyNotification.NotifyMode.NotifyOnChanged);
-            bool flag = false;
-            testingTarget.Notified += (obj, e) =>
-            {
-                flag = true;
-            };
-
-            view.Position = new Position(300.0f, 0.0f, 0.0f);
-            await Task.Delay(200);
-            Assert.AreEqual(true, flag, "Should be equal!");
-
-            testingTarget.Dispose();
-            view.Dispose();
-            tlog.Debug(tag, $"PropertyNotificationNotified END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("PropertyNotification Dispose")]
         [Property("SPEC", "Tizen.NUI.PropertyNotification.Dispose M")]
         [Property("SPEC_URL", "-")]
@@ -338,6 +305,7 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(result, "should not be null.");
             Assert.IsInstanceOf<PropertyNotification>(result, "should be an instance of PropertyNotification class!");
 
+            Window.Instance.Remove(view);
             testingTarget.Dispose();
             view.Dispose();
             tlog.Debug(tag, $"PropertyNotificationDownCast END (OK)");
@@ -376,6 +344,7 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(result, "Should be not null");
             Assert.IsInstanceOf<PropertyNotifySignal>(result, "Should be an instance of propertyNotifySignal");
 
+            Window.Instance.Remove(view);
             testingTarget.Dispose();
             view.Dispose();
             tlog.Debug(tag, $"PropertyNotificationNotifySignal END (OK)");
@@ -409,6 +378,7 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "should not be null.");
             Assert.IsInstanceOf<PropertyNotification>(testingTarget, "should be an instance of PropertyNotification class!");
 
+            Window.Instance.Remove(view);
             testingTarget.Dispose();
             dummy2.Dispose();
             dummy1.Dispose();
@@ -446,6 +416,7 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.True(true);
             }
 
+            Window.Instance.Remove(view);
             testingTarget.Dispose();
             view.Dispose();
             tlog.Debug(tag, $"PropertyNotificationAssignNegative END (OK)");
@@ -499,6 +470,40 @@ namespace Tizen.NUI.Devel.Tests
             view.Dispose();
 
             tlog.Debug(tag, $"PropertyNotificationNotifyEventArgsGetTargetProperty END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("PropertyNotification Notified")]
+        [Property("SPEC", "Tizen.NUI.PropertyNotification.Notified E")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "EVL")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public async Task PropertyNotificationNotified()
+        {
+            tlog.Debug(tag, $"PropertyNotificationNotified START");
+
+            View view = new View();
+            Window.Instance.Add(view);
+            var testingTarget = view.AddPropertyNotification("positionX", PropertyCondition.GreaterThan(100.0f));
+            Assert.IsNotNull(testingTarget, "should not be null.");
+            Assert.IsInstanceOf<PropertyNotification>(testingTarget, "should be an instance of PropertyNotification class!");
+
+            testingTarget.SetNotifyMode(PropertyNotification.NotifyMode.NotifyOnChanged);
+            bool flag = false;
+            testingTarget.Notified += (obj, e) =>
+            {
+                flag = true;
+            };
+
+            view.Position = new Position(300.0f, 0.0f, 0.0f);
+            await Task.Delay(200);
+            Assert.AreEqual(true, flag, "Should be equal!");
+
+            Window.Instance.Remove(view);
+            testingTarget.Dispose();
+            view.Dispose();
+            tlog.Debug(tag, $"PropertyNotificationNotified END (OK)");
         }
     }
 }

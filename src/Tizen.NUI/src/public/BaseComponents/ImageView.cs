@@ -1121,7 +1121,9 @@ namespace Tizen.NUI.BaseComponents
 
         internal override void ApplyBorderline()
         {
-            // Ignore BACKGROUND borderline property. only apply borderline to IMAGE.
+            base.ApplyBorderline();
+
+            // Apply borderline to IMAGE.
             if (backgroundExtraData != null)
             {
                 var borderlineColor = backgroundExtraData.BorderlineColor == null ? new PropertyValue(Color.Black) : new PropertyValue(backgroundExtraData.BorderlineColor);
@@ -1142,6 +1144,7 @@ namespace Tizen.NUI.BaseComponents
                 imageValue.Dispose();
                 borderlineColor.Dispose();
             }
+
             UpdateImage(0, null);
         }
 
@@ -1291,6 +1294,18 @@ namespace Tizen.NUI.BaseComponents
                 {
                     imageMap.Insert(Visual.Property.CornerRadius, cornerRadius);
                     imageMap.Insert(Visual.Property.CornerRadiusPolicy, new PropertyValue((int)(backgroundExtraData.CornerRadiusPolicy)));
+                }
+            }
+
+            if (backgroundExtraData != null && backgroundExtraData.BorderlineWidth > 0.0f)
+            {
+                using (var borderlineWidth = new PropertyValue(backgroundExtraData.BorderlineWidth))
+                using (var borderlineColor = new PropertyValue(backgroundExtraData.BorderlineColor))
+                using (var borderlineOffset = new PropertyValue(backgroundExtraData.BorderlineOffset))
+                {
+                    imageMap.Insert(Visual.Property.BorderlineWidth, borderlineWidth);
+                    imageMap.Insert(Visual.Property.BorderlineColor, borderlineColor);
+                    imageMap.Insert(Visual.Property.BorderlineOffset, borderlineOffset);
                 }
             }
 

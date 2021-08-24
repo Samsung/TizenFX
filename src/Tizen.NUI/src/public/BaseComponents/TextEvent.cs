@@ -32,4 +32,52 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 9 </since_tizen>
         public string Href { get; set; }
     }
+
+    /// <summary>
+    /// InputFilteredEventArgs is a class to record input filter event arguments which will be sent to user.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class InputFilteredEventArgs : EventArgs
+    {
+        /// <summary>
+        /// The type of InputFilter that filtered the input is stored. <br />
+        /// If the input is filtered by the Accepted Regex of the InputFilter, the Accept type is stored. <br />
+        /// If the input is filtered by the Rejected Regex of the InputFilter, the Reject type is stored. <br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public InputFilterType Type { get; set; }
+    }
+
+    /// <summary>
+    /// The CursorPositionChanged event arguments.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class CursorPositionChangedEventArgs : EventArgs
+    {
+        /// <summary>
+        /// cursor postion before the change.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint OldCursorPosition { get; set; }
+    }
+
+    /// <summary>
+    /// The SelectionChanged event arguments.
+    /// </summary>
+    /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class TextSelectionChangedEventArgs : EventArgs
+    {
+        /// <summary>
+        /// selection start before the change.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint OldSelectionStart { get; set; }
+
+        /// <summary>
+        /// selection end before the change.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint OldSelectionEnd { get; set; }
+    }
 }

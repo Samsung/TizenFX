@@ -181,9 +181,9 @@ namespace Tizen.NUI.Devel.Tests
         //[Property("SPEC_URL", "-")]
         //[Property("CRITERIA", "CONSTR")]
         //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void PageTurnLandscapeViewConstructor()
+        //public void PageTurnLandscapeViewConstructorWith2Parameters()
         //{
-        //    tlog.Debug(tag, $"PageTurnLandscapeViewConstructor START");
+        //    tlog.Debug(tag, $"PageTurnLandscapeViewConstructorWith2Parameters START");
 
         //    using (View view = new View())
         //    {
@@ -200,7 +200,7 @@ namespace Tizen.NUI.Devel.Tests
         //        }
         //    }
 
-        //    tlog.Debug(tag, $"PageTurnLandscapeViewConstructor END (OK)");
+        //    tlog.Debug(tag, $"PageTurnLandscapeViewConstructorWith2Parameters END (OK)");
         //}
     }
 }

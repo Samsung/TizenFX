@@ -106,47 +106,47 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"ScrollViewPagePathEffectDownCast END (OK)");
         }
 
-        [Test]
-        [Category("P1")]
-        [Description("ScrollViewPagePathEffect ApplyToPage.")]
-        [Property("SPEC", "Tizen.NUI.ScrollViewPagePathEffect.ApplyToPage M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ScrollViewPagePathEffectApplyToPage()
-        {
-            tlog.Debug(tag, $"ScrollViewPagePathEffectApplyToPage START");
+        //[Test]
+        //[Category("P1")]
+        //[Description("ScrollViewPagePathEffect ApplyToPage.")]
+        //[Property("SPEC", "Tizen.NUI.ScrollViewPagePathEffect.ApplyToPage M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //[Property("AUTHOR", "guowei.wang@samsung.com")]
+        //public void ScrollViewPagePathEffectApplyToPage()
+        //{
+        //    tlog.Debug(tag, $"ScrollViewPagePathEffectApplyToPage START");
 
-            using (Path path = new Path())
-            {
-                using (Vector3 forword = new Vector3(2, 4, 6))
-                {
-                    using (Vector3 pageSize = new Vector3(6, 8, 10))
-                    {
-                        var testingTarget = new ScrollViewPagePathEffect(path, forword, 1, pageSize, 5);
-                        Assert.IsNotNull(testingTarget, "Can't create success object ScrollViewPagePathEffect");
-                        Assert.IsInstanceOf<ScrollViewPagePathEffect>(testingTarget, "Should be an instance of ScrollViewPagePathEffect type.");
+        //    using (Path path = new Path())
+        //    {
+        //        using (Vector3 forword = new Vector3(2, 4, 6))
+        //        {
+        //            using (Vector3 pageSize = new Vector3(6, 8, 10))
+        //            {
+        //                var testingTarget = new ScrollViewPagePathEffect(path, forword, 1, pageSize, 5);
+        //                Assert.IsNotNull(testingTarget, "Can't create success object ScrollViewPagePathEffect");
+        //                Assert.IsInstanceOf<ScrollViewPagePathEffect>(testingTarget, "Should be an instance of ScrollViewPagePathEffect type.");
 
-                        try
-                        {
-                            using (View view = new View())
-                            {
-                                testingTarget.ApplyToPage(view, 2);
-                            }
-                        }
-                        catch (Exception e)
-                        {
-                            tlog.Debug(tag, e.Message.ToString());
-                            Assert.Fail("Caught Exception: Failed!");
-                        }
+        //                try
+        //                {
+        //                    using (View view = new View())
+        //                    {
+        //                        testingTarget.ApplyToPage(view, 2);
+        //                    }
+        //                }
+        //                catch (Exception e)
+        //                {
+        //                    tlog.Debug(tag, e.Message.ToString());
+        //                    Assert.Fail("Caught Exception: Failed!");
+        //                }
 
-                        testingTarget.Dispose();
-                    }
-                }
-            }
+        //                testingTarget.Dispose();
+        //            }
+        //        }
+        //    }
 
-            tlog.Debug(tag, $"ScrollViewPagePathEffectApplyToPage END (OK)");
-        }
+        //    tlog.Debug(tag, $"ScrollViewPagePathEffectApplyToPage END (OK)");
+        //}
 
         [Test]
         [Category("P1")]

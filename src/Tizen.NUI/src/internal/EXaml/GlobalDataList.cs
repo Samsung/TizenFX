@@ -103,5 +103,11 @@ namespace Tizen.NUI.EXaml
         }
 
         internal List<Assembly> GatheredAssemblies = new List<Assembly>();
+
+        internal string LongStrings
+        {
+            get;
+            set;
+        }
     }
 }

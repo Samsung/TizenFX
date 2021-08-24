@@ -67,8 +67,15 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public void Dispose()
         {
-            Dispose(true);
-            System.GC.SuppressFinalize(this);
+            if (isDisposeQueued)
+            {
+                Dispose(DisposeTypes.Implicit);
+            }
+            else
+            {
+                Dispose(true);
+            }
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>

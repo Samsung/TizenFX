@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="NUITizenGallery.BackgroundColorTest4Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+    <!-- AppBar is top-side bar with navigation content, title, and action. If you not set any contents, back button is automatically added. -->
+    <ContentPage.AppBar>
+        <AppBar x:Name="appBar" Title="BackgroundColorTest4Page"/>
+    </ContentPage.AppBar>
+
+    <!-- Content is main placdeholder of ContentPage. Add your content into this view. -->
+    <ContentPage.Content>
+        <View x:Name="ContentView"
+          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+          HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+            <View.Layout>
+                <LinearLayout LinearOrientation="Vertical" LinearAlignment="Top" CellPadding="10,10"/>
+            </View.Layout>
+
+            <View
+              WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+              HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+              BackgroundColor="Green"
+              Weight="0.1"/>
+
+            <View x:Name="mainView"
+              WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+              HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+              BackgroundColor="White"
+              Weight="0.9">
+
+                <View.Layout>
+                    <LinearLayout LinearOrientation="Vertical" LinearAlignment="Top" CellPadding="10,10"/>
+                </View.Layout>
+
+                <TextLabel x:Name="label"
+                           WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                           PointSize="6"
+                           Text="This is a sample label"
+                           VerticalAlignment="Center"/>
+
+                <Button x:Name="btnRedLabel"
+                        WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                        PointSize="6"
+                        Text="Set label background color to red"
+                        TextColor="White" />
+
+                <Button x:Name="btnDefaultLabel"
+                           WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                            PointSize="6"
+                            Text="Set label background color to default"
+                            TextColor="White"/>
+
+                <Button x:Name="button"
+                        WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                        PointSize="6"
+                        Text="This is a sample button"
+                        TextColor="White"/>
+
+                <Button x:Name="btnBlueButton"
+                        WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                        PointSize="6"
+                        Text="Set button background color to blue"
+                        TextColor="White"/>
+
+                <Button x:Name="btnDefaultButton"
+                        WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                        PointSize="6"
+                        Text="Set button background color to default"
+                        TextColor="White"/>
+
+            </View>
+        </View>
+    </ContentPage.Content>
+
+</ContentPage>

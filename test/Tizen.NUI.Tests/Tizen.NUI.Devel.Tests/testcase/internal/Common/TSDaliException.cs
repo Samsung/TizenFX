@@ -60,7 +60,6 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Can't create success object DaliException.");
             Assert.IsInstanceOf<DaliException>(testingTarget, "Should return DaliException instance.");
 
-            testingTarget.location = "Korea";
             tlog.Debug(tag, "location : " + testingTarget.location);
 
             testingTarget.Dispose();
