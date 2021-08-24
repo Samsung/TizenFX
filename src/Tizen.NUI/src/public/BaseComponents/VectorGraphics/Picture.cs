@@ -24,13 +24,13 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
     /// A class representing an image read in one of the supported formats: raw, svg, png and etc.
     /// Besides the methods inherited from the Drawable, it provides methods to load and draw images on the canvas.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class Picture : Drawable
     {
         /// <summary>
         /// Creates an initialized Picture.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public Picture() : this(Interop.Picture.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -46,7 +46,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// <param name="url">A path to the picture file.</param>
         /// <exception cref="ArgumentNullException"> Thrown when url is null. </exception>
         /// <exception cref="Exception"> Thrown when image load fail. </exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public void Load(string url)
         {
             if (url == null)
@@ -69,7 +69,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// </summary>
         /// <param name="size">A new size of the image in pixels</param>
         /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public void SetSize(Size2D size)
         {
             if (size == null)
@@ -84,7 +84,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// Gets the size of the image.
         /// </summary>
         /// <returns> The size of the image in pixels.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public Size2D GetSize()
         {
             global::System.IntPtr cPtr = Interop.Picture.GetSize(View.getCPtr(this));
