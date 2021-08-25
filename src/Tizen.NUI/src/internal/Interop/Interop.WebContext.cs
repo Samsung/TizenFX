@@ -93,6 +93,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContext_RegisterMimeOverriddenCallback")]
             public static extern void RegisterMimeOverriddenCallback(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContext_RegisterRequestInterceptedCallback")]
+            public static extern void RegisterRequestInterceptedCallback(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContext_EnableCache")]
             public static extern void EnableCache(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
 
