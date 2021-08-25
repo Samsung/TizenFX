@@ -42,7 +42,7 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler<AnchorClickedEventArgs> textEditorAnchorClickedEventHandler;
         private AnchorClickedCallbackDelegate textEditorAnchorClickedCallbackDelegate;
 
-        private EventHandler<EventArgs> textEditorSelectionClearedEventHandler;
+        private EventHandler textEditorSelectionClearedEventHandler;
         private SelectionClearedCallbackDelegate textEditorSelectionClearedCallbackDelegate;
 
         private EventHandler<TextSelectionChangedEventArgs> textEditorSelectionChangedEventHandler;
@@ -209,7 +209,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<EventArgs> SelectionCleared
+        public event EventHandler SelectionCleared
         {
             add
             {
