@@ -51,19 +51,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the list of items.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public WebContextMenuItemList ItemList
-        {
-            get
-            {
-                IntPtr result = Interop.WebContextMenu.GetItemList(SwigCPtr);
-                return new WebContextMenuItemList(result, true);
-            }
-        }
-
-        /// <summary>
         /// Returns the nth item in a context menu.
         /// <param name="index">The position of the item</param>
         /// </summary>
