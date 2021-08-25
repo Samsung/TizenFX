@@ -41,7 +41,7 @@ namespace Tizen.NUI.Devel.Tests
 
             byte[] buffer = new byte[1024];
 
-            var testingTarget = new PixelData(buffer, 1024, 100, 150, PixelFormat.L8);
+            var testingTarget = new PixelData(buffer, 1024, 100, 150, PixelFormat.L8, PixelData.ReleaseFunction.Free);
             Assert.IsNotNull(testingTarget, "Can't create success object PixelData");
             Assert.IsInstanceOf<PixelData>(testingTarget, "Should be an instance of PixelData type.");
 
@@ -63,7 +63,7 @@ namespace Tizen.NUI.Devel.Tests
 
             byte[] buffer = new byte[10];
 
-            using (PixelData pixelData = new PixelData(buffer, 10, 1, 2, PixelFormat.L8))
+            using (PixelData pixelData = new PixelData(buffer, 10, 1, 2, PixelFormat.L8, PixelData.ReleaseFunction.Free))
             {
                 var testingTarget = new PixelData(PixelData.getCPtr(pixelData).Handle, true);
                 Assert.IsNotNull(testingTarget, "Can't create success object PixelData");
@@ -89,7 +89,7 @@ namespace Tizen.NUI.Devel.Tests
 
             byte[] buffer = new byte[10];
 
-            var testingTarget = new PixelData(buffer, 10, 1, 2, PixelFormat.L8);
+            var testingTarget = new PixelData(buffer, 10, 1, 2, PixelFormat.L8, PixelData.ReleaseFunction.Free);
             Assert.IsNotNull(testingTarget, "Can't create success object PixelData");
             Assert.IsInstanceOf<PixelData>(testingTarget, "Should be an instance of PixelData type.");
 
@@ -114,7 +114,7 @@ namespace Tizen.NUI.Devel.Tests
 
             byte[] buffer = new byte[10];
 
-            var testingTarget = new PixelData(buffer, 10, 1, 2, PixelFormat.L8);
+            var testingTarget = new PixelData(buffer, 10, 1, 2, PixelFormat.L8, PixelData.ReleaseFunction.Free);
             Assert.IsNotNull(testingTarget, "Can't create success object PixelData");
             Assert.IsInstanceOf<PixelData>(testingTarget, "Should be an instance of PixelData type.");
 
@@ -139,7 +139,7 @@ namespace Tizen.NUI.Devel.Tests
 
             byte[] buffer = new byte[10];
 
-            var testingTarget = new PixelData(buffer, 10, 1, 2, PixelFormat.L8);
+            var testingTarget = new PixelData(buffer, 10, 1, 2, PixelFormat.L8, PixelData.ReleaseFunction.Free);
             Assert.IsNotNull(testingTarget, "Can't create success object PixelData");
             Assert.IsInstanceOf<PixelData>(testingTarget, "Should be an instance of PixelData type.");
 
@@ -164,7 +164,7 @@ namespace Tizen.NUI.Devel.Tests
 
             byte[] buffer = new byte[10];
 
-            var testingTarget = new PixelData(buffer, 10, 1, 2, PixelFormat.BGR8888);
+            var testingTarget = new PixelData(buffer, 10, 1, 2, PixelFormat.BGR8888, PixelData.ReleaseFunction.Free);
             Assert.IsNotNull(testingTarget, "Can't create success object PixelData");
             Assert.IsInstanceOf<PixelData>(testingTarget, "Should be an instance of PixelData type.");
 
