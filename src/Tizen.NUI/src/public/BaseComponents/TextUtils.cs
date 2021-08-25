@@ -1682,6 +1682,75 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// This method converts a HiddenInput struct to a PropertyMap and returns it.
+        /// The returned map can be used for set HiddenInputSettings PropertyMap in the SetHiddenInput method.
+        /// <param name="hiddenInput">The HiddenInput struct value.</param>
+        /// <returns> A PropertyMap for HiddenInput property. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static PropertyMap GetHiddenInputMap(HiddenInput hiddenInput)
+        {
+            var map = new PropertyMap();
+
+            map.Add(0, new PropertyValue((int)hiddenInput.Mode));
+
+            if (hiddenInput.SubstituteCharacter != null)
+                map.Add(1, new PropertyValue(Convert.ToInt32(hiddenInput.SubstituteCharacter)));
+
+            if (hiddenInput.SubstituteCount != null)
+                map.Add(2, new PropertyValue((int)hiddenInput.SubstituteCount));
+
+            if (hiddenInput.ShowLastCharacterDuration != null)
+                map.Add(3, new PropertyValue((int)hiddenInput.ShowLastCharacterDuration));
+
+            return map;
+        }
+
+        /// <summary>
+        /// This method converts a HiddenInputSettings map to a struct and returns it.
+        /// The returned struct can be returned to the user as a HiddenInput in the GetHiddenInput method.
+        /// <param name="map">The HiddenInput PropertyMap.</param>
+        /// <returns> A HiddenInput struct. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static HiddenInput GetHiddenInputStruct(PropertyMap map)
+        {
+            PropertyValue value = null;
+
+            var hiddenInput = new HiddenInput();
+
+            value = map.Find(0);
+            if (value != null)
+            {
+                value.Get(out int mode);
+                hiddenInput.Mode = (HiddenInputModeType)mode;
+            }
+
+            value = map.Find(1);
+            if (value != null)
+            {
+                value.Get(out int substituteCharacter);
+                hiddenInput.SubstituteCharacter = Convert.ToChar(substituteCharacter);
+            }
+
+            value = map.Find(2);
+            if (value != null)
+            {
+                value.Get(out int substituteCount);
+                hiddenInput.SubstituteCount = substituteCount;
+            }
+
+            value = map.Find(3);
+            if (value != null)
+            {
+                value.Get(out int showLastCharacterDuration);
+                hiddenInput.ShowLastCharacterDuration = showLastCharacterDuration;
+            }
+
+            return hiddenInput;
+        }
+
+        /// <summary>
         /// Copy the previously selected text into the clipboard and return the copied value.
         /// </summary>
         /// <param name="textEditor">The textEditor control from which the text is copied.</param>

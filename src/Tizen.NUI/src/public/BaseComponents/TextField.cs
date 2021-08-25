@@ -1348,6 +1348,46 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Set HiddenInput to TextField. <br />
+        /// </summary>
+        /// <param name="hiddenInput">The HiddenInput</param>
+        /// <remarks>
+        /// SetHiddenInput specifies the requested font style through <see cref="Tizen.NUI.Text.HiddenInput"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetHiddenInput method.
+        /// <code>
+        /// var hiddenInput = new Tizen.NUI.Text.HiddenInput();
+        /// hiddenInput.Mode = HiddenInputModeType.ShowLastCharacter;
+        /// hiddenInput.SubstituteCharacter = '★';
+        /// hiddenInput.SubstituteCount = 0;
+        /// hiddenInput.ShowLastCharacterDuration = 1000;
+        /// field.SetHiddenInput(hiddenInput);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetHiddenInput(HiddenInput hiddenInput)
+        {
+            SetProperty(TextField.Property.HiddenInputSettings, new PropertyValue(TextUtils.GetHiddenInputMap(hiddenInput)));
+            NotifyPropertyChanged();
+        }
+
+        /// <summary>
+        /// Get HiddenInput from TextField. <br />
+        /// </summary>
+        /// <returns>The HiddenInput</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.HiddenInput"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public HiddenInput GetHiddenInput()
+        {
+            var map = new PropertyMap();
+            GetProperty(TextField.Property.HiddenInputSettings).Get(map);
+            return TextUtils.GetHiddenInputStruct(map);
+        }
+
+        /// <summary>
         /// The PixelSize property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>

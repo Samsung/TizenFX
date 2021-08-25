@@ -2279,5 +2279,40 @@ namespace Tizen.NUI
             [EditorBrowsable(EditorBrowsableState.Never)]
             public bool Ellipsis { get; set; }
         }
+
+        /// <summary>
+        /// A struct to pass data of HiddenInputSettings PropertyMap. <br />
+        /// </summary>
+        /// <remarks>
+        /// The HiddenInput struct is used as an argument to SetHiddenInput and GetHiddenInput methods. <br />
+        /// See <see cref="Tizen.NUI.BaseComponents.TextField.SetHiddenInput"/> and <see cref="Tizen.NUI.BaseComponents.TextField.GetHiddenInput"/>. <br />
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public struct HiddenInput
+        {
+            /// <summary>
+            /// The mode for input text display. <br />
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public HiddenInputModeType Mode { get; set; }
+
+            /// <summary>
+            /// All input characters are substituted by this character (if null, the default value is '*'). <br />
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public char? SubstituteCharacter { get; set; }
+
+            /// <summary>
+            /// Length of text to show or hide, available when HideCount/ShowCount mode is used (if null, the default value is 0). <br />
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public int? SubstituteCount { get; set; }
+
+            /// <summary>
+            /// Hide last character after this duration, available when ShowLastCharacter mode (if null, the default value is 1000). <br />
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public int? ShowLastCharacterDuration { get; set; }
+        }
     }
 }
