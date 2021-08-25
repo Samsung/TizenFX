@@ -33,7 +33,7 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler<ScrollStateChangedEventArgs> textEditorScrollStateChangedEventHandler;
         private ScrollStateChangedCallbackDelegate textEditorScrollStateChangedCallbackDelegate;
 
-        private EventHandler<EventArgs> textEditorCursorPositionChangedEventHandler;
+        private EventHandler textEditorCursorPositionChangedEventHandler;
         private CursorPositionChangedCallbackDelegate textEditorCursorPositionChangedCallbackDelegate;
 
         private EventHandler<MaxLengthReachedEventArgs> textEditorMaxLengthReachedEventHandler;
@@ -42,7 +42,7 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler<AnchorClickedEventArgs> textEditorAnchorClickedEventHandler;
         private AnchorClickedCallbackDelegate textEditorAnchorClickedCallbackDelegate;
 
-        private EventHandler<EventArgs> textEditorSelectionChangedEventHandler;
+        private EventHandler textEditorSelectionChangedEventHandler;
         private SelectionChangedCallbackDelegate textEditorSelectionChangedCallbackDelegate;
 
         private EventHandler<InputFilteredEventArgs> textEditorInputFilteredEventHandler;
@@ -126,7 +126,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<EventArgs> CursorPositionChanged
+        public event EventHandler CursorPositionChanged
         {
             add
             {
@@ -203,7 +203,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<EventArgs> SelectionChanged
+        public event EventHandler SelectionChanged
         {
             add
             {
