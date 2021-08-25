@@ -270,7 +270,7 @@ namespace Tizen.NUI.Components
             pixelBuffer[6] = (byte)(0xFF * color2.Z);
             pixelBuffer[7] = (byte)(0xFF * color2.W);
 
-            PixelData pixelData = new PixelData(pixelBuffer, size, width, height, PixelFormat.RGBA8888);
+            PixelData pixelData = new PixelData(pixelBuffer, size, width, height, PixelFormat.RGBA8888, PixelData.ReleaseFunction.DeleteArray );
             Texture texture = new Texture(TextureType.TEXTURE_2D, PixelFormat.RGBA8888, width, height);
             texture.Upload(pixelData);
 
