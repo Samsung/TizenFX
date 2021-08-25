@@ -59,7 +59,7 @@ namespace Tizen.NUI.Binding
                     foreach (var styleClass in _styleClass)
                     {
                         var classStyleProperty = BindableProperty.Create("ClassStyle", typeof(IList<XamlStyle>), typeof(View), default(IList<XamlStyle>),
-                            propertyChanged: (bindable, oldvalue, newvalue) => ((View)bindable)._mergedStyle.OnClassStyleChanged());
+                            propertyChanged: (bindable, oldvalue, newvalue) => ((View)bindable).MergedStyle.OnClassStyleChanged());
                         _classStyleProperties.Add(classStyleProperty);
                         Target.OnSetDynamicResource(classStyleProperty, Tizen.NUI.Binding.XamlStyle.StyleClassPrefix + styleClass);
                     }

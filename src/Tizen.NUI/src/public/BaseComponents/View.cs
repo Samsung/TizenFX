@@ -2397,6 +2397,19 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public XamlStyle XamlStyle
+        {
+            get
+            {
+                return (XamlStyle)GetValue(XamlStyleProperty);
+            }
+            set
+            {
+                SetValue(XamlStyleProperty, value);
+            }
+        }
+
         /// <summary>
         /// The Color of View. This is an RGBA value.
         /// </summary>
