@@ -47,28 +47,28 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Gets the subject of book.
+        /// Gets the subject of the book.
         /// </summary>
         /// <value>The subject.</value>
         /// <since_tizen> 9 </since_tizen>
         public string Subject { get; }
 
         /// <summary>
-        /// Gets the author of book.
+        /// Gets the author of the book.
         /// </summary>
         /// <value>The author.</value>
         /// <since_tizen> 9 </since_tizen>
         public string Author { get; }
 
         /// <summary>
-        /// Gets the published date as a formatted string.
+        /// Gets the published date, formatted as a string.
         /// </summary>
         /// <value>The published date.</value>
         /// <since_tizen> 9 </since_tizen>
         public string DatePublished { get; }
 
         /// <summary>
-        /// Gets the publisher of book.
+        /// Gets the publisher of the book.
         /// </summary>
         /// <value>The publisher.</value>
         /// <since_tizen> 9 </since_tizen>

@@ -473,12 +473,12 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Retrieves all matched ebook path with given <paramref name="keyword"/>.
+        /// Retrieves all matched ebook paths with given <paramref name="keyword"/>.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/mediastorage</privilege>
         /// <privilege>http://tizen.org/privilege/externalstorage</privilege>
-        /// <param name="keyword"></param>
-        /// <returns>A list of ebook path which contain <paramref name="keyword"/>.</returns>
+        /// <param name="keyword">The keyword to search.</param>
+        /// <returns>A list of ebook paths which contain <paramref name="keyword"/>.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="keyword"/> is null.</exception>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
