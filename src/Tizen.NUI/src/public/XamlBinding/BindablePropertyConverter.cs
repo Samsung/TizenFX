@@ -63,11 +63,8 @@ namespace Tizen.NUI.Binding
                 if (parentValuesProvider.TargetObject is Setter)
                 {
                     var triggerBase = parent as TriggerBase;
-                    var visualState = parent as VisualState;
                     if (triggerBase != null)
                         type = triggerBase.TargetType;
-                    else if (visualState != null)
-                        type = FindTypeForVisualState(parentValuesProvider, lineinfo);
                 }
                 else if (parentValuesProvider.TargetObject is Trigger)
                     type = (parentValuesProvider.TargetObject as Trigger).TargetType;
@@ -123,41 +120,6 @@ namespace Tizen.NUI.Binding
             if (bp != null && bp.PropertyName != propertyName && !isObsolete)
                 throw new XamlParseException($"The PropertyName of {type.Name}.{name} is not {propertyName}", lineinfo);
             return bp;
-        }
-
-        Type FindTypeForVisualState(IProvideParentValues parentValueProvider, IXmlLineInfo lineInfo)
-        {
-            var parents = parentValueProvider.ParentObjects.ToList();
-
-            // Skip 0; we would not be making this check if TargetObject were not a Setter
-            // Skip 1; we would not be making this check if the immediate parent were not a VisualState
-
-            // VisualStates must be in a VisualStateGroup
-            if (!(parents[2] is VisualStateGroup))
-            {
-                throw new XamlParseException($"Expected {nameof(VisualStateGroup)} but found {parents[2]}.", lineInfo);
-            }
-
-            var vsTarget = parents[3];
-
-            // Are these Visual States directly on a VisualElement?
-            if (vsTarget is BaseHandle)
-            {
-                return vsTarget.GetType();
-            }
-
-            if (!(parents[3] is VisualStateGroupList))
-            {
-                throw new XamlParseException($"Expected {nameof(VisualStateGroupList)} but found {parents[3]}.", lineInfo);
-            }
-
-            if (!(parents[4] is Setter))
-            {
-                throw new XamlParseException($"Expected {nameof(Setter)} but found {parents[4]}.", lineInfo);
-            }
-
-            throw new XamlParseException("NUI doesn't support VisualState", lineInfo);
-
         }
     }
 }
