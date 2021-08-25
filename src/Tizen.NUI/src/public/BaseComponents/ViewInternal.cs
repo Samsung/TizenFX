@@ -33,7 +33,7 @@ namespace Tizen.NUI.BaseComponents
         private MergedStyle mergedStyle = null;
         internal string styleName;
 
-        internal MergedStyle _mergedStyle
+        internal MergedStyle MergedStyle
         {
             get
             {
