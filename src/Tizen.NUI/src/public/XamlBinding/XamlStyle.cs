@@ -12,18 +12,18 @@ namespace Tizen.NUI.Binding
     {
         internal const string StyleClassPrefix = "Tizen.NUI.Binding.StyleClass.";
 
-        readonly BindableProperty _basedOnResourceProperty = BindableProperty.CreateAttached("BasedOnResource", typeof(XamlStyle), typeof(XamlStyle), default(XamlStyle),
+        readonly BindableProperty basedOnResourceProperty = BindableProperty.CreateAttached("BasedOnResource", typeof(XamlStyle), typeof(XamlStyle), default(XamlStyle),
             propertyChanged: OnBasedOnResourceChanged);
 
-        readonly List<WeakReference<BindableObject>> _targets = new List<WeakReference<BindableObject>>(4);
+        readonly List<WeakReference<BindableObject>> targets = new List<WeakReference<BindableObject>>(4);
 
-        XamlStyle _basedOnStyle;
+        XamlStyle basedOnStyle;
 
-        string _baseResourceKey;
+        string baseResourceKey;
 
-        IList<Behavior> _behaviors;
+        IList<Behavior> behaviors;
 
-        IList<TriggerBase> _triggers;
+        IList<TriggerBase> triggers;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public XamlStyle([TypeConverter(typeof(TypeTypeConverter))][Parameter("TargetType")] Type targetType)
@@ -41,15 +41,15 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public XamlStyle BasedOn
         {
-            get { return _basedOnStyle; }
+            get { return basedOnStyle; }
             set
             {
-                if (_basedOnStyle == value)
+                if (basedOnStyle == value)
                     return;
                 if (!ValidateBasedOn(value))
                     throw new ArgumentException("BasedOn.TargetType is not compatible with TargetType");
-                XamlStyle oldValue = _basedOnStyle;
-                _basedOnStyle = value;
+                XamlStyle oldValue = basedOnStyle;
+                basedOnStyle = value;
                 BasedOnChanged(oldValue, value);
                 if (value != null)
                     BaseResourceKey = null;
@@ -59,21 +59,21 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string BaseResourceKey
         {
-            get { return _baseResourceKey; }
+            get { return baseResourceKey; }
             set
             {
-                if (_baseResourceKey == value)
+                if (baseResourceKey == value)
                     return;
-                _baseResourceKey = value;
+                baseResourceKey = value;
                 //update all DynamicResources
-                foreach (WeakReference<BindableObject> bindableWr in _targets)
+                foreach (WeakReference<BindableObject> bindableWr in targets)
                 {
                     BindableObject target;
                     if (!bindableWr.TryGetTarget(out target))
                         continue;
-                    target.RemoveDynamicResource(_basedOnResourceProperty);
+                    target.RemoveDynamicResource(basedOnResourceProperty);
                     if (value != null)
-                        target.SetDynamicResource(_basedOnResourceProperty, value);
+                        target.SetDynamicResource(basedOnResourceProperty, value);
                 }
                 if (value != null)
                     BasedOn = null;
@@ -82,7 +82,7 @@ namespace Tizen.NUI.Binding
 
         internal IList<Behavior> Behaviors
         {
-            get { return _behaviors ?? (_behaviors = new AttachedCollection<Behavior>()); }
+            get { return behaviors ?? (behaviors = new AttachedCollection<Behavior>()); }
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -97,14 +97,14 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public IList<TriggerBase> Triggers
         {
-            get { return _triggers ?? (_triggers = new AttachedCollection<TriggerBase>()); }
+            get { return triggers ?? (triggers = new AttachedCollection<TriggerBase>()); }
         }
 
         void IStyle.Apply(BindableObject bindable)
         {
-            _targets.Add(new WeakReference<BindableObject>(bindable));
+            targets.Add(new WeakReference<BindableObject>(bindable));
             if (BaseResourceKey != null)
-                bindable.SetDynamicResource(_basedOnResourceProperty, BaseResourceKey);
+                bindable.SetDynamicResource(basedOnResourceProperty, BaseResourceKey);
             ApplyCore(bindable, BasedOn ?? GetBasedOnResource(bindable));
         }
 
@@ -114,8 +114,8 @@ namespace Tizen.NUI.Binding
         void IStyle.UnApply(BindableObject bindable)
         {
             UnApplyCore(bindable, BasedOn ?? GetBasedOnResource(bindable));
-            bindable.RemoveDynamicResource(_basedOnResourceProperty);
-            _targets.RemoveAll(wr =>
+            bindable.RemoveDynamicResource(basedOnResourceProperty);
+            targets.RemoveAll(wr =>
             {
                 BindableObject target;
                 return wr.TryGetTarget(out target) && target == bindable;
@@ -150,7 +150,7 @@ namespace Tizen.NUI.Binding
 
         void BasedOnChanged(XamlStyle oldValue, XamlStyle newValue)
         {
-            foreach (WeakReference<BindableObject> bindableRef in _targets)
+            foreach (WeakReference<BindableObject> bindableRef in targets)
             {
                 BindableObject bindable;
                 if (!bindableRef.TryGetTarget(out bindable))
@@ -163,7 +163,7 @@ namespace Tizen.NUI.Binding
 
         XamlStyle GetBasedOnResource(BindableObject bindable)
         {
-            return (XamlStyle)bindable.GetValue(_basedOnResourceProperty);
+            return (XamlStyle)bindable.GetValue(basedOnResourceProperty);
         }
 
         static void OnBasedOnResourceChanged(BindableObject bindable, object oldValue, object newValue)
