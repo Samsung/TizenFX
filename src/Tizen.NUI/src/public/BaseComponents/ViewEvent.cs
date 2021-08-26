@@ -830,6 +830,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 onRelayoutEventHandler(this, null);
             }
+
+            Interop.View.RelayoutRequest(SwigCPtr);
         }
 
         // Callback for View TouchSignal
