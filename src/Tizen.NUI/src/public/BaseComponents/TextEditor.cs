@@ -237,7 +237,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetFontStyle(FontStyle fontStyle)
         {
-            SetProperty(TextEditor.Property.FontStyle, new PropertyValue(TextUtils.GetFontStyleMap(fontStyle)));
+            SetValue(FontStyleProperty, TextUtils.GetFontStyleMap(fontStyle));
         }
 
         /// <summary>
@@ -250,9 +250,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public FontStyle GetFontStyle()
         {
-            var map = new PropertyMap();
-            GetProperty(TextEditor.Property.FontStyle).Get(map);
-            return TextUtils.GetFontStyleStruct(map);
+            return TextUtils.GetFontStyleStruct((PropertyMap)GetValue(FontStyleProperty));
         }
 
         /// <summary>
@@ -734,8 +732,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetInputFontStyle(FontStyle fontStyle)
         {
-            SetProperty(TextEditor.Property.InputFontStyle, new PropertyValue(TextUtils.GetFontStyleMap(fontStyle)));
-            NotifyPropertyChanged();
+            SetValue(InputFontStyleProperty, TextUtils.GetFontStyleMap(fontStyle));
         }
 
         /// <summary>
@@ -748,9 +745,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public FontStyle GetInputFontStyle()
         {
-            var map = new PropertyMap();
-            GetProperty(TextEditor.Property.InputFontStyle).Get(map);
-            return TextUtils.GetFontStyleStruct(map);
+            return TextUtils.GetFontStyleStruct((PropertyMap)GetValue(InputFontStyleProperty));
         }
 
         /// <summary>
@@ -848,7 +843,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetUnderline(Underline underline)
         {
-            SetProperty(TextEditor.Property.UNDERLINE, new PropertyValue(TextUtils.GetUnderlineMap(underline)));
+            SetValue(UnderlineProperty, TextUtils.GetUnderlineMap(underline));
         }
 
         /// <summary>
@@ -861,9 +856,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Underline GetUnderline()
         {
-            var map = new PropertyMap();
-            GetProperty(TextEditor.Property.UNDERLINE).Get(map);
-            return TextUtils.GetUnderlineStruct(map);
+            return TextUtils.GetUnderlineStruct((PropertyMap)GetValue(UnderlineProperty));
         }
 
         /// <summary>
@@ -926,7 +919,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetShadow(Tizen.NUI.Text.Shadow shadow)
         {
-            SetProperty(TextEditor.Property.SHADOW, new PropertyValue(TextUtils.GetShadowMap(shadow)));
+            SetValue(ShadowProperty, TextUtils.GetShadowMap(shadow));
         }
 
         /// <summary>
@@ -939,9 +932,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.Text.Shadow GetShadow()
         {
-            var map = new PropertyMap();
-            GetProperty(TextEditor.Property.SHADOW).Get(map);
-            return TextUtils.GetShadowStruct(map);
+            return TextUtils.GetShadowStruct((PropertyMap)GetValue(ShadowProperty));
         }
 
         /// <summary>
@@ -1037,7 +1028,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetOutline(Outline outline)
         {
-            SetProperty(TextEditor.Property.OUTLINE, new PropertyValue(TextUtils.GetOutlineMap(outline)));
+            SetValue(OutlineProperty, TextUtils.GetOutlineMap(outline));
         }
 
         /// <summary>
@@ -1050,9 +1041,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Outline GetOutline()
         {
-            var map = new PropertyMap();
-            GetProperty(TextEditor.Property.OUTLINE).Get(map);
-            return TextUtils.GetOutlineStruct(map);
+            return TextUtils.GetOutlineStruct((PropertyMap)GetValue(OutlineProperty));
         }
 
         /// <summary>
@@ -1610,7 +1599,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetPlaceholder(Placeholder placeholder)
         {
-            SetProperty(TextEditor.Property.PLACEHOLDER, new PropertyValue(TextUtils.GetPlaceholderMap(placeholder)));
+            SetValue(PlaceholderProperty, TextUtils.GetPlaceholderMap(placeholder));
         }
 
         /// <summary>
@@ -1623,9 +1612,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Placeholder GetPlaceholder()
         {
-            var map = new PropertyMap();
-            GetProperty(TextEditor.Property.PLACEHOLDER).Get(map);
-            return TextUtils.GetPlaceholderStruct(map);
+            return TextUtils.GetPlaceholderStruct((PropertyMap)GetValue(PlaceholderProperty));
         }
 
         /// <summary>
