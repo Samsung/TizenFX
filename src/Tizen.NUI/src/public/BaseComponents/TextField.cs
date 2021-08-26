@@ -327,8 +327,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetFontStyle(FontStyle fontStyle)
         {
-            SetProperty(TextField.Property.FontStyle, new PropertyValue(TextUtils.GetFontStyleMap(fontStyle)));
-            NotifyPropertyChanged();
+            SetValue(FontStyleProperty, TextUtils.GetFontStyleMap(fontStyle));
         }
 
         /// <summary>
@@ -341,9 +340,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public FontStyle GetFontStyle()
         {
-            var map = new PropertyMap();
-            GetProperty(TextField.Property.FontStyle).Get(map);
-            return TextUtils.GetFontStyleStruct(map);
+            return TextUtils.GetFontStyleStruct((PropertyMap)GetValue(FontStyleProperty));
         }
 
         /// <summary>
@@ -1006,8 +1003,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetInputFontStyle(FontStyle fontStyle)
         {
-            SetProperty(TextField.Property.InputFontStyle, new PropertyValue(TextUtils.GetFontStyleMap(fontStyle)));
-            NotifyPropertyChanged();
+            SetValue(InputFontStyleProperty, TextUtils.GetFontStyleMap(fontStyle));
         }
 
         /// <summary>
@@ -1020,9 +1016,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public FontStyle GetInputFontStyle()
         {
-            var map = new PropertyMap();
-            GetProperty(TextField.Property.InputFontStyle).Get(map);
-            return TextUtils.GetFontStyleStruct(map);
+            return TextUtils.GetFontStyleStruct((PropertyMap)GetValue(InputFontStyleProperty));
         }
 
         /// <summary>
@@ -1086,7 +1080,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetUnderline(Underline underline)
         {
-            SetProperty(TextField.Property.UNDERLINE, new PropertyValue(TextUtils.GetUnderlineMap(underline)));
+            SetValue(UnderlineProperty, TextUtils.GetUnderlineMap(underline));
         }
 
         /// <summary>
@@ -1099,9 +1093,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Underline GetUnderline()
         {
-            var map = new PropertyMap();
-            GetProperty(TextField.Property.UNDERLINE).Get(map);
-            return TextUtils.GetUnderlineStruct(map);
+            return TextUtils.GetUnderlineStruct((PropertyMap)GetValue(UnderlineProperty));
         }
 
         /// <summary>
@@ -1164,7 +1156,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetShadow(Tizen.NUI.Text.Shadow shadow)
         {
-            SetProperty(TextField.Property.SHADOW, new PropertyValue(TextUtils.GetShadowMap(shadow)));
+            SetValue(ShadowProperty, TextUtils.GetShadowMap(shadow));
         }
 
         /// <summary>
@@ -1177,9 +1169,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.Text.Shadow GetShadow()
         {
-            var map = new PropertyMap();
-            GetProperty(TextField.Property.SHADOW).Get(map);
-            return TextUtils.GetShadowStruct(map);
+            return TextUtils.GetShadowStruct((PropertyMap)GetValue(ShadowProperty));
         }
 
         /// <summary>
@@ -1275,7 +1265,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetOutline(Outline outline)
         {
-            SetProperty(TextField.Property.OUTLINE, new PropertyValue(TextUtils.GetOutlineMap(outline)));
+            SetValue(OutlineProperty, TextUtils.GetOutlineMap(outline));
         }
 
         /// <summary>
@@ -1288,9 +1278,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Outline GetOutline()
         {
-            var map = new PropertyMap();
-            GetProperty(TextField.Property.OUTLINE).Get(map);
-            return TextUtils.GetOutlineStruct(map);
+            return TextUtils.GetOutlineStruct((PropertyMap)GetValue(OutlineProperty));
         }
 
         /// <summary>
@@ -1368,8 +1356,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetHiddenInput(HiddenInput hiddenInput)
         {
-            SetProperty(TextField.Property.HiddenInputSettings, new PropertyValue(TextUtils.GetHiddenInputMap(hiddenInput)));
-            NotifyPropertyChanged();
+            SetValue(HiddenInputSettingsProperty, TextUtils.GetHiddenInputMap(hiddenInput));
         }
 
         /// <summary>
@@ -1382,9 +1369,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public HiddenInput GetHiddenInput()
         {
-            var map = new PropertyMap();
-            GetProperty(TextField.Property.HiddenInputSettings).Get(map);
-            return TextUtils.GetHiddenInputStruct(map);
+            return TextUtils.GetHiddenInputStruct((PropertyMap)GetValue(HiddenInputSettingsProperty));
         }
 
         /// <summary>
@@ -1797,7 +1782,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetPlaceholder(Placeholder placeholder)
         {
-            SetProperty(TextField.Property.PLACEHOLDER, new PropertyValue(TextUtils.GetPlaceholderMap(placeholder)));
+            SetValue(PlaceholderProperty, TextUtils.GetPlaceholderMap(placeholder));
         }
 
         /// <summary>
@@ -1810,9 +1795,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Placeholder GetPlaceholder()
         {
-            var map = new PropertyMap();
-            GetProperty(TextField.Property.PLACEHOLDER).Get(map);
-            return TextUtils.GetPlaceholderStruct(map);
+            return TextUtils.GetPlaceholderStruct((PropertyMap)GetValue(PlaceholderProperty));
         }
 
         /// <summary>
