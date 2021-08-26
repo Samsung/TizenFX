@@ -153,15 +153,15 @@ namespace Tizen.Network.Stc
                         _getAllStatsCb_map.Remove(key);
                     }
                 };
-            }
 
-            using (var filterHandle = filter.ConvertToNativeFilter())
-            {
-                int ret = Interop.Stc.GetAllStats(GetSafeHandle(), filterHandle, _getAllStatsCb_map[id], id);
-                if (ret != (int)StcError.None)
+                using (var filterHandle = filter.ConvertToNativeFilter())
                 {
-                    Log.Error(Globals.LogTag, "GetAllStatus() failed , Error - " + (StcError)ret);
-                    throw StcErrorFactory.GetStcException(ret);
+                        int ret = Interop.Stc.GetAllStats(GetSafeHandle(), filterHandle, _getAllStatsCb_map[id], id);
+                        if (ret != (int)StcError.None)
+                        {
+                               Log.Error(Globals.LogTag, "GetAllStatus() failed , Error - " + (StcError)ret);
+                               throw StcErrorFactory.GetStcException(ret);
+                        }
                 }
             }
             return task.Task;
