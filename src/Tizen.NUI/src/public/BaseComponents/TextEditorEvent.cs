@@ -33,11 +33,17 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler<ScrollStateChangedEventArgs> textEditorScrollStateChangedEventHandler;
         private ScrollStateChangedCallbackDelegate textEditorScrollStateChangedCallbackDelegate;
 
+        private EventHandler<CursorPositionChangedEventArgs> textEditorCursorPositionChangedEventHandler;
+        private CursorPositionChangedCallbackDelegate textEditorCursorPositionChangedCallbackDelegate;
+
         private EventHandler<MaxLengthReachedEventArgs> textEditorMaxLengthReachedEventHandler;
         private MaxLengthReachedCallbackDelegate textEditorMaxLengthReachedCallbackDelegate;
 
         private EventHandler<AnchorClickedEventArgs> textEditorAnchorClickedEventHandler;
         private AnchorClickedCallbackDelegate textEditorAnchorClickedCallbackDelegate;
+
+        private EventHandler<TextSelectionChangedEventArgs> textEditorSelectionChangedEventHandler;
+        private SelectionChangedCallbackDelegate textEditorSelectionChangedCallbackDelegate;
 
         private EventHandler<InputFilteredEventArgs> textEditorInputFilteredEventHandler;
         private InputFilteredCallbackDelegate textEditorInputFilteredCallbackDelegate;
@@ -49,10 +55,16 @@ namespace Tizen.NUI.BaseComponents
         private delegate void ScrollStateChangedCallbackDelegate(IntPtr textEditor, ScrollState state);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void CursorPositionChangedCallbackDelegate(IntPtr textEditor, uint oldPosition);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void MaxLengthReachedCallbackDelegate(IntPtr textEditor);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void AnchorClickedCallbackDelegate(IntPtr textEditor, IntPtr href, uint hrefLength);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void SelectionChangedCallbackDelegate(IntPtr textEditor, uint oldStart, uint oldEnd);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void InputFilteredCallbackDelegate(IntPtr textEditor, InputFilterType type);
@@ -110,6 +122,32 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The CursorPositionChanged event.
+        /// </summary>
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<CursorPositionChangedEventArgs> CursorPositionChanged
+        {
+            add
+            {
+                if (textEditorCursorPositionChangedEventHandler == null)
+                {
+                    textEditorCursorPositionChangedCallbackDelegate = (OnCursorPositionChanged);
+                    CursorPositionChangedSignal().Connect(textEditorCursorPositionChangedCallbackDelegate);
+                }
+                textEditorCursorPositionChangedEventHandler += value;
+            }
+            remove
+            {
+                if (textEditorCursorPositionChangedEventHandler == null && CursorPositionChangedSignal().Empty() == false)
+                {
+                    this.CursorPositionChangedSignal().Disconnect(textEditorCursorPositionChangedCallbackDelegate);
+                }
+                textEditorCursorPositionChangedEventHandler -= value;
+            }
+        }
+
+        /// <summary>
         /// The MaxLengthReached event.
         /// </summary>
         /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -157,6 +195,32 @@ namespace Tizen.NUI.BaseComponents
                 {
                     AnchorClickedSignal().Disconnect(textEditorAnchorClickedCallbackDelegate);
                 }
+            }
+        }
+
+        /// <summary>
+        /// The SelectionChanged event.
+        /// </summary>
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<TextSelectionChangedEventArgs> SelectionChanged
+        {
+            add
+            {
+                if (textEditorSelectionChangedEventHandler == null)
+                {
+                    textEditorSelectionChangedCallbackDelegate = (OnSelectionChanged);
+                    SelectionChangedSignal().Connect(textEditorSelectionChangedCallbackDelegate);
+                }
+                textEditorSelectionChangedEventHandler += value;
+            }
+            remove
+            {
+                if (textEditorSelectionChangedEventHandler == null && SelectionChangedSignal().Empty() == false)
+                {
+                    this.SelectionChangedSignal().Disconnect(textEditorSelectionChangedCallbackDelegate);
+                }
+                textEditorSelectionChangedEventHandler -= value;
             }
         }
 
@@ -218,6 +282,13 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
+        internal TextEditorSignal CursorPositionChangedSignal()
+        {
+            TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.CursorPositionChangedSignal(SwigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         internal TextEditorSignal MaxLengthReachedSignal()
         {
             TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.MaxLengthReachedSignal(SwigCPtr), false);
@@ -228,6 +299,13 @@ namespace Tizen.NUI.BaseComponents
         internal TextEditorSignal AnchorClickedSignal()
         {
             TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.AnchorClickedSignal(SwigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal TextEditorSignal SelectionChangedSignal()
+        {
+            TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.SelectionChangedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -269,6 +347,20 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        private void OnCursorPositionChanged(IntPtr textEditor, uint oldPosition)
+        {
+            if (textEditorCursorPositionChangedEventHandler != null)
+            {
+                CursorPositionChangedEventArgs e = new CursorPositionChangedEventArgs();
+
+                // Populate all members of "e" (CursorPositionChangedEventArgs) with real data
+                e.OldCursorPosition = oldPosition;
+
+                //here we send all data to user event handlers
+                textEditorCursorPositionChangedEventHandler?.Invoke(this, e);
+            }
+        }
+
         private void OnMaxLengthReached(IntPtr textEditor)
         {
             if (textEditorMaxLengthReachedEventHandler != null)
@@ -292,6 +384,21 @@ namespace Tizen.NUI.BaseComponents
             e.Href = Marshal.PtrToStringAnsi(href);
             //here we send all data to user event handlers
             textEditorAnchorClickedEventHandler?.Invoke(this, e);
+        }
+
+        private void OnSelectionChanged(IntPtr textEditor, uint oldStart, uint oldEnd)
+        {
+            if (textEditorSelectionChangedEventHandler != null)
+            {
+                TextSelectionChangedEventArgs e = new TextSelectionChangedEventArgs();
+
+                // Populate all members of "e" (TextSelectionChangedEventArgs) with real data
+                e.OldSelectionStart = oldStart;
+                e.OldSelectionEnd = oldEnd;
+
+                //here we send all data to user event handlers
+                textEditorSelectionChangedEventHandler?.Invoke(this, e);
+            }
         }
 
         private void OnInputFiltered(IntPtr textEditor, InputFilterType type)
