@@ -31,11 +31,6 @@ namespace Tizen.NUI
         {
         }
 
-        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
-        {
-            Interop.TimePeriod.DeleteTimePeriod(swigCPtr);
-        }
-
         /// <summary>
         /// The constructor.
         /// Creates an time period object with the user-defined alpha function.
@@ -102,6 +97,13 @@ namespace Tizen.NUI
         internal static int SecondsToMilliSeconds(float sec)
         {
             return (int)(sec * 1000);
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.TimePeriod.DeleteTimePeriod(swigCPtr);
         }
     }
 }
