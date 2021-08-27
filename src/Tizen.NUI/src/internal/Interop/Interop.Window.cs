@@ -260,11 +260,11 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_GetWindow")]
             public static extern global::System.IntPtr Get(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_AddInputRegion")]
-            public static extern void AddInputRegion(global::System.Runtime.InteropServices.HandleRef window, global::System.Runtime.InteropServices.HandleRef inputRegion);
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_IncludeInputRegion")]
+            public static extern void IncludeInputRegion(global::System.Runtime.InteropServices.HandleRef window, global::System.Runtime.InteropServices.HandleRef inputRegion);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_SubtractInputRegion")]
-            public static extern void SubtractInputRegion(global::System.Runtime.InteropServices.HandleRef window, global::System.Runtime.InteropServices.HandleRef inputRegion);
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_ExcludeInputRegion")]
+            public static extern void ExcludeInputRegion(global::System.Runtime.InteropServices.HandleRef window, global::System.Runtime.InteropServices.HandleRef inputRegion);
         }
     }
 }
