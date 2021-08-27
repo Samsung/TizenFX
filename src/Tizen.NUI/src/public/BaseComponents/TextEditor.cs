@@ -1944,6 +1944,11 @@ namespace Tizen.NUI.BaseComponents
                     this.MaxLengthReachedSignal().Disconnect(textEditorMaxLengthReachedCallbackDelegate);
                 }
 
+                if (textEditorSelectionClearedCallbackDelegate != null)
+                {
+                    this.SelectionClearedSignal().Disconnect(textEditorSelectionClearedCallbackDelegate);
+                }
+
                 if (textEditorCursorPositionChangedCallbackDelegate != null)
                 {
                     this.CursorPositionChangedSignal().Disconnect(textEditorCursorPositionChangedCallbackDelegate);
