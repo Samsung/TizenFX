@@ -122,9 +122,6 @@ internal static partial class Interop
         [DllImport(Libraries.Tts, EntryPoint = "tts_get_error_message", CallingConvention = CallingConvention.Cdecl)]
         internal static extern TtsError TtsGetErrorMessage(IntPtr handle, out string err_msg);
 
-        [DllImport(Libraries.Tts, EntryPoint = "tts_is_recognition_type_supported", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern TtsError TtsIsRecognitionTypeSupported(IntPtr handle, string type, out bool support);
-
         [DllImport(Libraries.Tts, EntryPoint = "tts_check_screen_reader_on", CallingConvention = CallingConvention.Cdecl)]
         internal static extern TtsError TtsCheckScreenReaderOn(IntPtr handle, out bool isOn);
 
