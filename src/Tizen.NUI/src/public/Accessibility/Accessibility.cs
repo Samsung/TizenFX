@@ -61,6 +61,23 @@ namespace Tizen.NUI.Accessibility
         {
             get => accessibility;
         }
+
+        /// <summary>
+        /// Flag to check whether the state of Accessibility is enabled or not.
+        /// </summary>
+        /// <remarks>
+        /// Getter returns true if Accessibility is enabled, false otherwise.
+        /// </remarks>
+        /// This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool Enabled
+        {
+            get
+            {
+                return (bool)Interop.Accessibility.IsEnabled();
+            }
+        }
+
         #endregion Property
 
 
@@ -160,19 +177,6 @@ namespace Tizen.NUI.Accessibility
             Interop.Accessibility.BridgeDisableAutoInit();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-
-        /// <summary>
-        /// Returns whether the state of Accessibility is enabled or not.
-        /// </summary>
-        /// <returns> True if Accessibility is enabled, false otherwise </returns>
-        /// This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool IsEnabled()
-        {
-            bool ret = Interop.Accessibility.IsEnabled();
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }   
 
         /// <summary>
         ///  Get View that is used to highlight widget.

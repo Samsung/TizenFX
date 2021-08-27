@@ -317,7 +317,7 @@ namespace Tizen.NUI.Components
 
         private void OnSelect()
         {
-            if (Accessibility.Accessibility.Instance.IsEnabled() && IsHighlighted)
+            if (Accessibility.Accessibility.Enabled && IsHighlighted)
             {
                 EmitAccessibilityStatesChangedEvent(AccessibilityStates.Checked, IsSelected);
             }

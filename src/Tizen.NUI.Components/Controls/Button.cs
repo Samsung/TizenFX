@@ -98,7 +98,7 @@ namespace Tizen.NUI.Components
                         instance.UpdateState();
                     }
 
-                    if (Accessibility.Accessibility.Instance.IsEnabled() && instance.IsHighlighted)
+                    if (Accessibility.Accessibility.Enabled && instance.IsHighlighted)
                     {
                         instance.EmitAccessibilityStatesChangedEvent(AccessibilityStates.Checked, newSelected);
                     }
@@ -362,7 +362,7 @@ namespace Tizen.NUI.Components
             {
                 TextLabel.Text = value;
 
-                if (Accessibility.Accessibility.Instance.IsEnabled() && IsHighlighted && String.IsNullOrEmpty(AccessibilityName) && GetAccessibilityNameSignal().Empty())
+                if (Accessibility.Accessibility.Enabled && IsHighlighted && String.IsNullOrEmpty(AccessibilityName) && GetAccessibilityNameSignal().Empty())
                 {
                     EmitAccessibilityEvent(AccessibilityPropertyChangeEvent.Name);
                 }

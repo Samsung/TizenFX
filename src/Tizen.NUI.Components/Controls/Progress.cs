@@ -367,7 +367,7 @@ namespace Tizen.NUI.Components
             set
             {
                 SetValue(CurrentValueProperty, value);
-                if (Accessibility.Accessibility.Instance.IsEnabled() && IsHighlighted)
+                if (Accessibility.Accessibility.Enabled && IsHighlighted)
                 {
                     EmitAccessibilityEvent(AccessibilityPropertyChangeEvent.Value);
                 }
