@@ -36,9 +36,6 @@ internal static partial class Interop
         [DllImport(Libraries.Cion, EntryPoint = "cion_payload_async_result_get_peer_info")]
         internal static extern ErrorCode CionPayloadAsyncResultGetPeerInfo(PayloadAsyncResultSafeHandle result, out IntPtr peerInfo);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_payload_async_result_get_id")]
-        internal static extern ErrorCode CionPayloadAsyncResultGetID(PayloadAsyncResultSafeHandle result, out int id);
-
         [DllImport(Libraries.Cion, EntryPoint = "cion_payload_async_result_get_payload_id")]
         internal static extern ErrorCode CionPayloadAsyncResultGetPayloadID(PayloadAsyncResultSafeHandle result, out string payloadID);
     }

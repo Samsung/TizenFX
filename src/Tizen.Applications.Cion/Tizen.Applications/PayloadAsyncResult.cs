@@ -70,24 +70,6 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Gets the Id of payload.
-        /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        public int Id
-        {
-            get
-            {
-                Interop.Cion.ErrorCode ret = Interop.CionPayloadAsyncResult.CionPayloadAsyncResultGetID(_handle, out int id);
-                if (ret != Interop.Cion.ErrorCode.None)
-                {
-                    Log.Error(LogTag, "Fail to get Id");
-                    return -1;
-                }
-                return id;
-            }
-        }
-
-        /// <summary>
         /// Gets the payload id.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
