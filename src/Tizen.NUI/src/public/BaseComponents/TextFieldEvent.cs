@@ -41,6 +41,8 @@ namespace Tizen.NUI.BaseComponents
 
         private EventHandler<InputFilteredEventArgs> textFieldInputFilteredEventHandler;
         private InputFilteredCallbackDelegate textFieldInputFilteredCallbackDelegate;
+        private EventHandler textFieldSelectionClearedEventHandler;
+        private SelectionClearedCallbackDelegate textFieldSelectionClearedCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void TextChangedCallbackDelegate(IntPtr textField);
@@ -59,6 +61,9 @@ namespace Tizen.NUI.BaseComponents
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void InputFilteredCallbackDelegate(IntPtr textField, InputFilterType type);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void SelectionClearedCallbackDelegate(IntPtr textField);
 
         /// <summary>
         /// The TextChanged event.
@@ -133,6 +138,32 @@ namespace Tizen.NUI.BaseComponents
                     this.MaxLengthReachedSignal().Disconnect(textFieldMaxLengthReachedCallbackDelegate);
                 }
                 textFieldMaxLengthReachedEventHandler -= value;
+            }
+        }
+
+        /// <summary>
+        /// The SelectionCleared signal is emitted when selection is cleared.
+        /// </summary>
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler SelectionCleared
+        {
+            add
+            {
+                if (textFieldSelectionClearedEventHandler == null)
+                {
+                    textFieldSelectionClearedCallbackDelegate = (OnSelectionCleared);
+                    SelectionClearedSignal().Connect(textFieldSelectionClearedCallbackDelegate);
+                }
+                textFieldSelectionClearedEventHandler += value;
+            }
+            remove
+            {
+                if (textFieldSelectionClearedEventHandler == null && SelectionClearedSignal().Empty() == false)
+                {
+                    this.SelectionClearedSignal().Disconnect(textFieldSelectionClearedCallbackDelegate);
+                }
+                textFieldSelectionClearedEventHandler -= value;
             }
         }
 
@@ -231,6 +262,13 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        internal TextFieldSignal SelectionClearedSignal()
+        {
+            TextFieldSignal ret = new TextFieldSignal(Interop.TextField.SelectionClearedSignal(SwigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         internal TextFieldSignal TextChangedSignal()
         {
             TextFieldSignal ret = new TextFieldSignal(Interop.TextField.TextChangedSignal(SwigCPtr), false);
@@ -271,6 +309,12 @@ namespace Tizen.NUI.BaseComponents
             TextFieldSignal ret = new TextFieldSignal(Interop.TextField.InputFilteredSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        private void OnSelectionCleared(IntPtr textField)
+        {
+            //no data to be sent to the user
+            textFieldSelectionClearedEventHandler?.Invoke(this, EventArgs.Empty);
         }
 
         private void OnTextChanged(IntPtr textField)

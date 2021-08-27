@@ -1954,6 +1954,11 @@ namespace Tizen.NUI.BaseComponents
                     this.MaxLengthReachedSignal().Disconnect(textFieldMaxLengthReachedCallbackDelegate);
                 }
 
+                if (textFieldSelectionClearedCallbackDelegate != null)
+                {
+                    this.SelectionClearedSignal().Disconnect(textFieldSelectionClearedCallbackDelegate);
+                }
+
                 if (textFieldSelectionChangedCallbackDelegate != null)
                 {
                     this.SelectionChangedSignal().Disconnect(textFieldSelectionChangedCallbackDelegate);
