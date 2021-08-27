@@ -28,7 +28,7 @@ namespace Tizen.NUI.Samples
             Information.TryGetValue<int>("http://tizen.org/feature/screen.height", out screenHeight);
             log.Fatal(tag, $"Initialize= screenWidth {screenWidth}, screenHeight {screenHeight} ");
             Rectangle inputRegion = new Rectangle(0,0,screenWidth,screenHeight/2);
-            mainWin.AddInputRegion(inputRegion);
+            mainWin.IncludeInputRegion(inputRegion);
 
             addingInput = 0;
 
@@ -61,8 +61,8 @@ namespace Tizen.NUI.Samples
                     {
                         int yPostion = screenHeight/2 + 1;
                         int height = screenHeight/2;
-                        log.Fatal(tag, $"WinTouchEvent= Add {xPosition},{yPostion} {screenWidth}x{height} ");
-                        mainWin.AddInputRegion(new Rectangle(xPosition,yPostion,screenWidth,height));
+                        log.Fatal(tag, $"WinTouchEvent= Include {xPosition},{yPostion} {screenWidth}x{height} ");
+                        mainWin.IncludeInputRegion(new Rectangle(xPosition,yPostion,screenWidth,height));
                         addingInput = 1;
                     }
                 }
@@ -72,8 +72,8 @@ namespace Tizen.NUI.Samples
                     {
                         int yPostion = screenHeight/2 + 1;
                         int height = screenHeight/2;
-                        log.Fatal(tag, $"WinTouchEvent= Subtract {xPosition},{yPostion} {screenWidth}x{height} ");
-                        mainWin.SubtractInputRegion(new Rectangle(xPosition, yPostion, screenWidth, height));
+                        log.Fatal(tag, $"WinTouchEvent= Exclude {xPosition},{yPostion} {screenWidth}x{height} ");
+                        mainWin.ExcludeInputRegion(new Rectangle(xPosition, yPostion, screenWidth, height));
                         addingInput = 0;
                     }
                 }
