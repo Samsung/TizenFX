@@ -202,6 +202,7 @@ namespace Tizen.Uix.Tts
         private event EventHandler<ErrorOccurredEventArgs> _errorOccurred;
         private event EventHandler<DefaultVoiceChangedEventArgs> _defaultVoiceChanged;
         private event EventHandler<EngineChangedEventArgs> _engineChanged;
+        private event EventHandler<ScreenReaderChangedEventArgs> _screenReaderChanged;
         private bool disposedValue = false;
         private readonly Object _stateChangedLock = new Object();
         private readonly Object _utteranceStartedLock = new Object();
@@ -209,12 +210,14 @@ namespace Tizen.Uix.Tts
         private readonly Object _errorOccurredLock = new Object();
         private readonly Object _defaultVoiceChangedLock = new Object();
         private readonly Object _engineChangedLock = new Object();
+        private readonly Object _screenReaderChangedLock = new Object();
         private TtsStateChangedCB _stateDelegate;
         private TtsUtteranceStartedCB _utteranceStartedResultDelegate;
         private TtsUtteranceCompletedCB _utteranceCompletedResultDelegate;
         private TtsErrorCB _errorDelegate;
         private TtsDefaultVoiceChangedCB _voiceChangedDelegate;
         private TtsEngineChangedCB _engineDelegate;
+        private TtsScreenReaderChangedCB _screenReaderDelegate;
         private TtsSupportedVoiceCB _supportedvoiceDelegate;
 
         /// <summary>
@@ -528,6 +531,50 @@ namespace Tizen.Uix.Tts
         }
 
         /// <summary>
+        /// Event to be invoked to detect screen reader status change.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public event EventHandler<ScreenReaderChangedEventArgs> ScreenReaderChanged
+        {
+            add
+            {
+                lock (_screenReaderChangedLock)
+                {
+                    if (_screenReaderChanged == null)
+                    {
+                        _screenReaderDelegate = (IntPtr handle, bool isOn, IntPtr userData) =>
+                        {
+                            ScreenReaderChangedEventArgs args = new ScreenReaderChangedEventArgs(isOn);
+                            _screenReaderChanged?.Invoke(this, args);
+                        };
+                        TtsError error = TtsSetScreenReaderChangedCB(_handle, _screenReaderDelegate, IntPtr.Zero);
+                        if (error != TtsError.None)
+                        {
+                            Log.Error(LogTag, "Add ScreenReaderChanged Failed with error " + error);
+                        }
+                    }
+                    _screenReaderChanged += value;
+                }
+            }
+
+            remove
+            {
+                lock (_screenReaderChangedLock)
+                {
+                    _screenReaderChanged -= value;
+                    if (_screenReaderChanged == null)
+                    {
+                        TtsError error = TtsUnsetScreenReaderChangedCB(_handle);
+                        if (error != TtsError.None)
+                        {
+                            Log.Error(LogTag, "Remove ScreenReaderChanged Failed with error " + error);
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets the default voice set by the user.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -655,6 +702,34 @@ namespace Tizen.Uix.Tts
                     Log.Error(LogTag, "Set Mode Failed with error " + error);
                     throw ExceptionFactory.CreateException(error);
                 }
+            }
+        }
+
+        /// <summary>
+        /// Gets the current status of screen reader.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        /// <value>
+        /// The current status of screen reader.
+        /// </value>
+        /// <returns>
+        /// Boolean value whether screen reader is on or off.
+        /// </returns>
+        /// <exception cref="InvalidOperationException">This exception can be due to operation failed.</exception>
+        /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
+        public bool IsScreenReaderOn
+        {
+            get
+            {
+                bool isOn = true;
+                TtsError error = TtsCheckScreenReaderOn(_handle, out isOn);
+                if (error != TtsError.None)
+                {
+                    Log.Error(LogTag, "Get Mode Failed with error " + error);
+                    return false;
+                }
+
+                return isOn;
             }
         }
 

@@ -49,7 +49,8 @@ internal static partial class Interop
             OperationFailed = ErrorTts | 0x04,                                      /* Operation failed  */
             AudioPolicyBlocked = ErrorTts | 0x05,                                   /* Audio policy blocked */
             NotSupportedFeature = ErrorTts | 0x06,                                  /* Not supported feature of current engine*/
-            ServiceReset = ErrorTts | 0x07                                          /* Service reset*/
+            ServiceReset = ErrorTts | 0x07,                                          /* Service reset*/
+            ScreenReaderOff = ErrorTts | 0x08                                       /* Screen reader off */
         };
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -72,6 +73,9 @@ internal static partial class Interop
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void TtsEngineChangedCB(IntPtr handle, IntPtr engine_id, IntPtr language, int voice_type, bool need_credential, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void TtsScreenReaderChangedCB(IntPtr handle, bool is_on, IntPtr userData);
 
         [DllImport(Libraries.Tts, EntryPoint = "tts_create", CallingConvention = CallingConvention.Cdecl)]
         internal static extern TtsError TtsCreate(out IntPtr handle);
@@ -121,6 +125,9 @@ internal static partial class Interop
         [DllImport(Libraries.Tts, EntryPoint = "tts_is_recognition_type_supported", CallingConvention = CallingConvention.Cdecl)]
         internal static extern TtsError TtsIsRecognitionTypeSupported(IntPtr handle, string type, out bool support);
 
+        [DllImport(Libraries.Tts, EntryPoint = "tts_check_screen_reader_on", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern TtsError TtsCheckScreenReaderOn(IntPtr handle, out bool isOn);
+
         [DllImport(Libraries.Tts, EntryPoint = "tts_add_text", CallingConvention = CallingConvention.Cdecl)]
         internal static extern TtsError TtsAddText(IntPtr handle, string text, string language, int voice_type, int speed, out int uttId);
 
@@ -168,5 +175,11 @@ internal static partial class Interop
 
         [DllImport(Libraries.Tts, EntryPoint = "tts_unset_engine_changed_cb", CallingConvention = CallingConvention.Cdecl)]
         internal static extern TtsError TtsUnsetEngineChangedCB(IntPtr handle);
+
+        [DllImport(Libraries.Tts, EntryPoint = "tts_set_screen_reader_changed_cb", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern TtsError TtsSetScreenReaderChangedCB(IntPtr handle, TtsScreenReaderChangedCB callback, IntPtr userData);
+
+        [DllImport(Libraries.Tts, EntryPoint = "tts_unset_screen_reader_changed_cb", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern TtsError TtsUnsetScreenReaderChangedCB(IntPtr handle);
     }
 }
