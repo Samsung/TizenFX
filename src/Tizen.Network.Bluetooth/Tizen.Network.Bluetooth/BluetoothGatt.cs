@@ -217,6 +217,20 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
+        /// Gets the value of the ATT MTU(Maximum Transmission Unit) for the connection.
+        /// </summary>
+        /// <param name="clientAddress">The remote device address.</param>
+        /// <feature>http://tizen.org/feature/network.bluetooth.le.gatt.server</feature>
+        /// <returns>The MTU value</returns>
+        /// <exception cref="NotSupportedException">Thrown when the BT/BLE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the BT/BLE is not enabled
+        /// or when the remote device is disconnected, or when other specific error occurs.</exception>
+        /// <since_tizen> 9 </since_tizen>
+        public int GetAttMtu(string clientAddress)
+        {
+            return _impl.GetAttMtu(clientAddress);
+        }
+
         /// The AttMtuChanged event is raised when the MTU value changed.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
@@ -281,11 +295,17 @@ namespace Tizen.Network.Bluetooth
             _remoteAddress = remoteAddress;
             StaticConnectionStateChanged += OnConnectionStateChanged;
             _impl.AttMtuChanged += OnAttMtuChanged;
+            _impl.ServiceChanged += OnServiceChanged;
         }
 
         private void OnAttMtuChanged(object s, AttMtuChangedEventArgs e)
         {
             AttMtuChanged?.Invoke(this, e);
+        }
+
+        private void OnServiceChanged(object s, ServiceChangedEventArgs e)
+        {
+            ServiceChanged?.Invoke(this, e);
         }
 
         /// <summary>
@@ -568,6 +588,13 @@ namespace Tizen.Network.Bluetooth
         /// <since_tizen> 8 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<AttMtuChangedEventArgs> AttMtuChanged;
+
+        /// <summary>
+        /// The ServiceChanged event is raised when the service is changed from the remote device(GATT server).
+        /// </summary>
+        /// <feature>http://tizen.org/feature/network.bluetooth.le.gatt.client</feature>
+        /// <since_tizen> 9 </since_tizen>
+        public event EventHandler<ServiceChangedEventArgs> ServiceChanged;
 
         internal bool Isvalid()
         {
