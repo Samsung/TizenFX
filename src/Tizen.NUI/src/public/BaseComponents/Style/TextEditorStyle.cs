@@ -231,6 +231,32 @@ namespace Tizen.NUI.BaseComponents
             return textEditorStyle.ellipsis;
         });
 
+        /// <summary> The bindable property of LineSpacingProperty. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty LineSpacingProperty = BindableProperty.Create(nameof(LineSpacing), typeof(float?), typeof(TextEditorStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textEditorStyle = (TextEditorStyle)bindable;
+            textEditorStyle.lineSpacing = (float?)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textEditorStyle = (TextEditorStyle)bindable;
+            return textEditorStyle.lineSpacing;
+        });
+
+        /// <summary> The bindable property of MinLineSizeProperty. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty MinLineSizeProperty = BindableProperty.Create(nameof(MinLineSize), typeof(float?), typeof(TextEditorStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textEditorStyle = (TextEditorStyle)bindable;
+            textEditorStyle.minLineSize = (float?)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textEditorStyle = (TextEditorStyle)bindable;
+            return textEditorStyle.minLineSize;
+        });
+
         private HorizontalAlignment? horizontalAlignment;
         private Vector4 secondaryCursorColor;
         private bool? enableCursorBlink;
@@ -264,6 +290,8 @@ namespace Tizen.NUI.BaseComponents
         private Vector4 primaryCursorColor;
         private PropertyMap fontStyle;
         private bool? ellipsis;
+        private float? lineSpacing;
+        private float? minLineSize;
 
         static TextEditorStyle() { }
 
@@ -608,6 +636,26 @@ namespace Tizen.NUI.BaseComponents
         {
             get => (bool?)GetValue(EllipsisProperty);
             set => SetValue(EllipsisProperty, value);
+        }
+
+        /// <summary>
+        /// the line spacing to be used.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float? LineSpacing
+        {
+            get => (float?)GetValue(LineSpacingProperty);
+            set => SetValue(LineSpacingProperty, value);
+        }
+
+        /// <summary>
+        /// the minimum line size to be used.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float? MinLineSize
+        {
+            get => (float?)GetValue(MinLineSizeProperty);
+            set => SetValue(MinLineSizeProperty, value);
         }
     }
 }

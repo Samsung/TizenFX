@@ -235,6 +235,7 @@ namespace Tizen.NUI.Devel.Tests
         public void GLWindowDisconnectNativeSignals()
         {
             tlog.Debug(tag, $"GLWindowDisconnectNativeSignals START");
+
             string name = "myGLWindow";
             Rectangle rectangle = new Rectangle(20, 20, 100, 100);
             GLWindow a1 = new GLWindow(name, rectangle, true);
@@ -243,7 +244,26 @@ namespace Tizen.NUI.Devel.Tests
 
             a1.Destroy();
             tlog.Debug(tag, $"GLWindowDisconnectNativeSignals END (OK)");
-            Assert.Pass("GLWindowDisconnectNativeSignals");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("GLWindow.VisibilityChangedEventArgs Visibility")]
+        [Property("SPEC", "Tizen.NUI.GLWindow.VisibilityChangedEventArgs.Visibility A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        public void GLWindowVisibilityChangedEventArgsVisibility()
+        {
+            tlog.Debug(tag, $"GLWindowVisibilityChangedEventArgsVisibility START");
+
+            var testingTarget = new GLWindow.VisibilityChangedEventArgs();
+            Assert.IsNotNull(testingTarget, "Can't create success object VisibilityChangedEventArgs");
+            Assert.IsInstanceOf<GLWindow.VisibilityChangedEventArgs>(testingTarget, "Should be an instance of VisibilityChangedEventArgs type.");
+
+            testingTarget.Visibility = true;
+            tlog.Debug(tag, "Visibility : " + testingTarget.Visibility);
+
+            tlog.Debug(tag, $"GLWindowVisibilityChangedEventArgsVisibility END (OK)");
         }
 
         //[Test]
@@ -255,18 +275,22 @@ namespace Tizen.NUI.Devel.Tests
         //public void GLWindowVisibilityChanged()
         //{
         //    tlog.Debug(tag, $"GLWindowVisibilityChanged START");
+
         //    string name = "myGLWindow";
         //    Rectangle rectangle = new Rectangle(20, 20, 100, 100);
-        //    GLWindow a1 = new GLWindow(name, rectangle, true);
+            
+        //    var testingTarget = new GLWindow(name, rectangle, true);
+        //    Assert.IsNotNull(testingTarget, "Can't create success object GLWindow");
+        //    Assert.IsInstanceOf<GLWindow>(testingTarget, "Should be an instance of GLWindow type.");
 
-        //    a1.VisibilityChanged += A1_VisibilityChanged;
-        //    a1.VisibilityChanged -= A1_VisibilityChanged;
+        //    testingTarget.VisibilityChanged += OnVisibilityChanged;
+        //    testingTarget.VisibilityChanged -= OnVisibilityChanged;
 
-        //    a1.Destroy();
+        //    testingTarget.Destroy();
         //    tlog.Debug(tag, $"GLWindowVisibilityChanged END (OK)");
         //}
 
-        private void A1_VisibilityChanged(object sender, GLWindow.VisibilityChangedEventArgs e) { }
+        //private void OnVisibilityChanged(object sender, GLWindow.VisibilityChangedEventArgs e) { }
 
         [Test]
         [Category("P1")]

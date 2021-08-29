@@ -53,7 +53,7 @@ namespace Tizen.NUI.Samples
                     new ColorStop(0.5f, new Color(0.0f,1.0f,0.0f,1.0f)),
                     new ColorStop(1.0f, new Color(0.0f,0.0f,1.0f,1.0f))
                 }.AsReadOnly(),
-                Spread = Gradient.SpreadType.Reflect,
+                Spread = SpreadType.Reflect,
             };
             roundedRectFillRadialGradient.SetBounds(new Position2D(0, 0), 30);
 
@@ -87,7 +87,7 @@ namespace Tizen.NUI.Samples
             circleShape.AddCircle(0.0f, 0.0f, 150.0f, 100.0f);
             circleShape.Transform(new float[] { 0.6f, 0.0f, 350.0f, 0.0f, 0.6f, 100.0f, 0.0f, 0.0f, 1.0f });
 
-            circleShape.Mask(circleMask, Drawable.MaskType.Alpha);
+            circleShape.Mask(circleMask, MaskType.Alpha);
 
             arcShape = new Shape()
             {
@@ -107,14 +107,21 @@ namespace Tizen.NUI.Samples
                 FillRule = Shape.FillRuleType.EvenOdd,
                 StrokeJoin = Shape.StrokeJoinType.Round,
             };
+
             shape.Scale(0.5f);
             shape.Translate(350.0f, 300.0f);
-            shape.AddMoveTo(0.0f, -160.0f);
-            shape.AddLineTo(125.0f, 160.0f);
-            shape.AddLineTo(-180.0f, -45.0f);
-            shape.AddLineTo(180.0f, -45.0f);
-            shape.AddLineTo(-125.0f, 160.0f);
-            shape.Close();
+
+            shape.AddPath(new PathCommands(new PathCommandType[] { PathCommandType.MoveTo,
+                                                                   PathCommandType.LineTo,
+                                                                   PathCommandType.LineTo,
+                                                                   PathCommandType.LineTo,
+                                                                   PathCommandType.LineTo,
+                                                                   PathCommandType.Close },
+                                            new float[] {0.0f, -160.0f,
+                                                        125.0f, 160.0f,
+                                                        -180.0f, -45.0f,
+                                                        180.0f, -45.0f,
+                                                        -125.0f, 160.0f }));
 
             canvasView.AddDrawable(shape);
 
@@ -184,7 +191,7 @@ namespace Tizen.NUI.Samples
             group2.AddDrawable(circleShape);
             canvasView.AddDrawable(group2);
 
-            Picture picture  = new Picture();
+            Picture picture = new Picture();
             picture.Load(CommonResource.GetDaliResourcePath() + "DaliDemo/Kid1.svg");
             picture.SetSize(new Size2D(150, 150));
             picture.Translate(300.0f, 550.0f);
