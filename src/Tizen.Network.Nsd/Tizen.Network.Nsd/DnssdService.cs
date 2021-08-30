@@ -269,7 +269,6 @@ namespace Tizen.Network.Nsd
                 Log.Error(Globals.LogTag, "Failed to add the TXT record, Error: " + (DnssdError)ret);
                 NsdErrorFactory.ThrowDnssdException(ret);
             }
-            byte[] txtValue;
             byte[] txtValue = GetRawTXTRecords();
             ret = Interop.Nsd.Dnssd.SetRecord(_serviceHandle, _dnsRecordtype, (ushort)txtValue.Length, txtValue);
             if (ret != (int)DnssdError.None)
