@@ -748,6 +748,49 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Set SelectionHandleImage to TextField. <br />
+        /// </summary>
+        /// <param name="selectionHandleImage">The SelectionHandleImage</param>
+        /// <remarks>
+        /// SetSelectionHandleImage specifies the display image used for the selection handle through <see cref="Tizen.NUI.Text.SelectionHandleImage"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetSelectionHandleImage method.
+        /// <code>
+        /// var selectionHandleImage = new Tizen.NUI.Text.SelectionHandleImage();
+        /// selectionHandleImage.LeftImageUrl = "handle_downleft.png";
+        /// selectionHandleImage.RightImageUrl = "handle_downright.png";
+        /// field.SetSelectionHandleImage(selectionHandleImage);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetSelectionHandleImage(SelectionHandleImage selectionHandleImage)
+        {
+            if (!String.IsNullOrEmpty(selectionHandleImage.LeftImageUrl))
+            {
+                SetValue(SelectionHandleImageLeftProperty, TextUtils.GetFileNameMap(selectionHandleImage.LeftImageUrl));
+            }
+
+            if (!String.IsNullOrEmpty(selectionHandleImage.RightImageUrl))
+            {
+                SetValue(SelectionHandleImageRightProperty, TextUtils.GetFileNameMap(selectionHandleImage.RightImageUrl));
+            }
+        }
+
+        /// <summary>
+        /// Get SelectionHandleImage from TextField. <br />
+        /// </summary>
+        /// <returns>The SelectionHandleImage</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.SelectionHandleImage"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public SelectionHandleImage GetSelectionHandleImage()
+        {
+            return TextUtils.GetSelectionHandleImageStruct((PropertyMap)GetValue(SelectionHandleImageLeftProperty), (PropertyMap)GetValue(SelectionHandleImageRightProperty));
+        }
+
+        /// <summary>
         /// The SelectionHandlePressedImageLeft property.
         /// The selectionHandlePressedImageLeft map contains the following key :<br />
         /// <list type="table">
@@ -790,6 +833,49 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Set SelectionHandlePressedImage to TextField. <br />
+        /// </summary>
+        /// <param name="selectionHandlePressedImage">The SelectionHandleImage</param>
+        /// <remarks>
+        /// SetSelectionHandlePressedImage specifies the display image used for the selection handle through <see cref="Tizen.NUI.Text.SelectionHandleImage"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetSelectionHandlePressedImage method.
+        /// <code>
+        /// var selectionHandlePressedImage = new Tizen.NUI.Text.SelectionHandleImage();
+        /// selectionHandlePressedImage.LeftImageUrl = "handle_pressed_downleft.png";
+        /// selectionHandlePressedImage.RightImageUrl = "handle_pressed_downright.png";
+        /// field.SetSelectionHandlePressedImage(selectionHandlePressedImage);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetSelectionHandlePressedImage(SelectionHandleImage selectionHandlePressedImage)
+        {
+            if (!String.IsNullOrEmpty(selectionHandlePressedImage.LeftImageUrl))
+            {
+                SetValue(SelectionHandlePressedImageLeftProperty, TextUtils.GetFileNameMap(selectionHandlePressedImage.LeftImageUrl));
+            }
+
+            if (!String.IsNullOrEmpty(selectionHandlePressedImage.RightImageUrl))
+            {
+                SetValue(SelectionHandlePressedImageRightProperty, TextUtils.GetFileNameMap(selectionHandlePressedImage.RightImageUrl));
+            }
+        }
+
+        /// <summary>
+        /// Get SelectionHandlePressedImage from TextField. <br />
+        /// </summary>
+        /// <returns>The SelectionHandlePressedImage</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.SelectionHandleImage"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public SelectionHandleImage GetSelectionHandlePressedImage()
+        {
+            return TextUtils.GetSelectionHandleImageStruct((PropertyMap)GetValue(SelectionHandlePressedImageLeftProperty), (PropertyMap)GetValue(SelectionHandlePressedImageRightProperty));
+        }
+
+        /// <summary>
         /// The SelectionHandleMarkerImageLeft property.
         /// The selectionHandleMarkerImageLeft map contains the following key :<br />
         /// <list type="table">
@@ -829,6 +915,49 @@ namespace Tizen.NUI.BaseComponents
                 SetValue(SelectionHandleMarkerImageRightProperty, value);
                 NotifyPropertyChanged();
             }
+        }
+
+        /// <summary>
+        /// Set SelectionHandleMarkerImage to TextField. <br />
+        /// </summary>
+        /// <param name="selectionHandleMarkerImage">The SelectionHandleImage</param>
+        /// <remarks>
+        /// SetSelectionHandleMarkerImage specifies the display image used for the selection handle through <see cref="Tizen.NUI.Text.SelectionHandleImage"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetSelectionHandleMarkerImage method.
+        /// <code>
+        /// var selectionHandleMarkerImage = new Tizen.NUI.Text.SelectionHandleImage();
+        /// selectionHandleMarkerImage.LeftImageUrl = "handle_pressed_downleft.png";
+        /// selectionHandleMarkerImage.RightImageUrl = "handle_pressed_downright.png";
+        /// field.SetSelectionHandleMarkerImage(selectionHandleMarkerImage);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetSelectionHandleMarkerImage(SelectionHandleImage selectionHandleMarkerImage)
+        {
+            if (!String.IsNullOrEmpty(selectionHandleMarkerImage.LeftImageUrl))
+            {
+                SetValue(SelectionHandleMarkerImageLeftProperty, TextUtils.GetFileNameMap(selectionHandleMarkerImage.LeftImageUrl));
+            }
+
+            if (!String.IsNullOrEmpty(selectionHandleMarkerImage.RightImageUrl))
+            {
+                SetValue(SelectionHandleMarkerImageRightProperty, TextUtils.GetFileNameMap(selectionHandleMarkerImage.RightImageUrl));
+            }
+        }
+
+        /// <summary>
+        /// Get SelectionHandleMarkerImage from TextField. <br />
+        /// </summary>
+        /// <returns>The SelectionHandleMarkerImage</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.SelectionHandleImage"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public SelectionHandleImage GetSelectionHandleMarkerImage()
+        {
+            return TextUtils.GetSelectionHandleImageStruct((PropertyMap)GetValue(SelectionHandleMarkerImageLeftProperty), (PropertyMap)GetValue(SelectionHandleMarkerImageRightProperty));
         }
 
         /// <summary>
