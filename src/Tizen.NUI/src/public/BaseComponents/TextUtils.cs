@@ -1751,6 +1751,42 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// This method converts a fileName string to a PropertyMap and returns it.
+        /// The returned map can be used for set SelectionHandleImageLeft, SelectionHandleImageRight PropertyMap in the SetSelectionHandleImage method.
+        /// <param name="fileName">The file path string value for SelectionHandleImage.</param>
+        /// <returns> A PropertyMap for SelectionHandleImageLeft, SelectionHandleImageRight properties. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static PropertyMap GetFileNameMap(string fileName)
+        {
+            return new PropertyMap().Add("filename", new PropertyValue(fileName));
+        }
+
+        /// <summary>
+        /// This method converts a SelectionHandleImageLeft, SelectionHandleImageRight map to a struct and returns it.
+        /// The returned struct can be returned to the user as a SelectionHandleImage in the GetSelectionHandleImage method.
+        /// <param name="leftImageMap">The SelectionHandleImageLeft PropertyMap.</param>
+        /// <param name="rightImageMap">The SelectionHandleImageRight PropertyMap.</param>
+        /// <returns> A SelectionHandleImage struct. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static SelectionHandleImage GetSelectionHandleImageStruct(PropertyMap leftImageMap, PropertyMap rightImageMap)
+        {
+            string leftImageUrl = null;
+            string rightImageUrl = null;
+
+            var selectionHandleImage = new SelectionHandleImage();
+
+            leftImageMap.Find(0, "filename")?.Get(out leftImageUrl);
+            rightImageMap.Find(0, "filename")?.Get(out rightImageUrl);
+
+            selectionHandleImage.LeftImageUrl = leftImageUrl;
+            selectionHandleImage.RightImageUrl = rightImageUrl;
+
+            return selectionHandleImage;
+        }
+
+        /// <summary>
         /// Copy the previously selected text into the clipboard and return the copied value.
         /// </summary>
         /// <param name="textEditor">The textEditor control from which the text is copied.</param>
