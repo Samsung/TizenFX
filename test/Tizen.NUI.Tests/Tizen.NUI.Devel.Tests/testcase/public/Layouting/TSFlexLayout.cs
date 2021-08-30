@@ -486,35 +486,35 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"FlexLayoutGetFlexGrow END (OK)");
         }
 
-        [Test]
-        [Category("P1")]
-        [Description("FlexLayout DownCast")]
-        [Property("SPEC", "Tizen.NUI.FlexLayout.DownCast M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void FlexLayoutDownCast()
-        {
-            tlog.Debug(tag, $"FlexLayoutDownCast START");
+        //[Test]
+        //[Category("P1")]
+        //[Description("FlexLayout DownCast")]
+        //[Property("SPEC", "Tizen.NUI.FlexLayout.DownCast M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //[Property("AUTHOR", "guowei.wang@samsung.com")]
+        //public void FlexLayoutDownCast()
+        //{
+        //    tlog.Debug(tag, $"FlexLayoutDownCast START");
 
-            View view = new View()
-            {
-                Size = new Size(400, 400),
-                BackgroundColor = Color.White,
-                Layout = new FlexLayout()
-                {
-                    Direction = FlexLayout.FlexDirection.Column,
-                }
-            };
+        //    View view = new View()
+        //    {
+        //        Size = new Size(400, 400),
+        //        BackgroundColor = Color.White,
+        //        Layout = new FlexLayout()
+        //        {
+        //            Direction = FlexLayout.FlexDirection.Column,
+        //        }
+        //    };
 
-            var testingTarget = FlexLayout.DownCast(view);
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<FlexLayout>(testingTarget, "Should return FlexLayout instance.");
+        //    var testingTarget = FlexLayout.DownCast(view);
+        //    Assert.IsNotNull(testingTarget, "null handle");
+        //    Assert.IsInstanceOf<FlexLayout>(testingTarget, "Should return FlexLayout instance.");
 
-            view.Dispose();
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"FlexLayoutDownCast END (OK)");
-        }
+        //    view.Dispose();
+        //    testingTarget.Dispose();
+        //    tlog.Debug(tag, $"FlexLayoutDownCast END (OK)");
+        //}
 
         [Test]
         [Category("P1")]

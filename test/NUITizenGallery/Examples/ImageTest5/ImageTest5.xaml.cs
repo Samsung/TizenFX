@@ -21,17 +21,24 @@ using Tizen.NUI.Components;
 
 namespace NUITizenGallery
 {
-    public partial class ImageTest5Page : View
+    public partial class ImageTest5Page : ContentPage
     {
 
         private float imgWidth = 0;
         private float imgHeight = 0;
+        private String mode = "FillToParent";
+        private int choice = 0;
 
         private void updateLabel()
         {
             imgHeight = imageView.Size2D.Height;
             imgWidth = imageView.Size2D.Width;
-            desc1.Text = "Mode : AscpectFit / Width : " + (imgWidth > 0 ? imgWidth.ToString() : "-") + ", Height: " + (imgHeight > 0 ? imgHeight.ToString() : "-");
+
+            if (choice == 0) mode = "FillToParent";
+            else if (choice == 1) mode = "SizeRelativeToParent";
+            else if (choice == 2) mode = "FitToChildren";
+            else mode = "Other";
+            desc1.Text = "Mode : " + mode + "/ Width : " + (imgWidth > 0 ? imgWidth.ToString() : "-") + ", Height: " + (imgHeight > 0 ? imgHeight.ToString() : "-");
         }
 
         public ImageTest5Page()
@@ -61,8 +68,71 @@ namespace NUITizenGallery
             };
             image5Btn.Clicked += (o, e) =>
             {
+                if (choice == 0)
+                {
+                    imageView.HeightResizePolicy = Tizen.NUI.ResizePolicyType.FillToParent;
+                    imageView.WidthResizePolicy = Tizen.NUI.ResizePolicyType.FillToParent;
+                    choice++;
+                }
+                else if (choice == 1)
+                {
+                    imageView.HeightResizePolicy = Tizen.NUI.ResizePolicyType.SizeRelativeToParent;
+                    imageView.WidthResizePolicy = Tizen.NUI.ResizePolicyType.SizeRelativeToParent;
+                    choice++;
+                }
+                else if (choice == 2)
+                {
+                    imageView.HeightResizePolicy = Tizen.NUI.ResizePolicyType.FitToChildren;
+                    imageView.WidthResizePolicy = Tizen.NUI.ResizePolicyType.FitToChildren;
+                    choice = 0;
+                }
                 updateLabel();
             };
         }
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (Disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                RemoveAllChildren(true);
+            }
+
+            base.Dispose(type);
+        }
+
+        private void RemoveAllChildren(bool dispose = false)
+        {
+            RecursiveRemoveChildren(this, dispose);
+        }
+
+        private void RecursiveRemoveChildren(View parent, bool dispose)
+        {
+            if (parent == null)
+            {
+                return;
+            }
+
+            int maxChild = (int)parent.ChildCount;
+            for (int i = maxChild - 1; i >= 0; --i)
+            {
+                View child = parent.GetChildAt((uint)i);
+                if (child == null)
+                {
+                    continue;
+                }
+
+                RecursiveRemoveChildren(child, dispose);
+                parent.Remove(child);
+                if (dispose)
+                {
+                    child.Dispose();
+                }
+            }
+        }
     }
 }
+

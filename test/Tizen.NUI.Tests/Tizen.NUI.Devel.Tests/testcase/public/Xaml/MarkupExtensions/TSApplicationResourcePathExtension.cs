@@ -8,7 +8,7 @@ namespace Tizen.NUI.Devel.Tests
 
     [TestFixture]
     [Description("public/xaml/MarkupExtensions/ApplicationResourcePathExtension ")]
-    internal class PublicApplicationResourcePathExtensionTest
+    public class PublicApplicationResourcePathExtensionTest
     {
         private const string tag = "NUITEST";
         private ApplicationResourcePathExtension a1;
@@ -100,7 +100,5 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"ApplicationResourcePathExtensionProvideValue END (OK)");
             Assert.Pass("ApplicationResourcePathExtensionProvideValue");
         }
-
-
     }
 }

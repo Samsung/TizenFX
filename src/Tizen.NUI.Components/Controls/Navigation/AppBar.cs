@@ -539,10 +539,10 @@ namespace Tizen.NUI.Components
                 }
             }
 
-            if (actionButtonStyle == null) actionButtonStyle = (ButtonStyle)appBarStyle.ActionButton.Clone();
+            if (actionButtonStyle == null) actionButtonStyle = (ButtonStyle)appBarStyle.ActionButton?.Clone();
             else actionButtonStyle.MergeDirectly(appBarStyle.ActionButton);
 
-            if (actionViewStyle == null) actionViewStyle = (ViewStyle)appBarStyle.ActionView.Clone();
+            if (actionViewStyle == null) actionViewStyle = (ViewStyle)appBarStyle.ActionView?.Clone();
             else actionViewStyle.MergeDirectly(appBarStyle.ActionView);
             
 

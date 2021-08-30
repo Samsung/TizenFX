@@ -1,419 +1,471 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <TargetFramework>netcoreapp3.1</TargetFramework>
     </PropertyGroup>
+
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
         <DebugType>portable</DebugType>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
         <DebugType>None</DebugType>
     </PropertyGroup>
-    <ItemGroup>
-        <None Remove="res\layout\BoxViewTest\BoxViewTest1.xaml" />
-        <None Remove="res\layout\BoxViewTest\BoxViewTest2.xaml" />
-        <None Remove="res\layout\BoxViewTest\BoxViewTest3.xaml" />
-        <None Remove="res\layout\BoxViewTest\BoxViewTest4.xaml" />
-    </ItemGroup>
-    <ItemGroup>
-        <EmbeddedResource Include="res\layout\BoxViewTest\BoxViewTest4.xaml">
-            <SubType>Designer</SubType>
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\BoxViewTest\BoxViewTest3.xaml">
-            <SubType>Designer</SubType>
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\BoxViewTest\BoxViewTest1.xaml">
-            <SubType>Designer</SubType>
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\BoxViewTest\BoxViewTest2.xaml">
-            <SubType>Designer</SubType>
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\FrameLayoutTest1Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\StackLayoutTest8Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\StackLayoutTest6Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\LabelTest3Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\BindingTest1.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\BindingTest2Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\StackLayoutTest1Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\StackLayoutTest2Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\StackLayoutTest3Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\StackLayoutTest4Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\StackLayoutTest5Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\Test1Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\EditorTest1.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\EditorTest2.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\TextAnchorTest.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\EntryTest1Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\EntryTest4Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\EntryTest2Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\Test2Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\CustomCellListItem.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\CustomCellTestPage.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\BrushImageTestPage.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\BrushBorderTestPage.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\BrushViewerTestPage.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\BrushComponentsTestPage.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\BrushBackgroundTestPage.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\BackgroundTestPage.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\ActivityIndicatorPage.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\AbsoluteLayoutPage.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\ListItemTitleView.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\PerformanceTest3Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\ListItemTitleSwitch.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\PerformanceTest2Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\ListItemTitle.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\PerformanceTest1Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\ProgressbarTest1Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\OpacityTest1Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\IndicatorViewTest1Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\IndicatorViewTest4Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\ButtonTest1Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\FrameTest1Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\ListViewFooterTest1Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\SliderTest2Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\SliderTest1Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\PickerTest1Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\DatePickerTestPage.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\TimePickerTestPage.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\CollectionViewFocusTestPage.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\CollectionViewItem.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\CarouselPageTest1Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\CarouselViewTest1Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\CarouselViewTest2Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\CarouselViewTest4Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\ButtonTest7Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\ButtonTest5Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\ButtonTest6Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\ImageButtonTestPage.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\HelloWorldPage.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\IconTestPage.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\LabelTest1Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\AnimationTest1Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\AnimationTest3Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\ImageTest3Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\ImageTest2Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\FlexTest3Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\FlexTest1Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\FlexTest2Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\ScaleTest1Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\ScaleTest2Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\BackgroundColorTest1Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\ImageTest5Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\ImageTest4Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\BackgroundColorTest2Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\BackgroundColorTest3Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\BackgroundColorTest4Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\BackgroundColorTest5Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\ImageTest1Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\LabelTest2Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\ScrollViewTest1Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\AnimationTest2Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\ButtonTest2Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\CollectionViewTest/CollectionViewTest1.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\CollectionViewTest/CollectionViewTest2.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\CollectionViewTest/CollectionViewTest3.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\CollectionViewTest/CollectionViewTest4.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\CollectionViewTest/CollectionViewTest5.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\CollectionViewTest/CollectionViewTest6.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\CollectionViewTest/CollectionViewTest7.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\CollectionViewTest/CollectionViewTest8.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\CollectionViewTest/CollectionViewTest9.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\CollectionViewTest/CollectionViewTest10.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\ContentPageTestPage1.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\ContentPageTestPage2.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\GridTest1Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\GridTest2Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\CheckBoxTestPage.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\AlertDialogTestPage.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\NavigatorTest\NavigatorTest1Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\NavigatorTest\NavigatorTest2Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\RotationTest1Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\TabViewTest\TabViewTestPage.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\MenuTest\MenuTestPage.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\MenuTest\MenuTestMenu.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\PinchGestureTest1Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\PanGestureTest1.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\RecalculateTest1Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\TapGestureTest1Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\TapGestureTest2Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\TapGestureTest3Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\TapGestureTest4Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\SimpleTestPage.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\ToolbarItemTest1Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\SwipeGestureRecognizerTestPage.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\SwipeViewTest1Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\SwipeViewTest2Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\WebViewTest1.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\WebViewTest2.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\SetColorTestPage.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\LabelTest5Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\StackInGridTest1Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\ScrollViewTest2Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\ScrollViewTest3Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\ScrollViewTest4Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\ScrollViewTest7Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Include="res\layout\RefreshViewTest1Page.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </EmbeddedResource>
-    </ItemGroup>
+
+
+  <ItemGroup>
+    <None Remove="Examples\BoxViewTest\BoxViewTest1.xaml" />
+    <None Remove="Examples\BoxViewTest\BoxViewTest2.xaml" />
+    <None Remove="Examples\BoxViewTest\BoxViewTest3.xaml" />
+    <None Remove="Examples\BoxViewTest\BoxViewTest4.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Examples\AbsoluteLayoutTest\AbsoluteLayoutTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\ActivityIndicatorTest\ActivityIndicatorTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+   <EmbeddedResource Include="Examples\AlertDialogTest\AlertDialogTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\AnimationTest\AnimationTest1Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\AnimationTest\AnimationTest2Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\AnimationTest\AnimationTest3Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\BackgroundColorTest\BackgroundColorTest1Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\BackgroundColorTest\BackgroundColorTest2Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\BackgroundColorTest\BackgroundColorTest3Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\BackgroundColorTest\BackgroundColorTest4Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\BackgroundColorTest\BackgroundColorTest5Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\BackgroundTest\BackgroundTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\BindingTest\BindingTest1Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\BindingTest\BindingTest2Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\BoxViewTest\BoxViewTest1Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\BoxViewTest\BoxViewTest2Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\BoxViewTest\BoxViewTest3Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\BoxViewTest\BoxViewTest4Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\BrushTest\BrushBackgroundTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\BrushTest\BrushBorderTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\BrushTest\BrushComponentsTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\BrushTest\BrushImageTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\BrushTest\BrushViewerTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+	  <EmbeddedResource Include="Examples\ButtonTest\ButtonTest1Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+	  <EmbeddedResource Include="Examples\ButtonTest\ButtonTest2Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\ButtonTest\ButtonTest5Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\ButtonTest\ButtonTest6Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\ButtonTest\ButtonTest7Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\CarouselTest\CarouselPageTest1Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\CarouselTest\CarouselViewTest1Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\CarouselTest\CarouselViewTest2Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\CarouselTest\CarouselViewTest4Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\CarouselTest\CarouselViewItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\CarouselTest\CarouselViewFocusTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\CheckBoxTest\CheckBoxTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\CollectionViewTest\CollectionViewCustomItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\CollectionViewTest\CollectionViewCustomItemTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\CollectionViewTest\CollectionViewObservableTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\CollectionViewTest\CollectionViewTest1Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\CollectionViewTest\CollectionViewTest2Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\CollectionViewTest\CollectionViewTest3Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\CollectionViewTest\CollectionViewTest4Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\CollectionViewTest\CollectionViewTest5Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\CollectionViewTest\CollectionViewTest6Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\CollectionViewTest\CollectionViewTest7Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\CollectionViewTest\CollectionViewTest8Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\CollectionViewTest\CollectionViewTest9Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\ContentPageTest\ContentPageTestPage1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\ContentPageTest\ContentPageTestPage2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\CustomCellTest\CustomCellListItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\CustomCellTest\CustomCellTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examples\DatePickerTest\DatePickerTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\EditorTest1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\EditorTest2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\EntryTest1Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\EntryTest2Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\EntryTest4Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\FlexTest1Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+	  <EmbeddedResource Include="res\layout\FlexTest2Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\FlexTest3Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+	  <EmbeddedResource Include="res\layout\FlexTest5Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\FrameLayoutTest1Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\FrameLayoutTest2Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\FrameTest1Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+   <EmbeddedResource Include="res\layout\GridTest1Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+   </EmbeddedResource>
+   <EmbeddedResource Include="res\layout\GridTest2Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\GridTest3Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\GridTest4Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\HelloWorldPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\IconTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\ImageButtonTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\ImageTest1Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\ImageTest2Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\ImageTest3Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\ImageTest4Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\ImageTest5Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\IndicatorViewTest1Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\IndicatorViewTest2Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\IndicatorViewTest3Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\IndicatorViewTest4Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\KeyboardTest1Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\LabelTest1Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\LabelTest2Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\LabelTest3Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\LabelTest5Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\LayoutAddRemoveTest1Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\LayoutAddRemoveTest2Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\ListViewFooterTest1Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+   <EmbeddedResource Include="res\layout\MenuTest\MenuTestMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+   <EmbeddedResource Include="res\layout\MenuTest\MenuTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+   <EmbeddedResource Include="res\layout\NavigatorTest\NavigatorTest1Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+   <EmbeddedResource Include="res\layout\NavigatorTest\NavigatorTest2Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\OpacityTest1Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\PanGestureTest1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\ListItemTitleView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\PerformanceTest3Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\ListItemTitleSwitch.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\PerformanceTest2Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\ListItemTitle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\PerformanceTest1Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\PickerTest1Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\PinchGestureTest1Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\ProgressbarTest1Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\RecalculateTest1Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\RefreshViewTest1Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\RotationTest1Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>   
+    <EmbeddedResource Include="res\layout\ScaleTest1Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\ScaleTest2Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\ScrollViewTest1Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\ScrollViewTest2Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\ScrollViewTest3Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\ScrollViewTest4Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\ScrollViewTest6Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\ScrollViewTest7Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\SetColorTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\SimpleTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>      
+    <EmbeddedResource Include="res\layout\SliderTest1Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\SliderTest2Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\StackInGridTest1Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\StackLayoutTest1Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\StackLayoutTest2Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\StackLayoutTest3Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\StackLayoutTest4Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\StackLayoutTest5Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\StackLayoutTest6Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\StackLayoutTest8Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\SwipeViewTest1Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\SwipeViewTest2Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\SwipeGestureRecognizerTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+   <EmbeddedResource Include="res\layout\TabViewTest\TabViewTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\TapGestureTest1Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\TapGestureTest2Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\TapGestureTest3Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\TapGestureTest4Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\Test1Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\Test2Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\TextAnchorTest.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\TimePickerTestPage.xaml">
+    <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\TimerTest1Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\ToolbarItemTest1Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\WebViewTest1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\WebViewTest2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="res\layout\FrameLayoutTest2Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+  </ItemGroup>
+
+
     <ItemGroup>
         <Folder Include="lib\" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Tizen.NUI.XamlBuild" Version="1.0.27" />
+        <PackageReference Include="Tizen.NUI.XamlBuild" Version="1.0.30" />
     </ItemGroup>
 
     <ItemGroup>
@@ -424,4 +476,5 @@
     <PropertyGroup>
         <NeedInjection>True</NeedInjection>
     </PropertyGroup>
+
 </Project>

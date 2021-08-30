@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="NUITizenGallery.CollectionViewCustomItemTestPage"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+    <!-- AppBar is top-side bar with navigation content, title, and action. If you not set any contents, back button is automatically added. -->
+    <ContentPage.AppBar>
+        <AppBar x:Name="appBar" Title="CollectionViewCustomItemTestPage"/>
+    </ContentPage.AppBar>
+
+    <!-- Content is main placdeholder of ContentPage. Add your content into this view. -->
+    <ContentPage.Content>
+        <CollectionView x:Name="ColView"
+                          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                          HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+                          ScrollingDirection="Vertical"
+                          SelectionMode="Multiple"
+                          SelectionChanged="OnSelectionChanged"
+                          ItemsSource="{Binding TestSource}">
+
+            <CollectionView.ItemsLayouter>
+                  <LinearLayouter />
+            </CollectionView.ItemsLayouter>
+
+        </CollectionView>
+        </ContentPage.Content>
+</ContentPage>

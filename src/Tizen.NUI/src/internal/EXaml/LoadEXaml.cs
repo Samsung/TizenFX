@@ -44,6 +44,17 @@ namespace Tizen.NUI.EXaml
 
             Action currentOp = null;
 
+            Action[] blockActions = new Action[]
+                {
+                    new GatherAssembliesBlock(globalDataList, null),
+                    new GatherTypesBlock(globalDataList, null),
+                    new GatherPropertiesBlock(globalDataList, null),
+                    new GatherEventsBlock(globalDataList, null),
+                    new GatherMethodsBlock(globalDataList, null),
+                    new GatherBindablePropertiesBlock(globalDataList, null),
+                    new GatherLongStringsBlock(globalDataList, null)
+                };
+
             foreach (char c in xaml)
             {
                 if (null == currentOp)
@@ -51,42 +62,8 @@ namespace Tizen.NUI.EXaml
                     switch (c)
                     {
                         case '<':
-                            if (0 == index)
-                            {
-                                currentOp = new GatherAssembliesBlock(globalDataList, null);
-                                currentOp.Init();
-                                index++;
-                            }
-                            else if (1 == index)
-                            {
-                                currentOp = new GatherTypesBlock(globalDataList, null);
-                                currentOp.Init();
-                                index++;
-                            }
-                            else if (2 == index)
-                            {
-                                currentOp = new GatherPropertiesBlock(globalDataList, null);
-                                currentOp.Init();
-                                index++;
-                            }
-                            else if (3 == index)
-                            {
-                                currentOp = new GatherEventsBlock(globalDataList, null);
-                                currentOp.Init();
-                                index++;
-                            }
-                            else if (4 == index)
-                            {
-                                currentOp = new GatherMethodsBlock(globalDataList, null);
-                                currentOp.Init();
-                                index++;
-                            }
-                            else if (5 == index)
-                            {
-                                currentOp = new GatherBindablePropertiesBlock(globalDataList, null);
-                                currentOp.Init();
-                                index++;
-                            }
+                            currentOp = blockActions[index++];
+                            currentOp.Init();
                             break;
 
                         case '{':
@@ -169,7 +146,7 @@ namespace Tizen.NUI.EXaml
             return globalDataList;
         }
 
-        internal static void Load(object view, string xaml, out object xamlData)
+        internal static void Load(object view, string xaml, out GlobalDataList xamlData)
         {
             var globalDataList = GatherDataList(xaml);
 

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="NUITizenGallery.ButtonTest2Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}" >
+
+    <!-- AppBar is top-side bar with navigation content, title, and action. If you not set any contents, back button is automatically added. -->
+    <ContentPage.AppBar>
+        <AppBar x:Name="appBar" Title="ButtonTest2Page"/>
+    </ContentPage.AppBar>
+
+    <!-- Content is main placdeholder of ContentPage. Add your content into this view. -->
+    <ContentPage.Content>
+        <View x:Name="ContentView"
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                HeightSpecification="{Static LayoutParamPolicies.MatchParent}" >
+
+            <View.Layout>
+                <LinearLayout LinearOrientation="Vertical" LinearAlignment="Top" CellPadding="20,20" Padding="20,20,20,20"/>
+            </View.Layout>
+
+            <Button x:Name="coloredButton"
+                      WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                      BackgroundColor="Transparent"
+                      Text="Color change"
+                      TextColor="Color.Blue"
+                      Opacity="0.5"
+                      PointSize="8">
+
+                <Button.Icon>
+                    <ImageView x:Name="imageview1" Size2D="60,60" />
+                </Button.Icon>
+
+            </Button>
+
+            <Button x:Name="button2"
+                      WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                      IsEnabled="False"
+                      PointSize="8"
+                      Text="Disabled button"/>
+
+            <Button x:Name="button3"
+                      WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                      PointSize="8"
+                      Text="Disabled toggle"/>
+
+        </View>
+    </ContentPage.Content>
+
+</ContentPage>

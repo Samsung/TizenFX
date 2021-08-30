@@ -28,7 +28,7 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("Create a LongPressGesture object. Check whether LongPressGesture is successfully created or not.")]
+        [Description("Create a LongPressGesture object.")]
         [Property("SPEC", "Tizen.NUI.LongPressGesture.LongPressGesture C")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "CONSTR")]
@@ -37,11 +37,12 @@ namespace Tizen.NUI.Devel.Tests
         public void LongPressGestureConstructor()
         {
             tlog.Debug(tag, $"LongPressGestureConstructor START");
-            Gesture.StateType state = Gesture.StateType.Finished;
-            LongPressGesture ret1 = new LongPressGesture(state);                      
 
-            ret1.Dispose();
-            
+            var testingTarget = new LongPressGesture(Gesture.StateType.Finished);
+            Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+            Assert.IsInstanceOf<LongPressGesture>(testingTarget, "Should be an instance of Hover type.");
+
+            testingTarget.Dispose();
             tlog.Debug(tag, $"LongPressGestureConstructor END (OK)");
             Assert.Pass("LongPressGestureConstructor");
         }
@@ -56,11 +57,14 @@ namespace Tizen.NUI.Devel.Tests
         public void LongPressGestureNumberOfTouches()
         {
             tlog.Debug(tag, $"LongPressGestureNumberOfTouches START");
-            Gesture.StateType state = Gesture.StateType.Finished;
-            LongPressGesture ret1 = new LongPressGesture(state);
 
-            uint num = ret1.NumberOfTouches;
-            
+            var testingTarget = new LongPressGesture(Gesture.StateType.Finished);
+            Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+            Assert.IsInstanceOf<LongPressGesture>(testingTarget, "Should be an instance of Hover type.");
+
+            tlog.Debug(tag, "NumberOfTouches : " + testingTarget.NumberOfTouches);
+
+            testingTarget.Dispose();
             tlog.Debug(tag, $"LongPressGestureNumberOfTouches END (OK)");
             Assert.Pass("LongPressGestureNumberOfTouches");
         }
@@ -75,12 +79,14 @@ namespace Tizen.NUI.Devel.Tests
         public void LongPressGestureScreenPoint()
         {
             tlog.Debug(tag, $"LongPressGestureScreenPoint START");
-            Gesture.StateType state = Gesture.StateType.Finished;
-            LongPressGesture ret1 = new LongPressGesture(state);
 
-            Vector2 v = ret1.ScreenPoint;
-            ret1.Dispose();
-            
+            var testingTarget = new LongPressGesture(Gesture.StateType.Finished);
+            Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+            Assert.IsInstanceOf<LongPressGesture>(testingTarget, "Should be an instance of Hover type.");
+
+            tlog.Debug(tag, "ScreenPoint : " + testingTarget.ScreenPoint);
+
+            testingTarget.Dispose();
             tlog.Debug(tag, $"LongPressGestureScreenPoint END (OK)");
             Assert.Pass("LongPressGestureScreenPoint");
         }
@@ -95,13 +101,14 @@ namespace Tizen.NUI.Devel.Tests
         public void LongPressGestureLocalPoint()
         {
             tlog.Debug(tag, $"LongPressGestureLocalPoint START");
-            Gesture.StateType state = Gesture.StateType.Finished;
-            LongPressGesture ret1 = new LongPressGesture(state);
 
-            Vector2 v = ret1.LocalPoint;
+            var testingTarget = new LongPressGesture(Gesture.StateType.Finished);
+            Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+            Assert.IsInstanceOf<LongPressGesture>(testingTarget, "Should be an instance of Hover type.");
 
-            ret1.Dispose();
-            
+            tlog.Debug(tag, "LocalPoint : " + testingTarget.LocalPoint);
+
+            testingTarget.Dispose();
             tlog.Debug(tag, $"LongPressGestureLocalPoint END (OK)");
             Assert.Pass("LongPressGestureLocalPoint");
         }
@@ -116,11 +123,22 @@ namespace Tizen.NUI.Devel.Tests
         public void LongPressGesturegetCPtr()
         {
             tlog.Debug(tag, $"LongPressGesturegetCPtr START");
-            Gesture.StateType state = Gesture.StateType.Finished;
-            LongPressGesture ret1 = new LongPressGesture(state);
 
-            global::System.Runtime.InteropServices.HandleRef a = LongPressGesture.getCPtr(ret1);
-            
+            var testingTarget = new LongPressGesture(Gesture.StateType.Finished);
+            Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+            Assert.IsInstanceOf<LongPressGesture>(testingTarget, "Should be an instance of Hover type.");
+
+            try
+            {
+                LongPressGesture.getCPtr(testingTarget);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            testingTarget.Dispose();
             tlog.Debug(tag, $"LongPressGesturegetCPtr END (OK)");
             Assert.Pass("LongPressGestureLocalPoint");
         }
@@ -135,15 +153,16 @@ namespace Tizen.NUI.Devel.Tests
         public void LongPressGestureGetLongPressGestureFromPtr()
         {
             tlog.Debug(tag, $"LongPressGestureGetLongPressGestureFromPtr START");
-            Gesture.StateType state = Gesture.StateType.Finished;
-            LongPressGesture ret1 = new LongPressGesture(state);  		
-			
-            LongPressGesture ret = LongPressGesture.GetLongPressGestureFromPtr(LongPressGesture.getCPtr(ret1).Handle);
-			
-            ret1.Dispose();
-            ret.Dispose();
 
-            
+            using (LongPressGesture gestrue = new LongPressGesture(Gesture.StateType.Finished))
+            {
+                var testingTarget = LongPressGesture.GetLongPressGestureFromPtr(LongPressGesture.getCPtr(gestrue).Handle);
+                Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+                Assert.IsInstanceOf<LongPressGesture>(testingTarget, "Should be an instance of Hover type.");
+
+                testingTarget.Dispose();
+            }
+
             tlog.Debug(tag, $"LongPressGestureGetLongPressGestureFromPtr END (OK)");
             Assert.Pass("LongPressGestureGetLongPressGestureFromPtr");
         }

@@ -8,10 +8,10 @@ namespace Tizen.NUI.Devel.Tests
 
     [TestFixture]
     [Description("internal/Xaml/MarkupExpressionParser")]
-    internal class PublicMarkupExpressionParserTest
+    public class InternalXamlMarkupExpressionParserTest
     {
         private const string tag = "NUITEST";
-        private static MarkupExpressionParserImplement m1;
+        private MarkupExpressionParserImplement m1;
 
         [SetUp]
         public void Init()

@@ -110,7 +110,7 @@ namespace Tizen.NUI.EXaml
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static object LoadFromEXamlByRelativePath<T>(this T view, string eXamlPath)
         {
-            object eXamlData = null;
+            GlobalDataList eXamlData = null;
 
             if (null == eXamlPath)
             {
@@ -159,6 +159,22 @@ namespace Tizen.NUI.EXaml
             LoadEXaml.Load(view, eXamlStr);
 
             return view;
+        }
+
+        /// Internal used, will never be opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static object CreateObjectFromEXaml(string eXamlStr)
+        {
+            if (null == eXamlStr)
+            {
+                return null;
+            }
+
+            //MainAssembly = view.GetType().Assembly;
+            object temp = null;
+            GlobalDataList eXamlData = null;
+            LoadEXaml.Load(temp, eXamlStr, out eXamlData);
+            return eXamlData.Root;
         }
 
         /// Internal used, will never be opened.

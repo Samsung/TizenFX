@@ -68,10 +68,30 @@ namespace Tizen.NUI.EXaml
                 switch (index)
                 {
                     case 0:
-                        int typeIndex = (int)getValues.ValueList[1];
-                        var items = getValues.ValueList[2] as List<object>;
-                        var createArrayInstanceOp = new CreateArrayInstance(globalDataList, typeIndex, items);
-                        globalDataList.Operations.Add(createArrayInstanceOp);
+                        {
+                            int typeIndex = (int)getValues.ValueList[1];
+                            var items = getValues.ValueList[2] as List<object>;
+                            var createArrayInstanceOp = new CreateArrayInstance(globalDataList, typeIndex, items);
+                            globalDataList.Operations.Add(createArrayInstanceOp);
+                        }
+                        break;
+
+                    case 1:
+                        {
+                            int typeIndex = (int)getValues.ValueList[1];
+                            int startIndex = (int)getValues.ValueList[2];
+                            int endIndex = (int)getValues.ValueList[3];
+                            var createDataTemplateOp = new CreateDataTemplate(globalDataList, typeIndex, (startIndex, endIndex));
+                            globalDataList.Operations.Add(createDataTemplateOp);
+                        }
+                        break;
+
+                    case 2:
+                        {
+                            int instanceIndex = (getValues.ValueList[1] as Instance).Index;
+                            var value = getValues.ValueList[2];
+                            globalDataList.Operations.Add(new AddToCollectionInstance(globalDataList, instanceIndex, value));
+                        }
                         break;
 
                     default:
