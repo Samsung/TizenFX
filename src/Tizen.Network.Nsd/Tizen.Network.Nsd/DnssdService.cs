@@ -278,7 +278,6 @@ namespace Tizen.Network.Nsd
                 NsdErrorFactory.ThrowDnssdException(ret);
             }
         }
-        
         /// <summary>
         /// Removes the TXT record.
         /// </summary>
