@@ -2314,5 +2314,35 @@ namespace Tizen.NUI
             [EditorBrowsable(EditorBrowsableState.Never)]
             public int? ShowLastCharacterDuration { get; set; }
         }
+
+        /// <summary>
+        /// A struct to pass data of SelectionHandleImageLeft, SelectionHandleImageRight, SelectionHandlePressedImageLeft, SelectionHandlePressedImageRight, SelectionHandleMarkerImageLeft and SelectionHandleMarkerImageRight PropertyMap. <br />
+        /// </summary>
+        /// <remarks>
+        /// The SelectionHandleImage struct is used as an argument to SetSelectionHandleImage, GetSelectionHandleImage methods, SetSelectionHandlePressedImage, GetSelectionHandlePressedImage, SetSelectionHandleMarkerImage and GetSelectionHandleMarkerImage. <br />
+        /// See <see cref="Tizen.NUI.BaseComponents.TextField.SetSelectionHandleImage"/>, <see cref="Tizen.NUI.BaseComponents.TextField.GetSelectionHandleImage"/>, <see cref="Tizen.NUI.BaseComponents.TextField.SetSelectionHandlePressedImage"/>, <see cref="Tizen.NUI.BaseComponents.TextField.GetSelectionHandlePressedImage"/>, <see cref="Tizen.NUI.BaseComponents.TextField.SetSelectionHandleMarkerImage"/>, <see cref="Tizen.NUI.BaseComponents.TextField.GetSelectionHandleMarkerImage"/>, <br />
+        /// <see cref="Tizen.NUI.BaseComponents.TextEditor.SetSelectionHandleImage"/>, <see cref="Tizen.NUI.BaseComponents.TextEditor.GetSelectionHandleImage"/>, <see cref="Tizen.NUI.BaseComponents.TextEditor.SetSelectionHandlePressedImage"/>, <see cref="Tizen.NUI.BaseComponents.TextEditor.GetSelectionHandlePressedImage"/>, <see cref="Tizen.NUI.BaseComponents.TextEditor.SetSelectionHandleMarkerImage"/> and <see cref="Tizen.NUI.BaseComponents.TextEditor.GetSelectionHandleMarkerImage"/>. <br />
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public struct SelectionHandleImage
+        {
+            /// <summary>
+            /// The image path to display for the left selection handle. <br />
+            /// It means the handle in the bottom-left. <br />
+            /// If the handle needs to be displayed in the top-left, this image will be vertically flipped. <br />
+            /// If null or empty string, it doesn't change the property. <br />
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public string LeftImageUrl { get; set; }
+
+            /// <summary>
+            /// The image path to display for the right selection handle. <br />
+            /// It means the handle in the bottom-right. <br />
+            /// If the handle needs to be displayed in the top-right, this image will be vertically flipped. <br />
+            /// If null or empty string, it doesn't change the property. <br />
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public string RightImageUrl { get; set; }
+        }
     }
 }
