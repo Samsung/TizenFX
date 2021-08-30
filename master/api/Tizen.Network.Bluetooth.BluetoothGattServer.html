@@ -155,7 +155,7 @@
   <a id="Tizen_Network_Bluetooth_BluetoothGattServer_Dispose_" data-uid="Tizen.Network.Bluetooth.BluetoothGattServer.Dispose*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothGatt.cs/#L244">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothGatt.cs/#L258">View Source</a>
     </span>
     <h4 id="Tizen_Network_Bluetooth_BluetoothGattServer_Dispose" data-uid="Tizen.Network.Bluetooth.BluetoothGattServer.Dispose">Dispose()</h4>
     <section>
@@ -176,7 +176,7 @@
   <a id="Tizen_Network_Bluetooth_BluetoothGattServer_Dispose_" data-uid="Tizen.Network.Bluetooth.BluetoothGattServer.Dispose*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothGatt.cs/#L255">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothGatt.cs/#L269">View Source</a>
     </span>
     <h4 id="Tizen_Network_Bluetooth_BluetoothGattServer_Dispose_System_Boolean_" data-uid="Tizen.Network.Bluetooth.BluetoothGattServer.Dispose(System.Boolean)">Dispose(Boolean)</h4>
     <section>
@@ -214,7 +214,7 @@
   <a id="Tizen_Network_Bluetooth_BluetoothGattServer_Finalize_" data-uid="Tizen.Network.Bluetooth.BluetoothGattServer.Finalize*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothGatt.cs/#L234">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothGatt.cs/#L248">View Source</a>
     </span>
     <h4 id="Tizen_Network_Bluetooth_BluetoothGattServer_Finalize" data-uid="Tizen.Network.Bluetooth.BluetoothGattServer.Finalize">Finalize()</h4>
     <section>
@@ -228,6 +228,83 @@
     <pre><code class="lang-csharp hljs">protected void Finalize()</code></pre>
   </div>
   
+  
+  
+  <a id="Tizen_Network_Bluetooth_BluetoothGattServer_GetAttMtu_" data-uid="Tizen.Network.Bluetooth.BluetoothGattServer.GetAttMtu*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothGatt.cs/#L229">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Bluetooth_BluetoothGattServer_GetAttMtu_System_String_" data-uid="Tizen.Network.Bluetooth.BluetoothGattServer.GetAttMtu(System.String)">GetAttMtu(String)</h4>
+    <section>
+      <p>Gets the value of the ATT MTU(Maximum Transmission Unit) for the connection.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int GetAttMtu(string clientAddress)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">clientAddress</span></td>
+        <td><p>The remote device address.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><p>The MTU value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when the BT/BLE is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown when the BT/BLE is not enabled
+or when the remote device is disconnected, or when other specific error occurs.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
+  <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/network.bluetooth.le.gatt.server</span></span></h6>
   
   
   <a id="Tizen_Network_Bluetooth_BluetoothGattServer_GetService_" data-uid="Tizen.Network.Bluetooth.BluetoothGattServer.GetService*"></a>

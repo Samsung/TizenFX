@@ -61709,6 +61709,11 @@
     "title": "Class BluetoothGattService",
     "keywords": ""
   },
+  "API9/api/Tizen.Network.Bluetooth.BluetoothGattServiceChangeType.html": {
+    "href": "API9/api/Tizen.Network.Bluetooth.BluetoothGattServiceChangeType.html",
+    "title": "Enum BluetoothGattServiceChangeType",
+    "keywords": ""
+  },
   "API9/api/Tizen.Network.Bluetooth.BluetoothGattServiceType.html": {
     "href": "API9/api/Tizen.Network.Bluetooth.BluetoothGattServiceType.html",
     "title": "Enum BluetoothGattServiceType",
@@ -61992,6 +61997,11 @@
   "API9/api/Tizen.Network.Bluetooth.ScanModeChangedEventArgs.html": {
     "href": "API9/api/Tizen.Network.Bluetooth.ScanModeChangedEventArgs.html",
     "title": "Class ScanModeChangedEventArgs",
+    "keywords": ""
+  },
+  "API9/api/Tizen.Network.Bluetooth.ServiceChangedEventArgs.html": {
+    "href": "API9/api/Tizen.Network.Bluetooth.ServiceChangedEventArgs.html",
+    "title": "Class ServiceChangedEventArgs",
     "keywords": ""
   },
   "API9/api/Tizen.Network.Bluetooth.ServiceSearchedEventArgs.html": {
