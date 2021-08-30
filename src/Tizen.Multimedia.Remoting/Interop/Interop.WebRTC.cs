@@ -279,8 +279,7 @@ internal static partial class Interop
 
     internal class WebRTCHandle : SafeHandle
     {
-        protected WebRTCHandle()
-          : base(IntPtr.Zero, true)
+        protected WebRTCHandle() : base(IntPtr.Zero, true)
         {
         }
 
@@ -291,12 +290,11 @@ internal static partial class Interop
             var ret = NativeWebRTC.Destroy(handle);
             if (ret != WebRTCErrorCode.None)
             {
-                return true;
+                Log.Debug(GetType().FullName, $"Failed to release native {GetType().Name}");
+                return false;
             }
 
-            Log.Debug(GetType().FullName, $"Failed to release native {GetType().Name}");
-            return false;
+            return true;
         }
     }
-
 }

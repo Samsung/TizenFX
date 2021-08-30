@@ -130,6 +130,7 @@ namespace Tizen.Multimedia.Remoting
 
             if (_handle != null)
             {
+                UnregisterEvents();
                 _handle.Dispose();
                 _disposed = true;
             }
@@ -202,7 +203,8 @@ namespace Tizen.Multimedia.Remoting
 
                 NativeWebRTC.Start(Handle).ThrowIfFailed("Failed to start the WebRTC");
 
-                await tcs.Task;
+                await tcs.Task.ConfigureAwait(false);
+                await Task.Yield();
             }
             finally
             {
@@ -255,14 +257,8 @@ namespace Tizen.Multimedia.Remoting
 
             var bundle_ = bundle?.SafeBundleHandle ?? new SafeBundleHandle();
 
-            string offer = null;
-            var ret = NativeWebRTC.CreateSDPOffer(Handle, bundle_, out offer);
-            if (ret != WebRTCErrorCode.None)
-            {
-                Log.Info(WebRTCLog.Tag, "Retry create offer. no error.");
-                NativeWebRTC.CreateSDPOffer(Handle, bundle_, out offer).
+            NativeWebRTC.CreateSDPOffer(Handle, bundle_, out string offer).
                     ThrowIfFailed("Failed to create offer");
-            }
 
             return offer;
         }
@@ -302,14 +298,8 @@ namespace Tizen.Multimedia.Remoting
 
             var bundle_ = bundle?.SafeBundleHandle ?? new SafeBundleHandle();
 
-            string answer = null;
-            var ret = NativeWebRTC.CreateSDPAnswer(Handle, bundle_, out answer);
-            if (ret != WebRTCErrorCode.None)
-            {
-                Log.Info(WebRTCLog.Tag, "Retry create answer. no error.");
-                NativeWebRTC.CreateSDPAnswer(Handle, bundle_, out answer).
+            NativeWebRTC.CreateSDPAnswer(Handle, bundle_, out string answer).
                     ThrowIfFailed("Failed to create answer");
-            }
 
             return answer;
         }
