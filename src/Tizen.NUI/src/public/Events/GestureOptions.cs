@@ -284,6 +284,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <remarks>This is a global configuration option. Affects all gestures.</remarks>
         /// <param name="number">The number of touch events</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetPinchGestureMinimumTouchEventsAfterStart(uint number)
         {
             Interop.GestureOptions.SetPinchGestureMinimumTouchEventsAfterStart(number);
@@ -326,6 +327,16 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-
+        /// <summary>
+        /// Sets the duration in milliseconds between the first tap's up event and the second tap's down event to be recognized as a duoble-tap gesture.
+        /// </summary>
+        /// <remarks>This is a global configuration option. Affects all gestures.</remarks>
+        /// <param name="ms">The time value in milliseconds</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetDoubleTapTimeout(uint ms)
+        {
+            Interop.GestureOptions.SetDoubleTapTimeout(ms);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
     }
 }
