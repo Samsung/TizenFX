@@ -270,7 +270,7 @@ namespace Tizen.Network.Nsd
                 NsdErrorFactory.ThrowDnssdException(ret);
             }
             byte[] txtValue;
-            txtValue = GetRawTXTRecords();
+            byte[] txtValue = GetRawTXTRecords();
             ret = Interop.Nsd.Dnssd.SetRecord(_serviceHandle, _dnsRecordtype, (ushort)txtValue.Length, txtValue);
             if (ret != (int)DnssdError.None)
             {
