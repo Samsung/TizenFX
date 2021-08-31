@@ -15,10 +15,7 @@
  *
  */
 
-using Tizen.NUI.BaseComponents;
 using System.Runtime.InteropServices;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System;
 using System.ComponentModel;
 
@@ -36,16 +33,7 @@ namespace Tizen.NUI
     /// </summary>
     internal sealed class ProcessorController : Disposable
     {
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        internal delegate void ProcessorCallback();
-
-        private ProcessorCallback callback = null;
-
-        public event EventHandler ProcessorOnceEvent;
-
-        public event EventHandler ProcessorEvent;
-
-        public event EventHandler LayoutProcessorEvent;
+        private static ProcessorController instance = null;
 
         private ProcessorController() : this(Interop.ProcessorController.New(), true)
         {
@@ -53,17 +41,24 @@ namespace Tizen.NUI
 
         internal ProcessorController(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-            callback = new ProcessorCallback(Process);
-            Interop.ProcessorController.SetCallback(SwigCPtr, callback);
+            processorCallback = new ProcessorEventHandler(Process);
+            Interop.ProcessorController.SetCallback(SwigCPtr, processorCallback);
         }
 
-        private static ProcessorController instance = null;
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        internal delegate void ProcessorEventHandler();
+
+        private ProcessorEventHandler processorCallback = null;
+
+        public event EventHandler ProcessorOnceEvent;
+        public event EventHandler ProcessorEvent;
+        public event EventHandler LayoutProcessorEvent;
 
         public static ProcessorController Instance
         {
             get
             {
-                if(instance == null)
+                if (instance == null)
                 {
                     instance = new ProcessorController();
                 }
@@ -85,7 +80,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
-            Interop.ProcessorController.RemoveCallback(SwigCPtr, callback);
+            Interop.ProcessorController.RemoveCallback(SwigCPtr, processorCallback);
             ProcessorOnceEvent = null;
             ProcessorEvent = null;
             LayoutProcessorEvent = null;
