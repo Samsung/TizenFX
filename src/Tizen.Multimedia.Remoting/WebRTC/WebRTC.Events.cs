@@ -168,11 +168,25 @@ namespace Tizen.Multimedia.Remoting
             RegisterDataChannelCreatedCallback();
         }
 
+        private void UnregisterEvents()
+        {
+            UnregisterErrorOccurredCallback();
+            UnregisterStateChangedCallback();
+            UnregisterIceGatheringStateChangedCallback();
+            UnregisterSignalingStateChangedCallback();
+            UnregisterPeerConnectionStateChangedCallback();
+            UnregisterIceConnectionStateChangedCallback();
+            UnregisterNegotiationNeededCallback();
+            UnregisterIceCandidateCallback();
+            UnregisterTrackAddedCallback();
+            UnregisterDataChannelCreatedCallback();
+        }
+
         private void RegisterErrorOccurredCallback()
         {
             _webRtcErrorOccurredCallback = (handle, error, state, _) =>
             {
-                Log.Info(WebRTCLog.Tag, $"{error}, {state}");
+                // Log.Info(WebRTCLog.Tag, $"{error}, {state}");
 
                 ErrorOccurred?.Invoke(this, new WebRTCErrorOccurredEventArgs((WebRTCError)error, state));
             };
@@ -181,11 +195,17 @@ namespace Tizen.Multimedia.Remoting
                 ThrowIfFailed("Failed to set error occurred callback.");
         }
 
+        private void UnregisterErrorOccurredCallback()
+        {
+            NativeWebRTC.UnsetErrorOccurredCb(Handle).
+                ThrowIfFailed("Failed to unset error occurred callback.");
+        }
+
         private void RegisterStateChangedCallback()
         {
             _webRtcStateChangedCallback = (handle, previous, current, _) =>
             {
-                Log.Info(WebRTCLog.Tag, $"{previous}, {current}");
+                // Log.Info(WebRTCLog.Tag, $"{previous}, {current}");
 
                 StateChanged?.Invoke(this, new WebRTCStateChangedEventArgs(previous, current));
             };
@@ -194,11 +214,17 @@ namespace Tizen.Multimedia.Remoting
                 ThrowIfFailed("Failed to set state changed callback.");
         }
 
+        private void UnregisterStateChangedCallback()
+        {
+            NativeWebRTC.UnsetStateChangedCb(Handle).
+                ThrowIfFailed("Failed to unset state changed callback.");
+        }
+
         private void RegisterIceGatheringStateChangedCallback()
         {
             _webRtcIceGatheringStateChangedCallback = (handle, state, _) =>
             {
-                Log.Info(WebRTCLog.Tag, $"Ice gathering state : {state}");
+                // Log.Info(WebRTCLog.Tag, $"Ice gathering state : {state}");
 
                 IceGatheringStateChanged?.Invoke(this, new WebRTCIceGatheringStateChangedEventArgs(state));
             };
@@ -207,17 +233,29 @@ namespace Tizen.Multimedia.Remoting
                 ThrowIfFailed("Failed to set Ice gathering state changed callback.");
         }
 
+        private void UnregisterIceGatheringStateChangedCallback()
+        {
+            NativeWebRTC.UnsetIceGatheringStateChangedCb(Handle).
+                ThrowIfFailed("Failed to unset Ice gathering state changed callback.");
+        }
+
         private void RegisterSignalingStateChangedCallback()
         {
             _webRtcSignalingStateChangedCallback = (handle, state, _) =>
             {
-                Log.Info(WebRTCLog.Tag, $"Signaling state : {state}");
+                // Log.Info(WebRTCLog.Tag, $"Signaling state : {state}");
 
                 SignalingStateChanged?.Invoke(this, new WebRTCSignalingStateChangedEventArgs(state));
             };
 
             NativeWebRTC.SetSignalingStateChangedCb(Handle, _webRtcSignalingStateChangedCallback).
                 ThrowIfFailed("Failed to set signaling state changed callback.");
+        }
+
+        private void UnregisterSignalingStateChangedCallback()
+        {
+            NativeWebRTC.UnsetSignalingStateChangedCb(Handle).
+                ThrowIfFailed("Failed to unset signaling state changed callback.");
         }
 
         private void RegisterPeerConnectionStateChangedCallback()
@@ -233,17 +271,29 @@ namespace Tizen.Multimedia.Remoting
                 ThrowIfFailed("Failed to set peer connection state changed callback.");
         }
 
+        private void UnregisterPeerConnectionStateChangedCallback()
+        {
+            NativeWebRTC.UnsetPeerConnectionStateChangedCb(Handle).
+                ThrowIfFailed("Failed to unset peer connection state changed callback.");
+        }
+
         private void RegisterIceConnectionStateChangedCallback()
         {
             _webRtcIceConnectionStateChangedCallback = (handle, state, _) =>
             {
-                Log.Info(WebRTCLog.Tag, $"Ice connection state : {state}");
+                // Log.Info(WebRTCLog.Tag, $"Ice connection state : {state}");
 
                 IceConnectionStateChanged?.Invoke(this, new WebRTCIceConnectionStateChangedEventArgs(state));
             };
 
             NativeWebRTC.SetIceConnectionStateChangedCb(Handle, _webRtcIceConnectionStateChangedCallback).
                 ThrowIfFailed("Failed to set ICE connection state changed callback.");
+        }
+
+        private void UnregisterIceConnectionStateChangedCallback()
+        {
+            NativeWebRTC.UnsetIceConnectionStateChangedCb(Handle).
+                ThrowIfFailed("Failed to unset ICE connection state changed callback.");
         }
 
         private void RegisterNegotiationNeededCallback()
@@ -257,6 +307,12 @@ namespace Tizen.Multimedia.Remoting
                 ThrowIfFailed("Failed to set negotiation needed callback.");
         }
 
+        private void UnregisterNegotiationNeededCallback()
+        {
+            NativeWebRTC.UnsetNegotiationNeededCb(Handle).
+                ThrowIfFailed("Failed to unset negotiation needed callback.");
+        }
+
         private void RegisterIceCandidateCallback()
         {
             _webRtcIceCandidateCallback = (handle, candidate, _) =>
@@ -268,11 +324,17 @@ namespace Tizen.Multimedia.Remoting
                 ThrowIfFailed("Failed to set ice candidate callback.");
         }
 
+        private void UnregisterIceCandidateCallback()
+        {
+            NativeWebRTC.UnsetIceCandidateCb(Handle).
+                ThrowIfFailed("Failed to unset ice candidate callback.");
+        }
+
         private void RegisterTrackAddedCallback()
         {
             _webRtcTrackAddedCallback = (handle, type, id, _) =>
             {
-                Log.Info(WebRTCLog.Tag, $"Track type[{type}], id[{id}]");
+                // Log.Info(WebRTCLog.Tag, $"Track type[{type}], id[{id}]");
 
                 TrackAdded?.Invoke(this, new WebRTCTrackAddedEventArgs(new MediaStreamTrack(this, type, id)));
             };
@@ -281,11 +343,17 @@ namespace Tizen.Multimedia.Remoting
                 ThrowIfFailed("Failed to set track added callback.");
         }
 
+        private void UnregisterTrackAddedCallback()
+        {
+            NativeWebRTC.UnsetTrackAddedCb(Handle).
+                ThrowIfFailed("Failed to unset track added callback.");
+        }
+
         private void RegisterAudioFrameEncodedCallback()
         {
             _webRtcAudioFrameEncodedCallback = (handle, type, id, packet, _) =>
             {
-                Log.Info(WebRTCLog.Tag, $"Track type[{type}], id[{id}]");
+                // Log.Info(WebRTCLog.Tag, $"Track type[{type}], id[{id}]");
 
                 _audioFrameEncoded?.Invoke(this,
                     new WebRTCFrameEncodedEventArgs(new MediaStreamTrack(this, type, id), MediaPacket.From(packet)));
@@ -305,7 +373,7 @@ namespace Tizen.Multimedia.Remoting
         {
             _webRtcVideoFrameEncodedCallback = (handle, type, id, packet, _) =>
             {
-                Log.Info(WebRTCLog.Tag, $"Track type[{type}], id[{id}]");
+                // Log.Info(WebRTCLog.Tag, $"Track type[{type}], id[{id}]");
 
                 _videoFrameEncoded?.Invoke(this,
                     new WebRTCFrameEncodedEventArgs(new MediaStreamTrack(this, type, id), MediaPacket.From(packet)));
@@ -325,13 +393,19 @@ namespace Tizen.Multimedia.Remoting
         {
             _webRtcDataChannelCreatedCallback = (handle, dataChannelHandle, _) =>
             {
-                Log.Debug(WebRTCLog.Tag, "Invoked");
+                // Log.Debug(WebRTCLog.Tag, "Invoked");
 
                 DataChannel?.Invoke(this, new WebRTCDataChannelEventArgs(dataChannelHandle));
             };
 
             NativeDataChannel.SetCreatedByPeerCb(Handle, _webRtcDataChannelCreatedCallback).
                 ThrowIfFailed("Failed to set data channel created callback.");
+        }
+
+        private void UnregisterDataChannelCreatedCallback()
+        {
+            NativeDataChannel.UnsetCreatedByPeerCb(Handle).
+                ThrowIfFailed("Failed to unset data channel created callback.");
         }
     }
 }
