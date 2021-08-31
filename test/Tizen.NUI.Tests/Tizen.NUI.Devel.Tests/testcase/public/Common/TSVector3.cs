@@ -961,5 +961,115 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.Dispose();
             tlog.Debug(tag, $"Vector3GetHashCode END (OK)");
         }
+
+        [Test]
+        [Category("P1")]
+        [Description("Vector3 Clone.")]
+        [Property("SPEC", "Tizen.NUI.Vector3.Clone M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void Vector3Clone()
+        {
+            tlog.Debug(tag, $"Vector3Clone START");
+
+            var testingTarget = new Vector3(10.0f, 20.0f, 30.0f);
+            Assert.IsNotNull(testingTarget, "Can't create success object Vector3");
+            Assert.IsInstanceOf<Vector3>(testingTarget, "Should be an instance of Vector3 type.");
+
+            var result = testingTarget.Clone();
+            Assert.IsInstanceOf<Vector3>(result, "Should be an instance of Vector3 type.");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"Vector3Clone END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Vector3 GetVector3FromPtr.")]
+        [Property("SPEC", "Tizen.NUI.Vector3.GetVector3FromPtr M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void Vector3GetVector3FromPtr()
+        {
+            tlog.Debug(tag, $"Vector3GetVector3FromPtr START");
+
+            var testingTarget = new Vector3(10.0f, 20.0f, 30.0f);
+            Assert.IsNotNull(testingTarget, "Can't create success object Vector3");
+            Assert.IsInstanceOf<Vector3>(testingTarget, "Should be an instance of Vector3 type.");
+
+            var result = Vector3.GetVector3FromPtr(testingTarget.SwigCPtr.Handle);
+            Assert.IsInstanceOf<Vector3>(result, "Should be an instance of Vector3 type.");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"Vector3Clone END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Vector3 AsFloat.")]
+        [Property("SPEC", "Tizen.NUI.Vector3.AsFloat M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void Vector3AsFloat()
+        {
+            tlog.Debug(tag, $"Vector3AsFloat START");
+
+            var testingTarget = new Vector3(10.0f, 20.0f, 30.0f);
+            Assert.IsNotNull(testingTarget, "Can't create success object Vector3");
+            Assert.IsInstanceOf<Vector3>(testingTarget, "Should be an instance of Vector3 type.");
+
+            var result = testingTarget.AsFloat();
+            Assert.IsInstanceOf<SWIGTYPE_p_float>(result, "Should be an instance of SWIGTYPE_p_float type.");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"Vector3AsFloat END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Vector3 Dot.")]
+        [Property("SPEC", "Tizen.NUI.Vector3.Dot M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void Vector3Dot()
+        {
+            tlog.Debug(tag, $"Vector3Dot START");
+
+            var testingTarget = new Vector3(10.0f, 20.0f, 30.0f);
+            Assert.IsNotNull(testingTarget, "Can't create success object Vector3");
+            Assert.IsInstanceOf<Vector3>(testingTarget, "Should be an instance of Vector3 type.");
+
+            var result = testingTarget.Dot(testingTarget);
+            tlog.Debug(tag, "Dot : " + result);
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"Vector3Dot END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Vector3 Cross.")]
+        [Property("SPEC", "Tizen.NUI.Vector3.Cross M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void Vector3Cross()
+        {
+            tlog.Debug(tag, $"Vector3Cross START");
+
+            var testingTarget = new Vector3(10.0f, 20.0f, 30.0f);
+            Assert.IsNotNull(testingTarget, "Can't create success object Vector3");
+            Assert.IsInstanceOf<Vector3>(testingTarget, "Should be an instance of Vector3 type.");
+
+            var result = testingTarget.Cross(testingTarget);
+            Assert.IsInstanceOf<Vector3>(result, "Should be an instance of Vector3 type.");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"Vector3Cross END (OK)");
+        }
     }
 }

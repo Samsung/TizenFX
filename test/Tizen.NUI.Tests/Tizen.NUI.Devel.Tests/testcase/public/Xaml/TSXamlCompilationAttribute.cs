@@ -8,23 +8,21 @@ namespace Tizen.NUI.Devel.Tests
 
     [TestFixture]
     [Description("public/xaml/XamlCompilationAttribute")]
-    internal class PublicXamlCompilationAttributeTest
+    public class PublicXamlCompilationAttributeTest
     {
         private const string tag = "NUITEST";
-        private static XamlCompilationAttribute x1;
+        private XamlCompilationAttribute compilationAttr;
         [SetUp]
         public void Init()
         {
             tlog.Info(tag, "Init() is called!");
-            XamlCompilationOptions xamlCompilationOptions = new XamlCompilationOptions();
-
-            x1 = new XamlCompilationAttribute(xamlCompilationOptions);
+            compilationAttr = new XamlCompilationAttribute(new XamlCompilationOptions());
         }
 
         [TearDown]
         public void Destroy()
         {
-            x1 = null;
+            compilationAttr = null;
             tlog.Info(tag, "Destroy() is called!");
         }
 
@@ -40,11 +38,12 @@ namespace Tizen.NUI.Devel.Tests
 
             XamlCompilationOptions xamlCompilationOptions = new XamlCompilationOptions();
 
-            XamlCompilationAttribute x2 = new XamlCompilationAttribute(xamlCompilationOptions);
+            var testingTarget = new XamlCompilationAttribute(xamlCompilationOptions);
+            Assert.IsNotNull(testingTarget, "null XamlCompilationAttribute");
+            Assert.IsInstanceOf<XamlCompilationAttribute>(testingTarget, "Should return XamlCompilationAttribute instance.");
 
-            x2 = null;
+            testingTarget = null;
             tlog.Debug(tag, $"XamlCompilationAttributeConstructor END (OK)");
-            Assert.Pass("XamlCompilationAttributeConstructor");
         }
 
         [Test]
@@ -56,18 +55,20 @@ namespace Tizen.NUI.Devel.Tests
         public void XamlCompilationAttributeXamlCompilationOptions()
         {
             tlog.Debug(tag, $"XamlCompilationAttributeXamlCompilationOptions START");
+
             try
             {
-                XamlCompilationOptions option = x1.XamlCompilationOptions;
-                x1.XamlCompilationOptions = option;
+                XamlCompilationOptions option = compilationAttr.XamlCompilationOptions;
+                compilationAttr.XamlCompilationOptions = option;
+                Assert.AreEqual(option, compilationAttr.XamlCompilationOptions, "Should be equal");
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
-            tlog.Debug(tag, $"XamlCompilationAttributeXamlCompilationOptions END (OK)");
-            Assert.Pass("XamlCompilationAttributeXamlCompilationOptions");
+
+            tlog.Debug(tag, $"XamlCompilationAttributeXamlCompilationOptions END");
         }
 
         [Test]
@@ -79,17 +80,18 @@ namespace Tizen.NUI.Devel.Tests
         public void XamlCompilationAttributeIsCompiled()
         {
             tlog.Debug(tag, $"XamlCExtensionsIsCompiled START");
+
             try
             {
                 Tizen.NUI.Xaml.XamlCExtensions.IsCompiled(typeof(string));
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
-            tlog.Debug(tag, $"XamlCExtensionsIsCompiled END (OK)");
-            Assert.Pass("XamlCExtensionsIsCompiled");
+
+            tlog.Debug(tag, $"XamlCExtensionsIsCompiled END");
         }
     }
 }

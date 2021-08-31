@@ -12,12 +12,9 @@ namespace Tizen.NUI.Devel.Tests
     {
         private const string tag = "NUITEST";
 
-        internal class IServiceProviderimplement : IServiceProvider
+        internal class IServiceProviderImpl : IServiceProvider
         {
-            public object GetService(Type serviceType)
-            {
-                return null;
-            }
+            public object GetService(Type serviceType) { return null; }
         }
 
         [SetUp]
@@ -44,21 +41,18 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                IServiceProviderimplement serviceProviderimplement = new IServiceProviderimplement();
-                NullExtension n1 = new NullExtension();
+                var testingTarget = new NullExtension();
+                Assert.IsNotNull(testingTarget, "null NullExtension");
 
-                n1.ProvideValue(serviceProviderimplement);
-
-                n1 = null;
+                testingTarget.ProvideValue(new IServiceProviderImpl());
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"NullExtensionProvideValue END (OK)");
-            Assert.Pass("NullExtensionProvideValue");
+            tlog.Debug(tag, $"NullExtensionProvideValue END");
         }
     }
 }

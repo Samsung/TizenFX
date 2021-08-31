@@ -46,6 +46,15 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Should be not null!");
             Assert.IsInstanceOf<Property>(testingTarget, "Should return PropertyValue instance.");
 
+            tlog.Debug(tag, "InvalidKey : " + Property.InvalidKey);
+            tlog.Debug(tag, "InvalidComponentIndex : " + Property.InvalidComponentIndex);
+
+            using (Animatable ani = new Animatable())
+            {
+                testingTarget.Object = ani;
+                tlog.Debug(tag, "Object : " + testingTarget.Object);
+            }
+
             testingTarget.Dispose();
             animatable.Dispose();
             tlog.Debug(tag, $"PropertyConstructor END (OK)");

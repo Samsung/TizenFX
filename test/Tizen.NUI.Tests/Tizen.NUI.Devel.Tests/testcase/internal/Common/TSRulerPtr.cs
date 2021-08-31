@@ -165,6 +165,30 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
+        [Description("RulerPtr Assign.")]
+        [Property("SPEC", "Tizen.NUI.RulerPtr.Assign M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void RulerPtrAssignRulerInstance()
+        {
+            tlog.Debug(tag, $"RulerPtrAssignRulerInstance START");
+
+            using (RulerPtr ruler = new RulerPtr())
+            {
+                var testingTarget = ruler.Assign(new DefaultRuler());
+                Assert.IsNotNull(testingTarget, "null handle");
+                Assert.IsInstanceOf<RulerPtr>(testingTarget, "Should return RulerPtr instance.");
+
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"RulerPtrAssignRulerInstance END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
         [Description("RulerPtr Reset.")]
         [Property("SPEC", "Tizen.NUI.RulerPtr.Reset M")]
         [Property("SPEC_URL", "-")]
@@ -189,8 +213,38 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception : Failed!");
             }
 
-            testingTarget?.Dispose();
+            testingTarget.Dispose();
             tlog.Debug(tag, $"RulerPtrReset END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("RulerPtr Reset.")]
+        [Property("SPEC", "Tizen.NUI.RulerPtr.Reset M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void RulerPtrResetRuler()
+        {
+            tlog.Debug(tag, $"RulerPtrResetRuler START");
+
+            var testingTarget = new RulerPtr();
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<RulerPtr>(testingTarget, "Should return RulerPtr instance.");
+
+            try
+            {
+                testingTarget.Reset(new DefaultRuler());
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"RulerPtrResetRuler END (OK)");
         }
 
         [Test]
@@ -205,7 +259,7 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"RulerPtrDetach START");
 
-            var testingTarget = new RulerPtr();
+            var testingTarget = new RulerPtr(new DefaultRuler());
             Assert.IsNotNull(testingTarget, "null handle");
             Assert.IsInstanceOf<RulerPtr>(testingTarget, "Should return RulerPtr instance.");
 
@@ -216,286 +270,235 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"RulerPtrDetach END (OK)");
         }
 
-        //[Test]
-        //[Category("P1")]
-        //[Description("RulerPtr Snap.")]
-        //[Property("SPEC", "Tizen.NUI.RulerPtr.Snap M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("COVPARAM", "")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void RulerPtrSnap()
-        //{
-        //    tlog.Debug(tag, $"RulerPtrSnap START");
+        [Test]
+        [Category("P1")]
+        [Description("RulerPtr Snap.")]
+        [Property("SPEC", "Tizen.NUI.RulerPtr.Snap M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void RulerPtrSnap()
+        {
+            tlog.Debug(tag, $"RulerPtrSnap START");
 
-        //    using (DefaultRuler ruler = new DefaultRuler())
-        //    {
-        //        var testingTarget = new RulerPtr(ruler);
-        //        Assert.IsNotNull(testingTarget, "null handle");
-        //        Assert.IsInstanceOf<RulerPtr>(testingTarget, "Should return RulerPtr instance.");
+            var testingTarget = new RulerPtr(new DefaultRuler());
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<RulerPtr>(testingTarget, "Should return RulerPtr instance.");
 
-        //        // float x
-        //        var result = testingTarget.Snap(0.3f);
-        //        tlog.Debug(tag, "Snap : " + result);
+            // float x
+            var result = testingTarget.Snap(0.3f);
+            tlog.Debug(tag, "Snap : " + result);
 
-        //        // float x, float bias
-        //        result = testingTarget.Snap(0.3f, 0.2f);
-        //        tlog.Debug(tag, "Snap : " + result);
+            // float x, float bias
+            result = testingTarget.Snap(0.3f, 0.2f);
+            tlog.Debug(tag, "Snap : " + result);
 
-        //        testingTarget.Dispose();
-        //    }
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"RulerPtrSnap END (OK)");
+        }
 
-        //    tlog.Debug(tag, $"RulerPtrSnap END (OK)");
-        //}
+        [Test]
+        [Category("P1")]
+        [Description("RulerPtr Enable.")]
+        [Property("SPEC", "Tizen.NUI.RulerPtr.Enable M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void RulerPtrEnable()
+        {
+            tlog.Debug(tag, $"RulerPtrEnable START");
 
-        //[Test]
-        //[Category("P1")]
-        //[Description("RulerPtr Enable.")]
-        //[Property("SPEC", "Tizen.NUI.RulerPtr.Enable M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("COVPARAM", "")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void RulerPtrEnable()
-        //{
-        //    tlog.Debug(tag, $"RulerPtrEnable START");
+            var testingTarget = new RulerPtr(new DefaultRuler());
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<RulerPtr>(testingTarget, "Should return RulerPtr instance.");
 
-        //    using (DefaultRuler ruler = new DefaultRuler())
-        //    {
-        //        var testingTarget = new RulerPtr(ruler);
-        //        Assert.IsNotNull(testingTarget, "null handle");
-        //        Assert.IsInstanceOf<RulerPtr>(testingTarget, "Should return RulerPtr instance.");
+            testingTarget.Disable();
+            var dis = testingTarget.IsEnabled();
+            tlog.Debug(tag, "IsEnabled : " + dis);
 
-        //        testingTarget.Enable();
-        //        var result = testingTarget.IsEnabled();
-        //        tlog.Debug(tag, "IsEnabled : " + result);
+            testingTarget.Enable();
+            var ena = testingTarget.IsEnabled();
+            tlog.Debug(tag, "IsEnabled : " + ena);
 
-        //        testingTarget.Dispose();
-        //    }
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"RulerPtrEnable END (OK)");
+        }
 
-        //    tlog.Debug(tag, $"RulerPtrEnable END (OK)");
-        //}
+        [Test]
+        [Category("P1")]
+        [Description("RulerPtr SetDomain.")]
+        [Property("SPEC", "Tizen.NUI.RulerPtr.SetDomain M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void RulerPtrSetDomain()
+        {
+            tlog.Debug(tag, $"RulerPtrSetDomain START");
 
-        //[Test]
-        //[Category("P1")]
-        //[Description("RulerPtr Disable.")]
-        //[Property("SPEC", "Tizen.NUI.RulerPtr.Disable M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("COVPARAM", "")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void RulerPtrDisable()
-        //{
-        //    tlog.Debug(tag, $"RulerPtrDisable START");
+            var testingTarget = new RulerPtr(new DefaultRuler());
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<RulerPtr>(testingTarget, "Should return RulerPtr instance.");
 
-        //    using (DefaultRuler ruler = new DefaultRuler())
-        //    {
-        //        var testingTarget = new RulerPtr(ruler);
-        //        Assert.IsNotNull(testingTarget, "null handle");
-        //        Assert.IsInstanceOf<RulerPtr>(testingTarget, "Should return RulerPtr instance.");
+            try
+            {
+                using (RulerDomain domain = new RulerDomain(0.0f, 1.0f, false))
+                {
+                    testingTarget.SetDomain(domain);
+                }
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
 
-        //        testingTarget.Disable();
-        //        var result = testingTarget.IsEnabled();
-        //        tlog.Debug(tag, "IsEnabled : " + result);
+            var result = testingTarget.GetDomain();
+            tlog.Debug(tag, "GetDomain : " + result);
 
-        //        testingTarget.Dispose();
-        //    }
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"RulerPtrSetDomain END (OK)");
+        }
 
-        //    tlog.Debug(tag, $"RulerPtrDisable END (OK)");
-        //}
+        [Test]
+        [Category("P1")]
+        [Description("RulerPtr DisableDomain.")]
+        [Property("SPEC", "Tizen.NUI.RulerPtr.DisableDomain M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void RulerPtrDisableDomain()
+        {
+            tlog.Debug(tag, $"RulerPtrDisableDomain START");
 
-        //[Test]
-        //[Category("P1")]
-        //[Description("RulerPtr SetDomain.")]
-        //[Property("SPEC", "Tizen.NUI.RulerPtr.SetDomain M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("COVPARAM", "")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void RulerPtrSetDomain()
-        //{
-        //    tlog.Debug(tag, $"RulerPtrSetDomain START");
+            var testingTarget = new RulerPtr(new DefaultRuler());
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<RulerPtr>(testingTarget, "Should return RulerPtr instance.");
 
-        //    using (DefaultRuler ruler = new DefaultRuler())
-        //    {
-        //        var testingTarget = new RulerPtr(ruler);
-        //        Assert.IsNotNull(testingTarget, "null handle");
-        //        Assert.IsInstanceOf<RulerPtr>(testingTarget, "Should return RulerPtr instance.");
+            try
+            {
+                testingTarget.DisableDomain();
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
 
-        //        try
-        //        {
-        //            using (RulerDomain domain = new RulerDomain(0.0f, 1.0f, false))
-        //            {
-        //                testingTarget.SetDomain(domain);
-        //            }
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            tlog.Debug(tag, e.Message.ToString());
-        //            Assert.Fail("Caught Exception : Failed!");
-        //        }
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"RulerPtrDisableDomain END (OK)");
+        }
 
-        //        var result = testingTarget.GetDomain();
-        //        tlog.Debug(tag, "GetDomain : " + result);
+        [Test]
+        [Category("P1")]
+        [Description("RulerPtr Clamp.")]
+        [Property("SPEC", "Tizen.NUI.RulerPtr.Clamp M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void RulerPtrClamp()
+        {
+            tlog.Debug(tag, $"RulerPtrClamp START");
 
-        //        testingTarget.Dispose();
-        //    }
+            var testingTarget = new RulerPtr(new DefaultRuler());
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<RulerPtr>(testingTarget, "Should return RulerPtr instance.");
 
-        //    tlog.Debug(tag, $"RulerPtrSetDomain END (OK)");
-        //}
+            try
+            {
+                // float x
+                var result = testingTarget.Clamp(0.3f);
+                tlog.Debug(tag, "Clamp : " + result);
 
-        //[Test]
-        //[Category("P1")]
-        //[Description("RulerPtr DisableDomain.")]
-        //[Property("SPEC", "Tizen.NUI.RulerPtr.DisableDomain M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("COVPARAM", "")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void RulerPtrDisableDomain()
-        //{
-        //    tlog.Debug(tag, $"RulerPtrDisableDomain START");
+                // float x, float length
+                result = testingTarget.Clamp(0.3f, 0.8f);
+                tlog.Debug(tag, "Clamp : " + result);
 
-        //    using (DefaultRuler ruler = new DefaultRuler())
-        //    {
-        //        var testingTarget = new RulerPtr(ruler);
-        //        Assert.IsNotNull(testingTarget, "null handle");
-        //        Assert.IsInstanceOf<RulerPtr>(testingTarget, "Should return RulerPtr instance.");
+                // float x, float length, float scale
+                result = testingTarget.Clamp(0.3f, 0.8f, 0.5f);
+                tlog.Debug(tag, "Clamp : " + result);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
 
-        //        try
-        //        {
-        //            testingTarget.DisableDomain();
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            tlog.Debug(tag, e.Message.ToString());
-        //            Assert.Fail("Caught Exception : Failed!");
-        //        }
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"RulerPtrClamp END (OK)");
+        }
 
-        //        testingTarget.Dispose();
-        //    }
+        [Test]
+        [Category("P1")]
+        [Description("RulerPtr SnapAndClamp.")]
+        [Property("SPEC", "Tizen.NUI.RulerPtr.SnapAndClamp M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void RulerPtrSnapAndClamp()
+        {
+            tlog.Debug(tag, $"RulerPtrSnapAndClamp START");
 
-        //    tlog.Debug(tag, $"RulerPtrDisableDomain END (OK)");
-        //}
+            var testingTarget = new RulerPtr(new DefaultRuler());
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<RulerPtr>(testingTarget, "Should return RulerPtr instance.");
 
-        //[Test]
-        //[Category("P1")]
-        //[Description("RulerPtr Clamp.")]
-        //[Property("SPEC", "Tizen.NUI.RulerPtr.Clamp M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("COVPARAM", "")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void RulerPtrClamp()
-        //{
-        //    tlog.Debug(tag, $"RulerPtrClamp START");
+            // float x
+            var result = testingTarget.SnapAndClamp(0.3f);
+            tlog.Debug(tag, "SnapAndClamp : " + result);
 
-        //    using (DefaultRuler ruler = new DefaultRuler())
-        //    {
-        //        var testingTarget = new RulerPtr(ruler);
-        //        Assert.IsNotNull(testingTarget, "null handle");
-        //        Assert.IsInstanceOf<RulerPtr>(testingTarget, "Should return RulerPtr instance.");
+            // float x, float bias
+            result = testingTarget.SnapAndClamp(0.3f, 0.1f);
+            tlog.Debug(tag, "SnapAndClamp : " + result);
 
-        //        try
-        //        {
-        //            // float x
-        //            var result = testingTarget.Clamp(0.3f);
-        //            tlog.Debug(tag, "Clamp : " + result);
+            // float x, float bias, float length
+            result = testingTarget.SnapAndClamp(0.3f, 0.1f, 1.0f);
+            tlog.Debug(tag, "SnapAndClamp : " + result);
 
-        //            // float x, float length
-        //            result = testingTarget.Clamp(0.3f, 0.8f);
-        //            tlog.Debug(tag, "Clamp : " + result);
+            // float x, float bias, float length, float scale
+            result = testingTarget.SnapAndClamp(0.3f, 0.1f, 1.0f, 0.5f);
+            tlog.Debug(tag, "SnapAndClamp : " + result);
 
-        //            // float x, float length, float scale
-        //            result = testingTarget.Clamp(0.3f, 0.8f, 0.5f);
-        //            tlog.Debug(tag, "Clamp : " + result);
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            tlog.Debug(tag, e.Message.ToString());
-        //            Assert.Fail("Caught Exception : Failed!");
-        //        }
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"RulerPtrSnapAndClamp END (OK)");
+        }
 
-        //        testingTarget.Dispose();
-        //    }
+        [Test]
+        [Category("P1")]
+        [Description("RulerPtr Reference.")]
+        [Property("SPEC", "Tizen.NUI.RulerPtr.Reference M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void RulerPtrReference()
+        {
+            tlog.Debug(tag, $"RulerPtrReference START");
 
-        //    tlog.Debug(tag, $"RulerPtrClamp END (OK)");
-        //}
+            var testingTarget = new RulerPtr(new DefaultRuler());
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<RulerPtr>(testingTarget, "Should return RulerPtr instance.");
 
-        //[Test]
-        //[Category("P1")]
-        //[Description("RulerPtr SnapAndClamp.")]
-        //[Property("SPEC", "Tizen.NUI.RulerPtr.SnapAndClamp M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("COVPARAM", "")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void RulerPtrSnapAndClamp()
-        //{
-        //    tlog.Debug(tag, $"RulerPtrSnapAndClamp START");
+            try
+            {
+                testingTarget.Reference();
+                tlog.Debug(tag, "ReferenceCount : " + testingTarget.ReferenceCount());
 
-        //    using (DefaultRuler ruler = new DefaultRuler())
-        //    {
-        //        var testingTarget = new RulerPtr(ruler);
-        //        Assert.IsNotNull(testingTarget, "null handle");
-        //        Assert.IsInstanceOf<RulerPtr>(testingTarget, "Should return RulerPtr instance.");
+                testingTarget.Unreference();
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
 
-        //        // float x
-        //        var result = testingTarget.SnapAndClamp(0.3f);
-        //        tlog.Debug(tag, "SnapAndClamp : " + result);
-
-        //        // float x, float bias
-        //        result = testingTarget.SnapAndClamp(0.3f, 0.1f);
-        //        tlog.Debug(tag, "SnapAndClamp : " + result);
-
-        //        // float x, float bias, float length
-        //        result = testingTarget.SnapAndClamp(0.3f, 0.1f, 1.0f);
-        //        tlog.Debug(tag, "SnapAndClamp : " + result);
-
-        //        // float x, float bias, float length, float scale
-        //        result = testingTarget.SnapAndClamp(0.3f, 0.1f, 1.0f, 0.5f);
-        //        tlog.Debug(tag, "SnapAndClamp : " + result);
-
-        //        testingTarget.Dispose();
-        //    }
-
-        //    tlog.Debug(tag, $"RulerPtrSnapAndClamp END (OK)");
-        //}
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("RulerPtr Reference.")]
-        //[Property("SPEC", "Tizen.NUI.RulerPtr.Reference M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("COVPARAM", "")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void RulerPtrReference()
-        //{
-        //    tlog.Debug(tag, $"RulerPtrReference START");
-
-        //    using (DefaultRuler ruler = new DefaultRuler())
-        //    {
-        //        var testingTarget = new RulerPtr(ruler);
-        //        Assert.IsNotNull(testingTarget, "null handle");
-        //        Assert.IsInstanceOf<RulerPtr>(testingTarget, "Should return RulerPtr instance.");
-
-        //        try
-        //        {
-        //            testingTarget.Reference();
-        //            tlog.Debug(tag, "ReferenceCount : " + testingTarget.ReferenceCount());
-
-        //            testingTarget.Unreference();
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            tlog.Debug(tag, e.Message.ToString());
-        //            Assert.Fail("Caught Exception : Failed!");
-        //        }
-
-        //        testingTarget.Dispose();
-        //        tlog.Debug(tag, $"RulerPtrReference END (OK)");
-        //    }
-        //}
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"RulerPtrReference END (OK)");
+        }
     }
 }
