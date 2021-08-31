@@ -8,78 +8,47 @@ namespace Tizen.NUI.Devel.Tests
 
     [TestFixture]
     [Description("internal/Xaml/MarkupExpressionParser")]
-    public class InternalXamlMarkupExpressionParserTest
+    public class InternalMarkupExpressionParserTest
     {
         private const string tag = "NUITEST";
-        private MarkupExpressionParserImplement m1;
+        private MarkupExpressionParserImpl expParser;
+
+        internal class MarkupExpressionParserImpl : MarkupExpressionParser
+        {
+            protected override void SetPropertyValue(string prop, string strValue, object value, IServiceProvider serviceProvider) { }
+            
+            public void CallHandleProperty()
+            {
+                IServiceProviderImpl provider = new IServiceProviderImpl();
+
+                string str = new string('a', 1);
+                HandleProperty("length", provider, ref str, true);
+            }
+
+            public void CallGetNextPiece()
+            {
+                string str = new string('a', 4);
+                GetNextPiece(ref str, out char next);
+            }
+        }
+
+        public class IServiceProviderImpl : IServiceProvider
+        {
+            public object GetService(Type serviceType) { return null; }
+        }
 
         [SetUp]
         public void Init()
         {
             tlog.Info(tag, "Init() is called!");
-            m1 = new MarkupExpressionParserImplement();
+            expParser = new MarkupExpressionParserImpl();
         }
 
         [TearDown]
         public void Destroy()
         {
-            m1 = null;
+            expParser = null;
             tlog.Info(tag, "Destroy() is called!");
-        }
-
-        private class MarkupExpressionParserImplement : MarkupExpressionParser
-        {
-            protected override void SetPropertyValue(string prop, string strValue, object value, IServiceProvider serviceProvider)
-            {
-                return;
-            }
-
-            public void CallHandleProperty()
-            {
-                IServiceProviderImplement serviceProviderImplement = new IServiceProviderImplement();
-                string s1 = new string('a', 1);
-                HandleProperty("length", serviceProviderImplement, ref s1, true);
-            }
-
-            public void CallGetNextPiece()
-            {
-                string s1 = new string('a', 4);
-
-                GetNextPiece(ref s1, out char next);
-            }
-        }
-
-        public class IServiceProviderImplement : IServiceProvider
-        {
-            public object GetService(Type serviceType)
-            {
-                return null;
-            }
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("MarkupExpressionParser ParseExpression")]
-        [Property("SPEC", "Tizen.NUI.MarkupExpressionParser.ParseExpression M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        public void MarkupExpressionParserParseExpression()
-        {
-            tlog.Debug(tag, $"MarkupExpressionParserParseExpression START");
-
-            try
-            {
-                string s1 = new string('a', 4);
-
-                IServiceProviderImplement serviceProviderImplement = new IServiceProviderImplement();
-                m1.ParseExpression(ref s1, serviceProviderImplement);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                tlog.Debug(tag, $"MarkupExpressionParserParseExpression END (OK)");
-                Assert.Pass("Caught Exception : passed!");
-            }
         }
 
         [Test]
@@ -94,17 +63,16 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                string s1 = new string('a', 1);
-                MarkupExpressionParser.MatchMarkup(out s1, "a+b", out int i1);
+                string str = new string('a', 1);
+                MarkupExpressionParser.MatchMarkup(out str, "a+b", out int result);
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"MarkupExpressionParserMatchMarkup END (OK)");
-            Assert.Pass("MarkupExpressionParserMatchMarkup");
+            tlog.Debug(tag, $"MarkupExpressionParserMatchMarkup END");
         }
 
         [Test]
@@ -119,39 +87,15 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                m1.CallHandleProperty();
-            }
-            catch (Exception e)
-            {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
-            }
-
-            tlog.Debug(tag, $"MarkupExpressionParserHandleProperty END (OK)");
-            Assert.Pass("MarkupExpressionParserHandleProperty");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("MarkupExpressionParser GetNextPiece")]
-        [Property("SPEC", "Tizen.NUI.MarkupExpressionParser.GetNextPiece M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        public void MarkupExpressionParserGetNextPiece()
-        {
-            tlog.Debug(tag, $"MarkupExpressionParserGetNextPiece START");
-
-            try
-            {
-                m1.CallGetNextPiece();
+                expParser.CallHandleProperty();
             }
             catch (Exception e)
             {
                 tlog.Debug(tag, e.Message.ToString());
-                tlog.Debug(tag, $"MarkupExpressionParserGetNextPiece END (OK)");
-                Assert.Pass("Caught Exception : passed!");
+                Assert.Fail("Caught Exception : Failed!");
             }
 
+            tlog.Debug(tag, $"MarkupExpressionParserHandleProperty END");
         }
     }
 }

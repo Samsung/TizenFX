@@ -12,36 +12,20 @@ namespace Tizen.NUI.Devel.Tests
     public class PublicTemplateBindingExtensionTest
     {
         private const string tag = "NUITEST";
-        private static TemplateBindingExtension t1;
+        private TemplateBindingExtension tExtension;
 
         [SetUp]
         public void Init()
         {
             tlog.Info(tag, "Init() is called!");
-            t1 = new TemplateBindingExtension();
+            tExtension = new TemplateBindingExtension();
         }
 
         [TearDown]
         public void Destroy()
         {
-            t1 = null;
+            tExtension = null;
             tlog.Info(tag, "Destroy() is called!");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("TemplateBindingExtension TemplateBindingExtension")]
-        [Property("SPEC", "Tizen.NUI.TemplateBindingExtension.TemplateBindingExtension C")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "CONSTR")]
-        public void TemplateBindingExtensionConstructor()
-        {
-            tlog.Debug(tag, $"TemplateBindingExtensionConstructor START");
-
-            TemplateBindingExtension templateBindingExtension = new TemplateBindingExtension();
-
-            tlog.Debug(tag, $"TemplateBindingExtensionConstructor END (OK)");
-            Assert.Pass("TemplateBindingExtensionConstructor");
         }
 
         [Test]
@@ -56,17 +40,17 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                string tmp = t1.Path;
-                t1.Path = tmp;
+                var path = tExtension.Path;
+                tExtension.Path = path;
+                Assert.AreEqual(path, tExtension.Path, "Should be equal");
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"TemplateBindingExtensionPath END (OK)");
-            Assert.Pass("TemplateBindingExtensionPath");
+            tlog.Debug(tag, $"TemplateBindingExtensionPath END");
         }
 
         [Test]
@@ -81,17 +65,17 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                BindingMode tmp = t1.Mode;
-                t1.Mode = tmp;
+                var mode = tExtension.Mode;
+                tExtension.Mode = mode;
+                Assert.AreEqual(mode, tExtension.Mode, "Should be equal");
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"TemplateBindingExtensionMode END (OK)");
-            Assert.Pass("TemplateBindingExtensionMode");
+            tlog.Debug(tag, $"TemplateBindingExtensionMode END");
         }
 
         [Test]
@@ -106,17 +90,17 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                IValueConverter tmp = t1.Converter;
-                t1.Converter = tmp;
+                var converter = tExtension.Converter;
+                tExtension.Converter = converter;
+                Assert.AreEqual(converter, tExtension.Converter, "Should be equal");
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"TemplateBindingExtensionConverter END (OK)");
-            Assert.Pass("TemplateBindingExtensionConverter");
+            tlog.Debug(tag, $"TemplateBindingExtensionConverter END");
         }
 
         [Test]
@@ -131,17 +115,17 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                object tmp = t1.ConverterParameter;
-                t1.ConverterParameter = tmp;
+                var param = tExtension.ConverterParameter;
+                tExtension.ConverterParameter = param;
+                Assert.AreEqual(param, tExtension.ConverterParameter, "Should be equal");
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"TemplateBindingExtensionConverterParameter END (OK)");
-            Assert.Pass("TemplateBindingExtensionConverterParameter");
+            tlog.Debug(tag, $"TemplateBindingExtensionConverterParameter END");
         }
 
         [Test]
@@ -156,17 +140,17 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                string tmp = t1.StringFormat;
-                t1.StringFormat = tmp;
+                var format = tExtension.StringFormat;
+                tExtension.StringFormat = format;
+                Assert.AreEqual(format, tExtension.StringFormat, "Should be equal");
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"TemplateBindingExtensionStringFormat END (OK)");
-            Assert.Pass("TemplateBindingExtensionStringFormat");
+            tlog.Debug(tag, $"TemplateBindingExtensionStringFormat END");
         }
     }
 }
