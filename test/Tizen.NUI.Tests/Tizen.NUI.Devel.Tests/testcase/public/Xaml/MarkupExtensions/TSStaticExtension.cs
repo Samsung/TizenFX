@@ -11,27 +11,19 @@ namespace Tizen.NUI.Devel.Tests
     public class PublicStaticExtensionTest
     {
         private const string tag = "NUITEST";
-        private static StaticExtension s1;
-
-        internal class IServiceProviderimplement : IServiceProvider
-        {
-            public object GetService(Type serviceType)
-            {
-                return null;
-            }
-        }
+        private StaticExtension sExtention;
 
         [SetUp]
         public void Init()
         {
             tlog.Info(tag, "Init() is called!");
-            s1 = new StaticExtension();
+            sExtention = new StaticExtension();
         }
 
         [TearDown]
         public void Destroy()
         {
-            s1 = null;
+            sExtention = null;
             tlog.Info(tag, "Destroy() is called!");
         }
 
@@ -47,40 +39,17 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                string tmp = s1.Member;
-                s1.Member = tmp;
-            }
-            catch (Exception e)
-            {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
-            }
-
-            tlog.Debug(tag, $"StaticExtensionMember END (OK)");
-            Assert.Pass("StaticExtensionMember");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("StaticExtension ProvideValue")]
-        [Property("SPEC", "Tizen.NUI.StaticExtension.ProvideValue A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
-        public void StaticExtensionProvideValue()
-        {
-            tlog.Debug(tag, $"StaticExtensionProvideValue START");
-
-            try
-            {
-                IServiceProviderimplement serviceProviderimplement = new IServiceProviderimplement();
-                s1.ProvideValue(serviceProviderimplement);
+                var member = sExtention.Member;
+                sExtention.Member = member;
+                Assert.AreEqual(member, sExtention.Member, "Should be equal");
             }
             catch (Exception e)
             {
                 tlog.Debug(tag, e.Message.ToString());
-                tlog.Debug(tag, $"StaticExtensionProvideValue END (OK)");
-                Assert.Pass("Caught Exception : passed!");
+                Assert.Fail("Caught Exception : Failed!");
             }
+
+            tlog.Debug(tag, $"StaticExtensionMember END");
         }
     }
 }

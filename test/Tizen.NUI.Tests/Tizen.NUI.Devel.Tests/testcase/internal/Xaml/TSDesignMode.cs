@@ -8,7 +8,7 @@ namespace Tizen.NUI.Devel.Tests
 
     [TestFixture]
     [Description("internal/Xaml/DesignMode")]
-    public class InternalXamlDesignModeTest
+    public class InternalDesignModeTest
     {
         private const string tag = "NUITEST";
 
@@ -36,17 +36,17 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                bool b1 = DesignMode.IsDesignModeEnabled;
-                DesignMode.IsDesignModeEnabled = b1;
+                var mode = DesignMode.IsDesignModeEnabled;
+                DesignMode.IsDesignModeEnabled = mode;
+                Assert.AreEqual(mode, DesignMode.IsDesignModeEnabled, "Should be equal");
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"DesignModeIsDesignModeEnabled END (OK)");
-            Assert.Pass("DesignModeIsDesignModeEnabled");
+            tlog.Debug(tag, $"DesignModeIsDesignModeEnabled END");
         }
     }
 }

@@ -11,27 +11,24 @@ namespace Tizen.NUI.Devel.Tests
     public class PublicDynamicResourceExtensionTest
     {
         private const string tag = "NUITEST";
-        private static DynamicResourceExtension d1;
+        private DynamicResourceExtension resExtension;
 
-        internal class IServiceProviderimplement : IServiceProvider
+        internal class IServiceProviderImpl : IServiceProvider
         {
-            public object GetService(Type serviceType)
-            {
-                return null;
-            }
+            public object GetService(Type serviceType) { return null; }
         }
 
         [SetUp]
         public void Init()
         {
             tlog.Info(tag, "Init() is called!");
-            d1 = new DynamicResourceExtension();
+            resExtension = new DynamicResourceExtension();
         }
 
         [TearDown]
         public void Destroy()
         {
-            d1 = null;
+            resExtension = null;
             tlog.Info(tag, "Destroy() is called!");
         }
 
@@ -47,17 +44,17 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                string tmp = d1.Key;
-                d1.Key = tmp;
+                string key = resExtension.Key;
+                resExtension.Key = key;
+                Assert.AreEqual(key, resExtension.Key, "Should be equal");
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"DynamicResourceExtensionKey END (OK)");
-            Assert.Pass("DynamicResourceExtensionKey");
+            tlog.Debug(tag, $"DynamicResourceExtensionKey END");
         }
 
         [Test]
@@ -72,18 +69,16 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                IServiceProviderimplement serviceProviderimplement = new IServiceProviderimplement();
-                d1.Key = "myKey";
-                d1.ProvideValue(serviceProviderimplement);
+                resExtension.Key = "Key";
+                resExtension.ProvideValue(new IServiceProviderImpl());
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"DynamicResourceExtensionProvideValue END (OK)");
-            Assert.Pass("DynamicResourceExtensionProvideValue");
+            tlog.Debug(tag, $"DynamicResourceExtensionProvideValue END");
         }
     }
 }

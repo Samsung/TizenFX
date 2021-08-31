@@ -12,44 +12,25 @@ namespace Tizen.NUI.Devel.Tests
     public class PublicArrayExtensionTest
     {
         private const string tag = "NUITEST";
-        private static ArrayExtension a1;
+        private ArrayExtension array;
 
-        internal class IServiceProviderimplement : IServiceProvider
+        internal class IServiceProviderImpl : IServiceProvider
         {
-            public object GetService(Type serviceType)
-            {
-                return null;
-            }
+            public object GetService(Type serviceType) { return null; }
         }
 
         [SetUp]
         public void Init()
         {
             tlog.Info(tag, "Init() is called!");
-            a1 = new ArrayExtension();
+            array = new ArrayExtension();
         }
 
         [TearDown]
         public void Destroy()
         {
-            a1 = null;
+            array = null;
             tlog.Info(tag, "Destroy() is called!");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("ArrayExtension ArrayExtension")]
-        [Property("SPEC", "Tizen.NUI.ArrayExtension.ArrayExtension C")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "CONSTR")]
-        public void ArrayExtensionConstructor()
-        {
-            tlog.Debug(tag, $"ArrayExtensionConstructor START");
-
-            ArrayExtension arrayExtension = new ArrayExtension();
-
-            tlog.Debug(tag, $"ArrayExtensionConstructor END (OK)");
-            Assert.Pass("ArrayExtensionConstructor");
         }
 
         [Test]
@@ -64,16 +45,16 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                IList i1 = a1.Items;
+                var item = array.Items;
+                tlog.Debug(tag, "Items : " + item);
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"ArrayExtensionItems END (OK)");
-            Assert.Pass("ArrayExtensionItems");
+            tlog.Debug(tag, $"ArrayExtensionItems END");
         }
 
         [Test]
@@ -88,17 +69,17 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                Type t1 = a1.Type;
-                a1.Type = t1;
+                var type = array.Type;
+                array.Type = type;
+                Assert.AreEqual(type, array.Type, "Should be equal");
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"ArrayExtensionType END (OK)");
-            Assert.Pass("ArrayExtensionType");
+            tlog.Debug(tag, $"ArrayExtensionType END");
         }
 
         [Test]
@@ -113,19 +94,16 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                IServiceProviderimplement serviceProviderimplement = new IServiceProviderimplement();
-                a1.Type = typeof(string);
-
-                a1.ProvideValue(serviceProviderimplement);
+                array.Type = typeof(string);
+                array.ProvideValue(new IServiceProviderImpl());
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"ArrayExtensionProvideValue END (OK)");
-            Assert.Pass("ArrayExtensionProvideValue");
+            tlog.Debug(tag, $"ArrayExtensionProvideValue END");
         }
     }
 }
