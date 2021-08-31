@@ -16,6 +16,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 
@@ -31,8 +32,10 @@ namespace Tizen.NUI
         private string appVersion;
         private float timeOffset;
         private ApplicationType applicationType;
-        private SecurityOriginListAcquiredCallback securityOriginListAcquiredCallback;
+        private WebSecurityOriginList securityOriginList;
+        private SecurityOriginListAcquiredCallback securityOriginsAcquiredCallback;
         private readonly WebContextSecurityOriginListAcquiredProxyCallback securityOriginListAcquiredProxyCallback;
+        private WebPasswordDataList passwordList;
         private PasswordDataListAcquiredCallback passwordDataListAcquiredCallback;
         private readonly WebContextPasswordDataListAcquiredProxyCallback passwordDataListAcquiredProxyCallback;
 
@@ -43,11 +46,40 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Dispose for IDisposable pattern
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (Disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+                if (passwordList != null)
+                {
+                    passwordList.Dispose();
+                }
+                if (securityOriginList != null)
+                {
+                    securityOriginList.Dispose();
+                }
+            }
+
+            base.Dispose(type);
+        }
+
+        /// <summary>
         /// The callback function that is invoked when security origin list is acquired.
         /// </summary>
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public delegate void SecurityOriginListAcquiredCallback(WebSecurityOriginList list);
+        public delegate void SecurityOriginListAcquiredCallback(IList<WebSecurityOrigin> list);
 
         /// <summary>
         /// The callback function that is invoked when storage usage is acquired.
@@ -57,11 +89,11 @@ namespace Tizen.NUI
         public delegate void StorageUsageAcquiredCallback(ulong usage);
 
         /// <summary>
-        /// The callback function that is invoked when security origin list is acquired.
+        /// The callback function that is invoked when password data list is acquired.
         /// </summary>
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public delegate void PasswordDataListAcquiredCallback(WebPasswordDataList list);
+        public delegate void PasswordDataListAcquiredCallback(IList<WebPasswordData> list);
 
         /// <summary>
         /// The callback function that is invoked when download is started.
@@ -350,7 +382,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool GetWebDatabaseOrigins(SecurityOriginListAcquiredCallback callback)
         {
-            securityOriginListAcquiredCallback = callback;
+            securityOriginsAcquiredCallback = callback;
             IntPtr ip = Marshal.GetFunctionPointerForDelegate(securityOriginListAcquiredProxyCallback);
             bool result = Interop.WebContext.GetWebDatabaseOrigins(SwigCPtr, new HandleRef(this, ip));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -376,7 +408,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool GetWebStorageOrigins(SecurityOriginListAcquiredCallback callback)
         {
-            securityOriginListAcquiredCallback = callback;
+            securityOriginsAcquiredCallback = callback;
             IntPtr ip = Marshal.GetFunctionPointerForDelegate(securityOriginListAcquiredProxyCallback);
             bool result = Interop.WebContext.GetWebStorageOrigins(SwigCPtr, new HandleRef(this, ip));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -629,18 +661,34 @@ namespace Tizen.NUI
             return ret;
         }
 
-        private void OnSecurityOriginListAcquired(IntPtr list)
+        private void OnSecurityOriginListAcquired(IntPtr alist)
         {
-            WebSecurityOriginList originList = new WebSecurityOriginList(list, true);
-            securityOriginListAcquiredCallback?.Invoke(originList);
-            originList.Dispose();
+            if (securityOriginList != null)
+            {
+                securityOriginList.Dispose();
+            }
+            securityOriginList = new WebSecurityOriginList(alist, true);
+            List<WebSecurityOrigin> originList = new List<WebSecurityOrigin>();
+            for (uint i = 0; i < securityOriginList.ItemCount; i++)
+            {
+                originList.Add(securityOriginList.GetItemAtIndex(i));
+            }
+            securityOriginsAcquiredCallback?.Invoke(originList);
         }
 
-        private void OnPasswordDataListAcquired(IntPtr list)
+        private void OnPasswordDataListAcquired(IntPtr alist)
         {
-            WebPasswordDataList passwordList = new WebPasswordDataList(list, true);
-            passwordDataListAcquiredCallback?.Invoke(passwordList);
-            passwordList.Dispose();
+            if (passwordList != null)
+            {
+                passwordList.Dispose();
+            }
+            passwordList = new WebPasswordDataList(alist, true);
+            List<WebPasswordData> passwordDataList = new List<WebPasswordData>();
+            for(uint i = 0; i < passwordList.ItemCount; i++)
+            {
+                passwordDataList.Add(passwordList.GetItemAtIndex(i));
+            }
+            passwordDataListAcquiredCallback?.Invoke(passwordDataList);
         }
     }
 }
