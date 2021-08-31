@@ -40,10 +40,23 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public BindableProperty Property { get; set; }
 
+        private bool isOriginalValue = false;
+        private object value;
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public object Value { get; set; }
+        public object Value
+        {
+            get
+            {
+                return value;
+            }
+            set
+            {
+                this.value = value;
+                isOriginalValue = true;
+            }
+        }
 
         object IValueProvider.ProvideValue(IServiceProvider serviceProvider)
         {
@@ -86,6 +99,17 @@ namespace Tizen.NUI.Binding
                 target.SetDynamicResource(Property, dynamicResource.Key, fromStyle);
             else
             {
+                if (true == isOriginalValue && null != Property)
+                {
+                    var tempValue = Value;
+                    if (Property.TryConvert(ref tempValue))
+                    {
+                        Value = tempValue;
+                    }
+
+                    isOriginalValue = false;
+                }
+
                 target.SetValue(Property, Value, fromStyle);
             }
         }
