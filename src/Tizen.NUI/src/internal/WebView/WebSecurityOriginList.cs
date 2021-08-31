@@ -21,10 +21,9 @@ using System.ComponentModel;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// It is a class for security origin list of web view.
+    /// It is an internal class for security origin list of web view.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public class WebSecurityOriginList : Disposable
+    internal class WebSecurityOriginList : Disposable
     {
         internal WebSecurityOriginList(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
@@ -32,7 +31,6 @@ namespace Tizen.NUI
 
         /// This will not be public opened.
         /// <param name="swigCPtr"></param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.WebSecurityOriginList.DeleteWebSecurityOriginList(swigCPtr);
@@ -41,8 +39,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Count of security origin list.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint ItemCount
+        internal uint ItemCount
         {
             get
             {
@@ -54,11 +51,10 @@ namespace Tizen.NUI
         /// Gets security origin by index.
         /// <param name="index">index of list</param>
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public WebSecurityOrigin GetItemAtIndex(uint index)
+        internal WebSecurityOrigin GetItemAtIndex(uint index)
         {
             System.IntPtr dataIntPtr = Interop.WebSecurityOriginList.ValueOfIndex(SwigCPtr, index);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) return null;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return new WebSecurityOrigin(dataIntPtr, false);
         }
     }
