@@ -16,9 +16,7 @@
  */
 
 using Tizen.NUI.BaseComponents;
-using System.Runtime.InteropServices;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System;
 using System.ComponentModel;
 
@@ -33,16 +31,12 @@ namespace Tizen.NUI
         private static int layoutControllerID = 1;
 
         private int id;
-
-        private ProcessorController.ProcessorCallback LayoutProcessorCallback = null;
-
         private Window window;
-
-        Animation coreAnimation;
-
+        private Animation coreAnimation;
         private List<LayoutData> layoutTransitionDataQueue;
-
         private List<LayoutItem> itemRemovalQueue;
+
+        private ProcessorController.ProcessorEventHandler LayoutProcessorCallback = null;
 
         /// <summary>
         /// Constructs a LayoutController which controls the measuring and layouting.<br />
@@ -54,6 +48,14 @@ namespace Tizen.NUI
             layoutTransitionDataQueue = new List<LayoutData>();
             id = layoutControllerID++;
         }
+
+        /// <summary>
+        /// Set or Get Layouting core animation override property.
+        /// Gives explicit control over the Layouting animation playback if set to True.
+        /// Reset to False if explicit control no longer required.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool OverrideCoreAnimation { get; set; } = false;
 
         /// <summary>
         /// Get the unique id of the LayoutController
@@ -81,6 +83,29 @@ namespace Tizen.NUI
             }
         }
 
+
+        /// <summary>
+        /// Entry point into the C# Layouting that starts the Processing
+        /// </summary>
+        public void Process(object source, EventArgs e)
+        {
+            Vector2 windowSize = window.GetSize();
+            float width = windowSize.Width;
+            float height = windowSize.Height;
+
+            window.LayersChildren?.ForEach(layer =>
+            {
+                layer?.Children?.ForEach(view =>
+                {
+                    if (view != null)
+                    {
+                        FindRootLayouts(view, width, height);
+                    }
+                });
+            });
+            windowSize.Dispose();
+            windowSize = null;
+        }
         /// <summary>
         /// Get the Layouting animation object that transitions layouts and content.
         /// Use OverrideCoreAnimation to explicitly control Playback.
@@ -91,14 +116,6 @@ namespace Tizen.NUI
         {
             return coreAnimation;
         }
-
-        /// <summary>
-        /// Set or Get Layouting core animation override property.
-        /// Gives explicit control over the Layouting animation playback if set to True.
-        /// Reset to False if explicit control no longer required.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool OverrideCoreAnimation { get; set; } = false;
 
         /// <summary>
         /// Create and set process callback
@@ -143,7 +160,7 @@ namespace Tizen.NUI
                 return;
             }
 
-            if(LayoutProcessorCallback != null)
+            if (LayoutProcessorCallback != null)
             {
                 ProcessorController.Instance.LayoutProcessorEvent -= Process;
                 LayoutProcessorCallback = null;
@@ -188,7 +205,7 @@ namespace Tizen.NUI
         // Can be called from multiple starting roots but in series.
         // Get parent View's Size.  If using Legacy size negotiation then should have been set already.
         // Parent not a View so assume it's a Layer which is the size of the window.
-        void MeasureAndLayout(View root, float parentWidth, float parentHeight)
+        private void MeasureAndLayout(View root, float parentWidth, float parentHeight)
         {
             if (root.Layout != null)
             {
@@ -244,29 +261,6 @@ namespace Tizen.NUI
         private MeasureSpecification CreateMeasureSpecification(float size, MeasureSpecification.ModeType mode)
         {
             return new MeasureSpecification(new LayoutLength(size), mode);
-        }
-
-        /// <summary>
-        /// Entry point into the C# Layouting that starts the Processing
-        /// </summary>
-        public void Process(object source, EventArgs e)
-        {
-            Vector2 windowSize = window.GetSize();
-            float width = windowSize.Width;
-            float height = windowSize.Height;
-
-            window.LayersChildren?.ForEach(layer =>
-            {
-                layer?.Children?.ForEach(view =>
-                {
-                    if (view != null)
-                    {
-                        FindRootLayouts(view, width, height);
-                    }
-                });
-            });
-            windowSize.Dispose();
-            windowSize = null;
         }
 
         /// <summary>
