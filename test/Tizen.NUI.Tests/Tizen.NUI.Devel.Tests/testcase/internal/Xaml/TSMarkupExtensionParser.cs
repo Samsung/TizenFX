@@ -8,30 +8,28 @@ namespace Tizen.NUI.Devel.Tests
 
     [TestFixture]
     [Description("internal/Xaml/MarkupExtensionParser")]
-    public class InternalXamlMarkupExtensionParserTest
+    public class InternalMarkupExtensionParserTest
     {
         private const string tag = "NUITEST";
-        private MarkupExtensionParser m1;
+        private MarkupExtensionParser extParser;
+
+        internal class IServiceProviderImpl : IServiceProvider
+        {
+            public object GetService(Type serviceType) { return null; }
+        }
+
         [SetUp]
         public void Init()
         {
             tlog.Info(tag, "Init() is called!");
-            m1 = new MarkupExtensionParser();
+            extParser = new MarkupExtensionParser();
         }
 
         [TearDown]
         public void Destroy()
         {
-            m1 = null;
+            extParser = null;
             tlog.Info(tag, "Destroy() is called!");
-        }
-
-        private class IServiceProviderImplement : IServiceProvider
-        {
-            public object GetService(Type serviceType)
-            {
-                return null;
-            }
         }
 
         [Test]
@@ -46,18 +44,17 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                string s1 = new string('a', 4);
-                IServiceProviderImplement serviceProviderImplement = new IServiceProviderImplement();
-                m1.Parse("myMatch", ref s1, serviceProviderImplement);
+                string str = new string('a', 4);
+                IServiceProviderImpl provider = new IServiceProviderImpl();
+                extParser.Parse("myMatch", ref str, provider);
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"MarkupExtensionParserParse END (OK)");
-            Assert.Pass("MarkupExtensionParserParse");
+            tlog.Debug(tag, $"MarkupExtensionParserParse END");
         }
     }
 }

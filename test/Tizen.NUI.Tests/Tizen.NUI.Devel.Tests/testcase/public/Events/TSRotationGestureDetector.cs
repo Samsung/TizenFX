@@ -138,15 +138,16 @@ namespace Tizen.NUI.Devel.Tests
         public void RotationGestureDetectorAssign()
         {
             tlog.Debug(tag, $"RotationGestureDetectorAssign START");
-            RotationGestureDetector a1 = new RotationGestureDetector();
 
-            RotationGestureDetector b1 = a1;
+            using (RotationGestureDetector detector = new RotationGestureDetector())
+            {
+                var testingTarget = detector.Assign(detector);
+                Assert.IsInstanceOf<RotationGestureDetector>(testingTarget, "Should be an instance of RotationGestureDetector type.");
 
-            b1.Dispose();
-            a1.Dispose();
-            
+                testingTarget.Dispose();
+            }
+
             tlog.Debug(tag, $"RotationGestureDetectorAssign END (OK)");
-            Assert.Pass("RotationGestureDetectorAssign");
         }
 		
         [Test]
