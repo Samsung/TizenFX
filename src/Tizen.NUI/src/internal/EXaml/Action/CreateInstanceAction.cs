@@ -58,6 +58,10 @@ namespace Tizen.NUI.EXaml
                     getStaticInstanceOp = new GetValueListAction('}', this);
                     return getStaticInstanceOp;
 
+                case '`':
+                    getTypeObjectIndexOp = new GetValueListAction(c, this);
+                    return getTypeObjectIndexOp;
+
                 default:
                     getTypeIndexOp = new GetValueAction(c, this);
                     return getTypeIndexOp;
@@ -104,13 +108,20 @@ namespace Tizen.NUI.EXaml
                     getParamListOp = null;
                 }
             }
+            else if (null != getTypeObjectIndexOp)
+            {
+                int typeIndex = (int)(getTypeObjectIndexOp.ValueList[0]);
+                globalDataList.Operations.Add(new GatherTypeObject(globalDataList, typeIndex));
+            }
 
             getTypeIndexOp = null;
+            getTypeObjectIndexOp = null;
         }
 
         private GetValueAction getTypeIndexOp;
         private GetValueListAction getXFactoryMethodIndexOp;
         private GetValueListAction getParamListOp;
         private GetValueListAction getStaticInstanceOp;
+        private GetValueListAction getTypeObjectIndexOp;
     }
 }
