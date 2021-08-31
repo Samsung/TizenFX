@@ -18,3 +18,5 @@ using Tizen.NUI;
 [assembly: XmlnsDefinition("http://schemas.microsoft.com/winfx/2009/xaml", "Tizen.NUI.Xaml")]
 [assembly: XmlnsDefinition("http://schemas.microsoft.com/winfx/2009/xaml", "System", AssemblyName = "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089")]
 [assembly: XmlnsDefinition("http://schemas.microsoft.com/winfx/2009/xaml", "System", AssemblyName = "System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089")]
+
+[assembly: XmlnsDefinition("http://schemas.microsoft.com/winfx/2009/xaml", "System.Collections.Generic", AssemblyName = "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089")]
