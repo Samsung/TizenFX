@@ -15,11 +15,12 @@
  */
 
 using System;
-using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Threading;
+using System.Threading.Tasks;
 using Tizen.Applications;
 using static Interop;
 
@@ -112,10 +113,13 @@ namespace Tizen.Multimedia.Remoting
             {
                 try
                 {
+                    Log.Info(WebRTCLog.Tag, "Detach sources");
                     foreach (var source in _source)
                     {
+                        source.ReplaceDisplay(null);
                         source.DetachFrom(this);
                     }
+                    _source.Clear();
                     _source = null;
                 }
                 catch (Exception ex)
@@ -123,8 +127,10 @@ namespace Tizen.Multimedia.Remoting
                     Log.Error(WebRTCLog.Tag, ex.ToString());
                 }
             }
+
             if (_handle != null)
             {
+                UnregisterEvents();
                 _handle.Dispose();
                 _disposed = true;
             }
@@ -148,7 +154,7 @@ namespace Tizen.Multimedia.Remoting
         /// <remarks>
         /// The WebRTC must be in the <see cref="WebRTCState.Idle"/> state.<br/>
         /// The WebRTC state will be <see cref="WebRTCState.Negotiating"/> state.<br/>
-        /// <see cref="StateChanged"/> event will be invoked when the state is changed to <see cref="WebRTCState.Negotiating"/> internally.
+        /// The user should check whether <see cref="State" /> is changed to <see cref="WebRTCState.Negotiating"/> state or not.
         /// </remarks>
         /// <exception cref="InvalidOperationException">The WebRTC is not in the valid state.</exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
@@ -165,12 +171,12 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Starts the WebRTC.
+        /// Starts the WebRTC asynchronously.
         /// </summary>
         /// <remarks>
         /// The WebRTC must be in the <see cref="WebRTCState.Idle"/> state.<br/>
         /// The WebRTC state will be <see cref="WebRTCState.Negotiating"/> state.<br/>
-        /// This ensures that <see cref="StateChanged" /> event will be invoked with <see cref="WebRTCState.Negotiating"/> state.
+        /// This ensures that <see cref="State" /> is changed to <see cref="WebRTCState.Negotiating"/> state.
         /// </remarks>
         /// <exception cref="InvalidOperationException">The WebRTC is not in the valid state.</exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
@@ -197,7 +203,8 @@ namespace Tizen.Multimedia.Remoting
 
                 NativeWebRTC.Start(Handle).ThrowIfFailed("Failed to start the WebRTC");
 
-                await tcs.Task;
+                await tcs.Task.ConfigureAwait(false);
+                await Task.Yield();
             }
             finally
             {
@@ -210,7 +217,8 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <remarks>
         /// The WebRTC must be in the <see cref="WebRTCState.Negotiating"/> or <see cref="WebRTCState.Playing"/> state.<br/>
-        /// The WebRTC state will be <see cref="WebRTCState.Idle"/> state.
+        /// The WebRTC state will be <see cref="WebRTCState.Idle"/> state.<br/>
+        /// The user should check whether <see cref="State" /> is changed to <see cref="WebRTCState.Idle"/> state or not.
         /// </remarks>
         /// <exception cref="InvalidOperationException">The WebRTC is not in the valid state.</exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
@@ -248,7 +256,9 @@ namespace Tizen.Multimedia.Remoting
             ValidateWebRTCState(WebRTCState.Negotiating);
 
             var bundle_ = bundle?.SafeBundleHandle ?? new SafeBundleHandle();
-            NativeWebRTC.CreateSDPOffer(Handle, bundle_, out string offer).ThrowIfFailed("Failed to create offer");
+
+            NativeWebRTC.CreateSDPOffer(Handle, bundle_, out string offer).
+                    ThrowIfFailed("Failed to create offer");
 
             return offer;
         }
@@ -288,7 +298,8 @@ namespace Tizen.Multimedia.Remoting
 
             var bundle_ = bundle?.SafeBundleHandle ?? new SafeBundleHandle();
 
-            NativeWebRTC.CreateSDPAnswer(Handle, bundle_, out string answer).ThrowIfFailed("Failed to create answer");
+            NativeWebRTC.CreateSDPAnswer(Handle, bundle_, out string answer).
+                    ThrowIfFailed("Failed to create answer");
 
             return answer;
         }
