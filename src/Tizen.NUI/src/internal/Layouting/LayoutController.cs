@@ -36,7 +36,7 @@ namespace Tizen.NUI
         private List<LayoutData> layoutTransitionDataQueue;
         private List<LayoutItem> itemRemovalQueue;
 
-        private ProcessorController.ProcessorEventHandler LayoutProcessorCallback = null;
+        private bool subscribed;
 
         /// <summary>
         /// Constructs a LayoutController which controls the measuring and layouting.<br />
@@ -122,9 +122,10 @@ namespace Tizen.NUI
         /// </summary>
         internal void CreateProcessCallback()
         {
-            if (LayoutProcessorCallback == null)
+            if (!subscribed)
             {
                 ProcessorController.Instance.LayoutProcessorEvent += Process;
+                subscribed = true;
             }
         }
 
@@ -160,10 +161,10 @@ namespace Tizen.NUI
                 return;
             }
 
-            if (LayoutProcessorCallback != null)
+            if (subscribed)
             {
                 ProcessorController.Instance.LayoutProcessorEvent -= Process;
-                LayoutProcessorCallback = null;
+                subscribed = false;
             }
 
             //Release your own unmanaged resources here.
