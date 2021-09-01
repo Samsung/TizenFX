@@ -387,6 +387,19 @@ namespace Tizen.NUI.BaseComponents
             var textFieldStyle = (TextFieldStyle)bindable;
             return textFieldStyle.inputUnderline;
         });
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty InputStrikethroughProperty = BindableProperty.Create(nameof(InputStrikethrough), typeof(string), typeof(TextFieldStyle), String.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textFieldStyle = (TextFieldStyle)bindable;
+            textFieldStyle.inputStrikethrough = (string)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textFieldStyle = (TextFieldStyle)bindable;
+            return textFieldStyle.inputStrikethrough;
+        });
+
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty InputShadowProperty = BindableProperty.Create(nameof(InputShadow), typeof(string), typeof(TextFieldStyle), String.Empty, propertyChanged: (bindable, oldValue, newValue) =>
@@ -535,6 +548,7 @@ namespace Tizen.NUI.BaseComponents
         private Vector4 placeholderTextColor;
         private Vector4 primaryCursorColor;
         private PropertyMap fontStyle;
+        private string inputStrikethrough;
 
         static TextFieldStyle() { }
 
@@ -749,6 +763,13 @@ namespace Tizen.NUI.BaseComponents
         {
             get => (string)GetValue(InputUnderlineProperty);
             set => SetValue(InputUnderlineProperty, value);
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string InputStrikethrough
+        {
+            get => (string)GetValue(InputStrikethroughProperty);
+            set => SetValue(InputStrikethroughProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.

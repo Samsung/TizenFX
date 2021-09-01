@@ -1413,6 +1413,50 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// This method converts a Strikethrough struct to a PropertyMap and returns it.
+        /// The returned map can be used for set Strikethrough PropertyMap in the SetStrikethrough method.
+        /// <param name="strikethrough">The Strikethrough struct value.</param>
+        /// <returns> A PropertyMap for Strikethrough property. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static PropertyMap GetStrikethroughMap(Strikethrough strikethrough)
+        {
+            var map = new PropertyMap();
+
+            map.Add("enable", new PropertyValue(strikethrough.Enable));
+
+            if (strikethrough.Color != null)
+                map.Add("color", new PropertyValue(strikethrough.Color));
+
+            if (strikethrough.Height != null)
+                map.Add("height", new PropertyValue((float)strikethrough.Height));
+
+            return map;
+        }
+
+        /// <summary>
+        /// This method converts a Strikethrough map to a struct and returns it.
+        /// The returned struct can be returned to the user as a Strikethrough in the GetStrikethrough method.
+        /// <param name="map">The Strikethrough PropertyMap.</param>
+        /// <returns> A Strikethrough struct. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Strikethrough GetStrikethroughStruct(PropertyMap map)
+        {
+            Color color = new Color();
+            map.Find(0, "enable").Get(out bool enable);
+            map.Find(0, "color").Get(color);
+            map.Find(0, "height").Get(out float height);
+
+            var strikethrough = new Strikethrough();
+            strikethrough.Enable = enable;
+            strikethrough.Color = color;
+            strikethrough.Height = height;
+
+            return strikethrough;
+        }
+
+        /// <summary>
         /// This method converts a Shadow struct to a PropertyMap and returns it.
         /// The returned map can be used for set Shadow PropertyMap in the SetShadow method.
         /// <param name="shadow">The Shadow struct value.</param>

@@ -2121,6 +2121,35 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// A struct to pass data of Strikethrough PropertyMap. <br />
+        /// </summary>
+        /// <remarks>
+        /// The Strikethrough struct is used as an argument to SetStrikethrough and GetStrikethrough methods. <br />
+        /// See <see cref="Tizen.NUI.BaseComponents.TextLabel.SetStrikethrough"/>, <see cref="Tizen.NUI.BaseComponents.TextLabel.GetStrikethrough"/>, <see cref="Tizen.NUI.BaseComponents.TextField.SetUnderline"/>, <see cref="Tizen.NUI.BaseComponents.TextField.GetStrikethrough"/>, <see cref="Tizen.NUI.BaseComponents.TextEditor.SetStrikethrough"/> and <see cref="Tizen.NUI.BaseComponents.TextEditor.GetStrikethrough"/>. <br />
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public struct Strikethrough
+        {
+            /// <summary>
+            /// Whether the strikethrough is enabled (the default value is false).
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public bool Enable { get; set; }
+
+            /// <summary>
+            /// The color of the strikethrough (if not provided then the color of the text is used).
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public Color Color { get; set; }
+
+            /// <summary>
+            /// The height in pixels of the strikethrough (if null, the default value is 1.0f).
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public float? Height { get; set; }
+        }
+
+        /// <summary>
         /// A struct to pass data of Shadow PropertyMap. <br />
         /// </summary>
         /// <remarks>
@@ -2139,7 +2168,7 @@ namespace Tizen.NUI
             /// <summary>
             /// The offset in pixels of the shadow (if null, the default value is 0, 0). <br />
             /// If not provided then the shadow is not enabled. <br />
-            ///  
+            ///
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public Vector2 Offset { get; set; }

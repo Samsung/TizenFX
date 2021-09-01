@@ -884,6 +884,84 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The Strikethrough property.
+        /// The Strikethrough map contains the following keys :<br />
+        /// <list type="table">
+        /// <item><term>enable (bool)</term><description>Whether the strikethrough is enabled (the default value is false)</description></item>
+        /// <item><term>color (Color)</term><description>The color of the strikethrough (If not provided then the color of the text is used)</description></item>
+        /// <item><term>height (float)</term><description>The height in pixels of the strikethrough (the default value is 1.f)</description></item>
+        /// </list>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyMap Strikethrough
+        {
+            get
+            {
+                return (PropertyMap)GetValue(StrikethroughProperty);
+            }
+            set
+            {
+                SetValue(StrikethroughProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Set Strikethrough to TextEditor. <br />
+        /// </summary>
+        /// <param name="strikethrough">The Strikethrough</param>
+        /// <remarks>
+        /// SetStrikethrough specifies the strikethrough of the text through <see cref="Tizen.NUI.Text.Strikethrough"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetStrikethrough method.
+        /// <code>
+        /// var strikethrough = new Tizen.NUI.Text.Strikethrough();
+        /// strikethrough.Enable = true;
+        /// strikethrough.Color = new Color("#3498DB");
+        /// strikethrough.Height = 2.0f;
+        /// editor.SetStrikethrough(strikethrough);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetStrikethrough(Strikethrough strikethrough)
+        {
+            SetProperty(TextEditor.Property.STRIKETHROUGH, new PropertyValue(TextUtils.GetStrikethroughMap(strikethrough)));
+        }
+
+        /// <summary>
+        /// Get Strikethrough from TextEditor. <br />
+        /// </summary>
+        /// <returns>The Strikethrough</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.Strikethrough"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Strikethrough GetStrikethrough()
+        {
+            var map = new PropertyMap();
+            GetProperty(TextEditor.Property.STRIKETHROUGH).Get(map);
+            return TextUtils.GetStrikethroughStruct(map);
+        }
+
+        /// <summary>
+        /// The InputStrikethrough property.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string InputStrikethrough
+        {
+            get
+            {
+                return (string)GetValue(InputStrikethroughProperty);
+            }
+            set
+            {
+                SetValue(InputStrikethroughProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// The Shadow property.
         /// The shadow map contains the following keys :<br />
         /// <list type="table">
@@ -2117,6 +2195,8 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int EllipsisPosition = Interop.TextEditor.EllipsisPositionGet();
             internal static readonly int MinLineSize = Interop.TextEditor.MinLineSizeGet();
             internal static readonly int InputFilter = Interop.TextEditor.InputFilterGet();
+            internal static readonly int STRIKETHROUGH = Interop.TextEditor.StrikethroughGet();
+            internal static readonly int InputStrikethrough = Interop.TextEditor.InputStrikethroughGet();
         }
 
         internal class InputStyle
@@ -2132,7 +2212,8 @@ namespace Tizen.NUI.BaseComponents
                 Underline = 0x0020,
                 Shadow = 0x0040,
                 Emboss = 0x0080,
-                Outline = 0x0100
+                Outline = 0x0100,
+                Strikethrough = 0x0200
             }
         }
 

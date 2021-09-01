@@ -176,6 +176,12 @@ namespace Tizen.NUI.BaseComponents
             propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).inputUnderline = (string)newValue,
             defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).inputUnderline);
 
+        /// <summary> The bindable property of InputStrikethrough. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly BindableProperty InputStrikethroughProperty = BindableProperty.Create(nameof(InputStrikethrough), typeof(string), typeof(TextEditorStyle), String.Empty,
+            propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).inputStrikethrough = (string)newValue,
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).inputStrikethrough);
+
         /// <summary> The bindable property of InputShadow. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static readonly BindableProperty InputShadowProperty = BindableProperty.Create(nameof(InputShadow), typeof(string), typeof(TextEditorStyle), String.Empty,
@@ -276,6 +282,7 @@ namespace Tizen.NUI.BaseComponents
         private string inputFontFamily;
         private float? inputPointSize;
         private string inputUnderline;
+        private string inputStrikethrough;
         private string inputShadow;
         private string emboss;
         private string inputEmboss;
@@ -505,6 +512,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get => (string)GetValue(InputUnderlineProperty);
             set => SetValue(InputUnderlineProperty, value);
+        }
+
+        /// <summary>
+        /// The InputStrikethrough property.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string InputStrikethrough
+        {
+            get => (string)GetValue(InputStrikethroughProperty);
+            set => SetValue(InputStrikethroughProperty, value);
         }
 
         /// <summary>
