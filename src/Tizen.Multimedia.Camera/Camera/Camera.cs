@@ -73,7 +73,7 @@ namespace Tizen.Multimedia
         /// <since_tizen> 9 </since_tizen>
         /// <feature> http://tizen.org/feature/camera </feature>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Camera() : this(CameraDevice.NotDecided)
+        public Camera() : this(CameraDevice.Default)
         {
         }
 
@@ -93,7 +93,7 @@ namespace Tizen.Multimedia
             CameraDeviceType cameraDeviceType = CameraDeviceType.BuiltIn;
             CameraDevice cameraDevice = device;
 
-            if (device == CameraDevice.NotDecided || CameraDeviceManager.IsSupported)
+            if (device == CameraDevice.Default || CameraDeviceManager.IsSupported)
             {
                 var deviceInfo = GetDeviceInformation();
                 if (!deviceInfo.Any())
