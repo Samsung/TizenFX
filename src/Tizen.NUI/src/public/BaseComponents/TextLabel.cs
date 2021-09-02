@@ -786,7 +786,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetStrikethrough(Strikethrough strikethrough)
         {
-            SetProperty(TextLabel.Property.STRIKETHROUGH, new PropertyValue(TextUtils.GetStrikethroughMap(strikethrough)));
+            SetProperty(TextLabel.Property.Strikethroug, new PropertyValue(TextUtils.GetStrikethroughMap(strikethrough)));
         }
 
         /// <summary>
@@ -800,7 +800,7 @@ namespace Tizen.NUI.BaseComponents
         public Strikethrough GetStrikethrough()
         {
             var map = new PropertyMap();
-            GetProperty(TextLabel.Property.STRIKETHROUGH).Get(map);
+            GetProperty(TextLabel.Property.Strikethroug).Get(map);
             return TextUtils.GetStrikethroughStruct(map);
         }
 
@@ -1438,7 +1438,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int MinLineSize = Interop.TextLabel.MinLineSizeGet();
             internal static readonly int FontSizeScale = Interop.TextLabel.FontSizeScaleGet();
             internal static readonly int EllipsisPosition = Interop.TextLabel.EllipsisPositionGet();
-            internal static readonly int STRIKETHROUGH = Interop.TextLabel.StrikethroughGet();
+            internal static readonly int Strikethroug = Interop.TextLabel.StrikethroughGet();
         }
 
         private void OnShadowColorChanged(float x, float y, float z, float w)
