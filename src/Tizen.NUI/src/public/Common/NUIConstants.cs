@@ -834,13 +834,13 @@ namespace Tizen.NUI
         /// Hyphenation mode will move part of the word (at possible hyphen locations)
         /// to the next line and draw a hyphen at the end of the line.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         Hyphenation,
 
         /// <summary>
         /// Mixed mode will try word wrap, if failed, it will try hyphenation wrap.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         Mixed
     }
 
