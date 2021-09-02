@@ -49,6 +49,14 @@ namespace Tizen.NUI.BaseComponents
             defaultValueCreator: (bindable) => ((ViewStyle)bindable).focusable
         );
 
+        /// <summary> Bindable property of FocusableChildren. Please do not open it. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty FocusableChildrenProperty = BindableProperty.Create(nameof(FocusableChildren), typeof(bool?), typeof(ViewStyle), true,
+            propertyChanged: (bindable, oldValue, newValue) => ((ViewStyle)bindable).focusableChildren = (bool?)newValue,
+            defaultValueCreator: (bindable) => ((ViewStyle)bindable).focusableChildren
+        );
+
+
         /// <summary> Bindable property of FocusableInTouch. Please do not open it. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty FocusableInTouchProperty = BindableProperty.Create(nameof(FocusableInTouch), typeof(bool?), typeof(ViewStyle), null,

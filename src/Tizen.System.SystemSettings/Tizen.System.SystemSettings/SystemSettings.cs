@@ -1184,10 +1184,7 @@ namespace Tizen.System
         {
             string path = SystemSettings.IncomingCallRingtone;
             IncomingCallRingtoneChangedEventArgs eventArgs = new IncomingCallRingtoneChangedEventArgs(path);
-            lock (s_incomingCallRingtoneChangedLockObj)
-            {
-                s_incomingCallRingtoneChanged?.Invoke(null, eventArgs);
-            }
+            s_incomingCallRingtoneChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<IncomingCallRingtoneChangedEventArgs> s_incomingCallRingtoneChanged;
         private static readonly object s_incomingCallRingtoneChangedLockObj = new object();
@@ -1246,10 +1243,7 @@ namespace Tizen.System
         {
             string path = SystemSettings.WallpaperHomeScreen;
             WallpaperHomeScreenChangedEventArgs eventArgs = new WallpaperHomeScreenChangedEventArgs(path);
-            lock (s_wallpaperHomeScreenChangedLockObj)
-            {
-                s_wallpaperHomeScreenChanged?.Invoke(null, eventArgs);
-            }
+            s_wallpaperHomeScreenChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<WallpaperHomeScreenChangedEventArgs> s_wallpaperHomeScreenChanged;
         private static readonly object s_wallpaperHomeScreenChangedLockObj = new object();
@@ -1308,10 +1302,7 @@ namespace Tizen.System
         {
             string path = SystemSettings.WallpaperLockScreen;
             WallpaperLockScreenChangedEventArgs eventArgs = new WallpaperLockScreenChangedEventArgs(path);
-            lock (s_wallpaperLockScreenChangedLockObj)
-            {
-                s_wallpaperLockScreenChanged?.Invoke(null, eventArgs);
-            }
+            s_wallpaperLockScreenChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<WallpaperLockScreenChangedEventArgs> s_wallpaperLockScreenChanged;
         private static readonly object s_wallpaperLockScreenChangedLockObj = new object();
@@ -1370,10 +1361,7 @@ namespace Tizen.System
         {
             SystemSettingsFontSize fontSize = SystemSettings.FontSize;
             FontSizeChangedEventArgs eventArgs = new FontSizeChangedEventArgs(fontSize);
-            lock (s_fontSizeChangedLockObj)
-            {
-                s_fontSizeChanged?.Invoke(null, eventArgs);
-            }
+            s_fontSizeChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<FontSizeChangedEventArgs> s_fontSizeChanged;
         private static readonly object s_fontSizeChangedLockObj = new object();
@@ -1431,10 +1419,7 @@ namespace Tizen.System
         {
             string fontType = SystemSettings.FontType;
             FontTypeChangedEventArgs eventArgs = new FontTypeChangedEventArgs(fontType);
-            lock (s_fontTypeChangedLockObj)
-            {
-                s_fontTypeChanged?.Invoke(null, eventArgs);
-            }
+            s_fontTypeChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<FontTypeChangedEventArgs> s_fontTypeChanged;
         private static readonly object s_fontTypeChangedLockObj = new object();
@@ -1492,10 +1477,7 @@ namespace Tizen.System
         {
             bool motionActivation = SystemSettings.MotionActivationEnabled;
             MotionActivationSettingChangedEventArgs eventArgs = new MotionActivationSettingChangedEventArgs(motionActivation);
-            lock (s_motionActivationChangedLockObj)
-            {
-                s_motionActivationChanged?.Invoke(null, eventArgs);
-            }
+            s_motionActivationChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<MotionActivationSettingChangedEventArgs> s_motionActivationChanged;
         private static readonly object s_motionActivationChangedLockObj = new object();
@@ -1553,10 +1535,7 @@ namespace Tizen.System
         {
             string emailAlertRingtone = SystemSettings.EmailAlertRingtone;
             EmailAlertRingtoneChangedEventArgs eventArgs = new EmailAlertRingtoneChangedEventArgs(emailAlertRingtone);
-            lock (s_emailAlertRingtoneChangedLockObj)
-            {
-                s_emailAlertRingtoneChanged?.Invoke(null, eventArgs);
-            }
+            s_emailAlertRingtoneChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<EmailAlertRingtoneChangedEventArgs> s_emailAlertRingtoneChanged;
         private static readonly object s_emailAlertRingtoneChangedLockObj = new object();
@@ -1615,10 +1594,7 @@ namespace Tizen.System
         {
             bool usbDebuggingEnabled = SystemSettings.UsbDebuggingEnabled;
             UsbDebuggingSettingChangedEventArgs eventArgs = new UsbDebuggingSettingChangedEventArgs(usbDebuggingEnabled);
-            lock (s_usbDebuggingSettingChangedLockObj)
-            {
-                s_usbDebuggingSettingChanged?.Invoke(null, eventArgs);
-            }
+            s_usbDebuggingSettingChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<UsbDebuggingSettingChangedEventArgs> s_usbDebuggingSettingChanged;
         private static readonly object s_usbDebuggingSettingChangedLockObj = new object();
@@ -1676,10 +1652,7 @@ namespace Tizen.System
         {
             bool data3GEnabled = SystemSettings.Data3GNetworkEnabled;
             Data3GNetworkSettingChangedEventArgs eventArgs = new Data3GNetworkSettingChangedEventArgs(data3GEnabled);
-            lock (s_data3GNetworkSettingChangedLockObj)
-            {
-                s_data3GNetworkSettingChanged?.Invoke(null, eventArgs);
-            }
+            s_data3GNetworkSettingChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<Data3GNetworkSettingChangedEventArgs> s_data3GNetworkSettingChanged;
         private static readonly object s_data3GNetworkSettingChangedLockObj = new object();
@@ -1737,10 +1710,7 @@ namespace Tizen.System
         {
             string lockScreenApp = SystemSettings.LockScreenApp;
             LockScreenAppChangedEventArgs eventArgs = new LockScreenAppChangedEventArgs(lockScreenApp);
-            lock (s_lockscreenAppChangedLockObj)
-            {
-                s_lockscreenAppChanged?.Invoke(null, eventArgs);
-            }
+            s_lockscreenAppChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<LockScreenAppChangedEventArgs> s_lockscreenAppChanged;
         private static readonly object s_lockscreenAppChangedLockObj = new object();
@@ -1800,10 +1770,7 @@ namespace Tizen.System
         {
             string localeCountry = SystemSettings.LocaleCountry;
             LocaleCountryChangedEventArgs eventArgs = new LocaleCountryChangedEventArgs(localeCountry);
-            lock (s_localeCountryChangedLockObj)
-            {
-                s_localeCountryChanged?.Invoke(null, eventArgs);
-            }
+            s_localeCountryChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<LocaleCountryChangedEventArgs> s_localeCountryChanged;
         private static readonly object s_localeCountryChangedLockObj = new object();
@@ -1861,10 +1828,7 @@ namespace Tizen.System
         {
             string localeLanguage = SystemSettings.LocaleLanguage;
             LocaleLanguageChangedEventArgs eventArgs = new LocaleLanguageChangedEventArgs(localeLanguage);
-            lock (s_localeLanguageChangedLockObj)
-            {
-                s_localeLanguageChanged?.Invoke(null, eventArgs);
-            }
+            s_localeLanguageChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<LocaleLanguageChangedEventArgs> s_localeLanguageChanged;
         private static readonly object s_localeLanguageChangedLockObj = new object();
@@ -1928,10 +1892,7 @@ namespace Tizen.System
         {
             bool localeTimeFormat24Hour = SystemSettings.LocaleTimeFormat24HourEnabled;
             LocaleTimeFormat24HourSettingChangedEventArgs eventArgs = new LocaleTimeFormat24HourSettingChangedEventArgs(localeTimeFormat24Hour);
-            lock (s_localeTimeFormat24HourChangedLockObj)
-            {
-                s_localeTimeFormat24HourChanged?.Invoke(null, eventArgs);
-            }
+            s_localeTimeFormat24HourChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<LocaleTimeFormat24HourSettingChangedEventArgs> s_localeTimeFormat24HourChanged;
         private static readonly object s_localeTimeFormat24HourChangedLockObj = new object();
@@ -1989,10 +1950,7 @@ namespace Tizen.System
         {
             string localeTimeZone = SystemSettings.LocaleTimeZone;
             LocaleTimeZoneChangedEventArgs eventArgs = new LocaleTimeZoneChangedEventArgs(localeTimeZone);
-            lock (s_localeTimeZoneChangedLockObj)
-            {
-                s_localeTimeZoneChanged?.Invoke(null, eventArgs);
-            }
+            s_localeTimeZoneChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<LocaleTimeZoneChangedEventArgs> s_localeTimeZoneChanged;
         private static readonly object s_localeTimeZoneChangedLockObj = new object();
@@ -2051,10 +2009,7 @@ namespace Tizen.System
 
             int time = SystemSettings.Time;
             TimeChangedEventArgs eventArgs = new TimeChangedEventArgs(time);
-            lock (s_timeChangedLockObj)
-            {
-                s_timeChanged?.Invoke(null, eventArgs);
-            }
+            s_timeChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<TimeChangedEventArgs> s_timeChanged;
         private static readonly object s_timeChangedLockObj = new object();
@@ -2112,10 +2067,7 @@ namespace Tizen.System
         {
             bool soundLock = SystemSettings.SoundLockEnabled;
             SoundLockSettingChangedEventArgs eventArgs = new SoundLockSettingChangedEventArgs(soundLock);
-            lock (s_soundLockChangedLockObj)
-            {
-                s_soundLockChanged?.Invoke(null, eventArgs);
-            }
+            s_soundLockChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<SoundLockSettingChangedEventArgs> s_soundLockChanged;
         private static readonly object s_soundLockChangedLockObj = new object();
@@ -2173,10 +2125,7 @@ namespace Tizen.System
         {
             bool soundSilentMode = SystemSettings.SoundSilentModeEnabled;
             SoundSilentModeSettingChangedEventArgs eventArgs = new SoundSilentModeSettingChangedEventArgs(soundSilentMode);
-            lock (s_soundSilentModeChangedLockObj)
-            {
-                s_soundSilentModeChanged?.Invoke(null, eventArgs);
-            }
+            s_soundSilentModeChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<SoundSilentModeSettingChangedEventArgs> s_soundSilentModeChanged;
         private static readonly object s_soundSilentModeChangedLockObj = new object();
@@ -2234,10 +2183,7 @@ namespace Tizen.System
         {
             bool soundTouch = SystemSettings.SoundTouchEnabled;
             SoundTouchSettingChangedEventArgs eventArgs = new SoundTouchSettingChangedEventArgs(soundTouch);
-            lock (s_soundTouchChangedLockObj)
-            {
-                s_soundTouchChanged?.Invoke(null, eventArgs);
-            }
+            s_soundTouchChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<SoundTouchSettingChangedEventArgs> s_soundTouchChanged;
         private static readonly object s_soundTouchChangedLockObj = new object();
@@ -2296,10 +2242,7 @@ namespace Tizen.System
         {
             bool displayScreenRotationAuto = SystemSettings.DisplayScreenRotationAutoEnabled;
             DisplayScreenRotationAutoSettingChangedEventArgs eventArgs = new DisplayScreenRotationAutoSettingChangedEventArgs(displayScreenRotationAuto);
-            lock (s_displayScreenRotationAutoChangedLockObj)
-            {
-                s_displayScreenRotationAutoChanged?.Invoke(null, eventArgs);
-            }
+            s_displayScreenRotationAutoChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<DisplayScreenRotationAutoSettingChangedEventArgs> s_displayScreenRotationAutoChanged;
         private static readonly object s_displayScreenRotationAutoChangedLockObj = new object();
@@ -2357,10 +2300,7 @@ namespace Tizen.System
         {
             string deviceName = SystemSettings.DeviceName;
             DeviceNameChangedEventArgs eventArgs = new DeviceNameChangedEventArgs(deviceName);
-            lock (s_deviceNameChangedLockObj)
-            {
-                s_deviceNameChanged?.Invoke(null, eventArgs);
-            }
+            s_deviceNameChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<DeviceNameChangedEventArgs> s_deviceNameChanged;
         private static readonly object s_deviceNameChangedLockObj = new object();
@@ -2418,10 +2358,7 @@ namespace Tizen.System
         {
             bool motionEnabled = SystemSettings.MotionEnabled;
             MotionSettingChangedEventArgs eventArgs = new MotionSettingChangedEventArgs(motionEnabled);
-            lock (s_motionSettingChangedLockObj)
-            {
-                s_motionSettingChanged?.Invoke(null, eventArgs);
-            }
+            s_motionSettingChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<MotionSettingChangedEventArgs> s_motionSettingChanged;
         private static readonly object s_motionSettingChangedLockObj = new object();
@@ -2479,10 +2416,7 @@ namespace Tizen.System
         {
             bool networkWifiNotification = SystemSettings.NetworkWifiNotificationEnabled;
             NetworkWifiNotificationSettingChangedEventArgs eventArgs = new NetworkWifiNotificationSettingChangedEventArgs(networkWifiNotification);
-            lock (s_networkWifiNotificationChangedLockObj)
-            {
-                s_networkWifiNotificationChanged?.Invoke(null, eventArgs);
-            }
+            s_networkWifiNotificationChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<NetworkWifiNotificationSettingChangedEventArgs> s_networkWifiNotificationChanged;
         private static readonly object s_networkWifiNotificationChangedLockObj = new object();
@@ -2541,10 +2475,7 @@ namespace Tizen.System
         {
             bool networkFlightMode = SystemSettings.NetworkFlightModeEnabled;
             NetworkFlightModeSettingChangedEventArgs eventArgs = new NetworkFlightModeSettingChangedEventArgs(networkFlightMode);
-            lock (s_networkFlightModeChangedLockObj)
-            {
-                s_networkFlightModeChanged?.Invoke(null, eventArgs);
-            }
+            s_networkFlightModeChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<NetworkFlightModeSettingChangedEventArgs> s_networkFlightModeChanged;
         private static readonly object s_networkFlightModeChangedLockObj = new object();
@@ -2602,10 +2533,7 @@ namespace Tizen.System
         {
             int screenBacklightTime = SystemSettings.ScreenBacklightTime;
             ScreenBacklightTimeChangedEventArgs eventArgs = new ScreenBacklightTimeChangedEventArgs(screenBacklightTime);
-            lock (s_screenBacklightTimeChangedLockObj)
-            {
-                s_screenBacklightTimeChanged?.Invoke(null, eventArgs);
-            }
+            s_screenBacklightTimeChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<ScreenBacklightTimeChangedEventArgs> s_screenBacklightTimeChanged;
         private static readonly object s_screenBacklightTimeChangedLockObj = new object();
@@ -2663,10 +2591,7 @@ namespace Tizen.System
         {
             string soundNotification = SystemSettings.SoundNotification;
             SoundNotificationChangedEventArgs eventArgs = new SoundNotificationChangedEventArgs(soundNotification);
-            lock (s_soundNotificationChangedLockObj)
-            {
-                s_soundNotificationChanged?.Invoke(null, eventArgs);
-            }
+            s_soundNotificationChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<SoundNotificationChangedEventArgs> s_soundNotificationChanged;
         private static readonly object s_soundNotificationChangedLockObj = new object();
@@ -2725,10 +2650,7 @@ namespace Tizen.System
         {
             int soundNotificationRepetitionPeriod = SystemSettings.SoundNotificationRepetitionPeriod;
             SoundNotificationRepetitionPeriodChangedEventArgs eventArgs = new SoundNotificationRepetitionPeriodChangedEventArgs(soundNotificationRepetitionPeriod);
-            lock (s_soundNotificationRepetitionPeriodChangedLockObj)
-            {
-                s_soundNotificationRepetitionPeriodChanged?.Invoke(null, eventArgs);
-            }
+            s_soundNotificationRepetitionPeriodChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<SoundNotificationRepetitionPeriodChangedEventArgs> s_soundNotificationRepetitionPeriodChanged;
         private static readonly object s_soundNotificationRepetitionPeriodChangedLockObj = new object();
@@ -2786,10 +2708,7 @@ namespace Tizen.System
         {
             SystemSettingsIdleLockState lockState = SystemSettings.LockState;
             LockStateChangedEventArgs eventArgs = new LockStateChangedEventArgs(lockState);
-            lock (s_lockStateChangedLockObj)
-            {
-                s_lockStateChanged?.Invoke(null, eventArgs);
-            }
+            s_lockStateChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<LockStateChangedEventArgs> s_lockStateChanged;
         private static readonly object s_lockStateChangedLockObj = new object();
@@ -2847,10 +2766,7 @@ namespace Tizen.System
         {
             string adsId = SystemSettings.AdsId;
             AdsIdChangedEventArgs eventArgs = new AdsIdChangedEventArgs(adsId);
-            lock (s_adsIdChangedLockObj)
-            {
-                s_adsIdChanged?.Invoke(null, eventArgs);
-            }
+            s_adsIdChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<AdsIdChangedEventArgs> s_adsIdChanged;
         private static readonly object s_adsIdChangedLockObj = new object();
@@ -2908,10 +2824,7 @@ namespace Tizen.System
         {
             SystemSettingsUdsState ultraDataSave = SystemSettings.UltraDataSave;
             UltraDataSaveChangedEventArgs eventArgs = new UltraDataSaveChangedEventArgs(ultraDataSave);
-            lock (s_ultraDataSaveChangedLockObj)
-            {
-                s_ultraDataSaveChanged?.Invoke(null, eventArgs);
-            }
+            s_ultraDataSaveChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<UltraDataSaveChangedEventArgs> s_ultraDataSaveChanged;
         private static readonly object s_ultraDataSaveChangedLockObj = new object();
@@ -2970,10 +2883,7 @@ namespace Tizen.System
         {
             string ultraDataSavePackageList = "None";
             UltraDataSavePackageListChangedEventArgs eventArgs = new UltraDataSavePackageListChangedEventArgs(ultraDataSavePackageList);
-            lock (s_ultraDataSavePackageListChangedLockObj)
-            {
-                s_ultraDataSavePackageListChanged?.Invoke(null, eventArgs);
-            }
+            s_ultraDataSavePackageListChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<UltraDataSavePackageListChangedEventArgs> s_ultraDataSavePackageListChanged;
         private static readonly object s_ultraDataSavePackageListChangedLockObj = new object();
@@ -3032,10 +2942,7 @@ namespace Tizen.System
         {
             bool accessibilityTts = SystemSettings.AccessibilityTtsEnabled;
             AccessibilityTtsSettingChangedEventArgs eventArgs = new AccessibilityTtsSettingChangedEventArgs(accessibilityTts);
-            lock (s_accessibilityTtsChangedLockObj)
-            {
-                s_accessibilityTtsChanged?.Invoke(null, eventArgs);
-            }
+            s_accessibilityTtsChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<AccessibilityTtsSettingChangedEventArgs> s_accessibilityTtsChanged;
         private static readonly object s_accessibilityTtsChangedLockObj = new object();
@@ -3094,10 +3001,7 @@ namespace Tizen.System
         {
             bool vibration = SystemSettings.Vibration;
             VibrationChangedEventArgs eventArgs = new VibrationChangedEventArgs(vibration);
-            lock (s_vibrationChangedLockObj)
-            {
-                s_vibrationChanged?.Invoke(null, eventArgs);
-            }
+            s_vibrationChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<VibrationChangedEventArgs> s_vibrationChanged;
         private static readonly object s_vibrationChangedLockObj = new object();
@@ -3151,10 +3055,7 @@ namespace Tizen.System
         {
             bool automaticTimeUpdate = SystemSettings.AutomaticTimeUpdate;
             AutomaticTimeUpdateChangedEventArgs eventArgs = new AutomaticTimeUpdateChangedEventArgs(automaticTimeUpdate);
-            lock (s_automaticTimeUpdateChangedLockObj)
-            {
-                s_automaticTimeUpdateChanged?.Invoke(null, eventArgs);
-            }
+            s_automaticTimeUpdateChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<AutomaticTimeUpdateChangedEventArgs> s_automaticTimeUpdateChanged;
         private static readonly object s_automaticTimeUpdateChangedLockObj = new object();
@@ -3208,10 +3109,7 @@ namespace Tizen.System
         {
             bool developerOptionState = SystemSettings.DeveloperOptionState;
             DeveloperOptionStateChangedEventArgs eventArgs = new DeveloperOptionStateChangedEventArgs(developerOptionState);
-            lock (s_developerOptionStateChangedLockObj)
-            {
-                s_developerOptionStateChanged?.Invoke(null, eventArgs);
-            }
+            s_developerOptionStateChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<DeveloperOptionStateChangedEventArgs> s_developerOptionStateChanged;
         private static readonly object s_developerOptionStateChangedLockObj = new object();
@@ -3265,10 +3163,7 @@ namespace Tizen.System
         {
             bool accessibilityGrayscale = SystemSettings.AccessibilityGrayscale;
             AccessibilityGrayscaleChangedEventArgs eventArgs = new AccessibilityGrayscaleChangedEventArgs(accessibilityGrayscale);
-            lock (s_accessibilityGrayscaleChangedLockObj)
-            {
-                s_accessibilityGrayscaleChanged?.Invoke(null, eventArgs);
-            }
+            s_accessibilityGrayscaleChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<AccessibilityGrayscaleChangedEventArgs> s_accessibilityGrayscaleChanged;
         private static readonly object s_accessibilityGrayscaleChangedLockObj = new object();
@@ -3323,10 +3218,7 @@ namespace Tizen.System
         {
             bool accessibilityNegativeColor = SystemSettings.AccessibilityNegativeColor;
             AccessibilityNegativeColorChangedEventArgs eventArgs = new AccessibilityNegativeColorChangedEventArgs(accessibilityNegativeColor);
-            lock (s_accessibilityNegativeColorChangedLockObj)
-            {
-                s_accessibilityNegativeColorChanged?.Invoke(null, eventArgs);
-            }
+            s_accessibilityNegativeColorChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<AccessibilityNegativeColorChangedEventArgs> s_accessibilityNegativeColorChanged;
         private static readonly object s_accessibilityNegativeColorChangedLockObj = new object();
@@ -3381,10 +3273,7 @@ namespace Tizen.System
         {
             bool rotaryEventEnabled = SystemSettings.RotaryEventEnabled;
             RotaryEventEnabledChangedEventArgs eventArgs = new RotaryEventEnabledChangedEventArgs(rotaryEventEnabled);
-            lock (s_rotaryEventEnabledChangedLockObj)
-            {
-                s_rotaryEventEnabledChanged?.Invoke(null, eventArgs);
-            }
+            s_rotaryEventEnabledChanged?.Invoke(null, eventArgs);
         };
         private static event EventHandler<RotaryEventEnabledChangedEventArgs> s_rotaryEventEnabledChanged;
         private static readonly object s_rotaryEventEnabledChangedLockObj = new object();

@@ -21,10 +21,9 @@ using System.ComponentModel;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// It is a class for password data list of web view.
+    /// It is an internal class for password data list of web view.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public class WebPasswordDataList : Disposable
+    internal class WebPasswordDataList : Disposable
     {
         internal WebPasswordDataList(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
@@ -32,7 +31,6 @@ namespace Tizen.NUI
 
         /// This will not be public opened.
         /// <param name="swigCPtr"></param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.WebPasswordDataList.DeleteWebPasswordDataList(swigCPtr);
@@ -41,8 +39,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Count of password data list.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint ItemCount
+        internal uint ItemCount
         {
             get
             {
@@ -54,11 +51,10 @@ namespace Tizen.NUI
         /// Gets password data by index.
         /// <param name="index">index of list</param>
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public WebPasswordData GetItemAtIndex(uint index)
+        internal WebPasswordData GetItemAtIndex(uint index)
         {
             System.IntPtr dataIntPtr = Interop.WebPasswordDataList.ValueOfIndex(SwigCPtr, index);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) return null;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return new WebPasswordData(dataIntPtr, false);
         }
     }
