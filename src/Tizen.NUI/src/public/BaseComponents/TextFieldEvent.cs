@@ -196,7 +196,7 @@ namespace Tizen.NUI.BaseComponents
         /// The SelectionChanged event.
         /// </summary>
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public event EventHandler SelectionChanged
         {
             add
