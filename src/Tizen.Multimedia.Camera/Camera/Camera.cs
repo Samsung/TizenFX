@@ -59,8 +59,7 @@ namespace Tizen.Multimedia
         {
             ValidationUtil.ValidateEnum(typeof(CameraDevice), device, nameof(device));
 
-            Native.Create(device, out _handle).
-                    ThrowIfFailed($"Failed to create camera");
+            Native.Create(device, out _handle).ThrowIfFailed($"Failed to create camera");
 
             Initialize();
         }
@@ -69,7 +68,6 @@ namespace Tizen.Multimedia
         /// Initializes a new instance of the <see cref="Camera"/> class.
         /// </summary>
         /// <remarks>CameraDevice and Type will be selected internally by CameraDeviceManager.</remarks>
-        /// <exception cref="ArgumentException">Invalid CameraDevice type.</exception>
         /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
         /// <exception cref="NotSupportedException">The camera feature is not supported.</exception>
         /// <since_tizen> 9 </since_tizen>
