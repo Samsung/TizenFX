@@ -28,7 +28,13 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The rear camera device.
         /// </summary>
-        Rear,
+        /// <since_tizen> 9 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        NotDecided = -1,
+        /// <summary>
+        /// The rear camera device.
+        /// </summary>
+        Rear = 0,
         /// <summary>
         /// The front camera device.
         /// </summary>

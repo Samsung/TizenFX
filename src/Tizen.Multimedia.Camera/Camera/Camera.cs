@@ -59,7 +59,7 @@ namespace Tizen.Multimedia
         {
             ValidationUtil.ValidateEnum(typeof(CameraDevice), device, nameof(device));
 
-            Native.Create(device, out _handle).ThrowIfFailed($"Failed to create camera");
+            CreateCameraDevice(device);
 
             Initialize();
         }
@@ -73,11 +73,8 @@ namespace Tizen.Multimedia
         /// <since_tizen> 9 </since_tizen>
         /// <feature> http://tizen.org/feature/camera </feature>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Camera()
+        public Camera() : this(CameraDevice.NotDecided)
         {
-            CreateCameraDevice();
-
-            Initialize();
         }
 
         private void Initialize()
@@ -91,34 +88,46 @@ namespace Tizen.Multimedia
             SetState(CameraState.Created);
         }
 
-        private void CreateCameraDevice()
+        private void CreateCameraDevice(CameraDevice device)
         {
             CameraDeviceType cameraDeviceType = CameraDeviceType.BuiltIn;
-            CameraDevice device = CameraDevice.Rear;
+            CameraDevice cameraDevice = device;
 
-            using (var cameraDeviceManager = new CameraDeviceManager())
+            if (device == CameraDevice.NotDecided || CameraDeviceManager.IsSupported)
             {
-                var deviceInfo = cameraDeviceManager.GetDeviceInformation();
+                var deviceInfo = GetDeviceInformation();
                 if (!deviceInfo.Any())
                 {
-                    throw new InvalidOperationException("There's no available camera device.");
+                    throw new InvalidOperationException("CDM is supported but, there's no available camera device.");
                 }
 
                 cameraDeviceType = deviceInfo.First().Type;
-                device = deviceInfo.First().Device;
-                Log.Debug(CameraLog.Tag, $"Type:[{cameraDeviceType}], Device:[{device}]");
+                cameraDevice = deviceInfo.First().Device;
+                Log.Debug(CameraLog.Tag, $"Type:[{cameraDeviceType}], Device:[{cameraDevice}]");
             }
 
-            if (cameraDeviceType == CameraDeviceType.BuiltIn ||
-                cameraDeviceType == CameraDeviceType.Usb)
+            CreateNativeCameraDevice(cameraDeviceType, cameraDevice);
+        }
+
+        private IEnumerable<CameraDeviceInformation> GetDeviceInformation()
+        {
+            using (var cameraDeviceManager = new CameraDeviceManager())
+            {
+                return cameraDeviceManager.GetDeviceInformation();
+            }
+        }
+
+        private void CreateNativeCameraDevice(CameraDeviceType type, CameraDevice device)
+        {
+            if (type == CameraDeviceType.BuiltIn || type == CameraDeviceType.Usb)
             {
                 Native.Create(device, out _handle).
-                    ThrowIfFailed($"Failed to create {cameraDeviceType} camera");
+                    ThrowIfFailed($"Failed to create {type} camera");
             }
             else
             {
                 Native.CreateNetworkCamera(device, out _handle).
-                    ThrowIfFailed($"Failed to create {cameraDeviceType} camera");
+                    ThrowIfFailed($"Failed to create {type} camera");
             }
         }
 
