@@ -264,8 +264,8 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
             get
             {
                 List<float> retList = new List<float>();
-                int patternCount = Interop.Shape.GetStrokeDashCount(BaseHandle.getCPtr(this));
-                for (int i = 0; i < patternCount; i++)
+                uint patternCount = Interop.Shape.GetStrokeDashCount(BaseHandle.getCPtr(this));
+                for (uint i = 0; i < patternCount; i++)
                 {
                     retList.Add(Interop.Shape.GetStrokeDashIndexOf(BaseHandle.getCPtr(this), i));
                 }
@@ -284,7 +284,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
                 {
                     pattern[i] = value[i];
                 }
-                Interop.Shape.SetStrokeDash(BaseHandle.getCPtr(this), pattern, value.Count);
+                Interop.Shape.SetStrokeDash(BaseHandle.getCPtr(this), pattern, (uint)value.Count);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
