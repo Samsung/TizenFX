@@ -1336,6 +1336,91 @@ This Event processes the key event before an associated text input UI control do
   <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/ime</span></span></h6>
   
   
+  <a id="Tizen_Uix_InputMethod_InputMethodEditor_SetSize_" data-uid="Tizen.Uix.InputMethod.InputMethodEditor.SetSize*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Uix.InputMethod/Tizen.Uix.InputMethod/InputMethodEditor.cs/#L2320">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_InputMethod_InputMethodEditor_SetSize_System_IntPtr_System_Int32_System_Int32_System_Int32_System_Int32_" data-uid="Tizen.Uix.InputMethod.InputMethodEditor.SetSize(System.IntPtr,System.Int32,System.Int32,System.Int32,System.Int32)">SetSize(IntPtr, Int32, Int32, Int32, Int32)</h4>
+    <section>
+      <p>This API updates the given native input panel window&apos;s size information.
+The native window handle of NUI Window can be got by below code.
+var handle = new Window.SafeNativeWindowHandle();
+IntPtr nativeHandle = handle.DangerousGetHandle();</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void SetSize(IntPtr window, int portraitWidth, int portraitHeight, int landscapeWidth, int landscapeHeight)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.intptr">IntPtr</a></td>
+        <td><span class="parametername">window</span></td>
+        <td><p>The native window handle.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">portraitWidth</span></td>
+        <td><p>The width in the portrait mode.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">portraitHeight</span></td>
+        <td><p>The height in the portrait mode.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">landscapeWidth</span></td>
+        <td><p>The width in the landscape mode.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">landscapeHeight</span></td>
+        <td><p>The height in the landscape mode.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>This can occur due to the following reasons:
+1) The application does not have the privilege to call this function.
+2) The IME main loop has not started yet.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
+  <h6><strong>Privilege Level</strong>: public</h6>
+  <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/ime</span></span></h6>
+  
+  
   <a id="Tizen_Uix_InputMethod_InputMethodEditor_ShowPreEditString_" data-uid="Tizen.Uix.InputMethod.InputMethodEditor.ShowPreEditString*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
