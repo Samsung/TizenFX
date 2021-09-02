@@ -59,8 +59,31 @@ namespace Tizen.Multimedia
         {
             ValidationUtil.ValidateEnum(typeof(CameraDevice), device, nameof(device));
 
-            Create(device);
+            Native.Create(device, out _handle).
+                    ThrowIfFailed($"Failed to create camera");
 
+            Initialize();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Camera"/> class.
+        /// </summary>
+        /// <remarks>CameraDevice and Type will be selected internally by CameraDeviceManager.</remarks>
+        /// <exception cref="ArgumentException">Invalid CameraDevice type.</exception>
+        /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
+        /// <exception cref="NotSupportedException">The camera feature is not supported.</exception>
+        /// <since_tizen> 9 </since_tizen>
+        /// <feature> http://tizen.org/feature/camera </feature>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Camera()
+        {
+            CreateCameraDevice();
+
+            Initialize();
+        }
+
+        private void Initialize()
+        {
             Capabilities = new CameraCapabilities(this);
             Settings = new CameraSettings(this);
             DisplaySettings = new CameraDisplaySettings(this);
@@ -70,39 +93,34 @@ namespace Tizen.Multimedia
             SetState(CameraState.Created);
         }
 
-        private void Create(CameraDevice device)
+        private void CreateCameraDevice()
         {
             CameraDeviceType cameraDeviceType = CameraDeviceType.BuiltIn;
+            CameraDevice device = CameraDevice.Rear;
 
-            try
+            using (var cameraDeviceManager = new CameraDeviceManager())
             {
-                using (var cameraDeviceManager = new CameraDeviceManager())
+                var deviceInfo = cameraDeviceManager.GetDeviceInformation();
+                if (!deviceInfo.Any())
                 {
-                    var deviceInfo = cameraDeviceManager.GetDeviceInformation();
-                    if (!deviceInfo.Any())
-                    {
-                        throw new InvalidOperationException("There's no available camera device.");
-                    }
-
-                    cameraDeviceType = deviceInfo.First().Type;
+                    throw new InvalidOperationException("There's no available camera device.");
                 }
-            }
-            catch (NotSupportedException e)
-            {
-                Log.Info(CameraLog.Tag,
-                    $"CameraDeviceManager is not supported. {e.Message}. Not error.");
+
+                cameraDeviceType = deviceInfo.First().Type;
+                device = deviceInfo.First().Device;
+                Log.Debug(CameraLog.Tag, $"Type:[{cameraDeviceType}], Device:[{device}]");
             }
 
             if (cameraDeviceType == CameraDeviceType.BuiltIn ||
                 cameraDeviceType == CameraDeviceType.Usb)
             {
                 Native.Create(device, out _handle).
-                    ThrowIfFailed($"Failed to create {cameraDeviceType.ToString()} camera");
+                    ThrowIfFailed($"Failed to create {cameraDeviceType} camera");
             }
             else
             {
                 Native.CreateNetworkCamera(device, out _handle).
-                    ThrowIfFailed($"Failed to create {cameraDeviceType.ToString()} camera");
+                    ThrowIfFailed($"Failed to create {cameraDeviceType} camera");
             }
         }
 
