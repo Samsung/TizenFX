@@ -92,7 +92,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// <summary>
         /// The viewbox of the CanvasView.
         /// The viewbox means the size of CanvasView's internal space.
-        /// If the size of the viewbox is larger than the size of the Canvasview, the shapes are displayed smaller than the specified size.
+        /// If the size of the viewbox is larger than the size of the CanvasView, the shapes are displayed smaller than the specified size.
         /// The default value of the viewbox is the same as the size of the canvasview.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
