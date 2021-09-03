@@ -95,29 +95,33 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void LayoutControllerRequestLayoutParentIsNUll()
+        public void LayoutControllerRequestLayoutParentNotNUll()
         {
-            tlog.Debug(tag, $"LayoutControllerRequestLayoutParentIsNUll START");
+            tlog.Debug(tag, $"LayoutControllerRequestLayoutParentNotNUll START");
 
             var testingTarget = new LayoutController(Window.Instance);
             Assert.IsNotNull(testingTarget, "Can't create success object LayoutController");
             Assert.IsInstanceOf<LayoutController>(testingTarget, "Should be an instance of LayoutController type.");
 
-            using (LayoutItem layoutItem = new LayoutItem())
+            using (LayoutGroup group = new LayoutGroup())
             {
-                try
+                using (LayoutItem layoutItem = new LayoutItem())
                 {
-                    testingTarget.RequestLayout(layoutItem);
-                }
-                catch (Exception e)
-                {
-                    tlog.Debug(tag, e.Message.ToString());
-                    Assert.Fail("Caught Exception : Failed!");
+                    group.Add(layoutItem);
+                    try
+                    {
+                        testingTarget.RequestLayout(layoutItem);
+                    }
+                    catch (Exception e)
+                    {
+                        tlog.Debug(tag, e.Message.ToString());
+                        Assert.Fail("Caught Exception : Failed!");
+                    }
                 }
             }
 
             testingTarget.Dispose();
-            tlog.Debug(tag, $"LayoutControllerRequestLayoutParentIsNUll END (OK)");
+            tlog.Debug(tag, $"LayoutControllerRequestLayoutParentNotNUll END (OK)");
         }
 
         [Test]

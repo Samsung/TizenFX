@@ -1,6 +1,8 @@
-﻿using NUnit.Framework;
-using System;
-using Tizen.NUI.Xaml;
+﻿using global::System;
+using NUnit.Framework;
+using NUnit.Framework.TUnit;
+using Tizen.NUI.Components;
+using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.Devel.Tests
 {
@@ -11,13 +13,18 @@ namespace Tizen.NUI.Devel.Tests
     public class PublicReferenceExtensionTest
     {
         private const string tag = "NUITEST";
-        private ReferenceExtension reference;
+        private Tizen.NUI.Xaml.ReferenceExtension reference;
+
+        internal class IServiceProviderImpl : IServiceProvider
+        {
+            public object GetService(Type serviceType) { return null; }
+        }
 
         [SetUp]
         public void Init()
         {
             tlog.Info(tag, "Init() is called!");
-            reference = new ReferenceExtension();
+            reference = new Tizen.NUI.Xaml.ReferenceExtension();
         }
 
         [TearDown]
@@ -50,6 +57,30 @@ namespace Tizen.NUI.Devel.Tests
             }
 
             tlog.Debug(tag, $"ReferenceExtensionName END");
+        }
+
+        [Test]
+        [Category("P2")]
+        [Description("ReferenceExtension ProvideValue")]
+        [Property("SPEC", "Tizen.NUI.ReferenceExtension.ProvideValue M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void ReferenceExtensionProvideValue()
+        {
+            tlog.Debug(tag, $"ReferenceExtensionProvideValue START");
+
+            try
+            {
+                reference.ProvideValue(new IServiceProviderImpl()); // serviceProvider is null
+            }
+            catch (ArgumentException e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                tlog.Debug(tag, $"ReferenceExtensionProvideValue END");
+                Assert.Pass("Caught ArgumentException : Passed!");
+            }
+
+            
         }
     }
 }
