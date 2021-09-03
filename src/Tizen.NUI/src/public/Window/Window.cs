@@ -66,7 +66,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         static public Window Get(View view)
         {
-            if(view == null)
+            if (view == null)
             {
                 NUILog.Error("if there is no view, it can not get a window");
                 return null;
@@ -1727,5 +1727,28 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Get Native Window handle.
+        /// <example>
+        /// How to get Native Window handle
+        /// <code>
+        /// Window window = NUIApplication.GetDefaultWindow();
+        /// var handle = window.NativeHandle;
+        /// if(handle?.IsInvalid == false)
+        /// {
+        ///     IntPtr nativeHandle = handle.DangerousGetHandle();
+        ///     // do something with nativeHandle
+        /// }
+        /// </code>
+        /// </example>
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public SafeHandle NativeHandle
+        {
+            get
+            {
+                return new NUI.SafeNativeWindowHandle(this);
+            }
+        }
     }
 }

@@ -902,6 +902,7 @@ namespace Tizen.NUI
         /// Contains and encapsulates Native Window handle.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API9, will be removed in API11. Please use Window.NativeHandle instead!")]
         public class SafeNativeWindowHandle : SafeHandle
         {
             /// <summary>
