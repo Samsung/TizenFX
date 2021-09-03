@@ -26,8 +26,6 @@ using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.Binding
 {
-    /// <since_tizen> 6 </since_tizen>
-    /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     [ContentProperty("Value")]
     [ProvideCompiled("Tizen.NUI.Core.XamlC.SetterValueProvider")]
@@ -35,8 +33,6 @@ namespace Tizen.NUI.Binding
     {
         readonly ConditionalWeakTable<BindableObject, object> originalValues = new ConditionalWeakTable<BindableObject, object>();
 
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public BindableProperty Property { get; set; }
 
