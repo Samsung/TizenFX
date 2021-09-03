@@ -63,16 +63,15 @@ namespace Tizen.Applications
         /// <param name="security">The security configuration.</param>
         /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method.</exception>
         /// <since_tizen> 9 </since_tizen>
-        public ServerBase(string serviceName, string displayName, SecurityInfo security)
+        public ServerBase(string serviceName, string displayName, Cion.SecurityInfo security)
         {
             ServiceName = serviceName;
             DisplayName = displayName;
 
-            SecuritySafeHandle handle = security?._handle;
+            Cion.SecuritySafeHandle handle = security?._handle;
             Interop.Cion.ErrorCode ret = Interop.CionServer.CionServerCreate(out _handle, serviceName, displayName, handle?.DangerousGetHandle() ?? IntPtr.Zero);
             if (ret != Interop.Cion.ErrorCode.None)
             {
-                _handle.Dispose();
                 throw CionErrorFactory.GetException(ret, "Failed to create server handle.");
             }
 
@@ -85,8 +84,7 @@ namespace Tizen.Applications
                         Log.Error(LogTag, "Failed to clone peer info.");
                         return;
                     }
-                    PeerInfo peerInfoClone = new PeerInfo(clone);
-                    OnConnectionResult(peerInfoClone, new ConnectionResult(result));
+                    OnConnectionResult(new PeerInfo(clone), new ConnectionResult(result));
                 });
             ret = Interop.CionServer.CionServerAddConnectionResultCb(_handle, _connectionResultCb, IntPtr.Zero);
             if (ret != Interop.Cion.ErrorCode.None)
@@ -111,7 +109,7 @@ namespace Tizen.Applications
             _payloadRecievedCb = new Interop.CionServer.CionServerPayloadRecievedCb(
                 (string service, IntPtr peerInfo, IntPtr payload, int status, IntPtr userData) =>
                 {
-                    IPayload receivedPayload;
+                    Payload receivedPayload;
                     Interop.CionPayload.CionPayloadGetType(payload, out Interop.CionPayload.PayloadType type);
                     switch (type)
                     {
@@ -154,23 +152,27 @@ namespace Tizen.Applications
         /// <since_tizen> 9 </since_tizen>
         public void Listen()
         {
-            Interop.CionServer.CionServerConnectionRequestCb cb = new Interop.CionServer.CionServerConnectionRequestCb(
-                (serviceName, peerInfo, userData) => {
-                    Interop.Cion.ErrorCode clone_ret = Interop.CionPeerInfo.CionPeerInfoClone(peerInfo, out PeerInfoSafeHandle clone);
-                    if (clone_ret != Interop.Cion.ErrorCode.None)
+            if (_connectionRequestCb == null)
+            {
+                Interop.CionServer.CionServerConnectionRequestCb cb = new Interop.CionServer.CionServerConnectionRequestCb(
+                    (serviceName, peerInfo, userData) =>
                     {
-                        Log.Error(LogTag, string.Format("Clone error !!"));
-                        return;
-                    }
-                    PeerInfo peer = new PeerInfo(clone);
-                    OnConnentionRequest(peer);
-                });
-            Interop.Cion.ErrorCode ret = Interop.CionServer.CionServerListen(_handle, cb, IntPtr.Zero);
+                        Interop.Cion.ErrorCode clone_ret = Interop.CionPeerInfo.CionPeerInfoClone(peerInfo, out PeerInfoSafeHandle clone);
+                        if (clone_ret != Interop.Cion.ErrorCode.None)
+                        {
+                            Log.Error(LogTag, string.Format("Clone error !!"));
+                            return;
+                        }
+                        OnConnentionRequest(new PeerInfo(clone));
+                    });
+                _connectionRequestCb = cb;
+            }
+
+            Interop.Cion.ErrorCode ret = Interop.CionServer.CionServerListen(_handle, _connectionRequestCb, IntPtr.Zero);
             if (ret != Interop.Cion.ErrorCode.None)
             {
                 throw CionErrorFactory.GetException(ret, "Failed to listen server.");
             }
-            _connectionRequestCb = cb;
         }
 
         /// <summary>
@@ -185,7 +187,6 @@ namespace Tizen.Applications
             {
                 throw CionErrorFactory.GetException(ret, "Failed to stop server.");
             }
-            _connectionRequestCb = null;
         }
 
         /// <summary>
@@ -209,7 +210,7 @@ namespace Tizen.Applications
         /// <param name="payload">The payload to send.</param>
         /// <param name="peerInfo">The peer to send payload.</param>
         /// <since_tizen> 9 </since_tizen>
-        public void SendPayloadAsync(IPayload payload, PeerInfo peerInfo)
+        public void SendPayloadAsync(Payload payload, PeerInfo peerInfo)
         {
             Interop.Cion.ErrorCode ret = Interop.CionServer.CionServerSendPayloadAsync(_handle, peerInfo?._handle, payload?._handle,
                 (IntPtr result, IntPtr userData) =>
@@ -232,7 +233,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <param name="payload">The payload to send.</param>
         /// <since_tizen> 9 </since_tizen>
-        public void SendPayloadAsync(IPayload payload)
+        public void SendPayloadAsync(Payload payload)
         {
             var peerList = GetConnectedPeerList();
             foreach (var peer in peerList)
@@ -305,7 +306,7 @@ namespace Tizen.Applications
         /// <param name="peerInfo">The peer info of the cion client.</param>
         /// <param name="status">The status of payload transfer.</param>
         /// <since_tizen> 9 </since_tizen>
-        protected abstract void OnPayloadReceived(IPayload data, PeerInfo peerInfo, PayloadTransferStatus status);
+        protected abstract void OnPayloadReceived(Payload data, PeerInfo peerInfo, PayloadTransferStatus status);
 
         /// <summary>
         /// The callback invoked when connection requested from the cion client.

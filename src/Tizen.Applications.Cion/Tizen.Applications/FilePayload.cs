@@ -22,7 +22,7 @@ namespace Tizen.Applications
     /// A class to represent file type payload.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
-    public class FilePayload : IPayload
+    public class FilePayload : Payload
     {
         private readonly string LogTag = "Tizen.Cion";
 
@@ -101,9 +101,12 @@ namespace Tizen.Applications
         /// Gets type of the payload.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public override PayloadType GetPayloadType()
+        public override PayloadType PayloadType
         {
-            return PayloadType.FilePayload;
+            get
+            {
+                return PayloadType.FilePayload;
+            }
         }
 
         /// <summary>

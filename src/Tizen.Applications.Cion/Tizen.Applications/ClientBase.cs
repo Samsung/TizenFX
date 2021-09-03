@@ -42,6 +42,18 @@ namespace Tizen.Applications
         public string ServiceName { get; }
 
         /// <summary>
+        /// Gets peer info of connected cion server.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public PeerInfo PeerInfo
+        {
+            get
+            {
+                return _peer;
+            }
+        }
+
+        /// <summary>
         /// The constructor of ClientBase class.
         /// </summary>
         /// <param name="serviceName">The name of service.</param>
@@ -56,15 +68,14 @@ namespace Tizen.Applications
         /// <param name="security">The security configuration.</param>
         /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method.</exception> 
         /// <since_tizen> 9 </since_tizen>
-        public ClientBase(string serviceName, SecurityInfo security)
+        public ClientBase(string serviceName, Cion.SecurityInfo security)
         {
             ServiceName = serviceName;
 
-            SecuritySafeHandle handle = security?._handle;
+            Cion.SecuritySafeHandle handle = security?._handle;
             Interop.Cion.ErrorCode ret = Interop.CionClient.CionClientCreate(out _handle, serviceName, handle?.DangerousGetHandle() ?? IntPtr.Zero);
             if (ret != Interop.Cion.ErrorCode.None)
             {
-                _handle.Dispose();
                 throw CionErrorFactory.GetException(ret, "Failed to create client.");
             }
 
@@ -77,8 +88,7 @@ namespace Tizen.Applications
                         Log.Error(LogTag, string.Format("Clone error !!"));
                         return;
                     }
-                    PeerInfo peer = new PeerInfo(clone);
-                    OnConnectionResult(new PeerInfo(new PeerInfoSafeHandle(peerInfo, false)), new ConnectionResult(result));
+                    OnConnectionResult(new PeerInfo(clone), new ConnectionResult(result));
                 });
             ret = Interop.CionClient.CionClientAddConnectionResultCb(_handle, _connectionResultCb, IntPtr.Zero);
             if (ret != Interop.Cion.ErrorCode.None)
@@ -90,7 +100,7 @@ namespace Tizen.Applications
             _payloadRecievedCb = new Interop.CionClient.CionClientPayloadRecievedCb(
                 (string service, IntPtr peerInfo, IntPtr payload, int status, IntPtr userData) =>
                 {
-                    IPayload receivedPayload;
+                    Payload receivedPayload;
                     Interop.CionPayload.CionPayloadGetType(payload, out Interop.CionPayload.PayloadType type);
                     switch (type)
                     {
@@ -134,26 +144,29 @@ namespace Tizen.Applications
         {
             Log.Error(LogTag, string.Format("Try discovery start"));
 
-            Interop.CionClient.CionClientDiscoveredCb cb = new Interop.CionClient.CionClientDiscoveredCb(
-                (string serviceName, IntPtr peerInfo, IntPtr userData) =>
-                {
-                    Log.Error(LogTag, string.Format("callback called !!"));
-
-                    Interop.Cion.ErrorCode clone_ret = Interop.CionPeerInfo.CionPeerInfoClone(peerInfo, out PeerInfoSafeHandle clone);
-                    if (clone_ret != Interop.Cion.ErrorCode.None)
+            if (_discoveredCb == null)
+            {
+                Interop.CionClient.CionClientDiscoveredCb cb = new Interop.CionClient.CionClientDiscoveredCb(
+                    (string serviceName, IntPtr peerInfo, IntPtr userData) =>
                     {
-                        Log.Error(LogTag, "Failed to clone peer info.");
-                        return;
-                    }                    
-                    PeerInfo peer = new PeerInfo(clone);
-                    OnDiscovered(peer);
-                });
-            Interop.Cion.ErrorCode ret = Interop.CionClient.CionClientTryDiscovery(_handle, cb, IntPtr.Zero);
+                        Log.Error(LogTag, string.Format("callback called !!"));
+
+                        Interop.Cion.ErrorCode clone_ret = Interop.CionPeerInfo.CionPeerInfoClone(peerInfo, out PeerInfoSafeHandle clone);
+                        if (clone_ret != Interop.Cion.ErrorCode.None)
+                        {
+                            Log.Error(LogTag, "Failed to clone peer info.");
+                            return;
+                        }
+                        OnDiscovered(new PeerInfo(clone));
+                    });
+                _discoveredCb = cb;
+            }
+
+            Interop.Cion.ErrorCode ret = Interop.CionClient.CionClientTryDiscovery(_handle, _discoveredCb, IntPtr.Zero);
             if (ret != Interop.Cion.ErrorCode.None)
             {
                 throw CionErrorFactory.GetException(ret, "Failed to try discovery.");
             }
-            _discoveredCb = cb;
         }
 
         /// <summary>
@@ -168,7 +181,6 @@ namespace Tizen.Applications
             {
                 throw CionErrorFactory.GetException(ret, "Failed to stop discovery.");
             }
-            _discoveredCb = null;
         }
 
         /// <summary>
@@ -226,31 +238,28 @@ namespace Tizen.Applications
         /// <param name="payload">The payload to send.</param>
         /// <exception cref="ArgumentException">Thrown when there is no connected cion server.</exception>
         /// <since_tizen> 9 </since_tizen>
-        public void SendPayloadAsync(IPayload payload)
+        public void SendPayloadAsync(Payload payload)
         {
-            Interop.Cion.ErrorCode ret = Interop.CionClient.CionClientSendPayloadAsync(_handle, payload?._handle,
-                (IntPtr result, IntPtr userData) =>
-                {
-                    Interop.Cion.ErrorCode clone_ret = Interop.CionPayloadAsyncResult.CionPayloadAsyncResultClone(result, out PayloadAsyncResultSafeHandle clone);                    
-                    if (clone_ret != Interop.Cion.ErrorCode.None)
+            if (_payloadAsyncResultCb == null)
+            {
+                Interop.CionClient.CionClientPayloadAsyncResultCb cb = new Interop.CionClient.CionClientPayloadAsyncResultCb(
+                    (IntPtr result, IntPtr userData) =>
                     {
-                        throw CionErrorFactory.GetException(clone_ret, "Failed to clone result.");                        
-                    }
-                    OnPayloadAsyncResult(new PayloadAsyncResult(clone));
-                }, IntPtr.Zero);
+                        Interop.Cion.ErrorCode clone_ret = Interop.CionPayloadAsyncResult.CionPayloadAsyncResultClone(result, out PayloadAsyncResultSafeHandle clone);
+                        if (clone_ret != Interop.Cion.ErrorCode.None)
+                        {
+                            throw CionErrorFactory.GetException(clone_ret, "Failed to clone result.");
+                        }
+                        OnPayloadAsyncResult(new PayloadAsyncResult(clone));
+                    });
+                _payloadAsyncResultCb = cb;
+            }
+
+            Interop.Cion.ErrorCode ret = Interop.CionClient.CionClientSendPayloadAsync(_handle, payload?._handle, _payloadAsyncResultCb, IntPtr.Zero);
             if (ret != Interop.Cion.ErrorCode.None)
             {
                 throw CionErrorFactory.GetException(ret, "Failed to send payload.");
             }
-        }
-
-        /// <summary>
-        /// Gets peer info of connected cion server.
-        /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        public PeerInfo GetPeerInfo()
-        {
-            return _peer;
         }
 
         /// <summary>
@@ -267,7 +276,7 @@ namespace Tizen.Applications
         /// <param name="payload">The received payload.</param>
         /// <param name="status">The status of sent payload.</param>
         /// <since_tizen> 9 </since_tizen>
-        protected abstract void OnPayloadReceived(IPayload payload, PayloadTransferStatus status);
+        protected abstract void OnPayloadReceived(Payload payload, PayloadTransferStatus status);
 
         /// <summary>
         /// The callback invoked when the cion server discovered.
@@ -309,15 +318,6 @@ namespace Tizen.Applications
                 _handle.Dispose();
                 disposedValue = true;
             }
-        }
-
-        /// <summary>
-        /// Finalizer of the ClientBase class.
-        /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        ~ClientBase()
-        {
-            Dispose(false);
         }
 
         /// <summary>

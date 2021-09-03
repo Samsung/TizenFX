@@ -18,7 +18,7 @@ using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 
-namespace Tizen.Applications
+namespace Tizen.Applications.Cion
 {
     internal sealed class SecuritySafeHandle : SafeHandle
     {
@@ -36,6 +36,7 @@ namespace Tizen.Applications
         protected override bool ReleaseHandle()
         {
             Interop.CionSecurity.CionSecurityDestroy(this.handle);
+            SetHandle(IntPtr.Zero);
             return true;
         }
     }

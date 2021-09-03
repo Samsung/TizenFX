@@ -20,7 +20,7 @@ namespace Tizen.Applications
     /// An abstract class to represent payload.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
-    public abstract class IPayload
+    public abstract class Payload
     {
         private readonly string LogTag = "Tizen.Cion";
         internal PayloadSafeHandle _handle;
@@ -29,7 +29,7 @@ namespace Tizen.Applications
         /// Gets type of the payload.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public abstract PayloadType GetPayloadType();
+        public abstract PayloadType PayloadType { get; }
 
         /// <summary>
         /// Gets Id of the payload.

@@ -25,7 +25,7 @@ namespace Tizen.Applications
     /// A class to represent data type payload.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
-    public class DataPayload : IPayload
+    public class DataPayload : Payload
     {
         internal DataPayload(PayloadSafeHandle handle)
         {
@@ -48,16 +48,19 @@ namespace Tizen.Applications
         /// Gets type of the payload.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public override PayloadType GetPayloadType()
+        public override PayloadType PayloadType
         {
-            return PayloadType.DataPayload;
+            get
+            {
+                return PayloadType.DataPayload;
+            }
         }
 
         /// <summary>
         /// Gets data of the payload.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public IEnumerable<byte> Data
+        public byte[] Data
         {
             get
             {
@@ -68,7 +71,7 @@ namespace Tizen.Applications
             }
             set
             {
-                Interop.CionPayload.CionPayloadSetData(_handle, value.ToArray(), value.Count());
+                Interop.CionPayload.CionPayloadSetData(_handle, value, value?.Length ?? 0);
             }
         }
     }

@@ -50,22 +50,21 @@ namespace Tizen.Applications
         /// <param name="security">The security configuration.</param>
         /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method.</exception>
         /// <since_tizen> 9 </since_tizen>
-        public GroupBase(string topicName, SecurityInfo security)
+        public GroupBase(string topicName, Cion.SecurityInfo security)
         {
             Topic = topicName;
 
-            SecuritySafeHandle handle = security?._handle;
+            Cion.SecuritySafeHandle handle = security?._handle;
             Interop.Cion.ErrorCode ret = Interop.CionGroup.CionGroupCreate(out _handle, topicName, handle?.DangerousGetHandle() ?? IntPtr.Zero);
             if (ret != Interop.Cion.ErrorCode.None)
             {
-                _handle.Dispose();
                 throw CionErrorFactory.GetException(ret, "Failed to create group.");
             }
 
             _payloadReceivedCb = new Interop.CionGroup.CionGroupPayloadReceivedCb(
                 (IntPtr group, IntPtr peerInfo, IntPtr payload, IntPtr userData) =>
                 {
-                    IPayload receivedPayload;
+                    Payload receivedPayload;
                     Interop.CionPayload.CionPayloadGetType(payload, out Interop.CionPayload.PayloadType type);
                     switch (type)
                     {
@@ -154,7 +153,7 @@ namespace Tizen.Applications
         /// <param name="payload">The payload to publish.</param>
         /// <exception cref="ArgumentException">Thrown when the payload is invalid.</exception>
         /// <since_tizen> 9 </since_tizen>
-        public void Publish(IPayload payload)
+        public void Publish(Payload payload)
         {
             Interop.Cion.ErrorCode ret = Interop.CionGroup.CionGroupPublish(_handle, payload?._handle);
             if (ret != Interop.Cion.ErrorCode.None)
@@ -167,7 +166,7 @@ namespace Tizen.Applications
         /// The callback invoked when payload received.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        protected abstract void OnPayloadReceived(IPayload payload, PeerInfo peer);
+        protected abstract void OnPayloadReceived(Payload payload, PeerInfo peer);
 
         /// <summary>
         /// The callback invoked when another peer joined in the current group.
@@ -200,15 +199,6 @@ namespace Tizen.Applications
                 _handle.Dispose();
                 disposedValue = true;
             }
-        }
-
-        /// <summary>
-        /// Finalizer of the GroupBase class.
-        /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        ~GroupBase()
-        {
-            Dispose(false);
         }
 
         /// <summary>

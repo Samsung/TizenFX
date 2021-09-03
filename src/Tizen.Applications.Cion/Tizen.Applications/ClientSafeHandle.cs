@@ -36,6 +36,7 @@ namespace Tizen.Applications
         protected override bool ReleaseHandle()
         {
             Interop.CionClient.CionClientDestroy(this.handle);
+            SetHandle(IntPtr.Zero);
             return true;
         }
     }
