@@ -45,7 +45,7 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                var item = array.Items;
+                var item = array.Items;         // empty
                 tlog.Debug(tag, "Items : " + item);
             }
             catch (Exception e)
@@ -55,31 +55,6 @@ namespace Tizen.NUI.Devel.Tests
             }
 
             tlog.Debug(tag, $"ArrayExtensionItems END");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("ArrayExtension Type")]
-        [Property("SPEC", "Tizen.NUI.ArrayExtension.Type A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
-        public void ArrayExtensionType()
-        {
-            tlog.Debug(tag, $"ArrayExtensionType START");
-
-            try
-            {
-                var type = array.Type;
-                array.Type = type;
-                Assert.AreEqual(type, array.Type, "Should be equal");
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
-
-            tlog.Debug(tag, $"ArrayExtensionType END");
         }
 
         [Test]
@@ -95,6 +70,7 @@ namespace Tizen.NUI.Devel.Tests
             try
             {
                 array.Type = typeof(string);
+                tlog.Debug(tag, "Type : " + array.Type);
                 array.ProvideValue(new IServiceProviderImpl());
             }
             catch (Exception e)
@@ -104,6 +80,29 @@ namespace Tizen.NUI.Devel.Tests
             }
 
             tlog.Debug(tag, $"ArrayExtensionProvideValue END");
+        }
+
+        [Test]
+        [Category("P2")]
+        [Description("ArrayExtension ProvideValue")]
+        [Property("SPEC", "Tizen.NUI.ArrayExtension.ProvideValue A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        public void ArrayExtensionProvideValueWithNullType()
+        {
+            tlog.Debug(tag, $"ArrayExtensionProvideValueWithNullType START");
+
+            try
+            {
+                array.Type = null;
+                array.ProvideValue(new IServiceProviderImpl());
+            }
+            catch (InvalidOperationException e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                tlog.Debug(tag, $"ArrayExtensionProvideValueWithNullType END");
+                Assert.Pass("Caught InvalidOperationException : Passed!");
+            }
         }
     }
 }
