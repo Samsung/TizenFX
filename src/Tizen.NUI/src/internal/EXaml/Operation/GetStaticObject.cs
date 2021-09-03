@@ -25,13 +25,13 @@ using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.EXaml
 {
-    internal class GatherStaticInstance : Operation
+    internal class GetStaticObject : Operation
     {
-        public GatherStaticInstance(GlobalDataList globalDataList, int typeIndex, string propertyName, string fieldName)
+        public GetStaticObject(GlobalDataList globalDataList, List<object> operationInfo)
         {
-            this.typeIndex = typeIndex;
-            this.propertyName = propertyName;
-            this.fieldName = fieldName;
+            typeIndex = (int)operationInfo[0];
+            propertyName = operationInfo[1] as string;
+            fieldName = operationInfo[2] as string;
             this.globalDataList = globalDataList;
         }
 

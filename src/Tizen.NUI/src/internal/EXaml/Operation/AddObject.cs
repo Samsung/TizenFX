@@ -15,23 +15,22 @@
  *
  */
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
 using Tizen.NUI.Binding.Internals;
-using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.EXaml
 {
-    internal class CreateArrayInstance : Operation
+    internal class AddObject : Operation
     {
-        public CreateArrayInstance(GlobalDataList globalDataList, int typeIndex, List<object> items)
+        public AddObject(GlobalDataList globalDataList, List<object> operationInfo)
         {
-            this.typeIndex = typeIndex;
-            this.items = items;
+            parentIndex = (int)operationInfo[0];
+            child = operationInfo[1];
+            methodIndex = (int)operationInfo[2];
             this.globalDataList = globalDataList;
         }
 
@@ -39,21 +38,19 @@ namespace Tizen.NUI.EXaml
 
         public void Do()
         {
-            var type = globalDataList.GatheredTypes[typeIndex];
-            var array = Array.CreateInstance(type, items.Count);
+            object parent = globalDataList.GatheredInstances[parentIndex];
+            var method = globalDataList.GatheredMethods[methodIndex];
 
-            for (int i = 0; i < items.Count; i++)
+            if (child is Instance)
             {
-                if (items[i] is Instance instance)
-                {
-                    ((IList)array)[i] = globalDataList.GatheredInstances[instance.Index];
-                }
+                child = globalDataList.GatheredInstances[(child as Instance).Index];
             }
 
-            globalDataList.GatheredInstances.Add(array);
+            method.Invoke(parent, new object[] { child });
         }
 
-        private int typeIndex;
-        private List<object> items;
+        private int parentIndex;
+        private object child;
+        private int methodIndex;
     }
 }

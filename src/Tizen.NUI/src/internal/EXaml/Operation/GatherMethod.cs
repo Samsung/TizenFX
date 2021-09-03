@@ -27,12 +27,12 @@ namespace Tizen.NUI.EXaml
 {
     internal class GatherMethod : Operation
     {
-        public GatherMethod(GlobalDataList globalDataList, int typeIndex, string methodName, List<object> paramList)
+        public GatherMethod(GlobalDataList globalDataList, List<object> operationInfo)
         {
-            this.typeIndex = typeIndex;
-            this.methodName = methodName;
+            typeIndex = (int)operationInfo[0];
+            methodName = operationInfo[1] as string;
+            paramList = operationInfo[2] as List<object>;
             this.globalDataList = globalDataList;
-            this.paramList = paramList;
         }
 
         private GlobalDataList globalDataList;
@@ -41,22 +41,25 @@ namespace Tizen.NUI.EXaml
         {
             List<Type> paramTypeList = new List<Type>();
 
-            foreach (var obj in paramList)
+            if (null != paramList)
             {
-                int index = (int)obj;
+                foreach (var obj in paramList)
+                {
+                    int index = (int)obj;
 
-                if (null == paramTypeList)
-                {
-                    paramTypeList = new List<Type>();
-                }
+                    if (null == paramTypeList)
+                    {
+                        paramTypeList = new List<Type>();
+                    }
 
-                if (index >= 0)
-                {
-                    paramTypeList.Add(globalDataList.GatheredTypes[index]);
-                }
-                else
-                {
-                    paramTypeList.Add(GetBaseType.GetBaseTypeByIndex(index));
+                    if (index >= 0)
+                    {
+                        paramTypeList.Add(globalDataList.GatheredTypes[index]);
+                    }
+                    else
+                    {
+                        paramTypeList.Add(GetBaseType.GetBaseTypeByIndex(index));
+                    }
                 }
             }
 

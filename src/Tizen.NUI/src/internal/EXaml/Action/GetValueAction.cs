@@ -162,6 +162,10 @@ namespace Tizen.NUI.EXaml
                         }
                         break;
 
+                    case '\'':
+                        Value = valueString[0];
+                        break;
+
                     case 'z':
                         Value = null;
                         break;
