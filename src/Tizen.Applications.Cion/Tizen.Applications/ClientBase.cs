@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Threading.Tasks;
 
 namespace Tizen.Applications
 {
@@ -36,7 +37,7 @@ namespace Tizen.Applications
         private Interop.CionClient.CionClientPayloadAsyncResultCb _payloadAsyncResultCb;
 
         /// <summary>
-        /// Gets the service name of current current cion client.
+        /// Gets the service name of current cion client.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public string ServiceName { get; }
@@ -199,7 +200,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Disconnects with the cion server.
+        /// Disconnects from the cion server.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public void Disconnect()
@@ -238,8 +239,9 @@ namespace Tizen.Applications
         /// <param name="payload">The payload to send.</param>
         /// <exception cref="ArgumentException">Thrown when there is no connected cion server.</exception>
         /// <since_tizen> 9 </since_tizen>
-        public void SendPayloadAsync(Payload payload)
+        public Task<PayloadAsyncResult> SendPayloadAsync(Payload payload)
         {
+            TaskCompletionSource<PayloadAsyncResult> tcs = new TaskCompletionSource<PayloadAsyncResult>();
             if (_payloadAsyncResultCb == null)
             {
                 Interop.CionClient.CionClientPayloadAsyncResultCb cb = new Interop.CionClient.CionClientPayloadAsyncResultCb(
@@ -248,9 +250,11 @@ namespace Tizen.Applications
                         Interop.Cion.ErrorCode clone_ret = Interop.CionPayloadAsyncResult.CionPayloadAsyncResultClone(result, out PayloadAsyncResultSafeHandle clone);
                         if (clone_ret != Interop.Cion.ErrorCode.None)
                         {
-                            throw CionErrorFactory.GetException(clone_ret, "Failed to clone result.");
+                            Log.Error(LogTag, "Failed to clone peer result.");
+                            tcs.SetResult(new PayloadAsyncResult());
+                            return;
                         }
-                        OnPayloadAsyncResult(new PayloadAsyncResult(clone));
+                        tcs.SetResult(new PayloadAsyncResult(clone));
                     });
                 _payloadAsyncResultCb = cb;
             }
@@ -260,6 +264,8 @@ namespace Tizen.Applications
             {
                 throw CionErrorFactory.GetException(ret, "Failed to send payload.");
             }
+
+            return tcs.Task;
         }
 
         /// <summary>

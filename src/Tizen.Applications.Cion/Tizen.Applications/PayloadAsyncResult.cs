@@ -27,6 +27,11 @@ namespace Tizen.Applications
         private readonly string LogTag = "Tizen.Cion";
         internal PayloadAsyncResultSafeHandle _handle;
 
+        internal PayloadAsyncResult()
+        {
+            _handle = null;
+        }
+
         internal PayloadAsyncResult(PayloadAsyncResultSafeHandle handle)
         {
             _handle = handle;
@@ -93,6 +98,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
         /// </summary>
+        /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
         /// <since_tizen> 9 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {

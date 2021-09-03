@@ -120,8 +120,8 @@ namespace Tizen.Applications
                             receivedPayload = new FilePayload(new PayloadSafeHandle(payload, false));
                             break;
                         default:
-                            _handle.Dispose();
-                            throw new ArgumentException("Invalid payload type received.");
+                            Log.Error(LogTag, "Invalid payload type received.");
+                            return;
                     }
                     OnPayloadReceived(receivedPayload, new PeerInfo(new PeerInfoSafeHandle(peerInfo, false)), (PayloadTransferStatus)status);
                 });
@@ -160,7 +160,7 @@ namespace Tizen.Applications
                         Interop.Cion.ErrorCode clone_ret = Interop.CionPeerInfo.CionPeerInfoClone(peerInfo, out PeerInfoSafeHandle clone);
                         if (clone_ret != Interop.Cion.ErrorCode.None)
                         {
-                            Log.Error(LogTag, string.Format("Clone error !!"));
+                            Log.Error(LogTag, "Failed to clone peer info");
                             return;
                         }
                         OnConnentionRequest(new PeerInfo(clone));
@@ -218,7 +218,8 @@ namespace Tizen.Applications
                     Interop.Cion.ErrorCode clone_ret = Interop.CionPayloadAsyncResult.CionPayloadAsyncResultClone(result, out PayloadAsyncResultSafeHandle clone);
                     if (clone_ret != Interop.Cion.ErrorCode.None)
                     {
-                        throw CionErrorFactory.GetException(clone_ret, "Failed to clone result.");
+                        Log.Error(LogTag, "Failed to clone result.");
+                        return;
                     }
                     OnPayloadAsyncResult(new PayloadAsyncResult(clone));
                 }, IntPtr.Zero);            
@@ -347,15 +348,6 @@ namespace Tizen.Applications
                 _handle.Dispose();
                 disposedValue = true;
             }
-        }
-
-        /// <summary>
-        /// Finalizer of the ServerBase class.
-        /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        ~ServerBase()
-        {
-            Dispose(false);
         }
 
         /// <summary>

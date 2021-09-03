@@ -131,6 +131,7 @@ namespace Tizen.Applications.Cion
         /// <summary>
         /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
         /// </summary>
+        /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
         /// <since_tizen> 9 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
