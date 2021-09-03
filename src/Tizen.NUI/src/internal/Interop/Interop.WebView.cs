@@ -216,9 +216,6 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_GetScaleFactor")]
             public static extern float GetScaleFactor(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_ActivateAccessibility")]
-            public static extern void ActivateAccessibility(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_HighlightText")]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool HighlightText(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, int jarg3, uint jarg4);

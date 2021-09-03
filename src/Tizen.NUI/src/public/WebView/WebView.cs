@@ -1867,17 +1867,6 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Requests to activate/deactivate the accessibility usage set by web app.
-        /// </summary>
-        /// <param name="activated">The new factor to be scaled</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void ActivateAccessibility(bool activated)
-        {
-            Interop.WebView.ActivateAccessibility(SwigCPtr, activated);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
         /// Searches and highlights the given string in the document.
         /// </summary>
         /// <param name="text">The text to be searched</param>

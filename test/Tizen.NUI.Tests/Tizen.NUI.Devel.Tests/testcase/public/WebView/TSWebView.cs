@@ -1433,31 +1433,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("WebView ActivateAccessibility.")]
-        [Property("SPEC", "Tizen.NUI.WebView.ActivateAccessibility M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewActivateAccessibility()
-        {
-            tlog.Debug(tag, $"WebViewActivateAccessibility START");
-
-            try
-            {
-                webView.ActivateAccessibility(false);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
-
-            tlog.Debug(tag, $"WebViewActivateAccessibility END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("WebView HighlightText.")]
         [Property("SPEC", "Tizen.NUI.WebView.HighlightText M")]
         [Property("SPEC_URL", "-")]

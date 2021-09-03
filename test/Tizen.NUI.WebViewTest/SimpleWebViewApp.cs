@@ -800,7 +800,6 @@ namespace Tizen.NUI.WebViewTest
                         Log.Info("WebView", $"web page TextZoomFactor is {simpleWebView.TextZoomFactor}");
                         Log.Info("WebView", $"web page LoadProgressPercentage is {simpleWebView.LoadProgressPercentage}");
 
-                        //simpleWebView.ActivateAccessibility(true);
                         //simpleWebView.AddCustomHeader("test", "value");
                         //simpleWebView.AddDynamicCertificatePath("", "");
                         simpleWebView.AddJavaScriptMessageHandler("", OnJavaScriptMessageReceived);
