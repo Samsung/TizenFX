@@ -28,10 +28,10 @@ namespace Tizen.NUI.EXaml
 {
     internal class AddToCollectionProperty : Operation
     {
-        public AddToCollectionProperty(GlobalDataList globalDataList, int instanceIndex, object value)
+        public AddToCollectionProperty(GlobalDataList globalDataList, List<object> operationInfo)
         {
-            this.instanceIndex = instanceIndex;
-            this.value = value;
+            instanceIndex = (int)operationInfo[0];
+            value = operationInfo[1];
             this.globalDataList = globalDataList;
         }
 

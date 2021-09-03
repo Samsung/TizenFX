@@ -27,11 +27,11 @@ namespace Tizen.NUI.EXaml
 {
     internal class SetProperty : Operation
     {
-        public SetProperty(GlobalDataList globalDataList, int instanceIndex, int propertyIndex, object value)
+        public SetProperty(GlobalDataList globalDataList, List<object> operationInfo)
         {
-            this.instanceIndex = instanceIndex;
-            this.propertyIndex = propertyIndex;
-            this.value = value;
+            instanceIndex = (int)operationInfo[0];
+            propertyIndex = (int)operationInfo[1];
+            value = operationInfo[2];
             this.globalDataList = globalDataList;
         }
 
