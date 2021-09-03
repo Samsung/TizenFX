@@ -13,6 +13,11 @@ namespace Tizen.NUI.Devel.Tests
         private const string tag = "NUITEST";
         private StaticExtension sExtention;
 
+        internal class IServiceProviderImpl : IServiceProvider
+        {
+            public object GetService(Type serviceType) { return null; }
+        }
+
         [SetUp]
         public void Init()
         {
@@ -50,6 +55,28 @@ namespace Tizen.NUI.Devel.Tests
             }
 
             tlog.Debug(tag, $"StaticExtensionMember END");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("StaticExtension ProvideValue")]
+        [Property("SPEC", "Tizen.NUI.StaticExtension.ProvideValue M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void StaticExtensionProvideValue()
+        {
+            tlog.Debug(tag, $"StaticExtensionProvideValue START");
+
+            try
+            {
+                sExtention.ProvideValue(new IServiceProviderImpl());  // IXamlTypeResolver is null
+            }
+            catch (ArgumentException e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                tlog.Debug(tag, $"StaticExtensionProvideValue END");
+                Assert.Pass("Caught ArgumentException : Passed!");
+            }
         }
     }
 }

@@ -79,7 +79,5 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"ApplicationResourcePathExtensionProvideValue END");
         }
-
-
     }
 }
