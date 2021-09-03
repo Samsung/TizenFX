@@ -30,7 +30,6 @@ namespace Tizen.NUI.EXaml
 
             foreach (char c in xaml)
             {
-                Console.Write(c);
                 currentAction = currentAction.DealChar(c);
             }
 

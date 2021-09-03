@@ -44,27 +44,6 @@ namespace Tizen.NUI.EXaml
             var assembly = globalDataList.GatheredAssemblies[assemblyIndex];
             var type = assembly.GetType(typeName);
 
-            if (null != genericTypeIndexs_bak)
-            {
-                Type[] args = new Type[genericTypeIndexs_bak.Count];
-
-                for (int i = 0; i < genericTypeIndexs_bak.Count; i++)
-                {
-                    int typeIndex = genericTypeIndexs_bak[i];
-
-                    if (typeIndex >= 0)
-                    {
-                        args[i] = globalDataList.GatheredTypes[typeIndex];
-                    }
-                    else
-                    {
-                        args[i] = GetBaseType.GetBaseTypeByIndex(typeIndex);
-                    }
-                }
-
-                type = type.MakeGenericType(args);
-            }
-
             if (null != genericTypeIndexs)
             {
                 Type[] args = new Type[genericTypeIndexs.Count];
@@ -91,7 +70,6 @@ namespace Tizen.NUI.EXaml
 
         private int assemblyIndex;
         private string typeName;
-        private List<int> genericTypeIndexs_bak;
         private List<object> genericTypeIndexs;
     }
 }
