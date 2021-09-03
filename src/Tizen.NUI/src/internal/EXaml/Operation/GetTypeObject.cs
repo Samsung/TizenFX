@@ -16,41 +16,29 @@
  */
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Text;
-using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Binding;
-using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI.EXaml
 {
-    internal class CallAddMethod : Operation
+    internal class GetTypeObject : Operation
     {
-        public CallAddMethod(GlobalDataList globalDataList, int parentIndex, object child, int methodIndex)
+        public GetTypeObject(GlobalDataList globalDataList, List<object> operationInfo)
         {
-            this.parentIndex = parentIndex;
-            this.child = child;
-            this.methodIndex = methodIndex;
+            typeIndex = (int)operationInfo[0];
             this.globalDataList = globalDataList;
         }
 
-        private GlobalDataList globalDataList;
-
         public void Do()
         {
-            object parent = globalDataList.GatheredInstances[parentIndex];
-            var method = globalDataList.GatheredMethods[methodIndex];
+            var type = globalDataList.GatheredTypes[typeIndex];
 
-            if (child is Instance)
+            if (null != type)
             {
-                child = globalDataList.GatheredInstances[(child as Instance).Index];
+                globalDataList.GatheredInstances.Add(type);
             }
-
-            method.Invoke(parent, new object[] { child });
         }
 
-        private int parentIndex;
-        private object child;
-        private int methodIndex;
+        private int typeIndex;
+        private GlobalDataList globalDataList;
     }
 }

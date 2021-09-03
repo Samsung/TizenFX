@@ -18,53 +18,31 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
+using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Binding;
+using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI.EXaml
 {
-    internal class GatherLongStringsBlock : Action
+    internal class GetObjectConvertedFromString : Operation
     {
-        public GatherLongStringsBlock(GlobalDataList globalDataList, Action parent)
+        public GetObjectConvertedFromString(GlobalDataList globalDataList, List<object> operationInfo)
         {
-            this.parent = parent;
+            object value0 = operationInfo[0];
+            converterIndex = (value0 is Instance) ? (value0 as Instance).Index : (int)value0;
+            value = operationInfo[1] as string;
             this.globalDataList = globalDataList;
         }
 
-        private Action parent;
         private GlobalDataList globalDataList;
 
-        public Action DealChar(char c)
+        public void Do()
         {
-            switch (c)
-            {
-                case '>':
-                    blockStartCount--;
-                    break;
-
-                case '<':
-                    blockStartCount++;
-                    break;
-            }
-
-            if (0 == blockStartCount)
-            {
-                parent?.OnActive();
-                return parent;
-            }
-            else
-            {
-                globalDataList.LongStrings += c;
-                return this;
-            }
+            var converter = globalDataList.GatheredInstances[converterIndex] as TypeConverter;
+            globalDataList.GatheredInstances.Add(converter?.ConvertFromInvariantString(value));
         }
 
-        private int blockStartCount = 1;
-
-        public void Init()
-        {
-        }
-
-        public void OnActive()
-        {
-        }
+        private int converterIndex;
+        private string value;
     }
 }

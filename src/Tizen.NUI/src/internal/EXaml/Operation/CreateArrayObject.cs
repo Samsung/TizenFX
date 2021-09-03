@@ -15,6 +15,7 @@
  *
  */
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
@@ -25,13 +26,15 @@ using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.EXaml
 {
-    internal class SetBindalbeProperty : Operation
+    internal class CreateArrayObject : Operation
     {
-        public SetBindalbeProperty(GlobalDataList globalDataList, int instanceIndex, int bindalbePropertyIndex, object value)
+        public CreateArrayObject(GlobalDataList globalDataList, List<object> operationInfos)
         {
-            this.instanceIndex = instanceIndex;
-            this.bindalbePropertyIndex = bindalbePropertyIndex;
-            this.value = value;
+            this.typeIndex = (int)operationInfos[0];
+            if (2 == operationInfos.Count)
+            {
+                this.items = operationInfos[1] as List<object>;
+            }
             this.globalDataList = globalDataList;
         }
 
@@ -39,29 +42,24 @@ namespace Tizen.NUI.EXaml
 
         public void Do()
         {
-            var instance = globalDataList.GatheredInstances[instanceIndex] as BindableObject;
+            var type = globalDataList.GatheredTypes[typeIndex];
+            var array = Array.CreateInstance(type, null == items ? 0 : items.Count);
 
-            if (null != instance)
+            if (null != items)
             {
-                var property = globalDataList.GatheredBindableProperties[bindalbePropertyIndex];
-
-                if (value is Instance valueInstance)
+                for (int i = 0; i < items.Count; i++)
                 {
-                    int valueIndex = valueInstance.Index;
-                    value = globalDataList.GatheredInstances[valueIndex];
+                    if (items[i] is Instance instance)
+                    {
+                        ((IList)array)[i] = globalDataList.GatheredInstances[instance.Index];
+                    }
                 }
-
-                if (value is IMarkupExtension markupExtension)
-                {
-                    value = markupExtension.ProvideValue(null);
-                }
-
-                instance.SetValue(property, value);
             }
+
+            globalDataList.GatheredInstances.Add(array);
         }
 
-        private int instanceIndex;
-        private int bindalbePropertyIndex;
-        private object value;
+        private int typeIndex;
+        private List<object> items;
     }
 }

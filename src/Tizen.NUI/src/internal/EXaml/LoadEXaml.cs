@@ -26,116 +26,12 @@ namespace Tizen.NUI.EXaml
         {
             var globalDataList = new GlobalDataList();
 
-            int index = 0;
-
-            var createInstance = new CreateInstanceAction(globalDataList, null);
-            var getObjectByProperty = new GetObjectByPropertyAction(globalDataList, null);
-            var addExistInstance = new AddExistInstanceAction(globalDataList, null);
-            var registerXName = new RegisterXNameAction(globalDataList, null);
-            var setProperty = new SetPropertyAction(globalDataList, null);
-            var addToCollectionProperty = new AddToCollectionPropertyAction(globalDataList, null);
-            var addEvent = new AddEventAction(globalDataList, null);
-            var setBindalbeProperty = new SetBindalbePropertyAction(globalDataList, null);
-            var addObject = new CallAddMethodAction(globalDataList, null);
-            var setDynamicResourceAction = new SetDynamicResourceAction(globalDataList, null);
-            var addToResourceDictionaryAction = new AddToResourceDictionaryAction(globalDataList, null);
-            var setBindingAction = new SetBindingAction(globalDataList, null);
-            var otherActions = new OtherActions(globalDataList, null);
-
-            Action currentOp = null;
-
-            Action[] blockActions = new Action[]
-                {
-                    new GatherAssembliesBlock(globalDataList, null),
-                    new GatherTypesBlock(globalDataList, null),
-                    new GatherPropertiesBlock(globalDataList, null),
-                    new GatherEventsBlock(globalDataList, null),
-                    new GatherMethodsBlock(globalDataList, null),
-                    new GatherBindablePropertiesBlock(globalDataList, null),
-                    new GatherLongStringsBlock(globalDataList, null)
-                };
+            Action currentAction = new RootAction(globalDataList);
 
             foreach (char c in xaml)
             {
-                if (null == currentOp)
-                {
-                    switch (c)
-                    {
-                        case '<':
-                            currentOp = blockActions[index++];
-                            currentOp.Init();
-                            break;
-
-                        case '{':
-                            currentOp = createInstance;
-                            currentOp.Init();
-                            break;
-
-                        case '`':
-                            currentOp = getObjectByProperty;
-                            currentOp.Init();
-                            break;
-
-                        case '@':
-                            currentOp = addExistInstance;
-                            currentOp.Init();
-                            break;
-
-                        case '&':
-                            currentOp = registerXName;
-                            currentOp.Init();
-                            break;
-
-                        case '[':
-                            currentOp = setProperty;
-                            currentOp.Init();
-                            break;
-
-                        case '~':
-                            currentOp = addToCollectionProperty;
-                            currentOp.Init();
-                            break;
-
-                        case '#':
-                            currentOp = addEvent;
-                            currentOp.Init();
-                            break;
-
-                        case '!':
-                            currentOp = setBindalbeProperty;
-                            currentOp.Init();
-                            break;
-
-                        case '$':
-                            currentOp = setDynamicResourceAction;
-                            currentOp.Init();
-                            break;
-
-                        case '^':
-                            currentOp = addObject;
-                            currentOp.Init();
-                            break;
-
-                        case '*':
-                            currentOp = addToResourceDictionaryAction;
-                            currentOp.Init();
-                            break;
-
-                        case '%':
-                            currentOp = setBindingAction;
-                            currentOp.Init();
-                            break;
-
-                        case 'a':
-                            currentOp = otherActions;
-                            currentOp.Init();
-                            break;
-                    }
-                }
-                else
-                {
-                    currentOp = currentOp.DealChar(c);
-                }
+                Console.Write(c);
+                currentAction = currentAction.DealChar(c);
             }
 
             foreach (var op in globalDataList.PreLoadOperations)

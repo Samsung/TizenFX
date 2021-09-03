@@ -26,10 +26,10 @@ namespace Tizen.NUI.EXaml
 {
     internal class GetObjectByProperty : Operation
     {
-        public GetObjectByProperty(GlobalDataList globalDataList, int instanceIndex, string propertyName)
+        public GetObjectByProperty(GlobalDataList globalDataList, List<object> operationInfo)
         {
-            this.instanceIndex = instanceIndex;
-            this.propertyName = propertyName;
+            instanceIndex = (int)operationInfo[0];
+            propertyName = operationInfo[1] as string;
             this.globalDataList = globalDataList;
         }
 

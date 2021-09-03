@@ -24,12 +24,12 @@ using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI.EXaml
 {
-    internal class GatherConvertedValue : Operation
+    internal class GetEnumObject : Operation
     {
-        public GatherConvertedValue(GlobalDataList globalDataList, int converterIndex, string value)
+        public GetEnumObject(GlobalDataList globalDataList, List<object> operationInfo)
         {
-            this.converterIndex = converterIndex;
-            this.value = value;
+            typeIndex = (int)operationInfo[0];
+            value = operationInfo[1] as string;
             this.globalDataList = globalDataList;
         }
 
@@ -37,11 +37,11 @@ namespace Tizen.NUI.EXaml
 
         public void Do()
         {
-            var converter = globalDataList.GatheredInstances[converterIndex] as TypeConverter;
-            globalDataList.GatheredInstances.Add(converter?.ConvertFromInvariantString(value));
+            var enumType = globalDataList.GatheredTypes[typeIndex];
+            globalDataList.GatheredInstances.Add(Enum.Parse(enumType, value));
         }
 
-        private int converterIndex;
+        private int typeIndex;
         private string value;
     }
 }
