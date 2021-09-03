@@ -113,15 +113,6 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Finalizer of the PayloadAsyncResult class.
-        /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        ~PayloadAsyncResult()
-        {
-           Dispose(false);
-        }
-
-        /// <summary>
         /// Releases all resources used by the PayloadAsyncResult class.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>

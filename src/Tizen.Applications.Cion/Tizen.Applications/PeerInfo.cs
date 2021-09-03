@@ -182,6 +182,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
         /// </summary>
+        /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
         /// <since_tizen> 9 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
@@ -193,15 +194,6 @@ namespace Tizen.Applications
                 _handle.Dispose();
                 disposedValue = true;
             }
-        }
-
-        /// <summary>
-        /// Finalizer of the PeerInfo class.
-        /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        ~PeerInfo()
-        {
-           Dispose(false);
         }
 
         /// <summary>
