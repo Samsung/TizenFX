@@ -15,7 +15,6 @@
  *
  */
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
@@ -26,12 +25,13 @@ using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.EXaml
 {
-    internal class AddToCollectionInstance : Operation
+    internal class SetBindableProperty : Operation
     {
-        public AddToCollectionInstance(GlobalDataList globalDataList, int instanceIndex, object value)
+        public SetBindableProperty(GlobalDataList globalDataList, List<object> operationInfo)
         {
-            this.instanceIndex = instanceIndex;
-            this.value = value;
+            instanceIndex = (int)operationInfo[0];
+            bindablePropertyIndex = (int)operationInfo[1];
+            value = operationInfo[2];
             this.globalDataList = globalDataList;
         }
 
@@ -39,13 +39,15 @@ namespace Tizen.NUI.EXaml
 
         public void Do()
         {
-            var collection = globalDataList.GatheredInstances[instanceIndex] as IList;
+            var instance = globalDataList.GatheredInstances[instanceIndex] as BindableObject;
 
-            if (null != collection)
+            if (null != instance)
             {
-                if (value is Instance)
+                var property = globalDataList.GatheredBindableProperties[bindablePropertyIndex];
+
+                if (value is Instance valueInstance)
                 {
-                    int valueIndex = (value as Instance).Index;
+                    int valueIndex = valueInstance.Index;
                     value = globalDataList.GatheredInstances[valueIndex];
                 }
 
@@ -54,11 +56,12 @@ namespace Tizen.NUI.EXaml
                     value = markupExtension.ProvideValue(null);
                 }
 
-                collection.Add(value);
+                instance.SetValue(property, value);
             }
         }
 
         private int instanceIndex;
+        private int bindablePropertyIndex;
         private object value;
     }
 }

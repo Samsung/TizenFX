@@ -15,21 +15,23 @@
  *
  */
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
 using Tizen.NUI.Binding.Internals;
+using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.EXaml
 {
-    internal class GatherEnumValue : Operation
+    internal class AddToCollectionObject : Operation
     {
-        public GatherEnumValue(GlobalDataList globalDataList, int typeIndex, string value)
+        public AddToCollectionObject(GlobalDataList globalDataList, List<object> operationInfo)
         {
-            this.typeIndex = typeIndex;
-            this.value = value;
+            instanceIndex = (int)operationInfo[0];
+            value = operationInfo[1];
             this.globalDataList = globalDataList;
         }
 
@@ -37,11 +39,26 @@ namespace Tizen.NUI.EXaml
 
         public void Do()
         {
-            var enumType = globalDataList.GatheredTypes[typeIndex];
-            globalDataList.GatheredInstances.Add(Enum.Parse(enumType, value));
+            var collection = globalDataList.GatheredInstances[instanceIndex] as IList;
+
+            if (null != collection)
+            {
+                if (value is Instance)
+                {
+                    int valueIndex = (value as Instance).Index;
+                    value = globalDataList.GatheredInstances[valueIndex];
+                }
+
+                if (value is IMarkupExtension markupExtension)
+                {
+                    value = markupExtension.ProvideValue(null);
+                }
+
+                collection.Add(value);
+            }
         }
 
-        private int typeIndex;
-        private string value;
+        private int instanceIndex;
+        private object value;
     }
 }

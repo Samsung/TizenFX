@@ -25,14 +25,17 @@ using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.EXaml
 {
-    internal class CreateInstance : Operation
+    internal class CreateObject : Operation
     {
-        public CreateInstance(GlobalDataList globalDataList, int typeIndex, int xFactoryMethodIndex, List<object> paramList = null)
+        public CreateObject(GlobalDataList globalDataList, List<object> operationInfos)
         {
-            this.typeIndex = typeIndex;
-            this.paramList = paramList;
+            this.typeIndex = (int)operationInfos[0];
+            this.xFactoryMethodIndex = (int)operationInfos[1];
+            if (3 == operationInfos.Count)
+            {
+                this.paramList = operationInfos[2] as List<object>;
+            }
             this.globalDataList = globalDataList;
-            this.xFactoryMethodIndex = xFactoryMethodIndex;
         }
 
         private GlobalDataList globalDataList;
