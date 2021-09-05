@@ -1625,7 +1625,7 @@ namespace Tizen.NUI.BaseComponents
 
             else if (placeholder.PixelSize != null)
                 map.Add("pixelSize", new PropertyValue((float)placeholder.PixelSize));
-            
+
             map.Add("ellipsis", new PropertyValue(placeholder.Ellipsis));
 
             return map;
@@ -1792,7 +1792,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="textEditor">The textEditor control from which the text is copied.</param>
         /// <returns>The copied text.</returns>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static string CopyToClipboard(TextEditor textEditor)
         {
             string copiedText = Interop.TextEditor.CopyText(textEditor.SwigCPtr);
@@ -1806,7 +1806,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="textField">The textField control from which the text is copied.</param>
         /// <returns>The copied text.</returns>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static string CopyToClipboard(TextField textField)
         {
             string copiedText = Interop.TextField.CopyText(textField.SwigCPtr);
@@ -1820,7 +1820,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="textEditor">The textEditor control from which the text is cut.</param>
         /// <returns>The cut text.</returns>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static string CutToClipboard(TextEditor textEditor)
         {
             string cutText = Interop.TextEditor.CutText(textEditor.SwigCPtr);
@@ -1834,7 +1834,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="textField">The textField control from which the text is cut.</param>
         /// <returns>The cut text.</returns>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static string CutToClipboard(TextField textField)
         {
             string cutText = Interop.TextField.CutText(textField.SwigCPtr);
@@ -1847,7 +1847,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="textEditor">The textEditor control into which the text is pasted.</param>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static void PasteTo(TextEditor textEditor)
         {
             Interop.TextEditor.PasteText(textEditor.SwigCPtr);
@@ -1859,7 +1859,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="textField">The textField control into which the text is pasted.</param>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static void PasteTo(TextField textField)
         {
             Interop.TextField.PasteText(textField.SwigCPtr);
