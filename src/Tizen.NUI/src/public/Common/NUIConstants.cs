@@ -907,7 +907,7 @@ namespace Tizen.NUI
         Start,
 
         /// <summary>
-        /// ellipsis position in middle.
+        /// ellipsis position in the middle.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         Middle
