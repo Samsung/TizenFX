@@ -1755,8 +1755,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The ellipsis position of the text.
-        /// The ellipsis position type when the text size over the layout size.<br />
-        /// The ellipsis position: End, Start or Middle.<br />
+        /// Specifies which portion of the text should be replaced with an ellipsis when the text size exceeds the layout size.<br />
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public EllipsisPosition EllipsisPosition
