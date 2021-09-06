@@ -36,6 +36,7 @@
     <ProjectReference Include="../../../src/Tizen.System.SystemSettings/Tizen.System.SystemSettings.csproj" />
     <ProjectReference Include="../../../src/Tizen.NUI/Tizen.NUI.csproj" />
     <ProjectReference Include="../../../src/Tizen.NUI.Components/Tizen.NUI.Components.csproj" />
+    <ProjectReference Include="../../../src/Tizen.NUI.Extension/Tizen.NUI.Extension.csproj" />
     <ProjectReference Include="../../../src/Tizen.NUI.Wearable/Tizen.NUI.Wearable.csproj" />
     <PackageReference Include="nunit" Version="3.12.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />

@@ -1,4 +1,5 @@
-﻿using Tizen.NUI.BaseComponents;
+using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Extension;
 using Tizen.NUI.Components;
 
 namespace Tizen.NUI.Samples
@@ -7,7 +8,7 @@ namespace Tizen.NUI.Samples
     {
         private Window window;
         private Layer defaultLayer;
-        RiveAnimationView rav;
+        Tizen.NUI.Extension.RiveAnimationView rav;
         Button playButton;
         bool preIn, isIn;
         public void Activate()
@@ -17,7 +18,7 @@ namespace Tizen.NUI.Samples
             window.TouchEvent += OnRiveWindowTouchEvent;
 
             // Load RiveAnimation File
-            rav = new RiveAnimationView(Tizen.Applications.Application.Current.DirectoryInfo.Resource + "rive/teeny_tiny_file.riv")
+            rav = new Tizen.NUI.Extension.RiveAnimationView(Tizen.Applications.Application.Current.DirectoryInfo.Resource + "rive/teeny_tiny_file.riv")
             {
                 Size = new Size(720, 720),
             };
