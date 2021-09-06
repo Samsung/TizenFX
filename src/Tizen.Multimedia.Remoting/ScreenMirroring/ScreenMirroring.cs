@@ -31,7 +31,9 @@ namespace Tizen.Multimedia.Remoting
     public class ScreenMirroring : IDisposable, IDisplayable<ScreenMirroringErrorCode>
     {
         private const string Feature = "http://tizen.org/feature/network.wifi.direct.display";
-        private const int Port = 2022;
+
+        private const uint _port = 2022;
+        private const uint _portMax = 65535;
 
         private IntPtr _handle;
 
@@ -268,35 +270,71 @@ namespace Tizen.Multimedia.Remoting
         /// <param name="sourceIp">The source ip address to connect.</param>
         /// <remarks>
         /// The state must be <see cref="ScreenMirroringState.Prepared"/> state by
-        /// <see cref="Prepare(Display, ScreenMirroringResolutions)"/>.
+        /// <see cref="Prepare(Display, ScreenMirroringResolutions)"/>.<br/>
+        /// The default port number is 2022.<br/>
+        /// If you want to connect using different port number, please use <see cref="ConnectAsync(string, uint)"/>.
         /// </remarks>
         /// <returns>A task that represents the asynchronous operation.</returns>
         /// <privilege>http://tizen.org/privilege/internet</privilege>
+        /// <exception cref="ArgumentException"><paramref name="sourceIp"/> is a zero-length string, contains only white space.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="sourceIp"/> is null.</exception>
         /// <exception cref="InvalidOperationException">
         ///     The current state is not in the valid.<br/>
         ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
-        /// <exception cref="ArgumentException"><paramref name="sourceIp"/> is a zero-length string, contains only white space.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
         /// <exception cref="UnauthorizedAccessException">Caller does not have required permission.</exception>
+        /// <seealso cref="ConnectAsync(string, uint)"/>
         /// <since_tizen> 4 </since_tizen>
         public Task ConnectAsync(string sourceIp)
+        {
+            return ConnectAsync(sourceIp, _port);
+        }
+
+        /// <summary>
+        /// Creates the connection and ready for receiving data from a mirroring source with the given <paramref name="port"/>.
+        /// </summary>
+        /// <param name="sourceIp">The source ip address to connect.</param>
+        /// <param name="port">The port number to connect. The max value is 65535.</param>
+        /// <remarks>
+        /// The state must be <see cref="ScreenMirroringState.Prepared"/> state by
+        /// <see cref="Prepare(Display, ScreenMirroringResolutions)"/>.
+        /// </remarks>
+        /// <returns>A task that represents the asynchronous operation.</returns>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
+        /// <exception cref="ArgumentException">
+        ///     <paramref name="sourceIp"/> is a zero-length string, contains only white space.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="port"/> is greater than port max value(65535).
+        /// </exception>
+        /// <exception cref="ArgumentNullException"><paramref name="sourceIp"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     The current state is not in the valid.<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
+        /// <exception cref="UnauthorizedAccessException">Caller does not have required permission.</exception>
+        /// <since_tizen> 9 </since_tizen>
+        public Task ConnectAsync(string sourceIp, uint port)
         {
             if (sourceIp == null)
             {
                 throw new ArgumentNullException(nameof(sourceIp));
             }
-
             if (string.IsNullOrWhiteSpace(sourceIp))
             {
                 throw new ArgumentException($"{nameof(sourceIp)} is a zero-length string.", nameof(sourceIp));
             }
+            if (port > _portMax)
+            {
+                throw new ArgumentException($"{nameof(port)} is greater than max port value(65535).", nameof(port));
+            }
 
             ValidateState(ScreenMirroringState.Prepared);
 
-            Native.SetIpAndPort(Handle, sourceIp, Port.ToString()).ThrowIfError("Failed to set ip.");
+            Native.SetIpAndPort(Handle, sourceIp, port.ToString()).ThrowIfError("Failed to set ip.");
 
             return RunAsync(Native.Connect, "Failed to connect.");
         }
