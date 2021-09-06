@@ -44,7 +44,7 @@ namespace Tizen.Uix.InputMethod
 
                 case ErrorCode.PermissionDenied:
                     {
-                        exp = new InvalidOperationException("Permission Denied");
+                        exp = new UnauthorizedAccessException("Permission Denied");
                         break;
                     }
 
