@@ -122,7 +122,14 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// The type of other.
         /// </summary>
-        Other = 4
+        Other = 4,
+
+        /// <summary>
+        /// The type of book.
+        /// </summary>
+        /// <seealso cref="BookInfo"/>
+        /// <since_tizen> 9 </since_tizen>
+        Book = 5
     }
 
     /// <summary>

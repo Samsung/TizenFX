@@ -18,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using Tizen.System;
@@ -468,6 +469,54 @@ namespace Tizen.Content.MediaContent
                 }
 
                 return list;
+            }
+        }
+
+        /// <summary>
+        /// Retrieves all matched ebook paths with given <paramref name="keyword"/>.
+        /// </summary>
+        /// <privilege>http://tizen.org/privilege/mediastorage</privilege>
+        /// <privilege>http://tizen.org/privilege/externalstorage</privilege>
+        /// <param name="keyword">The keyword to search.</param>
+        /// <returns>A list of ebook paths which contain <paramref name="keyword"/>.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="keyword"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
+        /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
+        /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
+        /// <since_tizen> 9 </since_tizen>
+        public MediaDataReader<string> SelectEbookPath(string keyword)
+        {
+            ValidateDatabase();
+
+            IntPtr path = IntPtr.Zero;
+            uint length = 0;
+
+            ValidationUtil.ValidateNotNullOrEmpty(keyword, nameof(keyword));
+
+            try
+            {
+                Interop.BookInfo.GetPathByKeyword(keyword, out path, out length).
+                    ThrowIfError("Failed to get path by keyword");
+
+                var list = new List<string>();
+                var current = path;
+                for (int i = 0; i < length; i++)
+                {
+                    list.Add(Marshal.PtrToStringAnsi(Marshal.ReadIntPtr(current)));
+                    current = (IntPtr)((long)current + Marshal.SizeOf(typeof(IntPtr)));
+                }
+
+                return new MediaDataReader<string>(list);
+            }
+            finally
+            {
+                var current = path;
+                for (int i = 0; i < length; i++)
+                {
+                    Tizen.Multimedia.LibcSupport.Free(Marshal.ReadIntPtr(current));
+                    current = (IntPtr)((long)current + Marshal.SizeOf(typeof(IntPtr)));
+                }
             }
         }
 
