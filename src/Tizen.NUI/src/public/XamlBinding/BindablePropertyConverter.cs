@@ -22,6 +22,7 @@ using System.Reflection;
 using System.Xml;
 using Tizen.NUI.Binding.Internals;
 using Tizen.NUI.Xaml;
+using Tizen.NUI.StyleSheets;
 
 namespace Tizen.NUI.Binding
 {
@@ -65,6 +66,9 @@ namespace Tizen.NUI.Binding
                     var triggerBase = parent as TriggerBase;
                     if (triggerBase != null)
                         type = triggerBase.TargetType;
+                    var xamlStyle = parent as IStyle;
+                    if (xamlStyle != null)
+                        type = xamlStyle.TargetType;
                 }
                 else if (parentValuesProvider.TargetObject is Trigger)
                     type = (parentValuesProvider.TargetObject as Trigger).TargetType;
@@ -96,13 +100,13 @@ namespace Tizen.NUI.Binding
                 return null;
             if (value.Contains(":"))
             {
-                Console.WriteLine(null, "Can't resolve properties with xml namespace prefix.");
+                Console.WriteLine("Can't resolve properties with xml namespace prefix.");
                 return null;
             }
             string[] parts = value.Split('.');
             if (parts.Length != 2)
             {
-                Console.WriteLine(null, $"Can't resolve {value}. Accepted syntax is Type.PropertyName.");
+                Console.WriteLine($"Can't resolve {value}. Accepted syntax is Type.PropertyName.");
                 return null;
             }
             Type type = Type.GetType("Tizen.NUI." + parts[0]);
