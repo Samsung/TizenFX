@@ -128,7 +128,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The CursorPositionChanged event.
+        /// The CursorPositionChanged event is emitted whenever the primary cursor position changed.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public event EventHandler CursorPositionChanged
