@@ -1,4 +1,5 @@
-﻿using Tizen.NUI.BaseComponents;
+using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Extension;
 using Tizen.NUI.Components;
 
 namespace Tizen.NUI.Samples
@@ -8,7 +9,7 @@ namespace Tizen.NUI.Samples
         private Window window;
         private Layer defaultLayer;
 
-        RiveAnimationView rav;
+        Tizen.NUI.Extension.RiveAnimationView rav;
         Button playButton, stopButton;
         Button bounceButton, brokeButton;
         Button fillButton, strokeButton, opacityButton;
@@ -18,7 +19,7 @@ namespace Tizen.NUI.Samples
             window = NUIApplication.GetDefaultWindow();
             defaultLayer = window.GetDefaultLayer();
 
-            rav = new RiveAnimationView(Tizen.Applications.Application.Current.DirectoryInfo.Resource + "rive/buggy.riv")
+            rav = new Tizen.NUI.Extension.RiveAnimationView(Tizen.Applications.Application.Current.DirectoryInfo.Resource + "rive/buggy.riv")
             {
                 Size = new Size(500, 500),
                 ParentOrigin = ParentOrigin.Center,
