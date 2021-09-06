@@ -81,6 +81,9 @@ internal static partial class Interop
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_audio")]
         internal static extern MediaContentError GetAudio(MediaInfoHandle handle, out IntPtr audioHandle);
 
+        [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_book")]
+        internal static extern MediaContentError GetBook(MediaInfoHandle handle, out IntPtr bookHandle);
+
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_media_id")]
         internal static extern MediaContentError GetMediaId(MediaInfoHandle mediaInformationHandle, out IntPtr mediaId);
 
