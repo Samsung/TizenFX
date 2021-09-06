@@ -715,6 +715,9 @@ namespace Tizen.Uix.Tts
         /// <returns>
         /// Boolean value whether screen reader is on or off.
         /// </returns>
+        /// <feature>
+        /// http://tizen.org/feature/speech.synthesis
+        /// </feature>
         /// <exception cref="InvalidOperationException">This exception can be due to operation failed.</exception>
         /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
         public bool IsScreenReaderOn
