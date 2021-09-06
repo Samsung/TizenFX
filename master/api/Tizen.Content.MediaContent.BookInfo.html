@@ -4,10 +4,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class JpegDecoder
+    <title>Class BookInfo
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class JpegDecoder
+    <meta name="title" content="Class BookInfo
    ">
     <meta name="generator" content="docfx 2.56.1.0">
     <meta name="version" content="API9">
@@ -79,23 +79,23 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Tizen.Multimedia.Util.JpegDecoder">
+            <article class="content wrap" id="_content" data-uid="Tizen.Content.MediaContent.BookInfo">
   
   
-  <h1 id="Tizen_Multimedia_Util_JpegDecoder" data-uid="Tizen.Multimedia.Util.JpegDecoder" class="text-break">Class JpegDecoder
+  <h1 id="Tizen_Content_MediaContent_BookInfo" data-uid="Tizen.Content.MediaContent.BookInfo" class="text-break">Class BookInfo
   </h1>
   <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
   
-  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.Multimedia.Util.html">Tizen.Multimedia.Util</a></dd></dl>
-  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Multimedia.Util.dll</dd></dl>
-  <dl class="attribute-list"><dt>API Level:</dt><dd><span>4</span></dd></dl>
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.Content.MediaContent.html">Tizen.Content.MediaContent</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Content.MediaContent.dll</dd></dl>
+  <dl class="attribute-list"><dt>API Level:</dt><dd><span>9</span></dd></dl>
   
-  <div class="markdown level0 summary"><p>Provides the ability to decode the Joint Photographic Experts Group (JPEG) encoded images.</p>
+  <div class="markdown level0 summary"><p>Represents the book information for the media.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class JpegDecoder : ImageDecoder, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class BookInfo : MediaInfo</code></pre>
   </div>
 
   
@@ -104,89 +104,28 @@
     <dd>
       <div class="pdl-holder">
         <div class="pdl"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
-        <div class="pdl"><a class="xref" href="Tizen.Multimedia.Util.ImageDecoder.html">ImageDecoder</a></div>
-        <div><span class="xref">JpegDecoder</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.Content.MediaContent.MediaInfo.html">MediaInfo</a></div>
+        <div><span class="xref">BookInfo</span></div>
       </div>
     </dd>
   </dl>
 
   
   
-  <dl class="attribute-list stack">
-    <dt>Implements</dt>
-    <dd>
-      <div class="pdl"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
-    </dd>
-  </dl>
   
-  <h3 id="constructors">Constructors
-  </h3>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Util/ImageUtil/ImageDecoder.cs/#L351">View Source</a>
-  </span>
-  <a id="Tizen_Multimedia_Util_JpegDecoder__ctor_" data-uid="Tizen.Multimedia.Util.JpegDecoder.#ctor*"></a>
-  <h4 id="Tizen_Multimedia_Util_JpegDecoder__ctor" data-uid="Tizen.Multimedia.Util.JpegDecoder.#ctor">JpegDecoder()</h4>
-  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Tizen.Multimedia.Util.JpegDecoder.html">JpegDecoder</a> class.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public JpegDecoder()</code></pre>
-  </div>
-  <h5 id="Tizen_Multimedia_Util_JpegDecoder__ctor_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p><a class="xref" href="Tizen.Multimedia.Util.ImageDecoder.html#Tizen_Multimedia_Util_ImageDecoder_InputFormat">InputFormat</a> will be the <a class="xref" href="Tizen.Multimedia.Util.ImageFormat.html#Tizen_Multimedia_Util_ImageFormat_Jpeg">Jpeg</a>.</p>
-</div>
-  
-  <h6><strong>API Level</strong>: <span>4</span></h6>
-  
-  <div style="margin-bottom: 15px"></div>
-
-  <h3 id="fields">Fields
-  </h3>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Util/ImageUtil/ImageDecoder.cs/#L342">View Source</a>
-  </span>
-  <h4 id="Tizen_Multimedia_Util_JpegDecoder_DefaultJpegDownscale" data-uid="Tizen.Multimedia.Util.JpegDecoder.DefaultJpegDownscale">DefaultJpegDownscale</h4>
-  <div class="markdown level1 summary"><p>A read-only field that represents the default value of <a class="xref" href="Tizen.Multimedia.Util.JpegDecoder.html#Tizen_Multimedia_Util_JpegDecoder_Downscale">Downscale</a>.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly JpegDownscale DefaultJpegDownscale</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.Multimedia.Util.JpegDownscale.html">JpegDownscale</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  <h6><strong>API Level</strong>: <span>4</span></h6>
-  
-  <div style="margin-bottom: 15px"></div>
-
   <h3 id="properties">Properties
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Util/ImageUtil/ImageDecoder.cs/#L360">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/BookInfo.cs/#L61">View Source</a>
   </span>
-  <a id="Tizen_Multimedia_Util_JpegDecoder_Downscale_" data-uid="Tizen.Multimedia.Util.JpegDecoder.Downscale*"></a>
-  <h4 id="Tizen_Multimedia_Util_JpegDecoder_Downscale" data-uid="Tizen.Multimedia.Util.JpegDecoder.Downscale">Downscale</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the downscale at which the jpeg image should be decoded.</p>
+  <a id="Tizen_Content_MediaContent_BookInfo_Author_" data-uid="Tizen.Content.MediaContent.BookInfo.Author*"></a>
+  <h4 id="Tizen_Content_MediaContent_BookInfo_Author" data-uid="Tizen.Content.MediaContent.BookInfo.Author">Author</h4>
+  <div class="markdown level1 summary"><p>Gets the author of the book.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public JpegDownscale Downscale { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string Author { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -198,36 +137,116 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Tizen.Multimedia.Util.JpegDownscale.html">JpegDownscale</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">value</code> is invalid.</p>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><p>The author.</p>
 </td>
       </tr>
     </tbody>
   </table>
   
-  <h6><strong>API Level</strong>: <span>4</span></h6>
+  <h6><strong>API Level</strong>: <span>9</span></h6>
   
   <div style="margin-bottom: 15px"></div>
 
-  <h3 id="implements">Implements</h3>
-  <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/BookInfo.cs/#L68">View Source</a>
+  </span>
+  <a id="Tizen_Content_MediaContent_BookInfo_DatePublished_" data-uid="Tizen.Content.MediaContent.BookInfo.DatePublished*"></a>
+  <h4 id="Tizen_Content_MediaContent_BookInfo_DatePublished" data-uid="Tizen.Content.MediaContent.BookInfo.DatePublished">DatePublished</h4>
+  <div class="markdown level1 summary"><p>Gets the published date, formatted as a string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string DatePublished { get; }</code></pre>
   </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><p>The published date.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
+  
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/BookInfo.cs/#L75">View Source</a>
+  </span>
+  <a id="Tizen_Content_MediaContent_BookInfo_Publisher_" data-uid="Tizen.Content.MediaContent.BookInfo.Publisher*"></a>
+  <h4 id="Tizen_Content_MediaContent_BookInfo_Publisher" data-uid="Tizen.Content.MediaContent.BookInfo.Publisher">Publisher</h4>
+  <div class="markdown level1 summary"><p>Gets the publisher of the book.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Publisher { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><p>The publisher.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
+  
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/BookInfo.cs/#L54">View Source</a>
+  </span>
+  <a id="Tizen_Content_MediaContent_BookInfo_Subject_" data-uid="Tizen.Content.MediaContent.BookInfo.Subject*"></a>
+  <h4 id="Tizen_Content_MediaContent_BookInfo_Subject" data-uid="Tizen.Content.MediaContent.BookInfo.Subject">Subject</h4>
+  <div class="markdown level1 summary"><p>Gets the subject of the book.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Subject { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><p>The subject.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
+  
+  <div style="margin-bottom: 15px"></div>
+
 </article>
           </div>
           
@@ -236,7 +255,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Util/ImageUtil/ImageDecoder.cs/#L334" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/BookInfo.cs/#L26" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
