@@ -1241,6 +1241,31 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
+    /// An extended EventArgs class contains the service changed information.
+    /// </summary>
+    /// <since_tizen> 9 </since_tizen>
+    public class ServiceChangedEventArgs : EventArgs
+    {
+        internal ServiceChangedEventArgs(BluetoothGattServiceChangeType changeType, string serviceUuid)
+        {
+            ChangeType = changeType;
+            ServiceUuid = serviceUuid;
+        }
+
+        /// <summary>
+        /// The service changed type.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public BluetoothGattServiceChangeType ChangeType { get; }
+
+        /// <summary>
+        /// The service UUID.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public string ServiceUuid { get; }
+    }
+
+    /// <summary>
     /// An extended EventArgs class contains the changed attribute value.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>

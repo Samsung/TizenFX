@@ -7,7 +7,7 @@ namespace Tizen.NUI.Devel.Tests
 
     [TestFixture]
     [Description("public/xaml/XamlFilePathAttribute")]
-    internal class PublicXamlFilePathAttributeTest
+    public class PublicXamlFilePathAttributeTest
     {
         private const string tag = "NUITEST";
 

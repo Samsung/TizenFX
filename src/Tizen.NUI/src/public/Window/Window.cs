@@ -726,7 +726,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetInputRegion(Rectangle inputRegion)
         {
-            Interop.Window.SetInputRegion(SwigCPtr, Rectangle.getCPtr(inputRegion));
+            Interop.Window.IncludeInputRegion(SwigCPtr, Rectangle.getCPtr(inputRegion));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1502,6 +1502,40 @@ namespace Tizen.NUI
         public void RequestResizeToServer(ResizeDirection direction)
         {
             Interop.Window.RequestResizeToServer(SwigCPtr, (int)direction);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Includes input region.
+        /// This function inlcudes input regions.
+        /// It can be used multiple times and supports multiple regions.
+        /// It means input region will be extended.
+        /// This input is related to mouse and touch event.
+        /// If device has touch screen, this function is useful.
+        /// Otherwise device does not have that, we can use it after connecting mouse to the device.
+        /// </summary>
+        /// <param name="inputRegion">The included region to accept input events.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void IncludeInputRegion(Rectangle inputRegion)
+        {
+            Interop.Window.IncludeInputRegion(SwigCPtr, Rectangle.getCPtr(inputRegion));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// This function excludes input regions.
+        /// It can be used multiple times and supports multiple regions.
+        /// It means input region will be reduced.
+        /// Nofice, should be set input area by IncludeInputRegion() before this function is used.
+        /// This input is related to mouse and touch event.
+        /// If device has touch screen, this function is useful.
+        /// Otherwise device does not have that, we can use it after connecting mouse to the device.
+        /// </summary>
+        /// <param name="inputRegion">The excluded region to except input events.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void ExcludeInputRegion(Rectangle inputRegion)
+        {
+            Interop.Window.ExcludeInputRegion(SwigCPtr, Rectangle.getCPtr(inputRegion));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

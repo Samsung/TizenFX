@@ -29,19 +29,41 @@ namespace Tizen.NUI.BaseComponents
     {
         private EventHandler<TextChangedEventArgs> textFieldTextChangedEventHandler;
         private TextChangedCallbackDelegate textFieldTextChangedCallbackDelegate;
+        private EventHandler textFieldCursorPositionChangedEventHandler;
+        private CursorPositionChangedCallbackDelegate textFieldCursorPositionChangedCallbackDelegate;
         private EventHandler<MaxLengthReachedEventArgs> textFieldMaxLengthReachedEventHandler;
         private MaxLengthReachedCallbackDelegate textFieldMaxLengthReachedCallbackDelegate;
         private EventHandler<AnchorClickedEventArgs> textFieldAnchorClickedEventHandler;
         private AnchorClickedCallbackDelegate textFieldAnchorClickedCallbackDelegate;
 
+        private EventHandler textFieldSelectionChangedEventHandler;
+        private SelectionChangedCallbackDelegate textFieldSelectionChangedCallbackDelegate;
+
+        private EventHandler<InputFilteredEventArgs> textFieldInputFilteredEventHandler;
+        private InputFilteredCallbackDelegate textFieldInputFilteredCallbackDelegate;
+        private EventHandler textFieldSelectionClearedEventHandler;
+        private SelectionClearedCallbackDelegate textFieldSelectionClearedCallbackDelegate;
+
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void TextChangedCallbackDelegate(IntPtr textField);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void CursorPositionChangedCallbackDelegate(IntPtr textField, uint oldPosition);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void MaxLengthReachedCallbackDelegate(IntPtr textField);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void AnchorClickedCallbackDelegate(IntPtr textField, IntPtr href, uint hrefLength);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void SelectionChangedCallbackDelegate(IntPtr textField, uint oldStart, uint oldEnd);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void InputFilteredCallbackDelegate(IntPtr textField, InputFilterType type);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void SelectionClearedCallbackDelegate(IntPtr textField);
 
         /// <summary>
         /// The TextChanged event.
@@ -65,6 +87,32 @@ namespace Tizen.NUI.BaseComponents
                 {
                     TextChangedSignal().Disconnect(textFieldTextChangedCallbackDelegate);
                 }
+            }
+        }
+
+        /// <summary>
+        /// The CursorPositionChanged event.
+        /// </summary>
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler CursorPositionChanged
+        {
+            add
+            {
+                if (textFieldCursorPositionChangedEventHandler == null)
+                {
+                    textFieldCursorPositionChangedCallbackDelegate = (OnCursorPositionChanged);
+                    CursorPositionChangedSignal().Connect(textFieldCursorPositionChangedCallbackDelegate);
+                }
+                textFieldCursorPositionChangedEventHandler += value;
+            }
+            remove
+            {
+                if (textFieldCursorPositionChangedEventHandler == null && CursorPositionChangedSignal().Empty() == false)
+                {
+                    this.CursorPositionChangedSignal().Disconnect(textFieldCursorPositionChangedCallbackDelegate);
+                }
+                textFieldCursorPositionChangedEventHandler -= value;
             }
         }
 
@@ -94,6 +142,32 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The SelectionCleared signal is emitted when selection is cleared.
+        /// </summary>
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler SelectionCleared
+        {
+            add
+            {
+                if (textFieldSelectionClearedEventHandler == null)
+                {
+                    textFieldSelectionClearedCallbackDelegate = (OnSelectionCleared);
+                    SelectionClearedSignal().Connect(textFieldSelectionClearedCallbackDelegate);
+                }
+                textFieldSelectionClearedEventHandler += value;
+            }
+            remove
+            {
+                if (textFieldSelectionClearedEventHandler == null && SelectionClearedSignal().Empty() == false)
+                {
+                    this.SelectionClearedSignal().Disconnect(textFieldSelectionClearedCallbackDelegate);
+                }
+                textFieldSelectionClearedEventHandler -= value;
+            }
+        }
+
+        /// <summary>
         /// The AnchorClicked signal is emitted when the anchor is clicked.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
@@ -118,9 +192,93 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// The SelectionChanged event.
+        /// </summary>
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler SelectionChanged
+        {
+            add
+            {
+                if (textFieldSelectionChangedEventHandler == null)
+                {
+                    textFieldSelectionChangedCallbackDelegate = (OnSelectionChanged);
+                    SelectionChangedSignal().Connect(textFieldSelectionChangedCallbackDelegate);
+                }
+                textFieldSelectionChangedEventHandler += value;
+            }
+            remove
+            {
+                if (textFieldSelectionChangedEventHandler == null && SelectionChangedSignal().Empty() == false)
+                {
+                    this.SelectionChangedSignal().Disconnect(textFieldSelectionChangedCallbackDelegate);
+                }
+                textFieldSelectionChangedEventHandler -= value;
+            }
+        }
+
+        /// <summary>
+        /// The InputFiltered signal is emitted when the input is filtered by InputFilter. <br />
+        /// </summary>
+        /// <remarks>
+        /// See <see cref="InputFilterType"/> and <see cref="InputFilteredEventArgs"/> for a detailed description. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the InputFiltered event.
+        /// <code>
+        /// field.InputFiltered += (s, e) =>
+        /// {
+        ///     if (e.Type == InputFilterType.Accept)
+        ///     {
+        ///         // If input is filtered by InputFilter of Accept type.
+        ///     }
+        ///     else if (e.Type == InputFilterType.Reject)
+        ///     {
+        ///         // If input is filtered by InputFilter of Reject type.
+        ///     }
+        /// };
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<InputFilteredEventArgs> InputFiltered
+        {
+            add
+            {
+                if (textFieldInputFilteredEventHandler == null)
+                {
+                    textFieldInputFilteredCallbackDelegate = (OnInputFiltered);
+                    InputFilteredSignal().Connect(textFieldInputFilteredCallbackDelegate);
+                }
+                textFieldInputFilteredEventHandler += value;
+            }
+            remove
+            {
+                textFieldInputFilteredEventHandler -= value;
+                if (textFieldInputFilteredEventHandler == null && InputFilteredSignal().Empty() == false)
+                {
+                    InputFilteredSignal().Disconnect(textFieldInputFilteredCallbackDelegate);
+                }
+            }
+        }
+
+        internal TextFieldSignal SelectionClearedSignal()
+        {
+            TextFieldSignal ret = new TextFieldSignal(Interop.TextField.SelectionClearedSignal(SwigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         internal TextFieldSignal TextChangedSignal()
         {
             TextFieldSignal ret = new TextFieldSignal(Interop.TextField.TextChangedSignal(SwigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal TextFieldSignal CursorPositionChangedSignal()
+        {
+            TextFieldSignal ret = new TextFieldSignal(Interop.TextField.CursorPositionChangedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -139,6 +297,26 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
+        internal TextFieldSignal SelectionChangedSignal()
+        {
+            TextFieldSignal ret = new TextFieldSignal(Interop.TextField.SelectionChangedSignal(SwigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal TextFieldSignal InputFilteredSignal()
+        {
+            TextFieldSignal ret = new TextFieldSignal(Interop.TextField.InputFilteredSignal(SwigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        private void OnSelectionCleared(IntPtr textField)
+        {
+            //no data to be sent to the user
+            textFieldSelectionClearedEventHandler?.Invoke(this, EventArgs.Empty);
+        }
+
         private void OnTextChanged(IntPtr textField)
         {
             if (textFieldTextChangedEventHandler != null)
@@ -150,6 +328,12 @@ namespace Tizen.NUI.BaseComponents
                 //here we send all data to user event handlers
                 textFieldTextChangedEventHandler(this, e);
             }
+        }
+
+        private void OnCursorPositionChanged(IntPtr textField, uint oldPosition)
+        {
+            // no data to be sent to the user, as in NUI there is no event provide old values.
+            textFieldCursorPositionChangedEventHandler?.Invoke(this, EventArgs.Empty);
         }
 
         private void OnMaxLengthReached(IntPtr textField)
@@ -175,6 +359,22 @@ namespace Tizen.NUI.BaseComponents
             e.Href = Marshal.PtrToStringAnsi(href);
             //here we send all data to user event handlers
             textFieldAnchorClickedEventHandler?.Invoke(this, e);
+        }
+
+        private void OnSelectionChanged(IntPtr textField, uint oldStart, uint oldEnd)
+        {
+            // no data to be sent to the user, as in NUI there is no event provide old values.
+            textFieldSelectionChangedEventHandler?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void OnInputFiltered(IntPtr textField, InputFilterType type)
+        {
+            InputFilteredEventArgs e = new InputFilteredEventArgs();
+
+            // Populate all members of "e" (InputFilteredEventArgs) with real data
+            e.Type = type;
+            //here we send all data to user event handlers
+            textFieldInputFilteredEventHandler?.Invoke(this, e);
         }
 
         /// <summary>

@@ -6,7 +6,7 @@ namespace Tizen.NUI.Devel.Tests
 
     [TestFixture]
     [Description("internal/Xaml/IDictionaryExtensions")]
-    internal class PublicIDictionaryExtensionsTest
+    public class InternalXamlIDictionaryExtensionsTest
     {
         private const string tag = "NUITEST";
 

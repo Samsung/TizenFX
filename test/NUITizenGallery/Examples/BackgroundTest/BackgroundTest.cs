@@ -24,21 +24,17 @@ namespace NUITizenGallery
     internal class BackgroundTest : IExample
     {
         Window window;
-        BackgroundTestPage page;
 
         public void Activate()
         {
             Console.WriteLine($"@@@ this.GetType().Name={this.GetType().Name}, Activate()");
             window = NUIApplication.GetDefaultWindow();
-
-            page = new BackgroundTestPage();
-            window.Add(page);
+            window.GetDefaultNavigator().Push(new BackgroundTestPage());
         }
         public void Deactivate()
         {
             Console.WriteLine($"@@@ this.GetType().Name={this.GetType().Name}, Deactivate()");
-            page.Unparent();
-            page.Dispose();
+            window.GetDefaultNavigator().Pop();
         }
     }
 }

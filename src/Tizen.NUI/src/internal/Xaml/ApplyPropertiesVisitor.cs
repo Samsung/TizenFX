@@ -166,7 +166,8 @@ namespace Tizen.NUI.Xaml
                     addMethod?.Invoke(source, new[] { value });
                     return;
                 }
-                if (xpe == null && Context.Types[parentElement].GetRuntimeMethods().Any(mi => mi.Name == "Add" && mi.GetParameters().Length == 1))
+                if (xpe == null && Context.Types[parentElement].GetRuntimeMethods().Any
+                    (mi => mi.Name == "Add" && mi.GetParameters().Length == 1 && mi.GetParameters()[0].ParameterType.IsAssignableFrom(value.GetType())))
                 {
                     //if there are similar parameters in the function, this will exist issue.
                     var addMethod = Context.Types[parentElement].GetRuntimeMethods().First(mi => mi.Name == "Add" && mi.GetParameters().Length == 1);
@@ -211,7 +212,7 @@ namespace Tizen.NUI.Xaml
                 MethodInfo addMethod;
                 if (xpe == null && (addMethod = collection.GetType().GetRuntimeMethods().First(mi => mi.Name == "Add" && mi.GetParameters().Length == 1)) != null)
                 {
-                    addMethod.Invoke(collection, new[] { Values[node] });
+                    addMethod.Invoke(collection, new[] { value });
                     return;
                 }
                 xpe = xpe ?? new XamlParseException($"Value of {parentList.XmlName.LocalName} does not have a Add() method", node);
@@ -631,21 +632,14 @@ namespace Tizen.NUI.Xaml
 
         static private object GetConvertedValue(Type valueType, object value, Func<MemberInfo> minfoRetriever, XamlServiceProvider serviceProvider)
         {
-            try
-            {
-                object convertedValue = value.ConvertTo(valueType, minfoRetriever, serviceProvider);
+            object convertedValue = value.ConvertTo(valueType, minfoRetriever, serviceProvider);
 
-                if (convertedValue != null && !valueType.IsInstanceOfType(convertedValue))
-                {
-                    return null;
-                }
-
-                return convertedValue;
-            }
-            catch
+            if (convertedValue != null && !valueType.IsInstanceOfType(convertedValue))
             {
-                return null;
+                convertedValue = null;
             }
+
+            return convertedValue;
         }
 
         static bool TryGetProperty(object element, string localName, out object value, HydrationContext context, out Exception exception, out object targetProperty)

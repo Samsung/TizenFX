@@ -11,6 +11,8 @@ public class TestItem : INotifyPropertyChanged
     string name;
     Color color;
     bool isSelected;
+    readonly string ResourcePath = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "/images/flags/";
+
     public event PropertyChangedEventHandler PropertyChanged;
     private void OnPropertyChanged(string propertyName) { PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); }
     public TestItem(int itemIndex, string itemName, Color itemColor) {  Index = itemIndex; Name = itemName; BgColor = itemColor; IsSelected=false; }
@@ -33,6 +35,11 @@ public class TestItem : INotifyPropertyChanged
     {
         get => isSelected;
         set { isSelected = value; OnPropertyChanged("IsSelected");}
+    }
+
+    public string FlagIconPath
+    {
+        get => ResourcePath+"flag_"+(index % 50)+".png";
     }
 }
 

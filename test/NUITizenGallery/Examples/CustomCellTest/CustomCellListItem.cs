@@ -32,7 +32,7 @@ namespace NUITizenGallery
             TextContent.TextColor = Color.Gray;
             TextContent.MultiLine = true;
             TextContent.Text = "ABCDEFG\nBVGFGH!!!\nASDASD";
-            
+
         }
     }
 }

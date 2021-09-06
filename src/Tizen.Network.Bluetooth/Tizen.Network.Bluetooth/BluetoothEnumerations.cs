@@ -617,6 +617,23 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
+    /// Enumeration for the Bluetooth audio role.
+    /// </summary>
+    /// <since_tizen> 9 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum BluetoothAudioRole
+    {
+        /// <summary>
+        /// The source role.
+        /// </summary>
+        Source = 0,
+        /// <summary>
+        /// The sink role.
+        /// </summary>
+        Sink,
+    }
+
+    /// <summary>
     /// Enumeration for the Bluetooth service class types.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
@@ -1288,6 +1305,22 @@ namespace Tizen.Network.Bluetooth
         /// Write requested.
         /// </summary>
         Write = 1,
+    }
+
+    /// <summary>
+    /// Enumeration for the GATT service change type.
+    /// </summary>
+    /// <since_tizen> 9 </since_tizen>
+    public enum BluetoothGattServiceChangeType
+    {
+        /// <summary>
+        /// Service added.
+        /// </summary>
+        Added = 0,
+        /// <summary>
+        /// Service removed.
+        /// </summary>
+        Removed,
     }
 
     /// <summary>

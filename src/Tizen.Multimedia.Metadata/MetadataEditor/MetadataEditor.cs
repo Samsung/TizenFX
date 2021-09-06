@@ -82,7 +82,7 @@ namespace Tizen.Multimedia
             }
             catch (Exception)
             {
-                Interop.MetadataEditor.Destroy(_handle);
+                Dispose(false);
                 throw;
             }
         }

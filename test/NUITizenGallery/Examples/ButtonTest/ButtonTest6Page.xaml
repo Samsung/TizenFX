@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="NUITizenGallery.ButtonTest6Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}" >
+
+    <!-- AppBar is top-side bar with navigation content, title, and action. If you not set any contents, back button is automatically added. -->
+    <ContentPage.AppBar>
+        <AppBar x:Name="appBar" Title="ButtonTest6Page"/>
+    </ContentPage.AppBar>
+
+    <!-- Content is main placdeholder of ContentPage. Add your content into this view. -->
+    <ContentPage.Content>
+        <View x:Name="ContentView"
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                HeightSpecification="{Static LayoutParamPolicies.MatchParent}" >
+
+            <View.Layout>
+                <LinearLayout LinearOrientation="Vertical" LinearAlignment="Center" CellPadding="60,60"/>
+            </View.Layout>
+
+            <View WidthSpecification="{Static LayoutParamPolicies.MatchParent}">
+                <Button x:Name="button1"
+                          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                          SizeHeight="70"
+                          BackgroundColor="#3db9cc"
+                          PointSize="5"
+                          Opacity="1"
+                          Text="BackgroundColor"/>
+            </View>
+
+            <View Weight="1.0">
+                <View.Layout>
+                    <LinearLayout LinearOrientation="Horizontal" LinearAlignment="Center" CellPadding="30,30"/>
+                </View.Layout>
+
+                <TextLabel x:Name="redText"
+                             HorizontalAlignment="Center"
+                             SizeWidth="100"
+                             SizeHeight="180"
+                             PointSize="8"
+                             BackgroundColor="Red"
+                             Text="RED" />
+                <TextLabel x:Name="greenText"
+                             HorizontalAlignment="Center"
+                             SizeWidth="100"
+                             SizeHeight="180"
+                             PointSize="8"
+                             BackgroundColor="Green"
+                             Text="GREEN" />
+                <TextLabel x:Name="grayText"
+                             HorizontalAlignment="Center"
+                             SizeWidth="100"
+                             SizeHeight="180"
+                             PointSize="8"
+                             BackgroundColor="#8C8C8C"
+                             Text="GRAY" />
+              </View>
+        </View>
+    </ContentPage.Content>
+</ContentPage>

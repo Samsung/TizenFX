@@ -86,10 +86,7 @@ namespace Tizen.NUI.Binding
                 target.SetDynamicResource(Property, dynamicResource.Key, fromStyle);
             else
             {
-                if (Value is IList<VisualStateGroup> visualStateGroupCollection)
-                    target.SetValue(Property, visualStateGroupCollection.Clone(), fromStyle);
-                else
-                    target.SetValue(Property, Value, fromStyle);
+                target.SetValue(Property, Value, fromStyle);
             }
         }
 

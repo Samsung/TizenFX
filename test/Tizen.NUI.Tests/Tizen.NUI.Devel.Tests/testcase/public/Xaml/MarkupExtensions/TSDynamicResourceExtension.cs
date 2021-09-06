@@ -8,10 +8,19 @@ namespace Tizen.NUI.Devel.Tests
 
     [TestFixture]
     [Description("public/xaml/MarkupExtensions/DynamicResourceExtension")]
-    internal class PublicDynamicResourceExtensionTest
+    public class PublicDynamicResourceExtensionTest
     {
         private const string tag = "NUITEST";
         private static DynamicResourceExtension d1;
+
+        internal class IServiceProviderimplement : IServiceProvider
+        {
+            public object GetService(Type serviceType)
+            {
+                return null;
+            }
+        }
+
         [SetUp]
         public void Init()
         {
@@ -49,14 +58,6 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"DynamicResourceExtensionKey END (OK)");
             Assert.Pass("DynamicResourceExtensionKey");
-        }
-
-        private class IServiceProviderimplement : IServiceProvider
-        {
-            public object GetService(Type serviceType)
-            {
-                return null;
-            }
         }
 
         [Test]
