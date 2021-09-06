@@ -1881,6 +1881,23 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// Minimum line size to be used.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float MinLineSize
+        {
+            get
+            {
+                return (float)GetValue(MinLineSizeProperty);
+            }
+            set
+            {
+                SetValue(MinLineSizeProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TextEditor obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
@@ -1925,6 +1942,21 @@ namespace Tizen.NUI.BaseComponents
                 if (textEditorMaxLengthReachedCallbackDelegate != null)
                 {
                     this.MaxLengthReachedSignal().Disconnect(textEditorMaxLengthReachedCallbackDelegate);
+                }
+
+                if (textEditorSelectionClearedCallbackDelegate != null)
+                {
+                    this.SelectionClearedSignal().Disconnect(textEditorSelectionClearedCallbackDelegate);
+                }
+
+                if (textEditorCursorPositionChangedCallbackDelegate != null)
+                {
+                    this.CursorPositionChangedSignal().Disconnect(textEditorCursorPositionChangedCallbackDelegate);
+                }
+
+                if (textEditorSelectionChangedCallbackDelegate != null)
+                {
+                    this.SelectionChangedSignal().Disconnect(textEditorSelectionChangedCallbackDelegate);
                 }
             }
 
@@ -2083,6 +2115,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int InputMethodSettings = Interop.TextEditor.InputMethodSettingsGet();
             internal static readonly int ELLIPSIS = Interop.TextEditor.EllipsisGet();
             internal static readonly int EllipsisPosition = Interop.TextEditor.EllipsisPositionGet();
+            internal static readonly int MinLineSize = Interop.TextEditor.MinLineSizeGet();
             internal static readonly int InputFilter = Interop.TextEditor.InputFilterGet();
         }
 

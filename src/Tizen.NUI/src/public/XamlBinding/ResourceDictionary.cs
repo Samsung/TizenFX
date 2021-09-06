@@ -343,6 +343,21 @@ namespace Tizen.NUI.Binding
             remove { ValuesChanged -= value; }
         }
 
+        internal void Add(XamlStyle style)
+        {
+            if (string.IsNullOrEmpty(style.Class))
+                Add(style.TargetType.FullName, style);
+            else
+            {
+                IList<XamlStyle> classes;
+                object outclasses;
+                if (!TryGetValue(XamlStyle.StyleClassPrefix + style.Class, out outclasses) || (classes = outclasses as IList<XamlStyle>) == null)
+                    classes = new List<XamlStyle>();
+                classes.Add(style);
+                this[XamlStyle.StyleClassPrefix + style.Class] = classes;
+            }
+        }
+
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Add(ResourceDictionary mergedResourceDictionary)

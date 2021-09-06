@@ -21,6 +21,9 @@ namespace Tizen.NUI.Devel.Tests
 
             public void MyOnCreate()
             {
+                var result = this.CreateWindowInfo();
+                Assert.IsInstanceOf<Tizen.Applications.ComponentBased.Common.IWindowInfo>(result, "Should be an instance of IWindowInfo type.");
+                
                 base.OnCreate();
             }
 

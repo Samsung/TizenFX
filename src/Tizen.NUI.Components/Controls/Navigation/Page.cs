@@ -57,22 +57,12 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 9 </since_tizen>
     public abstract class Page : Control
     {
-        private const int DefaultTransitionDuration = 500;
-
         private Navigator navigator = null;
 
         // Default transition is Fade.
-        private TransitionBase appearingTransition = new Fade()
-        {
-            TimePeriod = new TimePeriod(DefaultTransitionDuration),
-            AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default),
-        };
+        private TransitionBase appearingTransition = null;
 
-        private TransitionBase disappearingTransition = new Fade()
-        {
-            TimePeriod = new TimePeriod(DefaultTransitionDuration),
-            AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default),
-        };
+        private TransitionBase disappearingTransition = null;
 
         /// <summary>
         /// Creates a new instance of a Page.

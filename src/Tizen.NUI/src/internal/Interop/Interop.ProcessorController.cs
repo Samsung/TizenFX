@@ -29,10 +29,10 @@ namespace Tizen.NUI
             public static extern global::System.IntPtr DeleteProcessorController(global::System.Runtime.InteropServices.HandleRef processorController);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ProcessorController_SetCallback")]
-            public static extern void SetCallback(global::System.Runtime.InteropServices.HandleRef processorController, Tizen.NUI.ProcessorController.ProcessorCallback processorCallback);
+            public static extern void SetCallback(global::System.Runtime.InteropServices.HandleRef processorController, Tizen.NUI.ProcessorController.ProcessorEventHandler processorCallback);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ProcessorController_RemoveCallback")]
-            public static extern void RemoveCallback(global::System.Runtime.InteropServices.HandleRef processorController, Tizen.NUI.ProcessorController.ProcessorCallback processorCallback);
+            public static extern void RemoveCallback(global::System.Runtime.InteropServices.HandleRef processorController, Tizen.NUI.ProcessorController.ProcessorEventHandler processorCallback);
         }
     }
 }
