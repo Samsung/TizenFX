@@ -49,57 +49,67 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"TransitionItemBaseConstructor END (OK)");
         }
 
-        //[Test]
-        //[Category("P1")]
-        //[Description("TransitionItemBase TimePeriod.")]
-        //[Property("SPEC", "Tizen.NUI.TransitionItemBase.TimePeriod A")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "PW")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void TransitionItemBaseTimePeriod()
-        //{
-        //    tlog.Debug(tag, $"TransitionItemBaseTimePeriod START");
+        [Test]
+        [Category("P1")]
+        [Description("TransitionItemBase constructor.")]
+        [Property("SPEC", "Tizen.NUI.TransitionItemBase.TransitionItemBase C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void TransitionItemBaseConstructorWithTransitionItemBase()
+        {
+            tlog.Debug(tag, $"TransitionItemBaseConstructorWithTransitionItemBase START");
 
-        //    using (View view = new View())
-        //    {
-        //        var testingTarget = new TransitionItemBase(view.SwigCPtr.Handle, false);
-        //        Assert.IsNotNull(testingTarget, "Should be not null!");
-        //        Assert.IsInstanceOf<TransitionItemBase>(testingTarget, "Should be an Instance of TransitionItemBase!");
+            using (View view = new View())
+            {
+                using (TransitionItemBase item = new TransitionItemBase(view.SwigCPtr.Handle, false))
+                {
+                    var testingTarget = new TransitionItemBase(item);
+                    Assert.IsNotNull(testingTarget, "Should be not null!");
+                    Assert.IsInstanceOf<TransitionItemBase>(testingTarget, "Should be an Instance of TransitionItemBase!");
 
-        //        testingTarget.TimePeriod = new TimePeriod(300);
-        //        tlog.Debug(tag, "TiemPeriod : " + testingTarget.TimePeriod);
+                    testingTarget.Dispose();
+                    // disposed
+                    testingTarget.Dispose();
+                }
+            }
 
-        //        testingTarget.Dispose();
-        //    }
+            tlog.Debug(tag, $"TransitionItemBaseConstructorWithTransitionItemBase END (OK)");
+        }
 
-        //    tlog.Debug(tag, $"TransitionItemBaseTimePeriod END (OK)");
-        //}
+        [Test]
+        [Category("P1")]
+        [Description("TransitionItemBase TimePeriod.")]
+        [Property("SPEC", "Tizen.NUI.TransitionItemBase.TimePeriod A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void TransitionItemBaseTimePeriod()
+        {
+            tlog.Debug(tag, $"TransitionItemBaseTimePeriod START");
 
-        //[Test]
-        //[Category("P1")]
-        //[Description("TransitionItemBase AlphaFunction.")]
-        //[Property("SPEC", "Tizen.NUI.TransitionItemBase.AlphaFunction A")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "PRW")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void TransitionItemBaseAlphaFunction()
-        //{
-        //    tlog.Debug(tag, $"TransitionItemBaseAlphaFunction START");
+            using (View view = new View())
+            {
+                using (TimePeriod timePeriod = new TimePeriod(300))
+                {
+                    using (AlphaFunction alphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default))
+                    {
+                        var testingTarget = new TransitionItemBase(view, true, timePeriod, alphaFunction);
+                        Assert.IsNotNull(testingTarget, "Should be not null!");
+                        Assert.IsInstanceOf<TransitionItemBase>(testingTarget, "Should be an Instance of TransitionItemBase!");
 
-        //    using (View view = new View())
-        //    {
-        //        var testingTarget = new TransitionItemBase(view.SwigCPtr.Handle, false);
-        //        Assert.IsNotNull(testingTarget, "Should be not null!");
-        //        Assert.IsInstanceOf<TransitionItemBase>(testingTarget, "Should be an Instance of TransitionItemBase!");
+                        tlog.Debug(tag, "TimePeriod : " + testingTarget.TimePeriod);
+                        tlog.Debug(tag, "AlphaFunction : " + testingTarget.AlphaFunction);
 
-        //        testingTarget.AlphaFunction = new AlphaFunction(Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseOut);
-        //        tlog.Debug(tag, "AlphaFunction : " + testingTarget.AlphaFunction.ToString());
+                        testingTarget.Dispose();
+                        // disposed
+                        testingTarget.Dispose();
+                    }
+                }
+            }
 
-        //        testingTarget.Dispose();
-        //    }
-
-        //    tlog.Debug(tag, $"TransitionItemBaseAlphaFunction END (OK)");
-        //}
+            tlog.Debug(tag, $"TransitionItemBaseTimePeriod END (OK)");
+        }
 
         [Test]
         [Category("P1")]
@@ -166,6 +176,38 @@ namespace Tizen.NUI.Devel.Tests
             }
 
             tlog.Debug(tag, $"TransitionItemBaseDownCast END (OK)");
+        }
+
+        [Test]
+        [Category("P2")]
+        [Description("TransitionItemBase DownCast.")]
+        [Property("SPEC", "Tizen.NUI.TransitionItemBase.DownCast M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void TransitionItemBaseDownCastWithNullHandle()
+        {
+            tlog.Debug(tag, $"TransitionItemBaseDownCastWithNullHandle START");
+
+            using (View view = new View())
+            {
+                var testingTarget = new TransitionItemBase(view.SwigCPtr.Handle, false);
+                Assert.IsNotNull(testingTarget, "Should be not null!");
+                Assert.IsInstanceOf<TransitionItemBase>(testingTarget, "Should be an Instance of TransitionItemBase!");
+
+                try
+                {
+                    TransitionItemBase.DownCast(null);
+                }
+                catch (ArgumentNullException e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    tlog.Debug(tag, $"TransitionItemBaseDownCastWithNullHandle END (OK)");
+                    Assert.Pass("Caught ArgumentNullException : Passed!");
+                }
+
+                testingTarget.Dispose();
+            }
         }
 
         [Test]

@@ -47,9 +47,26 @@ namespace Tizen.NUI
         /// <param name="pixelFormat">The pixel format.</param>
         /// <param name="releaseFunction">The function used to release the memory.</param>
         /// <since_tizen> 5 </since_tizen>
+        /// This will be deprecated after API level 9. ReleaseFunction is not useful in C#.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PixelData(byte[] buffer, uint bufferSize, uint width, uint height, PixelFormat pixelFormat, PixelData.ReleaseFunction releaseFunction) : this(Interop.PixelData.New(buffer, bufferSize, width, height, (int)pixelFormat), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+        }
+        
+        /// <summary>
+        /// Creates a PixelData object.
+        /// </summary>
+        /// <param name="buffer">The raw pixel data.</param>
+        /// <param name="bufferSize">The size of the buffer in bytes.</param>
+        /// <param name="width">Buffer width in pixels.</param>
+        /// <param name="height">Buffer height in pixels.</param>
+        /// <param name="pixelFormat">The pixel format.</param>
+        /// <since_tizen> 5 </since_tizen>
         /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public PixelData(byte[] buffer, uint bufferSize, uint width, uint height, PixelFormat pixelFormat, PixelData.ReleaseFunction releaseFunction) : this(Interop.PixelData.New(buffer, bufferSize, width, height, (int)pixelFormat, (int)releaseFunction), true)
+        public PixelData(byte[] buffer, uint bufferSize, uint width, uint height, PixelFormat pixelFormat) : this(Interop.PixelData.New(buffer, bufferSize, width, height, (int)pixelFormat), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -63,7 +80,7 @@ namespace Tizen.NUI
         /// Enumeration for function to release the pixel buffer.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+        /// This will be deprecated after API level 9. ReleaseFunction is not useful in C#.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public enum ReleaseFunction
         {

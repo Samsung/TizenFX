@@ -37,8 +37,7 @@ namespace Tizen.NUI
 
         internal TransitionItem CreateTransition(View source, View destination)
         {
-            TransitionItem transition= new TransitionItem(source, destination, TimePeriod, AlphaFunction);
-            return transition;
+            return new TransitionItem(source, destination, GetTimePeriod(), GetAlphaFunction());
         }
     }
 }

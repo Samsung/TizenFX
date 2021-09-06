@@ -29,6 +29,7 @@ namespace Tizen.NUI.BaseComponents
     {
         private bool disposed = false;
         private bool? focusable;
+        private bool? focusableChildren;
         private bool? focusableInTouch;
         private bool? positionUsesPivotPoint;
         private Position parentOrigin;
@@ -105,6 +106,17 @@ namespace Tizen.NUI.BaseComponents
         {
             get => (bool?)GetValue(FocusableProperty);
             set => SetValue(FocusableProperty, value);
+        }
+
+        /// <summary>
+        /// Whether the children of this view can be focusable by keyboard navigation. If user sets this to false, the children of this view will not be focused.
+        /// Note : Default value is true.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool? FocusableChildren
+        {
+            get => (bool?)GetValue(FocusableChildrenProperty);
+            set => SetValue(FocusableChildrenProperty, value);
         }
 
         /// <summary>

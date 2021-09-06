@@ -83,6 +83,26 @@ namespace Tizen.Multimedia
             return GetDeviceInformation(deviceList);
         }
 
+        internal static bool IsSupported
+        {
+            get
+            {
+                try
+                {
+                    using (var cameraDeviceManager = new CameraDeviceManager())
+                    {
+                        return true;
+                    }
+                }
+                catch (NotSupportedException)
+                {
+                    Log.Info(CameraLog.Tag,
+                        $"CameraDeviceManager is not supported. Not error.");
+                }
+                return false;
+            }
+        }
+
         internal static IEnumerable<CameraDeviceInformation> GetDeviceInformation(Native.CameraDeviceListStruct list)
         {
             if (list.count == 0)

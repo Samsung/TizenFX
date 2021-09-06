@@ -26,9 +26,15 @@ namespace Tizen.Multimedia
     public enum CameraDevice
     {
         /// <summary>
+        /// The CameraDevice will be decided internally by target policy.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Default = -1,
+        /// <summary>
         /// The rear camera device.
         /// </summary>
-        Rear,
+        Rear = 0,
         /// <summary>
         /// The front camera device.
         /// </summary>
