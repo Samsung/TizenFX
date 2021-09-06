@@ -58494,6 +58494,11 @@
     "title": "Class AudioInfo",
     "keywords": ""
   },
+  "API9/api/Tizen.Content.MediaContent.BookInfo.html": {
+    "href": "API9/api/Tizen.Content.MediaContent.BookInfo.html",
+    "title": "Class BookInfo",
+    "keywords": ""
+  },
   "API9/api/Tizen.Content.MediaContent.Bookmark.html": {
     "href": "API9/api/Tizen.Content.MediaContent.Bookmark.html",
     "title": "Class Bookmark",
@@ -61087,6 +61092,11 @@
   "API9/api/Tizen.Multimedia.Util.GifFrame.html": {
     "href": "API9/api/Tizen.Multimedia.Util.GifFrame.html",
     "title": "Class GifFrame",
+    "keywords": ""
+  },
+  "API9/api/Tizen.Multimedia.Util.HeifDecoder.html": {
+    "href": "API9/api/Tizen.Multimedia.Util.HeifDecoder.html",
+    "title": "Class HeifDecoder",
     "keywords": ""
   },
   "API9/api/Tizen.Multimedia.Util.html": {
