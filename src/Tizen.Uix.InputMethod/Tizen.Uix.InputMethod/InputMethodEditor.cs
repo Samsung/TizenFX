@@ -2296,5 +2296,35 @@ namespace Tizen.Uix.InputMethod
                 throw InputMethodExceptionFactory.CreateException(error);
             }
         }
+
+        /// <summary>
+        /// This API updates the given native input panel window's size information.
+        /// The native window handle of NUI Window can be got by below code.
+        /// var handle = new Window.SafeNativeWindowHandle();
+        /// IntPtr nativeHandle = handle.DangerousGetHandle();
+        /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/ime
+        /// </privilege>
+        /// <param name="window">The native window handle.</param>
+        /// <param name="portraitWidth">The width in the portrait mode.</param>
+        /// <param name="portraitHeight">The height in the portrait mode.</param>
+        /// <param name="landscapeWidth">The width in the landscape mode.</param>
+        /// <param name="landscapeHeight">The height in the landscape mode.</param>
+        /// <exception cref="InvalidOperationException">
+        /// This can occur due to the following reasons:
+        /// 1) The application does not have the privilege to call this function.
+        /// 2) The IME main loop has not started yet.
+        /// </exception>
+        /// <since_tizen> 9 </since_tizen>
+        public static void SetSize(IntPtr window, int portraitWidth, int portraitHeight, int landscapeWidth, int landscapeHeight)
+        {
+            ErrorCode error = ImeSetNativeWindowSize(window, portraitWidth, portraitHeight, landscapeWidth, landscapeHeight);
+            if (error != ErrorCode.None)
+            {
+                Log.Error(LogTag, "SetSize Failed with error " + error);
+                throw InputMethodExceptionFactory.CreateException(error);
+            }
+        }
     }
 }

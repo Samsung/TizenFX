@@ -225,8 +225,6 @@ namespace Tizen.Multimedia.Remoting
                 throw new ArgumentException("Audio is not configured with the current source.");
             }
 
-            WebRtc.ValidateWebRTCState(WebRTCState.Negotiating, WebRTCState.Playing);
-
             NativeWebRTC.PushMediaPacket(WebRtc.Handle, SourceId.Value, packet.GetHandle()).
                 ThrowIfFailed("Failed to push the packet to the WebRTC");
         }
@@ -235,22 +233,20 @@ namespace Tizen.Multimedia.Remoting
         {
             if (mediaFormat == null)
             {
-                Log.Warn(WebRTCLog.Tag, "invalid media format");
+                return;
             }
-            else
-            {
-                IntPtr ptr = IntPtr.Zero;
 
-                try
-                {
-                    ptr = mediaFormat.AsNativeHandle();
-                    NativeWebRTC.SetMediaPacketSourceInfo(WebRtc.Handle, SourceId.Value, ptr).
-                        ThrowIfFailed("Failed to set the media stream info");
-                }
-                finally
-                {
-                    MediaFormat.ReleaseNativeHandle(ptr);
-                }
+            IntPtr ptr = IntPtr.Zero;
+
+            try
+            {
+                ptr = mediaFormat.AsNativeHandle();
+                NativeWebRTC.SetMediaPacketSourceInfo(WebRtc.Handle, SourceId.Value, ptr).
+                    ThrowIfFailed("Failed to set the media stream info");
+            }
+            finally
+            {
+                MediaFormat.ReleaseNativeHandle(ptr);
             }
         }
 
