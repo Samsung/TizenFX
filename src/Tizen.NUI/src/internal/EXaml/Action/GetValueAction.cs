@@ -16,6 +16,7 @@
  */
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using Tizen.NUI.Binding;
 
@@ -51,74 +52,74 @@ namespace Tizen.NUI.EXaml
                     //'a' -> 1 Ojbect
                     getValueByStrings[1] = (string value) =>
                     {
-                        int index = int.Parse(value);
+                        int index = int.Parse(value, CultureInfo.InvariantCulture);
                         return new Instance(index);
                     };
 
                     //b SByte
                     getValueByStrings[2] = (string value) =>
                     {
-                        return SByte.Parse(value);
+                        return SByte.Parse(value, CultureInfo.InvariantCulture);
                     };
 
                     //c Int16
                     getValueByStrings[3] = (string value) =>
                     {
-                        return Int16.Parse(value);
+                        return Int16.Parse(value, CultureInfo.InvariantCulture);
                     };
 
                     //d Int32
                     getValueByStrings[4] = (string value) =>
                     {
-                        return Int32.Parse(value);
+                        return Int32.Parse(value, CultureInfo.InvariantCulture);
                     };
 
                     //e Int64
                     getValueByStrings[5] = (string value) =>
                     {
-                        return Int64.Parse(value);
+                        return Int64.Parse(value, CultureInfo.InvariantCulture);
                     };
 
                     //f Byte
                     getValueByStrings[6] = (string value) =>
                     {
-                        return Byte.Parse(value);
+                        return Byte.Parse(value, CultureInfo.InvariantCulture);
                     };
 
                     //g UInt16
                     getValueByStrings[7] = (string value) =>
                     {
-                        return UInt16.Parse(value);
+                        return UInt16.Parse(value, CultureInfo.InvariantCulture);
                     };
 
                     //h UInt32
                     getValueByStrings[8] = (string value) =>
                     {
-                        return UInt32.Parse(value);
+                        return UInt32.Parse(value, CultureInfo.InvariantCulture);
                     };
 
                     //i UInt64
                     getValueByStrings[9] = (string value) =>
                     {
-                        return UInt64.Parse(value);
+                        return UInt64.Parse(value, CultureInfo.InvariantCulture);
                     };
 
                     //j Single
                     getValueByStrings[10] = (string value) =>
                     {
-                        return Single.Parse(value);
+                        return Single.Parse(value, CultureInfo.InvariantCulture);
                     };
 
                     //k Double
                     getValueByStrings[11] = (string value) =>
                     {
-                        return Double.Parse(value);
+                        return Double.Parse(value, CultureInfo.InvariantCulture);
                     };
 
                     //l TimeSpan
                     getValueByStrings[12] = (string value) =>
                     {
-                        return TimeSpan.Parse(value);
+                        return TimeSpan.Parse(value, CultureInfo.InvariantCulture);
                     };
 
                     //m Boolean
@@ -130,7 +131,7 @@ namespace Tizen.NUI.EXaml
                     //n decimal
                     getValueByStrings[14] = (string value) =>
                     {
-                        return decimal.Parse(value);
+                        return decimal.Parse(value, CultureInfo.InvariantCulture);
                     };
 
                     //o enum
