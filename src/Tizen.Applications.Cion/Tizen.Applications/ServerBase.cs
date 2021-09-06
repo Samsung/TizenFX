@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Tizen.Applications
 {
@@ -33,6 +34,7 @@ namespace Tizen.Applications
         private Interop.CionServer.CionServerDataReceivedCb _dataReceivedCb;
         private Interop.CionServer.CionServerPayloadRecievedCb _payloadRecievedCb;
         private Interop.CionServer.CionServerDisconnectedCb _disconnectedCb;
+        private Interop.CionServer.CionServerPayloadAsyncResultCb _payloadAsyncResultCb;
 
         /// <summary>
         /// Gets the service name of current cion server.
@@ -210,23 +212,33 @@ namespace Tizen.Applications
         /// <param name="payload">The payload to send.</param>
         /// <param name="peerInfo">The peer to send payload.</param>
         /// <since_tizen> 9 </since_tizen>
-        public void SendPayloadAsync(Payload payload, PeerInfo peerInfo)
+        public Task<PayloadAsyncResult> SendPayloadAsync(Payload payload, PeerInfo peerInfo)
         {
-            Interop.Cion.ErrorCode ret = Interop.CionServer.CionServerSendPayloadAsync(_handle, peerInfo?._handle, payload?._handle,
-                (IntPtr result, IntPtr userData) =>
-                {
-                    Interop.Cion.ErrorCode clone_ret = Interop.CionPayloadAsyncResult.CionPayloadAsyncResultClone(result, out PayloadAsyncResultSafeHandle clone);
-                    if (clone_ret != Interop.Cion.ErrorCode.None)
+            TaskCompletionSource<PayloadAsyncResult> tcs = new TaskCompletionSource<PayloadAsyncResult>();
+            if (_payloadAsyncResultCb == null)
+            {
+                Interop.CionServer.CionServerPayloadAsyncResultCb cb = new Interop.CionServer.CionServerPayloadAsyncResultCb(
+                    (IntPtr result, IntPtr userData) =>
                     {
-                        Log.Error(LogTag, "Failed to clone result.");
-                        return;
-                    }
-                    OnPayloadAsyncResult(new PayloadAsyncResult(clone));
-                }, IntPtr.Zero);            
+                        Interop.Cion.ErrorCode clone_ret = Interop.CionPayloadAsyncResult.CionPayloadAsyncResultClone(result, out PayloadAsyncResultSafeHandle clone);
+                        if (clone_ret != Interop.Cion.ErrorCode.None)
+                        {
+                            Log.Error(LogTag, "Failed to clone result.");
+                            tcs.SetResult(new PayloadAsyncResult());
+                            return;
+                        }
+                        tcs.SetResult(new PayloadAsyncResult(clone));
+                    });
+                _payloadAsyncResultCb = cb;
+            }
+
+            Interop.Cion.ErrorCode ret = Interop.CionServer.CionServerSendPayloadAsync(_handle, peerInfo?._handle, payload?._handle, _payloadAsyncResultCb, IntPtr.Zero);
             if (ret != Interop.Cion.ErrorCode.None)
             {
                 throw CionErrorFactory.GetException(ret, "Failed to send payload.");
             }
+
+            return tcs.Task;
         }
 
         /// <summary>
@@ -322,13 +334,6 @@ namespace Tizen.Applications
         /// <param name="peerInfo">The peer info of the cion client.</param>
         /// <since_tizen> 9 </since_tizen>
         protected abstract void OnDisconnected(PeerInfo peerInfo);
-
-        /// <summary>
-        /// The result callback of sending payload asynchronously.
-        /// </summary>
-        /// <param name="result">The result of the sending payload.</param>
-        /// <since_tizen> 9 </since_tizen>
-        protected abstract void OnPayloadAsyncResult(PayloadAsyncResult result);
 
         #region IDisposable Support
         private bool disposedValue = false;

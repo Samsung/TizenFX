@@ -298,14 +298,6 @@ namespace Tizen.Applications
         /// <since_tizen> 9 </since_tizen>
         protected abstract void OnDisconnected(PeerInfo peerInfo);
 
-        /// <summary>
-        /// The result callback of sending payload.
-        /// </summary>
-        /// <param name="result">The result of sending payload.</param>
-        /// <since_tizen> 9 </since_tizen>
-        protected abstract void OnPayloadAsyncResult(PayloadAsyncResult result);
-
-
         #region IDisposable Support
         private bool disposedValue = false;
 
