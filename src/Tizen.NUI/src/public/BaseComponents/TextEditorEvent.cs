@@ -33,7 +33,7 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler<ScrollStateChangedEventArgs> textEditorScrollStateChangedEventHandler;
         private ScrollStateChangedCallbackDelegate textEditorScrollStateChangedCallbackDelegate;
 
-        private EventHandler<CursorPositionChangedEventArgs> textEditorCursorPositionChangedEventHandler;
+        private EventHandler textEditorCursorPositionChangedEventHandler;
         private CursorPositionChangedCallbackDelegate textEditorCursorPositionChangedCallbackDelegate;
 
         private EventHandler<MaxLengthReachedEventArgs> textEditorMaxLengthReachedEventHandler;
@@ -42,7 +42,10 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler<AnchorClickedEventArgs> textEditorAnchorClickedEventHandler;
         private AnchorClickedCallbackDelegate textEditorAnchorClickedCallbackDelegate;
 
-        private EventHandler<TextSelectionChangedEventArgs> textEditorSelectionChangedEventHandler;
+        private EventHandler textEditorSelectionClearedEventHandler;
+        private SelectionClearedCallbackDelegate textEditorSelectionClearedCallbackDelegate;
+
+        private EventHandler textEditorSelectionChangedEventHandler;
         private SelectionChangedCallbackDelegate textEditorSelectionChangedCallbackDelegate;
 
         private EventHandler<InputFilteredEventArgs> textEditorInputFilteredEventHandler;
@@ -59,6 +62,9 @@ namespace Tizen.NUI.BaseComponents
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void MaxLengthReachedCallbackDelegate(IntPtr textEditor);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void SelectionClearedCallbackDelegate(IntPtr textEditor);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void AnchorClickedCallbackDelegate(IntPtr textEditor, IntPtr href, uint hrefLength);
@@ -126,7 +132,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<CursorPositionChangedEventArgs> CursorPositionChanged
+        public event EventHandler CursorPositionChanged
         {
             add
             {
@@ -199,11 +205,37 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The SelectionCleared signal is emitted when selection is cleared.
+        /// </summary>
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler SelectionCleared
+        {
+            add
+            {
+                if (textEditorSelectionClearedEventHandler == null)
+                {
+                    textEditorSelectionClearedCallbackDelegate = (OnSelectionCleared);
+                    SelectionClearedSignal().Connect(textEditorSelectionClearedCallbackDelegate);
+                }
+                textEditorSelectionClearedEventHandler += value;
+            }
+            remove
+            {
+                if (textEditorSelectionClearedEventHandler == null && SelectionClearedSignal().Empty() == false)
+                {
+                    this.SelectionClearedSignal().Disconnect(textEditorSelectionClearedCallbackDelegate);
+                }
+                textEditorSelectionClearedEventHandler -= value;
+            }
+        }
+
+        /// <summary>
         /// The SelectionChanged event.
         /// </summary>
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<TextSelectionChangedEventArgs> SelectionChanged
+        public event EventHandler SelectionChanged
         {
             add
             {
@@ -268,6 +300,13 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        internal TextEditorSignal SelectionClearedSignal()
+        {
+            TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.SelectionClearedSignal(SwigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         internal TextEditorSignal TextChangedSignal()
         {
             TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.TextChangedSignal(SwigCPtr), false);
@@ -330,6 +369,12 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        private void OnSelectionCleared(IntPtr textEditor)
+        {
+            //no data to be sent to the user
+            textEditorSelectionClearedEventHandler?.Invoke(this, EventArgs.Empty);
+        }
+
         private void OnScrollStateChanged(IntPtr textEditor, ScrollState state)
         {
             if (textEditorScrollStateChangedEventHandler != null)
@@ -349,16 +394,8 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnCursorPositionChanged(IntPtr textEditor, uint oldPosition)
         {
-            if (textEditorCursorPositionChangedEventHandler != null)
-            {
-                CursorPositionChangedEventArgs e = new CursorPositionChangedEventArgs();
-
-                // Populate all members of "e" (CursorPositionChangedEventArgs) with real data
-                e.OldCursorPosition = oldPosition;
-
-                //here we send all data to user event handlers
-                textEditorCursorPositionChangedEventHandler?.Invoke(this, e);
-            }
+            // no data to be sent to the user, as in NUI there is no event provide old values.
+            textEditorCursorPositionChangedEventHandler?.Invoke(this, EventArgs.Empty);
         }
 
         private void OnMaxLengthReached(IntPtr textEditor)
@@ -388,17 +425,8 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnSelectionChanged(IntPtr textEditor, uint oldStart, uint oldEnd)
         {
-            if (textEditorSelectionChangedEventHandler != null)
-            {
-                TextSelectionChangedEventArgs e = new TextSelectionChangedEventArgs();
-
-                // Populate all members of "e" (TextSelectionChangedEventArgs) with real data
-                e.OldSelectionStart = oldStart;
-                e.OldSelectionEnd = oldEnd;
-
-                //here we send all data to user event handlers
-                textEditorSelectionChangedEventHandler?.Invoke(this, e);
-            }
+            // no data to be sent to the user, as in NUI there is no event provide old values.
+            textEditorSelectionChangedEventHandler?.Invoke(this, EventArgs.Empty);
         }
 
         private void OnInputFiltered(IntPtr textEditor, InputFilterType type)

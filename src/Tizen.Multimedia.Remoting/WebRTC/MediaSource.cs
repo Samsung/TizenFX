@@ -227,7 +227,7 @@ namespace Tizen.Multimedia.Remoting
         private uint SetDisplay(Display display)
             => display.ApplyTo(this);
 
-        private void ReplaceDisplay(Display newDisplay)
+        internal void ReplaceDisplay(Display newDisplay)
         {
             _display?.SetOwner(null);
             _display = newDisplay;

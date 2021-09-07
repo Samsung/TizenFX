@@ -480,8 +480,24 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// ImageView Image, type PropertyMap
+        /// ImageView Image, type PropertyMap: string if it is a URL, map otherwise.
         /// </summary>
+        /// <remarks>
+        /// This PropertyMap use a <see cref="ImageVisualProperty"/>. <br />
+        /// See <see cref="ImageVisualProperty"/> for a detailed description. <br />
+        /// you can also use <see cref="Visual.Property"/>. <br />
+        /// See <see cref="Visual.Property"/> for a detailed description. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the Image property.
+        /// <code>
+        /// PropertyMap map = new PropertyMap();
+        /// map.Insert(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
+        /// map.Insert(ImageVisualProperty.AlphaMaskURL, new PropertyValue(url));
+        /// map.Insert(ImageVisualProperty.FittingMode, new PropertyValue((int)FittingModeType.ScaleToFill);
+        /// imageview.Image = map;
+        /// </code>
+        /// </example>
         /// <since_tizen> 4 </since_tizen>
         public PropertyMap Image
         {

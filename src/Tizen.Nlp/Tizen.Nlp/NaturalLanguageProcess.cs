@@ -197,9 +197,18 @@ namespace Tizen.Nlp
             _msg.Connected += (sender, e) =>
             {
                 Log.Debug(LogTag, "start to register");
-                _msg.CoRegister(Application.Current.ApplicationInfo.ApplicationId, _noti);
-                _connectionState = ConnectedState.Connected;
-                tcs.SetResult(true);
+                try
+                {
+                    _msg.CoRegister(Application.Current.ApplicationInfo.ApplicationId, _noti);
+                    _connectionState = ConnectedState.Connected;
+                    tcs.SetResult(true);
+                }
+                catch (InvalidIOException)
+                {
+                    Log.Debug(LogTag, "Exception occurred while CoRegister");
+                    _connectionState = ConnectedState.Disconnected;
+                    tcs.SetException(new InvalidOperationException("invalid Port cause exception", new InvalidIOException()));
+                }
             };
             _msg.Rejected += (sender, e) =>
             {

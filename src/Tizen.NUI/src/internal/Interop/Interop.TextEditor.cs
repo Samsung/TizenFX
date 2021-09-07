@@ -183,6 +183,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_MaxLengthReachedSignal")]
             public static extern global::System.IntPtr MaxLengthReachedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_SelectionClearedSignal")]
+            public static extern global::System.IntPtr SelectionClearedSignal(global::System.Runtime.InteropServices.HandleRef pTextEditor);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_AnchorClickedSignal")]
             public static extern global::System.IntPtr AnchorClickedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
@@ -325,6 +328,15 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_InputFilteredSignal")]
             public static extern global::System.IntPtr InputFilteredSignal(global::System.Runtime.InteropServices.HandleRef textEditorRef);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_CopyText")]
+            public static extern string CopyText(global::System.Runtime.InteropServices.HandleRef textEditorRef);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_CutText")]
+            public static extern string CutText(global::System.Runtime.InteropServices.HandleRef textEditorRef);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_PasteText")]
+            public static extern void PasteText(global::System.Runtime.InteropServices.HandleRef textEditorRef);
         }
     }
 }

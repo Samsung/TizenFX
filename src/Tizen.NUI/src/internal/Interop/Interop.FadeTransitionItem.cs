@@ -22,21 +22,21 @@ namespace Tizen.NUI
 
     internal static partial class Interop
     {
-        internal static partial class FadeItem
+        internal static partial class FadeTransitionItem
         {
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Fade")]
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_FadeTransition")]
             public static extern IntPtr NewEmpty();
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Fade_New")]
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FadeTransition_New")]
             public static extern IntPtr New(HandleRef view, float opacity, HandleRef timePeriod);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Fade")]
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_FadeTransition")]
             public static extern void Delete(HandleRef fade);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Fade_Set")]
-            public static extern IntPtr NewFadeItem(HandleRef fade);
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_FadeTransition_Set")]
+            public static extern IntPtr NewFadeTransitionItem(HandleRef fade);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Fade_Assign")]
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FadeTransition_Assign")]
             public static extern IntPtr Assign(HandleRef destination, HandleRef source);
         }
     }
