@@ -199,6 +199,7 @@ namespace Tizen.Applications
         /// Connects with the cion server.
         /// </summary>
         /// <param name="peer">The peer to connect.</param>
+        /// <privilege>http://tizen.org/privilege/d2d.datasharing</privilege>
         /// <since_tizen> 9 </since_tizen>
         public void Connect(PeerInfo peer)
         {

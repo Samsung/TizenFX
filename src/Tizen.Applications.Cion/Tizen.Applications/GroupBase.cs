@@ -124,6 +124,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Subscribes the topic.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/d2d.datasharing</privilege>
         /// <since_tizen> 9 </since_tizen>
         public void Subscribe()
         {

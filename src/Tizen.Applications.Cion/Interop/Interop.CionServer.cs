@@ -90,5 +90,8 @@ internal static partial class Interop
 
         [DllImport(Libraries.Cion, EntryPoint = "cion_server_add_disconnected_cb")]
         internal static extern ErrorCode CionServerAddDisconnectedCb(ServerSafeHandle server, CionServerDisconnectedCb cb, IntPtr userData);
+
+        [DllImport(Libraries.Cion, EntryPoint = "cion_server_set_ondemand_launch_enable")]
+        internal static extern ErrorCode CionServerSetOndemandLaunchEnable(ServerSafeHandle server, bool enable);
     }
 }

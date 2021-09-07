@@ -152,6 +152,7 @@ namespace Tizen.Applications
         /// Starts server and listens for requests from cion clients.
         /// </summary>
         /// <exception cref="InvalidOperationException">Thrown when the listen operation is already in progress.</exception>
+        /// <privilege>http://tizen.org/privilege/d2d.datasharing</privilege>
         /// <since_tizen> 9 </since_tizen>
         public void Listen()
         {
@@ -292,8 +293,8 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets connected peers.
         /// </summary>
-        /// <since_tizen> 9 </since_tizen>
         /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method.</exception> 
+        /// <since_tizen> 9 </since_tizen>
         public IEnumerable<PeerInfo> GetConnectedPeerList()
         {
             List<PeerInfo> peerInfoList = new List<PeerInfo>();
@@ -307,6 +308,22 @@ namespace Tizen.Applications
                 peerInfoList.Add(new PeerInfo(clone));
             }, IntPtr.Zero);
             return peerInfoList;
+        }
+
+        /// <summary>
+        /// Sets ondemand launch enabled flag.
+        /// </summary>
+        /// <param name="enable">Whether ondemand launch is enabled or not.</param>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
+        /// <privilege>http://tizen.org/privilege/d2d.remotelaunch</privilege>
+        /// <since_tizen> 9 </since_tizen>
+        public void SetOndemandLaunchEnabled(bool enable)
+        {
+            Interop.Cion.ErrorCode ret = Interop.CionServer.CionServerSetOndemandLaunchEnable(_handle, enable);
+            if (ret != Interop.Cion.ErrorCode.None)
+            {
+                throw CionErrorFactory.GetException(ret, "Failed to set ondemand launch enable");
+            }
         }
 
         /// <summary>
