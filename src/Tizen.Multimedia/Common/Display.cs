@@ -137,6 +137,23 @@ namespace Tizen.Multimedia
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Display(NUI.Window window)
+            : this (window, false)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Display"/> class with a <see cref="NUI.Window"/> class.
+        /// </summary>
+        /// <param name="window">A <see cref="NUI.Window"/> to display.</param>
+        /// <param name="uiSync">A value indicates whether video and UI is in sync or not.</param>
+        /// <remarks>
+        /// The <see cref="NUI.Window.BackgroundColor"/> must be <see cref="NUI.Color.Transparent"/>
+        /// for the <see cref="Display"/> to be rendered correctly.<br/>
+        /// UI sync is only for <see cref="T:Tizen.Multimedia.Player"/> and
+        /// <see cref="T:Tizen.Multimedia.Player.DisplaySettings"/> will not work in UI sync mode.
+        /// </remarks>
+        /// <since_tizen> 9 </since_tizen>
+        public Display(NUI.Window window, bool uiSync)
         {
             if (window == null)
             {
@@ -144,6 +161,8 @@ namespace Tizen.Multimedia
             }
 
             _setter = new EcoreDisplaySetter(window.GetNativeWindowHandler());
+
+            UiSync = uiSync;
         }
 
         private EvasObject EvasObject { get; }
@@ -153,6 +172,8 @@ namespace Tizen.Multimedia
         private object _owner;
 
         internal bool HasMediaView { get; } = false;
+
+        internal bool UiSync { get; } = false;
 
         internal object Owner => _owner;
 
