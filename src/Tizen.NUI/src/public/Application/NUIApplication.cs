@@ -159,7 +159,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// The constructor with a stylesheet, window mode and default window type.
-        /// Especially, It is for IME window.
+        /// It is the only way to create an IME window.
         /// </summary>
         /// <param name="styleSheet">The styleSheet URL.</param>
         /// <param name="windowMode">The windowMode.</param>
