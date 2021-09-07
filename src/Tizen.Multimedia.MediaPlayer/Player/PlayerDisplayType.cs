@@ -21,5 +21,6 @@ namespace Tizen.Multimedia
         Overlay,
         Evas = 3,
         None = 4,
+        OverlayUISync = 5
     }
 }
