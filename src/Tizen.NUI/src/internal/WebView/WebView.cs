@@ -2008,9 +2008,9 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnScreenshotAcquired(IntPtr data)
         {
-            ImageView image = new ImageView(data, true);
-            screenshotAcquiredCallback?.Invoke(image);
-            image.Dispose();
+#pragma warning disable CA2000 // Dispose objects before losing scope
+            screenshotAcquiredCallback?.Invoke(new ImageView(data, true));
+#pragma warning restore CA2000 // Dispose objects before losing scope
         }
 
         private void OnResponsePolicyDecided(IntPtr maker)
@@ -2050,9 +2050,9 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnHitTestFinished(IntPtr test)
         {
-            WebHitTestResult hitTest = new WebHitTestResult(test, true);
-            hitTestFinishedCallback?.Invoke(hitTest);
-            hitTest.Dispose();
+#pragma warning disable CA2000 // Dispose objects before losing scope
+            hitTestFinishedCallback?.Invoke(new WebHitTestResult(test, true));
+#pragma warning restore CA2000 // Dispose objects before losing scope
         }
     }
 }
