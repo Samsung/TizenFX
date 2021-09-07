@@ -270,8 +270,12 @@ namespace Tizen.NUI
             // We measure all children whose width specification policy is WrapContent without weight.
             // After 1st phase, remaining width of parent is accumulated to calculate width of children
             // whose width specification policy is MatchParent.
-            foreach (LayoutItem childLayout in IterateLayoutChildren())
+            foreach (var childLayout in LayoutChildren)
             {
+                if (!childLayout.SetPositionByLayout)
+                {
+                    continue;
+                }
                 int childDesiredWidth = childLayout.Owner.WidthSpecification;
                 int childDesiredHeight = childLayout.Owner.HeightSpecification;
                 float childWeight = childLayout.Owner.Weight;
@@ -344,8 +348,12 @@ namespace Tizen.NUI
             // We measure all children whose width specification policy is MatchParent without weight.
             // After 2nd phase, all children's widths are calculated without considering weight.
             // And the widths of all weighted children are accumulated to calculate weighted width.
-            foreach (LayoutItem childLayout in IterateLayoutChildren())
+            foreach (var childLayout in LayoutChildren)
             {
+                if (!childLayout.SetPositionByLayout)
+                {
+                    continue;
+                }
                 int childDesiredWidth = childLayout.Owner.WidthSpecification;
                 int childDesiredHeight = childLayout.Owner.HeightSpecification;
                 float childWeight = childLayout.Owner.Weight;
@@ -434,8 +442,12 @@ namespace Tizen.NUI
             // in remaining width of parent.
             if (totalWeight > 0.0f)
             {
-                foreach (LayoutItem childLayout in IterateLayoutChildren())
+                foreach (LayoutItem childLayout in LayoutChildren)
                 {
+                    if (!childLayout.SetPositionByLayout)
+                    {
+                        continue;
+                    }
                     int childDesiredWidth = childLayout.Owner.WidthSpecification;
                     float childWeight = childLayout.Owner.Weight;
 
@@ -503,8 +515,12 @@ namespace Tizen.NUI
             // We measure all children whose height specification policy is WrapContent without weight.
             // After 1st phase, remaining height of parent is accumulated to calculate height of children
             // whose height specification policy is MatchParent.
-            foreach (LayoutItem childLayout in IterateLayoutChildren())
+            foreach (var childLayout in LayoutChildren)
             {
+                if (!childLayout.SetPositionByLayout)
+                {
+                    continue;
+                }
                 int childDesiredWidth = childLayout.Owner.WidthSpecification;
                 int childDesiredHeight = childLayout.Owner.HeightSpecification;
                 float childWeight = childLayout.Owner.Weight;
@@ -577,8 +593,12 @@ namespace Tizen.NUI
             // We measure all children whose height specification policy is MatchParent without weight.
             // After 2nd phase, all children's heights are calculated without considering weight.
             // And the heights of all weighted children are accumulated to calculate weighted height.
-            foreach (LayoutItem childLayout in IterateLayoutChildren())
+            foreach (var childLayout in LayoutChildren)
             {
+                if (!childLayout.SetPositionByLayout)
+                {
+                    continue;
+                }
                 int childDesiredWidth = childLayout.Owner.WidthSpecification;
                 int childDesiredHeight = childLayout.Owner.HeightSpecification;
                 float childWeight = childLayout.Owner.Weight;
@@ -667,8 +687,12 @@ namespace Tizen.NUI
             // in remaining height of parent.
             if (totalWeight > 0)
             {
-                foreach (LayoutItem childLayout in IterateLayoutChildren())
+                foreach (var childLayout in LayoutChildren)
                 {
+                    if (!childLayout.SetPositionByLayout)
+                    {
+                        continue;
+                    }
                     int childDesiredHeight = childLayout.Owner.HeightSpecification;
                     float childWeight = childLayout.Owner.Weight;
 
@@ -722,8 +746,8 @@ namespace Tizen.NUI
             // Space available for child
             LayoutLength childSpace = new LayoutLength(height - Padding.Top - Padding.Bottom);
 
-            List<LayoutItem> LinearChildren = IterateLayoutChildren().ToList();
-            int count = LinearChildren.Count;
+            var LinearChildren = IterateLayoutChildren();
+            int count = LinearChildren.Count<LayoutItem>();
 
             switch (LinearAlignment)
             {
@@ -773,7 +797,7 @@ namespace Tizen.NUI
             {
                 int childIndex = start + dir * i;
                 // Get a reference to the childLayout at the given index
-                LayoutItem childLayout = LinearChildren[childIndex];
+                LayoutItem childLayout = LinearChildren.ElementAt<LayoutItem>(i);
 
                 LayoutLength childWidth = childLayout.MeasuredWidth.Size;
                 LayoutLength childHeight = childLayout.MeasuredHeight.Size;
@@ -810,8 +834,8 @@ namespace Tizen.NUI
             // Space available for child
             LayoutLength childSpace = new LayoutLength(width - Padding.Start - Padding.End);
 
-            List<LayoutItem> LinearChildren = IterateLayoutChildren().ToList();
-            int count = LinearChildren.Count;
+            var LinearChildren = IterateLayoutChildren();
+            int count = LinearChildren.Count<LayoutItem>();
 
             switch (LinearAlignment)
             {
@@ -833,7 +857,7 @@ namespace Tizen.NUI
 
             for (int i = 0; i < count; i++)
             {
-                LayoutItem childLayout = LinearChildren[i];
+                LayoutItem childLayout = LinearChildren.ElementAt<LayoutItem>(i);
 
                 LayoutLength childWidth = childLayout.MeasuredWidth.Size;
                 LayoutLength childHeight = childLayout.MeasuredHeight.Size;
@@ -871,8 +895,12 @@ namespace Tizen.NUI
             // ourselves. The measured height should be the max height of the children, changed
             // to accommodate the heightMeasureSpec from the parent
             MeasureSpecification uniformMeasureSpec = new MeasureSpecification(MeasuredHeight.Size, MeasureSpecification.ModeType.Exactly);
-            foreach (LayoutItem childLayout in IterateLayoutChildren())
+            foreach (var childLayout in LayoutChildren)
             {
+                if (!childLayout.SetPositionByLayout)
+                {
+                    continue;
+                }
                 int desiredChildHeight = childLayout.Owner.HeightSpecification;
                 int desiredChildWidth = childLayout.Owner.WidthSpecification;
 
