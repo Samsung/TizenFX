@@ -108,6 +108,24 @@ namespace Tizen.NUI
         public string Version { get; set; } = null;
 
         /// <summary>
+        /// The url of small broken image
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string SmallBrokenImageUrl { get; set; } = null;
+
+        /// <summary>
+        /// The url of broken image
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string BrokenImageUrl { get; set; } = null;
+
+        /// <summary>
+        /// The url of large broken image
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string LargeBrokenImageUrl { get; set; } = null;
+
+        /// <summary>
         /// For Xaml use only.
         /// The bulit-in theme id that will be used as base of this.
         /// View styles with same key are merged.
@@ -289,7 +307,10 @@ namespace Tizen.NUI
             var result = new Theme()
             {
                 Id = this.Id,
-                Resources = Resources
+                Resources = Resources,
+                SmallBrokenImageUrl = this.SmallBrokenImageUrl,
+                BrokenImageUrl = this.BrokenImageUrl,
+                LargeBrokenImageUrl = this.LargeBrokenImageUrl
             };
 
             foreach (var item in this)
@@ -322,6 +343,12 @@ namespace Tizen.NUI
 
             if (Version == null) Version = theme.Version;
 
+            SmallBrokenImageUrl = theme.SmallBrokenImageUrl;
+
+            BrokenImageUrl = theme.BrokenImageUrl;
+
+            LargeBrokenImageUrl = theme.LargeBrokenImageUrl;
+
             foreach (var item in theme)
             {
                 if (item.Value == null)
@@ -353,6 +380,13 @@ namespace Tizen.NUI
             {
                 Version = theme.Version;
             }
+
+            SmallBrokenImageUrl = theme.SmallBrokenImageUrl;
+
+            BrokenImageUrl = theme.BrokenImageUrl;
+
+            LargeBrokenImageUrl = theme.LargeBrokenImageUrl;
+
 
             foreach (var item in theme)
             {
