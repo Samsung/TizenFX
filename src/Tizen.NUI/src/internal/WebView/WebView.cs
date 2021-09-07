@@ -33,6 +33,8 @@ namespace Tizen.NUI.BaseComponents
         private bool tilesClearedWhenHidden;
         private float tileCoverAreaMultiplier;
         private bool cursorEnabledByClient;
+        private WebHitTestResult hitTest;
+        private ImageView screenshotImage;
 
         private EventHandler<WebViewPageLoadEventArgs> pageLoadStartedEventHandler;
         private WebViewPageLoadCallbackDelegate pageLoadStartedCallback;
@@ -158,6 +160,14 @@ namespace Tizen.NUI.BaseComponents
                 Context.Dispose();
                 CookieManager.Dispose();
                 Settings.Dispose();
+                if (hitTest != null)
+                {
+                    hitTest.Dispose();
+                }
+                if (screenshotImage != null)
+                {
+                    screenshotImage.Dispose();
+                }
             }
 
             base.Dispose(type);
@@ -2008,9 +2018,12 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnScreenshotAcquired(IntPtr data)
         {
-            ImageView image = new ImageView(data, true);
-            screenshotAcquiredCallback?.Invoke(image);
-            image.Dispose();
+            if (screenshotImage != null)
+            {
+                screenshotImage.Dispose();
+            }
+            screenshotImage = new ImageView(data, true);
+            screenshotAcquiredCallback?.Invoke(screenshotImage);
         }
 
         private void OnResponsePolicyDecided(IntPtr maker)
@@ -2050,9 +2063,12 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnHitTestFinished(IntPtr test)
         {
-            WebHitTestResult hitTest = new WebHitTestResult(test, true);
+            if (hitTest != null)
+            {
+                hitTest.Dispose();
+            }
+            hitTest = new WebHitTestResult(test, true);
             hitTestFinishedCallback?.Invoke(hitTest);
-            hitTest.Dispose();
         }
     }
 }
