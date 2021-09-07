@@ -1123,63 +1123,22 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The Strikethrough property.
-        /// The Strikethrough map contains the following keys :<br />
-        /// <list type="table">
-        /// <item><term>enable (bool)</term><description>Whether the strikethrough is enabled (the default value is false)</description></item>
-        /// <item><term>color (Color)</term><description>The color of the strikethrough (If not provided then the color of the text is used)</description></item>
-        /// <item><term>height (float)</term><description>The height in pixels of the strikethrough (the default value is 1.f)</description></item>
-        /// </list>
         /// </summary>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.Strikethrough"/>
+        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public PropertyMap Strikethrough
+        public Strikethrough Strikethrough
         {
             get
             {
-                return (PropertyMap)GetValue(StrikethroughProperty);
+                return (Strikethrough)GetValue(StrikethroughProperty);
             }
             set
             {
                 SetValue(StrikethroughProperty, value);
                 NotifyPropertyChanged();
             }
-        }
-
-        /// <summary>
-        /// Set Strikethrough to TextField. <br />
-        /// </summary>
-        /// <param name="strikethrough">The Strikethrough</param>
-        /// <remarks>
-        /// SetStrikethrough specifies the strikethrough of the text through <see cref="Tizen.NUI.Text.Strikethrough"/>. <br />
-        /// </remarks>
-        /// <example>
-        /// The following example demonstrates how to use the SetStrikethrough method.
-        /// <code>
-        /// var strikethrough = new Tizen.NUI.Text.Strikethrough();
-        /// strikethrough.Enable = true;
-        /// strikethrough.Color = new Color("#3498DB");
-        /// strikethrough.Height = 2.0f;
-        /// field.SetStrikethrough(strikethrough);
-        /// </code>
-        /// </example>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetStrikethrough(Strikethrough strikethrough)
-        {
-            SetProperty(TextField.Property.Strikethrough, new PropertyValue(TextUtils.GetStrikethroughMap(strikethrough)));
-        }
-
-        /// <summary>
-        /// Get Strikethrough from TextField. <br />
-        /// </summary>
-        /// <returns>The Strikethrough</returns>
-        /// <remarks>
-        /// <see cref="Tizen.NUI.Text.Strikethrough"/>
-        /// </remarks>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Strikethrough GetStrikethrough()
-        {
-            var map = new PropertyMap();
-            GetProperty(TextField.Property.Strikethrough).Get(map);
-            return TextUtils.GetStrikethroughStruct(map);
         }
 
         /// <summary>

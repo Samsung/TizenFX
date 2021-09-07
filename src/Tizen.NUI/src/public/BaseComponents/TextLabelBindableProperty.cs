@@ -352,7 +352,7 @@ namespace Tizen.NUI.BaseComponents
             var textLabel = (TextLabel)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.Strikethrough, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.Strikethrough, new Tizen.NUI.PropertyValue(TextUtils.GetStrikethroughMap((Tizen.NUI.Text.Strikethrough)newValue)));
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
@@ -360,7 +360,7 @@ namespace Tizen.NUI.BaseComponents
             var textLabel = (TextLabel)bindable;
             PropertyMap temp = new PropertyMap();
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.Strikethrough).Get(temp);
-            return temp;
+            return TextUtils.GetStrikethroughStruct(temp);
         }));
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.

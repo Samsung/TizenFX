@@ -772,7 +772,7 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.Strikethrough, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.Strikethrough, new Tizen.NUI.PropertyValue(TextUtils.GetStrikethroughMap((Tizen.NUI.Text.Strikethrough)newValue)));
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
@@ -780,7 +780,7 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             PropertyMap temp = new PropertyMap();
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.Strikethrough).Get(temp);
-            return temp;
+            return TextUtils.GetStrikethroughStruct(temp);
         }));
 
         [EditorBrowsable(EditorBrowsableState.Never)]
