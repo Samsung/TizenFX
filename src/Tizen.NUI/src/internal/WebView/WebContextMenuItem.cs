@@ -41,6 +41,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Enum that provides the tags of items for the context menu.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public enum ItemTag
         {
             NoAction = 0,
@@ -140,6 +141,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Enum that defines the types of the items for the context menu.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public enum ItemType
         {
             Action,
