@@ -926,7 +926,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetStrikethrough(Strikethrough strikethrough)
         {
-            SetProperty(TextEditor.Property.Strikethroug, new PropertyValue(TextUtils.GetStrikethroughMap(strikethrough)));
+            SetProperty(TextEditor.Property.Strikethrough, new PropertyValue(TextUtils.GetStrikethroughMap(strikethrough)));
         }
 
         /// <summary>
@@ -940,7 +940,7 @@ namespace Tizen.NUI.BaseComponents
         public Strikethrough GetStrikethrough()
         {
             var map = new PropertyMap();
-            GetProperty(TextEditor.Property.Strikethroug).Get(map);
+            GetProperty(TextEditor.Property.Strikethrough).Get(map);
             return TextUtils.GetStrikethroughStruct(map);
         }
 
@@ -2195,7 +2195,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int EllipsisPosition = Interop.TextEditor.EllipsisPositionGet();
             internal static readonly int MinLineSize = Interop.TextEditor.MinLineSizeGet();
             internal static readonly int InputFilter = Interop.TextEditor.InputFilterGet();
-            internal static readonly int Strikethroug = Interop.TextEditor.StrikethroughGet();
+            internal static readonly int Strikethrough = Interop.TextEditor.StrikethroughGet();
             internal static readonly int InputStrikethrough = Interop.TextEditor.InputStrikethroughGet();
         }
 

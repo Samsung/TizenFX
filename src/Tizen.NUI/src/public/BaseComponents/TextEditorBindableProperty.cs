@@ -598,14 +598,14 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.Strikethroug, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.Strikethrough, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
             PropertyMap temp = new PropertyMap();
-            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.Strikethroug).Get(temp);
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.Strikethrough).Get(temp);
             return temp;
         }));
 
