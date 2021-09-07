@@ -1791,7 +1791,6 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="textEditor">The textEditor control from which the text is copied.</param>
         /// <returns>The copied text.</returns>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         /// <since_tizen> 9 </since_tizen>
         public static string CopyToClipboard(TextEditor textEditor)
         {
@@ -1805,7 +1804,6 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="textField">The textField control from which the text is copied.</param>
         /// <returns>The copied text.</returns>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         /// <since_tizen> 9 </since_tizen>
         public static string CopyToClipboard(TextField textField)
         {
@@ -1819,7 +1817,6 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="textEditor">The textEditor control from which the text is cut.</param>
         /// <returns>The cut text.</returns>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         /// <since_tizen> 9 </since_tizen>
         public static string CutToClipboard(TextEditor textEditor)
         {
@@ -1833,7 +1830,6 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="textField">The textField control from which the text is cut.</param>
         /// <returns>The cut text.</returns>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         /// <since_tizen> 9 </since_tizen>
         public static string CutToClipboard(TextField textField)
         {
@@ -1846,7 +1842,6 @@ namespace Tizen.NUI.BaseComponents
         /// Paste the most recently copied/cut text from the clipboard and into the text control.
         /// </summary>
         /// <param name="textEditor">The textEditor control into which the text is pasted.</param>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         /// <since_tizen> 9 </since_tizen>
         public static void PasteTo(TextEditor textEditor)
         {
@@ -1858,7 +1853,6 @@ namespace Tizen.NUI.BaseComponents
         /// Paste the most recently copied/cut text from the clipboard and into the text control.
         /// </summary>
         /// <param name="textField">The textField control into which the text is pasted.</param>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         /// <since_tizen> 9 </since_tizen>
         public static void PasteTo(TextField textField)
         {
