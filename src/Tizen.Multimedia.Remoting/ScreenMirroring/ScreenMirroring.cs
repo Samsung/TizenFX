@@ -303,12 +303,9 @@ namespace Tizen.Multimedia.Remoting
         /// </remarks>
         /// <returns>A task that represents the asynchronous operation.</returns>
         /// <privilege>http://tizen.org/privilege/internet</privilege>
-        /// <exception cref="ArgumentException">
-        ///     <paramref name="sourceIp"/> is a zero-length string, contains only white space.<br/>
-        ///     -or-<br/>
-        ///     <paramref name="port"/> is greater than port max value(65535).
-        /// </exception>
+        /// <exception cref="ArgumentException"><paramref name="sourceIp"/> is a zero-length string, contains only white space.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="sourceIp"/> is null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="port"/> is greater than port max value(65535).</exception>
         /// <exception cref="InvalidOperationException">
         ///     The current state is not in the valid.<br/>
         ///     -or-<br/>
@@ -329,7 +326,8 @@ namespace Tizen.Multimedia.Remoting
             }
             if (port > _portMax)
             {
-                throw new ArgumentException($"{nameof(port)} is greater than max port value(65535).", nameof(port));
+                //throw new ArgumentOutOfRangeException($"{nameof(port)} is greater than max port value(65535).", nameof(port));
+                throw new ArgumentOutOfRangeException(nameof(port), $"{nameof(port)} is greater than max port value(65535).");
             }
 
             ValidateState(ScreenMirroringState.Prepared);
