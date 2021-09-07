@@ -728,7 +728,7 @@ namespace Tizen.Uix.Tts
                 TtsError error = TtsCheckScreenReaderOn(_handle, out isOn);
                 if (error != TtsError.None)
                 {
-                    Log.Error(LogTag, "Get Mode Failed with error " + error);
+                    Log.Error(LogTag, "Fail to check screen reader on with error " + error);
                     return false;
                 }
 
