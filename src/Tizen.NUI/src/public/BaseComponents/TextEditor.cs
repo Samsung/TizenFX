@@ -1981,14 +1981,20 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Select text from start to end index.
+        /// Select text from start to end index. <br />
+        /// The index is valid when 0 or positive. <br />
         /// </summary>
         /// <param name="start">The start index for selection.</param>
         /// <param name="end">The end index for selection.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SelectText(uint start, uint end)
+        public void SelectText(int start, int end)
         {
-            Interop.TextEditor.SelectText(SwigCPtr, start, end);
+            if (start < 0)
+                throw new global::System.ArgumentOutOfRangeException(nameof(start), "Value is less than zero");
+            if (end < 0)
+                throw new global::System.ArgumentOutOfRangeException(nameof(end), "Value is less than zero");
+
+            Interop.TextEditor.SelectText(SwigCPtr, (uint)start, (uint)end);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
