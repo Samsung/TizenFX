@@ -38,11 +38,15 @@ namespace Tizen.NUI
         private WebPasswordDataList passwordList;
         private PasswordDataListAcquiredCallback passwordDataListAcquiredCallback;
         private readonly WebContextPasswordDataListAcquiredProxyCallback passwordDataListAcquiredProxyCallback;
+        private WebHttpRequestInterceptor httpRequestInterceptor;
+        private HttpRequestInterceptedCallback httpRequestInterceptedCallback;
+        private readonly WebContextHttpRequestInterceptedProxyCallback httpRequestInterceptedProxyCallback;
 
         internal WebContext(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
             securityOriginListAcquiredProxyCallback = OnSecurityOriginListAcquired;
             passwordDataListAcquiredProxyCallback = OnPasswordDataListAcquired;
+            httpRequestInterceptedProxyCallback = OnHttpRequestIntercepted;
         }
 
         /// <summary>
@@ -68,6 +72,10 @@ namespace Tizen.NUI
                 if (securityOriginList != null)
                 {
                     securityOriginList.Dispose();
+                }
+                if (httpRequestInterceptor != null)
+                {
+                    httpRequestInterceptor.Dispose();
                 }
             }
 
@@ -109,11 +117,21 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate bool MimeOverriddenCallback(string url, string currentMime, string newMime);
 
+        /// <summary>
+        /// The callback function that is invoked when http request need be intercepted.
+        /// </summary>
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public delegate void HttpRequestInterceptedCallback(WebHttpRequestInterceptor interceptor);
+
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WebContextSecurityOriginListAcquiredProxyCallback(IntPtr list);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WebContextPasswordDataListAcquiredProxyCallback(IntPtr list);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void WebContextHttpRequestInterceptedProxyCallback(IntPtr interceptor);
 
         /// <summary>
         /// Cache model
@@ -521,6 +539,23 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Registers callback for http request interceptor.
+        /// <param name="callback">callback for overriding mime type</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RegisterHttpRequestInterceptedCallback(HttpRequestInterceptedCallback callback)
+        {
+            httpRequestInterceptedCallback = callback;
+            IntPtr ip = IntPtr.Zero;
+            if (httpRequestInterceptedCallback != null)
+            {
+                ip = Marshal.GetFunctionPointerForDelegate(httpRequestInterceptedProxyCallback);
+            }
+            Interop.WebContext.RegisterRequestInterceptedCallback(SwigCPtr, new HandleRef(this, ip));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// Sets context time zone offset.
         /// <param name="offset">Time offset</param>
         /// <param name="time">Daylight saving time</param>
@@ -689,6 +724,16 @@ namespace Tizen.NUI
                 passwordDataList.Add(passwordList.GetItemAtIndex(i));
             }
             passwordDataListAcquiredCallback?.Invoke(passwordDataList);
+        }
+
+        private void OnHttpRequestIntercepted(IntPtr interceptor)
+        {
+            if (httpRequestInterceptor != null)
+            {
+                httpRequestInterceptor.Dispose();
+            }
+            httpRequestInterceptor = new WebHttpRequestInterceptor(interceptor, true);
+            httpRequestInterceptedCallback?.Invoke(httpRequestInterceptor);
         }
     }
 }

@@ -110,7 +110,6 @@ namespace Tizen.NUI
                     forwardItemList.Dispose();
                 }
             }
-
             base.Dispose(type);
         }
 
@@ -261,3 +260,4 @@ namespace Tizen.NUI
         }
     }
 }
+
