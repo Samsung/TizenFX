@@ -28,7 +28,7 @@ namespace Tizen.Applications
                 case Interop.Cion.ErrorCode.InvalidParameter:
                     return new ArgumentException(errMessage);
                 case Interop.Cion.ErrorCode.OutOfMemory:
-                    return new OutOfMemoryException(errMessage);
+                    return new InvalidOperationException(errMessage);
                 case Interop.Cion.ErrorCode.IoError:
                     return new global::System.IO.IOException(errMessage);
                 case Interop.Cion.ErrorCode.PermissionDenied:

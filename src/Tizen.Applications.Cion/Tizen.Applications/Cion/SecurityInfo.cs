@@ -139,19 +139,10 @@ namespace Tizen.Applications.Cion
             {
                 if (disposing)
                 {
+                    _handle.Dispose();
                 }
-                _handle.Dispose();
                 disposedValue = true;
             }
-        }
-
-        /// <summary>
-        /// Finalizer of the SecurityInfo class.
-        /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        ~SecurityInfo()
-        {
-            Dispose(false);
         }
 
         /// <summary>

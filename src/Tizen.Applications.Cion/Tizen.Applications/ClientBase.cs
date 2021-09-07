@@ -15,6 +15,8 @@
  */
 
 using System;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 namespace Tizen.Applications
@@ -35,6 +37,7 @@ namespace Tizen.Applications
         private Interop.CionClient.CionClientPayloadRecievedCb _payloadRecievedCb;
         private Interop.CionClient.CionClientDisconnectedCb _disconnectedCb;
         private Interop.CionClient.CionClientPayloadAsyncResultCb _payloadAsyncResultCb;
+        private Dictionary<string, TaskCompletionSource<PayloadAsyncResult>> _tcsDictionary = new Dictionary<string, TaskCompletionSource<PayloadAsyncResult>>();
 
         /// <summary>
         /// Gets the service name of current cion client.
@@ -89,7 +92,15 @@ namespace Tizen.Applications
                         Log.Error(LogTag, string.Format("Clone error !!"));
                         return;
                     }
-                    OnConnectionResult(new PeerInfo(clone), new ConnectionResult(result));
+
+                    PeerInfo peer = new PeerInfo(clone);
+                    ConnectionResult connectionResult = new ConnectionResult(result);
+                    if (connectionResult.Status == ConnectionStatus.OK)
+                    {
+                        _peer = peer;
+                    }
+
+                    OnConnectionResult(peer, new ConnectionResult(result));
                 });
             ret = Interop.CionClient.CionClientAddConnectionResultCb(_handle, _connectionResultCb, IntPtr.Zero);
             if (ret != Interop.Cion.ErrorCode.None)
@@ -196,7 +207,6 @@ namespace Tizen.Applications
             {
                 throw CionErrorFactory.GetException(ret, "Failed to connect.");
             }
-            _peer = peer;
         }
 
         /// <summary>
@@ -237,24 +247,35 @@ namespace Tizen.Applications
         /// Sends payload asynchronously to the connected cion server.
         /// </summary>
         /// <param name="payload">The payload to send.</param>
-        /// <exception cref="ArgumentException">Thrown when there is no connected cion server.</exception>
+        /// <exception cref="ArgumentException">Thrown when the payload is not valid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when there is no connected cion server.</exception>
         /// <since_tizen> 9 </since_tizen>
         public Task<PayloadAsyncResult> SendPayloadAsync(Payload payload)
         {
+            if (payload?.Id.Length == 0)
+            {
+                throw new ArgumentException("Payload is invalid.");
+            }
+
             TaskCompletionSource<PayloadAsyncResult> tcs = new TaskCompletionSource<PayloadAsyncResult>();
+            _tcsDictionary[payload.Id] = tcs;
+
             if (_payloadAsyncResultCb == null)
             {
                 Interop.CionClient.CionClientPayloadAsyncResultCb cb = new Interop.CionClient.CionClientPayloadAsyncResultCb(
                     (IntPtr result, IntPtr userData) =>
                     {
+                        PayloadAsyncResult resultPayload = new PayloadAsyncResult(new PayloadAsyncResultSafeHandle(result, false));
+                        TaskCompletionSource<PayloadAsyncResult> tcsToReturn = _tcsDictionary[resultPayload.PayloadId];
+                        _tcsDictionary.Remove(resultPayload.PayloadId);
                         Interop.Cion.ErrorCode clone_ret = Interop.CionPayloadAsyncResult.CionPayloadAsyncResultClone(result, out PayloadAsyncResultSafeHandle clone);
                         if (clone_ret != Interop.Cion.ErrorCode.None)
                         {
                             Log.Error(LogTag, "Failed to clone peer result.");
-                            tcs.SetResult(new PayloadAsyncResult());
+                            tcsToReturn.SetResult(new PayloadAsyncResult());
                             return;
                         }
-                        tcs.SetResult(new PayloadAsyncResult(clone));
+                        tcsToReturn.SetResult(new PayloadAsyncResult(clone));
                     });
                 _payloadAsyncResultCb = cb;
             }
@@ -312,8 +333,8 @@ namespace Tizen.Applications
             {
                 if (disposing)
                 {
+                    _handle.Dispose();
                 }
-                _handle.Dispose();
                 disposedValue = true;
             }
         }

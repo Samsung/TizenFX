@@ -35,6 +35,7 @@ namespace Tizen.Applications
         private Interop.CionServer.CionServerPayloadRecievedCb _payloadRecievedCb;
         private Interop.CionServer.CionServerDisconnectedCb _disconnectedCb;
         private Interop.CionServer.CionServerPayloadAsyncResultCb _payloadAsyncResultCb;
+        private Dictionary<Tuple<string, string>, TaskCompletionSource<PayloadAsyncResult>> _tcsDictionary = new Dictionary<Tuple<string, string>, TaskCompletionSource<PayloadAsyncResult>>();
 
         /// <summary>
         /// Gets the service name of current cion server.
@@ -211,23 +212,35 @@ namespace Tizen.Applications
         /// </summary>
         /// <param name="payload">The payload to send.</param>
         /// <param name="peerInfo">The peer to send payload.</param>
+        /// <exception cref="ArgumentException">Thrown when the payload is not valid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when there is no such connected cion client.</exception>
         /// <since_tizen> 9 </since_tizen>
         public Task<PayloadAsyncResult> SendPayloadAsync(Payload payload, PeerInfo peerInfo)
         {
+            if (payload?.Id.Length == 0 || peerInfo?.UUID.Length == 0)
+            {
+                throw new ArgumentException("Payload or peerinfo is invalid.");
+            }
+
             TaskCompletionSource<PayloadAsyncResult> tcs = new TaskCompletionSource<PayloadAsyncResult>();
+            _tcsDictionary[Tuple.Create(payload.Id, peerInfo.UUID)] = tcs;
+
             if (_payloadAsyncResultCb == null)
             {
                 Interop.CionServer.CionServerPayloadAsyncResultCb cb = new Interop.CionServer.CionServerPayloadAsyncResultCb(
                     (IntPtr result, IntPtr userData) =>
                     {
+                        PayloadAsyncResult resultPayload = new PayloadAsyncResult(new PayloadAsyncResultSafeHandle(result, false));
+                        TaskCompletionSource<PayloadAsyncResult> tcsToReturn = _tcsDictionary[Tuple.Create(resultPayload.PayloadId, resultPayload.PeerInfo.UUID)];
+                        _tcsDictionary.Remove(Tuple.Create(resultPayload.PayloadId, resultPayload.PeerInfo.UUID));
                         Interop.Cion.ErrorCode clone_ret = Interop.CionPayloadAsyncResult.CionPayloadAsyncResultClone(result, out PayloadAsyncResultSafeHandle clone);
                         if (clone_ret != Interop.Cion.ErrorCode.None)
                         {
                             Log.Error(LogTag, "Failed to clone result.");
-                            tcs.SetResult(new PayloadAsyncResult());
+                            tcsToReturn.SetResult(new PayloadAsyncResult());
                             return;
                         }
-                        tcs.SetResult(new PayloadAsyncResult(clone));
+                        tcsToReturn.SetResult(new PayloadAsyncResult(clone));
                     });
                 _payloadAsyncResultCb = cb;
             }
@@ -349,8 +362,8 @@ namespace Tizen.Applications
             {
                 if (disposing)
                 {
+                    _handle.Dispose();
                 }
-                _handle.Dispose();
                 disposedValue = true;
             }
         }

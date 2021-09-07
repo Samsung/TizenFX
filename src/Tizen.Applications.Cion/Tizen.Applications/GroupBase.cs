@@ -196,8 +196,8 @@ namespace Tizen.Applications
             {
                 if (disposing)
                 {
+                    _handle.Dispose();
                 }
-                _handle.Dispose();
                 disposedValue = true;
             }
         }
