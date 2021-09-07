@@ -743,6 +743,10 @@ namespace Tizen.NUI
     /// <summary>
     /// An enum of window types.
     /// </summary>
+    /// <remarks>
+    /// Most of window type can be set, except for IME type.<br />
+    /// IME type can only be used in one of NUIApplication's constrcutors.<br />
+    /// </remarks>
     /// <since_tizen> 3 </since_tizen>
     public enum WindowType
     {
@@ -766,10 +770,12 @@ namespace Tizen.NUI
         Dialog,
         /// <summary>
         /// Used for IME window that is used for keyboard window.
-        /// It should be set in Application's New input param when application is created.
-        /// Because IME window type can not change in runtime.
-        /// So, It does not work with Window.Type.
+        /// It should be set in NUIApplication constructor.
+        /// It does not work with Window.Type, because IME window type can not change in runtime.
         /// </summary>
+        /// <remarks>
+        /// See <see cref="NUIApplication" /> for this type. <br />
+        /// </remarks>
         Ime
     }
 
