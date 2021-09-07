@@ -1789,27 +1789,20 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Copy the previously selected text into the clipboard and return the copied value.
         /// </summary>
-        /// <param name="textEditor">The textEditor control from which the text is copied.</param>
+        /// <param name="textView">The textEditor/textField control from which the text is copied.</param>
         /// <returns>The copied text.</returns>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         /// <since_tizen> 9 </since_tizen>
-        public static string CopyToClipboard(TextEditor textEditor)
+        public static string CopyToClipboard(View textView)
         {
-            string copiedText = Interop.TextEditor.CopyText(textEditor.SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return copiedText;
-        }
+            string copiedText ="";
+            Type textViewType = textView.GetType();
 
-        /// <summary>
-        /// Copy the previously selected text into the clipboard and return the copied value.
-        /// </summary>
-        /// <param name="textField">The textField control from which the text is copied.</param>
-        /// <returns>The copied text.</returns>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        /// <since_tizen> 9 </since_tizen>
-        public static string CopyToClipboard(TextField textField)
-        {
-            string copiedText = Interop.TextField.CopyText(textField.SwigCPtr);
+            if(textViewType.Equals(typeof(TextEditor))){
+                copiedText = Interop.TextEditor.CopyText(textView.SwigCPtr);
+            }else  if(textViewType.Equals(typeof(TextField))){
+                copiedText = Interop.TextField.CopyText(textView.SwigCPtr);
+            }
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return copiedText;
         }
@@ -1817,27 +1810,20 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Cut the previously selected text from the text control and into the clipboard and return the cut value.
         /// </summary>
-        /// <param name="textEditor">The textEditor control from which the text is cut.</param>
+        /// <param name="textView">The textEditor/textField control from which the text is cut.</param>
         /// <returns>The cut text.</returns>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         /// <since_tizen> 9 </since_tizen>
-        public static string CutToClipboard(TextEditor textEditor)
+        public static string CutToClipboard(View textView)
         {
-            string cutText = Interop.TextEditor.CutText(textEditor.SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return cutText;
-        }
+            string cutText = "";
+            Type textViewType = textView.GetType();
 
-        /// <summary>
-        /// Cut the previously selected text from the text control and into the clipboard and return the cut value.
-        /// </summary>
-        /// <param name="textField">The textField control from which the text is cut.</param>
-        /// <returns>The cut text.</returns>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        /// <since_tizen> 9 </since_tizen>
-        public static string CutToClipboard(TextField textField)
-        {
-            string cutText = Interop.TextField.CutText(textField.SwigCPtr);
+            if(textViewType.Equals(typeof(TextEditor))){
+                cutText = Interop.TextEditor.CutText(textView.SwigCPtr);
+            }else  if(textViewType.Equals(typeof(TextField))){
+                cutText = Interop.TextField.CutText(textView.SwigCPtr);
+            }
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return cutText;
         }
@@ -1845,24 +1831,18 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Paste the most recently copied/cut text from the clipboard and into the text control.
         /// </summary>
-        /// <param name="textEditor">The textEditor control into which the text is pasted.</param>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        /// <param name="textView">The textEditor/textField control into which the text is pasted.</param>
         /// <since_tizen> 9 </since_tizen>
-        public static void PasteTo(TextEditor textEditor)
+        public static void PasteTo(View textView)
         {
-            Interop.TextEditor.PasteText(textEditor.SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
+            Type textViewType = textView.GetType();
 
-        /// <summary>
-        /// Paste the most recently copied/cut text from the clipboard and into the text control.
-        /// </summary>
-        /// <param name="textField">The textField control into which the text is pasted.</param>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        /// <since_tizen> 9 </since_tizen>
-        public static void PasteTo(TextField textField)
-        {
-            Interop.TextField.PasteText(textField.SwigCPtr);
+            if(textViewType.Equals(typeof(TextEditor))){
+                Interop.TextEditor.PasteText(textView.SwigCPtr);
+            }else  if(textViewType.Equals(typeof(TextField))){
+                Interop.TextField.PasteText(textView.SwigCPtr);
+            }
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
     }
