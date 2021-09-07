@@ -294,7 +294,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method.</exception> 
-        IEnumerable<PeerInfo> GetConnectedPeerList()
+        public IEnumerable<PeerInfo> GetConnectedPeerList()
         {
             List<PeerInfo> peerInfoList = new List<PeerInfo>();
             Interop.Cion.ErrorCode ret = Interop.CionServer.CionServerForeachConnectedPeerInfo(_handle, (peer, userData) =>
