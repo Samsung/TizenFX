@@ -76,9 +76,6 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler<WebViewHttpAuthRequestedEventArgs> httpAuthRequestedEventHandler;
         private WebViewHttpAuthRequestedCallbackDelegate httpAuthRequestedCallback;
 
-        private EventHandler<WebViewHttpRequestInterceptedEventArgs> httpRequestInterceptedEventHandler;
-        private WebViewHttpRequestInterceptedCallbackDelegate httpRequestInterceptedCallback;
-
         private EventHandler<WebViewConsoleMessageReceivedEventArgs> consoleMessageReceivedEventHandler;
         private WebViewConsoleMessageReceivedCallbackDelegate consoleMessageReceivedCallback;
 
@@ -269,9 +266,6 @@ namespace Tizen.NUI.BaseComponents
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WebViewHttpAuthRequestedCallbackDelegate(IntPtr handler);
-
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void WebViewHttpRequestInterceptedCallbackDelegate(IntPtr interceptor);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WebViewConsoleMessageReceivedCallbackDelegate(IntPtr message);
@@ -509,29 +503,6 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 certificateConfirmedEventHandler -= value;
-            }
-        }
-
-        /// <summary>
-        /// Event for the HttpRequestIntercepted signal which can be used to subscribe or unsubscribe the event handler.<br />
-        /// This signal is emitted when http request would be intercepted.<br />
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<WebViewHttpRequestInterceptedEventArgs> HttpRequestIntercepted
-        {
-            add
-            {
-                if (httpRequestInterceptedEventHandler == null)
-                {
-                    httpRequestInterceptedCallback = OnHttpRequestIntercepted;
-                    IntPtr ip = Marshal.GetFunctionPointerForDelegate(httpRequestInterceptedCallback);
-                    Interop.WebView.RegisterRequestInterceptorCallback(SwigCPtr, new HandleRef(this, ip));
-                }
-                httpRequestInterceptedEventHandler += value;
-            }
-            remove
-            {
-                httpRequestInterceptedEventHandler -= value;
             }
         }
 
@@ -2060,11 +2031,6 @@ namespace Tizen.NUI.BaseComponents
         private void OnHttpAuthRequested(IntPtr handler)
         {
             httpAuthRequestedEventHandler?.Invoke(this, new WebViewHttpAuthRequestedEventArgs(new WebHttpAuthHandler(handler, true)));
-        }
-
-        private void OnHttpRequestIntercepted(IntPtr interceptor)
-        {
-            httpRequestInterceptedEventHandler?.Invoke(this, new WebViewHttpRequestInterceptedEventArgs(new WebHttpRequestInterceptor(interceptor, true)));
         }
 
         private void OnConsoleMessageReceived(IntPtr message)
