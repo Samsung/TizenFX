@@ -328,23 +328,23 @@ namespace Tizen.NUI.WebViewTest
                 FocusManager.Instance.SetCurrentFocusView(simpleWebView);
             }
 
-            //if (args.Touch.GetState(0) == PointStateType.Down && args.Touch.GetMouseButton(0) == MouseButton.Secondary)
-            //{
-            //    if (menuView == null && menuPosition == null)
-            //    {
-            //        menuPosition = args.Touch.GetScreenPosition(0);
-            //    }
-            //}
-            //else if(args.Touch.GetState(0) == PointStateType.Down && args.Touch.GetMouseButton(0) == MouseButton.Primary)
-            //{
-            //    if (menuView != null)
-            //    {
-            //        menuView.HideMenu();
-            //        GetDefaultWindow().Remove(menuView);
-            //        menuView = null;
-            //        menuPosition = null;
-            //    }
-            //}
+            if (args.Touch.GetState(0) == PointStateType.Down && args.Touch.GetMouseButton(0) == MouseButton.Secondary)
+            {
+                if (menuView == null && menuPosition == null)
+                {
+                    menuPosition = args.Touch.GetScreenPosition(0);
+                }
+            }
+            else if (args.Touch.GetState(0) == PointStateType.Down && args.Touch.GetMouseButton(0) == MouseButton.Primary)
+            {
+                if (menuView != null)
+                {
+                    menuView.HideMenu();
+                    GetDefaultWindow().Remove(menuView);
+                    menuView = null;
+                    menuPosition = null;
+                }
+            }
             return false;
         }
 
@@ -666,7 +666,7 @@ namespace Tizen.NUI.WebViewTest
             Log.Info("WebView", $"------------download started, url: {url}-------");
         }
 
-        private bool OnMimeOverridden(string url, string currentMime, string newMime)
+        private bool OnMimeOverridden(string url, string currentMime, out string newMime)
         {
             Log.Info("WebView", $"------------mime overridden, url: {url}-------");
             Log.Info("WebView", $"------------mime overridden, currentMime: {currentMime}-------");
