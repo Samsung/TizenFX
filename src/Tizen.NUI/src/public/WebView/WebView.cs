@@ -24,9 +24,9 @@ using Tizen.NUI.Binding;
 namespace Tizen.NUI.BaseComponents
 {
     /// <summary>
-    /// WebView
+    /// WebView allows presenting content with embedded web browser, both local files and remote websites.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class WebView : View
     {
         private Color contentBackgroundColor;
@@ -90,17 +90,17 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Creates a WebView.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public WebView() : this(Interop.WebView.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
-        /// Creates a WebView with local language and time zone.
-        /// <param name="locale">The locale language of Web</param>
-        /// <param name="timezoneId">The time zone Id of Web</param>
+        /// Creates a WebView with locale and time-zone.
         /// </summary>
+        /// <param name="locale">The specified locale</param>
+        /// <param name="timezoneId">The specified time-zone ID</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public WebView(string locale, string timezoneId) : this(Interop.WebView.New2(locale, timezoneId), true)
         {
@@ -109,9 +109,9 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Creates a WebView with an args list.
-        /// <param name="args">args array. The first value of array must be program's name.</param>
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <param name="args">Arguments passed into web engine. The first value of array must be program's name.</param>
+        /// <since_tizen> 9 </since_tizen>
         public WebView(string[] args) : this(Interop.WebView.New3(args?.Length ?? 0, args), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -119,9 +119,9 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Copy constructor.
-        /// <param name="webView">WebView to copy. The copied WebView will point at the same implementation</param>
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <param name="webView">WebView to copy. The copied WebView will point at the same implementation</param>
+        /// <since_tizen> 9 </since_tizen>
         public WebView(WebView webView) : this(Interop.WebView.NewWebView(WebView.getCPtr(webView)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -280,7 +280,7 @@ namespace Tizen.NUI.BaseComponents
         /// Event for the PageLoadStarted signal which can be used to subscribe or unsubscribe the event handler.<br />
         /// This signal is emitted when page loading has started.<br />
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public event EventHandler<WebViewPageLoadEventArgs> PageLoadStarted
         {
             add
@@ -303,7 +303,7 @@ namespace Tizen.NUI.BaseComponents
         /// Event for the PageLoading signal which can be used to subscribe or unsubscribe the event handler.<br />
         /// This signal is emitted when page loading is in progress.<br />
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public event EventHandler<WebViewPageLoadEventArgs> PageLoading
         {
             add
@@ -326,7 +326,7 @@ namespace Tizen.NUI.BaseComponents
         /// Event for the PageLoadFinished signal which can be used to subscribe or unsubscribe the event handler.<br />
         /// This signal is emitted when page loading has finished.<br />
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public event EventHandler<WebViewPageLoadEventArgs> PageLoadFinished
         {
             add
@@ -349,7 +349,7 @@ namespace Tizen.NUI.BaseComponents
         /// Event for the PageLoadError signal which can be used to subscribe or unsubscribe the event handler.<br />
         /// This signal is emitted when there's an error in page loading.<br />
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public event EventHandler<WebViewPageLoadErrorEventArgs> PageLoadError
         {
             add
@@ -738,9 +738,9 @@ namespace Tizen.NUI.BaseComponents
         public WebSettings Settings { get; }
 
         /// <summary>
-        /// The url to load.
+        /// The URL to load.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public string Url
         {
             get
@@ -789,7 +789,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The user agent string.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public string UserAgent
         {
             get
@@ -1051,7 +1051,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets title of web page.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public string Title
         {
             get
@@ -1063,7 +1063,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets favicon of web page.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public ImageView Favicon
         {
             get
@@ -1112,7 +1112,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets percentage of loading progress.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public float LoadProgressPercentage
         {
             get
@@ -1375,9 +1375,15 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Loads a html.
-        /// <param name="url">The path of Web</param>
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <param name="url">The path of Web</param>
+        /// <remarks>
+        /// The following privileges are required:
+        /// http://tizen.org/privilege/internet for remote web pages of websites.
+        /// http://tizen.org/privilege/mediastorage for local files in media storage.
+        /// http://tizen.org/privilege/externalstorage for local files in external storage.
+        /// </remarks>
+        /// <since_tizen> 9 </since_tizen>
         public void LoadUrl(string url)
         {
             Interop.WebView.LoadUrl(SwigCPtr, url);
@@ -1397,9 +1403,9 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Loads a html by string.
-        /// <param name="data">The data of Web</param>
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <param name="data">The data of Web</param>
+        /// <since_tizen> 9 </since_tizen>
         public void LoadHtmlString(string data)
         {
             Interop.WebView.LoadHtmlString(SwigCPtr, data);
