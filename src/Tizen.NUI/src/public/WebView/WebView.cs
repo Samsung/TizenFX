@@ -1482,8 +1482,8 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Deprecated. Loads a html by string.
-        /// <param name="data">The data of Web</param>
         /// </summary>
+        /// <param name="data">The data of Web</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void LoadHTMLString(string data)
         {
@@ -1504,10 +1504,10 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Loads the specified html as the content of the view to override current history entry.
+        /// </summary>
         /// <param name="html">The html to be loaded</param>
         /// <param name="baseUri">Base URL used for relative paths to external objects</param>
         /// <param name="unreachableUri">URL that could not be reached</param>
-        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool LoadHtmlStringOverrideCurrentEntry(string html, string baseUri, string unreachableUri)
         {
@@ -1518,12 +1518,12 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Requests to load the given contents by MIME type.
+        /// </summary>
         /// <param name="contents">The contents to be loaded</param>
         /// <param name="contentSize">The size of contents (in bytes)</param>
         /// <param name="mimeType">The type of contents, "text/html" is assumed if null</param>
         /// <param name="encoding">The encoding for contents, "UTF-8" is assumed if null</param>
         /// <param name="baseUri">The base URI to use for relative resources</param>
-        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool LoadContents(string contents, uint contentSize, string mimeType, string encoding, string baseUri)
         {
@@ -1605,9 +1605,9 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Adds custom header.
+        /// </summary>
         /// <param name="name">The name of custom header</param>
         /// <param name="value">The value of custom header</param>
-        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool AddCustomHeader(string name, string value)
         {
@@ -1618,8 +1618,8 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Removes custom header.
-        /// <param name="name">The name of custom header</param>
         /// </summary>
+        /// <param name="name">The name of custom header</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool RemoveCustomHeader(string name)
         {
@@ -1630,8 +1630,8 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Starts the inspector server.
-        /// <param name="port">The port number</param>
         /// </summary>
+        /// <param name="port">The port number</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint StartInspectorServer(uint port)
         {
@@ -1653,9 +1653,9 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Scrolls page of web view by deltaX and detlaY.
+        /// </summary>
         /// <param name="deltaX">The deltaX of scroll</param>
         /// <param name="deltaY">The deltaY of scroll</param>
-        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ScrollBy(int deltaX, int deltaY)
         {
@@ -1665,9 +1665,9 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Scrolls edge of web view by deltaX and deltaY.
+        /// </summary>
         /// <param name="deltaX">The deltaX of scroll</param>
         /// <param name="deltaY">The deltaY of scroll</param>
-        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ScrollEdgeBy(int deltaX, int deltaY)
         {
@@ -1698,8 +1698,8 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Returns whether backward is possible.
-        /// <returns>True if backward is possible, false otherwise</returns>
         /// </summary>
+        /// <returns>True if backward is possible, false otherwise</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool CanGoBack()
         {
@@ -1710,8 +1710,8 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Returns whether forward is possible.
-        /// <returns>True if forward is possible, false otherwise</returns>
         /// </summary>
+        /// <returns>True if forward is possible, false otherwise</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool CanGoForward()
         {
@@ -1722,8 +1722,8 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Evaluates JavaScript code represented as a string.
-        /// <param name="script">The JavaScript code</param>
         /// </summary>
+        /// <param name="script">The JavaScript code</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void EvaluateJavaScript(string script)
         {
@@ -1733,9 +1733,9 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Add a message handler into the WebView.
+        /// </summary>
         /// <param name="objectName">The name of exposed object</param>
         /// <param name="handler">The callback function</param>
-        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddJavaScriptMessageHandler(string objectName, JavaScriptMessageHandler handler)
         {
@@ -1753,9 +1753,9 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Add a message handler into the WebView.
-        /// <param name="callback">The callback function</param>
+        /// Registers a callback for JS alert.
         /// </summary>
+        /// <param name="callback">The callback function</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RegisterJavaScriptAlertCallback(JavaScriptAlertCallback callback)
         {
@@ -1776,9 +1776,9 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Add a message handler into the WebView.
-        /// <param name="callback">The callback function</param>
+        /// Registers a callback for JS confirm.
         /// </summary>
+        /// <param name="callback">The callback function</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RegisterJavaScriptConfirmCallback(JavaScriptConfirmCallback callback)
         {
@@ -1790,8 +1790,8 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Reply for confirm popup.
-        /// <param name="confirmed">confirmed or not</param>
         /// </summary>
+        /// <param name="confirmed">Confirmed or not</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void JavaScriptConfirmReply(bool confirmed)
         {
@@ -1800,9 +1800,9 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Add a message handler into the WebView.
-        /// <param name="callback">The callback function</param>
+        /// Registers a callback for JS promt.
         /// </summary>
+        /// <param name="callback">The callback function</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RegisterJavaScriptPromptCallback(JavaScriptPromptCallback callback)
         {
@@ -1814,8 +1814,8 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Reply for prompt popup.
-        /// <param name="result">text in prompt input field.</param>
         /// </summary>
+        /// <param name="result">Text in prompt input field.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void JavaScriptPromptReply(string result)
         {
@@ -1845,9 +1845,9 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Scales the current page, centered at the given point.
+        /// </summary>
         /// <param name="scaleFactor">The new factor to be scaled</param>
         /// <param name="point">The center coordinate</param>
-        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetScaleFactor(float scaleFactor, Vector2 point)
         {
@@ -1868,8 +1868,8 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Requests to activate/deactivate the accessibility usage set by web app.
-        /// <param name="activated">The new factor to be scaled</param>
         /// </summary>
+        /// <param name="activated">The new factor to be scaled</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ActivateAccessibility(bool activated)
         {
@@ -1879,10 +1879,10 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Searches and highlights the given string in the document.
+        /// </summary>
         /// <param name="text">The text to be searched</param>
         /// <param name="options">The options to search</param>
         /// <param name="maxMatchCount">The maximum match count to search</param>
-        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool HighlightText(string text, FindOption options, uint maxMatchCount)
         {
@@ -1893,9 +1893,9 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Adds dynamic certificate path.
+        /// </summary>
         /// <param name="host">Host that required client authentication</param>
         /// <param name="certPath">The file path stored certificate</param>
-        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddDynamicCertificatePath(string host, string certPath)
         {
@@ -1905,9 +1905,9 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Get snapshot of the specified viewArea of page.
+        /// </summary>
         /// <param name="viewArea">Host that required client authentication</param>
         /// <param name="scaleFactor">The file path stored certificate</param>
-        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ImageView GetScreenshot(Rectangle viewArea, float scaleFactor)
         {
@@ -1919,10 +1919,10 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Get snapshot of the specified viewArea of page.
+        /// </summary>
         /// <param name="viewArea">Host that required client authentication</param>
         /// <param name="scaleFactor">The file path stored certificate</param>
         /// <param name="callback">The callback for getting screen shot</param>
-        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool GetScreenshotAsynchronously(Rectangle viewArea, float scaleFactor, ScreenshotAcquiredCallback callback)
         {
@@ -1934,9 +1934,9 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Asynchronous requests to check if there is a video playing in the given view.
-        /// <param name="callback">The callback called after checking if video is playing or not</param>
+        /// Asynchronously requests to check if there is a video playing in the given view.
         /// </summary>
+        /// <param name="callback">The callback called after checking if video is playing or not</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool CheckVideoPlayingAsynchronously(VideoPlayingCallback callback)
         {
@@ -1948,8 +1948,8 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Registers callback which will be called upon geolocation permission request.
-        /// <param name="callback">The callback for requesting geolocation permission</param>
         /// </summary>
+        /// <param name="callback">The callback for requesting geolocation permission</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RegisterGeolocationPermissionCallback(GeolocationPermissionCallback callback)
         {
@@ -1960,10 +1960,10 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Does hit test synchronously.
+        /// </summary>
         /// <param name="x">the horizontal position to query</param>
         /// <param name="y">the vertical position to query</param>
         /// <param name="mode">the mode of hit test</param>
-        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public WebHitTestResult HitTest(int x, int y, HitTestMode mode)
         {
@@ -1974,11 +1974,11 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Does hit test asynchronously.
+        /// </summary>
         /// <param name="x">the horizontal position to query</param>
         /// <param name="y">the vertical position to query</param>
         /// <param name="mode">the mode of hit test</param>
         /// <param name="callback">the callback that is called after hit test is finished.</param>
-        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool HitTestAsynchronously(int x, int y, HitTestMode mode, HitTestFinishedCallback callback)
         {
@@ -2012,6 +2012,7 @@ namespace Tizen.NUI.BaseComponents
         /// Please note that it only works when the webview does not have keyinput focus.
         /// If the webview has a keyinput focus, it also has tts focus so calling SetTtsFocus(false) is ignored.
         /// </summary>
+        /// <param name="focused">Focused or not</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetTtsFocus(bool focused)
         {
@@ -2022,8 +2023,8 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Get a plain text of current web page asynchronously.
         /// Please note that it gets plain text of currently loaded page so please call this method after page load finished.
-        /// <param name="callback">The callback for getting plain text</param>
         /// </summary>
+        /// <param name="callback">The callback for getting plain text</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void GetPlainTextAsynchronously(PlainTextReceivedCallback callback)
         {

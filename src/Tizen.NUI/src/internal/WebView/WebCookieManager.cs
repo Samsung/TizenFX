@@ -91,13 +91,13 @@ namespace Tizen.NUI
         public enum CookiePersistentStorageType
         {
             /// <summary>
-            /// @deprecated Cookies are stored in a text file.
+            /// Deprecated. Cookies are stored in a text file.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             Text,
 
             /// <summary>
-            /// stored in a SQLite file
+            /// Cookies are stored in a SQLite file.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             SqlLite,
@@ -120,8 +120,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sets the proxy uri.
+        /// Sets the persistent storage.
         /// </summary>
+        /// <param name="path">The path for persistent storage</param>
+        /// <param name="storageType">The type of storage</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetPersistentStorage(string path, CookiePersistentStorageType storageType)
         {

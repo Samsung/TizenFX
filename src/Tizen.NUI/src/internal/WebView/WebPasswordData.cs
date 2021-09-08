@@ -31,7 +31,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Url which password is related to.
+        /// URL which password is related to.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string Url

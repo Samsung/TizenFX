@@ -121,9 +121,9 @@ namespace Tizen.NUI
         /// <summary>
         /// Sets status code and status text of response for intercepted request.
         /// This function can be used inside or outside WebContext.HttpRequestIntercepted.
+        /// </summary>
         /// <param name="statusCode">Status code of response</param>
         /// <param name="customStatusText">Status text of response</param>
-        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool SetResponseStatus(int statusCode, string customStatusText)
         {
@@ -135,9 +135,9 @@ namespace Tizen.NUI
         /// <summary>
         /// Adds HTTP header to response for intercepted request.
         /// This function can be used inside or outside WebContext.HttpRequestIntercepted.
+        /// </summary>
         /// <param name="fieldName">Key of response header</param>
         /// <param name="fieldValue">Value of response header</param>
-        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool AddResponseHeader(string fieldName, string fieldValue)
         {
@@ -149,8 +149,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Adds HTTP headers to response for intercepted request.
         /// This function can be used inside or outside WebContext.HttpRequestIntercepted.
-        /// <param name="headers">Map of response headers</param>
         /// </summary>
+        /// <param name="headers">Map of response headers</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool AddResponseHeaders(IDictionary<string, string> headers)
         {
@@ -175,8 +175,8 @@ namespace Tizen.NUI
         /// To call it, application should have full response body ready for the intercepted request.
         /// This function can be used inside or outside WebContext.HttpRequestIntercepted.
         /// After this call, any further call on WebHttpRequestInterceptor results in undefined behavior.
-        /// <param name="body">Contents of response</param>
         /// </summary>
+        /// <param name="body">Contents of response</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool SetResponseBody(string body)
         {
@@ -192,9 +192,9 @@ namespace Tizen.NUI
         /// To call it, application should have full response headers and body ready for the intercepted request.
         /// This function can be used inside or outside WebContext.HttpRequestIntercepted.
         /// After this call, any further call on WebHttpRequestInterceptor results in undefined behavior.
+        /// </summary>
         /// <param name="headers">Headers of response</param>
         /// <param name="body">Contents of response</param>
-        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool SetResponse(string headers, string body)
         {
@@ -215,8 +215,8 @@ namespace Tizen.NUI
         /// 
         /// After writing full response body in chunks using this function,
         /// call it again with null as chunk, to signal that response body is finished.
-        /// <param name="chunk">Chunk of response</param>
         /// </summary>
+        /// <param name="chunk">Chunk of response</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool WriteResponseChunk(string chunk)
         {
