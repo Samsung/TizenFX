@@ -21,7 +21,7 @@ using System.Text;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// Resource control.
+    /// Represents the resource control information.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
     public class ResourceControl
@@ -29,8 +29,8 @@ namespace Tizen.Applications
         internal ResourceControl(string resourceType, string minResourceVersion, string maxResourceVersion, bool isAutoClose)
         {
             ResourceType = resourceType;
-            MinResourceVersion = minResourceVersion;
-            MaxResourceVersion = maxResourceVersion;
+            MinResourceVersion = minResourceVersion ?? null;
+            MaxResourceVersion = maxResourceVersion ?? null;
             IsAutoClose = isAutoClose;
         }
 
