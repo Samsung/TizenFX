@@ -91,8 +91,8 @@ namespace Tizen.Applications
             {
                 if (disposing)
                 {
+                    PeerInfo?.Dispose();
                 }
-                PeerInfo?.Dispose();
                 disposedValue = true;
             }
         }
