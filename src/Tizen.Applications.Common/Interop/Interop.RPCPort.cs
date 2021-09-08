@@ -42,26 +42,6 @@ internal static partial class Interop
 
         internal static partial class Parcel
         {
-            /// <summary>
-            /// This structure represents the struct timespec.
-            /// </summary>
-            /// <since_tizen> 9 </since_tizen>
-            [StructLayout(LayoutKind.Sequential)]
-            public struct TimeStamp
-            {
-                /// <summary>
-                /// The second of timestamp
-                /// </summary>
-                /// <since_tizen> 9 </since_tizen>
-                public uint sec;
-
-                /// <summary>
-                /// The nano second of timestamp
-                /// </summary>
-                /// <since_tizen> 9 </since_tizen>
-                public uint nsec;
-            }
-
             //int rpc_port_parcel_create(rpc_port_parcel_h *h);
             [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_create")]
             internal static extern ErrorCode Create(out IntPtr handle);
@@ -188,7 +168,7 @@ internal static partial class Interop
 
             //int rpc_port_parcel_header_get_timestamp(rpc_port_parcel_header_h header, struct timespec *timestamp);
             [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_header_get_timestamp")]
-            internal static extern ErrorCode GetTimeStamp(IntPtr parcelHeaderHandle, ref TimeStamp time);
+            internal static extern ErrorCode GetTimeStamp(IntPtr parcelHeaderHandle, ref Libc.TimeStamp time);
         }
 
         internal static partial class Proxy

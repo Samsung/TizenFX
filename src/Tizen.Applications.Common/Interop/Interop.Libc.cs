@@ -17,11 +17,21 @@
 using System;
 using System.Runtime.InteropServices;
 
+using Tizen.Internals;
+
 internal static partial class Interop
 {
     internal static partial class Libc
     {
         [DllImport(Libraries.Libc, EntryPoint = "free", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int Free(IntPtr ptr);
+
+        [NativeStruct("struct timespec", Include = "time.h")]
+        [StructLayout(LayoutKind.Sequential)]
+        internal struct TimeStamp
+        {
+            public uint sec;
+            public uint nsec;
+        }
     }
 }
