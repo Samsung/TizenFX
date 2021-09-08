@@ -49,8 +49,8 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Gets security origin by index.
-        /// <param name="index">index of list</param>
         /// </summary>
+        /// <param name="index">index of list</param>
         internal WebSecurityOrigin GetItemAtIndex(uint index)
         {
             System.IntPtr dataIntPtr = Interop.WebSecurityOriginList.ValueOfIndex(SwigCPtr, index);
