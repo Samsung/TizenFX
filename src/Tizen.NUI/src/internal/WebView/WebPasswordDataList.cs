@@ -49,8 +49,8 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Gets password data by index.
-        /// <param name="index">index of list</param>
         /// </summary>
+        /// <param name="index">index of list</param>
         internal WebPasswordData GetItemAtIndex(uint index)
         {
             System.IntPtr dataIntPtr = Interop.WebPasswordDataList.ValueOfIndex(SwigCPtr, index);

@@ -187,7 +187,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the link url of context menu item.
+        /// Gets the link URL of context menu item.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string LinkUrl
@@ -199,7 +199,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the image url of context menu item.
+        /// Gets the image URL of context menu item.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string ImageUrl

@@ -202,7 +202,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Proxy url.
+        /// Proxy URL.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string ProxyUrl
@@ -256,7 +256,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// App id.
+        /// App ID.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string AppId
@@ -371,6 +371,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Sets default proxy auth.
         /// </summary>
+        /// <param name="username">Default username for proxy</param>
+        /// <param name="password">Default password for proxy</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetDefaultProxyAuth(string username, string password)
         {
@@ -390,8 +392,8 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Gets security origins of web database asynchronously.
-        /// <param name="callback">callback for acquiring security origins</param>
         /// </summary>
+        /// <param name="callback">callback for acquiring security origins</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool GetWebDatabaseOrigins(SecurityOriginListAcquiredCallback callback)
         {
@@ -404,8 +406,8 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Deletes web databases by origin.
-        /// <param name="origin">security origin of web database</param>
         /// </summary>
+        /// <param name="origin">security origin of web database</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool DeleteWebDatabase(WebSecurityOrigin origin)
         {
@@ -416,8 +418,8 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Gets a list of security origins of web storage asynchronously.
-        /// <param name="callback">callback for acquiring security origins</param>
         /// </summary>
+        /// <param name="callback">callback for acquiring security origins</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool GetWebStorageOrigins(SecurityOriginListAcquiredCallback callback)
         {
@@ -430,9 +432,9 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Gets a list of security origins of web storage asynchronously.
+        /// </summary>
         /// <param name="origin">security origin of web storage</param>
         /// <param name="callback">callback for acquiring storage usage</param>
-        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool GetWebStorageUsageForOrigin(WebSecurityOrigin origin, StorageUsageAcquiredCallback callback)
         {
@@ -454,8 +456,8 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Deletes web storage by origin.
-        /// <param name="origin">security origin of web storage</param>
         /// </summary>
+        /// <param name="origin">security origin of web storage</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool DeleteWebStorage(WebSecurityOrigin origin)
         {
@@ -465,7 +467,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Deletes local fileSystem.
+        /// Deletes directories and files in local file system.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void DeleteLocalFileSystem()
@@ -486,8 +488,8 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Deletes web application cache by origin.
-        /// <param name="origin">security origin of web application</param>
         /// </summary>
+        /// <param name="origin">security origin of web application</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool DeleteApplicationCache(WebSecurityOrigin origin)
         {
@@ -498,8 +500,8 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Gets a list of all password data asynchronously.
-        /// <param name="callback">callback for acquiring password data list</param>
         /// </summary>
+        /// <param name="callback">callback for acquiring password data list</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void GetFormPasswordList(PasswordDataListAcquiredCallback callback)
         {
@@ -511,8 +513,8 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Registers callback for download started.
-        /// <param name="callback">callback for download started</param>
         /// </summary>
+        /// <param name="callback">callback for download started</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RegisterDownloadStartedCallback(DownloadStartedCallback callback)
         {
@@ -522,9 +524,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Registers callback for overriding mime type.
-        /// <param name="callback">callback for overriding mime type</param>
+        /// Registers callback for overriding MIME type.
         /// </summary>
+        /// <param name="callback">callback for overriding MIME type</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RegisterMimeOverriddenCallback(MimeOverriddenCallback callback)
         {
@@ -535,8 +537,8 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Registers callback for http request interceptor.
-        /// <param name="callback">callback for intercepting http request</param>
         /// </summary>
+        /// <param name="callback">callback for intercepting http request</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RegisterHttpRequestInterceptedCallback(HttpRequestInterceptedCallback callback)
         {
@@ -552,9 +554,9 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Sets context time zone offset.
+        /// </summary>
         /// <param name="offset">Time offset</param>
         /// <param name="time">Daylight saving time</param>
-        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetTimeZoneOffset(float offset, float time)
         {
@@ -564,9 +566,9 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Deprecated. Sets context time zone offset.
+        /// </summary>
         /// <param name="offset">Time offset</param>
         /// <param name="time">Daylight saving time</param>
-        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetContextTimeZoneOffset(float offset, float time)
         {
@@ -574,9 +576,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Registers url schemes enabled.
-        /// <param name="schemes">The string array of schemes</param>
+        /// Registers URL schemes enabled.
         /// </summary>
+        /// <param name="schemes">The string array of schemes</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RegisterUrlSchemesAsCorsEnabled(string[] schemes)
         {
@@ -588,9 +590,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Registers js plugin mime types.
-        /// <param name="mimes">The string array of types</param>
+        /// Registers JS plugin mime types.
         /// </summary>
+        /// <param name="mimes">The string array of types</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RegisterJsPluginMimeTypes(string[] mimes)
         {
@@ -625,8 +627,8 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Deletes password dataList.
-        /// <param name="passwords">The string array of data list</param>
         /// </summary>
+        /// <param name="passwords">The string array of data list</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void DeleteFormPasswordDataList(string[] passwords)
         {
@@ -659,9 +661,9 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Sets proxy bypass rule.
+        /// </summary>
         /// <param name="proxy">The proxy string</param>
         /// <param name="rule">Bypass rule</param>
-        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetProxyBypassRule(string proxy, string rule)
         {
@@ -671,9 +673,9 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Deprecated. Sets proxy bypass rule.
+        /// </summary>
         /// <param name="proxy">The proxy string</param>
         /// <param name="rule">Bypass rule</param>
-        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetContextProxy(string proxy, string rule)
         {
