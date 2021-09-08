@@ -104,7 +104,7 @@ namespace Tizen.Applications.RPCPort
         /// <summary>
         /// Sets sequence number of Header.
         /// </summary>
-        /// <param name="seqNum">The seqence number of Header</param>
+        /// <param name="sequenceNumber">The seqence number of Header</param>
         /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
         /// <since_tizen> 9 </since_tizen>
         public void SetSequenceNumber(int sequenceNumber)
