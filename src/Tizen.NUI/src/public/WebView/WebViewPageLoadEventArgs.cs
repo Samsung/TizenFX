@@ -24,14 +24,14 @@ namespace Tizen.NUI
     /// <summary>
     /// Event arguments that passed via the WebView.PageLoadStarted or WebView.PageLoadFinished.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class WebViewPageLoadEventArgs : EventArgs
     {
         private WebView _webView;
         private string _pageUrl;
 
         /// <summary>
-        /// The view for displaying webpages.
+        /// Deprecated. The view for displaying webpages.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public WebView WebView
@@ -47,7 +47,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The url string of current webpage.
+        /// Deprecated. The URL of current web page.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string PageUrl
