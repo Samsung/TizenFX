@@ -23,7 +23,7 @@ namespace Tizen.NUI
     /// <summary>
     /// It is a class for load error of page of web view.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class WebPageLoadError : Disposable
     {
         internal WebPageLoadError(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
@@ -41,159 +41,136 @@ namespace Tizen.NUI
         /// <summary>
         /// Enumeration for the load error type
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public enum ErrorType
         {
             /// <summary>
             /// None.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
             None,
 
             /// <summary>
             /// Internal error.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
             Internal,
 
             /// <summary>
             /// Network error.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
             Network,
 
             /// <summary>
             /// Policy error.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
             Policy,
 
             /// <summary>
             /// Plugin error.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
             Plugin,
 
             /// <summary>
             /// Download error.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
             Download,
 
             /// <summary>
             /// Print error.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
             Print,
         }
 
         /// <summary>
         /// Enumeration for the load error code
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public enum ErrorCode
         {
             /// <summary>
             /// Unknown.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
             Unknown,
 
             /// <summary>
             /// User canceled.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
             Canceled,
 
             /// <summary>
             /// Can't show the page for this MIME type.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
             CantSupportMimetype,
 
             /// <summary>
             /// File IO error.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
             FailedFileIo,
 
             /// <summary>
             /// Cannot connect to the network.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
             CannotConnect,
 
             /// <summary>
             /// Fail to look up host from the DNS.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
             CannotLookupHost,
 
             /// <summary>
             /// Fail to SSL/TLS handshake.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
             FailedTlsHandshake,
 
             /// <summary>
             /// Received certificate is invalid.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
             InvalidCertificate,
 
             /// <summary>
             /// Connection timeout.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
             RequestTimeout,
 
             /// <summary>
             /// Too many redirects.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
             TooManyRedirects,
 
             /// <summary>
             /// Too many requests during this load.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
             TooManyRequests,
 
             /// <summary>
             /// Malformed URL.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
             BadUrl,
 
             /// <summary>
             /// Unsupported scheme.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
             UnsupportedScheme,
 
             /// <summary>
             /// User authentication failed on the server.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
             Authentication,
 
             /// <summary>
             /// Web server has an internal server error.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
             InternalServer,
 
             /// <summary>
             /// Other error.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
             Other,
         }
 
         /// <summary>
         /// Queries failing URL for this error.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public string Url
         {
             get
@@ -205,7 +182,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Queries code for this error.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public ErrorCode Code
         {
             get
@@ -217,7 +194,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Queries description for this error.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public string Description
         {
             get
@@ -229,7 +206,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Queries type for this error.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public ErrorType Type
         {
             get
