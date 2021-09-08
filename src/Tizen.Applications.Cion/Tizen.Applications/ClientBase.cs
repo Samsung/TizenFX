@@ -89,7 +89,7 @@ namespace Tizen.Applications
                     Interop.Cion.ErrorCode clone_ret = Interop.CionPeerInfo.CionPeerInfoClone(peerInfo, out PeerInfoSafeHandle clone);
                     if (clone_ret != Interop.Cion.ErrorCode.None)
                     {
-                        Log.Error(LogTag, string.Format("Clone error !!"));
+                        Log.Error(LogTag, string.Format("Failed to clone peer info."));
                         return;
                     }
 
@@ -137,7 +137,13 @@ namespace Tizen.Applications
             _disconnectedCb = new Interop.CionClient.CionClientDisconnectedCb(
                 (string service, IntPtr peerInfo, IntPtr userData) =>
                 {
-                    OnDisconnected(new PeerInfo(new PeerInfoSafeHandle(peerInfo, false)));
+                    Interop.Cion.ErrorCode clone_ret = Interop.CionPeerInfo.CionPeerInfoClone(peerInfo, out PeerInfoSafeHandle clone);
+                    if (clone_ret != Interop.Cion.ErrorCode.None)
+                    {
+                        Log.Error(LogTag, string.Format("Failed to clone peer info."));
+                        return;
+                    }
+                    OnDisconnected(new PeerInfo(clone));
                 });
             ret = Interop.CionClient.CionClientAddDisconnectedCb(_handle, _disconnectedCb, IntPtr.Zero);
             if (ret != Interop.Cion.ErrorCode.None)
@@ -229,7 +235,8 @@ namespace Tizen.Applications
         /// </summary>
         /// <param name="data">The data to send.</param>
         /// <param name="timeout">The timeout of sending operation.</param>
-        /// <exception cref="ArgumentException">Thrown when there is no connected cion server.</exception>
+        /// <exception cref="ArgumentException">Thrown when the given data is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when there is no connected cion server.</exception>
         /// <since_tizen> 9 </since_tizen>
         public byte[] SendData(byte[] data, int timeout)
         {
@@ -266,17 +273,19 @@ namespace Tizen.Applications
                 Interop.CionClient.CionClientPayloadAsyncResultCb cb = new Interop.CionClient.CionClientPayloadAsyncResultCb(
                     (IntPtr result, IntPtr userData) =>
                     {
-                        PayloadAsyncResult resultPayload = new PayloadAsyncResult(new PayloadAsyncResultSafeHandle(result, false));
-                        TaskCompletionSource<PayloadAsyncResult> tcsToReturn = _tcsDictionary[resultPayload.PayloadId];
-                        _tcsDictionary.Remove(resultPayload.PayloadId);
-                        Interop.Cion.ErrorCode clone_ret = Interop.CionPayloadAsyncResult.CionPayloadAsyncResultClone(result, out PayloadAsyncResultSafeHandle clone);
-                        if (clone_ret != Interop.Cion.ErrorCode.None)
+                        PayloadAsyncResult resultPayload = null;
+                        try
                         {
-                            Log.Error(LogTag, "Failed to clone peer result.");
-                            tcsToReturn.SetResult(new PayloadAsyncResult());
+                            resultPayload = PayloadAsyncResult.CreateFromHandle(result);
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error(LogTag, string.Format("Failed to create PayloadAsyncResult from result handle: {0}.", e.Message));
                             return;
                         }
-                        tcsToReturn.SetResult(new PayloadAsyncResult(clone));
+                        TaskCompletionSource<PayloadAsyncResult> tcsToReturn = _tcsDictionary[resultPayload.PayloadId];
+                        tcsToReturn.SetResult(resultPayload);
+                        _tcsDictionary.Remove(resultPayload.PayloadId);
                     });
                 _payloadAsyncResultCb = cb;
             }

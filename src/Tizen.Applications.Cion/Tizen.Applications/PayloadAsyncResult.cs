@@ -24,73 +24,58 @@ namespace Tizen.Applications
     /// <since_tizen> 9 </since_tizen>
     public class PayloadAsyncResult : IDisposable
     {
-        private readonly string LogTag = "Tizen.Cion";
-        internal PayloadAsyncResultSafeHandle _handle;
-
-        internal PayloadAsyncResult()
+        private PayloadAsyncResult(PayloadAsyncResultCode result, PeerInfo peer, string payloadId)
         {
-            _handle = null;
+            Result = result;
+            PeerInfo = peer;
+            PayloadId = payloadId;
         }
 
-        internal PayloadAsyncResult(PayloadAsyncResultSafeHandle handle)
+        internal static PayloadAsyncResult CreateFromHandle(IntPtr handle)
         {
-            _handle = handle;
+            Interop.Cion.ErrorCode ret = Interop.CionPayloadAsyncResult.CionPayloadAsyncResultGetResult(handle, out int code);
+            if (ret != Interop.Cion.ErrorCode.None)
+            {
+                throw CionErrorFactory.GetException(ret, "Fail to get result code from the AsyncResult");
+            }
+
+            ret = Interop.CionPayloadAsyncResult.CionPayloadAsyncResultGetPayloadID(handle, out string payloadId);
+            if (ret != Interop.Cion.ErrorCode.None)
+            {
+                throw CionErrorFactory.GetException(ret, "Fail to get payload id from the AsyncResult");
+            }
+
+            ret = Interop.CionPayloadAsyncResult.CionPayloadAsyncResultGetPeerInfo(handle, out IntPtr peer);
+            if (ret != Interop.Cion.ErrorCode.None)
+            {
+                throw CionErrorFactory.GetException(ret, "Fail to get peerinfo from the AsyncResult");
+            }
+            ret = Interop.CionPeerInfo.CionPeerInfoClone(peer, out PeerInfoSafeHandle clone);
+            if (ret != Interop.Cion.ErrorCode.None)
+            {
+                throw CionErrorFactory.GetException(ret, "Failed to clone peer info.");
+            }
+
+            return new PayloadAsyncResult((PayloadAsyncResultCode)code, new PeerInfo(clone), payloadId);
         }
 
         /// <summary>
         /// Gets the result of payload.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public PayloadAsyncResultCode Result
-        {
-            get
-            {
-                int code;
-                Interop.Cion.ErrorCode ret = Interop.CionPayloadAsyncResult.CionPayloadAsyncResultGetResult(_handle, out code);
-                if (ret != Interop.Cion.ErrorCode.None)
-                {
-                    return PayloadAsyncResultCode.Error;
-                }
-                return (PayloadAsyncResultCode)code;
-            }
-        }
+        public PayloadAsyncResultCode Result { get; }
 
         /// <summary>
         /// Gets the peer info of payload.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public PeerInfo PeerInfo
-        {
-            get
-            {
-                IntPtr peer;
-                Interop.Cion.ErrorCode ret = Interop.CionPayloadAsyncResult.CionPayloadAsyncResultGetPeerInfo(_handle, out peer);
-                if (ret != Interop.Cion.ErrorCode.None)
-                {
-                    Log.Error(LogTag, "Fail to get peerinfo from the AsyncResult");
-                    return null;
-                }
-                return new PeerInfo(new PeerInfoSafeHandle(peer, true));
-            }
-        }
+        public PeerInfo PeerInfo { get; }
 
         /// <summary>
         /// Gets the payload id.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public string PayloadId
-        {
-            get
-            {
-                Interop.Cion.ErrorCode ret = Interop.CionPayloadAsyncResult.CionPayloadAsyncResultGetPayloadID(_handle, out string payloadId);
-                if (ret != Interop.Cion.ErrorCode.None)
-                {
-                    Log.Error(LogTag, "Fail to get payload Id : " + ret);
-                    return "";
-                }
-                return payloadId;
-            }
-        }
+        public string PayloadId { get; }
 
         #region IDisposable Support
         private bool disposedValue = false;
@@ -106,8 +91,8 @@ namespace Tizen.Applications
             {
                 if (disposing)
                 {
-                    _handle.Dispose();
                 }
+                PeerInfo?.Dispose();
                 disposedValue = true;
             }
         }

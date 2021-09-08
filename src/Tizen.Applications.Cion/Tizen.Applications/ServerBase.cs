@@ -138,7 +138,13 @@ namespace Tizen.Applications
             _disconnectedCb = new Interop.CionServer.CionServerDisconnectedCb(
                 (string service, IntPtr peerInfo, IntPtr userData) =>
                 {
-                    OnDisconnected(new PeerInfo(new PeerInfoSafeHandle(peerInfo, false)));
+                    Interop.Cion.ErrorCode clone_ret = Interop.CionPeerInfo.CionPeerInfoClone(peerInfo, out PeerInfoSafeHandle clone);
+                    if (clone_ret != Interop.Cion.ErrorCode.None)
+                    {
+                        Log.Error(LogTag, string.Format("Failed to clone peer info."));
+                        return;
+                    }
+                    OnDisconnected(new PeerInfo(clone));
                 });
             ret = Interop.CionServer.CionServerAddDisconnectedCb(_handle, _disconnectedCb, IntPtr.Zero);
             if (ret != Interop.Cion.ErrorCode.None)
@@ -231,17 +237,19 @@ namespace Tizen.Applications
                 Interop.CionServer.CionServerPayloadAsyncResultCb cb = new Interop.CionServer.CionServerPayloadAsyncResultCb(
                     (IntPtr result, IntPtr userData) =>
                     {
-                        PayloadAsyncResult resultPayload = new PayloadAsyncResult(new PayloadAsyncResultSafeHandle(result, false));
-                        TaskCompletionSource<PayloadAsyncResult> tcsToReturn = _tcsDictionary[Tuple.Create(resultPayload.PayloadId, resultPayload.PeerInfo.UUID)];
-                        _tcsDictionary.Remove(Tuple.Create(resultPayload.PayloadId, resultPayload.PeerInfo.UUID));
-                        Interop.Cion.ErrorCode clone_ret = Interop.CionPayloadAsyncResult.CionPayloadAsyncResultClone(result, out PayloadAsyncResultSafeHandle clone);
-                        if (clone_ret != Interop.Cion.ErrorCode.None)
+                        PayloadAsyncResult resultPayload = null;
+                        try
                         {
-                            Log.Error(LogTag, "Failed to clone result.");
-                            tcsToReturn.SetResult(new PayloadAsyncResult());
+                            resultPayload = PayloadAsyncResult.CreateFromHandle(result);
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error(LogTag, string.Format("Failed to create PayloadAsyncResult from result handle: {0}.", e.Message));
                             return;
                         }
-                        tcsToReturn.SetResult(new PayloadAsyncResult(clone));
+                        TaskCompletionSource<PayloadAsyncResult> tcsToReturn = _tcsDictionary[Tuple.Create(resultPayload.PayloadId, resultPayload.PeerInfo.UUID)];
+                        tcsToReturn.SetResult(resultPayload);
+                        _tcsDictionary.Remove(Tuple.Create(resultPayload.PayloadId, resultPayload.PeerInfo.UUID));
                     });
                 _payloadAsyncResultCb = cb;
             }

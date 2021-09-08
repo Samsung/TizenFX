@@ -24,19 +24,13 @@ internal static partial class Interop
 {
     internal static partial class CionPayloadAsyncResult
     {
-        [DllImport(Libraries.Cion, EntryPoint = "cion_payload_async_result_clone")]
-        internal static extern ErrorCode CionPayloadAsyncResultClone(IntPtr result, out PayloadAsyncResultSafeHandle resultClone);
-
-        [DllImport(Libraries.Cion, EntryPoint = "cion_payload_async_result_destroy")]
-        internal static extern ErrorCode CionPayloadAsyncResultDestroy(IntPtr result);
-
         [DllImport(Libraries.Cion, EntryPoint = "cion_payload_async_result_get_result")]
-        internal static extern ErrorCode CionPayloadAsyncResultGetResult(PayloadAsyncResultSafeHandle result, out int code);
+        internal static extern ErrorCode CionPayloadAsyncResultGetResult(IntPtr result, out int code);
 
         [DllImport(Libraries.Cion, EntryPoint = "cion_payload_async_result_get_peer_info")]
-        internal static extern ErrorCode CionPayloadAsyncResultGetPeerInfo(PayloadAsyncResultSafeHandle result, out IntPtr peerInfo);
+        internal static extern ErrorCode CionPayloadAsyncResultGetPeerInfo(IntPtr result, out IntPtr peerInfo);
 
         [DllImport(Libraries.Cion, EntryPoint = "cion_payload_async_result_get_payload_id")]
-        internal static extern ErrorCode CionPayloadAsyncResultGetPayloadID(PayloadAsyncResultSafeHandle result, out string payloadID);
+        internal static extern ErrorCode CionPayloadAsyncResultGetPayloadID(IntPtr result, out string payloadID);
     }
 }
