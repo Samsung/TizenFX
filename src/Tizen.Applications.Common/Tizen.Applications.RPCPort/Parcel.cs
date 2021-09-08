@@ -27,7 +27,6 @@ namespace Tizen.Applications.RPCPort
         /// <summary>
         /// Constructor with TimeStamp.
         /// </summary>
-        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
         /// <since_tizen> 9 </since_tizen>
         internal TimeStamp(long second, long nanoSecond)
         {
@@ -67,7 +66,6 @@ namespace Tizen.Applications.RPCPort
         /// <summary>
         /// Constructor with Header
         /// </summary>
-        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
         /// <since_tizen> 9 </since_tizen>
         internal ParcelHeader()
         {
