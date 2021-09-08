@@ -36,7 +36,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get uri.
+        /// Get URL.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string Url
@@ -60,7 +60,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get original url.
+        /// Get original URL.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string OriginalUrl
@@ -224,7 +224,7 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// WebBackForwardSubList is an internal class for back-forward copied list item of web view.
+    /// WebBackForwardSubList is an internal class for a copy of back-forward list fragment of web view.
     /// </summary>
     internal class WebBackForwardSubList : Disposable
     {
