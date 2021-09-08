@@ -50,6 +50,7 @@ namespace Tizen.Applications
         /// <summary>
         /// The constructor with specific filters. Using this will filter out the installed packages which do not meet the filter criteria.
         /// </summary>
+        /// <remarks>The dictionary contains filter keys as the keys, and filter values as the value.</remarks>
         /// <param name="stringFilter">Package filters using string values.</param>
         /// <since_tizen> 9 </since_tizen>
         public PackageFilter(IDictionary<string, string> stringFilter)

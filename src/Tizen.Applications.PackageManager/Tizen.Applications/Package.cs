@@ -292,6 +292,7 @@ namespace Tizen.Applications
         /// <summary>
         /// The allowed packages and required privileges information.
         /// </summary>
+        /// <remarks> The dictionary contains application IDs as the keys, and a collection of privileges related to that application as the value.</remarks>
         /// <since_tizen> 9 </since_tizen>
         public IReadOnlyDictionary<string, IEnumerable<string>> AllowedPackagesAndPrivileges
         {
