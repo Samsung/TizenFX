@@ -25,12 +25,14 @@ namespace Tizen.NUI
     /// TransitionBase class is a base class for all Transition.
     /// Each Transition child classes inherits this base class.
     /// </summary>
+    /// <remarks>
+    /// Transition changes propreties of View like Position, Scale, Orientation, and Opacity during transition.
+    /// </remarks>
     /// <since_tizen> 9 </since_tizen>
     public class TransitionBase : Disposable
     {
-        private static readonly int DefaultDuration = 500;
-        private AlphaFunction alphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default);
-        private TimePeriod timePeriod = new TimePeriod(DefaultDuration);
+        private AlphaFunction alphaFunction = null;
+        private TimePeriod timePeriod = null;
 
         /// <summary>
         /// Create a TransitionBase
@@ -72,9 +74,19 @@ namespace Tizen.NUI
             }
         }
 
+        internal TimePeriod GetTimePeriod()
+        {
+            return timePeriod ??= new TimePeriod(0);
+        }
+
+        internal AlphaFunction GetAlphaFunction()
+        {
+            return alphaFunction ??= new AlphaFunction(AlphaFunction.BuiltinFunctions.Default);
+        }
+
         internal virtual TransitionItemBase CreateTransition(View view, bool isAppearing)
         {
-            return new TransitionItemBase(view, isAppearing, timePeriod, alphaFunction);
+            return new TransitionItemBase(view, isAppearing, GetTimePeriod(), GetAlphaFunction());
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]

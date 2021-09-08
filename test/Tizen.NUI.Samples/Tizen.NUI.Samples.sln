@@ -33,6 +33,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.System.Feedback", "..
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Multimedia.Camera", "..\..\src\Tizen.Multimedia.Camera\Tizen.Multimedia.Camera.csproj", "{210C3F38-BD17-4583-816D-550C319FC6CF}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Applications.ThemeManager", "..\..\src\Tizen.Applications.ThemeManager\Tizen.Applications.ThemeManager.csproj", "{FB8B42D6-76CC-4836-8A80-58A816C6A17F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -99,6 +101,10 @@ Global
 		{210C3F38-BD17-4583-816D-550C319FC6CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{210C3F38-BD17-4583-816D-550C319FC6CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{210C3F38-BD17-4583-816D-550C319FC6CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB8B42D6-76CC-4836-8A80-58A816C6A17F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB8B42D6-76CC-4836-8A80-58A816C6A17F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB8B42D6-76CC-4836-8A80-58A816C6A17F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB8B42D6-76CC-4836-8A80-58A816C6A17F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

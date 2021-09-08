@@ -26,10 +26,10 @@ namespace Tizen.NUI.EXaml
 {
     internal class GatherEvent : Operation
     {
-        public GatherEvent(GlobalDataList globalDataList, int typeIndex, string eventName)
+        public GatherEvent(GlobalDataList globalDataList, List<object> operationInfo)
         {
-            this.typeIndex = typeIndex;
-            this.eventName = eventName;
+            typeIndex = (int)operationInfo[0];
+            eventName = operationInfo[1] as string;
             this.globalDataList = globalDataList;
         }
 

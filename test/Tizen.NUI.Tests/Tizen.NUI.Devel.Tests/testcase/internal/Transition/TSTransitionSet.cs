@@ -42,7 +42,34 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<TransitionSet>(testingTarget, "Should be an Instance of TransitionSet!");
 
             testingTarget.Dispose();
+            // diposed
+            testingTarget.Dispose();
             tlog.Debug(tag, $"TransitionSetConstructor END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TransitionSet constructor.")]
+        [Property("SPEC", "Tizen.NUI.TransitionSet.TransitionSet C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void TransitionSetConstructorWithTransitionSet()
+        {
+            tlog.Debug(tag, $"TransitionSetConstructorWithTransitionSet START");
+
+            using (TransitionSet transition = new TransitionSet())
+            {
+                var testingTarget = new TransitionSet(transition);
+                Assert.IsNotNull(testingTarget, "Should be not null!");
+                Assert.IsInstanceOf<TransitionSet>(testingTarget, "Should be an Instance of TransitionSet!");
+
+                testingTarget.Dispose();
+                // disposed
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"TransitionSetConstructorWithTransitionSet END (OK)");
         }
 
         [Test]
@@ -66,6 +93,32 @@ namespace Tizen.NUI.Devel.Tests
             }
 
             tlog.Debug(tag, $"TransitionSetDownCast END (OK)");
+        }
+
+        [Test]
+        [Category("P2")]
+        [Description("TransitionSet DownCast.")]
+        [Property("SPEC", "Tizen.NUI.TransitionSet.DownCast M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void TransitionSetDownCastWithNullHandle()
+        {
+            tlog.Debug(tag, $"TransitionSetDownCastWithNullHandle START");
+
+            using (TransitionSet transitionSet = new TransitionSet())
+            {
+                try
+                {
+                    TransitionSet.DownCast(null);
+                }
+                catch (ArgumentNullException e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    tlog.Debug(tag, $"TransitionSetDownCastWithNullHandle END (OK)");
+                    Assert.Pass("Caught ArgumentNullException : Passed!");
+                }
+            }
         }
 
         [Test]
@@ -100,6 +153,8 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Should be not null!");
             Assert.IsInstanceOf<TransitionSet>(testingTarget, "Should be an Instance of TransitionSet!");
 
+            testingTarget.Finished += OnFinished;
+
             try
             {
                 testingTarget.AddTransition(transitionItemBase);
@@ -128,37 +183,21 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"TransitionSetFinished START");
 
-            View view = new View()
-            {
-                Name = "view",
-                TransitionOptions = new TransitionOptions(Window.Instance)
-            };
-            view.TransitionOptions.TransitionTag = "Transition";
-            view.TransitionOptions.EnableTransition = true;
-
-            TransitionItemBase transitionItemBase = null;
-            using (TimePeriod timePeriod = new TimePeriod(500))
-            {
-                using (AlphaFunction alphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default))
-                {
-                    transitionItemBase = new TransitionItemBase(view, true, timePeriod, alphaFunction);
-                }
-            }
-
             var testingTarget = new TransitionSet();
             Assert.IsNotNull(testingTarget, "Should be not null!");
             Assert.IsInstanceOf<TransitionSet>(testingTarget, "Should be an Instance of TransitionSet!");
 
-            testingTarget.AddTransition(transitionItemBase);
-
-            testingTarget.Finished += MyOnFinished;
-            testingTarget.Finished -= MyOnFinished;
+            testingTarget.Finished += OnFinished;
+            testingTarget.Finished -= OnFinished;
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"TransitionSetFinished END (OK)");
         }
 
-        private void MyOnFinished(object sender, EventArgs e) { }
+        private void OnFinished(object sender, EventArgs e) 
+        {
+            tlog.Error(tag, "===Finished!");
+        }
 
         [Test]
         [Category("P1")]

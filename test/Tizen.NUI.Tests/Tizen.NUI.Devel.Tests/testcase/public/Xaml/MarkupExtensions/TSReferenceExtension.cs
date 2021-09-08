@@ -1,6 +1,8 @@
-﻿using NUnit.Framework;
-using System;
-using Tizen.NUI.Xaml;
+﻿using global::System;
+using NUnit.Framework;
+using NUnit.Framework.TUnit;
+using Tizen.NUI.Components;
+using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.Devel.Tests
 {
@@ -11,27 +13,24 @@ namespace Tizen.NUI.Devel.Tests
     public class PublicReferenceExtensionTest
     {
         private const string tag = "NUITEST";
-        private static ReferenceExtension r1;
+        private Tizen.NUI.Xaml.ReferenceExtension reference;
 
-        internal class IServiceProviderimplement : IServiceProvider
+        internal class IServiceProviderImpl : IServiceProvider
         {
-            public object GetService(Type serviceType)
-            {
-                return null;
-            }
+            public object GetService(Type serviceType) { return null; }
         }
 
         [SetUp]
         public void Init()
         {
             tlog.Info(tag, "Init() is called!");
-            r1 = new ReferenceExtension();
+            reference = new Tizen.NUI.Xaml.ReferenceExtension();
         }
 
         [TearDown]
         public void Destroy()
         {
-            r1 = null;
+            reference = null;
             tlog.Info(tag, "Destroy() is called!");
         }
 
@@ -47,40 +46,41 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                string tmp = r1.Name;
-                r1.Name = tmp;
+                var name = reference.Name;
+                reference.Name = name;
+                Assert.AreEqual(name, reference.Name, "Should be equal");
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"ReferenceExtensionName END (OK)");
-            Assert.Pass("ReferenceExtensionName");
+            tlog.Debug(tag, $"ReferenceExtensionName END");
         }
 
         [Test]
-        [Category("P1")]
+        [Category("P2")]
         [Description("ReferenceExtension ProvideValue")]
-        [Property("SPEC", "Tizen.NUI.ReferenceExtension.ProvideValue A")]
+        [Property("SPEC", "Tizen.NUI.ReferenceExtension.ProvideValue M")]
         [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
+        [Property("CRITERIA", "MR")]
         public void ReferenceExtensionProvideValue()
         {
             tlog.Debug(tag, $"ReferenceExtensionProvideValue START");
 
             try
             {
-                IServiceProviderimplement serviceProviderimplement = new IServiceProviderimplement();
-                r1.ProvideValue(serviceProviderimplement);
+                reference.ProvideValue(new IServiceProviderImpl()); // serviceProvider is null
             }
-            catch (Exception e)
+            catch (ArgumentException e)
             {
                 tlog.Debug(tag, e.Message.ToString());
-                tlog.Debug(tag, $"ReferenceExtensionProvideValue END (OK)");
-                Assert.Pass("Caught Exception : passed!");
+                tlog.Debug(tag, $"ReferenceExtensionProvideValue END");
+                Assert.Pass("Caught ArgumentException : Passed!");
             }
+
+            
         }
     }
 }

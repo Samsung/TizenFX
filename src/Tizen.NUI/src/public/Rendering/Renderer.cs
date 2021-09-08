@@ -27,14 +27,19 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class Renderer : Animatable
     {
+        private Geometry CurrentGeometry = null;
+        private Shader CurrentShader = null;
+
         /// <summary>
         /// Create an instance of Renderer.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Renderer(Geometry geometry, Shader shader) : this(Interop.Renderer.New(Geometry.getCPtr(geometry), Shader.getCPtr(shader)), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            CurrentGeometry = geometry;
+            CurrentShader = shader;
 
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -572,7 +577,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetGeometry(Geometry geometry)
         {
-            Interop.Renderer.SetGeometry(SwigCPtr, Geometry.getCPtr(geometry));
+            Interop.Renderer.SetGeometry(SwigCPtr, Geometry.getCPtr(CurrentGeometry = geometry));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -583,11 +588,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public Geometry GetGeometry()
         {
-            //to fix memory leak issue, match the handle count with native side.
-            System.IntPtr cPtr = Interop.Renderer.GetGeometry(SwigCPtr);
-            Geometry ret = this.GetInstanceSafely<Geometry>(cPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            return CurrentGeometry;
         }
 
         /// <summary>
@@ -644,7 +645,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetShader(Shader shader)
         {
-            Interop.Renderer.SetShader(SwigCPtr, Shader.getCPtr(shader));
+            Interop.Renderer.SetShader(SwigCPtr, Shader.getCPtr(CurrentShader = shader));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -655,11 +656,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public Shader GetShader()
         {
-            //to fix memory leak issue, match the handle count with native side.
-            System.IntPtr cPtr = Interop.Renderer.GetShader(SwigCPtr);
-            Shader ret = this.GetInstanceSafely<Shader>(cPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            return CurrentShader;
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Renderer obj)

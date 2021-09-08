@@ -116,46 +116,55 @@ namespace Tizen.Nlp
         {
             Log.Debug(LogTag, "OnReceived ");
             MessageReceivedEventArgs e = new MessageReceivedEventArgs();
-            int requestid;
+            int requestid = 0;
             Dictionary<string, string[]> result = new Dictionary<string, string[]>();
-            result.Add("token", (string[])msg.GetItem("return_token"));
-            e.RequestId = requestid = int.Parse((string)msg.GetItem("request_id"));
-            if (msg.GetItem("command").Equals("word_tokenize"))
+            if (msg.Contains("return_token"))
+                result.Add("token", (string[])msg.GetItem("return_token"));
+
+            if (msg.Contains("request_id"))
+                e.RequestId = requestid = int.Parse((string)msg.GetItem("request_id"));
+            else
+                return;
+
+            if (msg.Contains("command"))
             {
-                e.Message = result;
-                if (_mapsWordTokenize.ContainsKey(requestid))
+                if (msg.GetItem("command").Equals("word_tokenize"))
                 {
-                    _mapsWordTokenize[requestid]?.Invoke(e);
-                    _mapsWordTokenize.Remove(requestid);
+                    e.Message = result;
+                    if (_mapsWordTokenize.ContainsKey(requestid))
+                    {
+                        _mapsWordTokenize[requestid]?.Invoke(e);
+                        _mapsWordTokenize.Remove(requestid);
+                    }
                 }
-            }
-            else if (msg.GetItem("command").Equals("pos_tag"))
-            {
-                result.Add("tag", (string[])msg.GetItem("return_tag"));
-                e.Message = result;
-                if (_mapsPosTag.ContainsKey(requestid))
+                else if (msg.GetItem("command").Equals("pos_tag"))
                 {
-                    _mapsPosTag[requestid]?.Invoke(e);
-                    _mapsPosTag.Remove(requestid);
+                    result.Add("tag", (string[])msg.GetItem("return_tag"));
+                    e.Message = result;
+                    if (_mapsPosTag.ContainsKey(requestid))
+                    {
+                        _mapsPosTag[requestid]?.Invoke(e);
+                        _mapsPosTag.Remove(requestid);
+                    }
                 }
-            }
-            else if (msg.GetItem("command").Equals("ne_chunk"))
-            {
-                result.Add("tag", (string[])msg.GetItem("return_tag"));
-                e.Message = result;
-                if (_mapsNamedEntity.ContainsKey(requestid))
+                else if (msg.GetItem("command").Equals("ne_chunk"))
                 {
-                    _mapsNamedEntity[requestid]?.Invoke(e);
-                    _mapsNamedEntity.Remove(requestid);
+                    result.Add("tag", (string[])msg.GetItem("return_tag"));
+                    e.Message = result;
+                    if (_mapsNamedEntity.ContainsKey(requestid))
+                    {
+                        _mapsNamedEntity[requestid]?.Invoke(e);
+                        _mapsNamedEntity.Remove(requestid);
+                    }
                 }
-            }
-            else if (msg.GetItem("command").Equals("langdetect"))
-            {
-                e.Message = result;
-                if (_mapsLangDetect.ContainsKey(requestid))
+                else if (msg.GetItem("command").Equals("langdetect"))
                 {
-                    _mapsLangDetect[requestid]?.Invoke(e);
-                    _mapsLangDetect.Remove(requestid);
+                    e.Message = result;
+                    if (_mapsLangDetect.ContainsKey(requestid))
+                    {
+                        _mapsLangDetect[requestid]?.Invoke(e);
+                        _mapsLangDetect.Remove(requestid);
+                    }
                 }
             }
         }
@@ -188,9 +197,18 @@ namespace Tizen.Nlp
             _msg.Connected += (sender, e) =>
             {
                 Log.Debug(LogTag, "start to register");
-                _msg.CoRegister(Application.Current.ApplicationInfo.ApplicationId, _noti);
-                _connectionState = ConnectedState.Connected;
-                tcs.SetResult(true);
+                try
+                {
+                    _msg.CoRegister(Application.Current.ApplicationInfo.ApplicationId, _noti);
+                    _connectionState = ConnectedState.Connected;
+                    tcs.SetResult(true);
+                }
+                catch (InvalidIOException)
+                {
+                    Log.Debug(LogTag, "Exception occurred while CoRegister");
+                    _connectionState = ConnectedState.Disconnected;
+                    tcs.SetException(new InvalidOperationException("invalid Port cause exception", new InvalidIOException()));
+                }
             };
             _msg.Rejected += (sender, e) =>
             {

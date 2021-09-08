@@ -41,16 +41,16 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "CONSTR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WidgetViewManagerConstructor()
+        public void WidgetViewManagerConstructorWithIntPtr()
         {
-            tlog.Debug(tag, $"WidgetViewManagerConstructor START");
+            tlog.Debug(tag, $"WidgetViewManagerConstructorWithIntPtr START");
 
             var testingTarget = new WidgetViewManager(widget.GetIntPtr(), false);
             Assert.IsNotNull(testingTarget, "Can't create success object WidgetViewManager");
             Assert.IsInstanceOf<WidgetViewManager>(testingTarget, "Should be an instance of WidgetViewManager type.");
 
             testingTarget.Dispose();
-            tlog.Debug(tag, $"WidgetViewManagerConstructor END (OK)");
+            tlog.Debug(tag, $"WidgetViewManagerConstructorWithIntPtr END (OK)");
         }
 
         [Test]
@@ -113,13 +113,14 @@ namespace Tizen.NUI.Devel.Tests
         //    tlog.Debug(tag, $"WidgetViewManagerAddWidget START");
 
         //    var testingTarget = new WidgetViewManager(widget.GetIntPtr(), false);
+        //    Assert.IsNotNull(testingTarget, "Can't create success object WidgetViewManager");
+        //    Assert.IsInstanceOf<WidgetViewManager>(testingTarget, "Should be an instance of WidgetViewManager type.");
 
-        //    var result = testingTarget.AddWidget(widget.Id.ToString(), "WidgetView", 100, 200, 50.0f);
+        //    var result = testingTarget.AddWidget(widget.Id.ToString(), "widget", 100, 200, 50.0f);
         //    Assert.IsNotNull(result, "Can't create success object WidgetView");
         //    Assert.IsInstanceOf<WidgetView>(result, "Should be an instance of WidgetView type.");
 
         //    testingTarget.Dispose();
-
         //    tlog.Debug(tag, $"WidgetViewManagerAddWidget END (OK)");
         //}
 

@@ -11,19 +11,16 @@ namespace Tizen.NUI.Devel.Tests
     public class PublicProvideCompiledAttributeTest
     {
         private const string tag = "NUITEST";
-        private static ProvideCompiledAttribute p1;
 
         [SetUp]
         public void Init()
         {
-            p1 = new ProvideCompiledAttribute("mytestAttribute");
             tlog.Info(tag, "Init() is called!");
         }
 
         [TearDown]
         public void Destroy()
         {
-            p1 = null;
             tlog.Info(tag, "Destroy() is called!");
         }
 
@@ -36,11 +33,13 @@ namespace Tizen.NUI.Devel.Tests
         public void ProvideCompiledAttributeConstructor()
         {
             tlog.Debug(tag, $"ProvideCompiledAttributeConstructor START");
-            ProvideCompiledAttribute p2 = new ProvideCompiledAttribute("testAttribute");
 
-            p2 = null;
-            tlog.Debug(tag, $"ProvideCompiledAttributeConstructor END (OK)");
-            Assert.Pass("ProvideCompiledAttributeConstructor");
+            var testingTarget = new ProvideCompiledAttribute("testAttribute");
+            Assert.IsNotNull(testingTarget, "null ProvideCompiledAttribute");
+            Assert.IsInstanceOf<ProvideCompiledAttribute>(testingTarget, "Should return ProvideCompiledAttribute instance.");
+            
+            testingTarget = null;
+            tlog.Debug(tag, $"ProvideCompiledAttributeConstructor END");
         }
 
         [Test]
@@ -54,15 +53,20 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"ProvideCompiledAttributeCompiledVersion START");
             try
             {
-                string attribute = p1.CompiledVersion;
+                var testingTarget = new ProvideCompiledAttribute("testAttribute");
+                Assert.IsNotNull(testingTarget, "null ProvideCompiledAttribute");
+                Assert.IsInstanceOf<ProvideCompiledAttribute>(testingTarget, "Should return ProvideCompiledAttribute instance.");
+                
+                string result = testingTarget.CompiledVersion;
+                tlog.Debug(tag, "CompiledVersion : " + result);
+
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
-            tlog.Debug(tag, $"ProvideCompiledAttributeCompiledVersion END (OK)");
-            Assert.Pass("ProvideCompiledAttributeCompiledVersion");
+            tlog.Debug(tag, $"ProvideCompiledAttributeCompiledVersion END");
         }
     }
 }

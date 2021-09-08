@@ -26,10 +26,10 @@ namespace Tizen.NUI.EXaml
 {
     internal class GatherBindableProperties : Operation
     {
-        public GatherBindableProperties(GlobalDataList globalDataList, int typeIndex, string propertyName)
+        public GatherBindableProperties(GlobalDataList globalDataList, List<object> operationInfo)
         {
-            this.typeIndex = typeIndex;
-            this.propertyName = propertyName;
+            typeIndex = (int)operationInfo[0];
+            propertyName = operationInfo[1] as string;
             this.globalDataList = globalDataList;
         }
 

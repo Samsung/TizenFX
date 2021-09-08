@@ -42,16 +42,19 @@ namespace Tizen.NUI.Devel.Tests
         public void GLWindowVisibilityChangedEventConstructor()
         {
             tlog.Debug(tag, $"GLWindowVisibilityChangedEventConstructor START");
+
             string name = "myGLWindow";
-            Rectangle rectangle = new Rectangle(20, 20, 100, 100);
-            GLWindow a1 = new GLWindow(name, rectangle, true);
+            Rectangle rec = new Rectangle(20, 20, 100, 100);
+            GLWindow glwin = new GLWindow(name, rec, true);
 
-            GLWindowVisibilityChangedEvent b1 = new GLWindowVisibilityChangedEvent(a1.SwigCPtr.Handle, false);
+            var testingTarget = new GLWindowVisibilityChangedEvent(glwin.SwigCPtr.Handle, false);
+            Assert.IsNotNull(testingTarget, "Can't create success object GLWindowVisibilityChangedEvent");
+            Assert.IsInstanceOf<GLWindowVisibilityChangedEvent>(testingTarget, "Should be an instance of GLWindowVisibilityChangedEvent type.");
 
-            b1.Dispose();
-            a1.Destroy();
+            rec.Dispose();
+            glwin.Destroy();
+            testingTarget.Dispose();
             tlog.Debug(tag, $"GLWindowVisibilityChangedEventConstructor END (OK)");
-            Assert.Pass("GLWindowVisibilityChangedEventConstructor");
         }
 
         //[Test]
@@ -64,24 +67,20 @@ namespace Tizen.NUI.Devel.Tests
         //{
         //    tlog.Debug(tag, $"GLWindowVisibilityChangedEventEmpty START");
 
-        //    using (GLWindow glWindow = new GLWindow())
-        //    {
-        //        var testingTarget = new GLWindowVisibilityChangedEvent(glWindow.SwigCPtr.Handle, false);
+        //    string name = "myGLWindow";
+        //    Rectangle rec = new Rectangle(20, 20, 100, 100);
+        //    GLWindow glwin = new GLWindow(name, rec, true);
 
-        //        try
-        //        {
-        //            var result = testingTarget.Empty();
-        //            tlog.Debug(tag, "result : " + result);
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            tlog.Debug(tag, e.Message.ToString());
-        //            Assert.Fail("Caught Exception : Failed!");
-        //        }
+        //    var testingTarget = new GLWindowVisibilityChangedEvent(glwin.SwigCPtr.Handle, false);
+        //    Assert.IsNotNull(testingTarget, "Can't create success object GLWindowVisibilityChangedEvent");
+        //    Assert.IsInstanceOf<GLWindowVisibilityChangedEvent>(testingTarget, "Should be an instance of GLWindowVisibilityChangedEvent type.");
 
-        //        testingTarget.Dispose();
-        //    }
+        //    var result = testingTarget.Empty();
+        //    tlog.Debug(tag, "Empty : " + result);
 
+        //    rec.Dispose();
+        //    glwin.Destroy();
+        //    testingTarget.Dispose();
         //    tlog.Debug(tag, $"GLWindowVisibilityChangedEventEmpty END (OK)");
         //}
 
@@ -94,16 +93,22 @@ namespace Tizen.NUI.Devel.Tests
         public void GLWindowVisibilityChangedEventGetConnectionCount()
         {
             tlog.Debug(tag, $"GLWindowVisibilityChangedEventGetConnectionCount START");
+            
             string name = "myGLWindow";
-            Rectangle rectangle = new Rectangle(20, 20, 100, 100);
-            GLWindow a1 = new GLWindow(name, rectangle, true);
+            Rectangle rec = new Rectangle(20, 20, 100, 100);
+            GLWindow glwin = new GLWindow(name, rec, true);
 
-            GLWindowVisibilityChangedEvent b1 = new GLWindowVisibilityChangedEvent(a1.SwigCPtr.Handle, false);
-            b1.GetConnectionCount();
+            var testingTarget = new GLWindowVisibilityChangedEvent(glwin.SwigCPtr.Handle, false);
+            Assert.IsNotNull(testingTarget, "Can't create success object GLWindowVisibilityChangedEvent");
+            Assert.IsInstanceOf<GLWindowVisibilityChangedEvent>(testingTarget, "Should be an instance of GLWindowVisibilityChangedEvent type.");
 
-            a1.Destroy();
+            var result = testingTarget.GetConnectionCount();
+            tlog.Debug(tag, "ConnectionCount : " + result);
+
+            rec.Dispose();
+            glwin.Destroy();
+            testingTarget.Dispose();
             tlog.Debug(tag, $"GLWindowVisibilityChangedEventGetConnectionCount END (OK)");
-            Assert.Pass("GLWindowVisibilityChangedEventGetConnectionCount");
         }
 
         //[Test]
@@ -116,27 +121,30 @@ namespace Tizen.NUI.Devel.Tests
         //{
         //    tlog.Debug(tag, $"GLWindowVisibilityChangedEventConnect START");
 
-        //    using (GLWindow glWindow = new GLWindow())
+        //    string name = "myGLWindow";
+        //    Rectangle rec = new Rectangle(20, 20, 100, 100);
+        //    GLWindow glwin = new GLWindow(name, rec, true);
+
+        //    var testingTarget = new GLWindowVisibilityChangedEvent(glwin.SwigCPtr.Handle, false);
+        //    Assert.IsNotNull(testingTarget, "Can't create success object GLWindowVisibilityChangedEvent");
+        //    Assert.IsInstanceOf<GLWindowVisibilityChangedEvent>(testingTarget, "Should be an instance of GLWindowVisibilityChangedEvent type.");
+
+        //    try
         //    {
-        //        var testingTarget = new GLWindowVisibilityChangedEvent(glWindow.SwigCPtr.Handle, false);
-
-        //        try
-        //        {
-        //            dummyCallback callback = OnDummyCallback;
-        //            testingTarget.Connect(callback);
-        //            testingTarget.Disconnect(callback);
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            tlog.Debug(tag, e.Message.ToString());
-        //            Assert.Fail("Caught Exception : Failed!");
-        //        }
-
-        //        testingTarget.Dispose();
+        //        dummyCallback callback = OnDummyCallback;
+        //        testingTarget.Connect(callback);
+        //        testingTarget.Disconnect(callback);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        tlog.Debug(tag, e.Message.ToString());
+        //        Assert.Fail("Caught Exception : Failed!");
         //    }
 
+        //    rec.Dispose();
+        //    glwin.Destroy();
+        //    testingTarget.Dispose();
         //    tlog.Debug(tag, $"GLWindowVisibilityChangedEventConnect END (OK)");
-        //    Assert.Pass("GLWindowVisibilityChangedEventConnect");
         //}
 
         [Test]
@@ -148,16 +156,29 @@ namespace Tizen.NUI.Devel.Tests
         public void GLWindowVisibilityChangedEventEmit()
         {
             tlog.Debug(tag, $"GLWindowVisibilityChangedEventEmit START");
+
             string name = "myGLWindow";
-            Rectangle rectangle = new Rectangle(20, 20, 100, 100);
-            GLWindow a1 = new GLWindow(name, rectangle, true);
+            Rectangle rec = new Rectangle(20, 20, 100, 100);
+            GLWindow glwin = new GLWindow(name, rec, true);
 
-            GLWindowVisibilityChangedEvent b1 = new GLWindowVisibilityChangedEvent(a1.SwigCPtr.Handle, false);
-            b1.Emit(a1, true);
+            var testingTarget = new GLWindowVisibilityChangedEvent(glwin.SwigCPtr.Handle, false);
+            Assert.IsNotNull(testingTarget, "Can't create success object GLWindowVisibilityChangedEvent");
+            Assert.IsInstanceOf<GLWindowVisibilityChangedEvent>(testingTarget, "Should be an instance of GLWindowVisibilityChangedEvent type.");
 
-            a1.Destroy();
+            try
+            {
+                testingTarget.Emit(glwin, true);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            rec.Dispose();
+            glwin.Destroy();
+            testingTarget.Dispose();
             tlog.Debug(tag, $"GLWindowVisibilityChangedEventEmit END (OK)");
-            Assert.Pass("GLWindowVisibilityChangedEventEmit");
         }
     }
 }

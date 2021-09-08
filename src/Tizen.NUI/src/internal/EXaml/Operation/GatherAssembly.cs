@@ -27,9 +27,9 @@ namespace Tizen.NUI.EXaml
 {
     internal class GatherAssembly : Operation
     {
-        public GatherAssembly(GlobalDataList globalDataList, string assemblyName)
+        public GatherAssembly(GlobalDataList globalDataList, List<object> opInfo)
         {
-            this.assemblyName = assemblyName;
+            this.assemblyName = opInfo[0] as string;
             this.globalDataList = globalDataList;
         }
 

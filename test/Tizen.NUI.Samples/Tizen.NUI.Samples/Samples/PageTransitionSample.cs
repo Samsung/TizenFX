@@ -84,7 +84,20 @@ namespace Tizen.NUI.Samples
 
             mainPage = new ContentPage()
             {
+                BackgroundColor = Color.Transparent,
                 Content = mainRoot,
+                DisappearingTransition = new SlideTransition()
+                {
+                    TimePeriod = new TimePeriod(500),
+                    AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default),
+                    Direction = SlideTransitionDirection.Top
+                },
+                AppearingTransition = new SlideTransition()
+                {
+                    TimePeriod = new TimePeriod(500),
+                    AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default),
+                    Direction = SlideTransitionDirection.Right
+                },
             };
             navigator.Push(mainPage);
 
@@ -179,7 +192,18 @@ namespace Tizen.NUI.Samples
 
             totalPage = new ContentPage()
             {
+                BackgroundColor = Color.Transparent,
                 Content = totalPageRoot,
+                AppearingTransition = new FadeTransition()
+                {
+                    TimePeriod = new TimePeriod(500),
+                    AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default),
+                },
+                DisappearingTransition = new FadeTransition()
+                {
+                    TimePeriod = new TimePeriod(500),
+                    AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default),
+                },
             };
         }
 
@@ -306,7 +330,18 @@ namespace Tizen.NUI.Samples
 
             Page page = new ContentPage()
             {
+                BackgroundColor = Color.Transparent,
                 Content = pageRoot,
+                AppearingTransition = new FadeTransition()
+                {
+                    TimePeriod = new TimePeriod(500),
+                    AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default),
+                },
+                DisappearingTransition = new FadeTransition()
+                {
+                    TimePeriod = new TimePeriod(500),
+                    AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default),
+                },
             };
             return page;
         }

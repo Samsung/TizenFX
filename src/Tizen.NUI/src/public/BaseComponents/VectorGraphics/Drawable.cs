@@ -35,21 +35,6 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         {
         }
 
-        /// <summary>
-        /// Enumeration indicating the type used in the masking of two objects - the mask drawable and the own drawable.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public enum MaskType
-        {
-            /// <summary>
-            /// The pixels of the own drawable and the mask drawable are alpha blended. As a result, only the part of the own drawable, which intersects with the mask drawable is visible.
-            /// </summary>
-            Alpha = 0,
-            /// <summary>
-            /// The pixels of the own drawable and the complement to the mask drawable's pixels are alpha blended. As a result, only the part of the own which is not covered by the mask is visible.
-            /// </summary>
-            AlphaInverse
-        }
 
         /// <summary>
         /// The transparency level [0 ~ 1.0], 0 means totally transparent, while 1 means opaque.

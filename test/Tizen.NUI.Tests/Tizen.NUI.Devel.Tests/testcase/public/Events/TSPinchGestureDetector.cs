@@ -139,15 +139,16 @@ namespace Tizen.NUI.Devel.Tests
         public void PinchGestureDetectorAssign()
         {
             tlog.Debug(tag, $"PinchGestureDetectorAssign START");
-            PinchGestureDetector a1 = new PinchGestureDetector();
 
-            PinchGestureDetector b1 = a1;
-			
-            a1.Dispose();
-            b1.Dispose();
-            
-            tlog.Debug(tag, $"PinchGestureDetectorAssign END (OK)");
-            Assert.Pass("PinchGestureDetectorAssign");			
+            using (PinchGestureDetector detector = new PinchGestureDetector())
+            {
+                var testingTarget = detector.Assign(detector);
+                Assert.IsInstanceOf<PinchGestureDetector>(testingTarget, "Should be an instance of PinchGestureDetector type.");
+
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"PinchGestureDetectorAssign END (OK)");		
         }
 		
         [Test]
@@ -191,6 +192,33 @@ namespace Tizen.NUI.Devel.Tests
         }
 		
 		private void OnDetected(object obj, PinchGestureDetector.DetectedEventArgs e)
-		{ }	
+		{ }
+
+        [Test]
+        [Category("P1")]
+        [Description("Test DetectedEventArgs View.")]
+        [Property("SPEC", "Tizen.NUI.DetectedEventArgs.View A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void PinchGestureDetectedEventArgsView()
+        {
+            tlog.Debug(tag, $"PinchGestureDetectedEventArgsView START");
+
+            var testingTarget = new Tizen.NUI.PinchGestureDetector.DetectedEventArgs();
+            Assert.IsNotNull(testingTarget, "Can't create success object DetectedEventArgs.");
+            Assert.IsInstanceOf<Tizen.NUI.PinchGestureDetector.DetectedEventArgs>(testingTarget, "Should return DetectedEventArgs instance.");
+
+            using (View view = new View() { Size = new Size(100, 50) })
+            {
+                testingTarget.View = view;
+                Assert.AreEqual(100, testingTarget.View.Size.Width, "Should be equal!");
+            }
+
+            testingTarget.PinchGesture = new PinchGesture(Gesture.StateType.Possible);
+            Assert.AreEqual(Gesture.StateType.Possible, testingTarget.PinchGesture.State, "Should be equal!");
+
+            tlog.Debug(tag, $"PinchGestureDetectedEventArgsView END (OK)");
+        }
     }
 }
