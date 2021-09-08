@@ -154,6 +154,7 @@ namespace Tizen.Applications.RPCPort
     public class Parcel : IDisposable
     {
         private IntPtr _handle;
+        private ParcelHeader _header;
 
         /// <summary>
         /// Constructor for this class.
@@ -438,10 +439,14 @@ namespace Tizen.Applications.RPCPort
         /// <since_tizen> 9 </since_tizen>
         public ParcelHeader GetHeader()
         {
-            Interop.LibRPCPort.Parcel.GetHeader(_handle, out IntPtr handle);
-            ParcelHeader header = new ParcelHeader();
-            header._handle = handle;
-            return header;
+            if (_header == null) {
+                Interop.LibRPCPort.Parcel.GetHeader(_handle, out IntPtr handle);
+                _header = new ParcelHeader() {
+                    _handle = handle
+                };
+            }
+
+            return _header;
         }
 
         #region IDisposable Support
