@@ -11,26 +11,24 @@ namespace Tizen.NUI.Devel.Tests
     public class PublicTypeExtensionTest
     {
         private const string tag = "NUITEST";
-        private static TypeExtension t1;
+        private TypeExtension tExtension;
 
-        internal class IServiceProviderimplement : IServiceProvider
+        internal class IServiceProviderImpl : IServiceProvider
         {
-            public object GetService(Type serviceType)
-            {
-                return null;
-            }
+            public object GetService(Type serviceType) { return null; }
         }
 
         [SetUp]
         public void Init()
         {
             tlog.Info(tag, "Init() is called!");
-            t1 = new TypeExtension();
+            tExtension = new TypeExtension();
         }
 
         [TearDown]
         public void Destroy()
         {
+            tExtension = null;
             tlog.Info(tag, "Destroy() is called!");
         }
 
@@ -46,40 +44,40 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                string tmp = t1.TypeName;
-                t1.TypeName = tmp;
+                var name = tExtension.TypeName;
+                tExtension.TypeName = name;
+                Assert.AreEqual(name, tExtension.TypeName, "Should be equal");
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"TypeExtensionTypeName END (OK)");
-            Assert.Pass("TypeExtensionTypeName");
+            tlog.Debug(tag, $"TypeExtensionTypeName END");
         }
 
         [Test]
-        [Category("P1")]
+        [Category("P2")]
         [Description("TypeExtension ProvideValue")]
-        [Property("SPEC", "Tizen.NUI.TypeExtension.ProvideValue A")]
+        [Property("SPEC", "Tizen.NUI.TypeExtension.ProvideValue M")]
         [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
+        [Property("CRITERIA", "MR")]
         public void TypeExtensionProvideValue()
         {
             tlog.Debug(tag, $"TypeExtensionProvideValue START");
 
             try
             {
-                IServiceProviderimplement serviceProviderimplement = new IServiceProviderimplement();
-                t1.TypeName = "myTypeName";
-                t1.ProvideValue(serviceProviderimplement);
+                tExtension.TypeName = this.GetType().ToString();
+                var type = tExtension.ProvideValue(new IServiceProviderImpl());
+                tlog.Error(tag, "Type : " + type);
             }
-            catch (Exception e)
+            catch (ArgumentException e)     // typeResolver is null
             {
-                tlog.Debug(tag, e.Message.ToString());
-                tlog.Debug(tag, $"TypeExtensionProvideValue END (OK)");
-                Assert.Pass("Caught Exception : passed!");
+                tlog.Error(tag, e.Message.ToString());
+                tlog.Debug(tag, $"TypeExtensionProvideValue END");
+                Assert.Pass("Caught Exception : Passed!");
             }
         }
     }

@@ -327,8 +327,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetFontStyle(FontStyle fontStyle)
         {
-            SetProperty(TextField.Property.FontStyle, new PropertyValue(TextUtils.GetFontStyleMap(fontStyle)));
-            NotifyPropertyChanged();
+            SetValue(FontStyleProperty, TextUtils.GetFontStyleMap(fontStyle));
         }
 
         /// <summary>
@@ -341,9 +340,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public FontStyle GetFontStyle()
         {
-            var map = new PropertyMap();
-            GetProperty(TextField.Property.FontStyle).Get(map);
-            return TextUtils.GetFontStyleStruct(map);
+            return TextUtils.GetFontStyleStruct((PropertyMap)GetValue(FontStyleProperty));
         }
 
         /// <summary>
@@ -751,6 +748,49 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Set SelectionHandleImage to TextField. <br />
+        /// </summary>
+        /// <param name="selectionHandleImage">The SelectionHandleImage</param>
+        /// <remarks>
+        /// SetSelectionHandleImage specifies the display image used for the selection handle through <see cref="Tizen.NUI.Text.SelectionHandleImage"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetSelectionHandleImage method.
+        /// <code>
+        /// var selectionHandleImage = new Tizen.NUI.Text.SelectionHandleImage();
+        /// selectionHandleImage.LeftImageUrl = "handle_downleft.png";
+        /// selectionHandleImage.RightImageUrl = "handle_downright.png";
+        /// field.SetSelectionHandleImage(selectionHandleImage);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetSelectionHandleImage(SelectionHandleImage selectionHandleImage)
+        {
+            if (!String.IsNullOrEmpty(selectionHandleImage.LeftImageUrl))
+            {
+                SetValue(SelectionHandleImageLeftProperty, TextUtils.GetFileNameMap(selectionHandleImage.LeftImageUrl));
+            }
+
+            if (!String.IsNullOrEmpty(selectionHandleImage.RightImageUrl))
+            {
+                SetValue(SelectionHandleImageRightProperty, TextUtils.GetFileNameMap(selectionHandleImage.RightImageUrl));
+            }
+        }
+
+        /// <summary>
+        /// Get SelectionHandleImage from TextField. <br />
+        /// </summary>
+        /// <returns>The SelectionHandleImage</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.SelectionHandleImage"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public SelectionHandleImage GetSelectionHandleImage()
+        {
+            return TextUtils.GetSelectionHandleImageStruct((PropertyMap)GetValue(SelectionHandleImageLeftProperty), (PropertyMap)GetValue(SelectionHandleImageRightProperty));
+        }
+
+        /// <summary>
         /// The SelectionHandlePressedImageLeft property.
         /// The selectionHandlePressedImageLeft map contains the following key :<br />
         /// <list type="table">
@@ -793,6 +833,49 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Set SelectionHandlePressedImage to TextField. <br />
+        /// </summary>
+        /// <param name="selectionHandlePressedImage">The SelectionHandleImage</param>
+        /// <remarks>
+        /// SetSelectionHandlePressedImage specifies the display image used for the selection handle through <see cref="Tizen.NUI.Text.SelectionHandleImage"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetSelectionHandlePressedImage method.
+        /// <code>
+        /// var selectionHandlePressedImage = new Tizen.NUI.Text.SelectionHandleImage();
+        /// selectionHandlePressedImage.LeftImageUrl = "handle_pressed_downleft.png";
+        /// selectionHandlePressedImage.RightImageUrl = "handle_pressed_downright.png";
+        /// field.SetSelectionHandlePressedImage(selectionHandlePressedImage);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetSelectionHandlePressedImage(SelectionHandleImage selectionHandlePressedImage)
+        {
+            if (!String.IsNullOrEmpty(selectionHandlePressedImage.LeftImageUrl))
+            {
+                SetValue(SelectionHandlePressedImageLeftProperty, TextUtils.GetFileNameMap(selectionHandlePressedImage.LeftImageUrl));
+            }
+
+            if (!String.IsNullOrEmpty(selectionHandlePressedImage.RightImageUrl))
+            {
+                SetValue(SelectionHandlePressedImageRightProperty, TextUtils.GetFileNameMap(selectionHandlePressedImage.RightImageUrl));
+            }
+        }
+
+        /// <summary>
+        /// Get SelectionHandlePressedImage from TextField. <br />
+        /// </summary>
+        /// <returns>The SelectionHandlePressedImage</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.SelectionHandleImage"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public SelectionHandleImage GetSelectionHandlePressedImage()
+        {
+            return TextUtils.GetSelectionHandleImageStruct((PropertyMap)GetValue(SelectionHandlePressedImageLeftProperty), (PropertyMap)GetValue(SelectionHandlePressedImageRightProperty));
+        }
+
+        /// <summary>
         /// The SelectionHandleMarkerImageLeft property.
         /// The selectionHandleMarkerImageLeft map contains the following key :<br />
         /// <list type="table">
@@ -832,6 +915,49 @@ namespace Tizen.NUI.BaseComponents
                 SetValue(SelectionHandleMarkerImageRightProperty, value);
                 NotifyPropertyChanged();
             }
+        }
+
+        /// <summary>
+        /// Set SelectionHandleMarkerImage to TextField. <br />
+        /// </summary>
+        /// <param name="selectionHandleMarkerImage">The SelectionHandleImage</param>
+        /// <remarks>
+        /// SetSelectionHandleMarkerImage specifies the display image used for the selection handle through <see cref="Tizen.NUI.Text.SelectionHandleImage"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetSelectionHandleMarkerImage method.
+        /// <code>
+        /// var selectionHandleMarkerImage = new Tizen.NUI.Text.SelectionHandleImage();
+        /// selectionHandleMarkerImage.LeftImageUrl = "handle_pressed_downleft.png";
+        /// selectionHandleMarkerImage.RightImageUrl = "handle_pressed_downright.png";
+        /// field.SetSelectionHandleMarkerImage(selectionHandleMarkerImage);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetSelectionHandleMarkerImage(SelectionHandleImage selectionHandleMarkerImage)
+        {
+            if (!String.IsNullOrEmpty(selectionHandleMarkerImage.LeftImageUrl))
+            {
+                SetValue(SelectionHandleMarkerImageLeftProperty, TextUtils.GetFileNameMap(selectionHandleMarkerImage.LeftImageUrl));
+            }
+
+            if (!String.IsNullOrEmpty(selectionHandleMarkerImage.RightImageUrl))
+            {
+                SetValue(SelectionHandleMarkerImageRightProperty, TextUtils.GetFileNameMap(selectionHandleMarkerImage.RightImageUrl));
+            }
+        }
+
+        /// <summary>
+        /// Get SelectionHandleMarkerImage from TextField. <br />
+        /// </summary>
+        /// <returns>The SelectionHandleMarkerImage</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.SelectionHandleImage"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public SelectionHandleImage GetSelectionHandleMarkerImage()
+        {
+            return TextUtils.GetSelectionHandleImageStruct((PropertyMap)GetValue(SelectionHandleMarkerImageLeftProperty), (PropertyMap)GetValue(SelectionHandleMarkerImageRightProperty));
         }
 
         /// <summary>
@@ -1006,8 +1132,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetInputFontStyle(FontStyle fontStyle)
         {
-            SetProperty(TextField.Property.InputFontStyle, new PropertyValue(TextUtils.GetFontStyleMap(fontStyle)));
-            NotifyPropertyChanged();
+            SetValue(InputFontStyleProperty, TextUtils.GetFontStyleMap(fontStyle));
         }
 
         /// <summary>
@@ -1020,9 +1145,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public FontStyle GetInputFontStyle()
         {
-            var map = new PropertyMap();
-            GetProperty(TextField.Property.InputFontStyle).Get(map);
-            return TextUtils.GetFontStyleStruct(map);
+            return TextUtils.GetFontStyleStruct((PropertyMap)GetValue(InputFontStyleProperty));
         }
 
         /// <summary>
@@ -1086,7 +1209,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetUnderline(Underline underline)
         {
-            SetProperty(TextField.Property.UNDERLINE, new PropertyValue(TextUtils.GetUnderlineMap(underline)));
+            SetValue(UnderlineProperty, TextUtils.GetUnderlineMap(underline));
         }
 
         /// <summary>
@@ -1099,9 +1222,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Underline GetUnderline()
         {
-            var map = new PropertyMap();
-            GetProperty(TextField.Property.UNDERLINE).Get(map);
-            return TextUtils.GetUnderlineStruct(map);
+            return TextUtils.GetUnderlineStruct((PropertyMap)GetValue(UnderlineProperty));
         }
 
         /// <summary>
@@ -1164,7 +1285,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetShadow(Tizen.NUI.Text.Shadow shadow)
         {
-            SetProperty(TextField.Property.SHADOW, new PropertyValue(TextUtils.GetShadowMap(shadow)));
+            SetValue(ShadowProperty, TextUtils.GetShadowMap(shadow));
         }
 
         /// <summary>
@@ -1177,9 +1298,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.Text.Shadow GetShadow()
         {
-            var map = new PropertyMap();
-            GetProperty(TextField.Property.SHADOW).Get(map);
-            return TextUtils.GetShadowStruct(map);
+            return TextUtils.GetShadowStruct((PropertyMap)GetValue(ShadowProperty));
         }
 
         /// <summary>
@@ -1275,7 +1394,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetOutline(Outline outline)
         {
-            SetProperty(TextField.Property.OUTLINE, new PropertyValue(TextUtils.GetOutlineMap(outline)));
+            SetValue(OutlineProperty, TextUtils.GetOutlineMap(outline));
         }
 
         /// <summary>
@@ -1288,9 +1407,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Outline GetOutline()
         {
-            var map = new PropertyMap();
-            GetProperty(TextField.Property.OUTLINE).Get(map);
-            return TextUtils.GetOutlineStruct(map);
+            return TextUtils.GetOutlineStruct((PropertyMap)GetValue(OutlineProperty));
         }
 
         /// <summary>
@@ -1345,6 +1462,43 @@ namespace Tizen.NUI.BaseComponents
                 SetValue(HiddenInputSettingsProperty, value);
                 NotifyPropertyChanged();
             }
+        }
+
+        /// <summary>
+        /// Set HiddenInput to TextField. <br />
+        /// </summary>
+        /// <param name="hiddenInput">The HiddenInput</param>
+        /// <remarks>
+        /// SetHiddenInput specifies the requested font style through <see cref="Tizen.NUI.Text.HiddenInput"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetHiddenInput method.
+        /// <code>
+        /// var hiddenInput = new Tizen.NUI.Text.HiddenInput();
+        /// hiddenInput.Mode = HiddenInputModeType.ShowLastCharacter;
+        /// hiddenInput.SubstituteCharacter = '★';
+        /// hiddenInput.SubstituteCount = 0;
+        /// hiddenInput.ShowLastCharacterDuration = 1000;
+        /// field.SetHiddenInput(hiddenInput);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetHiddenInput(HiddenInput hiddenInput)
+        {
+            SetValue(HiddenInputSettingsProperty, TextUtils.GetHiddenInputMap(hiddenInput));
+        }
+
+        /// <summary>
+        /// Get HiddenInput from TextField. <br />
+        /// </summary>
+        /// <returns>The HiddenInput</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.HiddenInput"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public HiddenInput GetHiddenInput()
+        {
+            return TextUtils.GetHiddenInputStruct((PropertyMap)GetValue(HiddenInputSettingsProperty));
         }
 
         /// <summary>
@@ -1644,6 +1798,7 @@ namespace Tizen.NUI.BaseComponents
         /// </code>
         /// </example>
         /// <since_tizen> 3 </since_tizen>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1721: Property names should not match get methods")]
         public Tizen.NUI.PropertyMap Placeholder
         {
             get
@@ -1724,6 +1879,52 @@ namespace Tizen.NUI.BaseComponents
                 SetValue(PlaceholderProperty, value);
                 NotifyPropertyChanged();
             }
+        }
+
+        /// <summary>
+        /// Set Placeholder to TextField. <br />
+        /// </summary>
+        /// <param name="placeholder">The Placeholder</param>
+        /// <remarks>
+        /// SetPlaceholder specifies the attributes of the placeholder property through <see cref="Tizen.NUI.Text.Placeholder"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetPlaceholder method.
+        /// <code>
+        /// var placeholder = new Tizen.NUI.Text.Placeholder();
+        /// placeholder.Text = "placeholder text";
+        /// placeholder.TextFocused = "placeholder textFocused";
+        /// placeholder.Color = new Color("#45B39D");
+        /// placeholder.FontFamily = "BreezeSans";
+        /// placeholder.FontStyle = new Tizen.NUI.Text.FontStyle()
+        /// {
+        ///     Width = FontWidthType.Expanded,
+        ///     Weight = FontWeightType.ExtraLight,
+        ///     Slant = FontSlantType.Italic,
+        /// };
+        /// placeholder.PointSize = 25.0f;
+        /// //placeholder.PixelSize = 50.0f;
+        /// placeholder.Ellipsis = true;
+        /// field.SetPlaceholder(placeholder);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetPlaceholder(Placeholder placeholder)
+        {
+            SetValue(PlaceholderProperty, TextUtils.GetPlaceholderMap(placeholder));
+        }
+
+        /// <summary>
+        /// Get Placeholder from TextField. <br />
+        /// </summary>
+        /// <returns>The Placeholder</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.Placeholder"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Placeholder GetPlaceholder()
+        {
+            return TextUtils.GetPlaceholderStruct((PropertyMap)GetValue(PlaceholderProperty));
         }
 
         /// <summary>

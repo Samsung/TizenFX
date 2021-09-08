@@ -8,39 +8,28 @@ namespace Tizen.NUI.Devel.Tests
 
     [TestFixture]
     [Description("public/xaml/MarkupExtensions/NUIResourcePathExtension")]
-    internal class PublicNUIResourcePathExtensionTest
+    public class PublicNUIResourcePathExtensionTest
     {
         private const string tag = "NUITEST";
-        private static NUIResourcePathExtension n1;
+        private NUIResourcePathExtension resPath;
+
+        internal class IServiceProviderImpl : IServiceProvider
+        {
+            public object GetService(Type serviceType) { return null; }
+        }
 
         [SetUp]
         public void Init()
         {
             tlog.Info(tag, "Init() is called!");
-            n1 = new NUIResourcePathExtension();
+            resPath = new NUIResourcePathExtension();
         }
 
         [TearDown]
         public void Destroy()
         {
-            n1 = null;
+            resPath = null;
             tlog.Info(tag, "Destroy() is called!");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("NUIResourcePathExtension NUIResourcePathExtension")]
-        [Property("SPEC", "Tizen.NUI.NUIResourcePathExtension.NUIResourcePathExtension C")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "CONSTR")]
-        public void NUIResourcePathExtensionConstructor()
-        {
-            tlog.Debug(tag, $"NUIResourcePathExtensionConstructor START");
-
-            NUIResourcePathExtension nUIResourcePathExtension = new NUIResourcePathExtension();
-
-            tlog.Debug(tag, $"NUIResourcePathExtensionConstructor END (OK)");
-            Assert.Pass("NUIResourcePathExtensionConstructor");
         }
 
         [Test]
@@ -55,25 +44,17 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                string tmp = n1.FilePath;
-                n1.FilePath = tmp;
+                string tmp = resPath.FilePath;
+                resPath.FilePath = tmp;
+                Assert.AreEqual(tmp, resPath.FilePath, "Should be equal");
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"NUIResourcePathExtensionFilePath END (OK)");
-            Assert.Pass("NUIResourcePathExtensionFilePath");
-        }
-
-        private class IServiceProviderimplement : IServiceProvider
-        {
-            public object GetService(Type serviceType)
-            {
-                return null;
-            }
+            tlog.Debug(tag, $"NUIResourcePathExtensionFilePath END");
         }
 
         [Test]
@@ -88,17 +69,15 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                IServiceProviderimplement serviceProviderimplement = new IServiceProviderimplement();
-                n1.ProvideValue(serviceProviderimplement);
+                resPath.ProvideValue(new IServiceProviderImpl());
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"NUIResourcePathExtensionProvideValue END (OK)");
-            Assert.Pass("NUIResourcePathExtensionProvideValue");
+            tlog.Debug(tag, $"NUIResourcePathExtensionProvideValue END");
         }
     }
 }

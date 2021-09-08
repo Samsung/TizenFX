@@ -605,6 +605,7 @@ namespace Tizen.NUI.Devel.Tests
                 tlog.Debug(tag, e.Message.ToString());
                 Assert.Fail("Caught Exception : Failed!");
             }
+
             tlog.Debug(tag, $"WindowRequestMoveToServer END (OK)");
         }
 
@@ -627,50 +628,8 @@ namespace Tizen.NUI.Devel.Tests
                 tlog.Debug(tag, e.Message.ToString());
                 Assert.Fail("Caught Exception : Failed!");
             }
-            tlog.Debug(tag, $"WindowRequestMoveToServer END (OK)");
-        }
 
-        [Test]
-        [Category("P1")]
-        [Description("Window IncludeInputRegion Test")]
-        [Property("SPEC", "Tizen.NUI.Window.IncludeInputRegion M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        public void IncludeInputRegionTest()
-        {
-            try
-            {
-                var window = Window.Instance;
-                Rectangle inputRegion = new Rectangle(0, 0, 720, 640);
-                window.IncludeInputRegion(inputRegion);
-            }
-            catch (Exception e)
-            {
-                Assert.Fail("Caught Exception : Failed!");
-            }
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("Window ExcludeInputRegion Test")]
-        [Property("SPEC", "Tizen.NUI.Window.ExcludeInputRegion M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        public void ExcludeInputRegionTest()
-        {
-            try
-            {
-                var window = Window.Instance;
-                Rectangle includeInputRegion = new Rectangle(0, 0, 720, 1280);
-                window.IncludeInputRegion(includeInputRegion);
-
-                Rectangle excludeInputRegion = new Rectangle(0, 641, 720, 640);
-                window.ExcludeInputRegion(excludeInputRegion);
-            }
-            catch (Exception e)
-            {
-                Assert.Fail("Caught Exception : Failed!");
-            }
+            tlog.Debug(tag, $"WindowRequestResizeToServer END (OK)");
         }
     }
 }

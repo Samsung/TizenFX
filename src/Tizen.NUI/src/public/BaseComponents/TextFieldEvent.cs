@@ -193,10 +193,9 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The SelectionChanged event.
+        /// The SelectionChanged signal is emitted whenever the selected text changed.
         /// </summary>
-        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public event EventHandler SelectionChanged
         {
             add

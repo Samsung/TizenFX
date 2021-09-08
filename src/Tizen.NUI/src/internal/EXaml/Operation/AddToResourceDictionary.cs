@@ -26,11 +26,11 @@ namespace Tizen.NUI.EXaml
 {
     internal class AddToResourceDictionary : Operation
     {
-        internal AddToResourceDictionary(GlobalDataList globalDataList, int instanceIndex, string key, object value)
+        public AddToResourceDictionary(GlobalDataList globalDataList, List<object> operationInfo)
         {
-            this.instanceIndex = instanceIndex;
-            this.key = key;
-            this.value = value;
+            instanceIndex = (int)operationInfo[0];
+            key = operationInfo[1] as string;
+            value = operationInfo[2];
             this.globalDataList = globalDataList;
         }
 
