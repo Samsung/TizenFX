@@ -88,7 +88,6 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Releases all resources used by the current instance.
         /// </summary>
-        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <since_tizen> 9 </since_tizen>
         public void Dispose()
         {

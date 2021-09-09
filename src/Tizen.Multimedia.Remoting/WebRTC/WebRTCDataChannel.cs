@@ -122,6 +122,7 @@ namespace Tizen.Multimedia.Remoting
         /// Sends a string data across the data channel to the remote peer.
         /// </summary>
         /// <param name="data">The string data to send</param>
+        /// <exception cref="ObjectDisposedException">The WebRTCDataChannel has already been disposed.</exception>
         /// <since_tizen> 9 </since_tizen>
         public void Send(string data)
         {
@@ -135,6 +136,7 @@ namespace Tizen.Multimedia.Remoting
         /// Sends byte data across the data channel to the remote peer.
         /// </summary>
         /// <param name="data">The byte data to send</param>
+        /// <exception cref="ObjectDisposedException">The WebRTCDataChannel has already been disposed.</exception>
         /// <since_tizen> 9 </since_tizen>
         public void Send(byte[] data)
         {
@@ -155,7 +157,6 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Releases all resources used by the current instance.
         /// </summary>
-        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <since_tizen> 9 </since_tizen>
         public void Dispose()
         {
