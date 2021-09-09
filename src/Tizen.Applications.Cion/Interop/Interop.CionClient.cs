@@ -58,7 +58,7 @@ internal static partial class Interop
         internal static extern ErrorCode CionClientDisconnect(ClientSafeHandle client);
 
         [DllImport(Libraries.Cion, EntryPoint = "cion_client_send_data")]
-        internal static extern ErrorCode CionClientSendData(ClientSafeHandle client, byte[] data, int dataSize, int timeout, out byte[] returnData, out int returnDataSize);
+        internal static extern ErrorCode CionClientSendData(ClientSafeHandle client, byte[] data, int dataSize, int timeout, out IntPtr returnData, out int returnDataSize);
 
         [DllImport(Libraries.Cion, EntryPoint = "cion_client_send_payload_async")]
         internal static extern ErrorCode CionClientSendPayloadAsync(ClientSafeHandle client, PayloadSafeHandle payload, CionClientPayloadAsyncResultCb cb, IntPtr userData);

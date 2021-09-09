@@ -100,7 +100,7 @@ namespace Tizen.Applications
                         _peer = peer;
                     }
 
-                    OnConnectionResult(peer, new ConnectionResult(result));
+                    OnConnectionResult(peer, connectionResult);
                 });
             ret = Interop.CionClient.CionClientAddConnectionResultCb(_handle, _connectionResultCb, IntPtr.Zero);
             if (ret != Interop.Cion.ErrorCode.None)
@@ -123,7 +123,8 @@ namespace Tizen.Applications
                             receivedPayload = new FilePayload(new PayloadSafeHandle(payload, false));
                             break;
                         default:
-                            throw new ArgumentException("Invalid payload type received.");
+                            Log.Error(LogTag, "Invalid payload type received.");
+                            return;
                     }
                     OnPayloadReceived(receivedPayload, (PayloadTransferStatus)status);
                 });
@@ -240,12 +241,13 @@ namespace Tizen.Applications
         /// <since_tizen> 9 </since_tizen>
         public byte[] SendData(byte[] data, int timeout)
         {
-            Interop.Cion.ErrorCode ret = Interop.CionClient.CionClientSendData(_handle, data, data?.Length ?? -1, timeout, out byte[] returnData, out int returnDataSize);
+            Interop.Cion.ErrorCode ret = Interop.CionClient.CionClientSendData(_handle, data, data?.Length ?? -1, timeout, out IntPtr returnDataPtr, out int returnDataSize);
             if (ret != Interop.Cion.ErrorCode.None)
             {
                 throw CionErrorFactory.GetException(ret, "Failed to send data.");
             }
-
+            byte[] returnData = new byte[returnDataSize];
+            Marshal.Copy(returnDataPtr, returnData, 0, returnDataSize);
             Log.Info(LogTag, string.Format("Returned data size: {0}", returnDataSize));
 
             return returnData;
@@ -273,6 +275,7 @@ namespace Tizen.Applications
                 Interop.CionClient.CionClientPayloadAsyncResultCb cb = new Interop.CionClient.CionClientPayloadAsyncResultCb(
                     (IntPtr result, IntPtr userData) =>
                     {
+                        TaskCompletionSource<PayloadAsyncResult> tcsToReturn = _tcsDictionary[payload.Id];
                         PayloadAsyncResult resultPayload = null;
                         try
                         {
@@ -281,9 +284,9 @@ namespace Tizen.Applications
                         catch (Exception e)
                         {
                             Log.Error(LogTag, string.Format("Failed to create PayloadAsyncResult from result handle: {0}.", e.Message));
+                            tcsToReturn.SetException(e);
                             return;
                         }
-                        TaskCompletionSource<PayloadAsyncResult> tcsToReturn = _tcsDictionary[resultPayload.PayloadId];
                         tcsToReturn.SetResult(resultPayload);
                         _tcsDictionary.Remove(resultPayload.PayloadId);
                     });
