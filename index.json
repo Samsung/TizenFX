@@ -58114,6 +58114,11 @@
     "title": "Class Parcel",
     "keywords": ""
   },
+  "API9/api/Tizen.Applications.RPCPort.ParcelHeader.html": {
+    "href": "API9/api/Tizen.Applications.RPCPort.ParcelHeader.html",
+    "title": "Class ParcelHeader",
+    "keywords": ""
+  },
   "API9/api/Tizen.Applications.RPCPort.PermissionDeniedException.html": {
     "href": "API9/api/Tizen.Applications.RPCPort.PermissionDeniedException.html",
     "title": "Class PermissionDeniedException",
@@ -58137,6 +58142,11 @@
   "API9/api/Tizen.Applications.RPCPort.StubBase.html": {
     "href": "API9/api/Tizen.Applications.RPCPort.StubBase.html",
     "title": "Class StubBase",
+    "keywords": ""
+  },
+  "API9/api/Tizen.Applications.RPCPort.TimeStamp.html": {
+    "href": "API9/api/Tizen.Applications.RPCPort.TimeStamp.html",
+    "title": "Class TimeStamp",
     "keywords": ""
   },
   "API9/api/Tizen.Applications.SafeAppControlHandle.html": {
@@ -67472,6 +67482,11 @@
   "API9/api/Tizen.Uix.Tts.Mode.html": {
     "href": "API9/api/Tizen.Uix.Tts.Mode.html",
     "title": "Enum Mode",
+    "keywords": ""
+  },
+  "API9/api/Tizen.Uix.Tts.ScreenReaderChangedEventArgs.html": {
+    "href": "API9/api/Tizen.Uix.Tts.ScreenReaderChangedEventArgs.html",
+    "title": "Class ScreenReaderChangedEventArgs",
     "keywords": ""
   },
   "API9/api/Tizen.Uix.Tts.SpeedRange.html": {
