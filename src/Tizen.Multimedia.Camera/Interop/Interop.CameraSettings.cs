@@ -240,5 +240,11 @@ internal static partial class Interop
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_ptz_type")]
         internal static extern CameraError SetPtzType(IntPtr handle, CameraPtzType type);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_extra_preview_bitrate")]
+        internal static extern CameraError SetExtraPreviewBitrate(IntPtr handle, int streamId, int bitrate);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_extra_preview_bitrate")]
+        internal static extern CameraError GetExtraPreviewBitrate(IntPtr handle, int streamId, out int bitrate);
     }
 }
