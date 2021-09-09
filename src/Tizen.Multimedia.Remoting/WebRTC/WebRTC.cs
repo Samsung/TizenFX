@@ -295,8 +295,8 @@ namespace Tizen.Multimedia.Remoting
         /// <exception cref="ArgumentNullException">The description is null.</exception>
         /// <exception cref="InvalidOperationException">The WebRTC is not in the valid state.</exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
-        /// <seealso cref="CreateOffer()"/>
-        /// <seealso cref="CreateAnswer()"/>
+        /// <seealso cref="CreateOfferAsync()"/>
+        /// <seealso cref="CreateAnswerAsync()"/>
         /// <since_tizen> 9 </since_tizen>
         public void SetLocalDescription(string description)
         {
@@ -316,8 +316,8 @@ namespace Tizen.Multimedia.Remoting
         /// <exception cref="ArgumentNullException">The description is null.</exception>
         /// <exception cref="InvalidOperationException">The WebRTC is not in the valid state.</exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
-        /// <seealso cref="CreateOffer()"/>
-        /// <seealso cref="CreateAnswer()"/>
+        /// <seealso cref="CreateOfferAsync()"/>
+        /// <seealso cref="CreateAnswerAsync()"/>
         /// <since_tizen> 9 </since_tizen>
         public void SetRemoteDescription(string description)
         {
@@ -378,7 +378,6 @@ namespace Tizen.Multimedia.Remoting
         /// The WebRTC must be in the <see cref="WebRTCState.Idle"/>.<br/>
         /// Each MediaSource requires different feature or privilege.<br/>
         /// <see cref="MediaCameraSource"/> needs camera feature and privilege.<br/>
-        /// <see cref="MediaFileSource"/> needs mediastorage or externalstorage privilege.<br/>
         /// <see cref="MediaMicrophoneSource"/> needs microphone feature and recorder privilege.<br/>
         /// </remarks>
         /// <param name="source">The media sources to add.</param>
@@ -426,7 +425,6 @@ namespace Tizen.Multimedia.Remoting
         /// The WebRTC must be in the <see cref="WebRTCState.Idle"/>.<br/>
         /// Each MediaSource requires different feature or privilege.<br/>
         /// <see cref="MediaCameraSource"/> needs camera feature and privilege.<br/>
-        /// <see cref="MediaFileSource"/> needs mediastorage or externalstorage privilege.<br/>
         /// <see cref="MediaMicrophoneSource"/> needs microphone feature and recorder privilege.<br/>
         /// </remarks>
         /// <param name="sources">The media sources to add.</param>
