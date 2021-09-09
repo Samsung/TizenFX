@@ -1651,9 +1651,9 @@ namespace Tizen.NUI.BaseComponents
 
             map.Find(0)?.Get(out text);
             map.Find(1)?.Get(out textFocused);
-            map.Find(2).Get(color);
+            map.Find(2)?.Get(color);
             map.Find(3)?.Get(out fontFamily);
-            map.Find(4).Get(fontStyle);
+            map.Find(4)?.Get(fontStyle);
             pointSizeValue = map.Find(5);
             pixelSizeValue = map.Find(6);
             map.Find(7)?.Get(out ellipsis);
