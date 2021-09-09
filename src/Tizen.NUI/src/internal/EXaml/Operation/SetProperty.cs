@@ -49,7 +49,7 @@ namespace Tizen.NUI.EXaml
 
             if (null == property)
             {
-                throw new Exception(String.Format("Can't find property {0} in type {1}", property.Name, instance.GetType().FullName));
+                throw new Exception(String.Format("Can't find property in type {0}", instance.GetType().FullName));
             }
 
             if (null == property.SetMethod)
