@@ -100,13 +100,13 @@ namespace Tizen.Applications.RPCPort
         /// <summary>
         /// Disconnects the port.
         /// </summary>
-        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurrs.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when an internal IO error occurrs.</exception>
         /// <since_tizen> 9 </since_tizen>
         public void Disconnect()
         {
             Interop.LibRPCPort.ErrorCode err = Interop.LibRPCPort.Port.Disconnect(Handle);
             if (err != Interop.LibRPCPort.ErrorCode.None)
-                throw new InvalidIOException();
+                throw new InvalidOperationException();
         }
     }
 }
