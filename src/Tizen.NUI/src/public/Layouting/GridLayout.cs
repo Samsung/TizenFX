@@ -415,17 +415,62 @@ namespace Tizen.NUI
                 float t = vLocations[row] + Padding.Top + view.Margin.Top;
                 float width = hLocations[columnEnd] - hLocations[column] - ColumnSpacing - view.Margin.Start - view.Margin.End;
                 float height = vLocations[rowEnd] - vLocations[row] - RowSpacing - view.Margin.Top - view.Margin.Bottom;
+                bool needMeasuredWidth = false;
+                bool needMeasuredHeight = false;
 
-                if (!child.Column.Stretch.HasFlag(StretchFlags.Fill))
+                if (child.Column.Stretch.HasFlag(StretchFlags.Fill))
+                {
+                    needMeasuredWidth = true;
+                }
+                else
                 {
                     l += (width - child.LayoutItem.MeasuredWidth.Size.AsDecimal()) * halign.ToFloat();
                     width = child.LayoutItem.MeasuredWidth.Size.AsDecimal();
                 }
 
-                if (!child.Row.Stretch.HasFlag(StretchFlags.Fill))
+                if (child.Row.Stretch.HasFlag(StretchFlags.Fill))
+                {
+                    needMeasuredHeight = true;
+                }
+                else
                 {
                     t += (height - child.LayoutItem.MeasuredHeight.Size.AsDecimal()) * valign.ToFloat();
                     height = child.LayoutItem.MeasuredHeight.Size.AsDecimal();
+                }
+
+                if (needMeasuredWidth || needMeasuredHeight)
+                {
+                    // To calculate the grand children's Measure() with the mode type Exactly,
+                    // children's Measure() is called with MatchParent if the children have WrapContent.
+                    //
+                    // i.e.
+                    // If children have Wrapcontent and the grand children have MatchParent,
+                    // then grand children's MeasuredWidth/Height do not fill the children
+                    // because the grand children's Measure() is called with the mode type AtMost.
+                    int widthSpecification = child.LayoutItem.Owner.WidthSpecification;
+                    int heightSpecification = child.LayoutItem.Owner.HeightSpecification;
+
+                    if (needMeasuredWidth)
+                    {
+                        child.LayoutItem.Owner.WidthSpecification = LayoutParamPolicies.MatchParent;
+                    }
+                    if (needMeasuredHeight)
+                    {
+                        child.LayoutItem.Owner.HeightSpecification = LayoutParamPolicies.MatchParent;
+                    }
+
+                    MeasureSpecification widthSpec = new MeasureSpecification(new LayoutLength(width), MeasureSpecification.ModeType.Exactly);
+                    MeasureSpecification heightSpec = new MeasureSpecification(new LayoutLength(height), MeasureSpecification.ModeType.Exactly);
+                    MeasureChild(child.LayoutItem, widthSpec, heightSpec);
+
+                    if (needMeasuredWidth)
+                    {
+                        child.LayoutItem.Owner.WidthSpecification = widthSpecification;
+                    }
+                    if (needMeasuredHeight)
+                    {
+                        child.LayoutItem.Owner.HeightSpecification = heightSpecification;
+                    }
                 }
 
                 child.LayoutItem.Layout(new LayoutLength(l), new LayoutLength(t), new LayoutLength(l + width), new LayoutLength(t + height));

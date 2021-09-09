@@ -226,6 +226,7 @@ namespace Tizen.NUI
                 ImageView image = new ImageView(url.ToString());
                 image.Size = new Size(pixelData.GetWidth(), pixelData.GetHeight());
                 pixelData.Dispose();
+                url.Dispose();
                 return image;
             }
         }

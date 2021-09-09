@@ -125,7 +125,7 @@ namespace Tizen.NUI.Binding
             }
         }
 
-        internal class SealedList<T> : IList<T>
+        internal class SealedList<T> : IList<T>, IList
         {
             readonly IList<T> _actual;
 
@@ -178,6 +178,14 @@ namespace Tizen.NUI.Binding
                 }
             }
 
+            public bool IsFixedSize => throw new NotImplementedException();
+
+            public bool IsSynchronized => throw new NotImplementedException();
+
+            public object SyncRoot => throw new NotImplementedException();
+
+            object IList.this[int index] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
             public bool Remove(T item)
             {
                 if (IsReadOnly)
@@ -223,6 +231,37 @@ namespace Tizen.NUI.Binding
                 if (IsReadOnly)
                     throw new InvalidOperationException("This list is ReadOnly");
                 _actual.RemoveAt(index);
+            }
+
+            public int Add(object value)
+            {
+                Add((T)value);
+                return _actual.Count;
+            }
+
+            public bool Contains(object value)
+            {
+                return Contains((T)value);
+            }
+
+            public int IndexOf(object value)
+            {
+                return IndexOf((T)value);
+            }
+
+            public void Insert(int index, object value)
+            {
+                Insert(index, (T)value);
+            }
+
+            public void Remove(object value)
+            {
+                Remove((T)value);
+            }
+
+            public void CopyTo(Array array, int index)
+            {
+                CopyTo((T[])array, index);
             }
         }
     }

@@ -33,16 +33,19 @@ namespace Tizen.NUI
         private float timeOffset;
         private ApplicationType applicationType;
         private WebSecurityOriginList securityOriginList;
-        private SecurityOriginListAcquiredCallback securityOriginsAcquiredCallback;
+        private SecurityOriginListAcquiredCallback securityOriginListAcquiredCallback;
         private readonly WebContextSecurityOriginListAcquiredProxyCallback securityOriginListAcquiredProxyCallback;
-        private WebPasswordDataList passwordList;
+        private WebPasswordDataList passwordDataList;
         private PasswordDataListAcquiredCallback passwordDataListAcquiredCallback;
         private readonly WebContextPasswordDataListAcquiredProxyCallback passwordDataListAcquiredProxyCallback;
+        private HttpRequestInterceptedCallback httpRequestInterceptedCallback;
+        private readonly WebContextHttpRequestInterceptedProxyCallback httpRequestInterceptedProxyCallback;
 
         internal WebContext(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
             securityOriginListAcquiredProxyCallback = OnSecurityOriginListAcquired;
             passwordDataListAcquiredProxyCallback = OnPasswordDataListAcquired;
+            httpRequestInterceptedProxyCallback = OnHttpRequestIntercepted;
         }
 
         /// <summary>
@@ -61,9 +64,9 @@ namespace Tizen.NUI
                 //Called by User
                 //Release your own managed resources here.
                 //You should release all of your own disposable objects here.
-                if (passwordList != null)
+                if (passwordDataList != null)
                 {
-                    passwordList.Dispose();
+                    passwordDataList.Dispose();
                 }
                 if (securityOriginList != null)
                 {
@@ -107,13 +110,23 @@ namespace Tizen.NUI
         /// </summary>
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public delegate bool MimeOverriddenCallback(string url, string currentMime, string newMime);
+        public delegate bool MimeOverriddenCallback(string url, string currentMime, out string newMime);
+
+        /// <summary>
+        /// The callback function that is invoked when http request need be intercepted.
+        /// </summary>
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public delegate void HttpRequestInterceptedCallback(WebHttpRequestInterceptor interceptor);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WebContextSecurityOriginListAcquiredProxyCallback(IntPtr list);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WebContextPasswordDataListAcquiredProxyCallback(IntPtr list);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void WebContextHttpRequestInterceptedProxyCallback(IntPtr interceptor);
 
         /// <summary>
         /// Cache model
@@ -382,7 +395,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool GetWebDatabaseOrigins(SecurityOriginListAcquiredCallback callback)
         {
-            securityOriginsAcquiredCallback = callback;
+            securityOriginListAcquiredCallback = callback;
             IntPtr ip = Marshal.GetFunctionPointerForDelegate(securityOriginListAcquiredProxyCallback);
             bool result = Interop.WebContext.GetWebDatabaseOrigins(SwigCPtr, new HandleRef(this, ip));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -408,7 +421,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool GetWebStorageOrigins(SecurityOriginListAcquiredCallback callback)
         {
-            securityOriginsAcquiredCallback = callback;
+            securityOriginListAcquiredCallback = callback;
             IntPtr ip = Marshal.GetFunctionPointerForDelegate(securityOriginListAcquiredProxyCallback);
             bool result = Interop.WebContext.GetWebStorageOrigins(SwigCPtr, new HandleRef(this, ip));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -517,6 +530,23 @@ namespace Tizen.NUI
         {
             IntPtr ip = Marshal.GetFunctionPointerForDelegate(callback);
             Interop.WebContext.RegisterMimeOverriddenCallback(SwigCPtr, new HandleRef(this, ip));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Registers callback for http request interceptor.
+        /// <param name="callback">callback for intercepting http request</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RegisterHttpRequestInterceptedCallback(HttpRequestInterceptedCallback callback)
+        {
+            httpRequestInterceptedCallback = callback;
+            IntPtr ip = IntPtr.Zero;
+            if (httpRequestInterceptedCallback != null)
+            {
+                ip = Marshal.GetFunctionPointerForDelegate(httpRequestInterceptedProxyCallback);
+            }
+            Interop.WebContext.RegisterRequestInterceptedCallback(SwigCPtr, new HandleRef(this, ip));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -673,22 +703,29 @@ namespace Tizen.NUI
             {
                 originList.Add(securityOriginList.GetItemAtIndex(i));
             }
-            securityOriginsAcquiredCallback?.Invoke(originList);
+            securityOriginListAcquiredCallback?.Invoke(originList);
         }
 
         private void OnPasswordDataListAcquired(IntPtr alist)
         {
-            if (passwordList != null)
+            if (passwordDataList != null)
             {
-                passwordList.Dispose();
+                passwordDataList.Dispose();
             }
-            passwordList = new WebPasswordDataList(alist, true);
-            List<WebPasswordData> passwordDataList = new List<WebPasswordData>();
-            for(uint i = 0; i < passwordList.ItemCount; i++)
+            passwordDataList = new WebPasswordDataList(alist, true);
+            List<WebPasswordData> pList = new List<WebPasswordData>();
+            for(uint i = 0; i < passwordDataList.ItemCount; i++)
             {
-                passwordDataList.Add(passwordList.GetItemAtIndex(i));
+                pList.Add(passwordDataList.GetItemAtIndex(i));
             }
-            passwordDataListAcquiredCallback?.Invoke(passwordDataList);
+            passwordDataListAcquiredCallback?.Invoke(pList);
+        }
+
+        private void OnHttpRequestIntercepted(IntPtr interceptor)
+        {
+#pragma warning disable CA2000 // Dispose objects before losing scope
+            httpRequestInterceptedCallback?.Invoke(new WebHttpRequestInterceptor(interceptor, true));
+#pragma warning restore CA2000 // Dispose objects before losing scope
         }
     }
 }

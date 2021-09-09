@@ -7,10 +7,10 @@ namespace Tizen.NUI.EXaml
 {
     class CreateDataTemplate : Operation
     {
-        public CreateDataTemplate(GlobalDataList globalDataList, int typeIndex, (int, int) indexRangeOfContent)
+        public CreateDataTemplate(GlobalDataList globalDataList, List<object> operationInfo)
         {
-            this.typeIndex = typeIndex;
-            this.indexRangeOfContent = indexRangeOfContent;
+            typeIndex = (int)operationInfo[0];
+            indexRangeOfContent = ((int)operationInfo[1], (int)operationInfo[2]);
             this.globalDataList = globalDataList;
         }
 
