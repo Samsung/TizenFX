@@ -695,6 +695,14 @@ namespace Tizen.NUI.Components
 
             newTransitionSet.Finished += (object sender, EventArgs e) =>
             {
+                if(newTopPage.Layout != null)
+                {
+                    newTopPage.Layout.RequestLayout();
+                }
+                if(currentTopPage.Layout != null)
+                {
+                    currentTopPage.Layout.RequestLayout();
+                }
                 transitionFinished = true;
                 InvokeTransitionFinished();
                 transitionSet.Dispose();
@@ -703,9 +711,10 @@ namespace Tizen.NUI.Components
 
             if (!pushTransition || newTopPage is DialogPage == false)
             {
-                if (currentTopPage.DisappearingTransition != null)
+                View transitionView = (currentTopPage is ContentPage) ? (currentTopPage as ContentPage).Content : (currentTopPage as DialogPage).Content;
+                if (currentTopPage.DisappearingTransition != null && transitionView != null)
                 {
-                    TransitionItemBase disappearingTransition = currentTopPage.DisappearingTransition.CreateTransition(currentTopPage, false);
+                    TransitionItemBase disappearingTransition = currentTopPage.DisappearingTransition.CreateTransition(transitionView, false);
                     disappearingTransition.TransitionWithChild = true;
                     newTransitionSet.AddTransition(disappearingTransition);
                 }
@@ -716,9 +725,10 @@ namespace Tizen.NUI.Components
             }
             if (pushTransition || currentTopPage is DialogPage == false)
             {
-                if (newTopPage.AppearingTransition != null)
+                View transitionView = (newTopPage is ContentPage) ? (newTopPage as ContentPage).Content : (newTopPage as DialogPage).Content;
+                if (newTopPage.AppearingTransition != null && transitionView != null)
                 {
-                    TransitionItemBase appearingTransition = newTopPage.AppearingTransition.CreateTransition(newTopPage, true);
+                    TransitionItemBase appearingTransition = newTopPage.AppearingTransition.CreateTransition(transitionView, true);
                     appearingTransition.TransitionWithChild = true;
                     newTransitionSet.AddTransition(appearingTransition);
                 }

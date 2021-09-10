@@ -282,6 +282,33 @@ namespace Tizen.NUI.Devel.Tests
         }		
 		
 		private void OnDetected(object obj, TapGestureDetector.DetectedEventArgs e)
-		{ }	
+		{ }
+
+        [Test]
+        [Category("P1")]
+        [Description("Test DetectedEventArgs View.")]
+        [Property("SPEC", "Tizen.NUI.DetectedEventArgs.View A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void TapGestureDetectedEventArgsView()
+        {
+            tlog.Debug(tag, $"TapGestureDetectedEventArgsView START");
+
+            var testingTarget = new Tizen.NUI.TapGestureDetector.DetectedEventArgs();
+            Assert.IsNotNull(testingTarget, "Can't create success object DetectedEventArgs.");
+            Assert.IsInstanceOf<Tizen.NUI.TapGestureDetector.DetectedEventArgs>(testingTarget, "Should return DetectedEventArgs instance.");
+
+            using (View view = new View() { Size = new Size(100, 50) })
+            {
+                testingTarget.View = view;
+                Assert.AreEqual(100, testingTarget.View.Size.Width, "Should be equal!");
+            }
+
+            testingTarget.TapGesture = new TapGesture();
+            tlog.Debug(tag, "TapGesture : " + testingTarget.TapGesture);
+
+            tlog.Debug(tag, $"TapGestureDetectedEventArgsView END (OK)");
+        }
     }
 }

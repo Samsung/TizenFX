@@ -13,36 +13,20 @@ namespace Tizen.NUI.Devel.Tests
     public class PublicBindingExtensionTest
     {
         private const string tag = "NUITEST";
-        private BindingExtension b1;
+        private BindingExtension binding;
 
         [SetUp]
         public void Init()
         {
             tlog.Info(tag, "Init() is called!");
-            b1 = new BindingExtension();
+            binding = new BindingExtension();
         }
 
         [TearDown]
         public void Destroy()
         {
-            b1 = null;
+            binding = null;
             tlog.Info(tag, "Destroy() is called!");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("BindingExtension BindingExtension")]
-        [Property("SPEC", "Tizen.NUI.BindingExtension.BindingExtension C")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "CONSTR")]
-        public void BindingExtensionConstructor()
-        {
-            tlog.Debug(tag, $"BindingExtensionConstructor START");
-
-            BindingExtension binding = new BindingExtension();
-
-            tlog.Debug(tag, $"BindingExtensionConstructor END (OK)");
-            Assert.Pass("BindingExtensionConstructor");
         }
 
         [Test]
@@ -57,17 +41,17 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                string s1 = b1.Path;
-                b1.Path = s1;
+                string str = binding.Path;
+                binding.Path = str;
+                Assert.AreEqual(str, binding.Path, "Should be equal");
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"BindingExtensionPath END (OK)");
-            Assert.Pass("BindingExtensionPath");
+            tlog.Debug(tag, $"BindingExtensionPath END");
         }
 
         [Test]
@@ -82,17 +66,17 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                BindingMode tmp = b1.Mode;
-                b1.Mode = tmp;
+                var mode = binding.Mode;
+                binding.Mode = mode;
+                Assert.AreEqual(mode, binding.Mode, "Should be equal");
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"BindingExtensionMode END (OK)");
-            Assert.Pass("BindingExtensionMode");
+            tlog.Debug(tag, $"BindingExtensionMode END");
         }
 
         [Test]
@@ -107,17 +91,17 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                IValueConverter tmp = b1.Converter;
-                b1.Converter = tmp;
+                var converter = binding.Converter;
+                binding.Converter = converter;
+                Assert.AreEqual(converter, binding.Converter, "Should be equal");
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"BindingExtensionConverter END (OK)");
-            Assert.Pass("BindingExtensionConverter");
+            tlog.Debug(tag, $"BindingExtensionConverter END");
         }
 
         [Test]
@@ -132,17 +116,17 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                object tmp = b1.ConverterParameter;
-                b1.ConverterParameter = tmp;
+                var param = binding.ConverterParameter;
+                binding.ConverterParameter = param;
+                Assert.AreEqual(param, binding.ConverterParameter, "Should be equal");
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"BindingExtensionConverterParameter END (OK)");
-            Assert.Pass("BindingExtensionConverterParameter");
+            tlog.Debug(tag, $"BindingExtensionConverterParameter END");
         }
 
         [Test]
@@ -157,17 +141,17 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                string tmp = b1.StringFormat;
-                b1.StringFormat = tmp;
+                var format = binding.StringFormat;
+                binding.StringFormat = format;
+                Assert.AreEqual(format, binding.StringFormat, "Should be equal");
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"BindingExtensionStringFormat END (OK)");
-            Assert.Pass("BindingExtensionStringFormat");
+            tlog.Debug(tag, $"BindingExtensionStringFormat END");
         }
 
         [Test]
@@ -182,17 +166,17 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                object tmp = b1.Source;
-                b1.Source = tmp;
+                var source = binding.Source;
+                binding.Source = source;
+                Assert.AreEqual(source, binding.Source, "Should be equal");
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"BindingExtensionSource END (OK)");
-            Assert.Pass("BindingExtensionSource");
+            tlog.Debug(tag, $"BindingExtensionSource END");
         }
 
         [Test]
@@ -207,17 +191,17 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                string tmp = b1.UpdateSourceEventName;
-                b1.UpdateSourceEventName = tmp;
+                var name = binding.UpdateSourceEventName;
+                binding.UpdateSourceEventName = name;
+                Assert.AreEqual(name, binding.UpdateSourceEventName, "Should be equal");
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"BindingExtensionUpdateSourceEventName END (OK)");
-            Assert.Pass("BindingExtensionUpdateSourceEventName");
+            tlog.Debug(tag, $"BindingExtensionUpdateSourceEventName END");
         }
 
         [Test]
@@ -232,17 +216,17 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                object tmp = b1.TargetNullValue;
-                b1.TargetNullValue = tmp;
+                var value = binding.TargetNullValue;
+                binding.TargetNullValue = value;
+                Assert.AreEqual(value, binding.TargetNullValue, "Should be equal");
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"BindingExtensionTargetNullValue END (OK)");
-            Assert.Pass("BindingExtensionTargetNullValue");
+            tlog.Debug(tag, $"BindingExtensionTargetNullValue END");
         }
 
         [Test]
@@ -257,17 +241,17 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                object tmp = b1.FallbackValue;
-                b1.FallbackValue = tmp;
+                var value = binding.FallbackValue;
+                binding.FallbackValue = value;
+                Assert.AreEqual(value, binding.FallbackValue, "Should be equal");
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"BindingExtensionFallbackValue END (OK)");
-            Assert.Pass("BindingExtensionFallbackValue");
+            tlog.Debug(tag, $"BindingExtensionFallbackValue END");
         }
 
         [Test]
@@ -282,17 +266,17 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                TypedBindingBase tmp = b1.TypedBinding;
-                b1.TypedBinding = tmp;
+                var type = binding.TypedBinding;
+                binding.TypedBinding = type;
+                Assert.AreEqual(type, binding.TypedBinding, "Should be equal");
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"BindingExtensionTypedBinding END (OK)");
-            Assert.Pass("BindingExtensionTypedBinding");
+            tlog.Debug(tag, $"BindingExtensionTypedBinding END");
         }
     }
 }

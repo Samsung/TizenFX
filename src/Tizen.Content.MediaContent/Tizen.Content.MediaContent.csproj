@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Tizen.Multimedia\Tizen.Multimedia.csproj" />
     <ProjectReference Include="..\Tizen.System.Storage\Tizen.System.Storage.csproj" />
     <ProjectReference Include="..\Tizen\Tizen.csproj" />
     <ProjectReference Include="..\Tizen.Log\Tizen.Log.csproj" />

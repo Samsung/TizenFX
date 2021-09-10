@@ -1592,6 +1592,201 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// This method converts a Placeholder struct to a PropertyMap and returns it.
+        /// The returned map can be used for set Placeholder PropertyMap in the SetPlaceholder method.
+        /// <param name="placeholder">The Placeholder struct value.</param>
+        /// <returns> A PropertyMap for Placeholder property. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static PropertyMap GetPlaceholderMap(Placeholder placeholder)
+        {
+            var map = new PropertyMap();
+
+            if (placeholder.Text != null)
+                map.Add("text", new PropertyValue(placeholder.Text));
+
+            if (placeholder.TextFocused != null)
+                map.Add("textFocused", new PropertyValue(placeholder.TextFocused));
+
+            if (placeholder.Color != null)
+                map.Add("color", new PropertyValue(placeholder.Color));
+
+            if (placeholder.FontFamily != null)
+                map.Add("fontFamily", new PropertyValue(placeholder.FontFamily));
+
+            if (placeholder.FontStyle != null)
+                map.Add("fontStyle", new PropertyValue(GetFontStyleMap((FontStyle)placeholder.FontStyle)));
+
+            if (placeholder.PointSize != null && placeholder.PixelSize != null)
+                map.Add("pointSize", new PropertyValue((float)placeholder.PointSize));
+
+            else if (placeholder.PointSize != null)
+                map.Add("pointSize", new PropertyValue((float)placeholder.PointSize));
+
+            else if (placeholder.PixelSize != null)
+                map.Add("pixelSize", new PropertyValue((float)placeholder.PixelSize));
+            
+            map.Add("ellipsis", new PropertyValue(placeholder.Ellipsis));
+
+            return map;
+        }
+
+        /// <summary>
+        /// This method converts a Placeholder map to a struct and returns it.
+        /// The returned struct can be returned to the user as a Placeholder in the GetPlaceholder method.
+        /// <param name="map">The Placeholder PropertyMap.</param>
+        /// <returns> A Placeholder struct. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Placeholder GetPlaceholderStruct(PropertyMap map)
+        {
+            string text = "";
+            string textFocused = "";
+            Color color = new Color();
+            string fontFamily = null;
+            var fontStyle = new PropertyMap();
+            PropertyValue pointSizeValue = null;
+            PropertyValue pixelSizeValue = null;
+            bool ellipsis = false;
+
+            map.Find(0)?.Get(out text);
+            map.Find(1)?.Get(out textFocused);
+            map.Find(2).Get(color);
+            map.Find(3)?.Get(out fontFamily);
+            map.Find(4).Get(fontStyle);
+            pointSizeValue = map.Find(5);
+            pixelSizeValue = map.Find(6);
+            map.Find(7)?.Get(out ellipsis);
+
+            var placeholder = new Placeholder();
+            placeholder.Text = text;
+            placeholder.TextFocused = textFocused;
+            placeholder.Color = color;
+            placeholder.FontFamily = fontFamily;
+            placeholder.Ellipsis = ellipsis;
+            placeholder.FontStyle = GetFontStyleStruct(fontStyle);
+
+            if (pointSizeValue != null)
+            {
+                pointSizeValue.Get(out float pointSize);
+                placeholder.PointSize = pointSize;
+            }
+
+            if (pixelSizeValue != null)
+            {
+                pixelSizeValue.Get(out float pixelSize);
+                placeholder.PixelSize = pixelSize;
+            }
+
+            return placeholder;
+        }
+
+        /// <summary>
+        /// This method converts a HiddenInput struct to a PropertyMap and returns it.
+        /// The returned map can be used for set HiddenInputSettings PropertyMap in the SetHiddenInput method.
+        /// <param name="hiddenInput">The HiddenInput struct value.</param>
+        /// <returns> A PropertyMap for HiddenInput property. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static PropertyMap GetHiddenInputMap(HiddenInput hiddenInput)
+        {
+            var map = new PropertyMap();
+
+            map.Add(0, new PropertyValue((int)hiddenInput.Mode));
+
+            if (hiddenInput.SubstituteCharacter != null)
+                map.Add(1, new PropertyValue(Convert.ToInt32(hiddenInput.SubstituteCharacter)));
+
+            if (hiddenInput.SubstituteCount != null)
+                map.Add(2, new PropertyValue((int)hiddenInput.SubstituteCount));
+
+            if (hiddenInput.ShowLastCharacterDuration != null)
+                map.Add(3, new PropertyValue((int)hiddenInput.ShowLastCharacterDuration));
+
+            return map;
+        }
+
+        /// <summary>
+        /// This method converts a HiddenInputSettings map to a struct and returns it.
+        /// The returned struct can be returned to the user as a HiddenInput in the GetHiddenInput method.
+        /// <param name="map">The HiddenInput PropertyMap.</param>
+        /// <returns> A HiddenInput struct. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static HiddenInput GetHiddenInputStruct(PropertyMap map)
+        {
+            PropertyValue value = null;
+
+            var hiddenInput = new HiddenInput();
+
+            value = map.Find(0);
+            if (value != null)
+            {
+                value.Get(out int mode);
+                hiddenInput.Mode = (HiddenInputModeType)mode;
+            }
+
+            value = map.Find(1);
+            if (value != null)
+            {
+                value.Get(out int substituteCharacter);
+                hiddenInput.SubstituteCharacter = Convert.ToChar(substituteCharacter);
+            }
+
+            value = map.Find(2);
+            if (value != null)
+            {
+                value.Get(out int substituteCount);
+                hiddenInput.SubstituteCount = substituteCount;
+            }
+
+            value = map.Find(3);
+            if (value != null)
+            {
+                value.Get(out int showLastCharacterDuration);
+                hiddenInput.ShowLastCharacterDuration = showLastCharacterDuration;
+            }
+
+            return hiddenInput;
+        }
+
+        /// <summary>
+        /// This method converts a fileName string to a PropertyMap and returns it.
+        /// The returned map can be used for set SelectionHandleImageLeft, SelectionHandleImageRight PropertyMap in the SetSelectionHandleImage method.
+        /// <param name="fileName">The file path string value for SelectionHandleImage.</param>
+        /// <returns> A PropertyMap for SelectionHandleImageLeft, SelectionHandleImageRight properties. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static PropertyMap GetFileNameMap(string fileName)
+        {
+            return new PropertyMap().Add("filename", new PropertyValue(fileName));
+        }
+
+        /// <summary>
+        /// This method converts a SelectionHandleImageLeft, SelectionHandleImageRight map to a struct and returns it.
+        /// The returned struct can be returned to the user as a SelectionHandleImage in the GetSelectionHandleImage method.
+        /// <param name="leftImageMap">The SelectionHandleImageLeft PropertyMap.</param>
+        /// <param name="rightImageMap">The SelectionHandleImageRight PropertyMap.</param>
+        /// <returns> A SelectionHandleImage struct. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static SelectionHandleImage GetSelectionHandleImageStruct(PropertyMap leftImageMap, PropertyMap rightImageMap)
+        {
+            string leftImageUrl = null;
+            string rightImageUrl = null;
+
+            var selectionHandleImage = new SelectionHandleImage();
+
+            leftImageMap.Find(0, "filename")?.Get(out leftImageUrl);
+            rightImageMap.Find(0, "filename")?.Get(out rightImageUrl);
+
+            selectionHandleImage.LeftImageUrl = leftImageUrl;
+            selectionHandleImage.RightImageUrl = rightImageUrl;
+
+            return selectionHandleImage;
+        }
+
+        /// <summary>
         /// Copy the previously selected text into the clipboard and return the copied value.
         /// </summary>
         /// <param name="textEditor">The textEditor control from which the text is copied.</param>

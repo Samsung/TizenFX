@@ -26,11 +26,11 @@ namespace Tizen.NUI.EXaml
 {
     internal class SetDynamicResource : Operation
     {
-        public SetDynamicResource(GlobalDataList globalDataList, int instanceIndex, int propertyIndex, string key)
+        public SetDynamicResource(GlobalDataList globalDataList, List<object> operationInfo)
         {
-            this.instanceIndex = instanceIndex;
-            this.propertyIndex = propertyIndex;
-            this.key = key;
+            instanceIndex = (int)operationInfo[0];
+            propertyIndex = (int)operationInfo[1];
+            key = operationInfo[2] as string;
             this.globalDataList = globalDataList;
         }
 

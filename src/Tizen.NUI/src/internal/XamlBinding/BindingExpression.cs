@@ -289,7 +289,7 @@ namespace Tizen.NUI.Binding
                 if (sourceType.IsArray)
                 {
                     int index;
-                    if (!int.TryParse(part.Content, out index))
+                    if (!int.TryParse(part.Content, NumberStyles.Number, CultureInfo.InvariantCulture, out index))
                         Console.WriteLine($"Binding : {part.Content} could not be parsed as an index for a {sourceType}");
                     else
                         part.Arguments = new object[] { index };
