@@ -76,6 +76,7 @@ namespace Tizen.NUI.Devel.Tests
             try
             {
                 ExternalThemeManager.SetTheme("Tizen.NUI.Theme.Common");
+                ExternalThemeManager.SetTheme(ThemeManager.CurrentTheme.Id);
             }
             catch (Exception e)
             {

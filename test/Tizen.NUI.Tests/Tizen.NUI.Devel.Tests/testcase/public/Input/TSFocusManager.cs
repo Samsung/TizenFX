@@ -280,6 +280,31 @@ namespace Tizen.NUI.Devel.Tests
         }
 
         [Test]
+        [Category("P2")]
+        [Description("FocusManager SetCurrentFocusView")]
+        [Property("SPEC", "Tizen.NUI.FocusManager.SetCurrentFocusView M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void FocusManagerSetCurrentFocusViewWithNull()
+        {
+            tlog.Debug(tag, $"FocusManagerSetCurrentFocusViewWithNull START");
+
+            var testingTarget = FocusManager.Instance;
+
+            try
+            {
+                View view = null;
+                testingTarget.SetCurrentFocusView(view);
+            }
+            catch (ArgumentNullException e)
+            {
+                tlog.Debug(tag, $"FocusManagerSetCurrentFocusViewWithNull END (OK)");
+                Assert.Pass("Caught ArgumentNullException : Passed");
+            }
+        }
+
+        [Test]
         [Category("P1")]
         [Description("FocusManager GetCurrentFocusView")]
         [Property("SPEC", "Tizen.NUI.FocusManager.GetCurrentFocusView M")]
@@ -434,11 +459,17 @@ namespace Tizen.NUI.Devel.Tests
         public void FocusManagerGet()
         {
             tlog.Debug(tag, $"FocusManagerGet START");
-            FocusManager a1 = FocusManager.Instance;
-            FocusManager.Get();
 
+            try
+            {
+                FocusManager.Get();
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
             tlog.Debug(tag, $"FocusManagerGet END (OK)");
-            Assert.Pass("FocusManagerGet");
         }
     }
 }

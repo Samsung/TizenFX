@@ -13,6 +13,7 @@ namespace Tizen.NUI.Devel.Tests
     public class InternalRenderTaskTest
     {
         private const string tag = "NUITEST";
+        private string arrowImage = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "arrow.png";
 
         [SetUp]
         public void Init()
@@ -648,126 +649,111 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"RenderTaskSetScreenToFrameBufferMappingView END (OK)");
         }
 
-        //[Test]
-        //[Category("P1")]
-        //[Description("RenderTask SetViewportPosition.")]
-        //[Property("SPEC", "Tizen.NUI.RenderTask.SetViewportPosition M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void RenderTaskSetViewportPosition()
-        //{
-        //    tlog.Debug(tag, $"RenderTaskSetViewportPosition START");
+        [Test]
+        [Category("P1")]
+        [Description("RenderTask SetViewportPosition.")]
+        [Property("SPEC", "Tizen.NUI.RenderTask.SetViewportPosition M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void RenderTaskSetViewportPosition()
+        {
+            tlog.Debug(tag, $"RenderTaskSetViewportPosition START");
 
-        //    using (View view = new View() { Size = new Size(100, 50), Position = new Position(100, 50) })
-        //    {
-        //        var testingTarget = RenderTask.GetRenderTaskFromPtr(view.SwigCPtr.Handle);
-        //        Assert.IsNotNull(testingTarget, "Can't create success object RenderTask.");
-        //        Assert.IsInstanceOf<RenderTask>(testingTarget, "Should return RenderTask instance.");
+            using (Animatable ani = new Animatable())
+            {
+                ani.RegisterProperty("ArrowImage", new PropertyValue(arrowImage), Tizen.NUI.PropertyAccessMode.ReadWrite);
+                
+                var testingTarget = new RenderTask(ani.SwigCPtr.Handle, false);
+                Assert.IsNotNull(testingTarget, "Can't create success object RenderTask.");
+                Assert.IsInstanceOf<RenderTask>(testingTarget, "Should return RenderTask instance.");
 
-        //        using (Vector2 postion = new Vector2(200, 100))
-        //        {
-        //            testingTarget.SetViewportPosition(postion);
-        //            var pos = testingTarget.GetCurrentViewportPosition();
-        //            tlog.Debug(tag, "ViewportPosition : " + pos);
-        //        }
+                try
+                {
+                    testingTarget.SetViewportPosition(new Vector2(100, 50));
+                }
+                catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught Exception : Failed!");
+                }
 
-        //        testingTarget.Dispose();
-        //    }
+                testingTarget.Dispose();
+            }
 
-        //    tlog.Debug(tag, $"RenderTaskSetViewportPosition END (OK)");
-        //}
+            tlog.Debug(tag, $"RenderTaskSetViewportPosition END (OK)");
+        }
 
-        //[Test]
-        //[Category("P1")]
-        //[Description("RenderTask SetViewportSize.")]
-        //[Property("SPEC", "Tizen.NUI.RenderTask.SetViewportSize M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void RenderTaskSetViewportSize()
-        //{
-        //    tlog.Debug(tag, $"RenderTaskSetViewportSize START");
+        [Test]
+        [Category("P1")]
+        [Description("RenderTask SetViewportSize.")]
+        [Property("SPEC", "Tizen.NUI.RenderTask.SetViewportSize M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void RenderTaskSetViewportSize()
+        {
+            tlog.Debug(tag, $"RenderTaskSetViewportSize START");
 
-        //    using (View view = new View() { Size = new Size(100, 50), Position = new Position(100, 50) })
-        //    {
-        //        var testingTarget = new RenderTask(view.SwigCPtr.Handle, false);
-        //        Assert.IsNotNull(testingTarget, "Can't create success object RenderTask.");
-        //        Assert.IsInstanceOf<RenderTask>(testingTarget, "Should return RenderTask instance.");
+            using (Animatable ani = new Animatable())
+            {
+                ani.RegisterProperty("ArrowImage", new PropertyValue(arrowImage), Tizen.NUI.PropertyAccessMode.ReadWrite);
 
-        //        using (Vector2 size = new Vector2(200, 100))
-        //        {
-        //            testingTarget.SetViewportSize(size);
-        //            var result = testingTarget.GetCurrentViewportSize();
-        //            tlog.Debug(tag, "Current viewport Size : " + result);
-        //        }
+                var testingTarget = new RenderTask(ani.SwigCPtr.Handle, false);
+                Assert.IsNotNull(testingTarget, "Can't create success object RenderTask.");
+                Assert.IsInstanceOf<RenderTask>(testingTarget, "Should return RenderTask instance.");
 
-        //        testingTarget.Dispose();
-        //    }
+                try
+                {
+                    testingTarget.SetViewportSize(new Vector2(50, 100));
+                }
+                catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught Exception : Failed!");
+                }
 
-        //    tlog.Debug(tag, $"RenderTaskSetViewportSize END (OK)");
-        //}
+                testingTarget.Dispose();
+            }
 
-        //[Test]
-        //[Category("P1")]
-        //[Description("RenderTask SetViewport.")]
-        //[Property("SPEC", "Tizen.NUI.RenderTask.SetViewport M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void RenderTaskSetViewport()
-        //{
-        //    tlog.Debug(tag, $"RenderTaskSetViewport START");
+            tlog.Debug(tag, $"RenderTaskSetViewportSize END (OK)");
+        }
 
-        //    using (View view = new View() { Size = new Size(100, 50), Position = new Position(100, 50) })
-        //    {
-        //        var testingTarget = new RenderTask(view.SwigCPtr.Handle, false);
-        //        Assert.IsNotNull(testingTarget, "Can't create success object RenderTask.");
-        //        Assert.IsInstanceOf<RenderTask>(testingTarget, "Should return RenderTask instance.");
+        [Test]
+        [Category("P1")]
+        [Description("RenderTask SetClearColor.")]
+        [Property("SPEC", "Tizen.NUI.RenderTask.SetClearColor M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
+        public void RenderTaskSetClearColor()
+        {
+            tlog.Debug(tag, $"RenderTaskSetClearColor START");
 
-        //        using (Rectangle viewport = new Rectangle(3, 5, 4, 6))
-        //        {
-        //            testingTarget.SetViewport(viewport);
-        //            var result = testingTarget.GetViewport();
-        //            tlog.Debug(tag, "Viewport : " + result);
-        //        }
+            using (Animatable ani = new Animatable())
+            {
+                ani.RegisterProperty("ArrowImage", new PropertyValue(arrowImage), Tizen.NUI.PropertyAccessMode.ReadWrite);
 
-        //        testingTarget.Dispose();
-        //    }
+                var testingTarget = new RenderTask(ani.SwigCPtr.Handle, false);
+                Assert.IsNotNull(testingTarget, "Can't create success object RenderTask.");
+                Assert.IsInstanceOf<RenderTask>(testingTarget, "Should return RenderTask instance.");
 
-        //    tlog.Debug(tag, $"RenderTaskSetViewport END (OK)");
-        //}
+                try
+                {
+                    testingTarget.SetClearColor(new Vector4(1.0f, 1.0f, 1.0f, 1.0f));
+                }
+                catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught Exception : Failed!");
+                }
 
-        //[Test]
-        //[Category("P1")]
-        //[Description("RenderTask SetClearColor.")]
-        //[Property("SPEC", "Tizen.NUI.RenderTask.SetClearColor M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //[Obsolete]
-        //public void RenderTaskSetClearColor()
-        //{
-        //    tlog.Debug(tag, $"RenderTaskSetClearColor START");
+                testingTarget.Dispose();
+            }
 
-        //    using (View view = new View() { Size = new Size(100, 50), Position = new Position(100, 50), Color = Color.Cyan })
-        //    {
-        //        var testingTarget = new RenderTask(view.SwigCPtr.Handle, false);
-        //        Assert.IsNotNull(testingTarget, "Can't create success object RenderTask.");
-        //        Assert.IsInstanceOf<RenderTask>(testingTarget, "Should return RenderTask instance.");
-
-        //        using (Vector4 color = new Vector4(0.3f, 0.5f, 0.4f, 0.6f))
-        //        {
-        //            testingTarget.SetClearColor(color);
-        //            var result = testingTarget.GetClearColor();
-        //            tlog.Debug(tag, "ClearColor : " + result);
-        //        }
-
-        //        testingTarget.Dispose();
-        //    }
-
-        //    tlog.Debug(tag, $"RenderTaskSetClearColor END (OK)");
-        //}
+            tlog.Debug(tag, $"RenderTaskSetClearColor END (OK)");
+        }
 
         [Test]
         [Category("P1")]

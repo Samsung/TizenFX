@@ -396,6 +396,8 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.LongPressGesture = new LongPressGesture(Gesture.StateType.Possible);
             Assert.AreEqual(Gesture.StateType.Possible, testingTarget.LongPressGesture.State, "Should be equal!");
 
+            tlog.Debug(tag, "Handled : " + testingTarget.Handled);
+
             tlog.Debug(tag, $"LongPressGestureDetectedEventArgsView END (OK)");
         }
     }
