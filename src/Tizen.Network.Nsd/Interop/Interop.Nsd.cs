@@ -74,7 +74,7 @@ internal static partial class Interop
             [DllImport(Libraries.Dnssd, EntryPoint = "dnssd_service_get_port")]
             internal static extern int GetPort(uint service, out int port);
             [DllImport(Libraries.Dnssd, EntryPoint = "dnssd_service_get_all_txt_record")]
-            internal static extern int GetAllTxtRecord(uint service, out ushort length, out byte[] value);
+            internal static extern int GetAllTxtRecord(uint service, out ushort length, out IntPtr value);
         }
 
         internal static class Ssdp
@@ -113,5 +113,10 @@ internal static partial class Interop
             [DllImport(Libraries.Ssdp, EntryPoint = "ssdp_stop_browsing_service")]
             internal static extern int StopBrowsing(uint browser);
         }
+    }
+    internal static partial class Libc
+    {
+        [DllImport(Libraries.Libc, EntryPoint = "free")]
+        public static extern void Free(IntPtr userData);
     }
 }

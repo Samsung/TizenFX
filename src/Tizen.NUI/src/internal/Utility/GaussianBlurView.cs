@@ -32,7 +32,7 @@ namespace Tizen.NUI
     {
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty GaussianBlurViewProperty = BindableProperty.Create(nameof(BlurStrength), typeof(float), typeof(GaussianBlurView), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty BlurStrengthProperty = BindableProperty.Create(nameof(BlurStrength), typeof(float), typeof(GaussianBlurView), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var gaussianBlurView = (GaussianBlurView)bindable;
             if (newValue != null)
@@ -144,11 +144,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return (float)GetValue(GaussianBlurViewProperty);
+                return (float)GetValue(BlurStrengthProperty);
             }
             set
             {
-                SetValue(GaussianBlurViewProperty, value);
+                SetValue(BlurStrengthProperty, value);
                 NotifyPropertyChanged();
             }
         }

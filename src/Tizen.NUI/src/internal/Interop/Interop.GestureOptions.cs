@@ -89,6 +89,9 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetLongPressMinimumHoldingTime")]
             public static extern void SetLongPressMinimumHoldingTime(uint time);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetTapMaximumAllowedTime")]
+            public static extern void SetDoubleTapTimeout(uint ms);
         }
     }
 }

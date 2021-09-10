@@ -12,26 +12,28 @@ namespace Tizen.NUI.Devel.Tests
     internal class PublicWindowTest
     {
         private const string tag = "NUITEST";
-        private Window myWin = null;
+        private Window win = null;
         private Rectangle rec = null;
 
         [SetUp]
         public void Init()
         {
-            rec = new Rectangle(0, 0, 2, 2);
-            myWin = new Window(rec);
             tlog.Info(tag, "Init() is called!");
+
+            rec = new Rectangle(0, 0, 2, 2);
+            win = new Window(rec);
         }
 
         [TearDown]
         public void Destroy()
         {
             rec.Dispose();
-            if (myWin != null)
+            if (win != null)
             {
-                myWin.Destroy();
-                myWin = null;
+                win.Destroy();
+                win = null;
             }
+
             tlog.Info(tag, "Destroy() is called!");
         }
 
@@ -47,7 +49,11 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                myWin.WindowPositionSize = new Rectangle(1, 2, 3, 4);
+                using (Rectangle size = new Rectangle(1, 2, 3, 4))
+                {
+                    win.WindowPositionSize = size;
+                    tlog.Debug(tag, "WindowPositionSize : " + win.WindowPositionSize);
+                }
             }
             catch (Exception e)
             {
@@ -116,7 +122,7 @@ namespace Tizen.NUI.Devel.Tests
             
             try
             {
-                myWin.GetLayer(0);
+                win.GetLayer(0);
             }
             catch (Exception e)
             {
@@ -138,7 +144,7 @@ namespace Tizen.NUI.Devel.Tests
             
             try
             {
-                myWin.GetCurrentOrientation();
+                win.GetCurrentOrientation();
             }
             catch (Exception e)
             {
@@ -160,15 +166,15 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"WindowSetAvailableOrientations START");
             try
             {
-                List<Window.WindowOrientation> l1 = new List<Window.WindowOrientation>();
+                List<Window.WindowOrientation> list = new List<Window.WindowOrientation>();
 
-                l1.Add(Window.WindowOrientation.Landscape);
-                l1.Add(Window.WindowOrientation.LandscapeInverse);
-                l1.Add(Window.WindowOrientation.NoOrientationPreference);
-                l1.Add(Window.WindowOrientation.Portrait);
-                l1.Add(Window.WindowOrientation.PortraitInverse);
+                list.Add(Window.WindowOrientation.Landscape);
+                list.Add(Window.WindowOrientation.LandscapeInverse);
+                list.Add(Window.WindowOrientation.NoOrientationPreference);
+                list.Add(Window.WindowOrientation.Portrait);
+                list.Add(Window.WindowOrientation.PortraitInverse);
 
-                myWin.SetAvailableOrientations(l1);
+                win.SetAvailableOrientations(list);
             }
             catch (Exception e)
             {
@@ -178,6 +184,56 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"WindowSetAvailableOrientations END (OK)");
             Assert.Pass("WindowSetAvailableOrientations");
+        }
+
+        [Test]
+        [Category("P2")]
+        [Description("Window SetAvailableOrientations")]
+        [Property("SPEC", "Tizen.NUI.Window.SetAvailableOrientations M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void WindowSetAvailableOrientationsWithNullList()
+        {
+            tlog.Debug(tag, $"WindowSetAvailableOrientationsWithNullList START");
+
+            List<Window.WindowOrientation> list = null;
+
+            try
+            {
+                win.SetAvailableOrientations(list);
+            }
+            catch (ArgumentNullException e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                tlog.Debug(tag, $"WindowSetAvailableOrientationsWithNullList END (OK)");
+                Assert.Pass("Caught ArgumentNullException : Passed!");
+            }
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Window SetPositionSizeWithOrientation")]
+        [Property("SPEC", "Tizen.NUI.Window.SetPositionSizeWithOrientation M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void WindowSetPositionSizeWithOrientation()
+        {
+            tlog.Debug(tag, $"WindowSetPositionSizeWithOrientation START");
+
+            try
+            {
+                using (Rectangle positionSize = new Rectangle(1, 2, 3, 4))
+                {
+                    win.SetPositionSizeWithOrientation(positionSize, Window.WindowOrientation.Landscape);
+                }
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            tlog.Debug(tag, $"WindowSetPositionSizeWithOrientation END (OK)");
         }
 
         [Test]
@@ -192,7 +248,7 @@ namespace Tizen.NUI.Devel.Tests
             
             try
             {
-                myWin.GetNativeId();
+                win.GetNativeId();
             }
             catch (Exception e)
             {
@@ -215,7 +271,7 @@ namespace Tizen.NUI.Devel.Tests
             
             try
             {
-                myWin.GetNativeHandle();
+                win.GetNativeHandle();
             }
             catch (Exception e)
             {
@@ -239,7 +295,7 @@ namespace Tizen.NUI.Devel.Tests
             try
             {
                 Layer layer = null;
-                myWin.Add(layer);
+                win.Add(layer);
             }
             catch (ArgumentNullException e)
             {
@@ -262,7 +318,7 @@ namespace Tizen.NUI.Devel.Tests
             try
             {
                 Layer layer = null;
-                myWin.Remove(layer);
+                win.Remove(layer);
             }
             catch (ArgumentNullException e)
             {
@@ -283,7 +339,7 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"WindowGetRenderTaskList START");
             try
             {
-                myWin.GetRenderTaskList();
+                win.GetRenderTaskList();
             }
             catch (Exception e)
             {
@@ -305,7 +361,7 @@ namespace Tizen.NUI.Devel.Tests
         //    tlog.Debug(tag, $"WindowGetObjectRegistry START");
         //    try
         //    {
-        //        myWin.GetObjectRegistry();
+        //        win.GetObjectRegistry();
         //    }
         //    catch (Exception e)
         //    {
@@ -330,7 +386,7 @@ namespace Tizen.NUI.Devel.Tests
             try
             {
                 Size2D s1 = null;
-                myWin.SetWindowSize(s1);
+                win.SetWindowSize(s1);
             }
             catch (ArgumentNullException e)
             {
@@ -353,7 +409,7 @@ namespace Tizen.NUI.Devel.Tests
             try
             {
                 Position2D p1 = null;
-                myWin.SetPosition(p1);
+                win.SetPosition(p1);
             }
             catch (ArgumentNullException e)
             {
@@ -375,7 +431,7 @@ namespace Tizen.NUI.Devel.Tests
             try
             {
                 Rectangle r1 = new Rectangle(0, 0, 20, 20);
-                myWin.SetPositionSize(r1);
+                win.SetPositionSize(r1);
             }
             catch (Exception e)
             {
@@ -397,7 +453,7 @@ namespace Tizen.NUI.Devel.Tests
             try
             {
                 FrameUpdateCallbackInterface f1 = new FrameUpdateCallbackInterface();
-                myWin.AddFrameUpdateCallback(f1);
+                win.AddFrameUpdateCallback(f1);
             }
             catch (Exception e)
             {
@@ -420,7 +476,7 @@ namespace Tizen.NUI.Devel.Tests
             try
             {
                 FrameUpdateCallbackInterface f1 = new FrameUpdateCallbackInterface();
-                myWin.RemoveFrameUpdateCallback(f1);
+                win.RemoveFrameUpdateCallback(f1);
             }
             catch (Exception e)
             {
@@ -444,7 +500,7 @@ namespace Tizen.NUI.Devel.Tests
             try
             {
                 FrameCallbackType f1 = null;
-                myWin.AddFrameRenderedCallback(f1, 1);
+                win.AddFrameRenderedCallback(f1, 1);
             }
             catch (ArgumentNullException e)
             {
@@ -467,7 +523,7 @@ namespace Tizen.NUI.Devel.Tests
             try
             {
                 FrameCallbackType f1 = null;
-                myWin.AddFramePresentedCallback(f1, 1);
+                win.AddFramePresentedCallback(f1, 1);
             }
             catch (ArgumentNullException e)
             {
@@ -475,6 +531,105 @@ namespace Tizen.NUI.Devel.Tests
                 tlog.Debug(tag, $"WindowAddFramePresentedCallback END (OK)");
                 Assert.Pass("Caught ArgumentNullException : Passed!");
             }
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Window Get")]
+        [Property("SPEC", "Tizen.NUI.Window.Get M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void WindowGet()
+        {
+            tlog.Debug(tag, $"WindowGet START");
+
+            using (NUI.BaseComponents.View view = new NUI.BaseComponents.View() { Color = Color.Cyan })
+            {
+                NUIApplication.GetDefaultWindow().Add(view);
+                
+                try
+                {
+                    var result = Window.Get(view);
+                }
+                catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught Exception : Failed!");
+                }
+
+                NUIApplication.GetDefaultWindow().Remove(view);
+            }
+
+            tlog.Debug(tag, $"WindowGet END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Window EnableFloatingMode")]
+        [Property("SPEC", "Tizen.NUI.Window.EnableFloatingMode M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void WindowEnableFloatingMode()
+        {
+            tlog.Debug(tag, $"WindowEnableFloatingMode START");
+
+            try
+            {
+                Window.Instance.EnableFloatingMode(true);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+            
+            tlog.Debug(tag, $"WindowEnableFloatingMode END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Window RequestMoveToServer")]
+        [Property("SPEC", "Tizen.NUI.Window.RequestMoveToServer M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void WindowRequestMoveToServer()
+        {
+            tlog.Debug(tag, $"WindowRequestMoveToServer START");
+
+            try
+            {
+                Window.Instance.RequestMoveToServer();
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            tlog.Debug(tag, $"WindowRequestMoveToServer END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Window RequestResizeToServer")]
+        [Property("SPEC", "Tizen.NUI.Window.RequestResizeToServer M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void WindowRequestResizeToServer()
+        {
+            tlog.Debug(tag, $"WindowRequestResizeToServer START");
+
+            try
+            {
+                Window.Instance.RequestResizeToServer(ResizeDirection.Top);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            tlog.Debug(tag, $"WindowRequestResizeToServer END (OK)");
         }
     }
 }

@@ -181,7 +181,7 @@ namespace Tizen.NUI.Components
             page.InvokeAppearing();
             topPage.InvokeDisappearing();
 
-            transitionSet = CreateTransition(topPage, page, true);
+            transitionSet = CreateTransitions(topPage, page, true);
             transitionSet.Finished += (object sender, EventArgs e) =>
             {
                 if (page is DialogPage == false)
@@ -228,13 +228,11 @@ namespace Tizen.NUI.Components
             }
             var newTopPage = navigationPages[navigationPages.Count - 2];
 
-//            newTopPage.RaiseAbove(topPage);
-
             //Invoke Page events
             newTopPage.InvokeAppearing();
             topPage.InvokeDisappearing();
 
-            transitionSet = CreateTransition(topPage, newTopPage, false);
+            transitionSet = CreateTransitions(topPage, newTopPage, false);
             transitionSet.Finished += (object sender, EventArgs e) =>
             {
                 Remove(topPage);
@@ -645,12 +643,12 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Create Transition between currentTopPage and newTopPage
+        /// Create Transitions between currentTopPage and newTopPage
         /// </summary>
         /// <param name="currentTopPage">The top page of Navigator.</param>
         /// <param name="newTopPage">The new top page after transition.</param>
         /// <param name="pushTransition">True if this transition is for push new page</param>
-        private TransitionSet CreateTransition(Page currentTopPage, Page newTopPage, bool pushTransition)
+        private TransitionSet CreateTransitions(Page currentTopPage, Page newTopPage, bool pushTransition)
         {
             currentTopPage.SetVisible(true);
             newTopPage.SetVisible(true);
@@ -697,27 +695,43 @@ namespace Tizen.NUI.Components
 
             newTransitionSet.Finished += (object sender, EventArgs e) =>
             {
+                if(newTopPage.Layout != null)
+                {
+                    newTopPage.Layout.RequestLayout();
+                }
+                if(currentTopPage.Layout != null)
+                {
+                    currentTopPage.Layout.RequestLayout();
+                }
                 transitionFinished = true;
                 InvokeTransitionFinished();
                 transitionSet.Dispose();
                 currentTopPage.Opacity = 1.0f;
             };
 
-            // default appearing/disappearing transition - fast fade (half duration compaired with that of view pair transition)
-            int duration = (transition.TimePeriod.DurationMilliseconds + transition.TimePeriod.DelayMilliseconds);
-            float durationSeconds = (float)duration / 1000.0f;
-
             if (!pushTransition || newTopPage is DialogPage == false)
             {
-                TransitionItemBase disappearingTransition = currentTopPage.DisappearingTransition.CreateTransition(currentTopPage, false);
-                newTransitionSet.AddTransition(disappearingTransition);
-                disappearingTransition.TransitionWithChild = true;
+                View transitionView = (currentTopPage is ContentPage) ? (currentTopPage as ContentPage).Content : (currentTopPage as DialogPage).Content;
+                if (currentTopPage.DisappearingTransition != null && transitionView != null)
+                {
+                    TransitionItemBase disappearingTransition = currentTopPage.DisappearingTransition.CreateTransition(transitionView, false);
+                    disappearingTransition.TransitionWithChild = true;
+                    newTransitionSet.AddTransition(disappearingTransition);
+                }
+                else
+                {
+                    currentTopPage.SetVisible(false);
+                }
             }
             if (pushTransition || currentTopPage is DialogPage == false)
             {
-                TransitionItemBase appearingTransition = newTopPage.AppearingTransition.CreateTransition(newTopPage, true);
-                appearingTransition.TransitionWithChild = true;
-                newTransitionSet.AddTransition(appearingTransition);
+                View transitionView = (newTopPage is ContentPage) ? (newTopPage as ContentPage).Content : (newTopPage as DialogPage).Content;
+                if (newTopPage.AppearingTransition != null && transitionView != null)
+                {
+                    TransitionItemBase appearingTransition = newTopPage.AppearingTransition.CreateTransition(transitionView, true);
+                    appearingTransition.TransitionWithChild = true;
+                    newTransitionSet.AddTransition(appearingTransition);
+                }
             }
 
             newTransitionSet.Play();

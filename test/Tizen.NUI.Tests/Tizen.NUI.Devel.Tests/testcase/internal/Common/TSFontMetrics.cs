@@ -47,6 +47,30 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
+        [Description("FontMetrics constructor.")]
+        [Property("SPEC", "Tizen.NUI.FontMetrics.FontMetrics C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void FontMetricsConstructorWithFloats()
+        {
+            tlog.Debug(tag, $"FontMetricsConstructorWithFloats START");
+
+            var testingTarget = new FontMetrics(0.3f, 0.1f, 0.5f, 0.9f, 0.0f);
+            Assert.IsNotNull(testingTarget, "Can't create success object FontMetrics.");
+            Assert.IsInstanceOf<FontMetrics>(testingTarget, "Should return FontMetrics instance.");
+
+            tlog.Debug(tag, "getCPtr : " + FontMetrics.getCPtr(testingTarget));
+
+            testingTarget.UnderlineThickness = 0.3f;
+            tlog.Debug(tag, "UnderlineThickness :" + testingTarget.UnderlineThickness);
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"FontMetricsConstructorWithFloats END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
         [Description("FontMetrics Ascender.")]
         [Property("SPEC", "Tizen.NUI.FontMetrics.Ascender A")]
         [Property("SPEC_URL", "-")]

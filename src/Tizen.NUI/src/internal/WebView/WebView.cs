@@ -76,9 +76,6 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler<WebViewHttpAuthRequestedEventArgs> httpAuthRequestedEventHandler;
         private WebViewHttpAuthRequestedCallbackDelegate httpAuthRequestedCallback;
 
-        private EventHandler<WebViewHttpRequestInterceptedEventArgs> httpRequestInterceptedEventHandler;
-        private WebViewHttpRequestInterceptedCallbackDelegate httpRequestInterceptedCallback;
-
         private EventHandler<WebViewConsoleMessageReceivedEventArgs> consoleMessageReceivedEventHandler;
         private WebViewConsoleMessageReceivedCallbackDelegate consoleMessageReceivedCallback;
 
@@ -147,7 +144,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
-            if (disposed)
+            if (Disposed)
             {
                 return;
             }
@@ -269,9 +266,6 @@ namespace Tizen.NUI.BaseComponents
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WebViewHttpAuthRequestedCallbackDelegate(IntPtr handler);
-
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void WebViewHttpRequestInterceptedCallbackDelegate(IntPtr interceptor);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WebViewConsoleMessageReceivedCallbackDelegate(IntPtr message);
@@ -509,29 +503,6 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 certificateConfirmedEventHandler -= value;
-            }
-        }
-
-        /// <summary>
-        /// Event for the HttpRequestIntercepted signal which can be used to subscribe or unsubscribe the event handler.<br />
-        /// This signal is emitted when http request would be intercepted.<br />
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<WebViewHttpRequestInterceptedEventArgs> HttpRequestIntercepted
-        {
-            add
-            {
-                if (httpRequestInterceptedEventHandler == null)
-                {
-                    httpRequestInterceptedCallback = OnHttpRequestIntercepted;
-                    IntPtr ip = Marshal.GetFunctionPointerForDelegate(httpRequestInterceptedCallback);
-                    Interop.WebView.RegisterRequestInterceptorCallback(SwigCPtr, new HandleRef(this, ip));
-                }
-                httpRequestInterceptedEventHandler += value;
-            }
-            remove
-            {
-                httpRequestInterceptedEventHandler -= value;
             }
         }
 
@@ -2037,9 +2008,9 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnScreenshotAcquired(IntPtr data)
         {
-            ImageView image = new ImageView(data, true);
-            screenshotAcquiredCallback?.Invoke(image);
-            image.Dispose();
+#pragma warning disable CA2000 // Dispose objects before losing scope
+            screenshotAcquiredCallback?.Invoke(new ImageView(data, true));
+#pragma warning restore CA2000 // Dispose objects before losing scope
         }
 
         private void OnResponsePolicyDecided(IntPtr maker)
@@ -2062,11 +2033,6 @@ namespace Tizen.NUI.BaseComponents
             httpAuthRequestedEventHandler?.Invoke(this, new WebViewHttpAuthRequestedEventArgs(new WebHttpAuthHandler(handler, true)));
         }
 
-        private void OnHttpRequestIntercepted(IntPtr interceptor)
-        {
-            httpRequestInterceptedEventHandler?.Invoke(this, new WebViewHttpRequestInterceptedEventArgs(new WebHttpRequestInterceptor(interceptor, true)));
-        }
-
         private void OnConsoleMessageReceived(IntPtr message)
         {
             consoleMessageReceivedEventHandler?.Invoke(this, new WebViewConsoleMessageReceivedEventArgs(new WebConsoleMessage(message, true)));
@@ -2084,9 +2050,9 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnHitTestFinished(IntPtr test)
         {
-            WebHitTestResult hitTest = new WebHitTestResult(test, true);
-            hitTestFinishedCallback?.Invoke(hitTest);
-            hitTest.Dispose();
+#pragma warning disable CA2000 // Dispose objects before losing scope
+            hitTestFinishedCallback?.Invoke(new WebHitTestResult(test, true));
+#pragma warning restore CA2000 // Dispose objects before losing scope
         }
     }
 }

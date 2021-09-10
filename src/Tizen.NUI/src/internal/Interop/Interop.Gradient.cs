@@ -22,16 +22,16 @@ namespace Tizen.NUI
         internal static partial class Gradient
         {
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Gradient_SetColorStops")]
-            public static extern void SetColorStops(global::System.Runtime.InteropServices.HandleRef gradient, [global::System.Runtime.InteropServices.In, global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.LPArray)] float[] stops, int stopsLength);
+            public static extern void SetColorStops(global::System.Runtime.InteropServices.HandleRef gradient, [global::System.Runtime.InteropServices.In, global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.LPArray)] float[] stops, uint stopsLength);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Gradient_GetColorStopsCount")]
-            public static extern int GetColorStopsCount(global::System.Runtime.InteropServices.HandleRef gradient);
+            public static extern uint GetColorStopsCount(global::System.Runtime.InteropServices.HandleRef gradient);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Gradient_GetColorStopsOffsetIndexOf")]
-            public static extern float GetColorStopsOffsetIndexOf(global::System.Runtime.InteropServices.HandleRef gradient, int index);
+            public static extern float GetColorStopsOffsetIndexOf(global::System.Runtime.InteropServices.HandleRef gradient, uint index);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Gradient_GetColorStopsColorIndexOf")]
-            public static extern global::System.IntPtr GetColorStopsColorIndexOf(global::System.Runtime.InteropServices.HandleRef gradient, int index);
+            public static extern global::System.IntPtr GetColorStopsColorIndexOf(global::System.Runtime.InteropServices.HandleRef gradient, uint index);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Gradient_SetSpread")]
             public static extern void SetSpread(global::System.Runtime.InteropServices.HandleRef gradient, int index);

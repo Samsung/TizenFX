@@ -13,6 +13,7 @@ namespace Tizen.NUI.Devel.Tests
     public class InternalComponentApplicationTest
     {
         private const string tag = "NUITEST";
+        private Widget widget = null;
         private string resource = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
         private delegate bool dummyCallback(IntPtr application);
 
@@ -36,11 +37,17 @@ namespace Tizen.NUI.Devel.Tests
         public void Init()
         {
             tlog.Info(tag, "Init() is called!");
+
+            widget = new Widget();
+            tlog.Debug(tag, "widget.Id : " + widget.Id);
         }
 
         [TearDown]
         public void Destroy()
         {
+            widget.Dispose();
+            widget = null;
+
             tlog.Info(tag, "Destroy() is called!");
         }
 
@@ -55,12 +62,10 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"ComponentApplicationConstructor START");
 
-            ImageView view = new ImageView();
-            var testingTarget = new ComponentApplication(view.SwigCPtr.Handle, false);
+            var testingTarget = new ComponentApplication(widget.SwigCPtr.Handle, false);
             Assert.IsNotNull(testingTarget, "should be not null");
             Assert.IsInstanceOf<ComponentApplication>(testingTarget, "should be an instance of testing target class!");
 
-            view.Dispose();
             testingTarget.Dispose();
             tlog.Debug(tag, $"ComponentApplicationConstructor END (OK)");
         }
@@ -76,8 +81,7 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"ComponentApplicationConstructorWithComponentApplication START");
 
-            ImageView view = new ImageView();
-            ComponentApplication componentApplication = new ComponentApplication(view.SwigCPtr.Handle, false);
+            ComponentApplication componentApplication = new ComponentApplication(widget.SwigCPtr.Handle, false);
             Assert.IsNotNull(componentApplication, "should be not null");
             Assert.IsInstanceOf<ComponentApplication>(componentApplication, "should be an instance of testing target class!");
 
@@ -85,7 +89,6 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "should be not null");
             Assert.IsInstanceOf<ComponentApplication>(testingTarget, "should be an instance of testing target class!");
 
-            view.Dispose();
             testingTarget.Dispose();
             tlog.Debug(tag, $"ComponentApplicationConstructorWithComponentApplication END (OK)");
         }
@@ -101,8 +104,7 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"ComponentApplicationCreateNativeSignal START");
 
-            ImageView view = new ImageView();
-            var testingTarget = new ComponentApplication(view.SwigCPtr.Handle, false);
+            var testingTarget = new ComponentApplication(widget.SwigCPtr.Handle, false);
             Assert.IsNotNull(testingTarget, "should be not null");
             Assert.IsInstanceOf<ComponentApplication>(testingTarget, "should be an instance of testing target class!");
 
@@ -118,7 +120,6 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception: Failed!");
             }
 
-            view.Dispose();
             testingTarget.Dispose();
             tlog.Debug(tag, $"ComponentApplicationCreateNativeSignal END (OK)");
         }
@@ -134,8 +135,7 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"ComponentApplicationDispose START");
 
-            ImageView view = new ImageView();
-            var testingTarget = new MyComponentApplication(view.SwigCPtr.Handle, false);
+            var testingTarget = new MyComponentApplication(widget.SwigCPtr.Handle, false);
             Assert.IsNotNull(testingTarget, "should be not null");
             Assert.IsInstanceOf<ComponentApplication>(testingTarget, "should be an instance of testing target class!");
 
@@ -150,7 +150,6 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception: Failed!");
             }
 
-            view.Dispose();
             tlog.Debug(tag, $"ComponentApplicationDispose END (OK)");
         }
 
@@ -165,8 +164,7 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"ComponentApplicationAssign START");
 
-            ImageView view = new ImageView();
-            var testingTarget = new ComponentApplication(view.SwigCPtr.Handle, false);
+            var testingTarget = new ComponentApplication(widget.SwigCPtr.Handle, false);
             Assert.IsNotNull(testingTarget, "should be not null");
             Assert.IsInstanceOf<ComponentApplication>(testingTarget, "should be an instance of testing target class!");
 
@@ -180,7 +178,35 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception: Failed!");
             }
 
+            testingTarget.Dispose();
             tlog.Debug(tag, $"ComponentApplicationAssign END (OK)");
         }
+
+        //[Test]
+        //[Category("P1")]
+        //[Description("ComponentApplication CreateNative.")]
+        //[Property("SPEC", "Tizen.NUI.ComponentApplication.CreateNative A")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "PRW")]
+        //[Property("AUTHOR", "guowei.wang@samsung.com")]
+        //public void ComponentApplicationCreateNative()
+        //{
+        //    tlog.Debug(tag, $"ComponentApplicationCreateNative START");
+
+        //    var testingTarget = new ComponentApplication(widget.SwigCPtr.Handle, true);
+        //    Assert.IsNotNull(testingTarget, "should be not null");
+        //    Assert.IsInstanceOf<ComponentApplication>(testingTarget, "should be an instance of testing target class!");
+
+        //    testingTarget.CreateNative += OnApplicationCreateNative;
+        //    testingTarget.CreateNative -= OnApplicationCreateNative;
+
+        //    testingTarget.Dispose();
+        //    tlog.Debug(tag, $"ComponentApplicationCreateNative END (OK)");
+        //}
+
+        //private IntPtr OnApplicationCreateNative()
+        //{
+        //    return IntPtr.Zero;
+        //}
     }
 }

@@ -2216,5 +2216,200 @@ namespace Tizen.NUI
             [EditorBrowsable(EditorBrowsableState.Never)]
             public FontSizeType FontSizeType { get; set; }
         }
+
+        /// <summary>
+        /// A struct to pass data of Placeholder PropertyMap. <br />
+        /// </summary>
+        /// <remarks>
+        /// The Placeholder struct is used as an argument to SetPlaceholder and GetPlaceholder methods. <br />
+        /// See <see cref="Tizen.NUI.BaseComponents.TextField.SetPlaceholder"/>, <see cref="Tizen.NUI.BaseComponents.TextField.SetPlaceholder"/>, <see cref="Tizen.NUI.BaseComponents.TextEditor.SetPlaceholder"/> and <see cref="Tizen.NUI.BaseComponents.TextEditor.SetPlaceholder"/>. <br />
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public struct Placeholder
+        {
+            /// <summary>
+            /// The text to display when the TextField is empty and inactive.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public string Text { get; set; }
+
+            /// <summary>
+            /// The text to display when the placeholder has focus.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public string TextFocused { get; set; }
+
+            /// <summary>
+            /// The color of the placeholder text.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public Color Color { get; set; }
+
+            /// <summary>
+            /// The FontFamily of the placeholder text.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public string FontFamily { get; set; }
+
+            /// <summary>
+            /// The FontStyle of the placeholder text (if null, the text control FontStyle is used).
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public FontStyle? FontStyle { get; set; }
+
+            /// <summary>
+            /// The PointSize of the placeholder text. <br />
+            /// Not required if PixelSize provided. <br />
+            /// If both provided or neither provided then the text control point size is used. <br />
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public float? PointSize { get; set; }
+
+            /// <summary>
+            /// The PiexSize of the placeholder text.
+            /// Not required if PointSize provided. <br />
+            /// If both provided or neither provided then the text control point size is used. <br />
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public float? PixelSize { get; set; }
+
+            /// <summary>
+            /// The ellipsis of the placeholder text (the default value is false).
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public bool Ellipsis { get; set; }
+        }
+
+        /// <summary>
+        /// A struct to pass data of HiddenInputSettings PropertyMap. <br />
+        /// </summary>
+        /// <remarks>
+        /// The HiddenInput struct is used as an argument to SetHiddenInput and GetHiddenInput methods. <br />
+        /// See <see cref="Tizen.NUI.BaseComponents.TextField.SetHiddenInput"/> and <see cref="Tizen.NUI.BaseComponents.TextField.GetHiddenInput"/>. <br />
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public struct HiddenInput
+        {
+            /// <summary>
+            /// The mode for input text display. <br />
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public HiddenInputModeType Mode { get; set; }
+
+            /// <summary>
+            /// All input characters are substituted by this character (if null, the default value is '*'). <br />
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public char? SubstituteCharacter { get; set; }
+
+            /// <summary>
+            /// Length of text to show or hide, available when HideCount/ShowCount mode is used (if null, the default value is 0). <br />
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public int? SubstituteCount { get; set; }
+
+            /// <summary>
+            /// Hide last character after this duration, available when ShowLastCharacter mode (if null, the default value is 1000). <br />
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public int? ShowLastCharacterDuration { get; set; }
+        }
+
+        /// <summary>
+        /// A struct to pass data of SelectionHandleImageLeft, SelectionHandleImageRight, SelectionHandlePressedImageLeft, SelectionHandlePressedImageRight, SelectionHandleMarkerImageLeft and SelectionHandleMarkerImageRight PropertyMap. <br />
+        /// </summary>
+        /// <remarks>
+        /// The SelectionHandleImage struct is used as an argument to SetSelectionHandleImage, GetSelectionHandleImage methods, SetSelectionHandlePressedImage, GetSelectionHandlePressedImage, SetSelectionHandleMarkerImage and GetSelectionHandleMarkerImage. <br />
+        /// See <see cref="Tizen.NUI.BaseComponents.TextField.SetSelectionHandleImage"/>, <see cref="Tizen.NUI.BaseComponents.TextField.GetSelectionHandleImage"/>, <see cref="Tizen.NUI.BaseComponents.TextField.SetSelectionHandlePressedImage"/>, <see cref="Tizen.NUI.BaseComponents.TextField.GetSelectionHandlePressedImage"/>, <see cref="Tizen.NUI.BaseComponents.TextField.SetSelectionHandleMarkerImage"/>, <see cref="Tizen.NUI.BaseComponents.TextField.GetSelectionHandleMarkerImage"/>, <br />
+        /// <see cref="Tizen.NUI.BaseComponents.TextEditor.SetSelectionHandleImage"/>, <see cref="Tizen.NUI.BaseComponents.TextEditor.GetSelectionHandleImage"/>, <see cref="Tizen.NUI.BaseComponents.TextEditor.SetSelectionHandlePressedImage"/>, <see cref="Tizen.NUI.BaseComponents.TextEditor.GetSelectionHandlePressedImage"/>, <see cref="Tizen.NUI.BaseComponents.TextEditor.SetSelectionHandleMarkerImage"/> and <see cref="Tizen.NUI.BaseComponents.TextEditor.GetSelectionHandleMarkerImage"/>. <br />
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public struct SelectionHandleImage
+        {
+            /// <summary>
+            /// The image path to display for the left selection handle. <br />
+            /// It means the handle in the bottom-left. <br />
+            /// If the handle needs to be displayed in the top-left, this image will be vertically flipped. <br />
+            /// If null or empty string, it doesn't change the property. <br />
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public string LeftImageUrl { get; set; }
+
+            /// <summary>
+            /// The image path to display for the right selection handle. <br />
+            /// It means the handle in the bottom-right. <br />
+            /// If the handle needs to be displayed in the top-right, this image will be vertically flipped. <br />
+            /// If null or empty string, it doesn't change the property. <br />
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public string RightImageUrl { get; set; }
+        }
+    }
+
+
+    /// <summary>
+    /// Pre-defined SlideTransition Direction
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public struct SlideTransitionDirection
+    {
+        /// <summary>
+        /// Top
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Vector2 Top
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.SlideTransitionDirection.SlideTransitionDirectionTopGet();
+                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
+                return ret;
+            }
+        }
+        /// <summary>
+        /// Bottom
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Vector2 Bottom
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.SlideTransitionDirection.SlideTransitionDirectionBottomGet();
+                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
+                return ret;
+            }
+        }
+
+        /// <summary>
+        /// Right
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Vector2 Right
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.SlideTransitionDirection.SlideTransitionDirectionRightGet();
+                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
+                return ret;
+            }
+        }
+
+        /// <summary>
+        /// Left
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Vector2 Left
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.SlideTransitionDirection.SlideTransitionDirectionLeftGet();
+                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
+                return ret;
+            }
+        }
     }
 }

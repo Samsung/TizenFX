@@ -10,22 +10,31 @@ namespace Tizen.NUI.Devel.Tests
 
     [TestFixture]
     [Description("internal/Xaml/PruneIgnoredNodesVisitor")]
-    public class InternalXamlPruneIgnoredNodesVisitorTest
+    public class InternalPruneIgnoredNodesVisitorTest
     {
         private const string tag = "NUITEST";
-        private PruneIgnoredNodesVisitor p1;
+        private PruneIgnoredNodesVisitor visitor;
+
+        internal class INodeImpl : INode
+        {
+            public global::System.Collections.Generic.List<string> IgnorablePrefixes { get; set; }
+            public global::System.Xml.IXmlNamespaceResolver NamespaceResolver => new INodeImpl().NamespaceResolver;
+            public INode Parent { get; set; }
+            public void Accept(IXamlNodeVisitor visitor, INode parentNode) { }
+            public INode Clone() { return new INodeImpl(); }
+        }
 
         [SetUp]
         public void Init()
         {
             tlog.Info(tag, "Init() is called!");
-            p1 = new PruneIgnoredNodesVisitor();
+            visitor = new PruneIgnoredNodesVisitor();
         }
 
         [TearDown]
         public void Destroy()
         {
-            p1 = null;
+            visitor = null;
             tlog.Info(tag, "Destroy() is called!");
         }
 
@@ -41,274 +50,118 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                TreeVisitingMode t1 = p1.VisitingMode;
+                var result = visitor.VisitingMode;
+                tlog.Debug(tag, "VisitingMode : " + result);
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"PruneIgnoredNodesVisitorVisitingMode END (OK)");
-            Assert.Pass("PruneIgnoredNodesVisitorVisitingMode");
+            tlog.Debug(tag, $"PruneIgnoredNodesVisitorVisitingMode END");
         }
 
         [Test]
         [Category("P1")]
-        [Description("PruneIgnoredNodesVisitor StopOnDataTemplate")]
-        [Property("SPEC", "Tizen.NUI.PruneIgnoredNodesVisitor.StopOnDataTemplate A")]
+        [Description("NamescopingVisitor StopOnDataTemplate")]
+        [Property("SPEC", "Tizen.NUI.NamescopingVisitor.StopOnDataTemplate A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
-        public void PruneIgnoredNodesVisitorStopOnDataTemplate()
+        public void NamescopingVisitorStopOnDataTemplate()
         {
-            tlog.Debug(tag, $"PruneIgnoredNodesVisitorStopOnDataTemplate START");
+            tlog.Debug(tag, $"NamescopingVisitorStopOnDataTemplate START");
 
             try
             {
-                bool b1 = p1.StopOnDataTemplate;
+                var result = visitor.StopOnDataTemplate;
+                tlog.Debug(tag, "StopOnDataTemplate : " + result);
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"PruneIgnoredNodesVisitorStopOnDataTemplate END (OK)");
-            Assert.Pass("PruneIgnoredNodesVisitorStopOnDataTemplate");
+            tlog.Debug(tag, $"NamescopingVisitorStopOnDataTemplate END");
         }
 
         [Test]
         [Category("P1")]
-        [Description("PruneIgnoredNodesVisitor StopOnResourceDictionary")]
-        [Property("SPEC", "Tizen.NUI.PruneIgnoredNodesVisitor.StopOnResourceDictionary A")]
+        [Description("NamescopingVisitor StopOnResourceDictionary")]
+        [Property("SPEC", "Tizen.NUI.NamescopingVisitor.StopOnResourceDictionary A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
-        public void PruneIgnoredNodesVisitorStopOnResourceDictionary()
+        public void NamescopingVisitorStopOnResourceDictionary()
         {
-            tlog.Debug(tag, $"PruneIgnoredNodesVisitorStopOnResourceDictionary START");
+            tlog.Debug(tag, $"NamescopingVisitorStopOnResourceDictionary START");
 
             try
             {
-                bool b1 = p1.StopOnResourceDictionary;
+                var result = visitor.StopOnResourceDictionary;
+                tlog.Debug(tag, "StopOnResourceDictionary : " + result);
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"PruneIgnoredNodesVisitorStopOnResourceDictionary END (OK)");
-            Assert.Pass("PruneIgnoredNodesVisitorStopOnResourceDictionary");
+            tlog.Debug(tag, $"NamescopingVisitorStopOnResourceDictionary END");
         }
 
         [Test]
         [Category("P1")]
-        [Description("PruneIgnoredNodesVisitor VisitNodeOnDataTemplate")]
-        [Property("SPEC", "Tizen.NUI.PruneIgnoredNodesVisitor.VisitNodeOnDataTemplate A")]
+        [Description("NamescopingVisitor VisitNodeOnDataTemplate")]
+        [Property("SPEC", "Tizen.NUI.NamescopingVisitor.VisitNodeOnDataTemplate A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
-        public void PruneIgnoredNodesVisitorVisitNodeOnDataTemplate()
+        public void NamescopingVisitorVisitNodeOnDataTemplate()
         {
-            tlog.Debug(tag, $"PruneIgnoredNodesVisitorVisitNodeOnDataTemplate START");
+            tlog.Debug(tag, $"NamescopingVisitorVisitNodeOnDataTemplate START");
 
             try
             {
-                bool b1 = p1.VisitNodeOnDataTemplate;
+                var result = visitor.VisitNodeOnDataTemplate;
+                tlog.Debug(tag, "VisitNodeOnDataTemplate : " + result);
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"PruneIgnoredNodesVisitorVisitNodeOnDataTemplate END (OK)");
-            Assert.Pass("PruneIgnoredNodesVisitorVisitNodeOnDataTemplate");
-        }
-
-        internal class INodeImplement : INode
-        {
-            public global::System.Collections.Generic.List<string> IgnorablePrefixes { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-            public global::System.Xml.IXmlNamespaceResolver NamespaceResolver => throw new NotImplementedException();
-
-            public INode Parent { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-            public void Accept(IXamlNodeVisitor visitor, INode parentNode)
-            {
-                throw new NotImplementedException();
-            }
-
-            public INode Clone()
-            {
-                throw new NotImplementedException();
-            }
+            tlog.Debug(tag, $"NamescopingVisitorVisitNodeOnDataTemplate END");
         }
 
         [Test]
         [Category("P1")]
-        [Description("PruneIgnoredNodesVisitor SkipChildren")]
+        [Description("NamescopingVisitor SkipChildren")]
         [Property("SPEC", "Tizen.NUI.NamescopingVisitor.SkipChildren M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
-        public void PruneIgnoredNodesVisitorSkipChildren()
+        public void NamescopingVisitorSkipChildren()
         {
-            tlog.Debug(tag, $"PruneIgnoredNodesVisitorSkipChildren START");
+            tlog.Debug(tag, $"NamescopingVisitorSkipChildren START");
 
             try
             {
-                INodeImplement node = new INodeImplement();
-                INodeImplement nodeParent = new INodeImplement();
-                bool b1 = p1.SkipChildren(node, nodeParent);
+                var child = new INodeImpl();
+                Assert.IsNotNull(child, "null INodeImpl object.");
+
+                var parent = new INodeImpl();
+                Assert.IsNotNull(parent, "null INodeImpl object.");
+
+                var result = visitor.SkipChildren(child, parent);
+                tlog.Debug(tag, "SkipChildren : " + result);
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"PruneIgnoredNodesVisitorSkipChildren END (OK)");
-            Assert.Pass("PruneIgnoredNodesVisitorSkipChildren");
+            tlog.Debug(tag, $"NamescopingVisitorSkipChildren END");
         }
-
-        public class IXmlNamespaceResolverImplement : IXmlNamespaceResolver
-        {
-            public IDictionary<string, string> GetNamespacesInScope(XmlNamespaceScope scope)
-            {
-                throw new NotImplementedException();
-            }
-
-            public string LookupNamespace(string prefix)
-            {
-                throw new NotImplementedException();
-            }
-
-            public string LookupPrefix(string namespaceName)
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("NamescopingVisitor IsResourceDictionary")]
-        //[Property("SPEC", "Tizen.NUI.NamescopingVisitor.IsResourceDictionary M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //public void NamescopingVisitorIsResourceDictionary()
-        //{
-        //    tlog.Debug(tag, $"NamescopingVisitorIsResourceDictionary START");
-
-        //    try
-        //    {
-        //        IList<XmlType> list = null;
-        //        XmlType xmlType = new XmlType("myNameSpace", "myName", list);
-
-        //        IXmlNamespaceResolverImplement i1 = new IXmlNamespaceResolverImplement();
-        //        ElementNode n1 = new ElementNode(xmlType, "myNameSpace", i1);
-
-        //        bool b1 = p1.IsResourceDictionary(n1);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-        //        Assert.Fail("Caught Exception" + e.ToString());
-        //    }
-
-        //    tlog.Debug(tag, $"NamescopingVisitorIsResourceDictionary END (OK)");
-        //    Assert.Pass("NamescopingVisitorIsResourceDictionary");
-        //}
-
-        //public class RootNodeImplement : RootNode
-        //{
-        //    public RootNodeImplement(XmlType xmlType, IXmlNamespaceResolver nsResolver) : base(xmlType, nsResolver)
-        //    {
-        //    }
-        //}
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("NamescopingVisitor Visit")]
-        //[Property("SPEC", "Tizen.NUI.NamescopingVisitor.Visit M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //public void NamescopingVisitorVisit1()
-        //{
-        //    tlog.Debug(tag, $"NamescopingVisitorVisit START");
-
-        //    try
-        //    {
-        //        IList<XmlType> list = null;
-        //        XmlType xmlType = new XmlType("myNameSpace", "myName", list);
-
-        //        IXmlNamespaceResolverImplement i1 = new IXmlNamespaceResolverImplement();
-        //        ElementNode n1 = new ElementNode(xmlType, "myNameSpace", i1);
-
-        //        INodeImplement parentNode = new INodeImplement();
-        //        p1.Visit(n1, parentNode);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        tlog.Debug(tag, e.Message.ToString());
-        //        tlog.Debug(tag, $"NamescopingVisitorVisit END (OK)");
-        //        Assert.Pass("Caught Exception : passed!");
-        //    }
-        //}
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("NamescopingVisitor Visit")]
-        //[Property("SPEC", "Tizen.NUI.NamescopingVisitor.Visit M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //public void NamescopingVisitorVisit2()
-        //{
-        //    tlog.Debug(tag, $"NamescopingVisitorVisit START");
-
-        //    try
-        //    {
-        //        IList<XmlType> list = null;
-        //        XmlType xmlType = new XmlType("myNameSpace", "myName", list);
-
-        //        IXmlNamespaceResolverImplement i1 = new IXmlNamespaceResolverImplement();
-
-        //        INodeImplement parentNode = new INodeImplement();
-
-        //        RootNodeImplement rootNode = new RootNodeImplement(xmlType, i1);
-        //        p1.Visit(rootNode, parentNode);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        tlog.Debug(tag, e.Message.ToString());
-        //        tlog.Debug(tag, $"NamescopingVisitorVisit END (OK)");
-        //        Assert.Pass("Caught Exception : passed!");
-        //    }
-        //}
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("NamescopingVisitor Visit")]
-        //[Property("SPEC", "Tizen.NUI.NamescopingVisitor.Visit M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //public void NamescopingVisitorVisit3()
-        //{
-        //    tlog.Debug(tag, $"NamescopingVisitorVisit START");
-
-        //    try
-        //    {
-        //        IXmlNamespaceResolverImplement i1 = new IXmlNamespaceResolverImplement();
-
-        //        INodeImplement parentNode = new INodeImplement();
-        //        IList<INode> nodes = null;
-        //        ListNode li = new ListNode(nodes, i1);
-        //        p1.Visit(li, parentNode);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        tlog.Debug(tag, e.Message.ToString());
-        //        tlog.Debug(tag, $"NamescopingVisitorVisit END (OK)");
-        //        Assert.Pass("Caught Exception : passed!");
-        //    }
-        //}
     }
 }

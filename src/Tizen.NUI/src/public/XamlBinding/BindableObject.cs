@@ -267,16 +267,22 @@ namespace Tizen.NUI.Binding
                     throw new ArgumentNullException(nameof(property));
                 }
 
+                object oldvalue = null;
                 if (null == property.DefaultValueCreator)
                 {
                     BindablePropertyContext context = GetOrCreateContext(property);
                     if (null != context)
                     {
+                        oldvalue = context.Value;
                         context.Value = value;
                     }
                 }
+                else
+                {
+                    oldvalue = property.DefaultValueCreator.Invoke(this);
+                }
 
-                property.PropertyChanged?.Invoke(this, null, value);
+                property.PropertyChanged?.Invoke(this, oldvalue, value);
 
                 OnPropertyChanged(property.PropertyName);
                 OnPropertyChangedWithData(property);

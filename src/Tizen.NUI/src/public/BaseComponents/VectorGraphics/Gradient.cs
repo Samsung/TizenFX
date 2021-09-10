@@ -43,26 +43,6 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         }
 
         /// <summary>
-        /// Enumeration specifying how to fill the area outside the gradient bounds.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public enum SpreadType
-        {
-            /// <summary>
-            /// The remaining area is filled with the closest stop color.
-            /// </summary>
-            Pad = 0,
-            /// <summary>
-            /// The gradient pattern is reflected outside the gradient area until the expected region is filled.
-            /// </summary>
-            Reflect,
-            /// <summary>
-            /// The gradient pattern is repeated continuously beyond the gradient area until the expected region is filled.
-            /// </summary>
-            Repeat
-        };
-
-        /// <summary>
         /// Specifying how to fill the area outside the gradient bounds.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -89,8 +69,8 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
             get
             {
                 List<ColorStop> retList = new List<ColorStop>();
-                int colorStopsCount = Interop.Gradient.GetColorStopsCount(BaseHandle.getCPtr(this));
-                for (int i = 0; i < colorStopsCount; i++)
+                uint colorStopsCount = Interop.Gradient.GetColorStopsCount(BaseHandle.getCPtr(this));
+                for (uint i = 0; i < colorStopsCount; i++)
                 {
                     retList.Add(new ColorStop(Interop.Gradient.GetColorStopsOffsetIndexOf(BaseHandle.getCPtr(this), i),
                                               Vector4.GetVector4FromPtr(Interop.Gradient.GetColorStopsColorIndexOf(BaseHandle.getCPtr(this), i))));
@@ -115,7 +95,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
                     rawColorStops[i * 5 + 4] = value[i].Color.A;
                 }
 
-                Interop.Gradient.SetColorStops(BaseHandle.getCPtr(this), rawColorStops, value.Count);
+                Interop.Gradient.SetColorStops(BaseHandle.getCPtr(this), rawColorStops, (uint)value.Count);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
