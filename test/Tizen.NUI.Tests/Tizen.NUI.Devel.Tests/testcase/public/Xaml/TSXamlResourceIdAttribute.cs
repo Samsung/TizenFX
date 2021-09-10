@@ -13,6 +13,15 @@ namespace Tizen.NUI.Devel.Tests
     {
         private const string tag = "NUITEST";
         private XamlResourceIdAttribute resourceId;
+		
+		private class AssemblyImplent : Assembly
+        {
+            public override object[] GetCustomAttributes(bool inherit)
+            {
+                return null;
+            }
+        }
+		
         [SetUp]
         public void Init()
         {
@@ -25,6 +34,22 @@ namespace Tizen.NUI.Devel.Tests
         {
             resourceId = null;
             tlog.Info(tag, "Destroy() is called!");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("XamlResourceIdAttribute XamlResourceIdAttribute")]
+        [Property("SPEC", "Tizen.NUI.XamlResourceIdAttribute.XamlResourceIdAttribute C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        public void XamlResourceIdAttributeConstructor()
+        {
+            tlog.Debug(tag, $"XamlResourceIdAttributeConstructor START");
+
+            XamlResourceIdAttribute x1 = new XamlResourceIdAttribute("myId", "myPath", typeof(string));
+            Assert.IsNotNull(x1, "null XamlResourceIdAttribute");
+            Assert.IsInstanceOf<XamlResourceIdAttribute>(x1, "Should return XamlResourceIdAttribute instance.");
+            tlog.Debug(tag, $"XamlResourceIdAttributeConstructor END");
         }
 
         [Test]
@@ -128,6 +153,103 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
+        [Description("XamlResourceIdAttribute GetResourceIdForPath")]
+        [Property("SPEC", "Tizen.NUI.XamlResourceIdAttribute.GetResourceIdForPath M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void XamlResourceIdAttributeGetResourceIdForPath()
+        {
+            tlog.Debug(tag, $"XamlResourceIdAttributeGetResourceIdForPath START");
+
+            try
+            {
+                var ret = XamlResourceIdAttribute.GetResourceIdForPath(typeof(UIElement).Assembly, "testcase.public.Xaml.TotalSample.ClockView.xaml");
+                Assert.IsNotNull(ret, "Shouldn't be null");
+            }
+            catch (Exception e)
+            {
+                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
+                Assert.Fail("Caught Exception" + e.ToString());
+            }
+
+            tlog.Debug(tag, $"XamlResourceIdAttributeGetResourceIdForPath END");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("XamlResourceIdAttribute GetResourceIdForPath")]
+        [Property("SPEC", "Tizen.NUI.XamlResourceIdAttribute.GetResourceIdForPath M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void XamlResourceIdAttributeGetResourceIdForPath2()
+        {
+            tlog.Debug(tag, $"XamlResourceIdAttributeGetResourceIdForPath2 START");
+
+            try
+            {
+                var ret = XamlResourceIdAttribute.GetResourceIdForPath(typeof(UIElement).Assembly, "none.xaml");
+                Assert.IsNull(ret, "Should be null");
+
+            }
+            catch (Exception e)
+            {
+                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
+                Assert.Fail("Caught Exception" + e.ToString());
+            }
+
+            tlog.Debug(tag, $"XamlResourceIdAttributeGetResourceIdForPath2 END");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("XamlResourceIdAttribute GetTypeForResourceId")]
+        [Property("SPEC", "Tizen.NUI.XamlResourceIdAttribute.GetTypeForResourceId M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void XamlResourceIdAttributeGetTypeForResourceId()
+        {
+            tlog.Debug(tag, $"XamlResourceIdAttributeGetTypeForResourceId START");
+
+            try
+            {
+                var ret = XamlResourceIdAttribute.GetTypeForResourceId(typeof(UIElement).Assembly, "Tizen.NUI.Devel.Tests.testcase.public.Xaml.TotalSample.ClockView.xaml");
+                Assert.IsNotNull(ret, "Shouldn't be null");
+            }
+            catch (Exception e)
+            {
+                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
+                Assert.Fail("Caught Exception" + e.ToString());
+            }
+
+            tlog.Debug(tag, $"XamlResourceIdAttributeGetTypeForResourceId END");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("XamlResourceIdAttribute GetTypeForResourceId")]
+        [Property("SPEC", "Tizen.NUI.XamlResourceIdAttribute.GetTypeForResourceId M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void XamlResourceIdAttributeGetTypeForResourceId2()
+        {
+            tlog.Debug(tag, $"XamlResourceIdAttributeGetTypeForResourceId2 START");
+
+            try
+            {
+                var ret = XamlResourceIdAttribute.GetTypeForResourceId(typeof(UIElement).Assembly, "none.xaml");
+                Assert.IsNull(ret, "Should be null");
+            }
+            catch (Exception e)
+            {
+                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
+                Assert.Fail("Caught Exception" + e.ToString());
+            }
+
+            tlog.Debug(tag, $"XamlResourceIdAttributeGetTypeForResourceId2 END");
+        }
+
+        [Test]
+        [Category("P1")]
         [Description("XamlResourceIdAttribute GetPathForType")]
         [Property("SPEC", "Tizen.NUI.XamlResourceIdAttribute.GetPathForType M")]
         [Property("SPEC_URL", "-")]
@@ -138,7 +260,8 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                XamlResourceIdAttribute.GetPathForType(typeof(string));
+                var ret = XamlResourceIdAttribute.GetPathForType(typeof(TotalSample));
+                Assert.IsNotNull(ret, "Shouldn't be null");
             }
             catch (Exception e)
             {
@@ -147,6 +270,54 @@ namespace Tizen.NUI.Devel.Tests
             }
 
             tlog.Debug(tag, $"XamlResourceIdAttributeGetPathForType END");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("XamlResourceIdAttribute GetTypeForPath")]
+        [Property("SPEC", "Tizen.NUI.XamlResourceIdAttribute.GetTypeForPath M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void XamlResourceIdAttributeGetTypeForPath()
+        {
+            tlog.Debug(tag, $"XamlResourceIdAttributeGetTypeForPath START");
+
+            try
+            {
+                var ret = XamlResourceIdAttribute.GetTypeForPath(typeof(UIElement).Assembly, "testcase.public.Xaml.TotalSample.ClockView.xaml");
+                Assert.IsNotNull(ret, "Shouldn't be null");
+            }
+            catch (Exception e)
+            {
+                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
+                Assert.Fail("Caught Exception" + e.ToString());
+            }
+
+            tlog.Debug(tag, $"XamlResourceIdAttributeGetTypeForPath END");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("XamlResourceIdAttribute GetTypeForPath")]
+        [Property("SPEC", "Tizen.NUI.XamlResourceIdAttribute.GetTypeForPath M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void XamlResourceIdAttributeGetTypeForPath2()
+        {
+            tlog.Debug(tag, $"XamlResourceIdAttributeGetTypeForPath2 START");
+
+            try
+            {
+                var ret = XamlResourceIdAttribute.GetTypeForPath(typeof(UIElement).Assembly, "none.xaml");
+                Assert.IsNull(ret, "Should be null");
+            }
+            catch (Exception e)
+            {
+                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
+                Assert.Fail("Caught Exception" + e.ToString());
+            }
+
+            tlog.Debug(tag, $"XamlResourceIdAttributeGetTypeForPath2 END");
         }
     }
 }

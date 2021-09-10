@@ -163,5 +163,52 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"NamescopingVisitorSkipChildren END");
         }
+        public class IXmlNamespaceResolverImplement : IXmlNamespaceResolver
+        {
+            public IDictionary<string, string> GetNamespacesInScope(XmlNamespaceScope scope)
+            {
+                throw new NotImplementedException();
+            }
+
+            public string LookupNamespace(string prefix)
+            {
+                throw new NotImplementedException();
+            }
+
+            public string LookupPrefix(string namespaceName)
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("NamescopingVisitor IsResourceDictionary")]
+        [Property("SPEC", "Tizen.NUI.NamescopingVisitor.IsResourceDictionary M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void NamescopingVisitorIsResourceDictionary()
+        {
+            tlog.Debug(tag, $"NamescopingVisitorIsResourceDictionary START");
+
+            try
+            {
+                Assert.IsNotNull(visitor, "null PruneIgnoredNodesVisitor");
+                IList<XmlType> list = null;
+                XmlType xmlType = new XmlType("myNameSpace", "myName", list);
+
+                IXmlNamespaceResolverImplement i1 = new IXmlNamespaceResolverImplement();
+                ElementNode n1 = new ElementNode(xmlType, "myNameSpace", i1);
+
+                bool b1 = visitor.IsResourceDictionary(n1);
+            }
+            catch (Exception e)
+            {
+                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
+                Assert.Fail("Caught Exception" + e.ToString());
+            }
+
+            tlog.Debug(tag, $"NamescopingVisitorIsResourceDictionary END");
+        }
     }
 }

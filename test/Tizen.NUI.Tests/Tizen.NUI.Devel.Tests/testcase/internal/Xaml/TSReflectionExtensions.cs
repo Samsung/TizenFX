@@ -99,7 +99,9 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                ReflectionExtensions.GetProperties(new TypeImpl());
+                TypeImpl type = new TypeImpl();
+                Assert.IsNotNull(type, "null TypeImpl");
+                ReflectionExtensions.GetProperties(type);
             }
             catch (Exception e)
             {

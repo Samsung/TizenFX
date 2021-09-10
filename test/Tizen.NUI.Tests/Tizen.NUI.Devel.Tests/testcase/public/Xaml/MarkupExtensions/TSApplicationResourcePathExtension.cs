@@ -34,6 +34,23 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
+        [Description("ApplicationResourcePathExtension ApplicationResourcePathExtension")]
+        [Property("SPEC", "Tizen.NUI.ApplicationResourcePathExtension.ApplicationResourcePathExtension C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        public void ApplicationResourcePathExtensionConstructor()
+        {
+            tlog.Debug(tag, $"ApplicationResourcePathExtensionConstructor START");
+
+            ApplicationResourcePathExtension applicationResourcePathExtension = new ApplicationResourcePathExtension();
+            Assert.IsNotNull(applicationResourcePathExtension, "null ApplicationResourcePathExtension");
+            Assert.IsInstanceOf<ApplicationResourcePathExtension>(applicationResourcePathExtension, "Should return ApplicationResourcePathExtension instance.");
+
+            tlog.Debug(tag, $"ApplicationResourcePathExtensionConstructor END");
+        }
+
+        [Test]
+        [Category("P1")]
         [Description("ApplicationResourcePathExtension FilePath ")]
         [Property("SPEC", "Tizen.NUI.ApplicationResourcePathExtension.FilePath A")]
         [Property("SPEC_URL", "-")]
@@ -69,7 +86,9 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                path.ProvideValue(new IServiceProviderImpl());
+                IServiceProviderImpl serviceProviderimplement = new IServiceProviderImpl();
+                Assert.IsNotNull(serviceProviderimplement, "null IServiceProviderImpl");
+                path.ProvideValue(serviceProviderimplement);
             }
             catch (Exception e)
             {

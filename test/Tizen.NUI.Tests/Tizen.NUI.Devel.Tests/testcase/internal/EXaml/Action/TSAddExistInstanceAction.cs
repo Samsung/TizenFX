@@ -26,50 +26,50 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Info(tag, "Destroy() is called!");
         }
 
-        [Test]
-        [Category("P1")]
-        [Description("AddExistInstanceAction AddExistInstanceAction.")]
-        [Property("SPEC", "Tizen.NUI.EXaml.AddExistInstanceAction.AddExistInstanceAction C")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "CONSTR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void EXamlAddExistInstanceActionConstructor()
-        {
-            tlog.Debug(tag, $"EXamlAddExistInstanceActionConstructor START");
+        //[Test]
+        //[Category("P1")]
+        //[Description("AddExistInstanceAction AddExistInstanceAction.")]
+        //[Property("SPEC", "Tizen.NUI.EXaml.AddExistInstanceAction.AddExistInstanceAction C")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "CONSTR")]
+        //[Property("AUTHOR", "guowei.wang@samsung.com")]
+        //public void EXamlAddExistInstanceActionConstructor()
+        //{
+        //    tlog.Debug(tag, $"EXamlAddExistInstanceActionConstructor START");
 
-            var testingTarget = new Tizen.NUI.EXaml.AddExistInstanceAction(new Tizen.NUI.EXaml.GlobalDataList(), null);
-            Assert.IsNotNull(testingTarget, "Can't create success object AddExistInstanceAction");
-            Assert.IsInstanceOf<Tizen.NUI.EXaml.AddExistInstanceAction>(testingTarget, "Should be an instance of AddExistInstanceAction type.");
+        //    var testingTarget = new Tizen.NUI.EXaml.AddExistInstanceAction(new Tizen.NUI.EXaml.GlobalDataList(), null);
+        //    Assert.IsNotNull(testingTarget, "Can't create success object AddExistInstanceAction");
+        //    Assert.IsInstanceOf<Tizen.NUI.EXaml.AddExistInstanceAction>(testingTarget, "Should be an instance of AddExistInstanceAction type.");
 
-            tlog.Debug(tag, $"EXamlAddExistInstanceActionConstructor END (OK)");
-        }
+        //    tlog.Debug(tag, $"EXamlAddExistInstanceActionConstructor END (OK)");
+        //}
 
-        [Test]
-        [Category("P1")]
-        [Description("AddExistInstanceAction Init.")]
-        [Property("SPEC", "Tizen.NUI.EXaml.AddExistInstanceAction.Init M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void EXamlAddExistInstanceActionInit()
-        {
-            tlog.Debug(tag, $"EXamlAddExistInstanceActionInit START");
+        //[Test]
+        //[Category("P1")]
+        //[Description("AddExistInstanceAction Init.")]
+        //[Property("SPEC", "Tizen.NUI.EXaml.AddExistInstanceAction.Init M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //[Property("AUTHOR", "guowei.wang@samsung.com")]
+        //public void EXamlAddExistInstanceActionInit()
+        //{
+        //    tlog.Debug(tag, $"EXamlAddExistInstanceActionInit START");
 
-            var testingTarget = new Tizen.NUI.EXaml.AddExistInstanceAction(new Tizen.NUI.EXaml.GlobalDataList(), null);
-            Assert.IsNotNull(testingTarget, "Can't create success object AddExistInstanceAction");
-            Assert.IsInstanceOf<Tizen.NUI.EXaml.AddExistInstanceAction>(testingTarget, "Should be an instance of AddExistInstanceAction type.");
+        //    var testingTarget = new Tizen.NUI.EXaml.AddExistInstanceAction(new Tizen.NUI.EXaml.GlobalDataList(), null);
+        //    Assert.IsNotNull(testingTarget, "Can't create success object AddExistInstanceAction");
+        //    Assert.IsInstanceOf<Tizen.NUI.EXaml.AddExistInstanceAction>(testingTarget, "Should be an instance of AddExistInstanceAction type.");
 
-            try
-            {
-                testingTarget.Init();
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
+        //    try
+        //    {
+        //        testingTarget.Init();
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        tlog.Debug(tag, e.Message.ToString());
+        //        Assert.Fail("Caught Exception : Failed!");
+        //    }
 
-            tlog.Debug(tag, $"EXamlAddExistInstanceActionInit END (OK)");
-        }
+        //    tlog.Debug(tag, $"EXamlAddExistInstanceActionInit END (OK)");
+        //}
     }
 }

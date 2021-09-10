@@ -30,6 +30,23 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
+        [Description("TemplateBindingExtension TemplateBindingExtension")]
+        [Property("SPEC", "Tizen.NUI.TemplateBindingExtension.TemplateBindingExtension C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        public void TemplateBindingExtensionConstructor()
+        {
+            tlog.Debug(tag, $"TemplateBindingExtensionConstructor START");
+
+            TemplateBindingExtension templateBindingExtension = new TemplateBindingExtension();
+            Assert.IsNotNull(templateBindingExtension, "null TemplateBindingExtension");
+            Assert.IsInstanceOf<TemplateBindingExtension>(templateBindingExtension, "Should return TemplateBindingExtension instance.");
+
+            tlog.Debug(tag, $"TemplateBindingExtensionConstructor END");
+        }
+		
+        [Test]
+        [Category("P1")]
         [Description("TemplateBindingExtension Path")]
         [Property("SPEC", "Tizen.NUI.TemplateBindingExtension.Path A")]
         [Property("SPEC_URL", "-")]

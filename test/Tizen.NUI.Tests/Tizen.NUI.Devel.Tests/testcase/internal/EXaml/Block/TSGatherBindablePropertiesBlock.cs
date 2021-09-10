@@ -26,50 +26,50 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Info(tag, "Destroy() is called!");
         }
 
-        [Test]
-        [Category("P1")]
-        [Description("GatherBindablePropertiesBlock constructor.")]
-        [Property("SPEC", "Tizen.NUI.EXaml.GatherBindablePropertiesBlock.GatherBindablePropertiesBlock C")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "CONSTR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void EXamlGatherBindablePropertiesBlockConstructor()
-        {
-            tlog.Debug(tag, $"EXamlGatherBindablePropertiesBlockConstructor START");
+        //[Test]
+        //[Category("P1")]
+        //[Description("GatherBindablePropertiesBlock constructor.")]
+        //[Property("SPEC", "Tizen.NUI.EXaml.GatherBindablePropertiesBlock.GatherBindablePropertiesBlock C")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "CONSTR")]
+        //[Property("AUTHOR", "guowei.wang@samsung.com")]
+        //public void EXamlGatherBindablePropertiesBlockConstructor()
+        //{
+        //    tlog.Debug(tag, $"EXamlGatherBindablePropertiesBlockConstructor START");
 
-            var testingTarget = new Tizen.NUI.EXaml.GatherBindablePropertiesBlock(new Tizen.NUI.EXaml.GlobalDataList(), null);
-            Assert.IsNotNull(testingTarget, "Can't create success object GatherBindablePropertiesBlock");
-            Assert.IsInstanceOf<Tizen.NUI.EXaml.GatherBindablePropertiesBlock>(testingTarget, "Should be an instance of GatherBindablePropertiesBlock type.");
+        //    var testingTarget = new Tizen.NUI.EXaml.GatherBindablePropertiesBlock(new Tizen.NUI.EXaml.GlobalDataList(), null);
+        //    Assert.IsNotNull(testingTarget, "Can't create success object GatherBindablePropertiesBlock");
+        //    Assert.IsInstanceOf<Tizen.NUI.EXaml.GatherBindablePropertiesBlock>(testingTarget, "Should be an instance of GatherBindablePropertiesBlock type.");
 
-            tlog.Debug(tag, $"EXamlGatherBindablePropertiesBlockConstructor END (OK)");
-        }
+        //    tlog.Debug(tag, $"EXamlGatherBindablePropertiesBlockConstructor END (OK)");
+        //}
 
-        [Test]
-        [Category("P1")]
-        [Description("GatherBindablePropertiesBlock Init.")]
-        [Property("SPEC", "Tizen.NUI.EXaml.GatherBindablePropertiesBlock.Init M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void EXamlGatherBindablePropertiesBlockInit()
-        {
-            tlog.Debug(tag, $"EXamlGatherBindablePropertiesBlockInit START");
+        //[Test]
+        //[Category("P1")]
+        //[Description("GatherBindablePropertiesBlock Init.")]
+        //[Property("SPEC", "Tizen.NUI.EXaml.GatherBindablePropertiesBlock.Init M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //[Property("AUTHOR", "guowei.wang@samsung.com")]
+        //public void EXamlGatherBindablePropertiesBlockInit()
+        //{
+        //    tlog.Debug(tag, $"EXamlGatherBindablePropertiesBlockInit START");
 
-            var testingTarget = new Tizen.NUI.EXaml.GatherBindablePropertiesBlock(new Tizen.NUI.EXaml.GlobalDataList(), null);
-            Assert.IsNotNull(testingTarget, "Can't create success object GatherBindablePropertiesBlock");
-            Assert.IsInstanceOf<Tizen.NUI.EXaml.GatherBindablePropertiesBlock>(testingTarget, "Should be an instance of GatherBindablePropertiesBlock type.");
+        //    var testingTarget = new Tizen.NUI.EXaml.GatherBindablePropertiesBlock(new Tizen.NUI.EXaml.GlobalDataList(), null);
+        //    Assert.IsNotNull(testingTarget, "Can't create success object GatherBindablePropertiesBlock");
+        //    Assert.IsInstanceOf<Tizen.NUI.EXaml.GatherBindablePropertiesBlock>(testingTarget, "Should be an instance of GatherBindablePropertiesBlock type.");
 
-            try
-            {
-                testingTarget.Init();
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
+        //    try
+        //    {
+        //        testingTarget.Init();
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        tlog.Debug(tag, e.Message.ToString());
+        //        Assert.Fail("Caught Exception : Failed!");
+        //    }
 
-            tlog.Debug(tag, $"EXamlGatherBindablePropertiesBlockInit END (OK)");
-        }
+        //    tlog.Debug(tag, $"EXamlGatherBindablePropertiesBlockInit END (OK)");
+        //}
     }
 }
