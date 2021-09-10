@@ -393,6 +393,20 @@ namespace Tizen.Applications
                         break;
                     }
                 }
+
+            }
+
+            if (filter != null && filter.StringFilters != null)
+            {
+                foreach (KeyValuePair<string, string> entry in filter?.StringFilters)
+                {
+                    err = Interop.PackageManager.PackageManagerFilterAdd(filterHandle, entry.Key, entry.Value);
+                    if (err != Interop.PackageManager.ErrorCode.None)
+                    {
+                        Log.Warn(LogTag, string.Format("Failed to configure package filter. err = {0}", err));
+                        break;
+                    }
+                }
             }
 
             if (err == Interop.PackageManager.ErrorCode.None)
