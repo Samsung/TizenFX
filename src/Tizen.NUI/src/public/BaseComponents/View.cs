@@ -2812,5 +2812,27 @@ namespace Tizen.NUI.BaseComponents
                 return transitionOptions;
             }
         }
+
+        /// <summary>
+        /// Gets or sets the status of whether the view should emit touch or hover signals.
+        /// If a View is made insensitive, then the View and its children are not hittable.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool KeyboardSensitive
+        {
+            get
+            {
+                return (bool)GetValue(KeyboardSensitiveProperty);
+            }
+            set
+            {
+                SetValue(KeyboardSensitiveProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+
+
+
     }
 }
