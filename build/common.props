@@ -6,6 +6,7 @@
     <GenerateDependencyFile>False</GenerateDependencyFile>
     <Deterministic>True</Deterministic>
     <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
+    <ProduceReferenceAssemblyInOutDir>True</ProduceReferenceAssemblyInOutDir>
   </PropertyGroup>
 
   <PropertyGroup>
