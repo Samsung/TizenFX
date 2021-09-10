@@ -1670,7 +1670,7 @@ namespace Tizen.NUI.BaseComponents
         /// editor.SetInputFilter(inputFilter); // acceptable inputs are 4, 5, 6, 7, 8, 9
         /// </code>
         /// </example>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public void SetInputFilter(InputFilter inputFilter)
         {
             SetProperty(TextEditor.Property.InputFilter, new PropertyValue(TextMapHelper.GetInputFilterMap(inputFilter)));
@@ -1683,7 +1683,7 @@ namespace Tizen.NUI.BaseComponents
         /// <remarks>
         /// <see cref="Tizen.NUI.Text.InputFilter"/>
         /// </remarks>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public InputFilter GetInputFilter()
         {
             var map = new PropertyMap();
