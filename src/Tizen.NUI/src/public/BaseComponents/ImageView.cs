@@ -203,19 +203,36 @@ namespace Tizen.NUI.BaseComponents
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SynchronosLoadingProperty = BindableProperty.Create(nameof(SynchronosLoading), typeof(bool), typeof(ImageView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SynchronosLoadingProperty = BindableProperty.Create(nameof(SynchronousLoading), typeof(bool), typeof(ImageView), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var imageView = (ImageView)bindable;
             if (newValue != null)
             {
-                imageView._synchronosLoading = (bool)newValue;
+                imageView._synchronousLoading = (bool)newValue;
                 imageView.UpdateImage(NpatchImageVisualProperty.SynchronousLoading, new PropertyValue((bool)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var imageView = (ImageView)bindable;
-            return imageView._synchronosLoading;
+            return imageView._synchronousLoading;
+        });
+
+        /// This will be public opened in tizen_7.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty SynchronousLoadingProperty = BindableProperty.Create(nameof(SynchronousLoading), typeof(bool), typeof(ImageView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var imageView = (ImageView)bindable;
+            if (newValue != null)
+            {
+                imageView._synchronousLoading = (bool)newValue;
+                imageView.UpdateImage(NpatchImageVisualProperty.SynchronousLoading, new PropertyValue((bool)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var imageView = (ImageView)bindable;
+            return imageView._synchronousLoading;
         });
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -247,7 +264,7 @@ namespace Tizen.NUI.BaseComponents
 
         private Rectangle _border;
         private string _resourceUrl = "";
-        private bool _synchronosLoading = false;
+        private bool _synchronousLoading = false;
         private string _alphaMaskUrl = null;
         private int _desired_width = -1;
         private int _desired_height = -1;
@@ -621,11 +638,28 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(SynchronosLoadingProperty);
+                return SynchronousLoading;
             }
             set
             {
-                SetValue(SynchronosLoadingProperty, value);
+                SynchronousLoading = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets whether to synchronous loading the resourceurl of image.<br />
+        /// </summary>
+        /// This will be public opened in tizen_7.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool SynchronousLoading
+        {
+            get
+            {
+                return (bool)GetValue(SynchronousLoadingProperty);
+            }
+            set
+            {
+                SetValue(SynchronousLoadingProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -1299,9 +1333,9 @@ namespace Tizen.NUI.BaseComponents
                 fittingMode?.Dispose();
             }
 
-            PropertyValue synchronosLoading = new PropertyValue(_synchronosLoading);
-            imageMap?.Insert(NpatchImageVisualProperty.SynchronousLoading, synchronosLoading);
-            synchronosLoading?.Dispose();
+            PropertyValue synchronousLoading = new PropertyValue(_synchronousLoading);
+            imageMap?.Insert(NpatchImageVisualProperty.SynchronousLoading, synchronousLoading);
+            synchronousLoading?.Dispose();
 
             if (backgroundExtraData != null && backgroundExtraData.CornerRadius != null)
             {
