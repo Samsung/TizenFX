@@ -30,8 +30,8 @@ internal static partial class Interop
         [StructLayout(LayoutKind.Sequential)]
         internal struct TimeStamp
         {
-            public nint sec;
-            public nint nsec;
+            public IntPtr sec;
+            public IntPtr nsec;
         }
     }
 }

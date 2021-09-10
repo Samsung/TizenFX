@@ -141,7 +141,7 @@ namespace Tizen.Applications.RPCPort
             if (r != Interop.LibRPCPort.ErrorCode.None)
                 throw new InvalidIOException();
 
-            return new TimeStamp(time.sec, time.nsec);
+            return new TimeStamp(time.sec.ToInt64(), time.nsec.ToInt64());
         }
     };
 
