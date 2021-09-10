@@ -532,7 +532,6 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The color for the borderline of the View.
         /// It is Color.Black by default.
-        /// This color is affected by View Opacity.
         /// </summary>
         /// <remarks>
         /// <para>
