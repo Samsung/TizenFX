@@ -3018,5 +3018,27 @@ namespace Tizen.NUI.BaseComponents
                 return transitionOptions;
             }
         }
+
+        /// <summary>
+        /// Gets or sets the status of whether the view should emit key event signals.
+        /// If a View's DispatchKeyEvents is set to false, then it's children will not emit a key event signal either.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool DispatchKeyEvents
+        {
+            get
+            {
+                return (bool)GetValue(DispatchKeyEventsProperty);
+            }
+            set
+            {
+                SetValue(DispatchKeyEventsProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+
+
+
     }
 }
