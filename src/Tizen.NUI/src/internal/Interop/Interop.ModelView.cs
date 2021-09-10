@@ -19,7 +19,7 @@ namespace Tizen.NUI
 {
     internal static partial class Interop
     {
-        internal static partial class Model3DView
+        internal static partial class ModelView
         {
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Model3dView_Property_GEOMETRY_URL_get")]
             public static extern int GeometryUrlGet();
@@ -46,34 +46,34 @@ namespace Tizen.NUI
             public static extern int LightPositionGet();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Model3dView_Property")]
-            public static extern global::System.IntPtr NewModel3dViewProperty();
+            public static extern global::System.IntPtr NewModelViewProperty();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Model3dView_Property")]
-            public static extern void DeleteModel3dViewProperty(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern void DeleteModelViewProperty(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Model3dView_New__SWIG_0")]
-            public static extern global::System.IntPtr Model3dViewNew();
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Model3dView_New_SWIG_0")]
+            public static extern global::System.IntPtr ModelViewNew();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Model3dView_New__SWIG_1")]
-            public static extern global::System.IntPtr Model3dViewNew(string jarg1, string jarg2, string jarg3);
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Model3dView_New_SWIG_1")]
+            public static extern global::System.IntPtr ModelViewNew(string jarg1, string jarg2, string jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Model3dView__SWIG_0")]
-            public static extern global::System.IntPtr NewModel3dView();
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Model3dView_SWIG_0")]
+            public static extern global::System.IntPtr NewModelView();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Model3dView_SWIG_1")]
+            public static extern global::System.IntPtr NewModelView(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Model3dView")]
-            public static extern void DeleteModel3dView(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Model3dView__SWIG_1")]
-            public static extern global::System.IntPtr NewModel3dView(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern void DeleteModelView(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Model3dView_Assign")]
-            public static extern global::System.IntPtr Model3dViewAssign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            public static extern global::System.IntPtr ModelViewAssign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Model3dView_DownCast")]
-            public static extern global::System.IntPtr Model3dViewDownCast(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern global::System.IntPtr ModelViewDownCast(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Model3dView_SWIGUpcast")]
-            public static extern global::System.IntPtr Model3dViewUpcast(global::System.IntPtr jarg1);
+            public static extern global::System.IntPtr ModelViewUpcast(global::System.IntPtr jarg1);
         }
     }
 }
