@@ -505,7 +505,6 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The width for the borderline of the View.
-        /// Note that, an image background may not have borderline if it uses a Border property.
         /// </summary>
         /// <remarks>
         /// <para>
@@ -514,9 +513,9 @@ namespace Tizen.NUI.BaseComponents
         /// animation.AnimateTo(view, "BorderlineWidth", 100.0f);
         /// </code>
         /// </para>
+        /// Note that, an image background may not have borderline if it uses the Border property.
         /// </remarks>
-        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public float BorderlineWidth
         {
             get
@@ -542,8 +541,7 @@ namespace Tizen.NUI.BaseComponents
         /// </code>
         /// </para>
         /// </remarks>
-        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public Color BorderlineColor
         {
             get
@@ -559,10 +557,10 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The Relative offset for the borderline of the View.
-        /// recommand [-1.0f to 1.0f] range.
-        /// If -1.0f, borderline draw inside of View.
-        /// If 1.0f, borderline draw outside of View.
-        /// If 0.0f, borderline draw half at inside and half at outside.
+        /// Recommended range : [-1.0f to 1.0f].
+        /// If -1.0f, draw borderline inside of the View.
+        /// If 1.0f, draw borderline outside of the View.
+        /// If 0.0f, draw borderline half inside and half outside.
         /// It is 0.0f by default.
         /// </summary>
         /// <remarks>
@@ -573,8 +571,7 @@ namespace Tizen.NUI.BaseComponents
         /// </code>
         /// </para>
         /// </remarks>
-        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public float BorderlineOffset
         {
             get
