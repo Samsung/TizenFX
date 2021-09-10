@@ -1891,7 +1891,7 @@ namespace Tizen.NUI.BaseComponents
             if (backgroundExtraData == null)
             {
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, View.Property.BACKGROUND, new PropertyValue(value));
-                BackgroundImageSynchronosLoading = backgroundImageSynchronosLoading;
+                BackgroundImageSynchronousLoading = backgroundImageSynchronousLoading;
 
                 return;
             }
@@ -1904,7 +1904,7 @@ namespace Tizen.NUI.BaseComponents
                .Add(Visual.Property.BorderlineWidth, new PropertyValue(backgroundExtraData.BorderlineWidth))
                .Add(Visual.Property.BorderlineColor, new PropertyValue(backgroundExtraData.BorderlineColor == null ? new PropertyValue(Color.Black) : new PropertyValue(backgroundExtraData.BorderlineColor)))
                .Add(Visual.Property.BorderlineOffset, new PropertyValue(backgroundExtraData.BorderlineOffset))
-               .Add(ImageVisualProperty.SynchronousLoading, new PropertyValue(backgroundImageSynchronosLoading));
+               .Add(ImageVisualProperty.SynchronousLoading, new PropertyValue(backgroundImageSynchronousLoading));
 
             if (backgroundExtraData.BackgroundImageBorder != null)
             {
