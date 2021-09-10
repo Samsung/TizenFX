@@ -1991,19 +1991,17 @@ namespace Tizen.NUI
     /// <remarks>
     /// The type of InputFilter that is stored in the <see cref="Tizen.NUI.BaseComponents.InputFilteredEventArgs"/> when the input is filtered. <br />
     /// </remarks>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public enum InputFilterType
     {
         /// <summary>
         /// The type of InputFilter is Accept.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         Accept,
 
         /// <summary>
         /// The type of InputFilter is Reject.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         Reject
     }
 
