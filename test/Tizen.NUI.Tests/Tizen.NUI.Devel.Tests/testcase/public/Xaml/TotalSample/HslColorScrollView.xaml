@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<View x:Class="Tizen.NUI.Devel.Tests.HslColorScrollView"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:l="clr-namespace:Tizen.NUI.Devel.Tests;assembly=Tizen.NUI.Devel.Tests"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+
+  <View x:Name="view" BackgroundColor="{Binding Color}" Size2D="440,400" Position2D="20,10" >
+      <View.BindingContext>
+        <l:HslViewModel x:Name="hsl" Color="Red" />
+      </View.BindingContext>
+  </View>
+
+    <TextLabel BindingContext="{x:Reference hsl}" Text="{Binding Hue, StringFormat='Hue = {0:F2}'}" 
+    Position2D="20,480" HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+    <TextLabel BindingContext="{x:Reference hsl}" Text="{Binding Saturation, StringFormat='Saturation = {0:F2}'}" 
+    Position2D="20,590" HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+    <TextLabel BindingContext="{x:Reference hsl}" Text="{Binding Luminosity, StringFormat='Luminosity = {0:F2}'}" 
+    Position2D="20,690" HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+</View>

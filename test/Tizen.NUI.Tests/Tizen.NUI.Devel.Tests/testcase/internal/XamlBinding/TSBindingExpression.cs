@@ -60,15 +60,8 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"BindingExpressionConstructorNullBinding START");
 
             BindingBase binding = null;
-            try
-            {
-                var testingTarget = new BindingExpression(binding, selfpath);
-            }
-            catch (ArgumentNullException)
-            {
-                tlog.Debug(tag, $"BindingExpressionConstructorNullBinding END");
-                Assert.Pass("Caught ArgumentNullException : Passed!");
-            }
+            Assert.Throws<ArgumentNullException>(() => new BindingExpression(binding, selfpath));
+            tlog.Debug(tag, $"BindingExpressionConstructorNullBinding END");
         }
 
         [Test]
@@ -80,16 +73,8 @@ namespace Tizen.NUI.Devel.Tests
         public void BindingExpressionConstructorNullPath()
         {
             tlog.Debug(tag, $"BindingExpressionConstructorNullPath START");
-
-            try
-            {
-                var testingTarget = new BindingExpression(new TemplateBinding(), null);
-            }
-            catch (ArgumentNullException)
-            {
-                tlog.Debug(tag, $"BindingExpressionConstructorNullPath END");
-                Assert.Pass("Caught ArgumentNullException : Passed!");
-            }
+            Assert.Throws<ArgumentNullException>(() => new BindingExpression(new TemplateBinding(), null));
+            tlog.Debug(tag, $"BindingExpressionConstructorNullPath END");
         }
 
         [Test]

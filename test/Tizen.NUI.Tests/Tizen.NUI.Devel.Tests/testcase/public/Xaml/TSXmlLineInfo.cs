@@ -32,15 +32,31 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC", "Tizen.NUI.XmlLineInfo.XmlLineInfo C")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "CONSTR")]
-        public void XmlLineInfoConstructor()
+        public void XmlLineInfoConstructor1()
         {
-            tlog.Debug(tag, $"XmlLineInfoConstructor START");
+            tlog.Debug(tag, $"XmlLineInfoConstructor1 START");
+
+            XmlLineInfo xmlLineInfo1 = new XmlLineInfo();
+            Assert.IsNotNull(xmlLineInfo1, "null XmlLineInfo");
+            Assert.IsInstanceOf<XmlLineInfo>(xmlLineInfo1, "Should return XmlLineInfo instance.");
+            tlog.Debug(tag, $"XmlLineInfoConstructor1 END");
+        }
+		
+        [Test]
+        [Category("P1")]
+        [Description("XmlLineInfo XmlLineInfo")]
+        [Property("SPEC", "Tizen.NUI.XmlLineInfo.XmlLineInfo C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        public void XmlLineInfoConstructor2()
+        {
+            tlog.Debug(tag, $"XmlLineInfoConstructor2 START");
 
             var testingTarget = new XmlLineInfo(10, 5);
             Assert.IsNotNull(testingTarget, "null XmlLineInfo");
             Assert.IsInstanceOf<XmlLineInfo>(testingTarget, "Should return XmlLineInfo instance.");
 
-            tlog.Debug(tag, $"XmlLineInfoConstructor END");
+            tlog.Debug(tag, $"XmlLineInfoConstructor2 END");
         }
 
         [Test]

@@ -41,6 +41,24 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
+        [Description("CreateValuesVisitor CreateValuesVisitor")]
+        [Property("SPEC", "Tizen.NUI.CreateValuesVisitor.CreateValuesVisitor C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        public void CreateValuesVisitorConstructor()
+        {
+            tlog.Debug(tag, $"ApplyPropertiesVisitorConstructor START");
+
+            HydrationContext context = new HydrationContext();
+            Assert.IsNotNull(context, "null HydrationContext");
+            CreateValuesVisitor createValuesVisitor = new CreateValuesVisitor(context);
+            Assert.IsNotNull(createValuesVisitor, "null CreateValuesVisitor");
+
+            tlog.Debug(tag, $"CreateValuesVisitorConstructor END");
+        }
+		
+        [Test]
+        [Category("P1")]
         [Description("CreateValuesVisitor VisitingMode")]
         [Property("SPEC", "Tizen.NUI.CreateValuesVisitor.VisitingMode A")]
         [Property("SPEC_URL", "-")]

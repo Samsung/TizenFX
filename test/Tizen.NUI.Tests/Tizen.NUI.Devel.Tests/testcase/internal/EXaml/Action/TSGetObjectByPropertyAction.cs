@@ -26,50 +26,50 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Info(tag, "Destroy() is called!");
         }
 
-        [Test]
-        [Category("P1")]
-        [Description("GetObjectByPropertyAction constructor.")]
-        [Property("SPEC", "Tizen.NUI.EXaml.GetObjectByPropertyAction.GetObjectByPropertyAction C")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "CONSTR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void EXamlGetObjectByPropertyActionConstructor()
-        {
-            tlog.Debug(tag, $"EXamlGetObjectByPropertyActionConstructor START");
+        //[Test]
+        //[Category("P1")]
+        //[Description("GetObjectByPropertyAction constructor.")]
+        //[Property("SPEC", "Tizen.NUI.EXaml.GetObjectByPropertyAction.GetObjectByPropertyAction C")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "CONSTR")]
+        //[Property("AUTHOR", "guowei.wang@samsung.com")]
+        //public void EXamlGetObjectByPropertyActionConstructor()
+        //{
+        //    tlog.Debug(tag, $"EXamlGetObjectByPropertyActionConstructor START");
 
-            var testingTarget = new Tizen.NUI.EXaml.GetObjectByPropertyAction(new Tizen.NUI.EXaml.GlobalDataList(), null);
-            Assert.IsNotNull(testingTarget, "Can't create success object GetObjectByPropertyAction");
-            Assert.IsInstanceOf<Tizen.NUI.EXaml.GetObjectByPropertyAction>(testingTarget, "Should be an instance of GetObjectByPropertyAction type.");
+        //    var testingTarget = new Tizen.NUI.EXaml.GetObjectByPropertyAction(new Tizen.NUI.EXaml.GlobalDataList(), null);
+        //    Assert.IsNotNull(testingTarget, "Can't create success object GetObjectByPropertyAction");
+        //    Assert.IsInstanceOf<Tizen.NUI.EXaml.GetObjectByPropertyAction>(testingTarget, "Should be an instance of GetObjectByPropertyAction type.");
 
-            tlog.Debug(tag, $"EXamlGetObjectByPropertyActionConstructor END (OK)");
-        }
+        //    tlog.Debug(tag, $"EXamlGetObjectByPropertyActionConstructor END (OK)");
+        //}
 
-        [Test]
-        [Category("P1")]
-        [Description("GetObjectByPropertyAction Init.")]
-        [Property("SPEC", "Tizen.NUI.EXaml.GetObjectByPropertyAction.Init M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void EXamlGetObjectByPropertyActionInit()
-        {
-            tlog.Debug(tag, $"EXamlGetObjectByPropertyActionInit START");
+        //[Test]
+        //[Category("P1")]
+        //[Description("GetObjectByPropertyAction Init.")]
+        //[Property("SPEC", "Tizen.NUI.EXaml.GetObjectByPropertyAction.Init M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //[Property("AUTHOR", "guowei.wang@samsung.com")]
+        //public void EXamlGetObjectByPropertyActionInit()
+        //{
+        //    tlog.Debug(tag, $"EXamlGetObjectByPropertyActionInit START");
 
-            var testingTarget = new Tizen.NUI.EXaml.GetObjectByPropertyAction(new Tizen.NUI.EXaml.GlobalDataList(), null);
-            Assert.IsNotNull(testingTarget, "Can't create success object GetObjectByPropertyAction");
-            Assert.IsInstanceOf<Tizen.NUI.EXaml.GetObjectByPropertyAction>(testingTarget, "Should be an instance of GetObjectByPropertyAction type.");
+        //    var testingTarget = new Tizen.NUI.EXaml.GetObjectByPropertyAction(new Tizen.NUI.EXaml.GlobalDataList(), null);
+        //    Assert.IsNotNull(testingTarget, "Can't create success object GetObjectByPropertyAction");
+        //    Assert.IsInstanceOf<Tizen.NUI.EXaml.GetObjectByPropertyAction>(testingTarget, "Should be an instance of GetObjectByPropertyAction type.");
 
-            try
-            {
-                testingTarget.Init();
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
+        //    try
+        //    {
+        //        testingTarget.Init();
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        tlog.Debug(tag, e.Message.ToString());
+        //        Assert.Fail("Caught Exception : Failed!");
+        //    }
 
-            tlog.Debug(tag, $"EXamlGetObjectByPropertyActionInit END (OK)");
-        }
+        //    tlog.Debug(tag, $"EXamlGetObjectByPropertyActionInit END (OK)");
+        //}
     }
 }
