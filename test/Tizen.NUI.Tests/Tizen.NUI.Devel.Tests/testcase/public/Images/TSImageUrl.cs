@@ -46,6 +46,8 @@ namespace Tizen.NUI.Devel.Tests
 
             buffer = null;
             testingTarget.Dispose();
+            // disposed
+            testingTarget.Dispose();
             tlog.Debug(tag, $"ImageUrlDispose END (OK)");
         }
 
