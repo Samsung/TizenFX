@@ -14,7 +14,10 @@ namespace Tizen.NUI.Devel.Tests
     public class PublicCustomViewRegistryTest
     {
         private const string tag = "NUITEST";
-        public static Func<CustomView> CreateInstance { get; private set; }
+        static CustomView CreateInstance()
+        {
+            return new Spin();
+        }
 
         [SetUp]
         public void Init()
@@ -47,6 +50,30 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, "Type : " + result);
 
             tlog.Debug(tag, $"ScriptablePropertyType END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("CustomViewRegistry Register")]
+        [Property("SPEC", "Tizen.NUI.CustomViewRegistry.Register M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void CustomViewRegistryRegister()
+        {
+            tlog.Debug(tag, $"CustomViewRegistryRegister START");
+
+            try
+            {
+                CustomViewRegistry.Instance.Register(CreateInstance, typeof(Spin));
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            tlog.Debug(tag, $"CustomViewRegistryRegister END (OK)");
         }
 
         [Test]

@@ -3,6 +3,7 @@ using NUnit.Framework;
 using NUnit.Framework.TUnit;
 using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
+using Tizen.NUI;
 
 namespace Tizen.NUI.Devel.Tests
 {
@@ -17,7 +18,7 @@ namespace Tizen.NUI.Devel.Tests
         private delegate float dummyAlphaFunctionDelegate(float progress);
         private dummyAlphaFunctionDelegate alphaFunction;
 
-        private float AlphaFunction(float progress)
+        private float callback(float progress)
         {
             return 1.0f;
         }
@@ -45,10 +46,12 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"AlphaFunctionConstructorWithUserDefinedFunction START");
 
-            alphaFunction = new dummyAlphaFunctionDelegate(AlphaFunction);
+            alphaFunction = new dummyAlphaFunctionDelegate(callback);
             var testingTarget = new AlphaFunction(alphaFunction);
             Assert.IsNotNull(testingTarget, "should be not null");
             Assert.IsInstanceOf<AlphaFunction>(testingTarget, "should be an instance of testing target class!");
+
+            tlog.Debug(tag, "getCPtr : " + AlphaFunction.getCPtr(testingTarget));
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"AlphaFunctionConstructorWithUserDefinedFunction END (OK)");
@@ -180,6 +183,81 @@ namespace Tizen.NUI.Devel.Tests
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"AlphaFunctionGetMode END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("AlphaFunction BuiltinToPropertyKey.")]
+        [Property("SPEC", "Tizen.NUI.AlphaFunction.BuiltinToPropertyKey M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void AlphaFunctionBuiltinToPropertyKey()
+        {
+            tlog.Debug(tag, $"AlphaFunctionBuiltinToPropertyKey START");
+
+            PropertyValue pvAlpha = null;
+            string result = null;
+
+            pvAlpha = new PropertyValue(AlphaFunction.BuiltinToPropertyKey(AlphaFunction.BuiltinFunctions.Linear));
+            pvAlpha.Get(out result);
+            Assert.AreEqual("LINEAR", result, "Should be equal!");
+
+            pvAlpha = new PropertyValue(AlphaFunction.BuiltinToPropertyKey(AlphaFunction.BuiltinFunctions.Reverse));
+            pvAlpha.Get(out result);
+            Assert.AreEqual("REVERSE", result, "Should be equal!");
+
+            pvAlpha = new PropertyValue(AlphaFunction.BuiltinToPropertyKey(AlphaFunction.BuiltinFunctions.EaseInSquare));
+            pvAlpha.Get(out result);
+            Assert.AreEqual("EASE_IN_SQUARE", result, "Should be equal!");
+
+            pvAlpha = new PropertyValue(AlphaFunction.BuiltinToPropertyKey(AlphaFunction.BuiltinFunctions.EaseOutSquare));
+            pvAlpha.Get(out result);
+            Assert.AreEqual("EASE_OUT_SQUARE", result, "Should be equal!");
+
+            pvAlpha = new PropertyValue(AlphaFunction.BuiltinToPropertyKey(AlphaFunction.BuiltinFunctions.EaseIn));
+            pvAlpha.Get(out result);
+            Assert.AreEqual("EASE_IN", result, "Should be equal!");
+
+            pvAlpha = new PropertyValue(AlphaFunction.BuiltinToPropertyKey(AlphaFunction.BuiltinFunctions.EaseOut));
+            pvAlpha.Get(out result);
+            Assert.AreEqual("EASE_OUT", result, "Should be equal!");
+
+            pvAlpha = new PropertyValue(AlphaFunction.BuiltinToPropertyKey(AlphaFunction.BuiltinFunctions.EaseInOut));
+            pvAlpha.Get(out result);
+            Assert.AreEqual("EASE_IN_OUT", result, "Should be equal!");
+
+            pvAlpha = new PropertyValue(AlphaFunction.BuiltinToPropertyKey(AlphaFunction.BuiltinFunctions.EaseInSine));
+            pvAlpha.Get(out result);
+            Assert.AreEqual("EASE_IN_SINE", result, "Should be equal!");
+
+            pvAlpha = new PropertyValue(AlphaFunction.BuiltinToPropertyKey(AlphaFunction.BuiltinFunctions.EaseOutSine));
+            pvAlpha.Get(out result);
+            Assert.AreEqual("EASE_OUT_SINE", result, "Should be equal!");
+
+            pvAlpha = new PropertyValue(AlphaFunction.BuiltinToPropertyKey(AlphaFunction.BuiltinFunctions.EaseInOutSine));
+            pvAlpha.Get(out result);
+            Assert.AreEqual("EASE_IN_OUT_SINE", result, "Should be equal!");
+
+            pvAlpha = new PropertyValue(AlphaFunction.BuiltinToPropertyKey(AlphaFunction.BuiltinFunctions.Bounce));
+            pvAlpha.Get(out result);
+            Assert.AreEqual("BOUNCE", result, "Should be equal!");
+
+            pvAlpha = new PropertyValue(AlphaFunction.BuiltinToPropertyKey(AlphaFunction.BuiltinFunctions.Sin));
+            pvAlpha.Get(out result);
+            Assert.AreEqual("SIN", result, "Should be equal!");
+
+            pvAlpha = new PropertyValue(AlphaFunction.BuiltinToPropertyKey(AlphaFunction.BuiltinFunctions.EaseOutBack));
+            pvAlpha.Get(out result);
+            Assert.AreEqual("EASE_OUT_BACK", result, "Should be equal!");
+
+            pvAlpha = new PropertyValue(AlphaFunction.BuiltinToPropertyKey(AlphaFunction.BuiltinFunctions.Default));
+            pvAlpha.Get(out result);
+            Assert.AreEqual("DEFAULT", result, "Should be equal!");
+
+            result = null;
+            pvAlpha.Dispose();
+            tlog.Debug(tag, $"AlphaFunctionBuiltinToPropertyKey END (OK)");
         }
     }
 }

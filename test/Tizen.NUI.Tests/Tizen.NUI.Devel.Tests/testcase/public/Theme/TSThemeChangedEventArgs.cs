@@ -80,7 +80,11 @@ namespace Tizen.NUI.Devel.Tests
             try
             {
                 var result = testingTarget.ThemeId;
-                tlog.Debug(tag, "themeId :" + result);
+                tlog.Debug(tag, "ThemeId :" + result);
+
+                result = testingTarget.PlatformThemeId;
+                tlog.Debug(tag, "PlatformThemeId : " + result);
+                tlog.Debug(tag, "IsPlatformThemeChanged :" + testingTarget.IsPlatformThemeChanged);
             }
             catch (Exception e)
             {

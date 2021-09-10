@@ -20,6 +20,11 @@ namespace Tizen.NUI.Devel.Tests
             return false;
         }
 
+        private bool OnInterceptTouchEvent(object source, View.TouchEventArgs e)
+        {
+            return false;
+        }
+
         [SetUp]
         public void Init()
         {
@@ -55,134 +60,70 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"InterceptTouchSignalConstructor END (OK)");
         }
 
-        //[Test]
-        //[Category("P1")]
-        //[Description("InterceptTouchSignal Empty.")]
-        //[Property("SPEC", "Tizen.NUI.InterceptTouchSignal.Empty M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void InterceptTouchSignalEmpty()
-        //{
-        //    tlog.Debug(tag, $"InterceptTouchSignalEmpty START");
+        [Test]
+        [Category("P1")]
+        [Description("InterceptTouchSignal Empty.")]
+        [Property("SPEC", "Tizen.NUI.InterceptTouchSignal.Empty M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void InterceptTouchSignalEmpty()
+        {
+            tlog.Debug(tag, $"InterceptTouchSignalEmpty START");
 
-        //    var testingTarget = new InterceptTouchSignal();
-        //    Assert.IsNotNull(testingTarget, "Should be not null!");
-        //    Assert.IsInstanceOf<InterceptTouchSignal>(testingTarget, "Should be an Instance of InterceptTouchSignal!");
+            using (View view = new View())
+            {
+                var testingTarget = new InterceptTouchSignal(view.SwigCPtr.Handle, false);
+                Assert.IsNotNull(testingTarget, "Should be not null!");
+                Assert.IsInstanceOf<InterceptTouchSignal>(testingTarget, "Should be an Instance of InterceptTouchSignal!");
 
-        //    try
-        //    {
-        //        testingTarget.Empty();
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        tlog.Debug(tag, e.Message.ToString());
-        //        Assert.Fail("Caught Exception: Failed!");
-        //    }
+                try
+                {
+                    testingTarget.Empty();
+                }
+                catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught Exception: Failed!");
+                }
 
-        //    testingTarget.Dispose();
+                testingTarget.Dispose();
+            }
 
-        //    tlog.Debug(tag, $"InterceptTouchSignalEmpty END (OK)");
-        //}
+            tlog.Debug(tag, $"InterceptTouchSignalEmpty END (OK)");
+        }
 
-        //[Test]
-        //[Category("P1")]
-        //[Description("InterceptTouchSignal GetConnectionCount.")]
-        //[Property("SPEC", "Tizen.NUI.InterceptTouchSignal.GetConnectionCount M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void InterceptTouchSignalGetConnectionCount()
-        //{
-        //    tlog.Debug(tag, $"InterceptTouchSignalGetConnectionCount START");
+        [Test]
+        [Category("P1")]
+        [Description("InterceptTouchSignal GetConnectionCount.")]
+        [Property("SPEC", "Tizen.NUI.InterceptTouchSignal.GetConnectionCount M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void InterceptTouchSignalGetConnectionCount()
+        {
+            tlog.Debug(tag, $"InterceptTouchSignalGetConnectionCount START");
 
-        //    var testingTarget = new InterceptTouchSignal();
-        //    Assert.IsNotNull(testingTarget, "Should be not null!");
-        //    Assert.IsInstanceOf<InterceptTouchSignal>(testingTarget, "Should be an Instance of InterceptTouchSignal!");
+            using (View view = new View())
+            {
+                var testingTarget = new InterceptTouchSignal(view.SwigCPtr.Handle, false);
+                Assert.IsNotNull(testingTarget, "Should be not null!");
+                Assert.IsInstanceOf<InterceptTouchSignal>(testingTarget, "Should be an Instance of InterceptTouchSignal!");
 
-        //    try
-        //    {
-        //        testingTarget.GetConnectionCount();
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        tlog.Debug(tag, e.Message.ToString());
-        //        Assert.Fail("Caught Exception: Failed!");
-        //    }
+                try
+                {
+                    testingTarget.GetConnectionCount();
+                }
+                catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught Exception: Failed!");
+                }
 
-        //    testingTarget.Dispose();
+                testingTarget.Dispose();
+            }
 
-        //    tlog.Debug(tag, $"InterceptTouchSignalGetConnectionCount END (OK)");
-        //}
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("InterceptTouchSignal Connect.")]
-        //[Property("SPEC", "Tizen.NUI.InterceptTouchSignal.Connect M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void InterceptTouchSignalConnect()
-        //{
-        //    tlog.Debug(tag, $"InterceptTouchSignalConnect START");
-
-        //    var testingTarget = new InterceptTouchSignal();
-        //    Assert.IsNotNull(testingTarget, "Should be not null!");
-        //    Assert.IsInstanceOf<InterceptTouchSignal>(testingTarget, "Should be an Instance of InterceptTouchSignal!");
-
-        //    try
-        //    {
-        //        dummyCallback callback = OnDummyCallback;
-        //        testingTarget.Connect(callback);
-        //        testingTarget.Disconnect(callback);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        tlog.Debug(tag, e.Message.ToString());
-        //        Assert.Fail("Caught Exception: Failed!");
-        //    }
-
-        //    testingTarget.Dispose();
-
-        //    tlog.Debug(tag, $"InterceptTouchSignalConnect END (OK)");
-        //}
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("InterceptTouchSignal Emit.")]
-        //[Property("SPEC", "Tizen.NUI.InterceptTouchSignal.Emit M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //[Obsolete]
-        //public void InterceptTouchSignalEmit()
-        //{
-        //    tlog.Debug(tag, $"InterceptTouchSignalEmit START");
-        //    var currentPid = global::System.Diagnostics.Process.GetCurrentProcess().Id;
-        //    var currentTid = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
-
-        //    tlog.Debug(tag, $"thread check! main pid={App.mainPid}, current pid={currentPid}, main tid={App.mainTid}, current tid={currentTid}");
-
-        //    var testingTarget = new InterceptTouchSignal();
-        //    Assert.IsNotNull(testingTarget, "Should be not null!");
-        //    Assert.IsInstanceOf<InterceptTouchSignal>(testingTarget, "Should be an Instance of InterceptTouchSignal!");
-
-        //    try
-        //    {
-        //        using (Touch touch = new Touch())
-        //        {
-        //            testingTarget.Emit(touch);
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        tlog.Debug(tag, e.Message.ToString());
-        //        Assert.Fail("Caught Exception: Failed!");
-        //    }
-
-        //    testingTarget.Dispose();
-
-        //    tlog.Debug(tag, $"InterceptTouchSignalEmit END (OK)");
-        //}
+            tlog.Debug(tag, $"InterceptTouchSignalGetConnectionCount END (OK)");
+        }
     }
 }
