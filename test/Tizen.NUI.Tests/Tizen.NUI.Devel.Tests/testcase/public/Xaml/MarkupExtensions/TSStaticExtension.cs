@@ -11,27 +11,24 @@ namespace Tizen.NUI.Devel.Tests
     public class PublicStaticExtensionTest
     {
         private const string tag = "NUITEST";
-        private static StaticExtension s1;
+        private StaticExtension sExtention;
 
-        internal class IServiceProviderimplement : IServiceProvider
+        internal class IServiceProviderImpl : IServiceProvider
         {
-            public object GetService(Type serviceType)
-            {
-                return null;
-            }
+            public object GetService(Type serviceType) { return null; }
         }
 
         [SetUp]
         public void Init()
         {
             tlog.Info(tag, "Init() is called!");
-            s1 = new StaticExtension();
+            sExtention = new StaticExtension();
         }
 
         [TearDown]
         public void Destroy()
         {
-            s1 = null;
+            sExtention = null;
             tlog.Info(tag, "Destroy() is called!");
         }
 
@@ -47,39 +44,38 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                string tmp = s1.Member;
-                s1.Member = tmp;
+                var member = sExtention.Member;
+                sExtention.Member = member;
+                Assert.AreEqual(member, sExtention.Member, "Should be equal");
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"StaticExtensionMember END (OK)");
-            Assert.Pass("StaticExtensionMember");
+            tlog.Debug(tag, $"StaticExtensionMember END");
         }
 
         [Test]
         [Category("P1")]
         [Description("StaticExtension ProvideValue")]
-        [Property("SPEC", "Tizen.NUI.StaticExtension.ProvideValue A")]
+        [Property("SPEC", "Tizen.NUI.StaticExtension.ProvideValue M")]
         [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
+        [Property("CRITERIA", "MR")]
         public void StaticExtensionProvideValue()
         {
             tlog.Debug(tag, $"StaticExtensionProvideValue START");
 
             try
             {
-                IServiceProviderimplement serviceProviderimplement = new IServiceProviderimplement();
-                s1.ProvideValue(serviceProviderimplement);
+                sExtention.ProvideValue(new IServiceProviderImpl());  // IXamlTypeResolver is null
             }
-            catch (Exception e)
+            catch (ArgumentException e)
             {
                 tlog.Debug(tag, e.Message.ToString());
-                tlog.Debug(tag, $"StaticExtensionProvideValue END (OK)");
-                Assert.Pass("Caught Exception : passed!");
+                tlog.Debug(tag, $"StaticExtensionProvideValue END");
+                Assert.Pass("Caught ArgumentException : Passed!");
             }
         }
     }

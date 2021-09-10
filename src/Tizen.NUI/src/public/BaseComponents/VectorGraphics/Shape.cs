@@ -19,6 +19,7 @@ using System;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Tizen.NUI.BaseComponents.VectorGraphics
 {
@@ -28,6 +29,9 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
     /// <since_tizen> 9 </since_tizen>
     public class Shape : Drawable
     {
+        private Gradient fillGradient; //Added gradient
+        private Gradient strokeGradient; //Added gradient
+
         /// <summary>
         /// Creates an initialized Shape.
         /// </summary>
@@ -116,6 +120,30 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         }
 
         /// <summary>
+        /// The gradient to use for filling the path.
+        /// Even if FillColor is set, Gradient setting takes precedence.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Gradient FillGradient
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.Shape.GetFillGradient(BaseHandle.getCPtr(this));
+                Gradient ret = new Gradient(cPtr, true);
+                return ret;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    Interop.Shape.SetFillGradient(BaseHandle.getCPtr(this), BaseHandle.getCPtr(value));
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    fillGradient = value;
+                }
+            }
+        }
+
+        /// <summary>
         /// The current fill rule of the shape.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
@@ -168,6 +196,30 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         }
 
         /// <summary>
+        /// The gradient to use for stroking the path.
+        /// Even if StrokeColor is set, Gradient setting takes precedence.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Gradient StrokeGradient
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.Shape.GetStrokeGradient(BaseHandle.getCPtr(this));
+                Gradient ret = new Gradient(cPtr, true);
+                return ret;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    Interop.Shape.SetStrokeGradient(BaseHandle.getCPtr(this), BaseHandle.getCPtr(value));
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    strokeGradient = value;
+                }
+            }
+        }
+
+        /// <summary>
         /// The cap style to use for stroking the path. The cap will be used for capping the end point of a open subpath.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
@@ -212,8 +264,8 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
             get
             {
                 List<float> retList = new List<float>();
-                int patternCount = Interop.Shape.GetStrokeDashCount(BaseHandle.getCPtr(this));
-                for (int i = 0; i < patternCount; i++)
+                uint patternCount = Interop.Shape.GetStrokeDashCount(BaseHandle.getCPtr(this));
+                for (uint i = 0; i < patternCount; i++)
                 {
                     retList.Add(Interop.Shape.GetStrokeDashIndexOf(BaseHandle.getCPtr(this), i));
                 }
@@ -232,7 +284,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
                 {
                     pattern[i] = value[i];
                 }
-                Interop.Shape.SetStrokeDash(BaseHandle.getCPtr(this), pattern, value.Count);
+                Interop.Shape.SetStrokeDash(BaseHandle.getCPtr(this), pattern, (uint)value.Count);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -346,6 +398,46 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
             bool ret = Interop.Shape.AddCubicTo(BaseHandle.getCPtr(this), controlPoint1X, controlPoint1Y, controlPoint2X, controlPoint2Y, endPointX, endPointY);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+
+        /// <summary>
+        /// Appends a given sub-path to the path.
+        /// The current point value is set to the last point from the sub-path.
+        /// @note The interface is designed for optimal path setting if the caller has a completed path commands already.
+        /// </summary>
+        /// <param name="pathCommands">The command object that contain sub-path information. (This command information is copied internally.)</param>
+        /// <exception cref="ArgumentNullException"> Thrown when pathCommands is null. </exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void AddPath(PathCommands pathCommands)
+        {
+            if (pathCommands == null)
+            {
+                throw new ArgumentNullException(nameof(pathCommands));
+            }
+
+            PathCommandType[] commands = null;
+            if (pathCommands.Commands is PathCommandType[] commandArray)
+            {
+                commands = commandArray;
+            }
+            else
+            {
+                commands = pathCommands.Commands.ToArray();        
+            }
+
+            float[] points = null;            
+            if (pathCommands.Points is float[] pointArray)
+            {
+                points = pointArray;
+            }
+            else
+            {
+                points = pathCommands.Points.ToArray();    
+            }
+            
+            Interop.Shape.AddPath(BaseHandle.getCPtr(this), commands, (uint)commands.Length, points, (uint)points.Length);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>

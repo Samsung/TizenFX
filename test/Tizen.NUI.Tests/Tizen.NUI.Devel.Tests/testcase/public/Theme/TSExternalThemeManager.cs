@@ -14,7 +14,7 @@ namespace Tizen.NUI.Devel.Tests
     internal class PublicExternalThemeManagerTest
     {
         private const string tag = "NUITEST";
-        private string path = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "picture.png";
+        private string path = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "Test_Theme.xaml";
 
         [SetUp]
         public void Init()
@@ -60,6 +60,30 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"ExternalThemeManagerInitialize END (OK)");
             Assert.Pass("ExternalThemeManagerInitialize");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("test ExternalThemeManager SetTheme")]
+        [Property("SPEC", "Tizen.NUI.ExternalThemeManager.SetTheme M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        public void ExternalThemeManagerSetTheme()
+        {
+            tlog.Debug(tag, $"ExternalThemeManagerSetTheme START");
+
+            try
+            {
+                ExternalThemeManager.SetTheme("Tizen.NUI.Theme.Common");
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, "SetTheme : " + e.Message.ToString());
+                Assert.Fail("Caught Exception :  Failed!");
+            }
+
+            tlog.Debug(tag, $"ExternalThemeManagerSetTheme END (OK)");
         }
     }
 }

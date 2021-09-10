@@ -93,7 +93,14 @@ namespace Tizen.NUI.Xaml
 
                 if (converterTypeName == null)
                 {
-                    converterTypeName = toType.FullName + "TypeConverter";
+                    if (toType == typeof(Type))
+                    {
+                        converterTypeName = typeof(TypeTypeConverter).FullName;
+                    }
+                    else
+                    {
+                        converterTypeName = toType.FullName + "TypeConverter";
+                    }
                 }
 
                 var convertertype = Type.GetType(converterTypeName);

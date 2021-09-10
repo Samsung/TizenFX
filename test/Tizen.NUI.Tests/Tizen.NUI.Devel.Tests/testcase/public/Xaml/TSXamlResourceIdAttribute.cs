@@ -12,44 +12,19 @@ namespace Tizen.NUI.Devel.Tests
     public class PublicXamlResourceIdAttributeTest
     {
         private const string tag = "NUITEST";
-        private static XamlResourceIdAttribute resourceIdAttribute;
-
-        internal class AssemblyImplent : Assembly
-        {
-            public override object[] GetCustomAttributes(bool inherit)
-            {
-                return null;
-            }
-        }
-
+        private XamlResourceIdAttribute resourceId;
         [SetUp]
         public void Init()
         {
             tlog.Info(tag, "Init() is called!");
-            resourceIdAttribute = new XamlResourceIdAttribute("myId", "myPath", typeof(string));
+            resourceId = new XamlResourceIdAttribute("myId", "myPath", typeof(string));
         }
 
         [TearDown]
         public void Destroy()
         {
-            resourceIdAttribute = null;
+            resourceId = null;
             tlog.Info(tag, "Destroy() is called!");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("XamlResourceIdAttribute XamlResourceIdAttribute")]
-        [Property("SPEC", "Tizen.NUI.XamlResourceIdAttribute.XamlResourceIdAttribute C")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "CONSTR")]
-        public void XamlResourceIdAttributeConstructor()
-        {
-            tlog.Debug(tag, $"XamlResourceIdAttributeConstructor START");
-
-            XamlResourceIdAttribute x1 = new XamlResourceIdAttribute("myId", "myPath", typeof(string));
-
-            tlog.Debug(tag, $"XamlResourceIdAttributeConstructor END (OK)");
-            Assert.Pass("XamlResourceIdAttributeConstructor");
         }
 
         [Test]
@@ -64,17 +39,17 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                string s1 = resourceIdAttribute.ResourceId;
-                resourceIdAttribute.ResourceId = s1;
+                var id = resourceId.ResourceId;
+                resourceId.ResourceId = id;
+                Assert.AreEqual(id, resourceId.ResourceId, "Should be equal");
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"XamlResourceIdAttributeResourceId END (OK)");
-            Assert.Pass("XamlResourceIdAttributeResourceId");
+            tlog.Debug(tag, $"XamlResourceIdAttributeResourceId END");
         }
 
         [Test]
@@ -89,17 +64,17 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                string s1 = resourceIdAttribute.Path;
-                resourceIdAttribute.Path = s1;
+                var path = resourceId.Path;
+                resourceId.Path = path;
+                Assert.AreEqual(path, resourceId.Path, "Should be equal");
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"XamlResourceIdAttributePath END (OK)");
-            Assert.Pass("XamlResourceIdAttributePath");
+            tlog.Debug(tag, $"XamlResourceIdAttributePath END");
         }
 
         [Test]
@@ -114,16 +89,17 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                Type t1 = resourceIdAttribute.Type;
-                resourceIdAttribute.Type = t1;
+                var type = resourceId.Type;
+                resourceId.Type = type;
+                Assert.AreEqual(type, resourceId.Type, "Should be equal");
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"XamlResourceIdAttributeType END (OK)");
+            tlog.Debug(tag, $"XamlResourceIdAttributeType END");
             Assert.Pass("XamlResourceIdAttributeType");
         }
 
@@ -147,8 +123,7 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception" + e.ToString());
             }
 
-            tlog.Debug(tag, $"XamlResourceIdAttributeGetResourceIdForType END (OK)");
-            Assert.Pass("XamlResourceIdAttributeGetResourceIdForType");
+            tlog.Debug(tag, $"XamlResourceIdAttributeGetResourceIdForType END");
         }
 
         [Test]
@@ -171,77 +146,7 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception" + e.ToString());
             }
 
-            tlog.Debug(tag, $"XamlResourceIdAttributeGetPathForType END (OK)");
-            Assert.Pass("XamlResourceIdAttributeGetPathForType");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("XamlResourceIdAttribute GetTypeForResourceId")]
-        [Property("SPEC", "Tizen.NUI.XamlResourceIdAttribute.GetTypeForResourceId M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        public void XamlResourceIdAttributeGetTypeForResourceId()
-        {
-            tlog.Debug(tag, $"XamlResourceIdAttributeGetTypeForResourceId START");
-
-            try
-            {
-                AssemblyImplent assembly = new AssemblyImplent();
-                XamlResourceIdAttribute.GetTypeForResourceId(assembly, "myResourceId");
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                tlog.Debug(tag, $"XamlResourceIdAttributeGetTypeForResourceId END (OK)");
-                Assert.Pass("Caught Exception : passed!");
-            }
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("XamlResourceIdAttribute GetResourceIdForPath")]
-        [Property("SPEC", "Tizen.NUI.XamlResourceIdAttribute.GetResourceIdForPath M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        public void XamlResourceIdAttributeGetResourceIdForPath()
-        {
-            tlog.Debug(tag, $"XamlResourceIdAttributeGetResourceIdForPath START");
-
-            try
-            {
-                AssemblyImplent assembly = new AssemblyImplent();
-                XamlResourceIdAttribute.GetResourceIdForPath(assembly, "myPath");
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                tlog.Debug(tag, $"XamlResourceIdAttributeGetResourceIdForPath END (OK)");
-                Assert.Pass("Caught Exception : passed!");
-            }
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("XamlResourceIdAttribute GetTypeForPath")]
-        [Property("SPEC", "Tizen.NUI.XamlResourceIdAttribute.GetTypeForPath M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        public void XamlResourceIdAttributeGetTypeForPath()
-        {
-            tlog.Debug(tag, $"XamlResourceIdAttributeGetTypeForPath START");
-
-            try
-            {
-                AssemblyImplent assembly = new AssemblyImplent();
-                XamlResourceIdAttribute.GetTypeForPath(assembly, "myPath");
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                tlog.Debug(tag, $"XamlResourceIdAttributeGetTypeForPath END (OK)");
-                Assert.Pass("Caught Exception : passed!");
-            }
+            tlog.Debug(tag, $"XamlResourceIdAttributeGetPathForType END");
         }
     }
 }

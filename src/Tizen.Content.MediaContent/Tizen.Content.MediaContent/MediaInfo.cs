@@ -233,6 +233,9 @@ namespace Tizen.Content.MediaContent
 
                 case MediaType.Video:
                     return new VideoInfo(handle);
+
+                case MediaType.Book:
+                    return new BookInfo(handle);
             }
 
             return new MediaInfo(handle);

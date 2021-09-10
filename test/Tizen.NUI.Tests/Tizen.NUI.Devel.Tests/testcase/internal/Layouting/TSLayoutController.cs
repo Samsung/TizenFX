@@ -44,6 +44,8 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, testingTarget.GetId().ToString());
 
             testingTarget.Dispose();
+            // disposed
+            testingTarget.Dispose();
             tlog.Debug(tag, $"LayoutControllerGetId END (OK)");
         }
 
@@ -66,8 +68,8 @@ namespace Tizen.NUI.Devel.Tests
             {
                 using (View view = new View())
                 {
-                    view.Layout = layoutItem;
                     view.Name = "parentView";
+                    layoutItem.AttachToOwner(view);
 
                     try
                     {
@@ -84,6 +86,64 @@ namespace Tizen.NUI.Devel.Tests
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"LayoutControllerRequestLayout END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("LayoutController RequestLayout.")]
+        [Property("SPEC", "Tizen.NUI.LayoutController.RequestLayout M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void LayoutControllerRequestLayoutParentNotNUll()
+        {
+            tlog.Debug(tag, $"LayoutControllerRequestLayoutParentNotNUll START");
+
+            var testingTarget = new LayoutController(Window.Instance);
+            Assert.IsNotNull(testingTarget, "Can't create success object LayoutController");
+            Assert.IsInstanceOf<LayoutController>(testingTarget, "Should be an instance of LayoutController type.");
+
+            using (LayoutGroup group = new LayoutGroup())
+            {
+                using (LayoutItem layoutItem = new LayoutItem())
+                {
+                    group.Add(layoutItem);
+                    try
+                    {
+                        testingTarget.RequestLayout(layoutItem);
+                    }
+                    catch (Exception e)
+                    {
+                        tlog.Debug(tag, e.Message.ToString());
+                        Assert.Fail("Caught Exception : Failed!");
+                    }
+                }
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"LayoutControllerRequestLayoutParentNotNUll END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("LayoutController GetCoreAnimation.")]
+        [Property("SPEC", "Tizen.NUI.LayoutController.GetCoreAnimation M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void LayoutControllerGetCoreAnimation()
+        {
+            tlog.Debug(tag, $"LayoutControllerGetCoreAnimation START");
+
+            var testingTarget = new LayoutController(Window.Instance);
+            Assert.IsNotNull(testingTarget, "Can't create success object LayoutController");
+            Assert.IsInstanceOf<LayoutController>(testingTarget, "Should be an instance of LayoutController type.");
+
+            var result = testingTarget.GetCoreAnimation();
+            tlog.Debug(tag, "Get core animation : " + result);
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"LayoutControllerGetCoreAnimation END (OK)");
         }
     }
 }

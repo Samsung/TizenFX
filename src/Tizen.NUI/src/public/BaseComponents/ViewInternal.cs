@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -29,7 +30,21 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public partial class View
     {
+        private MergedStyle mergedStyle = null;
         internal string styleName;
+
+        internal MergedStyle MergedStyle
+        {
+            get
+            {
+                if (null == mergedStyle)
+                {
+                    mergedStyle = new MergedStyle(GetType(), this);
+                }
+
+                return mergedStyle;
+            }
+        }
 
         internal class ThemeData
         {
@@ -926,6 +941,21 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
+        internal void SetKeyboardFocusableChildren(bool focusable)
+        {
+            Interop.ActorInternal.SetKeyboardFocusableChildren(SwigCPtr, focusable);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal bool AreChildrenKeyBoardFocusable()
+        {
+            bool ret = Interop.ActorInternal.AreChildrenKeyBoardFocusable(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         internal void SetFocusableInTouch(bool enabled)
         {
             Interop.ActorInternal.SetFocusableInTouch(SwigCPtr, enabled);
@@ -1230,8 +1260,6 @@ namespace Tizen.NUI.BaseComponents
                     heightConstraint.Remove();
                     heightConstraint.Dispose();
                 }
-
-                Unparent();
             }
 
             //Release your own unmanaged resources here.

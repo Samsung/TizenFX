@@ -283,35 +283,69 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"BuilderLoadFromString END (OK)");
         }
 
-        //[Test]
-        //[Category("P1")]
-        //[Description("Builder Create.")]
-        //[Property("SPEC", "Tizen.NUI.Builder.Create M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void BuilderCreate()
-        //{
-        //    tlog.Debug(tag, $"BuilderCreate START");
+        [Test]
+        [Category("P1")]
+        [Description("Builder CreateFromJson.")]
+        [Property("SPEC", "Tizen.NUI.Builder.CreateFromJson M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void BuilderCreateFromJson()
+        {
+            tlog.Debug(tag, $"BuilderCreateFromJson START");
 
-        //    var testingTarget = new Builder();
-        //    Assert.IsNotNull(testingTarget, "Should be not null!");
-        //    Assert.IsInstanceOf<Builder>(testingTarget, "Should be an Instance of Builder!");
+            var testingTarget = new Builder();
+            Assert.IsNotNull(testingTarget, "Should be not null!");
+            Assert.IsInstanceOf<Builder>(testingTarget, "Should be an Instance of Builder!");
 
-        //    try
-        //    {
-        //        testingTarget.Create("{\"View\" : [\"Size\" : \"\"]}");
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        tlog.Debug(tag, e.Message.ToString());
-        //        Assert.Fail("Caught Exception: Failed!");
-        //    }
+            try
+            {
+                testingTarget.CreateFromJson("{\"v\":\"5.1.18\",\"fr\":30,\"ip\":0,\"op\":31,\"w\":750,\"h\":488,\"nm\":\"A Shapes_03 Rectangle_750x488\",\"ddd\":0,\"assets\":[],\"layers\":[{\"ddd\":0,\"ind\":1,\"ty\":4,\"nm\":\"Rectantgle Outlines\",\"hd\":false}],\"ip\":0,\"op\":6300,\"st\":0,\"bm\":0}],\"markers\":[]}");
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception: Failed!");
+            }
 
-        //    testingTarget.Dispose();
-        //    testingTarget = null;
-        //    tlog.Debug(tag, $"BuilderCreate END (OK)");
-        //}
+            testingTarget.Dispose();
+            testingTarget = null;
+            tlog.Debug(tag, $"BuilderCreateFromJson END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Builder ApplyFromJson.")]
+        [Property("SPEC", "Tizen.NUI.Builder.ApplyFromJson M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void BuilderApplyFromJson()
+        {
+            tlog.Debug(tag, $"BuilderApplyFromJson START");
+
+            var testingTarget = new Builder();
+            Assert.IsNotNull(testingTarget, "Should be not null!");
+            Assert.IsInstanceOf<Builder>(testingTarget, "Should be an Instance of Builder!");
+
+            using (Animatable ani = new Animatable())
+            {
+                try
+                {
+                    var result = testingTarget.ApplyFromJson(ani, "{\"v\":\"5.1.18\",\"fr\":30,\"ip\":0,\"op\":31,\"w\":750,\"h\":488,\"nm\":\"A Shapes_03 Rectangle_750x488\",\"ddd\":0,\"assets\":[],\"layers\":[{\"ddd\":0,\"ind\":1,\"ty\":4,\"nm\":\"Rectantgle Outlines\",\"hd\":false}],\"ip\":0,\"op\":6300,\"st\":0,\"bm\":0}],\"markers\":[]}");
+                    tlog.Debug(tag, "ApplyFromJson : " + result);
+                }
+                catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught Exception: Failed!");
+                }
+            }
+
+            testingTarget.Dispose();
+            testingTarget = null;
+            tlog.Debug(tag, $"BuilderCreateFromJson END (OK)");
+        }
 
         private void MyOnQuit(object sender, EventArgs e)
         { 

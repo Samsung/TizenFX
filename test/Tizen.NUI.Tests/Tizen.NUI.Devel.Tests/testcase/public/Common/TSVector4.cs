@@ -944,5 +944,80 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.Dispose();
             tlog.Debug(tag, $"Vector4GetHashCode END (OK)");
         }
+
+        [Test]
+        [Category("P1")]
+        [Description("Vector4 AsFloat.")]
+        [Property("SPEC", "Tizen.NUI.Vector4.AsFloat M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void Vector4AsFloat()
+        {
+            tlog.Debug(tag, $"Vector4AsFloat START");
+
+            var testingTarget = new Vector4(10.0f, 20.0f, 30.0f, 40.0f);
+            Assert.IsNotNull(testingTarget, "Can't create success object Vector4");
+            Assert.IsInstanceOf<Vector4>(testingTarget, "Should be an instance of Vector4 type.");
+
+            var result = testingTarget.AsFloat();
+            Assert.IsInstanceOf<SWIGTYPE_p_float>(result, "Should be an instance of SWIGTYPE_p_float type.");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"Vector4GetHashCode END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Vector4 Cross.")]
+        [Property("SPEC", "Tizen.NUI.Vector4.Cross M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void Vector4Cross()
+        {
+            tlog.Debug(tag, $"Vector4Cross START");
+
+            var testingTarget = new Vector4(10.0f, 20.0f, 30.0f, 40.0f);
+            Assert.IsNotNull(testingTarget, "Can't create success object Vector4");
+            Assert.IsInstanceOf<Vector4>(testingTarget, "Should be an instance of Vector4 type.");
+
+            var result = testingTarget.Cross(testingTarget);
+            Assert.IsInstanceOf<Vector4>(testingTarget, "Should be an instance of Vector4 type.");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"Vector4Cross END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Vector4 Dot.")]
+        [Property("SPEC", "Tizen.NUI.Vector4.Dot M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void Vector4Dot()
+        {
+            tlog.Debug(tag, $"Vector4Dot START");
+
+            var testingTarget = new Vector4(10.0f, 20.0f, 30.0f, 40.0f);
+            Assert.IsNotNull(testingTarget, "Can't create success object Vector4");
+            Assert.IsInstanceOf<Vector4>(testingTarget, "Should be an instance of Vector4 type.");
+
+            var result = testingTarget.Dot(testingTarget);
+            tlog.Debug(tag, "Dot : " + result);
+
+            result = testingTarget.Dot4(testingTarget);
+            tlog.Debug(tag, "Dot4 : " + result);
+
+            using (Vector3 vector = new Vector3(10.0f, 20.0f, 30.0f))
+            { 
+                result = testingTarget.Dot(vector);
+                tlog.Debug(tag, "Dot Vector3 : " + result);
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"Vector4Dot END (OK)");
+        }
     }
 }
