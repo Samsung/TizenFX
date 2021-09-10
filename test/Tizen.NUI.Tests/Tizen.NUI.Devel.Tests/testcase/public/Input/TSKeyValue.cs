@@ -13,16 +13,19 @@ namespace Tizen.NUI.Devel.Tests
     internal class PublicKeyValueTest
     {
         private const string tag = "NUITEST";
-
+        private KeyValue keyValue = null;
+ 
         [SetUp]
         public void Init()
         {
             tlog.Info(tag, "Init() is called!");
+            keyValue = new KeyValue();
         }
 
         [TearDown]
         public void Destroy()
         {
+            keyValue.Dispose();
             tlog.Info(tag, "Destroy() is called!");
         }
 
@@ -36,12 +39,32 @@ namespace Tizen.NUI.Devel.Tests
         public void KeyValueOriginalKey()
         {
             tlog.Debug(tag, $"KeyValueOriginalKey START");
-            KeyValue a1 = new KeyValue();
-            a1.OriginalKey = 10;
 
-            a1.Dispose();
+            keyValue.OriginalKey = 10;
+
             tlog.Debug(tag, $"KeyValueOriginalKey END (OK)");
-            Assert.Pass("KeyValueOriginalKey");
+        }
+
+        [Test]
+        [Category("P2")]
+        [Description("KeyValue OriginalKey")]
+        [Property("SPEC", "Tizen.NUI.KeyValue.OriginalKey A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void KeyValueOriginalKeyWithNull()
+        {
+            tlog.Debug(tag, $"KeyValueOriginalKeyWithNull START");
+
+            try
+            {
+                keyValue.OriginalKey = null;
+            }
+            catch (ArgumentNullException)
+            {
+                tlog.Debug(tag, $"KeyValueOriginalKeyWithNull END (OK)");
+                Assert.Pass("Caught ArgumentNullException :  Passed!");
+            }
         }
 
         [Test]
@@ -54,16 +77,11 @@ namespace Tizen.NUI.Devel.Tests
         public void KeyValueIntegerKey()
         {
             tlog.Debug(tag, $"KeyValueIntegerKey START");
-            KeyValue a1 = new KeyValue
-            {
-                IntegerKey = 10
-            };
+            
+            keyValue.IntegerKey = 10;
+            tlog.Debug(tag, "IntegerKey : " + keyValue.IntegerKey);
 
-            int? b1 = a1.IntegerKey;
-
-            a1.Dispose();
             tlog.Debug(tag, $"KeyValueIntegerKey END (OK)");
-            Assert.Pass("KeyValueIntegerKey");
         }
 
         [Test]
@@ -76,16 +94,11 @@ namespace Tizen.NUI.Devel.Tests
         public void KeyValueStringKey()
         {
             tlog.Debug(tag, $"KeyValueStringKey START");
-            KeyValue a1 = new KeyValue
-            {
-                StringKey = "keyvalue"
-            };
 
-            string b1 = a1.StringKey;
+            keyValue.StringKey = "keyvalue";
+            tlog.Debug(tag, "IntegerKey : " + keyValue.StringKey);
 
-            a1.Dispose();
             tlog.Debug(tag, $"KeyValueStringKey END (OK)");
-            Assert.Pass("KeyValueStringKey");
         }
 
         [Test]
@@ -99,17 +112,13 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"KeyValuePropertyValue START");
 
-            PropertyValue p1 = new PropertyValue();
-            KeyValue a1 = new KeyValue
+            using (PropertyValue pValue = new PropertyValue())
             {
-                PropertyValue = p1
-            };
+                keyValue.PropertyValue = pValue;
+                tlog.Debug(tag, "PropertyValue : " + keyValue.PropertyValue);
+            }
 
-            p1 = a1.PropertyValue;
-
-            a1.Dispose();
             tlog.Debug(tag, $"KeyValuePropertyValue END (OK)");
-            Assert.Pass("KeyValuePropertyValue");
         }
 
         [Test]
@@ -123,16 +132,10 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"KeyValueIntergerValue START");
 
-            KeyValue a1 = new KeyValue
-            {
-                IntergerValue = 10
-            };
+            keyValue.IntergerValue = 10;
+            tlog.Debug(tag, "IntergerValue : " + keyValue.IntergerValue);
 
-            int b1 = a1.IntergerValue;
-
-            a1.Dispose();
             tlog.Debug(tag, $"KeyValueIntergerValue END (OK)");
-            Assert.Pass("KeyValueIntergerValue");
         }
 
         [Test]
@@ -146,16 +149,13 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"KeyValueBooleanValue START");
 
-            KeyValue a1 = new KeyValue
-            {
-                BooleanValue = true
-            };
+            keyValue.BooleanValue = true;
+            tlog.Debug(tag, "BooleanValue : " + keyValue.BooleanValue);
 
-            bool b1 = a1.BooleanValue;
+            var strVal = keyValue.StringValue;
+            Assert.AreEqual("error to get StringValue", strVal, "Should be equal!");
 
-            a1.Dispose();
             tlog.Debug(tag, $"KeyValueBooleanValue END (OK)");
-            Assert.Pass("KeyValueBooleanValue");
         }
 
         [Test]
@@ -169,16 +169,10 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"KeyValueSingleValue START");
 
-            KeyValue a1 = new KeyValue
-            {
-                SingleValue = 10
-            };
+            keyValue.SingleValue = 10;
+            tlog.Debug(tag, "SingleValue : " + keyValue.SingleValue);
 
-            float b1 = a1.SingleValue;
-
-            a1.Dispose();
             tlog.Debug(tag, $"KeyValueSingleValue END (OK)");
-            Assert.Pass("KeyValueSingleValue");
         }
 
         [Test]
@@ -192,16 +186,10 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"KeyValueStringValue START");
 
-            KeyValue a1 = new KeyValue
-            {
-                StringValue = "stringvalue"
-            };
+            keyValue.StringValue = "stringvalue";
+            tlog.Debug(tag, "SingleValue : " + keyValue.StringValue);
 
-            string b1 = a1.StringValue;
-
-            a1.Dispose();
             tlog.Debug(tag, $"KeyValueStringValue END (OK)");
-            Assert.Pass("KeyValueStringValue");
         }
 
         [Test]
@@ -215,18 +203,13 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"KeyValueVector2Value START");
 
-            Vector2 b1 = new Vector2(1, 1);
-            KeyValue a1 = new KeyValue
+            using (Vector2 vec2 = new Vector2(1, 1))
             {
-                Vector2Value = b1
-            };
+                keyValue.Vector2Value = vec2;
+                tlog.Debug(tag, "Vector2Value : " + keyValue.Vector2Value);
+            }
 
-            b1 = a1.Vector2Value;
-
-            b1.Dispose();
-            a1.Dispose();
             tlog.Debug(tag, $"KeyValueVector2Value END (OK)");
-            Assert.Pass("KeyValueVector2Value");
         }
 
         [Test]
@@ -240,18 +223,13 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"KeyValueVector3Value START");
 
-            Vector3 b1 = new Vector3(1, 1, 1);
-            KeyValue a1 = new KeyValue
+            using (Vector3 vec3 = new Vector3(1, 1, 1))
             {
-                Vector3Value = b1
-            };
+                keyValue.Vector3Value = vec3;
+                tlog.Debug(tag, "Vector2Value : " + keyValue.Vector3Value);
+            }
 
-            b1 = a1.Vector3Value;
-
-            b1.Dispose();
-            a1.Dispose();
             tlog.Debug(tag, $"KeyValueVector3Value END (OK)");
-            Assert.Pass("KeyValueVector3Value");
         }
 
         [Test]
@@ -265,18 +243,13 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"KeyValueVector4Value START");
 
-            Vector4 b1 = new Vector4(1, 1, 1, 0);
-            KeyValue a1 = new KeyValue
+            using (Vector4 vec4 = new Vector4(1, 1, 1, 0))
             {
-                Vector4Value = b1
-            };
+                keyValue.Vector4Value = vec4;
+                tlog.Debug(tag, "Vector4Value : " + keyValue.Vector4Value);
+            }
 
-            b1 = a1.Vector4Value;
-
-            b1.Dispose();
-            a1.Dispose();
             tlog.Debug(tag, $"KeyValueVector4Value END (OK)");
-            Assert.Pass("KeyValueVector4Value");
         }
 
         [Test]
@@ -290,18 +263,13 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"KeyValuePositionValue START");
 
-            Position b1 = new Position(1, 1, 0);
-            KeyValue a1 = new KeyValue
+            using (Position pos = new Position(1, 1, 0))
             {
-                PositionValue = b1
-            };
+                keyValue.PositionValue = pos;
+                tlog.Debug(tag, "PositionValue : " + keyValue.PositionValue);
+            }
 
-            b1 = a1.PositionValue;
-
-            b1.Dispose();
-            a1.Dispose();
             tlog.Debug(tag, $"KeyValuePositionValue END (OK)");
-            Assert.Pass("KeyValuePositionValue");
         }
 
         [Test]
@@ -315,18 +283,13 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"KeyValuePosition2DValue START");
 
-            Position2D b1 = new Position2D(1, 1);
-            KeyValue a1 = new KeyValue
+            using (Position2D pos2d = new Position2D(1, 1))
             {
-                Position2DValue = b1
-            };
+                keyValue.Position2DValue = pos2d;
+                tlog.Debug(tag, "Position2DValue : " + keyValue.Position2DValue.X);
+            }
 
-            b1 = a1.Position2DValue;
-
-            b1.Dispose();
-            a1.Dispose();
             tlog.Debug(tag, $"KeyValuePosition2DValue END (OK)");
-            Assert.Pass("KeyValuePosition2DValue");
         }
 
         [Test]
@@ -340,18 +303,13 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"KeyValueSizeValue START");
 
-            Size b1 = new Size(1, 1, 0);
-            KeyValue a1 = new KeyValue
+            using (Size size = new Size(1, 1, 0))
             {
-                SizeValue = b1
-            };
+                keyValue.SizeValue = size;
+                tlog.Debug(tag, "SizeValue : " + keyValue.SizeValue);
+            }
 
-            b1 = a1.SizeValue;
-
-            b1.Dispose();
-            a1.Dispose();
             tlog.Debug(tag, $"KeyValueSizeValue END (OK)");
-            Assert.Pass("KeyValueSizeValue");
         }
 
         [Test]
@@ -365,18 +323,13 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"KeyValueSize2DValue START");
 
-            Size2D b1 = new Size2D(0, 0);
-            KeyValue a1 = new KeyValue
+            using (Size2D size2d = new Size2D(0, 0))
             {
-                Size2DValue = b1
-            };
+                keyValue.Size2DValue = size2d;
+                tlog.Debug(tag, "Size2DValue : " + keyValue.Size2DValue);
+            }
 
-            b1 = a1.Size2DValue;
-
-            b1.Dispose();
-            a1.Dispose();
             tlog.Debug(tag, $"KeyValueSize2DValue END (OK)");
-            Assert.Pass("KeyValueSize2DValue");
         }
 
         [Test]
@@ -390,18 +343,13 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"KeyValueColorValue START");
 
-            Color b1 = new Color(0, 0, 0, 0);
-            KeyValue a1 = new KeyValue
+            using (Color color = new Color(0, 0, 0, 0))
             {
-                ColorValue = b1
-            };
+                keyValue.ColorValue = color;
+                tlog.Debug(tag, "ColorValue : " + keyValue.ColorValue);
+            }
 
-            b1 = a1.ColorValue;
-
-            b1.Dispose();
-            a1.Dispose();
             tlog.Debug(tag, $"KeyValueColorValue END (OK)");
-            Assert.Pass("KeyValueColorValue");
         }
 
         [Test]
@@ -415,18 +363,13 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"KeyValueRectangleValue START");
 
-            Rectangle b1 = new Rectangle(0, 0, 0, 0);
-            KeyValue a1 = new KeyValue
+            using (Rectangle rec = new Rectangle(0, 0, 0, 0))
             {
-                RectangleValue = b1
-            };
+                keyValue.RectangleValue = rec;
+                tlog.Debug(tag, "RectangleValue : " + keyValue.RectangleValue);
+            }
 
-            b1 = a1.RectangleValue;
-
-            b1.Dispose();
-            a1.Dispose();
             tlog.Debug(tag, $"KeyValueRectangleValue END (OK)");
-            Assert.Pass("KeyValueRectangleValue");
         }
 
         [Test]
@@ -440,18 +383,13 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"KeyValueRotationValue START");
 
-            Rotation b1 = new Rotation();
-            KeyValue a1 = new KeyValue
+            using (Rotation rotation = new Rotation())
             {
-                RotationValue = b1
-            };
+                keyValue.RotationValue = rotation;
+                tlog.Debug(tag, "RotationValue : " + keyValue.RotationValue);
+            }
 
-            b1 = a1.RotationValue;
-
-            b1.Dispose();
-            a1.Dispose();
             tlog.Debug(tag, $"KeyValueRotationValue END (OK)");
-            Assert.Pass("KeyValueRotationValue");
         }
 
         [Test]
@@ -465,18 +403,13 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"KeyValueRelativeVector2Value START");
 
-            RelativeVector2 b1 = new RelativeVector2(0, 0);
-            KeyValue a1 = new KeyValue
+            using (RelativeVector2 rVec2 = new RelativeVector2(0, 0))
             {
-                RelativeVector2Value = b1
-            };
+                keyValue.RelativeVector2Value = rVec2;
+                tlog.Debug(tag, "RelativeVector2Value : " + keyValue.RelativeVector2Value);
+            }
 
-            b1 = a1.RelativeVector2Value;
-
-            b1.Dispose();
-            a1.Dispose();
             tlog.Debug(tag, $"KeyValueRelativeVector2Value END (OK)");
-            Assert.Pass("KeyValueRelativeVector2Value");
         }
 
         [Test]
@@ -490,18 +423,13 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"KeyValueRelativeVector3Value START");
 
-            RelativeVector3 b1 = new RelativeVector3(0, 0, 0);
-            KeyValue a1 = new KeyValue
+            using (RelativeVector3 rVec3 = new RelativeVector3(0, 0, 0))
             {
-                RelativeVector3Value = b1
-            };
+                keyValue.RelativeVector3Value = rVec3;
+                tlog.Debug(tag, "RelativeVector3Value : " + keyValue.RelativeVector3Value);
+            }
 
-            b1 = a1.RelativeVector3Value;
-
-            b1.Dispose();
-            a1.Dispose();
             tlog.Debug(tag, $"KeyValueRelativeVector3Value END (OK)");
-            Assert.Pass("KeyValueRelativeVector3Value");
         }
 
         [Test]
@@ -515,18 +443,13 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"KeyValueRelativeVector4Value START");
 
-            RelativeVector4 b1 = new RelativeVector4(0, 0, 0, 0);
-            KeyValue a1 = new KeyValue
+            using (RelativeVector4 rVec4 = new RelativeVector4(0, 0, 0, 0))
             {
-                RelativeVector4Value = b1
-            };
+                keyValue.RelativeVector4Value = rVec4;
+                tlog.Debug(tag, "RelativeVector4Value : " + keyValue.RelativeVector4Value);
+            }
 
-            b1 = a1.RelativeVector4Value;
-
-            b1.Dispose();
-            a1.Dispose();
             tlog.Debug(tag, $"KeyValueRelativeVector4Value END (OK)");
-            Assert.Pass("KeyValueRelativeVector4Value");
         }
 
         [Test]
@@ -540,18 +463,13 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"KeyValueExtentsValue START");
 
-            Extents b1 = new Extents(0, 0, 0, 0);
-            KeyValue a1 = new KeyValue
+            using (Extents ext = new Extents(0, 0, 0, 0))
             {
-                ExtentsValue = b1
-            };
+                keyValue.ExtentsValue = ext;
+                tlog.Debug(tag, "ExtentsValue : " + keyValue.ExtentsValue);
+            }
 
-            b1 = a1.ExtentsValue;
-
-            b1.Dispose();
-            a1.Dispose();
             tlog.Debug(tag, $"KeyValueExtentsValue END (OK)");
-            Assert.Pass("KeyValueExtentsValue");
         }
 
         [Test]
@@ -565,18 +483,13 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"KeyValuePropertyArrayValue START");
 
-            PropertyArray b1 = new PropertyArray();
-            KeyValue a1 = new KeyValue
+            using (PropertyArray pArr = new PropertyArray())
             {
-                PropertyArrayValue = b1
-            };
+                keyValue.PropertyArrayValue = pArr;
+                tlog.Debug(tag, "PropertyArrayValue : " + keyValue.PropertyArrayValue);
+            }
 
-            b1 = a1.PropertyArrayValue;
-
-            b1.Dispose();
-            a1.Dispose();
             tlog.Debug(tag, $"KeyValuePropertyArrayValue END (OK)");
-            Assert.Pass("KeyValuePropertyArrayValue");
         }
 
         [Test]
@@ -590,19 +503,108 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"KeyValuePropertyMapValue START");
 
-            PropertyMap b1 = new PropertyMap();
-            KeyValue a1 = new KeyValue
+            using (PropertyMap pMap = new PropertyMap())
             {
-                PropertyMapValue = b1
-            };
+                keyValue.PropertyMapValue = pMap;
+                tlog.Debug(tag, "PropertyMapValue : " + keyValue.PropertyMapValue);
+            }
 
-            b1 = a1.PropertyMapValue;
-
-            b1.Dispose();
-            a1.Dispose();
             tlog.Debug(tag, $"KeyValuePropertyMapValue END (OK)");
-            Assert.Pass("KeyValuePropertyMapValue");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("KeyValue IntergerValue")]
+        [Property("SPEC", "Tizen.NUI.KeyValue.IntergerValue A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void KeyValueIntergerValueGetError()
+        {
+            tlog.Debug(tag, $"KeyValueIntergerValueGetError START");
+
+            keyValue.Value = "IntergerValue";
+
+            var result = keyValue.IntergerValue;
+            Assert.AreEqual(-1, result, "Should be equal!");
+
+            var sigVal = keyValue.SingleValue;
+            Assert.AreEqual(-1, sigVal, "Should be equal!");
+
+            var boolVal = keyValue.BooleanValue;
+            Assert.AreEqual(false, boolVal, "Should be equal!");
+
+            var v2Value = keyValue.Vector2Value;
+            Assert.AreEqual(0, v2Value.X, "Should be equal!");
+            Assert.AreEqual(0, v2Value.Y, "Should be equal!");
+
+            var v3Value = keyValue.Vector3Value;
+            Assert.AreEqual(0, v3Value.X, "Should be equal!");
+            Assert.AreEqual(0, v3Value.Y, "Should be equal!");
+            Assert.AreEqual(0, v3Value.Z, "Should be equal!");
+
+            var v4Value = keyValue.Vector4Value;
+            Assert.AreEqual(0, v4Value.X, "Should be equal!");
+            Assert.AreEqual(0, v4Value.Y, "Should be equal!");
+            Assert.AreEqual(0, v4Value.Z, "Should be equal!");
+            Assert.AreEqual(0, v4Value.W, "Should be equal!");
+
+            var pos = keyValue.PositionValue;
+            Assert.AreEqual(0, pos.X, "Should be equal!");
+            Assert.AreEqual(0, pos.Y, "Should be equal!");
+            Assert.AreEqual(0, pos.Z, "Should be equal!");
+
+            var size = keyValue.SizeValue;
+            Assert.AreEqual(0, size.Width, "Should be equal!");
+            Assert.AreEqual(0, size.Height, "Should be equal!");
+            Assert.AreEqual(0, size.Depth, "Should be equal!");
+
+            var size2d = keyValue.Size2DValue;
+            Assert.AreEqual(0, size2d.Width, "Should be equal!");
+            Assert.AreEqual(0, size2d.Height, "Should be equal!");
+
+            var colorVal = keyValue.ColorValue;
+            Assert.AreEqual(0, colorVal.R, "Should be equal!");
+            Assert.AreEqual(0, colorVal.G, "Should be equal!");
+            Assert.AreEqual(0, colorVal.B, "Should be equal!");
+            Assert.AreEqual(0, colorVal.A, "Should be equal!");
+
+            var recVal = keyValue.RectangleValue;
+            Assert.AreEqual(0, recVal.X, "Should be equal!");
+            Assert.AreEqual(0, recVal.Y, "Should be equal!");
+            Assert.AreEqual(0, recVal.Width, "Should be equal!");
+            Assert.AreEqual(0, recVal.Height, "Should be equal!");
+
+            var relativeV2 = keyValue.RelativeVector2Value;
+            Assert.AreEqual(0, relativeV2.X, "Should be equal!");
+            Assert.AreEqual(0, relativeV2.Y, "Should be equal!");
+
+            var relativeV3 = keyValue.RelativeVector3Value;
+            Assert.AreEqual(0, relativeV3.X, "Should be equal!");
+            Assert.AreEqual(0, relativeV3.Y, "Should be equal!");
+            Assert.AreEqual(0, relativeV3.Z, "Should be equal!");
+
+            var relativeV4 = keyValue.RelativeVector4Value;
+            Assert.AreEqual(0, relativeV4.X, "Should be equal!");
+            Assert.AreEqual(0, relativeV4.Y, "Should be equal!");
+            Assert.AreEqual(0, relativeV4.Z, "Should be equal!");
+            Assert.AreEqual(0, relativeV4.W, "Should be equal!");
+
+            var extVal = keyValue.ExtentsValue;
+            Assert.AreEqual(0, extVal.Start, "Should be equal!");
+            Assert.AreEqual(0, extVal.End, "Should be equal!");
+            Assert.AreEqual(0, extVal.Top, "Should be equal!");
+            Assert.AreEqual(0, extVal.Bottom, "Should be equal!");
+
+            var propertyArr = keyValue.PropertyArrayValue;
+            Assert.IsNotNull(propertyArr, "Can't create success object PropertyArray");
+            Assert.IsInstanceOf<PropertyArray>(propertyArr, "Should be an instance of PropertyArray type.");
+
+            var propertyMap = keyValue.PropertyMapValue;
+            Assert.IsNotNull(propertyMap, "Can't create success object PropertyMap");
+            Assert.IsInstanceOf<PropertyMap>(propertyMap, "Should be an instance of PropertyMap type.");
+
+            tlog.Debug(tag, $"KeyValueIntergerValueGetError END (OK)");
         }
     }
-
 }
