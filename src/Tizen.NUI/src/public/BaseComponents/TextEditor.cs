@@ -1389,11 +1389,6 @@ namespace Tizen.NUI.BaseComponents
                 GetProperty(TextEditor.Property.SelectedTextStart).Get(out temp);
                 return temp;
             }
-            set
-            {
-                SetProperty(TextEditor.Property.SelectedTextStart, new PropertyValue(value));
-                NotifyPropertyChanged();
-            }
         }
 
         /// <summary>
@@ -1409,11 +1404,6 @@ namespace Tizen.NUI.BaseComponents
                 int temp;
                 GetProperty(TextEditor.Property.SelectedTextEnd).Get(out temp);
                 return temp;
-            }
-            set
-            {
-                SetProperty(TextEditor.Property.SelectedTextEnd, new PropertyValue(value));
-                NotifyPropertyChanged();
             }
         }
 

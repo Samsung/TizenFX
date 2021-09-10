@@ -1603,11 +1603,6 @@ namespace Tizen.NUI.BaseComponents
                 GetProperty(TextField.Property.SelectedTextStart).Get(out temp);
                 return temp;
             }
-            set
-            {
-                SetProperty(TextField.Property.SelectedTextStart, new PropertyValue(value));
-                NotifyPropertyChanged();
-            }
         }
 
         /// <summary>
@@ -1623,11 +1618,6 @@ namespace Tizen.NUI.BaseComponents
                 int temp;
                 GetProperty(TextField.Property.SelectedTextEnd).Get(out temp);
                 return temp;
-            }
-            set
-            {
-                SetProperty(TextField.Property.SelectedTextEnd, new PropertyValue(value));
-                NotifyPropertyChanged();
             }
         }
 
