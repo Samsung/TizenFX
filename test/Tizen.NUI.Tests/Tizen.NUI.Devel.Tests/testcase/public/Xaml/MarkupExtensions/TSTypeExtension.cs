@@ -18,6 +18,25 @@ namespace Tizen.NUI.Devel.Tests
             public object GetService(Type serviceType) { return null; }
         }
 
+        internal class IXamlTypeResolverImpl : IXamlTypeResolver
+        {
+            Type IXamlTypeResolver.Resolve(string qualifiedTypeName, IServiceProvider serviceProvider)
+            {
+                return typeof(string);
+            }
+
+            bool IXamlTypeResolver.TryResolve(string qualifiedTypeName, out Type type)
+            {
+                type = typeof(string);
+                return true;
+            }
+        }
+
+        internal class IServiceProviderImpl2 : IServiceProvider
+        {
+            public object GetService(Type serviceType) { return new IXamlTypeResolverImpl(); }
+        }
+
         [SetUp]
         public void Init()
         {
@@ -35,7 +54,7 @@ namespace Tizen.NUI.Devel.Tests
         [Test]
         [Category("P1")]
         [Description("TypeExtension TypeName")]
-        [Property("SPEC", "Tizen.NUI.TypeExtension.TypeName A")]
+        [Property("SPEC", "Tizen.NUI.Xaml.TypeExtension.TypeName A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
         public void TypeExtensionTypeName()
@@ -60,25 +79,67 @@ namespace Tizen.NUI.Devel.Tests
         [Test]
         [Category("P2")]
         [Description("TypeExtension ProvideValue")]
-        [Property("SPEC", "Tizen.NUI.TypeExtension.ProvideValue M")]
+        [Property("SPEC", "Tizen.NUI.Xaml.TypeExtension.ProvideValue M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         public void TypeExtensionProvideValue()
         {
             tlog.Debug(tag, $"TypeExtensionProvideValue START");
 
+            tExtension.TypeName = this.GetType().ToString();
+            Assert.Throws<ArgumentException>(() => tExtension.ProvideValue(new IServiceProviderImpl()));
+            tlog.Debug(tag, $"TypeExtensionProvideValue END");
+        }
+
+        [Test]
+        [Category("P2")]
+        [Description("TypeExtension ProvideValue")]
+        [Property("SPEC", "Tizen.NUI.Xaml.TypeExtension.ProvideValue M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void TypeExtensionProvideValue2()
+        {
+            tlog.Debug(tag, $"TypeExtensionProvideValue2 START");
+            Assert.Throws<InvalidOperationException>(() => tExtension.ProvideValue(null));
+            tlog.Debug(tag, $"TypeExtensionProvideValue2 END");
+        }
+
+        [Test]
+        [Category("P2")]
+        [Description("TypeExtension ProvideValue")]
+        [Property("SPEC", "Tizen.NUI.Xaml.TypeExtension.ProvideValue M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void TypeExtensionProvideValue3()
+        {
+            tlog.Debug(tag, $"TypeExtensionProvideValue3 START");
+            tExtension.TypeName = this.GetType().ToString();
+            Assert.Throws<ArgumentNullException>(() => tExtension.ProvideValue(null));
+            tlog.Debug(tag, $"TypeExtensionProvideValue3 END");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TypeExtension ProvideValue")]
+        [Property("SPEC", "Tizen.NUI.Xaml.TypeExtension.ProvideValue M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void TypeExtensionProvideValue4()
+        {
+            tlog.Debug(tag, $"TypeExtensionProvideValue4 START");
+
             try
             {
                 tExtension.TypeName = this.GetType().ToString();
-                var type = tExtension.ProvideValue(new IServiceProviderImpl());
-                tlog.Error(tag, "Type : " + type);
+                var ret = tExtension.ProvideValue(new IServiceProviderImpl2());
+                Assert.IsNotNull(ret, "Should not be null");
             }
-            catch (ArgumentException e)     // typeResolver is null
+            catch (Exception e)
             {
-                tlog.Error(tag, e.Message.ToString());
-                tlog.Debug(tag, $"TypeExtensionProvideValue END");
-                Assert.Pass("Caught Exception : Passed!");
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
+            tlog.Debug(tag, $"TypeExtensionProvideValue4 END");
         }
     }
 }

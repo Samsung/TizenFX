@@ -34,6 +34,23 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
+        [Description("NUIResourcePathExtension NUIResourcePathExtension")]
+        [Property("SPEC", "Tizen.NUI.NUIResourcePathExtension.NUIResourcePathExtension C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        public void NUIResourcePathExtensionConstructor()
+        {
+            tlog.Debug(tag, $"NUIResourcePathExtensionConstructor START");
+
+            NUIResourcePathExtension nUIResourcePathExtension = new NUIResourcePathExtension();
+            Assert.IsNotNull(nUIResourcePathExtension, "null NUIResourcePathExtension");
+            Assert.IsInstanceOf<NUIResourcePathExtension>(nUIResourcePathExtension, "Should return NUIResourcePathExtension instance.");
+
+            tlog.Debug(tag, $"NUIResourcePathExtensionConstructor END");
+        }
+		
+        [Test]
+        [Category("P1")]
         [Description("NUIResourcePathExtension FilePath")]
         [Property("SPEC", "Tizen.NUI.NUIResourcePathExtension.FilePath A")]
         [Property("SPEC_URL", "-")]

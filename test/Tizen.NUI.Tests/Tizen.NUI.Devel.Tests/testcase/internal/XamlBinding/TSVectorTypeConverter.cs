@@ -101,16 +101,8 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Can't create success object Vector2TypeConverter.");
             Assert.IsInstanceOf<Vector2TypeConverter>(testingTarget, "Should return Vector2TypeConverter instance.");
 
-            try
-            {
-                string str = null;
-                var result = testingTarget.ConvertFromInvariantString(str);
-            }
-            catch (InvalidOperationException)
-            {
-                tlog.Debug(tag, $"Vector2TypeConverterConvertFromInvariantStringNullPath END");
-                Assert.Pass("Caught InvalidOperationException : Passed!");
-            }
+            Assert.Throws<InvalidOperationException>(() => testingTarget.ConvertFromInvariantString(null));
+            tlog.Debug(tag, $"Vector2TypeConverterConvertFromInvariantStringNullPath END");
         }
 
         [Test]
@@ -163,17 +155,8 @@ namespace Tizen.NUI.Devel.Tests
         public void Vector2TypeConverterFromStringInvalidOperationException()
         {
             tlog.Debug(tag, $"Vector2TypeConverterFromStringInvalidOperationException START");
-
-            try
-            {
-                // length is 3
-                Vector2TypeConverter.FromString("100, 50, 0.0f");
-            }
-            catch (InvalidOperationException)
-            {
-                tlog.Debug(tag, $"Vector2TypeConverterFromStringInvalidOperationException END");
-                Assert.Pass("Caught InvalidOperationException : Passed!");
-            }
+            Assert.Throws<InvalidOperationException>(() => Vector2TypeConverter.FromString("100, 50, 0.0f"));
+            tlog.Debug(tag, $"Vector2TypeConverterFromStringInvalidOperationException END");
         }
 
         [Test]
@@ -224,16 +207,8 @@ namespace Tizen.NUI.Devel.Tests
             result = testingTarget.ConvertFromInvariantString("100");
             tlog.Debug(tag, "ConvertFromInvariantString : " + result);
 
-            try
-            {
-                // lenght is 4
-                result = testingTarget.ConvertFromInvariantString("100, 50, 30, 0.3f");
-            }
-            catch (InvalidOperationException)
-            {
-                tlog.Debug(tag, $"Vector3TypeConverterConvertFromInvariantString END");
-                Assert.Pass("Caught InvalidOperationException : Passed!");
-            }
+            Assert.Throws<InvalidOperationException>(() => testingTarget.ConvertFromInvariantString("100, 50, 30, 0.3f"));
+            tlog.Debug(tag, $"Vector3TypeConverterConvertFromInvariantString END");
         }
 
         [Test]
@@ -292,17 +267,8 @@ namespace Tizen.NUI.Devel.Tests
             // length is 1
             result = testingTarget.ConvertFromInvariantString("100");
             tlog.Debug(tag, "ConvertFromInvariantString : " + result);
-
-            try
-            {
-                // lenght is 5
-                result = testingTarget.ConvertFromInvariantString("100, 50, 30, 10, 0.3f");
-            }
-            catch (InvalidOperationException)
-            {
-                tlog.Debug(tag, $"Vector4TypeConverterConvertFromInvariantString END");
-                Assert.Pass("Caught InvalidOperationException : Passed!");
-            }
+            Assert.Throws<InvalidOperationException>(() => testingTarget.ConvertFromInvariantString("100, 50, 30, 10, 0.3f"));
+            tlog.Debug(tag, $"Vector4TypeConverterConvertFromInvariantString END");
         }
 
         [Test]
@@ -354,16 +320,9 @@ namespace Tizen.NUI.Devel.Tests
             result = testingTarget.ConvertFromInvariantString("100");
             tlog.Debug(tag, "ConvertFromInvariantString : " + result);
 
-            try
-            {
-                // lenght is 3
-                result = testingTarget.ConvertFromInvariantString("100, 50, 30");
-            }
-            catch (InvalidOperationException)
-            {
-                tlog.Debug(tag, $"RelativeVector2TypeConverterConvertFromInvariantString END");
-                Assert.Pass("Caught InvalidOperationException : Passed!");
-            }
+            Assert.Throws<InvalidOperationException>(() => testingTarget.ConvertFromInvariantString("100, 50, 30"));// lenght is 3
+
+            tlog.Debug(tag, $"RelativeVector2TypeConverterConvertFromInvariantString END");
         }
 
         [Test]
@@ -418,17 +377,8 @@ namespace Tizen.NUI.Devel.Tests
             // length is 1
             result = testingTarget.ConvertFromInvariantString("100");
             tlog.Debug(tag, "ConvertFromInvariantString : " + result);
-
-            try
-            {
-                // lenght is 4
-                result = testingTarget.ConvertFromInvariantString("100, 50, 30, 10");
-            }
-            catch (InvalidOperationException)
-            {
-                tlog.Debug(tag, $"RelativeVector3TypeConverterConvertFromInvariantString END");
-                Assert.Pass("Caught InvalidOperationException : Passed!");
-            }
+            Assert.Throws<InvalidOperationException>(() => testingTarget.ConvertFromInvariantString("100, 50, 30, 10"));
+            tlog.Debug(tag, $"RelativeVector3TypeConverterConvertFromInvariantString END");
         }
 
         [Test]
@@ -487,17 +437,8 @@ namespace Tizen.NUI.Devel.Tests
             // length is 1
             result = testingTarget.ConvertFromInvariantString("100");
             tlog.Debug(tag, "ConvertFromInvariantString : " + result);
-
-            try
-            {
-                // lenght is 5
-                result = testingTarget.ConvertFromInvariantString("100, 50, 30, 10, 0.3f");
-            }
-            catch (InvalidOperationException)
-            {
-                tlog.Debug(tag, $"RelativeVector4TypeConverterConvertFromInvariantString END");
-                Assert.Pass("Caught InvalidOperationException : Passed!");
-            }
+            Assert.Throws<InvalidOperationException>(() => testingTarget.ConvertFromInvariantString("100, 50, 30, 10, 0.3f"));
+            tlog.Debug(tag, $"RelativeVector4TypeConverterConvertFromInvariantString END");
         }
 
         [Test]

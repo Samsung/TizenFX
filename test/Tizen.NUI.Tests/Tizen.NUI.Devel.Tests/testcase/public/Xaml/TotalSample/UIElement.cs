@@ -3,38 +3,46 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
+using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.Devel.Tests
 {
-    public class UIElement : View, IResourcesProvider
+    public class GenericTemple<T>
     {
-        public static readonly BindableProperty IntPProperty = BindableProperty.Create(nameof(IntP), typeof(int), typeof(UIElement), 0, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
-        {
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
-        {
-            return 0;
-        }));
 
-        public static readonly BindableProperty StringPProperty = BindableProperty.Create(nameof(StringP), typeof(string), typeof(UIElement), string.Empty, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
-        {
-            (bindable as UIElement).stringP = newValue as string;
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
-        {
-            return (bindable as UIElement).stringP;
-        }));
+    }
 
-        public static readonly BindableProperty FloatPProperty = BindableProperty.Create(nameof(FloatP), typeof(float), typeof(UIElement), 0.0f, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+    public class CustomList : List<string>
+    {
+        public class ParamType
         {
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
-        {
-            return 0.0f;
-        }));
+            public static implicit operator ParamType(int i)
+            {
+                var ret = new ParamType();
+                ret.value = i;
+                return ret;
+            }
 
+            private int value;
+
+            public override string ToString()
+            {
+                return value.ToString();
+            }
+        }
+
+        public static implicit operator CustomList(ParamType p)
+        {
+            return new CustomList() { p.ToString() };
+        }
+    }
+
+    [ContentProperty("VisualStateGroup")]
+    public partial class UIElement : View, IResourcesProvider
+    {
         public UIElement()
         {
 
@@ -61,6 +69,42 @@ namespace Tizen.NUI.Devel.Tests
 
         }
 
+        public CustomList CustomList
+        {
+            get;
+            set;
+        } = new CustomList();
+
+        public List<string> StrList
+        {
+            get;
+            set;
+        }
+
+        public View Child
+        {
+            get;
+            set;
+        }
+
+        private static View staticChild;
+        public static View StaticChild
+        {
+            get
+            {
+                if (null == staticChild)
+                {
+                    staticChild = new View();
+                }
+                return staticChild;
+            }
+            set
+            {
+                staticChild?.Dispose();
+                staticChild = value;
+            }
+        }
+
         public class TestNestType
         {
             public TestNestType(int p = 0)
@@ -79,7 +123,22 @@ namespace Tizen.NUI.Devel.Tests
 
         }
 
+        public UIElement([Parameter("CharP")]char c)
+        {
+
+        }
+
+        public UIElement(List<object> p)
+        {
+
+        }
+
         public static UIElement FactoryMethod(int p1, string p2, float p3)
+        {
+            return new UIElement();
+        }
+
+        public static UIElement FactoryMethodWithoutParams()
         {
             return new UIElement();
         }
@@ -94,6 +153,12 @@ namespace Tizen.NUI.Devel.Tests
             {
                 SetValue(IntPProperty, value);
             }
+        }
+
+        public BindableProperty CustomBindableProperty
+        {
+            get;
+            set;
         }
 
         private string stringP;
@@ -118,6 +183,39 @@ namespace Tizen.NUI.Devel.Tests
             set
             {
                 SetValue(FloatPProperty, value);
+            }
+        }
+
+        public event EventHandler<EventArgs> Event;
+
+        public ICommand Command
+        {
+            get { return (ICommand)GetValue(CommandProperty); }
+            set { SetValue(CommandProperty, value); }
+        }
+
+
+        public object CommandParameter
+        {
+            get { return GetValue(CommandParameterProperty); }
+            set { SetValue(CommandParameterProperty, value); }
+        }
+
+        internal bool IsFocused { get; set; } = false;
+
+        internal void CommandCanExecuteChanged(object sender, EventArgs eventArgs)
+        {
+            ICommand cmd = Command;
+            if (cmd != null)
+                cmd.CanExecute(CommandParameter);
+        }
+
+        internal void OnCommandChanged()
+        {
+            if (Command != null)
+            {
+                Command.CanExecuteChanged += CommandCanExecuteChanged;
+                CommandCanExecuteChanged(this, EventArgs.Empty);
             }
         }
     }

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ResourceDictionary  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <DataTemplate x:Key="PersonDataTemplate">
+        <View BackgroundColor="Red" SizeWidth="100" SizeHeight="100" Sensitive="true" />
+    </DataTemplate>
+    
+</ResourceDictionary>

@@ -26,50 +26,50 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Info(tag, "Destroy() is called!");
         }
 
-        [Test]
-        [Category("P1")]
-        [Description("SetBindingAction constructor.")]
-        [Property("SPEC", "Tizen.NUI.EXaml.SetBindingAction.SetBindingAction C")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "CONSTR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void EXamlSetBindingActionConstructor()
-        {
-            tlog.Debug(tag, $"EXamlSetBindingActionConstructor START");
+        //[Test]
+        //[Category("P1")]
+        //[Description("SetBindingAction constructor.")]
+        //[Property("SPEC", "Tizen.NUI.EXaml.SetBindingAction.SetBindingAction C")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "CONSTR")]
+        //[Property("AUTHOR", "guowei.wang@samsung.com")]
+        //public void EXamlSetBindingActionConstructor()
+        //{
+        //    tlog.Debug(tag, $"EXamlSetBindingActionConstructor START");
 
-            var testingTarget = new Tizen.NUI.EXaml.SetBindingAction(new Tizen.NUI.EXaml.GlobalDataList(), null);
-            Assert.IsNotNull(testingTarget, "Can't create success object SetBindingAction");
-            Assert.IsInstanceOf<Tizen.NUI.EXaml.SetBindingAction>(testingTarget, "Should be an instance of SetBindingAction type.");
+        //    var testingTarget = new Tizen.NUI.EXaml.SetBindingAction(new Tizen.NUI.EXaml.GlobalDataList(), null);
+        //    Assert.IsNotNull(testingTarget, "Can't create success object SetBindingAction");
+        //    Assert.IsInstanceOf<Tizen.NUI.EXaml.SetBindingAction>(testingTarget, "Should be an instance of SetBindingAction type.");
 
-            tlog.Debug(tag, $"EXamlSetBindingActionConstructor END (OK)");
-        }
+        //    tlog.Debug(tag, $"EXamlSetBindingActionConstructor END (OK)");
+        //}
 
-        [Test]
-        [Category("P1")]
-        [Description("SetBindingAction Init.")]
-        [Property("SPEC", "Tizen.NUI.EXaml.SetBindingAction.Init M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void EXamlSetBindingActionInit()
-        {
-            tlog.Debug(tag, $"EXamlSetBindingActionInit START");
+        //[Test]
+        //[Category("P1")]
+        //[Description("SetBindingAction Init.")]
+        //[Property("SPEC", "Tizen.NUI.EXaml.SetBindingAction.Init M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //[Property("AUTHOR", "guowei.wang@samsung.com")]
+        //public void EXamlSetBindingActionInit()
+        //{
+        //    tlog.Debug(tag, $"EXamlSetBindingActionInit START");
 
-            var testingTarget = new Tizen.NUI.EXaml.SetBindingAction(new Tizen.NUI.EXaml.GlobalDataList(), null);
-            Assert.IsNotNull(testingTarget, "Can't create success object SetBindingAction");
-            Assert.IsInstanceOf<Tizen.NUI.EXaml.SetBindingAction>(testingTarget, "Should be an instance of SetBindingAction type.");
+        //    var testingTarget = new Tizen.NUI.EXaml.SetBindingAction(new Tizen.NUI.EXaml.GlobalDataList(), null);
+        //    Assert.IsNotNull(testingTarget, "Can't create success object SetBindingAction");
+        //    Assert.IsInstanceOf<Tizen.NUI.EXaml.SetBindingAction>(testingTarget, "Should be an instance of SetBindingAction type.");
 
-            try
-            {
-                testingTarget.Init();
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
+        //    try
+        //    {
+        //        testingTarget.Init();
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        tlog.Debug(tag, e.Message.ToString());
+        //        Assert.Fail("Caught Exception : Failed!");
+        //    }
 
-            tlog.Debug(tag, $"EXamlSetBindingActionInit END (OK)");
-        }
+        //    tlog.Debug(tag, $"EXamlSetBindingActionInit END (OK)");
+        //}
     }
 }
