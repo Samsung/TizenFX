@@ -42,9 +42,108 @@ namespace Tizen.NUI.Devel.Tests
             var testingTarget = new Layer();
             Assert.IsNotNull(testingTarget, "null handle");
             Assert.IsInstanceOf<Layer>(testingTarget, "Should return Layer instance.");
+             
+            tlog.Debug(tag, "ID : " + testingTarget.ID);
+            tlog.Debug(tag, "GetId : " + testingTarget.GetId());
+            
+            testingTarget.SetHoverConsumed(true);
+            tlog.Debug(tag, "IsHoverConsumed : " + testingTarget.IsHoverConsumed());
+
+            testingTarget.SetTouchConsumed(true);
+            tlog.Debug(tag, "IsTouchConsumed : " + testingTarget.IsTouchConsumed());
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"LayerConstructor END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Layer DownCast.")]
+        [Property("SPEC", "Tizen.NUI.Layer.DownCast M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void LayerDownCast()
+        {
+            tlog.Debug(tag, $"LayerDownCast START");
+
+            var testingTarget = new Layer();
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<Layer>(testingTarget, "Should return Layer instance.");
+
+            try
+            {
+                Layer.DownCast(testingTarget);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"LayerDownCast END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Layer SetSize.")]
+        [Property("SPEC", "Tizen.NUI.Layer.SetSize M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void LayerSetSize()
+        {
+            tlog.Debug(tag, $"LayerSetSize START");
+
+            var testingTarget = new Layer();
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<Layer>(testingTarget, "Should return Layer instance.");
+
+            try
+            {
+                testingTarget.SetSize(30.0f, 85.0f);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"LayerSetSetSize END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Layer SetParentOrigin.")]
+        [Property("SPEC", "Tizen.NUI.Layer.SetParentOrigin M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void LayerSetParentOrigin()
+        {
+            tlog.Debug(tag, $"LayerSetParentOrigin START");
+
+            var testingTarget = new Layer();
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<Layer>(testingTarget, "Should return Layer instance.");
+
+            try
+            {
+                using (Vector3 parentOrigin = new Vector3(100.0f, 30.0f, 0.0f))
+                {
+                    testingTarget.SetParentOrigin(parentOrigin);
+                }
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"LayerSetParentOrigin END (OK)");
         }
 
         [Test]
@@ -62,10 +161,13 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "null handle");
             Assert.IsInstanceOf<Layer>(testingTarget, "Should return Layer instance.");
 
-            using (View view = new View())
+            using (View view = new View() { Name = "childView" })
             {
                 testingTarget.Add(view);
                 Assert.AreEqual(1, testingTarget.ChildCount, "Should be equal!");
+
+                var result = testingTarget.FindChildByName(view.Name);
+                tlog.Debug(tag, "FindChildByName : " + result);
             }
 
             testingTarget.Dispose();
@@ -119,6 +221,7 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.Dispose();
             tlog.Debug(tag, $"LayerName END (OK)");
         }
+
         [Test]
         [Category("P1")]
         [Description("Layer Viewport.")]
@@ -145,6 +248,36 @@ namespace Tizen.NUI.Devel.Tests
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"LayerViewport END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Layer Viewport.")]
+        [Property("SPEC", "Tizen.NUI.Layer.Viewport A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void LayerViewportWithFalseClippingEnabled()
+        {
+            tlog.Debug(tag, $"LayerViewportWithFalseClippingEnabled START");
+
+            var testingTarget = new Layer();
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<Layer>(testingTarget, "Should return Layer instance.");
+
+            testingTarget.ClippingEnabled = false;
+
+            using (Rectangle rec = new Rectangle(0, 0, 1, 1))
+            {
+                testingTarget.Viewport = rec;
+                tlog.Debug(tag, "Viewport.X : " + testingTarget.Viewport.X);
+                tlog.Debug(tag, "Viewport.Y : " + testingTarget.Viewport.Y);
+                tlog.Debug(tag, "Viewport.Width : " + testingTarget.Viewport.Width);
+                tlog.Debug(tag, "Viewport.Height : " + testingTarget.Viewport.Height);
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"LayerViewportWithFalseClippingEnabled END (OK)");
         }
 
         [Test]

@@ -23,17 +23,21 @@ namespace Tizen.NUI.Samples
            frontView = new View
             {
                 Size = new Size(300, 300),
-                // Text = "Front View",
                 Position = new Position(150, 170),
-                // PointSize = 11,
                 BackgroundColor = new Color(1.0f, 0.0f, 0.0f, 1.0f),
             };
             frontView.TouchEvent += OnFrontTouchEvent;
+
+            // The default the maximum allowed time is 500ms.
+            // If you want to change this time, do as below.
+            // But keep in mind this is a global option. Affects all gestures.
+            GestureOptions.Instance.SetDoubleTapTimeout(300);
             tapGestureDetector = new TapGestureDetector();
             tapGestureDetector.Attach(frontView);
+            tapGestureDetector.SetMaximumTapsRequired(2);
             tapGestureDetector.Detected += (s, e) =>
             {
-              Tizen.Log.Error("NUI", $"OnTap\n");
+              Tizen.Log.Error("NUI", $"OnTap {e.TapGesture.NumberOfTaps}\n");
             };
 
             backView = new TextLabel

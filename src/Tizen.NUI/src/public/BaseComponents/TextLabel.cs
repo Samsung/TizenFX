@@ -302,7 +302,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetFontStyle(FontStyle fontStyle)
         {
-            SetProperty(TextLabel.Property.FontStyle, new PropertyValue(TextUtils.GetFontStyleMap(fontStyle)));
+            SetValue(FontStyleProperty, TextUtils.GetFontStyleMap(fontStyle));
         }
 
         /// <summary>
@@ -315,9 +315,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public FontStyle GetFontStyle()
         {
-            var map = new PropertyMap();
-            GetProperty(TextLabel.Property.FontStyle).Get(map);
-            return TextUtils.GetFontStyleStruct(map);
+            return TextUtils.GetFontStyleStruct((PropertyMap)GetValue(FontStyleProperty));
         }
 
         /// <summary>
@@ -723,7 +721,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetUnderline(Underline underline)
         {
-            SetProperty(TextLabel.Property.UNDERLINE, new PropertyValue(TextUtils.GetUnderlineMap(underline)));
+            SetValue(UnderlineProperty, TextUtils.GetUnderlineMap(underline));
         }
 
         /// <summary>
@@ -736,9 +734,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Underline GetUnderline()
         {
-            var map = new PropertyMap();
-            GetProperty(TextLabel.Property.UNDERLINE).Get(map);
-            return TextUtils.GetUnderlineStruct(map);
+            return TextUtils.GetUnderlineStruct((PropertyMap)GetValue(UnderlineProperty));
         }
 
         /// <summary>
@@ -786,7 +782,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetShadow(Tizen.NUI.Text.Shadow shadow)
         {
-            SetProperty(TextLabel.Property.SHADOW, new PropertyValue(TextUtils.GetShadowMap(shadow)));
+            SetValue(ShadowProperty, TextUtils.GetShadowMap(shadow));
         }
 
         /// <summary>
@@ -799,9 +795,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.Text.Shadow GetShadow()
         {
-            var map = new PropertyMap();
-            GetProperty(TextLabel.Property.SHADOW).Get(map);
-            return TextUtils.GetShadowStruct(map);
+            return TextUtils.GetShadowStruct((PropertyMap)GetValue(ShadowProperty));
         }
 
         /// <summary>
@@ -883,7 +877,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetOutline(Outline outline)
         {
-            SetProperty(TextLabel.Property.OUTLINE, new PropertyValue(TextUtils.GetOutlineMap(outline)));
+            SetValue(OutlineProperty, TextUtils.GetOutlineMap(outline));
         }
 
         /// <summary>
@@ -896,9 +890,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Outline GetOutline()
         {
-            var map = new PropertyMap();
-            GetProperty(TextLabel.Property.OUTLINE).Get(map);
-            return TextUtils.GetOutlineStruct(map);
+            return TextUtils.GetOutlineStruct((PropertyMap)GetValue(OutlineProperty));
         }
 
         /// <summary>
@@ -1125,7 +1117,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetTextFit(TextFit textFit)
         {
-            SetProperty(TextLabel.Property.TextFit, new PropertyValue(TextUtils.GetTextFitMap(textFit)));
+            SetValue(TextFitProperty, TextUtils.GetTextFitMap(textFit));
         }
 
         /// <summary>
@@ -1140,9 +1132,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TextFit GetTextFit()
         {
-            var map = new PropertyMap();
-            GetProperty(TextLabel.Property.TextFit).Get(map);
-            return TextUtils.GetTextFitStruct(map);
+            return TextUtils.GetTextFitStruct((PropertyMap)GetValue(TextFitProperty));
         }
 
         /// <summary>

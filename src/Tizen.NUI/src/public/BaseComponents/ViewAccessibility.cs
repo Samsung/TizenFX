@@ -559,6 +559,16 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
+            if (disposing == false)
+            {
+                if (SwigCPtr.Handle == IntPtr.Zero || SwigCMemOwn == false)
+                {
+                    // at this case, implicit nor explicit dispose is not required. No native object is made.
+                    disposed = true;
+                    return;
+                }
+            }
+
             if (disposing)
             {
                 Unparent();

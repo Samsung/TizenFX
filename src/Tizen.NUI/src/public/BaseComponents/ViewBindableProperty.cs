@@ -574,6 +574,21 @@ namespace Tizen.NUI.BaseComponents
         });
 
         /// <summary>
+        /// FocusableChildrenProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty FocusableChildrenProperty = BindableProperty.Create(nameof(FocusableChildren), typeof(bool), typeof(View), true, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            if (newValue != null) { view.SetKeyboardFocusableChildren((bool)newValue); }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view.AreChildrenKeyBoardFocusable();
+        });
+
+        /// <summary>
         /// FocusableInTouchProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -1351,11 +1366,11 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
                 Size size = (Size)newValue;
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.SIZE, new Tizen.NUI.PropertyValue(size));
                 // Set Specification so when layouts measure this View it matches the value set here.
                 // All Views are currently Layouts.
                 view.WidthSpecification = (int)System.Math.Ceiling(size.Width);
                 view.HeightSpecification = (int)System.Math.Ceiling(size.Height);
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.SIZE, new Tizen.NUI.PropertyValue(size));
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
@@ -1688,6 +1703,12 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             return view.backgroundExtraData == null ? 0.0f : view.backgroundExtraData.BorderlineOffset;
         });
+
+        /// <summary>
+        /// XamlStyleProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty XamlStyleProperty = BindableProperty.Create(nameof(XamlStyle), typeof(XamlStyle), typeof(View), default(XamlStyle), propertyChanged: (bindable, oldvalue, newvalue) => ((View)bindable).MergedStyle.Style = (XamlStyle)newvalue);
 
         /// <summary>
         /// EnableControlState property

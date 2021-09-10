@@ -64,6 +64,9 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate bool RetrieveTurnServerCallback(string server, IntPtr userData);
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void SdpCreatedCallback(IntPtr handle, string sdp, IntPtr userData);
+
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_create")]
         internal static extern WebRTCErrorCode Create(out WebRTCHandle handle);
@@ -188,8 +191,14 @@ internal static partial class Interop
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_create_offer")]
         internal static extern WebRTCErrorCode CreateSDPOffer(IntPtr handle, SafeBundleHandle bundle, out string offer);
 
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_create_offer_async")]
+        internal static extern WebRTCErrorCode CreateSDPOfferAsync(IntPtr handle, SafeBundleHandle bundle, SdpCreatedCallback callback, IntPtr userData);
+
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_create_answer")]
         internal static extern WebRTCErrorCode CreateSDPAnswer(IntPtr handle, SafeBundleHandle bundle, out string offer);
+
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_create_answer_async")]
+        internal static extern WebRTCErrorCode CreateSDPAnswerAsync(IntPtr handle, SafeBundleHandle bundle, SdpCreatedCallback callback, IntPtr userData);
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_set_local_description")]
         internal static extern WebRTCErrorCode SetLocalDescription(IntPtr handle, string description);
@@ -279,8 +288,7 @@ internal static partial class Interop
 
     internal class WebRTCHandle : SafeHandle
     {
-        protected WebRTCHandle()
-          : base(IntPtr.Zero, true)
+        protected WebRTCHandle() : base(IntPtr.Zero, true)
         {
         }
 
@@ -291,12 +299,11 @@ internal static partial class Interop
             var ret = NativeWebRTC.Destroy(handle);
             if (ret != WebRTCErrorCode.None)
             {
-                return true;
+                Log.Debug(GetType().FullName, $"Failed to release native {GetType().Name}");
+                return false;
             }
 
-            Log.Debug(GetType().FullName, $"Failed to release native {GetType().Name}");
-            return false;
+            return true;
         }
     }
-
 }

@@ -349,5 +349,54 @@ namespace Tizen.NUI.Devel.Tests
 		
         private void OnDetected(object obj, LongPressGestureDetector.DetectedEventArgs e)
         { }
-	}
+
+        [Test]
+        [Category("P1")]
+        [Description("LongPressGestureDetector Assign")]
+        [Property("SPEC", "Tizen.NUI.LongPressGestureDetector.Assign M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void LongPressGestureDetectorAssign()
+        {
+            tlog.Debug(tag, $"LongPressGestureDetectorAssign START");
+
+            using (LongPressGestureDetector detector = new LongPressGestureDetector())
+            {
+                var testingTarget = detector.Assign(detector);
+                Assert.IsInstanceOf<LongPressGestureDetector>(testingTarget, "Should be an instance of LongPressGestureDetector type.");
+
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"LongPressGestureDetectorAssign END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("DetectedEventArgs View.")]
+        [Property("SPEC", "Tizen.NUI.DetectedEventArgs.View A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void LongPressGestureDetectedEventArgsView()
+        {
+            tlog.Debug(tag, $"LongPressGestureDetectedEventArgsView START");
+
+            var testingTarget = new Tizen.NUI.LongPressGestureDetector.DetectedEventArgs();
+            Assert.IsNotNull(testingTarget, "Can't create success object DetectedEventArgs.");
+            Assert.IsInstanceOf<Tizen.NUI.LongPressGestureDetector.DetectedEventArgs>(testingTarget, "Should return DetectedEventArgs instance.");
+
+            using (View view = new View() { Size = new Size(100, 50) })
+            {
+                testingTarget.View = view;
+                Assert.AreEqual(100, testingTarget.View.Size.Width, "Should be equal!");
+            }
+
+            testingTarget.LongPressGesture = new LongPressGesture(Gesture.StateType.Possible);
+            Assert.AreEqual(Gesture.StateType.Possible, testingTarget.LongPressGesture.State, "Should be equal!");
+
+            tlog.Debug(tag, $"LongPressGestureDetectedEventArgsView END (OK)");
+        }
+    }
 }

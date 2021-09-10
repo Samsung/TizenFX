@@ -195,7 +195,7 @@ namespace Tizen.Multimedia.Util
             {
                 byte[] fileHeader = new byte[Header.Length];
 
-                if (fs.Read(fileHeader, 0, fileHeader.Length) < Header.Length)
+                if (fs.Read(fileHeader, HeaderOffset, fileHeader.Length) < Header.Length)
                 {
                     return false;
                 }
@@ -250,6 +250,8 @@ namespace Tizen.Multimedia.Util
 
         internal abstract byte[] Header { get; }
 
+        internal abstract int HeaderOffset { get; }
+
         #region IDisposable Support
         private bool _disposed = false;
 
@@ -299,6 +301,8 @@ namespace Tizen.Multimedia.Util
         }
 
         internal override byte[] Header => _header;
+
+        internal override int HeaderOffset => 0;
     }
 
     /// <summary>
@@ -319,6 +323,8 @@ namespace Tizen.Multimedia.Util
         }
 
         internal override byte[] Header => _header;
+
+        internal override int HeaderOffset => 0;
     }
 
     /// <summary>
@@ -373,6 +379,8 @@ namespace Tizen.Multimedia.Util
         }
 
         internal override byte[] Header => _header;
+
+        internal override int HeaderOffset => 0;
     }
 
     /// <summary>
@@ -393,6 +401,8 @@ namespace Tizen.Multimedia.Util
         }
 
         internal override byte[] Header => _header;
+
+        internal override int HeaderOffset => 0;
     }
 
     /// <summary>
@@ -413,5 +423,29 @@ namespace Tizen.Multimedia.Util
         }
 
         internal override byte[] Header => _header;
+
+        internal override int HeaderOffset => 8;
+    }
+
+    /// <summary>
+    /// Provides the ability to decode the HEIF (High Efficiency Image File Format) encoded images.
+    /// </summary>
+    /// <since_tizen> 9 </since_tizen>
+    public class HeifDecoder : ImageDecoder
+    {
+        private static readonly byte[] _header = { (byte)'f', (byte)'t', (byte)'y', (byte)'p'};
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HeifDecoder"/> class.
+        /// </summary>
+        /// <remarks><see cref="ImageDecoder.InputFormat"/> will be the <see cref="ImageFormat.Heif"/>.</remarks>
+        /// <since_tizen> 9 </since_tizen>
+        public HeifDecoder() : base(ImageFormat.Heif)
+        {
+        }
+
+        internal override byte[] Header => _header;
+
+        internal override int HeaderOffset => 4;
     }
 }
