@@ -64,15 +64,27 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SynchronosLoadingProperty = BindableProperty.Create(nameof(SynchronosLoading), typeof(bool?), typeof(ImageViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SynchronosLoadingProperty = BindableProperty.Create(nameof(SynchronousLoading), typeof(bool?), typeof(ImageViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var imageViewStyle = (ImageViewStyle)bindable;
-            imageViewStyle.synchronosLoading = (bool?)newValue;
+            imageViewStyle.synchronousLoading = (bool?)newValue;
         },
         defaultValueCreator: (bindable) =>
         {
             var imageViewStyle = (ImageViewStyle)bindable;
-            return imageViewStyle.synchronosLoading;
+            return imageViewStyle.synchronousLoading;
+        });
+        /// This will be public opened in tizen_7.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty SynchronousLoadingProperty = BindableProperty.Create(nameof(SynchronousLoading), typeof(bool?), typeof(ImageViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var imageViewStyle = (ImageViewStyle)bindable;
+            imageViewStyle.synchronousLoading = (bool?)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var imageViewStyle = (ImageViewStyle)bindable;
+            return imageViewStyle.synchronousLoading;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -88,7 +100,7 @@ namespace Tizen.NUI.BaseComponents
         });
 
         private bool? borderOnly;
-        private bool? synchronosLoading;
+        private bool? synchronousLoading;
         private bool? orientationCorrection;
         private Selector<string> resourceUrl;
         private Selector<Rectangle> border;
@@ -115,8 +127,16 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? SynchronosLoading
         {
-            get => (bool?)GetValue(SynchronosLoadingProperty);
-            set => SetValue(SynchronosLoadingProperty, value);
+            get => (bool?)GetValue(SynchronousLoadingProperty);
+            set => SetValue(SynchronousLoadingProperty, value);
+        }
+
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool? SynchronousLoading
+        {
+            get => (bool?)GetValue(SynchronousLoadingProperty);
+            set => SetValue(SynchronousLoadingProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
