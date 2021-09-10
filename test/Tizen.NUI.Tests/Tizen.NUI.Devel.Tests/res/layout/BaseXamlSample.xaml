@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<View x:Class="Tizen.NUI.BaseComponents.View"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:l="clr-namespace:Tizen.NUI.Devel.Tests;assembly=Tizen.NUI.Devel.Tests"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <View.XamlResources>
+        <ResourceDictionary Source="res/layout/MyResourceDictionary.xaml" />
+    </View.XamlResources>
+    <View x:Name="view1" BackgroundColor="Red" SizeWidth="100" SizeHeight="100" l:FocusEffect.Focusable="true" />
+    <l:MyView >
+        <l:MyView.Margin>
+            <OnPlatform x:TypeArguments="Extents">
+                <On Platform="iOS" Value="0,20,0,0" />
+                <On Platform="Android" Value="5,10,0,0" />
+                <On Platform="UWP" Value="10,0,0,0" />
+            </OnPlatform>
+        </l:MyView.Margin>
+        <l:MyView.Array>
+            <x:Array Type="{x:Type x:String}">
+                <x:String>AA</x:String>
+                <x:String>BB</x:String>
+            </x:Array>
+        </l:MyView.Array>
+    </l:MyView>
+</View>

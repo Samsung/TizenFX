@@ -3,6 +3,8 @@ using NUnit.Framework;
 using NUnit.Framework.TUnit;
 using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Xaml;
+using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI.Devel.Tests
 {
@@ -18,6 +20,11 @@ namespace Tizen.NUI.Devel.Tests
         internal class IServiceProviderImpl : IServiceProvider
         {
             public object GetService(Type serviceType) { return null; }
+        }
+
+        internal class IServiceProviderImpl2 : IServiceProvider
+        {
+            public object GetService(Type serviceType) { return new NameScopeProvider() { NameScope = new NameScope() { } }; }
         }
 
         [SetUp]
@@ -68,19 +75,21 @@ namespace Tizen.NUI.Devel.Tests
         public void ReferenceExtensionProvideValue()
         {
             tlog.Debug(tag, $"ReferenceExtensionProvideValue START");
+            Assert.Throws<ArgumentException>(() => reference.ProvideValue(new IServiceProviderImpl()));
+            tlog.Debug(tag, $"ReferenceExtensionProvideValue END");
+        }
 
-            try
-            {
-                reference.ProvideValue(new IServiceProviderImpl()); // serviceProvider is null
-            }
-            catch (ArgumentException e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                tlog.Debug(tag, $"ReferenceExtensionProvideValue END");
-                Assert.Pass("Caught ArgumentException : Passed!");
-            }
-
-            
+        [Test]
+        [Category("P2")]
+        [Description("ReferenceExtension ProvideValue")]
+        [Property("SPEC", "Tizen.NUI.ReferenceExtension.ProvideValue M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void ReferenceExtensionProvideValue2()
+        {
+            tlog.Debug(tag, $"ReferenceExtensionProvideValue2 START");
+            Assert.Throws<ArgumentNullException>(() => reference.ProvideValue(null));
+            tlog.Debug(tag, $"ReferenceExtensionProvideValue2 END");
         }
     }
 }

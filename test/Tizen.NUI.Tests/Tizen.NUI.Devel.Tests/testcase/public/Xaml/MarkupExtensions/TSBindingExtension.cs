@@ -31,6 +31,23 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
+        [Description("BindingExtension BindingExtension")]
+        [Property("SPEC", "Tizen.NUI.BindingExtension.BindingExtension C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        public void BindingExtensionConstructor()
+        {
+            tlog.Debug(tag, $"BindingExtensionConstructor START");
+
+            BindingExtension binding = new BindingExtension();
+            Assert.IsNotNull(binding, "null BindingExtension");
+            Assert.IsInstanceOf<BindingExtension>(binding, "Should return BindingExtension instance.");
+
+            tlog.Debug(tag, $"BindingExtensionConstructor END");
+        }
+		
+        [Test]
+        [Category("P1")]
         [Description("BindingExtension Path")]
         [Property("SPEC", "Tizen.NUI.BindingExtension.Path A")]
         [Property("SPEC_URL", "-")]

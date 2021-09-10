@@ -8,50 +8,57 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Tizen.NUI.Xaml.XamlResourceIdAttribute("Tizen.NUI.Devel.Tests.testcase.public.Xaml.TotalSample.TotalSample.xaml", "testcase/public/Xaml/TotalSample/TotalSample.xaml", typeof(global::Tizen.NUI.Devel.Tests.TotalSample))]
+using Tizen.NUI.Xaml;
+[assembly: global::Tizen.NUI.Xaml.XamlResourceIdAttribute("Tizen.NUI.Devel.Tests.res.layout.TotalSample.xaml", "res/layout/TotalSample.xaml", typeof(global::Tizen.NUI.Devel.Tests.TotalSample))]
 
-namespace Tizen.NUI.Devel.Tests {
-    
-    
-    [Tizen.NUI.Xaml.XamlFilePathAttribute("testcase\\public\\Xaml\\TotalSample\\TotalSample.xaml")]
+namespace Tizen.NUI.Devel.Tests
+{
+
+
+    [Tizen.NUI.Xaml.XamlFilePathAttribute("res\\layout\\TotalSample.xaml")]
     [Tizen.NUI.Xaml.XamlCompilationAttribute(global::Tizen.NUI.Xaml.XamlCompilationOptions.Compile)]
-    public partial class TotalSample : global::Tizen.NUI.Devel.Tests.UIElement {
-        
+    public partial class TotalSample : global::Tizen.NUI.Devel.Tests.UIElement
+    {
+
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Tizen.NUI.Xaml.Build.Tasks.XamlG", "1.0.6.0")]
         public global::Tizen.NUI.Devel.Tests.UIElement t1;
-        
+
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Tizen.NUI.Xaml.Build.Tasks.XamlG", "1.0.6.0")]
         public global::Tizen.NUI.Devel.Tests.UIElement t2;
-        
+
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Tizen.NUI.Xaml.Build.Tasks.XamlG", "1.0.6.0")]
         public global::Tizen.NUI.Devel.Tests.UIElement t3;
-        
+
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Tizen.NUI.Xaml.Build.Tasks.XamlG", "1.0.6.0")]
         private object eXamlData;
-        
+
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Tizen.NUI.Xaml.Build.Tasks.XamlG", "1.0.6.0")]
-        private void InitializeComponent() {
+        private void InitializeComponent()
+        {
             //eXamlData = global::Tizen.NUI.EXaml.EXamlExtensions.LoadFromEXamlByRelativePath(this, GetEXamlPath());
             global::Tizen.NUI.Xaml.Extensions.LoadFromXaml(this, typeof(TotalSample));
             t1 = global::Tizen.NUI.Binding.NameScopeExtensions.FindByName<global::Tizen.NUI.Devel.Tests.UIElement>(this, "t1");
             t2 = global::Tizen.NUI.Binding.NameScopeExtensions.FindByName<global::Tizen.NUI.Devel.Tests.UIElement>(this, "t2");
             t3 = global::Tizen.NUI.Binding.NameScopeExtensions.FindByName<global::Tizen.NUI.Devel.Tests.UIElement>(this, "t3");
         }
-        
+
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Tizen.NUI.Xaml.Build.Tasks.XamlG", "1.0.6.0")]
-        private string GetEXamlPath() {
+        private string GetEXamlPath()
+        {
             return default(string);
         }
-        
+
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Tizen.NUI.Xaml.Build.Tasks.XamlG", "1.0.6.0")]
-        private void RemoveEventsInXaml() {
-            //global::Tizen.NUI.EXaml.EXamlExtensions.RemoveEventsInXaml(eXamlData);
+        private void RemoveEventsInXaml()
+        {
+            global::Tizen.NUI.EXaml.EXamlExtensions.RemoveEventsInXaml(eXamlData);
         }
-        
+
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Tizen.NUI.Xaml.Build.Tasks.XamlG", "1.0.6.0")]
-        private void ExitXaml() {
-            //RemoveEventsInXaml();
-            //global::Tizen.NUI.EXaml.EXamlExtensions.DisposeXamlElements(this);
+        private void ExitXaml()
+        {
+            RemoveEventsInXaml();
+            global::Tizen.NUI.EXaml.EXamlExtensions.DisposeXamlElements(this);
         }
     }
 }

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Layer x:Class="Tizen.NUI.Layer"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:l="using:Tizen.NUI.Devel.Tests"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <View.XamlResources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- Add more resource dictionaries here -->
+                <ResourceDictionary Source="res/layout/MyResourceDictionary.xaml"/>
+                <!-- Add more resource dictionaries here -->
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </View.XamlResources>
+    <View x:Name="view1" BackgroundColor="Red" SizeWidth="100" SizeHeight="100" Sensitive="true" />
+</Layer>

@@ -57,15 +57,7 @@ namespace Tizen.NUI.Devel.Tests
         public void Button_INIT_WITH_STRING_Exception()
         {
             /* TEST CODE */
-            try
-            {
-                var button = new Button("defaultButtonX");
-                Assert.Fail("Should throw the Exception: There is no style of defaultButtonX !");
-            }
-            catch (InvalidOperationException e)
-            {
-                Assert.Pass("InvalidOperationException: passed!");
-            }
+            Assert.Throws<InvalidOperationException>(() => new Button("defaultButtonX"));
         }
 
 #if (EXAMPLE)
