@@ -358,7 +358,7 @@ namespace Tizen.Multimedia
                     throw new ArgumentException("The display has already been assigned to another.");
                 }
 
-                _uiSync = value.UiSync;
+                _uiSync = value?.UiSync ?? false;
 
                 SetDisplay(value).ThrowIfFailed(this, "Failed to configure display of the player");
 
