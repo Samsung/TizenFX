@@ -382,11 +382,6 @@ namespace Tizen.NUI
             s_current = this;
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Application obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
-        }
-
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)

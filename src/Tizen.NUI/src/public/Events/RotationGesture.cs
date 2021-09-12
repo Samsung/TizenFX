@@ -129,11 +129,6 @@ namespace Tizen.NUI
             }
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(RotationGesture obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
-        }
-
         internal static RotationGesture GetRotationGestureFromPtr(global::System.IntPtr cPtr)
         {
             RotationGesture ret = new RotationGesture(cPtr, false);
