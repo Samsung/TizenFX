@@ -188,6 +188,11 @@ namespace Tizen.NUI.Binding
             if (property == null)
                 throw new ArgumentNullException(nameof(property));
 
+            if (!IsBinded && property.DefaultValueCreator != null)
+            {
+                return property.DefaultValueCreator(this);
+            }
+
             BindablePropertyContext context = property.DefaultValueCreator != null ? GetOrCreateContext(property) : GetContext(property);
 
             if (context == null)
