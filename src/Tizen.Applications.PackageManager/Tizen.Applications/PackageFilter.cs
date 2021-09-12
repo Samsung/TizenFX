@@ -25,6 +25,7 @@ namespace Tizen.Applications
     public class PackageFilter
     {
         private IDictionary<string, bool> _filter;
+        private IDictionary<string, string> _stringFilter;
 
         /// <summary>
         /// The default constructor with an empty filter list. All the installed applications will satisfy this filter unless updated with more specific filters.
@@ -33,6 +34,7 @@ namespace Tizen.Applications
         public PackageFilter()
         {
             _filter = new Dictionary<string, bool>();
+            _stringFilter = new Dictionary<string, string>();
         }
 
         /// <summary>
@@ -46,6 +48,29 @@ namespace Tizen.Applications
         }
 
         /// <summary>
+        /// The constructor with specific filters. Using this will filter out the installed packages which do not meet the filter criteria.
+        /// </summary>
+        /// <remarks>The dictionary contains filter keys as the keys, and filter values as the value.</remarks>
+        /// <param name="stringFilter">Package filters using string values.</param>
+        /// <since_tizen> 9 </since_tizen>
+        public PackageFilter(IDictionary<string, string> stringFilter)
+        {
+            _stringFilter = stringFilter;
+        }
+
+        /// <summary>
+        /// The constructor with specific filters. Using this will filter out the installed packages which do not meet the filter criteria.
+        /// </summary>
+        /// <param name="filter">Package filters.</param>
+        /// <param name="stringFilter">Package filters using string values.</param>
+        /// <since_tizen> 9 </since_tizen>
+        public PackageFilter(IDictionary<string, bool> filter, IDictionary<string, string> stringFilter)
+        {
+            _filter = filter;
+            _stringFilter = stringFilter;
+        }
+
+        /// <summary>
         /// Filters to be used in the GetPackages method.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -54,6 +79,18 @@ namespace Tizen.Applications
             get
             {
                 return _filter;
+            }
+        }
+
+        /// <summary>
+        /// String filters to be used in the GetPackages method.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public IDictionary<string, string> StringFilters
+        {
+            get
+            {
+                return _stringFilter;
             }
         }
 
@@ -88,6 +125,12 @@ namespace Tizen.Applications
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             public const string Preload = "PMINFO_PKGINFO_PROP_PACKAGE_PRELOAD";
+
+            /// <summary>
+            /// Key of the string property for filtering the resource type of the package.
+            /// </summary>
+            /// <since_tizen> 9 </since_tizen>
+            public const string ResourceType = "PMINFO_PKGINFO_PROP_PACKAGE_RES_TYPE";
         }
     }
 }
