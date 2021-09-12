@@ -1030,7 +1030,7 @@ namespace Tizen.NUI
         {
             // register all Views with the type registry, so that can be created / styled via JSON
             //ViewRegistryHelper.Initialize(); //moved to Application side.
-            if (instance)
+            if (instance != null)
             {
                 return instance;
             }
@@ -1045,7 +1045,7 @@ namespace Tizen.NUI
 
         public static Application NewApplication(string stylesheet, NUIApplication.WindowMode windowMode, Rectangle positionSize)
         {
-            if (instance)
+            if (instance != null)
             {
                 return instance;
             }
@@ -1059,7 +1059,7 @@ namespace Tizen.NUI
 
         public static Application NewApplication(string[] args, string stylesheet, NUIApplication.WindowMode windowMode)
         {
-            if (instance)
+            if (instance != null)
             {
                 return instance;
             }
@@ -1073,7 +1073,7 @@ namespace Tizen.NUI
 
         public static Application NewApplication(string[] args, string stylesheet, NUIApplication.WindowMode windowMode, Rectangle positionSize)
         {
-            if (instance)
+            if (instance != null)
             {
                 return instance;
             }
@@ -1087,7 +1087,7 @@ namespace Tizen.NUI
 
         public static Application NewApplication(string stylesheet, NUIApplication.WindowMode windowMode, WindowType type)
         {
-            if (instance)
+            if (instance != null)
             {
                 return instance;
             }
@@ -1298,7 +1298,7 @@ namespace Tizen.NUI
             {
                 Window currWin = Registry.GetManagedBaseHandleFromNativePtr(Interop.Application.GetWindowsFromList(i)) as Window;
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                if (currWin)
+                if (currWin != null)
                 {
                     WindowList.Add(currWin);
                 }
