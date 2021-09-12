@@ -358,7 +358,7 @@ namespace Tizen.NUI
         private void DirectorOnChildAdd(global::System.IntPtr child)
         {
             View view = Registry.GetManagedBaseHandleFromNativePtr(child) as View;
-            if (view)
+            if (view != null)
             {
                 OnChildAdd?.Invoke(view);
             }
@@ -367,7 +367,7 @@ namespace Tizen.NUI
         private void DirectorOnChildRemove(global::System.IntPtr child)
         {
             View view = Registry.GetManagedBaseHandleFromNativePtr(child) as View;
-            if (view)
+            if (view != null)
             {
                 OnChildRemove?.Invoke(view);
             }
@@ -426,7 +426,7 @@ namespace Tizen.NUI
         private float DirectorCalculateChildSize(global::System.IntPtr child, int dimension)
         {
             View view = Registry.GetManagedBaseHandleFromNativePtr(child) as View;
-            if (view)
+            if (view != null)
             {
                 return CalculateChildSize?.Invoke(view, (DimensionType)dimension) ?? 0.0f;
             }

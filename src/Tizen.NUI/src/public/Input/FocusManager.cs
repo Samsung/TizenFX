@@ -522,7 +522,7 @@ namespace Tizen.NUI
             }
             else
             {
-                if (e.ProposedView) return proposed;
+                if (e.ProposedView != null) return proposed;
                 else return current;
             }
         }
