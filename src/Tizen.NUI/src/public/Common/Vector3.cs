@@ -707,11 +707,6 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public object Clone() => new Vector3(X, Y, Z);
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Vector3 obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
-        }
-
         internal static Vector3 GetVector3FromPtr(global::System.IntPtr cPtr)
         {
             Vector3 ret = new Vector3(cPtr, false);
