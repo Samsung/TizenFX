@@ -449,7 +449,7 @@ namespace Tizen.NUI
 
                     View owner = Owner;
 
-                    if (owner)
+                    if (owner != null)
                     {
                         // Margin and Padding only supported when child anchor point is TOP_LEFT.
                         if (owner.PivotPoint == PivotPoint.TopLeft || (owner.PositionUsesPivotPoint == false))

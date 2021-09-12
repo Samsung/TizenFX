@@ -603,7 +603,7 @@ namespace Tizen.NUI
         {
             View view = Registry.GetManagedBaseHandleFromNativePtr(child) as View;
 
-            if (view)
+            if (view != null)
             {
                 OnChildAdd(view);
             }
@@ -613,7 +613,7 @@ namespace Tizen.NUI
         {
             View view = Registry.GetManagedBaseHandleFromNativePtr(child) as View;
 
-            if (view)
+            if (view != null)
             {
                 OnChildRemove(view);
             }
@@ -657,7 +657,7 @@ namespace Tizen.NUI
         private float SwigDirectorCalculateChildSize(global::System.IntPtr child, int dimension)
         {
             View view = Registry.GetManagedBaseHandleFromNativePtr(child) as View;
-            if (view)
+            if (view != null)
             {
                 return CalculateChildSize(view, (DimensionType)dimension);
             }
@@ -702,7 +702,7 @@ namespace Tizen.NUI
         private void SwigDirectorOnStyleChange(global::System.IntPtr styleManager, int change)
         {
             StyleManager stManager = Registry.GetManagedBaseHandleFromNativePtr(styleManager) as StyleManager;
-            if (stManager)
+            if (stManager != null)
             {
                 OnStyleChange(stManager, (StyleChangeType)change);
             }
