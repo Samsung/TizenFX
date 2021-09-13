@@ -115,6 +115,8 @@
   <dl class="attribute-list stack">
     <dt>Derived</dt>
     <dd>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.VectorGraphics.DrawableGroup.html">DrawableGroup</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.VectorGraphics.Picture.html">Picture</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.VectorGraphics.Shape.html">Shape</a></div>
     </dd>
   </dl>
@@ -130,6 +132,41 @@
   
   <h3 id="properties">Properties
   </h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VectorGraphics/Drawable.cs/#L79">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_VectorGraphics_Drawable_BoundingBox_" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Drawable.BoundingBox*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_VectorGraphics_Drawable_BoundingBox" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Drawable.BoundingBox">BoundingBox</h4>
+  <div class="markdown level1 summary"><p>The bounding box of the drawable object to which no transformation has been applied.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector4 BoundingBox { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector4.html">Vector4</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_BaseComponents_VectorGraphics_Drawable_BoundingBox_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The bounding box doesn&apos;t indicate the rendering region in the result but primitive region of the object.</p>
+</div>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
+  
+  <div style="margin-bottom: 15px"></div>
+
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VectorGraphics/Drawable.cs/#L43">View Source</a>
   </span>
@@ -164,6 +201,124 @@
 
   <h3 id="methods">Methods
   </h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VectorGraphics/Drawable.cs/#L95">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_VectorGraphics_Drawable_ClipPath_" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Drawable.ClipPath*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_VectorGraphics_Drawable_ClipPath_Tizen_NUI_BaseComponents_VectorGraphics_Drawable_" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Drawable.ClipPath(Tizen.NUI.BaseComponents.VectorGraphics.Drawable)">ClipPath(Drawable)</h4>
+  <div class="markdown level1 summary"><p>The intersection with clip drawable is determined and only the resulting pixels from own drawable are rendered.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClipPath(Drawable clip)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.VectorGraphics.Drawable.html">Drawable</a></td>
+        <td><span class="parametername">clip</span></td>
+        <td><p>The clip drawable object.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.exception">Exception</a></td>
+        <td><p>Drawable clpping failed. </p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p>Thrown when drawable is null. </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
+  
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VectorGraphics/Drawable.cs/#L117">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_VectorGraphics_Drawable_Mask_" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Drawable.Mask*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_VectorGraphics_Drawable_Mask_Tizen_NUI_BaseComponents_VectorGraphics_Drawable_Tizen_NUI_BaseComponents_VectorGraphics_MaskType_" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Drawable.Mask(Tizen.NUI.BaseComponents.VectorGraphics.Drawable,Tizen.NUI.BaseComponents.VectorGraphics.MaskType)">Mask(Drawable, MaskType)</h4>
+  <div class="markdown level1 summary"><p>The pixels of mask drawable and own drawable are blended according to MaskType.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Mask(Drawable mask, MaskType type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.VectorGraphics.Drawable.html">Drawable</a></td>
+        <td><span class="parametername">mask</span></td>
+        <td><p>The mask drawable object.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.VectorGraphics.MaskType.html">MaskType</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>The masking type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.exception">Exception</a></td>
+        <td><p>Drawable masking failed. </p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p>Thrown when drawable is null. </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
+  
+  <div style="margin-bottom: 15px"></div>
+
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VectorGraphics/Drawable.cs/#L137">View Source</a>
   </span>

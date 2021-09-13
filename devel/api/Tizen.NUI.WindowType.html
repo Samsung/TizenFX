@@ -100,6 +100,10 @@
 
   
   
+  <h5 id="Tizen_NUI_WindowType_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>Most of window type can be set, except for IME type.<br>
+IME type can only be used in one of NUIApplication&apos;s constrcutors.<br></p>
+</div>
   <h3 id="fields">Fields
   </h3>
   <table class="table table-bordered table-striped table-condensed">
@@ -113,6 +117,13 @@
       <tr>
         <td id="Tizen_NUI_WindowType_Dialog">Dialog</td>
         <td><p>Used for simple dialog windows.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="Tizen_NUI_WindowType_Ime">Ime</td>
+        <td><p>Used for IME window that is used for keyboard window.
+It should be set in NUIApplication constructor.
+It does not work with Window.Type, because IME window type can not change in runtime.</p>
 </td>
       </tr>
       <tr>
@@ -142,7 +153,7 @@ Almost every window will be created with this type.</p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Common/NUIConstants.cs/#L747" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Common/NUIConstants.cs/#L751" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
