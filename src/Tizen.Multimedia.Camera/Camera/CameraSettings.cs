@@ -1238,7 +1238,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="streamId">The stream id.</param>
         /// <since_tizen> 9 </since_tizen>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ExtraPreviewStreamInfo GetExtraPreviewStreamInfo(int streamId)
         {
@@ -1253,12 +1253,41 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="info">The extra preview stream information.</param>
         /// <since_tizen> 9 </since_tizen>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetExtraPreviewStreamInfo(ExtraPreviewStreamInfo info)
         {
             SetExtraPreviewStreamFormat(_camera.GetHandle(), info.StreamId, info.Format,
                 info.Size.Width, info.Size.Height, info.Fps).ThrowIfFailed("Failed to set extra preview stream foramt");
+        }
+
+        /// <summary>
+        /// Gets the bitrate of extra preview with given stream id.
+        /// </summary>
+        /// <param name="streamId">The stream id.</param>
+        /// <since_tizen> 9 </since_tizen>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int GetExtraPreviewBitrate(int streamId)
+        {
+            Native.GetExtraPreviewBitrate(_camera.GetHandle(), streamId, out int bitrate).
+                ThrowIfFailed("Failed to get extra preview bitrate");
+
+            return bitrate;
+        }
+
+        /// <summary>
+        /// Sets the bitrate of extra preview with given stream id.
+        /// </summary>
+        /// <param name="streamId">The stream id.</param>
+        /// <param name="bitrate">The bitrate fo extra preview.</param>
+        /// <since_tizen> 9 </since_tizen>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetExtraPreviewBitrate(int streamId, int bitrate)
+        {
+            Native.SetExtraPreviewBitrate(_camera.GetHandle(), streamId, bitrate).
+                ThrowIfFailed("Failed to set extra preview bitrate");
         }
     }
 
