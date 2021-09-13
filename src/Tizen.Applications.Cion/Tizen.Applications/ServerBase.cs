@@ -28,6 +28,7 @@ namespace Tizen.Applications
     {
         private const string LogTag = "Tizen.Cion";
 
+        private string _displayName;
         private readonly ServerSafeHandle _handle;
         private Interop.CionServer.CionServerConnectionRequestCb _connectionRequestCb;
         private Interop.CionServer.CionServerConnectionResultCb _connectionResultCb;
@@ -44,10 +45,25 @@ namespace Tizen.Applications
         public string ServiceName { get; }
 
         /// <summary>
-        /// Gets the display name of current cion server.
+        /// Gets or sets the display name of current cion server.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public string DisplayName { get; }
+        public string DisplayName
+        {
+            get
+            {
+                return _displayName;
+            }
+
+            set
+            {
+                Interop.Cion.ErrorCode ret = Interop.CionServer.CionServerSetDisplayName(_handle, value);
+                if (ret != Interop.Cion.ErrorCode.None)
+                {
+                    Log.Error(LogTag, string.Format("Failed to set display name: {0}", ret));
+                }
+            }
+        }
 
         /// <summary>
         /// The constructor of ServerBase class.
@@ -69,7 +85,7 @@ namespace Tizen.Applications
         public ServerBase(string serviceName, string displayName, Cion.SecurityInfo security)
         {
             ServiceName = serviceName;
-            DisplayName = displayName;
+            _displayName = displayName;
 
             Cion.SecuritySafeHandle handle = security?._handle;
             Interop.Cion.ErrorCode ret = Interop.CionServer.CionServerCreate(out _handle, serviceName, displayName, handle?.DangerousGetHandle() ?? IntPtr.Zero);

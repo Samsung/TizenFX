@@ -93,5 +93,8 @@ internal static partial class Interop
 
         [DllImport(Libraries.Cion, EntryPoint = "cion_server_set_ondemand_launch_enable")]
         internal static extern ErrorCode CionServerSetOndemandLaunchEnable(ServerSafeHandle server, bool enable);
+
+        [DllImport(Libraries.Cion, EntryPoint = "cion_server_set_display_name")]
+        internal static extern ErrorCode CionServerSetDisplayName(ServerSafeHandle server, string displayName);
     }
 }
