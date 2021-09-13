@@ -60649,11 +60649,6 @@
     "title": "Class MediaControlServerStoppedEventArgs",
     "keywords": ""
   },
-  "API9/api/Tizen.Multimedia.Remoting.MediaFileSource.html": {
-    "href": "API9/api/Tizen.Multimedia.Remoting.MediaFileSource.html",
-    "title": "Class MediaFileSource",
-    "keywords": ""
-  },
   "API9/api/Tizen.Multimedia.Remoting.MediaMicrophoneSource.html": {
     "href": "API9/api/Tizen.Multimedia.Remoting.MediaMicrophoneSource.html",
     "title": "Class MediaMicrophoneSource",
@@ -63149,6 +63144,16 @@
     "title": "Class AnchorClickedEventArgs",
     "keywords": ""
   },
+  "API9/api/Tizen.NUI.BaseComponents.CameraView.DisplayType.html": {
+    "href": "API9/api/Tizen.NUI.BaseComponents.CameraView.DisplayType.html",
+    "title": "Enum CameraView.DisplayType",
+    "keywords": ""
+  },
+  "API9/api/Tizen.NUI.BaseComponents.CameraView.html": {
+    "href": "API9/api/Tizen.NUI.BaseComponents.CameraView.html",
+    "title": "Class CameraView",
+    "keywords": ""
+  },
   "API9/api/Tizen.NUI.BaseComponents.ControlState.html": {
     "href": "API9/api/Tizen.NUI.BaseComponents.ControlState.html",
     "title": "Class ControlState",
@@ -63319,9 +63324,29 @@
     "title": "Class CanvasView",
     "keywords": ""
   },
+  "API9/api/Tizen.NUI.BaseComponents.VectorGraphics.ColorStop.html": {
+    "href": "API9/api/Tizen.NUI.BaseComponents.VectorGraphics.ColorStop.html",
+    "title": "Class ColorStop",
+    "keywords": ""
+  },
   "API9/api/Tizen.NUI.BaseComponents.VectorGraphics.Drawable.html": {
     "href": "API9/api/Tizen.NUI.BaseComponents.VectorGraphics.Drawable.html",
     "title": "Class Drawable",
+    "keywords": ""
+  },
+  "API9/api/Tizen.NUI.BaseComponents.VectorGraphics.DrawableGroup.html": {
+    "href": "API9/api/Tizen.NUI.BaseComponents.VectorGraphics.DrawableGroup.html",
+    "title": "Class DrawableGroup",
+    "keywords": ""
+  },
+  "API9/api/Tizen.NUI.BaseComponents.VectorGraphics.FillRuleType.html": {
+    "href": "API9/api/Tizen.NUI.BaseComponents.VectorGraphics.FillRuleType.html",
+    "title": "Enum FillRuleType",
+    "keywords": ""
+  },
+  "API9/api/Tizen.NUI.BaseComponents.VectorGraphics.Gradient.html": {
+    "href": "API9/api/Tizen.NUI.BaseComponents.VectorGraphics.Gradient.html",
+    "title": "Class Gradient",
     "keywords": ""
   },
   "API9/api/Tizen.NUI.BaseComponents.VectorGraphics.html": {
@@ -63329,9 +63354,34 @@
     "title": "Namespace Tizen.NUI.BaseComponents.VectorGraphics",
     "keywords": ""
   },
-  "API9/api/Tizen.NUI.BaseComponents.VectorGraphics.Shape.FillRuleType.html": {
-    "href": "API9/api/Tizen.NUI.BaseComponents.VectorGraphics.Shape.FillRuleType.html",
-    "title": "Enum Shape.FillRuleType",
+  "API9/api/Tizen.NUI.BaseComponents.VectorGraphics.LinearGradient.html": {
+    "href": "API9/api/Tizen.NUI.BaseComponents.VectorGraphics.LinearGradient.html",
+    "title": "Class LinearGradient",
+    "keywords": ""
+  },
+  "API9/api/Tizen.NUI.BaseComponents.VectorGraphics.MaskType.html": {
+    "href": "API9/api/Tizen.NUI.BaseComponents.VectorGraphics.MaskType.html",
+    "title": "Enum MaskType",
+    "keywords": ""
+  },
+  "API9/api/Tizen.NUI.BaseComponents.VectorGraphics.PathCommands.html": {
+    "href": "API9/api/Tizen.NUI.BaseComponents.VectorGraphics.PathCommands.html",
+    "title": "Class PathCommands",
+    "keywords": ""
+  },
+  "API9/api/Tizen.NUI.BaseComponents.VectorGraphics.PathCommandType.html": {
+    "href": "API9/api/Tizen.NUI.BaseComponents.VectorGraphics.PathCommandType.html",
+    "title": "Enum PathCommandType",
+    "keywords": ""
+  },
+  "API9/api/Tizen.NUI.BaseComponents.VectorGraphics.Picture.html": {
+    "href": "API9/api/Tizen.NUI.BaseComponents.VectorGraphics.Picture.html",
+    "title": "Class Picture",
+    "keywords": ""
+  },
+  "API9/api/Tizen.NUI.BaseComponents.VectorGraphics.RadialGradient.html": {
+    "href": "API9/api/Tizen.NUI.BaseComponents.VectorGraphics.RadialGradient.html",
+    "title": "Class RadialGradient",
     "keywords": ""
   },
   "API9/api/Tizen.NUI.BaseComponents.VectorGraphics.Shape.html": {
@@ -63339,14 +63389,19 @@
     "title": "Class Shape",
     "keywords": ""
   },
-  "API9/api/Tizen.NUI.BaseComponents.VectorGraphics.Shape.StrokeCapType.html": {
-    "href": "API9/api/Tizen.NUI.BaseComponents.VectorGraphics.Shape.StrokeCapType.html",
-    "title": "Enum Shape.StrokeCapType",
+  "API9/api/Tizen.NUI.BaseComponents.VectorGraphics.SpreadType.html": {
+    "href": "API9/api/Tizen.NUI.BaseComponents.VectorGraphics.SpreadType.html",
+    "title": "Enum SpreadType",
     "keywords": ""
   },
-  "API9/api/Tizen.NUI.BaseComponents.VectorGraphics.Shape.StrokeJoinType.html": {
-    "href": "API9/api/Tizen.NUI.BaseComponents.VectorGraphics.Shape.StrokeJoinType.html",
-    "title": "Enum Shape.StrokeJoinType",
+  "API9/api/Tizen.NUI.BaseComponents.VectorGraphics.StrokeCapType.html": {
+    "href": "API9/api/Tizen.NUI.BaseComponents.VectorGraphics.StrokeCapType.html",
+    "title": "Enum StrokeCapType",
+    "keywords": ""
+  },
+  "API9/api/Tizen.NUI.BaseComponents.VectorGraphics.StrokeJoinType.html": {
+    "href": "API9/api/Tizen.NUI.BaseComponents.VectorGraphics.StrokeJoinType.html",
+    "title": "Enum StrokeJoinType",
     "keywords": ""
   },
   "API9/api/Tizen.NUI.BaseComponents.VideoView.FinishedEventArgs.html": {
@@ -63427,6 +63482,11 @@
   "API9/api/Tizen.NUI.BaseComponents.VisualView.html": {
     "href": "API9/api/Tizen.NUI.BaseComponents.VisualView.html",
     "title": "Class VisualView",
+    "keywords": ""
+  },
+  "API9/api/Tizen.NUI.BaseComponents.WebView.html": {
+    "href": "API9/api/Tizen.NUI.BaseComponents.WebView.html",
+    "title": "Class WebView",
     "keywords": ""
   },
   "API9/api/Tizen.NUI.BaseHandle.FocusRequestArgs.html": {
@@ -63574,6 +63634,16 @@
     "title": "Class ContentPage",
     "keywords": ""
   },
+  "API9/api/Tizen.NUI.Components.DateChangedEventArgs.html": {
+    "href": "API9/api/Tizen.NUI.Components.DateChangedEventArgs.html",
+    "title": "Class DateChangedEventArgs",
+    "keywords": ""
+  },
+  "API9/api/Tizen.NUI.Components.DatePicker.html": {
+    "href": "API9/api/Tizen.NUI.Components.DatePicker.html",
+    "title": "Class DatePicker",
+    "keywords": ""
+  },
   "API9/api/Tizen.NUI.Components.Dialog.html": {
     "href": "API9/api/Tizen.NUI.Components.Dialog.html",
     "title": "Class Dialog",
@@ -63657,6 +63727,11 @@
   "API9/api/Tizen.NUI.Components.PaginationStyle.html": {
     "href": "API9/api/Tizen.NUI.Components.PaginationStyle.html",
     "title": "Class PaginationStyle",
+    "keywords": ""
+  },
+  "API9/api/Tizen.NUI.Components.Picker.html": {
+    "href": "API9/api/Tizen.NUI.Components.Picker.html",
+    "title": "Class Picker",
     "keywords": ""
   },
   "API9/api/Tizen.NUI.Components.Popup.ButtonClickEventArgs.html": {
@@ -63844,9 +63919,24 @@
     "title": "Class TabView",
     "keywords": ""
   },
+  "API9/api/Tizen.NUI.Components.TimeChangedEventArgs.html": {
+    "href": "API9/api/Tizen.NUI.Components.TimeChangedEventArgs.html",
+    "title": "Class TimeChangedEventArgs",
+    "keywords": ""
+  },
+  "API9/api/Tizen.NUI.Components.TimePicker.html": {
+    "href": "API9/api/Tizen.NUI.Components.TimePicker.html",
+    "title": "Class TimePicker",
+    "keywords": ""
+  },
   "API9/api/Tizen.NUI.Components.Toast.html": {
     "href": "API9/api/Tizen.NUI.Components.Toast.html",
     "title": "Class Toast",
+    "keywords": ""
+  },
+  "API9/api/Tizen.NUI.Components.ValueChangedEventArgs.html": {
+    "href": "API9/api/Tizen.NUI.Components.ValueChangedEventArgs.html",
+    "title": "Class ValueChangedEventArgs",
     "keywords": ""
   },
   "API9/api/Tizen.NUI.Constants.Direction.html": {
@@ -64182,6 +64272,11 @@
   "API9/api/Tizen.NUI.ILayoutParent.html": {
     "href": "API9/api/Tizen.NUI.ILayoutParent.html",
     "title": "Interface ILayoutParent",
+    "keywords": ""
+  },
+  "API9/api/Tizen.NUI.ImageLoader.html": {
+    "href": "API9/api/Tizen.NUI.ImageLoader.html",
+    "title": "Class ImageLoader",
     "keywords": ""
   },
   "API9/api/Tizen.NUI.ImageVisual.html": {
@@ -64694,6 +64789,11 @@
     "title": "Enum SamplingModeType",
     "keywords": ""
   },
+  "API9/api/Tizen.NUI.ScaleTransition.html": {
+    "href": "API9/api/Tizen.NUI.ScaleTransition.html",
+    "title": "Class ScaleTransition",
+    "keywords": ""
+  },
   "API9/api/Tizen.NUI.ScreenOffMode.html": {
     "href": "API9/api/Tizen.NUI.ScreenOffMode.html",
     "title": "Enum ScreenOffMode",
@@ -65032,6 +65132,31 @@
   "API9/api/Tizen.NUI.WatchTime.html": {
     "href": "API9/api/Tizen.NUI.WatchTime.html",
     "title": "Class WatchTime",
+    "keywords": ""
+  },
+  "API9/api/Tizen.NUI.WebPageLoadError.ErrorCode.html": {
+    "href": "API9/api/Tizen.NUI.WebPageLoadError.ErrorCode.html",
+    "title": "Enum WebPageLoadError.ErrorCode",
+    "keywords": ""
+  },
+  "API9/api/Tizen.NUI.WebPageLoadError.ErrorType.html": {
+    "href": "API9/api/Tizen.NUI.WebPageLoadError.ErrorType.html",
+    "title": "Enum WebPageLoadError.ErrorType",
+    "keywords": ""
+  },
+  "API9/api/Tizen.NUI.WebPageLoadError.html": {
+    "href": "API9/api/Tizen.NUI.WebPageLoadError.html",
+    "title": "Class WebPageLoadError",
+    "keywords": ""
+  },
+  "API9/api/Tizen.NUI.WebViewPageLoadErrorEventArgs.html": {
+    "href": "API9/api/Tizen.NUI.WebViewPageLoadErrorEventArgs.html",
+    "title": "Class WebViewPageLoadErrorEventArgs",
+    "keywords": ""
+  },
+  "API9/api/Tizen.NUI.WebViewPageLoadEventArgs.html": {
+    "href": "API9/api/Tizen.NUI.WebViewPageLoadEventArgs.html",
+    "title": "Class WebViewPageLoadEventArgs",
     "keywords": ""
   },
   "API9/api/Tizen.NUI.Wheel.html": {

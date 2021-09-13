@@ -124,7 +124,7 @@
   <a id="Tizen_NUI_BaseComponents_VectorGraphics_Shape_FillColor_" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Shape.FillColor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VectorGraphics/Shape.cs/#L108">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VectorGraphics/Shape.cs/#L52">View Source</a>
     </span>
     <h4 id="Tizen_NUI_BaseComponents_VectorGraphics_Shape_FillColor" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Shape.FillColor">FillColor</h4>
     <section>
@@ -156,21 +156,22 @@
   <h6><strong>API Level</strong>: <span>9</span></h6>
   
   
-  <a id="Tizen_NUI_BaseComponents_VectorGraphics_Shape_FillRule_" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Shape.FillRule*"></a>
+  <a id="Tizen_NUI_BaseComponents_VectorGraphics_Shape_FillGradient_" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Shape.FillGradient*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VectorGraphics/Shape.cs/#L150">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VectorGraphics/Shape.cs/#L71">View Source</a>
     </span>
-    <h4 id="Tizen_NUI_BaseComponents_VectorGraphics_Shape_FillRule" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Shape.FillRule">FillRule</h4>
+    <h4 id="Tizen_NUI_BaseComponents_VectorGraphics_Shape_FillGradient" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Shape.FillGradient">FillGradient</h4>
     <section>
-      <p>The current fill rule of the shape.</p>
+      <p>The gradient to use for filling the path.
+Even if FillColor is set, Gradient setting takes precedence.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Shape.FillRuleType FillRule { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Gradient FillGradient { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -182,7 +183,42 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Tizen.NUI.BaseComponents.VectorGraphics.Shape.FillRuleType.html">Shape.FillRuleType</a></td>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.VectorGraphics.Gradient.html">Gradient</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
+  
+  
+  <a id="Tizen_NUI_BaseComponents_VectorGraphics_Shape_FillRule_" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Shape.FillRule*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VectorGraphics/Shape.cs/#L94">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_VectorGraphics_Shape_FillRule" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Shape.FillRule">FillRule</h4>
+    <section>
+      <p>The current fill rule of the shape.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FillRuleType FillRule { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.VectorGraphics.FillRuleType.html">FillRuleType</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -194,7 +230,7 @@
   <a id="Tizen_NUI_BaseComponents_VectorGraphics_Shape_StrokeCap_" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Shape.StrokeCap*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VectorGraphics/Shape.cs/#L226">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VectorGraphics/Shape.cs/#L170">View Source</a>
     </span>
     <h4 id="Tizen_NUI_BaseComponents_VectorGraphics_Shape_StrokeCap" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Shape.StrokeCap">StrokeCap</h4>
     <section>
@@ -205,7 +241,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Shape.StrokeCapType StrokeCap { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public StrokeCapType StrokeCap { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -217,7 +253,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Tizen.NUI.BaseComponents.VectorGraphics.Shape.StrokeCapType.html">Shape.StrokeCapType</a></td>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.VectorGraphics.StrokeCapType.html">StrokeCapType</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -229,7 +265,7 @@
   <a id="Tizen_NUI_BaseComponents_VectorGraphics_Shape_StrokeColor_" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Shape.StrokeColor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VectorGraphics/Shape.cs/#L184">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VectorGraphics/Shape.cs/#L128">View Source</a>
     </span>
     <h4 id="Tizen_NUI_BaseComponents_VectorGraphics_Shape_StrokeColor" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Shape.StrokeColor">StrokeColor</h4>
     <section>
@@ -264,7 +300,7 @@
   <a id="Tizen_NUI_BaseComponents_VectorGraphics_Shape_StrokeDash_" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Shape.StrokeDash*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VectorGraphics/Shape.cs/#L262">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VectorGraphics/Shape.cs/#L206">View Source</a>
     </span>
     <h4 id="Tizen_NUI_BaseComponents_VectorGraphics_Shape_StrokeDash" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Shape.StrokeDash">StrokeDash</h4>
     <section>
@@ -312,22 +348,22 @@
   <h6><strong>API Level</strong>: <span>9</span></h6>
   
   
-  <a id="Tizen_NUI_BaseComponents_VectorGraphics_Shape_StrokeJoin_" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Shape.StrokeJoin*"></a>
+  <a id="Tizen_NUI_BaseComponents_VectorGraphics_Shape_StrokeGradient_" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Shape.StrokeGradient*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VectorGraphics/Shape.cs/#L244">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VectorGraphics/Shape.cs/#L147">View Source</a>
     </span>
-    <h4 id="Tizen_NUI_BaseComponents_VectorGraphics_Shape_StrokeJoin" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Shape.StrokeJoin">StrokeJoin</h4>
+    <h4 id="Tizen_NUI_BaseComponents_VectorGraphics_Shape_StrokeGradient" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Shape.StrokeGradient">StrokeGradient</h4>
     <section>
-      <p>The join style to use for stroking the path.
-The join style will be used for joining the two line segment while stroking the path.</p>
+      <p>The gradient to use for stroking the path.
+Even if StrokeColor is set, Gradient setting takes precedence.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Shape.StrokeJoinType StrokeJoin { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Gradient StrokeGradient { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -339,7 +375,43 @@ The join style will be used for joining the two line segment while stroking the 
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Tizen.NUI.BaseComponents.VectorGraphics.Shape.StrokeJoinType.html">Shape.StrokeJoinType</a></td>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.VectorGraphics.Gradient.html">Gradient</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
+  
+  
+  <a id="Tizen_NUI_BaseComponents_VectorGraphics_Shape_StrokeJoin_" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Shape.StrokeJoin*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VectorGraphics/Shape.cs/#L188">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_VectorGraphics_Shape_StrokeJoin" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Shape.StrokeJoin">StrokeJoin</h4>
+    <section>
+      <p>The join style to use for stroking the path.
+The join style will be used for joining the two line segment while stroking the path.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public StrokeJoinType StrokeJoin { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.VectorGraphics.StrokeJoinType.html">StrokeJoinType</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -351,7 +423,7 @@ The join style will be used for joining the two line segment while stroking the 
   <a id="Tizen_NUI_BaseComponents_VectorGraphics_Shape_StrokeWidth_" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Shape.StrokeWidth*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VectorGraphics/Shape.cs/#L167">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VectorGraphics/Shape.cs/#L111">View Source</a>
     </span>
     <h4 id="Tizen_NUI_BaseComponents_VectorGraphics_Shape_StrokeWidth" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Shape.StrokeWidth">StrokeWidth</h4>
     <section>
@@ -388,7 +460,7 @@ The join style will be used for joining the two line segment while stroking the 
   <a id="Tizen_NUI_BaseComponents_VectorGraphics_Shape_AddArc_" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Shape.AddArc*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VectorGraphics/Shape.cs/#L343">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VectorGraphics/Shape.cs/#L287">View Source</a>
     </span>
     <h4 id="Tizen_NUI_BaseComponents_VectorGraphics_Shape_AddArc_System_Single_System_Single_System_Single_System_Single_System_Single_System_Boolean_" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Shape.AddArc(System.Single,System.Single,System.Single,System.Single,System.Single,System.Boolean)">AddArc(Single, Single, Single, Single, Single, Boolean)</h4>
     <section>
@@ -472,7 +544,7 @@ The join style will be used for joining the two line segment while stroking the 
   <a id="Tizen_NUI_BaseComponents_VectorGraphics_Shape_AddCircle_" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Shape.AddCircle*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VectorGraphics/Shape.cs/#L325">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VectorGraphics/Shape.cs/#L269">View Source</a>
     </span>
     <h4 id="Tizen_NUI_BaseComponents_VectorGraphics_Shape_AddCircle_System_Single_System_Single_System_Single_System_Single_" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Shape.AddCircle(System.Single,System.Single,System.Single,System.Single)">AddCircle(Single, Single, Single, Single)</h4>
     <section>
@@ -544,7 +616,7 @@ The join style will be used for joining the two line segment while stroking the 
   <a id="Tizen_NUI_BaseComponents_VectorGraphics_Shape_AddCubicTo_" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Shape.AddCubicTo*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VectorGraphics/Shape.cs/#L396">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VectorGraphics/Shape.cs/#L340">View Source</a>
     </span>
     <h4 id="Tizen_NUI_BaseComponents_VectorGraphics_Shape_AddCubicTo_System_Single_System_Single_System_Single_System_Single_System_Single_System_Single_" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Shape.AddCubicTo(System.Single,System.Single,System.Single,System.Single,System.Single,System.Single)">AddCubicTo(Single, Single, Single, Single, Single, Single)</h4>
     <section>
@@ -631,7 +703,7 @@ the current position is updated to be at the end point of the path.</p>
   <a id="Tizen_NUI_BaseComponents_VectorGraphics_Shape_AddLineTo_" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Shape.AddLineTo*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VectorGraphics/Shape.cs/#L375">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VectorGraphics/Shape.cs/#L319">View Source</a>
     </span>
     <h4 id="Tizen_NUI_BaseComponents_VectorGraphics_Shape_AddLineTo_System_Single_System_Single_" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Shape.AddLineTo(System.Single,System.Single)">AddLineTo(Single, Single)</h4>
     <section>
@@ -694,7 +766,7 @@ If no current position present, it draws a line to itself, basically * a point.<
   <a id="Tizen_NUI_BaseComponents_VectorGraphics_Shape_AddMoveTo_" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Shape.AddMoveTo*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VectorGraphics/Shape.cs/#L358">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VectorGraphics/Shape.cs/#L302">View Source</a>
     </span>
     <h4 id="Tizen_NUI_BaseComponents_VectorGraphics_Shape_AddMoveTo_System_Single_System_Single_" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Shape.AddMoveTo(System.Single,System.Single)">AddMoveTo(Single, Single)</h4>
     <section>
@@ -752,10 +824,66 @@ implicitly starting a new subpath and closing the previous one.</p>
   <h6><strong>API Level</strong>: <span>9</span></h6>
   
   
+  <a id="Tizen_NUI_BaseComponents_VectorGraphics_Shape_AddPath_" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Shape.AddPath*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VectorGraphics/Shape.cs/#L356">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_VectorGraphics_Shape_AddPath_Tizen_NUI_BaseComponents_VectorGraphics_PathCommands_" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Shape.AddPath(Tizen.NUI.BaseComponents.VectorGraphics.PathCommands)">AddPath(PathCommands)</h4>
+    <section>
+      <p>Appends a given sub-path to the path.
+The current point value is set to the last point from the sub-path.
+@note The interface is designed for optimal path setting if the caller has a completed path commands already.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddPath(PathCommands pathCommands)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.VectorGraphics.PathCommands.html">PathCommands</a></td>
+        <td><span class="parametername">pathCommands</span></td>
+        <td><p>The command object that contain sub-path information. (This command information is copied internally.)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p>Thrown when pathCommands is null. </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
+  
+  
   <a id="Tizen_NUI_BaseComponents_VectorGraphics_Shape_AddRect_" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Shape.AddRect*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VectorGraphics/Shape.cs/#L309">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VectorGraphics/Shape.cs/#L253">View Source</a>
     </span>
     <h4 id="Tizen_NUI_BaseComponents_VectorGraphics_Shape_AddRect_System_Single_System_Single_System_Single_System_Single_System_Single_System_Single_" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Shape.AddRect(System.Single,System.Single,System.Single,System.Single,System.Single,System.Single)">AddRect(Single, Single, Single, Single, Single, Single)</h4>
     <section>
@@ -843,7 +971,7 @@ corners of the rounded rectangle.</p>
   <a id="Tizen_NUI_BaseComponents_VectorGraphics_Shape_Close_" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Shape.Close*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VectorGraphics/Shape.cs/#L451">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VectorGraphics/Shape.cs/#L395">View Source</a>
     </span>
     <h4 id="Tizen_NUI_BaseComponents_VectorGraphics_Shape_Close" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Shape.Close">Close()</h4>
     <section>
@@ -882,7 +1010,7 @@ If the subpath does not contain any points, this function does nothing.</p>
   <a id="Tizen_NUI_BaseComponents_VectorGraphics_Shape_ResetPath_" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Shape.ResetPath*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VectorGraphics/Shape.cs/#L464">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VectorGraphics/Shape.cs/#L408">View Source</a>
     </span>
     <h4 id="Tizen_NUI_BaseComponents_VectorGraphics_Shape_ResetPath" data-uid="Tizen.NUI.BaseComponents.VectorGraphics.Shape.ResetPath">ResetPath()</h4>
     <section>

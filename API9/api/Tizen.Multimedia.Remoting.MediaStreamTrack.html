@@ -91,7 +91,7 @@
   <a id="Tizen_Multimedia_Remoting_MediaStreamTrack_Display_" data-uid="Tizen.Multimedia.Remoting.MediaStreamTrack.Display*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/MediaStreamTrack.cs/#L72">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/MediaStreamTrack.cs/#L76">View Source</a>
     </span>
     <h4 id="Tizen_Multimedia_Remoting_MediaStreamTrack_Display" data-uid="Tizen.Multimedia.Remoting.MediaStreamTrack.Display">Display</h4>
     <section>
@@ -147,7 +147,9 @@ The display is created with <a class="xref" href="Tizen.Multimedia.MediaView.htm
       </tr>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The WebRTC is not called in <a class="xref" href="Tizen.Multimedia.Remoting.WebRTC.html#Tizen_Multimedia_Remoting_WebRTC_TrackAdded">TrackAdded</a> event.</p>
+        <td><p>The WebRTC is not called in <a class="xref" href="Tizen.Multimedia.Remoting.WebRTC.html#Tizen_Multimedia_Remoting_WebRTC_TrackAdded">TrackAdded</a> event.
+-or-<br>
+This MediaStreamTrack is not Video.</p>
 </td>
       </tr>
     </tbody>
@@ -159,7 +161,7 @@ The display is created with <a class="xref" href="Tizen.Multimedia.MediaView.htm
   <a id="Tizen_Multimedia_Remoting_MediaStreamTrack_DisplayMode_" data-uid="Tizen.Multimedia.Remoting.MediaStreamTrack.DisplayMode*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/MediaStreamTrack.cs/#L120">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/MediaStreamTrack.cs/#L130">View Source</a>
     </span>
     <h4 id="Tizen_Multimedia_Remoting_MediaStreamTrack_DisplayMode" data-uid="Tizen.Multimedia.Remoting.MediaStreamTrack.DisplayMode">DisplayMode</h4>
     <section>
@@ -205,6 +207,11 @@ The display is created with <a class="xref" href="Tizen.Multimedia.MediaView.htm
         <td><p>Display mode type is incorrect.</p>
 </td>
       </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p><a class="xref" href="Tizen.Multimedia.Remoting.MediaStreamTrack.html#Tizen_Multimedia_Remoting_MediaStreamTrack_Display">Display</a> is not set.</p>
+</td>
+      </tr>
     </tbody>
   </table>
   
@@ -214,7 +221,7 @@ The display is created with <a class="xref" href="Tizen.Multimedia.MediaView.htm
   <a id="Tizen_Multimedia_Remoting_MediaStreamTrack_DisplayVisible_" data-uid="Tizen.Multimedia.Remoting.MediaStreamTrack.DisplayVisible*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/MediaStreamTrack.cs/#L146">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/MediaStreamTrack.cs/#L157">View Source</a>
     </span>
     <h4 id="Tizen_Multimedia_Remoting_MediaStreamTrack_DisplayVisible" data-uid="Tizen.Multimedia.Remoting.MediaStreamTrack.DisplayVisible">DisplayVisible</h4>
     <section>
@@ -246,6 +253,22 @@ The display is created with <a class="xref" href="Tizen.Multimedia.MediaView.htm
   <h5 id="Tizen_Multimedia_Remoting_MediaStreamTrack_DisplayVisible_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This property is meaningful only in overlay or EVAS surface display type.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p><a class="xref" href="Tizen.Multimedia.Remoting.MediaStreamTrack.html#Tizen_Multimedia_Remoting_MediaStreamTrack_Display">Display</a> is not set.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>9</span></h6>
   
@@ -290,7 +313,7 @@ The display is created with <a class="xref" href="Tizen.Multimedia.MediaView.htm
   <a id="Tizen_Multimedia_Remoting_MediaStreamTrack_ApplyAudioStreamPolicy_" data-uid="Tizen.Multimedia.Remoting.MediaStreamTrack.ApplyAudioStreamPolicy*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/MediaStreamTrack.cs/#L190">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/MediaStreamTrack.cs/#L203">View Source</a>
     </span>
     <h4 id="Tizen_Multimedia_Remoting_MediaStreamTrack_ApplyAudioStreamPolicy_Tizen_Multimedia_AudioStreamPolicy_" data-uid="Tizen.Multimedia.Remoting.MediaStreamTrack.ApplyAudioStreamPolicy(Tizen.Multimedia.AudioStreamPolicy)">ApplyAudioStreamPolicy(AudioStreamPolicy)</h4>
     <section>
@@ -346,7 +369,9 @@ Supported types are <a class="xref" href="Tizen.Multimedia.AudioStreamType.html#
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
         <td><p><a class="xref" href="Tizen.Multimedia.Remoting.WebRTC.html#Tizen_Multimedia_Remoting_WebRTC_AudioFrameEncoded">AudioFrameEncoded</a> was set.<br>
 -or-<br>
-This method was not called in <a class="xref" href="Tizen.Multimedia.Remoting.WebRTC.html#Tizen_Multimedia_Remoting_WebRTC_TrackAdded">TrackAdded</a> event.</p>
+This method was not called in <a class="xref" href="Tizen.Multimedia.Remoting.WebRTC.html#Tizen_Multimedia_Remoting_WebRTC_TrackAdded">TrackAdded</a> event.
+-or-<br>
+This MediaStreamTrack is not Audio.</p>
 </td>
       </tr>
       <tr>
