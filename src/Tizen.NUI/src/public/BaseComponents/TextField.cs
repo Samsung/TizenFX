@@ -1576,9 +1576,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The Selected Text property.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done, Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public string SelectedText
         {
             get
@@ -1592,9 +1590,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The start index for selection.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done, Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public int SelectedTextStart
         {
             get
@@ -1608,9 +1604,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The end index for selection.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done, Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public int SelectedTextEnd
         {
             get
@@ -2059,9 +2053,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Select the whole text.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5.5, so currently this would be used as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public void SelectWholeText()
         {
             Interop.TextField.SelectWholeText(SwigCPtr);
@@ -2074,7 +2066,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="start">The start index for selection.</param>
         /// <param name="end">The end index for selection.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public void SelectText(int start, int end)
         {
             if (start < 0)
@@ -2089,9 +2081,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Clear selection of the text.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done, Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public void SelectNone()
         {
             _ = Interop.TextField.SelectNone(SwigCPtr);
