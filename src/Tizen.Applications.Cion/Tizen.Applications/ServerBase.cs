@@ -62,6 +62,10 @@ namespace Tizen.Applications
                 {
                     Log.Error(LogTag, string.Format("Failed to set display name: {0}", ret));
                 }
+                else
+                {
+                    _displayName = value;
+                }
             }
         }
 
