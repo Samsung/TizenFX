@@ -1,5 +1,5 @@
-/*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+﻿/*
+ * Copyright (c) 2021 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -16,22 +16,18 @@
 
 using System;
 using System.Runtime.InteropServices;
+using Tizen.Applications;
 
-using Tizen.Internals;
+using ErrorCode = Interop.Cion.ErrorCode;
 
 internal static partial class Interop
 {
-    internal static partial class Libc
+    internal static partial class CionConnectionResult
     {
-        [DllImport(Libraries.Libc, EntryPoint = "free", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int Free(IntPtr ptr);
+        [DllImport(Libraries.Cion, EntryPoint = "cion_connection_result_get_status")]
+        internal static extern ErrorCode CionConnectionResultGetStatus(IntPtr result, out ConnectionStatus status);
 
-        [NativeStruct("struct timespec", Include = "time.h")]
-        [StructLayout(LayoutKind.Sequential)]
-        internal struct TimeStamp
-        {
-            public IntPtr sec;
-            public IntPtr nsec;
-        }
+        [DllImport(Libraries.Cion, EntryPoint = "cion_connection_result_get_reason")]
+        internal static extern ErrorCode CionConnectionResultGetReason(IntPtr result, out string reason);
     }
 }

@@ -150,6 +150,9 @@ internal static partial class Interop
         [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_filter_add_bool")]
         internal static extern ErrorCode PackageManagerFilterAdd(IntPtr handle, string property, bool value);
 
+        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_filter_add_string")]
+        internal static extern ErrorCode PackageManagerFilterAdd(IntPtr handle, string property, string value);
+
         [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_filter_foreach_package_info")]
         internal static extern ErrorCode PackageManagerFilterForeachPackageInfo(IntPtr handle, PackageManagerPackageInfoCallback callback, IntPtr userData);
 

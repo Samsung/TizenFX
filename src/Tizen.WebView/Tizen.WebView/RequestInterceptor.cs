@@ -49,7 +49,8 @@ namespace Tizen.WebView
         {
             get
             {
-                return new Uri(Interop.ChromiumEwk.ewk_intercept_request_url_get(_handle));
+                var url = Interop.ChromiumEwk.ewk_intercept_request_url_get(_handle);
+                return string.IsNullOrEmpty(url) ? null : new Uri(url);
             }
         }
 

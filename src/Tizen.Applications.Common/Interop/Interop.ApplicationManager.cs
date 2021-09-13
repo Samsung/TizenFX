@@ -100,6 +100,9 @@ internal static partial class Interop
         internal delegate bool AppInfoCategoryCallback(string category, IntPtr userData);
         //bool (*app_info_category_cb) (const char *category, void *user_data)
 
+        internal delegate bool AppInfoResControlCallback(string resType, string minResVersion, string maxResVersion, string autoClose, IntPtr userUdata);
+        //bool (*app_info_res_control_cb) (const char *res_type, const char *min_res_version, const char *max_res_version, const char *auto_close, void *user_data);
+
         [DllImport(Libraries.AppManager, EntryPoint = "app_manager_set_app_context_event_cb")]
         internal static extern ErrorCode AppManagerSetAppContextEvent(AppManagerAppContextEventCallback callback, IntPtr userData);
         //int app_manager_set_app_context_event_cb( app_manager_app_context_event_cb callback, void * user_data)
@@ -347,6 +350,9 @@ internal static partial class Interop
         [DllImport(Libraries.AppManager, EntryPoint = "app_info_metadata_filter_foreach")]
         internal static extern ErrorCode AppInfoMetadataFilterForeach(IntPtr handle, AppInfoFilterCallback callback, IntPtr userData);
         //int app_info_metadata_filter_foreach (app_info_metadata_filter_h handle, app_info_filter_cb callback, void *user_data)
+
+        [DllImport(Libraries.AppManager, EntryPoint = "app_info_foreach_res_control")]
+        internal static extern ErrorCode AppInfoForeachResControl(IntPtr handle, AppInfoResControlCallback callback, IntPtr userData);
 
         [NativeStruct("struct rua_rec", Include="rua.h", PkgConfig="rua")]
         [StructLayout(LayoutKind.Sequential)]
