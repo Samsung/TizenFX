@@ -157,7 +157,7 @@ namespace Tizen.NUI.Samples
                 int x = (int)itemLayout.Position.X;
                 int y = (int)itemLayout.Position.Y;
 
-                PixelBuffer itemPixelBuffer = ImageLoading.LoadImageFromFile(embeddedItems[index++]);
+                PixelBuffer itemPixelBuffer = ImageLoader.LoadImageFromFile(embeddedItems[index++]);
 
                 if( itemPixelBuffer == null ) continue;
 
