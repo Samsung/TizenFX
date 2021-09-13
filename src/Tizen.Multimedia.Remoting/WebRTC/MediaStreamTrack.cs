@@ -67,13 +67,22 @@ namespace Tizen.Multimedia.Remoting
         /// </remarks>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed of.</exception>
         /// <exception cref="ArgumentException">The value has already been assigned to another WebRTC.</exception>
-        /// <exception cref="InvalidOperationException">The WebRTC is not called in <see cref="WebRTC.TrackAdded"/> event.</exception>
+        /// <exception cref="InvalidOperationException">
+        /// The WebRTC is not called in <see cref="WebRTC.TrackAdded"/> event.
+        /// -or-<br/>
+        /// This MediaStreamTrack is not Video.
+        /// </exception>
         /// <since_tizen> 9 </since_tizen>
         public Display Display
         {
             get => _display;
             set
             {
+                if (Type != MediaType.Video)
+                {
+                    throw new InvalidOperationException("This property is only for video.");
+                }
+
                 if (value == null)
                 {
                     throw new ArgumentNullException(nameof(value), "Display cannot be null.");
@@ -116,6 +125,7 @@ namespace Tizen.Multimedia.Remoting
         /// </remarks>
         /// <value>A <see cref="WebRTCDisplayMode"/> that specifies the display mode.</value>
         /// <exception cref="ArgumentException">Display mode type is incorrect.</exception>
+        /// <exception cref="InvalidOperationException"><see cref="Display"/> is not set.</exception>
         /// <since_tizen> 9 </since_tizen>
         public WebRTCDisplayMode DisplayMode
         {
@@ -142,12 +152,13 @@ namespace Tizen.Multimedia.Remoting
         /// <remarks>
         /// This property is meaningful only in overlay or EVAS surface display type.
         /// </remarks>
+        /// <exception cref="InvalidOperationException"><see cref="Display"/> is not set.</exception>
         /// <since_tizen> 9 </since_tizen>
         public bool DisplayVisible
         {
             get
             {
-                NativeWebRTC.GetDisplayVisible(_webRtc.Handle, _trackId,out bool val).
+                NativeWebRTC.GetDisplayVisible(_webRtc.Handle, _trackId, out bool val).
                     ThrowIfFailed("Failed to get visible status");
 
                 return val;
@@ -175,6 +186,8 @@ namespace Tizen.Multimedia.Remoting
         /// <see cref="WebRTC.AudioFrameEncoded"/> was set.<br/>
         /// -or-<br/>
         /// This method was not called in <see cref="WebRTC.TrackAdded"/> event.
+        /// -or-<br/>
+        /// This MediaStreamTrack is not Audio.
         /// </exception>
         /// <exception cref="NotSupportedException">
         ///     <see cref="AudioStreamType"/> of <paramref name="policy"/> is not supported on the current platform.
