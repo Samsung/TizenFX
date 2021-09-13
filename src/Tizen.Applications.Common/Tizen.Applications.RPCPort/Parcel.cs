@@ -208,9 +208,9 @@ namespace Tizen.Applications.RPCPort
             var r = Interop.LibRPCPort.Parcel.GetRaw(_handle, out IntPtr raw, out uint size);
             if (r != Interop.LibRPCPort.ErrorCode.None)
                 throw new InvalidIOException();
-            byte[] ret = new byte[size];
-            Marshal.Copy(raw, (byte[])ret, 0, (int)size);
-            return ret;
+            byte[] bytes = new byte[size];
+            Marshal.Copy(raw, bytes, 0, (int)size);
+            return bytes;
         }
 
         /// <summary>
