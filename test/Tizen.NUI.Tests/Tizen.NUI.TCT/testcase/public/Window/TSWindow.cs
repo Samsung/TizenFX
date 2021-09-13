@@ -509,5 +509,103 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"WindowAddFramePresentedCallback END (OK)");
             Assert.Pass("WindowAddFramePresentedCallback");
         }
+
+        [Test]
+        [Category("P1")]
+        [Description("Window SetParent Test")]
+        [Property("SPEC", "Tizen.NUI.Window.SetParent M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void WindowSetParentTest()
+        {
+            tlog.Debug(tag, $"WindowSetParentTest START");
+            try
+            {
+                Window subWin = new Window("subWin", new Rectangle(0, 0, 300, 300), false);
+                subWin.BackgroundColor = Color.Blue;
+                View dummy = new View()
+                {
+                    Size = new Size(100, 100),
+                    Position = new Position(50, 50),
+                    BackgroundColor = Color.Yellow,
+                };
+                subWin.Add(dummy);
+
+                SetParent(myWin);
+            }
+            catch (Exception e)
+            {
+                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
+
+                Assert.Fail("Caught Exception" + e.ToString());
+            }
+            tlog.Debug(tag, $"WindowSetParentTest END (OK)");
+            Assert.Pass("WindowSetParentTest");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Window SetParent Below Test")]
+        [Property("SPEC", "Tizen.NUI.Window.SetParent M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void WindowSetParentBelowTest()
+        {
+            tlog.Debug(tag, $"WindowSetParentBelowTest START");
+            try
+            {
+                Window subWin = new Window("subWin", new Rectangle(0, 0, 300, 300), false);
+                subWin.BackgroundColor = Color.Blue;
+                View dummy = new View()
+                {
+                    Size = new Size(100, 100),
+                    Position = new Position(50, 50),
+                    BackgroundColor = Color.Yellow,
+                };
+                subWin.Add(dummy);
+
+                SetParent(myWin, true);
+            }
+            catch (Exception e)
+            {
+                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
+
+                Assert.Fail("Caught Exception" + e.ToString());
+            }
+            tlog.Debug(tag, $"WindowSetParentBelowTest END (OK)");
+            Assert.Pass("WindowSetParentBelowTest");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Window SetParent Above Test")]
+        [Property("SPEC", "Tizen.NUI.Window.SetParent M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void WindowSetParentAboveTest()
+        {
+            tlog.Debug(tag, $"WindowSetParentAboveTest START");
+            try
+            {
+                Window subWin = new Window("subWin", new Rectangle(0, 0, 300, 300), false);
+                subWin.BackgroundColor = Color.Blue;
+                View dummy = new View()
+                {
+                    Size = new Size(100, 100),
+                    Position = new Position(50, 50),
+                    BackgroundColor = Color.Yellow,
+                };
+                subWin.Add(dummy);
+
+                SetParent(myWin, false);
+            }
+            catch (Exception e)
+            {
+                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
+
+                Assert.Fail("Caught Exception" + e.ToString());
+            }
+            tlog.Debug(tag, $"WindowSetParentAboveTest END (OK)");
+           
     }
 }
