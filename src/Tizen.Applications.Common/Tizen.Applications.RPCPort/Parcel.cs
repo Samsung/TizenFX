@@ -203,7 +203,7 @@ namespace Tizen.Applications.RPCPort
         /// <returns>The raw bytes of the parcel.</returns>
         /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
         /// <since_tizen> 9 </since_tizen>
-        public byte[] Marshall()
+        public byte[] ToBytes()
         {
             var r = Interop.LibRPCPort.Parcel.GetRaw(_handle, out IntPtr raw, out uint size);
             if (r != Interop.LibRPCPort.ErrorCode.None)
