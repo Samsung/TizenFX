@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Runtime.InteropServices;
 
 namespace Tizen.Applications.RPCPort
 {
@@ -179,6 +180,37 @@ namespace Tizen.Applications.RPCPort
             var r = Interop.LibRPCPort.Parcel.CreateFromPort(out _handle, port.Handle);
             if (r != Interop.LibRPCPort.ErrorCode.None)
                 throw new InvalidIOException();
+        }
+
+        /// <summary>
+        /// Constructor with the raw bytes.
+        /// </summary>
+        /// <param name="bytes">The raw bytes.</param>
+        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
+        /// <since_tizen> 9 </since_tizen>
+        public Parcel(byte[] bytes)
+        {
+            if (bytes == null)
+                throw new InvalidIOException();
+            var r = Interop.LibRPCPort.Parcel.CreateFromRaw(out _handle, bytes, (uint)bytes.Length);
+            if (r != Interop.LibRPCPort.ErrorCode.None)
+                throw new InvalidIOException();
+        }
+
+        /// <summary>
+        /// Gets the raw bytes of the parcel.
+        /// </summary>
+        /// <returns>The raw bytes of the parcel.</returns>
+        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
+        /// <since_tizen> 9 </since_tizen>
+        public byte[] Marshall()
+        {
+            var r = Interop.LibRPCPort.Parcel.GetRaw(_handle, out IntPtr raw, out uint size);
+            if (r != Interop.LibRPCPort.ErrorCode.None)
+                throw new InvalidIOException();
+            byte[] ret = new byte[size];
+            Marshal.Copy(raw, (byte[])ret, 0, (int)size);
+            return ret;
         }
 
         /// <summary>

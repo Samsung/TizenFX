@@ -169,6 +169,14 @@ internal static partial class Interop
             //int rpc_port_parcel_header_get_timestamp(rpc_port_parcel_header_h header, struct timespec *timestamp);
             [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_header_get_timestamp")]
             internal static extern ErrorCode GetTimeStamp(IntPtr parcelHeaderHandle, ref Libc.TimeStamp time);
+
+            //int rpc_port_parcel_get_raw(rpc_port_parcel_h h, void **raw, unsigned int *size);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_get_raw")]
+            internal static extern ErrorCode GetRaw(IntPtr parcelHandle, out IntPtr raw, out uint size);
+
+            //int rpc_port_parcel_create_from_raw(rpc_port_parcel_h *h, const void *raw, unsigned int size);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_create_from_raw")]
+            internal static extern ErrorCode CreateFromRaw(out IntPtr parcelHandle, byte[] raw, uint size);
         }
 
         internal static partial class Proxy
