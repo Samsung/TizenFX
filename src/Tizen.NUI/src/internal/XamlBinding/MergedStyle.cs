@@ -138,7 +138,7 @@ namespace Tizen.NUI.Binding
                 implicitStyles.Add(implicitStyleProperty);
                 Target.SetDynamicResource(implicitStyleProperty, type.FullName);
                 type = type.GetTypeInfo().BaseType;
-                if (stopAtTypes.Contains(type))
+                if (type != null && stopAtTypes.Contains(type))
                     return;
             }
         }
