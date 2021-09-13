@@ -1125,6 +1125,26 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Sets parent window of the window.
+        /// After setting that, these windows do together when raise-up, lower and iconified/deiconified.
+        /// This function has the additional flag whether the child is located above or below of the parent.
+        /// </summary>
+        /// <param name="parent">The parent window.</param>
+        /// <param name="belowParent">The flag is whether the child is located above or below of the parent.</param>
+        /// <feature> http://tizen.org/feature/opengles.surfaceless_context </feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetParent(Window parent, bool belowParent)
+        {
+            if (IsSupportedMultiWindow() == false)
+            {
+                NUILog.Error("This device does not support surfaceless_context. So Window cannot be created. ");
+            }
+            Interop.Window.SetParentWithStack(SwigCPtr, Window.getCPtr(parent), belowParent);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// Unsets parent window of the window.
         /// After unsetting, the window is disconnected his parent window.
         /// </summary>
