@@ -32,7 +32,7 @@ namespace Tizen.NUI
         private volatile static GraphicsTypeManager graphicsTypeManager;
         private GraphicsTypeConverter typeConverter;
         private float scaleFactor = 1.0f;
-        private static int defaultDensityDpi = DensityMedium;
+        private int defaultDensityDpi = DensityMedium;
 
         /// <summary>
         /// Constant of low(120) density dpi.
@@ -82,11 +82,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Stable dpi value from system.
+        /// Dot per Inch value from system.
         /// See Vector Dpi in <see cref="Tizen.NUI.Window" /> also.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static int DpiStable
+        public int Dpi
         {
             get
             {
@@ -101,14 +101,14 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Dpi for GraphicsTypeManager.
-        /// Dpi is scaled from DpiStable with custom ScaleFactor.
+        /// Dpi is scaled from Dpi with custom ScaleFactor.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static int Dpi
+        public int ScaledDpi
         {
             get
             {
-                return Convert.ToInt32(Math.Round(DpiStable * GraphicsTypeManager.Instance.ScaleFactor));
+                return Convert.ToInt32(Math.Round(Dpi * GraphicsTypeManager.Instance.ScaleFactor));
             }
         }
 
@@ -116,7 +116,7 @@ namespace Tizen.NUI
         /// Default dpi. Medium(160) density dpi is origianlly provided.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static int DefaultDpi
+        public int DefaultDpi
         {
             get => defaultDensityDpi;
             internal set
@@ -129,9 +129,9 @@ namespace Tizen.NUI
         /// Density of display.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static float Density
+        public float Density
         {
-            get => ((float)DefaultDpi / (float)Dpi);
+            get => ((float)DefaultDpi / (float)ScaledDpi);
         }
 
         /// <summary>

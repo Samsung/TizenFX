@@ -21,29 +21,42 @@ namespace Tizen.NUI.Samples
                 Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Vertical}
             };
 
+            /* GraphicsTypeManager test. */
             var defaultDensityDpiText = new TextLabel();
-            defaultDensityDpiText.Text = $"Default Density Dpi : {GraphicsTypeManager.DefaultDpi}";
+            defaultDensityDpiText.Text = $"Default Density Dpi : {GraphicsTypeManager.Instance.DefaultDpi}";
             rootView.Add(defaultDensityDpiText);
 
             var densityText = new TextLabel();
-            densityText.Text = $"Density : {GraphicsTypeManager.Density}";
+            densityText.Text = $"Density : {GraphicsTypeManager.Instance.Density}";
             rootView.Add(densityText);
 
-            var densityDpiText = new TextLabel();
-            densityDpiText.Text = $"Density Dpi : {GraphicsTypeManager.Dpi}";
-            rootView.Add(densityDpiText);
-
-            var dpi = GraphicsTypeManager.Dpi;
             var dpiText = new TextLabel();
-            dpiText.Text = $"dpi x : {dpi.X} dpi y : {dpi.Y}";
+            dpiText.Text = $"Dpi : {GraphicsTypeManager.Instance.Dpi}";
             rootView.Add(dpiText);
 
-            var dp = new Dp(100);
+            var scaledDpiText = new TextLabel();
+            scaledDpiText.Text = $"Scaled Dpi : {GraphicsTypeManager.Instance.ScaledDpi}";
+            rootView.Add(scaledDpiText);
+
+
+            /* DpExtension test. */
+            var dpToPixelText = new TextLabel();
+            var dp = 100.0f;
+            dpToPixelText.Text = $"dp : {dp}, pixel : {dp.ToPixel()}";
+            rootView.Add(dpToPixelText);
+
+            var pixelToDpText = new TextLabel();
+            var pix = 100.0f;
+            pixelToDpText.Text = $"pixel : {pix}, dp : {pix.ToDp()}";
+            rootView.Add(pixelToDpText);
+
+            /* Dp class test. below code is experimental class */
+            var dp1 = new Dp(100);
             var dpText = new TextLabel();
-            dpText.Text = $" Dp {dp.Value} Pixel {dp.Pixel}";
+            dpText.Text = $" Dp {dp1.Value} Pixel {dp1.Pixel}";
             rootView.Add(dpText);
 
-            var dp2 = Dp.GetDp(dp.Pixel);
+            var dp2 = Dp.GetDp(dp1.Pixel);
             var dp2Text = new TextLabel();
             dp2Text.Text = $" Dp {dp2.Value} Pixel {dp2.Pixel}";
             rootView.Add(dp2Text);

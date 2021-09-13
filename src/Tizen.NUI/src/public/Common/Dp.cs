@@ -4,14 +4,49 @@ using System.ComponentModel;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// The Dp class is density independent pixel.
+    /// The Dp Extension class is density independent pixel(dp) unit coverter for float object.
     /// One dp is a virtual pixel unit that's roughly equal to one pixel
     /// on a medium-density(160dpi) screen.
     /// To convert Dp to pixel, use Pixel property or,
     /// See <see cref="Tizen.NUI.DisplayTypeManager" /> and <see cref="Tizen.NUI.DisplayTypeConverter" /> also.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class Dp : Disposable, ICloneable
+    public static class DPExtensions
+    {
+        /// <summary>
+        /// Converter pixel to dp.
+        /// 100.0f.ToDp() = 100.0f in 160dpi display.
+        /// </summary>
+        /// <param name="pixel">The pixel unit value to be converted dp unit.</param>
+        /// <returns>The float dp unit value.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static float ToDp(this float pixel)
+        {
+            return pixel * GraphicsTypeManager.Instance.Density;
+        }
+
+        /// <summary>
+        /// Converter dp to pixel.
+        /// 100.0f.ToPixel() = 100.0f in 160dpi display.
+        /// </summary>
+        /// <param name="dp">The dp unit value to be converted pixel unit.</param>
+        /// <returns>The float pixel unit value.</returns>
+        public static float ToPixel(this float dp)
+        {
+            return dp / GraphicsTypeManager.Instance.Density;
+        }
+    }
+
+    /// <summary>
+    /// The Dp class is density independent pixel.
+    /// One dp is a virtual pixel unit that's roughly equal to one pixel
+    /// on a medium-density(160dpi) screen.
+    /// @note: This class is experimental implements.
+    /// To convert pixel units use static float extesion method ToDp() and ToPixel() or,
+    /// See <see cref="Tizen.NUI.DisplayTypeManager" /> and <see cref="Tizen.NUI.DisplayTypeConverter" />.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class Dp : ICloneable
     {
         private float dp;
 
@@ -326,7 +361,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode()
         {
-            return SwigCPtr.Handle.GetHashCode();
+            return base.GetHashCode();
         }
 
         /// <summary>
