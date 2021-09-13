@@ -24,6 +24,7 @@ namespace Tizen.Applications
     /// <since_tizen> 9 </since_tizen>
     public abstract class GroupBase : IDisposable
     {
+        private readonly string LogTag = "Tizen.Cion";
         private readonly GroupSafeHandle _handle;
 
         private Interop.CionGroup.CionGroupPayloadReceivedCb _payloadReceivedCb;
@@ -40,6 +41,9 @@ namespace Tizen.Applications
         /// The constructor of GroupBase class.
         /// </summary>
         /// <param name="topicName">The topic of group.</param>
+        /// <remarks>The maximum length of topic name is 512.</remarks>
+        /// <exception cref="ArgumentException">Thrown when the given topic name is too long.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when there is not enough memory to continue the execution of the method.</exception>
         /// <since_tizen> 9 </since_tizen>
         public GroupBase(string topicName) : this(topicName, null) { }
 
@@ -48,7 +52,9 @@ namespace Tizen.Applications
         /// </summary>
         /// <param name="topicName">The topic of group.</param>
         /// <param name="security">The security configuration.</param>
-        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method.</exception>
+        /// <remarks>The maximum length of topic name is 512.</remarks>
+        /// <exception cref="ArgumentException">Thrown when the given topic name is too long.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when there is not enough memory to continue the execution of the method.</exception>
         /// <since_tizen> 9 </since_tizen>
         public GroupBase(string topicName, Cion.SecurityInfo security)
         {
@@ -125,6 +131,8 @@ namespace Tizen.Applications
         /// Subscribes the topic.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/d2d.datasharing</privilege>
+        /// <exception cref="InvalidOperationException">Thrown when failed to subscribe.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         /// <since_tizen> 9 </since_tizen>
         public void Subscribe()
         {
@@ -144,7 +152,7 @@ namespace Tizen.Applications
             Interop.Cion.ErrorCode ret = Interop.CionGroup.CionGroupUnsubscribe(_handle);
             if (ret != Interop.Cion.ErrorCode.None)
             {
-                throw CionErrorFactory.GetException(ret, "Failed to unsubscribe.");
+                Log.Error(LogTag, string.Format("Failed to unsubscribe: {0}", ret));
             }
         }
 
@@ -153,6 +161,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <param name="payload">The payload to publish.</param>
         /// <exception cref="ArgumentException">Thrown when the payload is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed to publish.</exception>
         /// <since_tizen> 9 </since_tizen>
         public void Publish(Payload payload)
         {

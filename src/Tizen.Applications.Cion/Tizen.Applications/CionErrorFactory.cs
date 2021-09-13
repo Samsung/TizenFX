@@ -25,18 +25,28 @@ namespace Tizen.Applications
             string errMessage = string.Format("{0} err = {1}", message, err);
             switch (err)
             {
-                case Interop.Cion.ErrorCode.InvalidParameter:
-                    return new ArgumentException(errMessage);
-                case Interop.Cion.ErrorCode.OutOfMemory:
+                case Interop.Cion.ErrorCode.NotPermitted:
                     return new InvalidOperationException(errMessage);
                 case Interop.Cion.ErrorCode.IoError:
-                    return new global::System.IO.IOException(errMessage);
+                    return new InvalidOperationException(errMessage);
+                case Interop.Cion.ErrorCode.OutOfMemory:
+                    return new InvalidOperationException(errMessage);
                 case Interop.Cion.ErrorCode.PermissionDenied:
                     return new UnauthorizedAccessException(errMessage);
+                case Interop.Cion.ErrorCode.InvalidParameter:
+                    return new ArgumentException(errMessage);
                 case Interop.Cion.ErrorCode.InvalidOperation:
+                    return new InvalidOperationException(errMessage);
+                case Interop.Cion.ErrorCode.InterfaceDown:
+                    return new InvalidOperationException(errMessage);
+                case Interop.Cion.ErrorCode.ConnectionTimeOut:
+                    return new TimeoutException(errMessage);
+                case Interop.Cion.ErrorCode.AlreadyInProgress:
                     return new InvalidOperationException(errMessage);
                 case Interop.Cion.ErrorCode.NotSupported:
                     return new NotSupportedException(errMessage);
+                case Interop.Cion.ErrorCode.OperationFailed:
+                    return new InvalidOperationException(errMessage);
                 default:
                     return new InvalidOperationException(errMessage);
             }

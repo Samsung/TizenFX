@@ -70,7 +70,9 @@ namespace Tizen.Applications
         /// </summary>
         /// <param name="serviceName">The name of service.</param>
         /// <param name="displayName">The display name of service.</param>
-        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method.</exception> 
+        /// <remarks>The maximum length of service name is 512.</remarks>
+        /// <exception cref="ArgumentException">Thrown when the given service name is too long.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when there is not enough memory to continue the execution of the method.</exception> 
         /// <since_tizen> 9 </since_tizen>
         public ServerBase(string serviceName, string displayName) : this(serviceName, displayName, null) { }
 
@@ -80,7 +82,9 @@ namespace Tizen.Applications
         /// <param name="serviceName">The name of service.</param>
         /// <param name="displayName">The display name of service.</param>
         /// <param name="security">The security configuration.</param>
-        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method.</exception>
+        /// <remarks>The maximum length of service name is 512.</remarks>
+        /// <exception cref="ArgumentException">Thrown when the given service name is too long.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when there is not enough memory to continue the execution of the method.</exception>
         /// <since_tizen> 9 </since_tizen>
         public ServerBase(string serviceName, string displayName, Cion.SecurityInfo security)
         {
@@ -173,8 +177,9 @@ namespace Tizen.Applications
         /// <summary>
         /// Starts server and listens for requests from cion clients.
         /// </summary>
-        /// <exception cref="InvalidOperationException">Thrown when the listen operation is already in progress.</exception>
         /// <privilege>http://tizen.org/privilege/d2d.datasharing</privilege>
+        /// <exception cref="InvalidOperationException">Thrown when the listen operation is already in progress.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         /// <since_tizen> 9 </since_tizen>
         public void Listen()
         {
@@ -236,7 +241,7 @@ namespace Tizen.Applications
         /// <param name="payload">The payload to send.</param>
         /// <param name="peerInfo">The peer to send payload.</param>
         /// <exception cref="ArgumentException">Thrown when the payload is not valid.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when there is no such connected cion client.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when there is no such connected cion client or failed to send payload.</exception>
         /// <since_tizen> 9 </since_tizen>
         public Task<PayloadAsyncResult> SendPayloadAsync(Payload payload, PeerInfo peerInfo)
         {
@@ -283,6 +288,8 @@ namespace Tizen.Applications
         /// Sends the payload to all of connected peer asynchronously.
         /// </summary>
         /// <param name="payload">The payload to send.</param>
+        /// <exception cref="ArgumentException">Thrown when the payload is not valid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed to send payload.</exception>
         /// <since_tizen> 9 </since_tizen>
         public void SendPayloadAsync(Payload payload)
         {
@@ -317,7 +324,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets connected peers.
         /// </summary>
-        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method.</exception> 
+        /// <exception cref="InvalidOperationException">Thrown when there is not enough memory to continue the execution of the method.</exception> 
         /// <since_tizen> 9 </since_tizen>
         public IEnumerable<PeerInfo> GetConnectedPeerList()
         {
@@ -338,8 +345,8 @@ namespace Tizen.Applications
         /// Sets ondemand launch enabled flag.
         /// </summary>
         /// <param name="enable">Whether ondemand launch is enabled or not.</param>
-        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         /// <privilege>http://tizen.org/privilege/d2d.remotelaunch</privilege>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         /// <since_tizen> 9 </since_tizen>
         public void SetOndemandLaunchEnabled(bool enable)
         {

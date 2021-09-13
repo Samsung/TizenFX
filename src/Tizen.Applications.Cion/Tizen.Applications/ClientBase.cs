@@ -61,7 +61,9 @@ namespace Tizen.Applications
         /// The constructor of ClientBase class.
         /// </summary>
         /// <param name="serviceName">The name of service.</param>
-        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method.</exception> 
+        /// <remarks>The maximum length of service name is 512.</remarks>
+        /// <exception cref="ArgumentException">Thrown when the given service name is too long.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when there is not enough memory to continue the execution of the method.</exception> 
         /// <since_tizen> 9 </since_tizen>
         public ClientBase(string serviceName) : this(serviceName, null) { }
 
@@ -70,7 +72,9 @@ namespace Tizen.Applications
         /// </summary>
         /// <param name="serviceName">The name of service.</param>
         /// <param name="security">The security configuration.</param>
-        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method.</exception> 
+        /// <remarks>The maximum length of service name is 512.</remarks>
+        /// <exception cref="ArgumentException">Thrown when the given service name is too long.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when there is not enough memory to continue the execution of the method.</exception> 
         /// <since_tizen> 9 </since_tizen>
         public ClientBase(string serviceName, Cion.SecurityInfo security)
         {
@@ -207,6 +211,8 @@ namespace Tizen.Applications
         /// </summary>
         /// <param name="peer">The peer to connect.</param>
         /// <privilege>http://tizen.org/privilege/d2d.datasharing</privilege>
+        /// <exception cref="InvalidOperationException">Thrown when the client cannot connect to server.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         /// <since_tizen> 9 </since_tizen>
         public void Connect(PeerInfo peer)
         {
@@ -226,7 +232,7 @@ namespace Tizen.Applications
             Interop.Cion.ErrorCode ret = Interop.CionClient.CionClientDisconnect(_handle);
             if (ret != Interop.Cion.ErrorCode.None)
             {
-                throw CionErrorFactory.GetException(ret, "Failed to disconnect.");
+                Log.Error(LogTag, string.Format("Failed to disconnect: {0}", ret));
             }
             _peer = null;
         }
@@ -237,7 +243,8 @@ namespace Tizen.Applications
         /// <param name="data">The data to send.</param>
         /// <param name="timeout">The timeout of sending operation.</param>
         /// <exception cref="ArgumentException">Thrown when the given data is invalid.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when there is no connected cion server.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when there is no connected cion server or failed to receive reply.</exception>
+        /// <exception cref="TimeoutException">Thrown when a timeout occurred.</exception>
         /// <since_tizen> 9 </since_tizen>
         public byte[] SendData(byte[] data, int timeout)
         {
@@ -258,7 +265,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <param name="payload">The payload to send.</param>
         /// <exception cref="ArgumentException">Thrown when the payload is not valid.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when there is no connected cion server.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when there is no connected cion server or failed to send payload.</exception>
         /// <since_tizen> 9 </since_tizen>
         public Task<PayloadAsyncResult> SendPayloadAsync(Payload payload)
         {
