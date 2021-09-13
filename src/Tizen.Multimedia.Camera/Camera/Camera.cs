@@ -93,7 +93,7 @@ namespace Tizen.Multimedia
             CameraDeviceType cameraDeviceType = CameraDeviceType.BuiltIn;
             CameraDevice cameraDevice = device;
 
-            if (device == CameraDevice.Default || CameraDeviceManager.IsSupported)
+            if (CameraDeviceManager.IsSupported || device == CameraDevice.Default)
             {
                 var deviceInfo = GetDeviceInformation();
                 if (!deviceInfo.Any())
