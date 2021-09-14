@@ -153,11 +153,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Hover obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
-        }
-
         internal static Hover GetHoverFromPtr(global::System.IntPtr cPtr)
         {
             Hover ret = new Hover(cPtr, false);

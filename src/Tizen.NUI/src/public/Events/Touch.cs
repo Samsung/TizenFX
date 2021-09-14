@@ -209,11 +209,6 @@ namespace Tizen.NUI
             return (MouseButton)ret;
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Touch obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
-        }
-
         internal static Touch GetTouchFromPtr(global::System.IntPtr cPtr)
         {
             Touch ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Touch;

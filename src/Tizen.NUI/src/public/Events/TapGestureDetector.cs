@@ -160,11 +160,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TapGestureDetector obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
-        }
-
         internal static TapGestureDetector GetTapGestureDetectorFromPtr(global::System.IntPtr cPtr)
         {
             TapGestureDetector ret = new TapGestureDetector(cPtr, false);

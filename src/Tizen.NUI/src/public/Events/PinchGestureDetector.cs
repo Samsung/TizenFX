@@ -103,11 +103,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PinchGestureDetector obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
-        }
-
         internal PinchGestureDetector Assign(PinchGestureDetector rhs)
         {
             PinchGestureDetector ret = new PinchGestureDetector(Interop.PinchGesture.PinchGestureDetectorAssign(SwigCPtr, PinchGestureDetector.getCPtr(rhs)), false);
