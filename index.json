@@ -64054,6 +64054,16 @@
     "title": "Delegate EventHandlerWithReturnType<T, U, R>",
     "keywords": ""
   },
+  "API9/api/Tizen.NUI.Extension.html": {
+    "href": "API9/api/Tizen.NUI.Extension.html",
+    "title": "Namespace Tizen.NUI.Extension",
+    "keywords": ""
+  },
+  "API9/api/Tizen.NUI.Extension.RiveAnimationView.html": {
+    "href": "API9/api/Tizen.NUI.Extension.RiveAnimationView.html",
+    "title": "Class RiveAnimationView",
+    "keywords": ""
+  },
   "API9/api/Tizen.NUI.Extents.ExtentsChangedCallback.html": {
     "href": "API9/api/Tizen.NUI.Extents.ExtentsChangedCallback.html",
     "title": "Delegate Extents.ExtentsChangedCallback",

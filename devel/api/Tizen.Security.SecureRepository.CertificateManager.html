@@ -94,7 +94,7 @@
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/CertificateManager.cs/#L275">View Source</a>
     </span>
-    <h4 id="Tizen_Security_SecureRepository_CertificateManager_CheckOcsp_System_Collections_Generic_IEnumerable_Tizen_Security_SecureRepository_Certificate__" data-uid="Tizen.Security.SecureRepository.CertificateManager.CheckOcsp(System.Collections.Generic.IEnumerable{Tizen.Security.SecureRepository.Certificate})">CheckOcsp(IEnumerable&lt;Certificate&gt;)</h4>
+    <h4 id="Tizen_Security_SecureRepository_CertificateManager_CheckOcsp_System_Collections_Generic_IEnumerable_Tizen_Security_SecureRepository_Certificate__" data-uid="Tizen.Security.SecureRepository.CertificateManager.CheckOcsp(System.Collections.Generic.IEnumerable{Tizen.Security.SecureRepository.Certificate})" data-obsolete="Please do not use! This will be deprecated with API9 and removed with API11! Please use raw OpenSSL instead!" class="obsolete">CheckOcsp(IEnumerable&lt;Certificate&gt;)</h4>
     <section>
       <p>Perform OCSP, which checks whether the certificate is revoked or not.</p>
 
@@ -103,7 +103,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static OcspStatus CheckOcsp(IEnumerable&lt;Certificate&gt; certificateChain)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Please do not use! This will be deprecated with API9 and removed with API11! Please use raw OpenSSL instead!&quot;)]
+public static OcspStatus CheckOcsp(IEnumerable&lt;Certificate&gt; certificateChain)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
