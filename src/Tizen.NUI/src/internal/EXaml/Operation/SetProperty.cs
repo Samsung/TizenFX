@@ -27,11 +27,11 @@ namespace Tizen.NUI.EXaml
 {
     internal class SetProperty : Operation
     {
-        public SetProperty(GlobalDataList globalDataList, int instanceIndex, int propertyIndex, object value)
+        public SetProperty(GlobalDataList globalDataList, List<object> operationInfo)
         {
-            this.instanceIndex = instanceIndex;
-            this.propertyIndex = propertyIndex;
-            this.value = value;
+            instanceIndex = (int)operationInfo[0];
+            propertyIndex = (int)operationInfo[1];
+            value = operationInfo[2];
             this.globalDataList = globalDataList;
         }
 
@@ -49,7 +49,7 @@ namespace Tizen.NUI.EXaml
 
             if (null == property)
             {
-                throw new Exception(String.Format("Can't find property {0} in type {1}", property.Name, instance.GetType().FullName));
+                throw new Exception(String.Format("Can't find property in type {0}", instance.GetType().FullName));
             }
 
             if (null == property.SetMethod)

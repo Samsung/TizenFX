@@ -16,6 +16,16 @@ namespace Tizen.NUI.Devel.Tests
     {
         private const string tag = "NUITEST";
 
+        private void OnFinished(object sender, EventArgs e)
+        {
+            tlog.Debug(tag, "OnFinished : Finished!");
+        }
+
+        private void OnProgressReached(object sender, EventArgs e)
+        {
+            tlog.Debug(tag, "OnProgressReached : ProgressReached!");
+        }
+
         [SetUp]
         public void Init()
         {
@@ -43,8 +53,61 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "should be not null");
             Assert.IsInstanceOf<Animation>(testingTarget, "should be an instance of Animation class!");
 
+            testingTarget.Finished += OnFinished;
+            testingTarget.Finished -= OnFinished;
+
+            testingTarget.ProgressReached += OnProgressReached;
+            testingTarget.ProgressReached -= OnProgressReached;
+
             testingTarget.Dispose();
             tlog.Debug(tag, $"AnimationConstructor END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Animation DownCast")]
+        [Property("SPEC", "Tizen.NUI.Animation.DownCast M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void AnimationDownCast()
+        {
+            tlog.Debug(tag, $"AnimationDownCast START");
+
+            using (Animation ani = new Animation(300))
+            {
+                var testingTarget = Animation.DownCast(ani);
+                Assert.IsNotNull(testingTarget, "should be not null");
+                Assert.IsInstanceOf<Animation>(testingTarget, "should be an instance of Animation class!");
+
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"AnimationDownCast END (OK)");
+        }
+
+        [Test]
+        [Category("P2")]
+        [Description("Animation DownCast")]
+        [Property("SPEC", "Tizen.NUI.Animation.DownCast M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void AnimationDownCastWithNullHandle()
+        {
+            tlog.Debug(tag, $"AnimationDownCastWithNullHandle START");
+
+            BaseHandle handle = null;
+
+            try
+            {
+                Animation.DownCast(handle);
+            }
+            catch (ArgumentNullException)
+            {
+                tlog.Debug(tag, $"AnimationDownCastWithNullHandle END (OK)");
+                Assert.Pass("Caught ArgumentNullException : Passed!");
+            }
         }
 
         [Test]
@@ -63,7 +126,7 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<Animation>(testingTarget, "should be an instance of Animation class!");
 
             var result = testingTarget.Duration;
-            Assert.AreEqual(2000, result, "should be eaqual.");
+            Assert.AreEqual(2000, result, "should be equal.");
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"AnimationDurationGet END (OK)");
@@ -86,7 +149,7 @@ namespace Tizen.NUI.Devel.Tests
 
             testingTarget.Duration = 2000;
             var result = testingTarget.Duration;
-            Assert.AreEqual(2000, result, "should be eaqual.");
+            Assert.AreEqual(2000, result, "should be equal.");
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"AnimationDurationSet END (OK)");
@@ -155,7 +218,7 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<Animation>(testingTarget, "should be an instance of Animation class!");
 
             var result = testingTarget.State;
-            Assert.AreEqual("Stopped", result.ToString(), "should be eaqual.");
+            Assert.AreEqual("Stopped", result.ToString(), "should be equal.");
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"AnimationState END (OK)");
@@ -785,6 +848,116 @@ namespace Tizen.NUI.Devel.Tests
         }
 
         [Test]
+        [Category("P2")]
+        [Description("Animation AnimateBy")]
+        [Property("SPEC", "Tizen.NUI.Animation.AnimateBy M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void AnimationAnimateByWithNullView()
+        {
+            tlog.Debug(tag, $"AnimationAnimateByWithNullView START");
+
+            View view = null;
+
+            var testingTarget = new Animation(1500);
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<Animation>(testingTarget, "should be an instance of Animation class!");
+
+            testingTarget.DefaultAlphaFunction = new AlphaFunction(new Vector2(0.3f, 0), new Vector2(0.15f, 1));
+
+            try
+            {
+                testingTarget.AnimateBy(view, "Position", new Position(100, 150));
+            }
+            catch (ArgumentNullException)
+            {
+                testingTarget.Dispose();
+                tlog.Debug(tag, $"AnimationAnimateByWithNullView END (OK)");
+                Assert.Pass("Caught ArgumentNullException : Passed!");
+            }
+        }
+
+        [Test]
+        [Category("P2")]
+        [Description("Animation AnimateBy")]
+        [Property("SPEC", "Tizen.NUI.Animation.AnimateBy M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void AnimationAnimateByNullProperty()
+        {
+            tlog.Debug(tag, $"AnimationAnimateByNullProperty START");
+
+            View view = new View()
+            {
+                Position = new Position(0, 0)
+            };
+            Window.Instance.Add(view);
+            Assert.IsTrue(0 == view.Position.X);
+            Assert.IsTrue(0 == view.Position.Y);
+
+            var testingTarget = new Animation(1500);
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<Animation>(testingTarget, "should be an instance of Animation class!");
+
+            testingTarget.DefaultAlphaFunction = new AlphaFunction(new Vector2(0.3f, 0), new Vector2(0.15f, 1));
+            
+            try
+            {
+                string property = null;
+                testingTarget.AnimateBy(view, property, new Position(100, 150));
+            }
+            catch (ArgumentNullException)
+            {
+                Window.Instance.Remove(view);
+                view.Dispose();
+                testingTarget.Dispose();
+                tlog.Debug(tag, $"AnimationAnimateByNullProperty END (OK)");
+                Assert.Pass("Caught ArgumentNullException : Passed!");
+            }
+        }
+
+        [Test]
+        [Category("P2")]
+        [Description("Animation AnimateBy")]
+        [Property("SPEC", "Tizen.NUI.Animation.AnimateBy M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void AnimationAnimateByNullObject()
+        {
+            tlog.Debug(tag, $"AnimationAnimateByNullObject START");
+
+            View view = new View()
+            {
+                Position = new Position(0, 0)
+            };
+            Window.Instance.Add(view);
+            Assert.IsTrue(0 == view.Position.X);
+            Assert.IsTrue(0 == view.Position.Y);
+
+            var testingTarget = new Animation(1500);
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<Animation>(testingTarget, "should be an instance of Animation class!");
+
+            testingTarget.DefaultAlphaFunction = new AlphaFunction(new Vector2(0.3f, 0), new Vector2(0.15f, 1));
+
+            try
+            {
+                testingTarget.AnimateBy(view, "Position", null);
+            }
+            catch (ArgumentNullException)
+            {
+                Window.Instance.Remove(view);
+                view.Dispose();
+                testingTarget.Dispose();
+                tlog.Debug(tag, $"AnimationAnimateByNullObject END (OK)");
+                Assert.Pass("Caught ArgumentNullException : Passed!");
+            }
+        }
+
+        [Test]
         [Category("P1")]
         [Description("Animation AnimateBy. With start time and end time")]
         [Property("SPEC", "Tizen.NUI.Animation.AnimateBy M")]
@@ -800,8 +973,8 @@ namespace Tizen.NUI.Devel.Tests
                 Position = new Position(0, 0)
             };
             Window.Instance.Add(view);
-            Assert.AreEqual(0, view.Position.X, "sholud be eaqual.");
-            Assert.AreEqual(0, view.Position.Y, "sholud be eaqual.");
+            Assert.AreEqual(0, view.Position.X, "sholud be equal.");
+            Assert.AreEqual(0, view.Position.Y, "sholud be equal.");
 
             var testingTarget = new Animation(1500);
             Assert.IsNotNull(testingTarget, "should be not null");
@@ -813,12 +986,124 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.AnimateBy(view, "Position", new Position(300, 200), 0, 300);
 
             testingTarget.Play();
-            Assert.AreEqual(400, view.Position.X, "sholud be eaqual.");
-            Assert.AreEqual(350, view.Position.Y, "sholud be eaqual.");
+            Assert.AreEqual(400, view.Position.X, "sholud be equal.");
+            Assert.AreEqual(350, view.Position.Y, "sholud be equal.");
 
             view.Dispose();
             testingTarget.Dispose();
             tlog.Debug(tag, $"AnimationAnimateByWithStartTimeAndEndTime END (OK)");
+        }
+
+        [Test]
+        [Category("P2")]
+        [Description("Animation AnimateBy. With start time and end time")]
+        [Property("SPEC", "Tizen.NUI.Animation.AnimateBy M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void AnimationAnimateByWithStartEndTimeAndNullView()
+        {
+            tlog.Debug(tag, $"AnimationAnimateByWithStartEndTimeAndNullView START");
+
+            View view = null;
+
+            var testingTarget = new Animation(1500);
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<Animation>(testingTarget, "should be an instance of Animation class!");
+
+            testingTarget.EndAction = Animation.EndActions.StopFinal;
+            testingTarget.DefaultAlphaFunction = new AlphaFunction(new Vector2(0.3f, 0), new Vector2(0.15f, 1));
+
+            try
+            {
+                testingTarget.AnimateBy(view, "Position", new Position(100, 150), 0, 300);
+            }
+            catch (ArgumentNullException)
+            {
+                testingTarget.Dispose();
+                tlog.Debug(tag, $"AnimationAnimateByWithStartEndTimeAndNullView END (OK)");
+                Assert.Pass("Caught ArgumentNullException : Passed!");
+            }
+        }
+
+        [Test]
+        [Category("P2")]
+        [Description("Animation AnimateBy. With start time and end time")]
+        [Property("SPEC", "Tizen.NUI.Animation.AnimateBy M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void AnimationAnimateByWithStartEndTimeAndNullString()
+        {
+            tlog.Debug(tag, $"AnimationAnimateByWithStartEndTimeAndNullString START");
+
+            var view = new View()
+            {
+                Position = new Position(0, 0)
+            };
+            Window.Instance.Add(view);
+            Assert.AreEqual(0, view.Position.X, "sholud be equal.");
+            Assert.AreEqual(0, view.Position.Y, "sholud be equal.");
+
+            var testingTarget = new Animation(1500);
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<Animation>(testingTarget, "should be an instance of Animation class!");
+
+            testingTarget.EndAction = Animation.EndActions.StopFinal;
+            testingTarget.DefaultAlphaFunction = new AlphaFunction(new Vector2(0.3f, 0), new Vector2(0.15f, 1));
+
+            try
+            {
+                testingTarget.AnimateBy(view, null, new Position(100, 150), 0, 300);
+            }
+            catch (ArgumentNullException)
+            {
+                Window.Instance.Remove(view);
+                view.Dispose();
+                testingTarget.Dispose();
+                tlog.Debug(tag, $"AnimationAnimateByWithStartEndTimeAndNullString END (OK)");
+                Assert.Pass("Caught ArgumentNullException : Passed!");
+            }
+        }
+
+        [Test]
+        [Category("P2")]
+        [Description("Animation AnimateBy. With start time and end time")]
+        [Property("SPEC", "Tizen.NUI.Animation.AnimateBy M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void AnimationAnimateByWithStartEndTimeAndNullObject()
+        {
+            tlog.Debug(tag, $"AnimationAnimateByWithStartEndTimeAndNullObject START");
+
+            var view = new View()
+            {
+                Position = new Position(0, 0)
+            };
+            Window.Instance.Add(view);
+            Assert.AreEqual(0, view.Position.X, "sholud be equal.");
+            Assert.AreEqual(0, view.Position.Y, "sholud be equal.");
+
+            var testingTarget = new Animation(1500);
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<Animation>(testingTarget, "should be an instance of Animation class!");
+
+            testingTarget.EndAction = Animation.EndActions.StopFinal;
+            testingTarget.DefaultAlphaFunction = new AlphaFunction(new Vector2(0.3f, 0), new Vector2(0.15f, 1));
+
+            try
+            {
+                testingTarget.AnimateBy(view, "position", null, 0, 300);
+            }
+            catch (ArgumentNullException)
+            {
+                Window.Instance.Remove(view);
+                view.Dispose();
+                testingTarget.Dispose();
+                tlog.Debug(tag, $"AnimationAnimateByWithStartEndTimeAndNullObject END (OK)");
+                Assert.Pass("Caught ArgumentNullException : Passed!");
+            }
         }
 
         [Test]
@@ -837,8 +1122,8 @@ namespace Tizen.NUI.Devel.Tests
                 Position = new Position(0, 0)
             };
             Window.Instance.Add(view);
-            Assert.AreEqual(0, view.Position.X, "sholud be eaqual.");
-            Assert.AreEqual(0, view.Position.Y, "sholud be eaqual.");
+            Assert.AreEqual(0, view.Position.X, "sholud be equal.");
+            Assert.AreEqual(0, view.Position.Y, "sholud be equal.");
 
             var testingTarget = new Animation(1500);
             Assert.IsNotNull(testingTarget, "should be not null");
@@ -849,8 +1134,8 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.AnimateTo(view, "Position", new Position(100, 150));
             
             testingTarget.Play();
-            Assert.AreEqual(100, view.Position.X, "sholud be eaqual.");
-            Assert.AreEqual(150, view.Position.Y, "sholud be eaqual.");
+            Assert.AreEqual(100, view.Position.X, "sholud be equal.");
+            Assert.AreEqual(150, view.Position.Y, "sholud be equal.");
 
             view.Dispose();
             testingTarget.Dispose();
@@ -873,8 +1158,8 @@ namespace Tizen.NUI.Devel.Tests
                 Position = new Position(0, 0)
             };
             Window.Instance.Add(view);
-            Assert.AreEqual(0, view.Position.X, "sholud be eaqual.");
-            Assert.AreEqual(0, view.Position.Y, "sholud be eaqual.");
+            Assert.AreEqual(0, view.Position.X, "sholud be equal.");
+            Assert.AreEqual(0, view.Position.Y, "sholud be equal.");
 
             var testingTarget = new Animation(1500);
             Assert.IsNotNull(testingTarget, "should be not null");
@@ -886,8 +1171,8 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.AnimateTo(view, "Position", new Position(300, 200), 0, 300);
 
             testingTarget.Play();
-            Assert.AreEqual(300, view.Position.X, "sholud be eaqual.");
-            Assert.AreEqual(200, view.Position.Y, "sholud be eaqual.");
+            Assert.AreEqual(300, view.Position.X, "sholud be equal.");
+            Assert.AreEqual(200, view.Position.Y, "sholud be equal.");
 
             view.Dispose();
             testingTarget.Dispose();
@@ -944,6 +1229,63 @@ namespace Tizen.NUI.Devel.Tests
             transition.Dispose();
             testingTarget.Dispose();
             tlog.Debug(tag, $"AnimationPlayAnimateTo END (OK)");
+        }
+
+        [Test]
+        [Category("P2")]
+        [Description("Animation PlayAnimateTo")]
+        [Property("SPEC", "Tizen.NUI.Animation.PlayAnimateTo M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void AnimationPlayAnimateToNullTarget()
+        {
+            tlog.Debug(tag, $"AnimationPlayAnimateToNullTarget START");
+
+            var testingTarget = new Animation(1500);
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<Animation>(testingTarget, "should be an instance of Animation class!");
+
+            TransitionAnimation transition = new TransitionAnimation(300);
+            ImageView view = null;
+
+            var dummy1 = new TransitionAnimationData()
+            {
+                Property = "Size",
+                DestinationValue = "100, 100",
+                StartTime = 300,
+                EndTime = 600
+            };
+            transition.AddAnimationData(dummy1);
+
+            var dummy2 = new TransitionAnimationData()
+            {
+                Property = "Position",
+                DestinationValue = "150, 250",
+                StartTime = 300,
+                EndTime = 600
+            };
+            transition.AddAnimationData(dummy2);
+
+            for (int i = 0; i < transition.AnimationDataList.Count; i++)
+            {
+                testingTarget.PropertyList.Add(transition.AnimationDataList[i].Property);
+                testingTarget.DestValueList.Add(transition.AnimationDataList[i].DestinationValue);
+                testingTarget.StartTimeList.Add(transition.AnimationDataList[i].StartTime);
+                testingTarget.EndTimeList.Add(transition.AnimationDataList[i].EndTime);
+            }
+
+            try
+            {
+                testingTarget.PlayAnimateTo(view);
+            }
+            catch (ArgumentNullException)
+            {
+                transition.Dispose();
+                testingTarget.Dispose();
+                tlog.Debug(tag, $"AnimationPlayAnimateToNullTarget END (OK)");
+                Assert.Pass("Caught ArgumentNullException : Passed!");
+            }
         }
 
         [Test]
@@ -1105,6 +1447,7 @@ namespace Tizen.NUI.Devel.Tests
             try
             {
                 testingTarget.Play();
+                testingTarget.Stop();
             }
             catch (Exception e)
             {
@@ -1136,6 +1479,7 @@ namespace Tizen.NUI.Devel.Tests
             try
             {
                 testingTarget.PlayFrom(0.3f);
+                testingTarget.Stop();
             }
             catch (Exception e)
             {
@@ -1167,6 +1511,7 @@ namespace Tizen.NUI.Devel.Tests
             try
             {
                 testingTarget.PlayAfter(300);
+                testingTarget.Stop();
             }
             catch (Exception e)
             {
@@ -1177,32 +1522,6 @@ namespace Tizen.NUI.Devel.Tests
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"AnimationPlayAfter END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("Animation Pause")]
-        [Property("SPEC", "Tizen.NUI.Animation.Pause M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public async Task AnimationPause()
-        {
-            tlog.Debug(tag, $"AnimationPause START");
-
-            var testingTarget = new Animation(600);
-            Assert.IsNotNull(testingTarget, "should be not null");
-            Assert.IsInstanceOf<Animation>(testingTarget, "should be an instance of Animation class!");
-
-            testingTarget.EndAction = Animation.EndActions.StopFinal;
-            testingTarget.Play();
-            await Task.Delay(200);
-            testingTarget.Pause();
-            var result = testingTarget.GetState();
-            Assert.IsTrue(States.Paused == result);
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"AnimationPause END (OK)");
         }
 
         [Test]
@@ -1234,8 +1553,67 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception" + e.ToString());
             }
 
+
             testingTarget.Dispose();
             tlog.Debug(tag, $"AnimationClear END (OK)");
         }
+
+        [Test]
+        [Category("P1")]
+        [Description("Animation Show")]
+        [Property("SPEC", "Tizen.NUI.Animation.Show M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void AnimationShow()
+        {
+            tlog.Debug(tag, $"AnimationShow START");
+
+            var testingTarget = new Animation(600);
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<Animation>(testingTarget, "should be an instance of Animation class!");
+
+            testingTarget.EndAction = Animation.EndActions.StopFinal;
+
+            using (View view = new View() { Color = Color.Cyan, })
+            {
+                testingTarget.Show(view, 200);
+                testingTarget.Hide(view, 300);
+            }
+
+            testingTarget.Play();
+            testingTarget.Stop();
+            
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"AnimationShow END (OK)");
+        }
+
+        //[Test]
+        //[Category("P1")]
+        //[Description("Animation Pause")]
+        //[Property("SPEC", "Tizen.NUI.Animation.Pause M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //[Property("AUTHOR", "guowei.wang@samsung.com")]
+        //public async Task AnimationPause()
+        //{
+        //    tlog.Debug(tag, $"AnimationPause START");
+
+        //    var testingTarget = new Animation(600);
+        //    Assert.IsNotNull(testingTarget, "should be not null");
+        //    Assert.IsInstanceOf<Animation>(testingTarget, "should be an instance of Animation class!");
+
+        //    testingTarget.EndAction = Animation.EndActions.StopFinal;
+        //    testingTarget.Play();
+        //    await Task.Delay(200);
+        //    testingTarget.Pause();
+        //    var result = testingTarget.GetState();
+        //    Assert.IsTrue(States.Paused == result);
+
+        //    testingTarget.Play();
+        //    testingTarget.Stop();
+        //    testingTarget.Dispose();
+        //    tlog.Debug(tag, $"AnimationPause END (OK)");
+        //}
     }
 }

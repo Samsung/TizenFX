@@ -9,14 +9,10 @@ namespace Tizen.NUI.Samples
     public class TouchGestureSample : IExample
     {
         private View root;
-        GestureDetectorManager mGestureDetector;
-        private TextLabel frontView;
+        private View frontView;
         private TextLabel backView;
-
-        public void ChangeText()
-        {
-            backView.Text = "From OnTap BackView";
-        }
+        private TapGestureDetector tapGestureDetector;
+        private LongPressGestureDetector longPressGestureDetector;
 
         public void Activate()
         {
@@ -24,16 +20,25 @@ namespace Tizen.NUI.Samples
             root = new View();
 
 
-           frontView = new TextLabel
+           frontView = new View
             {
                 Size = new Size(300, 300),
-                Text = "Front View",
                 Position = new Position(150, 170),
-                PointSize = 11,
                 BackgroundColor = new Color(1.0f, 0.0f, 0.0f, 1.0f),
             };
             frontView.TouchEvent += OnFrontTouchEvent;
 
+            // The default the maximum allowed time is 500ms.
+            // If you want to change this time, do as below.
+            // But keep in mind this is a global option. Affects all gestures.
+            GestureOptions.Instance.SetDoubleTapTimeout(300);
+            tapGestureDetector = new TapGestureDetector();
+            tapGestureDetector.Attach(frontView);
+            tapGestureDetector.SetMaximumTapsRequired(2);
+            tapGestureDetector.Detected += (s, e) =>
+            {
+              Tizen.Log.Error("NUI", $"OnTap {e.TapGesture.NumberOfTaps}\n");
+            };
 
             backView = new TextLabel
             {
@@ -43,12 +48,21 @@ namespace Tizen.NUI.Samples
                 PointSize = 11,
                 BackgroundColor = new Color(1.0f, 1.0f, 0.0f, 1.0f),
             };
-
-            mGestureDetector = new GestureDetectorManager(backView, new MyGestureListener());
             backView.TouchEvent += OnBackTouchEvent;
 
-            backView.Add(frontView);
+            // The default the minimum holding time is 500ms.
+            // If you want to change this time, do as below.
+            // But keep in mind this is a global option. Affects all gestures.
+            GestureOptions.Instance.SetLongPressMinimumHoldingTime(300);
 
+            longPressGestureDetector = new LongPressGestureDetector();
+            longPressGestureDetector.Attach(backView);
+            longPressGestureDetector.Detected += (s, e) =>
+            {
+              Tizen.Log.Error("NUI", $"OnLongPress\n");
+            };
+
+            backView.Add(frontView);
             root.Add(backView);
             window.Add(root);
         }
@@ -56,43 +70,14 @@ namespace Tizen.NUI.Samples
         private bool OnFrontTouchEvent(object source, View.TouchEventArgs e)
         {
             Tizen.Log.Error("NUI", $"OnFrontTouchEvent {e.Touch.GetState(0)}\n");
-            return true;
+            return false;
         }
 
 
         private bool OnBackTouchEvent(object source, View.TouchEventArgs e)
         {
             Tizen.Log.Error("NUI", $"OnBackTouchEvent {e.Touch.GetState(0)}\n");
-            mGestureDetector.FeedTouchEvent(source, e, this);
             return false;
-        }
-
-        class MyGestureListener : GestureDetectorManager.GestureListener
-        {
-          public override void OnTap(object sender, TapGestureDetector.DetectedEventArgs e, object userData)
-          {
-            Tizen.Log.Error("NUI", $"OnTap \n");
-            if(userData != null)
-            {
-              TouchGestureSample sample = (TouchGestureSample) userData;
-              sample.ChangeText();
-            }
-          }
-
-          public override void OnPan(object sender, PanGestureDetector.DetectedEventArgs e, object userData)
-          {
-            Tizen.Log.Error("NUI", $"OnPan \n");
-          }
-
-          public override void OnPinch(object sender, PinchGestureDetector.DetectedEventArgs e, object userData)
-          {
-            Tizen.Log.Error("NUI", $"OnPinch \n");
-          }
-
-          public override void OnLongPress(object sender, LongPressGestureDetector.DetectedEventArgs e, object userData)
-          {
-            Tizen.Log.Error("NUI", $"OnLongPress \n");
-          }
         }
 
         public void Deactivate()

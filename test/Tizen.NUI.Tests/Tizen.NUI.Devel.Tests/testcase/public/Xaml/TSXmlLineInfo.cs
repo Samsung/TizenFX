@@ -8,21 +8,21 @@ namespace Tizen.NUI.Devel.Tests
 
     [TestFixture]
     [Description("public/xaml/XmlLineInfo ")]
-    internal class PublicXmlLineInfoTest
+    public class PublicXmlLineInfoTest
     {
         private const string tag = "NUITEST";
-        private XmlLineInfo x1;
+        private XmlLineInfo lineInfo;
         [SetUp]
         public void Init()
         {
             tlog.Info(tag, "Init() is called!");
-            x1 = new XmlLineInfo();
+            lineInfo = new XmlLineInfo();
         }
 
         [TearDown]
         public void Destroy()
         {
-            x1 = null;
+            lineInfo = null;
             tlog.Info(tag, "Destroy() is called!");
         }
 
@@ -34,14 +34,14 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "CONSTR")]
         public void XmlLineInfoConstructor1()
         {
-            tlog.Debug(tag, $"XmlLineInfoConstructor START");
+            tlog.Debug(tag, $"XmlLineInfoConstructor1 START");
 
             XmlLineInfo xmlLineInfo1 = new XmlLineInfo();
-
-            tlog.Debug(tag, $"XmlLineInfoConstructor END (OK)");
-            Assert.Pass("XmlLineInfoConstructor");
+            Assert.IsNotNull(xmlLineInfo1, "null XmlLineInfo");
+            Assert.IsInstanceOf<XmlLineInfo>(xmlLineInfo1, "Should return XmlLineInfo instance.");
+            tlog.Debug(tag, $"XmlLineInfoConstructor1 END");
         }
-
+		
         [Test]
         [Category("P1")]
         [Description("XmlLineInfo XmlLineInfo")]
@@ -50,12 +50,13 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "CONSTR")]
         public void XmlLineInfoConstructor2()
         {
-            tlog.Debug(tag, $"XmlLineInfoConstructor START");
+            tlog.Debug(tag, $"XmlLineInfoConstructor2 START");
 
-            XmlLineInfo xmlLineInfo2 = new XmlLineInfo(10, 5);
+            var testingTarget = new XmlLineInfo(10, 5);
+            Assert.IsNotNull(testingTarget, "null XmlLineInfo");
+            Assert.IsInstanceOf<XmlLineInfo>(testingTarget, "Should return XmlLineInfo instance.");
 
-            tlog.Debug(tag, $"XmlLineInfoConstructor END (OK)");
-            Assert.Pass("XmlLineInfoConstructor");
+            tlog.Debug(tag, $"XmlLineInfoConstructor2 END");
         }
 
         [Test]
@@ -70,16 +71,16 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                x1.HasLineInfo();
+                var result = lineInfo.HasLineInfo();
+                tlog.Debug(tag, "HasLineInfo : " + result);
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"XmlLineInfoHasLineInfo END (OK)");
-            Assert.Pass("XmlLineInfoHasLineInfo");
+            tlog.Debug(tag, $"XmlLineInfoHasLineInfo END");
         }
 
         [Test]
@@ -94,16 +95,16 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                int i = x1.LineNumber;
+                var result = lineInfo.LineNumber;
+                tlog.Debug(tag, "LineNumber : " + result);
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"XmlLineInfoLineNumber END (OK)");
-            Assert.Pass("XmlLineInfoLineNumber");
+            tlog.Debug(tag, $"XmlLineInfoLineNumber END");
         }
 
         [Test]
@@ -118,16 +119,16 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                int i = x1.LinePosition;
+                var result = lineInfo.LinePosition;
+                tlog.Debug(tag, "LinePosition : " + result);
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"XmlLineInfoLinePosition END (OK)");
-            Assert.Pass("XmlLineInfoLinePosition");
+            tlog.Debug(tag, $"XmlLineInfoLinePosition END");
         }
     }
 }

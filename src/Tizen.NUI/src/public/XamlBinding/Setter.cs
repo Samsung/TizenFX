@@ -26,8 +26,6 @@ using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.Binding
 {
-    /// <since_tizen> 6 </since_tizen>
-    /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     [ContentProperty("Value")]
     [ProvideCompiled("Tizen.NUI.Core.XamlC.SetterValueProvider")]
@@ -35,15 +33,25 @@ namespace Tizen.NUI.Binding
     {
         readonly ConditionalWeakTable<BindableObject, object> originalValues = new ConditionalWeakTable<BindableObject, object>();
 
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public BindableProperty Property { get; set; }
 
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        private bool isOriginalValue = false;
+        private object value;
+
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public object Value { get; set; }
+        public object Value
+        {
+            get
+            {
+                return value;
+            }
+            set
+            {
+                this.value = value;
+                isOriginalValue = true;
+            }
+        }
 
         object IValueProvider.ProvideValue(IServiceProvider serviceProvider)
         {
@@ -86,10 +94,18 @@ namespace Tizen.NUI.Binding
                 target.SetDynamicResource(Property, dynamicResource.Key, fromStyle);
             else
             {
-                if (Value is IList<VisualStateGroup> visualStateGroupCollection)
-                    target.SetValue(Property, visualStateGroupCollection.Clone(), fromStyle);
-                else
-                    target.SetValue(Property, Value, fromStyle);
+                if (true == isOriginalValue && null != Property)
+                {
+                    var tempValue = Value;
+                    if (Property.TryConvert(ref tempValue))
+                    {
+                        Value = tempValue;
+                    }
+
+                    isOriginalValue = false;
+                }
+
+                target.SetValue(Property, Value, fromStyle);
             }
         }
 

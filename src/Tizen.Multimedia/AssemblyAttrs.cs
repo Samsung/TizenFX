@@ -19,6 +19,8 @@
 
 using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("Tizen.Content.MediaContent, " + PublicKey.Value)]
+
 [assembly: InternalsVisibleTo("Tizen.Multimedia.AudioIO, " + PublicKey.Value)]
 
 [assembly: InternalsVisibleTo("Tizen.Multimedia.Camera, " + PublicKey.Value)]

@@ -37,14 +37,34 @@ namespace Tizen.NUI.Devel.Tests
         public void PanGestureConstructor()
         {
             tlog.Debug(tag, $"PanGestureConstructor START");
-            PanGesture a1 = new PanGesture();
 
-            Gesture.StateType state = Gesture.StateType.Finished;
-            PanGesture a2 = new PanGesture(state);           
-            
-            a2.Dispose();
-            a1.Dispose();
+            var testingTarget = new PanGesture();
+            Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+            Assert.IsInstanceOf<PanGesture>(testingTarget, "Should be an instance of PanGesture type.");
+
+            testingTarget.Dispose();
             tlog.Debug(tag, $"PanGestureConstructor END (OK)");
+            Assert.Pass("PanGestureConstructor");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Create a PanGesture object.")]
+        [Property("SPEC", "Tizen.NUI.PanGesture.PanGesture C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void PanGestureConstructorWithState()
+        {
+            tlog.Debug(tag, $"PanGestureConstructorWithState START");
+
+            var testingTarget = new PanGesture(Gesture.StateType.Finished);
+            Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+            Assert.IsInstanceOf<PanGesture>(testingTarget, "Should be an instance of PanGesture type.");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"PanGestureConstructorWithState END (OK)");
             Assert.Pass("PanGestureConstructor");
         }
 
@@ -58,11 +78,14 @@ namespace Tizen.NUI.Devel.Tests
         public void PanGestureVelocity()
         {
             tlog.Debug(tag, $"PanGestureVelocity START");
-            PanGesture a1 = new PanGesture();
-            Vector2 v1 = a1.Velocity;
 
-            a1.Dispose();
-            
+            var testingTarget = new PanGesture(Gesture.StateType.Finished);
+            Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+            Assert.IsInstanceOf<PanGesture>(testingTarget, "Should be an instance of PanGesture type.");
+
+            tlog.Debug(tag, "Velocity : " + testingTarget.Velocity);
+
+            testingTarget.Dispose();
             tlog.Debug(tag, $"PanGestureVelocity END (OK)");
             Assert.Pass("PanGestureVelocity");
         }
@@ -77,11 +100,14 @@ namespace Tizen.NUI.Devel.Tests
         public void PanGestureDisplacement()
         {
             tlog.Debug(tag, $"PanGestureDisplacement START");
-            PanGesture a1 = new PanGesture();
-            Vector2 v1 = a1.Displacement;
 
-            a1.Dispose();
-            
+            var testingTarget = new PanGesture(Gesture.StateType.Finished);
+            Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+            Assert.IsInstanceOf<PanGesture>(testingTarget, "Should be an instance of PanGesture type.");
+
+            tlog.Debug(tag, "Displacement : " + testingTarget.Displacement);
+
+            testingTarget.Dispose();
             tlog.Debug(tag, $"PanGestureDisplacement END (OK)");
             Assert.Pass("PanGestureDisplacement");
         }
@@ -96,11 +122,14 @@ namespace Tizen.NUI.Devel.Tests
         public void PanGesturePosition()
         {
             tlog.Debug(tag, $"PanGesturePosition START");
-            PanGesture a1 = new PanGesture();
-            Vector2 v1 = a1.Position;
 
-            a1.Dispose();
-            
+            var testingTarget = new PanGesture(Gesture.StateType.Finished);
+            Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+            Assert.IsInstanceOf<PanGesture>(testingTarget, "Should be an instance of PanGesture type.");
+
+            tlog.Debug(tag, "Position : " + testingTarget.Position);
+
+            testingTarget.Dispose();
             tlog.Debug(tag, $"PanGesturePosition END (OK)");
             Assert.Pass("PanGesturePosition");
         }
@@ -115,11 +144,14 @@ namespace Tizen.NUI.Devel.Tests
         public void PanGestureScreenVelocity()
         {
             tlog.Debug(tag, $"PanGestureScreenVelocity START");
-            PanGesture a1 = new PanGesture();
-            Vector2 v1 = a1.ScreenVelocity;
 
-            a1.Dispose();
-            
+            var testingTarget = new PanGesture(Gesture.StateType.Finished);
+            Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+            Assert.IsInstanceOf<PanGesture>(testingTarget, "Should be an instance of PanGesture type.");
+
+            tlog.Debug(tag, "ScreenVelocity : " + testingTarget.ScreenVelocity);
+
+            testingTarget.Dispose();
             tlog.Debug(tag, $"PanGestureScreenVelocity END (OK)");
             Assert.Pass("PanGestureScreenVelocity");
         }
@@ -134,11 +166,14 @@ namespace Tizen.NUI.Devel.Tests
         public void PanGestureScreenDisplacement()
         {
             tlog.Debug(tag, $"PanGestureScreenDisplacement START");
-            PanGesture a1 = new PanGesture();
-            Vector2 v1 = a1.ScreenDisplacement;
 
-            a1.Dispose();
-            
+            var testingTarget = new PanGesture(Gesture.StateType.Finished);
+            Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+            Assert.IsInstanceOf<PanGesture>(testingTarget, "Should be an instance of PanGesture type.");
+
+            tlog.Debug(tag, "ScreenDisplacement : " + testingTarget.ScreenDisplacement);
+
+            testingTarget.Dispose();
             tlog.Debug(tag, $"PanGestureScreenDisplacement END (OK)");
             Assert.Pass("PanGestureScreenDisplacement");
         }
@@ -153,11 +188,14 @@ namespace Tizen.NUI.Devel.Tests
         public void PanGestureScreenPosition()
         {
             tlog.Debug(tag, $"PanGestureScreenPosition START");
-            PanGesture a1 = new PanGesture();
-            Vector2 v1 = a1.ScreenPosition;
 
-            a1.Dispose();
-            
+            var testingTarget = new PanGesture(Gesture.StateType.Finished);
+            Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+            Assert.IsInstanceOf<PanGesture>(testingTarget, "Should be an instance of PanGesture type.");
+
+            tlog.Debug(tag, "ScreenPosition : " + testingTarget.ScreenPosition);
+
+            testingTarget.Dispose();
             tlog.Debug(tag, $"PanGestureScreenPosition END (OK)");
             Assert.Pass("PanGestureScreenPosition");
         }
@@ -172,11 +210,14 @@ namespace Tizen.NUI.Devel.Tests
         public void PanGestureNumberOfTouches()
         {
             tlog.Debug(tag, $"PanGestureNumberOfTouches START");
-            PanGesture a1 = new PanGesture();
-            uint b1 = a1.NumberOfTouches;
 
-            a1.Dispose();
-            
+            var testingTarget = new PanGesture(Gesture.StateType.Finished);
+            Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+            Assert.IsInstanceOf<PanGesture>(testingTarget, "Should be an instance of PanGesture type.");
+
+            tlog.Debug(tag, "NumberOfTouches : " + testingTarget.NumberOfTouches);
+
+            testingTarget.Dispose();
             tlog.Debug(tag, $"PanGestureNumberOfTouches END (OK)");
             Assert.Pass("PanGestureNumberOfTouches");
         }
@@ -191,11 +232,14 @@ namespace Tizen.NUI.Devel.Tests
         public void PanGestureGetSpeed()
         {
             tlog.Debug(tag, $"PanGestureGetSpeed START");
-            PanGesture a1 = new PanGesture();
-            float f1 = a1.GetSpeed();
 
-            a1.Dispose();
-            
+            var testingTarget = new PanGesture(Gesture.StateType.Finished);
+            Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+            Assert.IsInstanceOf<PanGesture>(testingTarget, "Should be an instance of PanGesture type.");
+
+            tlog.Debug(tag, "GetSpeed : " + testingTarget.GetSpeed());
+
+            testingTarget.Dispose();
             tlog.Debug(tag, $"PanGestureGetSpeed END (OK)");
             Assert.Pass("PanGestureGetSpeed");
         }
@@ -210,11 +254,14 @@ namespace Tizen.NUI.Devel.Tests
         public void PanGestureGetDistance()
         {
             tlog.Debug(tag, $"PanGestureGetDistance START");
-            PanGesture a1 = new PanGesture();
-            float f1 = a1.GetDistance();
 
-            a1.Dispose();
-            
+            var testingTarget = new PanGesture(Gesture.StateType.Finished);
+            Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+            Assert.IsInstanceOf<PanGesture>(testingTarget, "Should be an instance of PanGesture type.");
+
+            tlog.Debug(tag, "GetDistance : " + testingTarget.GetDistance());
+
+            testingTarget.Dispose();
             tlog.Debug(tag, $"PanGestureGetDistance END (OK)");
             Assert.Pass("PanGestureGetDistance");
         }
@@ -229,11 +276,14 @@ namespace Tizen.NUI.Devel.Tests
         public void PanGestureGetScreenSpeed()
         {
             tlog.Debug(tag, $"PanGestureGetScreenSpeed START");
-            PanGesture a1 = new PanGesture();
-            float f1 = a1.GetScreenSpeed();
 
-            a1.Dispose();
-            
+            var testingTarget = new PanGesture(Gesture.StateType.Finished);
+            Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+            Assert.IsInstanceOf<PanGesture>(testingTarget, "Should be an instance of PanGesture type.");
+
+            tlog.Debug(tag, "GetScreenSpeed : " + testingTarget.GetScreenSpeed());
+
+            testingTarget.Dispose();
             tlog.Debug(tag, $"PanGestureGetScreenSpeed END (OK)");
             Assert.Pass("PanGestureGetScreenSpeed");
         }
@@ -248,11 +298,14 @@ namespace Tizen.NUI.Devel.Tests
         public void PanGestureGetScreenDistance()
         {
             tlog.Debug(tag, $"PanGestureGetScreenDistance START");
-            PanGesture a1 = new PanGesture();
-            float f1 = a1.GetScreenDistance();
 
-            a1.Dispose();
-            
+            var testingTarget = new PanGesture(Gesture.StateType.Finished);
+            Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+            Assert.IsInstanceOf<PanGesture>(testingTarget, "Should be an instance of PanGesture type.");
+
+            tlog.Debug(tag, "GetScreenDistance : " + testingTarget.GetScreenDistance());
+
+            testingTarget.Dispose();
             tlog.Debug(tag, $"PanGestureGetScreenDistance END (OK)");
             Assert.Pass("PanGestureGetScreenDistance");
         }
@@ -267,10 +320,19 @@ namespace Tizen.NUI.Devel.Tests
         public void PanGesturegetCPtr()
         {
             tlog.Debug(tag, $"PanGesturegetCPtr START");
-            PanGesture a1 = new PanGesture();
-            global::System.Runtime.InteropServices.HandleRef ptr = PanGesture.getCPtr(a1);
 
-            a1.Dispose();
+            using (PanGesture gesture = new PanGesture())
+            {
+                try
+                {
+                    PanGesture.getCPtr(gesture);
+                }
+                catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught Exception : Failed!");
+                }
+            }
 
             tlog.Debug(tag, $"PanGesturegetCPtr END (OK)");
             Assert.Pass("PanGestureCPtr");
@@ -286,9 +348,16 @@ namespace Tizen.NUI.Devel.Tests
         public void PanGestureGetPanGestureFromPtr()
         {
             tlog.Debug(tag, $"PanGestureGetPanGestureFromPtr START");
-            PanGesture a1 = new PanGesture();
-            PanGesture a2 = PanGesture.GetPanGestureFromPtr(PanGesture.getCPtr(a1).Handle);
-            a1.Dispose();
+
+            using (PanGesture gesture = new PanGesture())
+            {
+                var testingTarget = PanGesture.GetPanGestureFromPtr(PanGesture.getCPtr(gesture).Handle);
+                Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+                Assert.IsInstanceOf<PanGesture>(testingTarget, "Should be an instance of PanGesture type.");
+
+                testingTarget.Dispose();
+            }
+
             tlog.Debug(tag, $"PanGestureGetPanGestureFromPtr END (OK)");
             Assert.Pass("PanGestureGetPanGestureFromPtr");
         }

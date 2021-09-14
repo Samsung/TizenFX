@@ -363,5 +363,55 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.Dispose();
             tlog.Debug(tag, $"AnimatableRemovePropertyNotifications END (OK)");
         }
+
+        [Test]
+        [Category("P1")]
+        [Description("Animatable GetPropertyCount")]
+        [Property("SPEC", "Tizen.NUI.Animatable.GetPropertyCount M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void AnimatableGetPropertyCount()
+        {
+            tlog.Debug(tag, $"AnimatableGetPropertyCount START");
+
+            var testingTarget = new Animatable();
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<Animatable>(testingTarget, "should be an instance of Animatable class!");
+
+            tlog.Debug(tag, "PropertyCount : " + testingTarget.GetPropertyCount());
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"AnimatableGetPropertyCount END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Animatable RemoveConstraints")]
+        [Property("SPEC", "Tizen.NUI.Animatable.RemoveConstraints M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void AnimatableRemoveConstraints()
+        {
+            tlog.Debug(tag, $"AnimatableRemoveConstraints START");
+
+            var testingTarget = new Animatable();
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<Animatable>(testingTarget, "should be an instance of Animatable class!");
+
+            try
+            {
+                testingTarget.RemoveConstraints();
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"AnimatableRemoveConstraints END (OK)");
+        }
     }
 }

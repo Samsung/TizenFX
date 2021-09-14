@@ -23,7 +23,7 @@ namespace Tizen.NUI
         internal static partial class NativeImageQueue
         {
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_NativeImageQueuePtr")]
-            public static extern IntPtr NewHandle(uint width, uint height, int colorDepth);
+            public static extern IntPtr NewHandle(uint width, uint height, int colorFormat);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageQueue_GetPtr")]
             public static extern IntPtr Get(IntPtr queue);

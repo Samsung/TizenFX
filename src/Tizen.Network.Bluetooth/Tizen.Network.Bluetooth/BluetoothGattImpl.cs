@@ -31,6 +31,8 @@ namespace Tizen.Network.Bluetooth
         Dictionary<int, TaskCompletionSource<bool>> _sendIndicationTaskSource = new Dictionary<int, TaskCompletionSource<bool>>();
         private Interop.Bluetooth.BtGattServerNotificationSentCallback _sendIndicationCallback;
         private Interop.Bluetooth.BtGattForeachCallback _serviceForeachCallback;
+        private Interop.Bluetooth.BtGattServerAttMtuChangedCallback _attMtuChangedCallback;
+        private event EventHandler<AttMtuChangedEventArgs> _attMtuChanged;
 
         internal BluetoothGattServerImpl()
         {
@@ -153,6 +155,59 @@ namespace Tizen.Network.Bluetooth
             return task.Task;
         }
 
+        internal int GetAttMtu(string clientAddress)
+        {
+            int err = Interop.Bluetooth.BtGattServerGetDeviceMtu(clientAddress, out int mtu);
+            if (err.IsFailed())
+            {
+                GattUtil.Error(err, "Failed to get MTU value");
+                BluetoothErrorFactory.ThrowBluetoothException(err);
+            }
+            return mtu;
+        }
+
+        internal event EventHandler<AttMtuChangedEventArgs> AttMtuChanged
+        {
+            add
+            {
+                if (_attMtuChanged == null)
+                {
+                    RegisterMtuChangedEvent();
+                }
+                _attMtuChanged += value;
+            }
+            remove
+            {
+                _attMtuChanged -= value;
+                if (_attMtuChanged == null)
+                {
+                    UnregisterMtuChangedEvent();
+                }
+            }
+        }
+
+        private void RegisterMtuChangedEvent()
+        {
+            _attMtuChangedCallback = (IntPtr clientHandle, ref AttMtuInfoStruct mtuInfoStruct, IntPtr userData) =>
+            {
+                _attMtuChanged?.Invoke(null, new AttMtuChangedEventArgs(mtuInfoStruct.RemoteAddress, mtuInfoStruct.Mtu));
+            };
+            int ret = Interop.Bluetooth.BtGattServerSetMtuChangedCallback(_handle, _attMtuChangedCallback, IntPtr.Zero);
+            if (ret != (int)BluetoothError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to set MTU changed callback, Error - " + (BluetoothError)ret);
+            }
+        }
+
+        private void UnregisterMtuChangedEvent()
+        {
+            int ret = Interop.Bluetooth.BtGattServerUnsetMtuChangedCallback(_handle);
+            if (ret != (int)BluetoothError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to unset MTU changed callback, Error - " + (BluetoothError)ret);
+            }
+        }
+
         internal BluetoothGattServerHandle GetHandle()
         {
             return _handle;
@@ -170,6 +225,8 @@ namespace Tizen.Network.Bluetooth
         private Interop.Bluetooth.BtGattForeachCallback _serviceForeachCallback;
         private Interop.Bluetooth.BtGattClientAttMtuChangedCallback _attMtuChangedCallback;
         private event EventHandler<AttMtuChangedEventArgs> _attMtuChanged;
+        private Interop.Bluetooth.BtClientServiceChangedCallback _serviceChangedCallback;
+        private event EventHandler<ServiceChangedEventArgs> _serviceChanged;
 
         internal BluetoothGattClientImpl(string remoteAddress)
         {
@@ -382,6 +439,48 @@ namespace Tizen.Network.Bluetooth
             if (ret != (int)BluetoothError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to unset MTU changed callback, Error - " + (BluetoothError)ret);
+            }
+        }
+
+        internal event EventHandler<ServiceChangedEventArgs> ServiceChanged
+        {
+            add
+            {
+                if (_serviceChanged == null)
+                {
+                    RegisterServiceChangedEvent();
+                }
+                _serviceChanged += value;
+            }
+            remove
+            {
+                _serviceChanged -= value;
+                if (_serviceChanged == null)
+                {
+                    UnregisterServiceChangedEvent();
+                }
+            }
+        }
+
+        private void RegisterServiceChangedEvent()
+        {
+            _serviceChangedCallback = (IntPtr clientHandle, BluetoothGattServiceChangeType changeType, string serviceUuid, IntPtr userData) =>
+            {
+                _serviceChanged?.Invoke(null, new ServiceChangedEventArgs(changeType, serviceUuid));
+            };
+            int ret = Interop.Bluetooth.BtGattClientSetServiceChangedCallback(_handle, _serviceChangedCallback, IntPtr.Zero);
+            if (ret != (int)BluetoothError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to set service changed callback, Error - " + (BluetoothError)ret);
+            }
+        }
+
+        private void UnregisterServiceChangedEvent()
+        {
+            int ret = Interop.Bluetooth.BtGattClientUnsetServiceChangedCallback(_handle);
+            if (ret != (int)BluetoothError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to unset service changed callback, Error - " + (BluetoothError)ret);
             }
         }
 

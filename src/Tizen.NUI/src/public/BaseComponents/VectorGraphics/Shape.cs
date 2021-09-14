@@ -19,6 +19,7 @@ using System;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Tizen.NUI.BaseComponents.VectorGraphics
 {
@@ -28,6 +29,9 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
     /// <since_tizen> 9 </since_tizen>
     public class Shape : Drawable
     {
+        private Gradient fillGradient; //Added gradient
+        private Gradient strokeGradient; //Added gradient
+
         /// <summary>
         /// Creates an initialized Shape.
         /// </summary>
@@ -39,62 +43,6 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
 
         internal Shape(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-        }
-
-        /// <summary>
-        /// Enumeration for The fill rule of shape.
-        /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        public enum FillRuleType
-        {
-            /// <summary>
-            /// Draw a horizontal line from the point to a location outside the shape. Determine whether the direction of the line at each intersection point is up or down. The winding number is determined by summing the direction of each intersection. If the number is non zero, the point is inside the shape.
-            /// </summary>
-            Winding = 0,
-            /// <summary>
-            /// Draw a horizontal line from the point to a location outside the shape, and count the number of intersections. If the number of intersections is an odd number, the point is inside the shape.
-            /// </summary>
-            EvenOdd
-        }
-
-        /// <summary>
-        /// Enumeration for The cap style to be used for stroking the path.
-        /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        public enum StrokeCapType
-        {
-            /// <summary>
-            /// The end of lines is rendered as a square around the last point.
-            /// </summary>
-            Square = 0,
-            /// <summary>
-            /// The end of lines is rendered as a half-circle around the last point.
-            /// </summary>
-            Round,
-            /// <summary>
-            /// The end of lines is rendered as a full stop on the last point itself.
-            /// </summary>
-            Butt
-        }
-
-        /// <summary>
-        /// numeration for The join style to be used for stroking the path.
-        /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        public enum StrokeJoinType
-        {
-            /// <summary>
-            /// Used to render beveled line joins. The outer corner of the joined lines is filled by enclosing the triangular region of the corner with a straight line between the outer corners of each stroke.
-            /// </summary>
-            Bevel = 0,
-            /// <summary>
-            /// Used to render rounded line joins. Circular arcs are used to join two lines smoothly.
-            /// </summary>
-            Round,
-            /// <summary>
-            /// Used to render mitered line joins. The intersection of the strokes is clipped at a line perpendicular to the bisector of the angle between the strokes, at the distance from the intersection of the segments equal to the product of the miter limit value and the border radius.  This prevents long spikes being created.
-            /// </summary>
-            Miter
         }
 
         /// <summary>
@@ -112,6 +60,30 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
             {
                 Interop.Shape.SetFillColor(BaseHandle.getCPtr(this), Vector4.getCPtr(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+        /// <summary>
+        /// The gradient to use for filling the path.
+        /// Even if FillColor is set, Gradient setting takes precedence.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public Gradient FillGradient
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.Shape.GetFillGradient(BaseHandle.getCPtr(this));
+                Gradient ret = new Gradient(cPtr, true);
+                return ret;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    Interop.Shape.SetFillGradient(BaseHandle.getCPtr(this), BaseHandle.getCPtr(value));
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    fillGradient = value;
+                }
             }
         }
 
@@ -168,6 +140,30 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         }
 
         /// <summary>
+        /// The gradient to use for stroking the path.
+        /// Even if StrokeColor is set, Gradient setting takes precedence.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public Gradient StrokeGradient
+        {
+            get
+            {
+                global::System.IntPtr cPtr = Interop.Shape.GetStrokeGradient(BaseHandle.getCPtr(this));
+                Gradient ret = new Gradient(cPtr, true);
+                return ret;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    Interop.Shape.SetStrokeGradient(BaseHandle.getCPtr(this), BaseHandle.getCPtr(value));
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    strokeGradient = value;
+                }
+            }
+        }
+
+        /// <summary>
         /// The cap style to use for stroking the path. The cap will be used for capping the end point of a open subpath.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
@@ -212,8 +208,8 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
             get
             {
                 List<float> retList = new List<float>();
-                int patternCount = Interop.Shape.GetStrokeDashCount(BaseHandle.getCPtr(this));
-                for (int i = 0; i < patternCount; i++)
+                uint patternCount = Interop.Shape.GetStrokeDashCount(BaseHandle.getCPtr(this));
+                for (uint i = 0; i < patternCount; i++)
                 {
                     retList.Add(Interop.Shape.GetStrokeDashIndexOf(BaseHandle.getCPtr(this), i));
                 }
@@ -232,7 +228,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
                 {
                     pattern[i] = value[i];
                 }
-                Interop.Shape.SetStrokeDash(BaseHandle.getCPtr(this), pattern, value.Count);
+                Interop.Shape.SetStrokeDash(BaseHandle.getCPtr(this), pattern, (uint)value.Count);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -346,6 +342,46 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
             bool ret = Interop.Shape.AddCubicTo(BaseHandle.getCPtr(this), controlPoint1X, controlPoint1Y, controlPoint2X, controlPoint2Y, endPointX, endPointY);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+
+        /// <summary>
+        /// Appends a given sub-path to the path.
+        /// The current point value is set to the last point from the sub-path.
+        /// @note The interface is designed for optimal path setting if the caller has a completed path commands already.
+        /// </summary>
+        /// <param name="pathCommands">The command object that contain sub-path information. (This command information is copied internally.)</param>
+        /// <exception cref="ArgumentNullException"> Thrown when pathCommands is null. </exception>
+        /// <since_tizen> 9 </since_tizen>
+        public void AddPath(PathCommands pathCommands)
+        {
+            if (pathCommands == null)
+            {
+                throw new ArgumentNullException(nameof(pathCommands));
+            }
+
+            PathCommandType[] commands = null;
+            if (pathCommands.Commands is PathCommandType[] commandArray)
+            {
+                commands = commandArray;
+            }
+            else
+            {
+                commands = pathCommands.Commands.ToArray();        
+            }
+
+            float[] points = null;            
+            if (pathCommands.Points is float[] pointArray)
+            {
+                points = pointArray;
+            }
+            else
+            {
+                points = pathCommands.Points.ToArray();    
+            }
+            
+            Interop.Shape.AddPath(BaseHandle.getCPtr(this), commands, (uint)commands.Length, points, (uint)points.Length);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>

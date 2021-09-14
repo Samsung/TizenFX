@@ -474,7 +474,7 @@ namespace Tizen.NUI.Components
             while (parent)
             {
                 root = parent;
-                parent = parent.GetParent() as View;
+                parent = parent?.GetParent() as View;
             }
 
             return root;

@@ -37,12 +37,32 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"PinchGestureDetectorConstructor START");
             PinchGestureDetector a1 = new PinchGestureDetector();
-            PinchGestureDetector a2 = new PinchGestureDetector(a1);
 
-            a2.Dispose();
             a1.Dispose();
+            tlog.Debug(tag, $"PinchGestureDetectorConstructor END (OK)");
+            Assert.Pass("PinchGestureDetectorConstructor");
+        }
 
-            
+        [Test]
+        [Category("P1")]
+        [Description("PinchGestureDetector constructor")]
+        [Property("SPEC", "Tizen.NUI.PinchGestureDetector.PinchGestureDetector C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void PinchGestureDetectorConstructorWithPinchGestureDetector()
+        {
+            tlog.Debug(tag, $"PinchGestureDetectorConstructor START");
+
+            using (PinchGestureDetector detector = new PinchGestureDetector())
+            {
+                var testingTarget = new PinchGestureDetector(detector);
+                Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+                Assert.IsInstanceOf<PinchGestureDetector>(testingTarget, "Should be an instance of PinchGestureDetector type.");
+
+                testingTarget.Dispose();
+            }
+
             tlog.Debug(tag, $"PinchGestureDetectorConstructor END (OK)");
             Assert.Pass("PinchGestureDetectorConstructor");
         }
@@ -77,14 +97,16 @@ namespace Tizen.NUI.Devel.Tests
         public void PinchGestureDetectorDownCast()
         {
             tlog.Debug(tag, $"PinchGestureDetectorDownCast START");
-            BaseHandle handle = new BaseHandle();
 
-            PinchGestureDetector a1 = PinchGestureDetector.DownCast(handle);
+            using (PinchGestureDetector detector = new PinchGestureDetector())
+            {
+                var testingTarget = PinchGestureDetector.DownCast(detector);
+                Assert.IsInstanceOf<PinchGestureDetector>(testingTarget, "Should be an instance of PinchGestureDetector type.");
 
-            a1.Dispose();
-            
+                testingTarget.Dispose();
+            }
+
             tlog.Debug(tag, $"PinchGestureDetectorDownCast END (OK)");
-            Assert.Pass("PinchGestureDetectorDownCast");
         }
 
         [Test]
@@ -117,15 +139,16 @@ namespace Tizen.NUI.Devel.Tests
         public void PinchGestureDetectorAssign()
         {
             tlog.Debug(tag, $"PinchGestureDetectorAssign START");
-            PinchGestureDetector a1 = new PinchGestureDetector();
 
-            PinchGestureDetector b1 = a1;
-			
-            a1.Dispose();
-            b1.Dispose();
-            
-            tlog.Debug(tag, $"PinchGestureDetectorAssign END (OK)");
-            Assert.Pass("PinchGestureDetectorAssign");			
+            using (PinchGestureDetector detector = new PinchGestureDetector())
+            {
+                var testingTarget = detector.Assign(detector);
+                Assert.IsInstanceOf<PinchGestureDetector>(testingTarget, "Should be an instance of PinchGestureDetector type.");
+
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"PinchGestureDetectorAssign END (OK)");		
         }
 		
         [Test]
@@ -163,24 +186,41 @@ namespace Tizen.NUI.Devel.Tests
             a1.Detected += OnDetected;
             a1.Detected -= OnDetected;
 			
-            PinchGestureDetector.DetectedEventArgs e = new PinchGestureDetector.DetectedEventArgs();
-            object o = new object();
-			
-            OnDetected(o, e);
-			
             a1.Dispose();
-			
             tlog.Debug(tag, $"PinchGestureDetectorDetected END (OK)");
             Assert.Pass("PinchGestureDetectorDetected");
         }
 		
 		private void OnDetected(object obj, PinchGestureDetector.DetectedEventArgs e)
-		{
-            View v1 = e.View;
-            e.View = v1;
-			
-            PinchGesture p1 = e.PinchGesture;
-            e.PinchGesture = p1;
-		}	
+		{ }
+
+        [Test]
+        [Category("P1")]
+        [Description("Test DetectedEventArgs View.")]
+        [Property("SPEC", "Tizen.NUI.DetectedEventArgs.View A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void PinchGestureDetectedEventArgsView()
+        {
+            tlog.Debug(tag, $"PinchGestureDetectedEventArgsView START");
+
+            var testingTarget = new Tizen.NUI.PinchGestureDetector.DetectedEventArgs();
+            Assert.IsNotNull(testingTarget, "Can't create success object DetectedEventArgs.");
+            Assert.IsInstanceOf<Tizen.NUI.PinchGestureDetector.DetectedEventArgs>(testingTarget, "Should return DetectedEventArgs instance.");
+
+            using (View view = new View() { Size = new Size(100, 50) })
+            {
+                testingTarget.View = view;
+                Assert.AreEqual(100, testingTarget.View.Size.Width, "Should be equal!");
+            }
+
+            testingTarget.PinchGesture = new PinchGesture(Gesture.StateType.Possible);
+            Assert.AreEqual(Gesture.StateType.Possible, testingTarget.PinchGesture.State, "Should be equal!");
+
+            tlog.Debug(tag, "Handled : " + testingTarget.Handled);
+
+            tlog.Debug(tag, $"PinchGestureDetectedEventArgsView END (OK)");
+        }
     }
 }

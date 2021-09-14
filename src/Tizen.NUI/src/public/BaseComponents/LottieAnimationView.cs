@@ -19,6 +19,7 @@ using global::System;
 using global::System.Runtime.InteropServices;
 using System.ComponentModel;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -935,11 +936,11 @@ namespace Tizen.NUI.BaseComponents
             string[] parts = pair.Split(',');
             if (parts.Length == 1)
             {
-                return new LottieFrameInfo(Int32.Parse(parts[0].Trim()));
+                return new LottieFrameInfo(Int32.Parse(parts[0].Trim(), CultureInfo.InvariantCulture));
             }
             else if (parts.Length == 2)
             {
-                return new LottieFrameInfo(Int32.Parse(parts[0].Trim()), Int32.Parse(parts[1].Trim()));
+                return new LottieFrameInfo(Int32.Parse(parts[0].Trim(), CultureInfo.InvariantCulture), Int32.Parse(parts[1].Trim(), CultureInfo.InvariantCulture));
             }
 
             Tizen.Log.Error("NUI", $"Can not convert string {pair} to LottieFrameInfo");

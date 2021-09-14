@@ -26,7 +26,7 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// ValueChangedEventArgs is a class to notify changed Picker value argument which will sent to user.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class ValueChangedEventArgs : EventArgs
     {
         /// <summary>
@@ -43,7 +43,7 @@ namespace Tizen.NUI.Components
         /// ValueChangedEventArgs default constructor.
         /// <returns>The current value of Picker.</returns>
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]   
+        /// <since_tizen> 9 </since_tizen>
         public int Value { get; }
         
     }
@@ -52,7 +52,7 @@ namespace Tizen.NUI.Components
     /// Picker is a class which provides a function that allows the user to select 
     /// a value through a scrolling motion by expressing the specified value as a list.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class Picker : Control
     {
         //Tizen 6.5 base components Picker guide visible scroll item is 5.
@@ -85,7 +85,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Creates a new instance of Picker.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public Picker()
         {
         }
@@ -94,7 +94,7 @@ namespace Tizen.NUI.Components
         /// Creates a new instance of Picker.
         /// </summary>
         /// <param name="style">Creates Picker by special style defined in UX.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public Picker(string style) : base(style)
         {
         }
@@ -103,7 +103,7 @@ namespace Tizen.NUI.Components
         /// Creates a new instance of Picker.
         /// </summary>
         /// <param name="pickerStyle">Creates Picker by style customized by user.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public Picker(PickerStyle pickerStyle) : base(pickerStyle)
         {
         }
@@ -152,7 +152,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// An event emitted when Picker value changed, user can subscribe or unsubscribe to this event handler.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public event EventHandler<ValueChangedEventArgs> ValueChanged;
 
         //TODO Fomatter here
@@ -160,7 +160,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// The values to be displayed instead of numbers.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public ReadOnlyCollection<String> DisplayedValues
         {
             get
@@ -181,7 +181,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// The Current value of Picker.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public int CurrentValue
         {
             get
@@ -204,7 +204,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// The max value of Picker.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public int MaxValue
         {
             get
@@ -226,7 +226,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// The min value of Picker.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public int MinValue
         {
             get
@@ -288,7 +288,7 @@ namespace Tizen.NUI.Components
                     itemTextLabel.MergeDirectly(pickerStyle.ItemTextLabel);
                 }
 
-                itemHeight = (int)pickerStyle.ItemTextLabel.Size.Height;
+                itemHeight = (int)(pickerStyle.ItemTextLabel.Size?.Height ?? 0);
 
                 if (itemList != null)
                     foreach (TextLabel textLabel in itemList)

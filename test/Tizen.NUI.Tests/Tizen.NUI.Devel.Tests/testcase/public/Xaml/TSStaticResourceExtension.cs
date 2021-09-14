@@ -9,48 +9,12 @@ namespace Tizen.NUI.Devel.Tests
 
     [TestFixture]
     [Description("public/xaml/StaticResourceExtension")]
-    internal class PublicStaticResourceExtensionTest
+    public class PublicStaticResourceExtensionTest
     {
         private const string tag = "NUITEST";
-        private static StaticResourceExtension s1;
-        [SetUp]
-        public void Init()
-        {
-            tlog.Info(tag, "Init() is called!");
-            s1 = new StaticResourceExtension();
-        }
-
-        [TearDown]
-        public void Destroy()
-        {
-            s1 = null;
-            tlog.Info(tag, "Destroy() is called!");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("StaticResourceExtension Key")]
-        [Property("SPEC", "Tizen.NUI.StaticResourceExtension.Key A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
-        public void StaticResourceExtensionKey()
-        {
-            tlog.Debug(tag, $"StaticResourceExtensionKey START");
-            try
-            {
-                string key = s1.Key;
-                s1.Key = key;
-            }
-            catch (Exception e)
-            {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
-            }
-            tlog.Debug(tag, $"StaticResourceExtensionKey END (OK)");
-            Assert.Pass("StaticResourceExtensionKey");
-        }
-
-        private class ServiceProviderImplementer : IServiceProvider
+        private StaticResourceExtension staticRes;
+		
+		private class ServiceProviderImpl : IServiceProvider
         {
             private static readonly object service = new object();
 
@@ -59,32 +23,8 @@ namespace Tizen.NUI.Devel.Tests
                 return service;
             }
         }
-
-        [Test]
-        [Category("P1")]
-        [Description("StaticResourceExtension ProvideValue")]
-        [Property("SPEC", "Tizen.NUI.StaticResourceExtension.ProvideValue M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        public void StaticResourceExtensionProvideValue()
-        {
-            tlog.Debug(tag, $"StaticResourceExtensionProvideValue START");
-            try
-            {
-                ServiceProviderImplementer ss = new ServiceProviderImplementer();
-
-                s1.Key = "myKey";
-                s1.ProvideValue(ss);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                tlog.Debug(tag, $"StaticResourceExtensionProvideValue END (OK)");
-                Assert.Pass("Caught Exception : passed!");
-            }
-        }
-
-        private class XmlLineInfoImplent : IXmlLineInfo
+		
+		private class XmlLineInfoImplent : IXmlLineInfo
         {
             public int LineNumber => 16;
 
@@ -95,28 +35,107 @@ namespace Tizen.NUI.Devel.Tests
                 return true;
             }
         }
+		
+        [SetUp]
+        public void Init()
+        {
+            tlog.Info(tag, "Init() is called!");
+            staticRes = new StaticResourceExtension();
+        }
+
+        [TearDown]
+        public void Destroy()
+        {
+            staticRes = null;
+            tlog.Info(tag, "Destroy() is called!");
+        }
 
         [Test]
         [Category("P1")]
-        [Description("StaticResourceExtension GetApplicationLevelResource")]
-        [Property("SPEC", "Tizen.NUI.StaticResourceExtension.GetApplicationLevelResource M")]
+        [Description("StaticResourceExtension Key")]
+        [Property("SPEC", "Tizen.NUI.Xaml.StaticResourceExtension.Key A")]
         [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        public void StaticResourceExtensionGetApplicationLevelResource()
+        [Property("CRITERIA", "PRW")]
+        public void StaticResourceExtensionKey()
         {
-            tlog.Debug(tag, $"StaticResourceExtensionGetApplicationLevelResource START");
+            tlog.Debug(tag, $"StaticResourceExtensionKey START");
             try
             {
-                XmlLineInfoImplent xx = new XmlLineInfoImplent();
-                s1.GetApplicationLevelResource("mykey", xx);
+                string key = staticRes.Key;
+                staticRes.Key = key;
+                Assert.AreEqual(key, staticRes.Key, "Should be equal");
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
-            tlog.Debug(tag, $"StaticResourceExtensionGetApplicationLevelResource END (OK)");
-            Assert.Pass("StaticResourceExtensionGetApplicationLevelResource");
+            tlog.Debug(tag, $"StaticResourceExtensionKey END");
+        }
+
+        [Test]
+        [Category("P2")]
+        [Description("StaticResourceExtension Key")]
+        [Property("SPEC", "Tizen.NUI.Xaml.StaticResourceExtension.ProvideValue M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void ProvideValueTest()
+        {
+            tlog.Debug(tag, $"ProvideValueTest START");
+
+            var sr = new StaticResourceExtension();
+            Assert.Throws<ArgumentNullException>(() => sr.ProvideValue(null));
+
+            tlog.Debug(tag, $"ProvideValueTest END");
+        }
+
+        [Test]
+        [Category("P2")]
+        [Description("StaticResourceExtension ProvideValue")]
+        [Property("SPEC", "Tizen.NUI.Xaml.StaticResourceExtension.ProvideValue M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void ProvideValueTest2()
+        {
+            tlog.Debug(tag, $"ProvideValueTest2 START");
+
+            var sr = new StaticResourceExtension();
+            Assert.Throws<XamlParseException>(() => sr.ProvideValue(new ServiceProviderImpl()));
+
+            tlog.Debug(tag, $"ProvideValueTest2 END");
+        }
+
+        [Test]
+        [Category("P2")]
+        [Description("StaticResourceExtension ProvideValue")]
+        [Property("SPEC", "Tizen.NUI.Xaml.StaticResourceExtension.ProvideValue M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void ProvideValueTest3()
+        {
+            tlog.Debug(tag, $"ProvideValueTest3 START");
+
+            var sr = new StaticResourceExtension();
+            sr.Key = "Key";
+            Assert.Throws<ArgumentException>(() => sr.ProvideValue(new ServiceProviderImpl()));
+
+            tlog.Debug(tag, $"ProvideValueTest3 END");
+        }
+
+        [Test]
+        [Category("P2")]
+        [Description("StaticResourceExtension GetApplicationLevelResource")]
+        [Property("SPEC", "Tizen.NUI.Xaml.StaticResourceExtension.GetApplicationLevelResource M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void GetApplicationLevelResourceTest()
+        {
+            tlog.Debug(tag, $"GetApplicationLevelResourceTest START");
+
+            var sr = new StaticResourceExtension();
+            Assert.Throws<ArgumentNullException>(() => sr.GetApplicationLevelResource("key", null));
+
+            tlog.Debug(tag, $"GetApplicationLevelResourceTest END");
         }
     }
 }

@@ -37,15 +37,36 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WheelConstructor START");
 			            
-            Wheel a1 = new Wheel();
-            Wheel.WheelType type = Wheel.WheelType.MouseWheel;
-            Vector2 v = new Vector2(0.0f, 0.0f);
-            Wheel a2 = new Wheel(type, 0, 0, v, 0, 123);
-            
-            a2.Dispose();
-            a1.Dispose();
-            
+            var testingTarget = new Wheel();
+            Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+            Assert.IsInstanceOf<Wheel>(testingTarget, "Should be an instance of Wheel type.");
+
+            testingTarget.Dispose();
             tlog.Debug(tag, $"WheelConstructor END (OK)");
+            Assert.Pass("WheelConstructor");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Wheel constructor")]
+        [Property("SPEC", "Tizen.NUI.Wheel.Wheel C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void WheelConstructorWithWheelType()
+        {
+            tlog.Debug(tag, $"WheelConstructorWithWheelType START");
+
+            using (Vector2 vector = new Vector2(0.0f, 0.0f))
+            {
+                var testingTarget = new Wheel(Wheel.WheelType.MouseWheel, 0, 0, vector, 0, 123);
+                Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+                Assert.IsInstanceOf<Wheel>(testingTarget, "Should be an instance of Wheel type.");
+
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"WheelConstructorWithWheelType END (OK)");
             Assert.Pass("WheelConstructor");
         }
 

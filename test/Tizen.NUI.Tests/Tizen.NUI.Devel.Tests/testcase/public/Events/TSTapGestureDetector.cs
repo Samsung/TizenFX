@@ -37,16 +37,80 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"TapGestureDetectorConstructor START");
             
-            TapGestureDetector a1 = new TapGestureDetector();
-            TapGestureDetector a2 = new TapGestureDetector(4);
-            TapGestureDetector a3 = new TapGestureDetector(a2);
-            
-            a3.Dispose();
-            a2.Dispose();
-            a1.Dispose();
-            
+            var testingTarget = new TapGestureDetector();
+            Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+            Assert.IsInstanceOf<TapGestureDetector>(testingTarget, "Should be an instance of TapGestureDetector type.");
+
+            testingTarget.Dispose();
             tlog.Debug(tag, $"TapGestureDetectorConstructor END (OK)");
             Assert.Pass("TapGestureDetectorConstructor");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TapGestureDetector constructor")]
+        [Property("SPEC", "Tizen.NUI.TapGestureDetector.TapGestureDetector C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void TapGestureDetectorConstructorWithTapsRequired()
+        {
+            tlog.Debug(tag, $"TapGestureDetectorConstructorWithTapsRequired START");
+
+            var testingTarget = new TapGestureDetector(4);
+            Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+            Assert.IsInstanceOf<TapGestureDetector>(testingTarget, "Should be an instance of TapGestureDetector type.");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"TapGestureDetectorConstructorWithTapsRequired END (OK)");
+            Assert.Pass("TapGestureDetectorConstructor");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TapGestureDetector constructor")]
+        [Property("SPEC", "Tizen.NUI.TapGestureDetector.TapGestureDetector C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void TapGestureDetectorConstructorWithTapGestureDetector()
+        {
+            tlog.Debug(tag, $"TapGestureDetectorConstructorWithTapGestureDetector START");
+
+            using (TapGestureDetector detector = new TapGestureDetector(4))
+            {
+                var testingTarget = new TapGestureDetector(detector);
+                Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+                Assert.IsInstanceOf<TapGestureDetector>(testingTarget, "Should be an instance of TapGestureDetector type.");
+
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"TapGestureDetectorConstructorWithTapGestureDetector END (OK)");
+            Assert.Pass("TapGestureDetectorConstructor");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TapGestureDetector Assign")]
+        [Property("SPEC", "Tizen.NUI.TapGestureDetector.Assign M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void TapGestureDetectorAssign()
+        {
+            tlog.Debug(tag, $"TapGestureDetectorAssign START");
+
+            using (TapGestureDetector detector = new TapGestureDetector(4))
+            {
+                var testingTarget = detector.Assign(detector);
+                Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+                Assert.IsInstanceOf<TapGestureDetector>(testingTarget, "Should be an instance of TapGestureDetector type.");
+
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"TapGestureDetectorAssign END (OK)");
         }
 
         [Test]
@@ -212,25 +276,41 @@ namespace Tizen.NUI.Devel.Tests
             a1.Detected += OnDetected;
             a1.Detected -= OnDetected;
 			
-            TapGestureDetector.DetectedEventArgs e = new TapGestureDetector.DetectedEventArgs();
-            object o = new object();
-			
-            OnDetected(o, e);
-			
             a1.Dispose();
-			
             tlog.Debug(tag, $"TapGestureDetectorDetected END (OK)");
             Assert.Pass("TapGestureDetectorDetected");
         }		
 		
 		private void OnDetected(object obj, TapGestureDetector.DetectedEventArgs e)
-		{
-            View v1 = e.View;
-            e.View = v1;
-			
-            TapGesture p1 = e.TapGesture;
-            e.TapGesture = p1;
-		}	
-    }
+		{ }
 
+        [Test]
+        [Category("P1")]
+        [Description("Test DetectedEventArgs View.")]
+        [Property("SPEC", "Tizen.NUI.DetectedEventArgs.View A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void TapGestureDetectedEventArgsView()
+        {
+            tlog.Debug(tag, $"TapGestureDetectedEventArgsView START");
+
+            var testingTarget = new Tizen.NUI.TapGestureDetector.DetectedEventArgs();
+            Assert.IsNotNull(testingTarget, "Can't create success object DetectedEventArgs.");
+            Assert.IsInstanceOf<Tizen.NUI.TapGestureDetector.DetectedEventArgs>(testingTarget, "Should return DetectedEventArgs instance.");
+
+            using (View view = new View() { Size = new Size(100, 50) })
+            {
+                testingTarget.View = view;
+                Assert.AreEqual(100, testingTarget.View.Size.Width, "Should be equal!");
+            }
+
+            testingTarget.TapGesture = new TapGesture();
+            tlog.Debug(tag, "TapGesture : " + testingTarget.TapGesture);
+
+            tlog.Debug(tag, "Handled : " + testingTarget.Handled);
+
+            tlog.Debug(tag, $"TapGestureDetectedEventArgsView END (OK)");
+        }
+    }
 }

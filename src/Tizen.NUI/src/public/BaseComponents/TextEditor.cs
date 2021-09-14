@@ -21,6 +21,7 @@ using TizenSystemSettings.Tizen.System;
 using System;
 using System.Globalization;
 using System.ComponentModel;
+using Tizen.NUI.Text;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -202,6 +203,7 @@ namespace Tizen.NUI.BaseComponents
         /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1721: Property names should not match get methods")]
         public PropertyMap FontStyle
         {
             get
@@ -213,6 +215,42 @@ namespace Tizen.NUI.BaseComponents
                 SetValue(FontStyleProperty, value);
                 NotifyPropertyChanged();
             }
+        }
+
+        /// <summary>
+        /// Set FontStyle to TextEditor. <br />
+        /// </summary>
+        /// <param name="fontStyle">The FontStyle</param>
+        /// <remarks>
+        /// SetFontStyle specifies the requested font style through <see cref="Tizen.NUI.Text.FontStyle"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetFontStyle method.
+        /// <code>
+        /// var fontStyle = new Tizen.NUI.Text.FontStyle();
+        /// fontStyle.Width = FontWidthType.Expanded;
+        /// fontStyle.Weight = FontWeightType.Bold;
+        /// fontStyle.Slant = FontSlantType.Italic;
+        /// editor.SetFontStyle(fontStyle);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetFontStyle(FontStyle fontStyle)
+        {
+            SetValue(FontStyleProperty, TextUtils.GetFontStyleMap(fontStyle));
+        }
+
+        /// <summary>
+        /// Get FontStyle from TextEditor. <br />
+        /// </summary>
+        /// <returns>The FontStyle</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.FontStyle"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public FontStyle GetFontStyle()
+        {
+            return TextUtils.GetFontStyleStruct((PropertyMap)GetValue(FontStyleProperty));
         }
 
         /// <summary>
@@ -470,6 +508,49 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Set SelectionHandleImage to TextEditor. <br />
+        /// </summary>
+        /// <param name="selectionHandleImage">The SelectionHandleImage</param>
+        /// <remarks>
+        /// SetSelectionHandleImage specifies the display image used for the selection handle through <see cref="Tizen.NUI.Text.SelectionHandleImage"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetSelectionHandleImage method.
+        /// <code>
+        /// var selectionHandleImage = new Tizen.NUI.Text.SelectionHandleImage();
+        /// selectionHandleImage.LeftImageUrl = "handle_downleft.png";
+        /// selectionHandleImage.RightImageUrl = "handle_downright.png";
+        /// editor.SetSelectionHandleImage(selectionHandleImage);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetSelectionHandleImage(SelectionHandleImage selectionHandleImage)
+        {
+            if (!String.IsNullOrEmpty(selectionHandleImage.LeftImageUrl))
+            {
+                SetValue(SelectionHandleImageLeftProperty, TextUtils.GetFileNameMap(selectionHandleImage.LeftImageUrl));
+            }
+
+            if (!String.IsNullOrEmpty(selectionHandleImage.RightImageUrl))
+            {
+                SetValue(SelectionHandleImageRightProperty, TextUtils.GetFileNameMap(selectionHandleImage.RightImageUrl));
+            }
+        }
+
+        /// <summary>
+        /// Get SelectionHandleImage from TextEditor. <br />
+        /// </summary>
+        /// <returns>The SelectionHandleImage</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.SelectionHandleImage"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public SelectionHandleImage GetSelectionHandleImage()
+        {
+            return TextUtils.GetSelectionHandleImageStruct((PropertyMap)GetValue(SelectionHandleImageLeftProperty), (PropertyMap)GetValue(SelectionHandleImageRightProperty));
+        }
+
+        /// <summary>
         /// The SelectionHandlePressedImageLeft property.
         /// The selectionHandlePressedImageLeft map contains the following key :<br />
         /// <list type="table">
@@ -512,6 +593,49 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Set SelectionHandlePressedImage to TextEditor. <br />
+        /// </summary>
+        /// <param name="selectionHandlePressedImage">The SelectionHandleImage</param>
+        /// <remarks>
+        /// SetSelectionHandlePressedImage specifies the display image used for the selection handle through <see cref="Tizen.NUI.Text.SelectionHandleImage"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetSelectionHandlePressedImage method.
+        /// <code>
+        /// var selectionHandlePressedImage = new Tizen.NUI.Text.SelectionHandleImage();
+        /// selectionHandlePressedImage.LeftImageUrl = "handle_pressed_downleft.png";
+        /// selectionHandlePressedImage.RightImageUrl = "handle_pressed_downright.png";
+        /// editor.SetSelectionHandlePressedImage(selectionHandlePressedImage);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetSelectionHandlePressedImage(SelectionHandleImage selectionHandlePressedImage)
+        {
+            if (!String.IsNullOrEmpty(selectionHandlePressedImage.LeftImageUrl))
+            {
+                SetValue(SelectionHandlePressedImageLeftProperty, TextUtils.GetFileNameMap(selectionHandlePressedImage.LeftImageUrl));
+            }
+
+            if (!String.IsNullOrEmpty(selectionHandlePressedImage.RightImageUrl))
+            {
+                SetValue(SelectionHandlePressedImageRightProperty, TextUtils.GetFileNameMap(selectionHandlePressedImage.RightImageUrl));
+            }
+        }
+
+        /// <summary>
+        /// Get SelectionHandlePressedImage from TextEditor. <br />
+        /// </summary>
+        /// <returns>The SelectionHandlePressedImage</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.SelectionHandleImage"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public SelectionHandleImage GetSelectionHandlePressedImage()
+        {
+            return TextUtils.GetSelectionHandleImageStruct((PropertyMap)GetValue(SelectionHandlePressedImageLeftProperty), (PropertyMap)GetValue(SelectionHandlePressedImageRightProperty));
+        }
+
+        /// <summary>
         /// The SelectionHandleMarkerImageLeft property.
         /// The selectionHandleMarkerImageLeft map contains the following key :<br />
         /// <list type="table">
@@ -551,6 +675,49 @@ namespace Tizen.NUI.BaseComponents
                 SetValue(SelectionHandleMarkerImageRightProperty, value);
                 NotifyPropertyChanged();
             }
+        }
+
+        /// <summary>
+        /// Set SelectionHandleMarkerImage to TextEditor. <br />
+        /// </summary>
+        /// <param name="selectionHandleMarkerImage">The SelectionHandleImage</param>
+        /// <remarks>
+        /// SetSelectionHandleMarkerImage specifies the display image used for the selection handle through <see cref="Tizen.NUI.Text.SelectionHandleImage"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetSelectionHandleMarkerImage method.
+        /// <code>
+        /// var selectionHandleMarkerImage = new Tizen.NUI.Text.SelectionHandleImage();
+        /// selectionHandleMarkerImage.LeftImageUrl = "handle_pressed_downleft.png";
+        /// selectionHandleMarkerImage.RightImageUrl = "handle_pressed_downright.png";
+        /// editor.SetSelectionHandleMarkerImage(selectionHandleMarkerImage);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetSelectionHandleMarkerImage(SelectionHandleImage selectionHandleMarkerImage)
+        {
+            if (!String.IsNullOrEmpty(selectionHandleMarkerImage.LeftImageUrl))
+            {
+                SetValue(SelectionHandleMarkerImageLeftProperty, TextUtils.GetFileNameMap(selectionHandleMarkerImage.LeftImageUrl));
+            }
+
+            if (!String.IsNullOrEmpty(selectionHandleMarkerImage.RightImageUrl))
+            {
+                SetValue(SelectionHandleMarkerImageRightProperty, TextUtils.GetFileNameMap(selectionHandleMarkerImage.RightImageUrl));
+            }
+        }
+
+        /// <summary>
+        /// Get SelectionHandleMarkerImage from TextEditor. <br />
+        /// </summary>
+        /// <returns>The SelectionHandleMarkerImage</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.SelectionHandleImage"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public SelectionHandleImage GetSelectionHandleMarkerImage()
+        {
+            return TextUtils.GetSelectionHandleImageStruct((PropertyMap)GetValue(SelectionHandleMarkerImageLeftProperty), (PropertyMap)GetValue(SelectionHandleMarkerImageRightProperty));
         }
 
         /// <summary>
@@ -660,6 +827,7 @@ namespace Tizen.NUI.BaseComponents
         /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1721: Property names should not match get methods")]
         public PropertyMap InputFontStyle
         {
             get
@@ -671,6 +839,42 @@ namespace Tizen.NUI.BaseComponents
                 SetValue(InputFontStyleProperty, value);
                 NotifyPropertyChanged();
             }
+        }
+
+        /// <summary>
+        /// Set InputFontStyle to TextEditor. <br />
+        /// </summary>
+        /// <param name="fontStyle">The FontStyle</param>
+        /// <remarks>
+        /// SetInputFontStyle specifies the requested font style for new input text through <see cref="Tizen.NUI.Text.FontStyle"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetInputFontStyle method.
+        /// <code>
+        /// var fontStyle = new Tizen.NUI.Text.FontStyle();
+        /// fontStyle.Width = FontWidthType.Expanded;
+        /// fontStyle.Weight = FontWeightType.Bold;
+        /// fontStyle.Slant = FontSlantType.Italic;
+        /// editor.SetInputFontStyle(fontStyle);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetInputFontStyle(FontStyle fontStyle)
+        {
+            SetValue(InputFontStyleProperty, TextUtils.GetFontStyleMap(fontStyle));
+        }
+
+        /// <summary>
+        /// Get InputFontStyle from TextEditor. <br />
+        /// </summary>
+        /// <returns>The FontStyle</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.FontStyle"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public FontStyle GetInputFontStyle()
+        {
+            return TextUtils.GetFontStyleStruct((PropertyMap)GetValue(InputFontStyleProperty));
         }
 
         /// <summary>
@@ -734,6 +938,7 @@ namespace Tizen.NUI.BaseComponents
         /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1721: Property names should not match get methods")]
         public PropertyMap Underline
         {
             get
@@ -745,6 +950,42 @@ namespace Tizen.NUI.BaseComponents
                 SetValue(UnderlineProperty, value);
                 NotifyPropertyChanged();
             }
+        }
+
+        /// <summary>
+        /// Set Underline to TextEditor. <br />
+        /// </summary>
+        /// <param name="underline">The Underline</param>
+        /// <remarks>
+        /// SetUnderline specifies the underline of the text through <see cref="Tizen.NUI.Text.Underline"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetUnderline method.
+        /// <code>
+        /// var underline = new Tizen.NUI.Text.Underline();
+        /// underline.Enable = true;
+        /// underline.Color = new Color("#3498DB");
+        /// underline.Height = 2.0f;
+        /// editor.SetUnderline(underline);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetUnderline(Underline underline)
+        {
+            SetValue(UnderlineProperty, TextUtils.GetUnderlineMap(underline));
+        }
+
+        /// <summary>
+        /// Get Underline from TextEditor. <br />
+        /// </summary>
+        /// <returns>The Underline</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.Underline"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Underline GetUnderline()
+        {
+            return TextUtils.GetUnderlineStruct((PropertyMap)GetValue(UnderlineProperty));
         }
 
         /// <summary>
@@ -774,6 +1015,7 @@ namespace Tizen.NUI.BaseComponents
         /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1721: Property names should not match get methods")]
         public PropertyMap Shadow
         {
             get
@@ -785,6 +1027,41 @@ namespace Tizen.NUI.BaseComponents
                 SetValue(ShadowProperty, value);
                 NotifyPropertyChanged();
             }
+        }
+
+        /// <summary>
+        /// Set Shadow to TextEditor. <br />
+        /// </summary>
+        /// <param name="shadow">The Shadow</param>
+        /// <remarks>
+        /// SetShadow specifies the shadow of the text through <see cref="Tizen.NUI.Text.Shadow"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetShadow method.
+        /// <code>
+        /// var shadow = new Tizen.NUI.Text.Shadow();
+        /// shadow.Offset = new Vector2(3, 3);
+        /// shadow.Color = new Color("#F1C40F");
+        /// editor.SetShadow(shadow);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetShadow(Tizen.NUI.Text.Shadow shadow)
+        {
+            SetValue(ShadowProperty, TextUtils.GetShadowMap(shadow));
+        }
+
+        /// <summary>
+        /// Get Shadow from TextEditor. <br />
+        /// </summary>
+        /// <returns>The Shadow</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.Shadow"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Tizen.NUI.Text.Shadow GetShadow()
+        {
+            return TextUtils.GetShadowStruct((PropertyMap)GetValue(ShadowProperty));
         }
 
         /// <summary>
@@ -847,6 +1124,7 @@ namespace Tizen.NUI.BaseComponents
         /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1721: Property names should not match get methods")]
         public PropertyMap Outline
         {
             get
@@ -858,6 +1136,41 @@ namespace Tizen.NUI.BaseComponents
                 SetValue(OutlineProperty, value);
                 NotifyPropertyChanged();
             }
+        }
+
+        /// <summary>
+        /// Set Outline to TextEditor. <br />
+        /// </summary>
+        /// <param name="outline">The Outline</param>
+        /// <remarks>
+        /// SetOutline specifies the outline of the text through <see cref="Tizen.NUI.Text.Outline"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetOutline method.
+        /// <code>
+        /// var outline = new Tizen.NUI.Text.Outline();
+        /// outline.Width = 2.0f;
+        /// outline.Color = new Color("#45B39D");
+        /// editor.SetOutline(outline);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetOutline(Outline outline)
+        {
+            SetValue(OutlineProperty, TextUtils.GetOutlineMap(outline));
+        }
+
+        /// <summary>
+        /// Get Outline from TextEditor. <br />
+        /// </summary>
+        /// <returns>The Outline</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.Outline"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Outline GetOutline()
+        {
+            return TextUtils.GetOutlineStruct((PropertyMap)GetValue(OutlineProperty));
         }
 
         /// <summary>
@@ -1076,11 +1389,6 @@ namespace Tizen.NUI.BaseComponents
                 GetProperty(TextEditor.Property.SelectedTextStart).Get(out temp);
                 return temp;
             }
-            set
-            {
-                SetProperty(TextEditor.Property.SelectedTextStart, new PropertyValue(value));
-                NotifyPropertyChanged();
-            }
         }
 
         /// <summary>
@@ -1096,11 +1404,6 @@ namespace Tizen.NUI.BaseComponents
                 int temp;
                 GetProperty(TextEditor.Property.SelectedTextEnd).Get(out temp);
                 return temp;
-            }
-            set
-            {
-                SetProperty(TextEditor.Property.SelectedTextEnd, new PropertyValue(value));
-                NotifyPropertyChanged();
             }
         }
 
@@ -1222,6 +1525,52 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Set InputFilter to TextEditor. <br />
+        /// </summary>
+        /// <param name="inputFilter">The InputFilter</param>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.InputFilter"/> filters input based on regular expressions. <br />
+        /// Users can set the Accepted or Rejected regular expression set, or both. <br />
+        /// If both are used, Rejected has higher priority. <br />
+        /// The character set must follow the regular expression rules. <br />
+        /// Behaviour can not be guaranteed for incorrect grammars. <br />
+        /// Refer the link below for detailed rules. <br />
+        /// The functions in std::regex library use the ECMAScript grammar: <br />
+        /// http://cplusplus.com/reference/regex/ECMAScript/ <br />
+        /// InputFiltered signal is emitted when the input is filtered by InputFilter <br />
+        /// See <see cref="InputFiltered"/>, <see cref="InputFilterType"/> and <see cref="InputFilteredEventArgs"/> for a detailed description. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetInputFilter method.
+        /// <code>
+        /// var inputFilter = new Tizen.NUI.Text.InputFilter();
+        /// inputFilter.Accepted = @"[\d]"; // accept whole digits
+        /// inputFilter.Rejected = "[0-3]"; // reject 0, 1, 2, 3
+        /// editor.SetInputFilter(inputFilter); // acceptable inputs are 4, 5, 6, 7, 8, 9
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetInputFilter(InputFilter inputFilter)
+        {
+            SetProperty(TextEditor.Property.InputFilter, new PropertyValue(TextUtils.GetInputFilterMap(inputFilter)));
+        }
+
+        /// <summary>
+        /// Get InputFilter from TextEditor. <br />
+        /// </summary>
+        /// <returns>The InputFilter</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.InputFilter"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public InputFilter GetInputFilter()
+        {
+            var map = new PropertyMap();
+            GetProperty(TextEditor.Property.InputFilter).Get(map);
+            return TextUtils.GetInputFilterStruct(map);
+        }
+
+        /// <summary>
         /// The Placeholder property.
         /// The placeholder map contains the following keys :<br />
         /// <list type="table">
@@ -1256,6 +1605,7 @@ namespace Tizen.NUI.BaseComponents
         /// </code>
         /// </example>
         /// <since_tizen> 3 </since_tizen>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1721: Property names should not match get methods")]
         public Tizen.NUI.PropertyMap Placeholder
         {
             get
@@ -1334,6 +1684,90 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(PlaceholderProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Set Placeholder to TextEditor. <br />
+        /// </summary>
+        /// <param name="placeholder">The Placeholder</param>
+        /// <remarks>
+        /// SetPlaceholder specifies the attributes of the placeholder property through <see cref="Tizen.NUI.Text.Placeholder"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetPlaceholder method.
+        /// <code>
+        /// var placeholder = new Tizen.NUI.Text.Placeholder();
+        /// placeholder.Text = "placeholder text";
+        /// placeholder.TextFocused = "placeholder textFocused";
+        /// placeholder.Color = new Color("#45B39D");
+        /// placeholder.FontFamily = "BreezeSans";
+        /// placeholder.FontStyle = new Tizen.NUI.Text.FontStyle()
+        /// {
+        ///     Width = FontWidthType.Expanded,
+        ///     Weight = FontWeightType.ExtraLight,
+        ///     Slant = FontSlantType.Italic,
+        /// };
+        /// placeholder.PointSize = 25.0f;
+        /// //placeholder.PixelSize = 50.0f;
+        /// placeholder.Ellipsis = true;
+        /// editor.SetPlaceholder(placeholder);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetPlaceholder(Placeholder placeholder)
+        {
+            SetValue(PlaceholderProperty, TextUtils.GetPlaceholderMap(placeholder));
+        }
+
+        /// <summary>
+        /// Get Placeholder from TextEditor. <br />
+        /// </summary>
+        /// <returns>The Placeholder</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.Placeholder"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Placeholder GetPlaceholder()
+        {
+            return TextUtils.GetPlaceholderStruct((PropertyMap)GetValue(PlaceholderProperty));
+        }
+
+        /// <summary>
+        /// The Ellipsis property.<br />
+        /// Enable or disable the ellipsis.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Ellipsis
+        {
+            get
+            {
+                return (bool)GetValue(EllipsisProperty);
+            }
+            set
+            {
+                SetValue(EllipsisProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+
+        /// <summary>
+        /// The ellipsis position of the text.
+        /// The ellipsis position type when the text size over the layout size.<br />
+        /// The ellipsis position: End, Start or Middle.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public EllipsisPosition EllipsisPosition
+        {
+            get
+            {
+                return (EllipsisPosition)GetValue(EllipsisPositionProperty);
+            }
+            set
+            {
+                SetValue(EllipsisPositionProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -1547,6 +1981,24 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Select text from start to end index. <br />
+        /// The index is valid when 0 or positive. <br />
+        /// </summary>
+        /// <param name="start">The start index for selection.</param>
+        /// <param name="end">The end index for selection.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SelectText(int start, int end)
+        {
+            if (start < 0)
+                throw new global::System.ArgumentOutOfRangeException(nameof(start), "Value is less than zero");
+            if (end < 0)
+                throw new global::System.ArgumentOutOfRangeException(nameof(end), "Value is less than zero");
+
+            Interop.TextEditor.SelectText(SwigCPtr, (uint)start, (uint)end);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// Clear selection of the text.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -1586,6 +2038,23 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(EnableGrabHandlePopupProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Minimum line size to be used.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float MinLineSize
+        {
+            get
+            {
+                return (float)GetValue(MinLineSizeProperty);
+            }
+            set
+            {
+                SetValue(MinLineSizeProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -1634,6 +2103,21 @@ namespace Tizen.NUI.BaseComponents
                 if (textEditorMaxLengthReachedCallbackDelegate != null)
                 {
                     this.MaxLengthReachedSignal().Disconnect(textEditorMaxLengthReachedCallbackDelegate);
+                }
+
+                if (textEditorSelectionClearedCallbackDelegate != null)
+                {
+                    this.SelectionClearedSignal().Disconnect(textEditorSelectionClearedCallbackDelegate);
+                }
+
+                if (textEditorCursorPositionChangedCallbackDelegate != null)
+                {
+                    this.CursorPositionChangedSignal().Disconnect(textEditorCursorPositionChangedCallbackDelegate);
+                }
+
+                if (textEditorSelectionChangedCallbackDelegate != null)
+                {
+                    this.SelectionChangedSignal().Disconnect(textEditorSelectionChangedCallbackDelegate);
                 }
             }
 
@@ -1790,6 +2274,10 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int EnableGrabHandle = Interop.TextEditor.EnableGrabHandleGet();
             internal static readonly int EnableGrabHandlePopup = Interop.TextEditor.EnableGrabHandlePopupGet();
             internal static readonly int InputMethodSettings = Interop.TextEditor.InputMethodSettingsGet();
+            internal static readonly int ELLIPSIS = Interop.TextEditor.EllipsisGet();
+            internal static readonly int EllipsisPosition = Interop.TextEditor.EllipsisPositionGet();
+            internal static readonly int MinLineSize = Interop.TextEditor.MinLineSizeGet();
+            internal static readonly int InputFilter = Interop.TextEditor.InputFilterGet();
         }
 
         internal class InputStyle

@@ -8,9 +8,14 @@ namespace Tizen.NUI.Devel.Tests
 
     [TestFixture]
     [Description("public/xaml/MarkupExtensions/NullExtension")]
-    internal class PublicNullExtensionTest
+    public class PublicNullExtensionTest
     {
         private const string tag = "NUITEST";
+
+        internal class IServiceProviderImpl : IServiceProvider
+        {
+            public object GetService(Type serviceType) { return null; }
+        }
 
         [SetUp]
         public void Init()
@@ -22,14 +27,6 @@ namespace Tizen.NUI.Devel.Tests
         public void Destroy()
         {
             tlog.Info(tag, "Destroy() is called!");
-        }
-
-        private class IServiceProviderimplement : IServiceProvider
-        {
-            public object GetService(Type serviceType)
-            {
-                return null;
-            }
         }
 
         [Test]
@@ -44,21 +41,18 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                IServiceProviderimplement serviceProviderimplement = new IServiceProviderimplement();
-                NullExtension n1 = new NullExtension();
+                var testingTarget = new NullExtension();
+                Assert.IsNotNull(testingTarget, "null NullExtension");
 
-                n1.ProvideValue(serviceProviderimplement);
-
-                n1 = null;
+                testingTarget.ProvideValue(new IServiceProviderImpl());
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"NullExtensionProvideValue END (OK)");
-            Assert.Pass("NullExtensionProvideValue");
+            tlog.Debug(tag, $"NullExtensionProvideValue END");
         }
     }
 }

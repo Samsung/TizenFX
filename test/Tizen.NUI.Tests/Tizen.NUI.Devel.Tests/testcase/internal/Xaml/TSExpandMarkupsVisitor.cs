@@ -11,24 +11,31 @@ namespace Tizen.NUI.Devel.Tests
 
     [TestFixture]
     [Description("internal/Xaml/ExpandMarkupsVisitor")]
-    internal class PublicExpandMarkupsVisitorTest
+    public class InternalExpandMarkupsVisitorTest
     {
         private const string tag = "NUITEST";
-        private static ExpandMarkupsVisitor e1;
+        private ExpandMarkupsVisitor visitor;
+
+        internal class INodeImpl : INode
+        {
+            public global::System.Collections.Generic.List<string> IgnorablePrefixes { get; set; }
+            public global::System.Xml.IXmlNamespaceResolver NamespaceResolver => new INodeImpl().NamespaceResolver;
+            public INode Parent { get; set; }
+            public void Accept(IXamlNodeVisitor visitor, INode parentNode) { }
+            public INode Clone() { return new INodeImpl(); }
+        }
 
         [SetUp]
         public void Init()
         {
             tlog.Info(tag, "Init() is called!");
-            HydrationContext context = new HydrationContext();
-
-            e1 = new ExpandMarkupsVisitor(context);
+            visitor = new ExpandMarkupsVisitor(new HydrationContext());
         }
 
         [TearDown]
         public void Destroy()
         {
-            e1 = null;
+            visitor = null;
             tlog.Info(tag, "Destroy() is called!");
         }
 
@@ -43,35 +50,14 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"ApplyPropertiesVisitorConstructor START");
 
             HydrationContext context = new HydrationContext();
+            Assert.IsNotNull(context, "null HydrationContext");
+            Assert.IsInstanceOf<HydrationContext>(context, "Should return HydrationContext instance.");
 
             ExpandMarkupsVisitor expandMarkupsVisitor = new ExpandMarkupsVisitor(context);
+            Assert.IsNotNull(expandMarkupsVisitor, "null ExpandMarkupsVisitor");
+            Assert.IsInstanceOf<ExpandMarkupsVisitor>(expandMarkupsVisitor, "Should return ExpandMarkupsVisitor instance.");
 
-            tlog.Debug(tag, $"ExpandMarkupsVisitorConstructor END (OK)");
-            Assert.Pass("ExpandMarkupsVisitorConstructor");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("ExpandMarkupsVisitor Skips")]
-        [Property("SPEC", "Tizen.NUI.ExpandMarkupsVisitor.Skips A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
-        public void ExpandMarkupsVisitorSkips()
-        {
-            tlog.Debug(tag, $"ExpandMarkupsVisitorSkips START");
-
-            try
-            {
-                IList<XmlName> l1 = ExpandMarkupsVisitor.Skips;
-            }
-            catch (Exception e)
-            {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
-            }
-
-            tlog.Debug(tag, $"ExpandMarkupsVisitorSkips END (OK)");
-            Assert.Pass("ExpandMarkupsVisitorSkips");
+            tlog.Debug(tag, $"ExpandMarkupsVisitorConstructor END");
         }
 
         [Test]
@@ -86,16 +72,16 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                TreeVisitingMode t1 = e1.VisitingMode;
+                var result = visitor.VisitingMode;
+                tlog.Debug(tag, "VisitingMode : " + result);
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"ExpandMarkupsVisitorVisitingMode END (OK)");
-            Assert.Pass("ExpandMarkupsVisitorVisitingMode");
+            tlog.Debug(tag, $"ExpandMarkupsVisitorVisitingMode END");
         }
 
         [Test]
@@ -110,16 +96,16 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                bool b1 = e1.StopOnDataTemplate;
+                var result = visitor.StopOnDataTemplate;
+                tlog.Debug(tag, "StopOnDataTemplate : " + result);
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"ExpandMarkupsVisitorStopOnDataTemplate END (OK)");
-            Assert.Pass("ExpandMarkupsVisitorStopOnDataTemplate");
+            tlog.Debug(tag, $"ExpandMarkupsVisitorStopOnDataTemplate END");
         }
 
         [Test]
@@ -134,16 +120,16 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                bool b1 = e1.StopOnResourceDictionary;
+                var result = visitor.StopOnResourceDictionary;
+                tlog.Debug(tag, "StopOnResourceDictionary : " + result);
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"ExpandMarkupsVisitorStopOnResourceDictionary END (OK)");
-            Assert.Pass("ExpandMarkupsVisitorStopOnResourceDictionary");
+            tlog.Debug(tag, $"ExpandMarkupsVisitorStopOnResourceDictionary END");
         }
 
         [Test]
@@ -158,35 +144,16 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                bool b1 = e1.VisitNodeOnDataTemplate;
+                var result = visitor.VisitNodeOnDataTemplate;
+                tlog.Debug(tag, "VisitNodeOnDataTemplate : " + result);
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"ExpandMarkupsVisitorVisitNodeOnDataTemplate END (OK)");
-            Assert.Pass("ExpandMarkupsVisitorVisitNodeOnDataTemplate");
-        }
-
-        public class INodeImplement : INode
-        {
-            public global::System.Collections.Generic.List<string> IgnorablePrefixes { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-            public global::System.Xml.IXmlNamespaceResolver NamespaceResolver => throw new NotImplementedException();
-
-            public INode Parent { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-            public void Accept(IXamlNodeVisitor visitor, INode parentNode)
-            {
-                throw new NotImplementedException();
-            }
-
-            public INode Clone()
-            {
-                throw new NotImplementedException();
-            }
+            tlog.Debug(tag, $"ExpandMarkupsVisitorVisitNodeOnDataTemplate END");
         }
 
         [Test]
@@ -201,18 +168,22 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                INodeImplement node = new INodeImplement();
-                INodeImplement nodeParent = new INodeImplement();
-                bool b1 = e1.SkipChildren(node, nodeParent);
+                var child = new INodeImpl();
+                Assert.IsNotNull(child, "null INodeImpl");
+
+                var parent = new INodeImpl();
+                Assert.IsNotNull(parent, "null INodeImpl");
+
+                var result = visitor.SkipChildren(child, parent);
+                tlog.Debug(tag, "SkipChildren : " + result);
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"ExpandMarkupsVisitorSkipChildren END (OK)");
-            Assert.Pass("ExpandMarkupsVisitorSkipChildren");
+            tlog.Debug(tag, $"ExpandMarkupsVisitorSkipChildren END");
         }
 
         public class IXmlNamespaceResolverImplement : IXmlNamespaceResolver
@@ -247,11 +218,14 @@ namespace Tizen.NUI.Devel.Tests
             {
                 IList<XmlType> list = null;
                 XmlType xmlType = new XmlType("myNameSpace", "myName", list);
+                Assert.IsNotNull(xmlType, "null XmlType");
 
                 IXmlNamespaceResolverImplement i1 = new IXmlNamespaceResolverImplement();
+                Assert.IsNotNull(i1, "null IXmlNamespaceResolverImplement");
                 ElementNode n1 = new ElementNode(xmlType, "myNameSpace", i1);
+                Assert.IsNotNull(n1, "null ElementNode");
 
-                bool b1 = e1.IsResourceDictionary(n1);
+                bool b1 = visitor.IsResourceDictionary(n1);
             }
             catch (Exception e)
             {
@@ -259,8 +233,7 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception" + e.ToString());
             }
 
-            tlog.Debug(tag, $"ExpandMarkupsVisitorIsResourceDictionary END (OK)");
-            Assert.Pass("ExpandMarkupsVisitorIsResourceDictionary");
+            tlog.Debug(tag, $"ExpandMarkupsVisitorIsResourceDictionary END");
         }
 
         [Test]
@@ -276,9 +249,12 @@ namespace Tizen.NUI.Devel.Tests
             try
             {
                 IXmlNamespaceResolverImplement i1 = new IXmlNamespaceResolverImplement();
+                Assert.IsNotNull(i1, "null IXmlNamespaceResolverImplement");
                 MarkupNode markupnode = new MarkupNode("markup", i1);
-                INodeImplement parentNode = new INodeImplement();
-                e1.Visit(markupnode, parentNode);
+                Assert.IsNotNull(markupnode, "null MarkupNode");
+                INodeImpl parentNode = new INodeImpl();
+                Assert.IsNotNull(parentNode, "null INodeImplement");
+                visitor.Visit(markupnode, parentNode);
             }
             catch (Exception e)
             {
@@ -286,8 +262,7 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception" + e.ToString());
             }
 
-            tlog.Debug(tag, $"ExpandMarkupsVisitorVisit END (OK)");
-            Assert.Pass("ExpandMarkupsVisitorVisit");
+            tlog.Debug(tag, $"ExpandMarkupsVisitorVisit END");
         }
 
         public class IServiceProviderImplement : IServiceProvider
@@ -298,30 +273,32 @@ namespace Tizen.NUI.Devel.Tests
             }
         }
 
-        [Test]
-        [Category("P1")]
-        [Description("ExpandMarkupsVisitor Parse")]
-        [Property("SPEC", "Tizen.NUI.ExpandMarkupsVisitor.MarkupExpansionParser.Parse M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        public void ExpandMarkupsVisitorParse()
-        {
-            tlog.Debug(tag, $"ExpandMarkupsVisitorParse START");
+        //[Test]
+        //[Category("P1")]
+        //[Description("ExpandMarkupsVisitor Parse")]
+        //[Property("SPEC", "Tizen.NUI.ExpandMarkupsVisitor.MarkupExpansionParser.Parse M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //public void ExpandMarkupsVisitorParse()
+        //{
+        //    tlog.Debug(tag, $"ExpandMarkupsVisitorParse START");
 
-            try
-            {
-                MarkupExpansionParser markupExpansionParser = new MarkupExpansionParser();
-                IServiceProviderImplement serviceProviderImplement = new IServiceProviderImplement();
+        //    try
+        //    {
+        //        MarkupExpansionParser markupExpansionParser = new MarkupExpansionParser();
+        //        Assert.IsNotNull(markupExpansionParser, "null MarkupExpansionParser");
+        //        IServiceProviderImplement serviceProviderImplement = new IServiceProviderImplement();
+        //        Assert.IsNotNull(serviceProviderImplement, "null IServiceProviderImplement");
 
-                string s1 = new string('a', 4);
-                markupExpansionParser.Parse("matchString", ref s1, serviceProviderImplement);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                tlog.Debug(tag, $"ExpandMarkupsVisitorParse END (OK)");
-                Assert.Pass("Caught Exception : passed!");
-            }
-        }
+        //        string s1 = new string('a', 4);
+        //        markupExpansionParser.Parse("matchString", ref s1, serviceProviderImplement);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        tlog.Debug(tag, e.Message.ToString());
+        //        Assert.Fail("Caught Exception" + e.ToString());
+        //    }
+        //    tlog.Debug(tag, $"ExpandMarkupsVisitorParse END");
+        //}
     }
 }

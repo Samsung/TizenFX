@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Xml;
+using Tizen.NUI.Binding;
 using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.Devel.Tests
@@ -10,25 +11,33 @@ namespace Tizen.NUI.Devel.Tests
 
     [TestFixture]
     [Description("internal/Xaml/ApplyPropertiesVisitor")]
-    internal class PublicApplyPropertiesVisitorTest
+    public class InternalApplyPropertiesVisitorTest
     {
         private const string tag = "NUITEST";
-        private static ApplyPropertiesVisitor a1;
+        private ApplyPropertiesVisitor visitor;
+
+        internal class INodeImpl : INode
+        {
+            public global::System.Collections.Generic.List<string> IgnorablePrefixes { get; set; }
+            public global::System.Xml.IXmlNamespaceResolver NamespaceResolver => new INodeImpl().NamespaceResolver;
+            public INode Parent { get; set; }
+            public void Accept(IXamlNodeVisitor visitor, INode parentNode) { }
+            public INode Clone() { return new INodeImpl(); }
+        }
+
         [SetUp]
         public void Init()
         {
             tlog.Info(tag, "Init() is called!");
-            HydrationContext context = new HydrationContext();
-            a1 = new ApplyPropertiesVisitor(context, false);
+            visitor = new ApplyPropertiesVisitor(new HydrationContext(), false);
         }
 
         [TearDown]
         public void Destroy()
         {
-            a1 = null;
+            visitor = null;
             tlog.Info(tag, "Destroy() is called!");
         }
-
         [Test]
         [Category("P1")]
         [Description("ApplyPropertiesVisitor ApplyPropertiesVisitor")]
@@ -40,13 +49,15 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"ApplyPropertiesVisitorConstructor START");
 
             HydrationContext context = new HydrationContext();
+            Assert.IsNotNull(context, "null HydrationContext");
 
             ApplyPropertiesVisitor applyPropertiesVisitor = new ApplyPropertiesVisitor(context, false);
+            Assert.IsNotNull(applyPropertiesVisitor, "null ApplyPropertiesVisitor");
+            Assert.IsInstanceOf<ApplyPropertiesVisitor>(applyPropertiesVisitor, "Should return ApplyPropertiesVisitor instance.");
 
-            tlog.Debug(tag, $"ApplyPropertiesVisitorConstructor END (OK)");
-            Assert.Pass("ApplyPropertiesVisitorConstructor");
+            tlog.Debug(tag, $"ApplyPropertiesVisitorConstructor END");
         }
-
+		
         [Test]
         [Category("P1")]
         [Description("ApplyPropertiesVisitor VisitingMode")]
@@ -59,16 +70,16 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                TreeVisitingMode t1 = a1.VisitingMode;
+                var result = visitor.VisitingMode;
+                tlog.Debug(tag, "VisitingMode : " + result);
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"ApplyPropertiesVisitorVisitingMode END (OK)");
-            Assert.Pass("ApplyPropertiesVisitorVisitingMode");
+            tlog.Debug(tag, $"ApplyPropertiesVisitorVisitingMode END");
         }
 
         [Test]
@@ -83,16 +94,16 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                bool b1 = a1.StopOnDataTemplate;
+                var result = visitor.StopOnDataTemplate;
+                tlog.Debug(tag, "StopOnDataTemplate : " + result);
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"ApplyPropertiesVisitorStopOnDataTemplate END (OK)");
-            Assert.Pass("ApplyPropertiesVisitorStopOnDataTemplate");
+            tlog.Debug(tag, $"ApplyPropertiesVisitorStopOnDataTemplate END");
         }
 
         [Test]
@@ -107,16 +118,16 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                bool b1 = a1.StopOnResourceDictionary;
+                var result = visitor.StopOnResourceDictionary;
+                tlog.Debug(tag, "StopOnResourceDictionary : " + result);
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"ApplyPropertiesVisitorStopOnResourceDictionary END (OK)");
-            Assert.Pass("ApplyPropertiesVisitorStopOnResourceDictionary");
+            tlog.Debug(tag, $"ApplyPropertiesVisitorStopOnResourceDictionary END");
         }
 
         [Test]
@@ -131,35 +142,16 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                bool b1 = a1.VisitNodeOnDataTemplate;
+                var result = visitor.VisitNodeOnDataTemplate;
+                tlog.Debug(tag, "VisitNodeOnDataTemplate : " + result);
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"ApplyPropertiesVisitorVisitNodeOnDataTemplate END (OK)");
-            Assert.Pass("ApplyPropertiesVisitorVisitNodeOnDataTemplate");
-        }
-
-        public class INodeImplement : INode
-        {
-            public global::System.Collections.Generic.List<string> IgnorablePrefixes { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-            public global::System.Xml.IXmlNamespaceResolver NamespaceResolver => throw new NotImplementedException();
-
-            public INode Parent { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-            public void Accept(IXamlNodeVisitor visitor, INode parentNode)
-            {
-                throw new NotImplementedException();
-            }
-
-            public INode Clone()
-            {
-                throw new NotImplementedException();
-            }
+            tlog.Debug(tag, $"ApplyPropertiesVisitorVisitNodeOnDataTemplate END");
         }
 
         [Test]
@@ -174,18 +166,22 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                INodeImplement n1 = new INodeImplement();
-                INodeImplement n2 = new INodeImplement();
-                bool b1 = a1.SkipChildren(n1, n2);
+                var child = new INodeImpl();
+                Assert.IsNotNull(child, "null INodeImpl object.");
+
+                var parent = new INodeImpl();
+                Assert.IsNotNull(parent, "null INodeImpl object.");
+
+                var result = visitor.SkipChildren(child, parent);
+                tlog.Debug(tag, "SkipChildren : " + result);
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"ApplyPropertiesVisitorSkipChildren END (OK)");
-            Assert.Pass("ApplyPropertiesVisitorSkipChildren");
+            tlog.Debug(tag, $"ApplyPropertiesVisitorSkipChildren END");
         }
 
         public class IXmlNamespaceResolverImplement : IXmlNamespaceResolver
@@ -218,19 +214,26 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                IList<XmlType> list = null;
+                HydrationContext context = new HydrationContext();
+                IList<XmlType> list = new List<XmlType>();
                 XmlType xmlType = new XmlType("myNameSpace", "myName", list);
-
+                Assert.IsNotNull(xmlType, "null XmlType");
                 IXmlNamespaceResolverImplement i1 = new IXmlNamespaceResolverImplement();
+                Assert.IsNotNull(i1, "null IXmlNamespaceResolverImplement");
                 ElementNode n1 = new ElementNode(xmlType, "myNameSpace", i1);
-                bool b1 = a1.IsResourceDictionary(n1);
+                Assert.IsNotNull(n1, "null ElementNode");
+                context.Types[n1] = typeof(ResourceDictionary);
+                ApplyPropertiesVisitor a2 = new ApplyPropertiesVisitor(context, false);
+                Assert.IsNotNull(a2, "null ApplyPropertiesVisitor");
+                bool b1 = a2.IsResourceDictionary(n1);
+                Assert.True(b1, "Should be true");
             }
             catch (Exception e)
             {
                 tlog.Debug(tag, e.Message.ToString());
-                tlog.Debug(tag, $"ApplyPropertiesVisitorIsResourceDictionary END (OK)");
-                Assert.Pass("Caught Exception : passed!");
+                Assert.Fail("Caught Exception" + e.ToString());
             }
+            tlog.Debug(tag, $"ApplyPropertiesVisitorIsResourceDictionary END");
 
         }
 
@@ -242,23 +245,31 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         public void ApplyPropertiesVisitorVisit1()
         {
-            tlog.Debug(tag, $"ApplyPropertiesVisitorVisit START");
+            tlog.Debug(tag, $"ApplyPropertiesVisitorVisit1 START");
 
             try
             {
+                HydrationContext context = new HydrationContext();
                 object o1 = new object();
                 IXmlNamespaceResolverImplement i1 = new IXmlNamespaceResolverImplement();
+                Assert.IsNotNull(i1, "null IXmlNamespaceResolverImplement");
                 ValueNode valueNode = new ValueNode(o1, i1);
+                Assert.IsNotNull(valueNode, "null ValueNode");
 
-                INodeImplement nodeImplement = new INodeImplement();
-                a1.Visit(valueNode, nodeImplement);
+                INodeImpl nodeImplement = new INodeImpl();
+                Assert.IsNotNull(nodeImplement, "null INodeImplement");
+                context.Values[valueNode] = o1;
+                context.Values[nodeImplement] = o1;
+                ApplyPropertiesVisitor a2 = new ApplyPropertiesVisitor(context, false);
+                Assert.IsNotNull(a2, "null ApplyPropertiesVisitor");
+                a2.Visit(valueNode, nodeImplement);
             }
             catch (Exception e)
             {
                 tlog.Debug(tag, e.Message.ToString());
-                tlog.Debug(tag, $"ApplyPropertiesVisitorVisit END (OK)");
-                Assert.Pass("Caught Exception : passed!");
+                Assert.Fail("Caught Exception" + e.ToString());
             }
+            tlog.Debug(tag, $"ApplyPropertiesVisitorVisit1 END");
         }
 
         [Test]
@@ -269,26 +280,34 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         public void ApplyPropertiesVisitorVisit2()
         {
-            tlog.Debug(tag, $"ApplyPropertiesVisitorVisit START");
+            tlog.Debug(tag, $"ApplyPropertiesVisitorVisit2 START");
 
             try
             {
-                INodeImplement nodeImplement = new INodeImplement();
+                HydrationContext context = new HydrationContext();
+                object o1 = new object();
+                INodeImpl nodeImplement = new INodeImpl();
+                Assert.IsNotNull(nodeImplement, "null INodeImplement");
 
                 IList<XmlType> list = null;
                 XmlType xmlType = new XmlType("myNameSpace", "myName", list);
-
+                Assert.IsNotNull(xmlType, "null XmlType");
                 IXmlNamespaceResolverImplement ix1 = new IXmlNamespaceResolverImplement();
+                Assert.IsNotNull(ix1, "null IXmlNamespaceResolverImplement");
                 ElementNode n1 = new ElementNode(xmlType, "myNameSpace", ix1);
-
-                a1.Visit(n1, nodeImplement);
+                Assert.IsNotNull(n1, "null ElementNode");
+                context.Values[n1] = o1;
+                context.Values[nodeImplement] = o1;
+                ApplyPropertiesVisitor a2 = new ApplyPropertiesVisitor(context, false);
+                Assert.IsNotNull(a2, "null ApplyPropertiesVisitor");
+                a2.Visit(n1, nodeImplement);
             }
             catch (Exception e)
             {
                 tlog.Debug(tag, e.Message.ToString());
-                tlog.Debug(tag, $"ApplyPropertiesVisitorVisit END (OK)");
-                Assert.Pass("Caught Exception : passed!");
+                Assert.Fail("Caught Exception" + e.ToString());
             }
+            tlog.Debug(tag, $"ApplyPropertiesVisitorVisit2 END");
 
         }
 
@@ -304,9 +323,12 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                INodeImplement n1 = new INodeImplement();
-                INodeImplement n2 = new INodeImplement();
+                INodeImpl n1 = new INodeImpl();
+                Assert.IsNotNull(n1, "null INodeImplement");
+                INodeImpl n2 = new INodeImpl();
+                Assert.IsNotNull(n2, "null INodeImplement");
                 XmlName xmlName = new XmlName();
+                Assert.IsNotNull(xmlName, "null XmlName");
                 ApplyPropertiesVisitor.TryGetPropertyName(n1, n2, out xmlName);
             }
             catch (Exception e)
@@ -315,8 +337,7 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception" + e.ToString());
             }
 
-            tlog.Debug(tag, $"ApplyPropertiesVisitorTryGetPropertyName END (OK)");
-            Assert.Pass("ApplyPropertiesVisitorTryGetPropertyName");
+            tlog.Debug(tag, $"ApplyPropertiesVisitorTryGetPropertyName END");
         }
 
         [Test]
@@ -331,8 +352,10 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                INodeImplement n1 = new INodeImplement();
-                INodeImplement n2 = new INodeImplement();
+                INodeImpl n1 = new INodeImpl();
+                Assert.IsNotNull(n1, "null INodeImplement");
+                INodeImpl n2 = new INodeImpl();
+                Assert.IsNotNull(n2, "null INodeImplement");
 
                 ApplyPropertiesVisitor.IsCollectionItem(n1, n2);
             }
@@ -342,8 +365,7 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception" + e.ToString());
             }
 
-            tlog.Debug(tag, $"ApplyPropertiesVisitorIsCollectionItem END (OK)");
-            Assert.Pass("ApplyPropertiesVisitorIsCollectionItem");
+            tlog.Debug(tag, $"ApplyPropertiesVisitorIsCollectionItem END");
         }
 
         //[Test]
@@ -367,7 +389,7 @@ namespace Tizen.NUI.Devel.Tests
         //        Assert.Fail("Caught Exception" + e.ToString());
         //    }
 
-        //    tlog.Debug(tag, $"ApplyPropertiesVisitorGetContentPropertyName END (OK)");
+        //    tlog.Debug(tag, $"ApplyPropertiesVisitorGetContentPropertyName END");
         //    Assert.Pass("ApplyPropertiesVisitorGetContentPropertyName");
         //}
 
@@ -383,63 +405,70 @@ namespace Tizen.NUI.Devel.Tests
             }
         }
 
-        [Test]
-        [Category("P1")]
-        [Description("ApplyPropertiesVisitor SetPropertyValue")]
-        [Property("SPEC", "Tizen.NUI.ApplyPropertiesVisitor.SetPropertyValue M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        public void ApplyPropertiesVisitorProvideValue()
-        {
-            tlog.Debug(tag, $"ApplyPropertiesVisitorSetPropertyValue START");
+        //[Test]
+        //[Category("P1")]
+        //[Description("ApplyPropertiesVisitor SetPropertyValue")]
+        //[Property("SPEC", "Tizen.NUI.ApplyPropertiesVisitor.SetPropertyValue M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //public void ApplyPropertiesVisitorSetPropertyValue()
+        //{
+        //    tlog.Debug(tag, $"ApplyPropertiesVisitorSetPropertyValue START");
 
-            try
-            {
-                object o1 = new object();
-                XmlName xmlName = new XmlName();
-                object value = new object();
-                object rootElement = new object();
-                INodeImplement nodeImplement = new INodeImplement();
-                HydrationContext context = new HydrationContext();
-                IXmlLineInfoImplement xmlLineInfoImplement = new IXmlLineInfoImplement();
+        //    try
+        //    {
+        //        object o1 = new object();
+        //        XmlName xmlName = new XmlName();
+        //        Assert.IsNotNull(xmlName, "null XmlName");
+        //        object value = new object();
+        //        object rootElement = new object();
+        //        INodeImplement nodeImplement = new INodeImplement();
+        //        Assert.IsNotNull(nodeImplement, "null INodeImplement");
+        //        HydrationContext context = new HydrationContext();
+        //        Assert.IsNotNull(context, "null HydrationContext");
+        //        IXmlLineInfoImplement xmlLineInfoImplement = new IXmlLineInfoImplement();
+        //        Assert.IsNotNull(xmlLineInfoImplement, "null IXmlLineInfoImplement");
 
-                ApplyPropertiesVisitor.SetPropertyValue(o1, xmlName, value, rootElement, nodeImplement, context, xmlLineInfoImplement);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                tlog.Debug(tag, $"ApplyPropertiesVisitorSetPropertyValue END (OK)");
-                Assert.Pass("Caught Exception : passed!");
-            }
-        }
+        //        ApplyPropertiesVisitor.SetPropertyValue(o1, xmlName, value, rootElement, nodeImplement, context, xmlLineInfoImplement);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        tlog.Debug(tag, e.Message.ToString());
+        //        Assert.Fail("Caught Exception" + e.ToString());
+        //    }
+        //    tlog.Debug(tag, $"ApplyPropertiesVisitorSetPropertyValue END");
+        //}
 
-        [Test]
-        [Category("P1")]
-        [Description("ApplyPropertiesVisitor GetPropertyValue")]
-        [Property("SPEC", "Tizen.NUI.ApplyPropertiesVisitor.GetPropertyValue M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        public void ApplyPropertiesVisitorGetPropertyValue()
-        {
-            tlog.Debug(tag, $"ApplyPropertiesVisitorGetPropertyValue START");
+        //[Test]
+        //[Category("P1")]
+        //[Description("ApplyPropertiesVisitor GetPropertyValue")]
+        //[Property("SPEC", "Tizen.NUI.ApplyPropertiesVisitor.GetPropertyValue M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //public void ApplyPropertiesVisitorGetPropertyValue()
+        //{
+        //    tlog.Debug(tag, $"ApplyPropertiesVisitorGetPropertyValue START");
 
-            try
-            {
-                object o1 = new object();
-                XmlName xmlName = new XmlName();
-                object value = new object();
-                INodeImplement nodeImplement = new INodeImplement();
-                HydrationContext context = new HydrationContext();
-                IXmlLineInfoImplement xmlLineInfoImplement = new IXmlLineInfoImplement();
-
-                ApplyPropertiesVisitor.GetPropertyValue(o1, xmlName, context, xmlLineInfoImplement, out value);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                tlog.Debug(tag, $"ApplyPropertiesVisitorGetPropertyValue END (OK)");
-                Assert.Pass("Caught Exception : passed!");
-            }
-        }
+        //    try
+        //    {
+        //        object o1 = new object();
+        //        XmlName xmlName = new XmlName();
+        //        Assert.IsNotNull(xmlName, "null XmlName");
+        //        object value = new object();
+        //        INodeImplement nodeImplement = new INodeImplement();
+        //        Assert.IsNotNull(nodeImplement, "null INodeImplement");
+        //        HydrationContext context = new HydrationContext();
+        //        Assert.IsNotNull(context, "null HydrationContext");
+        //        IXmlLineInfoImplement xmlLineInfoImplement = new IXmlLineInfoImplement();
+        //        Assert.IsNotNull(xmlLineInfoImplement, "null IXmlLineInfoImplement");
+        //        ApplyPropertiesVisitor.GetPropertyValue(o1, xmlName, context, xmlLineInfoImplement, out value);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        tlog.Debug(tag, e.Message.ToString());
+        //        Assert.Fail("Caught Exception" + e.ToString());
+        //    }
+        //    tlog.Debug(tag, $"ApplyPropertiesVisitorGetPropertyValue END");
+        //}
     }
 }

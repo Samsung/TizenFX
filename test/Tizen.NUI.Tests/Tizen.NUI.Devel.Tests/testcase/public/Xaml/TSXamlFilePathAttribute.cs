@@ -7,7 +7,7 @@ namespace Tizen.NUI.Devel.Tests
 
     [TestFixture]
     [Description("public/xaml/XamlFilePathAttribute")]
-    internal class PublicXamlFilePathAttributeTest
+    public class PublicXamlFilePathAttributeTest
     {
         private const string tag = "NUITEST";
 
@@ -33,10 +33,12 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"XamlFilePathAttributeConstructor START");
 
-            XamlFilePathAttribute x1 = new XamlFilePathAttribute("myPath");
+            var testingTarget = new XamlFilePathAttribute("myPath");
+            Assert.IsNotNull(testingTarget, "null XamlFilePathAttribute");
+            Assert.IsInstanceOf<XamlFilePathAttribute>(testingTarget, "Should return XamlFilePathAttribute instance.");
 
-            tlog.Debug(tag, $"XamlFilePathAttributeConstructor END (OK)");
-            Assert.Pass("XamlFilePathAttributeConstructor");
+            testingTarget = null;
+            tlog.Debug(tag, $"XamlFilePathAttributeConstructor END");
         }
     }
 }

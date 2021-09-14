@@ -37,24 +37,38 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"GestureDetectorConstructor START");
 			
-            GestureDetector ret = new GestureDetector();
-            Assert.IsNotNull(ret, "should be not null");
-            Assert.IsInstanceOf<GestureDetector>(ret, "should be an instance of testing target class!");
+            var testingTarget = new GestureDetector();
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<GestureDetector>(testingTarget, "should be an instance of testing target class!");
 
-            GestureDetector newOne = new GestureDetector(ret);
-            Assert.IsNotNull(newOne, "should be not null");
-            Assert.IsInstanceOf<GestureDetector>(newOne, "should be an instance of testing target class!");
-           
-            GestureDetector newTwo = new GestureDetector(GestureDetector.getCPtr(ret).Handle, true);
-            Assert.IsNotNull(newTwo, "should be not null");
-            Assert.IsInstanceOf<GestureDetector>(newTwo, "should be an instance of testing target class!");
-
-            ret.Dispose();
-            newOne.Dispose();
-            newTwo.Dispose();
+            testingTarget.Dispose();
             tlog.Debug(tag, $"GestureDetectorConstructor END (OK)");
             Assert.Pass("GestureDetectorConstructor");
         }
+
+        //[Test]
+        //[Category("P1")]
+        //[Description("GestureDetector constructor")]
+        //[Property("SPEC", "Tizen.NUI.GestureDetector.GestureDetector C")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "CONSTR")]
+        //[Property("AUTHOR", "guowei.wang@samsung.com")]
+        //public void GestureDetectorConstructorWithGestureDetector()
+        //{
+        //    tlog.Debug(tag, $"GestureDetectorConstructorWithGestureDetector START");
+
+        //    using (GestureDetector detector = new GestureDetector())
+        //    {
+        //        var testingTarget = new GestureDetector(detector);
+        //        Assert.IsNotNull(testingTarget, "should be not null");
+        //        Assert.IsInstanceOf<GestureDetector>(testingTarget, "should be an instance of testing target class!");
+
+        //        testingTarget.Dispose();
+        //    }
+
+        //    tlog.Debug(tag, $"GestureDetectorConstructorWithGestureDetector END (OK)");
+        //    Assert.Pass("GestureDetectorConstructor");
+        //}
 
         [Test]
         [Category("P1")]
@@ -67,43 +81,21 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"GestureDetectorAttach START");
 
-            LongPressGestureDetector ret = new LongPressGestureDetector();
-            Assert.IsNotNull(ret, "should be not null");
-            Assert.IsInstanceOf<GestureDetector>(ret, "should be an instance of testing target class!");
+            var testingTarget = new LongPressGestureDetector();
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<LongPressGestureDetector>(testingTarget, "should be an instance of testing target class!");
 
-            View view = new View();
-            ret.Attach(view);
+            using (View view = new View())
+            {
+                Window.Instance.GetDefaultLayer().Add(view);
+                testingTarget.Attach(view);
+                testingTarget.Detach(view);
+                Window.Instance.GetDefaultLayer().Remove(view);
+            }
 
-            ret.Detach(view);
-            ret.Dispose();
-            
+            testingTarget.Dispose();
             tlog.Debug(tag, $"GestureDetectorAttach END (OK)");
             Assert.Pass("GestureDetectorAttach");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("GestureDetector Detach")]
-        [Property("SPEC", "Tizen.NUI.GestureDetector.Detach M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void GestureDetectorDetach()
-        {
-            tlog.Debug(tag, $"GestureDetectorDetach START");
-            LongPressGestureDetector ret = new LongPressGestureDetector();
-
-            Assert.IsNotNull(ret, "should be not null");
-            Assert.IsInstanceOf<GestureDetector>(ret, "should be an instance of testing target class!");
-
-            View view = new View();
-
-            ret.Attach(view);
-            ret.Detach(view);
-            ret.Dispose();
-            
-            tlog.Debug(tag, $"GestureDetectorDetach END (OK)");
-            Assert.Pass("GestureDetectorDetach");
         }
 
         [Test]
@@ -116,16 +108,18 @@ namespace Tizen.NUI.Devel.Tests
         public void GestureDetectorDetachAll()
         {
             tlog.Debug(tag, $"GestureDetectorDetachAll START");
-            LongPressGestureDetector ret = new LongPressGestureDetector();
-            Assert.IsNotNull(ret, "should be not null");
-            Assert.IsInstanceOf<GestureDetector>(ret, "should be an instance of testing target class!");
 
-            View view = new View();
-            ret.Attach(view);
+            var testingTarget = new LongPressGestureDetector();
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<LongPressGestureDetector>(testingTarget, "should be an instance of testing target class!");
 
-            ret.DetachAll();
-            ret.Dispose();
-            
+            using (View view = new View())
+            {
+                testingTarget.Attach(view);
+                testingTarget.DetachAll();
+            }
+
+            testingTarget.Dispose();            
             tlog.Debug(tag, $"GestureDetectorDetachAll END (OK)");
             Assert.Pass("GestureDetectorDetachAll");
         }
@@ -140,18 +134,20 @@ namespace Tizen.NUI.Devel.Tests
         public void GestureDetectorGetAttachedViewCount()
         {
             tlog.Debug(tag, $"GestureDetectorGetAttachedViewCount START");
-            LongPressGestureDetector ret = new LongPressGestureDetector();
-            Assert.IsNotNull(ret, "should be not null");
-            Assert.IsInstanceOf<GestureDetector>(ret, "should be an instance of testing target class!");
 
-            View view = new View();
-            ret.Attach(view);
+            var testingTarget = new LongPressGestureDetector();
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<LongPressGestureDetector>(testingTarget, "should be an instance of testing target class!");
 
-            ret.GetAttachedViewCount();
+            using (View view = new View())
+            {
+                testingTarget.Attach(view);
+                tlog.Debug(tag, "AttachedViewCount : " + testingTarget.GetAttachedViewCount());
 
-            ret.Detach(view);
-            ret.Dispose();
-            
+                testingTarget.Detach(view);
+            }
+
+            testingTarget.Dispose();            
             tlog.Debug(tag, $"GestureDetectorGetAttachedViewCount END (OK)");
             Assert.Pass("GestureDetectorGetAttachedViewCount");
         }
@@ -166,41 +162,44 @@ namespace Tizen.NUI.Devel.Tests
         public void GestureDetectorGetAttachedView()
         {
             tlog.Debug(tag, $"GestureDetectorGetAttachedView START");
-            LongPressGestureDetector ret = new LongPressGestureDetector();
-            Assert.IsNotNull(ret, "should be not null");
-            Assert.IsInstanceOf<GestureDetector>(ret, "should be an instance of testing target class!");
 
-            View view = new View();
-            ret.Attach(view);
+            var testingTarget = new LongPressGestureDetector();
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<LongPressGestureDetector>(testingTarget, "should be an instance of testing target class!");
 
-            ret.GetAttachedView(0);
+            using (View view = new View())
+            {
+                testingTarget.Attach(view);
+                testingTarget.GetAttachedView(0);
+                testingTarget.Detach(view);
+            }
 
-            ret.Detach(view);
-            ret.Dispose();
-            
+            testingTarget.Dispose();            
             tlog.Debug(tag, $"GestureDetectorGetAttachedView END (OK)");
             Assert.Pass("GestureDetectorGetAttachedView");
         }
 
-        [Test]
-        [Category("P1")]
-        [Description("GestureDetector Assign")]
-        [Property("SPEC", "Tizen.NUI.GestureDetector.Assign M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void GestureDetectorAssign()
-        {
-            tlog.Debug(tag, $"GestureDetectorAssign START");
-            GestureDetector ret = new GestureDetector();
-            GestureDetector newOne = new GestureDetector();
-            
-            newOne = ret;
-            ret.Dispose();
-            newOne.Dispose();
-            tlog.Debug(tag, $"GestureDetectorAssign END (OK)");
-            Assert.Pass("GestureDetectorAssign");
-        }
+        //[Test]
+        //[Category("P1")]
+        //[Description("GestureDetector Assign")]
+        //[Property("SPEC", "Tizen.NUI.GestureDetector.Assign M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //[Property("AUTHOR", "guowei.wang@samsung.com")]
+        //public void GestureDetectorAssign()
+        //{
+        //    tlog.Debug(tag, $"GestureDetectorAssign START");
+
+        //    using (GestureDetector detector = new GestureDetector())
+        //    {
+        //        var testingTarget = detector.Assign(detector);
+        //        Assert.IsNotNull(testingTarget, "should be not null");
+        //        Assert.IsInstanceOf<GestureDetector>(testingTarget, "should be an instance of testing target class!");
+        //    }
+
+        //    tlog.Debug(tag, $"GestureDetectorAssign END (OK)");
+        //    Assert.Pass("GestureDetectorAssign");
+        //}
 
         [Test]
         [Category("P1")]
@@ -212,11 +211,15 @@ namespace Tizen.NUI.Devel.Tests
         public void GestureDetectorDownCast()
         {
             tlog.Debug(tag, $"GestureDetectorDownCast START");
-            BaseHandle handle = new BaseHandle();
-            GestureDetector ret = GestureDetector.DownCast(handle);
 
-            Assert.IsNotNull(ret, "should be not null");
-            Assert.IsInstanceOf<GestureDetector>(ret, "should be an instance of testing target class!");
+            using (GestureDetector detector = new GestureDetector())
+            {
+                var testingTarget = GestureDetector.DownCast(detector);
+                Assert.IsInstanceOf<GestureDetector>(testingTarget, "should be an instance of testing target class!");
+
+                testingTarget.Dispose();
+            }
+            
             tlog.Debug(tag, $"GestureDetectorDownCast END (OK)");
             Assert.Pass("GestureDetectorDownCast");
         }
@@ -231,17 +234,22 @@ namespace Tizen.NUI.Devel.Tests
         public void GestureDetectorgetCPtr()
         {
             tlog.Debug(tag, $"GestureDetectorgetCPtr START");
-            GestureDetector ret = new GestureDetector();
-            Assert.IsNotNull(ret, "should be not null");
-            Assert.IsInstanceOf<GestureDetector>(ret, "should be an instance of testing target class!");
 
-            global::System.Runtime.InteropServices.HandleRef ptr = GestureDetector.getCPtr(ret);
+            var testingTarget = new GestureDetector();
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<GestureDetector>(testingTarget, "should be an instance of testing target class!");
 
-            GestureDetector newOne = null;
-            ptr = GestureDetector.getCPtr(newOne);
+            try
+            {
+                GestureDetector.getCPtr(testingTarget);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
 
-            ret.Dispose();
-            
+            testingTarget.Dispose();
             tlog.Debug(tag, $"GestureDetectorgetCPtr END (OK)");
             Assert.Pass("GestureDetectorgetCPtr");
         }

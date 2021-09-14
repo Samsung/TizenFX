@@ -29,6 +29,7 @@ namespace Tizen.NUI.BaseComponents
     {
         private bool disposed = false;
         private bool? focusable;
+        private bool? focusableChildren;
         private bool? focusableInTouch;
         private bool? positionUsesPivotPoint;
         private Position parentOrigin;
@@ -105,6 +106,17 @@ namespace Tizen.NUI.BaseComponents
         {
             get => (bool?)GetValue(FocusableProperty);
             set => SetValue(FocusableProperty, value);
+        }
+
+        /// <summary>
+        /// Whether the children of this view can be focusable by keyboard navigation. If user sets this to false, the children of this view will not be focused.
+        /// Note : Default value is true.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool? FocusableChildren
+        {
+            get => (bool?)GetValue(FocusableChildrenProperty);
+            set => SetValue(FocusableChildrenProperty, value);
         }
 
         /// <summary>
@@ -421,6 +433,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The radius for the rounded corners of the View.
         /// The values in Vector4 are used in clockwise order from top-left to bottom-left : Vector4(top-left-corner, top-right-corner, bottom-right-corner, bottom-left-corner).
+        /// Each radius will clamp internally to the half of smaller of the view's width or height.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public Vector4 CornerRadius
@@ -430,7 +443,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Whether the CornerRadius property value is relative (percentage [0.0f to 1.0f] of the view size) or absolute (in world units).
+        /// Whether the CornerRadius property value is relative (percentage [0.0f to 0.5f] of the view size) or absolute (in world units).
         /// It is absolute by default.
         /// When the policy is relative, the corner radius is relative to the smaller of the view's width and height.
         /// </summary>
@@ -557,6 +570,7 @@ namespace Tizen.NUI.BaseComponents
             }
 
             IncludeDefaultStyle = source.IncludeDefaultStyle;
+            SolidNull = source.SolidNull;
         }
 
         /// <summary>

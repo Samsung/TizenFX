@@ -8,29 +8,27 @@ namespace Tizen.NUI.Devel.Tests
 
     [TestFixture]
     [Description("public/xaml/TypeConversionAttribute")]
-    internal class PublicTypeConversionAttributeTest
+    public class PublicTypeConversionAttributeTest
     {
         private const string tag = "NUITEST";
-        private static TypeConversionAttribute t1;
+        private TypeConversionAttribute conversionAttr;
         [SetUp]
         public void Init()
         {
             tlog.Info(tag, "Init() is called!");
-            Type type = typeof(string);
-            TypeConversionAttribute t1 = new TypeConversionAttribute(type);
         }
 
         [TearDown]
         public void Destroy()
         {
-            t1 = null;
+            conversionAttr = null;
             tlog.Info(tag, "Destroy() is called!");
         }
 
         [Test]
         [Category("P1")]
         [Description("TypeConversionAttribute TypeConversionAttribute")]
-        [Property("SPEC", "Tizen.NUI.TypeConversionAttribute.TypeConversionAttribute C")]
+        [Property("SPEC", "Tizen.NUI.Xaml.TypeConversionAttribute.TypeConversionAttribute C")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "CONSTR")]
         public void TypeConversionAttributeConstructor()
@@ -38,15 +36,15 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"TypeConversionAttributeConstructor START");
             Type type = typeof(string);
             TypeConversionAttribute t2 = new TypeConversionAttribute(type);
-
-            tlog.Debug(tag, $"TypeConversionAttributeConstructor END (OK)");
-            Assert.Pass("TypeConversionAttributeConstructor");
+            Assert.IsNotNull(t2, "null TypeConversionAttribute");
+            Assert.IsInstanceOf<TypeConversionAttribute>(t2, "Should return TypeConversionAttribute instance.");
+            tlog.Debug(tag, $"TypeConversionAttributeConstructor END");
         }
 
         [Test]
         [Category("P1")]
         [Description("TypeConversionAttribute TargetType")]
-        [Property("SPEC", "Tizen.NUI.TypeConversionAttribute.TargetType A")]
+        [Property("SPEC", "Tizen.NUI.Xaml.TypeConversionAttribute.TargetType A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
         public void TypeConversionAttributeTargetType()
@@ -54,14 +52,16 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"TypeConversionAttributeTargetType START");
             try
             {
-                Type type = t1.TargetType;
+
+                Type type = typeof(string);
+                TypeConversionAttribute t1 = new TypeConversionAttribute(type);
+                Assert.AreEqual(type, t1.TargetType, "Should be equal");
             }
             catch (Exception e)
             {
-                tlog.Debug(tag, e.Message.ToString());
-                tlog.Debug(tag, $"TypeConversionAttributeTargetType END (OK)");
-                Assert.Pass("Caught Exception : passed!");
+                Assert.Fail("Caught Exception" + e.ToString());
             }
+            tlog.Debug(tag, $"TypeConversionAttributeTargetType END");
         }
     }
 }

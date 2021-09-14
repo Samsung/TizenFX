@@ -9,34 +9,48 @@ namespace Tizen.NUI.Devel.Tests
 
     [TestFixture]
     [Description("public/xaml/XamlParseException ")]
-    internal class PublicXamlParseExceptionTest
+    public class PublicXamlParseExceptionTest
     {
         private const string tag = "NUITEST";
-        private XamlParseException xamlParseException;
+        private XamlParseException xamlParse;
+
+        internal class XmlLineInfoImpl : IXmlLineInfo
+        {
+            public int LineNumber => 0;
+            public int LinePosition => 0;
+            public bool HasLineInfo() => false;
+        }
+
         [SetUp]
         public void Init()
         {
             tlog.Info(tag, "Init() is called!");
-            xamlParseException = new XamlParseException("myMessage");
+            xamlParse = new XamlParseException("myMessage");
         }
 
         [TearDown]
         public void Destroy()
         {
-            xamlParseException = null;
+            xamlParse = null;
             tlog.Info(tag, "Destroy() is called!");
         }
 
-        private class XmlLineInfoImplent : IXmlLineInfo
+        [Test]
+        [Category("P1")]
+        [Description("XamlParseException XamlParseException")]
+        [Property("SPEC", "Tizen.NUI.XamlParseException.XamlParseException C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        public void XamlParseExceptionConstructor()
         {
-            public int LineNumber => throw new NotImplementedException();
+            tlog.Debug(tag, $"XamlParseExceptionConstructor START");
 
-            public int LinePosition => throw new NotImplementedException();
-
-            public bool HasLineInfo()
-            {
-                throw new NotImplementedException();
-            }
+            var testingTarget = new XamlParseException();
+            Assert.IsNotNull(testingTarget, "null XamlParseException");
+            Assert.IsInstanceOf<XamlParseException>(testingTarget, "Should return XamlParseException instance.");
+            
+            testingTarget = null;
+            tlog.Debug(tag, $"XamlParseExceptionConstructor END");
         }
 
         [Test]
@@ -45,36 +59,17 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC", "Tizen.NUI.XamlParseException.XamlParseException C")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "CONSTR")]
-        public void XamlParseExceptionConstructor1()
+        public void XamlParseExceptionConstructorWithMessage()
         {
-            tlog.Debug(tag, $"XamlParseExceptionConstructor START");
+            tlog.Debug(tag, $"XamlParseExceptionConstructorWithMessage START");
 
-            XamlParseException x1 = new XamlParseException("myMessage");
+            var testingTarget = new XamlParseException("myMessage", new Exception());
+            Assert.IsNotNull(testingTarget, "null XamlParseException");
+            Assert.IsInstanceOf<XamlParseException>(testingTarget, "Should return XamlParseException instance.");
 
-            x1 = null;
-
-            tlog.Debug(tag, $"XamlParseExceptionConstructor END (OK)");
-            Assert.Pass("XamlParseExceptionConstructor");
+            testingTarget = null;
+            tlog.Debug(tag, $"XamlParseExceptionConstructorWithMessage END");
         }
-
-        [Test]
-        [Category("P1")]
-        [Description("XamlParseException XamlParseException")]
-        [Property("SPEC", "Tizen.NUI.XamlParseException.XamlParseException C")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "CONSTR")]
-        public void XamlParseExceptionConstructor2()
-        {
-            tlog.Debug(tag, $"XamlParseExceptionConstructor START");
-
-            XamlParseException x2 = new XamlParseException();
-
-            x2 = null;
-
-            tlog.Debug(tag, $"XamlParseExceptionConstructor END (OK)");
-            Assert.Pass("XamlParseExceptionConstructor");
-        }
-
         [Test]
         [Category("P1")]
         [Description("XamlParseException XamlParseException")]
@@ -87,30 +82,10 @@ namespace Tizen.NUI.Devel.Tests
 
             Exception e1 = new Exception();
             XamlParseException x3 = new XamlParseException("myMessage", e1);
-
+            Assert.IsNotNull(x3, "null XamlParseException");
+            Assert.IsInstanceOf<XamlParseException>(x3, "Should return XamlParseException instance.");
             x3 = null;
-            tlog.Debug(tag, $"XamlParseExceptionConstructor END (OK)");
-            Assert.Pass("XamlParseExceptionConstructor");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("XamlParseException XamlParseException")]
-        [Property("SPEC", "Tizen.NUI.XamlParseException.XamlParseException C")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "CONSTR")]
-        public void XamlParseExceptionConstructor4()
-        {
-            tlog.Debug(tag, $"XamlParseExceptionConstructor START");
-
-            Exception e1 = new Exception();
-            XmlLineInfoImplent xmlLineInfoImplent = new XmlLineInfoImplent();
-            XamlParseException x4 = new XamlParseException("myMessage", xmlLineInfoImplent, e1);
-
-            x4 = null;
-
-            tlog.Debug(tag, $"XamlParseExceptionConstructor END (OK)");
-            Assert.Pass("XamlParseExceptionConstructor");
+            tlog.Debug(tag, $"XamlParseExceptionConstructor END");
         }
 
         [Test]
@@ -122,17 +97,19 @@ namespace Tizen.NUI.Devel.Tests
         public void XamlParseExceptionXmlInfo()
         {
             tlog.Debug(tag, $"XamlParseExceptionXmlInfo START");
+
             try
             {
-                XmlLineInfoImplent xml1 = (XmlLineInfoImplent)xamlParseException.XmlInfo;
+                var result = (XmlLineInfoImpl)xamlParse.XmlInfo;
+                tlog.Debug(tag, "XmlInfo : " + result);
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
-            tlog.Debug(tag, $"XamlParseExceptionXmlInfo END (OK)");
-            Assert.Pass("XamlParseExceptionXmlInfo");
+
+            tlog.Debug(tag, $"XamlParseExceptionXmlInfo END");
         }
 
         [Test]
@@ -144,17 +121,19 @@ namespace Tizen.NUI.Devel.Tests
         public void XamlParseExceptionUnformattedMessage()
         {
             tlog.Debug(tag, $"XamlParseExceptionUnformattedMessage START");
+
             try
             {
-                string s1 = xamlParseException.UnformattedMessage;
+                var result = xamlParse.UnformattedMessage;
+                tlog.Debug(tag, "UnformattedMessage : " + result);
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
-            tlog.Debug(tag, $"XamlParseExceptionUnformattedMessage END (OK)");
-            Assert.Pass("XamlParseExceptionUnformattedMessage");
+
+            tlog.Debug(tag, $"XamlParseExceptionUnformattedMessage END");
         }
     }
 }

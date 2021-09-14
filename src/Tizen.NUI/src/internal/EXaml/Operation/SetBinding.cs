@@ -26,11 +26,11 @@ namespace Tizen.NUI.EXaml
 {
     internal class SetBinding : Operation
     {
-        public SetBinding(GlobalDataList globalDataList, int instanceIndex, int bindablePropertyIndex, int valueIndex)
+        public SetBinding(GlobalDataList globalDataList, List<object> operationInfo)
         {
-            this.instanceIndex = instanceIndex;
-            this.bindablePropertyIndex = bindablePropertyIndex;
-            this.valueIndex = valueIndex;
+            instanceIndex = (int)operationInfo[0];
+            bindablePropertyIndex = (int)operationInfo[1];
+            valueIndex = (int)operationInfo[2];
             this.globalDataList = globalDataList;
         }
 
@@ -41,7 +41,10 @@ namespace Tizen.NUI.EXaml
             BindableObject bindableObject = globalDataList.GatheredInstances[instanceIndex] as BindableObject;
             var property = globalDataList.GatheredBindableProperties[bindablePropertyIndex];
             var value = globalDataList.GatheredInstances[valueIndex] as BindingBase;
-            bindableObject?.SetBinding(property, value);
+            if (value != null)
+            {
+                bindableObject?.SetBinding(property, value);
+            }
         }
 
         private int instanceIndex;

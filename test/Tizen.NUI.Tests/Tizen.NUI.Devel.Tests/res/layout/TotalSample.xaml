@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<l:UIElement x:Class="Tizen.NUI.Devel.Tests.TotalSample"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:l="clr-namespace:Tizen.NUI.Devel.Tests;assembly=Tizen.NUI.Devel.Tests"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <l:UIElement Event="UIElementEvent">
+        <x:Arguments>
+            <l:UIElement-TestEnum>V1</l:UIElement-TestEnum>
+        </x:Arguments>
+        <l:UIElement.StrList>
+            <x:List x:TypeArguments="x:String">
+                <x:String>123</x:String>
+                <x:String>456</x:String>
+            </x:List>
+        </l:UIElement.StrList>
+    </l:UIElement>
+
+    <l:UIElement Child ="{x:Static l:UIElement.StaticChild}" />
+
+    <l:UIElement.XamlResources>
+        <ResourceDictionary>
+            <l:FloatToStringConverter x:Key="floatToStringConverter" />
+            <x:String x:Key="positionKey">
+                200, 200
+            </x:String>
+            <XamlStyle x:Key="CustomStyle" TargetType="ImageView">
+                <XamlStyle.Triggers>
+                    <Trigger TargetType="ImageView" Property="ResourceUrl" Value="*Resource*/arrow.jpg">
+                        <Trigger.Setters>
+                            <Setter Property="PositionX" Value="200" />
+                        </Trigger.Setters>
+                    </Trigger>
+                    <Trigger TargetType="ImageView" Property="ResourceUrl" Value="*Resource*/arrow.jpg">
+                        <Trigger.Setters>
+                            <Setter Property="PositionX" Value="500" />
+                        </Trigger.Setters>
+                    </Trigger>
+                </XamlStyle.Triggers>
+            </XamlStyle>
+        </ResourceDictionary>
+    </l:UIElement.XamlResources>
+
+    <l:UIElement x:Name="t1" CharP="c" StringP="{Binding Path=Size.Width, Converter={StaticResource floatToStringConverter}, StringFormat='{0:N0}'}" BindingContext="{x:Reference t2}" />
+    <l:UIElement x:Name="t2" Size="300, 200" Position="{DynamicResource positionKey}" />
+    <l:UIElement x:Name="t3" StringP="{Binding Source={x:Reference t2}, Path=Size.Height, Converter={StaticResource floatToStringConverter}, StringFormat='{0:N0}'}" />
+
+    <l:UIElement CustomBindableProperty="View.Position">
+    </l:UIElement>
+   
+    <!--Cover CreateLanguagePrimitive-->
+    <l:UIElement Event="StaticUIElementEvent">
+        <x:Arguments>
+            <x:List x:TypeArguments="x:Object">
+                <x:Int32>123</x:Int32>
+                <x:UInt32>123</x:UInt32>
+                <x:Int64>123</x:Int64>
+                <x:UInt64>123</x:UInt64>
+                <x:Single>123</x:Single>
+                <x:Double>123</x:Double>
+                <x:Boolean>1</x:Boolean>
+                <x:TimeSpan>1:2:3</x:TimeSpan>
+                <x:Char>c</x:Char>
+                <x:Int16>1</x:Int16>
+                <x:UInt16>1</x:UInt16>
+                <x:Byte>1</x:Byte>
+                <x:SByte>1</x:SByte>
+                <x:Uri>http://www.samsung.net</x:Uri>
+                <x:Decimal>123</x:Decimal>
+            </x:List>
+        </x:Arguments>
+    </l:UIElement>
+
+    <l:UIElement>
+        <l:UIElement.Size>
+            <Null />
+        </l:UIElement.Size>
+        <l:UIElement.CustomList>
+            <ApplicationResourcePath FilePath="123" />
+            <x:String>456</x:String>
+        </l:UIElement.CustomList>
+    </l:UIElement>
+
+    <l:UIElement>
+        <l:UIElement.CustomList>
+            <l:CustomList>
+                <ApplicationResourcePath FilePath="123" />
+                <x:String>456</x:String>
+            </l:CustomList>
+        </l:UIElement.CustomList>
+    </l:UIElement>
+
+    <l:UIElement>
+        <x:Arguments>
+            <l:UIElement-TestNestType />
+        </x:Arguments>
+    </l:UIElement>
+
+    <l:UIElement>
+        <x:Arguments>
+            <l:UIElement />
+        </x:Arguments>
+    </l:UIElement>
+
+    <l:UIElement x:FactoryMethod="FactoryMethod">
+        <x:Arguments>
+            <x:Int32>1</x:Int32>
+            <x:String>str</x:String>
+            <x:Single>2.0</x:Single>
+        </x:Arguments>
+    </l:UIElement>
+
+    <l:UIElement x:FactoryMethod="FactoryMethodWithoutParams">
+    </l:UIElement>
+</l:UIElement>

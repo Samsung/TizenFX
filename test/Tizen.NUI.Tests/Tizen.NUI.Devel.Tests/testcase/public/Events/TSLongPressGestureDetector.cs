@@ -29,7 +29,7 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("Create a LongPressGestureDetector object. Check whether LongPressGestureDetector is successfully created or not.")]
+        [Description("Create a LongPressGestureDetector object.")]
         [Property("SPEC", "Tizen.NUI.LongPressGestureDetector.LongPressGestureDetector C")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "CONSTR")]
@@ -38,16 +38,80 @@ namespace Tizen.NUI.Devel.Tests
         public void LongPressGestureDetectorConstructor()
         {
             tlog.Debug(tag, $"LongPressGestureDetectorConstructor START");
-            LongPressGestureDetector a1 = new LongPressGestureDetector();
-            LongPressGestureDetector a2 = new LongPressGestureDetector(7);
-            LongPressGestureDetector a3 = new LongPressGestureDetector(3, 7);
-            LongPressGestureDetector a4 = new LongPressGestureDetector(a3);
 
-            a1.Dispose();
-            a2.Dispose();
-            a3.Dispose();
-            a4.Dispose();
+            var testingTarget = new LongPressGestureDetector();
+            Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+            Assert.IsInstanceOf<LongPressGestureDetector>(testingTarget, "Should be an instance of LongPressGestureDetector type.");
+
+            testingTarget.Dispose();
             tlog.Debug(tag, $"LongPressGestureDetectorConstructor END (OK)");
+            Assert.Pass("LongPressGestureDetectorConstructor");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Create a LongPressGestureDetector object.")]
+        [Property("SPEC", "Tizen.NUI.LongPressGestureDetector.LongPressGestureDetector C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void LongPressGestureDetectorConstructorWithTouchesRequired()
+        {
+            tlog.Debug(tag, $"LongPressGestureDetectorConstructorWithTouchesRequired START");
+
+            var testingTarget = new LongPressGestureDetector(7);
+            Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+            Assert.IsInstanceOf<LongPressGestureDetector>(testingTarget, "Should be an instance of LongPressGestureDetector type.");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"LongPressGestureDetectorConstructorWithTouchesRequired END (OK)");
+            Assert.Pass("LongPressGestureDetectorConstructor");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Create a LongPressGestureDetector object.")]
+        [Property("SPEC", "Tizen.NUI.LongPressGestureDetector.LongPressGestureDetector C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void LongPressGestureDetectorConstructorWithTouchesArea()
+        {
+            tlog.Debug(tag, $"LongPressGestureDetectorConstructorWithTouchesArea START");
+
+            var testingTarget = new LongPressGestureDetector(3, 7);
+            Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+            Assert.IsInstanceOf<LongPressGestureDetector>(testingTarget, "Should be an instance of LongPressGestureDetector type.");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"LongPressGestureDetectorConstructorWithTouchesArea END (OK)");
+            Assert.Pass("LongPressGestureDetectorConstructor");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Create a LongPressGestureDetector object.")]
+        [Property("SPEC", "Tizen.NUI.LongPressGestureDetector.LongPressGestureDetector C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void LongPressGestureDetectorConstructorWithLongPressGestureDetector()
+        {
+            tlog.Debug(tag, $"LongPressGestureDetectorConstructorWithLongPressGestureDetector START");
+
+            using (LongPressGestureDetector detector = new LongPressGestureDetector(3, 7))
+            {
+                var testingTarget = new LongPressGestureDetector(detector);
+                Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+                Assert.IsInstanceOf<LongPressGestureDetector>(testingTarget, "Should be an instance of LongPressGestureDetector type.");
+
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"LongPressGestureDetectorConstructorWithLongPressGestureDetector END (OK)");
             Assert.Pass("LongPressGestureDetectorConstructor");
         }
 
@@ -61,14 +125,51 @@ namespace Tizen.NUI.Devel.Tests
         public void LongPressGestureDetectorSetTouchesRequired()
         {
             tlog.Debug(tag, $"LongPressGestureDetectorSetTouchesRequired START");
-            LongPressGestureDetector a1 = new LongPressGestureDetector(7);
 
-            a1.SetTouchesRequired(3);
-            a1.SetTouchesRequired(1, 5);
+            var testingTarget = new LongPressGestureDetector(7);
+            Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+            Assert.IsInstanceOf<LongPressGestureDetector>(testingTarget, "Should be an instance of LongPressGestureDetector type.");
 
-            a1.Dispose();
+            try
+            {
+                testingTarget.SetTouchesRequired(3);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
 			
             tlog.Debug(tag, $"LongPressGestureDetectorSetTouchesRequired END (OK)");
+            Assert.Pass("SetTouchesRequired");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("LongPressGestureDetector SetTouchesRequired")]
+        [Property("SPEC", "Tizen.NUI.LongPressGestureDetector.SetTouchesRequired M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void LongPressGestureDetectorSetTouchesRequiredWithTouchesArea()
+        {
+            tlog.Debug(tag, $"LongPressGestureDetectorSetTouchesRequiredWithTouchesArea START");
+
+            var testingTarget = new LongPressGestureDetector(7);
+            Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+            Assert.IsInstanceOf<LongPressGestureDetector>(testingTarget, "Should be an instance of LongPressGestureDetector type.");
+
+            try
+            {
+                testingTarget.SetTouchesRequired(2, 8);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            tlog.Debug(tag, $"LongPressGestureDetectorSetTouchesRequiredWithTouchesArea END (OK)");
             Assert.Pass("SetTouchesRequired");
         }
 
@@ -82,11 +183,14 @@ namespace Tizen.NUI.Devel.Tests
         public void LongPressGestureDetectorGetMinimumTouchesRequired()
         {
             tlog.Debug(tag, $"LongPressGestureDetectorGetMinimumTouchesRequired START");
-            LongPressGestureDetector a1 = new LongPressGestureDetector(3, 7);
-            uint b1 = a1.GetMinimumTouchesRequired();
 
-            a1.Dispose();
-			
+            var testingTarget = new LongPressGestureDetector(7);
+            Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+            Assert.IsInstanceOf<LongPressGestureDetector>(testingTarget, "Should be an instance of LongPressGestureDetector type.");
+
+            tlog.Debug(tag, "MinimumTouchesRequired : " + testingTarget.GetMinimumTouchesRequired());
+
+            testingTarget.Dispose();
             tlog.Debug(tag, $"LongPressGestureDetectorGetMinimumTouchesRequired END (OK)");
             Assert.Pass("GetMinimumTouchesRequired");
         }
@@ -100,12 +204,14 @@ namespace Tizen.NUI.Devel.Tests
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void LongPressGestureDetectorGetMaximumTouchesRequired()
         {
-            tlog.Debug(tag, $"LongPressGestureDetectorGetMaximumTouchesRequired START");
-            LongPressGestureDetector a1 = new LongPressGestureDetector(3, 7);
-            uint b1 = a1.GetMaximumTouchesRequired();
+            var testingTarget = new LongPressGestureDetector(7);
+            Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+            Assert.IsInstanceOf<LongPressGestureDetector>(testingTarget, "Should be an instance of LongPressGestureDetector type.");
 
-            a1.Dispose();
-			
+            tlog.Debug(tag, "MaximumTouchesRequired : " + testingTarget.GetMaximumTouchesRequired());
+
+            testingTarget.Dispose();
+
             tlog.Debug(tag, $"LongPressGestureDetectorGetMaximumTouchesRequired END (OK)");
             Assert.Pass("GetMaximumTouchesRequired");
         }
@@ -120,11 +226,16 @@ namespace Tizen.NUI.Devel.Tests
         public void LongPressGestureDetectorGetLongPressGestureDetectorFromPtr()
         {
             tlog.Debug(tag, $"LongPressGestureDetectorGetLongPressGestureDetectorFromPtr START");
-            LongPressGestureDetector a1 = new LongPressGestureDetector();
-            LongPressGestureDetector a2 = LongPressGestureDetector.GetLongPressGestureDetectorFromPtr(LongPressGestureDetector.getCPtr(a1).Handle);
 
-            a1.Dispose();
-			
+            using (LongPressGestureDetector detector= new LongPressGestureDetector(3))
+            { 
+                var testingTarget = LongPressGestureDetector.GetLongPressGestureDetectorFromPtr(LongPressGestureDetector.getCPtr(detector).Handle);
+                Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+                Assert.IsInstanceOf<LongPressGestureDetector>(testingTarget, "Should be an instance of LongPressGestureDetector type.");
+
+                testingTarget.Dispose();
+            }
+
             tlog.Debug(tag, $"LongPressGestureDetectorGetLongPressGestureDetectorFromPtr END (OK)");
             Assert.Pass("GetLongPressGestureDetectorFromPtr");
         }
@@ -139,9 +250,16 @@ namespace Tizen.NUI.Devel.Tests
         public void LongPressGestureDetectorDownCast()
         {
             tlog.Debug(tag, $"LongPressGestureDetectorDownCast START");
-            BaseHandle handle = new BaseHandle();
-            LongPressGestureDetector a1 = LongPressGestureDetector.DownCast(handle);
-			
+
+            using (LongPressGestureDetector detector = new LongPressGestureDetector())
+            {
+                var testingTarget = LongPressGestureDetector.DownCast(detector);
+                Assert.IsNotNull(testingTarget, "Can't create success object LongPressGestureDetector");
+                Assert.IsInstanceOf<LongPressGestureDetector>(testingTarget, "Should be an instance of LongPressGestureDetector type.");
+
+                testingTarget.Dispose();
+            }
+
             tlog.Debug(tag, $"LongPressGestureDetectorDownCast END (OK)");
             Assert.Pass("LongPressGestureDetectorDownCast");
         }
@@ -156,11 +274,16 @@ namespace Tizen.NUI.Devel.Tests
         public void LongPressGestureDetectorDetectedSignal()
         {
             tlog.Debug(tag, $"LongPressGestureDetectorDetectedSignal START");
-            LongPressGestureDetector a1 = new LongPressGestureDetector();
-            LongPressGestureDetectedSignal b1 = a1.DetectedSignal();
 
-            a1.Dispose();
-			
+            using (LongPressGestureDetector detector = new LongPressGestureDetector())
+            {
+                var testingTarget = detector.DetectedSignal();
+                Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+                Assert.IsInstanceOf<LongPressGestureDetectedSignal>(testingTarget, "Should be an instance of LongPressGestureDetectedSignal type.");
+
+                testingTarget.Dispose();
+            }
+             
             tlog.Debug(tag, $"LongPressGestureDetectorDetectedSignal END (OK)");
             Assert.Pass("LongPressGestureDetectorDetectedSignal");
         }
@@ -175,12 +298,25 @@ namespace Tizen.NUI.Devel.Tests
         public void LongPressGestureDetectorgetCPtr()
         {
             tlog.Debug(tag, $"LongPressGestureDetectorgetCPtr START");
-            LongPressGestureDetector a1 = new LongPressGestureDetector();
-            global::System.Runtime.InteropServices.HandleRef c1 = LongPressGestureDetector.getCPtr(a1);
 
-            a1.Dispose();
-				
-			
+            using (LongPressGestureDetector detector = new LongPressGestureDetector())
+            {
+                var testingTarget = LongPressGestureDetector.DownCast(detector);
+                Assert.IsInstanceOf<LongPressGestureDetector>(testingTarget, "Should be an instance of LongPressGestureDetector type.");
+
+                try
+                {
+                    LongPressGestureDetector.getCPtr(testingTarget);
+                }
+                catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught Exception :  Failed!");
+                }
+
+                testingTarget.Dispose();
+            }
+
             tlog.Debug(tag, $"LongPressGestureDetectorgetCPtr END (OK)");
             Assert.Pass("LongPressGestureDetectorgetCPtr");
         }
@@ -195,29 +331,74 @@ namespace Tizen.NUI.Devel.Tests
         public void LongPressGestureDetectorDetected()
         {
             tlog.Debug(tag, $"LongPressGestureDetectorDetected START");
-            LongPressGestureDetector a1 = new LongPressGestureDetector();
-			
-            a1.Detected += OnDetected;
-            a1.Detected -= OnDetected;
-			
-            LongPressGestureDetector.DetectedEventArgs e = new LongPressGestureDetector.DetectedEventArgs();
-            object o = new object();
-			
-            OnDetected(o, e);
-			
-            a1.Dispose();
-			
+
+            using (LongPressGestureDetector detector = new LongPressGestureDetector())
+            {
+                var testingTarget = LongPressGestureDetector.DownCast(detector);
+                Assert.IsInstanceOf<LongPressGestureDetector>(testingTarget, "Should be an instance of LongPressGestureDetector type.");
+
+                testingTarget.Detected += OnDetected;
+                testingTarget.Detected -= OnDetected;
+
+                testingTarget.Dispose();
+            }
+
             tlog.Debug(tag, $"LongPressGestureDetectorDetected END (OK)");
             Assert.Pass("LongPressGestureDetectorDetected");
         }		
 		
         private void OnDetected(object obj, LongPressGestureDetector.DetectedEventArgs e)
+        { }
+
+        [Test]
+        [Category("P1")]
+        [Description("LongPressGestureDetector Assign")]
+        [Property("SPEC", "Tizen.NUI.LongPressGestureDetector.Assign M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void LongPressGestureDetectorAssign()
         {
-            View v1 = e.View;
-            e.View = v1;
-			
-            LongPressGesture p1 = e.LongPressGesture;
-            e.LongPressGesture = p1;
+            tlog.Debug(tag, $"LongPressGestureDetectorAssign START");
+
+            using (LongPressGestureDetector detector = new LongPressGestureDetector())
+            {
+                var testingTarget = detector.Assign(detector);
+                Assert.IsInstanceOf<LongPressGestureDetector>(testingTarget, "Should be an instance of LongPressGestureDetector type.");
+
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"LongPressGestureDetectorAssign END (OK)");
         }
-	}
+
+        [Test]
+        [Category("P1")]
+        [Description("DetectedEventArgs View.")]
+        [Property("SPEC", "Tizen.NUI.DetectedEventArgs.View A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void LongPressGestureDetectedEventArgsView()
+        {
+            tlog.Debug(tag, $"LongPressGestureDetectedEventArgsView START");
+
+            var testingTarget = new Tizen.NUI.LongPressGestureDetector.DetectedEventArgs();
+            Assert.IsNotNull(testingTarget, "Can't create success object DetectedEventArgs.");
+            Assert.IsInstanceOf<Tizen.NUI.LongPressGestureDetector.DetectedEventArgs>(testingTarget, "Should return DetectedEventArgs instance.");
+
+            using (View view = new View() { Size = new Size(100, 50) })
+            {
+                testingTarget.View = view;
+                Assert.AreEqual(100, testingTarget.View.Size.Width, "Should be equal!");
+            }
+
+            testingTarget.LongPressGesture = new LongPressGesture(Gesture.StateType.Possible);
+            Assert.AreEqual(Gesture.StateType.Possible, testingTarget.LongPressGesture.State, "Should be equal!");
+
+            tlog.Debug(tag, "Handled : " + testingTarget.Handled);
+
+            tlog.Debug(tag, $"LongPressGestureDetectedEventArgsView END (OK)");
+        }
+    }
 }

@@ -236,6 +236,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_SetParent")]
             public static extern void SetParent(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_SetParent_With_Stack")]
+            public static extern void SetParentWithStack(global::System.Runtime.InteropServices.HandleRef child, global::System.Runtime.InteropServices.HandleRef parent, bool belowParent);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_Unparent")]
             public static extern void Unparent(global::System.Runtime.InteropServices.HandleRef jarg1);
 
@@ -244,9 +247,6 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_GetNativeId")]
             public static extern int GetNativeId(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_SetPositionSizeWithOrientation")]
-            public static extern void SetPositionSizeWithOrientation(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, int jarg3);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_EnableFloatingMode")]
             public static extern void EnableFloatingMode(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
@@ -259,6 +259,12 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_GetWindow")]
             public static extern global::System.IntPtr Get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_IncludeInputRegion")]
+            public static extern void IncludeInputRegion(global::System.Runtime.InteropServices.HandleRef window, global::System.Runtime.InteropServices.HandleRef inputRegion);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_ExcludeInputRegion")]
+            public static extern void ExcludeInputRegion(global::System.Runtime.InteropServices.HandleRef window, global::System.Runtime.InteropServices.HandleRef inputRegion);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using System;
+using System.Xml;
 using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.Devel.Tests
@@ -8,28 +9,34 @@ namespace Tizen.NUI.Devel.Tests
 
     [TestFixture]
     [Description("public/xaml/MarkupExtensions/DynamicResourceExtension")]
-    internal class PublicDynamicResourceExtensionTest
+    public class PublicDynamicResourceExtensionTest
     {
         private const string tag = "NUITEST";
-        private static DynamicResourceExtension d1;
+        private DynamicResourceExtension resExtension;
+
+        internal class IServiceProviderImpl : IServiceProvider
+        {
+            public object GetService(Type serviceType) { return null; }
+        }
+
         [SetUp]
         public void Init()
         {
             tlog.Info(tag, "Init() is called!");
-            d1 = new DynamicResourceExtension();
+            resExtension = new DynamicResourceExtension();
         }
 
         [TearDown]
         public void Destroy()
         {
-            d1 = null;
+            resExtension = null;
             tlog.Info(tag, "Destroy() is called!");
         }
 
         [Test]
         [Category("P1")]
         [Description("DynamicResourceExtension Key")]
-        [Property("SPEC", "Tizen.NUI.DynamicResourceExtension.Key A")]
+        [Property("SPEC", "Tizen.NUI.Xaml.DynamicResourceExtension.Key A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
         public void DynamicResourceExtensionKey()
@@ -38,51 +45,55 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                string tmp = d1.Key;
-                d1.Key = tmp;
+                string key = resExtension.Key;
+                resExtension.Key = key;
+                Assert.AreEqual(key, resExtension.Key, "Should be equal");
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"DynamicResourceExtensionKey END (OK)");
-            Assert.Pass("DynamicResourceExtensionKey");
-        }
-
-        private class IServiceProviderimplement : IServiceProvider
-        {
-            public object GetService(Type serviceType)
-            {
-                return null;
-            }
+            tlog.Debug(tag, $"DynamicResourceExtensionKey END");
         }
 
         [Test]
         [Category("P1")]
         [Description("DynamicResourceExtension Key")]
-        [Property("SPEC", "Tizen.NUI.DynamicResourceExtension.Key A")]
+        [Property("SPEC", "Tizen.NUI.Xaml.DynamicResourceExtension.Key M")]
         [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
+        [Property("CRITERIA", "MR")]
         public void DynamicResourceExtensionProvideValue()
         {
             tlog.Debug(tag, $"DynamicResourceExtensionProvideValue START");
 
             try
             {
-                IServiceProviderimplement serviceProviderimplement = new IServiceProviderimplement();
-                d1.Key = "myKey";
-                d1.ProvideValue(serviceProviderimplement);
+                resExtension.Key = "Key";
+                resExtension.ProvideValue(new IServiceProviderImpl());
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"DynamicResourceExtensionProvideValue END (OK)");
-            Assert.Pass("DynamicResourceExtensionProvideValue");
+            tlog.Debug(tag, $"DynamicResourceExtensionProvideValue END");
+        }
+
+        [Test]
+        [Category("P2")]
+        [Description("DynamicResourceExtension Key")]
+        [Property("SPEC", "Tizen.NUI.Xaml.DynamicResourceExtension.Key M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void DynamicResourceExtensionProvideValue2()
+        {
+            tlog.Debug(tag, $"DynamicResourceExtensionProvideValue2 START");
+            resExtension.Key = null;
+            Assert.Throws<XamlParseException>(() => resExtension.ProvideValue(new IServiceProviderImpl()));
+            tlog.Debug(tag, $"DynamicResourceExtensionProvideValue2 END");
         }
     }
 }

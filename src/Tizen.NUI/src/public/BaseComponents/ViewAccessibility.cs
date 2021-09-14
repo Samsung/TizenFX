@@ -554,7 +554,25 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(bool disposing)
         {
-            base.Dispose(disposing);
+            if (disposed)
+            {
+                return;
+            }
+
+            if (disposing == false)
+            {
+                if (SwigCPtr.Handle == IntPtr.Zero || SwigCMemOwn == false)
+                {
+                    // at this case, implicit nor explicit dispose is not required. No native object is made.
+                    disposed = true;
+                    return;
+                }
+            }
+
+            if (disposing)
+            {
+                Unparent();
+            }
 
             if (accessibilityDelegate != null)
             {
@@ -562,6 +580,8 @@ namespace Tizen.NUI.BaseComponents
                 Marshal.FreeHGlobal(accessibilityDelegatePtr);
                 accessibilityDelegate = null;
             }
+
+            base.Dispose(disposing);
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]

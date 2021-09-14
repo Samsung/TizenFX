@@ -13,13 +13,17 @@ namespace Tizen.NUI.Samples
         Window mainWin;
         Window subWin1;
         Window subWin2;
+        Window subWin3;
         Timer tm;
+        bool belowParent;
         void Initialize()
         {
             mainWin = NUIApplication.GetDefaultWindow();
             mainWin.KeyEvent += OnKeyEvent;
             mainWin.BackgroundColor = Color.Cyan;
             mainWin.WindowSize = new Size2D(500, 500);
+            mainWin.TouchEvent += WinTouchEvent;
+            belowParent = false;
 
             TextLabel text = new TextLabel("Hello Tizen NUI World");
             text.HorizontalAlignment = HorizontalAlignment.Center;
@@ -37,6 +41,72 @@ namespace Tizen.NUI.Samples
             animation.Play();
 
             log.Fatal(tag, "animation play!");
+        }
+
+        void CreateSubWin3()
+        {
+            if(subWin3)
+            {
+                log.Fatal(tag, $"Sub Window3 is already created");
+                return;
+            }
+            subWin3 = new Window("subWin3", new Rectangle(0, 0, 300, 300), false);
+            subWin3.BackgroundColor = Color.Blue;
+            View dummy = new View()
+            {
+                Size = new Size(100, 100),
+                Position = new Position(50, 50),
+                BackgroundColor = Color.Yellow,
+            };
+            subWin3.Add(dummy);
+            subWin3.KeyEvent += subWin3_KeyEvent;
+        }
+
+        void SetParentAbove()
+        {
+            CreateSubWin3();
+            subWin3.SetParent(mainWin, false);
+        }
+
+        void SetParentBelow()
+        {
+            CreateSubWin3();
+            subWin3.SetParent(mainWin, true);
+        }
+
+        public void subWin3_KeyEvent(object sender, Window.KeyEventArgs e)
+        {
+            if (e.Key.State == Key.StateType.Down)
+            {
+                log.Fatal(tag, $"key down! key={e.Key.KeyPressedName}");
+
+                switch (e.Key.KeyPressedName)
+                {
+                    case "6":
+                        SetParentAbove();
+                        break;
+                    case "7":
+                        SetParentBelow();
+                        break;
+                }
+            }
+        }
+
+        public void WinTouchEvent(object sender, Window.TouchEventArgs e)
+        {
+            if (e.Touch.GetState(0) == PointStateType.Up)
+            {
+                if(belowParent == false)
+                {
+                    SetParentBelow();
+                    belowParent = true;
+                }
+                else
+                {
+                    SetParentAbove();
+                    belowParent = false;
+                }
+            }
         }
 
         public void OnKeyEvent(object sender, Window.KeyEventArgs e)
@@ -70,6 +140,14 @@ namespace Tizen.NUI.Samples
 
                     case "5":
                         TestCase5();
+                        break;
+
+                    case "6":
+                        SetParentAbove();
+                        break;
+
+                    case "7":
+                        SetParentBelow();
                         break;
 
                     default:

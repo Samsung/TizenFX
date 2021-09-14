@@ -26,7 +26,7 @@ namespace Tizen.NUI
     /// </summary>
     /// <example>
     /// <code>
-    /// NativeImageQueue queue = new NativeImageQueue(width,height,ColorDepth.Default);
+    /// NativeImageQueue queue = new NativeImageQueue(width,height,ColorFormat.RGBA8888);
     /// if(queue.CanDequeueBuffer())
     /// {
     ///   var buffer = queue.DequeueBuffer(ref bufferWidth,ref bufferHeight,ref bufferStride);
@@ -42,15 +42,34 @@ namespace Tizen.NUI
     {
         private IntPtr handle;
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum ColorFormat
+        {
+            /// <summary>
+            /// 8 red bits, 8 green bits, 8 blue bits
+            /// </summary>
+            RGB888,
+
+            /// <summary>
+            /// 8 red bits, 8 green bits, 8 blue bits, alpha 8 bits
+            /// </summary>
+            RGBA8888,
+
+            /// <summary>
+            /// 8 red bits, 8 green bits, 8 blue bits, and 8 ignored bits
+            /// </summary>
+            RGBX8888
+        }
+
         /// <summary>
-        /// Creates an initialized NativeImageQueue with size and color depth.
+        /// Creates an initialized NativeImageQueue with size and color format.
         /// </summary>
         /// <param name="width">A Width of queue.</param>
         /// <param name="height">A Height of queue.</param>
-        /// <param name="depth">A color depth of queue.</param>
+        /// <param name="colorFormat">A color format of queue.</param>
         /// <returns>A NativeImageQueue.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public NativeImageQueue(uint width, uint height, NativeImageSource.ColorDepth depth) : this(Interop.NativeImageQueue.NewHandle(width, height, (int)depth), true)
+        public NativeImageQueue(uint width, uint height, ColorFormat colorFormat) : this(Interop.NativeImageQueue.NewHandle(width, height, (int)colorFormat), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

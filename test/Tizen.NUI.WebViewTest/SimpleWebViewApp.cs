@@ -15,14 +15,23 @@
  *
  */
 using System;
+using System.Collections.Generic;
 using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Components;
 
 namespace Tizen.NUI.WebViewTest
 {
     internal class MenuView : View
     {
         private WebContextMenu contextMenu;
-        private TextLabel[] texts;
+        private Button[] buttons;
+
+        public event EventHandler<ItemClickedEventArgs> ClickedEvent;
+
+        public class ItemClickedEventArgs : EventArgs
+        {
+            public uint CurrentIndex;
+        }
 
         internal MenuView(WebContextMenu menu)
         {
@@ -34,20 +43,51 @@ namespace Tizen.NUI.WebViewTest
                 LinearAlignment = LinearLayout.Alignment.Center
             };
 
-            texts = new TextLabel[menu.ItemList.ItemCount];
+            buttons = new Button[menu.ItemCount];
 
-            for (uint i = 0; i < menu.ItemList.ItemCount; i++)
+            for (uint i = 0; i < menu.ItemCount; i++)
             {
-                WebContextMenuItem item = menu.ItemList.GetItemAtIndex(i);
-                texts[i] = new TextLabel()
+                WebContextMenuItem item = menu.GetItemAtIndex(i);
+                buttons[i] = new Button()
                 {
                     Size = new Size(200, 80),
                     PointSize = 30.0f,
                     TextColor = Color.Black,
                     Text = item.Title,
                 };
-                Add(texts[i]);
+                buttons[i].TouchEvent += OnMenuItemTouched;
+                Add(buttons[i]);
             }
+        }
+
+        private bool OnMenuItemTouched(object s, TouchEventArgs e)
+        {
+            uint i = 0;
+            for (; i < buttons.Length; i++)
+            {
+                if (buttons[i] == (Button)s)
+                {
+                    Log.Info("WebView", $"found button {i} is selected.");
+                    break;
+                }
+            }
+
+            Log.Info("WebView", $"button {i} is selected.");
+
+            //WebContextMenuItem item = contextMenu.ItemList.GetItemAtIndex(i);
+            //if (item != null)
+            //{
+            //    contextMenu.SelectItem(item);
+            //    contextMenu.Hide();
+            //}
+
+            ItemClickedEventArgs args = new ItemClickedEventArgs();
+            args.CurrentIndex = i;
+            ClickedEvent?.Invoke(this, args);
+
+            Log.Info("WebView", $"button {i} is selected.");
+
+            return false;
         }
 
         internal void HideMenu()
@@ -60,6 +100,9 @@ namespace Tizen.NUI.WebViewTest
     {
         private BaseComponents.WebView simpleWebView = null;
         private TextField addressBar = null;
+        private Button backButton = null;
+        private Button forwardButton = null;
+        private Button refreshButton = null;
 
         private int index = 0;
         private const int WEBSITES_COUNT = 2;
@@ -87,12 +130,15 @@ namespace Tizen.NUI.WebViewTest
 
         private int blueKeyPressedCount = 0;
         private int yellowKeyPressedCount = 0;
-        private int greenKeyPressedCount = 0;
+        private int redKeyPressedCount = 0;
 
         private static long startTime = 0;
 
         private Timer messageTimer = null;
         private ImageView faviconView = null;
+        private ImageView screenshotView = null;
+        private ImageView hitTestImageView = null;
+
         private static string[] runtimeArgs = { "Tizen.NUI.WebViewTest", "--enable-dali-window", "--enable-spatial-navigation" };
 
         protected override void OnCreate()
@@ -101,10 +147,44 @@ namespace Tizen.NUI.WebViewTest
 
             GetDefaultWindow().BackgroundColor = new Color((float)189 / 255, (float)179 / 255, (float)204 / 255, 1.0f);
 
+            backButton = new Button()
+            {
+                Position = new Position(0, 0),
+                Size = new Size(100, 100),
+                PointSize = 30.0f,
+                TextColor = Color.Black,
+                Text = "Back",
+            };
+            backButton.TouchEvent += OnBackButtonTouchEvent;
+            GetDefaultWindow().Add(backButton);
+
+            forwardButton = new Button()
+            {
+                Position = new Position(100, 0),
+                Size = new Size(100, 100),
+                PointSize = 30.0f,
+                TextColor = Color.Black,
+                Text = "Forward",
+            };
+            forwardButton.TouchEvent += OnForwardButtonTouchEvent;
+            GetDefaultWindow().Add(forwardButton);
+
+            refreshButton = new Button()
+            {
+                Position = new Position(200, 0),
+                Size = new Size(100, 100),
+                PointSize = 30.0f,
+                TextColor = Color.Black,
+                Text = "Refresh",
+            };
+            refreshButton.TouchEvent += OnRefreshButtonTouchEvent;
+            GetDefaultWindow().Add(refreshButton);
+
             addressBar = new TextField()
             {
+                Position = new Position(300, 0),
                 BackgroundColor = Color.White,
-                Size = new Size(SCREEN_WIDTH, ADDRESSBAR_HEIGHT),
+                Size = new Size(SCREEN_WIDTH - 300, ADDRESSBAR_HEIGHT),
                 EnableGrabHandlePopup = false,
                 EnableGrabHandle = false,
                 EnableSelection = true,
@@ -167,9 +247,15 @@ namespace Tizen.NUI.WebViewTest
             {
                 GetDefaultWindow().Remove(menuView);
             }
-
-            GetDefaultWindow().Remove(simpleWebView);
+            GetDefaultWindow().Remove(backButton);
+            GetDefaultWindow().Remove(forwardButton);
+            GetDefaultWindow().Remove(refreshButton);
             GetDefaultWindow().Remove(addressBar);
+
+            if (screenshotView != null)
+            {
+                GetDefaultWindow().Remove(screenshotView);
+            }
 
             messageTimer.Tick -= OnTick;
             messageTimer.Dispose();
@@ -178,13 +264,58 @@ namespace Tizen.NUI.WebViewTest
             base.OnTerminate();
         }
 
+        private bool OnBackButtonTouchEvent(object sender, View.TouchEventArgs e)
+        {
+            if (simpleWebView.CanGoBack())
+            {
+                simpleWebView.GoBack();
+            }
+            return false;
+        }
+
+        private bool OnForwardButtonTouchEvent(object sender, View.TouchEventArgs e)
+        {
+            if (simpleWebView.CanGoForward())
+            {
+                simpleWebView.GoForward();
+            }
+            return false;
+        }
+
+        private bool OnRefreshButtonTouchEvent(object sender, View.TouchEventArgs e)
+        {
+            simpleWebView.Reload();
+            return false;
+        }
+
         private bool OnTick(object sender, EventArgs e)
         {
+            Log.Info("WebView", $"------------timer tick-------");
+
             if (faviconView != null)
             {
                 GetDefaultWindow().Remove(faviconView);
                 faviconView.Dispose();
                 faviconView = null;
+            }
+
+            if (screenshotView != null)
+            {
+                Log.Info("WebView", $"------------remove screen shot-------");
+                GetDefaultWindow().Remove(screenshotView);
+                screenshotView.Dispose();
+                screenshotView = null;
+            }
+            else
+            {
+                Log.Info("WebView", $"------------screen shot is null-------");
+            }
+
+            if (hitTestImageView != null)
+            {
+                GetDefaultWindow().Remove(hitTestImageView);
+                hitTestImageView.Dispose();
+                hitTestImageView = null;
             }
 
             return false;
@@ -197,13 +328,15 @@ namespace Tizen.NUI.WebViewTest
                 FocusManager.Instance.SetCurrentFocusView(simpleWebView);
             }
 
-            if (args.Touch.GetState(0) == PointStateType.Up)
+            if (args.Touch.GetState(0) == PointStateType.Down && args.Touch.GetMouseButton(0) == MouseButton.Secondary)
             {
                 if (menuView == null && menuPosition == null)
                 {
                     menuPosition = args.Touch.GetScreenPosition(0);
                 }
-
+            }
+            else if (args.Touch.GetState(0) == PointStateType.Down && args.Touch.GetMouseButton(0) == MouseButton.Primary)
+            {
                 if (menuView != null)
                 {
                     menuView.HideMenu();
@@ -213,6 +346,13 @@ namespace Tizen.NUI.WebViewTest
                 }
             }
             return false;
+        }
+
+        private void OnMenuViewItemSelected(object source, MenuView.ItemClickedEventArgs e)
+        {
+            Log.Info("WebView", $"------------menu item is selected-------");
+            GetDefaultWindow().Remove(menuView);
+            menuView = null;
         }
 
         private void OnWebViewFocusGained(object source, EventArgs args)
@@ -231,6 +371,15 @@ namespace Tizen.NUI.WebViewTest
             e.HttpAuthHandler.CancelCredential();
             e.HttpAuthHandler.Suspend();
             e.HttpAuthHandler.UseCredential("", "");
+        }
+
+        private void OnHttpRequestIntercepted(WebHttpRequestInterceptor interceptor)
+        {
+            Log.Info("WebView", $"------------http request intercepted, Url: {interceptor.Url}-------");
+
+            interceptor.Ignore();
+
+            Log.Info("WebView", $"------------http request intercepted-------");
         }
 
         private void OnSslCertificateChanged(object sender, WebViewCertificateReceivedEventArgs e)
@@ -253,6 +402,24 @@ namespace Tizen.NUI.WebViewTest
         private void OnPageLoadFinished(object sender, WebViewPageLoadEventArgs e)
         {
             Log.Info("WebView", $"------------web view finishes loading-------");
+
+            if (simpleWebView.CanGoBack())
+            {
+                backButton.IsEnabled = true;
+            }
+            else
+            {
+                backButton.IsEnabled = false;
+            }
+
+            if (simpleWebView.CanGoForward())
+            {
+                forwardButton.IsEnabled = true;
+            }
+            else
+            {
+                forwardButton.IsEnabled = false;
+            }
         }
 
         private void OnPageLoadError(object sender, WebViewPageLoadErrorEventArgs e)
@@ -296,13 +463,14 @@ namespace Tizen.NUI.WebViewTest
                     Position = new Position(menuPosition),
                     Size = new Size(200, e.ContextMenu.ItemCount * 80),
                 };
+                menuView.ClickedEvent += OnMenuViewItemSelected;
                 GetDefaultWindow().Add(menuView);
             }
 
-            Log.Info("WebView", $"------------context menu shown, ItemList ItemCount: {e.ContextMenu.ItemList.ItemCount}-------");
-            if (e.ContextMenu.ItemList.ItemCount > 0)
+            Log.Info("WebView", $"------------context menu shown, ItemList ItemCount: {e.ContextMenu.ItemCount}-------");
+            if (e.ContextMenu.ItemCount > 0)
             {
-                WebContextMenuItem item = e.ContextMenu.ItemList.GetItemAtIndex(0);
+                WebContextMenuItem item = e.ContextMenu.GetItemAtIndex(0);
                 Log.Info("WebView", $"------------context menu shown, Item Tag: {item.Tag}-------");
                 Log.Info("WebView", $"------------context menu shown, Item Type: {item.Type}-------");
                 Log.Info("WebView", $"------------context menu shown, Item IsEnabled: {item.IsEnabled}-------");
@@ -379,6 +547,20 @@ namespace Tizen.NUI.WebViewTest
         private void OnScreenshotAcquired(ImageView image)
         {
             Log.Info("WebView", $"------------screen shot acquired-------");
+
+            if (image != null)
+            {
+                screenshotView = image;
+                screenshotView.Position = new Position(500, 500);
+                screenshotView.BackgroundColor = Color.Blue;
+                GetDefaultWindow().Add(screenshotView);
+                if (messageTimer.IsRunning())
+                {
+                    messageTimer.Stop();
+                }
+                messageTimer.Start();
+                Log.Info("WebView", $"------------screen shot would be shown-------");
+            }
         }
 
         private void OnHitTestFinished(WebHitTestResult test)
@@ -400,8 +582,16 @@ namespace Tizen.NUI.WebViewTest
             ImageView imageView = test.Image;
             if (imageView != null)
             {
-                imageView.Position = new Position(500, 500);
-                GetDefaultWindow().Add(imageView);
+                hitTestImageView = imageView;
+                hitTestImageView.Position = new Position(1000, 500);
+                hitTestImageView.BackgroundColor = Color.Blue;
+                GetDefaultWindow().Add(hitTestImageView);
+                if (messageTimer.IsRunning())
+                {
+                    messageTimer.Stop();
+                }
+                messageTimer.Start();
+                Log.Info("WebView", $"WebHitTestResult, Got image view");
             }
         }
 
@@ -428,37 +618,37 @@ namespace Tizen.NUI.WebViewTest
             simpleWebView.JavaScriptPromptReply("test");
         }
 
-        private void OnPasswordDataListAcquired(WebPasswordDataList list)
+        private void OnPasswordDataListAcquired(IList<WebPasswordData> list)
         {
-            Log.Info("WebView", $"------------password data list, count: {list.ItemCount}-------");
-            string[] passwords = new string[list.ItemCount];
-            for (uint i = 0; i < list.ItemCount; i++)
+            Log.Info("WebView", $"------------password data list, count: {list.Count}-------");
+            string[] passwords = new string[list.Count];
+            for (int i = 0; i < list.Count; i++)
             {
-                WebPasswordData data = list.GetItemAtIndex(i);
+                WebPasswordData data = list[i];
                 passwords[i] = data.Url;
                 Log.Info("WebView", $"------------password data, Url: {data.Url}-------");
                 Log.Info("WebView", $"------------password data, FingerprintUsed: {data.FingerprintUsed}-------");
             }
 
-            if (list.ItemCount > 0)
+            if (list.Count > 0)
             {
                 simpleWebView.Context.DeleteFormPasswordDataList(passwords);
             }
         }
 
-        private void OnSecurityOriginListAcquired(WebSecurityOriginList list)
+        private void OnSecurityOriginListAcquired(IList<WebSecurityOrigin> list)
         {
-            Log.Info("WebView", $"------------security origin, count: {list.ItemCount}-------");
-            for (uint i = 0; i < list.ItemCount; i++)
+            Log.Info("WebView", $"------------security origin, count: {list.Count}-------");
+            for (int i = 0; i < list.Count; i++)
             {
-                WebSecurityOrigin origin = list.GetItemAtIndex(i);
+                WebSecurityOrigin origin = list[i];
                 Log.Info("WebView", $"------------security origin, Host: {origin.Host}-------");
                 Log.Info("WebView", $"------------security origin, Protocol: {origin.Protocol}-------");
             }
 
-            if (list.ItemCount > 0)
+            if (list.Count > 0)
             {
-                WebSecurityOrigin origin = list.GetItemAtIndex(0);
+                WebSecurityOrigin origin = list[0];
                 simpleWebView.Context.GetWebStorageUsageForOrigin(origin, OnStorageUsageAcquired);
                 simpleWebView.Context.DeleteApplicationCache(origin);
                 simpleWebView.Context.DeleteWebDatabase(origin);
@@ -476,7 +666,7 @@ namespace Tizen.NUI.WebViewTest
             Log.Info("WebView", $"------------download started, url: {url}-------");
         }
 
-        private bool OnMimeOverridden(string url, string currentMime, string newMime)
+        private bool OnMimeOverridden(string url, string currentMime, out string newMime)
         {
             Log.Info("WebView", $"------------mime overridden, url: {url}-------");
             Log.Info("WebView", $"------------mime overridden, currentMime: {currentMime}-------");
@@ -525,17 +715,27 @@ namespace Tizen.NUI.WebViewTest
                     result = true;
                     Log.Info("WebView", $"new url is {simpleWebView.Url}.");
                 }
-                else if (args.Key.KeyPressedName == "XF86Back")
-                {
-                    Log.Info("WebView", $"whether webview can go back or not: {simpleWebView.CanGoBack()}.");
-                    if (simpleWebView.CanGoBack())
-                    {
-                        simpleWebView.GoBack();
-                    }
-                    result = true;
-                }
+                //else if (args.Key.KeyPressedName == "1")
+                //{
+                //    Rectangle viewArea = new Rectangle(0, 0, 20, 20);
+                //    bool succeeded = simpleWebView.GetScreenshotAsynchronously(viewArea, 1.0f, OnScreenshotAcquired);
+                //    Log.Info("WebView", $"GetScreenshotAsynchronously, {succeeded}");
+
+                //    succeeded = simpleWebView.HitTestAsynchronously(100, 100, BaseComponents.WebView.HitTestMode.Default, OnHitTestFinished);
+                //    Log.Info("WebView", $"HitTestAsynchronously, {succeeded}");
+                //}
                 else if (args.Key.KeyPressedName == "XF86Red")
                 {
+                    if (redKeyPressedCount % 2 == 0)
+                    {
+                        simpleWebView.Context.RegisterHttpRequestInterceptedCallback(OnHttpRequestIntercepted);
+                        redKeyPressedCount = 0;
+                    }
+                    else
+                    {
+                        simpleWebView.Context.RegisterHttpRequestInterceptedCallback(null);
+                    }
+                    redKeyPressedCount++;
                     FocusManager.Instance.SetCurrentFocusView(addressBar);
                     result = true;
                 }
@@ -572,7 +772,7 @@ namespace Tizen.NUI.WebViewTest
                     Log.Info("WebView", $"key XF86Green is pressed.");
 
                     //greenKeyPressedCount++;
-                    if (greenKeyPressedCount % 2 == 0)
+                    if (simpleWebView.Url.Contains("account.samsung"))
                     {
                         // webview apis
                         Log.Info("WebView", $"web page title is {simpleWebView.Title}");
@@ -599,22 +799,18 @@ namespace Tizen.NUI.WebViewTest
                         simpleWebView.TextZoomFactor = 2.0f;
                         Log.Info("WebView", $"web page TextZoomFactor is {simpleWebView.TextZoomFactor}");
                         Log.Info("WebView", $"web page LoadProgressPercentage is {simpleWebView.LoadProgressPercentage}");
-                        simpleWebView.VideoHoleEnabled = true;
-                        Log.Info("WebView", $"web page VideoHoleEnabled is {simpleWebView.VideoHoleEnabled}");
 
-                        simpleWebView.ActivateAccessibility(true);
-                        simpleWebView.AddCustomHeader("test", "value");
-                        simpleWebView.AddDynamicCertificatePath("", "");
+                        //simpleWebView.ActivateAccessibility(true);
+                        //simpleWebView.AddCustomHeader("test", "value");
+                        //simpleWebView.AddDynamicCertificatePath("", "");
                         simpleWebView.AddJavaScriptMessageHandler("", OnJavaScriptMessageReceived);
-                        simpleWebView.CanGoBack();
-                        simpleWebView.CanGoForward();
                         simpleWebView.CheckVideoPlayingAsynchronously(OnVideoPlaying);
-                        simpleWebView.ClearAllTilesResources();
-                        simpleWebView.ClearHistory();
+                        //simpleWebView.ClearAllTilesResources();
+                        //simpleWebView.ClearHistory();
                         simpleWebView.EvaluateJavaScript("document.body.style.backgroundColor='yellow';");
                         Log.Info("WebView", $"web view, ScaleFactor is {simpleWebView.GetScaleFactor()}");
 
-                        Rectangle viewArea = new Rectangle(0, 0, 20, 20);
+                        //Rectangle viewArea = new Rectangle(0, 0, 20, 20);
                         //ImageView shotView = simpleWebView.GetScreenshot(viewArea, 1.0f);
                         //if (shotView != null)
                         //{
@@ -622,12 +818,6 @@ namespace Tizen.NUI.WebViewTest
                         //    GetDefaultWindow().Add(shotView);
                         //}
 
-                        bool succeeded = simpleWebView.GetScreenshotAsynchronously(viewArea, 1.0f, OnScreenshotAcquired);
-                        Log.Info("WebView", $"GetScreenshotAsynchronously, {succeeded}");
-                        simpleWebView.GoBack();
-                        Log.Info("WebView", $"web view, here");
-                        simpleWebView.GoForward();
-                        Log.Info("WebView", $"web view, here");
                         simpleWebView.HighlightText("test", BaseComponents.WebView.FindOption.CaseInsensitive, 2);
                         Log.Info("WebView", $"web view, here");
                         WebHitTestResult test = null;//simpleWebView.HitTest(100, 100, WebView.HitTestMode.Default);
@@ -654,37 +844,32 @@ namespace Tizen.NUI.WebViewTest
                             }
                         }
 
-                        succeeded = simpleWebView.HitTestAsynchronously(100, 100, BaseComponents.WebView.HitTestMode.Default, OnHitTestFinished);
-                        Log.Info("WebView", $"HitTestAsynchronously, {succeeded}");
                         simpleWebView.RegisterGeolocationPermissionCallback(OnGeolocationPermission);
-                        Log.Info("WebView", $"web view, here");
+                        Log.Info("WebView", $"Register javascript alert/confirm/prompt callback.");
                         simpleWebView.RegisterJavaScriptAlertCallback(OnJavaScriptAlert);
                         simpleWebView.RegisterJavaScriptConfirmCallback(OnJavaScriptConfirm);
                         simpleWebView.RegisterJavaScriptPromptCallback(OnJavaScriptPrompt);
-                        Log.Info("WebView", $"web view, here");
-                        simpleWebView.Reload();
-                        Log.Info("WebView", $"web view, here");
-                        simpleWebView.ReloadWithoutCache();
-                        Log.Info("WebView", $"web view, here");
-                        simpleWebView.RemoveCustomHeader("test");
-                        Log.Info("WebView", $"web view, here");
-                        simpleWebView.Suspend();
-                        simpleWebView.SuspendNetworkLoading();
-                        Log.Info("WebView", $"web view, here");
-                        simpleWebView.Resume();
-                        simpleWebView.ResumeNetworkLoading();
-                        Log.Info("WebView", $"web view, here");
-
+                        //Log.Info("WebView", $"Reload without cache.");
+                        //simpleWebView.ReloadWithoutCache();
+                        //Log.Info("WebView", $"Remove custom header");
+                        //simpleWebView.RemoveCustomHeader("test");
+                        //Log.Info("WebView", $"Suspend");
+                        //simpleWebView.Suspend();
+                        //simpleWebView.SuspendNetworkLoading();
+                        //Log.Info("WebView", $"Resume");
+                        //simpleWebView.Resume();
+                        //simpleWebView.ResumeNetworkLoading();
+                        //Log.Info("WebView", $"load contents");
                         //simpleWebView.LoadContents();
                         //simpleWebView.LoadHtmlStringOverrideCurrentEntry();
-                        simpleWebView.LoadHtmlString("<Html><Head><title>Example</title></Head><Body><b>[This text is Bold......]</b></Body></Html>");
-                        simpleWebView.ScrollPosition = new Position(0, 200);
-                        simpleWebView.ScrollBy(0, 50);
-                        simpleWebView.ScrollEdgeBy(0, 50);
+                        //simpleWebView.LoadHtmlString("<Html><Head><title>Example</title></Head><Body><b>[This text is Bold......]</b></Body></Html>");
+                        //simpleWebView.ScrollPosition = new Position(0, 200);
+                        //simpleWebView.ScrollBy(0, 50);
+                        //simpleWebView.ScrollEdgeBy(0, 50);
 
-                        Log.Info("WebView", $"scroll position is ({simpleWebView.ScrollPosition.X}, {simpleWebView.ScrollPosition.Y}).");
-                        Log.Info("WebView", $"scroll size is ({simpleWebView.ScrollSize.Width}, {simpleWebView.ScrollSize.Height}).");
-                        Log.Info("WebView", $"content size is ({simpleWebView.ContentSize.Width}, {simpleWebView.ContentSize.Height}).");
+                        //Log.Info("WebView", $"scroll position is ({simpleWebView.ScrollPosition.X}, {simpleWebView.ScrollPosition.Y}).");
+                        //Log.Info("WebView", $"scroll size is ({simpleWebView.ScrollSize.Width}, {simpleWebView.ScrollSize.Height}).");
+                        //Log.Info("WebView", $"content size is ({simpleWebView.ContentSize.Width}, {simpleWebView.ContentSize.Height}).");
 
                         //simpleWebView.StartInspectorServer(8080);
                         //simpleWebView.StopInspectorServer();
@@ -766,15 +951,15 @@ namespace Tizen.NUI.WebViewTest
                         Log.Info("WebView", $"web context, ProxyBypassRule: {simpleWebView.Context.ProxyBypassRule}");
                         simpleWebView.Context.DefaultZoomFactor = 2.0f;
                         Log.Info("WebView", $"web context, DefaultZoomFactor: {simpleWebView.Context.DefaultZoomFactor}");
-                        simpleWebView.Context.ClearCache();
-                        simpleWebView.Context.DeleteAllApplicationCache();
-                        simpleWebView.Context.DeleteAllFormCandidateData();
-                        simpleWebView.Context.DeleteAllFormPasswordData();
-                        simpleWebView.Context.DeleteAllWebDatabase();
-                        simpleWebView.Context.DeleteAllWebIndexedDatabase();
-                        simpleWebView.Context.DeleteAllWebStorage();
-                        simpleWebView.Context.DeleteLocalFileSystem();
-                        simpleWebView.Context.FreeUnusedMemory();
+                        //simpleWebView.Context.ClearCache();
+                        //simpleWebView.Context.DeleteAllApplicationCache();
+                        //simpleWebView.Context.DeleteAllFormCandidateData();
+                        //simpleWebView.Context.DeleteAllFormPasswordData();
+                        //simpleWebView.Context.DeleteAllWebDatabase();
+                        //simpleWebView.Context.DeleteAllWebIndexedDatabase();
+                        //simpleWebView.Context.DeleteAllWebStorage();
+                        //simpleWebView.Context.DeleteLocalFileSystem();
+                        //simpleWebView.Context.FreeUnusedMemory();
                         Log.Info("WebView", $"web view, here");
                         simpleWebView.Context.GetFormPasswordList(OnPasswordDataListAcquired);
                         Log.Info("WebView", $"web view, here");
@@ -802,7 +987,7 @@ namespace Tizen.NUI.WebViewTest
                         // webcookiemanager apis
                         simpleWebView.CookieManager.CookieAcceptPolicy = WebCookieManager.CookieAcceptPolicyType.Never;
                         Log.Info("WebView", $"web cookie manager accept policy is {simpleWebView.CookieManager.CookieAcceptPolicy}");
-                        simpleWebView.CookieManager.ClearCookies();
+                        //simpleWebView.CookieManager.ClearCookies();
                         simpleWebView.CookieManager.SetPersistentStorage("/root/share", WebCookieManager.CookiePersistentStorageType.SqlLite);
                         simpleWebView.CookieManager.CookieChanged += OnCookieChanged;
 
@@ -818,14 +1003,15 @@ namespace Tizen.NUI.WebViewTest
                             Log.Info("WebView", $"web back forward list, item0 url is {item.Url}");
                             Log.Info("WebView", $"web back forward list, item0 title is {item.Title}");
                             Log.Info("WebView", $"web back forward list, item0 original url is {item.OriginalUrl}");
-                            WebBackForwardSubList subList = simpleWebView.BackForwardList.GetForwardItems(0);
-                            Log.Info("WebView", $"web back forward list, forward sub list ItemCount is {subList.ItemCount}");
+                            IList<WebBackForwardListItem> subList = simpleWebView.BackForwardList.GetForwardItems(0);
+                            Log.Info("WebView", $"web back forward list, forward sub list ItemCount is {subList.Count}");
                             subList = simpleWebView.BackForwardList.GetBackwardItems(0);
-                            Log.Info("WebView", $"web back forward list, backward sub list  ItemCount is {subList.ItemCount}");
+                            Log.Info("WebView", $"web back forward list, backward sub list  ItemCount is {subList.Count}");
                         }
-                    }
 
-                    result = true;
+                        //
+                        result = true;
+                    }
                 }
             }
 
@@ -895,6 +1081,17 @@ namespace Tizen.NUI.WebViewTest
             if (args.Key.State == Key.StateType.Up)
             {
                 Log.Info("WebView", $"window key is {args.Key.KeyPressedName}.");
+
+                if (args.Key.KeyPressedName == "XF86Exit")
+                {
+                    if (simpleWebView != null)
+                    {
+                        GetDefaultWindow().Remove(simpleWebView);
+                        simpleWebView.Dispose();
+                        simpleWebView = null;
+                        Log.Info("WebView", $"WebView is disposed..............");
+                    }
+                }
             }
         }
 

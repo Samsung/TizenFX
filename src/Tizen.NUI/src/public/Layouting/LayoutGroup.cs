@@ -188,7 +188,18 @@ namespace Tizen.NUI
                 {
                     // If child of this layout is a pure View then assign it a LayoutGroup
                     // If the child is derived from a View then it may be a legacy or existing container hence will do layouting itself.
-                    child.Layout = (child as TextLabel)?.CreateTextLayout() ?? new AbsoluteLayout();
+                    if (child is TextLabel textLabel)
+                    {
+                        child.Layout = textLabel.CreateTextLayout();
+                    }
+                    else if (child is ImageView imageView)
+                    {
+                        child.Layout = ImageView.CreateImageLayout();
+                    }
+                    else
+                    {
+                        child.Layout = new AbsoluteLayout();
+                    }
                 }
             }
             else

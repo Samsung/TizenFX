@@ -9,21 +9,22 @@ namespace Tizen.NUI.Devel.Tests
 
     [TestFixture]
     [Description("internal/Xaml/HydrationContext")]
-    internal class PublicHydrationContextTest
+    public class InternalHydrationContextTest
     {
         private const string tag = "NUITEST";
-        private static HydrationContext h1;
+        private HydrationContext context;
 
         [SetUp]
         public void Init()
         {
             tlog.Info(tag, "Init() is called!");
-            h1 = new HydrationContext();
+            context = new HydrationContext();
         }
 
         [TearDown]
         public void Destroy()
         {
+            context = null;
             tlog.Info(tag, "Destroy() is called!");
         }
 
@@ -39,16 +40,16 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                Dictionary<INode, object> d1 = h1.Values;
+                var dic = context.Values;
+                Assert.AreEqual(0, dic.Count, "Should be equal");
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"HydrationContextValues END (OK)");
-            Assert.Pass("HydrationContextValues");
+            tlog.Debug(tag, $"HydrationContextValues END");
         }
 
         [Test]
@@ -63,16 +64,16 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                Dictionary<IElementNode, Type> d1 = h1.Types;
+                var dic = context.Types;
+                Assert.AreEqual(0, dic.Count, "Should be equal");
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"HydrationContextTypes END (OK)");
-            Assert.Pass("HydrationContextTypes");
+            tlog.Debug(tag, $"HydrationContextTypes END");
         }
 
         [Test]
@@ -87,17 +88,17 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                HydrationContext hy1 = h1.ParentContext;
-                h1.ParentContext = hy1;
+                var testingTarget = context.ParentContext;
+                context.ParentContext = testingTarget;
+                Assert.AreEqual(testingTarget, context.ParentContext, "Should be equal");
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"HydrationContextParentContext END (OK)");
-            Assert.Pass("HydrationContextParentContext");
+            tlog.Debug(tag, $"HydrationContextParentContext END");
         }
 
         [Test]
@@ -112,17 +113,17 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                Action<Exception> a1 = h1.ExceptionHandler;
-                h1.ExceptionHandler = a1;
+                var action = context.ExceptionHandler;
+                context.ExceptionHandler = action;
+                Assert.AreEqual(action, context.ExceptionHandler, "Should be equal");
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"HydrationContextExceptionHandler END (OK)");
-            Assert.Pass("HydrationContextExceptionHandler");
+            tlog.Debug(tag, $"HydrationContextExceptionHandler END");
         }
     }
 }

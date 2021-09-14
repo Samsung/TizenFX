@@ -42,7 +42,7 @@ namespace Tizen.NUI.BaseComponents
         private int widthPolicy = LayoutParamPolicies.WrapContent; // Layout width policy
         private int heightPolicy = LayoutParamPolicies.WrapContent; // Layout height policy
         private float weight = 0.0f; // Weighting of child View in a Layout
-        private bool backgroundImageSynchronosLoading = false;
+        private bool backgroundImageSynchronousLoading = false;
         private bool excludeLayouting = false;
         private LayoutTransition layoutTransition;
         private TransitionOptions transitionOptions = null;
@@ -465,6 +465,7 @@ namespace Tizen.NUI.BaseComponents
         /// The radius for the rounded corners of the View.
         /// This will rounds background and shadow edges.
         /// The values in Vector4 are used in clockwise order from top-left to bottom-left : Vector4(top-left-corner, top-right-corner, bottom-right-corner, bottom-left-corner).
+        /// Each radius will clamp internally to the half of smaller of the view's width or height.
         /// Note that, an image background (or shadow) may not have rounded corners if it uses a Border property.
         /// </summary>
         /// <remarks>
@@ -490,7 +491,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Whether the CornerRadius property value is relative (percentage [0.0f to 1.0f] of the view size) or absolute (in world units).
+        /// Whether the CornerRadius property value is relative (percentage [0.0f to 0.5f] of the view size) or absolute (in world units).
         /// It is absolute by default.
         /// When the policy is relative, the corner radius is relative to the smaller of the view's width and height.
         /// </summary>
@@ -503,12 +504,14 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The width for the borderline of the View.
-        /// This will draw borderline at background.
         /// Note that, an image background may not have borderline if it uses a Border property.
         /// </summary>
         /// <remarks>
         /// <para>
         /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// <code>
+        /// animation.AnimateTo(view, "BorderlineWidth", 100.0f);
+        /// </code>
         /// </para>
         /// </remarks>
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -533,6 +536,9 @@ namespace Tizen.NUI.BaseComponents
         /// <remarks>
         /// <para>
         /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// <code>
+        /// animation.AnimateTo(view, "BorderlineColor", new Color(r, g, b, a));
+        /// </code>
         /// </para>
         /// </remarks>
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -561,6 +567,9 @@ namespace Tizen.NUI.BaseComponents
         /// <remarks>
         /// <para>
         /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// <code>
+        /// animation.AnimateTo(view, "BorderlineOffset", -1.0f);
+        /// </code>
         /// </para>
         /// </remarks>
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -914,6 +923,24 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 return (bool)GetValue(FocusableProperty);
+            }
+        }
+
+        /// <summary>
+        /// Whether the children of this view can be focusable by keyboard navigation. If user sets this to false, the children of this actor view will not be focused.
+        /// Note : Default value is true.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool FocusableChildren
+        {
+            set
+            {
+                SetValue(FocusableChildrenProperty, value);
+                NotifyPropertyChanged();
+            }
+            get
+            {
+                return (bool)GetValue(FocusableChildrenProperty);
             }
         }
 
@@ -1670,6 +1697,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Gets or sets the status of whether the view should emit touch or hover signals.
+        /// If a View is made insensitive, then the View and its children are not hittable.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public bool Sensitive
@@ -2368,6 +2396,19 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public XamlStyle XamlStyle
+        {
+            get
+            {
+                return (XamlStyle)GetValue(XamlStyleProperty);
+            }
+            set
+            {
+                SetValue(XamlStyleProperty, value);
+            }
+        }
+
         /// <summary>
         /// The Color of View. This is an RGBA value.
         /// </summary>
@@ -2522,11 +2563,30 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return backgroundImageSynchronosLoading;
+                return BackgroundImageSynchronousLoading;
             }
             set
             {
-                backgroundImageSynchronosLoading = value;
+                BackgroundImageSynchronousLoading = value;
+            }
+        }
+
+        /// <summary>
+        ///  Whether to load the BackgroundImage synchronously.
+        ///  If not specified, the default is false, i.e. the BackgroundImage is loaded asynchronously.
+        ///  Note: For Normal Quad images only.
+        /// </summary>
+        /// This will be public opened in tizen_7.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool BackgroundImageSynchronousLoading
+        {
+            get
+            {
+                return backgroundImageSynchronousLoading;
+            }
+            set
+            {
+                backgroundImageSynchronousLoading = value;
 
                 string bgUrl = null;
                 var pValue = Background.Find(ImageVisualProperty.URL);
@@ -2536,7 +2596,7 @@ namespace Tizen.NUI.BaseComponents
                 if (!string.IsNullOrEmpty(bgUrl))
                 {
                     PropertyMap bgMap = this.Background;
-                    var temp = new PropertyValue(backgroundImageSynchronosLoading);
+                    var temp = new PropertyValue(backgroundImageSynchronousLoading);
                     bgMap.Add("synchronousLoading", temp);
                     temp.Dispose();
                     Background = bgMap;

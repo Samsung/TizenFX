@@ -66,14 +66,11 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"FontClientConstructorWithFontClient START");
 
-            using (FontClient instance = FontClient.Instance)
-            {
-                var testingTarget = new FontClient(instance);
-                Assert.IsNotNull(testingTarget, "Return a null object of FontClient");
-                Assert.IsInstanceOf<FontClient>(testingTarget, "Should be an instance of FontClient type.");
+            var testingTarget = new FontClient(FontClient.Instance);
+            Assert.IsNotNull(testingTarget, "Return a null object of FontClient");
+            Assert.IsInstanceOf<FontClient>(testingTarget, "Should be an instance of FontClient type.");
 
-                testingTarget.Dispose();
-            }
+            testingTarget.Dispose();
 
             tlog.Debug(tag, $"FontClientConstructorWithFontClient END (OK)");
         }
@@ -106,11 +103,11 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"FontClientAssign START");
 
-            using (FontClient fontClient = FontClient.Instance)
+            using (FontClient client = new FontClient())
             {
                 try
                 {
-                    var testingTarget = fontClient.Assign(fontClient);
+                    var testingTarget = client.Assign(FontClient.Instance);
                     Assert.IsNotNull(testingTarget, "Return a null object of FontClient");
                     Assert.IsInstanceOf<FontClient>(testingTarget, "Should be an instance of FontClient type.");
 
@@ -126,38 +123,38 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"FontClientAssign END (OK)");
         }
 
-        [Test]
-        [Category("P1")]
-        [Description("FontClient GetDpi.")]
-        [Property("SPEC", "Tizen.NUI.FontClient.GetDpi M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void FontClientGetDpi()
-        {
-            tlog.Debug(tag, $"FontClientGetDpi START");
+        //[Test]
+        //[Category("P1")]
+        //[Description("FontClient GetDpi.")]
+        //[Property("SPEC", "Tizen.NUI.FontClient.GetDpi M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //[Property("AUTHOR", "guowei.wang@samsung.com")]
+        //public void FontClientGetDpi()
+        //{
+        //    tlog.Debug(tag, $"FontClientGetDpi START");
 
-            var testingTarget = new FontClient(FontClient.Instance);
-            Assert.IsNotNull(testingTarget, "Return a null object of FontClient");
-            Assert.IsInstanceOf<FontClient>(testingTarget, "Should be an instance of FontClient type.");
+        //    var testingTarget = new FontClient(FontClient.Instance);
+        //    Assert.IsNotNull(testingTarget, "Return a null object of FontClient");
+        //    Assert.IsInstanceOf<FontClient>(testingTarget, "Should be an instance of FontClient type.");
 
-            testingTarget.SetDpi(50, 60);
+        //    testingTarget.SetDpi(50, 60);
 
-            try
-            {
-                var horizontalDpi = new SWIGTYPE_p_unsigned_int(testingTarget.GetBaseHandleCPtrHandleRef.Handle);
-                var verticalDpi = new SWIGTYPE_p_unsigned_int(new FontClient().GetBaseHandleCPtrHandleRef.Handle);
-                testingTarget.GetDpi(horizontalDpi, verticalDpi);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception: Failed");
-            }
+        //    try
+        //    {
+        //        var horizontalDpi = new SWIGTYPE_p_unsigned_int(testingTarget.GetBaseHandleCPtrHandleRef.Handle);
+        //        var verticalDpi = new SWIGTYPE_p_unsigned_int(new FontClient().GetBaseHandleCPtrHandleRef.Handle);
+        //        testingTarget.GetDpi(horizontalDpi, verticalDpi);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        tlog.Debug(tag, e.Message.ToString());
+        //        Assert.Fail("Caught Exception: Failed");
+        //    }
 
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"FontClientGetDpi END (OK)");
-        }
+        //    testingTarget.Dispose();
+        //    tlog.Debug(tag, $"FontClientGetDpi END (OK)");
+        //}
 
         [Test]
         [Category("P1")]
@@ -254,30 +251,27 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"FontClientCreateVectorBlob START");
 
-            using (FontClient fontClient = FontClient.Instance)
+            var testingTarget = new FontClient(FontClient.Instance);
+
+            using (Color color = new Color(0.4f, 1.0f, 0.3f, 0.0f))
             {
-                var testingTarget = new FontClient(fontClient);
+                var blob = new SWIGTYPE_p_p_Dali__TextAbstraction__VectorBlob(color.SwigCPtr.Handle);
+                var blobLegnth = new SWIGTYPE_p_unsigned_int(color.SwigCPtr.Handle);
 
-                using (Color color = new Color(0.4f, 1.0f, 0.3f, 0.0f))
+                var nominalWidth = new SWIGTYPE_p_unsigned_int(FontClient.Instance.SwigCPtr.Handle);
+                var nominalHeight = new SWIGTYPE_p_unsigned_int(testingTarget.SwigCPtr.Handle);
+
+                try
                 {
-                    var blob = new SWIGTYPE_p_p_Dali__TextAbstraction__VectorBlob(color.SwigCPtr.Handle);
-                    var blobLegnth = new SWIGTYPE_p_unsigned_int(color.SwigCPtr.Handle);
-
-                    var nominalWidth = new SWIGTYPE_p_unsigned_int(fontClient.SwigCPtr.Handle);
-                    var nominalHeight = new SWIGTYPE_p_unsigned_int(testingTarget.SwigCPtr.Handle);
-
-                    try
-                    {
-                        testingTarget.CreateVectorBlob(0, 0, blob, blobLegnth, nominalWidth, nominalHeight);
-                    }
-                    catch (Exception e)
-                    {
-                        tlog.Debug(tag, e.Message.ToString());
-                        Assert.Fail("Caught Exception: Failed!");
-                    }
-
-                    testingTarget.Dispose();
+                    testingTarget.CreateVectorBlob(0, 0, blob, blobLegnth, nominalWidth, nominalHeight);
                 }
+                catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught Exception: Failed!");
+                }
+
+                testingTarget.Dispose();
             }
 
             tlog.Debug(tag, $"FontClientCreateVectorBlob END (OK)");
@@ -372,8 +366,8 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Return a null object of GlyphBufferData");
             Assert.IsInstanceOf<FontClient.GlyphBufferData>(testingTarget, "Should be an instance of GlyphBufferData type.");
 
-            testingTarget.Width = 100;
-            Assert.AreEqual(100, testingTarget.Width, "Should be equal!");
+            testingTarget.Width = 10;
+            Assert.AreEqual(10, testingTarget.Width, "Should be equal!");
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"FontClientGlyphBufferDataWidth END (OK)");
