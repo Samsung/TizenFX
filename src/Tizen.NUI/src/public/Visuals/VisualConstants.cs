@@ -55,46 +55,46 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// Enumeration for the text horizontal aligning.
+    /// Enumeration for the horizontal alignment of objects such as texts and layout items.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum HorizontalAlignment
     {
         /// <summary>
-        /// Texts place at the begin of horizontal direction.
+        /// Objects are placed at the beginning of the horizontal direction.
         /// </summary>
         [Description("BEGIN")]
         Begin,
         /// <summary>
-        /// Texts place at the center of horizontal direction.
+        /// Objects are placed at the center of the horizontal direction.
         /// </summary>
         [Description("CENTER")]
         Center,
         /// <summary>
-        /// Texts place at the end of horizontal direction.
+        /// Objects are placed at the end of the horizontal direction.
         /// </summary>
         [Description("END")]
         End
     }
 
     /// <summary>
-    /// Enumeration for the text horizontal aligning.
+    /// Enumeration for the vertical alignment of objects such as texts and layout items.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum VerticalAlignment
     {
         /// <summary>
-        /// Texts place at the top of vertical direction.
+        /// Objects are placed at the top of the vertical direction.
         /// </summary>
         [Description("TOP")]
         Top,
         /// <summary>
-        /// Texts place at the center of vertical direction.
+        /// Objects are placed at the center of the vertical direction.
         /// </summary>
         [Description("CENTER")]
         Center,
         /// <summary>
-        /// Texts place at the bottom of vertical direction.
+        /// Objects are placed at the bottom of the vertical direction.
         /// </summary>
         [Description("BOTTOM")]
         Bottom
