@@ -163,6 +163,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <privilege>http://tizen.org/privilege/d2d.datasharing</privilege>
         /// <exception cref="InvalidOperationException">Thrown when the discovery operation is already in progress.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         /// <since_tizen> 9 </since_tizen>
         public void TryDiscovery()
         {
