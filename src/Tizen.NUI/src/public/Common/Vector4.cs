@@ -751,11 +751,6 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public object Clone() => new Vector4(X, Y, Z, W);
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Vector4 obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
-        }
-
         internal static Vector4 GetVector4FromPtr(global::System.IntPtr cPtr)
         {
             Vector4 ret = new Vector4(cPtr, false);

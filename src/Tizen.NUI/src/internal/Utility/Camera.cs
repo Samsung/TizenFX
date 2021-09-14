@@ -29,11 +29,6 @@ namespace Tizen.NUI
         {
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Camera obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
-        }
-
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.CameraActor.DeleteCameraActor(swigCPtr);

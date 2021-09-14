@@ -39,11 +39,6 @@ namespace Tizen.NUI
             DirectorConnect();
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(FrameUpdateCallbackInterface obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
-        }
-
         private void DirectorConnect()
         {
             Delegate0 = new DelegateFrameUpdateCallbackInterface(DirectorOnUpdate);

@@ -1253,11 +1253,6 @@ namespace Tizen.NUI.BaseComponents
             base.Dispose(type);
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TextLabel obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
-        }
-
         /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)

@@ -78,6 +78,11 @@ namespace Tizen.NUI
             GC.SuppressFinalize(this);
         }
 
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Disposable obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
+        }
+
         /// <summary>
         /// Hidden API (Inhouse API).
         /// Dispose. 

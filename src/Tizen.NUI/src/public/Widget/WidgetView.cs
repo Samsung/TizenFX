@@ -579,11 +579,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(WidgetView obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
-        }
-
         internal WidgetView Assign(WidgetView handle)
         {
             WidgetView ret = new WidgetView(Interop.WidgetView.Assign(SwigCPtr, WidgetView.getCPtr(handle)), false);

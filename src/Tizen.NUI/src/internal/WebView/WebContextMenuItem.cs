@@ -234,10 +234,5 @@ namespace Tizen.NUI
                 return new WebContextMenu(result, true);
             }
         }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(WebContextMenuItem obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
-        }
     }
 }
