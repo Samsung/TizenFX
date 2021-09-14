@@ -15,8 +15,6 @@
  *
  */
 
-extern alias TizenSystemInformation;
-using TizenSystemInformation.Tizen.System;
 using System;
 using System.ComponentModel;
 
