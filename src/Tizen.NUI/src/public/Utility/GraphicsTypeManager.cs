@@ -35,36 +35,42 @@ namespace Tizen.NUI
         /// <summary>
         /// Constant of low(120) density dpi.
         /// </summary>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public const int DensityLow = 120;
 
         /// <summary>
-        /// Constant of mkedium(160) density dpi. Default dpi.
+        /// Constant of medium(160) density dpi. Default dpi.
         /// </summary>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public const int DensityMedium = 160;
 
         /// <summary>
         /// Constant of high(240) density dpi.
         /// </summary>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public const int DensityHigh = 240;
 
         /// <summary>
         /// Constant of extra high(320) density dpi.
         /// </summary>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public const int DensityXHigh = 320;
 
         /// <summary>
         /// Constant of double extra high(480) density dpi.
         /// </summary>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public const int DensityXXHigh = 480;
 
         /// <summary>
         /// Constant of triple extra high(640) density dpi.
         /// </summary>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public const int DensityXXXHigh = 640;
 
@@ -72,6 +78,7 @@ namespace Tizen.NUI
         /// Custom scale factor of display metrics.
         /// ScalingFactor scale Dpi on DpiStable.
         /// </summary>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float ScalingFactor
         {
@@ -83,6 +90,7 @@ namespace Tizen.NUI
         /// Dot per Inch value from system.
         /// See Vector Dpi in <see cref="Tizen.NUI.Window" /> also.
         /// </summary>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int Dpi
         {
@@ -101,6 +109,7 @@ namespace Tizen.NUI
         /// Dpi for GraphicsTypeManager.
         /// Dpi is scaled from Dpi with custom ScalingFactor.
         /// </summary>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int ScaledDpi
         {
@@ -113,6 +122,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Default dpi. Medium(160) density dpi is origianlly provided.
         /// </summary>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int DefaultDpi
         {
@@ -126,6 +136,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Density of display.
         /// </summary>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float Density
         {
@@ -173,6 +184,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Creates private GraphicsTypeManager object.
         /// </summary>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         private GraphicsTypeManager()
         {

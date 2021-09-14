@@ -9,6 +9,7 @@ namespace Tizen.NUI
     /// To convert Dp to pixel, use Pixel property or,
     /// See <see cref="Tizen.NUI.DisplayTypeManager" /> and <see cref="Tizen.NUI.DisplayTypeConverter" /> also.
     /// </summary>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public static class GraphicsTypeExtensions
     {
@@ -18,6 +19,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="pixel">The pixel unit value to be converted dp unit.</param>
         /// <returns>The float dp unit value.</returns>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static float ToDp(this float pixel)
         {
@@ -37,6 +39,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="dp">The dp unit value to be converted pixel unit.</param>
         /// <returns>The float pixel unit value.</returns>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static float ToPixel(this float dp)
         {
             if (GraphicsTypeManager.Instance.TypeConverter is DpTypeConverter)
