@@ -53,10 +53,5 @@ namespace Tizen.NUI
                 return Interop.WebSecurityOrigin.GetProtocol(SwigCPtr);
             }
         }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(WebSecurityOrigin obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
-        }
     }
 }

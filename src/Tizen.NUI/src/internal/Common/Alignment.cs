@@ -25,11 +25,6 @@ namespace Tizen.NUI
         {
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Alignment obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
-        }
-
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.Alignment.DeleteAlignment(swigCPtr);
@@ -40,11 +35,6 @@ namespace Tizen.NUI
 
             internal Padding(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
             {
-            }
-
-            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Padding obj)
-            {
-                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
             }
 
             protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)

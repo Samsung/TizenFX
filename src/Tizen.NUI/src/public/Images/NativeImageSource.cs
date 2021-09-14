@@ -65,11 +65,6 @@ namespace Tizen.NUI
             Bits32,
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(NativeImageSource obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
-        }
-
         [EditorBrowsable(EditorBrowsableState.Never)]
         public IntPtr AcquireBuffer(ref int width, ref int height, ref int stride)
         {

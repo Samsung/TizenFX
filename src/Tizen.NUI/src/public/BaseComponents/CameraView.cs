@@ -53,11 +53,6 @@ namespace Tizen.NUI.BaseComponents
         {
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(CameraView obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
-        }
-
         /// <summary>
         /// Called when the camera view needs to be updated if the camera setting is changed.
         /// </summary>

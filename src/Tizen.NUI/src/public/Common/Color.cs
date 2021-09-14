@@ -1413,11 +1413,6 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public object Clone() => new Color(this);
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Color obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
-        }
-
         internal static Color GetColorFromPtr(global::System.IntPtr cPtr)
         {
             Color ret = new Color(cPtr, false);
