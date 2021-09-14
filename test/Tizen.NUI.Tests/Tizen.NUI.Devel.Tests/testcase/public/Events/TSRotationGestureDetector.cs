@@ -184,26 +184,41 @@ namespace Tizen.NUI.Devel.Tests
 			
             a1.Detected += OnDetected;
             a1.Detected -= OnDetected;
-			
-            RotationGestureDetector.DetectedEventArgs e = new RotationGestureDetector.DetectedEventArgs();
-            object o = new object();
-			
-            OnDetected(o, e);
-			
+            
             a1.Dispose();
-			
             tlog.Debug(tag, $"RotationGestureDetectorDetected END (OK)");
-            Assert.Pass("RotationGestureDetectorDetected");
         }		
 		
 		private void OnDetected(object obj, RotationGestureDetector.DetectedEventArgs e)
-		{
-            View v1 = e.View;
-            e.View = v1;
-			
-            RotationGesture p1 = e.RotationGesture;
-            e.RotationGesture = p1;
-		}		
-    }
+		{ }
 
+        [Test]
+        [Category("P1")]
+        [Description("DetectedEventArgs View.")]
+        [Property("SPEC", "Tizen.NUI.DetectedEventArgs.View A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void RotationGestureDetectedEventArgsView()
+        {
+            tlog.Debug(tag, $"RotationGestureDetectedEventArgsView START");
+
+            var testingTarget = new Tizen.NUI.RotationGestureDetector.DetectedEventArgs();
+            Assert.IsNotNull(testingTarget, "Can't create success object DetectedEventArgs.");
+            Assert.IsInstanceOf<Tizen.NUI.RotationGestureDetector.DetectedEventArgs>(testingTarget, "Should return DetectedEventArgs instance.");
+
+            using (View view = new View() { Size = new Size(100, 50) })
+            {
+                testingTarget.View = view;
+                Assert.AreEqual(100, testingTarget.View.Size.Width, "Should be equal!");
+            }
+
+            testingTarget.RotationGesture = new RotationGesture(Gesture.StateType.Possible);
+            Assert.AreEqual(Gesture.StateType.Possible, testingTarget.RotationGesture.State, "Should be equal!");
+
+            tlog.Debug(tag, "Handled : " + testingTarget.Handled);
+
+            tlog.Debug(tag, $"RotationGestureDetectedEventArgsView END (OK)");
+        }
+    }
 }

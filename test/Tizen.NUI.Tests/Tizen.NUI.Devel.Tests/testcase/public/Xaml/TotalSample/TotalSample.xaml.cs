@@ -15,11 +15,14 @@
  *
  */
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
 using Tizen.NUI.Components;
+using Tizen.NUI.Xaml;
+//using static Tizen.NUI.Xaml.VisualStateManager;
 
 namespace Tizen.NUI.Devel.Tests
 {
@@ -39,9 +42,38 @@ namespace Tizen.NUI.Devel.Tests
 
     public partial class TotalSample : UIElement
     {
-        public TotalSample()
+		private void LoadEXaml()
         {
-            InitializeComponent();
+            eXamlData = global::Tizen.NUI.EXaml.EXamlExtensions.LoadFromEXamlByRelativePath(this, @"examl/Tizen.NUI.Devel.Tests.TotalSample.examl");
+            t1 = global::Tizen.NUI.Binding.NameScopeExtensions.FindByName<global::Tizen.NUI.Devel.Tests.UIElement>(this, "t1");
+            t2 = global::Tizen.NUI.Binding.NameScopeExtensions.FindByName<global::Tizen.NUI.Devel.Tests.UIElement>(this, "t2");
+            t3 = global::Tizen.NUI.Binding.NameScopeExtensions.FindByName<global::Tizen.NUI.Devel.Tests.UIElement>(this, "t3");
+        }
+		
+		private void UIElementEvent(object sender, EventArgs e)
+        {
+        }
+
+        private void StaticUIElementEvent(object sender, EventArgs e)
+        {
+        }
+
+        private void LoadXaml()
+        {
+            global::Tizen.NUI.Xaml.Extensions.LoadFromXaml(this, typeof(TotalSample));
+        }
+		
+        public TotalSample(bool examl = false)
+        {
+            if (examl)
+            {
+                LoadEXaml();
+				global::Tizen.NUI.EXaml.EXamlExtensions.RemoveEventsInXaml(eXamlData);
+            }
+            else
+            {
+                InitializeComponent();
+            }
         }
     }
 }

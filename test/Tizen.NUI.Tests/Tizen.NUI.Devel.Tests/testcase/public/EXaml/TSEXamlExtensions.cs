@@ -179,5 +179,32 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"EXamlExtensionsLoadFromEXamlWithNullString END (OK)");
         }
+
+        [Test]
+        [Category("P1")]
+        [Description("Extensions LoadFromXamlPath.")]
+        [Property("SPEC", "Tizen.NUI.EXaml.EXamlExtensions.LoadFromEXamlByRelativePath M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "TXaml,Type")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void LoadFromEXamlByRelativePath2()
+        {
+            tlog.Debug(tag, $"LoadFromEXamlByRelativePath2 START");
+
+            try
+            {
+                var testcase = new TotalSample(true);
+                Assert.True(true, "Should go here!");
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                tlog.Debug(tag, e.StackTrace);
+                Assert.Fail("Caught Exception: Failed!");
+            }
+
+            tlog.Debug(tag, $"LoadFromEXamlByRelativePath2 END");
+        }
     }
 }

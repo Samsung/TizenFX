@@ -158,17 +158,14 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The constructor with a stylesheet, window mode, window size, position and default window type.
+        /// The constructor with a stylesheet, window mode and default window type.
+        /// It is the only way to create an IME window.
         /// </summary>
         /// <param name="styleSheet">The styleSheet URL.</param>
         /// <param name="windowMode">The windowMode.</param>
-        /// <param name="windowSize">The window size.</param>
-        /// <param name="windowPosition">The window position.</param>
         /// <param name="type">The default window type.</param>
         /// <since_tizen> 9 </since_tizen>
-        /// This should be hidden. Because the major purpose is to support IME window as keyboard application.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public NUIApplication(string styleSheet, WindowMode windowMode, Size2D windowSize, Position2D windowPosition, WindowType type) : base(new NUICoreBackend(styleSheet, windowMode, windowSize, windowPosition, type))
+        public NUIApplication(string styleSheet, WindowMode windowMode, WindowType type) : base(new NUICoreBackend(styleSheet, windowMode, type))
         {
             ExternalThemeManager.Initialize();
         }

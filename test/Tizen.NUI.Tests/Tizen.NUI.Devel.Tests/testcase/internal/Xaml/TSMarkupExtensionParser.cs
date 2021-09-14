@@ -46,6 +46,7 @@ namespace Tizen.NUI.Devel.Tests
             {
                 string str = new string('a', 4);
                 IServiceProviderImpl provider = new IServiceProviderImpl();
+                Assert.IsNotNull(provider, "null IServiceProviderImplement");
                 extParser.Parse("myMatch", ref str, provider);
             }
             catch (Exception e)

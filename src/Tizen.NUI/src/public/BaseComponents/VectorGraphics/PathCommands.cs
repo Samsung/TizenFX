@@ -25,7 +25,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
     /// Data class that contains information about a list of path commands.
     /// For each command from the commands array, an appropriate number of points in points array should be specified.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class PathCommands
     {
         private IEnumerable<PathCommandType> commands; //The array of commands.
@@ -37,7 +37,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// <param name="commands">The array of commands.</param>
         /// <param name="points">The array of points.</param>
         /// <exception cref="ArgumentNullException"> Thrown when commands or points are null. </exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public PathCommands(IEnumerable<PathCommandType> commands, IEnumerable<float> points)
         {
             if (commands == null)
@@ -56,7 +56,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// The commands array.
         /// </summary>
         /// <exception cref="ArgumentNullException"> Thrown when commands is null. </exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public IEnumerable<PathCommandType> Commands
         {
             get
@@ -77,7 +77,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// The points array
         /// </summary>
         /// <exception cref="ArgumentNullException"> Thrown when points is null. </exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public IEnumerable<float> Points
         {
             get

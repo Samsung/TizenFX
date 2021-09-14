@@ -218,6 +218,8 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.PinchGesture = new PinchGesture(Gesture.StateType.Possible);
             Assert.AreEqual(Gesture.StateType.Possible, testingTarget.PinchGesture.State, "Should be equal!");
 
+            tlog.Debug(tag, "Handled : " + testingTarget.Handled);
+
             tlog.Debug(tag, $"PinchGestureDetectedEventArgsView END (OK)");
         }
     }

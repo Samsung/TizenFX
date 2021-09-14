@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<View x:Class="Tizen.NUI.Devel.Tests.BindingSample"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:l="clr-namespace:Tizen.NUI.Devel.Tests;assembly=Tizen.NUI.Devel.Tests"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <View.XamlResources>
+        <ResourceDictionary>
+            <l:FloatToBoolConverter x:Key="floatToBool" />
+            <l:FloatToIntConverter x:Key="floatToInt" />
+        </ResourceDictionary>
+    </View.XamlResources>
+
+    <View x:Name="view1" BackgroundColor="Red" SizeWidth="100" SizeHeight="100" Sensitive="true" />
+    <TextLabel PositionX="200" PositionY="500" Ellipsis="{Binding Source={x:Reference view1}, Path=SizeWidth, Converter={StaticResource floatToBool}}" />
+    <TextLabel>
+        <TextLabel.Text>
+            <Binding Source="{x:Reference view1}" Path="Sensitive">
+                <Binding.Converter>
+                    <l:BoolToObjectConverter x:TypeArguments="x:String" TrueObject="Of course!" FalseObject="No way!" />
+                </Binding.Converter>
+            </Binding>
+        </TextLabel.Text>
+    </TextLabel>
+    <TextLabel Text="{Binding Red, Converter={StaticResource floatToInt}, ConverterParameter=255, StringFormat='Red = {0:X2}'}" >
+        <TextLabel.BindingContext>
+            <l:RgbColorViewModel Color="Red" />
+        </TextLabel.BindingContext>
+    </TextLabel>
+</View>

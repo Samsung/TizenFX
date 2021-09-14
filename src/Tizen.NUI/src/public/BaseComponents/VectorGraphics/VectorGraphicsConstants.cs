@@ -24,7 +24,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
     /// <summary>
     /// Enumeration for The fill rule of shape.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public enum FillRuleType
     {
         /// <summary>
@@ -40,7 +40,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
     /// <summary>
     /// Enumeration for The cap style to be used for stroking the path.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public enum StrokeCapType
     {
         /// <summary>
@@ -60,7 +60,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
     /// <summary>
     /// numeration for The join style to be used for stroking the path.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public enum StrokeJoinType
     {
         /// <summary>
@@ -80,7 +80,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
     /// <summary>
     /// Enumeration indicating the type used in the masking of two objects - the mask drawable and the own drawable.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public enum MaskType
     {
         /// <summary>
@@ -96,7 +96,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
     /// <summary>
     /// Enumeration specifying how to fill the area outside the gradient bounds.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public enum SpreadType
     {
         /// <summary>
@@ -117,7 +117,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
     /// Enumeration specifying the values of the path commands.
     /// Not to be confused with the path commands from the svg path element (like M, L, Q, H and many others).
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public enum PathCommandType
     {
         /// <summary>

@@ -203,19 +203,36 @@ namespace Tizen.NUI.BaseComponents
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SynchronosLoadingProperty = BindableProperty.Create(nameof(SynchronosLoading), typeof(bool), typeof(ImageView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SynchronosLoadingProperty = BindableProperty.Create(nameof(SynchronousLoading), typeof(bool), typeof(ImageView), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var imageView = (ImageView)bindable;
             if (newValue != null)
             {
-                imageView._synchronosLoading = (bool)newValue;
+                imageView._synchronousLoading = (bool)newValue;
                 imageView.UpdateImage(NpatchImageVisualProperty.SynchronousLoading, new PropertyValue((bool)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var imageView = (ImageView)bindable;
-            return imageView._synchronosLoading;
+            return imageView._synchronousLoading;
+        });
+
+        /// This will be public opened in tizen_7.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty SynchronousLoadingProperty = BindableProperty.Create(nameof(SynchronousLoading), typeof(bool), typeof(ImageView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var imageView = (ImageView)bindable;
+            if (newValue != null)
+            {
+                imageView._synchronousLoading = (bool)newValue;
+                imageView.UpdateImage(NpatchImageVisualProperty.SynchronousLoading, new PropertyValue((bool)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var imageView = (ImageView)bindable;
+            return imageView._synchronousLoading;
         });
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -247,7 +264,7 @@ namespace Tizen.NUI.BaseComponents
 
         private Rectangle _border;
         private string _resourceUrl = "";
-        private bool _synchronosLoading = false;
+        private bool _synchronousLoading = false;
         private string _alphaMaskUrl = null;
         private int _desired_width = -1;
         private int _desired_height = -1;
@@ -334,6 +351,14 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetVisible(false);
             }
+        }
+
+        /// <summary>
+        /// Create internal layout of ImageView
+        /// </summary>
+        internal static LayoutItem CreateImageLayout()
+        {
+            return new ImageLayout();
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -621,11 +646,28 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(SynchronosLoadingProperty);
+                return SynchronousLoading;
             }
             set
             {
-                SetValue(SynchronosLoadingProperty, value);
+                SynchronousLoading = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets whether to synchronous loading the resourceurl of image.<br />
+        /// </summary>
+        /// This will be public opened in tizen_7.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool SynchronousLoading
+        {
+            get
+            {
+                return (bool)GetValue(SynchronousLoadingProperty);
+            }
+            set
+            {
+                SetValue(SynchronousLoadingProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -1085,6 +1127,14 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// Gets or sets the mode to adjust view size to preserve the aspect ratio of the image resource.
+        /// If this is set to be true, then the width or height, which is not set by user explicitly, can be adjusted to preserve the aspect ratio of the image resource.
+        /// AdjustViewSize works only if ImageView is added to a View having Layout.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool AdjustViewSize { get; set; } = false;
+
         internal Selector<string> ResourceUrlSelector
         {
             get => GetSelector<string>(resourceUrlSelector, ImageView.ResourceUrlProperty);
@@ -1299,9 +1349,9 @@ namespace Tizen.NUI.BaseComponents
                 fittingMode?.Dispose();
             }
 
-            PropertyValue synchronosLoading = new PropertyValue(_synchronosLoading);
-            imageMap?.Insert(NpatchImageVisualProperty.SynchronousLoading, synchronosLoading);
-            synchronosLoading?.Dispose();
+            PropertyValue synchronousLoading = new PropertyValue(_synchronousLoading);
+            imageMap?.Insert(NpatchImageVisualProperty.SynchronousLoading, synchronousLoading);
+            synchronousLoading?.Dispose();
 
             if (backgroundExtraData != null && backgroundExtraData.CornerRadius != null)
             {
@@ -1335,7 +1385,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (_resourceUrl != null)
                 {
-                    Size2D imageSize = ImageLoading.GetOriginalImageSize(_resourceUrl, true);
+                    Size2D imageSize = ImageLoader.GetOriginalImageSize(_resourceUrl, true);
                     if( imageSize.Height > 0 && imageSize.Width > 0 && _desired_width > 0  && _desired_height > 0 )
                     {
                         int adjustedDesiredWidth, adjustedDesiredHeight;
@@ -1465,6 +1515,101 @@ namespace Tizen.NUI.BaseComponents
         private void OnPixelAreaChanged(float x, float y, float z, float w)
         {
             PixelArea = new RelativeVector4(x, y, z, w);
+        }
+
+        private class ImageLayout : LayoutItem
+        {
+            /// <summary>
+            /// Gets or sets the mode to adjust view size to preserve the aspect ratio of the image resource.
+            /// If this is set to be true, then the width or height, which is not set by user explicitly, can be adjusted to preserve the aspect ratio of the image resource.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public bool AdjustViewSize
+            {
+                get
+                {
+                    return (Owner as ImageView)?.AdjustViewSize ?? false;
+                }
+                set
+                {
+                    if (Owner is ImageView imageView)
+                    {
+                        imageView.AdjustViewSize = value;
+                    }
+                }
+            }
+
+            /// <inheritdoc/>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
+            {
+                // To not change the view size by DALi
+                Owner.WidthResizePolicy = ResizePolicyType.Fixed;
+                Owner.HeightResizePolicy = ResizePolicyType.Fixed;
+
+                float specWidth = widthMeasureSpec.Size.AsDecimal();
+                float specHeight = heightMeasureSpec.Size.AsDecimal();
+                float naturalWidth = Owner.NaturalSize.Width;
+                float naturalHeight = Owner.NaturalSize.Height;
+                float minWidth = Owner.MinimumSize.Width;
+                float maxWidth = Owner.MaximumSize.Width;
+                float minHeight = Owner.MinimumSize.Height;
+                float maxHeight = Owner.MaximumSize.Height;
+                float aspectRatio = (naturalWidth > 0) ? (naturalHeight / naturalWidth) : 0;
+
+                // Assume that the new width and height are given from the view's suggested size by default.
+                float newWidth = Math.Min(Math.Max(naturalWidth, minWidth), (maxWidth < 0 ? Int32.MaxValue : maxWidth));
+                float newHeight = Math.Min(Math.Max(naturalHeight, minHeight), (maxHeight < 0 ? Int32.MaxValue : maxHeight));
+
+                // The width and height measure specs are going to be used to set measured size.
+                // Mark that the measure specs are changed by default to update measure specs later.
+                bool widthSpecChanged = true;
+                bool heightSpecChanged = true;
+
+                if (widthMeasureSpec.Mode == MeasureSpecification.ModeType.Exactly)
+                {
+                    newWidth = specWidth;
+                    widthSpecChanged = false;
+
+                    if (heightMeasureSpec.Mode != MeasureSpecification.ModeType.Exactly)
+                    {
+                        if ((AdjustViewSize) && (aspectRatio > 0))
+                        {
+                            newHeight = newWidth * aspectRatio;
+                        }
+                    }
+                }
+
+                if (heightMeasureSpec.Mode == MeasureSpecification.ModeType.Exactly)
+                {
+                    newHeight = specHeight;
+                    heightSpecChanged = false;
+
+                    if (widthMeasureSpec.Mode != MeasureSpecification.ModeType.Exactly)
+                    {
+                        if ((AdjustViewSize) && (aspectRatio > 0))
+                        {
+                            newWidth = newHeight / aspectRatio;
+                        }
+                    }
+                }
+
+                if (widthSpecChanged)
+                {
+                    widthMeasureSpec = new MeasureSpecification(new LayoutLength(newWidth), MeasureSpecification.ModeType.Exactly);
+                }
+
+                if (heightSpecChanged)
+                {
+                    heightMeasureSpec = new MeasureSpecification(new LayoutLength(newHeight), MeasureSpecification.ModeType.Exactly);
+                }
+
+                MeasuredSize.StateType childWidthState = MeasuredSize.StateType.MeasuredSizeOK;
+                MeasuredSize.StateType childHeightState = MeasuredSize.StateType.MeasuredSizeOK;
+
+                SetMeasuredDimensions(ResolveSizeAndState(new LayoutLength(newWidth), widthMeasureSpec, childWidthState),
+                                      ResolveSizeAndState(new LayoutLength(newHeight), heightMeasureSpec, childHeightState));
+            }
         }
     }
 }

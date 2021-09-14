@@ -88,7 +88,6 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Releases all resources used by the current instance.
         /// </summary>
-        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <since_tizen> 9 </since_tizen>
         public void Dispose()
         {
@@ -130,7 +129,6 @@ namespace Tizen.Multimedia.Remoting
 
             if (_handle != null)
             {
-                UnregisterEvents();
                 _handle.Dispose();
                 _disposed = true;
             }
@@ -231,32 +229,13 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Creates SDP offer to start a new WebRTC connection to a remote peer.
-        /// </summary>
-        /// <remarks>The WebRTC must be in the <see cref="WebRTCState.Negotiating"/></remarks>
-        /// <returns>The SDP offer.</returns>
-        /// <exception cref="InvalidOperationException">The WebRTC is not in the valid state.</exception>
-        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
-        /// <seealso cref="CreateOfferAsync()"/>
-        /// <since_tizen> 9 </since_tizen>
-        public string CreateOffer()
-        {
-            ValidateWebRTCState(WebRTCState.Negotiating);
-
-            NativeWebRTC.CreateSDPOffer(Handle, new SafeBundleHandle(), out string offer).
-                    ThrowIfFailed("Failed to create offer");
-
-            return offer;
-        }
-
-        /// <summary>
         /// Creates SDP offer asynchronously to start a new WebRTC connection to a remote peer.
         /// </summary>
         /// <remarks>The WebRTC must be in the <see cref="WebRTCState.Negotiating"/></remarks>
         /// <returns>The SDP offer.</returns>
         /// <exception cref="InvalidOperationException">The WebRTC is not in the valid state.</exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
-        /// <seealso cref="CreateOffer()"/>
+        /// <seealso cref="CreateAnswerAsync()"/>
         /// <since_tizen> 9 </since_tizen>
         public async Task<string> CreateOfferAsync()
         {
@@ -279,36 +258,13 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Creates SDP answer to an offer received from a remote peer.
-        /// </summary>
-        /// <remarks>
-        /// The WebRTC must be in the <see cref="WebRTCState.Negotiating"/>.<br/>
-        /// The SDP offer must be set by <see cref="SetRemoteDescription"/> before creating answer.
-        /// </remarks>
-        /// <returns>The SDP answer.</returns>
-        /// <exception cref="InvalidOperationException">The WebRTC is not in the valid state.</exception>
-        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
-        /// <seealso cref="CreateAnswerAsync()"/>
-        /// <seealso cref="SetRemoteDescription(string)"/>
-        /// <since_tizen> 9 </since_tizen>
-        public string CreateAnswer()
-        {
-            ValidateWebRTCState(WebRTCState.Negotiating);
-
-            NativeWebRTC.CreateSDPAnswer(Handle, new SafeBundleHandle(), out string answer).
-                    ThrowIfFailed("Failed to create answer");
-
-            return answer;
-        }
-
-        /// <summary>
         /// Creates SDP answer asynchronously with option to an offer received from a remote peer.
         /// </summary>
         /// <remarks>The WebRTC must be in the <see cref="WebRTCState.Negotiating"/></remarks>
         /// <returns>The SDP answer.</returns>
         /// <exception cref="InvalidOperationException">The WebRTC is not in the valid state.</exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
-        /// <seealso cref="CreateAnswer()"/>
+        /// <seealso cref="CreateOfferAsync()"/>
         /// <since_tizen> 9 </since_tizen>
         public async Task<string> CreateAnswerAsync()
         {
@@ -339,8 +295,8 @@ namespace Tizen.Multimedia.Remoting
         /// <exception cref="ArgumentNullException">The description is null.</exception>
         /// <exception cref="InvalidOperationException">The WebRTC is not in the valid state.</exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
-        /// <seealso cref="CreateOffer()"/>
-        /// <seealso cref="CreateAnswer()"/>
+        /// <seealso cref="CreateOfferAsync()"/>
+        /// <seealso cref="CreateAnswerAsync()"/>
         /// <since_tizen> 9 </since_tizen>
         public void SetLocalDescription(string description)
         {
@@ -360,8 +316,8 @@ namespace Tizen.Multimedia.Remoting
         /// <exception cref="ArgumentNullException">The description is null.</exception>
         /// <exception cref="InvalidOperationException">The WebRTC is not in the valid state.</exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
-        /// <seealso cref="CreateOffer()"/>
-        /// <seealso cref="CreateAnswer()"/>
+        /// <seealso cref="CreateOfferAsync()"/>
+        /// <seealso cref="CreateAnswerAsync()"/>
         /// <since_tizen> 9 </since_tizen>
         public void SetRemoteDescription(string description)
         {
@@ -422,7 +378,6 @@ namespace Tizen.Multimedia.Remoting
         /// The WebRTC must be in the <see cref="WebRTCState.Idle"/>.<br/>
         /// Each MediaSource requires different feature or privilege.<br/>
         /// <see cref="MediaCameraSource"/> needs camera feature and privilege.<br/>
-        /// <see cref="MediaFileSource"/> needs mediastorage or externalstorage privilege.<br/>
         /// <see cref="MediaMicrophoneSource"/> needs microphone feature and recorder privilege.<br/>
         /// </remarks>
         /// <param name="source">The media sources to add.</param>
@@ -470,7 +425,6 @@ namespace Tizen.Multimedia.Remoting
         /// The WebRTC must be in the <see cref="WebRTCState.Idle"/>.<br/>
         /// Each MediaSource requires different feature or privilege.<br/>
         /// <see cref="MediaCameraSource"/> needs camera feature and privilege.<br/>
-        /// <see cref="MediaFileSource"/> needs mediastorage or externalstorage privilege.<br/>
         /// <see cref="MediaMicrophoneSource"/> needs microphone feature and recorder privilege.<br/>
         /// </remarks>
         /// <param name="sources">The media sources to add.</param>

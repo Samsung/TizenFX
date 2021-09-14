@@ -46,62 +46,6 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         }
 
         /// <summary>
-        /// Enumeration for The fill rule of shape.
-        /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        public enum FillRuleType
-        {
-            /// <summary>
-            /// Draw a horizontal line from the point to a location outside the shape. Determine whether the direction of the line at each intersection point is up or down. The winding number is determined by summing the direction of each intersection. If the number is non zero, the point is inside the shape.
-            /// </summary>
-            Winding = 0,
-            /// <summary>
-            /// Draw a horizontal line from the point to a location outside the shape, and count the number of intersections. If the number of intersections is an odd number, the point is inside the shape.
-            /// </summary>
-            EvenOdd
-        }
-
-        /// <summary>
-        /// Enumeration for The cap style to be used for stroking the path.
-        /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        public enum StrokeCapType
-        {
-            /// <summary>
-            /// The end of lines is rendered as a square around the last point.
-            /// </summary>
-            Square = 0,
-            /// <summary>
-            /// The end of lines is rendered as a half-circle around the last point.
-            /// </summary>
-            Round,
-            /// <summary>
-            /// The end of lines is rendered as a full stop on the last point itself.
-            /// </summary>
-            Butt
-        }
-
-        /// <summary>
-        /// numeration for The join style to be used for stroking the path.
-        /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        public enum StrokeJoinType
-        {
-            /// <summary>
-            /// Used to render beveled line joins. The outer corner of the joined lines is filled by enclosing the triangular region of the corner with a straight line between the outer corners of each stroke.
-            /// </summary>
-            Bevel = 0,
-            /// <summary>
-            /// Used to render rounded line joins. Circular arcs are used to join two lines smoothly.
-            /// </summary>
-            Round,
-            /// <summary>
-            /// Used to render mitered line joins. The intersection of the strokes is clipped at a line perpendicular to the bisector of the angle between the strokes, at the distance from the intersection of the segments equal to the product of the miter limit value and the border radius.  This prevents long spikes being created.
-            /// </summary>
-            Miter
-        }
-
-        /// <summary>
         /// The color to use for filling the path.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
@@ -123,7 +67,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// The gradient to use for filling the path.
         /// Even if FillColor is set, Gradient setting takes precedence.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public Gradient FillGradient
         {
             get
@@ -199,7 +143,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// The gradient to use for stroking the path.
         /// Even if StrokeColor is set, Gradient setting takes precedence.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public Gradient StrokeGradient
         {
             get
@@ -408,7 +352,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// </summary>
         /// <param name="pathCommands">The command object that contain sub-path information. (This command information is copied internally.)</param>
         /// <exception cref="ArgumentNullException"> Thrown when pathCommands is null. </exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public void AddPath(PathCommands pathCommands)
         {
             if (pathCommands == null)

@@ -75,7 +75,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         ///  float boundingBoxWidth = shape.BoundingBox[2];  // boundingBoxWidth will be 100.
         ///  float boundingBoxHeight = shape.BoundingBox[3]; // boundingBoxHeight will be 100.
         /// </code>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public Vector4 BoundingBox
         {
             get
@@ -91,7 +91,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// <param name="clip">The clip drawable object.</param>
         /// <exception cref="Exception"> Drawable clpping failed. </exception>
         /// <exception cref="ArgumentNullException"> Thrown when drawable is null. </exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public void ClipPath(Drawable clip)
         {
             if (clip == null)
@@ -113,7 +113,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// <param name="type">The masking type.</param>
         /// <exception cref="Exception"> Drawable masking failed. </exception>
         /// <exception cref="ArgumentNullException"> Thrown when drawable is null. </exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public void Mask(Drawable mask, MaskType type)
         {
             if (mask == null)

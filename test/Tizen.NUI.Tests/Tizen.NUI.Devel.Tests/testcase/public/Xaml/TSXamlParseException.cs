@@ -70,6 +70,23 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget = null;
             tlog.Debug(tag, $"XamlParseExceptionConstructorWithMessage END");
         }
+        [Test]
+        [Category("P1")]
+        [Description("XamlParseException XamlParseException")]
+        [Property("SPEC", "Tizen.NUI.XamlParseException.XamlParseException C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        public void XamlParseExceptionConstructor3()
+        {
+            tlog.Debug(tag, $"XamlParseExceptionConstructor START");
+
+            Exception e1 = new Exception();
+            XamlParseException x3 = new XamlParseException("myMessage", e1);
+            Assert.IsNotNull(x3, "null XamlParseException");
+            Assert.IsInstanceOf<XamlParseException>(x3, "Should return XamlParseException instance.");
+            x3 = null;
+            tlog.Debug(tag, $"XamlParseExceptionConstructor END");
+        }
 
         [Test]
         [Category("P1")]

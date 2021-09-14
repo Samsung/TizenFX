@@ -30,7 +30,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Default = -1,
+        Default = Int32.MinValue,
         /// <summary>
         /// The rear camera device.
         /// </summary>

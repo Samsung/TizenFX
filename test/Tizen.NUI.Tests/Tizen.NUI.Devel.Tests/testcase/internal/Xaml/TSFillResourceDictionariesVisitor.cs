@@ -31,6 +31,26 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
+        [Description("FillResourceDictionariesVisitor FillResourceDictionariesVisitor")]
+        [Property("SPEC", "Tizen.NUI.FillResourceDictionariesVisitor.FillResourceDictionariesVisitor C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        public void FillResourceDictionariesVisitorConstructor()
+        {
+            tlog.Debug(tag, $"FillResourceDictionariesVisitorConstructor START");
+
+            HydrationContext context = new HydrationContext();
+            Assert.IsNotNull(context, "null HydrationContext");
+
+            FillResourceDictionariesVisitor fillResourceDictionariesVisitor = new FillResourceDictionariesVisitor(context);
+            Assert.IsNotNull(fillResourceDictionariesVisitor, "null FillResourceDictionariesVisitor");
+            Assert.IsInstanceOf<FillResourceDictionariesVisitor>(fillResourceDictionariesVisitor, "Should return FillResourceDictionariesVisitor instance.");
+
+            tlog.Debug(tag, $"FillResourceDictionariesVisitorConstructor END");
+        }
+		
+        [Test]
+        [Category("P1")]
         [Description("FillResourceDictionariesVisitor VisitingMode")]
         [Property("SPEC", "Tizen.NUI.FillResourceDictionariesVisitor.VisitingMode A")]
         [Property("SPEC_URL", "-")]
@@ -125,5 +145,53 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"FillResourceDictionariesVisitorVisitNodeOnDataTemplate END");
 
         }
+
+        public class IXmlNamespaceResolverImplement : IXmlNamespaceResolver
+        {
+            public IDictionary<string, string> GetNamespacesInScope(XmlNamespaceScope scope)
+            {
+                throw new NotImplementedException();
+            }
+
+            public string LookupNamespace(string prefix)
+            {
+                throw new NotImplementedException();
+            }
+
+            public string LookupPrefix(string namespaceName)
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        //[Test]
+        //[Category("P1")]
+        //[Description("FillResourceDictionariesVisitor IsResourceDictionary")]
+        //[Property("SPEC", "Tizen.NUI.FillResourceDictionariesVisitor.IsResourceDictionary M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //public void FillResourceDictionariesVisitorIsResourceDictionary()
+        //{
+        //    tlog.Debug(tag, $"FillResourceDictionariesVisitorVisitNodeOnDataTemplate START");
+
+        //    try
+        //    {
+        //        IList<XmlType> list = null;
+        //        XmlType xmlType = new XmlType("myNameSpace", "myName", list);
+        //        Assert.IsNotNull(xmlType, "null XmlType");
+        //        IXmlNamespaceResolverImplement i1 = new IXmlNamespaceResolverImplement();
+        //        Assert.IsNotNull(i1, "null IXmlNamespaceResolverImplement");
+        //        ElementNode n1 = new ElementNode(xmlType, "myNameSpace", i1);
+        //        Assert.IsNotNull(n1, "null ElementNode");
+        //        bool b1 = f1.IsResourceDictionary(n1);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        tlog.Debug(tag, e.Message.ToString());
+        //        Assert.Fail("Caught Exception" + e.ToString());
+        //    }
+        //    tlog.Debug(tag, $"FillResourceDictionariesVisitorVisitNodeOnDataTemplate END");
+        //}
+
     }
 }

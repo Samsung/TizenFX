@@ -22,9 +22,10 @@ using System.ComponentModel;
 namespace Tizen.NUI.BaseComponents.VectorGraphics
 {
     /// <summary>
-    /// A class enabling to hold many Drawable objects. As a whole they can be transformed, their transparency can be changed.
+    /// A class enabling to hold many Drawable objects.
+    /// The added Drawables are affected by the transform and opacity of DrawableGoup.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class DrawableGroup : Drawable
     {
         private List<Drawable> drawables; //The list of added drawables
@@ -32,7 +33,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// <summary>
         /// Creates an initialized DrawableGroup.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public DrawableGroup() : this(Interop.DrawableGroup.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -48,7 +49,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// </summary>
         /// <param name="drawable">Drawable object</param>
         /// <exception cref="ArgumentNullException"> Thrown when drawable is null. </exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public void AddDrawable(Drawable drawable)
         {
             if (drawable == null)
@@ -64,12 +65,12 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         }
 
         /// <summary>
-        /// Remove drawable object to the DrawableGroup.
+        /// Remove drawable object from the DrawableGroup.
         /// This method is similar to deregistration.
         /// </summary>
         /// <param name="drawable">Drawable object</param>
         /// <exception cref="ArgumentNullException"> Thrown when drawable is null. </exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public void RemoveDrawable(Drawable drawable)
         {
             if (drawable == null)
@@ -86,7 +87,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// This method does not free the memory of the added drawable object.
         /// </summary>
         /// <returns>True when it's successful. False otherwise.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public bool RemoveAllDrawables()
         {
             bool ret = Interop.DrawableGroup.RemoveAllDrawables(BaseHandle.getCPtr(this));

@@ -357,6 +357,8 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Gets or sets a window type.
+        /// Most of window type can be set to use WindowType, except for IME type.
+        /// IME type can be set to use one of NUIApplication's constrcutors.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public WindowType Type
@@ -1123,6 +1125,26 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Sets parent window of the window.
+        /// After setting that, these windows do together when raise-up, lower and iconified/deiconified.
+        /// This function has the additional flag whether the child is located above or below of the parent.
+        /// </summary>
+        /// <param name="parent">The parent window.</param>
+        /// <param name="belowParent">The flag is whether the child is located above or below of the parent.</param>
+        /// <feature> http://tizen.org/feature/opengles.surfaceless_context </feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetParent(Window parent, bool belowParent)
+        {
+            if (IsSupportedMultiWindow() == false)
+            {
+                NUILog.Error("This device does not support surfaceless_context. So Window cannot be created. ");
+            }
+            Interop.Window.SetParentWithStack(SwigCPtr, Window.getCPtr(parent), belowParent);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// Unsets parent window of the window.
         /// After unsetting, the window is disconnected his parent window.
         /// </summary>
@@ -1263,24 +1285,6 @@ namespace Tizen.NUI
 
             Interop.Window.SetAvailableOrientations(SwigCPtr, PropertyArray.getCPtr(orientationArray), orientations.Count);
             orientationArray.Dispose();
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Sets window position and size for specific orientation.
-        /// This api reserves the position and size per orientation to display server.
-        /// When the device is rotated, the window is moved/resized with the reserved position/size by display server.
-        /// Currently, it only works when the window's type is WindowType::Ime.
-        /// It means this function is only for IME window of internal keyboard application.
-        /// It is only for internal keyboard application.
-        /// This should be hidden.
-        /// </summary>
-        /// <param name="positionSize">The reserved position and size for the orientation.</param>
-        /// <param name="orientation">The orientation.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetPositionSizeWithOrientation(Rectangle positionSize, Window.WindowOrientation orientation)
-        {
-            Interop.Window.SetPositionSizeWithOrientation(SwigCPtr, Rectangle.getCPtr(positionSize), (int)orientation);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
