@@ -2489,7 +2489,6 @@ namespace Tizen.NUI.BaseComponents
                         SetValue(MarginProperty, layout.Margin);
                         SetValue(PaddingProperty, layout.Padding);
                         NotifyPropertyChanged();
-                        excludeLayouting = false;
                     }
                 }
                 else
