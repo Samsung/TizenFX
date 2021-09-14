@@ -1950,11 +1950,6 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(WebView obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
-        }
-
         internal WebView Assign(WebView webView)
         {
             WebView ret = new WebView(Interop.WebView.Assign(SwigCPtr, WebView.getCPtr(webView)), false);

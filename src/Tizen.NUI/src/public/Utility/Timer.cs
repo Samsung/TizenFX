@@ -212,11 +212,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Timer obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
-        }
-
         /// <summary>
         /// Sets a new interval on the timer and starts the timer.<br />
         /// Cancels the previous timer.<br />

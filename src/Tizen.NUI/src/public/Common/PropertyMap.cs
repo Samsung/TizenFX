@@ -293,11 +293,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PropertyMap obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
-        }
-
         internal void SetValue(int key, PropertyValue value)
         {
             Interop.PropertyMap.SetValueIntKey(SwigCPtr, key, PropertyValue.getCPtr(value));

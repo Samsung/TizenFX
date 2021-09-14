@@ -35,6 +35,8 @@ namespace Tizen.NUI
         private Animation coreAnimation;
         private List<LayoutData> layoutTransitionDataQueue;
         private List<LayoutItem> itemRemovalQueue;
+        private float windowWidth;
+        private float windowHeight;
 
         private bool subscribed;
 
@@ -45,8 +47,22 @@ namespace Tizen.NUI
         public LayoutController(Window window)
         {
             this.window = window;
+            this.window.Resized += OnWindowResized;
+            var windowSize = window.GetSize();
+            windowWidth = windowSize.Width;
+            windowHeight = windowSize.Height;
+
             layoutTransitionDataQueue = new List<LayoutData>();
             id = layoutControllerID++;
+
+            windowSize.Dispose();
+            windowSize = null;
+        }
+
+        private void OnWindowResized(object sender, Window.ResizedEventArgs e)
+        {
+            windowWidth = e.WindowSize.Width;
+            windowHeight = e.WindowSize.Height;
         }
 
         /// <summary>
@@ -89,22 +105,16 @@ namespace Tizen.NUI
         /// </summary>
         public void Process(object source, EventArgs e)
         {
-            Vector2 windowSize = window.GetSize();
-            float width = windowSize.Width;
-            float height = windowSize.Height;
-
             window.LayersChildren?.ForEach(layer =>
             {
                 layer?.Children?.ForEach(view =>
                 {
                     if (view != null)
                     {
-                        FindRootLayouts(view, width, height);
+                        FindRootLayouts(view, windowWidth, windowHeight);
                     }
                 });
             });
-            windowSize.Dispose();
-            windowSize = null;
 
             if (SetupCoreAnimation() && OverrideCoreAnimation == false)
             {
@@ -201,8 +211,7 @@ namespace Tizen.NUI
                 // Search children of supplied node for a layout.
                 for (uint i = 0; i < rootNode.ChildCount; i++)
                 {
-                    View view = rootNode.GetChildAt(i);
-                    FindRootLayouts(view, rootWidth, rootHeight);
+                    FindRootLayouts(rootNode.GetChildAt(i), rootWidth, rootHeight);
                 }
             }
         }
@@ -222,13 +231,13 @@ namespace Tizen.NUI
                 // If exact then should be that size limited by the root parent size.
                 float widthSize = GetLengthSize(parentWidth, root.WidthSpecification);
                 float heightSize = GetLengthSize(parentHeight, root.HeightSpecification);
-                MeasureSpecification.ModeType widthMode = GetMode(root.WidthSpecification);
-                MeasureSpecification.ModeType heightMode = GetMode(root.HeightSpecification);
+                var widthMode = GetMode(root.WidthSpecification);
+                var heightMode = GetMode(root.HeightSpecification);
 
                 if (root.Layout.NeedsLayout(widthSize, heightSize, widthMode, heightMode))
                 {
-                    MeasureSpecification widthSpec = CreateMeasureSpecification(widthSize, widthMode);
-                    MeasureSpecification heightSpec = CreateMeasureSpecification(heightSize, heightMode);
+                    var widthSpec = CreateMeasureSpecification(widthSize, widthMode);
+                    var heightSpec = CreateMeasureSpecification(heightSize, heightMode);
 
                     // Start at root with it's parent's widthSpecification and heightSpecification
                     MeasureHierarchy(root, widthSpec, heightSpec);

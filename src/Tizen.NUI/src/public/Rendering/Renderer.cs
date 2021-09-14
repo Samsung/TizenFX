@@ -659,11 +659,6 @@ namespace Tizen.NUI
             return CurrentShader;
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Renderer obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
-        }
-
         internal Renderer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }

@@ -229,11 +229,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(AlphaFunction obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
-        }
-
         internal static string BuiltinToPropertyKey(BuiltinFunctions? alphaFunction)
         {
             string propertyKey = null;
