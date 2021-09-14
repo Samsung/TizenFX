@@ -339,6 +339,14 @@ namespace Tizen.NUI
             float remainingWidth = widthSize - totalLength;
             float totalWeightLength = 0.0f;
 
+            // Up to now, only WrapContent children's sizes are added to the totalLength.
+            // Since the totalLength is used in OnLayout as the sum of all children's sizes,
+            // the layout size is assigned to the totalLength if MatchParent child exists.
+            if (childrenMatchParentCount > 0)
+            {
+                totalLength = widthSize;
+            }
+
             // 2ND PHASE:
             //
             // We measure all children whose width specification policy is MatchParent without weight.
@@ -571,6 +579,14 @@ namespace Tizen.NUI
 
             float remainingHeight = heightSize - totalLength;
             float totalWeightLength = 0.0f;
+
+            // Up to now, only WrapContent children's sizes are added to the totalLength.
+            // Since the totalLength is used in OnLayout as the sum of all children's sizes,
+            // the layout size is assigned to the totalLength if MatchParent child exists.
+            if (childrenMatchParentCount > 0)
+            {
+                totalLength = heightSize;
+            }
 
             // 2ND PHASE:
             //
