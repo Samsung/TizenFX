@@ -666,6 +666,22 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Search through this View's hierarchy for a View with the given unique ID.
+        /// The View itself is also considered in the search.
+        /// </summary>
+        /// <param name="id">The ID of the View to find</param>
+        /// <returns>A View if found or a null if not</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("This will be removed at API11! please use FindDescendantByID(uint id) instead!")]
+        public View FindChildByID(uint id)
+        {
+            IntPtr cPtr = Interop.Actor.FindChildById(SwigCPtr, id);
+            View ret = this.GetInstanceSafely<View>(cPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Search through this View's hierarchy for a View with the given unique ID.
         /// </summary>
         /// <param name="id">The ID of the View to find.</param>
         /// <returns>A handle to the View if found, or an empty handle if not.</returns>
