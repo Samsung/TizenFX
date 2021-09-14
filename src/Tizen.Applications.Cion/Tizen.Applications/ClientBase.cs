@@ -161,6 +161,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Starts discovering cion servers.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/d2d.datasharing</privilege>
         /// <exception cref="InvalidOperationException">Thrown when the discovery operation is already in progress.</exception>
         /// <since_tizen> 9 </since_tizen>
         public void TryDiscovery()
