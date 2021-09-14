@@ -7,7 +7,7 @@ namespace Tizen.NUI
     /// One dp is a virtual pixel unit that's roughly equal to one pixel
     /// on a medium-density(160dpi) screen.
     /// To convert Dp to pixel, use Pixel property or,
-    /// See <see cref="Tizen.NUI.DisplayTypeManager" /> and <see cref="Tizen.NUI.DisplayTypeConverter" /> also.
+    /// See <see cref="Tizen.NUI.GraphicsTypeManager" /> and <see cref="Tizen.NUI.GraphicsTypeConverter" /> also.
     /// </summary>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
