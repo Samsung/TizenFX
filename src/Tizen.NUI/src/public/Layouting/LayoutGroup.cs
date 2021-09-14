@@ -52,14 +52,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected IEnumerable<LayoutItem> IterateLayoutChildren()
         {
-            for (int i = 0; i < LayoutChildren.Count; i++)
-            {
-                LayoutItem childLayout = LayoutChildren[i];
-                if (!childLayout?.Owner?.ExcludeLayouting ?? false)
-                {
-                    yield return childLayout;
-                }
-            }
+            return LayoutChildren.Where<LayoutItem>(childLayout => childLayout.SetPositionByLayout);
         }
 
         /// <summary>
@@ -432,9 +425,12 @@ namespace Tizen.NUI
 
         internal override void OnMeasureIndependentChildren(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
         {
-            foreach (LayoutItem childLayout in LayoutChildren.Where(item => item?.Owner?.ExcludeLayouting ?? false))
+            foreach (var childLayout in LayoutChildren)
             {
-                MeasureChildWithoutPadding(childLayout, widthMeasureSpec, heightMeasureSpec);
+                if (!childLayout.SetPositionByLayout)
+                {
+                    MeasureChildWithoutPadding(childLayout, widthMeasureSpec, heightMeasureSpec);
+                }
             }
         }
 
@@ -480,15 +476,18 @@ namespace Tizen.NUI
         /// </summary>
         internal override void OnLayoutIndependentChildren(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
         {
-            foreach (LayoutItem childLayout in LayoutChildren.Where(item => item?.Owner?.ExcludeLayouting ?? false))
+            foreach (var childLayout in LayoutChildren)
             {
-                LayoutLength childWidth = childLayout.MeasuredWidth.Size;
-                LayoutLength childHeight = childLayout.MeasuredHeight.Size;
+                if (!childLayout.SetPositionByLayout)
+                {
+                    LayoutLength childWidth = childLayout.MeasuredWidth.Size;
+                    LayoutLength childHeight = childLayout.MeasuredHeight.Size;
 
-                LayoutLength childPositionX = new LayoutLength(childLayout.Owner.PositionX);
-                LayoutLength childPositionY = new LayoutLength(childLayout.Owner.PositionY);
+                    LayoutLength childPositionX = new LayoutLength(childLayout.Owner.PositionX);
+                    LayoutLength childPositionY = new LayoutLength(childLayout.Owner.PositionY);
 
-                childLayout.Layout(childPositionX, childPositionY, childPositionX + childWidth, childPositionY + childHeight, true);
+                    childLayout.Layout(childPositionX, childPositionY, childPositionX + childWidth, childPositionY + childHeight, true);
+                }
             }
         }
 
