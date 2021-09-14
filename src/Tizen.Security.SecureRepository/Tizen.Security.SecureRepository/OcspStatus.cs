@@ -1,5 +1,5 @@
 ﻿/*
- *  Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ *  Copyright (c) 2016 - 2021 Samsung Electronics Co., Ltd All Rights Reserved
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -26,6 +26,7 @@ namespace Tizen.Security.SecureRepository
     /// Enumeration for the OCSP status.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Please do not use! This will be deprecated with API9 and removed with API11! Please use raw OpenSSL instead!")]
     public enum OcspStatus : int
     {
         /// <summary>
