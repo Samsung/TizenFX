@@ -59,12 +59,20 @@ namespace Tizen.NUI.Samples
 
             /* GraphicsTypeExtension test. */
             var dpToPixelText = new TextLabel();
-            dpToPixelText.Text = $"dp : {100.0f}, pixel : {100.0f.ToPixel()}";
+            dpToPixelText.Text = $"dp : {100.01f}, pixel : {100.01f.ToPixel()}";
             rootView.Add(dpToPixelText);
 
             var pixelToDpText = new TextLabel();
-            pixelToDpText.Text = $"pixel : {60.0f}, dp : {60.0f.ToDp()}";
+            pixelToDpText.Text = $"pixel : {60.01f}, dp : {60.01f.ToDp()}";
             rootView.Add(pixelToDpText);
+
+            var dpToPixel2Text = new TextLabel();
+            dpToPixel2Text.Text = $"dp : {100}, pixel : {100.ToPixel()}";
+            rootView.Add(dpToPixel2Text);
+
+            var pixelToDp2Text = new TextLabel();
+            pixelToDp2Text.Text = $"pixel : {60}, dp : {60.ToDp()}";
+            rootView.Add(pixelToDp2Text);
 
             window.Add(rootView);
         }

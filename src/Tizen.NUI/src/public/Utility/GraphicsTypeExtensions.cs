@@ -14,10 +14,10 @@ namespace Tizen.NUI
     public static class GraphicsTypeExtensions
     {
         /// <summary>
-        /// Converter pixel to dp.
+        /// Converter float pixel to dp.
         /// 100.0f.ToDp() = 100.0f in 160dpi display.
         /// </summary>
-        /// <param name="pixel">The pixel unit value to be converted dp unit.</param>
+        /// <param name="pixel">The float pixel unit value to be converted dp unit.</param>
         /// <returns>The float dp unit value.</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -34,10 +34,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Converter dp to pixel.
+        /// Converter float dp to pixel.
         /// 100.0f.ToPixel() = 100.0f in 160dpi display.
         /// </summary>
-        /// <param name="dp">The dp unit value to be converted pixel unit.</param>
+        /// <param name="dp">The float dp unit value to be converted pixel unit.</param>
         /// <returns>The float pixel unit value.</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -50,6 +50,46 @@ namespace Tizen.NUI
             else
             {
                 return DpTypeConverter.Instance.ConvertToPixel(dp);
+            }
+        }
+
+        /// <summary>
+        /// Converter int pixel to dp.
+        /// 100.0f.ToDp() = 100.0f in 160dpi display.
+        /// </summary>
+        /// <param name="pixel">The int pixel unit value to be converted dp unit.</param>
+        /// <returns>The int dp unit value.</returns>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int ToDp(this int pixel)
+        {
+            if (GraphicsTypeManager.Instance.TypeConverter is DpTypeConverter)
+            {
+                return (int)GraphicsTypeManager.Instance.ConvertFromPixel(pixel);
+            }
+            else
+            {
+                return (int)DpTypeConverter.Instance.ConvertFromPixel(pixel);
+            }
+        }
+
+        /// <summary>
+        /// Converter int dp to pixel.
+        /// 100.0f.ToPixel() = 100.0f in 160dpi display.
+        /// </summary>
+        /// <param name="dp">The int dp unit value to be converted pixel unit.</param>
+        /// <returns>The int pixel unit value.</returns>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int ToPixel(this int dp)
+        {
+            if (GraphicsTypeManager.Instance.TypeConverter is DpTypeConverter)
+            {
+                return (int)GraphicsTypeManager.Instance.ConvertToPixel(dp);
+            }
+            else
+            {
+                return (int)DpTypeConverter.Instance.ConvertToPixel(dp);
             }
         }
     }
