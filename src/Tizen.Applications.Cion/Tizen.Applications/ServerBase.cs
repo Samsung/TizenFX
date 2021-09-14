@@ -182,6 +182,7 @@ namespace Tizen.Applications
         /// Starts server and listens for requests from cion clients.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/d2d.datasharing</privilege>
+        /// <privlevel>public</privlevel>
         /// <exception cref="InvalidOperationException">Thrown when the listen operation is already in progress.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         /// <since_tizen> 9 </since_tizen>
@@ -350,6 +351,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <param name="enable">Whether ondemand launch is enabled or not.</param>
         /// <privilege>http://tizen.org/privilege/d2d.remotelaunch</privilege>
+        /// <privlevel>public</privlevel>
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         /// <since_tizen> 9 </since_tizen>
         public void SetOndemandLaunchEnabled(bool enable)
