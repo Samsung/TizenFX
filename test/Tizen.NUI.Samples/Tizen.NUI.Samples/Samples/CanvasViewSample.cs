@@ -93,7 +93,7 @@ namespace Tizen.NUI.Samples
             {
                 StrokeColor = new Color(0.0f, 0.5f, 0.0f, 0.5f),
                 StrokeWidth = 10.0f,
-                StrokeJoin = StrokeJoinType.Round,
+                StrokeJoin = Shape.StrokeJoinType.Round,
             };
             arcShape.AddArc(0.0f, 0.0f, 80.0f, 0.0f, 0.0f, true);
             arcShape.Translate(100.0f, 300.0f);
@@ -104,8 +104,8 @@ namespace Tizen.NUI.Samples
                 FillColor = new Color(0.0f, 0.5f, 0.0f, 0.5f),
                 StrokeColor = new Color(0.5f, 0.0f, 0.5f, 0.5f),
                 StrokeWidth = 30.0f,
-                FillRule = FillRuleType.EvenOdd,
-                StrokeJoin = StrokeJoinType.Round,
+                FillRule = Shape.FillRuleType.EvenOdd,
+                StrokeJoin = Shape.StrokeJoinType.Round,
             };
 
             shape.Scale(0.5f);
@@ -159,7 +159,7 @@ namespace Tizen.NUI.Samples
                 FillColor = new Color(0.0f, 1.0f, 1.0f, 1.0f),
                 StrokeColor = new Color(0.5f, 1.0f, 0.5f, 1.0f),
                 StrokeWidth = 30.0f,
-                StrokeCap = StrokeCapType.Round,
+                StrokeCap = Shape.StrokeCapType.Round,
                 FillGradient = starFillLinearGradient,
                 StrokeGradient = starStrokeLinearGradient,
             };
