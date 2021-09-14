@@ -40,6 +40,7 @@ namespace Tizen.Applications
         /// http://tizen.org/privilege/externalstorage is needed if the file path is relevant to external storage.
         /// </remarks>
         /// <exception cref="ArgumentException">Thrown when the input file path is invalid.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         /// <since_tizen> 9 </since_tizen>
         public FilePayload(string path)
         {
@@ -121,6 +122,8 @@ namespace Tizen.Applications
         /// http://tizen.org/privilege/mediastorage is needed if the file path is relevant to media storage.
         /// http://tizen.org/privilege/externalstorage is needed if the file path is relevant to external storage.
         /// </remarks>
+        /// <exception cref="ArgumentException">Thrown when the input file path is invalid.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         /// <since_tizen> 9 </since_tizen>
         public void SaveAsFile(string path)
         {
