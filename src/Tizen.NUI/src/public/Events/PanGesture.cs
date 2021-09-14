@@ -319,11 +319,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PanGesture obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
-        }
-
         internal static PanGesture GetPanGestureFromPtr(global::System.IntPtr cPtr)
         {
             PanGesture ret = new PanGesture(cPtr, false);
