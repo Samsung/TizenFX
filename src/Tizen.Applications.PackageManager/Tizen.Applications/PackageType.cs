@@ -52,7 +52,7 @@ namespace Tizen.Applications
                 throw PackageManagerErrorFactory.GetException(Interop.PackageManager.ErrorCode.InvalidParameter, "type can't be null or empty");
             }
 
-            string lowerType = type.ToLower();
+            string lowerType = type.ToLowerInvariant();
             if (lowerType == "tpk")
             {
                 return PackageType.TPK;
