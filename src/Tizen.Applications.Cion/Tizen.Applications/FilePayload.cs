@@ -35,6 +35,10 @@ namespace Tizen.Applications
         /// The constructor of FilePayload class.
         /// </summary>
         /// <param name="path">The path of file for the FilePayload.</param>
+        /// <remarks>
+        /// http://tizen.org/privilege/mediastorage is needed if the file path is relevant to media storage.
+        /// http://tizen.org/privilege/externalstorage is needed if the file path is relevant to external storage.
+        /// </remarks>
         /// <exception cref="ArgumentException">Thrown when the input file path is invalid.</exception>
         /// <since_tizen> 9 </since_tizen>
         public FilePayload(string path)
@@ -113,6 +117,10 @@ namespace Tizen.Applications
         /// Saves file of payload to speicific path.
         /// </summary>
         /// <param name="path">The path of file to save.</param>
+        /// <remarks>
+        /// http://tizen.org/privilege/mediastorage is needed if the file path is relevant to media storage.
+        /// http://tizen.org/privilege/externalstorage is needed if the file path is relevant to external storage.
+        /// </remarks>
         /// <since_tizen> 9 </since_tizen>
         public void SaveAsFile(string path)
         {
