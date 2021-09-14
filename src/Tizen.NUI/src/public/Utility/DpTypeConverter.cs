@@ -27,6 +27,27 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class DpTypeConverter : GraphicsTypeConverter
     {
+        private volatile static DpTypeConverter dpTypeConverter;
+
+        /// <summary>
+        /// An unique Singleton Instance of DpTypeConverter
+        /// </summary>
+        /// <value>Singleton instance of DpTypeConverter</value>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static DpTypeConverter Instance
+        {
+            get
+            {
+                if (dpTypeConverter == null)
+                {
+                    dpTypeConverter = new DpTypeConverter();
+                }
+
+                return dpTypeConverter;
+            }
+        }
+
         /// <summary>
         /// Converts script to px
         /// </summary>

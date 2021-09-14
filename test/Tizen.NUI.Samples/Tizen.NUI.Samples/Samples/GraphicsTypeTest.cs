@@ -3,7 +3,7 @@ using Tizen.NUI.Components;
 
 namespace Tizen.NUI.Samples
 {
-    public class DpTest : IExample
+    public class GraphicsTypeTest : IExample
     {
         private int oldPageCount = 0;
 
@@ -34,41 +34,37 @@ namespace Tizen.NUI.Samples
             dpiText.Text = $"Dpi : {GraphicsTypeManager.Instance.Dpi}";
             rootView.Add(dpiText);
 
+            var scalingFactorText = new TextLabel();
+            scalingFactorText.Text = $"ScalingFactor : {GraphicsTypeManager.Instance.ScalingFactor}";
+            rootView.Add(scalingFactorText);
+
             var scaledDpiText = new TextLabel();
             scaledDpiText.Text = $"Scaled Dpi : {GraphicsTypeManager.Instance.ScaledDpi}";
             rootView.Add(scaledDpiText);
 
+            var defConvertText = new TextLabel();
+            defConvertText.Text = $"DefaultTypeConverter : {GraphicsTypeManager.Instance.TypeConverter}";
+            rootView.Add(defConvertText);
 
-            /* DpExtension test. */
-            var dpToPixelText = new TextLabel();
+            /* GraphicsTypeConverter test. */
+            var dpConvertText = new TextLabel();
             var dp = 100.0f;
-            dpToPixelText.Text = $"dp : {dp}, pixel : {dp.ToPixel()}";
+            dpConvertText.Text = $"dp : {dp}, pixel : {DpTypeConverter.Instance.ConvertToPixel(dp)}";
+            rootView.Add(dpConvertText);
+
+            var pxConvertText = new TextLabel();
+            var px = 100.0f;
+            pxConvertText.Text = $"pixel : {px}, dp : {DpTypeConverter.Instance.ConvertToPixel(px)}";
+            rootView.Add(pxConvertText);
+
+            /* GraphicsTypeExtension test. */
+            var dpToPixelText = new TextLabel();
+            dpToPixelText.Text = $"dp : {100.0f}, pixel : {100.0f.ToPixel()}";
             rootView.Add(dpToPixelText);
 
             var pixelToDpText = new TextLabel();
-            var pix = 100.0f;
-            pixelToDpText.Text = $"pixel : {pix}, dp : {pix.ToDp()}";
+            pixelToDpText.Text = $"pixel : {60.0f}, dp : {60.0f.ToDp()}";
             rootView.Add(pixelToDpText);
-
-            /* Dp class test. below code is experimental class */
-            var dp1 = new Dp(100);
-            var dpText = new TextLabel();
-            dpText.Text = $" Dp {dp1.Value} Pixel {dp1.Pixel}";
-            rootView.Add(dpText);
-
-            var dp2 = Dp.GetDp(dp1.Pixel);
-            var dp2Text = new TextLabel();
-            dp2Text.Text = $" Dp {dp2.Value} Pixel {dp2.Pixel}";
-            rootView.Add(dp2Text);
-
-            var dp3Text = new TextLabel();
-            dp3Text.Text = $"{dp2.ToString()}";
-            rootView.Add(dp3Text);
-
-            var Size = new Size(100, 100);
-            var sizeText = new TextLabel();
-            sizeText.Text = $" Size test {Size.ToString()}";
-            rootView.Add(sizeText);
 
             window.Add(rootView);
         }

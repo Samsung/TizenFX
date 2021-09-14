@@ -31,7 +31,7 @@ namespace Tizen.NUI
     {
         private volatile static GraphicsTypeManager graphicsTypeManager;
         private GraphicsTypeConverter typeConverter;
-        private float scaleFactor = 1.0f;
+        private float scalingFactor = 1.0f;
         private int defaultDensityDpi = DensityMedium;
 
         /// <summary>
@@ -72,13 +72,13 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Custom scale factor of display metrics.
-        /// ScaleFactor scale Dpi on DpiStable.
+        /// ScalingFactor scale Dpi on DpiStable.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public float ScaleFactor
+        public float ScalingFactor
         {
-            get => scaleFactor;
-            internal set => scaleFactor = value;
+            get => scalingFactor;
+            internal set => scalingFactor = value;
         }
 
         /// <summary>
@@ -101,14 +101,14 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Dpi for GraphicsTypeManager.
-        /// Dpi is scaled from Dpi with custom ScaleFactor.
+        /// Dpi is scaled from Dpi with custom ScalingFactor.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int ScaledDpi
         {
             get
             {
-                return Convert.ToInt32(Math.Round(Dpi * GraphicsTypeManager.Instance.ScaleFactor));
+                return Convert.ToInt32(Math.Round(Dpi * GraphicsTypeManager.Instance.ScalingFactor));
             }
         }
 
@@ -151,7 +151,25 @@ namespace Tizen.NUI
 
                 return graphicsTypeManager;
             }
+        }
 
+        /// <summary>
+        /// GraphicsTypeConverter that manager internally use for type converting.
+        /// Default TypeConverter is DpTypeConverter.
+        /// See <see cref="Tizen.NUI.GraphicsTypeConverter" /> and <see cref="Tizen.NUI.DpTypeConverter" />.
+        /// </summary>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public GraphicsTypeConverter TypeConverter
+        {
+            get
+            {
+                return typeConverter;
+            }
+            set
+            {
+                typeConverter = value;
+            }
         }
 
         /// <summary>
@@ -161,18 +179,7 @@ namespace Tizen.NUI
         private GraphicsTypeManager()
         {
             // Get default type converter
-            typeConverter = new DpTypeConverter();
-        }
-
-
-        /// <summary>
-        /// Sets the custom GraphicsTypeConverter.
-        /// </summary>
-        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetTypeConverter(GraphicsTypeConverter typeConverter)
-        {
-            this.typeConverter = typeConverter;
+            typeConverter = DpTypeConverter.Instance;
         }
 
         /// <summary>
