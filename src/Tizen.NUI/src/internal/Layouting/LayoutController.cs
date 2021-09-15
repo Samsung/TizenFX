@@ -115,6 +115,11 @@ namespace Tizen.NUI
                     }
                 });
             });
+
+            if (SetupCoreAnimation() && OverrideCoreAnimation == false)
+            {
+                PlayAnimation();
+            }
         }
         /// <summary>
         /// Get the Layouting animation object that transitions layouts and content.
@@ -245,11 +250,6 @@ namespace Tizen.NUI
                                      new LayoutLength(positionY),
                                      new LayoutLength(positionX) + root.Layout.MeasuredWidth.Size,
                                      new LayoutLength(positionY) + root.Layout.MeasuredHeight.Size);
-            }
-
-            if (SetupCoreAnimation() && OverrideCoreAnimation == false)
-            {
-                PlayAnimation();
             }
         }
 
