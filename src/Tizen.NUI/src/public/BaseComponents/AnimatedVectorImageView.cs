@@ -28,7 +28,7 @@ namespace Tizen.NUI.BaseComponents
     /// AnimatedVectorImageView is a class for displaying a vector resource.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class AnimatedVectorImageView : LottieAnimationView
+    public partial class AnimatedVectorImageView : LottieAnimationView
     {
         #region Constructor, Destructor, Dispose
         /// <summary>
@@ -82,6 +82,19 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string ResourceURL
         {
+            get
+            {
+                return GetValue(ResourceURLProperty) as string;
+            }
+            set
+            {
+                SetValue(ResourceURLProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private string InternalResourceURL
+        {
             set
             {
                 tlog.Fatal(tag, $"[AnimatedVectorImageView START[ [{GetId()}] ResourceURL SET");
@@ -107,6 +120,19 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new string ResourceUrl
         {
+            get
+            {
+                return GetValue(ResourceUrlProperty) as string;
+            }
+            set
+            {
+                SetValue(ResourceUrlProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private string InternalResourceUrl
+        {
             set
             {
                 tlog.Fatal(tag, $"[AnimatedVectorImageView START[ [{GetId()}] ResourceUrl SET");
@@ -130,6 +156,19 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int RepeatCount
+        {
+            get
+            {
+                return (int)GetValue(RepeatCountProperty);
+            }
+            set
+            {
+                SetValue(RepeatCountProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private int InternalRepeatCount
         {
             set
             {
@@ -158,6 +197,19 @@ namespace Tizen.NUI.BaseComponents
         /// <returns> Returns user set value for the current frame. Cannot provide actual playing current frame. </returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new int CurrentFrame
+        {
+            get
+            {
+                return (int)GetValue(CurrentFrameProperty);
+            }
+            set
+            {
+                SetValue(CurrentFrameProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private int InternalCurrentFrame
         {
             set
             {
@@ -193,6 +245,19 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public RepeatModes RepeatMode
+        {
+            get
+            {
+                return (RepeatModes)GetValue(RepeatModeProperty);
+            }
+            set
+            {
+                SetValue(RepeatModeProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private RepeatModes InternalRepeatMode
         {
             set
             {
