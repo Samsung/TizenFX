@@ -27,13 +27,13 @@ namespace Tizen.NUI
     /// The direction the target Control is comming from or going to can be selected in the pre-defined directions at the SlideTransitionDirection {UP, DOWN, LEFT, RIGHT}
     /// And, to use custom direction, the direction can be set by using Vector2.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class SlideTransition : TransitionBase
     {
         /// <summary>
         /// Create a SlideTransition for the View pair.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public SlideTransition()
         {
         }
@@ -41,7 +41,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Set/get SlideDirection for this slide transition.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public Vector2 Direction { get; set; } = SlideTransitionDirection.Right;
 
         internal override TransitionItemBase CreateTransition(View view, bool isAppearing)

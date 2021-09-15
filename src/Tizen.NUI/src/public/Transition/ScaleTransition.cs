@@ -28,13 +28,13 @@ namespace Tizen.NUI
     /// If this transition is for disappearing, the View starts at its original size
     /// but will become the scale of scale factor and vanished.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class ScaleTransition : TransitionBase
     {
         /// <summary>
         /// Create a ScaleTransition.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public ScaleTransition()
         {
         }
@@ -46,7 +46,7 @@ namespace Tizen.NUI
         ///
         /// Default ScaleFactor is Vector2(0.0f, 0.0f).
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public Vector2 ScaleFactor { get; set; } = new Vector2(0.0f, 0.0f);
 
         internal override TransitionItemBase CreateTransition(View view, bool isAppearing)
