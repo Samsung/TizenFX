@@ -51,7 +51,7 @@ internal static partial class Interop
         [DllImport(Libraries.Cion, EntryPoint = "cion_server_create")]
         internal static extern ErrorCode CionServerCreate(out ServerSafeHandle server, string serviceName, string displayName, IntPtr security);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_server_destory")]
+        [DllImport(Libraries.Cion, EntryPoint = "cion_server_destroy")]
         internal static extern ErrorCode CionServerDestroy(IntPtr server);
         
         [DllImport(Libraries.Cion, EntryPoint = "cion_server_listen")]

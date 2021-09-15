@@ -42,7 +42,7 @@ internal static partial class Interop
         [DllImport(Libraries.Cion, EntryPoint = "cion_client_create")]
         internal static extern ErrorCode CionClientCreate(out ClientSafeHandle client, string serviceName, IntPtr security);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_client_destory")]
+        [DllImport(Libraries.Cion, EntryPoint = "cion_client_destroy")]
         internal static extern ErrorCode CionClientDestroy(IntPtr client);
         
         [DllImport(Libraries.Cion, EntryPoint = "cion_client_try_discovery")]
