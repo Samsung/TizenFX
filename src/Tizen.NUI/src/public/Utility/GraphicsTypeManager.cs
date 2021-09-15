@@ -115,7 +115,7 @@ namespace Tizen.NUI
         {
             get
             {
-                return Convert.ToInt32(Math.Round(Dpi * GraphicsTypeManager.Instance.ScalingFactor));
+                return Convert.ToInt32(Math.Round(Dpi * ScalingFactor));
             }
         }
 
