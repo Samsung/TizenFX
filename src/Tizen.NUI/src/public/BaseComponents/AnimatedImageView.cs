@@ -29,7 +29,7 @@ namespace Tizen.NUI.BaseComponents
     /// </summary>
     // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class AnimatedImageView : ImageView
+    public partial class AnimatedImageView : ImageView
     {
         #region Constructor, Destructor, Dispose
         /// <summary>
@@ -72,6 +72,19 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return GetValue(ResourceUrlProperty) as string;
+            }
+            set
+            {
+                SetValue(ResourceUrlProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private string InternalResourceUrl
+        {
+            get
+            {
                 return url;
             }
             set
@@ -104,6 +117,19 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return (int)GetValue(BatchSizeProperty);
+            }
+            set
+            {
+                SetValue(BatchSizeProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private int InternalBatchSize
+        {
+            get
+            {
                 return batchSize;
             }
             set
@@ -124,6 +150,19 @@ namespace Tizen.NUI.BaseComponents
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int CacheSize
+        {
+            get
+            {
+                return (int)GetValue(CacheSizeProperty);
+            }
+            set
+            {
+                SetValue(CacheSizeProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private int InternalCacheSize
         {
             get
             {
@@ -149,6 +188,19 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return (int)GetValue(FrameDelayProperty);
+            }
+            set
+            {
+                SetValue(FrameDelayProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private int InternalFrameDelay
+        {
+            get
+            {
                 return frameDelay;
             }
             set
@@ -167,6 +219,19 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return (int)GetValue(LoopCountProperty);
+            }
+            set
+            {
+                SetValue(LoopCountProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private int InternalLoopCount
+        {
+            get
+            {
                 return loopCount;
             }
             set
@@ -181,6 +246,19 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public StopBehaviorType StopBehavior
+        {
+            get
+            {
+                return (StopBehaviorType)GetValue(StopBehaviorProperty);
+            }
+            set
+            {
+                SetValue(StopBehaviorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private StopBehaviorType InternalStopBehavior
         {
             set
             {
@@ -226,6 +304,19 @@ namespace Tizen.NUI.BaseComponents
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int CurrentFrame
+        {
+            get
+            {
+                return (int)GetValue(CurrentFrameProperty);
+            }
+            set
+            {
+                SetValue(CurrentFrameProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private int InternalCurrentFrame
         {
             set
             {
