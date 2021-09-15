@@ -183,6 +183,8 @@ namespace Tizen.NUI.Devel.Tests
             try
             {
                 testingTarget.StartTransition(true);
+                testingTarget.PauseTransition();
+                testingTarget.ResumeTransition();
             }
             catch (Exception e)
             {
@@ -193,86 +195,6 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget?.Dispose();
             tlog.Debug(tag, $"CubeTransitionEffectStartTransition END (OK)");
         }
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("CubeTransitionEffect PauseTransition.")]
-        //[Property("SPEC", "Tizen.NUI.CubeTransitionEffect.PauseTransition M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public async Task CubeTransitionEffectPauseTransition()
-        //{
-        //    tlog.Debug(tag, $"CubeTransitionEffectPauseTransition START");
-
-        //    var testingTarget = new CubeTransitionWaveEffect(20, 10);
-        //    Assert.IsNotNull(testingTarget, "Can't create success object CubeTransitionEffect");
-        //    Assert.IsInstanceOf<CubeTransitionEffect>(testingTarget, "Should be an instance of CubeTransitionEffect type.");
-
-        //    testingTarget.SetTransitionDuration(300);
-
-        //    testingTarget.SetCurrentTexture(LoadStageFillingTexture(currentpath));
-        //    testingTarget.SetTargetTexture(LoadStageFillingTexture(targetpath));
-        //    testingTarget.StartTransition(true);
-
-        //    await Task.Delay(50);
-
-        //    try
-        //    {
-        //        testingTarget.PauseTransition();
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        tlog.Debug(tag, e.Message.ToString());
-        //        Assert.Fail("Caught Exception: Failed!");
-        //    }
-
-        //    testingTarget.ResumeTransition();
-        //    testingTarget.StopTransition();
-
-        //    testingTarget?.Dispose();
-        //    tlog.Debug(tag, $"CubeTransitionEffectPauseTransition END (OK)");
-        //}
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("CubeTransitionEffect ResumeTransition.")]
-        //[Property("SPEC", "Tizen.NUI.CubeTransitionEffect.ResumeTransition M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public async Task CubeTransitionEffectResumeTransition()
-        //{
-        //    tlog.Debug(tag, $"CubeTransitionEffectResumeTransition START");
-
-        //    var testingTarget = new CubeTransitionWaveEffect(20, 10);
-        //    Assert.IsNotNull(testingTarget, "Can't create success object CubeTransitionEffect");
-        //    Assert.IsInstanceOf<CubeTransitionEffect>(testingTarget, "Should be an instance of CubeTransitionEffect type.");
-
-        //    testingTarget.SetTransitionDuration(300);
-
-        //    testingTarget.SetCurrentTexture(LoadStageFillingTexture(currentpath));
-        //    testingTarget.SetTargetTexture(LoadStageFillingTexture(targetpath));
-        //    testingTarget.StartTransition(true);
-
-        //    await Task.Delay(50);
-        //    testingTarget.PauseTransition();
-
-        //    try
-        //    {
-        //        testingTarget.ResumeTransition();
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        tlog.Debug(tag, e.Message.ToString());
-        //        Assert.Fail("Caught Exception: Failed!");
-        //    }
-
-        //    testingTarget.StopTransition();
-
-        //    testingTarget?.Dispose();
-        //    tlog.Debug(tag, $"CubeTransitionEffectResumeTransition END (OK)");
-        //}
 
         [Test]
         [Category("P1")]
@@ -410,6 +332,36 @@ namespace Tizen.NUI.Devel.Tests
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"CubeTransitionFoldEffectConstructor END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TransitionCompletedEventArgs CubeTransitionEffect.")]
+        [Property("SPEC", "Tizen.NUI.CubeTransitionFoldEffect.TransitionCompletedEventArgs CubeTransitionEffect A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void TransitionCompletedEventArgsCubeTransitionEffect()
+        {
+            tlog.Debug(tag, $"TransitionCompletedEventArgsCubeTransitionEffect START");
+
+            var testingTarget = new Tizen.NUI.CubeTransitionEffect.TransitionCompletedEventArgs();
+            Assert.IsNotNull(testingTarget, "Can't create success object CubeTransitionEffect");
+            Assert.IsInstanceOf<Tizen.NUI.CubeTransitionEffect.TransitionCompletedEventArgs>(testingTarget, "Should be an instance of TransitionCompletedEventArgs type.");
+
+            using (CubeTransitionWaveEffect effect = new CubeTransitionWaveEffect(20, 10))
+            {
+                testingTarget.CubeTransitionEffect = effect;
+                tlog.Debug(tag, "CubeTransitionEffect : " + testingTarget.CubeTransitionEffect);
+            }
+
+            using (Texture texture = new Texture(new NativeImageSource(100, 50, NativeImageSource.ColorDepth.Bits16)))
+            {
+                testingTarget.CubeTransitonTexture = texture;
+                tlog.Debug(tag, "CubeTransitonTexture : " + testingTarget.CubeTransitonTexture);
+            }
+
+            tlog.Debug(tag, $"TransitionCompletedEventArgsCubeTransitionEffect END (OK)");
         }
 
         private void OnCubeEffectCompleted(object sender, CubeTransitionEffect.TransitionCompletedEventArgs args)

@@ -1086,6 +1086,17 @@ namespace Tizen.NUI.Devel.Tests
             application.XamlResources = new Tizen.NUI.Binding.ResourceDictionary();
             tlog.Debug(tag, "application.XamlResources : " + application.XamlResources);
 
+            try
+            {
+                Tizen.NUI.Binding.ResourceDictionary resources = null;
+                application.XamlResources = resources;
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
             widget.Dispose();
             widget = null;
             tlog.Debug(tag, $"ApplicationXamlResources END (OK)");
