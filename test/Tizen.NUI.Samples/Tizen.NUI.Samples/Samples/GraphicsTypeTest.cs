@@ -22,9 +22,9 @@ namespace Tizen.NUI.Samples
             };
 
             /* GraphicsTypeManager test. */
-            var defaultDensityDpiText = new TextLabel();
-            defaultDensityDpiText.Text = $"Default Density Dpi : {GraphicsTypeManager.Instance.DefaultDpi}";
-            rootView.Add(defaultDensityDpiText);
+            var baseDpiText = new TextLabel();
+            baseDpiText.Text = $"Baseline Dpi : {GraphicsTypeManager.Instance.BaselineDpi}";
+            rootView.Add(baseDpiText);
 
             var densityText = new TextLabel();
             densityText.Text = $"Density : {GraphicsTypeManager.Instance.Density}";

@@ -30,7 +30,7 @@ namespace Tizen.NUI
         private volatile static GraphicsTypeManager graphicsTypeManager;
         private GraphicsTypeConverter typeConverter;
         private float scalingFactor = 1.0f;
-        private int defaultDensityDpi = DensityMedium;
+        private int baselineDpi = DensityMedium;
 
         /// <summary>
         /// Constant of low(120) density dpi.
@@ -40,7 +40,7 @@ namespace Tizen.NUI
         public const ushort DensityLow = 120;
 
         /// <summary>
-        /// Constant of medium(160) density dpi. Default dpi.
+        /// Constant of medium(160) density dpi. Baseline dpi.
         /// </summary>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -120,16 +120,16 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Default dpi. Medium(160) density dpi is origianlly provided.
+        /// Default baseline dpi. Medium(160) density dpi is origianlly provided.
         /// </summary>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public int DefaultDpi
+        public int BaselineDpi
         {
-            get => defaultDensityDpi;
+            get => baselineDpi;
             internal set
             {
-                defaultDensityDpi = value;
+                baselineDpi = value;
             }
         }
 
@@ -140,7 +140,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float Density
         {
-            get => ((float)DefaultDpi / (float)ScaledDpi);
+            get => ((float)BaselineDpi / (float)ScaledDpi);
         }
 
         /// <summary>

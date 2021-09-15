@@ -87,7 +87,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override float ConvertToPixel(float value)
         {
-            return value * (GraphicsTypeManager.Instance.ScaledDpi / (float)GraphicsTypeManager.Instance.DefaultDpi);
+            return value * (GraphicsTypeManager.Instance.ScaledDpi / (float)GraphicsTypeManager.Instance.BaselineDpi);
         }
 
         /// <summary>
@@ -98,7 +98,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override float ConvertFromPixel(float value)
         {
-            return value * (GraphicsTypeManager.Instance.DefaultDpi / (float)GraphicsTypeManager.Instance.ScaledDpi);
+            return value * (GraphicsTypeManager.Instance.BaselineDpi / (float)GraphicsTypeManager.Instance.ScaledDpi);
         }
     }
 }

@@ -110,7 +110,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float ConvertDpToPoint(float value)
         {
-            return value * ((float)pointDpi / (float)GraphicsTypeManager.Instance.DefaultDpi);
+            return value * ((float)pointDpi / (float)GraphicsTypeManager.Instance.BaselineDpi);
         }
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float ConvertPointToDp(float value)
         {
-            return value * ((float)GraphicsTypeManager.Instance.DefaultDpi / (float)pointDpi);
+            return value * ((float)GraphicsTypeManager.Instance.BaselineDpi / (float)pointDpi);
         }
     }
 }
