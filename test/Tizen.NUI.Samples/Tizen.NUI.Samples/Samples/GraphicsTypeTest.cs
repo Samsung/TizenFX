@@ -122,6 +122,19 @@ namespace Tizen.NUI.Samples
             pixelToDpExtentText.Text = $"pixel : ({pixelExtent.Start}, {pixelExtent.End}, {pixelExtent.Top}, {pixelExtent.Bottom}), dp : ({dpExtent.Start}, {dpExtent.End}, {dpExtent.Top}, {dpExtent.Bottom})";
             rootView.Add(pixelToDpExtentText);
 
+            var pixelToPointText = new TextLabel();
+            var fontPxSize = 30.0f;
+            pixelToPointText.PointSize = fontPxSize.PixelToPoint();
+            pixelToPointText.Text = $"pixel : {fontPxSize}, point: {fontPxSize.PixelToPoint()}";
+            rootView.Add(pixelToPointText);
+
+            var dpToPointText = new TextLabel();
+            var dpPxSize = 80.0f;
+            dpToPointText.PointSize = dpPxSize.DpToPoint();
+            dpToPointText.Text = $"pixel : {dpPxSize}, point: {dpPxSize.DpToPoint()}";
+            rootView.Add(dpToPointText);
+
+
             window.Add(rootView);
         }
 

@@ -37,42 +37,42 @@ namespace Tizen.NUI
         /// </summary>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public const int DensityLow = 120;
+        public const ushort DensityLow = 120;
 
         /// <summary>
         /// Constant of medium(160) density dpi. Default dpi.
         /// </summary>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public const int DensityMedium = 160;
+        public const ushort DensityMedium = 160;
 
         /// <summary>
         /// Constant of high(240) density dpi.
         /// </summary>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public const int DensityHigh = 240;
+        public const ushort DensityHigh = 240;
 
         /// <summary>
         /// Constant of extra high(320) density dpi.
         /// </summary>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public const int DensityXHigh = 320;
+        public const ushort DensityXHigh = 320;
 
         /// <summary>
         /// Constant of double extra high(480) density dpi.
         /// </summary>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public const int DensityXXHigh = 480;
+        public const ushort DensityXXHigh = 480;
 
         /// <summary>
         /// Constant of triple extra high(640) density dpi.
         /// </summary>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public const int DensityXXXHigh = 640;
+        public const ushort DensityXXXHigh = 640;
 
         /// <summary>
         /// Custom scale factor of display metrics.

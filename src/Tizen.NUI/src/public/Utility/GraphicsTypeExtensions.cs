@@ -94,6 +94,34 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Converter Size2D pixel to dp.
+        /// Size2D(100, 100).ToDp() = Size2D(50, 50) in 320dpi display.
+        /// </summary>
+        /// <param name="pixel">The Size2D pixel unit value to be converted dp unit.</param>
+        /// <returns>The Size2D dp unit value.</returns>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Size2D ToDp(this Size2D pixel)
+        {
+            return new Size2D((int)GraphicsTypeManager.Instance.ConvertFromPixel(pixel.Width),
+                              (int)GraphicsTypeManager.Instance.ConvertFromPixel(pixel.Height));
+        }
+
+        /// <summary>
+        /// Converter Size2D dp to pixel.
+        /// Size2D(100, 100).ToPixel() = Size(200, 200) in 320dpi display.
+        /// </summary>
+        /// <param name="dp">The Size2D dp unit value to be converted pixel unit.</param>
+        /// <returns>The Size2D pixel unit value.</returns>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Size2D ToPixel(this Size2D dp)
+        {
+            return new Size2D((int)GraphicsTypeManager.Instance.ConvertToPixel(dp.Width),
+                              (int)GraphicsTypeManager.Instance.ConvertToPixel(dp.Height));
+        }
+
+        /// <summary>
         /// Converter Position pixel to dp.
         /// Position(100.0f, 100.0f).ToDp() = Position(50.0f, 50.0f) in 320dpi display.
         /// </summary>
@@ -119,6 +147,34 @@ namespace Tizen.NUI
         {
             return new Position(GraphicsTypeManager.Instance.ConvertToPixel(dp.X),
                                 GraphicsTypeManager.Instance.ConvertToPixel(dp.Y));
+        }
+
+        /// <summary>
+        /// Converter Position2D pixel to dp.
+        /// Position2D(100.0f, 100.0f).ToDp() = Position2D(50.0f, 50.0f) in 320dpi display.
+        /// </summary>
+        /// <param name="pixel">The Position2D pixel unit value to be converted dp unit.</param>
+        /// <returns>The Position2D dp unit value.</returns>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Position2D ToDp(this Position2D pixel)
+        {
+            return new Position2D((int)GraphicsTypeManager.Instance.ConvertFromPixel(pixel.X),
+                                  (int)GraphicsTypeManager.Instance.ConvertFromPixel(pixel.Y));
+        }
+
+        /// <summary>
+        /// Converter Position2D dp to pixel.
+        /// Position2D(100, 100).ToPixel() = Position2D(200, 200) in 320dpi display.
+        /// </summary>
+        /// <param name="dp">The Position2D dp unit value to be converted pixel unit.</param>
+        /// <returns>The Position2D pixel unit value.</returns>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Position2D ToPixel(this Position2D dp)
+        {
+            return new Position2D((int)GraphicsTypeManager.Instance.ConvertToPixel(dp.X),
+                                  (int)GraphicsTypeManager.Instance.ConvertToPixel(dp.Y));
         }
 
         /// <summary>
@@ -183,6 +239,58 @@ namespace Tizen.NUI
                                (ushort)GraphicsTypeManager.Instance.ConvertToPixel(dp.End),
                                (ushort)GraphicsTypeManager.Instance.ConvertToPixel(dp.Top),
                                (ushort)GraphicsTypeManager.Instance.ConvertToPixel(dp.Bottom));
+        }
+
+        /// <summary>
+        /// Converter float font pixel size to point size.
+        /// 100.0f.PixelToPoint() = 50.0f in 144dpi display.
+        /// </summary>
+        /// <param name="pixel">The float pixel unit value to be converted point unit.</param>
+        /// <returns>The float point unit value.</returns>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static float PixelToPoint(this float pixel)
+        {
+            return GraphicsTypeManager.Instance.ConvertFromPixel(pixel);
+        }
+
+        /// <summary>
+        /// Converter float font point size to pixel size.
+        /// 100.0f.PointToPixel() = 200.0f in 144dpi display.
+        /// </summary>
+        /// <param name="point">The float point unit value to be converted pixel unit.</param>
+        /// <returns>The float pixel unit value.</returns>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static float PointToPixel(this float point)
+        {
+            return PointTypeConverter.Instance.ConvertToPixel(point);
+        }
+
+        /// <summary>
+        /// Converter float font dp size to point size.
+        /// 16.0f.DpToPoint() = 7.2f.
+        /// </summary>
+        /// <param name="dp">The float dp unit value to be converted point unit.</param>
+        /// <returns>The float point unit value.</returns>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static float DpToPoint(this float dp)
+        {
+            return PointTypeConverter.Instance.ConvertDpToPoint(dp);
+        }
+
+        /// <summary>
+        /// Converter float font point size to dp size.
+        /// 7.2f.PointToDp() = 16.0f.
+        /// </summary>
+        /// <param name="point">The float point unit value to be converted dp unit.</param>
+        /// <returns>The float dp unit value.</returns>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static float PointToDp(this float point)
+        {
+            return PointTypeConverter.Instance.ConvertPointToDp(point);
         }
     }
 }
