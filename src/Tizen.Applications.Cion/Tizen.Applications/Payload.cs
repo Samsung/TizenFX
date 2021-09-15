@@ -22,7 +22,7 @@ namespace Tizen.Applications
     /// <since_tizen> 9 </since_tizen>
     public abstract class Payload
     {
-        private readonly string LogTag = "Tizen.Cion";
+        private readonly string LogTag = "Tizen.Applications.Cion";
         internal PayloadSafeHandle _handle;
 
         /// <summary>

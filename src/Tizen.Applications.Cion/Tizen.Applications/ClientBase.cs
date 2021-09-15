@@ -27,7 +27,7 @@ namespace Tizen.Applications
     /// <since_tizen> 9 </since_tizen>
     public abstract class ClientBase : IDisposable
     {
-        private readonly string LogTag = "Tizen.Cion";
+        private readonly string LogTag = "Tizen.Applications.Cion";
         private readonly ClientSafeHandle _handle;
 
         private PeerInfo _peer;
@@ -168,15 +168,11 @@ namespace Tizen.Applications
         /// <since_tizen> 9 </since_tizen>
         public void TryDiscovery()
         {
-            Log.Error(LogTag, string.Format("Try discovery start"));
-
             if (_discoveredCb == null)
             {
                 Interop.CionClient.CionClientDiscoveredCb cb = new Interop.CionClient.CionClientDiscoveredCb(
                     (string serviceName, IntPtr peerInfo, IntPtr userData) =>
                     {
-                        Log.Error(LogTag, string.Format("callback called !!"));
-
                         Interop.Cion.ErrorCode clone_ret = Interop.CionPeerInfo.CionPeerInfoClone(peerInfo, out PeerInfoSafeHandle clone);
                         if (clone_ret != Interop.Cion.ErrorCode.None)
                         {

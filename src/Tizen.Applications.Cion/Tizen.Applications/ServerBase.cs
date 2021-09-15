@@ -26,7 +26,7 @@ namespace Tizen.Applications
     /// <since_tizen> 9 </since_tizen>
     public abstract class ServerBase : IDisposable
     {
-        private const string LogTag = "Tizen.Cion";
+        private readonly string LogTag = "Tizen.Applications.Cion";
 
         private string _displayName;
         private readonly ServerSafeHandle _handle;

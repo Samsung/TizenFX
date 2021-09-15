@@ -24,7 +24,7 @@ namespace Tizen.Applications
     /// <since_tizen> 9 </since_tizen>
     public abstract class GroupBase : IDisposable
     {
-        private readonly string LogTag = "Tizen.Cion";
+        private readonly string LogTag = "Tizen.Applications.Cion";
         private readonly GroupSafeHandle _handle;
 
         private Interop.CionGroup.CionGroupPayloadReceivedCb _payloadReceivedCb;

@@ -24,7 +24,7 @@ namespace Tizen.Applications
     /// <since_tizen> 9 </since_tizen>
     public class FilePayload : Payload
     {
-        private readonly string LogTag = "Tizen.Cion";
+        private readonly string LogTag = "Tizen.Applications.Cion";
 
         internal FilePayload(PayloadSafeHandle handle)
         {
