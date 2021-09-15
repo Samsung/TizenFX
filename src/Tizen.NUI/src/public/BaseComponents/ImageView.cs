@@ -634,6 +634,7 @@ namespace Tizen.NUI.BaseComponents
         /// Gets or sets whether to synchronous loading the resourceurl of image.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API level 9 and will be removed in API level 11. Please use SynchronousLoading instead!")]
         public bool SynchronosLoading
         {
             get
@@ -647,10 +648,14 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Gets or sets whether to synchronous loading the resourceurl of image.<br />
+        /// Gets or sets whether the image of the ResourceUrl property will be loaded synchronously.<br />
         /// </summary>
-        /// This will be public opened in tizen_7.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <remarks>
+        /// Changing this property make this ImageView load image synchronously at the next loading
+        /// by following operation: <see cref="Reload"/>, <see cref="SetImage"/>,
+        /// and by some properties those cause reloading: <see cref="ResourceUrl"/>, <see cref="PreMultipliedAlpha"/> and etc.
+        /// </remarks>
+        /// <since_tizen> 9 </since_tizen>
         public bool SynchronousLoading
         {
             get
