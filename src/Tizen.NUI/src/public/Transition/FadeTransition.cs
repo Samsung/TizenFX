@@ -24,7 +24,7 @@ namespace Tizen.NUI
     /// <summary>
     /// FadeTransition class is a cluster of properties for the fade transition of a View.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class FadeTransition : TransitionBase
     {
         private float opacity = 0.0f;
@@ -32,7 +32,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Create a FadeTransition for the View pair.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public FadeTransition()
         {
         }
@@ -43,7 +43,7 @@ namespace Tizen.NUI
         /// If this transition is for disappearing, the opacity of target View is animated to this property.
         /// Default Opacity is 0.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public float Opacity
         {
             get
