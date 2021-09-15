@@ -28,6 +28,24 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
+        [Description("VisualFactory constructor.")]
+        [Property("SPEC", "Tizen.NUI.VisualFactory.VisualFactory C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void VisualFactoryConstructor()
+        {
+            tlog.Debug(tag, $"VisualFactoryConstructor START");
+
+            var testingTarget = new VisualFactory();
+            Assert.IsInstanceOf<VisualFactory>(testingTarget, "CreateVisual Should return VisualFactory instance.");
+
+            testingTarget?.Dispose();
+            tlog.Debug(tag, $"VisualFactoryConstructor END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
         [Description("VisualFactory CreateVisual.")]
         [Property("SPEC", "Tizen.NUI.VisualFactory.CreateVisual M")]
         [Property("SPEC_URL", "-")]

@@ -199,9 +199,121 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"LottieAnimationViewFinished END (OK)");
         }
 
-        public void OnFinishedEvent(object sender, EventArgs e)
-        { 
-            // not implemented
+        [Test]
+        [Category("P1")]
+        [Description("LottieAnimationView VisualEvent.")]
+        [Property("SPEC", "Tizen.NUI.LottieAnimationView.VisualEvent M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void LottieAnimationViewVisualEvent()
+        {
+            tlog.Debug(tag, $"LottieAnimationViewVisualEvent START");
+
+            var testingTarget = new LottieAnimationView();
+            Assert.IsNotNull(testingTarget, "Can't create success object LottieAnimationView");
+            Assert.IsInstanceOf<LottieAnimationView>(testingTarget, "Should be an instance of LottieAnimationView type.");
+
+            testingTarget.URL = lottieFilePath;
+            NUIApplication.GetDefaultWindow().GetDefaultLayer().Add(testingTarget);
+
+            testingTarget.VisualEvent += OnVisualEvent;
+            testingTarget.VisualEvent -= OnVisualEvent;
+
+            NUIApplication.GetDefaultWindow().GetDefaultLayer().Remove(testingTarget);
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"LottieAnimationViewVisualEvent END (OK)");
         }
+
+        [Test]
+        [Category("P1")]
+        [Description("LottieFrameInfo constructor.")]
+        [Property("SPEC", "Tizen.NUI.LottieFrameInfo.LottieFrameInfo C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void LottieFrameInfoConstructor()
+        {
+            tlog.Debug(tag, $"LottieFrameInfoConstructor START");
+
+            var testingTarget = new LottieFrameInfo(0, 10);
+            Assert.IsNotNull(testingTarget, "Can't create success object LottieFrameInfo");
+            Assert.IsInstanceOf<LottieFrameInfo>(testingTarget, "Should be an instance of LottieFrameInfo type.");
+
+            var result = testingTarget.StartFrame;
+            Assert.AreEqual(0, result, "should be equal!");
+
+            result = testingTarget.EndFrame;
+            Assert.AreEqual(10, result, "should be equal!");
+
+            tlog.Debug(tag, $"LottieFrameInfoConstructor END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("LottieFrameInfo constructor.")]
+        [Property("SPEC", "Tizen.NUI.LottieFrameInfo.LottieFrameInfo C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void LottieFrameInfoConstructorWithStillImageFrame()
+        {
+            tlog.Debug(tag, $"LottieFrameInfoConstructorWithStillImageFrame START");
+
+            var testingTarget = new LottieFrameInfo(300);
+            Assert.IsNotNull(testingTarget, "Can't create success object LottieFrameInfo");
+            Assert.IsInstanceOf<LottieFrameInfo>(testingTarget, "Should be an instance of LottieFrameInfo type.");
+
+            var result = testingTarget.IsStillImage();
+            tlog.Debug(tag, "IsStillImage : " + result);
+
+            tlog.Debug(tag, $"LottieFrameInfoConstructorWithStillImageFrame END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("LottieFrameInfo constructor.")]
+        [Property("SPEC", "Tizen.NUI.LottieFrameInfo.LottieFrameInfo C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void LottieFrameInfoConstructorWithPair()
+        {
+            tlog.Debug(tag, $"LottieFrameInfoConstructorWithPair START");
+
+            LottieFrameInfo testingTarget = (0, 10);
+            Assert.IsNotNull(testingTarget, "Can't create success object LottieFrameInfo");
+            Assert.IsInstanceOf<LottieFrameInfo>(testingTarget, "Should be an instance of LottieFrameInfo type.");
+
+            tlog.Debug(tag, $"LottieFrameInfoConstructorWithPair END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("LottieFrameInfo constructor.")]
+        [Property("SPEC", "Tizen.NUI.LottieFrameInfo.LottieFrameInfo C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void LottieFrameInfoConstructorWithString()
+        {
+            tlog.Debug(tag, $"LottieFrameInfoConstructorWithString START");
+
+            LottieFrameInfo dummy1 = "0, 10";
+            Assert.IsNotNull(dummy1, "Can't create success object LottieFrameInfo");
+            Assert.IsInstanceOf<LottieFrameInfo>(dummy1, "Should be an instance of LottieFrameInfo type.");
+
+            // length == 1
+            LottieFrameInfo dummy2 = "10";
+            Assert.IsNotNull(dummy2, "Can't create success object LottieFrameInfo");
+            Assert.IsInstanceOf<LottieFrameInfo>(dummy2, "Should be an instance of LottieFrameInfo type.");
+
+            tlog.Debug(tag, $"LottieFrameInfoConstructorWithString END (OK)");
+        }
+
+        public void OnFinishedEvent(object sender, EventArgs e) { }
+
+        private void OnVisualEvent(object sender, LottieAnimationView.VisualEventSignalArgs e) { }
     }
 }

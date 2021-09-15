@@ -42,6 +42,8 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<TransitionAnimation>(testingTarget, "should be an instance of TransitionAnimation class!");
 
             testingTarget.Dispose();
+            // diposed
+            testingTarget.Dispose();
             tlog.Debug(tag, $"TransitionAnimationConstructor END (OK)");
         }
 
@@ -141,6 +143,34 @@ namespace Tizen.NUI.Devel.Tests
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"TransitionAnimationAddAnimationData END (OK)");
+        }
+
+        [Test]
+        [Category("P2")]
+        [Description("TransitionAnimations AddAnimationData")]
+        [Property("SPEC", "Tizen.NUI.TransitionAnimations.AddAnimationData M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void TransitionAnimationAddAnimationDataWithNull()
+        {
+            tlog.Debug(tag, $"TransitionAnimationAddAnimationDataWithNull START");
+
+            var testingTarget = new TransitionAnimation(3000);
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<TransitionAnimation>(testingTarget, "should be an instance of TransitionAnimation class!");
+
+            try
+            {
+                TransitionAnimationData dummy = null;
+                testingTarget.AddAnimationData(dummy);
+            }
+            catch (ArgumentNullException)
+            {
+                testingTarget.Dispose();
+                tlog.Debug(tag, $"TransitionAnimationAddAnimationDataWithNull END (OK)");
+                Assert.Pass("Caught ArgumentNullException :  Passed!");
+            } 
         }
 
         [Test]
@@ -377,7 +407,7 @@ namespace Tizen.NUI.Devel.Tests
                 DestinationValue = "100, 100",
             };
             var result = testingTarget.StartTime;
-            Assert.AreEqual(300, result, "should be eaqual!");
+            Assert.AreEqual(300, result, "should be equal!");
 
             tlog.Debug(tag, $"TransitionAnimationDataStartTimeGet END (OK)");
         }
@@ -402,11 +432,11 @@ namespace Tizen.NUI.Devel.Tests
             };
 
             var result = testingTarget.StartTime;
-            Assert.AreEqual(300, result, "should be eaqual!");
+            Assert.AreEqual(300, result, "should be equal!");
 
             testingTarget.StartTime = 600;
             result = testingTarget.StartTime;
-            Assert.AreEqual(600, result, "should be eaqual!");
+            Assert.AreEqual(600, result, "should be equal!");
 
             tlog.Debug(tag, $"TransitionAnimationDataStartTimeSet END (OK)");
         }
@@ -431,7 +461,7 @@ namespace Tizen.NUI.Devel.Tests
             };
 
             var result = testingTarget.EndTime;
-            Assert.AreEqual(600, result, "should be eaqual!");
+            Assert.AreEqual(600, result, "should be equal!");
 
             tlog.Debug(tag, $"TransitionAnimationDataEndTimeGet END (OK)");
         }
@@ -456,11 +486,11 @@ namespace Tizen.NUI.Devel.Tests
             };
 
             var result = testingTarget.EndTime;
-            Assert.AreEqual(600, result, "should be eaqual!");
+            Assert.AreEqual(600, result, "should be equal!");
 
             testingTarget.EndTime = 900;
             result = testingTarget.EndTime;
-            Assert.AreEqual(900, result, "should be eaqual!");
+            Assert.AreEqual(900, result, "should be equal!");
 
             tlog.Debug(tag, $"TransitionAnimationDataEndTimeSet END (OK)");
         }
@@ -485,7 +515,7 @@ namespace Tizen.NUI.Devel.Tests
             };
 
             var result = testingTarget.Property;
-            Assert.AreEqual("Size", result, "should be eaqual!");
+            Assert.AreEqual("Size", result, "should be equal!");
 
             tlog.Debug(tag, $"TransitionAnimationDataPropertyGet END (OK)");
         }
@@ -510,11 +540,11 @@ namespace Tizen.NUI.Devel.Tests
             };
 
             var result = testingTarget.Property;
-            Assert.AreEqual("Size", result, "should be eaqual!");
+            Assert.AreEqual("Size", result, "should be equal!");
 
             testingTarget.Property = "Position";
             result = testingTarget.Property;
-            Assert.AreEqual("Position", result, "should be eaqual!");
+            Assert.AreEqual("Position", result, "should be equal!");
 
             tlog.Debug(tag, $"TransitionAnimationDataPropertySet END (OK)");
         }
@@ -539,7 +569,7 @@ namespace Tizen.NUI.Devel.Tests
             };
 
             var result = testingTarget.DestinationValue;
-            Assert.AreEqual("100, 100", result, "should be eaqual!");
+            Assert.AreEqual("100, 100", result, "should be equal!");
 
             tlog.Debug(tag, $"TransitionAnimationDataDestinationValueGet END (OK)");
         }
@@ -564,12 +594,12 @@ namespace Tizen.NUI.Devel.Tests
             };
 
             var result = testingTarget.DestinationValue;
-            Assert.AreEqual("100, 100", result, "should be eaqual!");
+            Assert.AreEqual("100, 100", result, "should be equal!");
 
             testingTarget.Property = "Position";
             testingTarget.DestinationValue = "0.3f, 0.9f, 0.0f";
             result = testingTarget.DestinationValue;
-            Assert.AreEqual("0.3f, 0.9f, 0.0f", result, "should be eaqual!");
+            Assert.AreEqual("0.3f, 0.9f, 0.0f", result, "should be equal!");
 
             tlog.Debug(tag, $"TransitionAnimationDataDestinationValueSet END (OK)");
         }
