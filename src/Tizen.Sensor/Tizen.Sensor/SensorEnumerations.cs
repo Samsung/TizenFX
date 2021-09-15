@@ -100,6 +100,14 @@ namespace Tizen.Sensor
         /// </summary>
         MagnetometerRotationVectorSensor = 20,
         /// <summary>
+        /// The Gyroscope-based orientation sensor.
+        /// </summary>
+        GyroscopeOrientationSensor = 100,
+        /// <summary>
+        /// Geomagnetic-based orientation sensor.
+        /// </summary>
+        MagnetometerOrientationSensor = 105,
+        /// <summary>
         /// Pedometer sensor.
         /// </summary>
         HRMBatch = 0x200,
