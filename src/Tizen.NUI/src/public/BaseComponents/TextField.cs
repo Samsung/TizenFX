@@ -484,6 +484,18 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return GetValue(ShadowOffsetProperty) as Vector2;
+            }
+            set
+            {
+                SetValue(ShadowOffsetProperty, value);
+            }
+        }
+
+        private Vector2 InternalShadowOffset
+        {
+            get
+            {
                 PropertyMap map = new PropertyMap();
                 GetProperty(TextField.Property.SHADOW).Get(map);
                 Vector2 shadowOffset = new Vector2();
@@ -509,6 +521,18 @@ namespace Tizen.NUI.BaseComponents
         /// </remarks>
         [Obsolete("Please do not use this ShadowColor(Deprecated). Please use Shadow instead.")]
         public Vector4 ShadowColor
+        {
+            get
+            {
+                return GetValue(ShadowColorProperty) as Vector4;
+            }
+            set
+            {
+                SetValue(ShadowColorProperty, value);
+            }
+        }
+
+        private Vector4 InternalShadowColor
         {
             get
             {
@@ -1631,6 +1655,18 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return (bool)GetValue(EnableEditingProperty);
+            }
+            set
+            {
+                SetValue(EnableEditingProperty, value);
+            }
+        }
+
+        private bool InternalEnableEditing
+        {
+            get
+            {
                 bool temp;
                 GetProperty(TextField.Property.EnableEditing).Get(out temp);
                 return temp;
@@ -1647,6 +1683,18 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int PrimaryCursorPosition
+        {
+            get
+            {
+                return (int)GetValue(PrimaryCursorPositionProperty);
+            }
+            set
+            {
+                SetValue(PrimaryCursorPositionProperty, value);
+            }
+        }
+
+        private int InternalPrimaryCursorPosition
         {
             get
             {

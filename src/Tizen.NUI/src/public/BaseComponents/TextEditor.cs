@@ -99,6 +99,18 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return GetValue(TranslatableTextProperty) as string;
+            }
+            set
+            {
+                SetValue(TranslatableTextProperty, value);
+            }
+        }
+
+        private string InternalTranslatableText
+        {
+            get
+            {
                 return textEditorTextSid;
             }
             set
@@ -121,6 +133,18 @@ namespace Tizen.NUI.BaseComponents
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
         public string TranslatablePlaceholderText
+        {
+            get
+            {
+                return GetValue(TranslatablePlaceholderTextProperty) as string;
+            }
+            set
+            {
+                SetValue(TranslatablePlaceholderTextProperty, value);
+            }
+        }
+
+        private string InternalTranslatablePlaceholderText
         {
             get
             {
@@ -1417,6 +1441,18 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return (bool)GetValue(EnableEditingProperty);
+            }
+            set
+            {
+                SetValue(EnableEditingProperty, value);
+            }
+        }
+
+        private bool InternalEnableEditing
+        {
+            get
+            {
                 bool temp;
                 GetProperty(TextEditor.Property.EnableEditing).Get(out temp);
                 return temp;
@@ -1433,6 +1469,18 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int HorizontalScrollPosition
+        {
+            get
+            {
+                return (int)GetValue(HorizontalScrollPositionProperty);
+            }
+            set
+            {
+                SetValue(HorizontalScrollPositionProperty, value);
+            }
+        }
+
+        private int InternalHorizontalScrollPosition
         {
             get
             {
@@ -1461,6 +1509,18 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return (int)GetValue(VerticalScrollPositionProperty);
+            }
+            set
+            {
+                SetValue(VerticalScrollPositionProperty, value);
+            }
+        }
+
+        private int InternalVerticalScrollPosition
+        {
+            get
+            {
                 int temp;
                 using (PropertyValue propertyValue = GetProperty(TextEditor.Property.VerticalScrollPosition))
                 {
@@ -1483,6 +1543,18 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int PrimaryCursorPosition
+        {
+            get
+            {
+                return (int)GetValue(PrimaryCursorPositionProperty);
+            }
+            set
+            {
+                SetValue(PrimaryCursorPositionProperty, value);
+            }
+        }
+
+        private int InternalPrimaryCursorPosition
         {
             get
             {
