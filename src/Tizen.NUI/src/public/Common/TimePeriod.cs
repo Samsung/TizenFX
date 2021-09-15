@@ -46,7 +46,7 @@ namespace Tizen.NUI
         /// Creates an time period object with the user-defined alpha function.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public TimePeriod(float delayMilliSeconds, float durationMilliSeconds) : this(Interop.TimePeriod.NewTimePeriod(MilliSecondsToSeconds((int)delayMilliSeconds), MilliSecondsToSeconds((int)durationMilliSeconds)), true)
+        public TimePeriod(int delayMilliSeconds, int durationMilliSeconds) : this(Interop.TimePeriod.NewTimePeriod(MilliSecondsToSeconds(delayMilliSeconds), MilliSecondsToSeconds(durationMilliSeconds)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
