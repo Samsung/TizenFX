@@ -21,11 +21,11 @@ using System.Globalization;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// DpTypeConverter class to convert types.
+    /// Default DpTypeConverter class to convert dp types.
     /// </summary>
     /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class DpTypeConverter : GraphicsTypeConverter
+    public sealed class DpTypeConverter : GraphicsTypeConverter
     {
         private volatile static DpTypeConverter dpTypeConverter;
 
